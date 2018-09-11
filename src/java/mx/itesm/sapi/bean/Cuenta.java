@@ -1,4 +1,4 @@
-package mx.itesm.sapi.bean;
+﻿package mx.itesm.sapi.bean;
 import java.io.Serializable;
 
 public class Cuenta implements Serializable{
@@ -7,6 +7,7 @@ public class Cuenta implements Serializable{
     private int idRol;
     private String usuario;
     private String contraseña;
+    private String prueba
     
     public Cuenta(){}
     
