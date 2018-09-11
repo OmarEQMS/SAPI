@@ -33,6 +33,9 @@ public class RegistraUsuarioController extends HttpServlet {
         
         PersonaServiceImpl psi = new PersonaServiceImpl();
         psi.savePersona(persona);
+        
+        PrintWriter out = response.getWriter();
+        out.print("YES");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
