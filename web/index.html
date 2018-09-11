@@ -5,52 +5,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Registro</title>
+    <title>Omar Quintero</title>
+    
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/asincrono.js"></script>
+    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-        crossorigin="anonymous">
+        crossorigin="anonymous"> <!-- Para unos bonitos iconos -->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/stylesRegistro.css">
 </head>
 
 <body>
 
-    <form class="formulario" action="RegistraUsuarioController" method="POST">
+    <form class="formulario fa fa-trash">
 
         <h1 class="h3 mb-4 titulo-login text-center">Registro</h1>
 
         <div class="form-group row">
 
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                <input name="nombre" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf007; NOMBRE" autofocus>
+                <input id="nombre" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf007; NOMBRE" autofocus>
             </div>
 
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                <input name="apellidos" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf007; APELLIDOS">
+                <input id="apellidos" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf007; APELLIDOS">
             </div>
 
         </div>
 
         <div class="form-group row">
             <div class="col-12">
-                <input name="usuario" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf2bd; NOMBRE DE USUARIO">
+                <input id="usuario" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf2bd; NOMBRE DE USUARIO">
             </div>
         </div>
 
         <div class="form-group row">
 
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                <input name="curp" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf2C2; CURP">
+                <input id="curp" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf2C2; CURP">
             </div>
 
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                <input name="telefono" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf095; TELEFONO">
+                <input id="telefono" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf095; TELEFONO">
             </div>
 
         </div>
 
         <div class="form-group row">
             <div class="col-12">
-                <input name="correo" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf0e0; CORREO ELECTRÓNICO (OPCIONAL)"
+                <input id="correo" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf0e0; CORREO ELECTRÓNICO (OPCIONAL)"
                     autofocus>
             </div>
         </div>
@@ -60,30 +66,26 @@
         <div class="form-group row">
 
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                <input name="password" type="password" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf023; CONTRASEÑA" autofocus>
+                <input id="password" type="password" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf023; CONTRASEÑA" autofocus>
             </div>
 
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                <input name="password2" type="password" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf023; CONFIRMAR CONTRASEÑA">
+                <input id="password2" type="password" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf023; CONFIRMAR CONTRASEÑA">
             </div>
 
         </div>
 
 
         <!-- Input submit -->
-        <input type="submit" id="btn-login" class="btn btn-lg btn-secondary btn-block btn-registro" value="REGISTRARME">
+        <input type="button" id="btn-login" class="btn btn-lg btn-secondary btn-block btn-registro" value="REGISTRARME">
 
         <h6 class="text-center mt-3 texto-cuenta"><span>Ya estas registrado?</span> <a href="../Login/index.html">Inicia
                 sesión aquí</a></h6>
 
     </form>
-    <br>
-
-
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/popper.min.js"></script>
-
+  
+  <br> <!-- br de Uri -->
+  
 </body>
 
 </html>
