@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 $(document).ready(function(){
+    console.log("Hola Chrome");
+    
    $("#btn-login").click(function(){
       $.ajax({
          url : "UsuarioController",
