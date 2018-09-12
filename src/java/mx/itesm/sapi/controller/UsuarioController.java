@@ -1,6 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package mx.itesm.sapi.controller;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,8 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import mx.itesm.sapi.bean.Persona;
 import mx.itesm.sapi.service.PersonaServiceImpl;
 
-@WebServlet(name="RegistraUsuarioController", urlPatterns={"/RegistraUsuarioController"})
-public class RegistraUsuarioController extends HttpServlet {
+/**
+ *
+ * @author quint
+ */
+@WebServlet(name = "UsuarioController", urlPatterns = {"/UsuarioController"})
+public class UsuarioController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -25,17 +36,37 @@ public class RegistraUsuarioController extends HttpServlet {
             throws ServletException, IOException {
         // $_REQUEST['name'];
         // $_POST
-        String name = request.getParameter("nombre");
-        System.out.println("Nombre: ".concat(name));
+        String accion = request.getParameter("accion");
         
-        Persona persona = new Persona();
-        persona.setNombre(name);
-        
-        PersonaServiceImpl psi = new PersonaServiceImpl();
-        psi.savePersona(persona);
-        
-        PrintWriter out = response.getWriter();
-        out.print("YES");
+        switch(accion){
+            case "registrar":{
+                String name = request.getParameter("nombre");
+                System.out.println("Nombre: ".concat(name));
+
+                Persona persona = new Persona();
+                persona.setNombre(name);
+
+                PersonaServiceImpl psi = new PersonaServiceImpl();
+                psi.savePersona(persona);
+
+                PrintWriter out = response.getWriter();
+                out.print("YES");
+                break;
+            }
+                
+            case "listar":{                
+                PersonaServiceImpl psi = new PersonaServiceImpl();
+                List<Persona> personas = psi.getPersonas();
+                //Enviar la lista jsp
+                request.setAttribute("personas", personas);
+                request.getRequestDispatcher("/WEB-INF/gestionMedicos.jsp").forward(request, response);
+                //response.sendRedirect("gestionMedicos.jsp");
+                break;
+            }
+            default:{
+                
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

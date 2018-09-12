@@ -6,8 +6,9 @@
 $(document).ready(function(){
    $("#btn-login").click(function(){
       $.ajax({
-         url : "RegistraUsuarioController",
+         url : "UsuarioController",
          data :{
+             accion : "registrar",
              nombre : $("#nombre").val(),
              apellidos : $("#apellidos").val(),
              usuario : $("#usuario").val(),

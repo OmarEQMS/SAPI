@@ -9,6 +9,9 @@
         <url-pattern>/RegistraUsuarioController</url-pattern>
     </servlet-mapping>
 -->
+    <welcome-file-list>
+        <welcome-file>/WEB-INF/gestionMedicos.jsp</welcome-file>
+    </welcome-file-list>
     <session-config>
         <session-timeout>
             30

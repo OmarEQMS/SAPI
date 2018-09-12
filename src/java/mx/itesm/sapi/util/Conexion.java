@@ -4,7 +4,7 @@ import java.sql.DriverManager;
 
 public class Conexion {
     public static Connection getConexion(){
-        String cadena = "jdbc:mysql://localhost:3306/sapo?user=root";
+        String cadena = "jdbc:mysql://localhost:3306/usuarios?user=root";
         Connection connection = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");

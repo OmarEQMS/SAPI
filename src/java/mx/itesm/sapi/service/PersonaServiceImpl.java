@@ -1,7 +1,10 @@
 package mx.itesm.sapi.service;
 
+import com.mysql.jdbc.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import mx.itesm.sapi.bean.Persona;
 import mx.itesm.sapi.util.Conexion;
@@ -15,25 +18,48 @@ public class PersonaServiceImpl implements PersonaService{
 
     @Override
     public List<Persona> getPersonas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn = Conexion.getConexion();
+        String sql = "SELECT * FROM Persona";
+        List<Persona> personas = new ArrayList<>();
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            Persona persona;
+            while(rs.next()){
+                persona = new Persona();
+                persona.setIdPersona(rs.getInt("idPersona"));
+                persona.setNombre(rs.getString("nombre"));
+                persona.setApellidos(rs.getString("apPaterno"));
+                personas.add(persona);
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        }catch(Exception ex){
+            System.out.println("PersonaServicioImpl.getPersonas(): ".concat(ex.getMessage()));
+        }
+        return personas;
     }
 
     @Override
-    public boolean savePersona(Persona persona) {
+    public int savePersona(Persona persona) {
         Connection conn = Conexion.getConexion();
         String sql = "INSERT INTO Persona(nombre, apellidos, curp, telefono, correo) VALUE(?,?,?,?,?)";
         try{
-            PreparedStatement ps = conn.prepareStatement(sql);
+            // CallableStatement -- para procedimientos almacenados
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, persona.getNombre());
             ps.setString(2, persona.getApellidos());
             ps.setString(3, persona.getCurp());
             ps.setString(4, persona.getTelefono());
             ps.setString(5, persona.getCorreo());
-            return !ps.execute();
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            int id = rs.getInt(1);
+            return id;
         }catch(Exception ex){
-            return false;
+            return -1;
         }
-        
     }
 
     @Override

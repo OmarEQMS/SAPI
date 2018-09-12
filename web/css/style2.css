@@ -1,0 +1,422 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700');
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+/* ---------------------------------------------------
+    GENERALES
+----------------------------------------------------- */
+
+body {
+    background: #fafafa;
+    font-family: 'Nunito Sans';
+}
+
+.centrarBlock{
+    margin: auto;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor:pointer;
+}
+
+li a, li a i{
+    cursor: pointer;
+}
+
+.title{
+    
+    font-size: 24px;
+    text-shadow: -1px -1px 14px rgba(150, 150, 150, 0.77);
+    font-family: 'Poppins', sans-serif;
+}
+
+.subtitle{
+    font-size: 9px;
+    
+}
+
+.subtitle-name{
+    
+    font-size: 20px;
+}
+
+.subtitle-user{
+    font-size: 15px;
+   
+}
+
+.user{
+    width: 50px;
+    margin: auto;
+}
+
+#sidebar ul li a{
+    font-size: 14px !important;
+    color: #dbdbdb;
+    margin-bottom: 4px;
+}
+
+#sidebar a:hover, #sidebar a:focus {
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+#sidebar ul li{
+    padding-left: 10px;
+}
+
+#sidebar ul li i{
+    margin-right: 10px;
+    color:#dbdbdb;
+    font-size: 12px;
+    border: 0.5px solid rgba(156, 157, 165, 0.6);
+    padding: 8px;
+    border-radius: 4px;
+    width: 15%;
+    text-align: center;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    width: 240px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    /* background: #2f3242; */
+    background: #2c2f39;
+    color: #fff;
+    transition: all 0.3s;
+    -webkit-box-shadow: 4px 0px 32px -8px rgba(0,0,0,0.40);
+    -moz-box-shadow: 4px 0px 32px -8px rgba(0,0,0,0.40);
+    box-shadow: 4px 0px 32px -8px rgba(0,0,0,0.40);
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+
+#sidebar .sidebar-header {
+    padding: 10px;
+    /* background: #3e8ef7; */
+    background: #2e313b;
+    
+}
+
+#sidebar .imagenPerfil{
+    width: 30%;
+    display:block;
+    margin:auto;
+    
+}
+
+#sidebar .profile {
+    background: #2e313b;
+}
+
+#sidebar .userSidebar{
+    font-size: 14px;
+}
+
+#sidebar .textoSidebar, #sidebar .iconoSidebar{
+    color: #9aa6ac;
+}
+
+#sidebar .iconoSidebar{
+    font-size: 15px;
+    transition: all 0.3s;
+}
+
+#sidebar .iconoSidebar:hover{
+    color: #499eea
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li{
+    padding-top: 5px;
+    transition: all 0.3ms;
+}
+
+#sidebar ul li:hover{
+    border-left: 3px solid #ce4f59;
+    background: #16181c;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: #fff;
+
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+a.article,
+a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+/* ---------------------------------------------------
+    NAVBAR
+----------------------------------------------------- */
+
+.boton-collapse{
+    background-color: white;
+    color:#2f3242;
+}
+
+.boton-collapse:hover{
+    color: #ec5865 !important; 
+}
+
+.notificacion{
+    background-color: #499eea;
+    width: 50px;
+    border-radius: 15px;;
+    color:white;
+    padding: 0px 10px 0px 10px;
+    margin-left: 10px;
+}
+
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
+ }
+
+.navbar {
+    padding: 15px 10px;
+    background:#fff !important;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    CONTENTENIDO PRINCIPAL
+----------------------------------------------------- */
+
+#content {
+    width: calc(100% - 250px);
+    padding: 40px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#content.active {
+    width: 100%;
+}
+
+.iconoHome, .colorGlobal{
+    color:#696a6b;
+}
+
+/* ---------------------------------------------------
+    SOLICITUD INICIAL - SUBIR ARCHIVOS
+----------------------------------------------------- */
+
+
+.opcionActiva{
+    background: #5E8DC7!important;
+    color:white !important;
+}
+
+.nav-item{
+    font-size: 12px !important;
+    letter-spacing: 2px;
+}
+
+.tituloPreConsulta{
+    font-size: 35px !important;
+    color: #696f71 !important;
+}
+
+.subPreConsulta{
+    font-size: 15px;
+    color: #b3b3b3;
+}
+
+.removePadding{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.btn.btn-guardar-continuar{
+	background-color: #fff;
+    border-color: #eb5865;
+    color:#eb5865;
+}
+
+.btn.btn-guardar-continuar:hover{
+	background-color: #eb5865;
+    border-color: #fff;
+    color:#fff;
+}
+
+.iconoQuestion{
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #eb5865;
+}
+
+.iconoQuestion:hover{
+    color: #ce4f59;
+}
+
+.textoDocumento{
+    color: #303030;
+}
+
+/* ---------------------------------------------------
+    APROBACION
+----------------------------------------------------- */
+
+.tituloAprobacion, .tituloPago{
+    color: #696f71;
+    font-size: 40px;
+}
+
+.subTituloAprobacion, .subTituloPago{
+    font-size: 16px;
+    color: #b3b3b3;
+}
+
+/* QUESTION MARKS */
+
+.tooltip_templates { display: none; }
+  
+/******* INPUTS *******/
+
+.custom-file-input ~ .custom-file-label::after {
+    content: "Buscar";
+}
+
+/* ---------------------------------------------------
+    FULL CALENDAR & MIS CITAS
+----------------------------------------------------- */
+
+.tituloMisCitas{
+    font-size: 40px;
+    color: #696f71;
+}
+
+.textoCitaReservada{
+    font-size: 20px;
+}
+
+.fc-toolbar { text-transform: capitalize; }
+
+.btnCancelarCita{
+    border-radius: 30px !important;
+}
+
+.ocultaBadge{
+    opacity: 0;
+}
+
+.imagenPerfilPaciente{
+    width: 230px;
+}
+
+.tituloPaciente{
+    color: #2c2f39;
+    font-size: 50px;
+}
+
+.subtituloPaciente{
+    color: #696a6b;
+    font-size: 40px;
+}
+
+/* ---------------------------------------------------
+    PANEL DE ADMINISTRADOR
+----------------------------------------------------- */
+
+.buscador{
+    border-radius: 0 !important;
+}
+
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 900px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 250px);
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
