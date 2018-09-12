@@ -44,22 +44,24 @@ public class PersonaServiceImpl implements PersonaService{
     @Override
     public int savePersona(Persona persona) {
         Connection conn = Conexion.getConexion();
-        String sql = "INSERT INTO Persona(nombre, apellidos, curp, telefono, correo) VALUE(?,?,?,?,?)";
+        String sql = "INSERT INTO Persona(nombre, apPaterno) VALUE(?,?)";
         try{
             // CallableStatement -- para procedimientos almacenados
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, persona.getNombre());
             ps.setString(2, persona.getApellidos());
-            ps.setString(3, persona.getCurp());
-            ps.setString(4, persona.getTelefono());
-            ps.setString(5, persona.getCorreo());
-            ResultSet rs = ps.executeQuery();
+            //ps.setString(3, persona.getCurp());
+            //ps.setString(4, persona.getTelefono());
+            //ps.setString(5, persona.getCorreo());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
             rs.next();
             int id = rs.getInt(1);
             ps.close();
             conn.close();
             return id;
         }catch(Exception ex){
+            System.out.println("PersonaServicioImpl.savePersona(): ".concat(ex.getMessage()));
             return -1;
         }
     }

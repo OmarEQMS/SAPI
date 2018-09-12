@@ -47,10 +47,10 @@ public class UsuarioController extends HttpServlet {
                 persona.setNombre(name);
 
                 PersonaServiceImpl psi = new PersonaServiceImpl();
-                psi.savePersona(persona);
+                int newID = psi.savePersona(persona);
 
                 PrintWriter out = response.getWriter();
-                out.print("YES");
+                out.print(newID);
                 break;
             }
                 

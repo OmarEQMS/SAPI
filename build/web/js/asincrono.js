@@ -22,7 +22,7 @@ $(document).ready(function(){
              alert("Ops! Algo Paso");
          },
          success : function(response){
-             alert("El registro se inserto corretamente");
+             swal({title:"El registro se inserto corretamente con el id " + response});
              $("input").val("");
          }
       }); 
