@@ -7,14 +7,9 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="mx.itesm.sapi.bean.Persona"%>
 <%@page import="java.util.List"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
-<%
-    List<Persona> personas = (ArrayList<Persona>)request.getAttribute("personas");
-    
-%>
-
 <html lang="es">
 
 <head>
@@ -170,19 +165,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <%
-                            for (Persona persona : personas){
-                        %>
-                        
+                            <c:forEach items="${personas}" var="persona">                    
                             <tr>
-                                <td><%=persona.getNombre() %></td>
-                                <td><%=persona.getApellidos()%></td>
+                                <td><c:out value="${persona.nombre}"/></td>
+                                <td><c:out value="${persona.apellidos}"/></td>
                                 <td>
-                                    <button class="btn btn-primary" data-id="<%=persona.getIdPersona()%>" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger" data-id="<%=persona.getIdPersona()%>"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-primary btn-editar" data-id="<c:out value="${persona.idPersona}"/>" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-eliminar" data-id="<c:out value="${persona.idPersona}"/>"><i class="fas fa-trash-alt"></i></button>
                                 </td>
                             </tr>
-                        <% } %>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>

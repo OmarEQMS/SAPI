@@ -63,6 +63,15 @@ public class UsuarioController extends HttpServlet {
                 //response.sendRedirect("gestionMedicos.jsp");
                 break;
             }
+            case "eliminar":{
+                int idU = Integer.parseInt(request.getParameter("id"));
+                
+                PersonaServiceImpl psi = new PersonaServiceImpl();
+                psi.deltePersona(idU);
+                
+                PrintWriter out = response.getWriter();
+                out.print("YES");
+            }
             default:{
                 
             }

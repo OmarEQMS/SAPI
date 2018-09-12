@@ -56,6 +56,8 @@ public class PersonaServiceImpl implements PersonaService{
             ResultSet rs = ps.executeQuery();
             rs.next();
             int id = rs.getInt(1);
+            ps.close();
+            conn.close();
             return id;
         }catch(Exception ex){
             return -1;
@@ -64,7 +66,18 @@ public class PersonaServiceImpl implements PersonaService{
 
     @Override
     public boolean deltePersona(int idPersona) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn = Conexion.getConexion();
+        String sql = "DELETE FROM Persona WHERE(idPersona=?)";
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, idPersona);
+            boolean ready = !ps.execute();
+            ps.close();
+            conn.close();
+            return ready;
+        }catch(Exception ex){
+            return false;
+        }
     }
 
     @Override

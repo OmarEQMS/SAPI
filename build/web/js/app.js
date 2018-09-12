@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
-    $('#btn-eliminar').on('click', function(){
+    $('.btn-eliminar').on('click', function(){  
+        var idU = $(this);
         //Modal editar usuario
         swal({ //Sweet Alert
             title: "Estas seguro?",
@@ -8,11 +9,28 @@ $(document).ready(function () {
             icon: "warning",
             buttons: true,
             dangerMode: true,
-        }).then((eliminar) => {
+        }).then(function(eliminar){               
             if (eliminar) {
-                    
-                    //ajax para eliminar
-                    
+                $.ajax({
+                   url: "UsuarioController",
+                   data: {
+                       accion : "eliminar",
+                       id: idU.data("id") // $(this).attr("data-id")
+                   }, 
+                   method : "POST",
+                   success: function(response){
+                       //Saber que se elimino correctamente
+                       idU.parent().parent().hide();
+                       if(response==="YES"){
+                           swal({
+                              title:"Listo!" 
+                           });
+                       }
+                   },
+                   error: function(xhr){
+                       
+                   }
+                });
             } else {
                     
             }
