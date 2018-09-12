@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 $(document).ready(function(){
-    console.log("Hola Chrome");
+    console.log("Hola Chrome, Adios");
     
    $("#btn-login").click(function(){
       $.ajax({
