@@ -4,14 +4,14 @@
         <welcome-file>/WEB-INF/registro.html</welcome-file>
     </welcome-file-list>
     
-    <servlet>
+    <!--servlet>
         <servlet-name>UsuarioController</servlet-name>
         <servlet-class>mx.itesm.sapi.controller.UsuarioController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/UsuarioController</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping-->
     
     <session-config>
         <session-timeout>

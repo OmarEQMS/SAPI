@@ -191,11 +191,23 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            ...
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" placeholder="Introduce nombre" id="nombre">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label for="especialidad">Apellido</label>
+                                    <input type="text" class="form-control" placeholder="Introduce apellido" id="apellidos">
+                                    <input type="hidden" id="idPersona"/>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                            <button type="button" id="btn-gurdar" class="btn btn-primary">Guardar Cambios</button>
                         </div>
                     </div>
                 </div>

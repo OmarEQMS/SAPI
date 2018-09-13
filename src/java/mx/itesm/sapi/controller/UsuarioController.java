@@ -5,6 +5,7 @@
  */
 package mx.itesm.sapi.controller;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -20,7 +21,7 @@ import mx.itesm.sapi.service.PersonaServiceImpl;
  *
  * @author quint
  */
-//@WebServlet(name = "UsuarioController", urlPatterns = {"/UsuarioController"})
+@WebServlet(name = "UsuarioController", urlPatterns = {"/UsuarioController"})
 public class UsuarioController extends HttpServlet {
 
     /**
@@ -36,6 +37,7 @@ public class UsuarioController extends HttpServlet {
             throws ServletException, IOException {
         // $_REQUEST['name'];
         // $_POST
+        PersonaServiceImpl psi = new PersonaServiceImpl();
         String accion = request.getParameter("accion");
         
         switch(accion){
@@ -46,7 +48,6 @@ public class UsuarioController extends HttpServlet {
                 Persona persona = new Persona();
                 persona.setNombre(name);
 
-                PersonaServiceImpl psi = new PersonaServiceImpl();
                 int newID = psi.savePersona(persona);
 
                 PrintWriter out = response.getWriter();
@@ -55,7 +56,6 @@ public class UsuarioController extends HttpServlet {
             }
                 
             case "listar":{                
-                PersonaServiceImpl psi = new PersonaServiceImpl();
                 List<Persona> personas = psi.getPersonas();
                 //Enviar la lista jsp
                 request.setAttribute("personas", personas);
@@ -66,12 +66,40 @@ public class UsuarioController extends HttpServlet {
             case "eliminar":{
                 int idU = Integer.parseInt(request.getParameter("id"));
                 
-                PersonaServiceImpl psi = new PersonaServiceImpl();
                 psi.deltePersona(idU);
                 
                 PrintWriter out = response.getWriter();
                 out.print("YES");
+                break;
             }
+            case "recupera":{
+                int idU = Integer.parseInt(request.getParameter("id"));
+                
+                Persona persona = psi.getPersona(idU);
+                
+                PrintWriter out = response.getWriter();
+                Gson json = new Gson();
+                out.print(json.toJson(persona));
+                
+                break;
+            }
+            case "actualiza":{
+                int idU = Integer.parseInt(request.getParameter("id"));
+                String name = request.getParameter("nombre");
+                String apellidos = request.getParameter("apellidos");
+
+                Persona persona = new Persona();
+                persona.setIdPersona(idU);
+                persona.setNombre(name);
+                persona.setApellidos(apellidos);
+                
+                psi.updatePersona(persona);
+
+                PrintWriter out = response.getWriter();
+                out.print("YES");
+                
+                break;
+            }                
             default:{
                 
             }

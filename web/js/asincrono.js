@@ -9,6 +9,8 @@ $(document).ready(function(){
    $("#btn-login").click(function(){
       $.ajax({
          url : "UsuarioController",
+         method : "POST",
+         cache : false,
          data :{
              accion : "registrar",
              nombre : $("#nombre").val(),
@@ -18,8 +20,7 @@ $(document).ready(function(){
              curp : $("#curp").val(),
              telefono : $("#telefono").val(),
              correo : $("#correo").val()
-         },
-         method : "POST",
+         },         
          error : function(xhr){
              alert("Ops! Algo Paso");
          },
