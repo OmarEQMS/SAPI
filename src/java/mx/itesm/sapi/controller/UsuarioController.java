@@ -20,7 +20,7 @@ import mx.itesm.sapi.service.PersonaServiceImpl;
  *
  * @author quint
  */
-@WebServlet(name = "UsuarioController", urlPatterns = {"/UsuarioController"})
+//@WebServlet(name = "UsuarioController", urlPatterns = {"/UsuarioController"})
 public class UsuarioController extends HttpServlet {
 
     /**

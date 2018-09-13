@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-<!--    <servlet>
-        <servlet-name>RegistraUsuarioController</servlet-name>
-        <servlet-class>mx.itesm.sapo.controller.RegistraUsuarioController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RegistraUsuarioController</servlet-name>
-        <url-pattern>/RegistraUsuarioController</url-pattern>
-    </servlet-mapping>
--->
     <welcome-file-list>
         <welcome-file>/WEB-INF/registro.html</welcome-file>
     </welcome-file-list>
+    
+    <servlet>
+        <servlet-name>UsuarioController</servlet-name>
+        <servlet-class>mx.itesm.sapi.controller.UsuarioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UsuarioController</servlet-name>
+        <url-pattern>/UsuarioController</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30
