@@ -75,7 +75,7 @@ $(document).ready(function () {
             data: {
 
                 key: "getByEstado",
-                nombreEstado: $('#estado').val()
+                idEstado: $('#estado').val()
 
             },
             success: function (response) {
@@ -88,7 +88,7 @@ $(document).ready(function () {
                 var json = JSON.parse(response);
 
                 for (var i = 0; i < json.length; i++) {
-                    $('.municipios select').append("<option value="+json[i].nombre +">" + json[i].nombre + "</option>");
+                    $('.municipios select').append("<option value="+json[i].idMunicipio +">" + json[i].nombre + "</option>");
                 }
 
                 $('.municipios select').prop('selectedIndex', 0);

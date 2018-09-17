@@ -7,6 +7,7 @@ package mx.itesm.sapi.service;
 
 import java.util.List;
 import mx.itesm.sapi.bean.Estado;
+import mx.itesm.sapi.bean.EstadoCivil;
 import mx.itesm.sapi.bean.Municipio;
 
 /**
@@ -19,4 +20,5 @@ public interface ZonaServicio {
     
     public List<Municipio> getMunicipios(Estado estado);
     
+    public List<EstadoCivil> getEstadoCivil();
 }

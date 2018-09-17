@@ -26,11 +26,11 @@ public class EstadoCivil implements Serializable {
     public int getIdEstadoCivil(){
         return idEstadoCivil;
     }
-    /**   Set id estadocivil
-    public void setEstadoCivil(int idEstadoCivil){
+    //Set id estadocivil
+    public void setIdEstadoCivil(int idEstadoCivil){
         this.idEstadoCivil=idEstadoCivil;
     }
-    */
+    
     public String getNombre() {
        return nombre;
     }

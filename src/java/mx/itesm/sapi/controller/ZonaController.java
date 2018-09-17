@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mx.itesm.sapi.bean.Estado;
+import mx.itesm.sapi.bean.EstadoCivil;
 import mx.itesm.sapi.bean.Municipio;
 import mx.itesm.sapi.service.ZonaServicioImpl;
 
@@ -47,11 +48,10 @@ public class ZonaController extends HttpServlet {
             case "getByEstado": {
 
                 //Recoge desde el ajax
-                String nombreEstado = request.getParameter("nombreEstado");
-
+                int idEstado = Integer.parseInt(request.getParameter("idEstado"));
                 Estado estado = new Estado();
 
-                estado.setNombre(nombreEstado);
+                estado.setIdEstado(idEstado);
 
                 ZonaServicioImpl psi = new ZonaServicioImpl();
 
@@ -68,23 +68,16 @@ public class ZonaController extends HttpServlet {
 
             }
 
-            case "mostar": {
-
+            case "getRegistro": {
                 //Cargar los estados
                 ZonaServicioImpl zsi = new ZonaServicioImpl();
                 List<Estado> allEstados = zsi.getEstados();
-
-                request.setAttribute("allEstados", allEstados);
-
-                PrintWriter out = response.getWriter();
-
-                out.print("success");
-                
-                //request.getRequestDispatcher("/WEB-INF/registro.jsp").forward(request, response);
-
+                List<EstadoCivil> estados = zsi.getEstadoCivil();
+                request.setAttribute("estadoCivil", estados);
+                request.setAttribute("estados", allEstados);
+                request.getRequestDispatcher("/WEB-INF/registro.jsp").forward(request, response);
                 break;
             }
-
         }
 
     }

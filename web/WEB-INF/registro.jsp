@@ -4,8 +4,12 @@
     Author     : feror
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="mx.itesm.sapi.bean.EstadoCivil"%>
+<%@page import="mx.itesm.sapi.bean.Estado"%>
+<%@page import="java.util.List"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -99,10 +103,9 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <select class="form-control selectStyle" id="estadoCivil">
                         <option selected disabled>Estado civil</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="1">5</option>
+                        <c:forEach items="${estadoCivil}" var="estadoC">  
+                            <option value="<c:out value='${estadoC.idEstadoCivil}'/>"><c:out value='${estadoC.nombre}'/></option>
+                        </c:forEach>
                     </select>
                     <span class="text-danger" id="errorECivil">Selecciona una opcion</span>
                 </div>
@@ -116,10 +119,9 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <select class="form-control selectStyle" id="estado">
                         <option selected disabled>Estado</option>
-                        <option value="Puebla">Puebla</option>
-                        <option value="Morelos">Morelos</option>
-                        <option value="Jalisco">Guadalajara</option>
-                        <option value="Chihuahua">Chihuaha</option>
+                        <c:forEach items="${estados}" var="estado">  
+                            <option value="<c:out value='${estado.idEstado}'/>"><c:out value='${estado.nombre}'/></option>
+                        </c:forEach>
                     </select>
                     <span class="text-danger" id="errorEstado">Fecha incorrecta</span>
                 </div>
