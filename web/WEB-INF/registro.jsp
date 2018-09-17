@@ -63,11 +63,13 @@
             <div class="form-group row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <input id="pass1" type="password" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf023; CONTRASEÑA" autofocus>
+                    <span class="text-danger" id="errorPass1">Formato incorrecto</span>
                 </div>
        
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <input id="pass2" type="password" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf023; CONFIRMAR CONTRASEÑA">
                     <span class="text-danger" id="noEqualPasswordsError">Las contraseñas no son iguales</span>
+                    <span class="text-danger" id="errorPass2">Formato incorrecto</span>
                 </div>
                 
             </div>
@@ -79,14 +81,17 @@
             <div class="form-group row">
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                     <input id="curp" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf2C2; CURP">
+                    <span class="text-danger" id="errorCurp">Formato incorrecto</span>
                 </div>
                 
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                     <input id="codigoPostal" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf3c5; CODIGO POSTAL">
+                    <span class="text-danger" id="errorCodigoPostal">Formato incorrecto</span>
                 </div>
 
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                     <input id="telefono" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf095; TELEFONO">
+                    <span class="text-danger" id="errorTelefono">Formato incorrecto</span>
                 </div>
             </div>
 
@@ -99,9 +104,11 @@
                         <option value="1">4</option>
                         <option value="1">5</option>
                     </select>
+                    <span class="text-danger" id="errorECivil">Selecciona una opcion</span>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <input type="date" id="fechaNacimiento" class="selectStyle form-control">
+                    <span class="text-danger" id="errorFecha">Fecha incorrecta</span>
                 </div>
             </div>
 
@@ -114,12 +121,14 @@
                         <option value="Jalisco">Guadalajara</option>
                         <option value="Chihuahua">Chihuaha</option>
                     </select>
+                    <span class="text-danger" id="errorEstado">Fecha incorrecta</span>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 municipios">
                     <select class="form-control selectStyle" id="municipio">
                         <option selected disabled>Municipio</option>
                         
                     </select>
+                    <span class="text-danger" id="errorMunicipio">Selecciona una opcion</span>
                 </div>
             </div>
 
@@ -127,10 +136,12 @@
 
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <input id="colonia" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf015; COLONIA" autofocus>
+                    <span class="text-danger" id="errorColonia">Selecciona una opcion</span>
                 </div>
 
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <input id="calle" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf015; CALLE">
+                    <span class="text-danger" id="errorCalle">Selecciona una opcion</span>
                 </div>
 
             </div>

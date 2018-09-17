@@ -9,6 +9,17 @@ $(document).ready(function () {
     $('#errorApellidoMaterno').hide();
     $('#errorNombreUsuario').hide();
     $('#errorCorreo').hide();
+    $('#errorPass1').hide();
+    $('#errorPass2').hide();
+    $('#errorCurp').hide();
+    $('#errorCodigoPostal').hide();
+    $('#errorTelefono').hide();
+    $('#errorECivil').hide();
+    $('#errorFecha').hide();
+    $('#errorEstado').hide();
+    $('#errorMunicipio').hide();
+    $('#errorColonia').hide();
+    $('#errorCalle').hide();
 
     $('#btn-registro').on('click', function () {
 
@@ -127,7 +138,7 @@ $(document).ready(function () {
     //1.- NOMBRE
     $('#nombre').on('change', function() {
         
-        if(validation.isValidName($('#nombre'))){
+        if(validation.isValidName($(this))){
             $('#errorNombre').hide();
         }else if($(this).val() == ''){
             $('#errorNombre').hide();
@@ -140,7 +151,7 @@ $(document).ready(function () {
     //2.- APELLIDO PATERNO
     $('#apellido1').on('change', function() {
         
-        if(validation.isValidLastName($('#apellido1'))){
+        if(validation.isValidLastName($(this))){
             $('#errorApellidoPaterno').hide();
         }else if($(this).val() == ''){
             $('#errorApellidoPaterno').hide();
@@ -153,7 +164,7 @@ $(document).ready(function () {
     //3.- APELLIDO MATERNO
     $('#apellido2').on('change', function() {
         
-        if(validation.isValidLastName($('#apellido2'))){
+        if(validation.isValidLastName($(this))){
             $('#errorApellidoMaterno').hide();
         }else if($(this).val() == ''){
             $('#errorApellidoMaterno').hide();
@@ -166,7 +177,7 @@ $(document).ready(function () {
     //4.- NOMBRE DE USUARIO
     $('#usuario').on('change', function() {
         
-        if(validation.isValidLastName($('#usuario'))){
+        if(validation.isValidLastName($(this))){
             $('#errorUsuario').hide();
         }else if($(this).val() == ''){
             $('#errorUsuario').hide();
@@ -176,6 +187,171 @@ $(document).ready(function () {
 
     });
 
+    //5.- CORREO
+    $('#correo').on('change', function() {
+        
+        if(validation.isValidEmail($(this))){
+            $('#errorCorreo').hide();
+        }else if($(this).val() == ''){
+            $('#errorCorreo').hide();
+        }else{
+            $('#errorCorreo').show();
+        }
+
+    });
+
+    //6.- CONTRASEÑA1
+    $('#pass1').on('change', function() {
+        
+        if(validation.isValidPassword($(this))){
+            $('#errorPass1').hide();
+        }else if($(this).val() == ''){
+            $('#errorPass1').hide();
+        }else{
+            $('#errorPass1').show();
+        }
+
+    });
+
+    //7.- CONTRASEÑA2
+    $('#pass2').on('change', function() {
+        
+        if(validation.isValidPassword($(this))){
+            $('#errorPass2').hide();
+        }else if($(this).val() == ''){
+            $('#errorPass2').hide();
+        }else{
+            $('#errorPass2').show();
+        }
+
+    });
+
+    //8.- CURP
+    $('#curp').on('change', function() {
+        
+        if(validation.isValidCURP($(this))){
+            $('#errorCurp').hide();
+        }else if($(this).val() == ''){
+            $('#errorCurp').hide();
+        }else{
+            $('#errorCurp').show();
+        }
+
+    });
+
+    /*//9.- CODIGO POSTAL
+    $('#codigoPostal').on('change', function() {
+        
+        if(validation.($(this))){
+            $('#errorCurp').hide();
+        }else if($(this).val() == ''){
+            $('#errorCurp').hide();
+        }else{
+            $('#errorCurp').show();
+        }
+
+    });*/
+
+    //10.- TELEFONO
+    $('#telefono').on('change', function() {
+        
+        if(validation.isValidPhoneNumber($(this))){
+            $('#errorTelefono').hide();
+        }else if($(this).val() == ''){
+            $('#errorTelefono').hide();
+        }else{
+            $('#errorTelefono').show();
+        }
+
+    });
+
+    //11.- ESTADO CIVIL
+    $('#estadoCivil').on('change', function() {
+        
+        if(validation.isValidSelect($(this))){
+            $('#errorECivil').hide();
+        }else{
+            $('#errorECivil').show();
+        }
+
+    });
+
+    //12.- FECHA
+    $('#fechaNacimiento').on('change', function() {
+        
+        if(validation.isValidDate($(this))){
+            $('#errorFecha').hide();
+        }else{
+            $('#errorFecha').show();
+        }
+
+    });
+
+    //12.- ESTADO
+    $('#estado').on('change', function() {
+        
+        if(validation.isValidSelect($(this))){
+            $('#errorEstado').hide();
+        }else{
+            $('#errorEstado').show();
+        }
+
+    });
+
+    //13.- MUNICIPIO
+    $('#municipio').on('change', function() {
+        
+        if(validation.isValidSelect($(this))){
+            $('#errorEstado').hide();
+        }else{
+            $('#errorEstado').show();
+        }
+
+    });
+
+    //13.- COLONIA
+    $('#colonia').on('change', function() {
+        
+        if(validation.isValidColonia($(this))){
+            $('#errorEstado').hide();
+        }else{
+            $('#errorEstado').show();
+        }
+
+    });
+
+    //14.- CALLE
+    $('#calle').on('change', function() {
+        
+        if(validation.isValidStreet($(this))){
+            $('#errorCalle').hide();
+        }else{
+            $('#errorCalle').show();
+        }
+
+    });
+
+    //15.- NUMERO EXTERIOR
+    $('#noExterior').on('change', function() {
+        
+        if(validation.isValidStreet($(this))){
+            $('#errorCalle').hide();
+        }else{
+            $('#errorCalle').show();
+        }
+
+    });
+
+    //16.- NUMERO INTERIOR
+    $('#noInterior').on('change', function() {
+        
+        if(validation.isValidStreet($(this))){
+            $('#errorCalle').hide();
+        }else{
+            $('#errorCalle').show();
+        }
+
+    });
 
 
 });
