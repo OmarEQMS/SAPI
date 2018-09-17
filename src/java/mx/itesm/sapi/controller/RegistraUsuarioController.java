@@ -72,6 +72,8 @@ public class RegistraUsuarioController extends HttpServlet {
         String contraseña2 =request.getParameter("pass2");
         String fechaNacimiento=request.getParameter("fechaNacimiento");
         
+        //int codigoPostal = Integer.parseInt(request.getParameter("codigoPostal");
+        
        
         Persona per=new Persona();
         Cuenta cuenta=new Cuenta();

@@ -28,11 +28,11 @@ public class Municipio implements Serializable {
     public int getIdMunicipio(){    
         return idMunicipio;
     }
-    /**   Set id municipio
+      
     public void setIdMunicipio(int idMunicipio){
         this.idMunicipio=idMunicipio;
     }
-    */
+
     public String getNombre() {
         return nombre;
     }

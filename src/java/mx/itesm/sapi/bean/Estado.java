@@ -24,11 +24,11 @@ public class Estado implements Serializable {
     public int getIdEstado(){
         return idEstado;
     }
-    /**   Set id estado
+
     public void setIdEstado(int idEstado){
         this.idEstado=idEstado;
     }
-    */
+   
 
     public String getNombre() {
        return nombre;

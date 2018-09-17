@@ -16,7 +16,9 @@ public class Conexion {
     
     public static Connection getConnection(){
         
-        String cadena="jdbc:mysql://localhost:3306/bdbargallo?user=root";
+        String cadena="jdbc:mysql://localhost:3306/SAPI?user=root";
+        //"jdbc:mysql://localhost:3306/INTtech?useSSL=false","root","root"
+        
         Connection connection=null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
