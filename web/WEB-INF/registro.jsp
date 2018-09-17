@@ -73,7 +73,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <input id="pass2" type="password" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf023; CONFIRMAR CONTRASEÑA">
                     <span class="text-danger" id="noEqualPasswordsError">Las contraseñas no son iguales</span>
-                    <span class="text-danger" id="errorPass2">Formato incorrecto</span>
+                    <span class="text-warning" id="errorPass2">Formato incorrecto</span>
                 </div>
                 
             </div>
@@ -151,10 +151,12 @@
             <div class="form-group row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <input id="noExterior" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf3c5; NO.EXT">
+                    <span class="text-danger" id="errorNoExterior">Formato incorrecto</span>
                 </div>
 
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <input id="noInterior" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf3c5; NO.INT (Opcional)">
+                    <span class="text-danger" id="errorNoInterior">Formato incorrecto</span>
                 </div>
             </div>
 

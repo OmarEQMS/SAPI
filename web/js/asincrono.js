@@ -2,6 +2,7 @@ import {validation} from './validaciones.js';
 
 $(document).ready(function () {
 
+    
     //Esconder mensajes de error
     $('#noEqualPasswordsError').hide();
     $('#errorNombre').hide();
@@ -20,6 +21,8 @@ $(document).ready(function () {
     $('#errorMunicipio').hide();
     $('#errorColonia').hide();
     $('#errorCalle').hide();
+    $('#errorNoExterior').hide();
+    $('#errorNoInterior').hide();
 
     $('#btn-registro').on('click', function () {
 
@@ -178,11 +181,11 @@ $(document).ready(function () {
     $('#usuario').on('change', function() {
         
         if(validation.isValidLastName($(this))){
-            $('#errorUsuario').hide();
+            $('#errorNombreUsuario').hide();
         }else if($(this).val() == ''){
-            $('#errorUsuario').hide();
+            $('#errorNombreUsuario').hide();
         }else{
-            $('#errorUsuario').show();
+            $('#errorNombreUsuario').show();
         }
 
     });
@@ -302,9 +305,9 @@ $(document).ready(function () {
     $('#municipio').on('change', function() {
         
         if(validation.isValidSelect($(this))){
-            $('#errorEstado').hide();
+            $('#errorMunicipio').hide();
         }else{
-            $('#errorEstado').show();
+            $('#errorMunicipio').show();
         }
 
     });
@@ -313,9 +316,9 @@ $(document).ready(function () {
     $('#colonia').on('change', function() {
         
         if(validation.isValidColonia($(this))){
-            $('#errorEstado').hide();
+            $('#errorColonia').hide();
         }else{
-            $('#errorEstado').show();
+            $('#errorColonia').show();
         }
 
     });
@@ -334,10 +337,10 @@ $(document).ready(function () {
     //15.- NUMERO EXTERIOR
     $('#noExterior').on('change', function() {
         
-        if(validation.isValidStreet($(this))){
-            $('#errorCalle').hide();
+        if(validation.isValidNumber($(this))){
+            $('#errorNoExterior').hide();
         }else{
-            $('#errorCalle').show();
+            $('#errorNoExterior').show();
         }
 
     });
@@ -345,10 +348,10 @@ $(document).ready(function () {
     //16.- NUMERO INTERIOR
     $('#noInterior').on('change', function() {
         
-        if(validation.isValidStreet($(this))){
-            $('#errorCalle').hide();
+        if(validation.isValidNumber($(this))){
+            $('#errorNoInterior').hide();
         }else{
-            $('#errorCalle').show();
+            $('#errorNoInterior').show();
         }
 
     });
