@@ -30,11 +30,11 @@ public class CodigoPostal implements Serializable {
         return idCodigoPostal;
     }
     
-    /**   Set id codigo postal
+    //Set id codigo postal
     public void setIdCodigoPostal(int idCodigoPostal){
         this.idCodigoPostal=idCodigoPostal;
     }
-    */
+    
 
     public String getNumero() {
        return numero;

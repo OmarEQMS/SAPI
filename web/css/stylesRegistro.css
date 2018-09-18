@@ -49,6 +49,11 @@ body {
 
 /* INPUTS */
 
+select{
+    font-size: 13px !important;
+    padding: 10px !important;
+}
+
 .inputGlobal{
     background-color:rgba(0,0,0,0) !important;
     border:none !important;
@@ -159,6 +164,11 @@ input::-webkit-input-placeholder {
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 510px){
+
+    body{
+        padding-top:50px;
+        padding-bottom: 50px;
+    }
 
     .formulario{
         margin-left:15px;

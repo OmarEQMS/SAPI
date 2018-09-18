@@ -12,10 +12,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import mx.itesm.sapi.bean.CodigoPostal;
 import mx.itesm.sapi.bean.Estado;
 import mx.itesm.sapi.bean.EstadoCivil;
 import mx.itesm.sapi.bean.Municipio;
 import mx.itesm.sapi.util.Conexion;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -141,6 +144,43 @@ public class ZonaServicioImpl implements ZonaServicio {
             System.out.println("ERROR GET ESTADO CIVIL " + e.getMessage());
         }        
         return estados;
+    }
+    
+    @Override
+    public List<String> getEstadoyMunicipio(CodigoPostal codigoPostal){
+        Connection conn = Conexion.getConnection();
+	String sql = "SELECT  e.idEstado, e.nombre as nombreEstado, m.idMunicipio, m.nombre as nombreMunicipio FROM municipio m JOIN estado e ON m.idEstado = e.idEstado JOIN codigopostal c ON m.idMunicipio = c.idMunicipio WHERE c.numero = ?";
+        
+        List<String> EstadoyMunicipio = new ArrayList<>();
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, codigoPostal.getNumero());
+            ResultSet rs = ps.executeQuery();
+    
+            rs.next(); 
+            
+            //RECUPERACION
+            String idEstado = rs.getString("idEstado");
+	    String nombreEstado = rs.getString("nombreEstado");
+            String idMunicipio = rs.getString("idMunicipio");
+	    String nombreMunicipio = rs.getString("nombreMunicipio"); 
+            
+            EstadoyMunicipio.add(idEstado);
+            EstadoyMunicipio.add(nombreEstado);
+            EstadoyMunicipio.add(idMunicipio);
+            EstadoyMunicipio.add(nombreMunicipio);
+            
+            rs.close();
+            ps.close();
+            conn.close();
+            return EstadoyMunicipio;
+            
+        }catch(Exception ex){
+
+            Logger.getLogger(ZonaServicio.class.getName()).log(Level.SEVERE, null, ex);
+            return EstadoyMunicipio;
+        }
+        
     }
 
 }

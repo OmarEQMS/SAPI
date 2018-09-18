@@ -27,8 +27,9 @@ export const validation = {
 
         var m = input.val();
 
-        //var expreg = /^[a-zA-Z0-9]{8,14}$/;
+        //var expreg = /^[-a-zA-ZCñÑ. ]{8,14}$/;
         var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
+        
         if (!expreg.test(m)) {
 
             input.css('border', '1px solid red');

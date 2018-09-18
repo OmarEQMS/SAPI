@@ -41,20 +41,17 @@ public class RegistraUsuarioController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         PrintWriter out = response.getWriter();
-       
-         //Servicios
-        PersonaServicioImpl _registroServicio= new PersonaServicioImpl();
-        CuentaServicioImpl _rSC = new CuentaServicioImpl();
-        DireccionServicioImpl _rSD = new DireccionServicioImpl();
+        
+        //switch con 2 keys
+        // 1 key: verificarUsuario
+        //2 key: reistroCompleto
         
         
-        //Verifica existencia de usuario
-        String usuario  =   request.getParameter("usuario");
+        String key= request.getParameter("key");
         
         
-        
-        
-        
+         
+        /*
         String nombre=request.getParameter("nombre");
         String apellido1 =request.getParameter("apellido1");
         String apellido2 =request.getParameter("apellido2");
@@ -72,16 +69,27 @@ public class RegistraUsuarioController extends HttpServlet {
         String contraseña2 =request.getParameter("pass2");
         String fechaNacimiento=request.getParameter("fechaNacimiento");
         
-        //int codigoPostal = Integer.parseInt(request.getParameter("codigoPostal");
+        */
         
-       
+        
+         //Servicios
+        PersonaServicioImpl _registroServicio= new PersonaServicioImpl();
+        CuentaServicioImpl _rSC = new CuentaServicioImpl();
+        DireccionServicioImpl _rSD = new DireccionServicioImpl();
+        
+        //Verifica existencia de usuario
+        
+        
+        
+        
         Persona per=new Persona();
         Cuenta cuenta=new Cuenta();
         Direccion dir=new Direccion();
-        
+       /* 
         //Set persona
         per.setNombre(nombre);
         per.setTelefono(telefono);
+       
         per.setApellido1(apellido1);
         per.setApellido2(apellido2);
         per.setCorreo(correo);
@@ -90,11 +98,7 @@ public class RegistraUsuarioController extends HttpServlet {
         per.setIdEstadoCivil(estadoCivil);
         per.setIdMunicipio(municipio);
         per.setFechaNacimiento(fechaNacimiento);
-        
-        //Por arregalar
-        per.setEdad(0);
-        //Por arreglar
-        
+
         //Por arreglar
         per.setIdRol(1);
         //Por arreglar
@@ -110,32 +114,69 @@ public class RegistraUsuarioController extends HttpServlet {
         dir.setColonia(colonia);
         dir.setNoExterior(noExterior);
         dir.setNoInterior(noInterior);
-        
+        */
  
 
-        per.toString();
-                          
-        //Checo si el usuario existe
-        if(_rSC.existsUsuario(usuario)){
+        
+        
+        
+        
+        switch(key){
             
-           out.print("UsuarioAlreadyExists");
-           
-        }else{
-            //Si no existe, lo inserto
-            out.print("UsuarioDoesntExist");
-           
-        int id=_registroServicio.savePersona(per);
+            case "repiteUsuario":{
                 
-        if(id>0){
-               
-                cuenta.setIdPersona(id);
-                dir.setIdPersona(id);
-                _rSC.saveCuenta(cuenta);
-                _rSD.saveDireccion(dir);
+                String usuario  =   request.getParameter("usuario");
+                
+                //Checo si el usuario existe
+                if(_rSC.existsUsuario(usuario)){
+            
+                    out.print("UsuarioAlreadyExists");
+           
+                }else{
+                
+                    //Si no existe, lo inserto
+                    out.print("UsuarioDoesntExist");
+            
+                }
+                
                 
             }
-        
+                
+                break;
+                
+            case "registraUsuario":{
+                
+                   int id=_registroServicio.savePersona(per);
+                
+                   if(id>0){
+               
+                      cuenta.setIdPersona(id);
+                      dir.setIdPersona(id);
+                      _rSC.saveCuenta(cuenta);
+                      _rSD.saveDireccion(dir);
+                    }
+                              
+            }
+                
+                break;
+            
         }
+        
+        
+        
+       
+        
+        
+        
+      
+             
+        
+     
+        
+       
+       
+           
+     
         
         
         

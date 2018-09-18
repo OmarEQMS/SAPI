@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import mx.itesm.sapi.bean.CodigoPostal;
 import mx.itesm.sapi.bean.Estado;
 import mx.itesm.sapi.bean.EstadoCivil;
 import mx.itesm.sapi.bean.Municipio;
@@ -63,6 +64,7 @@ public class ZonaController extends HttpServlet {
 
                 Gson json = new Gson();
                 out.print(json.toJson(municipios));
+                
 
                 break;
 
@@ -76,6 +78,20 @@ public class ZonaController extends HttpServlet {
                 request.setAttribute("estadoCivil", estados);
                 request.setAttribute("estados", allEstados);
                 request.getRequestDispatcher("/WEB-INF/registro.jsp").forward(request, response);
+                break;
+            }
+            case "getEstadoyMunicipio": {
+               String numeroCP = request.getParameter("numeroCP");
+                CodigoPostal CP = new CodigoPostal();
+
+                CP.setNumero(numeroCP);
+                ZonaServicioImpl zsi = new ZonaServicioImpl();
+                List<String> estadoyMunicipio = zsi.getEstadoyMunicipio(CP);
+                
+                PrintWriter out = response.getWriter();
+
+                Gson json = new Gson();
+                out.print(json.toJson(estadoyMunicipio));
                 break;
             }
         }

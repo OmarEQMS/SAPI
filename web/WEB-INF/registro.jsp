@@ -22,6 +22,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/stylesRegistro.css">
+    
 </head>
 
 <body>
@@ -56,6 +57,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                     <input id="usuario" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf2bd; NOMBRE DE USUARIO">
                     <span class="text-danger" id="errorNombreUsuario">Formato incorrecto</span>
+                    <span class="text-warning" id="errorUsuarioRepetido">El usuario ya existe</span>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                     <input id="correo" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf0e0; CORREO ELECTRÓNICO (OPCIONAL)">
@@ -72,8 +74,8 @@
        
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <input id="pass2" type="password" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf023; CONFIRMAR CONTRASEÑA">
-                    <span class="text-danger" id="noEqualPasswordsError">Las contraseñas no son iguales</span>
-                    <span class="text-warning" id="errorPass2">Formato incorrecto</span>
+                    <span class="text-warning" id="noEqualPasswordsError">Las contraseñas no son iguales</span>
+                    <span class="text-danger" id="errorPass2">Formato incorrecto</span>
                 </div>
                 
             </div>
@@ -130,7 +132,7 @@
                         <option selected disabled>Municipio</option>
                         
                     </select>
-                    <span class="text-danger" id="errorMunicipio">Selecciona una opcion</span>
+                    <span class="text-danger" id="errorMunicipio">Formato Incorrecto</span>
                 </div>
             </div>
 
@@ -138,12 +140,12 @@
 
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <input id="colonia" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf015; COLONIA" autofocus>
-                    <span class="text-danger" id="errorColonia">Selecciona una opcion</span>
+                    <span class="text-danger" id="errorColonia">Formato incorrecto</span>
                 </div>
 
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <input id="calle" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf015; CALLE">
-                    <span class="text-danger" id="errorCalle">Selecciona una opcion</span>
+                    <span class="text-danger" id="errorCalle">Formato incorrecto</span>
                 </div>
 
             </div>
@@ -185,6 +187,7 @@
     <script src="js/popper.min.js"></script>
     <script src="js/app.js"></script>
     <script type="module" src="js/asincrono.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.29/dist/sweetalert2.all.min.js"></script>
     
 
 </body>
