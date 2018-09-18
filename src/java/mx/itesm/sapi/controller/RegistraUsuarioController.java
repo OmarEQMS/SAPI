@@ -5,7 +5,6 @@
  */
 package mx.itesm.sapi.controller;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -39,147 +38,113 @@ public class RegistraUsuarioController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         PrintWriter out = response.getWriter();
-        
+
         //switch con 2 keys
         // 1 key: verificarUsuario
         //2 key: reistroCompleto
-        
-        
-        String key= request.getParameter("key");
-        
-        
-         
+        String key = request.getParameter("key");
+
         /*
-        String nombre=request.getParameter("nombre");
-        String apellido1 =request.getParameter("apellido1");
-        String apellido2 =request.getParameter("apellido2");
-        String telefono = request.getParameter("telefono");
-        String curp =request.getParameter("curp");
-        String correo =request.getParameter("correo");   
-        int estadoCivil =Integer.parseInt(request.getParameter("estadoCivil"));
-        int municipio =Integer.parseInt(request.getParameter("municipio"));
-        int estado =Integer.parseInt(request.getParameter("estado"));
-        String colonia =request.getParameter("colonia");        
-        String calle =request.getParameter("calle");        
-        String noExterior =request.getParameter("noExterior");
-        String noInterior =request.getParameter("noInterior");
-        String contraseña1 =request.getParameter("pass1");
-        String contraseña2 =request.getParameter("pass2");
-        String fechaNacimiento=request.getParameter("fechaNacimiento");
         
-        */
-        
-        
-         //Servicios
-        PersonaServicioImpl _registroServicio= new PersonaServicioImpl();
+         */
+        //Servicios
+        PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
         CuentaServicioImpl _rSC = new CuentaServicioImpl();
         DireccionServicioImpl _rSD = new DireccionServicioImpl();
-        
+
         //Verifica existencia de usuario
-        
-        
-        
-        
-        Persona per=new Persona();
-        Cuenta cuenta=new Cuenta();
-        Direccion dir=new Direccion();
-       /* 
+        Persona per = new Persona();
+        Cuenta cuenta = new Cuenta();
+        Direccion dir = new Direccion();
+
         //Set persona
-        per.setNombre(nombre);
-        per.setTelefono(telefono);
-       
-        per.setApellido1(apellido1);
-        per.setApellido2(apellido2);
-        per.setCorreo(correo);
-        per.setCurp(curp);
-        per.setIdEstado(estado);
-        per.setIdEstadoCivil(estadoCivil);
-        per.setIdMunicipio(municipio);
-        per.setFechaNacimiento(fechaNacimiento);
+        switch (key) {
 
-        //Por arreglar
-        per.setIdRol(1);
-        //Por arreglar
-       
-        
-        //Set cuenta
-        cuenta.setPassword(contraseña1);
-        cuenta.setUsuario(usuario);
-      
-        
-        //DIRECCION
-        dir.setCalle(calle);
-        dir.setColonia(colonia);
-        dir.setNoExterior(noExterior);
-        dir.setNoInterior(noInterior);
-        */
- 
+            case "repiteUsuario": {
 
-        
-        
-        
-        
-        switch(key){
-            
-            case "repiteUsuario":{
-                
-                String usuario  =   request.getParameter("usuario");
-                
+                String usuario = request.getParameter("usuario");
+
                 //Checo si el usuario existe
-                if(_rSC.existsUsuario(usuario)){
-            
+                if (_rSC.existsUsuario(usuario)) {
+
                     out.print("UsuarioAlreadyExists");
-           
-                }else{
-                
+
+                } else {
+
                     //Si no existe, lo inserto
                     out.print("UsuarioDoesntExist");
-            
+
                 }
-                
-                
+
             }
-                
-                break;
-                
-            case "registraUsuario":{
-                
-                   int id=_registroServicio.savePersona(per);
-                
-                   if(id>0){
-               
-                      cuenta.setIdPersona(id);
-                      dir.setIdPersona(id);
-                      _rSC.saveCuenta(cuenta);
-                      _rSD.saveDireccion(dir);
-                    }
-                              
+
+            break;
+
+            case "registraUsuario": {
+
+                String nombre = request.getParameter("nombre");
+                String apellido1 = request.getParameter("apellido1");
+                String apellido2 = request.getParameter("apellido2");
+                String telefono = request.getParameter("telefono");
+                String curp = request.getParameter("curp");
+                String correo = request.getParameter("correo");
+                int estadoCivil = Integer.parseInt(request.getParameter("estadoCivil"));
+                int municipio = Integer.parseInt(request.getParameter("municipio"));
+                int estado = Integer.parseInt(request.getParameter("estado"));
+                String colonia = request.getParameter("colonia");
+                String calle = request.getParameter("calle");
+                String noExterior = request.getParameter("noExterior");
+                String noInterior = request.getParameter("noInterior");
+                String contraseña1 = request.getParameter("pass1");
+                String contraseña2 = request.getParameter("pass2");
+                String fechaNacimiento = request.getParameter("fechaNacimiento");
+
+                String usuario = request.getParameter("usuario");
+
+                per.setNombre(nombre);
+                per.setTelefono(telefono);
+
+                per.setApellido1(apellido1);
+                per.setApellido2(apellido2);
+                per.setCorreo(correo);
+                per.setCurp(curp);
+                per.setIdEstado(estado);
+                per.setIdEstadoCivil(estadoCivil);
+                per.setIdMunicipio(municipio);
+                per.setFechaNacimiento(fechaNacimiento);
+
+                //Por arreglar
+                per.setIdRol(1);
+                //Por arreglar
+
+                //Set cuenta
+                cuenta.setPassword(contraseña1);
+                cuenta.setUsuario(usuario);
+
+                //DIRECCION
+                dir.setCalle(calle);
+                dir.setColonia(colonia);
+                dir.setNoExterior(noExterior);
+                dir.setNoInterior(noInterior);
+
+                int id = _registroServicio.savePersona(per);
+
+                if (id > 0) {
+
+                    cuenta.setIdPersona(id);
+                    dir.setIdPersona(id);
+                    _rSC.saveCuenta(cuenta);
+                    _rSD.saveDireccion(dir);
+                }
+
             }
-                
-                break;
-            
+
+            break;
+
         }
-        
-        
-        
-       
-        
-        
-        
-      
-             
-        
-     
-        
-       
-       
-           
-     
-        
-        
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

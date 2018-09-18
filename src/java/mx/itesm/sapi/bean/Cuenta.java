@@ -17,7 +17,8 @@ public class Cuenta implements Serializable {
     private String password;
     private String token;
     private int idPersona;
-
+    private int idRol;
+    private long loginDateTime; //@Autor: Alexis: Nos permite saber la fecha de login
     public Cuenta(){}
     
     @Override
@@ -57,6 +58,22 @@ public class Cuenta implements Serializable {
     }
     public void setIdPersona(int idPersona){
         this.idPersona=idPersona;
+    }
+    
+    public int getIdRol(){
+        return idRol;
+    }
+    
+    public void setIdRol(int idRol){
+        this.idRol=idRol;
+    }
+    //@ Autor: Alexis: Regresa la ùltima fecha de login
+    public long getLoginDateTime(){
+        return loginDateTime;
+    }
+    //@ Autor: Alexis: Guarda la ùltima fecha de login
+    public void  setLoginDateTime(long ldateTime){
+            this.loginDateTime=ldateTime;
     }
     
 }
