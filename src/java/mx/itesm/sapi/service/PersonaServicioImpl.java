@@ -5,11 +5,13 @@
  */
 package mx.itesm.sapi.service;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,43 +40,43 @@ public class PersonaServicioImpl implements PersonaServicio {
         
        Connection conn = Conexion.getConnection();
        
-       
-       String sql="INSERT INTO persona (idPersona, nombre, primerApellido, segundoApellido, curp, telefono, correo, ".concat(
+       CallableStatement cstmt;
+      /* String sql="INSERT INTO persona (idPersona, nombre, primerApellido, segundoApellido, curp, telefono, correo, ".concat(
                 "fechaNaciemiento, idMunicipio,idEstadoCivil,idRol, edad) ")
-                  .concat(" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
+                  .concat(" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");*/
         
-       System.out.println(sql); 
+       //System.out.println(sql); 
        
            
-           PreparedStatement ps;
+           //PreparedStatement ps;
            int id = 0;
            
         try {
             
+            cstmt = conn.prepareCall("CALL insertaPersona(?,?,?,?,?,?,?,?,?,?,?,?)");
             
             
-            ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+           
+            cstmt.setString(1, persona.getNombre());
+            cstmt.setString(2, persona.getApellido1());
+            cstmt.setString(3, persona.getApellido2());
+            cstmt.setString(4, persona.getCurp());
+            cstmt.setString(5, persona.getTelefono());
+            cstmt.setString(6, persona.getCorreo());
+            cstmt.setString(7, persona.getFechaNacimiento());
+            cstmt.setInt(8,persona.getIdMunicipio());
+            cstmt.setInt(9, persona.getIdEstadoCivil());
+            cstmt.setInt(10, persona.getIdRol());
+            cstmt.setInt(11,persona.getEdad());
+            cstmt.registerOutParameter(12,Types.INTEGER);
             
-            ps.setString(1, null);
-            ps.setString(2, persona.getNombre());
-            ps.setString(3, persona.getApellido1());
-            ps.setString(4, persona.getApellido2());
-            ps.setString(5, persona.getCurp());
-            ps.setString(6, persona.getTelefono());
-            ps.setString(7, persona.getCorreo());
-            ps.setString(8, persona.getFechaNacimiento());
-            ps.setInt(9,persona.getIdMunicipio());
-            ps.setInt(10, persona.getIdEstadoCivil());
-            ps.setInt(11, persona.getIdRol());
-            ps.setInt(12,persona.getEdad());
+            cstmt.executeUpdate();
             
-            ps.executeUpdate();
-            
-            ResultSet rs = ps.getGeneratedKeys();
+            ResultSet rs = cstmt.getGeneratedKeys();
             
             rs.next();
             id=rs.getInt(1);
-            ps.close();
+            cstmt.close();
             //conn.close();
             
             System.out.println(id);
@@ -83,7 +85,7 @@ public class PersonaServicioImpl implements PersonaServicio {
            
             
         } catch (SQLException ex) {
-          
+            System.out.println("Estoy en el catch de PersonaServicio");
             System.out.println(ex.getMessage());
             return 0;
         }

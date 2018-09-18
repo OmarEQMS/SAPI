@@ -4,6 +4,7 @@ $(document).ready(function () {
 
 
     //Esconder mensajes de error
+    $('#msj-error').hide();
     $('#noEqualPasswordsError').hide();
     $('#errorNombre').hide();
     $('#errorApellidoPaterno').hide();
@@ -33,7 +34,7 @@ $(document).ready(function () {
             cache: false,
             method: 'POST',
             data: {
-                key: "registrar",
+                key: "registraUsuario",
                 nombre: $('#nombre').val(),
                 apellido1: $('#apellido1').val(),
                 apellido2: $('#apellido2').val(),
@@ -59,7 +60,7 @@ $(document).ready(function () {
         })
                 .done(function (response) {
                     console.log(response);
-                    //swal('Usuario insertado correctamente');
+
 
                     swal({
                         title: 'Buen Trabajo',
@@ -115,7 +116,6 @@ $(document).ready(function () {
             }
 
         });
-
 
     });
 
@@ -322,8 +322,6 @@ $(document).ready(function () {
                     $('#estado').removeAttr('disabled');
                     $('#estado').removeAttr('selected');
 
-
-
                 }
 
                 console.log(json);
@@ -433,6 +431,40 @@ $(document).ready(function () {
         } else {
             $('#errorNoInterior').show();
         }
+
+    });
+    
+    ///////////////////////////////////////////////LOGIN
+    $('#btn-login').on('click', function () {
+
+        var usuario = $('#user');
+        var password = $('#password');
+
+        $.ajax({
+
+            url: 'LoginController',
+            cache: false,
+            method: 'POST',
+            data: {
+                key: 'verificar',
+                usuario: usuario.val(),
+                password: password.val()
+            },
+            success: function (response) {
+
+                if (response == 'success') {
+
+                    $('#msj-error').hide();
+
+                } else {
+                    $('#msj-error').show();
+                }
+
+
+            }
+
+
+        });
 
     });
 

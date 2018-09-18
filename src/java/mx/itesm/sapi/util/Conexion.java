@@ -16,7 +16,7 @@ public class Conexion {
     
     public static Connection getConnection(){
         
-        String cadena="jdbc:mysql://localhost:3306/SAPI?user=root";
+        String cadena = "jdbc:mysql://localhost:3306/sapi?user=root";
         //"jdbc:mysql://localhost:3306/INTtech?useSSL=false","root","root"
         
         Connection connection=null;

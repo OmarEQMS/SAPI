@@ -12,13 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/feror/Documents/NetBeansProjects/SAPI/src/java/mx/itesm/sapi/util/Conexion.java</file>
             <file>file:/C:/Users/feror/Documents/NetBeansProjects/SAPI/src/java/mx/itesm/sapi/controller/RegistraUsuarioController.java</file>
-            <file>file:/C:/Users/feror/Documents/NetBeansProjects/SAPI/src/java/mx/itesm/sapi/controller/ZonaController.java</file>
-            <file>file:/C:/Users/feror/Documents/NetBeansProjects/SAPI/src/java/mx/itesm/sapi/bean/CodigoPostal.java</file>
-            <file>file:/C:/Users/feror/Documents/NetBeansProjects/SAPI/web/js/asincrono.js</file>
-            <file>file:/C:/Users/feror/Documents/NetBeansProjects/SAPI/src/java/mx/itesm/sapi/service/ZonaServicio.java</file>
-            <file>file:/C:/Users/feror/Documents/NetBeansProjects/SAPI/src/java/mx/itesm/sapi/service/ZonaServicioImpl.java</file>
-            <file>file:/C:/Users/feror/Documents/NetBeansProjects/SAPI/web/WEB-INF/registro.jsp</file>
+            <file>file:/C:/Users/feror/Documents/NetBeansProjects/SAPI/src/java/mx/itesm/sapi/service/PersonaServicioImpl.java</file>
+            <file>file:/C:/Users/feror/Documents/NetBeansProjects/SAPI/src/java/mx/itesm/sapi/service/CuentaServicioImpl.java</file>
         </group>
     </open-files>
 </project-private>

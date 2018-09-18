@@ -10,7 +10,7 @@
     </servlet-mapping>
     -->
     <welcome-file-list>
-        <welcome-file>ZonaController?key=getRegistro</welcome-file>
+        <welcome-file>/WEB-INF/index.html</welcome-file>
     </welcome-file-list>
     
     <session-config>

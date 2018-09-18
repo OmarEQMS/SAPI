@@ -5,9 +5,11 @@
  */
 package mx.itesm.sapi.service;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 import mx.itesm.sapi.bean.Direccion;
 import mx.itesm.sapi.util.Conexion;
 
@@ -24,28 +26,22 @@ public class DireccionServicioImpl implements DireccionServicio{
 
     @Override
     public boolean saveDireccion(Direccion direccion) {
-        Connection conn = Conexion.getConnection();
-        
-        String sql="INSERT INTO direccion ( calle, noInterior, noExterior, colonia, idPersona) "
-                  .concat(" VALUES ( ?, ?, ?, ?, ?)");
-        
-          System.out.println(sql); 
-       
-           
-           PreparedStatement ps;
+         Connection conn = Conexion.getConnection();
+           CallableStatement cstmt;
            
            try {
             
-            ps = conn.prepareStatement(sql);
+            cstmt = conn.prepareCall("CALL insertaDireccion(?,?,?,?,?,?)");
             
-           
-            ps.setString(1, direccion.getCalle());
-            ps.setString(2, direccion.getNoInterior());
-            ps.setString(3, direccion.getNoExterior());
-            ps.setString(4, direccion.getColonia());
-            ps.setInt(5, direccion.getIdPersona());
+            
+            cstmt.setString(1, direccion.getCalle());
+            cstmt.setString(2, direccion.getNoInterior());
+            cstmt.setString(3, direccion.getNoExterior());
+            cstmt.setString(4, direccion.getColonia());
+            cstmt.setInt(5, direccion.getIdPersona());
+            cstmt.registerOutParameter(6,Types.INTEGER);
   
-           return !ps.execute();
+           return !cstmt.execute();
             
         } catch (SQLException ex) {
             

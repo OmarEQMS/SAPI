@@ -6,10 +6,12 @@
 package mx.itesm.sapi.service;
 
 import java.io.PrintWriter;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,22 +42,22 @@ public class CuentaServicioImpl implements CuentaServicio {
     public boolean saveCuenta(Cuenta cuenta) {
     
          Connection conn = Conexion.getConnection();
+         CallableStatement cstmt;
          
-          String sql="INSERT INTO cuenta (idCuenta, usuario, password, token, idPersona)"
-                  .concat(" VALUES (?, ?, ?, ?, ?)");
-          
-          PreparedStatement ps;
      
         try {
-            ps = conn.prepareStatement(sql);
             
-            ps.setString(1, null);
-            ps.setString(2, cuenta.getUsuario());
-            ps.setString(3, cuenta.getPassword());
-            ps.setString(4, "");
-            ps.setInt(5, cuenta.getIdPersona());
+            cstmt = conn.prepareCall("CALL insertaCuenta(?,?,?,?,?)");
             
-            return !ps.execute();   
+            
+            cstmt.setString(1, cuenta.getUsuario());
+            cstmt.setString(2, cuenta.getPassword());
+            cstmt.setString(3,"abc");
+            cstmt.setInt(4, cuenta.getIdPersona());
+            cstmt.registerOutParameter(5,Types.INTEGER);
+            
+            
+            return !cstmt.execute();   
             
         } catch (SQLException ex) {
             System.out.println("La contraseña de cuenta es: "+cuenta.getPassword());
@@ -87,16 +89,18 @@ public class CuentaServicioImpl implements CuentaServicio {
         
         Connection conn = Conexion.getConnection();
        
-        String sql= "SELECT usuario FROM cuenta WHERE usuario=?";
+        
+        CallableStatement cstmt;
        
         try {
-            PreparedStatement ps= conn.prepareStatement(sql);
-            ps.setString(1, usuario);
-            ResultSet rs = ps.executeQuery();
-            rs.next();
-            String us = rs.getString(1);
             
-            return us.equals(usuario);
+            
+            cstmt = conn.prepareCall("CALL existeUsuario(?,?)");
+            cstmt.setString (1, usuario); 
+            cstmt.registerOutParameter(2,Types.BOOLEAN);
+            
+            cstmt.execute();
+            return cstmt.getBoolean(2);
             
         } catch (SQLException ex) {
            
