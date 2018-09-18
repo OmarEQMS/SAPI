@@ -19,6 +19,7 @@ public class Cuenta implements Serializable {
     private int idPersona;
     private int idRol;
     private long loginDateTime; //@Autor: Alexis: Nos permite saber la fecha de login
+                                //                Se usa long porque java no tiene DATETIME 
     public Cuenta(){}
     
     @Override
@@ -73,7 +74,7 @@ public class Cuenta implements Serializable {
     }
     //@ Autor: Alexis: Guarda la ùltima fecha de login
     public void  setLoginDateTime(long ldateTime){
-            this.loginDateTime=ldateTime;
+        this.loginDateTime=ldateTime;
     }
     
 }
