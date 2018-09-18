@@ -59,7 +59,7 @@ public class LoginServicioImpl implements LoginServicio {
        
        Connection conn = Conexion.getConnection();
         
-        String sql = "INSERT INTO Login (idLogin,fecha,idCuenta) VALUES(?,?,?)";
+        String sql = "INSERT INTO Login (idLogin,fecha,idCuenta) VALUES(?,NOW(),?)";
        
         
         try{
@@ -70,8 +70,8 @@ public class LoginServicioImpl implements LoginServicio {
             // 2 .- Obtener fecha
             // 3.- id cuenta
             ps.setString(1,null);
-            ps.setDate(2, new Date(cuenta.getLoginDateTime()));
-            ps.setInt(3, cuenta.getIdCuenta());
+            //ps.setDate(2, new Date(cuenta.getLoginDateTime())); No es necesario fue preferible usar NOW()
+            ps.setInt(2, cuenta.getIdCuenta());
             
             ps.execute();
             

@@ -117,7 +117,6 @@ $(document).ready(function () {
 
         });
 
-
     });
 
 
@@ -322,8 +321,6 @@ $(document).ready(function () {
 
                     $('#estado').removeAttr('disabled');
                     $('#estado').removeAttr('selected');
-
-
 
                 }
 
