@@ -55,43 +55,38 @@ public class LoginServicioImpl implements LoginServicio {
    @Override
    public void InsertLoginDateTime(Cuenta cuenta){
        
-       Connection conn = Conexion.getConnection();
+        //SE CREA CONEXION
+        Connection conn = Conexion.getConnection();
         
-        String sql = "INSERT INTO Login (idLogin,fecha,idCuenta) VALUES(?,NOW(),?)";
-       
-        
+        //SE CREA CALLABLE STATEMENT
+        CallableStatement cstmt;
+
         try{
+            //SE PREPARA LA LLAMADA A 'InsertLoginDateTime(out fecha, in idCuenta)
+            cstmt = conn.prepareCall("CALL InsertLoginDateTime(?,?)");
             
-            PreparedStatement ps = conn.prepareStatement(sql);
+            //SE PASAN VALORES DEL PREPARED CALL
+            cstmt.setString(1, "");
+            cstmt.setInt(2, cuenta.getIdCuenta());
             
-            
-            // 2 .- Obtener fecha
-            // 3.- id cuenta
-            ps.setString(1,null);
-            //ps.setDate(2, new Date(cuenta.getLoginDateTime())); No es necesario fue preferible usar NOW()
-            ps.setInt(2, cuenta.getIdCuenta());
-            
-            ps.execute();
-            
-            ResultSet rs = ps.getGeneratedKeys();
+            //SE EJECUTA Y SE DEVUELVEN LOS VALORES DENTRO DEL RESULT SET
+            ResultSet rs = cstmt.executeQuery();
             rs.next();
-            cuenta.setIdCuenta(rs.getInt(1));
-          
             
+            //SE OBTIENE VALOR DE 'LoginDateTime'
+            cuenta.setLoginDateTime(rs.getLong(1));
+          
+            //SE CIERRA CALLABLE STATEMENT, RESULT SET Y CONEXION
             rs.close();
-            ps.close();
+            cstmt.close();
             conn.close();
-                 
-            System.out.println("si entre");
+            
+            //VERIFICACION           
+            System.out.println(cuenta.getLoginDateTime()); 
             
         }catch(Exception ex){
-            System.out.println("CuentaServicio.InsertDateTime ".concat(ex.getMessage()));
-            System.out.println("no entre");
+            System.out.println("CuentaServicio.verificaUsuario ".concat(ex.getMessage()));
         }
-        
-        
-        
-        
     }
    
    

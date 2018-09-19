@@ -5,6 +5,7 @@
  */
 package mx.itesm.sapi.service;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,13 +31,15 @@ public class ZonaServicioImpl implements ZonaServicio {
     public List<Estado> getEstados() {
         
         Connection conn = Conexion.getConnection();
-        String sql = "SELECT * FROM estado";
+        
+        
         List<Estado> estados = new ArrayList<>();
         
         try{
             
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            CallableStatement cstmt;
+            cstmt = conn.prepareCall("CALL getEstados()");
+            ResultSet rs = cstmt.executeQuery();
             Estado estado;
             
             while(rs.next()){
@@ -51,7 +54,7 @@ public class ZonaServicioImpl implements ZonaServicio {
             }
             
             rs.close();
-            ps.close();
+            cstmt.close();
             conn.close();
                     
             
@@ -68,26 +71,17 @@ public class ZonaServicioImpl implements ZonaServicio {
         
         Connection conn = Conexion.getConnection();
         
-        //String sql = "SELECT * FROM Municipio WHERE idEstado = 16";
         
-      /*  String sql ="SELECT Municipio.idMunicipio,Municipio.nombre AS 'Municipio' "
-                + "FROM Municipio WHERE Municipio.idEstado = (SELECT Estado.idEstado FROM    "
-                + "Estado WHERE Estado.nombre = '".concat(estado.getNombre()).concat("')");*/
-      
-      String sql= "SELECT * FROM municipio WHERE idEstado=?";
-        
-        System.out.println("ID: " + estado.getIdEstado());
-       
-       
         List<Municipio> municipios= new ArrayList<>();
         
         try{
             
             
-            PreparedStatement ps = conn.prepareStatement(sql);
+            CallableStatement cstmt;
+            cstmt = conn.prepareCall("CALL buscaMunicipio(?)");
             
-            ps.setInt(1,estado.getIdEstado());
-            ResultSet rs = ps.executeQuery();
+            cstmt.setInt(1,estado.getIdEstado());
+            ResultSet rs = cstmt.executeQuery();
 
             Municipio municipio;
             
@@ -101,14 +95,13 @@ public class ZonaServicioImpl implements ZonaServicio {
                 municipio.setNombre(rs.getString("nombre"));
                 
         
-                
                 municipios.add(municipio);
                 
                 System.out.println(municipios);
             }
             
             rs.close();
-            ps.close();
+            cstmt.close();
             conn.close();
             
          
@@ -124,11 +117,13 @@ public class ZonaServicioImpl implements ZonaServicio {
     @Override
     public List<EstadoCivil> getEstadoCivil() {
         Connection conn = Conexion.getConnection();
-        String sql = "SELECT * FROM estadoCivil";
-        List<EstadoCivil> estados = new ArrayList<>();        
+         List<EstadoCivil> estados = new ArrayList<>(); 
         try{            
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            CallableStatement cstmt;
+            cstmt = conn.prepareCall("CALL getEstadoCivil()");
+             
+            
+            ResultSet rs = cstmt.executeQuery();
             EstadoCivil estado;            
             while(rs.next()){                
                 estado = new EstadoCivil();                
@@ -137,7 +132,7 @@ public class ZonaServicioImpl implements ZonaServicio {
                 estados.add(estado);            
             }            
             rs.close();
-            ps.close();
+            cstmt.close();
             conn.close();                    
             
         }catch(Exception e){
@@ -149,14 +144,13 @@ public class ZonaServicioImpl implements ZonaServicio {
     @Override
     public List<String> getEstadoyMunicipio(CodigoPostal codigoPostal){
         Connection conn = Conexion.getConnection();
-	String sql = "SELECT  e.idEstado, e.nombre as nombreEstado, m.idMunicipio, m.nombre as nombreMunicipio FROM municipio m JOIN estado e ON m.idEstado = e.idEstado JOIN codigopostal c ON m.idMunicipio = c.idMunicipio WHERE c.numero = ?";
         
         List<String> EstadoyMunicipio = new ArrayList<>();
         try{
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, codigoPostal.getNumero());
-            ResultSet rs = ps.executeQuery();
-    
+            CallableStatement cstmt;
+            cstmt = conn.prepareCall("CALL getEstadoMunicipio(?)");
+            cstmt.setString(1, codigoPostal.getNumero());
+            ResultSet rs = cstmt.executeQuery();
             rs.next(); 
             
             //RECUPERACION
@@ -171,12 +165,13 @@ public class ZonaServicioImpl implements ZonaServicio {
             EstadoyMunicipio.add(nombreMunicipio);
             
             rs.close();
-            ps.close();
+            cstmt.close();
             conn.close();
             return EstadoyMunicipio;
             
         }catch(Exception ex){
-
+                
+            System.out.println("ESTOY EN EL CATCH DE EDOYMUN");
             Logger.getLogger(ZonaServicio.class.getName()).log(Level.SEVERE, null, ex);
             return EstadoyMunicipio;
         }
