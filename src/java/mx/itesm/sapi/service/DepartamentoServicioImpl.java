@@ -9,6 +9,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import mx.itesm.sapi.bean.Departamento;
 import mx.itesm.sapi.util.Conexion;
@@ -49,7 +50,7 @@ public class DepartamentoServicioImpl implements DepartamentoServicio {
             
         }catch(SQLException ex){
             
-             System.out.println("Estoy en el catch de EmpleadoServicio");
+             System.out.println("Estoy en el catch de DepartamentoServicio");
             System.out.println(ex.getMessage());
             
         }
@@ -59,7 +60,40 @@ public class DepartamentoServicioImpl implements DepartamentoServicio {
 
     @Override
     public List<Departamento> getDepartamentos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn = Conexion.getConnection();
+        
+        
+        List<Departamento> departamentos = new ArrayList<>();
+        
+        try{
+            
+            CallableStatement cstmt;
+            cstmt = conn.prepareCall("");
+            ResultSet rs = cstmt.executeQuery();
+            Departamento departamento;
+            
+            while(rs.next()){
+                
+                departamento = new Departamento();
+                
+                departamento.setIdDepartamento(rs.getInt(1));
+                departamento.setNombre(rs.getString(2));
+                
+                departamentos.add(departamento);
+            
+            }
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+                    
+            
+        }catch(Exception e){
+            System.out.println("ERROR GET DEPARTAMENTOS" + e.getMessage());
+        }
+        
+        return departamentos;
+
     }
 
     @Override

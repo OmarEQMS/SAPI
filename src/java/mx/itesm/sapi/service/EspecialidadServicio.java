@@ -16,7 +16,7 @@ public interface EspecialidadServicio {
     
     public Especialidad getEspecilidades(int idEspecialidad);
     public List<Especialidad> getEspecialidades();
-    public boolean saveEspecialidad(Especialidad especialidad);
+    public int saveEspecialidad(Especialidad especialidad);
     public boolean deleteEspecialidad(int idEspecialidad);
     public boolean existsEspecialidad(String nombre);
     
