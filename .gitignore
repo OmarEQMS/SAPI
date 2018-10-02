@@ -2,5 +2,4 @@ build/
 dist/
 lib/
 nbproject/
-src/conf/
 build.xml
