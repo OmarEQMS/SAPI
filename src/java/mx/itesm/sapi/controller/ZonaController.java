@@ -14,10 +14,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mx.itesm.sapi.bean.CodigoPostal;
-import mx.itesm.sapi.bean.Estado;
-import mx.itesm.sapi.bean.EstadoCivil;
-import mx.itesm.sapi.bean.Municipio;
+import mx.itesm.sapi.bean.persona.CodigoPostal;
+import mx.itesm.sapi.bean.persona.Estado;
+import mx.itesm.sapi.bean.persona.EstadoCivil;
+import mx.itesm.sapi.bean.persona.Municipio;
 import mx.itesm.sapi.service.ZonaServicioImpl;
 
 /**

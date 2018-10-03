@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.itesm.sapi.bean;
+package mx.itesm.sapi.bean.persona;
 
+import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -20,16 +21,14 @@ public class Persona implements Serializable {
     private String curp;
     private String telefono;
     private String correo;
-    private String fechaNacimiento;
-    private int idEstado;
+    private Date fechaNacimiento;
+    private int idTipoSangre;
     private int idMunicipio;
     private int idEstadoCivil;
-    private int idRol;
-    private String calle;
-    private String noExterior;
-    private String noInterior;
-    private String colonia;
+    private int idDireccion;
+    private InputStream imagen;
     private int  edad;
+    private int estatus;
     
    public Persona(){}
    
@@ -37,10 +36,11 @@ public class Persona implements Serializable {
    @Override
    public String toString(){
        
-       String str ="Persona [idPersona:".concat(",nombre:").concat(nombre).concat(",apellido1:").concat(apellido1).concat(",apellido2:").concat(apellido2).concat(",curp:")
+       String str ="Persona [idPersona:".concat(String.valueOf(idPersona)).concat(",nombre:").concat(nombre).concat(",apellido1:").concat(apellido1).concat(",apellido2:").concat(apellido2).concat(",curp:")
        .concat(curp).concat(",telefono:").concat(telefono).concat(",correo:").concat(correo).concat(",fechaNacimiento:").concat(fechaNacimiento.toString())
-       .concat(",idCiudad:").concat(String.valueOf(idMunicipio)).concat(",idEstadoCivil:").concat(String.valueOf(idEstadoCivil)).concat(",idRol:").concat(String.valueOf(idRol))
-       .concat("]");
+       .concat(",idTipoDeSangre:").concat(String.valueOf(idTipoSangre)).concat(",idMunicipio:").concat(String.valueOf(idMunicipio)).concat(",idEstadoCivil:")
+       .concat(String.valueOf(idEstadoCivil)).concat(",idDireccion:").concat(String.valueOf(idDireccion))
+       .concat(",edad:").concat(String.valueOf(edad)).concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
        
      return str;
 
@@ -102,11 +102,11 @@ public class Persona implements Serializable {
         this.correo = correo;
     }
 
-    public String getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -126,45 +126,7 @@ public class Persona implements Serializable {
         this.idEstadoCivil = idEstadoCivil;
     }
 
-    public int getIdRol() {
-        return idRol;
-    }
-
-    public void setIdRol(int idRol) {
-        this.idRol = idRol;
-    }
-
-    public String getCalle() {
-        return calle;
-    }
-
-    public void setCalle(String calle) {
-        this.calle = calle;
-    }
-
-    public String getNoExterior() {
-        return noExterior;
-    }
-
-    public void setNoExterior(String noExterior) {
-        this.noExterior = noExterior;
-    }
-
-    public String getNoInterior() {
-        return noInterior;
-    }
-
-    public void setNoInterior(String noInterior) {
-        this.noInterior = noInterior;
-    }
-
-    public String getColonia() {
-        return colonia;
-    }
-
-    public void setColonia(String colonia) {
-        this.colonia = colonia;
-    }
+ 
 
     public int getEdad() {
         return edad;
@@ -174,13 +136,39 @@ public class Persona implements Serializable {
         this.edad = edad;
     }
 
-    public int getIdEstado() {
-        return idEstado;
+    public void setIdTipoSangre(int idTipoSangre) {
+        this.idTipoSangre = idTipoSangre;
     }
 
-    public void setIdEstado(int idEstado) {
-        this.idEstado = idEstado;
+    public void setIdDireccion(int idDireccion) {
+        this.idDireccion = idDireccion;
     }
+
+    public void setImagen(InputStream imagen) {
+        this.imagen = imagen;
+    }
+
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
+    }
+
+    public int getIdTipoSangre() {
+        return idTipoSangre;
+    }
+
+    public int getIdDireccion() {
+        return idDireccion;
+    }
+
+    public InputStream getImagen() {
+        return imagen;
+    }
+
+    public int getEstatus() {
+        return estatus;
+    }
+
+   
 
     
 

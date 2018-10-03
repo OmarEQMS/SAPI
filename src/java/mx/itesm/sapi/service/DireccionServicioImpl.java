@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
-import mx.itesm.sapi.bean.Direccion;
+import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.util.Conexion;
 
 /**

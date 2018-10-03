@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.itesm.sapi.bean;
+package mx.itesm.sapi.bean.persona;
 
 import java.io.Serializable;
 
@@ -15,6 +15,7 @@ public class CodigoPostal implements Serializable {
     private int idCodigoPostal;
     private String numero;
     private int idMunicipio;
+    private int estatus;
     
     public CodigoPostal(){}
     
@@ -22,7 +23,7 @@ public class CodigoPostal implements Serializable {
     public String toString(){
         return "Codigo Postal [idCodigoPostal:".concat(String.valueOf(idCodigoPostal)).concat(",numero:").concat(numero)
                                                .concat(",idMunicipio:").concat(String.valueOf(idMunicipio))
-                                               .concat("]");
+                                               .concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
 
     } 
 
@@ -48,4 +49,13 @@ public class CodigoPostal implements Serializable {
     public void setIdMunicipio(int idMunicipio){
         this.idMunicipio=idMunicipio;
     }
+
+    public int getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
+    }
+    
 }

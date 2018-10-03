@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.itesm.sapi.bean;
+package mx.itesm.sapi.bean.persona;
 
 import java.io.Serializable;
 
@@ -14,11 +14,12 @@ import java.io.Serializable;
 public class Estado implements Serializable {
     private int idEstado;
     private String nombre;
+    private int estatus;
     
     @Override
     public String toString(){
         return "Estado [idEstado:".concat(String.valueOf(idEstado)).concat(",nombre:").concat(nombre)
-                                  .concat("]");
+                                  .concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
     } 
 
     public int getIdEstado(){
@@ -35,6 +36,14 @@ public class Estado implements Serializable {
     }
     public void setNombre(String nombre){
         this.nombre=nombre;
+    }
+
+    public int getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
     }
    
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.itesm.sapi.bean;
+package mx.itesm.sapi.bean.persona;
 
 import java.io.Serializable;
 
@@ -18,14 +18,16 @@ public class Cuenta implements Serializable {
     private String token;
     private int idPersona;
     private int idRol;
-    private long loginDateTime; //@Autor: Alexis: Nos permite saber la fecha de login
-                                //                Se usa long porque java no tiene DATETIME 
+    private int estatus;
+    
+    
+    
     public Cuenta(){}
     
     @Override
     public String toString(){
         return "Cuenta [idCuenta:".concat(String.valueOf(idCuenta)).concat(",usuario:").concat(usuario).concat(",password:").concat(password).concat(",token:").concat(token)
-       .concat(",idPersona:").concat(String.valueOf(idPersona)).concat("]");
+       .concat(",idPersona:").concat(String.valueOf(idPersona)).concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
 
     } 
     public int getIdCuenta(){
@@ -68,13 +70,14 @@ public class Cuenta implements Serializable {
     public void setIdRol(int idRol){
         this.idRol=idRol;
     }
-    //@ Autor: Alexis: Regresa la ùltima fecha de login
-    public long getLoginDateTime(){
-        return loginDateTime;
+
+    public int getEstatus() {
+        return estatus;
     }
-    //@ Autor: Alexis: Guarda la ùltima fecha de login
-    public void  setLoginDateTime(long ldateTime){
-        this.loginDateTime=ldateTime;
+
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
     }
+    
     
 }

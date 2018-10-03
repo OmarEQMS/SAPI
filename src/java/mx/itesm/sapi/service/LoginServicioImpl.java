@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import mx.itesm.sapi.bean.Cuenta;
+import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.util.Conexion;
 
 /**
