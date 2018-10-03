@@ -17,6 +17,11 @@ public class LugarDelCuerpoEstadiajeTNM implements Serializable{
     private int idRegistroTNM;
     private int estatus;
 
+    @Override
+    public String toString() {
+        return "LugarDelCuerpoEstadiajeTNM{" + "idLugarDelCuerpoEstadiajeTNM=" + idLugarDelCuerpoEstadiajeTNM + ", idLugarDelCuerpo=" + idLugarDelCuerpo + ", idRegistroTNM=" + idRegistroTNM + ", estatus=" + estatus + '}';
+    }
+
     public int getIdLugarDelCuerpoEstadiajeTNM() {
         return idLugarDelCuerpoEstadiajeTNM;
     }

@@ -16,6 +16,11 @@ public class EtapaClinica implements Serializable{
     private String nombre;
     private int status;
 
+    @Override
+    public String toString() {
+        return "EtapaClinica{" + "idEtapaClinica=" + idEtapaClinica + ", nombre=" + nombre + ", status=" + status + '}';
+    }
+
     public int getIdEtapaClinica() {
         return idEtapaClinica;
     }

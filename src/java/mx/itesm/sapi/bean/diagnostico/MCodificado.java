@@ -16,6 +16,11 @@ public class MCodificado implements Serializable{
     private String nombre;
     private int status;
 
+    @Override
+    public String toString() {
+        return "MCodificado{" + "idMCodifciado=" + idMCodifciado + ", nombre=" + nombre + ", status=" + status + '}';
+    }
+
     public int getIdMCodifciado() {
         return idMCodifciado;
     }

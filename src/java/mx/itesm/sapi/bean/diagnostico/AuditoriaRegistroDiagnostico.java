@@ -19,6 +19,11 @@ public class AuditoriaRegistroDiagnostico implements Serializable{
     private Date fecha;
     private int estatus;
 
+    @Override
+    public String toString() {
+        return "AuditoriaRegistroDiagnostico{" + "idAuditoriaRegistroDiagnostico=" + idAuditoriaRegistroDiagnostico + ", idRegistroDiagnostico=" + idRegistroDiagnostico + ", idEmpleado=" + idEmpleado + ", fecha=" + fecha + ", estatus=" + estatus + '}';
+    }
+    
     public int getIdAuditoriaRegistroDiagnostico() {
         return idAuditoriaRegistroDiagnostico;
     }

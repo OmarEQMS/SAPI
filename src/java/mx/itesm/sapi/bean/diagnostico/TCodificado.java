@@ -14,6 +14,11 @@ public class TCodificado {
     private String nombre;
     private int status;
 
+    @Override
+    public String toString() {
+        return "TCodificado{" + "idTCodifciado=" + idTCodifciado + ", nombre=" + nombre + ", status=" + status + '}';
+    }
+
     public int getIdTCodifciado() {
         return idTCodifciado;
     }

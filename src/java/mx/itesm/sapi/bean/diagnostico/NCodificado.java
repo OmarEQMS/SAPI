@@ -16,6 +16,11 @@ public class NCodificado implements Serializable{
     private String nombre;
     private int status;
 
+    @Override
+    public String toString() {
+        return "NCodificado{" + "idNCodificado=" + idNCodificado + ", nombre=" + nombre + ", status=" + status + '}';
+    }
+
     public int getIdNCodificado() {
         return idNCodificado;
     }

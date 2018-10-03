@@ -21,6 +21,11 @@ public class RegistroDiagnostico implements Serializable{
     private int idRegistroTNM;
     private int estatus;
 
+    @Override
+    public String toString() {
+        return "RegistroDiagnostico{" + "idRegistroDiagnostico=" + idRegistroDiagnostico + ", fecha=" + fecha + ", previoDiagnostico=" + previoDiagnostico + ", idPaciente=" + idPaciente + ", idEtapaClinica=" + idEtapaClinica + ", idRegistroTNM=" + idRegistroTNM + ", estatus=" + estatus + '}';
+    }
+
     public int getIdRegistroDiagnostico() {
         return idRegistroDiagnostico;
     }

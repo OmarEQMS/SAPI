@@ -21,6 +21,11 @@ public class EstadiajeTNM implements Serializable{
     int Metastasis;
     int estatus;
 
+    @Override
+    public String toString() {
+        return "EstadiajeTNM{" + "idRegistroTNM=" + idRegistroTNM + ", idTCodificado=" + idTCodificado + ", idNCodificado=" + idNCodificado + ", idMCodificado=" + idMCodificado + ", tClinico=" + tClinico + ", tImagen=" + tImagen + ", Metastasis=" + Metastasis + ", estatus=" + estatus + '}';
+    }
+    
     public int getIdRegistroTNM() {
         return idRegistroTNM;
     }
