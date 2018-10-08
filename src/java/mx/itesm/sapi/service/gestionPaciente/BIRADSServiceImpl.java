@@ -5,10 +5,38 @@
  */
 package mx.itesm.sapi.service.gestionPaciente;
 
+import java.util.List;
+import mx.itesm.sapi.bean.gestionPaciente.BIRADS;
+
 /**
  *
  * @author urieldiaz
  */
-public class BIRADSServiceImpl {
+public class BIRADSServiceImpl implements BIRADSService{
+
+    @Override
+    public BIRADS getBIRADS(int idBIRADS) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<BIRADS> getAllBIRADS() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean saveBIRADS(BIRADS birads) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean deleteBIRADS(int idBIRADS) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean updateBIRADS(BIRADS birads) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

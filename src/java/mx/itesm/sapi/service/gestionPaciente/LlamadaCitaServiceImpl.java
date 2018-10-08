@@ -5,10 +5,38 @@
  */
 package mx.itesm.sapi.service.gestionPaciente;
 
+import java.util.List;
+import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
+
 /**
  *
  * @author urieldiaz
  */
-public class LlamadaCitaServiceImpl {
+public class LlamadaCitaServiceImpl implements LlamadaCitaService{
+
+    @Override
+    public LlamadaCita getLlamadaCita(int idLlamadaCita) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<LlamadaCita> getAllLlamadaCita() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean saveLlamadaCita(LlamadaCita llamadaCita) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean updateLlamadaCita(LlamadaCita llamadaCita) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean deleteLlamadaCita(int idLlamadaCita) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

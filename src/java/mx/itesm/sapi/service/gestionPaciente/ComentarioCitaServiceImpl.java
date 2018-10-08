@@ -5,10 +5,38 @@
  */
 package mx.itesm.sapi.service.gestionPaciente;
 
+import java.util.List;
+import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
+
 /**
  *
  * @author urieldiaz
  */
-public class ComentarioCitaServiceImpl {
+public class ComentarioCitaServiceImpl implements ComentarioCitaService{
+
+    @Override
+    public ComentarioCita getComentarioCita(int idComentarioCita) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<ComentarioCita> getComentarioCita() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean saveComentarioCita(ComentarioCita comentarioCita) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean deleteComentarioCita(ComentarioCita comentarioCita) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean updateComentarioCita(ComentarioCita comentarioCita) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

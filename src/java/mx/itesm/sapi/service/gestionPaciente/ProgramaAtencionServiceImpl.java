@@ -5,10 +5,38 @@
  */
 package mx.itesm.sapi.service.gestionPaciente;
 
+import java.util.List;
+import mx.itesm.sapi.bean.gestionPaciente.ProgramaAtencion;
+
 /**
  *
  * @author urieldiaz
  */
-public class ProgramaAtencionServiceImpl {
+public class ProgramaAtencionServiceImpl implements ProgramaAtencionService{
+
+    @Override
+    public ProgramaAtencion getProgramaAtencion(int idProgramaAtencion) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<ProgramaAtencion> getAllProgramaAtencion() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean saveProgramaAtencion(ProgramaAtencion programaAtencion) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean deleteProgramaAtencion(int idProgramaAtencion) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean updateProgramaAtencion(ProgramaAtencion programaAtencion) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

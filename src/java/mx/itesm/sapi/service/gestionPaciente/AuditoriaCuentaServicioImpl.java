@@ -5,10 +5,38 @@
  */
 package mx.itesm.sapi.service.gestionPaciente;
 
+import java.util.List;
+import mx.itesm.sapi.bean.gestionPaciente.AuditoriaCuenta;
+
 /**
  *
  * @author urieldiaz
  */
-public class AuditoriaCuentaServicioImpl {
+public class AuditoriaCuentaServicioImpl implements AuditoriaCuentaServicio{
+
+    @Override
+    public AuditoriaCuenta getAuditoriaCuenta(int idAuditoriaCuenta) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<AuditoriaCuenta> getAllAuditoriaCuenta() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean saveAuditoriaCuenta(AuditoriaCuenta auditoriaCuenta) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean deleteAuditoriaCuenta(int idAuditoriaCuenta) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean updateAuditoriaCuenta(AuditoriaCuenta auditoriaCuenta) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
