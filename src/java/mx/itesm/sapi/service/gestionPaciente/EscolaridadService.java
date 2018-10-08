@@ -5,10 +5,17 @@
  */
 package mx.itesm.sapi.service.gestionPaciente;
 
+import java.util.List;
+import mx.itesm.sapi.bean.gestionPaciente.Escolaridad;
+
 /**
  *
  * @author urieldiaz
  */
 public interface EscolaridadService {
-    
+    public Escolaridad getEscolaridad(int idEscolaridad);
+    public List<Escolaridad> getAllEscolaridad();
+    public boolean saveEscolaridad(Escolaridad escolaridad);
+    public boolean deleteEscolaridad(int idEscolaridad);
+    public boolean updateEscolaridad(Escolaridad escolaridad);
 }

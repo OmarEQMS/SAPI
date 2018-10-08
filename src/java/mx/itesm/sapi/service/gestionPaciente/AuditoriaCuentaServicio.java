@@ -5,10 +5,18 @@
  */
 package mx.itesm.sapi.service.gestionPaciente;
 
+import java.util.List;
+import mx.itesm.sapi.bean.gestionPaciente.AuditoriaCuenta;
+
 /**
  *
  * @author urieldiaz
  */
 public interface AuditoriaCuentaServicio {
+    public AuditoriaCuenta getAuditoriaCuenta(int idAuditoriaCuenta);
+    public List<AuditoriaCuenta> getAllAuditoriaCuenta();
+    public boolean saveAuditoriaCuenta(AuditoriaCuenta auditoriaCuenta);
+    public boolean deleteAuditoriaCuenta(int idAuditoriaCuenta);
+    public boolean updateAuditoriaCuenta(AuditoriaCuenta auditoriaCuenta);
     
 }

@@ -5,10 +5,17 @@
  */
 package mx.itesm.sapi.service.gestionPaciente;
 
+import java.util.List;
+import mx.itesm.sapi.bean.gestionPaciente.Seguro;
+
 /**
  *
  * @author urieldiaz
  */
 public interface SeguroService {
-    
+    public Seguro getSeguro(int idSeguro);
+    public List<Seguro> getAllSeguro();
+    public boolean saveSeguro(Seguro seguro);
+    public boolean updateSeguro(Seguro seguro);
+    public boolean deleteSeguro(int idSeguro);
 }

@@ -5,10 +5,17 @@
  */
 package mx.itesm.sapi.service.gestionPaciente;
 
+import java.util.List;
+import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
+
 /**
  *
  * @author urieldiaz
  */
 public interface ComentarioCitaService {
-    
+    public ComentarioCita getComentarioCita(int idComentarioCita);
+    public List<ComentarioCita> getComentarioCita();
+    public boolean saveComentarioCita(ComentarioCita comentarioCita);
+    public boolean deleteComentarioCita(ComentarioCita comentarioCita);
+    public boolean updateComentarioCita(ComentarioCita comentarioCita);
 }

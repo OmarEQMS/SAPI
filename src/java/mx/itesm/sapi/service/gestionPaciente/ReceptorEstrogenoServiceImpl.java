@@ -9,6 +9,6 @@ package mx.itesm.sapi.service.gestionPaciente;
  *
  * @author urieldiaz
  */
-public class ReceptorEstroganoServiceImpl {
+public class ReceptorEstrogenoServiceImpl {
     
 }

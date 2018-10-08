@@ -5,10 +5,17 @@
  */
 package mx.itesm.sapi.service.gestionPaciente;
 
+import java.util.List;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
+
 /**
  *
  * @author urieldiaz
  */
 public interface PacienteNavegadoraService {
-    
+    public PacienteNavegadora getPacienteNavegadora(int idPacienteNavegadora);
+    public List<PacienteNavegadora> getAllPacienteNavegadora();
+    public boolean savePacienteNavegadora(PacienteNavegadora pacienteNavegadora);
+    public boolean updatePacienteNavegadora(PacienteNavegadora pacienteNavegadora);
+    public boolean deletePacienteNavegadora(int idPacienteNavegadora);
 }

@@ -5,10 +5,17 @@
  */
 package mx.itesm.sapi.service.gestionPaciente;
 
+import java.util.List;
+import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
+
 /**
  *
  * @author urieldiaz
  */
 public interface TipoDocumentoService {
-    
+    public TipoDocumento getTipoDocumento(int idTipoDocumento);
+    public List<TipoDocumento> getAllTipoDocumento();
+    public boolean saveTipoDocumento(TipoDocumento tipoDocumento);
+    public boolean updateTipoDocumento(TipoDocumento tipoDocumento);
+    public boolean deleteTipoDocumento(int idTipoDocumento);
 }

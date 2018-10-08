@@ -9,13 +9,13 @@ package mx.itesm.sapi.bean.gestionPaciente;
  *
  * @author Alex
  */
-public class PacienteNecesidadEspecialidad {
+public class PacienteNecesidadEspecial {
     private int idNecesidadPaciente;
     private int idPaciente;
     private int idNecesidadEspecial;
     private int estatus;
     
-    public PacienteNecesidadEspecialidad() {}
+    public PacienteNecesidadEspecial() {}
     
     @Override
     public String toString(){
