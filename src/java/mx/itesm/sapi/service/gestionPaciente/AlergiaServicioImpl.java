@@ -21,62 +21,62 @@ import mx.itesm.sapi.util.Conexion;
 public class AlergiaServicioImpl implements AlergiaServicio{
 
     @Override
-    public Alergia getAlergia(int idAlergia) {
+    public Alergia mostrarAlergia(int idAlergia) {
         
-         Connection conn = Conexion.getConnection();
-         CallableStatement callableStatementGetAlergia;
+         Connection conn = Conexion.mostrarConnection();
+         CallableStatement callableStatementmostrarAlergia;
                   
          Alergia alergia = new Alergia();
      
         try {
             
-            callableStatementGetAlergia = conn.prepareCall("CALL mostrarAlergia(?)");                                    
-            callableStatementGetAlergia.setInt(4, idAlergia);            
+            callableStatementmostrarAlergia = conn.prepareCall("CALL mostrarAlergia(?)");                                    
+            callableStatementmostrarAlergia.setInt(4, idAlergia);            
                                    
-            ResultSet rs = callableStatementGetAlergia.executeQuery();
+            ResultSet rs = callableStatementmostrarAlergia.executeQuery();
             rs.next();
-            alergia.setIdAlergia(rs.getInt("idAlergia"));
-            alergia.setNombre(rs.getString("nombre"));
-            alergia.setEstatus(rs.getInt("estatus"));
+            alergia.setIdAlergia(rs.mostrarInt("idAlergia"));
+            alergia.setNombre(rs.mostrarString("nombre"));
+            alergia.setEstatus(rs.mostrarInt("estatus"));
             
             conn.close();
-            callableStatementGetAlergia.close();
+            callableStatementmostrarAlergia.close();
             rs.close();
             
         } catch (SQLException ex) {
-           System.out.println("Catch AlergiaServicioImpl getAlergia");          
+           System.out.println("Catch AlergiaServicioImpl mostrarAlergia");          
             return null;
         }   
         return alergia;
     }
 
     @Override
-    public Alergia getAlergia(String nombreAlergia) {
+    public Alergia mostrarAlergia(String nombreAlergia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Alergia> getAllAlergias() {
+    public List<Alergia> mostrarAllAlergias() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveAlergia(Alergia alergia) {
+    public boolean agregarAlergia(Alergia alergia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteAlergia(int idAlergia) {
+    public boolean borrarAlergia(int idAlergia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteAlergia(String nombreAlergia) {
+    public boolean borrarAlergia(String nombreAlergia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateAlergia(Alergia alergia) {
+    public boolean actualizarAlergia(Alergia alergia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -15,32 +15,32 @@ import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 public class PacienteServiceImpl implements PacienteService{
 
     @Override
-    public Paciente getPaciente(int idPaciente) {
+    public Paciente mostrarPaciente(int idPaciente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Paciente getPaciente(String przPaciente) {
+    public Paciente mostrarPaciente(String przPaciente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Paciente> getAllPaciente() {
+    public List<Paciente> mostrarAllPaciente() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean savePaciente(Paciente paciente) {
+    public boolean agregarPaciente(Paciente paciente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updatePaciente(Paciente paciente) {
+    public boolean actualizarPaciente(Paciente paciente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deletePaciente(int idPaciente) {
+    public boolean borrarPaciente(int idPaciente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

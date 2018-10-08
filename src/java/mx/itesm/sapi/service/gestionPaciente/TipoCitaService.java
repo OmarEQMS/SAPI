@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.gestionPaciente.TipoCita;
  * @author urieldiaz
  */
 public interface TipoCitaService {
-    public TipoCita getTipoCita(int idTipoCita);
-    public List<TipoCita> getAllTipoCita();
-    public boolean saveTipoCita(TipoCita tipoCita);
+    public TipoCita mostrarTipoCita(int idTipoCita);
+    public List<TipoCita> mostrarAllTipoCita();
+    public boolean agregarTipoCita(TipoCita tipoCita);
     public boolean deleteTipoCita(int idTipoCita);
-    public boolean updateTipoCita(TipoCita tipoCita);
+    public boolean actualizarTipoCita(TipoCita tipoCita);
 }

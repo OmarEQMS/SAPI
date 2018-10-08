@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.gestionPaciente.CategoriaEstudio;
  * @author urieldiaz
  */
 public interface CategoriaEstudioService {
-    public CategoriaEstudio getCategoriaEstudio(int idCategoriaEstudio);
-    public List<CategoriaEstudio> getAllCategoriaEstudio();
-    public boolean saveCategoriaEstudio(CategoriaEstudio categoriaEstudio);
-    public boolean updateCategoriaEstudio(CategoriaEstudio categoriaEstudio);
-    public boolean deleteCategoriaEstudio(int idCategoriaEstudio);    
+    public CategoriaEstudio mostrarCategoriaEstudio(int idCategoriaEstudio);
+    public List<CategoriaEstudio> mostrarAllCategoriaEstudio();
+    public boolean agregarCategoriaEstudio(CategoriaEstudio categoriaEstudio);
+    public boolean actualizarCategoriaEstudio(CategoriaEstudio categoriaEstudio);
+    public boolean borrarCategoriaEstudio(int idCategoriaEstudio);    
 }

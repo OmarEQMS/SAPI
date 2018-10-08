@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.gestionPaciente.Estudio;
  * @author urieldiaz
  */
 public interface EstudioService {
-    public Estudio getEstudio(int idEstudio);
-    public List<Estudio> getAllEstudio();
-    public boolean saveEstudio (Estudio estudio);
-    public boolean updateEstudio(Estudio estudio);
-    public boolean deleteEstudio (int idEstudio);
+    public Estudio mostrarEstudio(int idEstudio);
+    public List<Estudio> mostrarAllEstudio();
+    public boolean agregarEstudio (Estudio estudio);
+    public boolean actualizarEstudio(Estudio estudio);
+    public boolean borrarEstudio (int idEstudio);
 }

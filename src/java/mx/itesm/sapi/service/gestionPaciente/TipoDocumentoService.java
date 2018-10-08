@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
  * @author urieldiaz
  */
 public interface TipoDocumentoService {
-    public TipoDocumento getTipoDocumento(int idTipoDocumento);
-    public List<TipoDocumento> getAllTipoDocumento();
-    public boolean saveTipoDocumento(TipoDocumento tipoDocumento);
-    public boolean updateTipoDocumento(TipoDocumento tipoDocumento);
-    public boolean deleteTipoDocumento(int idTipoDocumento);
+    public TipoDocumento mostrarTipoDocumento(int idTipoDocumento);
+    public List<TipoDocumento> mostrarAllTipoDocumento();
+    public boolean agregarTipoDocumento(TipoDocumento tipoDocumento);
+    public boolean actualizarTipoDocumento(TipoDocumento tipoDocumento);
+    public boolean borrarTipoDocumento(int idTipoDocumento);
 }

@@ -13,10 +13,10 @@ import mx.itesm.sapi.bean.gestionPaciente.LugarDelCuerpo;
  * @author urieldiaz
  */
 public interface LugarDelCuerpoService {
-    public LugarDelCuerpo getLugarDelCuerpo(int idLugarDelCuerpo);
-    public LugarDelCuerpo getLugarDelCuerpo(String nombreLugarDelCuerpo);
-    public List<LugarDelCuerpo> getAllLugarDelCuerpo();
-    public boolean saveLugarDelCuerpo(LugarDelCuerpo lugarDelCuerpo);
-    public boolean updateLugarDelCuerpo(LugarDelCuerpo lugarDelCuerpo);
-    public boolean deleteLugarDelCuerpo(int idLugarDelCuerpo);
+    public LugarDelCuerpo mostrarLugarDelCuerpo(int idLugarDelCuerpo);
+    public LugarDelCuerpo mostrarLugarDelCuerpo(String nombreLugarDelCuerpo);
+    public List<LugarDelCuerpo> mostrarAllLugarDelCuerpo();
+    public boolean agregarLugarDelCuerpo(LugarDelCuerpo lugarDelCuerpo);
+    public boolean actualizarLugarDelCuerpo(LugarDelCuerpo lugarDelCuerpo);
+    public boolean borrarLugarDelCuerpo(int idLugarDelCuerpo);
 }

@@ -15,32 +15,32 @@ import mx.itesm.sapi.bean.gestionPaciente.MotivoConsulta;
 public class MotivoConsultaServiceImpl implements MotivoConsultaService{
 
     @Override
-    public MotivoConsulta getMotivoConsulta(int idMotivoConsulta) {
+    public MotivoConsulta mostrarMotivoConsulta(int idMotivoConsulta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public MotivoConsulta getMotivoConsulta(String nombreMotivoConsulta) {
+    public MotivoConsulta mostrarMotivoConsulta(String nombreMotivoConsulta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<MotivoConsulta> getAllMotivoConsulta() {
+    public List<MotivoConsulta> mostrarAllMotivoConsulta() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveMotivoConsulta(MotivoConsulta motivoConsulta) {
+    public boolean agregarMotivoConsulta(MotivoConsulta motivoConsulta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateMotivoConsulta(MotivoConsulta motivoConsulta) {
+    public boolean actualizarMotivoConsulta(MotivoConsulta motivoConsulta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteMotivoConsulta(int idMotivoConsulta) {
+    public boolean borrarMotivoConsulta(int idMotivoConsulta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

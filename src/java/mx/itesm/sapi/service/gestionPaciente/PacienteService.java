@@ -13,10 +13,10 @@ import mx.itesm.sapi.bean.gestionPaciente.Paciente;
  * @author urieldiaz
  */
 public interface PacienteService {
-    public Paciente getPaciente(int idPaciente);
-    public Paciente getPaciente(String przPaciente);
-    public List<Paciente> getAllPaciente();
-    public boolean savePaciente(Paciente paciente);
-    public boolean updatePaciente(Paciente paciente);
-    public boolean deletePaciente(int idPaciente);
+    public Paciente mostrarPaciente(int idPaciente);
+    public Paciente mostrarPaciente(String przPaciente);
+    public List<Paciente> mostrarAllPaciente();
+    public boolean agregarPaciente(Paciente paciente);
+    public boolean actualizarPaciente(Paciente paciente);
+    public boolean borrarPaciente(int idPaciente);
 }

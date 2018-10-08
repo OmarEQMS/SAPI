@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
 public class PacienteAlergiaServiceImpl implements PacienteAlergiaService{
 
     @Override
-    public PacienteAlergia getPacienteAlergia(int idPacienteAlergia) {
+    public PacienteAlergia mostrarPacienteAlergia(int idPacienteAlergia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<PacienteAlergia> getAllPacienteAlergia() {
+    public List<PacienteAlergia> mostrarAllPacienteAlergia() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean savePacienteAlergia(PacienteAlergia pacienteAlergia) {
+    public boolean agregarPacienteAlergia(PacienteAlergia pacienteAlergia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updatePacienteAlergia(PacienteAlergia pacienteAlergia) {
+    public boolean actualizarPacienteAlergia(PacienteAlergia pacienteAlergia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deletePacienteAlergia(int idPacienteAlergia) {
+    public boolean borrarPacienteAlergia(int idPacienteAlergia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

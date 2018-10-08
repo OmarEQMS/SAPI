@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
 public class PacienteNavegadoraServiceImpl implements PacienteNavegadoraService{
 
     @Override
-    public PacienteNavegadora getPacienteNavegadora(int idPacienteNavegadora) {
+    public PacienteNavegadora mostrarPacienteNavegadora(int idPacienteNavegadora) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<PacienteNavegadora> getAllPacienteNavegadora() {
+    public List<PacienteNavegadora> mostrarAllPacienteNavegadora() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean savePacienteNavegadora(PacienteNavegadora pacienteNavegadora) {
+    public boolean agregarPacienteNavegadora(PacienteNavegadora pacienteNavegadora) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updatePacienteNavegadora(PacienteNavegadora pacienteNavegadora) {
+    public boolean actualizarPacienteNavegadora(PacienteNavegadora pacienteNavegadora) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deletePacienteNavegadora(int idPacienteNavegadora) {
+    public boolean borrarPacienteNavegadora(int idPacienteNavegadora) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

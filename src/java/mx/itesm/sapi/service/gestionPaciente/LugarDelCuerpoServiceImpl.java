@@ -15,32 +15,32 @@ import mx.itesm.sapi.bean.gestionPaciente.LugarDelCuerpo;
 public class LugarDelCuerpoServiceImpl implements LugarDelCuerpoService{
 
     @Override
-    public LugarDelCuerpo getLugarDelCuerpo(int idLugarDelCuerpo) {
+    public LugarDelCuerpo mostrarLugarDelCuerpo(int idLugarDelCuerpo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public LugarDelCuerpo getLugarDelCuerpo(String nombreLugarDelCuerpo) {
+    public LugarDelCuerpo mostrarLugarDelCuerpo(String nombreLugarDelCuerpo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<LugarDelCuerpo> getAllLugarDelCuerpo() {
+    public List<LugarDelCuerpo> mostrarAllLugarDelCuerpo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveLugarDelCuerpo(LugarDelCuerpo lugarDelCuerpo) {
+    public boolean agregarLugarDelCuerpo(LugarDelCuerpo lugarDelCuerpo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateLugarDelCuerpo(LugarDelCuerpo lugarDelCuerpo) {
+    public boolean actualizarLugarDelCuerpo(LugarDelCuerpo lugarDelCuerpo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteLugarDelCuerpo(int idLugarDelCuerpo) {
+    public boolean borrarLugarDelCuerpo(int idLugarDelCuerpo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

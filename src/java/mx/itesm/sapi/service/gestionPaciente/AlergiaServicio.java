@@ -13,11 +13,11 @@ import mx.itesm.sapi.bean.gestionPaciente.Alergia;
  * @author urieldiaz
  */
 public interface AlergiaServicio {
-    public Alergia getAlergia(int idAlergia);
-    public Alergia getAlergia(String nombreAlergia);    
-    public List<Alergia> getAllAlergias();
-    public boolean saveAlergia(Alergia alergia);
-    public boolean deleteAlergia(int idAlergia);
-    public boolean deleteAlergia(String nombreAlergia);
-    public boolean updateAlergia(Alergia alergia);        
+    public Alergia mostrarAlergia(int idAlergia);
+    public Alergia mostrarAlergia(String nombreAlergia);    
+    public List<Alergia> mostrarAllAlergias();
+    public boolean agregarAlergia(Alergia alergia);
+    public boolean borrarAlergia(int idAlergia);
+    public boolean borrarAlergia(String nombreAlergia);
+    public boolean actualizarAlergia(Alergia alergia);        
 }

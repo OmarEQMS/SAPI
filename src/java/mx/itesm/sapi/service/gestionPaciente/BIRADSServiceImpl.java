@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.BIRADS;
 public class BIRADSServiceImpl implements BIRADSService{
 
     @Override
-    public BIRADS getBIRADS(int idBIRADS) {
+    public BIRADS mostrarBIRADS(int idBIRADS) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<BIRADS> getAllBIRADS() {
+    public List<BIRADS> mostrarAllBIRADS() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveBIRADS(BIRADS birads) {
+    public boolean agregarBIRADS(BIRADS birads) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteBIRADS(int idBIRADS) {
+    public boolean borrarBIRADS(int idBIRADS) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateBIRADS(BIRADS birads) {
+    public boolean actualizarBIRADS(BIRADS birads) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

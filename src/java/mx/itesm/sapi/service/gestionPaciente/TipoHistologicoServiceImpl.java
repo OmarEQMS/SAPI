@@ -30,12 +30,12 @@ public class TipoHistologicoServiceImpl implements TipoHistologicoService{
     }
 
     @Override
-    public boolean updateTipoHistologico(TipoHistologico tipoHistologico) {
+    public boolean actualizarTipoHistologico(TipoHistologico tipoHistologico) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteTipoHistologico(int idTipoHistologico) {
+    public boolean borrarTipoHistologico(int idTipoHistologico) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.gestionPaciente.ResultadoPatologia;
  * @author urieldiaz
  */
 public interface ResultadoPatologiaService {
-    public ResultadoPatologia getResultadoPatologia(int idResultadoPatologia);
-    public List<ResultadoPatologia> getAllResultadoPatologia();
-    public boolean saveResultadoPatologia(ResultadoPatologia resultadoPatologia);
-    public boolean deleteResultadoPatologia(int idResultadoPatologia);
-    public boolean udpateResultadoPatologia (ResultadoPatologia resultadoPatologia);
+    public ResultadoPatologia mostrarResultadoPatologia(int idResultadoPatologia);
+    public List<ResultadoPatologia> mostrarAllResultadoPatologia();
+    public boolean agregarResultadoPatologia(ResultadoPatologia resultadoPatologia);
+    public boolean borrarResultadoPatologia(int idResultadoPatologia);
+    public boolean actualizarResultadoPatologia (ResultadoPatologia resultadoPatologia);
 }

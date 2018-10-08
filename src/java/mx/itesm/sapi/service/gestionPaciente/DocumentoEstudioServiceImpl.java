@@ -15,17 +15,17 @@ import mx.itesm.sapi.bean.gestionPaciente.DocumentoEstudio;
 public class DocumentoEstudioServiceImpl implements DocumentoEstudioService{
 
     @Override
-    public DocumentoEstudio getDocumentoEstudio(int idDocumentoEstudio) {
+    public DocumentoEstudio mostrarDocumentoEstudio(int idDocumentoEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<DocumentoEstudio> getAllDocumentoEstudio() {
+    public List<DocumentoEstudio> mostrarAllDocumentoEstudio() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveDocumentoEstudio(DocumentoEstudio documentoEstudio) {
+    public boolean agregarDocumentoEstudio(DocumentoEstudio documentoEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -35,7 +35,7 @@ public class DocumentoEstudioServiceImpl implements DocumentoEstudioService{
     }
 
     @Override
-    public boolean updateDocumentoEstudio(DocumentoEstudio documentoEstudio) {
+    public boolean actualizarDocumentoEstudio(DocumentoEstudio documentoEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

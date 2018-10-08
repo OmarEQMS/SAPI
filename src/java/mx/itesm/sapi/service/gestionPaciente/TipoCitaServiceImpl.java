@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.TipoCita;
 public class TipoCitaServiceImpl implements TipoCitaService{
 
     @Override
-    public TipoCita getTipoCita(int idTipoCita) {
+    public TipoCita mostrarTipoCita(int idTipoCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<TipoCita> getAllTipoCita() {
+    public List<TipoCita> mostrarAllTipoCita() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveTipoCita(TipoCita tipoCita) {
+    public boolean agregarTipoCita(TipoCita tipoCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteTipoCita(int idTipoCita) {
+    public boolean borrarTipoCita(int idTipoCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateTipoCita(TipoCita tipoCita) {
+    public boolean actualizarTipoCita(TipoCita tipoCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

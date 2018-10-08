@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.ReceptorEstrogeno;
 public class ReceptorEstrogenoServiceImpl implements ReceptorEstrogenoService{
 
     @Override
-    public ReceptorEstrogeno getReceptorEstrogeno(int idReceptorEstrogeno) {
+    public ReceptorEstrogeno mostrarReceptorEstrogeno(int idReceptorEstrogeno) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<ReceptorEstrogeno> getAllReceptorEstrogeno() {
+    public List<ReceptorEstrogeno> mostrarAllReceptorEstrogeno() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveReceptorEstrogeno(ReceptorEstrogeno receptorEstrogeno) {
+    public boolean agregarReceptorEstrogeno(ReceptorEstrogeno receptorEstrogeno) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean delteReceptorEstrogeno(int idReceptorEstrogeno) {
+    public boolean borrarReceptorEstrogeno(int idReceptorEstrogeno) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateReceptorEstrogeno(ReceptorEstrogeno receptorEstrogeno) {
+    public boolean actualizarReceptorEstrogeno(ReceptorEstrogeno receptorEstrogeno) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

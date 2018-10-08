@@ -13,10 +13,10 @@ import mx.itesm.sapi.bean.gestionPaciente.Atencion;
  * @author urieldiaz
  */
 public interface AtencionServicio {
-    public Atencion getAtencionServicio(int idAtencionServicio);
-    public List<Atencion> getAllAtencionServicio();
-    public boolean saveAtencion(Atencion atencion);
-    public boolean deleteAtencion(int idAtencion);
-    public boolean updateAtencion(Atencion atencion);
+    public Atencion mostrarAtencionServicio(int idAtencionServicio);
+    public List<Atencion> mostrarAllAtencionServicio();
+    public boolean agregarAtencion(Atencion atencion);
+    public boolean borrarAtencion(int idAtencion);
+    public boolean actualizarAtencion(Atencion atencion);
     
 }

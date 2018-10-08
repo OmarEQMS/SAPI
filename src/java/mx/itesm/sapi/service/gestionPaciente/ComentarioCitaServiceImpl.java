@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
 public class ComentarioCitaServiceImpl implements ComentarioCitaService{
 
     @Override
-    public ComentarioCita getComentarioCita(int idComentarioCita) {
+    public ComentarioCita mostrarComentarioCita(int idComentarioCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<ComentarioCita> getComentarioCita() {
+    public List<ComentarioCita> mostrarComentarioCita() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveComentarioCita(ComentarioCita comentarioCita) {
+    public boolean agregarComentarioCita(ComentarioCita comentarioCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteComentarioCita(ComentarioCita comentarioCita) {
+    public boolean borrarComentarioCita(ComentarioCita comentarioCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateComentarioCita(ComentarioCita comentarioCita) {
+    public boolean actualizarComentarioCita(ComentarioCita comentarioCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

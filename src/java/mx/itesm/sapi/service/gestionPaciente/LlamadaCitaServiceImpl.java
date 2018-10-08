@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
 public class LlamadaCitaServiceImpl implements LlamadaCitaService{
 
     @Override
-    public LlamadaCita getLlamadaCita(int idLlamadaCita) {
+    public LlamadaCita mostrarLlamadaCita(int idLlamadaCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<LlamadaCita> getAllLlamadaCita() {
+    public List<LlamadaCita> mostrarAllLlamadaCita() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveLlamadaCita(LlamadaCita llamadaCita) {
+    public boolean agregarLlamadaCita(LlamadaCita llamadaCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateLlamadaCita(LlamadaCita llamadaCita) {
+    public boolean actualizarLlamadaCita(LlamadaCita llamadaCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteLlamadaCita(int idLlamadaCita) {
+    public boolean borrarLlamadaCita(int idLlamadaCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

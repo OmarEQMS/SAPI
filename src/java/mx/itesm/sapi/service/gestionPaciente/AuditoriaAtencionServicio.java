@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.gestionPaciente.AuditoriaAtencion;
  * @author urieldiaz
  */
 public interface AuditoriaAtencionServicio {
-    public AuditoriaAtencion getAuditoriaAtencion(int idAuditoriaAtencion);
-    public List<AuditoriaAtencion> getAllAuditoriaAtencion();
-    public boolean saveAuditoriaAtencion(AuditoriaAtencion auditoriaAtencion);
-    public boolean deleteAuditoriaAtencion(int idAuditoriaAtencion);    
-    public boolean updateAuditoriaAtencion(AuditoriaAtencion auditoriaAtencion);
+    public AuditoriaAtencion mostrarAuditoriaAtencion(int idAuditoriaAtencion);
+    public List<AuditoriaAtencion> mostrarAllAuditoriaAtencion();
+    public boolean agregarAuditoriaAtencion(AuditoriaAtencion auditoriaAtencion);
+    public boolean borrarAuditoriaAtencion(int idAuditoriaAtencion);    
+    public boolean actualizarAuditoriaAtencion(AuditoriaAtencion auditoriaAtencion);
 }

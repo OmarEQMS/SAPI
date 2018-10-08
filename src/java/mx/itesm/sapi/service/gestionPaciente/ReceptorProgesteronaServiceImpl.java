@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.ReceptorProgesterona;
 public class ReceptorProgesteronaServiceImpl implements ReceptorProgesteronaService{
 
     @Override
-    public ReceptorProgesterona getReceptorProgesterona(int idReceptorProgesterona) {
+    public ReceptorProgesterona mostrarReceptorProgesterona(int idReceptorProgesterona) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<ReceptorProgesterona> getAllReceptorProgesterona() {
+    public List<ReceptorProgesterona> mostrarAllReceptorProgesterona() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveReceptorProgesterona(ReceptorProgesterona receptorProgesterona) {
+    public boolean agregarReceptorProgesterona(ReceptorProgesterona receptorProgesterona) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateReceptorProgesterona(ReceptorProgesterona receptorProgesterona) {
+    public boolean actualizarReceptorProgesterona(ReceptorProgesterona receptorProgesterona) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteReceptorProgesterona(int idReceptorProgesterona) {
+    public boolean borrarReceptorProgesterona(int idReceptorProgesterona) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

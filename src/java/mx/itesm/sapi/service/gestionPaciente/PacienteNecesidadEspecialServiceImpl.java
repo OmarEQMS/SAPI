@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
 public class PacienteNecesidadEspecialServiceImpl implements PacienteNecesidadEspecialService{
 
     @Override
-    public PacienteNecesidadEspecial getPacienteNecesidadEspecial(int idPacienteNecesidadEspecial) {
+    public PacienteNecesidadEspecial mostrarPacienteNecesidadEspecial(int idPacienteNecesidadEspecial) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<PacienteNecesidadEspecial> getAllPacienteNecesidadEspecial() {
+    public List<PacienteNecesidadEspecial> mostrarAllPacienteNecesidadEspecial() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean savePacienteNecesidadEspecial(PacienteNecesidadEspecial pacienteNecesidadEspecial) {
+    public boolean agregarPacienteNecesidadEspecial(PacienteNecesidadEspecial pacienteNecesidadEspecial) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deletePacienteNecesidadEspecial(int idPacienteNecesidadEspecial) {
+    public boolean borrarPacienteNecesidadEspecial(int idPacienteNecesidadEspecial) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updatePacienteNecesidadEspecial(PacienteNecesidadEspecial pacienteNecesidadEspecial) {
+    public boolean actualizarPacienteNecesidadEspecial(PacienteNecesidadEspecial pacienteNecesidadEspecial) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

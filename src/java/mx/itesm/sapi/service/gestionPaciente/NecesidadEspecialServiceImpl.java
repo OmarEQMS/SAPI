@@ -15,32 +15,32 @@ import mx.itesm.sapi.bean.gestionPaciente.NecesidadEspecial;
 public class NecesidadEspecialServiceImpl implements NecesidadEspecialService{
 
     @Override
-    public NecesidadEspecial getNecesidadEspecial(int idNecesidadEspecial) {
+    public NecesidadEspecial mostrarNecesidadEspecial(int idNecesidadEspecial) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public NecesidadEspecial getNecesidadEspecial(String nombreNecesidadEspecial) {
+    public NecesidadEspecial mostrarNecesidadEspecial(String nombreNecesidadEspecial) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<NecesidadEspecial> getNecesidadEspecial() {
+    public List<NecesidadEspecial> mostrarNecesidadEspecial() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveNecesidadEspecial(NecesidadEspecial necesidadEspecial) {
+    public boolean agregarNecesidadEspecial(NecesidadEspecial necesidadEspecial) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateNecesidadEspecial(NecesidadEspecial necesidadEspecial) {
+    public boolean actualizarNecesidadEspecial(NecesidadEspecial necesidadEspecial) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteNecesidadEspecial(int idNecesidadEspecial) {
+    public boolean borrarNecesidadEspecial(int idNecesidadEspecial) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

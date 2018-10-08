@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.Biopsia;
 public class BiopsiaServiceImpl implements BiopsiaService{
 
     @Override
-    public Biopsia getBiopsia(int idBiopsia) {
+    public Biopsia mostrarBiopsia(int idBiopsia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Biopsia> getAllBiopsia() {
+    public List<Biopsia> mostrarAllBiopsia() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveBiopsia(Biopsia biopsia) {
+    public boolean agregarBiopsia(Biopsia biopsia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteBiopsia(int idBiopsia) {
+    public boolean borrarBiopsia(int idBiopsia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateBiopsia(Biopsia biopsia) {
+    public boolean actualizarBiopsia(Biopsia biopsia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

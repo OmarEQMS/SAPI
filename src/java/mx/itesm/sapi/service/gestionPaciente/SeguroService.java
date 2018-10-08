@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.gestionPaciente.Seguro;
  * @author urieldiaz
  */
 public interface SeguroService {
-    public Seguro getSeguro(int idSeguro);
-    public List<Seguro> getAllSeguro();
-    public boolean saveSeguro(Seguro seguro);
-    public boolean updateSeguro(Seguro seguro);
-    public boolean deleteSeguro(int idSeguro);
+    public Seguro mostrarSeguro(int idSeguro);
+    public List<Seguro> mostrarAllSeguro();
+    public boolean agregarSeguro(Seguro seguro);
+    public boolean actualizarSeguro(Seguro seguro);
+    public boolean borrarSeguro(int idSeguro);
 }

@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 public class EstadoPacientePacienteServiceImpl implements EstadoPacientePacienteService{
 
     @Override
-    public EstadoPacientePaciente getEstadoPacientePaciente(int idEstadoPacientePaciente) {
+    public EstadoPacientePaciente mostrarEstadoPacientePaciente(int idEstadoPacientePaciente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<EstadoPacientePaciente> getAllEstadoPacientePaciente() {
+    public List<EstadoPacientePaciente> mostrarAllEstadoPacientePaciente() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveEstadoPacientePaciente(EstadoPacientePaciente estadoPacientePaciente) {
+    public boolean agregarEstadoPacientePaciente(EstadoPacientePaciente estadoPacientePaciente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteEstadoPacientePaciente(int idEstadoPacientePaciente) {
+    public boolean borrarEstadoPacientePaciente(int idEstadoPacientePaciente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateEstadoPacientePaciente(EstadoPacientePaciente EstadoPacientePaciente) {
+    public boolean actualizarEstadoPacientePaciente(EstadoPacientePaciente EstadoPacientePaciente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

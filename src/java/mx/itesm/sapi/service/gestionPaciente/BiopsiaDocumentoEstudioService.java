@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.gestionPaciente.BiopsiaDocumentoEstudio;
  * @author urieldiaz
  */
 public interface BiopsiaDocumentoEstudioService {
-    public BiopsiaDocumentoEstudio getBiopsiaDocumentoEstudio(int idBiopsiaDocumentoEstudio);
-    public List<BiopsiaDocumentoEstudio> getAllBiopsiaDocumentoEstudio();
-    public boolean saveBiopsiaDocumentoEstudio(BiopsiaDocumentoEstudio biopsiaDocumentoEstudio);
-    public boolean deleteBiopsiaDocumentoEstudio(int idBiopsiaDocumentoEstudio);
-    public boolean updateBiopsiaDocumentoEstudio(BiopsiaDocumentoEstudio bbiopsiaDocumentoEstudio);        
+    public BiopsiaDocumentoEstudio mostrarBiopsiaDocumentoEstudio(int idBiopsiaDocumentoEstudio);
+    public List<BiopsiaDocumentoEstudio> mostrarAllBiopsiaDocumentoEstudio();
+    public boolean agregarBiopsiaDocumentoEstudio(BiopsiaDocumentoEstudio biopsiaDocumentoEstudio);
+    public boolean borrarBiopsiaDocumentoEstudio(int idBiopsiaDocumentoEstudio);
+    public boolean actualizarBiopsiaDocumentoEstudio(BiopsiaDocumentoEstudio bbiopsiaDocumentoEstudio);        
 }

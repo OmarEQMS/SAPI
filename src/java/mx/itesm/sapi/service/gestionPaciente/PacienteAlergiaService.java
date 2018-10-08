@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
  * @author urieldiaz
  */
 public interface PacienteAlergiaService {
-    public PacienteAlergia getPacienteAlergia(int idPacienteAlergia);
-    public List<PacienteAlergia> getAllPacienteAlergia();
-    public boolean savePacienteAlergia(PacienteAlergia pacienteAlergia);
-    public boolean updatePacienteAlergia(PacienteAlergia pacienteAlergia);
-    public boolean deletePacienteAlergia(int idPacienteAlergia);
+    public PacienteAlergia mostrarPacienteAlergia(int idPacienteAlergia);
+    public List<PacienteAlergia> mostrarAllPacienteAlergia();
+    public boolean agregarPacienteAlergia(PacienteAlergia pacienteAlergia);
+    public boolean actualizarPacienteAlergia(PacienteAlergia pacienteAlergia);
+    public boolean borrarPacienteAlergia(int idPacienteAlergia);
 }

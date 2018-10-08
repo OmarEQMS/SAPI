@@ -13,10 +13,10 @@ import mx.itesm.sapi.bean.gestionPaciente.ImportanciaCita;
  * @author urieldiaz
  */
 public interface ImportanciaCitaService {
-    public ImportanciaCita getImportanciaCita(int idImportanciaCita);
-    public List<ImportanciaCita> getAllImportanciaCita();
-    public boolean saveImportanciaCita(ImportanciaCita importanciaCita);
-    public boolean updateImportanciaCita(ImportanciaCita importanciaCita);
-    public boolean deleteImportanciaCita(int idImportanciaCita);
+    public ImportanciaCita mostrarImportanciaCita(int idImportanciaCita);
+    public List<ImportanciaCita> mostrarAllImportanciaCita();
+    public boolean agregarImportanciaCita(ImportanciaCita importanciaCita);
+    public boolean actualizarImportanciaCita(ImportanciaCita importanciaCita);
+    public boolean borrarImportanciaCita(int idImportanciaCita);
     
 }

@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.EstadoCita;
 public class EstadoCitaServiceImpl implements EstadoCitaService{
 
     @Override
-    public EstadoCita getEstadoCita(int idEstadoCita) {
+    public EstadoCita mostrarEstadoCita(int idEstadoCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<EstadoCita> getAllEstadoCita() {
+    public List<EstadoCita> mostrarAllEstadoCita() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveEstadoCita(EstadoCita estadoCita) {
+    public boolean agregarEstadoCita(EstadoCita estadoCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteEstadoCita(int idEstadoCita) {
+    public boolean mostrarEstadoCita(int idEstadoCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateEstadoCita(EstadoCita estadoCita) {
+    public boolean actualizarEstadoCita(EstadoCita estadoCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

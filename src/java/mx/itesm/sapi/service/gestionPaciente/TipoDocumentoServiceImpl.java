@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
 public class TipoDocumentoServiceImpl implements TipoDocumentoService{
 
     @Override
-    public TipoDocumento getTipoDocumento(int idTipoDocumento) {
+    public TipoDocumento mostrarTipoDocumento(int idTipoDocumento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<TipoDocumento> getAllTipoDocumento() {
+    public List<TipoDocumento> mostrarAllTipoDocumento() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveTipoDocumento(TipoDocumento tipoDocumento) {
+    public boolean agregarTipoDocumento(TipoDocumento tipoDocumento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateTipoDocumento(TipoDocumento tipoDocumento) {
+    public boolean actualizarTipoDocumento(TipoDocumento tipoDocumento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteTipoDocumento(int idTipoDocumento) {
+    public boolean borrarTipoDocumento(int idTipoDocumento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

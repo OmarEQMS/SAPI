@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.ResultadoPatologia;
 public class ResultadoPatologiaServiceImpl implements ResultadoPatologiaService{
 
     @Override
-    public ResultadoPatologia getResultadoPatologia(int idResultadoPatologia) {
+    public ResultadoPatologia mostrarResultadoPatologia(int idResultadoPatologia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<ResultadoPatologia> getAllResultadoPatologia() {
+    public List<ResultadoPatologia> mostrarAllResultadoPatologia() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveResultadoPatologia(ResultadoPatologia resultadoPatologia) {
+    public boolean agregarResultadoPatologia(ResultadoPatologia resultadoPatologia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteResultadoPatologia(int idResultadoPatologia) {
+    public boolean borrarResultadoPatologia(int idResultadoPatologia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean udpateResultadoPatologia(ResultadoPatologia resultadoPatologia) {
+    public boolean actualizarResultadoPatologia(ResultadoPatologia resultadoPatologia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

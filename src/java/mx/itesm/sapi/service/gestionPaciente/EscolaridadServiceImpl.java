@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.Escolaridad;
 public class EscolaridadServiceImpl implements EscolaridadService{
 
     @Override
-    public Escolaridad getEscolaridad(int idEscolaridad) {
+    public Escolaridad mostrarEscolaridad(int idEscolaridad) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Escolaridad> getAllEscolaridad() {
+    public List<Escolaridad> mostrarAllEscolaridad() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveEscolaridad(Escolaridad escolaridad) {
+    public boolean agregarEscolaridad(Escolaridad escolaridad) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteEscolaridad(int idEscolaridad) {
+    public boolean borrarEscolaridad(int idEscolaridad) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateEscolaridad(Escolaridad escolaridad) {
+    public boolean actualizarEscolaridad(Escolaridad escolaridad) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

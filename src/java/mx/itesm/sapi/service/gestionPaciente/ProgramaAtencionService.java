@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.gestionPaciente.ProgramaAtencion;
  * @author urieldiaz
  */
 public interface ProgramaAtencionService {
-    public ProgramaAtencion getProgramaAtencion(int idProgramaAtencion);
-    public List<ProgramaAtencion> getAllProgramaAtencion();
-    public boolean saveProgramaAtencion(ProgramaAtencion programaAtencion);
-    public boolean deleteProgramaAtencion(int idProgramaAtencion);
-    public boolean updateProgramaAtencion(ProgramaAtencion programaAtencion);
+    public ProgramaAtencion mostrarProgramaAtencion(int idProgramaAtencion);
+    public List<ProgramaAtencion> mostrarAllProgramaAtencion();
+    public boolean agregarProgramaAtencion(ProgramaAtencion programaAtencion);
+    public boolean borrarProgramaAtencion(int idProgramaAtencion);
+    public boolean actualizarProgramaAtencion(ProgramaAtencion programaAtencion);
 }

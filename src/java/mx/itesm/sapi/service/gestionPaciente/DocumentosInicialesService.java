@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.gestionPaciente.DocumentosIniciales;
  * @author urieldiaz
  */
 public interface DocumentosInicialesService {
-    public DocumentosIniciales getDocumentosIniciales(int idDocumentosIniciales);
-    public List<DocumentosIniciales> getAllDocumentosIniciales();
-    public boolean saveDocumentosIniciales(DocumentosIniciales documentosIniciales);
-    public boolean deleteDocumentosIniciales(int idDocumentosIniciales);
-    public boolean updateDocumentosIniciales(DocumentosIniciales documentosIniciales);
+    public DocumentosIniciales mostrarDocumentosIniciales(int idDocumentosIniciales);
+    public List<DocumentosIniciales> mostrarAllDocumentosIniciales();
+    public boolean agregarDocumentosIniciales(DocumentosIniciales documentosIniciales);
+    public boolean borrarDocumentosIniciales(int idDocumentosIniciales);
+    public boolean actualizarDocumentosIniciales(DocumentosIniciales documentosIniciales);
 }

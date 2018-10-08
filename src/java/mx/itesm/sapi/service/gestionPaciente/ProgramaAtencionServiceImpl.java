@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.ProgramaAtencion;
 public class ProgramaAtencionServiceImpl implements ProgramaAtencionService{
 
     @Override
-    public ProgramaAtencion getProgramaAtencion(int idProgramaAtencion) {
+    public ProgramaAtencion mostrarProgramaAtencion(int idProgramaAtencion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<ProgramaAtencion> getAllProgramaAtencion() {
+    public List<ProgramaAtencion> mostrarAllProgramaAtencion() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveProgramaAtencion(ProgramaAtencion programaAtencion) {
+    public boolean agregarProgramaAtencion(ProgramaAtencion programaAtencion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteProgramaAtencion(int idProgramaAtencion) {
+    public boolean borrarProgramaAtencion(int idProgramaAtencion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateProgramaAtencion(ProgramaAtencion programaAtencion) {
+    public boolean actualizarProgramaAtencion(ProgramaAtencion programaAtencion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

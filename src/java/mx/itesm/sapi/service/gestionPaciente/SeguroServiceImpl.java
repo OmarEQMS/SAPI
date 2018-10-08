@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.Seguro;
 public class SeguroServiceImpl implements SeguroService{
 
     @Override
-    public Seguro getSeguro(int idSeguro) {
+    public Seguro mostrarSeguro(int idSeguro) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Seguro> getAllSeguro() {
+    public List<Seguro> mostrarAllSeguro() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveSeguro(Seguro seguro) {
+    public boolean agregarSeguro(Seguro seguro) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateSeguro(Seguro seguro) {
+    public boolean actualizarSeguro(Seguro seguro) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteSeguro(int idSeguro) {
+    public boolean borrarSeguro(int idSeguro) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

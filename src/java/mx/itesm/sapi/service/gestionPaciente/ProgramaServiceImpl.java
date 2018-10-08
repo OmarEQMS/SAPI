@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.Programa;
 public class ProgramaServiceImpl implements ProgramaService{
 
     @Override
-    public Programa getPrograma(int idPrograma) {
+    public Programa mostrarPrograma(int idPrograma) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Programa> getAllPrograma() {
+    public List<Programa> mostrarAllPrograma() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean savePrograma(Programa programa) {
+    public boolean agregarPrograma(Programa programa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deletePrograma(int idPrograma) {
+    public boolean borrarPrograma(int idPrograma) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updatePrograma(Programa programa) {
+    public boolean actualizarPrograma(Programa programa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

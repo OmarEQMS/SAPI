@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.Estudio;
 public class EstudioServiceImpl implements EstudioService{
 
     @Override
-    public Estudio getEstudio(int idEstudio) {
+    public Estudio mostrarEstudio(int idEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Estudio> getAllEstudio() {
+    public List<Estudio> mostrarAllEstudio() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveEstudio(Estudio estudio) {
+    public boolean agregarEstudio(Estudio estudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateEstudio(Estudio estudio) {
+    public boolean actualizarEstudio(Estudio estudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteEstudio(int idEstudio) {
+    public boolean borrarEstudio(int idEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

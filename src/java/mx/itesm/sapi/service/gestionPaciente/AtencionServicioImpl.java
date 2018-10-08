@@ -15,17 +15,17 @@ import mx.itesm.sapi.bean.gestionPaciente.Atencion;
 public class AtencionServicioImpl implements AtencionServicio{
 
     @Override
-    public Atencion getAtencionServicio(int idAtencionServicio) {
+    public Atencion mostrarAtencionServicio(int idAtencionServicio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Atencion> getAllAtencionServicio() {
+    public List<Atencion> mostrarAllAtencionServicio() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveAtencion(Atencion atencion) {
+    public boolean agregarAtencion(Atencion atencion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -35,7 +35,7 @@ public class AtencionServicioImpl implements AtencionServicio{
     }
 
     @Override
-    public boolean updateAtencion(Atencion atencion) {
+    public boolean actualizarAtencion(Atencion atencion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

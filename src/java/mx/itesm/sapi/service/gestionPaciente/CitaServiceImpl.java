@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.Cita;
 public class CitaServiceImpl implements CitaService{
 
     @Override
-    public Cita getCita(int idCita) {
+    public Cita mostrarCita(int idCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Cita> getAllCita() {
+    public List<Cita> mostrarAllCita() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveCita(Cita cita) {
+    public boolean agregarCita(Cita cita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteCita(int idCita) {
+    public boolean borrarCita(int idCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateCita(Cita cita) {
+    public boolean actualizarCita(Cita cita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

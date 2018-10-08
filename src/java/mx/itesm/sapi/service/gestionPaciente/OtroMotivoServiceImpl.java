@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.OtroMotivo;
 public class OtroMotivoServiceImpl implements OtroMotivoService{
 
     @Override
-    public OtroMotivo getOtroMotivo(int idOtroMotivo) {
+    public OtroMotivo mostrarOtroMotivo(int idOtroMotivo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<OtroMotivo> getAllOtroMotivo() {
+    public List<OtroMotivo> mostrarAllOtroMotivo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveOtroMotivo(OtroMotivo otroMotivo) {
+    public boolean agregarOtroMotivo(OtroMotivo otroMotivo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteOtroMotivo(int idOtroMotivo) {
+    public boolean borrarOtroMotivo(int idOtroMotivo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateOtroMotivo(OtroMotivo otroMotivo) {
+    public boolean actualizarOtroMotivo(OtroMotivo otroMotivo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.ImportanciaCita;
 public class ImportanciaCitaServiceImpl implements ImportanciaCitaService{
 
     @Override
-    public ImportanciaCita getImportanciaCita(int idImportanciaCita) {
+    public ImportanciaCita mostrarImportanciaCita(int idImportanciaCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<ImportanciaCita> getAllImportanciaCita() {
+    public List<ImportanciaCita> mostrarAllImportanciaCita() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveImportanciaCita(ImportanciaCita importanciaCita) {
+    public boolean agregarImportanciaCita(ImportanciaCita importanciaCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateImportanciaCita(ImportanciaCita importanciaCita) {
+    public boolean actualizarImportanciaCita(ImportanciaCita importanciaCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteImportanciaCita(int idImportanciaCita) {
+    public boolean borrarImportanciaCita(int idImportanciaCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

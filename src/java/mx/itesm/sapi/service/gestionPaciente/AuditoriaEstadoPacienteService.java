@@ -14,10 +14,10 @@ import mx.itesm.sapi.bean.gestionPaciente.AuditoriaEstadoPaciente;
  */
 public interface AuditoriaEstadoPacienteService {
     
-    public AuditoriaEstadoPaciente getAuditoriaEstadoPaciente(int idAuditoriaEstadoPaciente);
-    public List<AuditoriaEstadoPaciente> getAllAuditoriaEstadoPaciente();
-    public boolean saveAuditoriaEstadoPaciente(AuditoriaEstadoPaciente auditoriaEstadoPaciente);
-    public boolean deleteAuditoriaEstadoPaciente(int idAuditoriaEstadoPaciente);
-    public boolean updateAuditoriaEstadoPaciente(AuditoriaEstadoPaciente auditoriaEstadoPaciente);        
+    public AuditoriaEstadoPaciente mostrarAuditoriaEstadoPaciente(int idAuditoriaEstadoPaciente);
+    public List<AuditoriaEstadoPaciente> mostrarAllAuditoriaEstadoPaciente();
+    public boolean agregarAuditoriaEstadoPaciente(AuditoriaEstadoPaciente auditoriaEstadoPaciente);
+    public boolean borrarAuditoriaEstadoPaciente(int idAuditoriaEstadoPaciente);
+    public boolean actualizarAuditoriaEstadoPaciente(AuditoriaEstadoPaciente auditoriaEstadoPaciente);        
     
 }

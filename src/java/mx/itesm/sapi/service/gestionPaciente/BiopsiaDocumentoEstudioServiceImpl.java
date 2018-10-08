@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.BiopsiaDocumentoEstudio;
 public class BiopsiaDocumentoEstudioServiceImpl implements BiopsiaDocumentoEstudioService{
 
     @Override
-    public BiopsiaDocumentoEstudio getBiopsiaDocumentoEstudio(int idBiopsiaDocumentoEstudio) {
+    public BiopsiaDocumentoEstudio mostrarBiopsiaDocumentoEstudio(int idBiopsiaDocumentoEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<BiopsiaDocumentoEstudio> getAllBiopsiaDocumentoEstudio() {
+    public List<BiopsiaDocumentoEstudio> mostrarAllBiopsiaDocumentoEstudio() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveBiopsiaDocumentoEstudio(BiopsiaDocumentoEstudio biopsiaDocumentoEstudio) {
+    public boolean agregarBiopsiaDocumentoEstudio(BiopsiaDocumentoEstudio biopsiaDocumentoEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteBiopsiaDocumentoEstudio(int idBiopsiaDocumentoEstudio) {
+    public boolean borrarBiopsiaDocumentoEstudio(int idBiopsiaDocumentoEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateBiopsiaDocumentoEstudio(BiopsiaDocumentoEstudio bbiopsiaDocumentoEstudio) {
+    public boolean actualizarBiopsiaDocumentoEstudio(BiopsiaDocumentoEstudio bbiopsiaDocumentoEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

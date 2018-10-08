@@ -13,10 +13,10 @@ import mx.itesm.sapi.bean.gestionPaciente.AuditoriaCuenta;
  * @author urieldiaz
  */
 public interface AuditoriaCuentaServicio {
-    public AuditoriaCuenta getAuditoriaCuenta(int idAuditoriaCuenta);
-    public List<AuditoriaCuenta> getAllAuditoriaCuenta();
-    public boolean saveAuditoriaCuenta(AuditoriaCuenta auditoriaCuenta);
-    public boolean deleteAuditoriaCuenta(int idAuditoriaCuenta);
-    public boolean updateAuditoriaCuenta(AuditoriaCuenta auditoriaCuenta);
+    public AuditoriaCuenta mostrarAuditoriaCuenta(int idAuditoriaCuenta);
+    public List<AuditoriaCuenta> mostrarAllAuditoriaCuenta();
+    public boolean agregarAuditoriaCuenta(AuditoriaCuenta auditoriaCuenta);
+    public boolean borrarAuditoriaCuenta(int idAuditoriaCuenta);
+    public boolean actualizarAuditoriaCuenta(AuditoriaCuenta auditoriaCuenta);
     
 }

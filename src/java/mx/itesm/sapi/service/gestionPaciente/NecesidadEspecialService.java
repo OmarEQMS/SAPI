@@ -13,10 +13,10 @@ import mx.itesm.sapi.bean.gestionPaciente.NecesidadEspecial;
  * @author urieldiaz
  */
 public interface NecesidadEspecialService {
-    public NecesidadEspecial getNecesidadEspecial(int idNecesidadEspecial);
-    public NecesidadEspecial getNecesidadEspecial(String nombreNecesidadEspecial);
-    public List<NecesidadEspecial> getNecesidadEspecial();
-    public boolean saveNecesidadEspecial(NecesidadEspecial necesidadEspecial);
-    public boolean updateNecesidadEspecial(NecesidadEspecial necesidadEspecial);
-    public boolean deleteNecesidadEspecial(int idNecesidadEspecial);
+    public NecesidadEspecial mostrarNecesidadEspecial(int idNecesidadEspecial);
+    public NecesidadEspecial mostrarNecesidadEspecial(String nombreNecesidadEspecial);
+    public List<NecesidadEspecial> mostrarNecesidadEspecial();
+    public boolean agregarNecesidadEspecial(NecesidadEspecial necesidadEspecial);
+    public boolean actualizarNecesidadEspecial(NecesidadEspecial necesidadEspecial);
+    public boolean borrarNecesidadEspecial(int idNecesidadEspecial);
 }

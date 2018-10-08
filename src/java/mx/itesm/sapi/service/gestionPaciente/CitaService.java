@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.gestionPaciente.Cita;
  * @author urieldiaz
  */
 public interface CitaService {
-    public Cita getCita(int idCita);
-    public List<Cita> getAllCita();
-    public boolean saveCita(Cita cita);
-    public boolean deleteCita(int idCita);
-    public boolean updateCita(Cita cita);
+    public Cita mostrarCita(int idCita);
+    public List<Cita> mostrarAllCita();
+    public boolean agregarCita(Cita cita);
+    public boolean borrarCita(int idCita);
+    public boolean actualizarCita(Cita cita);
 }

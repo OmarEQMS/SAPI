@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.AuditoriaAtencion;
 public class AuditoriaAtencionServicioImpl implements AuditoriaAtencionServicio{
 
     @Override
-    public AuditoriaAtencion getAuditoriaAtencion(int idAuditoriaAtencion) {
+    public AuditoriaAtencion mostrarAuditoriaAtencion(int idAuditoriaAtencion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<AuditoriaAtencion> getAllAuditoriaAtencion() {
+    public List<AuditoriaAtencion> mostrarAllAuditoriaAtencion() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveAuditoriaAtencion(AuditoriaAtencion auditoriaAtencion) {
+    public boolean agregarAuditoriaAtencion(AuditoriaAtencion auditoriaAtencion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteAuditoriaAtencion(int idAuditoriaAtencion) {
+    public boolean borrarAuditoriaAtencion(int idAuditoriaAtencion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateAuditoriaAtencion(AuditoriaAtencion auditoriaAtencion) {
+    public boolean actualizarAuditoriaAtencion(AuditoriaAtencion auditoriaAtencion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

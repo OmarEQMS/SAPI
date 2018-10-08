@@ -13,10 +13,10 @@ import mx.itesm.sapi.bean.gestionPaciente.MotivoConsulta;
  * @author urieldiaz
  */
 public interface MotivoConsultaService {
-    public MotivoConsulta getMotivoConsulta(int idMotivoConsulta);
-    public MotivoConsulta getMotivoConsulta(String nombreMotivoConsulta);
-    public List<MotivoConsulta> getAllMotivoConsulta();
-    public boolean saveMotivoConsulta(MotivoConsulta motivoConsulta);
-    public boolean updateMotivoConsulta(MotivoConsulta motivoConsulta);
-    public boolean deleteMotivoConsulta(int idMotivoConsulta);
+    public MotivoConsulta mostrarMotivoConsulta(int idMotivoConsulta);
+    public MotivoConsulta mostrarMotivoConsulta(String nombreMotivoConsulta);
+    public List<MotivoConsulta> mostrarAllMotivoConsulta();
+    public boolean agregarMotivoConsulta(MotivoConsulta motivoConsulta);
+    public boolean actualizarMotivoConsulta(MotivoConsulta motivoConsulta);
+    public boolean borrarMotivoConsulta(int idMotivoConsulta);
 }

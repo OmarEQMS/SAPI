@@ -13,10 +13,10 @@ import mx.itesm.sapi.bean.gestionPaciente.ReceptorEstrogeno;
  * @author urieldiaz
  */
 public interface ReceptorEstrogenoService {
-    public ReceptorEstrogeno getReceptorEstrogeno(int idReceptorEstrogeno);
-    public List<ReceptorEstrogeno> getAllReceptorEstrogeno();
-    public boolean saveReceptorEstrogeno(ReceptorEstrogeno receptorEstrogeno);
-    public boolean delteReceptorEstrogeno(int idReceptorEstrogeno);
-    public boolean updateReceptorEstrogeno(ReceptorEstrogeno receptorEstrogeno);
+    public ReceptorEstrogeno mostrarReceptorEstrogeno(int idReceptorEstrogeno);
+    public List<ReceptorEstrogeno> mostrarAllReceptorEstrogeno();
+    public boolean agregarReceptorEstrogeno(ReceptorEstrogeno receptorEstrogeno);
+    public boolean borrarReceptorEstrogeno(int idReceptorEstrogeno);
+    public boolean actualizarReceptorEstrogeno(ReceptorEstrogeno receptorEstrogeno);
     
 }

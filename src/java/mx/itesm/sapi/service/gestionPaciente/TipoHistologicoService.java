@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
  * @author urieldiaz
  */
 public interface TipoHistologicoService {
-    public TipoHistologico getTipoHistologico(int idTipoHistologico);
-    public List<TipoHistologico> getAllTipoHistologico();
-    public boolean saveTipoHistologico(TipoHistologico tipoHistologico);
+    public TipoHistologico mostrarTipoHistologico(int idTipoHistologico);
+    public List<TipoHistologico> mostrarAllTipoHistologico();
+    public boolean agregarTipoHistologico(TipoHistologico tipoHistologico);
     public boolean updateTipoHistologico(TipoHistologico tipoHistologico);
-    public boolean deleteTipoHistologico(int idTipoHistologico);
+    public boolean borrarTipoHistologico(int idTipoHistologico);
 }

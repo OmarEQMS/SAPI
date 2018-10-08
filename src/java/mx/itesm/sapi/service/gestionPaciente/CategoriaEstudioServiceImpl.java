@@ -15,27 +15,27 @@ import mx.itesm.sapi.bean.gestionPaciente.CategoriaEstudio;
 public class CategoriaEstudioServiceImpl implements CategoriaEstudioService{
 
     @Override
-    public CategoriaEstudio getCategoriaEstudio(int idCategoriaEstudio) {
+    public CategoriaEstudio mostrarCategoriaEstudio(int idCategoriaEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<CategoriaEstudio> getAllCategoriaEstudio() {
+    public List<CategoriaEstudio> mostrarAllCategoriaEstudio() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean saveCategoriaEstudio(CategoriaEstudio categoriaEstudio) {
+    public boolean agregarCategoriaEstudio(CategoriaEstudio categoriaEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateCategoriaEstudio(CategoriaEstudio categoriaEstudio) {
+    public boolean actualizarCategoriaEstudio(CategoriaEstudio categoriaEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteCategoriaEstudio(int idCategoriaEstudio) {
+    public boolean borrarCategoriaEstudio(int idCategoriaEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

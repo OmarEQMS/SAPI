@@ -12,9 +12,9 @@ import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
  * @author urieldiaz
  */
 public interface PacienteNecesidadEspecialService {
-    public PacienteNecesidadEspecial getPacienteNecesidadEspecial(int idPacienteNecesidadEspecial);
-    public List<PacienteNecesidadEspecial> getAllPacienteNecesidadEspecial();
-    public boolean savePacienteNecesidadEspecial(PacienteNecesidadEspecial pacienteNecesidadEspecial);
-    public boolean deletePacienteNecesidadEspecial(int idPacienteNecesidadEspecial);
-    public boolean updatePacienteNecesidadEspecial(PacienteNecesidadEspecial pacienteNecesidadEspecial);
+    public PacienteNecesidadEspecial mostrarPacienteNecesidadEspecial(int idPacienteNecesidadEspecial);
+    public List<PacienteNecesidadEspecial> mostrarAllPacienteNecesidadEspecial();
+    public boolean agregarPacienteNecesidadEspecial(PacienteNecesidadEspecial pacienteNecesidadEspecial);
+    public boolean borrarPacienteNecesidadEspecial(int idPacienteNecesidadEspecial);
+    public boolean actualizarPacienteNecesidadEspecial(PacienteNecesidadEspecial pacienteNecesidadEspecial);
 }
