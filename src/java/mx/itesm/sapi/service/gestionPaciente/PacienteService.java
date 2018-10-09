@@ -18,5 +18,5 @@ public interface PacienteService {
     public List<Paciente> mostrarAllPaciente();
     public boolean agregarPaciente(Paciente paciente);
     public boolean actualizarPaciente(Paciente paciente);
-    public boolean borrarPaciente(int idPaciente);
+    public boolean borradoLogicoPaciente(int idPaciente);
 }

@@ -30,7 +30,7 @@ public class TipoCitaServiceImpl implements TipoCitaService{
     }
 
     @Override
-    public boolean borrarTipoCita(int idTipoCita) {
+    public boolean borradoLogicoTipoCita(int idTipoCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

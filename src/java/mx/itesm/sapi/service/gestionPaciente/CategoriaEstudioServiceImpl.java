@@ -35,7 +35,7 @@ public class CategoriaEstudioServiceImpl implements CategoriaEstudioService{
     }
 
     @Override
-    public boolean borrarCategoriaEstudio(int idCategoriaEstudio) {
+    public boolean borradoLogicoCategoriaEstudio(int idCategoriaEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

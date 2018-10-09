@@ -16,6 +16,6 @@ public interface DocumentosInicialesService {
     public DocumentosIniciales mostrarDocumentosIniciales(int idDocumentosIniciales);
     public List<DocumentosIniciales> mostrarAllDocumentosIniciales();
     public boolean agregarDocumentosIniciales(DocumentosIniciales documentosIniciales);
-    public boolean borrarDocumentosIniciales(int idDocumentosIniciales);
+    public boolean borradoLogicoDocumentosIniciales(int idDocumentosIniciales);
     public boolean actualizarDocumentosIniciales(DocumentosIniciales documentosIniciales);
 }

@@ -35,7 +35,7 @@ public class TipoDocumentoServiceImpl implements TipoDocumentoService{
     }
 
     @Override
-    public boolean borrarTipoDocumento(int idTipoDocumento) {
+    public boolean borradoLogicoTipoDocumento(int idTipoDocumento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

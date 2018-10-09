@@ -16,6 +16,6 @@ public interface ProgramaAtencionService {
     public ProgramaAtencion mostrarProgramaAtencion(int idProgramaAtencion);
     public List<ProgramaAtencion> mostrarAllProgramaAtencion();
     public boolean agregarProgramaAtencion(ProgramaAtencion programaAtencion);
-    public boolean borrarProgramaAtencion(int idProgramaAtencion);
+    public boolean borradoLogicoProgramaAtencion(int idProgramaAtencion);
     public boolean actualizarProgramaAtencion(ProgramaAtencion programaAtencion);
 }

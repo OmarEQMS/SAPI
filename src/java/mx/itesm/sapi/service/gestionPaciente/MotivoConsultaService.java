@@ -18,5 +18,5 @@ public interface MotivoConsultaService {
     public List<MotivoConsulta> mostrarAllMotivoConsulta();
     public boolean agregarMotivoConsulta(MotivoConsulta motivoConsulta);
     public boolean actualizarMotivoConsulta(MotivoConsulta motivoConsulta);
-    public boolean borrarMotivoConsulta(int idMotivoConsulta);
+    public boolean borradoLogicoMotivoConsulta(int idMotivoConsulta);
 }

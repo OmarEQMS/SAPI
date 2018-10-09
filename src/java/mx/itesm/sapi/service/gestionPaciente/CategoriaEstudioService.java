@@ -17,5 +17,5 @@ public interface CategoriaEstudioService {
     public List<CategoriaEstudio> mostrarAllCategoriaEstudio();
     public boolean agregarCategoriaEstudio(CategoriaEstudio categoriaEstudio);
     public boolean actualizarCategoriaEstudio(CategoriaEstudio categoriaEstudio);
-    public boolean borrarCategoriaEstudio(int idCategoriaEstudio);    
+    public boolean borradoLogicoCategoriaEstudio(int idCategoriaEstudio);    
 }

@@ -35,7 +35,7 @@ public class SeguroServiceImpl implements SeguroService{
     }
 
     @Override
-    public boolean borrarSeguro(int idSeguro) {
+    public boolean borradoLogicoSeguro(int idSeguro) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

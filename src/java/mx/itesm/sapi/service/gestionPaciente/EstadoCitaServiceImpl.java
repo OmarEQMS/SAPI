@@ -30,7 +30,7 @@ public class EstadoCitaServiceImpl implements EstadoCitaService{
     }
 
     @Override
-    public boolean mostrarEstadoCita(int idEstadoCita) {
+    public boolean borradoLogicoEstadoCita(int idEstadoCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -38,5 +38,6 @@ public class EstadoCitaServiceImpl implements EstadoCitaService{
     public boolean actualizarEstadoCita(EstadoCita estadoCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+
 }

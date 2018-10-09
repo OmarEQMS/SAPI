@@ -30,7 +30,7 @@ public class AuditoriaEstadoPacienteServiceImpl implements AuditoriaEstadoPacien
     }
 
     @Override
-    public boolean borrarAuditoriaEstadoPaciente(int idAuditoriaEstadoPaciente) {
+    public boolean borradoLogicoAuditoriaEstadoPaciente(int idAuditoriaEstadoPaciente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -30,7 +30,7 @@ public class CitaServiceImpl implements CitaService{
     }
 
     @Override
-    public boolean borrarCita(int idCita) {
+    public boolean borradoLogicoCita(int idCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

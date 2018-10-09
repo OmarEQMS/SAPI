@@ -17,5 +17,5 @@ public interface PacienteNavegadoraService {
     public List<PacienteNavegadora> mostrarAllPacienteNavegadora();
     public boolean agregarPacienteNavegadora(PacienteNavegadora pacienteNavegadora);
     public boolean actualizarPacienteNavegadora(PacienteNavegadora pacienteNavegadora);
-    public boolean borrarPacienteNavegadora(int idPacienteNavegadora);
+    public boolean borradoLogicoPacienteNavegadora(int idPacienteNavegadora);
 }

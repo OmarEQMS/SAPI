@@ -30,7 +30,7 @@ public class AuditoriaCuentaServicioImpl implements AuditoriaCuentaServicio{
     }
 
     @Override
-    public boolean borrarAuditoriaCuenta(int idAuditoriaCuenta) {
+    public boolean borradoLogicoAuditoriaCuenta(int idAuditoriaCuenta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -35,7 +35,7 @@ public class LlamadaCitaServiceImpl implements LlamadaCitaService{
     }
 
     @Override
-    public boolean borrarLlamadaCita(int idLlamadaCita) {
+    public boolean borradoLogicoLlamadaCita(int idLlamadaCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

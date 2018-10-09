@@ -17,5 +17,5 @@ public interface EstudioService {
     public List<Estudio> mostrarAllEstudio();
     public boolean agregarEstudio (Estudio estudio);
     public boolean actualizarEstudio(Estudio estudio);
-    public boolean borrarEstudio (int idEstudio);
+    public boolean borradoLogicoEstudio (int idEstudio);
 }

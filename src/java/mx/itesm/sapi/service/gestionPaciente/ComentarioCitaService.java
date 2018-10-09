@@ -16,6 +16,6 @@ public interface ComentarioCitaService {
     public ComentarioCita getComentarioCita(int idComentarioCita);
     public List<ComentarioCita> getComentarioCita();
     public boolean agregarComentarioCita(ComentarioCita comentarioCita);
-    public boolean borrarComentarioCita(ComentarioCita comentarioCita);
+    public boolean borradoLogicoComentarioCita(ComentarioCita comentarioCita);
     public boolean actualizarComentarioCita(ComentarioCita comentarioCita);
 }

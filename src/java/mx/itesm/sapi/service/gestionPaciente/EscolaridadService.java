@@ -16,6 +16,6 @@ public interface EscolaridadService {
     public Escolaridad mostrarEscolaridad(int idEscolaridad);
     public List<Escolaridad> mostrarAllEscolaridad();
     public boolean agregarEscolaridad(Escolaridad escolaridad);
-    public boolean borrarEscolaridad(int idEscolaridad);
+    public boolean borradoLogicoEscolaridad(int idEscolaridad);
     public boolean actualizarEscolaridad(Escolaridad escolaridad);
 }

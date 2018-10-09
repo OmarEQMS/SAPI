@@ -40,7 +40,7 @@ public class PacienteServiceImpl implements PacienteService{
     }
 
     @Override
-    public boolean borrarPaciente(int idPaciente) {
+    public boolean borradoLogicoPaciente(int idPaciente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

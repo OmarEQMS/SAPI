@@ -17,5 +17,5 @@ public interface TipoDocumentoService {
     public List<TipoDocumento> mostrarAllTipoDocumento();
     public boolean agregarTipoDocumento(TipoDocumento tipoDocumento);
     public boolean actualizarTipoDocumento(TipoDocumento tipoDocumento);
-    public boolean borrarTipoDocumento(int idTipoDocumento);
+    public boolean borradoLogicoTipoDocumento(int idTipoDocumento);
 }

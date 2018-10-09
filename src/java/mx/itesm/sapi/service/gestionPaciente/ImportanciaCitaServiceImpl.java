@@ -35,7 +35,7 @@ public class ImportanciaCitaServiceImpl implements ImportanciaCitaService{
     }
 
     @Override
-    public boolean borrarImportanciaCita(int idImportanciaCita) {
+    public boolean borradoLogicoImportanciaCita(int idImportanciaCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

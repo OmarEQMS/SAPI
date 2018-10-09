@@ -5,6 +5,7 @@
  */
 package mx.itesm.sapi.service.gestionPaciente;
 
+import java.sql.CallableStatement;
 import java.util.List;
 import mx.itesm.sapi.bean.gestionPaciente.AuditoriaAtencion;
 
@@ -30,7 +31,7 @@ public class AuditoriaAtencionServicioImpl implements AuditoriaAtencionServicio{
     }
 
     @Override
-    public boolean borrarAuditoriaAtencion(int idAuditoriaAtencion) {
+    public boolean borradoLogicoAuditoriaAtencion(int idAuditoriaAtencion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

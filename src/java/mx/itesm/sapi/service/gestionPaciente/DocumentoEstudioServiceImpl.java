@@ -29,13 +29,18 @@ public class DocumentoEstudioServiceImpl implements DocumentoEstudioService{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+    //@Override
     public boolean deleteDocumentoEstudio(int idDocumentoEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean actualizarDocumentoEstudio(DocumentoEstudio documentoEstudio) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean borradoLogicoDocumentoEstudio(int idDocumentoEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

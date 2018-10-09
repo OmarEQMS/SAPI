@@ -40,7 +40,7 @@ public class LugarDelCuerpoServiceImpl implements LugarDelCuerpoService{
     }
 
     @Override
-    public boolean borrarLugarDelCuerpo(int idLugarDelCuerpo) {
+    public boolean borradoLogicoLugarDelCuerpo(int idLugarDelCuerpo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -14,28 +14,44 @@ import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
  */
 public class TipoHistologicoServiceImpl implements TipoHistologicoService{
 
-    @Override
     public TipoHistologico getTipoHistologico(int idTipoHistologico) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public List<TipoHistologico> getAllTipoHistologico() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public boolean saveTipoHistologico(TipoHistologico tipoHistologico) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public boolean actualizarTipoHistologico(TipoHistologico tipoHistologico) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean borrarTipoHistologico(int idTipoHistologico) {
+    public boolean borradoLogicoTipoHistologico(int idTipoHistologico) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public TipoHistologico mostrarTipoHistologico(int idTipoHistologico) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<TipoHistologico> mostrarAllTipoHistologico() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean agregarTipoHistologico(TipoHistologico tipoHistologico) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean updateTipoHistologico(TipoHistologico tipoHistologico) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

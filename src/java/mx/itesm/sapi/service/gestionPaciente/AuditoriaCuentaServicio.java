@@ -16,7 +16,7 @@ public interface AuditoriaCuentaServicio {
     public AuditoriaCuenta mostrarAuditoriaCuenta(int idAuditoriaCuenta);
     public List<AuditoriaCuenta> mostrarAllAuditoriaCuenta();
     public boolean agregarAuditoriaCuenta(AuditoriaCuenta auditoriaCuenta);
-    public boolean borrarAuditoriaCuenta(int idAuditoriaCuenta);
+    public boolean borradoLogicoAuditoriaCuenta(int idAuditoriaCuenta);
     public boolean actualizarAuditoriaCuenta(AuditoriaCuenta auditoriaCuenta);
     
 }

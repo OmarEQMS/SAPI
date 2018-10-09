@@ -16,6 +16,6 @@ public interface BiopsiaDocumentoEstudioService {
     public BiopsiaDocumentoEstudio mostrarBiopsiaDocumentoEstudio(int idBiopsiaDocumentoEstudio);
     public List<BiopsiaDocumentoEstudio> mostrarAllBiopsiaDocumentoEstudio();
     public boolean agregarBiopsiaDocumentoEstudio(BiopsiaDocumentoEstudio biopsiaDocumentoEstudio);
-    public boolean borrarBiopsiaDocumentoEstudio(int idBiopsiaDocumentoEstudio);
+    public boolean borradoLogicoBiopsiaDocumentoEstudio(int idBiopsiaDocumentoEstudio);
     public boolean actualizarBiopsiaDocumentoEstudio(BiopsiaDocumentoEstudio bbiopsiaDocumentoEstudio);        
 }

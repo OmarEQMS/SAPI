@@ -35,7 +35,7 @@ public class PacienteNavegadoraServiceImpl implements PacienteNavegadoraService{
     }
 
     @Override
-    public boolean borrarPacienteNavegadora(int idPacienteNavegadora) {
+    public boolean borradoLogicoPacienteNavegadora(int idPacienteNavegadora) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

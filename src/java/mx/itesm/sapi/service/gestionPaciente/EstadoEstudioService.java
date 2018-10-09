@@ -16,6 +16,6 @@ public interface EstadoEstudioService {
     public EstadoEstudio mostrarEstadoEstudio(int idEstadoEstudio);
     public List<EstadoEstudio> mostrarAllEstadoEstudio();
     public boolean agregarEstadoEstudio(EstadoEstudio estadoEstudio);
-    public boolean borrarEstadoEstudio (int idEstadoEstudio);
+    public boolean borradoLogicoEstadoEstudio (int idEstadoEstudio);
     public boolean actualizarEstadoEstudio(EstadoEstudio estadoEstudio);
 }

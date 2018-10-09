@@ -40,7 +40,7 @@ public class NecesidadEspecialServiceImpl implements NecesidadEspecialService{
     }
 
     @Override
-    public boolean borrarNecesidadEspecial(int idNecesidadEspecial) {
+    public boolean borradoLogicoNecesidadEspecial(int idNecesidadEspecial) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

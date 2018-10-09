@@ -17,6 +17,6 @@ public interface ImportanciaCitaService {
     public List<ImportanciaCita> mostrarAllImportanciaCita();
     public boolean agregarImportanciaCita(ImportanciaCita importanciaCita);
     public boolean actualizarImportanciaCita(ImportanciaCita importanciaCita);
-    public boolean borrarImportanciaCita(int idImportanciaCita);
+    public boolean borradoLogicoImportanciaCita(int idImportanciaCita);
     
 }

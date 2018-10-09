@@ -16,6 +16,6 @@ public interface CitaService {
     public Cita mostrarCita(int idCita);
     public List<Cita> mostrarAllCita();
     public boolean agregarCita(Cita cita);
-    public boolean borrarCita(int idCita);
+    public boolean borradoLogicoCita(int idCita);
     public boolean actualizarCita(Cita cita);
 }

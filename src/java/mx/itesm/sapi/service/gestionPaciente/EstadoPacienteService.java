@@ -15,6 +15,6 @@ import mx.itesm.sapi.bean.gestionPaciente.EstadoPaciente;
 public interface EstadoPacienteService {
     public List<EstadoPaciente> mostrarAllEstadoPaciente();
     public boolean agregarEstadoPaciente(EstadoPaciente estadoPaciente);
-    public boolean borrarEstadoPaciente(int idEstadoPaciente);
+    public boolean borradoLogicoEstadoPaciente(int idEstadoPaciente);
     public boolean actualizarEstadoPaciente(EstadoPaciente estadoPaciente);
 }

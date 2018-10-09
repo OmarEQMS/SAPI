@@ -18,5 +18,5 @@ public interface NecesidadEspecialService {
     public List<NecesidadEspecial> mostrarNecesidadEspecial();
     public boolean agregarNecesidadEspecial(NecesidadEspecial necesidadEspecial);
     public boolean actualizarNecesidadEspecial(NecesidadEspecial necesidadEspecial);
-    public boolean borrarNecesidadEspecial(int idNecesidadEspecial);
+    public boolean borradoLogicoNecesidadEspecial(int idNecesidadEspecial);
 }

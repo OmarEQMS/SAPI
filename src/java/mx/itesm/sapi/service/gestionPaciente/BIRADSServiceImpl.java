@@ -30,7 +30,7 @@ public class BIRADSServiceImpl implements BIRADSService{
     }
 
     @Override
-    public boolean borrarBIRADS(int idBIRADS) {
+    public boolean borradoLogicoBIRADS(int idBIRADS) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -16,6 +16,6 @@ public interface ResultadoPatologiaService {
     public ResultadoPatologia mostrarResultadoPatologia(int idResultadoPatologia);
     public List<ResultadoPatologia> mostrarAllResultadoPatologia();
     public boolean agregarResultadoPatologia(ResultadoPatologia resultadoPatologia);
-    public boolean borrarResultadoPatologia(int idResultadoPatologia);
+    public boolean borradoLogicoResultadoPatologia(int idResultadoPatologia);
     public boolean actualizarResultadoPatologia (ResultadoPatologia resultadoPatologia);
 }

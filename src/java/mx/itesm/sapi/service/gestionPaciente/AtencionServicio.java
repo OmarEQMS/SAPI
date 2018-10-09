@@ -16,7 +16,7 @@ public interface AtencionServicio {
     public Atencion mostrarAtencionServicio(int idAtencionServicio);
     public List<Atencion> mostrarAllAtencionServicio();
     public boolean agregarAtencion(Atencion atencion);
-    public boolean borrarAtencion(int idAtencion);
+    public boolean borradoLogicoAtencion(int idAtencion);
     public boolean actualizarAtencion(Atencion atencion);
     
 }

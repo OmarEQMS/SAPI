@@ -35,7 +35,7 @@ public class ReceptorProgesteronaServiceImpl implements ReceptorProgesteronaServ
     }
 
     @Override
-    public boolean borrarReceptorProgesterona(int idReceptorProgesterona) {
+    public boolean borradoLogicoReceptorProgesterona(int idReceptorProgesterona) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

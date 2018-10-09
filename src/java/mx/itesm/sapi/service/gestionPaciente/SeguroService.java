@@ -17,5 +17,5 @@ public interface SeguroService {
     public List<Seguro> mostrarAllSeguro();
     public boolean agregarSeguro(Seguro seguro);
     public boolean actualizarSeguro(Seguro seguro);
-    public boolean borrarSeguro(int idSeguro);
+    public boolean borradoLogicoSeguro(int idSeguro);
 }

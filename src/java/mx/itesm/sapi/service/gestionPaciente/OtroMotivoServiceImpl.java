@@ -30,7 +30,7 @@ public class OtroMotivoServiceImpl implements OtroMotivoService{
     }
 
     @Override
-    public boolean borrarOtroMotivo(int idOtroMotivo) {
+    public boolean borradoLogicoOtroMotivo(int idOtroMotivo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

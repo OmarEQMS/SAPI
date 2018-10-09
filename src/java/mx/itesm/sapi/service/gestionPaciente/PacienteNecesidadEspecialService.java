@@ -15,6 +15,6 @@ public interface PacienteNecesidadEspecialService {
     public PacienteNecesidadEspecial mostrarPacienteNecesidadEspecial(int idPacienteNecesidadEspecial);
     public List<PacienteNecesidadEspecial> mostrarAllPacienteNecesidadEspecial();
     public boolean agregarPacienteNecesidadEspecial(PacienteNecesidadEspecial pacienteNecesidadEspecial);
-    public boolean borrarPacienteNecesidadEspecial(int idPacienteNecesidadEspecial);
+    public boolean borradoLogicoPacienteNecesidadEspecial(int idPacienteNecesidadEspecial);
     public boolean actualizarPacienteNecesidadEspecial(PacienteNecesidadEspecial pacienteNecesidadEspecial);
 }

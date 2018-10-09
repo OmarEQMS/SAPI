@@ -35,7 +35,7 @@ public class EstudioServiceImpl implements EstudioService{
     }
 
     @Override
-    public boolean borrarEstudio(int idEstudio) {
+    public boolean borradoLogicoEstudio(int idEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

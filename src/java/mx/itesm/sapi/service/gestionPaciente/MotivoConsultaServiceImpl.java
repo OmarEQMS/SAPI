@@ -40,7 +40,7 @@ public class MotivoConsultaServiceImpl implements MotivoConsultaService{
     }
 
     @Override
-    public boolean borrarMotivoConsulta(int idMotivoConsulta) {
+    public boolean borradoLogicoMotivoConsulta(int idMotivoConsulta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

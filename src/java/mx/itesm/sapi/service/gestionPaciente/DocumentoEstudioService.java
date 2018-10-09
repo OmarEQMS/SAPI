@@ -16,7 +16,7 @@ public interface DocumentoEstudioService {
     public DocumentoEstudio mostrarDocumentoEstudio(int idDocumentoEstudio);
     public List<DocumentoEstudio> mostrarAllDocumentoEstudio();
     public boolean agregarDocumentoEstudio(DocumentoEstudio documentoEstudio);
-    public boolean borrarDocumentoEstudio(int idDocumentoEstudio);
+    public boolean borradoLogicoDocumentoEstudio(int idDocumentoEstudio);
     public boolean actualizarDocumentoEstudio(DocumentoEstudio documentoEstudio);
     
 }

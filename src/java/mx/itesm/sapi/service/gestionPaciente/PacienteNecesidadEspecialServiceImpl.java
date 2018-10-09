@@ -30,7 +30,7 @@ public class PacienteNecesidadEspecialServiceImpl implements PacienteNecesidadEs
     }
 
     @Override
-    public boolean borrarPacienteNecesidadEspecial(int idPacienteNecesidadEspecial) {
+    public boolean borradoLogicoPacienteNecesidadEspecial(int idPacienteNecesidadEspecial) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

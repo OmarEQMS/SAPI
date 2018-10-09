@@ -17,5 +17,5 @@ public interface TipoHistologicoService {
     public List<TipoHistologico> mostrarAllTipoHistologico();
     public boolean agregarTipoHistologico(TipoHistologico tipoHistologico);
     public boolean updateTipoHistologico(TipoHistologico tipoHistologico);
-    public boolean borrarTipoHistologico(int idTipoHistologico);
+    public boolean borradoLogicoTipoHistologico(int idTipoHistologico);
 }

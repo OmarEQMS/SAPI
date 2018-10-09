@@ -30,7 +30,7 @@ public class BiopsiaServiceImpl implements BiopsiaService{
     }
 
     @Override
-    public boolean borrarBiopsia(int idBiopsia) {
+    public boolean borradoLogicoBiopsia(int idBiopsia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

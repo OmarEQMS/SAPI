@@ -23,7 +23,7 @@ public class AlergiaServicioImpl implements AlergiaServicio{
     @Override
     public Alergia mostrarAlergia(int idAlergia) {
         
-         Connection conn = Conexion.mostrarConnection();
+         Connection conn = Conexion.getConnection();
          CallableStatement callableStatementmostrarAlergia;
                   
          Alergia alergia = new Alergia();
@@ -35,9 +35,9 @@ public class AlergiaServicioImpl implements AlergiaServicio{
                                    
             ResultSet rs = callableStatementmostrarAlergia.executeQuery();
             rs.next();
-            alergia.setIdAlergia(rs.mostrarInt("idAlergia"));
-            alergia.setNombre(rs.mostrarString("nombre"));
-            alergia.setEstatus(rs.mostrarInt("estatus"));
+            alergia.setIdAlergia(rs.getInt("idAlergia"));
+            alergia.setNombre(rs.getString("nombre"));
+            alergia.setEstatus(rs.getInt("estatus"));
             
             conn.close();
             callableStatementmostrarAlergia.close();
@@ -66,12 +66,12 @@ public class AlergiaServicioImpl implements AlergiaServicio{
     }
 
     @Override
-    public boolean borrarAlergia(int idAlergia) {
+    public boolean borradoLogicoAlergia(int idAlergia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean borrarAlergia(String nombreAlergia) {
+    public boolean borradoLogicoAlergia(String nombreAlergia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

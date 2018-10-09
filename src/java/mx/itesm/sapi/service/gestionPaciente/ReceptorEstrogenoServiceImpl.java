@@ -30,7 +30,7 @@ public class ReceptorEstrogenoServiceImpl implements ReceptorEstrogenoService{
     }
 
     @Override
-    public boolean borrarReceptorEstrogeno(int idReceptorEstrogeno) {
+    public boolean borradoLogicoReceptorEstrogeno(int idReceptorEstrogeno) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

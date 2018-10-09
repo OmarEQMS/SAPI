@@ -30,7 +30,7 @@ public class ProgramaAtencionServiceImpl implements ProgramaAtencionService{
     }
 
     @Override
-    public boolean borrarProgramaAtencion(int idProgramaAtencion) {
+    public boolean borradoLogicoProgramaAtencion(int idProgramaAtencion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

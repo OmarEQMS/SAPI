@@ -18,5 +18,5 @@ public interface LugarDelCuerpoService {
     public List<LugarDelCuerpo> mostrarAllLugarDelCuerpo();
     public boolean agregarLugarDelCuerpo(LugarDelCuerpo lugarDelCuerpo);
     public boolean actualizarLugarDelCuerpo(LugarDelCuerpo lugarDelCuerpo);
-    public boolean borrarLugarDelCuerpo(int idLugarDelCuerpo);
+    public boolean borradoLogicoLugarDelCuerpo(int idLugarDelCuerpo);
 }

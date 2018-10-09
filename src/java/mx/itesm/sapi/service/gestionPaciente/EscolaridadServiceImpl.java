@@ -30,7 +30,7 @@ public class EscolaridadServiceImpl implements EscolaridadService{
     }
 
     @Override
-    public boolean borrarEscolaridad(int idEscolaridad) {
+    public boolean borradoLogicoEscolaridad(int idEscolaridad) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

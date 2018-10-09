@@ -30,7 +30,7 @@ public class ResultadoPatologiaServiceImpl implements ResultadoPatologiaService{
     }
 
     @Override
-    public boolean borrarResultadoPatologia(int idResultadoPatologia) {
+    public boolean borradoLogicoResultadoPatologia(int idResultadoPatologia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

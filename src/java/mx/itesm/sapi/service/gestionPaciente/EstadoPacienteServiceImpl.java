@@ -25,7 +25,7 @@ public class EstadoPacienteServiceImpl implements EstadoPacienteService{
     }
 
     @Override
-    public boolean borrarEstadoPaciente(int idEstadoPaciente) {
+    public boolean borradoLogicoEstadoPaciente(int idEstadoPaciente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

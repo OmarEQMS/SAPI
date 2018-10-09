@@ -16,6 +16,6 @@ public interface TipoCitaService {
     public TipoCita mostrarTipoCita(int idTipoCita);
     public List<TipoCita> mostrarAllTipoCita();
     public boolean agregarTipoCita(TipoCita tipoCita);
-    public boolean deleteTipoCita(int idTipoCita);
+    public boolean borradoLogicoTipoCita(int idTipoCita);
     public boolean actualizarTipoCita(TipoCita tipoCita);
 }

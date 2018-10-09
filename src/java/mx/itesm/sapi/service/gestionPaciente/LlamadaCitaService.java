@@ -17,5 +17,5 @@ public interface LlamadaCitaService {
     public List<LlamadaCita> mostrarAllLlamadaCita();
     public boolean agregarLlamadaCita(LlamadaCita llamadaCita);
     public boolean actualizarLlamadaCita(LlamadaCita llamadaCita);
-    public boolean borrarLlamadaCita(int idLlamadaCita);    
+    public boolean borradoLogicoLlamadaCita(int idLlamadaCita);    
 }

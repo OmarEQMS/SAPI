@@ -30,7 +30,7 @@ public class DocumentosInicialesServiceImpl implements DocumentosInicialesServic
     }
 
     @Override
-    public boolean borrarDocumentosIniciales(int idDocumentosIniciales) {
+    public boolean borradoLogicoDocumentosIniciales(int idDocumentosIniciales) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

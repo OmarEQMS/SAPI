@@ -16,6 +16,6 @@ public interface AuditoriaAtencionServicio {
     public AuditoriaAtencion mostrarAuditoriaAtencion(int idAuditoriaAtencion);
     public List<AuditoriaAtencion> mostrarAllAuditoriaAtencion();
     public boolean agregarAuditoriaAtencion(AuditoriaAtencion auditoriaAtencion);
-    public boolean borrarAuditoriaAtencion(int idAuditoriaAtencion);    
+    public boolean borradoLogicoAuditoriaAtencion(int idAuditoriaAtencion);    
     public boolean actualizarAuditoriaAtencion(AuditoriaAtencion auditoriaAtencion);
 }

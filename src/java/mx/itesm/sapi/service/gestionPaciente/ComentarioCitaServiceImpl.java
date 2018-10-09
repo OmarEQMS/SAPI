@@ -14,12 +14,11 @@ import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
  */
 public class ComentarioCitaServiceImpl implements ComentarioCitaService{
 
-    @Override
+    //@Override
     public ComentarioCita mostrarComentarioCita(int idComentarioCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
+    //@Override
     public List<ComentarioCita> mostrarComentarioCita() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -30,12 +29,22 @@ public class ComentarioCitaServiceImpl implements ComentarioCitaService{
     }
 
     @Override
-    public boolean borrarComentarioCita(ComentarioCita comentarioCita) {
+    public boolean borradoLogicoComentarioCita(ComentarioCita comentarioCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean actualizarComentarioCita(ComentarioCita comentarioCita) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ComentarioCita getComentarioCita(int idComentarioCita) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<ComentarioCita> getComentarioCita() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

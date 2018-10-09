@@ -13,9 +13,11 @@ import mx.itesm.sapi.bean.gestionPaciente.EstadoCita;
  * @author urieldiaz
  */
 public interface EstadoCitaService {
+    
     public EstadoCita mostrarEstadoCita(int idEstadoCita);
     public List<EstadoCita> mostrarAllEstadoCita();
     public boolean agregarEstadoCita(EstadoCita estadoCita);
-    public boolean borrarEstadoCita(int idEstadoCita);
+   
+    public boolean borradoLogicoEstadoCita(int idEstadoCita);
     public boolean actualizarEstadoCita(EstadoCita estadoCita);
 }

@@ -17,5 +17,5 @@ public interface ReceptorProgesteronaService {
     public List<ReceptorProgesterona> mostrarAllReceptorProgesterona();
     public boolean agregarReceptorProgesterona(ReceptorProgesterona receptorProgesterona);
     public boolean actualizarReceptorProgesterona(ReceptorProgesterona receptorProgesterona);
-    public boolean borrarReceptorProgesterona(int idReceptorProgesterona);
+    public boolean borradoLogicoReceptorProgesterona(int idReceptorProgesterona);
 }

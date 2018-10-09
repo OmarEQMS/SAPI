@@ -35,7 +35,7 @@ public class PacienteAlergiaServiceImpl implements PacienteAlergiaService{
     }
 
     @Override
-    public boolean borrarPacienteAlergia(int idPacienteAlergia) {
+    public boolean borradoLogicoPacienteAlergia(int idPacienteAlergia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

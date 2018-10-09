@@ -17,7 +17,7 @@ public interface AlergiaServicio {
     public Alergia mostrarAlergia(String nombreAlergia);    
     public List<Alergia> mostrarAllAlergias();
     public boolean agregarAlergia(Alergia alergia);
-    public boolean borrarAlergia(int idAlergia);
-    public boolean borrarAlergia(String nombreAlergia);
-    public boolean actualizarAlergia(Alergia alergia);        
+    public boolean borradoLogicoAlergia(int idAlergia);
+    public boolean borradoLogicoAlergia(String nombreAlergia);
+    public boolean actualizarAlergia(Alergia alergia); 
 }

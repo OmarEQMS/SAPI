@@ -17,5 +17,5 @@ public interface PacienteAlergiaService {
     public List<PacienteAlergia> mostrarAllPacienteAlergia();
     public boolean agregarPacienteAlergia(PacienteAlergia pacienteAlergia);
     public boolean actualizarPacienteAlergia(PacienteAlergia pacienteAlergia);
-    public boolean borrarPacienteAlergia(int idPacienteAlergia);
+    public boolean borradoLogicoPacienteAlergia(int idPacienteAlergia);
 }
