@@ -5,6 +5,7 @@
  */
 package mx.itesm.sapi.bean;
 
+import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -13,38 +14,41 @@ import java.sql.Date;
  * @author Angel GTZ
  */
 public class Persona implements Serializable {
+
     private int idPersona;
+    private int idSexo;
+    private int idTipoSangre;
+    private int idMunicipio;
+    private int idEstadoCivil;
+    private int idDireccion;
     private String nombre;
-    private String apellido1;
-    private String apellido2;
+    private String primerApellido;
+    private String segundoApellido;
     private String curp;
     private String telefono;
     private String correo;
-    private String fechaNacimiento;
-    private int idEstado;
-    private int idMunicipio;
-    private int idEstadoCivil;
-    private int idRol;
-    private String calle;
-    private String noExterior;
-    private String noInterior;
-    private String colonia;
-    private int  edad;
-    
-   public Persona(){}
-   
-   
-   @Override
-   public String toString(){
-       
-       String str ="Persona [idPersona:".concat(",nombre:").concat(nombre).concat(",apellido1:").concat(apellido1).concat(",apellido2:").concat(apellido2).concat(",curp:")
-       .concat(curp).concat(",telefono:").concat(telefono).concat(",correo:").concat(correo).concat(",fechaNacimiento:").concat(fechaNacimiento.toString())
-       .concat(",idCiudad:").concat(String.valueOf(idMunicipio)).concat(",idEstadoCivil:").concat(String.valueOf(idEstadoCivil)).concat(",idRol:").concat(String.valueOf(idRol))
-       .concat("]");
-       
-     return str;
+    private Date fechaNacimiento;
 
-    } 
+    private int edad;
+    private InputStream imagen;
+    private int estatus;
+
+    public Persona() {
+    }
+
+    @Override
+    public String toString() {
+
+        String str = "Persona [idPersona:".concat(String.valueOf(idPersona)).concat(",nombre:").concat(nombre).concat(",apellido1:").concat(primerApellido).concat(",apellido2:").concat(segundoApellido).concat(",curp:")
+                .concat(curp).concat(",telefono:").concat(telefono).concat(",correo:").concat(correo).concat(",fechaNacimiento:").concat(fechaNacimiento.toString())
+                .concat(",idSexo:").concat(String.valueOf(idSexo)).concat(",idTipoDeSangre:").concat(String.valueOf(idTipoSangre)).concat(",idMunicipio:")
+                .concat(String.valueOf(idMunicipio)).concat(",idEstadoCivil:")
+                .concat(String.valueOf(idEstadoCivil)).concat(",idDireccion:").concat(String.valueOf(idDireccion))
+                .concat(",edad:").concat(String.valueOf(edad)).concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
+
+        return str;
+
+    }
 
     public int getIdPersona() {
         return idPersona;
@@ -52,6 +56,46 @@ public class Persona implements Serializable {
 
     public void setIdPersona(int idPersona) {
         this.idPersona = idPersona;
+    }
+
+    public int getIdSexo() {
+        return idSexo;
+    }
+
+    public void setIdSexo(int idSexo) {
+        this.idSexo = idSexo;
+    }
+
+    public int getIdTipoSangre() {
+        return idTipoSangre;
+    }
+
+    public void setIdTipoSangre(int idTipoSangre) {
+        this.idTipoSangre = idTipoSangre;
+    }
+
+    public int getIdMunicipio() {
+        return idMunicipio;
+    }
+
+    public void setIdMunicipio(int idMunicipio) {
+        this.idMunicipio = idMunicipio;
+    }
+
+    public int getIdEstadoCivil() {
+        return idEstadoCivil;
+    }
+
+    public void setIdEstadoCivil(int idEstadoCivil) {
+        this.idEstadoCivil = idEstadoCivil;
+    }
+
+    public int getIdDireccion() {
+        return idDireccion;
+    }
+
+    public void setIdDireccion(int idDireccion) {
+        this.idDireccion = idDireccion;
     }
 
     public String getNombre() {
@@ -62,20 +106,20 @@ public class Persona implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getApellido1() {
-        return apellido1;
+    public String getPrimerApellido() {
+        return primerApellido;
     }
 
-    public void setApellido1(String apellido1) {
-        this.apellido1 = apellido1;
+    public void setPrimerApellido(String primerApellido) {
+        this.primerApellido = primerApellido;
     }
 
-    public String getApellido2() {
-        return apellido2;
+    public String getSegundoApellido() {
+        return segundoApellido;
     }
 
-    public void setApellido2(String apellido2) {
-        this.apellido2 = apellido2;
+    public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido = segundoApellido;
     }
 
     public String getCurp() {
@@ -102,68 +146,12 @@ public class Persona implements Serializable {
         this.correo = correo;
     }
 
-    public String getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public int getIdMunicipio() {
-        return idMunicipio;
-    }
-
-    public void setIdMunicipio(int idMunicipio) {
-        this.idMunicipio = idMunicipio;
-    }
-
-    public int getIdEstadoCivil() {
-        return idEstadoCivil;
-    }
-
-    public void setIdEstadoCivil(int idEstadoCivil) {
-        this.idEstadoCivil = idEstadoCivil;
-    }
-
-    public int getIdRol() {
-        return idRol;
-    }
-
-    public void setIdRol(int idRol) {
-        this.idRol = idRol;
-    }
-
-    public String getCalle() {
-        return calle;
-    }
-
-    public void setCalle(String calle) {
-        this.calle = calle;
-    }
-
-    public String getNoExterior() {
-        return noExterior;
-    }
-
-    public void setNoExterior(String noExterior) {
-        this.noExterior = noExterior;
-    }
-
-    public String getNoInterior() {
-        return noInterior;
-    }
-
-    public void setNoInterior(String noInterior) {
-        this.noInterior = noInterior;
-    }
-
-    public String getColonia() {
-        return colonia;
-    }
-
-    public void setColonia(String colonia) {
-        this.colonia = colonia;
     }
 
     public int getEdad() {
@@ -174,14 +162,20 @@ public class Persona implements Serializable {
         this.edad = edad;
     }
 
-    public int getIdEstado() {
-        return idEstado;
+    public InputStream getImagen() {
+        return imagen;
     }
 
-    public void setIdEstado(int idEstado) {
-        this.idEstado = idEstado;
+    public void setImagen(InputStream imagen) {
+        this.imagen = imagen;
     }
 
-    
+    public int getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
+    }
 
 }
