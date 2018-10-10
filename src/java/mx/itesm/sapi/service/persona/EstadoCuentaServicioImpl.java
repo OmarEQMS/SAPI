@@ -18,8 +18,7 @@ import mx.itesm.sapi.util.Conexion;
  *
  * @author Angel GTZ
  */
-public class EstadoCuentaServicioImpl implements EstadoCuentaServicio{
-
+public class EstadoCuentaServicioImpl implements EstadoCuentaServicio {
 
     @Override
     public boolean borradoLogicoEstadoCuenta(int idEstadoCuenta) {
@@ -28,76 +27,78 @@ public class EstadoCuentaServicioImpl implements EstadoCuentaServicio{
 
     @Override
     public EstadoCuenta mostrarEstadoCuenta(int idEstadoCuenta) {
-         Connection conn = Conexion.getConnection();
-        
+        Connection conn;
+        ResultSet rs;
         CallableStatement cstmt;
-        
-        EstadoCuenta estadoCuenta = new EstadoCuenta();
-        
+
+        EstadoCuenta estadoCuenta = null;
+
         //Call del store procedure
-        String stProcedure="mostrarEstadoCuenta";
-        
-        try{
-            
+        String stProcedure = "mostrarEstadoCuenta(?)";
+
+        try {
+            estadoCuenta = new EstadoCuenta();
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEstadoCuenta);
-            
-            ResultSet rs = cstmt.executeQuery();
-            
-         
-            
+
+            rs = cstmt.executeQuery();
+
             rs.next();
             estadoCuenta.setIdEstadoCuenta(rs.getInt("idEstadoCuenta"));
             estadoCuenta.setNombre(rs.getString("nombre"));
             estadoCuenta.setEstatus(rs.getInt("estatus"));
+
+            rs.close();
+            cstmt.close();
+            conn.close();
             
-            
-           
-            return estadoCuenta;
-        }catch(SQLException ex){
-            
-            System.out.println("Estoy en el catch de mostrarEstadoCuenta ");
-            System.out.println(ex.getMessage());
-            return estadoCuenta;
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+             estadoCuenta=null;
         }
-    
+        return estadoCuenta;    
     }
 
     @Override
     public List<EstadoCuenta> mostrarEstadoCuenta() {
-       Connection conn = Conexion.getConnection();
-        
-        
-        List<EstadoCuenta> estadoCuentas = new ArrayList<>();
-        
-        try{
-            
-            CallableStatement cstmt;
-            cstmt = conn.prepareCall("CALL getEstadoCuenta()");
-            ResultSet rs = cstmt.executeQuery();
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        List<EstadoCuenta> estadoCuentas = null;
+
+        try {
+            estadoCuentas = new ArrayList<>();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("mostrarListaEstadoCuenta()");
+            rs = cstmt.executeQuery();
             EstadoCuenta estadoCuenta;
-            
-            while(rs.next()){
-                
+
+            while (rs.next()) {
+
                 estadoCuenta = new EstadoCuenta();
-                
-            estadoCuenta.setIdEstadoCuenta(rs.getInt(1));
-            estadoCuenta.setNombre(rs.getString(2));
-            estadoCuenta.setEstatus(rs.getInt(3));
-                
+
+                estadoCuenta.setIdEstadoCuenta(rs.getInt(1));
+                estadoCuenta.setNombre(rs.getString(2));
+                estadoCuenta.setEstatus(rs.getInt(3));
+
                 estadoCuentas.add(estadoCuenta);
-            
+
             }
-            
+
             rs.close();
             cstmt.close();
             conn.close();
-                    
-            
-        }catch(SQLException ex){
-            System.out.println("ERROR GET estadoCuentas" + ex.getMessage());
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            estadoCuentas = null;
         }
-        
+
         return estadoCuentas;
     }
 
@@ -110,6 +111,5 @@ public class EstadoCuentaServicioImpl implements EstadoCuentaServicio{
     public boolean actualizarEstadoCuenta(EstadoCuenta estadoCuenta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
 }

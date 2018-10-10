@@ -18,9 +18,7 @@ import mx.itesm.sapi.util.Conexion;
  *
  * @author Angel GTZ
  */
-public class EstadoServicioImpl implements EstadoServicio{
-
-   
+public class EstadoServicioImpl implements EstadoServicio {
 
     @Override
     public boolean borradoLogicoEstado(int idEstado) {
@@ -29,75 +27,77 @@ public class EstadoServicioImpl implements EstadoServicio{
 
     @Override
     public Estado mostrarEstado(int idEstado) {
-         Connection conn = Conexion.getConnection();
-        
+        Connection conn;
+        ResultSet rs;
         CallableStatement cstmt;
-        
-        Estado estado = new Estado();
-        
+
+        Estado estado = null;
+
         //Call del store procedure
-        String stProcedure="mostrarEstado";
-        
-        try{
-            
+        String stProcedure = "mostrarEstado(?)";
+
+        try {
+            estado = new Estado();
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEstado);
-            
-            ResultSet rs = cstmt.executeQuery();
-            
-         
-            
+
+            rs = cstmt.executeQuery();
+
             rs.next();
             estado.setIdEstado(rs.getInt("idEstado"));
             estado.setNombre(rs.getString("nombre"));
             estado.setEstatus(rs.getInt("estatus"));
-            
-            
-           
-            return estado;
-        }catch(SQLException ex){
-            
-            System.out.println("Estoy en el catch de mostrarEstado ");
-            System.out.println(ex.getMessage());
-            return estado;
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            estado = null;
         }
+        return estado;
     }
 
     @Override
     public List<Estado> mostrarEstado() {
-       Connection conn = Conexion.getConnection();
-        
-        
-        List<Estado> estados = new ArrayList<>();
-        
-        try{
-            
-            CallableStatement cstmt;
-            cstmt = conn.prepareCall("CALL getEstado()");
-            ResultSet rs = cstmt.executeQuery();
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        List<Estado> estados = null;
+
+        try {
+            estados = new ArrayList<>();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("mostrarListaEstado()");
+            rs = cstmt.executeQuery();
             Estado estado;
-            
-            while(rs.next()){
-                
+
+            while (rs.next()) {
+
                 estado = new Estado();
-                
-            estado.setIdEstado(rs.getInt(1));
-            estado.setNombre(rs.getString(2));
-            estado.setEstatus(rs.getInt(3));
-                
+
+                estado.setIdEstado(rs.getInt(1));
+                estado.setNombre(rs.getString(2));
+                estado.setEstatus(rs.getInt(3));
+
                 estados.add(estado);
-            
+
             }
-            
+
             rs.close();
             cstmt.close();
             conn.close();
-                    
-            
-        }catch(SQLException ex){
-            System.out.println("ERROR GET estados" + ex.getMessage());
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            estados=null;
         }
-        
+
         return estados;
     }
 
@@ -110,5 +110,5 @@ public class EstadoServicioImpl implements EstadoServicio{
     public boolean actualizarEstado(Estado estado) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

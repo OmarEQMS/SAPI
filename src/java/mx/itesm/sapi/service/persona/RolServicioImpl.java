@@ -18,8 +18,7 @@ import mx.itesm.sapi.util.Conexion;
  *
  * @author Angel GTZ
  */
-public class RolServicioImpl implements RolServicio{
-
+public class RolServicioImpl implements RolServicio {
 
     @Override
     public boolean agregarRol(Rol rol) {
@@ -33,109 +32,114 @@ public class RolServicioImpl implements RolServicio{
 
     @Override
     public boolean borradoLogicoRol(int idRol) {
-        Connection conn = Conexion.getConnection();
-        
+        Connection conn;
+        ResultSet rs;
         CallableStatement cstmt;
-        
+        boolean exito;
+
         //Call del store procedure
-        String stProcedure="borradoLogicoRol";
-        
-        
-        
-        try{
-            
+        String stProcedure = "borradoLogicoRol(?)";
+
+        try {
+
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            
-            cstmt.setInt(1,idRol);
-            
-            ResultSet rs = cstmt.executeQuery();
-            
+
+            cstmt.setInt(1, idRol);
+
+            rs = cstmt.executeQuery();
+
             rs.next();
-            
-           return rs.getBoolean(1);
-            
-            
-        }catch(SQLException ex){
-            System.out.println("Estoy en el catch de borrarRol");
-            System.out.println(ex.getMessage());
-            return false;
+            conn.close();
+            rs.close();
+            cstmt.close();
+            exito = rs.getBoolean(1);
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+
         }
-    
+        return exito;
+
     }
 
     @Override
     public Rol mostrarRol(int idRol) {
-        Connection conn = Conexion.getConnection();
-        
+        Connection conn;
+        ResultSet rs;
         CallableStatement cstmt;
-        
-        Rol rol = new Rol();
-        
+
+        Rol rol = null;
+
         //Call del store procedure
-        String stProcedure="mostrarRol";
-        
-        try{
-            
+        String stProcedure = "mostrarRol(?)";
+
+        try {
+            rol = new Rol();
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idRol);
-            
-            ResultSet rs = cstmt.executeQuery();
-            
-         
-            
+
+            rs = cstmt.executeQuery();
+
             rs.next();
             rol.setIdRol(rs.getInt("idRol"));
             rol.setNombre(rs.getString("nombre"));
             rol.setEstatus(rs.getInt("estatus"));
-            
-            
-           
-            return rol;
-        }catch(SQLException ex){
-            
-            System.out.println("Estoy en el catch de mostrarRol ");
-            System.out.println(ex.getMessage());
-            return rol;
+            conn.close();
+            rs.close();
+            cstmt.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            rol = null;
         }
+        return rol;
     }
 
     @Override
     public List<Rol> mostrarRol() {
-         Connection conn = Conexion.getConnection();
-        
-        
-        List<Rol> roles = new ArrayList<>();
-        
-        try{
-            
-            CallableStatement cstmt;
-            cstmt = conn.prepareCall("CALL getRol()");
-            ResultSet rs = cstmt.executeQuery();
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        List<Rol> roles = null;
+
+        try {
+
+            roles = new ArrayList<>();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("mostrarListaRol()");
+            rs = cstmt.executeQuery();
             Rol rol;
-            
-            while(rs.next()){
-                
+
+            while (rs.next()) {
+
                 rol = new Rol();
-                
-            rol.setIdRol(rs.getInt(1));
-            rol.setNombre(rs.getString(2));
-            rol.setEstatus(rs.getInt(3));
-                
+
+                rol.setIdRol(rs.getInt(1));
+                rol.setNombre(rs.getString(2));
+                rol.setEstatus(rs.getInt(3));
+
                 roles.add(rol);
-            
+
             }
-            
+
             rs.close();
             cstmt.close();
             conn.close();
-                    
-            
-        }catch(SQLException ex){
-            System.out.println("ERROR GET roles" + ex.getMessage());
+
+        } catch (SQLException ex) {
+             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            roles = null;
         }
-        
+
         return roles;
     }
-    
-    
+
 }

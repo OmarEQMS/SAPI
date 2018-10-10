@@ -22,201 +22,201 @@ public class DireccionServicioImpl implements DireccionServicio {
 
     @Override
     public Direccion mostrarDireccion(int idDireccion) {
-         Connection conn = Conexion.getConnection();
-        
+        Connection conn;
+        ResultSet rs;
         CallableStatement cstmt;
-        
-        Direccion direccion = new Direccion();
-        
+
+        Direccion direccion = null;
+
         //Call del store procedure
-        String stProcedure="mostrarDireccion";
-        
-        try{
-            
+        String stProcedure = "mostrarDireccion(?)";
+
+        try {
+            direccion = new Direccion();
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idDireccion);
-            
-            ResultSet rs = cstmt.executeQuery();
-            
-         
-            
+
+            rs = cstmt.executeQuery();
+
             rs.next();
             direccion.setIdDireccion(rs.getInt("idDireccion"));
             direccion.setCalle(rs.getString("calle"));
-            direccion.setNoInterior(rs.getString("noInterior")); 
-            direccion.setNoExterior(rs.getString("noExterior"));            
+            direccion.setNoInterior(rs.getString("noInterior"));
+            direccion.setNoExterior(rs.getString("noExterior"));
             direccion.setColonia(rs.getString("colonia"));
             direccion.setEstatus(rs.getInt("estatus"));
-            
-            
-           
-            return direccion;
-        }catch(SQLException ex){
-            
-            System.out.println("Estoy en el catch de mostrarDireccion");
-            System.out.println(ex.getMessage());
-            return direccion;
+            conn.close();
+            rs.close();
+            cstmt.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            direccion = null;
         }
+        return direccion;
     }
 
     @Override
     public List<Direccion> mostrarDireccion() {
-        Connection conn = Conexion.getConnection();
-        
-        
-        List<Direccion> direcciones = new ArrayList<>();
-        
-        try{
-            
-            CallableStatement cstmt;
-            cstmt = conn.prepareCall("CALL getDireccion()");
-            ResultSet rs = cstmt.executeQuery();
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        List<Direccion> direcciones = null;
+
+        try {
+            direcciones = new ArrayList<>();
+            conn = Conexion.getConnection();
+
+            cstmt = conn.prepareCall("mostrarListaDireccion()");
+            rs = cstmt.executeQuery();
             Direccion direccion;
-            
-            while(rs.next()){
-                
+
+            while (rs.next()) {
+
                 direccion = new Direccion();
-                
-            direccion.setIdDireccion(rs.getInt(1));
-            direccion.setCalle(rs.getString(2));
-            direccion.setNoInterior(rs.getString(3));            
-            direccion.setNoExterior(rs.getString(4));
-            direccion.setColonia(rs.getString(5));
-            direccion.setEstatus(rs.getInt(6));
-                
+
+                direccion.setIdDireccion(rs.getInt(1));
+                direccion.setCalle(rs.getString(2));
+                direccion.setNoInterior(rs.getString(3));
+                direccion.setNoExterior(rs.getString(4));
+                direccion.setColonia(rs.getString(5));
+                direccion.setEstatus(rs.getInt(6));
+
                 direcciones.add(direccion);
-            
+
             }
-            
+
             rs.close();
             cstmt.close();
             conn.close();
-                    
-            
-        }catch(SQLException ex){
-            System.out.println("ERROR GET direcciones" + ex.getMessage());
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            direcciones = null;
         }
-        
+
         return direcciones;
-    
+
     }
 
     @Override
     public int agregarDireccion(Direccion direccion) {
-         Connection conn = Conexion.getConnection();
-        
+        Connection conn;
+        ResultSet rs;
         CallableStatement cstmt;
-        
-        int id=0;
+
+        int id = -1;
         //Aquí va el call del procedure
-        String stProcedure="agregarDireccion";
-        
-        try{
-            
+        String stProcedure = "agregarDireccion(?, ?, ?, ?, ?, ?)";
+
+        try {
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            
+
             //Aquí van los sets
             //cstmt.setInt(1,citaEmpleado.getIdCitaEmpleado());
+            cstmt.setInt(1, direccion.getIdDireccion());
+            cstmt.setString(2, direccion.getCalle());
+            cstmt.setString(3, direccion.getNoInterior());
+            cstmt.setString(4, direccion.getNoExterior());
+            cstmt.setString(5, direccion.getColonia());
+            cstmt.setInt(6, direccion.getEstatus());
 
-            
-            cstmt.setInt(1,direccion.getIdDireccion());
-            cstmt.setString(2,direccion.getCalle());
-            cstmt.setString(3,direccion.getNoInterior());
-            cstmt.setString(4,direccion.getNoExterior());    
-            cstmt.setString(5,direccion.getColonia());
-            cstmt.setInt(6,direccion.getEstatus());
-            
             //Aquí va el registerOutParameter
             //cstmt.registerOutParameter(12,Types.INTEGER);
-            
             cstmt.executeUpdate();
-            
-            ResultSet rs = cstmt.getGeneratedKeys();
-            
+
+            rs = cstmt.getGeneratedKeys();
+
             rs.next();
-            
-           id=rs.getInt(1);
-           
-           cstmt.close();
-            
-        }catch(SQLException ex){
-            
-             System.out.println("Estoy en el catch de agregar direccion ");
-            System.out.println(ex.getMessage());
-            
+
+            id = rs.getInt(1);
+
+            conn.close();
+            rs.close();
+            cstmt.close();
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
+
         }
-        
-        
+
         return id;
     }
 
     @Override
     public boolean actualizarDireccion(Direccion direccion) {
-       Connection conn = Conexion.getConnection();
-        
+        boolean exito = false;
+        Connection conn;
+        ResultSet rs;
         CallableStatement cstmt;
-        
+
         //Call del store procedure
-        String stProcedure="actualizarDireccion";
-        
-        
-        try{
-            
+        String stProcedure = "actualizarDireccion(?, ?, ?, ?, ?, ?)";
+
+        try {
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            cstmt.setInt(1,direccion.getIdDireccion());
-            cstmt.setString(2,direccion.getCalle());
-            cstmt.setString(3,direccion.getNoInterior());
-            cstmt.setString(4,direccion.getNoExterior());    
-            cstmt.setString(5,direccion.getColonia());
-            cstmt.setInt(6,direccion.getEstatus());
-           
-            
-            
-            ResultSet rs = cstmt.executeQuery();
-            
+            cstmt.setInt(1, direccion.getIdDireccion());
+            cstmt.setString(2, direccion.getCalle());
+            cstmt.setString(3, direccion.getNoInterior());
+            cstmt.setString(4, direccion.getNoExterior());
+            cstmt.setString(5, direccion.getColonia());
+            cstmt.setInt(6, direccion.getEstatus());
+
+            rs = cstmt.executeQuery();
+
             rs.next();
-            
-           return rs.getBoolean(1);
-            
-            
-        }catch(SQLException ex){
-            System.out.println("Estoy en el catch de actualizarDireccion ");
-            System.out.println(ex.getMessage());
-            return false;
+            conn.close();
+            rs.close();
+            cstmt.close();
+            exito = rs.getBoolean(1);
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
         }
+        return exito;
     }
 
     @Override
     public boolean borradoLogicoDireccion(int idDireccion) {
-         Connection conn = Conexion.getConnection();
-        
+        boolean exito = false;
+        Connection conn;
+        ResultSet rs;
         CallableStatement cstmt;
-        
-        //Call del store procedure
-        String stProcedure="borradoLogicoDireccion";
-        
-        
-        
-        try{
-            
-            cstmt = conn.prepareCall(stProcedure);
-            
-            cstmt.setInt(1,idDireccion);
-            
-            ResultSet rs = cstmt.executeQuery();
-            
-            rs.next();
-            
-           return rs.getBoolean(1);
-            
-            
-        }catch(SQLException ex){
-            System.out.println("Estoy en el catch de borradoLogicoDireccion");
-            System.out.println(ex.getMessage());
-            return false;
-        }
-    }
 
-    
+        //Call del store procedure
+        String stProcedure = "borradoLogicoDireccion(?)";
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+
+            cstmt.setInt(1, idDireccion);
+
+            rs = cstmt.executeQuery();
+
+            rs.next();
+            conn.close();
+            rs.close();
+            cstmt.close();
+            exito = rs.getBoolean(1);
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+        }
+        return exito;
+    }
 
 }

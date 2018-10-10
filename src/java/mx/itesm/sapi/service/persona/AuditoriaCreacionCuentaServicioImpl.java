@@ -18,207 +18,212 @@ import mx.itesm.sapi.util.Conexion;
  *
  * @author Angel GTZ
  */
-public class AuditoriaCreacionCuentaServicioImpl implements AuditoriaCreacionCuentaServicio{
-
-  
+public class AuditoriaCreacionCuentaServicioImpl implements AuditoriaCreacionCuentaServicio {
 
     @Override
     public int agregarAuditoriaCreacionCuenta(AuditoriaCreacionCuenta auditoriaCreacionCuenta) {
-         Connection conn = Conexion.getConnection();
-        
+        Connection conn;
+        ResultSet rs;
         CallableStatement cstmt;
-        
-        int id=0;
+
+        int id = -1;
         //Aquí va el call del procedure
-        String stProcedure="agregarAuditoriaCreacionCuenta";
-        
-        try{
-            
+        String stProcedure = "agregarAuditoriaCreacionCuenta(?, ?, ?, ?, ?)";
+
+        try {
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            
+
             //Aquí van los sets
             //cstmt.setInt(1,citaEmpleado.getIdCitaEmpleado());
-            
-            cstmt.setInt(1,auditoriaCreacionCuenta.getIdAuditoriaCreacionCuenta());
-            cstmt.setInt(2,auditoriaCreacionCuenta.getIdCuenta());
-            cstmt.setDate(3,auditoriaCreacionCuenta.getFecha());
-           
-            cstmt.setInt(4,auditoriaCreacionCuenta.getCondiciones());
-            cstmt.setInt(5,auditoriaCreacionCuenta.getEstatus());
-            
+            cstmt.setInt(1, auditoriaCreacionCuenta.getIdAuditoriaCreacionCuenta());
+            cstmt.setInt(2, auditoriaCreacionCuenta.getIdCuenta());
+            cstmt.setDate(3, auditoriaCreacionCuenta.getFecha());
+
+            cstmt.setInt(4, auditoriaCreacionCuenta.getCondiciones());
+            cstmt.setInt(5, auditoriaCreacionCuenta.getEstatus());
+
             //Aquí va el registerOutParameter
             //cstmt.registerOutParameter(12,Types.INTEGER);
-            
             cstmt.executeUpdate();
-            
-            ResultSet rs = cstmt.getGeneratedKeys();
-            
+
+            rs = cstmt.getGeneratedKeys();
+
             rs.next();
-            
-           id=rs.getInt(1);
-           
-           cstmt.close();
-            
-        }catch(SQLException ex){
-            
-             System.out.println("Estoy en el catch de agregar AuditoriaCreacionCuenta ");
-            System.out.println(ex.getMessage());
-            
+
+            id = rs.getInt(1);
+
+            cstmt.close();
+            conn.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id=-1;
+
         }
-        
-        
+
         return id;
     }
 
     @Override
     public boolean actualizarAuditoriaCreacionCuenta(AuditoriaCreacionCuenta auditoriaCreacionCuenta) {
-         Connection conn = Conexion.getConnection();
-        
+        Connection conn;
+        ResultSet rs;
         CallableStatement cstmt;
-        
+        boolean exito = false;
+
         //Call del store procedure
-        String stProcedure="actualizarAuditoriaCreacionCuenta";
-        
-        
-        try{
-            
+        String stProcedure = "actualizarAuditoriaCreacionCuenta(?, ?, ?, ?, ?)";
+
+        try {
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            cstmt.setInt(1,auditoriaCreacionCuenta.getIdAuditoriaCreacionCuenta());
-            cstmt.setInt(2,auditoriaCreacionCuenta.getIdCuenta());
-            cstmt.setDate(3,auditoriaCreacionCuenta.getFecha());
-           
-            cstmt.setInt(4,auditoriaCreacionCuenta.getCondiciones());
-            cstmt.setInt(5,auditoriaCreacionCuenta.getEstatus());
-           
-            
-            
-            ResultSet rs = cstmt.executeQuery();
-            
+            cstmt.setInt(1, auditoriaCreacionCuenta.getIdAuditoriaCreacionCuenta());
+            cstmt.setInt(2, auditoriaCreacionCuenta.getIdCuenta());
+            cstmt.setDate(3, auditoriaCreacionCuenta.getFecha());
+
+            cstmt.setInt(4, auditoriaCreacionCuenta.getCondiciones());
+            cstmt.setInt(5, auditoriaCreacionCuenta.getEstatus());
+
+            rs = cstmt.executeQuery();
+
             rs.next();
-            
-           return rs.getBoolean(1);
-            
-            
-        }catch(SQLException ex){
-            System.out.println("Estoy en el catch de actualizarAuditoriaCreacionCuenta ");
-            System.out.println(ex.getMessage());
-            return false;
+
+            exito = rs.getBoolean(1);
+            conn.close();
+            rs.close();
+            cstmt.close();
+
+        } catch (SQLException ex) {
+          System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+
         }
-            
-    
+        return exito;
+
     }
 
     @Override
     public boolean borradoLogicoAuditoriaCreacionCuenta(int idAuditoriaCreacionCuenta) {
-         Connection conn = Conexion.getConnection();
-        
+        Connection conn;
+        ResultSet rs;
+        boolean exito = false;
         CallableStatement cstmt;
-        
+
         //Call del store procedure
-        String stProcedure="borradoLogicoAuditoriaCreacionCuenta";
-        
-        
-        
-        try{
-            
+        String stProcedure = "borradoLogicoAuditoriaCreacionCuenta(?)";
+
+        try {
+            conn = Conexion.getConnection();
+
             cstmt = conn.prepareCall(stProcedure);
-            
-            cstmt.setInt(1,idAuditoriaCreacionCuenta);
-            
-            ResultSet rs = cstmt.executeQuery();
-            
+
+            cstmt.setInt(1, idAuditoriaCreacionCuenta);
+
+            rs = cstmt.executeQuery();
+
             rs.next();
-            
-           return rs.getBoolean(1);
-            
-            
-        }catch(SQLException ex){
-            System.out.println("Estoy en el catch de auditoriaCreacionCuenta");
-            System.out.println(ex.getMessage());
-            return false;
+
+            exito = rs.getBoolean(1);
+            conn.close();
+            rs.close();
+            cstmt.close();
+
+        } catch (SQLException ex) {
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+
         }
+        return exito;
     }
 
     @Override
     public AuditoriaCreacionCuenta mostrarAuditoriaCreacionCuenta(int idAuditoriaCreacionCuenta) {
-         Connection conn = Conexion.getConnection();
-        
+        Connection conn;
+        ResultSet rs;
+
         CallableStatement cstmt;
-        
-        AuditoriaCreacionCuenta auditoriaCreacionCuenta = new AuditoriaCreacionCuenta();
-        
+
+        AuditoriaCreacionCuenta auditoriaCreacionCuenta = null;
+
         //Call del store procedure
-        String stProcedure="mostrarAuditoriaCreacionCuenta";
-        
-        try{
-            
+        String stProcedure = "mostrarAuditoriaCreacionCuenta (?)";
+
+        try {
+            auditoriaCreacionCuenta = new AuditoriaCreacionCuenta();
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idAuditoriaCreacionCuenta);
-            
-            ResultSet rs = cstmt.executeQuery();
-            
-         
-            
+
+            rs = cstmt.executeQuery();
+
             rs.next();
             auditoriaCreacionCuenta.setIdAuditoriaCreacionCuenta(rs.getInt("idAuditoriaCreacionCuenta"));
             auditoriaCreacionCuenta.setIdCuenta(rs.getInt("idCuenta"));
             auditoriaCreacionCuenta.setFecha(rs.getDate("fecha"));
-            
+
             auditoriaCreacionCuenta.setCondiciones(rs.getInt("condiciones"));
             auditoriaCreacionCuenta.setEstatus(rs.getInt("estatus"));
-            
-            
-           
-            return auditoriaCreacionCuenta;
-        }catch(SQLException ex){
-            
-            System.out.println("Estoy en el catch de auditoriaCreacionCuenta");
-            System.out.println(ex.getMessage());
-            return auditoriaCreacionCuenta;
+
+            conn.close();
+            rs.close();
+            cstmt.close();
+        } catch (SQLException ex) {
+
+         System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            auditoriaCreacionCuenta = null;
+
         }
+        return auditoriaCreacionCuenta;
     }
 
     @Override
     public List<AuditoriaCreacionCuenta> mostrarAuditoriaCreacionCuenta() {
-         Connection conn = Conexion.getConnection();
-        
-        
-        List<AuditoriaCreacionCuenta> auditoriaCreacionCuentas = new ArrayList<>();
-        
-        try{
-            
-            CallableStatement cstmt;
-            cstmt = conn.prepareCall("CALL getAuditoriaCreacionCuenta()");
-            ResultSet rs = cstmt.executeQuery();
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        List<AuditoriaCreacionCuenta> auditoriaCreacionCuentas = null;
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("mostrarListaAuditoriaCreacionCuenta()");
+            rs = cstmt.executeQuery();
+            auditoriaCreacionCuentas= new ArrayList<>();
             AuditoriaCreacionCuenta auditoriaCreacionCuenta;
-            
-            while(rs.next()){
-                
+
+            while (rs.next()) {
+
                 auditoriaCreacionCuenta = new AuditoriaCreacionCuenta();
-                
+
                 auditoriaCreacionCuenta.setIdAuditoriaCreacionCuenta(rs.getInt(1));
-            auditoriaCreacionCuenta.setIdCuenta(rs.getInt(2));
-            auditoriaCreacionCuenta.setFecha(rs.getDate(3));
-          
-            auditoriaCreacionCuenta.setCondiciones(rs.getInt(4));
-            auditoriaCreacionCuenta.setEstatus(rs.getInt(5));
-                
+                auditoriaCreacionCuenta.setIdCuenta(rs.getInt(2));
+                auditoriaCreacionCuenta.setFecha(rs.getDate(3));
+
+                auditoriaCreacionCuenta.setCondiciones(rs.getInt(4));
+                auditoriaCreacionCuenta.setEstatus(rs.getInt(5));
+
                 auditoriaCreacionCuentas.add(auditoriaCreacionCuenta);
-            
+
             }
-            
+
             rs.close();
             cstmt.close();
             conn.close();
-                    
-            
-        }catch(SQLException ex){
-            System.out.println("ERROR GET AuditoriaCreacionCuenta" + ex.getMessage());
+
+        } catch (SQLException ex) {
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            auditoriaCreacionCuentas = null;
         }
-        
+
         return auditoriaCreacionCuentas;
     }
-    
+
 }
-
-

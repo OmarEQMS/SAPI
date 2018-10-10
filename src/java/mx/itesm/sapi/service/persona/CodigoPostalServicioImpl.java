@@ -18,85 +18,87 @@ import mx.itesm.sapi.util.Conexion;
  *
  * @author Angel GTZ
  */
-public class CodigoPostalServicioImpl implements CodigoPostalServicio{
+public class CodigoPostalServicioImpl implements CodigoPostalServicio {
 
     @Override
     public CodigoPostal mostrarCodigoPostal(int idCodigoPostal) {
-           Connection conn = Conexion.getConnection();
-        
+        Connection conn;
+        ResultSet rs;
         CallableStatement cstmt;
-        
-        CodigoPostal codigoPostal = new CodigoPostal();
-        
+
+        CodigoPostal codigoPostal=null;
+
         //Call del store procedure
-        String stProcedure="mostrarCodigoPostal";
-        
-        try{
-            
+        String stProcedure = "mostrarCodigoPostal(?)";
+
+        try {
+            codigoPostal = new CodigoPostal();
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idCodigoPostal);
-            
-            ResultSet rs = cstmt.executeQuery();
-            
-         
-            
+
+            rs = cstmt.executeQuery();
+
             rs.next();
             codigoPostal.setIdCodigoPostal(rs.getInt("idCodigoPostal"));
             codigoPostal.setNumero(rs.getString("numero"));
             codigoPostal.setIdMunicipio(rs.getInt("idMunicipio"));
             codigoPostal.setEstatus(rs.getInt("estatus"));
+            conn.close();
+            rs.close();
+            cstmt.close();
             
+        } catch (SQLException ex) {
+
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            codigoPostal=null;
             
-           
-            return codigoPostal;
-        }catch(SQLException ex){
-            
-            System.out.println("Estoy en el catch de mostrarcodigoPostal");
-            System.out.println(ex.getMessage());
-            return codigoPostal;
         }
+        return codigoPostal;
     }
 
     @Override
     public List<CodigoPostal> mostrarCodigoPostal() {
-       Connection conn = Conexion.getConnection();
-        
-        
-        List<CodigoPostal> auditoriaCreacionCuentas = new ArrayList<>();
-        
-        try{
-            
-            CallableStatement cstmt;
-            cstmt = conn.prepareCall("CALL getCodigoPostal()");
-            ResultSet rs = cstmt.executeQuery();
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+      
+        List<CodigoPostal> codigosPostal = null;
+
+        try {
+            codigosPostal = new ArrayList<>();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("mostrarListaCodigoPostal()");
+            rs = cstmt.executeQuery();
             CodigoPostal codigoPostal;
-            
-            while(rs.next()){
-                
+
+            while (rs.next()) {
+
                 codigoPostal = new CodigoPostal();
-            
-            codigoPostal.setIdCodigoPostal(rs.getInt(1));
-            codigoPostal.setNumero(rs.getString(2));
-            codigoPostal.setIdMunicipio(rs.getInt(3));
-            codigoPostal.setEstatus(rs.getInt(4));
-                
-               
-                
-                auditoriaCreacionCuentas.add(codigoPostal);
-            
+
+                codigoPostal.setIdCodigoPostal(rs.getInt(1));
+                codigoPostal.setNumero(rs.getString(2));
+                codigoPostal.setIdMunicipio(rs.getInt(3));
+                codigoPostal.setEstatus(rs.getInt(4));
+
+                codigosPostal.add(codigoPostal);
+
             }
-            
+
             rs.close();
             cstmt.close();
             conn.close();
-                    
-            
-        }catch(SQLException ex){
-            System.out.println("ERROR GET codigopostal" + ex.getMessage());
+
+        } catch (SQLException ex) {
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            codigosPostal = null;
         }
-        
-        return auditoriaCreacionCuentas;
-    
+
+        return codigosPostal;
+
     }
 
     @Override
@@ -114,5 +116,4 @@ public class CodigoPostalServicioImpl implements CodigoPostalServicio{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-   
 }

@@ -29,23 +29,23 @@ public class MunicipioServicioImpl implements MunicipioServicio{
 
     @Override
     public Municipio mostrarMunicipio(int idMunicipio) {
-         Connection conn = Conexion.getConnection();
-        
+        Connection conn;
+        ResultSet rs;
         CallableStatement cstmt;
         
-        Municipio municipio = new Municipio();
+        Municipio municipio =null;
         
         //Call del store procedure
-        String stProcedure="mostrarMunicipio";
+        String stProcedure="mostrarMunicipio(?)";
         
         try{
-            
+            municipio = new Municipio();
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idMunicipio);
             
-            ResultSet rs = cstmt.executeQuery();
-            
-         
+             rs = cstmt.executeQuery();
+
             
             rs.next();
             municipio.setIdMunicipio(rs.getInt("idMunicipio"));
@@ -53,29 +53,33 @@ public class MunicipioServicioImpl implements MunicipioServicio{
              municipio.setIdEstado(rs.getInt("idEstado"));
             municipio.setEstatus(rs.getInt("estatus"));
             
-            
+             rs.close();
+            cstmt.close();
+            conn.close();
            
-            return municipio;
+           
         }catch(SQLException ex){
             
-            System.out.println("Estoy en el catch de mostrarM municipio.setIdMunicipio(rs.getInt(\"idSexo\")); ");
-            System.out.println(ex.getMessage());
-            return municipio;
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+             municipio=null;
         }
+         return municipio;
     }
 
     @Override
     public List<Municipio> mostrarMunicipio() {
-        Connection conn = Conexion.getConnection();
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
         
-        
-        List<Municipio> municipios = new ArrayList<>();
+        List<Municipio> municipios = null;
         
         try{
-            
-            CallableStatement cstmt;
-            cstmt = conn.prepareCall("CALL getSexo()");
-            ResultSet rs = cstmt.executeQuery();
+            municipios = new ArrayList<>();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("mostrarListasMunicipio()");
+             rs = cstmt.executeQuery();
             Municipio municipio;
             
             while(rs.next()){
@@ -97,7 +101,9 @@ public class MunicipioServicioImpl implements MunicipioServicio{
                     
             
         }catch(SQLException ex){
-            System.out.println("ERROR GET municipios" + ex.getMessage());
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            municipios=null;
         }
         
         return municipios;
