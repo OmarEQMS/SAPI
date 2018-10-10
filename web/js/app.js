@@ -1,5 +1,18 @@
 $(document).ready(function () {
 
+    $("#registrate").on('click', function () {
+        $.postGo("SAPI", {
+            file: "registro.jsp"
+        });
+    });
+
+    $("#regresarIndex").on('click', function () {
+        $.postGo("SAPI", {
+            file: "index.jsp"
+        });
+    });
+    
+
     var pantalla1 = $('#pantalla1');
     var pantalla2 = $('#pantalla2');
     var btnRegresar = $('#btn-regresar');

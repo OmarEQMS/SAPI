@@ -46,8 +46,8 @@ public class ZonaServicioImpl implements ZonaServicio {
                 
                 estado = new Estado();
                 
-                estado.setIdEstado(rs.getInt("idEstado"));
-                estado.setNombre(rs.getString("nombre"));
+                estado.setIdEstado(rs.getInt(1));
+                estado.setNombre(rs.getString(2));
                 
                 estados.add(estado);
             

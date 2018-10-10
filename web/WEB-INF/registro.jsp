@@ -177,12 +177,13 @@
             </div>
         </div>
 
-        <h6 class="text-center mt-4 texto-cuenta mb-0"><span>Ya estas registrado?</span> <a href="../Login/index.html">Inicia
+        <h6 class="text-center mt-4 texto-cuenta mb-0"><span>Ya estas registrado?</span> <a href="#" id="regresarIndex">Inicia
                 sesión aquí</a></h6>
     </form>
 
 
     <script src="js/jquery.js"></script>
+    <script src="js/jqueryPostGo.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/app.js"></script>
