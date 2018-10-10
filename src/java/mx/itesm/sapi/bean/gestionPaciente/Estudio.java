@@ -12,6 +12,7 @@ package mx.itesm.sapi.bean.gestionPaciente;
 public class Estudio {
 
     private int idEstudio;
+    private int idPiso;
     private int idCategoriaEstudio;
     private String nombre;
     private int estatus;
@@ -22,10 +23,19 @@ public class Estudio {
     public String toString(){
         String str= "Estudio [iEstudio:".concat(String.valueOf(idEstudio))
                 .concat(",idCategoriaEstudio:").concat(String.valueOf(idCategoriaEstudio))
+                .concat(",idPiso:").concat(String.valueOf(idPiso))
                 .concat(",nombre:").concat(nombre)
                 .concat(",estatus:").concat(String.valueOf(estatus))
                 .concat("]");
         return str;
+    }
+
+    public int getIdPiso() {
+        return idPiso;
+    }
+
+    public void setIdPiso(int idPiso) {
+        this.idPiso = idPiso;
     }
 
     public int getIdEstudio() {

@@ -14,6 +14,7 @@ public class MotivoConsulta {
     private int idMotivoConsulta;
     private String nombre;
     private int estatus;
+    
     public MotivoConsulta() {}
     
     @Override

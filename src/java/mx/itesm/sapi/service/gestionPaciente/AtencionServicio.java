@@ -14,8 +14,8 @@ import mx.itesm.sapi.bean.gestionPaciente.Atencion;
  */
 public interface AtencionServicio {
     public Atencion mostrarAtencionServicio(int idAtencionServicio);
-    public List<Atencion> mostrarAllAtencionServicio();
-    public boolean agregarAtencion(Atencion atencion);
+    public List<Atencion> mostrarAtencionServicio();
+    public int agregarAtencion(Atencion atencion);
     public boolean borradoLogicoAtencion(int idAtencion);
     public boolean actualizarAtencion(Atencion atencion);
     

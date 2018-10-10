@@ -17,6 +17,7 @@ public class Atencion {
     private int medicoSustituto;
     private int estatus;
     private int medicoPresente;
+    private int adscrito;
     
     //Constructor
     public Atencion() {}
@@ -28,8 +29,8 @@ public class Atencion {
                 .concat(",idEmpleado:").concat(String.valueOf(idEmpleado))
                 .concat(",medicoSustituto:").concat(String.valueOf(medicoSustituto))
                 .concat(",estatus:").concat(String.valueOf(estatus))
-                .concat(",medicoPresente:")
-                .concat(String.valueOf(medicoPresente))
+                .concat(",medicoPresente:").concat(String.valueOf(medicoPresente))
+                .concat(",adscrito:").concat(String.valueOf(adscrito))
                 .concat("]");
         return str;
         
@@ -83,5 +84,12 @@ public class Atencion {
         this.medicoPresente = medicoPresente;
     }
     
+    public int getAdscrito() {
+        return adscrito;
+    }
+
+    public void setAdscrito(int adscrito) {
+        this.adscrito = adscrito;
+    }
     
 }

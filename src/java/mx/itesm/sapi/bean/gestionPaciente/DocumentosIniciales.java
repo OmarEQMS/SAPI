@@ -8,8 +8,6 @@ package mx.itesm.sapi.bean.gestionPaciente;
  *
  * @author Alex
  */
-import java.io.InputStream;
-import javafx.scene.text.Text;
 public class DocumentosIniciales {
 
     private int idDocumentosIniciales;

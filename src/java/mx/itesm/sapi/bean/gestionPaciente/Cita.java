@@ -20,8 +20,8 @@ public class Cita {
 	private int idMotivoConsulta;
 	private int idImportanciaCita;
 	private int idTipoEstudio;
-	private Timestamp fecha;
-	private int idMastografiaPaciente;
+	private Timestamp fechaProgramada;
+        private Timestamp fechaReal;
 	private int estatus;
 
 
@@ -36,8 +36,8 @@ public class Cita {
     		.concat(",idMotivoConsulta:").concat(String.valueOf(idMotivoConsulta))
     		.concat(",idImportanciaCita:").concat(String.valueOf(idImportanciaCita))
     		.concat(",idTipoEstudio:").concat(String.valueOf(idTipoEstudio))
-    		.concat(",fecha:").concat(String.valueOf(fecha))
-    		.concat(",idMastografiaPaciente:").concat(String.valueOf(idMastografiaPaciente))
+    		.concat(",fechaProgramada:").concat(String.valueOf(fechaProgramada))
+                .concat(",fechaReal:").concat(String.valueOf(fechaReal))
     		.concat(",estatus:").concat(String.valueOf(estatus))
     		
     		.concat("]");
@@ -102,20 +102,20 @@ public class Cita {
         this.idTipoEstudio = idTipoEstudio;
     }
 
-    public Timestamp getFecha() {
-        return fecha;
+    public Timestamp getFechaProgramada() {
+        return fechaProgramada;
     }
 
-    public void setFecha(Timestamp fecha) {
-        this.fecha = fecha;
+    public void getFechaProgramada(Timestamp fechaProgramada) {
+        this.fechaProgramada = fechaProgramada;
     }
 
-    public int getIdMastografiaPaciente() {
-        return idMastografiaPaciente;
+     public Timestamp getFechaReal() {
+        return fechaReal;
     }
 
-    public void setIdMastografiaPaciente(int idMastografiaPaciente) {
-        this.idMastografiaPaciente = idMastografiaPaciente;
+    public void getFechaReal(Timestamp fechaReal) {
+        this.fechaReal = fechaReal;
     }
 
     public int getEstatus() {

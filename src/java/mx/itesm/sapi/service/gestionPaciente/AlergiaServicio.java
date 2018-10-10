@@ -14,10 +14,8 @@ import mx.itesm.sapi.bean.gestionPaciente.Alergia;
  */
 public interface AlergiaServicio {
     public Alergia mostrarAlergia(int idAlergia);
-    public Alergia mostrarAlergia(String nombreAlergia);    
-    public List<Alergia> mostrarAllAlergias();
-    public boolean agregarAlergia(Alergia alergia);
+    public List<Alergia> mostrarAlergia();
+    public int agregarAlergia(Alergia alergia);
     public boolean borradoLogicoAlergia(int idAlergia);
-    public boolean borradoLogicoAlergia(String nombreAlergia);
-    public boolean actualizarAlergia(Alergia alergia); 
+    public boolean actualizarAlergia(int idAlergia); 
 }

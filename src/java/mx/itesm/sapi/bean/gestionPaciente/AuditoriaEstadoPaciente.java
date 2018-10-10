@@ -16,7 +16,7 @@ public class AuditoriaEstadoPaciente {
     private int idAuditoriaEstadoPaciente;
     private Timestamp fecha;
     private int idEmpleado;
-    private int EstadoPacientePaciente;
+    private int idEstadoPacientePaciente;
     private int estatus;
 
     public AuditoriaEstadoPaciente() {}
@@ -26,7 +26,7 @@ public class AuditoriaEstadoPaciente {
         String str= "AuditoriaEstadoPaciente [idAuditoriaEstadoPaciente:".concat(String.valueOf(idAuditoriaEstadoPaciente))
                 .concat(",fecha:").concat(String.valueOf(fecha))
                 .concat(",idEmpleado:").concat(String.valueOf(idEmpleado))
-                .concat(",EstadoPacientePaciente:").concat(String.valueOf(EstadoPacientePaciente))
+                .concat(",EstadoPacientePaciente:").concat(String.valueOf(idEstadoPacientePaciente))
                 .concat(",estatus:").concat(String.valueOf(estatus))
                 .concat("]");
         return str;
@@ -57,11 +57,11 @@ public class AuditoriaEstadoPaciente {
     }
 
     public int getEstadoPacientePaciente() {
-        return EstadoPacientePaciente;
+        return idEstadoPacientePaciente;
     }
 
-    public void setEstadoPacientePaciente(int EstadoPacientePaciente) {
-        this.EstadoPacientePaciente = EstadoPacientePaciente;
+    public void setEstadoPacientePaciente(int idEstadoPacientePaciente) {
+        this.idEstadoPacientePaciente = idEstadoPacientePaciente;
     }
 
     public int getEstatus() {

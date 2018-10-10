@@ -5,6 +5,8 @@
  */
 package mx.itesm.sapi.bean.gestionPaciente;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author Alex
@@ -19,6 +21,7 @@ public class DocumentoEstudio {
     private byte[] archivo;
     private int previo;
     private int estatus;
+    private Timestamp fechaEstudioPrevio;
 
     public DocumentoEstudio() {}
 
@@ -32,10 +35,19 @@ public class DocumentoEstudio {
     		.concat("archivo:").concat(String.valueOf(archivo))
     		.concat("previo:").concat(String.valueOf(previo))
     		.concat("estatus:").concat(String.valueOf(estatus))
+                .concat(",fechaEstudioPrecio:").concat(String.valueOf(fechaEstudioPrevio))
     		.concat("]");
 
     	return str;
         
+    }
+
+    public Timestamp getFechaEstudioPrevio() {
+        return fechaEstudioPrevio;
+    }
+
+    public void setFechaEstudioPrevio(Timestamp fechaEstudioPrevio) {
+        this.fechaEstudioPrevio = fechaEstudioPrevio;
     }
 
     public int getIdDocumentoEstudio() {

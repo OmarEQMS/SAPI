@@ -16,11 +16,9 @@ public class Paciente {
     private int idSeguro;
     private String prz;
     private String expediente;
-    private String seguroPopular;
     private double peso;
     private double imc;
     private double talla;
-    private int editando;
     private int estatus;
     
     public Paciente() {}
@@ -33,11 +31,9 @@ public class Paciente {
                 .concat(",idSeguro:").concat(String.valueOf(idSeguro))
                 .concat(",prz:").concat(prz)
                 .concat(",expediente:").concat(expediente)
-                .concat(",seguroPopular:").concat(seguroPopular)
                 .concat(",peso:").concat(String.valueOf(peso))
                 .concat(",imc:").concat(String.valueOf(imc))
                 .concat(",talla:").concat(String.valueOf(talla))
-                .concat(",editando:").concat(String.valueOf(editando))
                 .concat(",estatus:").concat(String.valueOf(estatus))         
                 .concat("]");
         return str;
@@ -91,14 +87,6 @@ public class Paciente {
         this.expediente = expediente;
     }
 
-    public String getSeguroPopular() {
-        return seguroPopular;
-    }
-
-    public void setSeguroPopular(String seguroPopular) {
-        this.seguroPopular = seguroPopular;
-    }
-
     public double getPeso() {
         return peso;
     }
@@ -121,14 +109,6 @@ public class Paciente {
 
     public void setTalla(double talla) {
         this.talla = talla;
-    }
-
-    public int getEditando() {
-        return editando;
-    }
-
-    public void setEditando(int editando) {
-        this.editando = editando;
     }
 
     public int getEstatus() {

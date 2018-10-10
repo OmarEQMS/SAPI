@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 import mx.itesm.sapi.bean.gestionPaciente.Alergia;
 import mx.itesm.sapi.util.Conexion;
@@ -23,61 +24,149 @@ public class AlergiaServicioImpl implements AlergiaServicio{
     @Override
     public Alergia mostrarAlergia(int idAlergia) {
         
-         Connection conn = Conexion.getConnection();
-         CallableStatement callableStatementmostrarAlergia;
-                  
-         Alergia alergia = new Alergia();
+         Connection conn;
+         CallableStatement cstmt;
+         ResultSet rs;
+         String stProcedure = "---";
+         Alergia alergia = null;
      
         try {
-            
-            callableStatementmostrarAlergia = conn.prepareCall("CALL mostrarAlergia(?)");                                    
-            callableStatementmostrarAlergia.setInt(4, idAlergia);            
-                                   
-            ResultSet rs = callableStatementmostrarAlergia.executeQuery();
+            conn = Conexion.getConnection();
+            alergia = new Alergia();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idAlergia);
+                  
+            rs = cstmt.executeQuery();
             rs.next();
             alergia.setIdAlergia(rs.getInt("idAlergia"));
             alergia.setNombre(rs.getString("nombre"));
-            alergia.setEstatus(rs.getInt("estatus"));
             
             conn.close();
-            callableStatementmostrarAlergia.close();
+            cstmt.close();
             rs.close();
             
         } catch (SQLException ex) {
-           System.out.println("Catch AlergiaServicioImpl mostrarAlergia");          
-            return null;
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                   .concat(ex.getMessage()));
+           alergia = null;
         }   
         return alergia;
     }
 
     @Override
-    public Alergia mostrarAlergia(String nombreAlergia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Alergia> mostrarAlergia() {
+        Connection conn;
+	CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "---";
+        List<Alergia> alergias = null;
+        Alergia alergia;
+
+	try{
+            conn  = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            rs = cstmt.executeQuery();
+            alergias =  new ArrayList<>();
+            
+            while(rs.next()){
+                alergia = new Alergia();
+                alergia.setIdAlergia(rs.getInt("idAlergia"));
+                alergia.setNombre(rs.getString("nombre"));
+
+                alergias.add(alergia);
+            }
+		
+		conn.close();
+		cstmt.close();
+		rs.close();
+                
+	}catch(SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            alergias = null;
+	}
+        return alergias;
     }
 
     @Override
-    public List<Alergia> mostrarAllAlergias() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean agregarAlergia(Alergia alergia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int agregarAlergia(Alergia alergia) {
+        Connection conn;
+	CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "";
+        int id = -1;
+        
+	try{
+            conn  = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setString(1,alergia.getNombre());
+            
+            rs = cstmt.executeQuery();
+            rs.next();
+            id = rs.getInt("idAlergia");
+                
+            conn.close();
+            cstmt.close();
+            rs.close();
+	}catch(SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
+	}
+        return id;
     }
 
     @Override
     public boolean borradoLogicoAlergia(int idAlergia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn;
+	CallableStatement cstmt;
+        String stProcedure = "";
+        boolean exito = false;
+
+	try{
+            conn  = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idAlergia);
+            cstmt.registerOutParameter(1, Types.BOOLEAN);
+            
+            cstmt.executeUpdate();
+            exito = cstmt.getBoolean(1);
+            
+            
+            conn.close();
+            cstmt.close();
+	}catch(SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+	}
+        return exito;
     }
 
     @Override
-    public boolean borradoLogicoAlergia(String nombreAlergia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public boolean actualizarAlergia(int  idAlergia) {
+        Connection conn;
+	CallableStatement cstmt;
+        String stProcedure = "";
+        boolean exito = false;
 
-    @Override
-    public boolean actualizarAlergia(Alergia alergia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	try{
+            conn  = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idAlergia);
+            cstmt.registerOutParameter(1, Types.BOOLEAN);
+            
+            cstmt.executeUpdate();
+            exito = cstmt.getBoolean(1);
+            
+            conn.close();
+            cstmt.close();
+	}catch(SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+	}
+        return exito;
     }
     
 }
