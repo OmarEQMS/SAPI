@@ -11,12 +11,12 @@ import java.io.Serializable;
  *
  * @author Angel GTZ
  */
-public class TipoDeSangre implements Serializable{
+public class TipoSangre implements Serializable{
     private int idTipoSangre;
     private String nombre;
     private int estatus;
     
-      public TipoDeSangre(){}
+      public TipoSangre(){}
     
     @Override
     public String toString(){

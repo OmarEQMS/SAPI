@@ -18,7 +18,6 @@ public class AuditoriaCreacionCuenta implements Serializable{
     private int idAuditoriaCreacionCuenta;
     private int idCuenta;
     private Date fecha;
-    private String nombre;
     private int condiciones;
     private int estatus;
     
@@ -27,7 +26,7 @@ public class AuditoriaCreacionCuenta implements Serializable{
     @Override
     public String toString(){
         return "Auditoria creación de cuenta [idAuditoriaCreacionCuenta:".concat(String.valueOf(idAuditoriaCreacionCuenta)).concat(",idCuenta:").concat(String.valueOf(idCuenta))
-       .concat(",fecha:").concat(fecha.toString()).concat(",nombre:").concat(nombre).concat(",condiciones:").concat(String.valueOf(condiciones))
+       .concat(",fecha:").concat(fecha.toString()).concat(",condiciones:").concat(String.valueOf(condiciones))
        .concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
 
     }
@@ -44,9 +43,7 @@ public class AuditoriaCreacionCuenta implements Serializable{
         return fecha;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
+   
 
     public int getCondiciones() {
         return condiciones;
@@ -68,9 +65,7 @@ public class AuditoriaCreacionCuenta implements Serializable{
         this.fecha = fecha;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+   
 
     public void setCondiciones(int condiciones) {
         this.condiciones = condiciones;

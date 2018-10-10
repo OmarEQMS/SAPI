@@ -18,6 +18,7 @@ public class Cuenta implements Serializable {
     private String token;
     private int idPersona;
     private int idRol;
+    private int idEstadoCuenta;
     private int estatus;
     
     
@@ -27,7 +28,8 @@ public class Cuenta implements Serializable {
     @Override
     public String toString(){
         return "Cuenta [idCuenta:".concat(String.valueOf(idCuenta)).concat(",usuario:").concat(usuario).concat(",password:").concat(password).concat(",token:").concat(token)
-       .concat(",idPersona:").concat(String.valueOf(idPersona)).concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
+        .concat(",idPersona:").concat(String.valueOf(idPersona)).concat(",idEstadoCuenta:").concat(String.valueOf(idEstadoCuenta))
+        .concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
 
     } 
     public int getIdCuenta(){
@@ -77,6 +79,14 @@ public class Cuenta implements Serializable {
 
     public void setEstatus(int estatus) {
         this.estatus = estatus;
+    }
+
+    public int getIdEstadoCuenta() {
+        return idEstadoCuenta;
+    }
+
+    public void setIdEstadoCuenta(int idEstadoCuenta) {
+        this.idEstadoCuenta = idEstadoCuenta;
     }
     
     

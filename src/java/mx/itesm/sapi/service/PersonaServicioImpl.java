@@ -63,10 +63,10 @@ public class PersonaServicioImpl implements PersonaServicio {
             cstmt.setString(4, persona.getCurp());
             cstmt.setString(5, persona.getTelefono());
             cstmt.setString(6, persona.getCorreo());
-            cstmt.setString(7, persona.getFechaNacimiento());
+            cstmt.setString(7, persona.getFechaNacimiento().toString());
             cstmt.setInt(8,persona.getIdMunicipio());
             cstmt.setInt(9, persona.getIdEstadoCivil());
-            cstmt.setInt(10, persona.getIdRol());
+            
             cstmt.setInt(11,persona.getEdad());
             cstmt.registerOutParameter(12,Types.INTEGER);
             

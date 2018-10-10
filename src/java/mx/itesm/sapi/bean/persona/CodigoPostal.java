@@ -13,17 +13,17 @@ import java.io.Serializable;
  */
 public class CodigoPostal implements Serializable {
     private int idCodigoPostal;
-    private String numero;
     private int idMunicipio;
+    private String numero;
     private int estatus;
     
     public CodigoPostal(){}
     
     @Override
     public String toString(){
-        return "Codigo Postal [idCodigoPostal:".concat(String.valueOf(idCodigoPostal)).concat(",numero:").concat(numero)
-                                               .concat(",idMunicipio:").concat(String.valueOf(idMunicipio))
-                                               .concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
+        return "Codigo Postal [idCodigoPostal:".concat(String.valueOf(idCodigoPostal)).concat(",idMunicipio:").concat(String.valueOf(idMunicipio))
+                .concat(",numero:").concat(numero) 
+                .concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
 
     } 
 

@@ -72,9 +72,9 @@ public class LoginServicioImpl implements LoginServicio {
             //SE EJECUTA Y SE DEVUELVEN LOS VALORES DENTRO DEL RESULT SET
             ResultSet rs = cstmt.executeQuery();
             rs.next();
-            
+         /*   
             //SE OBTIENE VALOR DE 'LoginDateTime'
-            cuenta.setLoginDateTime(rs.getLong(1));
+            cuenta.setLoginDate(rs.getLong(1));
           
             //SE CIERRA CALLABLE STATEMENT, RESULT SET Y CONEXION
             rs.close();
@@ -83,6 +83,7 @@ public class LoginServicioImpl implements LoginServicio {
             
             //VERIFICACION           
             System.out.println(cuenta.getLoginDateTime()); 
+            */
             
         }catch(Exception ex){
             System.out.println("CuentaServicio.verificaUsuario ".concat(ex.getMessage()));

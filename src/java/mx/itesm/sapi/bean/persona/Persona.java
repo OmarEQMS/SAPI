@@ -22,6 +22,7 @@ public class Persona implements Serializable {
     private String telefono;
     private String correo;
     private Date fechaNacimiento;
+    private int idSexo;
     private int idTipoSangre;
     private int idMunicipio;
     private int idEstadoCivil;
@@ -38,13 +39,23 @@ public class Persona implements Serializable {
        
        String str ="Persona [idPersona:".concat(String.valueOf(idPersona)).concat(",nombre:").concat(nombre).concat(",apellido1:").concat(apellido1).concat(",apellido2:").concat(apellido2).concat(",curp:")
        .concat(curp).concat(",telefono:").concat(telefono).concat(",correo:").concat(correo).concat(",fechaNacimiento:").concat(fechaNacimiento.toString())
-       .concat(",idTipoDeSangre:").concat(String.valueOf(idTipoSangre)).concat(",idMunicipio:").concat(String.valueOf(idMunicipio)).concat(",idEstadoCivil:")
+       .concat(",idSexo:").concat(String.valueOf(idSexo)).concat(",idTipoDeSangre:").concat(String.valueOf(idTipoSangre)).concat(",idMunicipio:")
+       .concat(String.valueOf(idMunicipio)).concat(",idEstadoCivil:")
        .concat(String.valueOf(idEstadoCivil)).concat(",idDireccion:").concat(String.valueOf(idDireccion))
        .concat(",edad:").concat(String.valueOf(edad)).concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
        
      return str;
 
     } 
+
+    public int getIdSexo() {
+        return idSexo;
+    }
+
+    public void setIdSexo(int idSexo) {
+        this.idSexo = idSexo;
+    }
+   
 
     public int getIdPersona() {
         return idPersona;
