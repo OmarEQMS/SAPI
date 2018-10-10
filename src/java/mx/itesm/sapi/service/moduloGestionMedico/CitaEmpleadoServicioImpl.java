@@ -27,7 +27,7 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
         CallableStatement cstmt;
         ResultSet rs;
 
-        int id = 0;
+        int id = -1;
         //Aquí va el call del procedure
         String stProcedure = "-------";
 
@@ -57,8 +57,9 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
 
         } catch (SQLException ex) {
 
-            System.out.println("Estoy en el catch de CitaEmpleadoServicio");
-            System.out.println(ex.getMessage());
+            id = -1;
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
 
         }
 
@@ -68,9 +69,10 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
 
     @Override
     public CitaEmpleado mostrarCitaEmpleado(int idCitaEmpleado) {
-        Connection conn = Conexion.getConnection();
 
+        Connection conn;
         CallableStatement cstmt;
+        ResultSet rs;
 
         CitaEmpleado citaEmpleado = new CitaEmpleado();
 
@@ -78,10 +80,10 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
         String stProcedure = "-----";
 
         try {
-
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idCitaEmpleado);
-            ResultSet rs = cstmt.executeQuery();
+            rs = cstmt.executeQuery();
 
             rs.next();
             citaEmpleado.setIdCitaEmpleado(rs.getInt("idCitaEmpleado"));
@@ -89,26 +91,32 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
             citaEmpleado.setIdEmpleado(rs.getInt("idEmpleado"));
             citaEmpleado.setEstatus(rs.getInt("estatus"));
 
-            return citaEmpleado;
+            rs.close();
+            cstmt.close();
+            conn.close();
         } catch (SQLException ex) {
 
-            System.out.println("Estoy en el catch de CitaEmpleadoServicio");
-            System.out.println(ex.getMessage());
-            return citaEmpleado;
+            System.out.println(this.getClass().toString()
+                    .concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            citaEmpleado = null;
         }
+        return citaEmpleado;
     }
 
     @Override
     public List<CitaEmpleado> mostrarCitasEmpleados() {
-        Connection conn = Conexion.getConnection();
+
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
 
         List<CitaEmpleado> citasEmpleados = new ArrayList<>();
-        CallableStatement cstmt;
 
         try {
-
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall("CALL -----");
-            ResultSet rs = cstmt.executeQuery();
+            rs = cstmt.executeQuery();
             CitaEmpleado citaEmpleado;
 
             while (rs.next()) {
@@ -128,8 +136,12 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
             cstmt.close();
             conn.close();
 
-        } catch (Exception e) {
-            System.out.println("ERROR GET ESTADOS" + e.getMessage());
+        } catch (Exception ex) {
+
+            System.out.println(this.getClass().toString()
+                    .concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            citasEmpleados = null;
         }
 
         return citasEmpleados;
@@ -138,30 +150,32 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
     @Override
     public boolean borradoLogicoCitaEmpleado(int idCitaEmpleado) {
 
-        Connection conn = Conexion.getConnection();
-
+        Connection conn;
         CallableStatement cstmt;
+        ResultSet rs;
 
         //Call del store procedure
         String stProcedure = "";
 
         try {
-
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
             cstmt.setInt(1, idCitaEmpleado);
 
-            ResultSet rs = cstmt.executeQuery();
+            rs = cstmt.executeQuery();
 
             rs.next();
 
             return rs.getBoolean(1);
 
         } catch (SQLException ex) {
-            System.out.println("Estoy en el catch de CitaEmpleado");
-            System.out.println(ex.getMessage());
+            System.out.println(this.getClass().toString()
+                    .concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
             return false;
         }
+
     }
 
     @Override
@@ -189,8 +203,9 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
             return rs.getBoolean(1);
 
         } catch (SQLException ex) {
-            System.out.println("Estoy en el catch de actualizarCitaEmpleado");
-            System.out.println(ex.getMessage());
+            System.out.println(this.getClass().toString()
+                    .concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
             return false;
         }
 

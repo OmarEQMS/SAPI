@@ -5,6 +5,7 @@
  */
 package mx.itesm.sapi.service.moduloGestionMedico;
 
+import java.util.List;
 import mx.itesm.sapi.bean.moduloGestionMedico.DepartamentoDepartamentoInterno;
 
 /**
@@ -12,11 +13,15 @@ import mx.itesm.sapi.bean.moduloGestionMedico.DepartamentoDepartamentoInterno;
  * @author feror
  */
 public interface DepartamentoDepartamentoInternoServicio {
-    
-    public DepartamentoDepartamentoInterno mostrarDepartamentoDepartamentoInterno(int idDepartamentoDepartamentoInterno);
-    //public List<CitaEmpleado> getCitasEmpleados();
+
     public int agregarDepartamentoDepartamentoInterno(DepartamentoDepartamentoInterno departamentoDepartamentoInterno);
+
+    public DepartamentoDepartamentoInterno mostrarDepartamentoDepartamentoInterno(int idDepartamentoDepartamentoInterno);
+
+    public List<DepartamentoDepartamentoInterno> mostrarDepartamentoDepartamentoInterno();
+
     public boolean borradoLogicoDepartamentoDepartamentoInterno(int idDepartamentoDepartamentoInterno);
+
     public boolean actualizarDepartamentoDepartamentoInterno(DepartamentoDepartamentoInterno departamentoDepartamentoInterno);
-    
+
 }
