@@ -7,6 +7,12 @@ package mx.itesm.sapi.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -100,24 +106,31 @@ public class RegistraUsuarioController extends HttpServlet {
                 String contraseña1 = request.getParameter("pass1");
                 String contraseña2 = request.getParameter("pass2");
                 String fechaNacimiento = request.getParameter("fechaNacimiento");
+                
+                DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+                
+            try {
+                Timestamp bday = new Timestamp(((java.util.Date)df.parse(fechaNacimiento)).getTime());
+                 per.setFechaNacimiento(bday);
+            } catch (ParseException ex) {
+                Logger.getLogger(RegistraUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
                 String usuario = request.getParameter("usuario");
 
                 per.setNombre(nombre);
                 per.setTelefono(telefono);
 
-                per.setApellido1(apellido1);
-                per.setApellido2(apellido2);
+                per.setPrimerApellido(apellido1);
+                per.setSegundoApellido(apellido2);
                 per.setCorreo(correo);
                 per.setCurp(curp);
-                per.setIdEstado(estado);
                 per.setIdEstadoCivil(estadoCivil);
                 per.setIdMunicipio(municipio);
-                per.setFechaNacimiento(fechaNacimiento);
+               
+                
 
-                //Por arreglar
-                per.setIdRol(1);
-                //Por arreglar
+                
 
                 //Set cuenta
                 cuenta.setPassword(contraseña1);
@@ -128,15 +141,22 @@ public class RegistraUsuarioController extends HttpServlet {
                 dir.setColonia(colonia);
                 dir.setNoExterior(noExterior);
                 dir.setNoInterior(noInterior);
+                
+                
+                int idD = _rSD.agregarDireccion(dir);
+                
+                
 
-                int id = _registroServicio.savePersona(per);
+                if (idD > 0) {
 
-                if (id > 0) {
-
-                    cuenta.setIdPersona(id);
-                    dir.setIdPersona(id);
-                    _rSC.saveCuenta(cuenta);
-                    _rSD.saveDireccion(dir);
+                    
+                    per.setIdDireccion(idD);
+                    int idP = _registroServicio.agregarPersona(per);
+                    
+                    if(idP > 0){
+                        cuenta.setIdPersona(idP);
+                        _rSC.agregarCuenta(cuenta);
+                    }
                 }
 
             }

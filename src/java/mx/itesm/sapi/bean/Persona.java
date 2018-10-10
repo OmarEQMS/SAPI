@@ -8,6 +8,7 @@ package mx.itesm.sapi.bean;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -27,7 +28,7 @@ public class Persona implements Serializable {
     private String curp;
     private String telefono;
     private String correo;
-    private Date fechaNacimiento;
+    private Timestamp fechaNacimiento;
 
     private int edad;
     private InputStream imagen;
@@ -146,11 +147,11 @@ public class Persona implements Serializable {
         this.correo = correo;
     }
 
-    public Date getFechaNacimiento() {
+    public Timestamp getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(Timestamp fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

@@ -5,16 +5,18 @@
  */
 package mx.itesm.sapi.service;
 
+import java.util.List;
 import mx.itesm.sapi.bean.Direccion;
 
 /**
  *
- * @author feror
+ * @author Angel GTZ
  */
 public interface DireccionServicio {
-    public Direccion getPersona(int idDireccion);
-    public boolean saveDireccion(Direccion direccion);
-    public boolean deleteDireccion(int idDireccion);
-    public boolean updatePersona(Direccion direccion);
+    public Direccion mostrarDireccion(int idDireccion);
+    List<Direccion> mostrarDireccion();
+    public int agregarDireccion(Direccion direccion);
+    public boolean actualizarDireccion(Direccion direccion);
+    public boolean borradoLogicoDireccion(int idDireccion);
     
 }
