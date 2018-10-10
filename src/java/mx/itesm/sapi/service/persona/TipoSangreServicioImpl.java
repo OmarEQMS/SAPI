@@ -27,21 +27,22 @@ public class TipoSangreServicioImpl implements TipoSangreServicio{
 
     @Override
     public TipoSangre mostrarTipoDeSangre(int idTipoSangre) {
-       Connection conn = Conexion.getConnection();
-        
+       Connection conn;
+        ResultSet rs;
         CallableStatement cstmt;
         
-        TipoSangre tipoSangre = new TipoSangre();
+        TipoSangre tipoSangre = null;
         
         //Call del store procedure
-        String stProcedure="mostrarTipoSangre";
+        String stProcedure="mostrarTipoSangre(?)";
         
         try{
-            
+            tipoSangre = new TipoSangre();
+             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idTipoSangre);
             
-            ResultSet rs = cstmt.executeQuery();
+             rs = cstmt.executeQuery();
             
          
             
@@ -50,38 +51,41 @@ public class TipoSangreServicioImpl implements TipoSangreServicio{
             tipoSangre.setNombre(rs.getString("nombre"));
             tipoSangre.setEstatus(rs.getInt("estatus"));
             
-            
+              rs.close();
+            cstmt.close();
+            conn.close();
            
-            return tipoSangre;
+            
         }catch(SQLException ex){
             
-            System.out.println("Estoy en el catch de mostrarTipoSangre ");
-            System.out.println(ex.getMessage());
-            return tipoSangre;
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+             tipoSangre=null;
         }
+        return tipoSangre;
     }
 
     @Override
     public List<TipoSangre> mostrarTipoDeSangre() {
-        Connection conn = Conexion.getConnection();
-        
-        
-        List<TipoSangre> tiposSangre = new ArrayList<>();
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+        List<TipoSangre> tiposSangre = null;
         
         try{
-            
-            CallableStatement cstmt;
-            cstmt = conn.prepareCall("CALL getTipoSangre()");
-            ResultSet rs = cstmt.executeQuery();
+            tiposSangre = new ArrayList<>();
+             conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("mostrarListaTipoSangre()");
+             rs = cstmt.executeQuery();
             TipoSangre tipoSangre;
             
             while(rs.next()){
                 
                 tipoSangre = new TipoSangre();
                 
-            tipoSangre.setIdTipoSangre(rs.getInt(1));
-            tipoSangre.setNombre(rs.getString(2));
-            tipoSangre.setEstatus(rs.getInt(3));
+            tipoSangre.setIdTipoSangre(rs.getInt("idTipoSangre"));
+            tipoSangre.setNombre(rs.getString("nombre"));
+            tipoSangre.setEstatus(rs.getInt("estatus"));
                 
                 tiposSangre.add(tipoSangre);
             
@@ -93,7 +97,9 @@ public class TipoSangreServicioImpl implements TipoSangreServicio{
                     
             
         }catch(SQLException ex){
-            System.out.println("ERROR GET tiposSangre" + ex.getMessage());
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+           tiposSangre=null;
         }
         
         return tiposSangre;

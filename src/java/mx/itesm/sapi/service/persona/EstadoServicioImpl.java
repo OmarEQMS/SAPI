@@ -80,9 +80,9 @@ public class EstadoServicioImpl implements EstadoServicio {
 
                 estado = new Estado();
 
-                estado.setIdEstado(rs.getInt(1));
-                estado.setNombre(rs.getString(2));
-                estado.setEstatus(rs.getInt(3));
+                estado.setIdEstado(rs.getInt("idEstado"));
+                estado.setNombre(rs.getString("nombre"));
+                estado.setEstatus(rs.getInt("estatus"));
 
                 estados.add(estado);
 
@@ -95,7 +95,7 @@ public class EstadoServicioImpl implements EstadoServicio {
         } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
-            estados=null;
+            estados = null;
         }
 
         return estados;

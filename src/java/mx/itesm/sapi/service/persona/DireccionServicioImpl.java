@@ -78,14 +78,12 @@ public class DireccionServicioImpl implements DireccionServicio {
             while (rs.next()) {
 
                 direccion = new Direccion();
-
-                direccion.setIdDireccion(rs.getInt(1));
-                direccion.setCalle(rs.getString(2));
-                direccion.setNoInterior(rs.getString(3));
-                direccion.setNoExterior(rs.getString(4));
-                direccion.setColonia(rs.getString(5));
-                direccion.setEstatus(rs.getInt(6));
-
+                direccion.setIdDireccion(rs.getInt("idDireccion"));
+                direccion.setCalle(rs.getString("calle"));
+                direccion.setNoInterior(rs.getString("noInterior"));
+                direccion.setNoExterior(rs.getString("noExterior"));
+                direccion.setColonia(rs.getString("colonia"));
+                direccion.setEstatus(rs.getInt("estatus"));
                 direcciones.add(direccion);
 
             }

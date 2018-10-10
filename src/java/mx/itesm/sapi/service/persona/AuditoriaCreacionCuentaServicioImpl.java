@@ -202,12 +202,12 @@ public class AuditoriaCreacionCuentaServicioImpl implements AuditoriaCreacionCue
 
                 auditoriaCreacionCuenta = new AuditoriaCreacionCuenta();
 
-                auditoriaCreacionCuenta.setIdAuditoriaCreacionCuenta(rs.getInt(1));
-                auditoriaCreacionCuenta.setIdCuenta(rs.getInt(2));
-                auditoriaCreacionCuenta.setFecha(rs.getDate(3));
+               auditoriaCreacionCuenta.setIdAuditoriaCreacionCuenta(rs.getInt("idAuditoriaCreacionCuenta"));
+            auditoriaCreacionCuenta.setIdCuenta(rs.getInt("idCuenta"));
+            auditoriaCreacionCuenta.setFecha(rs.getDate("fecha"));
 
-                auditoriaCreacionCuenta.setCondiciones(rs.getInt(4));
-                auditoriaCreacionCuenta.setEstatus(rs.getInt(5));
+            auditoriaCreacionCuenta.setCondiciones(rs.getInt("condiciones"));
+            auditoriaCreacionCuenta.setEstatus(rs.getInt("estatus"));
 
                 auditoriaCreacionCuentas.add(auditoriaCreacionCuenta);
 

@@ -52,14 +52,14 @@ public class EstadoCuentaServicioImpl implements EstadoCuentaServicio {
             rs.close();
             cstmt.close();
             conn.close();
-            
+
         } catch (SQLException ex) {
 
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
-             estadoCuenta=null;
+            estadoCuenta = null;
         }
-        return estadoCuenta;    
+        return estadoCuenta;
     }
 
     @Override
@@ -81,9 +81,9 @@ public class EstadoCuentaServicioImpl implements EstadoCuentaServicio {
 
                 estadoCuenta = new EstadoCuenta();
 
-                estadoCuenta.setIdEstadoCuenta(rs.getInt(1));
-                estadoCuenta.setNombre(rs.getString(2));
-                estadoCuenta.setEstatus(rs.getInt(3));
+                estadoCuenta.setIdEstadoCuenta(rs.getInt("idEstadoCuenta"));
+                estadoCuenta.setNombre(rs.getString("nombre"));
+                estadoCuenta.setEstatus(rs.getInt("estatus"));
 
                 estadoCuentas.add(estadoCuenta);
 

@@ -121,9 +121,9 @@ public class RolServicioImpl implements RolServicio {
 
                 rol = new Rol();
 
-                rol.setIdRol(rs.getInt(1));
-                rol.setNombre(rs.getString(2));
-                rol.setEstatus(rs.getInt(3));
+                rol.setIdRol(rs.getInt("idRol"));
+                rol.setNombre(rs.getString("nombre"));
+                rol.setEstatus(rs.getInt("estatus"));
 
                 roles.add(rol);
 
@@ -134,7 +134,7 @@ public class RolServicioImpl implements RolServicio {
             conn.close();
 
         } catch (SQLException ex) {
-             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             roles = null;
         }

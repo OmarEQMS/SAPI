@@ -62,22 +62,22 @@ public class EstadoCivilServicioImpl implements EstadoCivilServicio {
         ResultSet rs;
         CallableStatement cstmt;
 
-        List<EstadoCivil> estadoCiviles =null;
+        List<EstadoCivil> estadoCiviles = null;
 
         try {
             estadoCiviles = new ArrayList<>();
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall("mostrarListaEstadoCivil()");
-             rs = cstmt.executeQuery();
+            rs = cstmt.executeQuery();
             EstadoCivil estadoCivil;
 
             while (rs.next()) {
 
                 estadoCivil = new EstadoCivil();
 
-                estadoCivil.setIdEstadoCivil(rs.getInt(1));
-                estadoCivil.setNombre(rs.getString(2));
-                estadoCivil.setEstatus(rs.getInt(3));
+                estadoCivil.setIdEstadoCivil(rs.getInt("idEstadoCivil"));
+                estadoCivil.setNombre(rs.getString("nombre"));
+                estadoCivil.setEstatus(rs.getInt("estatus"));
 
                 estadoCiviles.add(estadoCivil);
 

@@ -18,9 +18,7 @@ import mx.itesm.sapi.util.Conexion;
  *
  * @author Angel GTZ
  */
-public class MunicipioServicioImpl implements MunicipioServicio{
-
-   
+public class MunicipioServicioImpl implements MunicipioServicio {
 
     @Override
     public boolean borradoLogicoMunicipio(int idMunicipio) {
@@ -32,39 +30,37 @@ public class MunicipioServicioImpl implements MunicipioServicio{
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
-        
-        Municipio municipio =null;
-        
+
+        Municipio municipio = null;
+
         //Call del store procedure
-        String stProcedure="mostrarMunicipio(?)";
-        
-        try{
+        String stProcedure = "mostrarMunicipio(?)";
+
+        try {
             municipio = new Municipio();
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idMunicipio);
-            
-             rs = cstmt.executeQuery();
 
-            
+            rs = cstmt.executeQuery();
+
             rs.next();
             municipio.setIdMunicipio(rs.getInt("idMunicipio"));
             municipio.setNombre(rs.getString("nombre"));
-             municipio.setIdEstado(rs.getInt("idEstado"));
+            municipio.setIdEstado(rs.getInt("idEstado"));
             municipio.setEstatus(rs.getInt("estatus"));
-            
-             rs.close();
+
+            rs.close();
             cstmt.close();
             conn.close();
-           
-           
-        }catch(SQLException ex){
-            
+
+        } catch (SQLException ex) {
+
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
-             municipio=null;
+            municipio = null;
         }
-         return municipio;
+        return municipio;
     }
 
     @Override
@@ -72,40 +68,39 @@ public class MunicipioServicioImpl implements MunicipioServicio{
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
-        
+
         List<Municipio> municipios = null;
-        
-        try{
+
+        try {
             municipios = new ArrayList<>();
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall("mostrarListasMunicipio()");
-             rs = cstmt.executeQuery();
+            rs = cstmt.executeQuery();
             Municipio municipio;
-            
-            while(rs.next()){
-                
+
+            while (rs.next()) {
+
                 municipio = new Municipio();
-                
-            municipio.setIdMunicipio(rs.getInt(1));
-            municipio.setNombre(rs.getString(2));
-            municipio.setIdMunicipio(rs.getInt(3));
-            municipio.setEstatus(rs.getInt(4));
-                
+
+                municipio.setIdMunicipio(rs.getInt("idMunicipio"));
+                municipio.setNombre(rs.getString("nombre"));
+                municipio.setIdEstado(rs.getInt("idEstado"));
+                municipio.setEstatus(rs.getInt("estatus"));
+
                 municipios.add(municipio);
-            
+
             }
-            
+
             rs.close();
             cstmt.close();
             conn.close();
-                    
-            
-        }catch(SQLException ex){
+
+        } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
-            municipios=null;
+            municipios = null;
         }
-        
+
         return municipios;
     }
 
@@ -119,6 +114,4 @@ public class MunicipioServicioImpl implements MunicipioServicio{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-   
-    
 }

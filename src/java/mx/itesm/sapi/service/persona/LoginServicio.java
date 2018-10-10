@@ -13,10 +13,10 @@ import mx.itesm.sapi.bean.persona.Login;
  * @author Angel GTZ
  */
 public interface LoginServicio {
-    public PersonaServicio getLogin(int idLogin);
-    List<Login> getLogin();
-    public boolean agregarLogin(Login login);
-    public boolean actualizarLogin(int idLogin);
+    public Login mostrarLogin(int idLogin);
+    List<Login> mostrarLogin();
+    public int agregarLogin(Login login);
+    public boolean actualizarLogin(Login login);
     public boolean borradoLogicoLogin(int idLogin);
     
 }

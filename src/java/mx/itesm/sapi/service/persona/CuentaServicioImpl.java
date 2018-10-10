@@ -112,15 +112,14 @@ public class CuentaServicioImpl implements CuentaServicio {
             while (rs.next()) {
 
                 cuenta = new Cuenta();
-
-                cuenta.setIdCuenta(rs.getInt(1));
-                cuenta.setIdPersona(rs.getInt(2));
-                cuenta.setIdRol(rs.getInt(3));
-                cuenta.setIdEstadoCuenta(rs.getInt(4));
-                cuenta.setUsuario(rs.getString(5));
-                cuenta.setPassword(rs.getString(6));
-                cuenta.setToken(rs.getString(7));
-                cuenta.setEstatus(rs.getInt(8));
+                cuenta.setIdCuenta(rs.getInt("idCuenta"));
+                cuenta.setIdPersona(rs.getInt("idPersona"));
+                cuenta.setIdRol(rs.getInt("idRol"));
+                cuenta.setIdEstadoCuenta(rs.getInt("idEstadoCuenta"));
+                cuenta.setUsuario(rs.getString("usario"));
+                cuenta.setPassword(rs.getString("password"));
+                cuenta.setToken(rs.getString("token"));
+                cuenta.setEstatus(rs.getInt("estatus"));
 
                 cuentas.add(cuenta);
 
@@ -131,7 +130,7 @@ public class CuentaServicioImpl implements CuentaServicio {
             conn.close();
 
         } catch (SQLException ex) {
-           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             cuentas = null;
         }
@@ -178,9 +177,9 @@ public class CuentaServicioImpl implements CuentaServicio {
 
         } catch (SQLException ex) {
 
-           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
-            id=-1;
+            id = -1;
 
         }
 
@@ -192,13 +191,13 @@ public class CuentaServicioImpl implements CuentaServicio {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
-        boolean exito=false;
+        boolean exito = false;
 
         //Call del store procedure
         String stProcedure = "actualizarCuenta(?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
-            
+
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, cuenta.getIdCuenta());
@@ -210,7 +209,7 @@ public class CuentaServicioImpl implements CuentaServicio {
             cstmt.setString(7, cuenta.getToken());
             cstmt.setInt(8, cuenta.getEstatus());
 
-             rs = cstmt.executeQuery();
+            rs = cstmt.executeQuery();
 
             rs.next();
             conn.close();
@@ -220,9 +219,9 @@ public class CuentaServicioImpl implements CuentaServicio {
             return rs.getBoolean(1);
 
         } catch (SQLException ex) {
-           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
-            exito=false;
+            exito = false;
         }
         return exito;
     }

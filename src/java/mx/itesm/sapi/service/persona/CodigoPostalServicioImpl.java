@@ -26,7 +26,7 @@ public class CodigoPostalServicioImpl implements CodigoPostalServicio {
         ResultSet rs;
         CallableStatement cstmt;
 
-        CodigoPostal codigoPostal=null;
+        CodigoPostal codigoPostal = null;
 
         //Call del store procedure
         String stProcedure = "mostrarCodigoPostal(?)";
@@ -47,13 +47,13 @@ public class CodigoPostalServicioImpl implements CodigoPostalServicio {
             conn.close();
             rs.close();
             cstmt.close();
-            
+
         } catch (SQLException ex) {
 
-           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
-            codigoPostal=null;
-            
+            codigoPostal = null;
+
         }
         return codigoPostal;
     }
@@ -64,7 +64,6 @@ public class CodigoPostalServicioImpl implements CodigoPostalServicio {
         ResultSet rs;
         CallableStatement cstmt;
 
-      
         List<CodigoPostal> codigosPostal = null;
 
         try {
@@ -78,10 +77,10 @@ public class CodigoPostalServicioImpl implements CodigoPostalServicio {
 
                 codigoPostal = new CodigoPostal();
 
-                codigoPostal.setIdCodigoPostal(rs.getInt(1));
-                codigoPostal.setNumero(rs.getString(2));
-                codigoPostal.setIdMunicipio(rs.getInt(3));
-                codigoPostal.setEstatus(rs.getInt(4));
+                codigoPostal.setIdCodigoPostal(rs.getInt("idCodigoPostal"));
+                codigoPostal.setNumero(rs.getString("numero"));
+                codigoPostal.setIdMunicipio(rs.getInt("idMunicipio"));
+                codigoPostal.setEstatus(rs.getInt("estatus"));
 
                 codigosPostal.add(codigoPostal);
 
@@ -92,7 +91,7 @@ public class CodigoPostalServicioImpl implements CodigoPostalServicio {
             conn.close();
 
         } catch (SQLException ex) {
-           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             codigosPostal = null;
         }

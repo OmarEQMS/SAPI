@@ -18,38 +18,34 @@ import mx.itesm.sapi.util.Conexion;
  *
  * @author Angel GTZ
  */
-public class SexoServiciosImpl implements SexoServicio{
+public class SexoServiciosImpl implements SexoServicio {
 
     @Override
     public Sexo mostrarSexo(int idSexo) {
-         Connection conn = Conexion.getConnection();
-        
+        Connection conn = Conexion.getConnection();
+
         CallableStatement cstmt;
-        
+
         Sexo sexo = new Sexo();
-        
+
         //Call del store procedure
-        String stProcedure="mostrarSexo";
-        
-        try{
-            
+        String stProcedure = "mostrarSexo";
+
+        try {
+
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idSexo);
-            
+
             ResultSet rs = cstmt.executeQuery();
-            
-         
-            
+
             rs.next();
             sexo.setIdSexo(rs.getInt("idSexo"));
             sexo.setNombre(rs.getString("nombre"));
             sexo.setEstatus(rs.getInt("estatus"));
-            
-            
-           
+
             return sexo;
-        }catch(SQLException ex){
-            
+        } catch (SQLException ex) {
+
             System.out.println("Estoy en el catch de mostrarSexo ");
             System.out.println(ex.getMessage());
             return sexo;
@@ -59,41 +55,38 @@ public class SexoServiciosImpl implements SexoServicio{
     @Override
     public List<Sexo> mostrarSexo() {
         Connection conn = Conexion.getConnection();
-        
-        
+
         List<Sexo> sexos = new ArrayList<>();
-        
-        try{
-            
+
+        try {
+
             CallableStatement cstmt;
             cstmt = conn.prepareCall("CALL getSexo()");
             ResultSet rs = cstmt.executeQuery();
             Sexo sexo;
-            
-            while(rs.next()){
-                
+
+            while (rs.next()) {
+
                 sexo = new Sexo();
-                
-            sexo.setIdSexo(rs.getInt(1));
-            sexo.setNombre(rs.getString(2));
-            sexo.setEstatus(rs.getInt(3));
-                
+
+                sexo.setIdSexo(rs.getInt("idSexo"));
+                sexo.setNombre(rs.getString("nombre"));
+                sexo.setEstatus(rs.getInt("estatus"));
+
                 sexos.add(sexo);
-            
+
             }
-            
+
             rs.close();
             cstmt.close();
             conn.close();
-                    
-            
-        }catch(SQLException ex){
+
+        } catch (SQLException ex) {
             System.out.println("ERROR GET sexos" + ex.getMessage());
         }
-        
+
         return sexos;
     }
-    
 
     @Override
     public int agregarSexo(Sexo sexo) {
@@ -107,33 +100,30 @@ public class SexoServiciosImpl implements SexoServicio{
 
     @Override
     public boolean borrarLogicoSexo(int idSexo) {
-         Connection conn = Conexion.getConnection();
-        
+        Connection conn = Conexion.getConnection();
+
         CallableStatement cstmt;
-        
+
         //Call del store procedure
-        String stProcedure="borradoLogicoSexo";
-        
-        
-        
-        try{
-            
+        String stProcedure = "borradoLogicoSexo";
+
+        try {
+
             cstmt = conn.prepareCall(stProcedure);
-            
-            cstmt.setInt(1,idSexo);
-            
+
+            cstmt.setInt(1, idSexo);
+
             ResultSet rs = cstmt.executeQuery();
-            
+
             rs.next();
-            
-           return rs.getBoolean(1);
-            
-            
-        }catch(SQLException ex){
+
+            return rs.getBoolean(1);
+
+        } catch (SQLException ex) {
             System.out.println("Estoy en el catch de borrarSexo");
             System.out.println(ex.getMessage());
             return false;
         }
     }
-    
+
 }
