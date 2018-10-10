@@ -15,7 +15,7 @@ import java.sql.Types;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import mx.itesm.sapi.bean.Cuenta;
+import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.util.Conexion;
 
 /**

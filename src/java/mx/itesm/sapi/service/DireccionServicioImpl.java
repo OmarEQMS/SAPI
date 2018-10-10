@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
-import mx.itesm.sapi.bean.Direccion;
+import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.util.Conexion;
 
 /**
@@ -38,7 +38,6 @@ public class DireccionServicioImpl implements DireccionServicio{
             cstmt.setString(2, direccion.getNoInterior());
             cstmt.setString(3, direccion.getNoExterior());
             cstmt.setString(4, direccion.getColonia());
-            cstmt.setInt(5, direccion.getIdPersona());
             cstmt.registerOutParameter(6,Types.INTEGER);
   
            return !cstmt.execute();

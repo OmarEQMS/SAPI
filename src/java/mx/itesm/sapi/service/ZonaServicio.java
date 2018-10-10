@@ -6,10 +6,10 @@
 package mx.itesm.sapi.service;
 
 import java.util.List;
-import mx.itesm.sapi.bean.CodigoPostal;
-import mx.itesm.sapi.bean.Estado;
-import mx.itesm.sapi.bean.EstadoCivil;
-import mx.itesm.sapi.bean.Municipio;
+import mx.itesm.sapi.bean.persona.CodigoPostal;
+import mx.itesm.sapi.bean.persona.Estado;
+import mx.itesm.sapi.bean.persona.EstadoCivil;
+import mx.itesm.sapi.bean.persona.Municipio;
 
 /**
  *

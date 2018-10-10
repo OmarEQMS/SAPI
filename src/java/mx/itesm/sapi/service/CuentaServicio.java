@@ -6,7 +6,7 @@
 package mx.itesm.sapi.service;
 
 import java.util.List;
-import mx.itesm.sapi.bean.Cuenta;
+import mx.itesm.sapi.bean.persona.Cuenta;
 
 
 /**
