@@ -3,19 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.itesm.sapi.service;
+package mx.itesm.sapi.service.moduloGestionMedico;
 
 import java.util.List;
-import mx.itesm.sapi.bean.Posicion;
+import mx.itesm.sapi.bean.moduloGestionMedico.Posicion;
 
 /**
  *
- * @author Admin
+ * @author feror
  */
 public interface PosicionServicio {
+    public Posicion mostrarPosicion(int idPosicion);
+    public List<Posicion> mostrarPosicion();
     
-    public int savePosicion(Posicion posicion);
-    public List<Posicion> getPosiciones();
-    public boolean deletePosicion(int id);
-    public boolean existePosicion(String nombre);
 }

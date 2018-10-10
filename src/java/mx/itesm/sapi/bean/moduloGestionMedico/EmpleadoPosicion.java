@@ -6,6 +6,7 @@
 package mx.itesm.sapi.bean.moduloGestionMedico;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  *
@@ -15,7 +16,7 @@ public class EmpleadoPosicion implements Serializable {
     private int idEmpleadoPosicion;
     private int idEmpleado;
     private int idPosicion;
-    private long inicio;
+    private Timestamp inicio;
     private int estatus;
     
     public EmpleadoPosicion(){}
@@ -51,11 +52,11 @@ public class EmpleadoPosicion implements Serializable {
         this.idPosicion = idPosicion;
     }
 
-    public long getInicio() {
+    public Timestamp getInicio() {
         return inicio;
     }
 
-    public void setInicio(long inicio) {
+    public void setInicio(Timestamp inicio) {
         this.inicio = inicio;
     }
 

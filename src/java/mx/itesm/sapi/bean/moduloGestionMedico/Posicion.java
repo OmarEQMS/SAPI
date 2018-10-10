@@ -14,7 +14,6 @@ import java.io.Serializable;
 public class Posicion implements Serializable{
     
     private int idPosicion;
-    private int idSuperDepartamentoDepartamento;
     private String nombre;
     private int estatus;
     
@@ -32,14 +31,6 @@ public class Posicion implements Serializable{
 
     public void setIdPosicion(int idPosicion) {
         this.idPosicion = idPosicion;
-    }
-
-    public int getIdSuperDepartamentoDepartamento() {
-        return idSuperDepartamentoDepartamento;
-    }
-
-    public void setIdSuperDepartamentoDepartamento(int idSuperDepartamentoDepartamento) {
-        this.idSuperDepartamentoDepartamento = idSuperDepartamentoDepartamento;
     }
 
     public String getNombre() {

@@ -41,14 +41,7 @@ public class PersonaServicioImpl implements PersonaServicio {
        Connection conn = Conexion.getConnection();
        
        CallableStatement cstmt;
-      /* String sql="INSERT INTO persona (idPersona, nombre, primerApellido, segundoApellido, curp, telefono, correo, ".concat(
-                "fechaNaciemiento, idMunicipio,idEstadoCivil,idRol, edad) ")
-                  .concat(" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");*/
-        
-       //System.out.println(sql); 
-       
-           
-           //PreparedStatement ps;
+      
            int id = 0;
            
         try {

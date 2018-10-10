@@ -14,17 +14,17 @@ import java.io.Serializable;
 public class Empleado implements Serializable{
     
     private int idEmpleado;
-    private int idCuenta;
+    private int idDepartamentoDepartamentoInterno;
     private String noEmpleado;
     private int estatus;
-    private int adscrito;
+
     
     public Empleado(){}
     
     @Override
     public String toString(){
         return "Empleado[Empleado:".concat(String.valueOf(idEmpleado))
-               .concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
+               .concat(",estatus:").concat(String.valueOf(estatus)).concat(",NoEmpleado:").concat(noEmpleado).concat("]");
 
     } 
 
@@ -36,12 +36,12 @@ public class Empleado implements Serializable{
         this.idEmpleado = idEmpleado;
     }
 
-    public int getIdCuenta() {
-        return idCuenta;
+    public int getIdDepartamentoDepartamentoInterno() {
+        return idDepartamentoDepartamentoInterno;
     }
 
-    public void setIdCuenta(int idCuenta) {
-        this.idCuenta = idCuenta;
+    public void setIdDepartamentoDepartamentoInterno(int idDepartamentoDepartamentoInterno) {
+        this.idDepartamentoDepartamentoInterno = idDepartamentoDepartamentoInterno;
     }
 
     public String getNoEmpleado() {
@@ -60,11 +60,5 @@ public class Empleado implements Serializable{
         this.estatus = estatus;
     }
 
-    public int getAdscrito() {
-        return adscrito;
-    }
-
-    public void setAdscrito(int adscrito) {
-        this.adscrito = adscrito;
-    }
+    
 }

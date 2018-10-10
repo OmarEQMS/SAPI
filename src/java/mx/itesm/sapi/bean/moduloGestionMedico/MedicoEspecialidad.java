@@ -22,8 +22,10 @@ public class MedicoEspecialidad implements Serializable{
     
     @Override
     public String toString(){
-        return "MedicoEspecialidad [idMedicoEspecialidad:".concat(String.valueOf(idMedicoEspecialidad))
-                .concat(",cedula profesional:").concat(cedulaProfesional).concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
+        return "MedicoEspecialidad [idMedicoEspecialidad:"
+                .concat(String.valueOf(idMedicoEspecialidad))
+                .concat(",cedula profesional:").concat(cedulaProfesional)
+                .concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
 
     } 
 
