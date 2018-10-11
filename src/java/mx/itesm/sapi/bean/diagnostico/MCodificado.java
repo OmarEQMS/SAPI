@@ -12,21 +12,21 @@ import java.io.Serializable;
  * @author Diego
  */
 public class MCodificado implements Serializable{
-    private int idMCodifciado;
+    private int idMCodificado;
     private String nombre;
-    private int status;
+    private int estatus;
 
     @Override
     public String toString() {
-        return "MCodificado{" + "idMCodifciado=" + idMCodifciado + ", nombre=" + nombre + ", status=" + status + '}';
+        return "MCodificado{" + "idMCodificado=" + idMCodificado + ", nombre=" + nombre + ", status=" + estatus + '}';
     }
 
-    public int getIdMCodifciado() {
-        return idMCodifciado;
+    public int getIdMCodificado() {
+        return idMCodificado;
     }
 
-    public void setIdMCodifciado(int idMCodifciado) {
-        this.idMCodifciado = idMCodifciado;
+    public void setIdMCodificado(int idMCodificado) {
+        this.idMCodificado = idMCodificado;
     }
 
     public String getNombre() {
@@ -37,12 +37,12 @@ public class MCodificado implements Serializable{
         this.nombre = nombre;
     }
 
-    public int getStatus() {
-        return status;
+    public int getEstatus() {
+        return estatus;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setEstatus(int status) {
+        this.estatus = status;
     }
     
     

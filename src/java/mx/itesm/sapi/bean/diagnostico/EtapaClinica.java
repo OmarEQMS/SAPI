@@ -14,11 +14,11 @@ import java.io.Serializable;
 public class EtapaClinica implements Serializable{
     private int idEtapaClinica;
     private String nombre;
-    private int status;
+    private int estatus;
 
     @Override
     public String toString() {
-        return "EtapaClinica{" + "idEtapaClinica=" + idEtapaClinica + ", nombre=" + nombre + ", status=" + status + '}';
+        return "EtapaClinica{" + "idEtapaClinica=" + idEtapaClinica + ", nombre=" + nombre + ", status=" + estatus + '}';
     }
 
     public int getIdEtapaClinica() {
@@ -37,12 +37,12 @@ public class EtapaClinica implements Serializable{
         this.nombre = nombre;
     }
 
-    public int getStatus() {
-        return status;
+    public int getEstatus() {
+        return estatus;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setEstatus(int status) {
+        this.estatus = status;
     }
     
     

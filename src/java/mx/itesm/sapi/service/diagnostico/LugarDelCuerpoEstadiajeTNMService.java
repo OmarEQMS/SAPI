@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.diagnostico.LugarDelCuerpoEstadiajeTNM;
  * @author Diego
  */
 public interface LugarDelCuerpoEstadiajeTNMService {
-    public LugarDelCuerpoEstadiajeTNM getLugarDelCuerpoEstadiajeTNM(int idLugarDelCuerpoEstadiajeTNM);
-    List<LugarDelCuerpoEstadiajeTNM> getLugarDelCuerpoEstadiajeTNM();
-    public boolean agregarLugarDelCuerpoEstadiajeTNM(LugarDelCuerpoEstadiajeTNM lugarDelCuerpoEstadiajeTNM);
-    public boolean actualizarLugarDelCuerpoEstadiajeTNM(int idLugarDelCuerpoEstadiajeTNM);
+    public int agregarLugarDelCuerpoEstadiajeTNM(LugarDelCuerpoEstadiajeTNM lugarDelCuerpoEstadiajeTNM);    
+    public LugarDelCuerpoEstadiajeTNM mostrarLugarDelCuerpoEstadiajeTNM(int idLugarDelCuerpoEstadiajeTNM);
+    List<LugarDelCuerpoEstadiajeTNM> mostrarLugarDelCuerpoEstadiajeTNM();
+    public boolean actualizarLugarDelCuerpoEstadiajeTNM(LugarDelCuerpoEstadiajeTNM lugarDelCuerpoEstadiajeTNM);
     public boolean borradoLogicoLugarDelCuerpoEstadiajeTNM(int idLugarDelCuerpoEstadiajeTNM);
 }

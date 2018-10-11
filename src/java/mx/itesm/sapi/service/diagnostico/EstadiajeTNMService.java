@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.diagnostico.EstadiajeTNM;
  * @author Diego
  */
 public interface EstadiajeTNMService {
-    public EstadiajeTNM getEstadiajeTNM(int idRegistroTNM);
-    List<EstadiajeTNM> getEstadiajeTNM();
-    public boolean agregarEstadiajeTNM(EstadiajeTNM estadiajeTNM);
-    public boolean actualizarEstadiajeTNM(int idRegistroTNM);
+    public int agregarEstadiajeTNM(EstadiajeTNM estadiajeTNM);
+    public EstadiajeTNM mostrarEstadiajeTNM(int idRegistroTNM);
+    List<EstadiajeTNM> mostrarEstadiajeTNM();
+    public boolean actualizarEstadiajeTNM(EstadiajeTNM idRegistroTNM);
     public boolean borradoLogicoEstadiajeTNM(int idRegistroTNM);
 }

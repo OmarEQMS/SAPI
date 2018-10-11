@@ -14,11 +14,11 @@ import java.io.Serializable;
 public class NCodificado implements Serializable{
     private int idNCodificado;
     private String nombre;
-    private int status;
+    private int estatus;
 
     @Override
     public String toString() {
-        return "NCodificado{" + "idNCodificado=" + idNCodificado + ", nombre=" + nombre + ", status=" + status + '}';
+        return "NCodificado{" + "idNCodificado=" + idNCodificado + ", nombre=" + nombre + ", estatus=" + estatus + '}';
     }
 
     public int getIdNCodificado() {
@@ -37,12 +37,12 @@ public class NCodificado implements Serializable{
         this.nombre = nombre;
     }
 
-    public int getStatus() {
-        return status;
+    public int getEstatus() {
+        return estatus;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
     }
     
     

@@ -13,9 +13,6 @@ import mx.itesm.sapi.bean.diagnostico.MCodificado;
  * @author Diego
  */
 public interface MCodificadoService {
-    public MCodificado getMCodificado(int idMCodificado);
-    List<MCodificado> getMCodificado();
-    public boolean agregarMCodificado(MCodificado mCodificado);
-    public boolean actualizarMCodificado(int idMCodificado);
-    public boolean borradoLogicoMCodificado(int idMCodificado);
+    public MCodificado mostrarMCodificado(int idMCodificado);
+    List<MCodificado> mostrarMCodificado();
 }

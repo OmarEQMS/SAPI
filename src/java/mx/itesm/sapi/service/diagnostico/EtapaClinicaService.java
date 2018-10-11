@@ -13,9 +13,6 @@ import mx.itesm.sapi.bean.diagnostico.EtapaClinica;
  * @author Diego
  */
 public interface EtapaClinicaService {
-    public EtapaClinica getEtapaClinica(int idEtapaClinica);
-    List<EtapaClinica> getEtapaClinica();
-    public boolean agregarEtapaClinica(EtapaClinica etapaClinica);
-    public boolean actualizarEtapaClinica(int idEtapaClinica);
-    public boolean borradoLogicoEtapaClinica(int idEtapaClinica);
+    public EtapaClinica mostrarEtapaClinica(int idEtapaClinica);
+    List<EtapaClinica> mostrarEtapaClinica();
 }

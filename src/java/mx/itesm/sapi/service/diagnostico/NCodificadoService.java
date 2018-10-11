@@ -13,9 +13,6 @@ import mx.itesm.sapi.bean.diagnostico.NCodificado;
  * @author Diego
  */
 public interface NCodificadoService {
-    public NCodificado getNCodificado(int idNCodificado);
-    List<NCodificado> getNCodificado();
-    public boolean agregarNCodificado(NCodificado nCodificado);
-    public boolean actualizarNCodificado(int idNCodificado);
-    public boolean borradoLogicoNCodificado(int idNCodificado);
+    public NCodificado mostrarNCodificado(int idNCodificado);
+    List<NCodificado> mostrarNCodificado();
 }

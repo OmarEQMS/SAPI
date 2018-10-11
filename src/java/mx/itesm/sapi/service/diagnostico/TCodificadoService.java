@@ -13,9 +13,6 @@ import mx.itesm.sapi.bean.diagnostico.TCodificado;
  * @author Diego
  */
 public interface TCodificadoService {
-    public TCodificado getTCodificado(int idTCodificado);
-    List<TCodificado> getTCodificado();
-    public boolean agregarTCodificado(TCodificado tCodificado);
-    public boolean actualizarTCodificado(int idTCodificado);
-    public boolean borradoLogicoTCodificado(int idTCodificado);
+    public TCodificado mostrarTCodificado(int idTCodificado);
+    List<TCodificado> mostrarTCodificado();
 }

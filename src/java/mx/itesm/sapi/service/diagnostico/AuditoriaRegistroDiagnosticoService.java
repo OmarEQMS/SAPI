@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.diagnostico.AuditoriaRegistroDiagnostico;
  * @author Diego
  */
 public interface AuditoriaRegistroDiagnosticoService {
-    public AuditoriaRegistroDiagnostico getAuditoriaRegistroDiagnostico(int idAuditoriaRegistroDiagnostico);
-    List<AuditoriaRegistroDiagnostico> getAuditoriaRegistroDiagnostico();
-    public boolean agregarAuditoriaRegistroDiagnostico(AuditoriaRegistroDiagnostico auditoriaRegistroDiagnostico);
-    public boolean actualizarAuditoriaRegistroDiagnostico(int idAuditoriaRegistroDiagnostico);
+    public int agregarAuditoriaRegistroDiagnostico(AuditoriaRegistroDiagnostico auditoriaRegistroDiagnostico);
+    public AuditoriaRegistroDiagnostico mostrarAuditoriaRegistroDiagnostico(int idAuditoriaRegistroDiagnostico);
+    List<AuditoriaRegistroDiagnostico> mostrarAuditoriaRegistroDiagnostico();
+    public boolean actualizarAuditoriaRegistroDiagnostico(AuditoriaRegistroDiagnostico AuditoriaRegistroDiagnostico);
     public boolean borradoLogicoAuditoriaRegistroDiagnostico(int idAuditoriaRegistroDiagnostico);
 }

@@ -13,9 +13,9 @@ import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
  * @author Diego
  */
 public interface RegistroDiagnosticoService {
-    public RegistroDiagnostico getRegistroDiagnostico(int idRegistroDiagnostico);
-    List<RegistroDiagnostico> getRegistroDiagnostico();
-    public boolean agregarRegistroDiagnostico(RegistroDiagnostico registroDiagnostico);
-    public boolean actualizarRegistroDiagnostico(int idRegistroDiagnostico);
+    public int agregarRegistroDiagnostico(RegistroDiagnostico registroDiagnostico);
+    public RegistroDiagnostico mostrarRegistroDiagnostico(int idRegistroDiagnostico);
+    List<RegistroDiagnostico> mostrarRegistroDiagnostico();
+    public boolean actualizarRegistroDiagnostico(RegistroDiagnostico registroDiagnostico);
     public boolean borradoLogicoRegistroDiagnostico(int idRegistroDiagnostico);
 }

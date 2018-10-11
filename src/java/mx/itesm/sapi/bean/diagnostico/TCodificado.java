@@ -10,21 +10,21 @@ package mx.itesm.sapi.bean.diagnostico;
  * @author Diego
  */
 public class TCodificado {
-    private int idTCodifciado;
+    private int idTCodificado;
     private String nombre;
-    private int status;
+    private int estatus;
 
     @Override
     public String toString() {
-        return "TCodificado{" + "idTCodifciado=" + idTCodifciado + ", nombre=" + nombre + ", status=" + status + '}';
+        return "TCodificado{" + "idTCodificado=" + idTCodificado + ", nombre=" + nombre + ", estatus=" + estatus + '}';
     }
 
-    public int getIdTCodifciado() {
-        return idTCodifciado;
+    public int getIdTCodificado() {
+        return idTCodificado;
     }
 
-    public void setIdTCodifciado(int idTCodifciado) {
-        this.idTCodifciado = idTCodifciado;
+    public void setIdTCodificado(int idTCodificado) {
+        this.idTCodificado = idTCodificado;
     }
 
     public String getNombre() {
@@ -35,12 +35,12 @@ public class TCodificado {
         this.nombre = nombre;
     }
 
-    public int getStatus() {
-        return status;
+    public int getEstatus() {
+        return estatus;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
     }
     
     
