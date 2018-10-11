@@ -15,13 +15,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mx.itesm.sapi.bean.Estado;
-import mx.itesm.sapi.bean.Cuenta;
-import mx.itesm.sapi.bean.Direccion;
-import mx.itesm.sapi.bean.Persona;
+import mx.itesm.sapi.bean.persona.Estado;
+import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.Direccion;
+import mx.itesm.sapi.bean.persona.Persona;
 
-import mx.itesm.sapi.bean.EstadoCivil;
-import mx.itesm.sapi.bean.Municipio;
+import mx.itesm.sapi.bean.persona.EstadoCivil;
+import mx.itesm.sapi.bean.persona.Municipio;
 import mx.itesm.sapi.service.ZonaServicioImpl;
 
 /**
@@ -84,10 +84,10 @@ public class PotencialController extends HttpServlet {
                 per.setApellido2(apellido2);
                 per.setCorreo(correo);
                 per.setCurp(curp);
-                per.setIdEstado(estado);
+                //per.setIdEstado(estado);
                 per.setIdEstadoCivil(estadoCivil);
                 per.setIdMunicipio(municipio);
-                per.setFechaNacimiento(fechaNacimiento);
+                //per.setFechaNacimiento(fechaNacimiento);
 
                
 

@@ -110,13 +110,13 @@ public class RegistraUsuarioController extends HttpServlet {
                 per.setApellido2(apellido2);
                 per.setCorreo(correo);
                 per.setCurp(curp);
-                per.setIdEstado(estado);
+                //per.setIdEstado(estado);
                 per.setIdEstadoCivil(estadoCivil);
                 per.setIdMunicipio(municipio);
-                per.setFechaNacimiento(fechaNacimiento);
+                //per.setFechaNacimiento(fechaNacimiento);
 
                 //Por arreglar
-                per.setIdRol(1);
+                ///per.setIdRol(1);
                 //Por arreglar
 
                 //Set cuenta
@@ -134,7 +134,7 @@ public class RegistraUsuarioController extends HttpServlet {
                 if (id > 0) {
 
                     cuenta.setIdPersona(id);
-                    dir.setIdPersona(id);
+                    //dir.setIdPersona(id);
                     _rSC.saveCuenta(cuenta);
                     _rSD.saveDireccion(dir);
                 }

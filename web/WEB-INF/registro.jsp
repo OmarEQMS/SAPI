@@ -5,8 +5,8 @@
 --%>
 
 <%@page import="java.util.ArrayList"%>
-<%@page import="mx.itesm.sapi.bean.EstadoCivil"%>
-<%@page import="mx.itesm.sapi.bean.Estado"%>
+<%@page import="mx.itesm.sapi.bean.persona.EstadoCivil"%>
+<%@page import="mx.itesm.sapi.bean.persona.Estado"%>
 <%@page import="java.util.List"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
