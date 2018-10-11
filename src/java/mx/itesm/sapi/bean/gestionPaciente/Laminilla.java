@@ -7,31 +7,40 @@ package mx.itesm.sapi.bean.gestionPaciente;
 
 /**
  *
- * @author Alex
+ * @author Oscar Miranda
  */
-public class MotivoConsulta {
-    
-    private int idMotivoConsulta;
+public class Laminilla {
+    private int idLaminilla;
+    private int idBiopsia;
     private String nombre;
     private int estatus;
     
-    public MotivoConsulta() {}
+     public Laminilla() {}
     
-    @Override
+    @Override 
     public String toString(){
-        String str= "MotivoConsulta [idMotivoConsulta:".concat(String.valueOf(idMotivoConsulta))
+        String str= "Laminilla [idLaminilla:".concat(String.valueOf(idLaminilla))
+                .concat(",idBiopsia:").concat(String.valueOf(idBiopsia))
                 .concat(",nombre:").concat(nombre)
                 .concat(",estatus:").concat(String.valueOf(estatus))
                 .concat("]");
         return str;
     }
 
-    public int getIdMotivoConsulta() {
-        return idMotivoConsulta;
+    public int getIdLaminilla() {
+        return idLaminilla;
     }
 
-    public void setIdMotivoConsulta(int idMotivoConsulta) {
-        this.idMotivoConsulta = idMotivoConsulta;
+    public void setIdLaminilla(int idLaminilla) {
+        this.idLaminilla = idLaminilla;
+    }
+
+    public int getIdBiopsia() {
+        return idBiopsia;
+    }
+
+    public void setIdBiopsia(int idBiopsia) {
+        this.idBiopsia = idBiopsia;
     }
 
     public String getNombre() {
@@ -41,7 +50,7 @@ public class MotivoConsulta {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     public int getEstatus() {
         return estatus;
     }
@@ -52,5 +61,5 @@ public class MotivoConsulta {
     
     
     
-    
+   
 }

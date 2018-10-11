@@ -11,7 +11,7 @@ package mx.itesm.sapi.bean.gestionPaciente;
  */
 public class ImportanciaCita {
 
-	private  int idImportanciaCita;
+	private int idImportanciaCita;
 	private int importancia;
 	private int estatus;
 

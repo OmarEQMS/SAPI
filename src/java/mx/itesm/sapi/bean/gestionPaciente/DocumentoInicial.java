@@ -8,11 +8,9 @@ package mx.itesm.sapi.bean.gestionPaciente;
  *
  * @author Alex
  */
-import java.io.InputStream;
-import javafx.scene.text.Text;
-public class DocumentosIniciales {
+public class DocumentoInicial {
 
-    private int idDocumentosIniciales;
+    private int idDocumentoInicial;
     private int idTipoDocumento;
     private int idPaciente;
     private byte[] archivo;
@@ -20,12 +18,12 @@ public class DocumentosIniciales {
     private int aprobado;
     private int estatus;
     
-    public DocumentosIniciales() {}
+    public DocumentoInicial() {}
     
     
     @Override
     public String toString(){
-        String str ="DocumentosIniciales [idDocumentosIniciales:".concat(String.valueOf(idDocumentosIniciales))
+        String str ="DocumentoInicial [idDocumentoInicial:".concat(String.valueOf(idDocumentoInicial))
                 .concat(",idTipoDocumento").concat(String.valueOf(idTipoDocumento))
                 .concat(",idPaciente:").concat(String.valueOf(idPaciente))
                 .concat(",archivo:").concat(String.valueOf(archivo))
@@ -37,12 +35,12 @@ public class DocumentosIniciales {
         return str;
     }
 
-    public int getIdDocumentosIniciales() {
-        return idDocumentosIniciales;
+    public int getIdDocumentoInicial() {
+        return idDocumentoInicial;
     }
 
-    public void setIdDocumentosIniciales(int idDocumentosIniciales) {
-        this.idDocumentosIniciales = idDocumentosIniciales;
+    public void setIdDocumentoInicial(int idDocumentoInicial) {
+        this.idDocumentoInicial = idDocumentoInicial;
     }
 
     public int getIdTipoDocumento() {

@@ -15,13 +15,14 @@ public class Cita {
 
 	private int idCita;
 	private int idTipoCita;
-	private int idAtencion;
+	private int idPaciente;
 	private int idEstadoCita;
-	private int idMotivoConsulta;
 	private int idImportanciaCita;
-	private int idTipoEstudio;
-	private Timestamp fecha;
-	private int idMastografiaPaciente;
+	private int idTipoTratamiento;
+	private int idEstudio;
+        private int idMotivoConsulta;
+	private Timestamp fechaProgramada;
+        private Timestamp fechaReal;
 	private int estatus;
 
 
@@ -31,19 +32,36 @@ public class Cita {
     public String toString(){
     	String str="Cita [idCita".concat(String.valueOf(idCita))
     		.concat(",idTipoCita:").concat(String.valueOf(idTipoCita))
-    		.concat(",idAtencion:").concat(String.valueOf(idAtencion))
+    		.concat(",idPaciente:").concat(String.valueOf(idPaciente))
     		.concat(",idEstadoCita:").concat(String.valueOf(idEstadoCita))
-    		.concat(",idMotivoConsulta:").concat(String.valueOf(idMotivoConsulta))
     		.concat(",idImportanciaCita:").concat(String.valueOf(idImportanciaCita))
-    		.concat(",idTipoEstudio:").concat(String.valueOf(idTipoEstudio))
-    		.concat(",fecha:").concat(String.valueOf(fecha))
-    		.concat(",idMastografiaPaciente:").concat(String.valueOf(idMastografiaPaciente))
+                .concat(",idTipoTratamiento:").concat(String.valueOf(idTipoTratamiento))
+    		.concat(",idEstudio:").concat(String.valueOf(idEstudio))
+                .concat(",idMotivoConsulta:").concat(String.valueOf(idMotivoConsulta))
+    		.concat(",fechaProgramada:").concat(String.valueOf(fechaProgramada))
+                .concat(",fechaReal:").concat(String.valueOf(fechaReal))
     		.concat(",estatus:").concat(String.valueOf(estatus))
     		
     		.concat("]");
 
     	return str;
 
+    }
+
+    public int getIdTipoTratamiento() {
+        return idTipoTratamiento;
+    }
+
+    public void setIdTipoTratamiento(int idTipoTratamiento) {
+        this.idTipoTratamiento = idTipoTratamiento;
+    }
+
+    public int getIdEstudio() {
+        return idEstudio;
+    }
+
+    public void setIdEstudio(int idEstudio) {
+        this.idEstudio = idEstudio;
     }
 
     public int getIdCita() {
@@ -62,12 +80,12 @@ public class Cita {
         this.idTipoCita = idTipoCita;
     }
 
-    public int getIdAtencion() {
-        return idAtencion;
+    public int getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setIdAtencion(int idAtencion) {
-        this.idAtencion = idAtencion;
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public int getIdEstadoCita() {
@@ -94,28 +112,20 @@ public class Cita {
         this.idImportanciaCita = idImportanciaCita;
     }
 
-    public int getIdTipoEstudio() {
-        return idTipoEstudio;
+    public Timestamp getFechaProgramada() {
+        return fechaProgramada;
     }
 
-    public void setIdTipoEstudio(int idTipoEstudio) {
-        this.idTipoEstudio = idTipoEstudio;
+    public void getFechaProgramada(Timestamp fechaProgramada) {
+        this.fechaProgramada = fechaProgramada;
     }
 
-    public Timestamp getFecha() {
-        return fecha;
+     public Timestamp getFechaReal() {
+        return fechaReal;
     }
 
-    public void setFecha(Timestamp fecha) {
-        this.fecha = fecha;
-    }
-
-    public int getIdMastografiaPaciente() {
-        return idMastografiaPaciente;
-    }
-
-    public void setIdMastografiaPaciente(int idMastografiaPaciente) {
-        this.idMastografiaPaciente = idMastografiaPaciente;
+    public void getFechaReal(Timestamp fechaReal) {
+        this.fechaReal = fechaReal;
     }
 
     public int getEstatus() {

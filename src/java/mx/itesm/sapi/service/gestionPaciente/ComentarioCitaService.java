@@ -10,12 +10,12 @@ import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
 
 /**
  *
- * @author urieldiaz
+ * @author Oscar Miranda
  */
 public interface ComentarioCitaService {
     public ComentarioCita getComentarioCita(int idComentarioCita);
     public List<ComentarioCita> getComentarioCita();
-    public boolean agregarComentarioCita(ComentarioCita comentarioCita);
+    public int agregarComentarioCita(ComentarioCita comentarioCita);
     public boolean borradoLogicoComentarioCita(ComentarioCita comentarioCita);
     public boolean actualizarComentarioCita(ComentarioCita comentarioCita);
 }

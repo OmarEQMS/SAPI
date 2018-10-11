@@ -19,6 +19,7 @@ public class LlamadaCita {
 	private Timestamp fecha;
 	private int llamada;
 	private int estatus;
+        private String comentario;
 
     public LlamadaCita() {}
     
@@ -31,10 +32,19 @@ public class LlamadaCita {
     		.concat(",fecha:").concat(String.valueOf(fecha))
     		.concat(",llamada:").concat(String.valueOf(llamada))
     		.concat(",estatus:").concat(String.valueOf(estatus))
+                .concat(",comentario:").concat(comentario)
     		.concat("]");
     	return str;
 
 
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 
     public int getIdLlamadaCita() {

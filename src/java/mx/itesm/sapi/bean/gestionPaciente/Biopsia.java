@@ -13,27 +13,32 @@ public class Biopsia {
 
     private int idBiopsia;
     private int idPaciente;
-    private int idReceptorEstrogeno;
-    private int idReceptorProgesterona;
     private int idLugarDelCuerpo;
+    private int idHer2;
+    private int idReceptorProgesterona;
+    private int idReceptorEstrogeno;
+    private int idFish;
+    private int idKi67;
     private int idTipoHistologico;
-    private int idResultadoPatologia;
-    private int idLugarBiopsia;
+    private int idGradoHistologico;
     private int laminillas;
     private int bloques;
     private int previa;
     private int estatus;
+    
     public Biopsia() {}
  	@Override
  	public String toString(){
  		String str="Biopsia [idBiopsia:".concat(String.valueOf(idBiopsia))
  			.concat(",idPaciente:").concat(String.valueOf(idPaciente))
- 			.concat(",idReceptorEstrogeno:").concat(String.valueOf(idReceptorEstrogeno))
- 			.concat(",idReceptorProgesterona:").concat(String.valueOf(idReceptorProgesterona))
  			.concat(",idLugarDelCuerpo:").concat(String.valueOf(idLugarDelCuerpo))
+                        .concat(",idHer2:").concat(String.valueOf(idHer2))
+                        .concat(",idReceptorProgesterona:").concat(String.valueOf(idReceptorProgesterona))
+ 			.concat(",idReceptorEstrogeno:").concat(String.valueOf(idReceptorEstrogeno))
+ 			.concat(",idFish:").concat(String.valueOf(idFish))
+ 			.concat(",idKi67:").concat(String.valueOf(idKi67))
  			.concat(",idTipoHistologico:").concat(String.valueOf(idTipoHistologico))
- 			.concat(",idResultadoPatologia:").concat(String.valueOf(idResultadoPatologia))
- 			.concat(",idLugarBiopsia:").concat(String.valueOf(idLugarBiopsia))
+ 			.concat(",idGradoHistologico:").concat(String.valueOf(idGradoHistologico))
  			.concat(",laminillas:").concat(String.valueOf(laminillas))
  			.concat(",bloques:").concat(String.valueOf(bloques))
  			.concat(",previa:").concat(String.valueOf(previa))
@@ -42,6 +47,14 @@ public class Biopsia {
  		return str;
 
  	}
+
+    public int getIdGradoHistologico() {
+        return idGradoHistologico;
+    }
+
+    public void setIdGradoHistologico(int idGradoHistologico) {
+        this.idGradoHistologico = idGradoHistologico;
+    }
 
     public int getIdBiopsia() {
         return idBiopsia;
@@ -57,22 +70,6 @@ public class Biopsia {
 
     public void setIdPaciente(int idPaciente) {
         this.idPaciente = idPaciente;
-    }
-
-    public int getIdReceptorEstrogeno() {
-        return idReceptorEstrogeno;
-    }
-
-    public void setIdReceptorEstrogeno(int idReceptorEstrogeno) {
-        this.idReceptorEstrogeno = idReceptorEstrogeno;
-    }
-
-    public int getIdReceptorProgesterona() {
-        return idReceptorProgesterona;
-    }
-
-    public void setIdReceptorProgesterona(int idReceptorProgesterona) {
-        this.idReceptorProgesterona = idReceptorProgesterona;
     }
 
     public int getIdLugarDelCuerpo() {
@@ -91,20 +88,44 @@ public class Biopsia {
         this.idTipoHistologico = idTipoHistologico;
     }
 
-    public int getIdResultadoPatologia() {
-        return idResultadoPatologia;
+    public int getIdHer2() {
+        return idHer2;
     }
 
-    public void setIdResultadoPatologia(int idResultadoPatologia) {
-        this.idResultadoPatologia = idResultadoPatologia;
+    public void setIdHer2(int idHer2) {
+        this.idHer2 = idHer2;
     }
 
-    public int getIdLugarBiopsia() {
-        return idLugarBiopsia;
+    public int getIdReceptorProgesterona() {
+        return idReceptorProgesterona;
     }
 
-    public void setIdLugarBiopsia(int idLugarBiopsia) {
-        this.idLugarBiopsia = idLugarBiopsia;
+    public void setIdReceptorProgesterona(int idReceptorProgesterona) {
+        this.idReceptorProgesterona = idReceptorProgesterona;
+    }
+
+    public int getIdReceptorEstrogeno() {
+        return idReceptorEstrogeno;
+    }
+
+    public void setIdReceptorEstrogeno(int idReceptorEstrogeno) {
+        this.idReceptorEstrogeno = idReceptorEstrogeno;
+    }
+
+    public int getIdFish() {
+        return idFish;
+    }
+
+    public void setIdFish(int idFish) {
+        this.idFish = idFish;
+    }
+
+    public int getIdKi67() {
+        return idKi67;
+    }
+
+    public void setIdKi67(int idKi67) {
+        this.idKi67 = idKi67;
     }
 
     public int getLaminillas() {
@@ -138,6 +159,6 @@ public class Biopsia {
     public void setEstatus(int estatus) {
         this.estatus = estatus;
     }
-        
+
     
 }

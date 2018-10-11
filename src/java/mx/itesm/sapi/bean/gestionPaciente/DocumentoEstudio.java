@@ -5,6 +5,8 @@
  */
 package mx.itesm.sapi.bean.gestionPaciente;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author Alex
@@ -12,13 +14,14 @@ package mx.itesm.sapi.bean.gestionPaciente;
 public class DocumentoEstudio {
 
     private int idDocumentoEstudio;
+    private int idEstudio;
     private int idEstadoEstudio;
-    private int idAtencion;
-    private int idTipoEstudio;
+    private int idPaciente;
     private int idBirads;
     private byte[] archivo;
     private int previo;
     private int estatus;
+    private Timestamp fechaEstudioPrevio;
 
     public DocumentoEstudio() {}
 
@@ -26,16 +29,25 @@ public class DocumentoEstudio {
     public String toString(){
     	String str="DocumentoEstudio [idDocumentoEstudio:".concat(String.valueOf(idDocumentoEstudio))
     		.concat("idEstadoEstudio:").concat(String.valueOf(idEstadoEstudio))
-    		.concat("idAtencion:").concat(String.valueOf(idAtencion))
-    		.concat("idTipoEstudio:").concat(String.valueOf(idTipoEstudio))
+    		.concat("idPaciente:").concat(String.valueOf(idPaciente))
+    		.concat("idEstudio:").concat(String.valueOf(idEstudio))
     		.concat("idBirads:").concat(String.valueOf(idBirads))
     		.concat("archivo:").concat(String.valueOf(archivo))
     		.concat("previo:").concat(String.valueOf(previo))
     		.concat("estatus:").concat(String.valueOf(estatus))
+                .concat(",fechaEstudioPrecio:").concat(String.valueOf(fechaEstudioPrevio))
     		.concat("]");
 
     	return str;
         
+    }
+
+    public Timestamp getFechaEstudioPrevio() {
+        return fechaEstudioPrevio;
+    }
+
+    public void setFechaEstudioPrevio(Timestamp fechaEstudioPrevio) {
+        this.fechaEstudioPrevio = fechaEstudioPrevio;
     }
 
     public int getIdDocumentoEstudio() {
@@ -54,20 +66,20 @@ public class DocumentoEstudio {
         this.idEstadoEstudio = idEstadoEstudio;
     }
 
-    public int getIdAtencion() {
-        return idAtencion;
+    public int getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setIdAtencion(int idAtencion) {
-        this.idAtencion = idAtencion;
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
-    public int getIdTipoEstudio() {
-        return idTipoEstudio;
+    public int getIdEstudio() {
+        return idEstudio;
     }
 
-    public void setIdTipoEstudio(int idTipoEstudio) {
-        this.idTipoEstudio = idTipoEstudio;
+    public void setIdEstudio(int idEstudio) {
+        this.idEstudio = idEstudio;
     }
 
     public int getIdBirads() {

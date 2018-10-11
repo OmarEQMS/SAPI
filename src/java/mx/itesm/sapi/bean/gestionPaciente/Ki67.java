@@ -7,31 +7,30 @@ package mx.itesm.sapi.bean.gestionPaciente;
 
 /**
  *
- * @author Alex
+ * @author Oscar Miranda
  */
-public class MotivoConsulta {
-    
-    private int idMotivoConsulta;
+public class Ki67 {
+    private int idKi67;
     private String nombre;
     private int estatus;
     
-    public MotivoConsulta() {}
+     public Ki67() {}
     
-    @Override
+    @Override 
     public String toString(){
-        String str= "MotivoConsulta [idMotivoConsulta:".concat(String.valueOf(idMotivoConsulta))
+        String str= "Ki67 [idKi67:".concat(String.valueOf(idKi67))
                 .concat(",nombre:").concat(nombre)
                 .concat(",estatus:").concat(String.valueOf(estatus))
                 .concat("]");
         return str;
     }
 
-    public int getIdMotivoConsulta() {
-        return idMotivoConsulta;
+    public int getIdKi67() {
+        return idKi67;
     }
 
-    public void setIdMotivoConsulta(int idMotivoConsulta) {
-        this.idMotivoConsulta = idMotivoConsulta;
+    public void setIdKi67(int idKi67) {
+        this.idKi67 = idKi67;
     }
 
     public String getNombre() {
@@ -41,7 +40,7 @@ public class MotivoConsulta {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     public int getEstatus() {
         return estatus;
     }
@@ -49,8 +48,5 @@ public class MotivoConsulta {
     public void setEstatus(int estatus) {
         this.estatus = estatus;
     }
-    
-    
-    
     
 }

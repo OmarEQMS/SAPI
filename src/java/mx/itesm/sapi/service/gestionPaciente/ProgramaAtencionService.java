@@ -6,16 +6,17 @@
 package mx.itesm.sapi.service.gestionPaciente;
 
 import java.util.List;
-import mx.itesm.sapi.bean.gestionPaciente.ProgramaAtencion;
+import mx.itesm.sapi.bean.gestionPaciente.ProgramaPaciente;
 
 /**
  *
  * @author urieldiaz
  */
 public interface ProgramaAtencionService {
-    public ProgramaAtencion mostrarProgramaAtencion(int idProgramaAtencion);
-    public List<ProgramaAtencion> mostrarProgramaAtencion();
-    public int agregarProgramaAtencion(ProgramaAtencion programaAtencion);
+
+    public ProgramaPaciente mostrarProgramaAtencion(int idProgramaAtencion);
+    public List<ProgramaPaciente> mostrarAllProgramaAtencion();
+    public boolean agregarProgramaAtencion(ProgramaPaciente programaAtencion);
     public boolean borradoLogicoProgramaAtencion(int idProgramaAtencion);
-    public boolean actualizarProgramaAtencion(ProgramaAtencion programaAtencion);
+    public boolean actualizarProgramaAtencion(ProgramaPaciente programaAtencion);
 }

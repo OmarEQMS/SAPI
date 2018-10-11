@@ -39,14 +39,11 @@ public class PacienteServiceImpl implements PacienteService{
             paciente.setIdPaciente(rs.getInt("idPaciente"));
             paciente.setIdCuenta(rs.getInt("idCuenta"));
             paciente.setIdEscolaridad(rs.getInt("idEscolaridad"));
-            paciente.setIdSeguro(rs.getInt("idSeguro"));
             paciente.setPrz(rs.getString("prz"));
             paciente.setExpediente(rs.getString("expediente"));
-            paciente.setSeguroPopular(rs.getString("seguroPopular"));
             paciente.setPeso(rs.getDouble("peso"));
-            paciente.setImc(rs.getDouble("imc"));
-            paciente.setTalla(rs.getDouble("talla"));
-            paciente.setEditando(rs.getInt("editando"));
+            paciente.setAltura(rs.getDouble("altura"));
+            paciente.setPosMenopausia(rs.getInt("posMenopausia"));
             paciente.setEstatus(rs.getInt("estatus"));
         
             rs.close();
@@ -78,14 +75,11 @@ public class PacienteServiceImpl implements PacienteService{
             paciente.setIdPaciente(rs.getInt("idPaciente"));
             paciente.setIdCuenta(rs.getInt("idCuenta"));
             paciente.setIdEscolaridad(rs.getInt("idEscolaridad"));
-            paciente.setIdSeguro(rs.getInt("idSeguro"));
             paciente.setPrz(rs.getString("prz"));
             paciente.setExpediente(rs.getString("expediente"));
-            paciente.setSeguroPopular(rs.getString("seguroPopular"));
             paciente.setPeso(rs.getDouble("peso"));
-            paciente.setImc(rs.getDouble("imc"));
-            paciente.setTalla(rs.getDouble("talla"));
-            paciente.setEditando(rs.getInt("editando"));
+            paciente.setAltura(rs.getDouble("altura"));
+            paciente.setPosMenopausia(rs.getInt("posMenopausia"));
             paciente.setEstatus(rs.getInt("estatus"));
         
             
@@ -122,14 +116,11 @@ public class PacienteServiceImpl implements PacienteService{
                 paciente.setIdPaciente(rs.getInt("idPaciente"));
                 paciente.setIdCuenta(rs.getInt("idCuenta"));
                 paciente.setIdEscolaridad(rs.getInt("idEscolaridad"));
-                paciente.setIdSeguro(rs.getInt("idSeguro"));
                 paciente.setPrz(rs.getString("prz"));
                 paciente.setExpediente(rs.getString("expediente"));
-                paciente.setSeguroPopular(rs.getString("seguroPopular"));
                 paciente.setPeso(rs.getDouble("peso"));
-                paciente.setImc(rs.getDouble("imc"));
-                paciente.setTalla(rs.getDouble("talla"));
-                paciente.setEditando(rs.getInt("editando"));
+                paciente.setAltura(rs.getDouble("altura"));
+                paciente.setPosMenopausia(rs.getInt("posMenopausia"));
                 paciente.setEstatus(rs.getInt("estatus"));
                 
                 pacientes.add(paciente);
@@ -160,15 +151,12 @@ public class PacienteServiceImpl implements PacienteService{
             cstmt.setInt(1, paciente.getIdPaciente());
             cstmt.setInt(2, paciente.getIdCuenta());
             cstmt.setInt(3, paciente.getIdEscolaridad());
-            cstmt.setInt(4, paciente.getIdSeguro() );
-            cstmt.setString(5, paciente.getPrz());
-            cstmt.setString(6, paciente.getExpediente());
-            cstmt.setString(7, paciente.getExpediente() );
-            cstmt.setDouble(8, paciente.getPeso());
-            cstmt.setDouble(9, paciente.getImc());
-            cstmt.setDouble(10, paciente.getTalla());
-            cstmt.setInt(11, paciente.getEditando());
-            cstmt.setInt(12, paciente.getEstatus());
+            cstmt.setString(4, paciente.getPrz());
+            cstmt.setString(5, paciente.getExpediente());
+            cstmt.setDouble(6, paciente.getPeso() );
+            cstmt.setDouble(7, paciente.getAltura());
+            cstmt.setInt(8, paciente.getPosMenopausia());
+            cstmt.setInt(9, paciente.getEstatus());
             
             cstmt.executeUpdate();
             rs = cstmt.getGeneratedKeys();
@@ -199,18 +187,16 @@ public class PacienteServiceImpl implements PacienteService{
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
+            
             cstmt.setInt(1, paciente.getIdPaciente());
             cstmt.setInt(2, paciente.getIdCuenta());
             cstmt.setInt(3, paciente.getIdEscolaridad());
-            cstmt.setInt(4, paciente.getIdSeguro() );
-            cstmt.setString(5, paciente.getPrz());
-            cstmt.setString(6, paciente.getExpediente());
-            cstmt.setString(7, paciente.getExpediente() );
-            cstmt.setDouble(8, paciente.getPeso());
-            cstmt.setDouble(9, paciente.getImc());
-            cstmt.setDouble(10, paciente.getTalla());
-            cstmt.setInt(11, paciente.getEditando());
-            cstmt.setInt(12, paciente.getEstatus());
+            cstmt.setString(4, paciente.getPrz());
+            cstmt.setString(5, paciente.getExpediente());
+            cstmt.setDouble(6, paciente.getPeso() );
+            cstmt.setDouble(7, paciente.getAltura());
+            cstmt.setInt(8, paciente.getPosMenopausia());
+            cstmt.setInt(9, paciente.getEstatus());
             
             rs = cstmt.executeQuery();
             

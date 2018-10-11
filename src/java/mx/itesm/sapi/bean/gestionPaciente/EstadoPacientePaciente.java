@@ -19,6 +19,9 @@ public class EstadoPacientePaciente {
     private Timestamp fecha;
     private int segundaOpinion;
     private int estatus;
+    private int resultados;
+    private int idEmpleado;
+    
     
     
     @Override 
@@ -29,9 +32,27 @@ public class EstadoPacientePaciente {
                 .concat(",fecha:").concat(String.valueOf(fecha))
                 .concat(",segundaOpinion:").concat(String.valueOf(segundaOpinion))
                 .concat(",estatus:").concat(String.valueOf(estatus))
+                .concat(",resultados:").concat(String.valueOf(resultados))
+                .concat(",idEmpleado:").concat(String.valueOf(idEmpleado))
                 .concat("]");
         
         return str;
+    }
+
+    public int getResultados() {
+        return resultados;
+    }
+
+    public void setResultados(int resultados) {
+        this.resultados = resultados;
+    }
+
+    public int getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(int idEmpleado) {
+        this.idEmpleado = idEmpleado;
     }
 
     public int getIdEstadoPacientePaciente() {

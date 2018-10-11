@@ -14,8 +14,8 @@ import mx.itesm.sapi.bean.gestionPaciente.BIRADS;
  */
 public interface BIRADSService {
     public BIRADS mostrarBIRADS(int idBIRADS);
-    public List<BIRADS> mostrarAllBIRADS();
-    public boolean agregarBIRADS(BIRADS birads);
+    public List<BIRADS> mostrarBIRADS();
+    public int agregarBIRADS(BIRADS birads);
     public boolean borradoLogicoBIRADS(int idBIRADS);
     public boolean actualizarBIRADS(BIRADS birads);
 }

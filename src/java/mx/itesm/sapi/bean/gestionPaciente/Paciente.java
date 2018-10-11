@@ -13,14 +13,11 @@ public class Paciente {
     private int idPaciente;
     private int idCuenta;
     private int idEscolaridad;
-    private int idSeguro;
     private String prz;
     private String expediente;
-    private String seguroPopular;
     private double peso;
-    private double imc;
-    private double talla;
-    private int editando;
+    private double altura;
+    private int posMenopausia;
     private int estatus;
     
     public Paciente() {}
@@ -30,17 +27,30 @@ public class Paciente {
         String str ="Paciente [idPaciente:".concat(String.valueOf(idPaciente))
                 .concat(",idCuenta:").concat(String.valueOf(idCuenta))
                 .concat(",idEscolaridad:").concat(String.valueOf(idEscolaridad))
-                .concat(",idSeguro:").concat(String.valueOf(idSeguro))
                 .concat(",prz:").concat(prz)
                 .concat(",expediente:").concat(expediente)
-                .concat(",seguroPopular:").concat(seguroPopular)
                 .concat(",peso:").concat(String.valueOf(peso))
-                .concat(",imc:").concat(String.valueOf(imc))
-                .concat(",talla:").concat(String.valueOf(talla))
-                .concat(",editando:").concat(String.valueOf(editando))
+                .concat(",altura:").concat(String.valueOf(altura))
+                .concat(",posMenopausia:").concat(String.valueOf(posMenopausia))
                 .concat(",estatus:").concat(String.valueOf(estatus))         
                 .concat("]");
         return str;
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
+    public void setAltura(double altura) {
+        this.altura = altura;
+    }
+
+    public int getPosMenopausia() {
+        return posMenopausia;
+    }
+
+    public void setPosMenopausia(int posMenopausia) {
+        this.posMenopausia = posMenopausia;
     }
     
     public int getIdPaciente() {
@@ -67,14 +77,6 @@ public class Paciente {
         this.idEscolaridad = idEscolaridad;
     }
 
-    public int getIdSeguro() {
-        return idSeguro;
-    }
-
-    public void setIdSeguro(int idSeguro) {
-        this.idSeguro = idSeguro;
-    }
-
     public String getPrz() {
         return prz;
     }
@@ -91,44 +93,12 @@ public class Paciente {
         this.expediente = expediente;
     }
 
-    public String getSeguroPopular() {
-        return seguroPopular;
-    }
-
-    public void setSeguroPopular(String seguroPopular) {
-        this.seguroPopular = seguroPopular;
-    }
-
     public double getPeso() {
         return peso;
     }
 
     public void setPeso(double peso) {
         this.peso = peso;
-    }
-
-    public double getImc() {
-        return imc;
-    }
-
-    public void setImc(double imc) {
-        this.imc = imc;
-    }
-
-    public double getTalla() {
-        return talla;
-    }
-
-    public void setTalla(double talla) {
-        this.talla = talla;
-    }
-
-    public int getEditando() {
-        return editando;
-    }
-
-    public void setEditando(int editando) {
-        this.editando = editando;
     }
 
     public int getEstatus() {

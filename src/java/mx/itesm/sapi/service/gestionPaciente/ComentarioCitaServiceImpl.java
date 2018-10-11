@@ -24,7 +24,7 @@ public class ComentarioCitaServiceImpl implements ComentarioCitaService{
     }
 
     @Override
-    public boolean agregarComentarioCita(ComentarioCita comentarioCita) {
+    public int agregarComentarioCita(ComentarioCita comentarioCita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

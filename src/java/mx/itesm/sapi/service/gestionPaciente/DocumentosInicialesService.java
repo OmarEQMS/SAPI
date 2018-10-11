@@ -6,16 +6,16 @@
 package mx.itesm.sapi.service.gestionPaciente;
 
 import java.util.List;
-import mx.itesm.sapi.bean.gestionPaciente.DocumentosIniciales;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 
 /**
  *
  * @author urieldiaz
  */
 public interface DocumentosInicialesService {
-    public DocumentosIniciales mostrarDocumentosIniciales(int idDocumentosIniciales);
-    public List<DocumentosIniciales> mostrarAllDocumentosIniciales();
-    public boolean agregarDocumentosIniciales(DocumentosIniciales documentosIniciales);
+    public DocumentoInicial mostrarDocumentosIniciales(int idDocumentosIniciales);
+    public List<DocumentoInicial> mostrarAllDocumentosIniciales();
+    public boolean agregarDocumentosIniciales(DocumentoInicial documentosIniciales);
     public boolean borradoLogicoDocumentosIniciales(int idDocumentosIniciales);
-    public boolean actualizarDocumentosIniciales(DocumentosIniciales documentosIniciales);
+    public boolean actualizarDocumentosIniciales(DocumentoInicial documentosIniciales);
 }
