@@ -15,7 +15,7 @@ import mx.itesm.sapi.bean.gestionPaciente.ReceptorProgesterona;
 public interface ReceptorProgesteronaService {
     public ReceptorProgesterona mostrarReceptorProgesterona(int idReceptorProgesterona);
     public List<ReceptorProgesterona> mostrarAllReceptorProgesterona();
-    public boolean agregarReceptorProgesterona(ReceptorProgesterona receptorProgesterona);
+    public int agregarReceptorProgesterona(ReceptorProgesterona receptorProgesterona);
     public boolean actualizarReceptorProgesterona(ReceptorProgesterona receptorProgesterona);
     public boolean borradoLogicoReceptorProgesterona(int idReceptorProgesterona);
 }

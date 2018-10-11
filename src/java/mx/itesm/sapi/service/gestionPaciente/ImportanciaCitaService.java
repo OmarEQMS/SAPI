@@ -14,8 +14,8 @@ import mx.itesm.sapi.bean.gestionPaciente.ImportanciaCita;
  */
 public interface ImportanciaCitaService {
     public ImportanciaCita mostrarImportanciaCita(int idImportanciaCita);
-    public List<ImportanciaCita> mostrarAllImportanciaCita();
-    public boolean agregarImportanciaCita(ImportanciaCita importanciaCita);
+    public List<ImportanciaCita> mostrarImportanciaCita();
+    public int agregarImportanciaCita(ImportanciaCita importanciaCita);
     public boolean actualizarImportanciaCita(ImportanciaCita importanciaCita);
     public boolean borradoLogicoImportanciaCita(int idImportanciaCita);
     

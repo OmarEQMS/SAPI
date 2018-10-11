@@ -14,8 +14,8 @@ import mx.itesm.sapi.bean.gestionPaciente.OtroMotivo;
  */
 public interface OtroMotivoService {
     public OtroMotivo mostrarOtroMotivo(int idOtroMotivo);
-    public List<OtroMotivo> mostrarAllOtroMotivo();
-    public boolean agregarOtroMotivo(OtroMotivo otroMotivo);
+    public List<OtroMotivo> mostrarOtroMotivo();
+    public int agregarOtroMotivo(OtroMotivo otroMotivo);
     public boolean borradoLogicoOtroMotivo(int idOtroMotivo);
     public boolean actualizarOtroMotivo(OtroMotivo otroMotivo);
 }

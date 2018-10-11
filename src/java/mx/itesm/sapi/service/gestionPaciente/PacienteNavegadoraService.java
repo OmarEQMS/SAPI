@@ -14,8 +14,8 @@ import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
  */
 public interface PacienteNavegadoraService {
     public PacienteNavegadora mostrarPacienteNavegadora(int idPacienteNavegadora);
-    public List<PacienteNavegadora> mostrarAllPacienteNavegadora();
-    public boolean agregarPacienteNavegadora(PacienteNavegadora pacienteNavegadora);
+    public List<PacienteNavegadora> mostrarPacienteNavegadora();
+    public int agregarPacienteNavegadora(PacienteNavegadora pacienteNavegadora);
     public boolean actualizarPacienteNavegadora(PacienteNavegadora pacienteNavegadora);
     public boolean borradoLogicoPacienteNavegadora(int idPacienteNavegadora);
 }

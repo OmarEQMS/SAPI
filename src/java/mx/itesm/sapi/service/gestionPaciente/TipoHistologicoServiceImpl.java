@@ -46,7 +46,7 @@ public class TipoHistologicoServiceImpl implements TipoHistologicoService{
     }
 
     @Override
-    public boolean agregarTipoHistologico(TipoHistologico tipoHistologico) {
+    public int agregarTipoHistologico(TipoHistologico tipoHistologico) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

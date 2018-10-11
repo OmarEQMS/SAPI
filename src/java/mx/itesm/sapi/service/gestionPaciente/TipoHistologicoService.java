@@ -15,7 +15,7 @@ import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
 public interface TipoHistologicoService {
     public TipoHistologico mostrarTipoHistologico(int idTipoHistologico);
     public List<TipoHistologico> mostrarAllTipoHistologico();
-    public boolean agregarTipoHistologico(TipoHistologico tipoHistologico);
+    public int agregarTipoHistologico(TipoHistologico tipoHistologico);
     public boolean updateTipoHistologico(TipoHistologico tipoHistologico);
     public boolean borradoLogicoTipoHistologico(int idTipoHistologico);
 }

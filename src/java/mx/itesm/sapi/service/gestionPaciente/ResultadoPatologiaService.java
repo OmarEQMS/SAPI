@@ -15,7 +15,7 @@ import mx.itesm.sapi.bean.gestionPaciente.ResultadoPatologia;
 public interface ResultadoPatologiaService {
     public ResultadoPatologia mostrarResultadoPatologia(int idResultadoPatologia);
     public List<ResultadoPatologia> mostrarAllResultadoPatologia();
-    public boolean agregarResultadoPatologia(ResultadoPatologia resultadoPatologia);
+    public int agregarResultadoPatologia(ResultadoPatologia resultadoPatologia);
     public boolean borradoLogicoResultadoPatologia(int idResultadoPatologia);
     public boolean actualizarResultadoPatologia (ResultadoPatologia resultadoPatologia);
 }
