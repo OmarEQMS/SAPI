@@ -17,7 +17,7 @@ import mx.itesm.sapi.util.Conexion;
 
 /**
  *
- * @author urieldiaz
+ * @author Oscar Miranda
  */
 public class AtencionServicioImpl implements AtencionServicio{
 

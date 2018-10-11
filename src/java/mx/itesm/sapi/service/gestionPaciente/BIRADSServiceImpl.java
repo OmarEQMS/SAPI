@@ -16,7 +16,7 @@ import mx.itesm.sapi.util.Conexion;
 
 /**
  *
- * @author urieldiaz
+ * @author Oscar Miranda
  */
 public class BIRADSServiceImpl implements BIRADSService{
 

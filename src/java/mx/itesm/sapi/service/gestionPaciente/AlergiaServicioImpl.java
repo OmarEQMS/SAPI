@@ -17,7 +17,7 @@ import mx.itesm.sapi.util.Conexion;
 
 /**
  *
- * @author urieldiaz
+ * @author Oscar Miranda
  */
 public class AlergiaServicioImpl implements AlergiaServicio{
 
@@ -144,7 +144,7 @@ public class AlergiaServicioImpl implements AlergiaServicio{
     }
 
     @Override
-    public boolean actualizarAlergia(int  idAlergia) {
+    public boolean actualizarAlergia(Alergia  alergia) {
         Connection conn;
 	CallableStatement cstmt;
         String stProcedure = "";
@@ -153,7 +153,7 @@ public class AlergiaServicioImpl implements AlergiaServicio{
 	try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            cstmt.setInt(1, idAlergia);
+            cstmt.setString(1, alergia.getNombre());
             cstmt.registerOutParameter(1, Types.BOOLEAN);
             
             cstmt.executeUpdate();
