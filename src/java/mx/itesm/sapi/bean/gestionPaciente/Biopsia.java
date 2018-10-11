@@ -14,12 +14,13 @@ public class Biopsia {
     private int idBiopsia;
     private int idPaciente;
     private int idLugarDelCuerpo;
-    private int idTipoHistologico;
     private int idHer2;
     private int idReceptorProgesterona;
     private int idReceptorEstrogeno;
     private int idFish;
     private int idKi67;
+    private int idTipoHistologico;
+    private int idGradoHistologico;
     private int laminillas;
     private int bloques;
     private int previa;
@@ -31,12 +32,13 @@ public class Biopsia {
  		String str="Biopsia [idBiopsia:".concat(String.valueOf(idBiopsia))
  			.concat(",idPaciente:").concat(String.valueOf(idPaciente))
  			.concat(",idLugarDelCuerpo:").concat(String.valueOf(idLugarDelCuerpo))
- 			.concat(",idTipoHistologico:").concat(String.valueOf(idTipoHistologico))
-                        .concat(",idHet2:").concat(String.valueOf(idHer2))
+                        .concat(",idHer2:").concat(String.valueOf(idHer2))
                         .concat(",idReceptorProgesterona:").concat(String.valueOf(idReceptorProgesterona))
  			.concat(",idReceptorEstrogeno:").concat(String.valueOf(idReceptorEstrogeno))
  			.concat(",idFish:").concat(String.valueOf(idFish))
  			.concat(",idKi67:").concat(String.valueOf(idKi67))
+ 			.concat(",idTipoHistologico:").concat(String.valueOf(idTipoHistologico))
+ 			.concat(",idGradoHistologico:").concat(String.valueOf(idGradoHistologico))
  			.concat(",laminillas:").concat(String.valueOf(laminillas))
  			.concat(",bloques:").concat(String.valueOf(bloques))
  			.concat(",previa:").concat(String.valueOf(previa))
@@ -45,6 +47,14 @@ public class Biopsia {
  		return str;
 
  	}
+
+    public int getIdGradoHistologico() {
+        return idGradoHistologico;
+    }
+
+    public void setIdGradoHistologico(int idGradoHistologico) {
+        this.idGradoHistologico = idGradoHistologico;
+    }
 
     public int getIdBiopsia() {
         return idBiopsia;

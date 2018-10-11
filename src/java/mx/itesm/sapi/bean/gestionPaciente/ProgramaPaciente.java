@@ -5,33 +5,39 @@
  */
 package mx.itesm.sapi.bean.gestionPaciente;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author Alex
  */
-public class ProgramaAtencion {
-    private int idProgramaAtencion;
+public class ProgramaPaciente {
+    private int idProgramaPaciente;
     private int idPrograma;
-    private int idAtencion;
+    private int idPaciente;
+    private Timestamp inicio;
+    private Timestamp fin;
     private int estatus;
     
-    public ProgramaAtencion() {}
+    public ProgramaPaciente() {}
     @Override
     public String toString(){
-        String str= "ProgramaAtencion [idProgramaAtencion:".concat(String.valueOf(idProgramaAtencion))
+        String str= "ProgramaPaciente [idProgramaPaciente:".concat(String.valueOf(idProgramaPaciente))
                 .concat(",idPrograma:").concat(String.valueOf(idPrograma))
-                .concat(",idAtencion:").concat(String.valueOf(idAtencion))
+                .concat(",idPaciente:").concat(String.valueOf(idPaciente))
+                .concat(",inicio:").concat(String.valueOf(inicio))
+                .concat(",fin:").concat(String.valueOf(fin))
                 .concat(",estatus:").concat(String.valueOf(estatus))
                 .concat("]");
         return str;
     }
 
-    public int getIdProgramaAtencion() {
-        return idProgramaAtencion;
+    public int getIdProgramaPaciente() {
+        return idProgramaPaciente;
     }
 
-    public void setIdProgramaAtencion(int idProgramaAtencion) {
-        this.idProgramaAtencion = idProgramaAtencion;
+    public void setIdProgramaPaciente(int idProgramaPaciente) {
+        this.idProgramaPaciente = idProgramaPaciente;
     }
 
     public int getIdPrograma() {
@@ -42,12 +48,12 @@ public class ProgramaAtencion {
         this.idPrograma = idPrograma;
     }
 
-    public int getIdAtencion() {
-        return idAtencion;
+    public int getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setIdAtencion(int idAtencion) {
-        this.idAtencion = idAtencion;
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public int getEstatus() {

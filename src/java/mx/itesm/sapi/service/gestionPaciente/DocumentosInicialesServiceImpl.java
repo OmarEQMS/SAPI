@@ -6,7 +6,7 @@
 package mx.itesm.sapi.service.gestionPaciente;
 
 import java.util.List;
-import mx.itesm.sapi.bean.gestionPaciente.DocumentosIniciales;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 
 /**
  *
@@ -15,17 +15,17 @@ import mx.itesm.sapi.bean.gestionPaciente.DocumentosIniciales;
 public class DocumentosInicialesServiceImpl implements DocumentosInicialesService{
 
     @Override
-    public DocumentosIniciales mostrarDocumentosIniciales(int idDocumentosIniciales) {
+    public DocumentoInicial mostrarDocumentosIniciales(int idDocumentosIniciales) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<DocumentosIniciales> mostrarAllDocumentosIniciales() {
+    public List<DocumentoInicial> mostrarAllDocumentosIniciales() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean agregarDocumentosIniciales(DocumentosIniciales documentosIniciales) {
+    public boolean agregarDocumentosIniciales(DocumentoInicial documentosIniciales) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -35,7 +35,7 @@ public class DocumentosInicialesServiceImpl implements DocumentosInicialesServic
     }
 
     @Override
-    public boolean actualizarDocumentosIniciales(DocumentosIniciales documentosIniciales) {
+    public boolean actualizarDocumentosIniciales(DocumentoInicial documentosIniciales) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

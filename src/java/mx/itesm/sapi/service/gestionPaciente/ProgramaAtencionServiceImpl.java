@@ -6,7 +6,7 @@
 package mx.itesm.sapi.service.gestionPaciente;
 
 import java.util.List;
-import mx.itesm.sapi.bean.gestionPaciente.ProgramaAtencion;
+import mx.itesm.sapi.bean.gestionPaciente.ProgramaPaciente;
 
 /**
  *
@@ -15,17 +15,17 @@ import mx.itesm.sapi.bean.gestionPaciente.ProgramaAtencion;
 public class ProgramaAtencionServiceImpl implements ProgramaAtencionService{
 
     @Override
-    public ProgramaAtencion mostrarProgramaAtencion(int idProgramaAtencion) {
+    public ProgramaPaciente mostrarProgramaAtencion(int idProgramaAtencion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<ProgramaAtencion> mostrarAllProgramaAtencion() {
+    public List<ProgramaPaciente> mostrarAllProgramaAtencion() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean agregarProgramaAtencion(ProgramaAtencion programaAtencion) {
+    public boolean agregarProgramaAtencion(ProgramaPaciente programaAtencion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -35,7 +35,7 @@ public class ProgramaAtencionServiceImpl implements ProgramaAtencionService{
     }
 
     @Override
-    public boolean actualizarProgramaAtencion(ProgramaAtencion programaAtencion) {
+    public boolean actualizarProgramaAtencion(ProgramaPaciente programaAtencion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
