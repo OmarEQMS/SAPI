@@ -149,31 +149,29 @@ public class CuentaServicioImpl implements CuentaServicio {
 
         int id = -1;
         //Aquí va el call del procedure
-        String stProcedure = "CALL insertaCuenta(?, ?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL agregarCuenta(?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
+           /* IN in_idPersona INT, IN in_idRol INT, IN in_idEstadoCuenta INT, IN in_usuario VARCHAR(255),
+                               IN in_password VARCHAR(128), IN in_token VARCHAR(200), IN in_estatus TINYINT*/
             //Aquí van los sets 
-            cstmt.setInt(1, cuenta.getIdCuenta());
-            cstmt.setInt(2, cuenta.getIdPersona());
-            cstmt.setInt(3, cuenta.getIdRol());
-            cstmt.setInt(4, cuenta.getIdEstadoCuenta());
-            cstmt.setString(5, cuenta.getUsuario());
-            cstmt.setString(6, cuenta.getPassword());
-            cstmt.setString(7, cuenta.getToken());
-            cstmt.setInt(8, cuenta.getEstatus());
+            cstmt.setInt(1, cuenta.getIdPersona());
+            cstmt.setInt(2, 1);
+            cstmt.setInt(3, 1);
+            cstmt.setString(4, cuenta.getUsuario());
+            cstmt.setString(5, cuenta.getPassword());
+            cstmt.setString(6, cuenta.getToken());
+            cstmt.setInt(7, cuenta.getEstatus());
 
             //Aquí va el registerOutParameter
             //cstmt.registerOutParameter(12,Types.INTEGER);
-            cstmt.executeUpdate();
-
-            rs = cstmt.getGeneratedKeys();
-
+             rs = cstmt.executeQuery();
             rs.next();
-
             id = rs.getInt(1);
+            cstmt.execute();
             conn.close();
             rs.close();
             cstmt.close();

@@ -7,10 +7,13 @@ package mx.itesm.sapi.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -88,7 +91,7 @@ public class RegistraUsuarioController extends HttpServlet {
 
             break;
 
-            case "registraUsuario": {
+            case "registraUsuario":    {
 
                 String nombre = request.getParameter("nombre");
                 String apellido1 = request.getParameter("apellido1");
@@ -105,16 +108,20 @@ public class RegistraUsuarioController extends HttpServlet {
                 String noInterior = request.getParameter("noInterior");
                 String contraseña1 = request.getParameter("pass1");
                 String contraseña2 = request.getParameter("pass2");
-                String fechaNacimiento = request.getParameter("fechaNacimiento");
                 
-                DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+                String fn = request.getParameter("fechaNacimiento");
                 
+                Date fechaNacimiento=null;
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
             try {
-                Timestamp bday = new Timestamp(((java.util.Date)df.parse(fechaNacimiento)).getTime());
-                 per.setFechaNacimiento(bday);
-            } catch (ParseException ex) {
+                fechaNacimiento =(Date) formatter.parse(fn);
+            } catch (Exception ex) {
                 Logger.getLogger(RegistraUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             }
+                
+                per.setFechaNacimiento(fechaNacimiento);
+                
+            
 
                 String usuario = request.getParameter("usuario");
 
@@ -145,6 +152,7 @@ public class RegistraUsuarioController extends HttpServlet {
                 
                 int idD = _rSD.agregarDireccion(dir);
                 
+                System.out.println("El id de direccion es: ".concat(Integer.toString(idD)));
                 
 
                 if (idD > 0) {

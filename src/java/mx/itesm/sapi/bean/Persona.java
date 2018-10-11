@@ -28,7 +28,7 @@ public class Persona implements Serializable {
     private String curp;
     private String telefono;
     private String correo;
-    private Timestamp fechaNacimiento;
+    private Date fechaNacimiento;
 
     private int edad;
     private InputStream imagen;
@@ -147,11 +147,11 @@ public class Persona implements Serializable {
         this.correo = correo;
     }
 
-    public Timestamp getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Timestamp fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
