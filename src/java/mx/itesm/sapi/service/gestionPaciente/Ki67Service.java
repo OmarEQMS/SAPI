@@ -6,14 +6,13 @@
 package mx.itesm.sapi.service.gestionPaciente;
 
 import java.util.List;
-import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
-
+import mx.itesm.sapi.bean.gestionPaciente.Ki67;
 /**
  *
- * @author urieldiaz
+ * @author Alex
  */
-public interface TipoHistologicoService {
-    public TipoHistologico mostrarTipoHistologico(int idTipoHistologico);
-    public List<TipoHistologico> mostraTipoHistologico();
+public interface Ki67Service {
+    public Ki67 mostrarKi67(int idKi67);
+    public List<Ki67> mostrarKi67();
     
 }

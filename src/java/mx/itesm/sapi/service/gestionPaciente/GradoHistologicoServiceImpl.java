@@ -11,23 +11,23 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import mx.itesm.sapi.util.Conexion;
 import java.util.List;
-import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
+import mx.itesm.sapi.util.Conexion;
+import mx.itesm.sapi.bean.gestionPaciente.GradoHistologico;
 
 /**
  *
- * @author urieldiaz
+ * @author Alex
  */
-public class TipoHistologicoServiceImpl implements TipoHistologicoService{
+public class GradoHistologicoServiceImpl implements GradoHistologicoService{
 
     @Override
-    public TipoHistologico mostrarTipoHistologico(int idTipoHistologico) {
-        Connection conn; 
+    public GradoHistologico mostrarTipoHistologico(int idTipoHistologico) {
+      Connection conn; 
         CallableStatement cstmt;
         ResultSet rs;
         
-        TipoHistologico tipoHistologico = new TipoHistologico();
+        GradoHistologico gradoHistologico = new GradoHistologico();
         
         String stProcedure ="";
         try{
@@ -36,9 +36,9 @@ public class TipoHistologicoServiceImpl implements TipoHistologicoService{
             rs = cstmt.executeQuery();
             rs.next();
             
-            tipoHistologico.setIdTipoHistologico(rs.getInt("idTipoHistologico"));
-            tipoHistologico.setNombre(rs.getString("nombre"));
-            tipoHistologico.setEstatus(rs.getInt("estatus"));
+            gradoHistologico.setIdGradoHistologico (rs.getInt("idGradoHistologico"));
+            gradoHistologico.setNombre(rs.getString("nombre"));
+            gradoHistologico.setEstatus(rs.getInt("estatus"));
             
         
             rs.close();
@@ -47,15 +47,15 @@ public class TipoHistologicoServiceImpl implements TipoHistologicoService{
         }catch(SQLException ex){
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
-            tipoHistologico= null;
+            gradoHistologico= null;
         }
-        return tipoHistologico;
+        return gradoHistologico;  
     }
 
     @Override
-    public List<TipoHistologico> mostraTipoHistologico() {
+    public List<GradoHistologico> mostrarGradoHistologico() {
         Connection conn;
-        List<TipoHistologico> listTipoHistologico = new ArrayList<>();
+        List<GradoHistologico> listGradoHistologico = new ArrayList<>();
         CallableStatement cstmt;
         String stProcedure="";
         
@@ -65,14 +65,15 @@ public class TipoHistologicoServiceImpl implements TipoHistologicoService{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             rs = cstmt.executeQuery();
-            TipoHistologico tipoHistologico;
+            GradoHistologico gradoHistologico;
             
             while(rs.next()){
-                tipoHistologico = new TipoHistologico();
-                tipoHistologico.setIdTipoHistologico(rs.getInt("idTipoHistologico"));
-                tipoHistologico.setNombre(rs.getString("nombre"));
-                tipoHistologico.setEstatus(rs.getInt("estatus"));                
-                listTipoHistologico.add(tipoHistologico);
+                gradoHistologico = new GradoHistologico();
+                gradoHistologico.setIdGradoHistologico (rs.getInt("idGradoHistologico"));
+                gradoHistologico.setNombre(rs.getString("nombre"));
+                gradoHistologico.setEstatus(rs.getInt("estatus"));
+                
+                listGradoHistologico.add(gradoHistologico);
             }
             
             rs.close();
@@ -81,10 +82,9 @@ public class TipoHistologicoServiceImpl implements TipoHistologicoService{
         }catch(SQLException ex){
            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
-            listTipoHistologico = null;
+            listGradoHistologico = null;
         }
-        return listTipoHistologico;
+        return listGradoHistologico;
     }
     
-
 }
