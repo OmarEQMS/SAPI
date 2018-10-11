@@ -5,6 +5,10 @@
  */
 package mx.itesm.sapi.service.gestionPaciente;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 
@@ -16,7 +20,7 @@ public class DocumentosInicialesServiceImpl implements DocumentosInicialesServic
 
     @Override
     public DocumentoInicial mostrarDocumentosIniciales(int idDocumentosIniciales) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
