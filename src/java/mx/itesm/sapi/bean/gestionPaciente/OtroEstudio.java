@@ -26,4 +26,38 @@ public class OtroEstudio {
                 .concat("]");
         return str;
     }
+
+    public int getIdOtroEstudio() {
+        return idOtroEstudio;
+    }
+
+    public void setIdOtroEstudio(int idOtroEstudio) {
+        this.idOtroEstudio = idOtroEstudio;
+    }
+
+    public int getIdEstudio() {
+        return idEstudio;
+    }
+
+    public void setIdEstudio(int idEstudio) {
+        this.idEstudio = idEstudio;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
+    }
+    
+    
 }

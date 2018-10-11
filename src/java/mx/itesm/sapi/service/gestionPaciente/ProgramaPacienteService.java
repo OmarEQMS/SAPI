@@ -5,14 +5,8 @@
  */
 package mx.itesm.sapi.service.gestionPaciente;
 
-import java.sql.Connection;
+
 import java.util.List;
-import java.sql.CallableStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import mx.itesm.sapi.util.Conexion;
 import mx.itesm.sapi.bean.gestionPaciente.ProgramaPaciente;
 
 /**

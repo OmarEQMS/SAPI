@@ -24,4 +24,29 @@ public class TorreNueva {
                 .concat("]");
         return str;
     }
+
+    public int getIdTorreNueva() {
+        return idTorreNueva;
+    }
+
+    public void setIdTorreNueva(int idTorreNueva) {
+        this.idTorreNueva = idTorreNueva;
+    }
+
+    public int getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(int nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
+    }
+    
 }
