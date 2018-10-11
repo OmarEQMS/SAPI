@@ -54,6 +54,7 @@ public class AlergiaServicioImpl implements AlergiaServicio{
 
     @Override
     public List<Alergia> mostrarAlergia() {
+        return null;
     }
 
     @Override

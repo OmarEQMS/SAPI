@@ -24,9 +24,13 @@ import javax.servlet.http.HttpServletResponse;
 import mx.itesm.sapi.bean.Cuenta;
 import mx.itesm.sapi.bean.Direccion;
 import mx.itesm.sapi.bean.Persona;
+import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
+import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.service.CuentaServicioImpl;
 import mx.itesm.sapi.service.DireccionServicioImpl;
 import mx.itesm.sapi.service.PersonaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
 
 /**
  *
@@ -62,11 +66,15 @@ public class RegistraUsuarioController extends HttpServlet {
         PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
         CuentaServicioImpl _rSC = new CuentaServicioImpl();
         DireccionServicioImpl _rSD = new DireccionServicioImpl();
+        PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
+        EstadoPacientePacienteServiceImpl estadoPaPaServicio = new EstadoPacientePacienteServiceImpl();
 
         //Verifica existencia de usuario
         Persona per = new Persona();
         Cuenta cuenta = new Cuenta();
         Direccion dir = new Direccion();
+        Paciente pac = new Paciente();
+        EstadoPacientePaciente estadoPaPa = new EstadoPacientePaciente();
 
         //Set persona
         switch (key) {
@@ -153,7 +161,9 @@ public class RegistraUsuarioController extends HttpServlet {
                 int idD = _rSD.agregarDireccion(dir);
                 
                 System.out.println("El id de direccion es: ".concat(Integer.toString(idD)));
-                
+                int idC;
+                int idPac;
+                int idEsPaPa;
 
                 if (idD > 0) {
 
@@ -163,7 +173,19 @@ public class RegistraUsuarioController extends HttpServlet {
                     
                     if(idP > 0){
                         cuenta.setIdPersona(idP);
-                        _rSC.agregarCuenta(cuenta);
+                        idC=_rSC.agregarCuenta(cuenta);
+                        
+                        if(idC > 0){
+                            
+                            pac.setIdCuenta(idC);
+                            idPac = pacienteServicio.agregarPaciente(pac);
+                            
+                            if(idPac > 0){
+                                estadoPaPa.setIdPaciente(idPac);
+                                idEsPaPa = estadoPaPaServicio.agregarEstadoPacientePaciente(estadoPaPa);
+                            }
+                            
+                        }
                     }
                 }
 
