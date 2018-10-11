@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         String key = request.getParameter("key");
-
+        System.out.println("Key: ".concat(key));
         switch (key) {
 
             case "verificar": {
@@ -46,7 +46,7 @@ public class LoginController extends HttpServlet {
                 String usuario = request.getParameter("usuario");
                 String password = request.getParameter("password");
                 
-
+                System.out.println("Usuario".concat(usuario).concat(" password: ").concat(password));
                 if (usuario == null || password == null) {
 
                 } else {
@@ -64,6 +64,8 @@ public class LoginController extends HttpServlet {
                     
 
                     if (cuenta.getIdCuenta() != 0) {
+                        
+                        System.out.println("controler:" . concat(String.valueOf(cuenta.getIdCuenta())));
 
                         //Obtener la sesion
                         HttpSession sesion = request.getSession(true);
@@ -72,8 +74,8 @@ public class LoginController extends HttpServlet {
                         long lDateTime = sesion.getCreationTime();
                         
                         // @Autor: Alexis España: Le inserta la fecha de login al objeto Cuenta
-                        //cuenta.setLoginDateTime(lDateTime);
-                        cs.InsertLoginDateTime(cuenta);
+                        //cuenta.setLoginDateTime(lDateTime);                        
+                        //cs.InsertLoginDateTime(cuenta);
                         
                         
                         /*//Escribir los valores de sesion
