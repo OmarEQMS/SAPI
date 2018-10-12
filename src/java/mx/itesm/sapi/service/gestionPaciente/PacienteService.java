@@ -6,7 +6,7 @@
 package mx.itesm.sapi.service.gestionPaciente;
 
 import java.util.List;
-import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.moduloGestionPaciente.Paciente;
 
 /**
  *

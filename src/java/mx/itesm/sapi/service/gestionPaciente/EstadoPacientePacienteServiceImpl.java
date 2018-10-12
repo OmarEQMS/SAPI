@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
+import mx.itesm.sapi.bean.moduloGestionPaciente.EstadoPacientePaciente;
 import mx.itesm.sapi.util.Conexion;
 
 /**
@@ -104,7 +104,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "agregarEstadoPacienteRegistro(?,?)";
+        String stProcedure = "CALL agregarEstadoPacienteRegistro(?,?)";
         int id = -1;
         
 	try{

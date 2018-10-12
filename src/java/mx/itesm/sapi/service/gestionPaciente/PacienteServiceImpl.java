@@ -11,7 +11,7 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.moduloGestionPaciente.Paciente;
 import mx.itesm.sapi.util.Conexion;
 
 /**
@@ -159,10 +159,9 @@ public class PacienteServiceImpl implements PacienteService{
             cstmt.setInt(8, paciente.getPosMenopausia());
             cstmt.setInt(9, paciente.getEstatus());
             */
-            cstmt.executeUpdate();
-            rs = cstmt.getGeneratedKeys();
+             rs = cstmt.executeQuery();
             rs.next();
-            id=rs.getInt(1);
+            id = rs.getInt(1);
             
             rs.close();
             cstmt.close();

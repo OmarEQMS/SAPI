@@ -24,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 import mx.itesm.sapi.bean.Cuenta;
 import mx.itesm.sapi.bean.Direccion;
 import mx.itesm.sapi.bean.Persona;
-import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
-import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.moduloGestionPaciente.EstadoPacientePaciente;
+import mx.itesm.sapi.bean.moduloGestionPaciente.Paciente;
 import mx.itesm.sapi.service.CuentaServicioImpl;
 import mx.itesm.sapi.service.DireccionServicioImpl;
 import mx.itesm.sapi.service.PersonaServicioImpl;
@@ -116,18 +116,12 @@ public class RegistraUsuarioController extends HttpServlet {
                 String noInterior = request.getParameter("noInterior");
                 String contraseña1 = request.getParameter("pass1");
                 String contraseña2 = request.getParameter("pass2");
+                String fechaNacimiento=request.getParameter("fechaNacimiento");
                 
-                String fn = request.getParameter("fechaNacimiento");
+                Date fn = Date.valueOf(fechaNacimiento);
+
                 
-                Date fechaNacimiento=null;
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
-            try {
-                fechaNacimiento =(Date) formatter.parse(fn);
-            } catch (Exception ex) {
-                Logger.getLogger(RegistraUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                
-                per.setFechaNacimiento(fechaNacimiento);
+                per.setFechaNacimiento(fn);
                 
             
 

@@ -171,7 +171,6 @@ public class CuentaServicioImpl implements CuentaServicio {
              rs = cstmt.executeQuery();
             rs.next();
             id = rs.getInt(1);
-            cstmt.execute();
             conn.close();
             rs.close();
             cstmt.close();
