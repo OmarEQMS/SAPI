@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import mx.itesm.sapi.bean.Cuenta;
 import mx.itesm.sapi.bean.Direccion;
 import mx.itesm.sapi.bean.Persona;
-import mx.itesm.sapi.bean.moduloGestionPaciente.EstadoPacientePaciente;
+import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 import mx.itesm.sapi.bean.moduloGestionPaciente.Paciente;
 import mx.itesm.sapi.service.CuentaServicioImpl;
 import mx.itesm.sapi.service.DireccionServicioImpl;
