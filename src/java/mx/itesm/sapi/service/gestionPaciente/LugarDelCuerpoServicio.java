@@ -16,7 +16,5 @@ public interface LugarDelCuerpoServicio {
     public LugarDelCuerpo mostrarLugarDelCuerpo(int idLugarDelCuerpo);
     public LugarDelCuerpo mostrarLugarDelCuerpo(String nombreLugarDelCuerpo);
     public List<LugarDelCuerpo> mostrarLugarDelCuerpo();
-    public int agregarLugarDelCuerpo(LugarDelCuerpo lugarDelCuerpo);
-    public boolean actualizarLugarDelCuerpo(LugarDelCuerpo lugarDelCuerpo);
-    public boolean borradoLogicoLugarDelCuerpo(int idLugarDelCuerpo);
+    
 }

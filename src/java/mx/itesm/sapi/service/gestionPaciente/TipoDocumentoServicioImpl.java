@@ -54,7 +54,7 @@ public class TipoDocumentoServicioImpl implements TipoDocumentoServicio{
     }
 
     @Override
-    public List<TipoDocumento> mostrarAllTipoDocumento() {
+    public List<TipoDocumento> mostrarTipoDocumento() {
         Connection conn;
         List<TipoDocumento> tipoDocumentos = new ArrayList<>();
         CallableStatement cstmt;
@@ -86,98 +86,6 @@ public class TipoDocumentoServicioImpl implements TipoDocumentoServicio{
             tipoDocumentos = null;
         }
         return tipoDocumentos;
-    }
-
-    @Override
-    public int agregarTipoDocumento(TipoDocumento tipoDocumento) {
-        Connection conn; 
-        ResultSet rs;
-        CallableStatement cstmt;
-        int id = -1;
-        String stPrcedure="";
-        try{
-            conn = Conexion.getConnection();
-            cstmt = conn.prepareCall(stPrcedure);
-            
-            cstmt.setInt(1, tipoDocumento.getIdTipoDocumento());
-            cstmt.setString(2, tipoDocumento.getNombre());
-            cstmt.setInt(3, tipoDocumento.getEstatus());
-           
-            
-            cstmt.executeUpdate();
-            rs = cstmt.getGeneratedKeys();
-            rs.next();
-            id=rs.getInt(1);
-            
-            rs.close();
-            cstmt.close();
-            conn.close();
-            
-        }catch(SQLException ex){
-            
-            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
-                    .concat(ex.getMessage()));
-            id = -1;
-        }
-        return id;
-    }
-
-    @Override
-    public boolean actualizarTipoDocumento(TipoDocumento tipoDocumento) {
-        Connection conn;
-        CallableStatement cstmt;
-        String stProcedure = "";
-        boolean exito= false;
-        ResultSet rs;
-        try{
-            conn = Conexion.getConnection();
-            cstmt = conn.prepareCall(stProcedure);
-            cstmt.setInt(1, tipoDocumento.getIdTipoDocumento());
-            cstmt.setString(2, tipoDocumento.getNombre());
-            cstmt.setInt(3, tipoDocumento.getEstatus());
-            
-            rs = cstmt.executeQuery();
-            
-            exito = rs.getBoolean(1);
-            
-            rs.close();
-            cstmt.close();
-            conn.close();
-        }catch(SQLException ex){
-            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
-                    .concat(ex.getMessage()));
-            exito=false;
-        }
-        return exito;
-    }
-
-    @Override
-    public boolean borradoLogicoTipoDocumento(int idTipoDocumento) {
-        Connection conn; 
-        CallableStatement cstmt;
-        String stProcedure = "";
-        boolean exito = false;
-        ResultSet rs;
-        try{
-            conn = Conexion.getConnection();
-            cstmt = conn.prepareCall(stProcedure);
-            cstmt.setInt(1, idTipoDocumento);
-            
-            rs = cstmt.executeQuery();
-            rs.next();
-            
-            exito = rs.getBoolean(1);
-            
-            rs.close();
-            cstmt.close();
-            conn.close();
-        }catch( SQLException ex){
-           
-            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
-                    .concat(ex.getMessage()));
-            exito=false;
-        }
-        return exito;
     }
     
 }
