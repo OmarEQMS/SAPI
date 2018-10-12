@@ -196,7 +196,6 @@ public class PersonaServicioImpl implements PersonaServicio {
              rs = cstmt.executeQuery();
             rs.next();
             id = rs.getInt(1);
-            cstmt.execute();
 
             rs.close();
             cstmt.close();
