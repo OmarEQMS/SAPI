@@ -18,7 +18,7 @@ import mx.itesm.sapi.util.Conexion;
  *
  * @author Oscar Miranda
  */
-public class EstadoPacienteServiceImpl implements EstadoPacienteService{
+public class EstadoPacienteServicioImpl implements EstadoPacienteServicio{
     
     
     @Override

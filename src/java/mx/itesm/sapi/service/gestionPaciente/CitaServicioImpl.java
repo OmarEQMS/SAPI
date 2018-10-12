@@ -47,6 +47,9 @@ public class CitaServicioImpl implements CitaServicio{
             cita.setIdMotivoConsulta(rs.getInt("MotivoConsulta"));
             cita.setFechaProgramada(rs.getTimestamp("fechaProgramada"));
             cita.setFechaReal(rs.getTimestamp("fechaReal"));
+            cita.setArchivo(rs.getBytes("archivo"));
+            cita.setHospitalProcedencia(rs.getString("hospitalProcedencia"));
+            cita.setFechaSolicitud(rs.getTimestamp("fechaSolicitud"));
             
             conn.close();
             cstmt.close();
@@ -87,7 +90,10 @@ public class CitaServicioImpl implements CitaServicio{
                 cita.setIdMotivoConsulta(rs.getInt("MotivoConsulta"));
                 cita.setFechaProgramada(rs.getTimestamp("fechaProgramada"));
                 cita.setFechaReal(rs.getTimestamp("fechaReal"));
-
+                cita.setArchivo(rs.getBytes("archivo"));
+                cita.setHospitalProcedencia(rs.getString("hospitalProcedencia"));
+                cita.setFechaSolicitud(rs.getTimestamp("fechaSolicitud"));
+                
                 citas.add(cita);
             }
 		
@@ -124,6 +130,9 @@ public class CitaServicioImpl implements CitaServicio{
             cstmt.setInt(7,cita.getIdMotivoConsulta());
             cstmt.setTimestamp(8,cita.getFechaProgramada());
             cstmt.setTimestamp(9, cita.getFechaReal());
+            cstmt.setBytes(10, cita.getArchivo());
+            cstmt.setString(11, cita.getHospitalProcedencia());
+            cstmt.setTimestamp(12, cita.getFechaSolicitud());
             
             rs = cstmt.executeQuery();
             rs.next();
@@ -182,7 +191,6 @@ public class CitaServicioImpl implements CitaServicio{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            
             cstmt.setInt(1,cita.getIdTipoCita());
             cstmt.setInt(2,cita.getIdPaciente());
             cstmt.setInt(3,cita.getIdEstadoCita());
@@ -192,6 +200,9 @@ public class CitaServicioImpl implements CitaServicio{
             cstmt.setInt(7,cita.getIdMotivoConsulta());
             cstmt.setTimestamp(8,cita.getFechaProgramada());
             cstmt.setTimestamp(9, cita.getFechaReal());
+            cstmt.setBytes(10, cita.getArchivo());
+            cstmt.setString(11, cita.getHospitalProcedencia());
+            cstmt.setTimestamp(12, cita.getFechaSolicitud());
             
             rs = cstmt.executeQuery();
             rs.next();

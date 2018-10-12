@@ -12,7 +12,7 @@ import mx.itesm.sapi.bean.gestionPaciente.EstadoPaciente;
  *
  * @author urieldiaz
  */
-public interface EstadoPacienteService {
+public interface EstadoPacienteServicio {
     public EstadoPaciente mostrarEstadoPaciente(int idEstadoPaciente);
     public List<EstadoPaciente> mostrarEstadoPaciente();
     public int agregarEstadoPaciente(EstadoPaciente estadoPaciente);

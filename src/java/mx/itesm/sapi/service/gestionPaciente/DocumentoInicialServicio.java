@@ -12,7 +12,7 @@ import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
  *
  * @author Oscar Miranda
  */
-interface DocumentoInicialService {
+interface DocumentoInicialServicio {
     public DocumentoInicial mostrarDocumentoInicial(int idDocumentoInicial);
     public List<DocumentoInicial> mostrarDocumentoInicial();
     public int agregarDocumentoInicial(DocumentoInicial documentoInicial);

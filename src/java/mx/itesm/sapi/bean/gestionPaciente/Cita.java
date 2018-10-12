@@ -20,9 +20,12 @@ public class Cita {
 	private int idImportanciaCita;
 	private int idTipoTratamiento;
 	private int idEstudio;
-    private int idMotivoConsulta;
+        private int idMotivoConsulta;
 	private Timestamp fechaProgramada;
-    private Timestamp fechaReal;
+        private Timestamp fechaReal;
+        private byte[] archivo;
+        private String hospitalProcedencia;
+        private Timestamp fechaSolicitud;
 	private int estatus;
 
 
@@ -40,12 +43,39 @@ public class Cita {
                 .concat(",idMotivoConsulta:").concat(String.valueOf(idMotivoConsulta))
     		.concat(",fechaProgramada:").concat(String.valueOf(fechaProgramada))
                 .concat(",fechaReal:").concat(String.valueOf(fechaReal))
+                .concat(",archivo:").concat(String.valueOf(archivo))
+                .concat(",hospitalProcedencia:").concat(String.valueOf(hospitalProcedencia))
+                .concat(",fechaSolicitud:").concat(String.valueOf(fechaSolicitud))
     		.concat(",estatus:").concat(String.valueOf(estatus))
     		
     		.concat("]");
 
     	return str;
 
+    }
+
+    public byte[] getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(byte[] archivo) {
+        this.archivo = archivo;
+    }
+
+    public String getHospitalProcedencia() {
+        return hospitalProcedencia;
+    }
+
+    public void setHospitalProcedencia(String hospitalProcedencia) {
+        this.hospitalProcedencia = hospitalProcedencia;
+    }
+
+    public Timestamp getFechaSolicitud() {
+        return fechaSolicitud;
+    }
+
+    public void setFechaSolicitud(Timestamp fechaSolicitud) {
+        this.fechaSolicitud = fechaSolicitud;
     }
 
     public int getIdTipoTratamiento() {

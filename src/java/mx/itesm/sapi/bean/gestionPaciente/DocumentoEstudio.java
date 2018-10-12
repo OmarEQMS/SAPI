@@ -5,6 +5,7 @@
  */
 package mx.itesm.sapi.bean.gestionPaciente;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -21,7 +22,7 @@ public class DocumentoEstudio {
     private byte[] archivo;
     private int previo;
     private int estatus;
-    private Timestamp fechaEstudioPrevio;
+    private Date fechaEstudioPrevio;
 
     public DocumentoEstudio() {}
 
@@ -42,11 +43,11 @@ public class DocumentoEstudio {
         
     }
 
-    public Timestamp getFechaEstudioPrevio() {
+    public Date getFechaEstudioPrevio() {
         return fechaEstudioPrevio;
     }
 
-    public void setFechaEstudioPrevio(Timestamp fechaEstudioPrevio) {
+    public void setFechaEstudioPrevio(Date fechaEstudioPrevio) {
         this.fechaEstudioPrevio = fechaEstudioPrevio;
     }
 

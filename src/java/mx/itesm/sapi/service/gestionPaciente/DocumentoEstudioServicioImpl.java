@@ -44,7 +44,7 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             documentoEstudio.setIdBirads(rs.getInt("idBirads"));
             documentoEstudio.setArchivo(rs.getBytes("archivo"));
             documentoEstudio.setPrevio(rs.getInt("previo"));
-            documentoEstudio.setFechaEstudioPrevio(rs.getTimestamp("fechEstudioPrevio"));
+            documentoEstudio.setFechaEstudioPrevio(rs.getDate("fechEstudioPrevio"));
             
             conn.close();
             cstmt.close();
@@ -83,7 +83,7 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
                 documentoEstudio.setIdBirads(rs.getInt("idBirads"));
                 documentoEstudio.setArchivo(rs.getBytes("archivo"));
                 documentoEstudio.setPrevio(rs.getInt("previo"));
-                documentoEstudio.setFechaEstudioPrevio(rs.getTimestamp("fechEstudioPrevio"));
+                documentoEstudio.setFechaEstudioPrevio(rs.getDate("fechEstudioPrevio"));
 
                 documentoEstudios.add(documentoEstudio);
             }
@@ -118,7 +118,7 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             cstmt.setInt(4,documentoEstudio.getIdBirads());
             cstmt.setBytes(5,documentoEstudio.getArchivo());
             cstmt.setInt(6,documentoEstudio.getPrevio());
-            cstmt.setTimestamp(7,documentoEstudio.getFechaEstudioPrevio());
+            cstmt.setDate(7,documentoEstudio.getFechaEstudioPrevio());
             
             rs = cstmt.executeQuery();
             rs.next();
@@ -183,7 +183,7 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             cstmt.setInt(4,documentoEstudio.getIdBirads());
             cstmt.setBytes(5,documentoEstudio.getArchivo());
             cstmt.setInt(6,documentoEstudio.getPrevio());
-            cstmt.setTimestamp(7,documentoEstudio.getFechaEstudioPrevio());
+            cstmt.setDate(7,documentoEstudio.getFechaEstudioPrevio());
             
             rs = cstmt.executeQuery();
             rs.next();

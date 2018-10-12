@@ -12,7 +12,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Biopsia;
  *
  * @author urieldiaz
  */
-public interface BiopsiaService {
+public interface BiopsiaServicio {
     public Biopsia mostrarBiopsia(int idBiopsia);
     public List<Biopsia> mostrarAllBiopsia();
     public int agregarBiopsia(Biopsia biopsia);

@@ -18,7 +18,7 @@ import mx.itesm.sapi.util.Conexion;
  *
  * @author Oscar Miranda
  */
-public class DocumentoInicialServiceImpl implements DocumentoInicialService{
+public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
 
     @Override
     public DocumentoInicial mostrarDocumentoInicial(int idDocumentoInicial) {

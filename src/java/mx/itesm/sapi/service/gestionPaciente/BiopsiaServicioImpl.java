@@ -18,7 +18,7 @@ import mx.itesm.sapi.util.Conexion;
  *
  * @author Oscar Miranda
  */
-public class BiopsiaServiceImpl implements BiopsiaService{
+public class BiopsiaServicioImpl implements BiopsiaServicio{
 
     @Override
     public Biopsia mostrarBiopsia(int idBiopsia) {
