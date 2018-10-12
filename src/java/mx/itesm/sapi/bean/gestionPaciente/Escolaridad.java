@@ -11,7 +11,7 @@ package mx.itesm.sapi.bean.gestionPaciente;
  */
 public class Escolaridad {
     
-    private int idEscolardiad;
+    private int idEscolaridad;
     private String nombre;
     private int estatus;
     
@@ -19,7 +19,7 @@ public class Escolaridad {
     
     @Override
     public String toString(){
-        String str="Escolaridad [idEscolardiad:".concat(String.valueOf(idEscolardiad))
+        String str="Escolaridad [idEscolaridad:".concat(String.valueOf(idEscolaridad))
                 .concat(",nombre:").concat(nombre)
                 .concat(",estatus:").concat(String.valueOf(estatus))
                 .concat("]");
@@ -27,12 +27,12 @@ public class Escolaridad {
         return str;
     }
 
-    public int getIdEscolardiad() {
-        return idEscolardiad;
+    public int getIdEscolaridad() {
+        return idEscolaridad;
     }
 
-    public void setIdEscolardiad(int idEscolardiad) {
-        this.idEscolardiad = idEscolardiad;
+    public void setIdEscolaridad(int idEscolaridad) {
+        this.idEscolaridad = idEscolaridad;
     }
 
     public String getNombre() {

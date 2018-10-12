@@ -11,34 +11,35 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import mx.itesm.sapi.bean.gestionPaciente.EstadoPaciente;
+import mx.itesm.sapi.bean.gestionPaciente.Estudio;
 import mx.itesm.sapi.util.Conexion;
 
 /**
  *
  * @author Oscar Miranda
  */
-public class EstadoPacienteServiceImpl implements EstadoPacienteService{
-    
-    
+public class EstudioServicioImpl implements EstudioServicio {
+
     @Override
-    public EstadoPaciente mostrarEstadoPaciente(int idEstadoPaciente) {
+    public Estudio mostrarEstudio(int idEstudio) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarEsstadoPaciente";
-        EstadoPaciente estadoPaciente = null;
-
+        String stProcedure = "CALL mostrarEstudio";
+        Estudio estudio = null;
+     
         try {
             conn = Conexion.getConnection();
-            estadoPaciente = new EstadoPaciente();
+            estudio = new Estudio();
             cstmt = conn.prepareCall(stProcedure);
-            cstmt.setInt(1, idEstadoPaciente);
+            cstmt.setInt(1, idEstudio);
                   
             rs = cstmt.executeQuery();
             rs.next();
-            estadoPaciente.setIdEstadoPaciente(rs.getInt("idEstadoPaciente"));
-            estadoPaciente.setNombre(rs.getString("nombre"));
+            estudio.setIdEstudio(rs.getInt("idEstudio"));
+            estudio.setIdPiso(rs.getInt("idPiso"));
+            estudio.setIdCategoriaEstudio(rs.getInt("idCategoriaEstudio"));
+            estudio.setNombre(rs.getString("nombre"));
             
             conn.close();
             cstmt.close();
@@ -47,59 +48,61 @@ public class EstadoPacienteServiceImpl implements EstadoPacienteService{
         } catch (SQLException ex) {
            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                    .concat(ex.getMessage()));
-           estadoPaciente = null;
+           estudio = null;
         }   
-        return estadoPaciente;
+        return estudio;
     }
-    
+
     @Override
-    public List<EstadoPaciente> mostrarEstadoPaciente() {
+    public List<Estudio> mostrarEstudio() {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarEstadoPaciente";
-        List<EstadoPaciente> estadoPacientes = null;
-        EstadoPaciente estadoPaciente;
+        String stProcedure = "CALL mostrarEstudio";
+        List<Estudio> estudios = null;
+        Estudio estudio;
 
-	try{
+        try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             rs = cstmt.executeQuery();
-            estadoPacientes =  new ArrayList<>();
+            estudios =  new ArrayList<>();
             
             while(rs.next()){
-                estadoPaciente = new EstadoPaciente();
-                estadoPaciente.setIdEstadoPaciente(rs.getInt("idEstadoPaciente"));
-                estadoPaciente.setNombre(rs.getString("nombre"));
+                estudio = new Estudio();
+                estudio.setIdEstudio(rs.getInt("idEstudio"));
+                estudio.setIdPiso(rs.getInt("idPiso"));
+                estudio.setIdCategoriaEstudio(rs.getInt("idCategoriaEstudio"));
+                estudio.setNombre(rs.getString("nombre"));
 
-                estadoPacientes.add(estadoPaciente);
+                estudios.add(estudio);
             }
 		
 		conn.close();
 		cstmt.close();
 		rs.close();
-                
-	}catch(SQLException ex){
+
+        }catch(SQLException ex){
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
-            estadoPacientes = null;
+            estudios = null;
 	}
-        return estadoPacientes;
+        return estudios;
     }
 
     @Override
-    public int agregarEstadoPaciente(EstadoPaciente estadoPaciente) {
+    public int agregarEstudio(Estudio estudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean borradoLogicoEstadoPaciente(int idEstadoPaciente) {
+    public boolean borradoLogicoEstudio(int idEstudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean actualizarEstadoPaciente(EstadoPaciente estadoPaciente) {
+    public boolean actualizarEstudio(Estudio estudio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
 }

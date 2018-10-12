@@ -25,7 +25,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "---";
+        String stProcedure = "CALL mostrarEstadoPacientePaciente";
         EstadoPacientePaciente estadoPacientePaciente = null;
      
         try {
@@ -61,7 +61,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "---";
+        String stProcedure = "CALL mostrarEstadoPacientePaciente";
         List<EstadoPacientePaciente> listaestadoPacientePacientes = null;
         EstadoPacientePaciente estadoPacientePaciente;
 
@@ -104,7 +104,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "";
+        String stProcedure = "CALL agregarEstadoPaciente";
         int id = -1;
         
 	try{
@@ -112,11 +112,11 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
             cstmt = conn.prepareCall(stProcedure);
             
             cstmt.setInt(1, estadoPacientePaciente.getIdEstadoPaciente());
-            cstmt.setInt(1, estadoPacientePaciente.getIdPaciente());
-            cstmt.setTimestamp(1, estadoPacientePaciente.getFecha());
-            cstmt.setInt(1, estadoPacientePaciente.getSegundaOpinion());
-            cstmt.setInt(1, estadoPacientePaciente.getResultados());
-            cstmt.setInt(1, estadoPacientePaciente.getIdEmpleado());
+            cstmt.setInt(2, estadoPacientePaciente.getIdPaciente());
+            cstmt.setTimestamp(3, estadoPacientePaciente.getFecha());
+            cstmt.setInt(4, estadoPacientePaciente.getSegundaOpinion());
+            cstmt.setInt(5, estadoPacientePaciente.getResultados());
+            cstmt.setInt(6, estadoPacientePaciente.getIdEmpleado());
             
             rs = cstmt.executeQuery();
             rs.next();
@@ -136,12 +136,64 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
 
     @Override
     public boolean borradoLogicoEstadoPacientePaciente(int idEstadoPacientePaciente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL borradoLogicoEstadoPacientePaciente";
+        boolean exito = false;
+
+        try{
+            conn  = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            
+            cstmt.setInt(1, idEstadoPacientePaciente);
+            
+            rs = cstmt.executeQuery();
+            rs.next();
+            exito  = rs.getBoolean(1);
+            
+            rs.close();
+            conn.close();
+            cstmt.close();
+        }catch(SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+        }
+        return exito;
     }
 
     @Override
-    public boolean actualizarEstadoPacientePaciente(EstadoPacientePaciente EstadoPacientePaciente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean actualizarEstadoPacientePaciente(EstadoPacientePaciente estadoPacientePaciente) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL actualizarEstadoPacientePaciente";
+        boolean exito = false;
+        try{
+            conn  = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            
+            cstmt.setInt(1, estadoPacientePaciente.getIdEstadoPaciente());
+            cstmt.setInt(2, estadoPacientePaciente.getIdPaciente());
+            cstmt.setTimestamp(3, estadoPacientePaciente.getFecha());
+            cstmt.setInt(4, estadoPacientePaciente.getSegundaOpinion());
+            cstmt.setInt(5, estadoPacientePaciente.getResultados());
+            cstmt.setInt(6, estadoPacientePaciente.getIdEmpleado());
+            
+            rs = cstmt.executeQuery();
+            rs.next();
+            exito = rs.getBoolean(1);
+            
+            rs.close();
+            conn.close();
+            cstmt.close();
+        }catch(SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+        }
+        return exito;
     }
     
 }
