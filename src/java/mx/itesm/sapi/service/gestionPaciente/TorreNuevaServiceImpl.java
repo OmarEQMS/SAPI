@@ -36,7 +36,7 @@ public class TorreNuevaServiceImpl implements TorreNuevaService {
             rs.next();
 
             torreNueva.setIdTorreNueva(rs.getInt("idTorreNueva"));
-            torreNueva.setNombre(rs.getString("nombre"));
+            torreNueva.setNombre(rs.getInt("nombre"));
             torreNueva.setEstatus(rs.getInt("estatus"));
 
             rs.close();
@@ -68,7 +68,7 @@ public class TorreNuevaServiceImpl implements TorreNuevaService {
             while (rs.next()) {
                 torreNueva = new TorreNueva();
                 torreNueva.setIdTorreNueva(rs.getInt("idTorreNueva"));
-                torreNueva.setNombre(rs.getString("nombre"));
+                torreNueva.setNombre(rs.getInt("nombre"));
                 torreNueva.setEstatus(rs.getInt("estatus"));
 
                 listtorreNueva.add(torreNueva);

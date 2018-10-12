@@ -9,36 +9,42 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
-import mx.itesm.sapi.bean.gestionPaciente.Alergia;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoEstudio;
 import mx.itesm.sapi.util.Conexion;
 
 /**
  *
  * @author Oscar Miranda
  */
-public class AlergiaServicioImpl implements AlergiaServicio{
+public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
 
     @Override
-    public Alergia mostrarAlergia(int idAlergia) {
+    public DocumentoEstudio mostrarDocumentoEstudio(int idDocumentoEstudio) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarAlergia";
-        Alergia alergia = null;
+        String stProcedure = "CALL mostrarDocumentoEstudio";
+        DocumentoEstudio documentoEstudio = null;
      
         try {
             conn = Conexion.getConnection();
-            alergia = new Alergia();
+            documentoEstudio = new DocumentoEstudio();
             cstmt = conn.prepareCall(stProcedure);
-            cstmt.setInt(1, idAlergia);
+            cstmt.setInt(1, idDocumentoEstudio);
                   
             rs = cstmt.executeQuery();
             rs.next();
-            alergia.setIdAlergia(rs.getInt("idAlergia"));
-            alergia.setNombre(rs.getString("nombre"));
+            
+            documentoEstudio.setIdDocumentoEstudio(rs.getInt("idDocumentoEstudio"));
+            documentoEstudio.setIdEstudio(rs.getInt("idEstudio"));
+            documentoEstudio.setIdEstadoEstudio(rs.getInt("idEstadoEstudio"));
+            documentoEstudio.setIdPaciente(rs.getInt("idPaciente"));
+            documentoEstudio.setIdBirads(rs.getInt("idBirads"));
+            documentoEstudio.setArchivo(rs.getBytes("archivo"));
+            documentoEstudio.setPrevio(rs.getInt("previo"));
+            documentoEstudio.setFechaEstudioPrevio(rs.getTimestamp("fechEstudioPrevio"));
             
             conn.close();
             cstmt.close();
@@ -47,32 +53,39 @@ public class AlergiaServicioImpl implements AlergiaServicio{
         } catch (SQLException ex) {
            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                    .concat(ex.getMessage()));
-           alergia = null;
+           documentoEstudio = null;
         }   
-        return alergia;
+        return documentoEstudio;
     }
 
     @Override
-    public List<Alergia> mostrarAlergia() {
+    public List<DocumentoEstudio> mostrarDocumentoEstudio() {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarAlergia";
-        List<Alergia> alergias = null;
-        Alergia alergia;
+        String stProcedure = "CALL mostrarDocumentoEstudio";
+        List<DocumentoEstudio> documentoEstudios = null;
+        DocumentoEstudio documentoEstudio;
 
         try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             rs = cstmt.executeQuery();
-            alergias =  new ArrayList<>();
+            documentoEstudios =  new ArrayList<>();
             
             while(rs.next()){
-                alergia = new Alergia();
-                alergia.setIdAlergia(rs.getInt("idAlergia"));
-                alergia.setNombre(rs.getString("nombre"));
+                documentoEstudio = new DocumentoEstudio();
 
-                alergias.add(alergia);
+                documentoEstudio.setIdDocumentoEstudio(rs.getInt("idDocumentoEstudio"));
+                documentoEstudio.setIdEstudio(rs.getInt("idEstudio"));
+                documentoEstudio.setIdEstadoEstudio(rs.getInt("idEstadoEstudio"));
+                documentoEstudio.setIdPaciente(rs.getInt("idPaciente"));
+                documentoEstudio.setIdBirads(rs.getInt("idBirads"));
+                documentoEstudio.setArchivo(rs.getBytes("archivo"));
+                documentoEstudio.setPrevio(rs.getInt("previo"));
+                documentoEstudio.setFechaEstudioPrevio(rs.getTimestamp("fechEstudioPrevio"));
+
+                documentoEstudios.add(documentoEstudio);
             }
 		
 		conn.close();
@@ -82,24 +95,30 @@ public class AlergiaServicioImpl implements AlergiaServicio{
         }catch(SQLException ex){
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
-            alergias = null;
+            documentoEstudios = null;
 	}
-        return alergias;
+        return documentoEstudios;
     }
 
     @Override
-    public int agregarAlergia(Alergia alergia) {
+    public int agregarDocumentoEstudio(DocumentoEstudio documentoEstudio) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarAlergia";
+        String stProcedure = "CALL agregarDocumentoEstudio";
         int id = -1;
 
         try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setString(1,alergia.getNombre());
+            cstmt.setInt(1,documentoEstudio.getIdEstudio());
+            cstmt.setInt(2,documentoEstudio.getIdEstadoEstudio());
+            cstmt.setInt(3,documentoEstudio.getIdPaciente());
+            cstmt.setInt(4,documentoEstudio.getIdBirads());
+            cstmt.setBytes(5,documentoEstudio.getArchivo());
+            cstmt.setInt(6,documentoEstudio.getPrevio());
+            cstmt.setTimestamp(7,documentoEstudio.getFechaEstudioPrevio());
             
             rs = cstmt.executeQuery();
             rs.next();
@@ -119,18 +138,18 @@ public class AlergiaServicioImpl implements AlergiaServicio{
     }
 
     @Override
-    public boolean borradoLogicoAlergia(int idAlergia) {
+    public boolean borradoLogicoDocumentoEstudio(int idDocumentoEstudio) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL borradoLogicoAlergia";
+        String stProcedure = "CALL borradoLogicoDocumentoEstudio";
         boolean exito = false;
 
         try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setInt(1, idAlergia);
+            cstmt.setInt(1, idDocumentoEstudio);
             
             rs = cstmt.executeQuery();
             rs.next();
@@ -148,17 +167,23 @@ public class AlergiaServicioImpl implements AlergiaServicio{
     }
 
     @Override
-    public boolean actualizarAlergia(Alergia  alergia) {
+    public boolean actualizarDocumentoEstudio(DocumentoEstudio documentoEstudio) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarAlergia";
+        String stProcedure = "CALL actualizarDocumentoEstudio";
         boolean exito = false;
         try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setString(1, alergia.getNombre());
+            cstmt.setInt(1,documentoEstudio.getIdEstudio());
+            cstmt.setInt(2,documentoEstudio.getIdEstadoEstudio());
+            cstmt.setInt(3,documentoEstudio.getIdPaciente());
+            cstmt.setInt(4,documentoEstudio.getIdBirads());
+            cstmt.setBytes(5,documentoEstudio.getArchivo());
+            cstmt.setInt(6,documentoEstudio.getPrevio());
+            cstmt.setTimestamp(7,documentoEstudio.getFechaEstudioPrevio());
             
             rs = cstmt.executeQuery();
             rs.next();

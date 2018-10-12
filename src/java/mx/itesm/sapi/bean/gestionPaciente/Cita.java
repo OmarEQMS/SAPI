@@ -20,9 +20,9 @@ public class Cita {
 	private int idImportanciaCita;
 	private int idTipoTratamiento;
 	private int idEstudio;
-        private int idMotivoConsulta;
+    private int idMotivoConsulta;
 	private Timestamp fechaProgramada;
-        private Timestamp fechaReal;
+    private Timestamp fechaReal;
 	private int estatus;
 
 
@@ -81,7 +81,7 @@ public class Cita {
     }
 
     public int getIdPaciente() {
-        return idPaciente;
+         return idPaciente;
     }
 
     public void setIdPaciente(int idPaciente) {
@@ -112,28 +112,30 @@ public class Cita {
         this.idImportanciaCita = idImportanciaCita;
     }
 
-    public Timestamp getFechaProgramada() {
-        return fechaProgramada;
-    }
-
-    public void getFechaProgramada(Timestamp fechaProgramada) {
-        this.fechaProgramada = fechaProgramada;
-    }
-
-     public Timestamp getFechaReal() {
-        return fechaReal;
-    }
-
-    public void getFechaReal(Timestamp fechaReal) {
-        this.fechaReal = fechaReal;
-    }
-
+    
+    
     public int getEstatus() {
         return estatus;
     }
 
     public void setEstatus(int estatus) {
         this.estatus = estatus;
+    }
+
+    public Timestamp getFechaProgramada() {
+        return fechaProgramada;
+    }
+
+    public void setFechaProgramada(Timestamp fechaProgramada) {
+        this.fechaProgramada = fechaProgramada;
+    }
+
+    public Timestamp getFechaReal() {
+        return fechaReal;
+    }
+
+    public void setFechaReal(Timestamp fechaReal) {
+        this.fechaReal = fechaReal;
     }
     
 }

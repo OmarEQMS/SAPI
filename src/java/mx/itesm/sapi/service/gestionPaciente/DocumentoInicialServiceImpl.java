@@ -9,36 +9,39 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
-import mx.itesm.sapi.bean.gestionPaciente.Alergia;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 import mx.itesm.sapi.util.Conexion;
 
 /**
  *
  * @author Oscar Miranda
  */
-public class AlergiaServicioImpl implements AlergiaServicio{
+public class DocumentoInicialServiceImpl implements DocumentoInicialService{
 
     @Override
-    public Alergia mostrarAlergia(int idAlergia) {
+    public DocumentoInicial mostrarDocumentoInicial(int idDocumentoInicial) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarAlergia";
-        Alergia alergia = null;
+        String stProcedure = "CALL mostrarDocumentoInicial";
+        DocumentoInicial documentoInicial = null;
      
         try {
             conn = Conexion.getConnection();
-            alergia = new Alergia();
+            documentoInicial = new DocumentoInicial();
             cstmt = conn.prepareCall(stProcedure);
-            cstmt.setInt(1, idAlergia);
+            cstmt.setInt(1, idDocumentoInicial);
                   
             rs = cstmt.executeQuery();
             rs.next();
-            alergia.setIdAlergia(rs.getInt("idAlergia"));
-            alergia.setNombre(rs.getString("nombre"));
+            documentoInicial.setIdDocumentoInicial(rs.getInt("idDocumentoInicial"));
+            documentoInicial.setIdTipoDocumento(rs.getInt("idTipoDocumento"));
+            documentoInicial.setIdPaciente(rs.getInt("idPaciente"));
+                documentoInicial.setArchivo(rs.getBytes("archivo"));
+            documentoInicial.setComentario(rs.getString("comentario"));
+            documentoInicial.setAprobado(rs.getInt("aprobado"));
             
             conn.close();
             cstmt.close();
@@ -47,32 +50,36 @@ public class AlergiaServicioImpl implements AlergiaServicio{
         } catch (SQLException ex) {
            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                    .concat(ex.getMessage()));
-           alergia = null;
+           documentoInicial = null;
         }   
-        return alergia;
+        return documentoInicial;
     }
 
     @Override
-    public List<Alergia> mostrarAlergia() {
+    public List<DocumentoInicial> mostrarDocumentoInicial() {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarAlergia";
-        List<Alergia> alergias = null;
-        Alergia alergia;
+        String stProcedure = "CALL mostrarDocumentoInicial";
+        List<DocumentoInicial> documentosIniciales = null;
+        DocumentoInicial documentoInicial;
 
         try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             rs = cstmt.executeQuery();
-            alergias =  new ArrayList<>();
+            documentosIniciales =  new ArrayList<>();
             
             while(rs.next()){
-                alergia = new Alergia();
-                alergia.setIdAlergia(rs.getInt("idAlergia"));
-                alergia.setNombre(rs.getString("nombre"));
+                documentoInicial = new DocumentoInicial();
+                documentoInicial.setIdDocumentoInicial(rs.getInt("idDocumentoInicial"));
+                documentoInicial.setIdTipoDocumento(rs.getInt("idTipoDocumento"));
+                documentoInicial.setIdPaciente(rs.getInt("idPaciente"));
+                documentoInicial.setArchivo(rs.getBytes("archivo"));
+                documentoInicial.setComentario(rs.getString("comentario"));
+                documentoInicial.setAprobado(rs.getInt("aprobado"));
 
-                alergias.add(alergia);
+                documentosIniciales.add(documentoInicial);
             }
 		
 		conn.close();
@@ -82,24 +89,28 @@ public class AlergiaServicioImpl implements AlergiaServicio{
         }catch(SQLException ex){
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
-            alergias = null;
+            documentosIniciales = null;
 	}
-        return alergias;
+        return documentosIniciales;
     }
 
     @Override
-    public int agregarAlergia(Alergia alergia) {
+    public int agregarDocumentoInicial(DocumentoInicial documentoInicial) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarAlergia";
+        String stProcedure = "CALL agregarDocumentoInicial";
         int id = -1;
 
         try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setString(1,alergia.getNombre());
+            cstmt.setInt(1,documentoInicial.getIdTipoDocumento());
+            cstmt.setInt(2,documentoInicial.getIdPaciente());
+            cstmt.setBytes(3,documentoInicial.getArchivo());
+            cstmt.setString(4,documentoInicial.getComentario());
+            cstmt.setInt(5,documentoInicial.getAprobado());
             
             rs = cstmt.executeQuery();
             rs.next();
@@ -119,18 +130,18 @@ public class AlergiaServicioImpl implements AlergiaServicio{
     }
 
     @Override
-    public boolean borradoLogicoAlergia(int idAlergia) {
+    public boolean borradoLogicoDocumentoInicial(int idDocumentoInicial) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL borradoLogicoAlergia";
+        String stProcedure = "CALL borradoLogicoDocumentoInicial";
         boolean exito = false;
 
         try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setInt(1, idAlergia);
+            cstmt.setInt(1, idDocumentoInicial);
             
             rs = cstmt.executeQuery();
             rs.next();
@@ -148,17 +159,21 @@ public class AlergiaServicioImpl implements AlergiaServicio{
     }
 
     @Override
-    public boolean actualizarAlergia(Alergia  alergia) {
+    public boolean actualizarDocumentoInicial(DocumentoInicial documentoInicial) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarAlergia";
+        String stProcedure = "CALL actualizarDocumentoInicial";
         boolean exito = false;
         try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setString(1, alergia.getNombre());
+            cstmt.setInt(1,documentoInicial.getIdTipoDocumento());
+            cstmt.setInt(2,documentoInicial.getIdPaciente());
+            cstmt.setBytes(3,documentoInicial.getArchivo());
+            cstmt.setString(4,documentoInicial.getComentario());
+            cstmt.setInt(5,documentoInicial.getAprobado());
             
             rs = cstmt.executeQuery();
             rs.next();

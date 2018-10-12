@@ -9,36 +9,37 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
-import mx.itesm.sapi.bean.gestionPaciente.Alergia;
+import mx.itesm.sapi.bean.gestionPaciente.BloqueParafina;
 import mx.itesm.sapi.util.Conexion;
 
 /**
  *
  * @author Oscar Miranda
  */
-public class AlergiaServicioImpl implements AlergiaServicio{
+public class BloqueParafinaServicioImpl implements BloqueParafinaServicio {
 
     @Override
-    public Alergia mostrarAlergia(int idAlergia) {
+    public BloqueParafina mostrarBloqueParafina(int idBloqueParafina) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarAlergia";
-        Alergia alergia = null;
+        String stProcedure = "CALL mostrarBloqueParafina";
+        BloqueParafina bloqueParafina = null;
      
         try {
             conn = Conexion.getConnection();
-            alergia = new Alergia();
+            bloqueParafina = new BloqueParafina();
             cstmt = conn.prepareCall(stProcedure);
-            cstmt.setInt(1, idAlergia);
+            cstmt.setInt(1, idBloqueParafina);
                   
             rs = cstmt.executeQuery();
             rs.next();
-            alergia.setIdAlergia(rs.getInt("idAlergia"));
-            alergia.setNombre(rs.getString("nombre"));
+            
+            bloqueParafina.setIdBloqueParafina(rs.getInt("idBloqueParafina"));
+            bloqueParafina.setIdBiopsia(rs.getInt("idBiopsia"));
+            bloqueParafina.setSerie(rs.getString("serie"));
             
             conn.close();
             cstmt.close();
@@ -47,32 +48,34 @@ public class AlergiaServicioImpl implements AlergiaServicio{
         } catch (SQLException ex) {
            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                    .concat(ex.getMessage()));
-           alergia = null;
+           bloqueParafina = null;
         }   
-        return alergia;
+        return bloqueParafina;
     }
 
     @Override
-    public List<Alergia> mostrarAlergia() {
+    public List<BloqueParafina> mostrarBloqueParafina() {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarAlergia";
-        List<Alergia> alergias = null;
-        Alergia alergia;
+        String stProcedure = "CALL mostrarBloqueParafina";
+        List<BloqueParafina> bloqueParafinas = null;
+        BloqueParafina bloqueParafina;
 
         try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             rs = cstmt.executeQuery();
-            alergias =  new ArrayList<>();
+            bloqueParafinas =  new ArrayList<>();
             
             while(rs.next()){
-                alergia = new Alergia();
-                alergia.setIdAlergia(rs.getInt("idAlergia"));
-                alergia.setNombre(rs.getString("nombre"));
-
-                alergias.add(alergia);
+                bloqueParafina = new BloqueParafina();
+                
+                bloqueParafina.setIdBloqueParafina(rs.getInt("idBloqueParafina"));
+                bloqueParafina.setIdBiopsia(rs.getInt("idBiopsia"));
+                bloqueParafina.setSerie(rs.getString("serie"));
+                
+                bloqueParafinas.add(bloqueParafina);
             }
 		
 		conn.close();
@@ -82,24 +85,26 @@ public class AlergiaServicioImpl implements AlergiaServicio{
         }catch(SQLException ex){
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
-            alergias = null;
+            bloqueParafinas = null;
 	}
-        return alergias;
+        return bloqueParafinas;
     }
 
     @Override
-    public int agregarAlergia(Alergia alergia) {
+    public int agregarBloqueParafina(BloqueParafina bloqueParafina) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarAlergia";
+        String stProcedure = "CaLL agregarBloqueParafina";
         int id = -1;
 
         try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setString(1,alergia.getNombre());
+            cstmt.setInt(1,bloqueParafina.getIdBiopsia());
+            cstmt.setInt(2,bloqueParafina.getIdBiopsia());
+            cstmt.setString(3,bloqueParafina.getSerie());
             
             rs = cstmt.executeQuery();
             rs.next();
@@ -119,18 +124,18 @@ public class AlergiaServicioImpl implements AlergiaServicio{
     }
 
     @Override
-    public boolean borradoLogicoAlergia(int idAlergia) {
+    public boolean borradoLogicoBloqueParafina(int idBloqueParafina) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL borradoLogicoAlergia";
+        String stProcedure = "CALL borradoLogicoParafina";
         boolean exito = false;
 
         try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setInt(1, idAlergia);
+            cstmt.setInt(1, idBloqueParafina);
             
             rs = cstmt.executeQuery();
             rs.next();
@@ -148,17 +153,19 @@ public class AlergiaServicioImpl implements AlergiaServicio{
     }
 
     @Override
-    public boolean actualizarAlergia(Alergia  alergia) {
+    public boolean actualizarBloqueParafina(BloqueParafina bloqueParafina) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarAlergia";
+        String stProcedure = "CALL actualizarBloqueParafina";
         boolean exito = false;
         try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setString(1, alergia.getNombre());
+            cstmt.setInt(1,bloqueParafina.getIdBiopsia());
+            cstmt.setInt(2,bloqueParafina.getIdBiopsia());
+            cstmt.setString(3,bloqueParafina.getSerie());
             
             rs = cstmt.executeQuery();
             rs.next();

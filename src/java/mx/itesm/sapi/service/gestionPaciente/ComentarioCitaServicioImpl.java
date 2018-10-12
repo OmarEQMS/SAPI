@@ -9,36 +9,37 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
-import mx.itesm.sapi.bean.gestionPaciente.Alergia;
+import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
 import mx.itesm.sapi.util.Conexion;
 
 /**
  *
  * @author Oscar Miranda
  */
-public class AlergiaServicioImpl implements AlergiaServicio{
+public class ComentarioCitaServicioImpl implements ComentarioCitaServicio {
 
     @Override
-    public Alergia mostrarAlergia(int idAlergia) {
+    public ComentarioCita mostrarComentarioCita(int idComentarioCita) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarAlergia";
-        Alergia alergia = null;
+        String stProcedure = "CALL mostrarComentarioCita";
+        ComentarioCita comentarioCita = null;
      
         try {
             conn = Conexion.getConnection();
-            alergia = new Alergia();
+            comentarioCita = new ComentarioCita();
             cstmt = conn.prepareCall(stProcedure);
-            cstmt.setInt(1, idAlergia);
+            cstmt.setInt(1, idComentarioCita);
                   
             rs = cstmt.executeQuery();
             rs.next();
-            alergia.setIdAlergia(rs.getInt("idAlergia"));
-            alergia.setNombre(rs.getString("nombre"));
+            comentarioCita.setIdComentarioCita(rs.getInt("idComentarioCita"));
+            comentarioCita.setComentario(rs.getString("comentario"));
+            comentarioCita.setIdCita(rs.getInt("idCita"));
+            comentarioCita.setNavegadora(rs.getInt("navegadora"));
             
             conn.close();
             cstmt.close();
@@ -47,32 +48,35 @@ public class AlergiaServicioImpl implements AlergiaServicio{
         } catch (SQLException ex) {
            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                    .concat(ex.getMessage()));
-           alergia = null;
+           comentarioCita = null;
         }   
-        return alergia;
+        return comentarioCita;
     }
 
     @Override
-    public List<Alergia> mostrarAlergia() {
+    public List<ComentarioCita> mostrarComentarioCita() {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarAlergia";
-        List<Alergia> alergias = null;
-        Alergia alergia;
+        String stProcedure = "CALL mostrarComentarioCita";
+        List<ComentarioCita> comentarioCitas = null;
+        ComentarioCita comentarioCita;
 
         try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             rs = cstmt.executeQuery();
-            alergias =  new ArrayList<>();
+            comentarioCitas =  new ArrayList<>();
             
             while(rs.next()){
-                alergia = new Alergia();
-                alergia.setIdAlergia(rs.getInt("idAlergia"));
-                alergia.setNombre(rs.getString("nombre"));
-
-                alergias.add(alergia);
+                comentarioCita = new ComentarioCita();
+                
+                comentarioCita.setIdComentarioCita(rs.getInt("idComentarioCita"));
+                comentarioCita.setComentario(rs.getString("comentario"));
+                comentarioCita.setIdCita(rs.getInt("idCita"));
+                comentarioCita.setNavegadora(rs.getInt("navegadora"));
+                
+                comentarioCitas.add(comentarioCita);
             }
 		
 		conn.close();
@@ -82,24 +86,26 @@ public class AlergiaServicioImpl implements AlergiaServicio{
         }catch(SQLException ex){
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
-            alergias = null;
+            comentarioCitas = null;
 	}
-        return alergias;
+        return comentarioCitas;
     }
 
     @Override
-    public int agregarAlergia(Alergia alergia) {
+    public int agregarComentarioCita(ComentarioCita comentarioCita) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarAlergia";
+        String stProcedure = "CALL agregarComentarioCita";
         int id = -1;
 
         try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setString(1,alergia.getNombre());
+            cstmt.setString(1,comentarioCita.getComentario());
+            cstmt.setInt(2,comentarioCita.getIdCita());
+            cstmt.setInt(3,comentarioCita.getNavegadora());
             
             rs = cstmt.executeQuery();
             rs.next();
@@ -119,18 +125,18 @@ public class AlergiaServicioImpl implements AlergiaServicio{
     }
 
     @Override
-    public boolean borradoLogicoAlergia(int idAlergia) {
+    public boolean borradoLogicoComentarioCita(int idComentarioCita) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL borradoLogicoAlergia";
+        String stProcedure = "CALL borradoLogicoComentarioCita";
         boolean exito = false;
 
         try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setInt(1, idAlergia);
+            cstmt.setInt(1, idComentarioCita);
             
             rs = cstmt.executeQuery();
             rs.next();
@@ -148,17 +154,19 @@ public class AlergiaServicioImpl implements AlergiaServicio{
     }
 
     @Override
-    public boolean actualizarAlergia(Alergia  alergia) {
+    public boolean actualizarComentarioCita(ComentarioCita comentarioCita) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarAlergia";
+        String stProcedure = "CALL actualizarComentarioCita";
         boolean exito = false;
         try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setString(1, alergia.getNombre());
+            cstmt.setString(1,comentarioCita.getComentario());
+            cstmt.setInt(2,comentarioCita.getIdCita());
+            cstmt.setInt(3,comentarioCita.getNavegadora());
             
             rs = cstmt.executeQuery();
             rs.next();

@@ -38,7 +38,7 @@ public class OtroEstudioServiceImpl implements OtroEstudioService {
 
             otroEstudio.setIdOtroEstudio(rs.getInt("idOtroEstudio"));
             otroEstudio.setIdEstudio(rs.getInt("idEstudio"));
-            otroEstudio.setNombre(rs.getInt("nombre"));
+            otroEstudio.setNombre(rs.getString("nombre"));
             otroEstudio.setEstatus(rs.getInt("estatus"));
 
             rs.close();
@@ -71,7 +71,7 @@ public class OtroEstudioServiceImpl implements OtroEstudioService {
                 otroEstudio = new OtroEstudio();
                 otroEstudio.setIdOtroEstudio(rs.getInt("idOtroEstudio"));
                 otroEstudio.setIdEstudio(rs.getInt("idEstudio"));
-                otroEstudio.setNombre(rs.getInt("nombre"));
+                otroEstudio.setNombre(rs.getString("nombre"));
                 otroEstudio.setEstatus(rs.getInt("estatus"));
 
                 pacientes.add(otroEstudio);

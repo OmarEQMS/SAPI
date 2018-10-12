@@ -11,7 +11,7 @@ package mx.itesm.sapi.bean.gestionPaciente;
  */
 public class TorreNueva {
     private int idTorreNueva;
-    private int nombre;
+    private String nombre;
     private int estatus;
     
     public TorreNueva() {}
@@ -19,7 +19,7 @@ public class TorreNueva {
     @Override 
     public String toString(){
         String str= "TorreNueva [idTorreNueva:".concat(String.valueOf(idTorreNueva))
-                .concat(",nombre:").concat(String.valueOf(nombre))
+                .concat(",nombre:").concat(nombre)
                 .concat(",estatus:").concat(String.valueOf(estatus))
                 .concat("]");
         return str;
@@ -33,11 +33,11 @@ public class TorreNueva {
         this.idTorreNueva = idTorreNueva;
     }
 
-    public int getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(int nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
