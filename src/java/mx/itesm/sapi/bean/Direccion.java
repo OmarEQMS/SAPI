@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author feror
+ * @author feror y Angel
  */
 public class Direccion implements Serializable{
     
@@ -18,14 +18,14 @@ public class Direccion implements Serializable{
     private String noInterior;
     private String noExterior;
     private String colonia;
-    private int idPersona;
+    private int estatus;
     
     public Direccion(){}
     
     @Override
     public String toString(){
         return "Calle:".concat(calle).concat(",noInterior:").concat(noInterior).concat(",noExterior:").concat(noExterior)
-       .concat(",colonia:").concat(colonia).concat(",idPersona:").concat(String.valueOf(idPersona)).concat("]");
+       .concat(",colonia:").concat(colonia).concat(",idPersona:").concat(String.valueOf(estatus)).concat("]");
 
     } 
 
@@ -69,12 +69,14 @@ public class Direccion implements Serializable{
         this.colonia = colonia;
     }
 
-    public int getIdPersona() {
-        return idPersona;
+    public int getEstatus() {
+        return estatus;
     }
 
-    public void setIdPersona(int idPersona) {
-        this.idPersona = idPersona;
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
     }
+
+    
     
 }

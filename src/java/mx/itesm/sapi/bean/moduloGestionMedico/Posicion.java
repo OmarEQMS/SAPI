@@ -3,24 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.itesm.sapi.bean;
+package mx.itesm.sapi.bean.moduloGestionMedico;
 
 import java.io.Serializable;
 
 /**
  *
- * @author Admin
+ * @author feror
  */
 public class Posicion implements Serializable{
     
     private int idPosicion;
     private String nombre;
+    private int estatus;
+    
+    public Posicion(){}
+    
+    @Override
+    public String toString(){
+        return "Posicio [idPosicion:".concat(String.valueOf(idPosicion)).concat(",nombre:").concat(nombre).concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
 
-    public Posicion() {
     }
 
-    
-    
     public int getIdPosicion() {
         return idPosicion;
     }
@@ -36,7 +40,13 @@ public class Posicion implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    
+
+    public int getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
+    }
     
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.itesm.sapi.service;
+package mx.itesm.sapi.service.moduloGestionMedico;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -11,64 +11,64 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import mx.itesm.sapi.bean.Departamento;
+import mx.itesm.sapi.bean.moduloGestionMedico.Departamento;
 import mx.itesm.sapi.util.Conexion;
 
 /**
  *
- * @author Admin
+ * @author feror
  */
-public class DepartamentoServicioImpl implements DepartamentoServicio {
+public class DepartamentoServicioImpl implements DepartamentoServicio{
 
     @Override
-    public int saveDepartamento(Departamento deparatemento) {
+    public Departamento mostrarDepartamento(int idDepartamento) {
         Connection conn = Conexion.getConnection();
         
         CallableStatement cstmt;
         
-        int id=0;
-        //Aquí va el call del procedure
-        String sql="";
+        Departamento departamento = new Departamento();
+        
+        //Call del store procedure
+        String stProcedure="CALL estado(?)";
         
         try{
             
-            cstmt = conn.prepareCall(sql);
+            cstmt = conn.prepareCall(stProcedure);
             
-            //Aquí van los sets
+            cstmt.setInt(1, idDepartamento);
+
+            ResultSet rs = cstmt.executeQuery();
             
-            //Aquí va el registerOutParameter
-            
-            cstmt.executeUpdate();
-            
-            ResultSet rs = cstmt.getGeneratedKeys();
+         
             
             rs.next();
+            departamento.setIdDepartamento(rs.getInt(1));
+            departamento.setNombre(rs.getString(2));
+            departamento.setEstatus(rs.getInt(3));
             
-           id=cstmt.getInt(1);
+            
            
-           cstmt.close();
-            
+            return departamento;
         }catch(SQLException ex){
             
-             System.out.println("Estoy en el catch de DepartamentoServicio");
+            System.out.println("Estoy en el catch de mostrarDepartamento");
             System.out.println(ex.getMessage());
-            
+            return departamento;
         }
-               
-        return id;        
-        }
+    }
 
     @Override
-    public List<Departamento> getDepartamentos() {
+    public List<Departamento> mostrarDepartamento() {
         Connection conn = Conexion.getConnection();
         
         
         List<Departamento> departamentos = new ArrayList<>();
+        CallableStatement cstmt;
         
         try{
             
-            CallableStatement cstmt;
-            cstmt = conn.prepareCall("");
+            
+            cstmt = conn.prepareCall("CALL -----");
             ResultSet rs = cstmt.executeQuery();
             Departamento departamento;
             
@@ -78,6 +78,7 @@ public class DepartamentoServicioImpl implements DepartamentoServicio {
                 
                 departamento.setIdDepartamento(rs.getInt(1));
                 departamento.setNombre(rs.getString(2));
+                departamento.setEstatus(rs.getInt(3));
                 
                 departamentos.add(departamento);
             
@@ -89,21 +90,13 @@ public class DepartamentoServicioImpl implements DepartamentoServicio {
                     
             
         }catch(Exception e){
-            System.out.println("ERROR GET DEPARTAMENTOS" + e.getMessage());
+            System.out.println("ERROR GET ESTADOS" + e.getMessage());
         }
         
         return departamentos;
-
     }
 
-    @Override
-    public boolean existeDepartamento(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean deleteDepartamento(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
+    
     
 }
