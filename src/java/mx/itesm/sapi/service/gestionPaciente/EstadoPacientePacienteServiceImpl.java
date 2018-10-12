@@ -113,11 +113,13 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
             cstmt = conn.prepareCall(stProcedure);
             
             cstmt.setInt(1, estadoPacientePaciente.getIdEstadoPaciente());
-            cstmt.setInt(2, estadoPacientePaciente.getIdPaciente());
+            cstmt.setInt(2,0);
+            /*
             cstmt.setTimestamp(3, estadoPacientePaciente.getFecha());
             cstmt.setInt(4, estadoPacientePaciente.getSegundaOpinion());
             cstmt.setInt(5, estadoPacientePaciente.getResultados());
             cstmt.setInt(6, estadoPacientePaciente.getIdEmpleado());
+            */
             
             rs = cstmt.executeQuery();
             rs.next();

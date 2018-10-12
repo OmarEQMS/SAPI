@@ -158,7 +158,7 @@ public class PacienteServicioImpl implements PacienteServicio{
             cstmt.setInt(8, paciente.getPosMenopausia());
             cstmt.setInt(9, paciente.getEstatus());
             
-            cstmt.executeUpdate();
+            cstmt.executeQuery();
             rs = cstmt.getGeneratedKeys();
             rs.next();
             id=rs.getInt(1);
