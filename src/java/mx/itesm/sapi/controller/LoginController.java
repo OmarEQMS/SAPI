@@ -72,7 +72,7 @@ public class LoginController extends HttpServlet {
                         long lDateTime = sesion.getCreationTime();
                         
                         // @Autor: Alexis España: Le inserta la fecha de login al objeto Cuenta
-                        cuenta.setLoginDateTime(lDateTime);
+                        //cuenta.setLoginDateTime(lDateTime);
                         cs.InsertLoginDateTime(cuenta);
                         
                         
