@@ -110,7 +110,7 @@ public class DireccionServicioImpl implements DireccionServicio {
         CallableStatement cstmt;
         int id = -1;
         //Aquí va el call del procedure
-        String stProcedure = "CALL agregarDireccion(?, ?, ?, ?, ?)";
+        String stProcedure = "CALL agregarDireccion(?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
@@ -121,7 +121,7 @@ public class DireccionServicioImpl implements DireccionServicio {
             cstmt.setString(2, direccion.getNoInterior());
             cstmt.setString(3, direccion.getNoExterior());
             cstmt.setString(4, direccion.getColonia());
-            cstmt.setInt(5, 1);
+            //cstmt.setInt(5, 1);
 
             //Aquí va el registerOutParameter
             //cstmt.registerOutParameter(5, Types.INTEGER);

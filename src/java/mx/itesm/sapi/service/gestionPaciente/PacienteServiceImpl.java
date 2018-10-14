@@ -143,7 +143,8 @@ public class PacienteServiceImpl implements PacienteService{
         ResultSet rs;
         CallableStatement cstmt;
         int id = -1;
-        String stPrcedure="CALL agregarPaciente(?)";
+        
+        String stPrcedure="CALL agregarPaciente(?,?,?,?,?,?)";
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stPrcedure);

@@ -149,7 +149,7 @@ public class CuentaServicioImpl implements CuentaServicio {
 
         int id = -1;
         //Aquí va el call del procedure
-        String stProcedure = "CALL agregarCuenta(?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL agregarCuenta(?, ?, ?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
@@ -164,7 +164,7 @@ public class CuentaServicioImpl implements CuentaServicio {
             cstmt.setString(4, cuenta.getUsuario());
             cstmt.setString(5, cuenta.getPassword());
             cstmt.setString(6, cuenta.getToken());
-            cstmt.setInt(7, cuenta.getEstatus());
+            //cstmt.setInt(7, cuenta.getEstatus());
 
             //Aquí va el registerOutParameter
             //cstmt.registerOutParameter(12,Types.INTEGER);
