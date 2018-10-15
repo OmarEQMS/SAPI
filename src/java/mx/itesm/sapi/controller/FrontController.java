@@ -52,9 +52,12 @@ public class FrontController extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/" + file).forward(request, response);
             return;
         } else {
+            
+            
             System.out.println("filename else ".concat(file));
             request.getRequestDispatcher("/" + file).forward(request, response);
             return;
+                        
         }
         
     }
