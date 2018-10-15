@@ -34,6 +34,7 @@ public class FrontController extends HttpServlet {
             throws ServletException, IOException {
         
         String file = request.getParameter("file");
+                
         if (file == null) {
             HttpSession sesion = request.getSession(true);
             if (sesion.getAttribute("idCuenta") == null) {
@@ -47,9 +48,11 @@ public class FrontController extends HttpServlet {
         }
 
         if ("jsp".equals(file.substring(file.length()-3))) {
+            System.out.println("filename if ".concat(file));
             request.getRequestDispatcher("WEB-INF/" + file).forward(request, response);
             return;
         } else {
+            System.out.println("filename else ".concat(file));
             request.getRequestDispatcher("/" + file).forward(request, response);
             return;
         }

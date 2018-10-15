@@ -73,8 +73,10 @@ public class ZonaController extends HttpServlet {
             case "getRegistro": {
                 //Cargar los estados
                 ZonaServicioImpl zsi = new ZonaServicioImpl();
+                
                 List<Estado> allEstados = zsi.getEstados();
                 List<EstadoCivil> estados = zsi.getEstadoCivil();
+                
                 request.setAttribute("estadoCivil", estados);
                 request.setAttribute("estados", allEstados);
                 request.getRequestDispatcher("/WEB-INF/registro.jsp").forward(request, response);
