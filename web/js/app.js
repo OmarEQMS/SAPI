@@ -1,8 +1,9 @@
 $(document).ready(function () {
 
     $("#registrate").on('click', function () {
-        $.postGo("SAPI", {
-            file: "registro.jsp"
+        $.postGo("ZonaController", {
+            file: "registro.jsp",
+            key:"getRegistro"
         });
     });
 
