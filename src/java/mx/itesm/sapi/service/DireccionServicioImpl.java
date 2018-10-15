@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
-import mx.itesm.sapi.bean.Direccion;
+import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.util.Conexion;
 
 /**

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.itesm.sapi.bean;
+package mx.itesm.sapi.bean.persona;
 
 import java.io.InputStream;
 import java.io.Serializable;
@@ -34,22 +34,23 @@ public class Persona implements Serializable {
     private InputStream imagen;
     private int estatus;
 
-    public Persona() {
-    }
+    
+   public Persona(){}
 
     @Override
     public String toString() {
-
-        String str = "Persona [idPersona:".concat(String.valueOf(idPersona)).concat(",nombre:").concat(nombre).concat(",apellido1:").concat(primerApellido).concat(",apellido2:").concat(segundoApellido).concat(",curp:")
-                .concat(curp).concat(",telefono:").concat(telefono).concat(",correo:").concat(correo).concat(",fechaNacimiento:").concat(fechaNacimiento.toString())
-                .concat(",idSexo:").concat(String.valueOf(idSexo)).concat(",idTipoDeSangre:").concat(String.valueOf(idTipoSangre)).concat(",idMunicipio:")
-                .concat(String.valueOf(idMunicipio)).concat(",idEstadoCivil:")
-                .concat(String.valueOf(idEstadoCivil)).concat(",idDireccion:").concat(String.valueOf(idDireccion))
-                .concat(",edad:").concat(String.valueOf(edad)).concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
-
-        return str;
-
+         
+       String str ="Persona [idPersona:".concat(String.valueOf(idPersona)).concat(",nombre:").concat(nombre).concat(",apellido1:").concat(primerApellido).concat(",apellido2:").concat(segundoApellido).concat(",curp:")
+       .concat(curp).concat(",telefono:").concat(telefono).concat(",correo:").concat(correo).concat(",fechaNacimiento:").concat(fechaNacimiento.toString())
+       .concat(",idSexo:").concat(String.valueOf(idSexo)).concat(",idTipoDeSangre:").concat(String.valueOf(idTipoSangre)).concat(",idMunicipio:")
+       .concat(String.valueOf(idMunicipio)).concat(",idEstadoCivil:")
+       .concat(String.valueOf(idEstadoCivil)).concat(",idDireccion:").concat(String.valueOf(idDireccion))
+       .concat(",edad:").concat(String.valueOf(edad)).concat(",estatus:").concat(String.valueOf(estatus)).concat("]");
+       
+       return str;
     }
+   
+   
 
     public int getIdPersona() {
         return idPersona;
@@ -178,5 +179,7 @@ public class Persona implements Serializable {
     public void setEstatus(int estatus) {
         this.estatus = estatus;
     }
-
+   
+   
+   
 }

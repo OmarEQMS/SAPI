@@ -21,11 +21,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mx.itesm.sapi.bean.Cuenta;
-import mx.itesm.sapi.bean.Direccion;
-import mx.itesm.sapi.bean.Persona;
 import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 import mx.itesm.sapi.bean.moduloGestionPaciente.Paciente;
+import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.Direccion;
+import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.service.CuentaServicioImpl;
 import mx.itesm.sapi.service.DireccionServicioImpl;
 import mx.itesm.sapi.service.PersonaServicioImpl;
@@ -136,10 +136,7 @@ public class RegistraUsuarioController extends HttpServlet {
                 per.setCurp(curp);
                 per.setIdEstadoCivil(estadoCivil);
                 per.setIdMunicipio(municipio);
-               
-                
-
-                
+                                           
 
                 //Set cuenta
                 cuenta.setPassword(contraseña1);
@@ -150,6 +147,7 @@ public class RegistraUsuarioController extends HttpServlet {
                 dir.setColonia(colonia);
                 dir.setNoExterior(noExterior);
                 dir.setNoInterior(noInterior);
+
                 
                 
                 int idD = _rSD.agregarDireccion(dir);
@@ -181,6 +179,7 @@ public class RegistraUsuarioController extends HttpServlet {
                             
                         }
                     }
+
                 }
 
             }

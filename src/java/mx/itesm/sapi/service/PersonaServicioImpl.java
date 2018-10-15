@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import mx.itesm.sapi.bean.Persona;
+import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.util.Conexion;
 
 /**
@@ -182,6 +182,7 @@ public class PersonaServicioImpl implements PersonaServicio {
             cstmt.setString(4, persona.getCurp());
             cstmt.setString(5, persona.getTelefono());
             cstmt.setString(6, persona.getCorreo());
+
             cstmt.setDate(7, persona.getFechaNacimiento());
             cstmt.setInt(8, 1);
             cstmt.setInt(9, 1);

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.itesm.sapi.bean;
+package mx.itesm.sapi.bean.persona;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -23,7 +23,7 @@ public class Cuenta implements Serializable {
     private int estatus;
     private int condiciones;
     private Timestamp fecha;
-    private int idEmpleado;
+    private int idEmpleado;    
     
     
     
@@ -124,7 +124,6 @@ public class Cuenta implements Serializable {
     public void setIdEmpleado(int idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
-   
-    
+      
     
 }
