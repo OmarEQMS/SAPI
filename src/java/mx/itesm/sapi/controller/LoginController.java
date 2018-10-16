@@ -13,8 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.service.LoginServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
+import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 
 /**
  *
@@ -53,6 +57,7 @@ public class LoginController extends HttpServlet {
 
                     //Verificiar que el usuario exista, que contraseña
                     //sea correcta y que este habilitado
+                    
                     Cuenta cuenta = new Cuenta();
 
                     cuenta.setUsuario(usuario);
@@ -61,6 +66,7 @@ public class LoginController extends HttpServlet {
 
                     LoginServicioImpl cs = new LoginServicioImpl();
                     cuenta = cs.verificaCredenciales(cuenta);
+                                        
                     
 
                     if (cuenta.getIdCuenta() != 0) {
@@ -80,22 +86,53 @@ public class LoginController extends HttpServlet {
 
                         //cuenta.setLoginDateTime(lDateTime);                        
                         //cs.InsertLoginDateTime(cuenta);
-
+                                                                                                
+                        //Se establece el id del rol de la cuenta
+                        int idCuenta = cuenta.getIdCuenta();
+                        int rolCuenta =  cuenta.getIdRol();
                         
-                        
-                        /*//Escribir los valores de sesion
+                        /*Escribir los valores de sesion*/                                                
                         //(idCuenta, nombre, rol, status)
-                        sesion.setAttribute("idCuenta", cuenta.getIdPersona());
-                        sesion.setAttribute("idRol", cuenta.getIdRol());
+                        sesion.setAttribute("idCuenta", idCuenta);
+                        sesion.setAttribute("idRol",rolCuenta);
 
-                        PersonaServicioImpl psi = new PersonaServicioImpl();
-                        Persona persona = psi.getPersona(cuenta.getIdCuenta());
+                        PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
+                        Persona persona = personaServicioImpl.mostrarPersona(cuenta.getIdPersona());
 
+                        
+                        sesion.setAttribute("idPersona", persona.getIdPersona());
                         sesion.setAttribute("nombre", persona.getNombre());
-
-                        //Redirigir al usuario  al dashboard "correspondiente al"
-                        request.getRequestDispatcher("/WEB-INF/dashboard.jsp")
-                                .forward(request, response);*/
+                        sesion.setAttribute("primerApellido", persona.getPrimerApellido());
+                        sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
+                                                
+                        switch(rolCuenta)
+                        {
+                            case 1:
+                            {
+                               PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
+                               Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
+                               
+                               System.out.println("Redirigir al dashboard de potencial ".concat(persona.toString()));
+                                /*
+                                //Redirigir al usuario  al dashboard "correspondiente al"
+                                request.getRequestDispatcher("/WEB-INF/dashboard.jsp")
+                                .forward(request, response);
+                                */
+                             break; 
+                            }      
+                            case 2:
+                            {
+                             break;
+                            }      
+                            case 3:
+                            {
+                             break;
+                            }      
+                            case 4:
+                            {
+                             break;
+                            }                                    
+                        }                       
 
                         PrintWriter out = response.getWriter();
                         out.print("success");

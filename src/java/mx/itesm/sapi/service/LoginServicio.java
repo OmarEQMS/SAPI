@@ -6,6 +6,7 @@
 package mx.itesm.sapi.service;
 
 import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.Persona;
 
 /**
  *

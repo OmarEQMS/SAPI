@@ -12,11 +12,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.util.Conexion;
 
 /**
  *
  * @author julioguzman
+ * 
  */
 public class LoginServicioImpl implements LoginServicio {
     
@@ -27,7 +29,7 @@ public class LoginServicioImpl implements LoginServicio {
          CallableStatement cstmt;
 
         try{
-            cstmt = conn.prepareCall("CALL autenticarPaciente(?,SHA2(?,224))");
+            cstmt = conn.prepareCall("CALL autenticarPaciente(?,?)");
             cstmt.setString (1, cuenta.getUsuario());
             cstmt.setString (2, cuenta.getPassword());
             
@@ -52,20 +54,20 @@ public class LoginServicioImpl implements LoginServicio {
                 case 1:
                 {                                       
                     System.out.println("se pudo ".concat(String.valueOf(rs.getInt("idCuenta"))));                    
-                    cuenta.setIdCuenta(rs.getInt("idCuenta"));
+                     cuenta.setIdCuenta(rs.getInt("idCuenta"));
+                    cuenta.setIdPersona(rs.getInt("idPersona"));
                     System.out.println("break;");
                     break;
                 }
             }
             
         }catch(Exception ex){
-            System.out.println("CuentaServicio.verificaUsuario ".concat(ex.getMessage()));
+            System.out.println("CuentaServicio.verificaUsuario ".concat(ex.getLocalizedMessage()));
         }
         
         return cuenta;                
     }
     
-   @Override
    public void InsertLoginDateTime(Cuenta cuenta){
        
         //SE CREA CONEXION
@@ -109,8 +111,6 @@ public class LoginServicioImpl implements LoginServicio {
         }catch(Exception ex){
             System.out.println("CuentaServicio.verificaUsuario ".concat(ex.getMessage()));
         }
-    }
-   
-   
-   
+    }         
+       
 }
