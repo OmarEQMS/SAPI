@@ -54,7 +54,10 @@ public class LoginServicioImpl implements LoginServicio {
                 case 1:
                 {                                       
                     System.out.println("se pudo ".concat(String.valueOf(rs.getInt("idCuenta"))));                    
-                     cuenta.setIdCuenta(rs.getInt("idCuenta"));
+                    
+                    cuenta.setIdRol(rs.getInt("idRol"));
+                    cuenta.setUsuario(rs.getString("usuario"));
+                    cuenta.setIdCuenta(rs.getInt("idCuenta"));
                     cuenta.setIdPersona(rs.getInt("idPersona"));
                     System.out.println("break;");
                     break;

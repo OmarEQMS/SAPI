@@ -254,9 +254,9 @@ public class PacienteServicioImpl implements PacienteServicio{
         
         
         try{
-            conn = Conexion.getConnection();
-            cstmt.setInt(1, idCuenta);
+            conn = Conexion.getConnection();            
             cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idCuenta);
             rs = cstmt.executeQuery();
             rs.next();
             

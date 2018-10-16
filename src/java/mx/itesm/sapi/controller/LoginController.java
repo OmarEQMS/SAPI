@@ -98,21 +98,27 @@ public class LoginController extends HttpServlet {
 
                         PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                         Persona persona = personaServicioImpl.mostrarPersona(cuenta.getIdPersona());
-
                         
                         sesion.setAttribute("idPersona", persona.getIdPersona());
                         sesion.setAttribute("nombre", persona.getNombre());
                         sesion.setAttribute("primerApellido", persona.getPrimerApellido());
                         sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
+                        sesion.setAttribute("imagen", persona.getImagen());
+                        
+                        System.out.println("Rol cuenta:".concat(String.valueOf(rolCuenta)).concat(" ").concat(String.valueOf(cuenta.getIdRol())));
                                                 
                         switch(rolCuenta)
                         {
+                            /* CASE 1 PARA PACIENTE POTENCIAL*/
                             case 1:
                             {
+                                
                                PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
                                
-                               System.out.println("Redirigir al dashboard de potencial ".concat(persona.toString()));
+                               System.out.println(String.valueOf(paciente.getIdPaciente()).concat(" ").concat(String.valueOf(paciente.getIdCuenta())).concat(" ").concat(String.valueOf(sesion.getAttribute("idCuenta"))));
+                               
+                               //System.out.println("Redirigir al dashboard de potencial ".concat(persona.toString()));
                                 /*
                                 //Redirigir al usuario  al dashboard "correspondiente al"
                                 request.getRequestDispatcher("/WEB-INF/dashboard.jsp")
