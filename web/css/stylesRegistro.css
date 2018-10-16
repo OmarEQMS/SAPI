@@ -22,6 +22,42 @@ body {
   background-size: cover;
 }
 
+.swal-button--segundaOpinion {
+    padding: 7px 19px;
+    border-radius: 20px;
+    color: #fff;
+    background-color: #007bff;
+    font-size: 15px;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  .swal-button--primeraVez {
+    padding: 7px 19px;
+    border-radius: 20px;
+    color: #fff;
+    background-color: #dc3545;
+    font-size: 15px;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+  }
+
+.swal-button--confirm {
+    padding: 7px 19px;
+    border-radius: 25px;
+    color: #fff;
+    background-color: #007bff;
+    font-size: 15px;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  .swal-button--cancel {
+    padding: 7px 19px;
+    border-radius: 25px;
+    color: #fff;
+    background-color: #dc3545;
+    font-size: 15px;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+  }
+
 /* FORMULARIO */
 
 .formulario {
@@ -48,11 +84,6 @@ body {
 }
 
 /* INPUTS */
-
-select{
-    font-size: 13px !important;
-    padding: 10px !important;
-}
 
 .inputGlobal{
     background-color:rgba(0,0,0,0) !important;
@@ -114,6 +145,10 @@ input::-webkit-input-placeholder {
     font-size: 32px;
 }
 
+select{
+    font-size: 13px !important;
+}
+
 /* BOTON */
 
 .btn-registro{
@@ -164,11 +199,6 @@ input::-webkit-input-placeholder {
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 510px){
-
-    body{
-        padding-top:50px;
-        padding-bottom: 50px;
-    }
 
     .formulario{
         margin-left:15px;
