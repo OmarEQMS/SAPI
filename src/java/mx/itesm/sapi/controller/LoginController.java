@@ -106,7 +106,8 @@ public class LoginController extends HttpServlet {
                         sesion.setAttribute("imagen", persona.getImagen());
                         
                         System.out.println("Rol cuenta:".concat(String.valueOf(rolCuenta)).concat(" ").concat(String.valueOf(cuenta.getIdRol())));
-                                                
+                             
+                        //EL SWITCH REDIRIGE SEGÚN EL ROL DE LA CUENTA
                         switch(rolCuenta)
                         {
                             /* CASE 1 PARA PACIENTE POTENCIAL*/
