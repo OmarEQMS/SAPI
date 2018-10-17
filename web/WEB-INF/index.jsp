@@ -45,7 +45,7 @@
     </form>
   
     <script src="js/jquery.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/appLogin.js"></script>
     <script src="js/jqueryPostGo.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/popper.min.js"></script>

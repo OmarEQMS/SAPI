@@ -6,26 +6,37 @@ $(document).ready(function () {
     });
 
     $('#btn-login').on('click', function () {
-        var usu = $("#usuario");
-        var pass = $("#password");
-        $.get("SAPI", {
-                key: "login",
-                accion: "login",
-                usuario: usu.val(),
-                password: pass.val()
+        alert();
+
+        var usuario = $('#user');
+        var password = $('#password');
+
+        $.ajax({
+
+            url: 'LoginController',
+            cache: false,
+            method: 'POST',
+            data: {
+                key: 'verificar',
+                usuario: usuario.val(),
+                password: password.val()
             },
-            function (response, status, xhr) {
-                if (status == "success") {
-                    if (response == "error") {
-                        $("#msj-error").show();
-                    } else {
-                        document.open("text/html", "replace");
-                        document.write(response);
-                        document.close();
-                    }
+            success: function (response) {
+
+                if (response == 'success') {
+
+                    $('#msj-error').hide();
+
+                } else {
+                    $('#msj-error').show();
                 }
+
+
             }
-        );
+
+
+        });
+
     });
 
     $('#registrate').click(function () {
