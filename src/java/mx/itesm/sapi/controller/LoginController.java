@@ -13,8 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.service.LoginServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
+import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 
 /**
  *
@@ -53,6 +57,7 @@ public class LoginController extends HttpServlet {
 
                     //Verificiar que el usuario exista, que contraseña
                     //sea correcta y que este habilitado
+                    
                     Cuenta cuenta = new Cuenta();
 
                     cuenta.setUsuario(usuario);
@@ -61,6 +66,7 @@ public class LoginController extends HttpServlet {
 
                     LoginServicioImpl cs = new LoginServicioImpl();
                     cuenta = cs.verificaCredenciales(cuenta);
+                                        
                     
 
                     if (cuenta.getIdCuenta() != 0) {
@@ -80,25 +86,77 @@ public class LoginController extends HttpServlet {
 
                         //cuenta.setLoginDateTime(lDateTime);                        
                         //cs.InsertLoginDateTime(cuenta);
-
+                                                                                                
+                        //Se establece el id del rol de la cuenta
+                        int idCuenta = cuenta.getIdCuenta();
+                        int rolCuenta =  cuenta.getIdRol();
+                        String usuarioCuenta = cuenta.getUsuario();
                         
-                        
-                        /*//Escribir los valores de sesion
+                        /*Escribir los valores de sesion*/                                                
                         //(idCuenta, nombre, rol, status)
-                        sesion.setAttribute("idCuenta", cuenta.getIdPersona());
-                        sesion.setAttribute("idRol", cuenta.getIdRol());
+                        sesion.setAttribute("idCuenta", idCuenta);
+                        sesion.setAttribute("idRol",rolCuenta);
+                        sesion.setAttribute("usuario",usuarioCuenta);
 
-                        PersonaServicioImpl psi = new PersonaServicioImpl();
-                        Persona persona = psi.getPersona(cuenta.getIdCuenta());
+                        PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
+                        Persona persona = personaServicioImpl.mostrarPersona(cuenta.getIdPersona());
+                        
+                        int idPersona = persona.getIdPersona();                        
+                        String nombre = persona.getNombre() ,
+                                primerApellido = persona.getPrimerApellido(),
+                                segundoApellido = persona.getSegundoApellido();
+                        
+                        System.out.println("Values ".concat(" " + nombre).concat(" "+primerApellido).concat(" "+segundoApellido));
+                        
+                        sesion.setAttribute("idPersona", idPersona);
+                        sesion.setAttribute("nombre",nombre );
+                        sesion.setAttribute("primerApellido", primerApellido);
+                        sesion.setAttribute("segundoApellido",segundoApellido );
+                        sesion.setAttribute("imagen", persona.getImagen());
+                        
+                        System.out.println("Rol cuenta:".concat(String.valueOf(rolCuenta)).concat(" ").concat(String.valueOf(cuenta.getIdRol())));
+                             
+                        //EL SWITCH REDIRIGE SEGÚN EL ROL DE LA CUENTA
+                        switch(rolCuenta)
+                        {
+                            /* CASE 1 PARA PACIENTE POTENCIAL*/
+                            case 1:
+                            {
+                                
+                               PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
+                               Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
+                                                                                                                            
+                               //Redirigir al paciente potencial a su dashboard correspondiente                               
+                               
+                               
+                               request.setAttribute("nombre", sesion.getAttribute("nombre"));
+                               request.setAttribute("primerApellido",sesion.getAttribute("primerApellido"));
+                               request.setAttribute("segundoApellido",sesion.getAttribute("segundoApellido"));                                                              
+                                                          
+                               request.getRequestDispatcher("/WEB-INF/potencial/index.jsp").forward(request, response);                              
+                               //request.getRequestDispatcher("/FrontController").forward(request, response);             
+                               
+                               
+                               System.out.println("Se redirige el potencial. idPaciente " + String.valueOf(paciente.getIdPaciente()).concat(" idCuenta ").concat(String.valueOf(paciente.getIdCuenta())).concat(" Sesión idCuenta ").concat(String.valueOf(sesion.getAttribute("idCuenta"))));
+                                                                                             
+                             break; 
+                            }      
+                            case 2:
+                            {
+                             break;
+                            }      
+                            case 3:
+                            {
+                             break;
+                            }      
+                            case 4:
+                            {
+                             break;
+                            }                                    
+                        }                       
 
-                        sesion.setAttribute("nombre", persona.getNombre());
-
-                        //Redirigir al usuario  al dashboard "correspondiente al"
-                        request.getRequestDispatcher("/WEB-INF/dashboard.jsp")
-                                .forward(request, response);*/
-
-                        PrintWriter out = response.getWriter();
-                        out.print("success");
+                        //PrintWriter out = response.getWriter();
+                        //out.print("success");
 
                     } else {
                         

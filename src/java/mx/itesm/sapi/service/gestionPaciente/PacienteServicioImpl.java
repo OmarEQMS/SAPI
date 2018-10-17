@@ -241,5 +241,44 @@ public class PacienteServicioImpl implements PacienteServicio{
         }
         return exito;
     }
+
+    @Override
+    public Paciente mostrarPacientePotencial(int idCuenta) {
+        Connection conn; 
+        CallableStatement cstmt = null;
+        ResultSet rs;
+        
+        Paciente paciente = new Paciente();
+        
+        String stProcedure = "CALL mostrarPacientePorCuenta(?)";
+        
+        
+        try{
+            conn = Conexion.getConnection();            
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idCuenta);
+            rs = cstmt.executeQuery();
+            rs.next();
+            
+            paciente.setIdPaciente(rs.getInt("idPaciente"));
+            paciente.setIdCuenta(rs.getInt("idCuenta"));
+            paciente.setIdEscolaridad(rs.getInt("idEscolaridad"));
+            paciente.setPrz(rs.getString("prz"));
+            paciente.setExpediente(rs.getString("expediente"));
+            paciente.setPeso(rs.getDouble("peso"));
+            paciente.setAltura(rs.getDouble("altura"));
+            paciente.setPosMenopausia(rs.getInt("posMenopausia"));
+            paciente.setEstatus(rs.getInt("estatus"));
+        
+            rs.close();
+            cstmt.close();
+            conn.close();
+        }catch(SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            paciente= null;
+        }
+        return paciente;
+    }
     
 }

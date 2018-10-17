@@ -62,7 +62,7 @@ public class PersonaServicioImpl implements PersonaServicio {
         Persona persona = null;
 
         //Call del store procedure
-        String stProcedure = "mostrarAuditoriaCreacionCuenta(?)";
+        String stProcedure = "CALL mostrarPersona(?)";
 
         try {
             persona = new Persona();
@@ -73,9 +73,10 @@ public class PersonaServicioImpl implements PersonaServicio {
             rs = cstmt.executeQuery();
 
             rs.next();
+            persona.setNombre(rs.getString("nombre"));
             persona.setIdPersona(rs.getInt("idPersona"));
-            persona.setPrimerApellido(rs.getString("apellido1"));
-            persona.setSegundoApellido(rs.getString("apellido2"));
+            persona.setPrimerApellido(rs.getString("primerApellido"));
+            persona.setSegundoApellido(rs.getString("segundoApellido"));
             persona.setCurp(rs.getString("curp"));
             persona.setTelefono(rs.getString("telefono"));
             persona.setCorreo(rs.getString("correo"));
@@ -85,7 +86,7 @@ public class PersonaServicioImpl implements PersonaServicio {
             persona.setIdMunicipio(rs.getInt("idMunicipio"));
             persona.setIdEstadoCivil(rs.getInt("idEstadoCivil"));
             persona.setIdDireccion(rs.getInt("idDireccion"));
-            //  persona.setImagen(rs.getInputStream("imagen"));
+            persona.setImagen(rs.getBinaryStream("imagen"));
             persona.setEdad(rs.getInt("edad"));
             persona.setEstatus(rs.getInt("estatus"));
 
@@ -95,9 +96,9 @@ public class PersonaServicioImpl implements PersonaServicio {
 
         } catch (SQLException ex) {
 
+            System.out.println("PersonaServicioImpl mostrarPersona");
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
-                    .concat(ex.getMessage()));
-            persona = null;
+                    .concat(ex.getMessage()));            
         }
         return persona;
     }
@@ -121,8 +122,8 @@ public class PersonaServicioImpl implements PersonaServicio {
 
                 persona = new Persona();
                 persona.setIdPersona(rs.getInt("idPersona"));
-                persona.setPrimerApellido(rs.getString("apellido1"));
-                persona.setSegundoApellido(rs.getString("apellido2"));
+                persona.setPrimerApellido(rs.getString("primerApellido"));
+                persona.setSegundoApellido(rs.getString("segundpApellido"));
                 persona.setCurp(rs.getString("curp"));
                 persona.setTelefono(rs.getString("telefono"));
                 persona.setCorreo(rs.getString("correo"));
@@ -145,6 +146,8 @@ public class PersonaServicioImpl implements PersonaServicio {
             conn.close();
 
         } catch (SQLException ex) {
+            
+            System.out.println("PersonaServicioImpl mostrarPersona Lista");
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             personas = null;
@@ -201,6 +204,7 @@ public class PersonaServicioImpl implements PersonaServicio {
             conn.close();
 
         } catch (SQLException ex) {
+            System.out.println("PersonaServicioImpl Lista mostrarPersona");
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             id = -1;
@@ -235,7 +239,7 @@ public class PersonaServicioImpl implements PersonaServicio {
             cstmt.setInt(10, persona.getIdMunicipio());
             cstmt.setInt(11, persona.getIdEstadoCivil());
             cstmt.setInt(12, persona.getIdDireccion());
-            // cstmt.setInputStream(13,persona.getImagen());
+            cstmt.setBinaryStream(13,persona.getImagen());
             cstmt.setInt(14, persona.getEdad());
             cstmt.setInt(15, persona.getEstatus());
 

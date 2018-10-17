@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Inicio de Sesión</title>
+    
+    
+    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="css/styleLogin.css">
 </head>
 <body>
 
@@ -41,12 +44,12 @@
     
     </form>
   
-    <script src="js/jquery.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/jqueryPostGo.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script type="module" src="js/asincrono.js"></script>
+    <script src="lib/jquery/jquery-3.3.1.js"></script>
+    <script src="js/appLogin.js"></script>
+    <script src="lib/jquery/jqueryPostGo.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
+    <script src="lib/popper/popper.min.js"></script>
+    <!--<script type="module" src="js/asincrono.js"></script>-->
     
 </body>
 </html>

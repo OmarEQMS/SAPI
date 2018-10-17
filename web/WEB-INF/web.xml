@@ -10,7 +10,7 @@
     </servlet-mapping>
     -->
     <welcome-file-list>
-            <welcome-file>/WEB-INF/potencial/index.jsp</welcome-file>
+            <welcome-file>SAPI</welcome-file>
     </welcome-file-list>
     
     <session-config>

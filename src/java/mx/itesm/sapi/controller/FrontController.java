@@ -34,7 +34,7 @@ public class FrontController extends HttpServlet {
             throws ServletException, IOException {
         
         String file = request.getParameter("file");
-                
+        //System.out.println("file:".concat(file));
         if (file == null) {
             HttpSession sesion = request.getSession(true);
             if (sesion.getAttribute("idCuenta") == null) {
@@ -42,7 +42,15 @@ public class FrontController extends HttpServlet {
                 request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
                 return;
             } else {
-                request.getRequestDispatcher("WEB-INF/dashboard.jsp").forward(request, response);
+                
+                int keyRol = Integer.parseInt(sesion.getAttribute("idRol").toString());
+                switch(keyRol)
+                {
+                    case 1:
+                    {
+                        request.getRequestDispatcher("WEB-INF/potencial/index.jsp").forward(request, response);
+                    }
+                }                
                 return;
             }
         }
@@ -52,8 +60,7 @@ public class FrontController extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/" + file).forward(request, response);
             return;
         } else {
-            
-            
+                        
             System.out.println("filename else ".concat(file));
             request.getRequestDispatcher("/" + file).forward(request, response);
             return;
