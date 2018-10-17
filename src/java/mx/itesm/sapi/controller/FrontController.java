@@ -77,6 +77,9 @@ public class FrontController extends HttpServlet {
 
                             case "potencial/cuentaPaciente.jsp": {
                                 System.out.println("llegue aqui 4 ".concat(keyRuta));
+                                request.setAttribute("nombre", sesion.getAttribute("nombre"));
+                                request.setAttribute("primerApellido",sesion.getAttribute("primerApellido"));
+                                request.setAttribute("segundoApellido",sesion.getAttribute("segundoApellido"));                                                              
                                 request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al login
                                 break;
                             }

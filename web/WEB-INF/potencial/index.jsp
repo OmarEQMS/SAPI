@@ -89,7 +89,7 @@
 
                 <li><a href="./mis-citas.html"><i class="fas fa-calendar-alt"></i>Mis Citas<span class="notificacion">1</span></a></li>
 
-                <li id ="irACuenta"><!--a href="" id ="irACuenta"--><i class="far fa-user"></i>Mi Cuenta <!--/a--></li>
+                <li id ="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta </a></li>
 
                 <li><a href="./preguntasFrecuentes.html"><i class="fas fa-question-circle"></i>Preguntas Frecuentes</a></li>
 

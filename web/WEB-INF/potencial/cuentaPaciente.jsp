@@ -61,8 +61,8 @@
                 </div>
                 <div class="row justify-content-center mb-2">
                     <div class="col-6 text-center">
-                        <span class="textoSidebar m-0">Julio Badillo</span>
-                        <span class="textoSidebar userSidebar m-0">@juliobadillo</span>
+                        <span class="textoSidebar m-0">${sessionScope.nombre} ${sessionScope.primerApellido}</span>
+                        <span class="textoSidebar userSidebar m-0">@${sessionScope.usuario}</span>
                     </div>
                 </div>
                 <div class="row justify-content-center">
@@ -110,9 +110,12 @@
                     <button id="sidebarCollapse" class="btn boton-collapse">
                         <i class="fas fa-align-justify"></i>
                     </button>
+                    
+                    <!-- aqui se inyecta la sesion de id-->
+                    <input type="hidden" id="sesionPaciente" value="${sessionScope.idSesion}" />
 
-                    <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">Julio
-                            Badillo
+                    <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
+                            ${sessionScope.nombre} ${sessionScope.primerApellido}
                         </span> <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
 
                 </div>
@@ -237,8 +240,6 @@
                                     Eliminar Cuenta</button>
                             </div>
                         </div>
-                         <!-- aqui se inyecta la sesion de id-->
-                        <input type="hidden" id="paciente" />
                     </form>
 
                 </div>
