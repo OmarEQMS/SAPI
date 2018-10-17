@@ -1,3 +1,5 @@
+//ajaxPotencial.js
+
 $(document).ready(function () {
 
 
@@ -9,17 +11,19 @@ $(document).ready(function () {
             icon: "warning",
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
-                    
+
         })
-            .then((eliminar) => {
-                if (eliminar) {
+                .then((eliminar) => {
+                    if (eliminar) {
 
 
 
-                } else {
+                    } else {
 
-                }
-            });
+                    }
+                });
+
+
 
     });
 
@@ -34,16 +38,18 @@ $(document).ready(function () {
             buttons: ['Regresar', 'Cancelar cita'],
             dangerMode: true,
         })
-            .then((cancelar) => {
-                if (cancelar) {
 
-                    $('#modalMotivoCancelacion').modal('toggle');
+                .then((cancelar) => {
+                    if (cancelar) {
+
+                        $('#modalMotivoCancelacion').modal('toggle');
 
 
-                } else {
+                    } else {
 
-                }
-            });
+                    }
+                });
+
 
     });
 
@@ -58,16 +64,18 @@ $(document).ready(function () {
             buttons: ['Regresar', 'Cancelar cita'],
             dangerMode: true,
         })
-            .then((cancelar) => {
-                if (cancelar) {
 
-                    $('#modalMotivoCancelacion').modal('toggle');
-                    $('#modalVerCitaPreConsulta').modal('toggle');
+                .then((cancelar) => {
+                    if (cancelar) {
 
-                } else {
+                        $('#modalMotivoCancelacion').modal('toggle');
+                        $('#modalVerCitaPreConsulta').modal('toggle');
 
-                }
-            });
+                    } else {
+
+                    }
+                });
+
 
     });
 
@@ -85,7 +93,8 @@ $(document).ready(function () {
         });
 
         var masculino, femenino, camilla, sillaDeRuedas, baston, oxigeno, biopsia, motivoConsulta,
-            identificacionOficial, comprobanteDomicilio, estudioPrevio, estudioBiopsia;
+                identificacionOficial, comprobanteDomicilio, estudioPrevio, estudioBiopsia;
+
 
         var data = [];
 
@@ -118,12 +127,12 @@ $(document).ready(function () {
         data.push(estudioBiopsia);
 
         console.log("masculino: " + masculino + " femenino: " + femenino + " silla:  " + sillaDeRuedas + " camilla: " + camilla + " bastón: " +
-            baston + " oxigeno " + oxigeno + " biopsia " + biopsia + " motivo " + motivoConsulta
-            + " identificacion: " + identificacionOficial.name + " comprobante: " + comprobanteDomicilio.name + " estudio: " + estudioPrevio.name
-            + " biopsia: " + estudioBiopsia.name);
+                baston + " oxigeno " + oxigeno + " biopsia " + biopsia + " motivo " + motivoConsulta
+                + " identificacion: " + identificacionOficial.name + " comprobante: " + comprobanteDomicilio.name + " estudio: " + estudioPrevio.name
+                + " biopsia: " + estudioBiopsia.name);
 
         $.ajax({
-            url:/*sin url aún,*/"URL",
+            url: /*sin url aún,*/"URL",
             method: "POST",
             data: data,
             enctype: "multipart/form-data",
@@ -146,4 +155,95 @@ $(document).ready(function () {
     });
 
 
+    //Author: Angel Gtz
+    //este ajax hace que manda la nueva contraeña de la cuenta del paciente potencial
+
+    $("#btn-cambiarContrasena").on('click', function () {
+
+        console.log('hoa');
+
+        //Modal cambiar contraseña 
+        swal({
+            title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
+            text: "No podras volver a usar tu contraseña anterior para ingresar",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Regresar', 'Cambiar contrase&ntilde;a'],
+            dangerMode: true
+        })
+                .then((cambiar) => {
+                    if (cambiar) {
+
+
+                        $.ajax({
+                            url: "PotencialController",
+                            data: {
+                                key: "cambiarContrasena",
+                                idCuenta: $("#sesionPaciente").val(),
+                                password: $("#password").val()
+                            },
+                            method: "POST",
+                            success: function (response) {
+                                if (response == "success") {
+
+                                } else {
+                                    //Aqui no se que hace
+                                }
+                            },
+                            error: function (xhr) {
+
+                            }
+                        });
+
+                    } else {
+
+                    }
+                });
+        $('#modalCambiarContrase&ntilde;a').modal('toggle');
+
+    });
+/*
+    $("#irACuenta").on('click', function () {
+
+        $.ajax({
+            url: "FrontController",
+            data: {
+                key: "redirecionarACuenta",
+                idCuenta: $("#sesionPaciente").val()
+            },
+            method: "POST",
+            success: function (response) {
+                console.log(response);
+                if (response == "success") {
+                        
+                } else {
+                    //Aqui no se que hace
+                }
+            },
+            error: function (xhr) {
+
+            }
+        });
+    });
+ */   
+    $('#irACuenta').on('click', function () {
+       console.log("Seguro?");
+        $.get("SAPI", {
+                file: "potencial/cuentaPaciente.jsp"
+            },
+            function (response, status, xhr) {
+                console.log(response);
+                if (status == "success") {
+                    if (response == "error") {
+                        $("#msj-error").show();
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
+                    }
+                }
+            }
+        );
+    });
+    
 });

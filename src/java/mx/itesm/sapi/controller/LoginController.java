@@ -108,6 +108,7 @@ public class LoginController extends HttpServlet {
                         
                         System.out.println("Values ".concat(" " + nombre).concat(" "+primerApellido).concat(" "+segundoApellido));
                         
+                        sesion.setAttribute("idSesion", sesion.getId());
                         sesion.setAttribute("idPersona", idPersona);
                         sesion.setAttribute("nombre",nombre );
                         sesion.setAttribute("primerApellido", primerApellido);

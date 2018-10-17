@@ -48,7 +48,7 @@
 
                 <div class="row text-center justify-content-center mt-2">
                     <div class="col-12">
-                        <img src="../img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
+                        <img src="img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
                     </div>
                 </div>
 
@@ -57,7 +57,7 @@
             <div class="profile">
                 <div class="row">
                     <div class="col-12 mb-2 mt-4">
-                        <img src="../img/user.png" class="imagenPerfil" alt="">
+                        <img src="img/user.png" class="imagenPerfil" alt="">
                     </div>
                 </div>
                 <div class="row justify-content-center mb-2">
@@ -68,10 +68,10 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-2 text-center">
-                        <a class="iconoSidebar" href="" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
+                        <a class="iconoSidebar" href="<" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
                     </div>
                     <div class="col-2">
-                        <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
+                        <a class="iconoSidebar" href="" title="Cerrar SesiÃ³n"><i class="fas fa-power-off"></i></a>
                     </div>
                 </div>
             </div>
@@ -89,11 +89,11 @@
 
                 <li><a href="./mis-citas.html"><i class="fas fa-calendar-alt"></i>Mis Citas<span class="notificacion">1</span></a></li>
 
-                <li><a href="./cuentaPaciente.html"><i class="far fa-user"></i>Mi Cuenta</a></li>
+                <li id ="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta </a></li>
 
                 <li><a href="./preguntasFrecuentes.html"><i class="fas fa-question-circle"></i>Preguntas Frecuentes</a></li>
 
-                <li><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar SesiÃ³n</a></li>
 
             </ul>
 
@@ -112,6 +112,9 @@
                         <i class="fas fa-align-justify"></i>
                     </button>
 
+                     <!-- aqui se inyecta la sesion de id-->
+                    <input type="hidden" id="sesionPaciente" value="${sessionScope.idSesion}" />
+                    
                     <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
                             <!--Julio Badillo-->
                             ${sessionScope.nombre} ${sessionScope.primerApellido}
@@ -140,7 +143,7 @@
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
 
                                     <a class="nav-item nav-link active text-center colorMoradoLight" id="nav-bienvenida-tab" data-toggle="tab" href="#nav-bienvenida"
-                                        role="tab" aria-controls="nav-bienvenida" aria-selected="false" style="width:33%">INFORMACIÓN</a>
+                                        role="tab" aria-controls="nav-bienvenida" aria-selected="false" style="width:33%">INFORMACIÃN</a>
 
                                     <a class="nav-item nav-link text-center colorMoradoLight" id="nav-solicitud-tab" data-toggle="tab" href="#solicitud" role="tab"
                                         aria-controls="nav-solicitud" aria-selected="true" style="width:33%"><i
@@ -148,7 +151,7 @@
 
 
                                     <a class="nav-item nav-link text-center colorMoradoLight" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-                                        aria-controls="nav-contact" aria-selected="false" style="width:33%">APROBACIÓN</a>
+                                        aria-controls="nav-contact" aria-selected="false" style="width:33%">APROBACIÃN</a>
                                 </div>
                             </nav>
 
@@ -166,7 +169,7 @@
 
                                         <div class="col-12 text-center">
                                             <p class="display-4 subPreConsulta">Para solicitar una cita a la preconsulta,
-                                                sube todos los documentos que se piden a continuación.</p>
+                                                sube todos los documentos que se piden a continuaciÃ³n.</p>
                                             <hr>
                                         </div>
 
@@ -222,13 +225,13 @@
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="checkbox" id="baston" value="baston">
                                                         <label class="form-check-label" for="baston"> <i class="fas fa-blind"></i>
-                                                            Bastón</label>
+                                                            BastÃ³n</label>
                                                     </div>
 
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="checkbox" id="oxigeno" value="oxigeno">
                                                         <label class="form-check-label" for="inlineCheckbox2"> <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDYwIDYwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA2MCA2MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIyNHB4IiBoZWlnaHQ9IjI0cHgiPgo8Zz4KCTxwYXRoIGQ9Ik0yMi41LDQ4aC0ydi0xaC0yMHY4Ljk4MUMwLjUsNTguMTk3LDIuMzAzLDYwLDQuNTE4LDYwaDExLjk2NGMyLjIxNSwwLDQuMDE4LTEuODAzLDQuMDE4LTQuMDE5VjUzaDJ2Mi45ODEgICBjMCwyLjIxNiwxLjgwMyw0LjAxOSw0LjAxOCw0LjAxOWgxMS45NjRjMi4yMTUsMCw0LjAxOC0xLjgwMyw0LjAxOC00LjAxOVY0N2gtMjBWNDh6IE0yMi41LDUxaC0ydi0xaDJWNTF6IiBmaWxsPSIjMDAwMDAwIi8+Cgk8cmVjdCB4PSIyMi41IiB5PSIzMyIgd2lkdGg9IjIwIiBoZWlnaHQ9IjEyIiBmaWxsPSIjMDAwMDAwIi8+Cgk8cmVjdCB4PSIwLjUiIHk9IjMzIiB3aWR0aD0iMjAiIGhlaWdodD0iMTIiIGZpbGw9IiMwMDAwMDAiLz4KCTxwYXRoIGQ9Ik01Ni40NzMsNDYuNTM2Yy0wLjE5MS0xLjY1LTEuMzk4LTIuOTg0LTIuOTczLTMuMzkzdi0wLjY5OWMwLjU5MSwwLjM0NCwxLjI2OCwwLjU1NiwyLDAuNTU2YzIuMjA2LDAsNC0xLjc5NCw0LTQgICBzLTEuNzk0LTQtNC00Yy0wLjczMiwwLTEuNDA5LDAuMjEyLTIsMC41NTZWMjFjMC01LjUxNC00LjQ4Ni0xMC0xMC0xMGgtN1Y5aC0zVjcuNDQ0QzM0LjA5MSw3Ljc4OCwzNC43NjgsOCwzNS41LDggICBjMi4yMDYsMCw0LTEuNzk0LDQtNHMtMS43OTQtNC00LTRjLTEuMiwwLTIuMjY2LDAuNTQyLTMsMS4zODJDMzEuNzY2LDAuNTQyLDMwLjcsMCwyOS41LDBjLTIuMjA2LDAtNCwxLjc5NC00LDRzMS43OTQsNCw0LDQgICBjMC43MzIsMCwxLjQwOS0wLjIxMiwyLTAuNTU2VjloLTN2MmgtMTRWOWgtM1Y3LjQ0NEMxMi4wOTEsNy43ODgsMTIuNzY4LDgsMTMuNSw4YzIuMjA2LDAsNC0xLjc5NCw0LTRzLTEuNzk0LTQtNC00ICAgYy0xLjIsMC0yLjI2NiwwLjU0Mi0zLDEuMzgyQzkuNzY2LDAuNTQyLDguNywwLDcuNSwwYy0yLjIwNiwwLTQsMS43OTQtNCw0czEuNzk0LDQsNCw0YzAuNzMyLDAsMS40MDktMC4yMTIsMi0wLjU1NlY5aC0zdjZoMSAgIHYxLjE1OGMtNC4xNiwxLjI5Ny03LDUuMTA5LTcsOS41MzNWMzFoMjB2LTFoMnYxaDIwdi01YzAtNC40OTEtMi45LTguNS03LTkuODNWMTVoMXYtMmg3YzQuNDExLDAsOCwzLjU4OSw4LDh2MjIuMTQzICAgYy0xLjU3NSwwLjQxLTIuNzgyLDEuNzQzLTIuOTczLDMuMzkzQzQ3LjI5Miw0Ny4yMzksNDYuNSw0OC41NTgsNDYuNSw1MHMwLjc5MiwyLjc2MSwyLjAyNywzLjQ2NEM0OC43NTcsNTUuNDUxLDUwLjQ1MSw1Nyw1Mi41LDU3ICAgczMuNzQzLTEuNTQ5LDMuOTczLTMuNTM2QzU3LjcwOCw1Mi43NjEsNTguNSw1MS40NDIsNTguNSw1MFM1Ny43MDgsNDcuMjM5LDU2LjQ3Myw0Ni41MzZ6IE0zNS41LDJjMS4xMDMsMCwyLDAuODk3LDIsMiAgIHMtMC44OTcsMi0yLDJzLTItMC44OTctMi0yUzM0LjM5NywyLDM1LjUsMnogTTEzLjUsMmMxLjEwMywwLDIsMC44OTcsMiwycy0wLjg5NywyLTIsMnMtMi0wLjg5Ny0yLTJTMTIuMzk3LDIsMTMuNSwyeiBNNy41LDYgICBjLTEuMTAzLDAtMi0wLjg5Ny0yLTJzMC44OTctMiwyLTJzMiwwLjg5NywyLDJTOC42MDMsNiw3LjUsNnogTTIyLjUsMjhoLTJ2LTFoMlYyOHogTTI5LjUsMTYuMTU4ICAgYy0zLjk0MSwxLjIyOS02LjY5Myw0LjcxNi02Ljk3Miw4Ljg0MmgtMi4wODFjLTAuMzkzLTQuMDc2LTMuMTU0LTcuNi02Ljk0Ny04LjgzVjE1aDF2LTJoMTR2MmgxVjE2LjE1OHogTTI5LjUsNiAgIGMtMS4xMDMsMC0yLTAuODk3LTItMnMwLjg5Ny0yLDItMnMyLDAuODk3LDIsMlMzMC42MDMsNiwyOS41LDZ6IE01My41LDUyYzAsMC41NTMtMC40NDgsMS0xLDFzLTEtMC40NDctMS0xdi00ICAgYzAtMC41NTMsMC40NDgtMSwxLTFzMSwwLjQ0NywxLDFWNTJ6IiBmaWxsPSIjMDAwMDAwIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg=="
-                                                            /> Oxígeno
+                                                            /> OxÃ­geno
                                                         </label>
                                                     </div>
 
@@ -240,7 +243,7 @@
                                             <div class="row mt-4">
 
                                                 <div class="col-3 text-center">
-                                                    <span class="textoDocumento">Identificación oficial</span>
+                                                    <span class="textoDocumento">IdentificaciÃ³n oficial</span>
                                                 </div>
 
                                                 <div class="custom-file col-8" id="customFile">
@@ -277,7 +280,7 @@
                                                     <span class="textoDocumento">CURP</span>
                                                     <small id="passwordHelpBlock" class="form-text text-muted">
                                                         Se puede tramitar
-                                                        <a class="text-primary" target="_blank" href="https://www.gob.mx/curp/">aquí</a>
+                                                        <a class="text-primary" target="_blank" href="https://www.gob.mx/curp/">aquÃ­</a>
                                                     </small>
                                                 </div>
 
@@ -321,7 +324,7 @@
                                                             <li>Recibo de impuesto predial</li>
                                                             <li>Recibo de servicio de luz</li>
                                                             <li>Recibo de servicio de agua</li>
-                                                            <li>Recibo de servicio de teléfono</li>
+                                                            <li>Recibo de servicio de telÃ©fono</li>
                                                             <li>Recibo de servicio de internet</li>
                                                         </ul>
 
@@ -341,10 +344,10 @@
                                                 <div class="col-8 removePadding">
                                                     <select class="form-control" id="motivoConsulta">
                                                         <option>Seleccione el motivo de la consulta</option>
-                                                        <option>Me envió un médico</option>
-                                                        <option>Estudio con diagnóstico de cáncer de mama</option>
-                                                        <option>Me sentí una bolita en el seno</option>
-                                                        <option>Me envían de otro hospital</option>
+                                                        <option>Me enviÃ³ un mÃ©dico</option>
+                                                        <option>Estudio con diagnÃ³stico de cÃ¡ncer de mama</option>
+                                                        <option>Me sentÃ­ una bolita en el seno</option>
+                                                        <option>Me envÃ­an de otro hospital</option>
                                                         <option>Otro</option>
                                                     </select>
                                                 </div>
@@ -377,12 +380,12 @@
                                                     -->
                                             </div>
 
-                                            <!-- Estudios previos Mastografía-->
+                                            <!-- Estudios previos MastografÃ­a-->
 
                                             <div class="row mt-1">
                                                 <div class="col-3 text-center">
                                                     <span class="textoDocumento">Reporte de resultados de estudios previos
-                                                        mastografía
+                                                        mastografÃ­a
                                                     </span>
                                                 </div>
 
@@ -403,7 +406,7 @@
                                                     <span id="tooltip_content2">
                                                         <div class="row">
                                                             <div class="col-12 text-center">
-                                                                Resultado de mastrografía
+                                                                Resultado de mastrografÃ­a
                                                             </div>
                                                         </div>
                                                         <div class="row mt-2">
@@ -475,7 +478,7 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" id="biopsiaInput">
                                                         <label class="form-check-label textoDocumento">
-                                                            ¿Te han hecho una biopsia previamente?
+                                                            Â¿Te han hecho una biopsia previamente?
                                                         </label>
                                                     </div>
                                                 </div>
@@ -499,7 +502,7 @@
                                                     <span id="tooltip_content4">
                                                         <div class="row mt-2">
                                                             <div class="col-12 text-center">
-                                                                <strong>Ejemplo de reporte de patología: </strong>
+                                                                <strong>Ejemplo de reporte de patologÃ­a: </strong>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-2">
@@ -521,7 +524,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <button class="btn btn-guardar-continuar btn-block" style="border-radius:20px"><i
-                                                            class="fas fa-save mr-2"></i>Guardar y Continuar Después</button>
+                                                            class="fas fa-save mr-2"></i>Guardar y Continuar DespuÃ©s</button>
                                                 </div>
                                             </div>
 
@@ -546,7 +549,7 @@
                                                             </span></strong></h5>
                                                     <p class="card-text text-center subTituloAprobacion">La preconsulta del
                                                         Departamento de Tumores Mamarios consta de <strong><span class="text-secondary">dos
-                                                                días
+                                                                dÃ­as
                                                             </span></strong> consecutivos</p>
                                                     <hr>
                                                 </div>
@@ -609,15 +612,15 @@
                                                         <li>-Estudios previos por los que te mandan al INCan, pueden ser:
                                                             <ul style="list-style:none" class="justificar">
                                                                 <li>
-                                                                    <strong>Mastografía:</strong>
-                                                                    Imágenes y reporte de resultado.<a class="questionMark icono-info2 fas fa-question-circle"
+                                                                    <strong>MastografÃ­a:</strong>
+                                                                    ImÃ¡genes y reporte de resultado.<a class="questionMark icono-info2 fas fa-question-circle"
                                                                         style="background: #fff;" href="#" data-tooltip-content="#tooltip_contentmasto"></a></li>
                                                                 <li><strong>Ultrasonido de mama:</strong>
-                                                                    Imágenes y reporte de resultado.<a style="background: #fff;"
+                                                                    ImÃ¡genes y reporte de resultado.<a style="background: #fff;"
                                                                         href="#" class="questionMark icono-info2 fas fa-question-circle"
                                                                         data-tooltip-content="#tooltip_contentultra"></a></li>
                                                                 <li><strong>Biopsia:</strong>
-                                                                    Reporte de patología, laminillas y bloques de parafina.<a
+                                                                    Reporte de patologÃ­a, laminillas y bloques de parafina.<a
                                                                         style="background: #fff;" href="#" class="questionMark icono-info2 fas fa-question-circle"
                                                                         data-tooltip-content="#tooltip_contentbiopsia"></a></li>
                                                             </ul>
@@ -634,7 +637,7 @@
 
                                                     <div class="row mt-2">
                                                         <div class="col-12 text-center">
-                                                            <strong>Ejemplo de mastografía: </strong>
+                                                            <strong>Ejemplo de mastografÃ­a: </strong>
                                                         </div>
                                                     </div>
                                                     <div class="row mt-2">
@@ -714,7 +717,7 @@
 
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <h5 class="card-title display-4 tituloPago text-center">Día Uno
+                                                    <h5 class="card-title display-4 tituloPago text-center">DÃ­a Uno
                                                     </h5>
                                                 </div>
                                             </div>
@@ -726,7 +729,7 @@
                                                     <div class="card-header" id="headingOne">
                                                         <h5 class="mb-0">
                                                             <button class="btn btn-link colorMoradoLight" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                                UBICACIÓN Y HORARIO
+                                                                UBICACIÃN Y HORARIO
                                                             </button>
                                                         </h5>
                                                     </div>
@@ -735,7 +738,7 @@
                                                         <div class="card-body m-3 justificar">
                                                             Tu cita es a las <strong>7:50 am</strong>, favor de llegar puntual
                                                             para no perderla.
-                                                            <p>Debes llegar al área de preconsulta, el acceso es por la entrada
+                                                            <p>Debes llegar al Ã¡rea de preconsulta, el acceso es por la entrada
                                                                 principal del <a class="text-primary" target="_blank" href="https://goo.gl/maps/q2VdVP2RdMQ2">edificio
                                                                     antiguo (Av. San Fernando #22)</a> , para que te permitan
                                                                 la entrada debes mostrar <strong>tu comprobante de pago
@@ -748,24 +751,24 @@
                                                         <h5 class="mb-0">
                                                             <button class="btn btn-link colorMoradoLight collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
                                                                 aria-controls="collapseTwo">
-                                                                ¿EN QUÉ CONSISTE?
+                                                                Â¿EN QUÃ CONSISTE?
                                                             </button>
                                                         </h5>
                                                     </div>
                                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                                         <div class="card-body m-3 justificar">
-                                                            El primer día nuestro servicio de <strong>navegación</strong>
-                                                            te recibirá en el área de preconsulta, te llamarán por tu nombre y te pedirán estudios previos que tengas. Al terminar, ellas
-                                                            te navegarán por el hospital y te llevarán al servicio de imagenología,
-                                                            donde te harán los estudios de <strong>mastografía</strong>
+                                                            El primer dÃ­a nuestro servicio de <strong>navegaciÃ³n</strong>
+                                                            te recibirÃ¡ en el Ã¡rea de preconsulta, te llamarÃ¡n por tu nombre y te pedirÃ¡n estudios previos que tengas. Al terminar, ellas
+                                                            te navegarÃ¡n por el hospital y te llevarÃ¡n al servicio de imagenologÃ­a,
+                                                            donde te harÃ¡n los estudios de <strong>mastografÃ­a</strong>
                                                             y
                                                             <strong>ultrasonido de mama</strong>. Es requisito del hospital
-                                                            que estos estudios se hagan aquí, aunque ya te los hayan hecho
-                                                            en otro lugar. También, el médico valorará si necesitas que te
+                                                            que estos estudios se hagan aquÃ­, aunque ya te los hayan hecho
+                                                            en otro lugar. TambiÃ©n, el mÃ©dico valorarÃ¡ si necesitas que te
                                                             realicen una biopsia, si ya te realizaron una biopsia fuera del
                                                             INCan debes pedir las laminillas y bloques de parafina en el
                                                             lugar en que te realizaste la biopsia y traerlos para que los
-                                                            vuelvan a analizar aquí.
+                                                            vuelvan a analizar aquÃ­.
 
                                                         </div>
                                                     </div>
@@ -785,18 +788,18 @@
                                                                 <div class="col-9 ml-5">
                                                                     <ul style="list-style:none">
                                                                         <li>1.- Debes venir depilada de las axilas. No te
-                                                                            apliques ningún producto (cremas, talco, desodorante,
-                                                                            perfume, ungüentos, etc..).</li>
+                                                                            apliques ningÃºn producto (cremas, talco, desodorante,
+                                                                            perfume, ungÃ¼entos, etc..).</li>
 
                                                                         <li>2.- Trae dinero para pagar tus estudios:
                                                                             <ul style="list-style:none" class="justificar">
-                                                                                <li>-El costo de la mastografía y el ultrasonido
+                                                                                <li>-El costo de la mastografÃ­a y el ultrasonido
                                                                                     es de <strong>$695 MXN (Obligatorio)
                                                                                     </strong></li>
                                                                                 <li>-El costo de la biopsia es de
                                                                                     <strong>$1300 MXN</strong>
-                                                                                    aproximadamente, aunque no es indispensable, es preferible que vengas preparada para que te la realicen ese día. Es muy importante
-                                                                                    hacer este estudio lo más pronto posible.</li>
+                                                                                    aproximadamente, aunque no es indispensable, es preferible que vengas preparada para que te la realicen ese dÃ­a. Es muy importante
+                                                                                    hacer este estudio lo mÃ¡s pronto posible.</li>
                                                                             </ul>
                                                                         </li>
                                                                     </ul>
@@ -827,7 +830,7 @@
 
                                             <div class="row mt-4">
                                                 <div class="col-12">
-                                                    <h5 class="card-title display-4 tituloPago text-center">Día Dos
+                                                    <h5 class="card-title display-4 tituloPago text-center">DÃ­a Dos
                                                     </h5>
                                                 </div>
                                             </div>
@@ -838,7 +841,7 @@
                                                         <h5 class="mb-0">
                                                             <button class="btn btn-link colorMoradoLight" data-toggle="collapse" data-target="#collapseSecondOne" aria-expanded="true"
                                                                 aria-controls="collapseSecondOne">
-                                                                UBICACIÓN Y HORARIO
+                                                                UBICACIÃN Y HORARIO
                                                             </button>
                                                         </h5>
                                                     </div>
@@ -847,7 +850,7 @@
                                                         <div class="card-body m-3 justificar">
                                                             Tu cita es a las <strong>7:50 am</strong>, favor de llegar puntual
                                                             para no perderla.
-                                                            <p>Debes llegar al área de preconsulta, el acceso es por la entrada
+                                                            <p>Debes llegar al Ã¡rea de preconsulta, el acceso es por la entrada
                                                                 principal del <a class="text-primary" target="_blank" href="https://goo.gl/maps/q2VdVP2RdMQ2">edificio
                                                                     antiguo (Av. San Fernando #22)</a> , para que te permitan
                                                                 la entrada debes mostrar <strong>tu comprobante de pago
@@ -860,20 +863,20 @@
                                                         <h5 class="mb-0">
                                                             <button class="btn btn-link colorMoradoLight collapsed" data-toggle="collapse" data-target="#collapseSecondTwo" aria-expanded="false"
                                                                 aria-controls="collapseSecondTwo">
-                                                                ¿EN QUÉ CONSISTE?
+                                                                Â¿EN QUÃ CONSISTE?
                                                             </button>
                                                         </h5>
                                                     </div>
                                                     <div id="collapseSecondTwo" class="collapse" aria-labelledby="headingSecondTwo" data-parent="#accordion2">
                                                         <div class="card-body m-3 justificar">
-                                                            El segundo día pasarás a <strong>consulta</strong> con el médico,
-                                                            revisará todos tus estudios, te explicará si necesitas otros
-                                                            y te dirá que sigue. Al igual que el primer día ,nuestro servicio
-                                                            de navegación te recibirá en el área de preconsulta,  nuevamente
-                                                            te pedirán los documentos que entregaste el día anterior. Si
+                                                            El segundo dÃ­a pasarÃ¡s a <strong>consulta</strong> con el mÃ©dico,
+                                                            revisarÃ¡ todos tus estudios, te explicarÃ¡ si necesitas otros
+                                                            y te dirÃ¡ que sigue. Al igual que el primer dÃ­a ,nuestro servicio
+                                                            de navegaciÃ³n te recibirÃ¡ en el Ã¡rea de preconsulta, Â nuevamente
+                                                            te pedirÃ¡n los documentos que entregaste el dÃ­a anterior. Si
                                                             te realizaron una biopsia fuera del INCan debes traer dos copias
-                                                            del reporte de patología que contiene los resultados. Al terminar,
-                                                            ellas te solicitarán pasar a la sala de espera mientras el médico
+                                                            del reporte de patologÃ­a que contiene los resultados. Al terminar,
+                                                            ellas te solicitarÃ¡n pasar a la sala de espera mientras el mÃ©dico
                                                             te recibe.
 
 
@@ -891,15 +894,15 @@
                                                     </div>
                                                     <div id="collapseSecondThree" class="collapse" aria-labelledby="headingSecondThree" data-parent="#accordion2">
                                                         <div class="card-body m-3 justificar">
-                                                            El médico decidirá el orden en el que pasen las pacientes, debes venir con disponibilidad de tiempo, desayunada y te recomendamos
-                                                            traer un libro o revista. Al finalizar tu consulta el médico
-                                                            te pude pedir diversos estudios, el costo de estos estudios está
+                                                            El mÃ©dico decidirÃ¡ el orden en el que pasen las pacientes, debes venir con disponibilidad de tiempo, desayunada y te recomendamos
+                                                            traer un libro o revista. Al finalizar tu consulta el mÃ©dico
+                                                            te pude pedir diversos estudios, el costo de estos estudios estÃ¡
                                                             entre <strong>$350
                                                                 MNX
-                                                            </strong> y
-                                                            <strong>$3000 MNX</strong> te recomendamos vengas preparada con
+                                                            </strong>Â y
+                                                            <strong>$3000 MNX</strong>Â te recomendamos vengas preparada con
                                                             esa cantidad de dinero para que los puedas agendar y agilizar
-                                                            el proceso de tu atención
+                                                            el proceso de tu atenciÃ³n
 
 
                                                         </div>
@@ -909,7 +912,7 @@
                                                 <div class="row justify-content-center mt-3">
                                                     <div class="col-4 text-center">
                                                         <button style="border-radius:20px" type="button" class="btn btn-morado btn-block"><i
-                                                                class="fas fa-print"></i> Imprimir información
+                                                                class="fas fa-print"></i> Imprimir informaciÃ³n
                                                         </button>
                                                     </div>
                                                 </div>
@@ -930,20 +933,20 @@
 
                                             <div class="row justify-content-center">
                                                 <div class="col-9">
-                                                    <h4 class="display-4 text-secondary mb-3 text-center mt-3">¡BIENVENIDA
+                                                    <h4 class="display-4 text-secondary mb-3 text-center mt-3">Â¡BIENVENIDA
                                                         (O)!
                                                     </h4>
                                                     <p class="justificar">
-                                                        Nuestro objetivo es brindar excelente atención médica especializada a pacientes con cáncer de mama.
+                                                        Nuestro objetivo es brindar excelente atenciÃ³n mÃ©dica especializada a pacientes con cÃ¡ncer de mama.
 
                                                     </p>
                                                     <p class="justificar">
-                                                        Atendemos a pacientes provenientes de todo el país con un servicio de calidad, eficiente y cálido. Lo logramos a través de
-                                                        equipos multidisciplinarios que brindan atención médica, realizan
-                                                        investigación y forman profesionales de la salud.
+                                                        Atendemos a pacientes provenientes de todo el paÃ­s con un servicio de calidad, eficiente y cÃ¡lido. Lo logramos a travÃ©s de
+                                                        equipos multidisciplinarios que brindan atenciÃ³n mÃ©dica, realizan
+                                                        investigaciÃ³n y forman profesionales de la salud.
                                                     </p>
                                                     <p>
-                                                        Tenemos personal calificado que te acompañará durante todo el proceso diagnóstico, de tratamiento, de rehabilitación, seguimiento
+                                                        Tenemos personal calificado que te acompaÃ±arÃ¡ durante todo el proceso diagnÃ³stico, de tratamiento, de rehabilitaciÃ³n, seguimiento
                                                         y supervivencia.
 
                                                     </p>
@@ -972,38 +975,38 @@
                                             <div class="row justify-content-center">
                                                 <div class="col-10">
                                                     <ul style="list-style:none" class="justificar">
-                                                        <li>1.- La preconsulta solo es un método para evaluar tu diagnóstico
-                                                            y el área médica determinará si eres candidata para ser paciente
-                                                            del Instituto. Por lo que es indispensable que tengas un diagnóstico
-                                                            oncológico (de cáncer) probable o definitivo.</li>
+                                                        <li>1.- La preconsulta solo es un mÃ©todo para evaluar tu diagnÃ³stico
+                                                            y el Ã¡rea mÃ©dica determinarÃ¡ si eres candidata para ser paciente
+                                                            del Instituto. Por lo que es indispensable que tengas un diagnÃ³stico
+                                                            oncolÃ³gico (de cÃ¡ncer) probable o definitivo.</li>
                                                         <p>
-                                                            <li>2.- Los servicios que el Instituto ofrece, son para población
-                                                                adulta. La edad mínima es de 16 años cumplidos.
+                                                            <li>2.- Los servicios que el Instituto ofrece, son para poblaciÃ³n
+                                                                adulta. La edad mÃ­nima es de 16 aÃ±os cumplidos.
                                                             </li>
                                                         </p>
                                                         <p>
-                                                            <li>3.- Debes venir acompañada <strong>solo de un familiar</strong>,
+                                                            <li>3.- Debes venir acompaÃ±ada <strong>solo de un familiar</strong>,
                                                                 para que te ayude durante el proceso. Recuerda que no pueden
                                                                 entrar menores de edad.</li>
                                                         </p>
                                                         <p>
-                                                            <li>4.- El Instituto da prioridad de atención a la población
+                                                            <li>4.- El Instituto da prioridad de atenciÃ³n a la poblaciÃ³n
                                                                 que no tiene seguridad social. Si eres derechohabiente de
-                                                                IMSS, ISSSTE, PEMEX, o SEDENA te recomendamos busques atención
-                                                                a través de ellos.</li>
+                                                                IMSS, ISSSTE, PEMEX, o SEDENA te recomendamos busques atenciÃ³n
+                                                                a travÃ©s de ellos.</li>
                                                         </p>
                                                         <p>
-                                                            <li>5.- Si ya te están atendiendo en otra institución (ej. Hospital
-                                                                General de México, Hospital Juárez), se te recomienda continúes
-                                                                tu atención ahí, los mejores resultados para tratar el cáncer
-                                                                de mama se obtienen si recibes atención continua en un solo
+                                                            <li>5.- Si ya te estÃ¡n atendiendo en otra instituciÃ³n (ej. Hospital
+                                                                General de MÃ©xico, Hospital JuÃ¡rez), se te recomienda continÃºes
+                                                                tu atenciÃ³n ahÃ­, los mejores resultados para tratar el cÃ¡ncer
+                                                                de mama se obtienen si recibes atenciÃ³n continua en un solo
                                                                 lugar. El instituto da prioridad a las pacientes que no han
                                                                 tenido la oportunidad de ser atendidas.</li>
                                                         </p>
                                                         <p>
                                                             <li>6.- Si tienes dudas, identifica al personal del Instituto
-                                                                por su gafete, ¡están para servirte! No te confíes de las
-                                                                indicaciones o recomendaciones de extraños.
+                                                                por su gafete, Â¡estÃ¡n para servirte! No te confÃ­es de las
+                                                                indicaciones o recomendaciones de extraÃ±os.
                                                             </li>
                                                         </p>
                                                     </ul>
