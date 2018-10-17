@@ -37,18 +37,20 @@ public class FrontController extends HttpServlet {
         //System.out.println("file:".concat(file));
         if (file == null) {
             HttpSession sesion = request.getSession(true);
+            
+            
             if (sesion.getAttribute("idCuenta") == null) {
                 request.setAttribute("status", "");
                 request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
                 return;
             } else {
-                
+                                
                 int keyRol = Integer.parseInt(sesion.getAttribute("idRol").toString());
                 switch(keyRol)
                 {
                     case 1:
                     {
-                        request.getRequestDispatcher("WEB-INF/potencial/index.jsp").forward(request, response);
+                        
                     }
                 }                
                 return;
@@ -56,6 +58,36 @@ public class FrontController extends HttpServlet {
         }
 
         if ("jsp".equals(file.substring(file.length()-3))) {
+            
+            
+            HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+            if (sesion.getAttribute("idCuenta") == null) { //Si no tiene sesion iniciada
+                request.setAttribute("status", "");
+                request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login jeje
+                return;
+            } else { //Si no tiene sesion iniciada
+                //Lo redireciono a su rol
+                int keyRol = (int) sesion.getAttribute("idRol");
+                switch(keyRol){
+                    case 1:
+                    {
+                        String keyRuta = request.getParameter("file");
+                        
+                        switch(keyRuta)
+                        {
+                            case "Potencial/cuentaPaciente.jsp":
+                            {
+                                request.getRequestDispatcher(keyRuta).forward(request, response); //Lo redirecciono al login
+                                break;
+                            }
+                        }
+                        
+                        break;
+                    }
+                }
+            }
+            
+            
             System.out.println("filename if ".concat(file));
             request.getRequestDispatcher("WEB-INF/" + file).forward(request, response);
             return;
