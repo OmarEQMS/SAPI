@@ -68,7 +68,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-2 text-center">
-                        <a class="iconoSidebar" href="" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
+                        <a class="iconoSidebar" href="<" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
                     </div>
                     <div class="col-2">
                         <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
@@ -112,6 +112,9 @@
                         <i class="fas fa-align-justify"></i>
                     </button>
 
+                     <!-- aqui se inyecta la sesion de id-->
+                    <input type="hidden" id="paciente" value="${sessionScope.idSesion}" />
+                    
                     <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
                             <!--Julio Badillo-->
                             ${sessionScope.nombre} ${sessionScope.primerApellido}
