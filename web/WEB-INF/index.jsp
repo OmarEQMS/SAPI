@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Inicio de SesiÃ³n</title>
+    <title>Inicio de Sesión</title>
     
     
     
@@ -25,22 +25,22 @@
     
         <!-- Input contraseÃ±a -->
         <div class="input-group">
-            <input id="password" type="password" class="form-control input-pass mb-4 useFontAwesomeFamily" placeholder="&#xf023; CONTRASEÃ‘A">
+            <input id="password" type="password" class="form-control input-pass mb-4 useFontAwesomeFamily" placeholder="&#xf023; CONTRASEÑA">
         </div>
     
         <!-- Input submit -->
-        <input type="button" id="btn-login" class="btn btn-lg btn-secondary btn-block btn-login" value="INICIAR SESIÃ“N">
+        <input type="button" id="btn-login" class="btn btn-lg btn-secondary btn-block btn-login" value="INICIAR SESIÓN">
         
         <!-- MENSAJE DE ERROR -->
         <div class="row mt-3" id="msj-error">
             <div class="col-12 text-center">
-                <span class="text-center text-danger">El usuario o contraseÃ±a son incorrectos</span>
+                <span class="text-center text-danger">El usuario o contraseña son incorrectos</span>
             </div>
         </div>
         
-        <h6 class="text-center mt-3 texto-pass"><span>Olvidaste tu contraseÃ±a?</span> <a href="#">RecupÃ©rala aquÃ­</a></h6>
+        <h6 class="text-center mt-3 texto-pass"><span>Olvidaste tu contraseña?</span> <a href="#">Recuperala aquí­</a></h6>
 
-        <h6 class="text-center mt-2 texto-cuenta mb-0"><span>No tienes cuenta?</span> <a href="#" id="registrate">RegÃ­strate aquÃ­</a></h6>
+        <h6 class="text-center mt-2 texto-cuenta mb-0"><span>No tienes cuenta?</span> <a href="#" id="registrate">Regístrate aquí­</a></h6>
     
     </form>
   

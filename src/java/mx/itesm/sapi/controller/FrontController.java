@@ -32,73 +32,75 @@ public class FrontController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        response.setContentType("text/html;charset=UTF-8");
+
         String file = request.getParameter("file");
         //System.out.println("file:".concat(file));
         if (file == null) {
             HttpSession sesion = request.getSession(true);
-            
-            
             if (sesion.getAttribute("idCuenta") == null) {
                 request.setAttribute("status", "");
                 request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
+
                 return;
             } else {
-                                
+                /*
                 int keyRol = Integer.parseInt(sesion.getAttribute("idRol").toString());
-                switch(keyRol)
-                {
-                    case 1:
-                    {
-                        
+                switch (keyRol) {
+                    case 1: {
+                        request.getRequestDispatcher("WEB-INF/potencial/index.jsp").forward(request, response);
                     }
-                }                
+                }
+                
+                 */
                 return;
             }
         }
 
-        if ("jsp".equals(file.substring(file.length()-3))) {
-            
-            
+        if ("jsp".equals(file.substring(file.length() - 3))) {
+            System.out.println("llegue aqui ".concat(file));
             HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
-            if (sesion.getAttribute("idCuenta") == null) { //Si no tiene sesion iniciada
-                request.setAttribute("status", "");
-                request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login jeje
+            if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
+                System.out.println("llegue aqui 2 ".concat(file));
+                // request.setAttribute("status", "");
+                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
                 return;
-            } else { //Si no tiene sesion iniciada
+            } else { //Si tiene sesion iniciada
                 //Lo redireciono a su rol
                 int keyRol = (int) sesion.getAttribute("idRol");
-                switch(keyRol){
-                    case 1:
-                    {
+                System.out.println("llegue aqui 3 ".concat(String.valueOf(keyRol)));
+                switch (keyRol) {
+                    case 1: {
                         String keyRuta = request.getParameter("file");
-                        
-                        switch(keyRuta)
-                        {
-                            case "Potencial/cuentaPaciente.jsp":
-                            {
-                                request.getRequestDispatcher(keyRuta).forward(request, response); //Lo redirecciono al login
+                        System.out.println("llegue aqui 3.5 ".concat(keyRuta));
+                        switch (keyRuta) {
+
+                            case "potencial/cuentaPaciente.jsp": {
+                                System.out.println("llegue aqui 4 ".concat(keyRuta));
+                                request.setAttribute("nombre", sesion.getAttribute("nombre"));
+                                request.setAttribute("primerApellido",sesion.getAttribute("primerApellido"));
+                                request.setAttribute("segundoApellido",sesion.getAttribute("segundoApellido"));                                                              
+                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al login
                                 break;
                             }
                         }
-                        
+
                         break;
                     }
                 }
             }
-            
-            
-            System.out.println("filename if ".concat(file));
-            request.getRequestDispatcher("WEB-INF/" + file).forward(request, response);
-            return;
+
+            //System.out.println("filename if ".concat(file));
+            // request.getRequestDispatcher("WEB-INF/" + file).forward(request, response);
+            // return;
         } else {
-                        
+
             System.out.println("filename else ".concat(file));
             request.getRequestDispatcher("/" + file).forward(request, response);
             return;
-                        
+
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
