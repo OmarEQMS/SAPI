@@ -48,7 +48,7 @@
 
                 <div class="row text-center justify-content-center mt-2">
                     <div class="col-12">
-                        <img src="../img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
+                        <img src="img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
                     </div>
                 </div>
 
@@ -57,7 +57,7 @@
             <div class="profile">
                 <div class="row">
                     <div class="col-12 mb-2 mt-4">
-                        <img src="../img/user.png" class="imagenPerfil" alt="">
+                        <img src="img/user.png" class="imagenPerfil" alt="">
                     </div>
                 </div>
                 <div class="row justify-content-center mb-2">
@@ -89,7 +89,7 @@
 
                 <li><a href="./mis-citas.html"><i class="fas fa-calendar-alt"></i>Mis Citas<span class="notificacion">1</span></a></li>
 
-                <li><a href="./cuentaPaciente.html" id ="irACuenta"><i class="far fa-user"></i>Mi Cuenta</a></li>
+                <li id ="irACuenta"><!--a href="" id ="irACuenta"--><i class="far fa-user"></i>Mi Cuenta <!--/a--></li>
 
                 <li><a href="./preguntasFrecuentes.html"><i class="fas fa-question-circle"></i>Preguntas Frecuentes</a></li>
 

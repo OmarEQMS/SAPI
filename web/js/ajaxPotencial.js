@@ -202,7 +202,7 @@ $(document).ready(function () {
         $('#modalCambiarContrase&ntilde;a').modal('toggle');
 
     });
-
+/*
     $("#irACuenta").on('click', function () {
 
         $.ajax({
@@ -225,10 +225,10 @@ $(document).ready(function () {
             }
         });
     });
-    
+ */   
     $('#irACuenta').on('click', function () {
-       
-        $.get("FrontController", {
+       console.log("Seguro?");
+        $.get("SAPI", {
                 file: "potencial/cuentaPaciente.jsp"
             },
             function (response, status, xhr) {
