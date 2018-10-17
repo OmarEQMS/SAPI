@@ -99,7 +99,7 @@
 
         </nav>
 
-        <!-- CONTENIDO PRINCIPAL  -->
+        <!-- CONTENIDO PRINCIPAL POTENCIAL -->
 
         <div id="content">
 
