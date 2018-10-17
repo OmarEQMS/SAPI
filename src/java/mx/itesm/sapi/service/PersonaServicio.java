@@ -4,20 +4,20 @@
  * and open the template in the editor.
  */
 package mx.itesm.sapi.service;
+
 import java.util.List;
-import mx.itesm.sapi.bean.Persona;
+import mx.itesm.sapi.bean.persona.Persona;
 
 /**
  *
- * @author feror
+ * @author Angel GTZ
  */
 public interface PersonaServicio {
-    public Persona getPersona(int idPersona);
-    public List<Persona> getPersonas();
-    public int savePersona(Persona persona);
-    public boolean deletePersona(int idPersona);
-    public boolean updatePersona(Persona persona);
-    
+    public Persona mostrarPersona(int idPersona);
+    List<Persona> mostrarPersona();
+    public int agregarPersona(Persona persona);
+    public boolean actualizarPersona(Persona persona);
+    public boolean borradoLogicoPersona(int idPersona);
     
     
 }

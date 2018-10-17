@@ -7,17 +7,30 @@ package mx.itesm.sapi.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mx.itesm.sapi.bean.Cuenta;
-import mx.itesm.sapi.bean.Direccion;
-import mx.itesm.sapi.bean.Persona;
+import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
+import mx.itesm.sapi.bean.moduloGestionPaciente.Paciente;
+import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.Direccion;
+import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.service.CuentaServicioImpl;
 import mx.itesm.sapi.service.DireccionServicioImpl;
 import mx.itesm.sapi.service.PersonaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
 
 /**
  *
@@ -53,11 +66,15 @@ public class RegistraUsuarioController extends HttpServlet {
         PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
         CuentaServicioImpl _rSC = new CuentaServicioImpl();
         DireccionServicioImpl _rSD = new DireccionServicioImpl();
+        PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
+        EstadoPacientePacienteServiceImpl estadoPaPaServicio = new EstadoPacientePacienteServiceImpl();
 
         //Verifica existencia de usuario
         Persona per = new Persona();
         Cuenta cuenta = new Cuenta();
         Direccion dir = new Direccion();
+        Paciente pac = new Paciente();
+        EstadoPacientePaciente estadoPaPa = new EstadoPacientePaciente();
 
         //Set persona
         switch (key) {
@@ -82,7 +99,7 @@ public class RegistraUsuarioController extends HttpServlet {
 
             break;
 
-            case "registraUsuario": {
+            case "registraUsuario":    {
 
                 String nombre = request.getParameter("nombre");
                 String apellido1 = request.getParameter("apellido1");
@@ -99,25 +116,27 @@ public class RegistraUsuarioController extends HttpServlet {
                 String noInterior = request.getParameter("noInterior");
                 String contraseña1 = request.getParameter("pass1");
                 String contraseña2 = request.getParameter("pass2");
-                String fechaNacimiento = request.getParameter("fechaNacimiento");
+                String fechaNacimiento=request.getParameter("fechaNacimiento");
+                
+                Date fn = Date.valueOf(fechaNacimiento);
+
+                
+                per.setFechaNacimiento(fn);
+                
+            
 
                 String usuario = request.getParameter("usuario");
 
                 per.setNombre(nombre);
                 per.setTelefono(telefono);
 
-                per.setApellido1(apellido1);
-                per.setApellido2(apellido2);
+                per.setPrimerApellido(apellido1);
+                per.setSegundoApellido(apellido2);
                 per.setCorreo(correo);
                 per.setCurp(curp);
-                per.setIdEstado(estado);
                 per.setIdEstadoCivil(estadoCivil);
                 per.setIdMunicipio(municipio);
-                per.setFechaNacimiento(fechaNacimiento);
-
-                //Por arreglar
-                per.setIdRol(1);
-                //Por arreglar
+                                           
 
                 //Set cuenta
                 cuenta.setPassword(contraseña1);
@@ -129,14 +148,38 @@ public class RegistraUsuarioController extends HttpServlet {
                 dir.setNoExterior(noExterior);
                 dir.setNoInterior(noInterior);
 
-                int id = _registroServicio.savePersona(per);
+                
+                
+                int idD = _rSD.agregarDireccion(dir);
+                
+                System.out.println("El id de direccion es: ".concat(Integer.toString(idD)));
+                int idC;
+                int idPac;
+                int idEsPaPa;
 
-                if (id > 0) {
+                if (idD > 0) {
 
-                    cuenta.setIdPersona(id);
-                    dir.setIdPersona(id);
-                    _rSC.saveCuenta(cuenta);
-                    _rSD.saveDireccion(dir);
+                    
+                    per.setIdDireccion(idD);
+                    int idP = _registroServicio.agregarPersona(per);
+                    
+                    if(idP > 0){
+                        cuenta.setIdPersona(idP);
+                        idC=_rSC.agregarCuenta(cuenta);
+                        
+                        if(idC > 0){
+                            
+                            pac.setIdCuenta(idC);
+                            idPac = pacienteServicio.agregarPaciente(pac);
+                            
+                            if(idPac > 0){
+                                estadoPaPa.setIdPaciente(idPac);
+                                idEsPaPa = estadoPaPaServicio.agregarEstadoPacientePaciente(estadoPaPa);
+                            }
+                            
+                        }
+                    }
+
                 }
 
             }

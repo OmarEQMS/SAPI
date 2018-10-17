@@ -13,10 +13,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import mx.itesm.sapi.bean.CodigoPostal;
-import mx.itesm.sapi.bean.Estado;
-import mx.itesm.sapi.bean.EstadoCivil;
-import mx.itesm.sapi.bean.Municipio;
+import mx.itesm.sapi.bean.persona.CodigoPostal;
+import mx.itesm.sapi.bean.persona.Estado;
+import mx.itesm.sapi.bean.persona.EstadoCivil;
+import mx.itesm.sapi.bean.persona.Municipio;
 import mx.itesm.sapi.util.Conexion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,8 +46,8 @@ public class ZonaServicioImpl implements ZonaServicio {
                 
                 estado = new Estado();
                 
-                estado.setIdEstado(rs.getInt("idEstado"));
-                estado.setNombre(rs.getString("nombre"));
+                estado.setIdEstado(rs.getInt(1));
+                estado.setNombre(rs.getString(2));
                 
                 estados.add(estado);
             
@@ -59,7 +59,7 @@ public class ZonaServicioImpl implements ZonaServicio {
                     
             
         }catch(Exception e){
-            System.out.println("ERROR GET ESTADOS" + e.getMessage());
+            System.out.println("ERROR GET ESTADOS----" + e.getMessage());
         }
         
         return estados;
@@ -107,7 +107,7 @@ public class ZonaServicioImpl implements ZonaServicio {
          
             
         }catch(Exception e){
-            System.out.println("ZonaServicio ERROR".concat(e.getMessage()));
+            System.out.println("ZonaServicio ERROR-----".concat(e.getMessage()));
         }
         
         return municipios;
@@ -136,7 +136,7 @@ public class ZonaServicioImpl implements ZonaServicio {
             conn.close();                    
             
         }catch(Exception e){
-            System.out.println("ERROR GET ESTADO CIVIL " + e.getMessage());
+            System.out.println("ERROR GET ESTADO CIVIL---:( " + e.getMessage());
         }        
         return estados;
     }
@@ -150,6 +150,7 @@ public class ZonaServicioImpl implements ZonaServicio {
             CallableStatement cstmt;
             cstmt = conn.prepareCall("CALL getEstadoMunicipio(?)");
             cstmt.setString(1, codigoPostal.getNumero());
+            
             ResultSet rs = cstmt.executeQuery();
             rs.next(); 
             
@@ -171,7 +172,7 @@ public class ZonaServicioImpl implements ZonaServicio {
             
         }catch(Exception ex){
                 
-            System.out.println("ESTOY EN EL CATCH DE EDOYMUN");
+            System.out.println("ESTOY EN EL CATCH DE EDOYMUN-----");
             Logger.getLogger(ZonaServicio.class.getName()).log(Level.SEVERE, null, ex);
             return EstadoyMunicipio;
         }

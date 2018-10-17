@@ -5,8 +5,8 @@
 --%>
 
 <%@page import="java.util.ArrayList"%>
-<%@page import="mx.itesm.sapi.bean.EstadoCivil"%>
-<%@page import="mx.itesm.sapi.bean.Estado"%>
+<%@page import="mx.itesm.sapi.bean.persona.EstadoCivil"%>
+<%@page import="mx.itesm.sapi.bean.persona.Estado"%>
 <%@page import="java.util.List"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -177,12 +177,13 @@
             </div>
         </div>
 
-        <h6 class="text-center mt-4 texto-cuenta mb-0"><span>Ya estas registrado?</span> <a href="../Login/index.html">Inicia
+        <h6 class="text-center mt-4 texto-cuenta mb-0"><span>Ya estas registrado?</span> <a href="#" id="regresarIndex">Inicia
                 sesión aquí</a></h6>
     </form>
 
 
     <script src="js/jquery.js"></script>
+    <script src="js/jqueryPostGo.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/app.js"></script>
