@@ -121,6 +121,13 @@ public class PotencialController extends HttpServlet {
                 
                 
             }
+            
+            case "InicioPotencial":
+            {
+                
+                request.getRequestDispatcher("/WEB-INF/potencial/index.jsp").forward(request, response);                              
+                break;
+            }
 
             
             /*

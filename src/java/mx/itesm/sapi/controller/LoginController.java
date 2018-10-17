@@ -90,19 +90,28 @@ public class LoginController extends HttpServlet {
                         //Se establece el id del rol de la cuenta
                         int idCuenta = cuenta.getIdCuenta();
                         int rolCuenta =  cuenta.getIdRol();
+                        String usuarioCuenta = cuenta.getUsuario();
                         
                         /*Escribir los valores de sesion*/                                                
                         //(idCuenta, nombre, rol, status)
                         sesion.setAttribute("idCuenta", idCuenta);
                         sesion.setAttribute("idRol",rolCuenta);
+                        sesion.setAttribute("usuario",usuarioCuenta);
 
                         PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                         Persona persona = personaServicioImpl.mostrarPersona(cuenta.getIdPersona());
                         
-                        sesion.setAttribute("idPersona", persona.getIdPersona());
-                        sesion.setAttribute("nombre", persona.getNombre());
-                        sesion.setAttribute("primerApellido", persona.getPrimerApellido());
-                        sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
+                        int idPersona = persona.getIdPersona();                        
+                        String nombre = persona.getNombre() ,
+                                primerApellido = persona.getPrimerApellido(),
+                                segundoApellido = persona.getSegundoApellido();
+                        
+                        System.out.println("Values ".concat(" " + nombre).concat(" "+primerApellido).concat(" "+segundoApellido));
+                        
+                        sesion.setAttribute("idPersona", idPersona);
+                        sesion.setAttribute("nombre",nombre );
+                        sesion.setAttribute("primerApellido", primerApellido);
+                        sesion.setAttribute("segundoApellido",segundoApellido );
                         sesion.setAttribute("imagen", persona.getImagen());
                         
                         System.out.println("Rol cuenta:".concat(String.valueOf(rolCuenta)).concat(" ").concat(String.valueOf(cuenta.getIdRol())));
@@ -116,15 +125,20 @@ public class LoginController extends HttpServlet {
                                 
                                PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
+                                                                                                                            
+                               //Redirigir al paciente potencial a su dashboard correspondiente                               
                                
-                               System.out.println(String.valueOf(paciente.getIdPaciente()).concat(" ").concat(String.valueOf(paciente.getIdCuenta())).concat(" ").concat(String.valueOf(sesion.getAttribute("idCuenta"))));
                                
-                               //System.out.println("Redirigir al dashboard de potencial ".concat(persona.toString()));
-                                /*
-                                //Redirigir al usuario  al dashboard "correspondiente al"
-                                request.getRequestDispatcher("/WEB-INF/dashboard.jsp")
-                                .forward(request, response);
-                                */
+                               request.setAttribute("nombre", sesion.getAttribute("nombre"));
+                               request.setAttribute("primerApellido",sesion.getAttribute("primerApellido"));
+                               request.setAttribute("segundoApellido",sesion.getAttribute("segundoApellido"));                                                              
+                                                          
+                               request.getRequestDispatcher("/WEB-INF/potencial/index.jsp").forward(request, response);                              
+                               //request.getRequestDispatcher("/FrontController").forward(request, response);             
+                               
+                               
+                               System.out.println("Se redirige el potencial. idPaciente " + String.valueOf(paciente.getIdPaciente()).concat(" idCuenta ").concat(String.valueOf(paciente.getIdCuenta())).concat(" Sesión idCuenta ").concat(String.valueOf(sesion.getAttribute("idCuenta"))));
+                                                                                             
                              break; 
                             }      
                             case 2:
@@ -141,8 +155,8 @@ public class LoginController extends HttpServlet {
                             }                                    
                         }                       
 
-                        PrintWriter out = response.getWriter();
-                        out.print("success");
+                        //PrintWriter out = response.getWriter();
+                        //out.print("success");
 
                     } else {
                         

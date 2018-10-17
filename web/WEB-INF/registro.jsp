@@ -182,12 +182,11 @@
     </form>
 
 
-    <script src="js/jquery.js"></script>
-    <script src="js/jqueryPostGo.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/app.js"></script>
-    <script type="module" src="js/asincrono.js"></script>
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/jquery/jqueryPostGo.js"></script>
+    <script src="lib/bootstrap/bootstrap.js"></script>
+    <script src="lib/bootstrap/popper.min.js"></script>
+    <script type="application/javascript" src="js/appLogin.js"></script>    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.29/dist/sweetalert2.all.min.js"></script>
     
 

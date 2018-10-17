@@ -4,10 +4,9 @@ $(document).ready(function () {
     $(document).on('click', function () {
         $("#msj-error").hide();
     });
-
+/*
     $('#btn-login').on('click', function () {
-        alert();
-
+        
         var usuario = $('#user');
         var password = $('#password');
 
@@ -21,14 +20,17 @@ $(document).ready(function () {
                 usuario: usuario.val(),
                 password: password.val()
             },
-            success: function (response) {
+            success: function (response) {                                
+                
+                console.log(response);
 
-                if (response == 'success') {
+                if (response === 'success') {
 
                     $('#msj-error').hide();
-
+                    console.log("succes 2");
                 } else {
                     $('#msj-error').show();
+                    console.log("response 3");
                 }
 
 
@@ -37,6 +39,30 @@ $(document).ready(function () {
 
         });
 
+    });
+   */ 
+    $('#btn-login').on('click', function () {
+        var usu = $("#user");
+        var pass = $("#password");
+        $.get("LoginController", {
+                key: "verificar",
+                file: "potencial/index.jsp",
+                usuario: usu.val(),
+                password: pass.val()
+            },
+            function (response, status, xhr) {
+                console.log(response);
+                if (status == "success") {
+                    if (response == "error") {
+                        $("#msj-error").show();
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
+                    }
+                }
+            }
+        );
     });
 
     $('#registrate').click(function () {

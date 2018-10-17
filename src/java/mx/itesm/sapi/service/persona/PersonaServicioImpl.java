@@ -73,6 +73,7 @@ public class PersonaServicioImpl implements PersonaServicio {
             rs = cstmt.executeQuery();
 
             rs.next();
+            persona.setNombre(rs.getString("nombre"));
             persona.setIdPersona(rs.getInt("idPersona"));
             persona.setPrimerApellido(rs.getString("primerApellido"));
             persona.setSegundoApellido(rs.getString("segundoApellido"));

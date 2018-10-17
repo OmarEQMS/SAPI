@@ -44,12 +44,12 @@
     
     </form>
   
-    <script src="js/jquery.js"></script>
+    <script src="lib/jquery/jquery-3.3.1.js"></script>
     <script src="js/appLogin.js"></script>
-    <script src="js/jqueryPostGo.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script type="module" src="js/asincrono.js"></script>
+    <script src="lib/jquery/jqueryPostGo.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
+    <script src="lib/popper/popper.min.js"></script>
+    <!--<script type="module" src="js/asincrono.js"></script>-->
     
 </body>
 </html>
