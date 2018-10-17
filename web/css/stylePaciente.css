@@ -1,0 +1,442 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700');
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+/* ---------------------------------------------------
+    GENERALES
+----------------------------------------------------- */
+.swal-button--confirm {
+    padding: 7px 19px;
+    border-radius: 25px;
+    color: #fff;
+    background-color: #007bff;
+    font-size: 15px;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  .swal-button--cancel {
+    padding: 7px 19px;
+    border-radius: 25px;
+    color: #fff;
+    background-color: #dc3545;
+    font-size: 15px;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+  }
+
+.badge-danger{
+    background: #FF53A9;
+}
+  
+.colorMorado{
+    color: #1e1441;
+}
+
+.colorMoradoLight{
+    color: #4b32a1;
+}
+
+.btn-morado{
+    background: #fff !important;
+    color: #4b32a1 !important;
+    border: 1px solid #4b32a1 !important;
+}
+
+.btn-morado:hover{
+    background: #4b32a1 !important;
+    color: white !important;
+    border: 1px solid white !important;
+}
+
+.btn-morado-solid{
+    background: #4b32a1;
+    color: #fff !important;
+}
+
+.btn-morado-solid:hover{
+    background: #362372;
+}
+
+
+body {
+    background: #fafafa;
+    font-family: 'Nunito Sans';
+}
+
+.centrarBlock{
+    margin: auto;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor:pointer;
+}
+
+li a, li a i{
+    cursor: pointer;
+}
+
+.title{
+    
+    font-size: 24px;
+    text-shadow: -1px -1px 14px rgba(150, 150, 150, 0.77);
+    font-family: 'Poppins', sans-serif;
+}
+
+.subtitle{
+    font-size: 9px;
+    
+}
+
+.subtitle-name{
+    
+    font-size: 20px;
+}
+
+.subtitle-user{
+    font-size: 15px;
+   
+}
+
+.user{
+    width: 50px;
+    margin: auto;
+}
+
+#sidebar ul li a{
+    font-size: 14px !important;
+    color: #dbdbdb;
+    margin-bottom: 4px;
+}
+
+#sidebar a:hover, #sidebar a:focus {
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+#sidebar ul li{
+    padding-left: 10px;
+}
+
+#sidebar ul li i{
+    margin-right: 10px;
+    color:#dbdbdb;
+    font-size: 12px;
+    border: 0.5px solid rgba(156, 157, 165, 0.6);
+    padding: 8px;
+    border-radius: 4px;
+    width: 15%;
+    text-align: center;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    width: 240px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    /* background: #2f3242; */
+    background: #1e1441;
+    color: #fff;
+    transition: all 0.3s;
+    -webkit-box-shadow: 4px 0px 32px -8px rgba(0,0,0,0.40);
+    -moz-box-shadow: 4px 0px 32px -8px rgba(0,0,0,0.40);
+    box-shadow: 4px 0px 32px -8px rgba(0,0,0,0.40);
+    overflow: scroll;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+
+#sidebar .sidebar-header {
+    padding: 10px;
+    /* background: #3e8ef7; */
+    background: #1e1441;
+    
+}
+
+#sidebar .imagenPerfil{
+    width: 30%;
+    display:block;
+    margin:auto;
+    
+}
+
+#sidebar .profile {
+    background: #1e1441;
+}
+
+#sidebar .userSidebar{
+    font-size: 14px;
+}
+
+#sidebar .textoSidebar, #sidebar .iconoSidebar{
+    color: #9aa6ac;
+}
+
+#sidebar .iconoSidebar{
+    font-size: 15px;
+    transition: all 0.3s;
+}
+
+#sidebar .iconoSidebar:hover{
+    color: #499eea
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li{
+    padding-top: 5px;
+    transition: all 0.3ms;
+}
+
+#sidebar ul li:hover{
+    border-left: 3px solid #ce4f59;
+    background: #191036;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: #fff;
+
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+a.article,
+a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+.boton-oculto{
+    background: none;
+}
+.infoEdificios{
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    resize: none;
+}
+/* ---------------------------------------------------
+    NAVBAR
+----------------------------------------------------- */
+
+.boton-collapse{
+    background-color: white;
+    color:#2f3242;
+}
+
+.boton-collapse:hover{
+    color: #ec5865 !important; 
+}
+
+.notificacion{
+    background-color: #499eea;
+    width: 50px;
+    border-radius: 15px;;
+    color:white;
+    padding: 0px 10px 0px 10px;
+    margin-left: 10px;
+}
+
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
+ }
+
+.navbar {
+    padding: 15px 10px;
+    background:#fff !important;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    CONTENTENIDO PRINCIPAL
+----------------------------------------------------- */
+
+#content {
+    width: calc(100% - 250px);
+    padding: 40px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#content.active {
+    width: 100%;
+}
+
+.iconoHome, .colorGlobal{
+    color:#696a6b;
+}
+
+/* PACIENTE */
+.tituloCitaModal{
+    font-size: 25px;
+    color: #2c2f39;
+}
+
+.tituloMisCitas{
+    font-size: 40px;
+    color: #696f71;
+}
+
+.ocultaBadge{
+    visibility: hidden;
+}
+
+/*sintomas*/
+
+.tituloSintomas, .tituloMiCuenta{
+    font-size: 40px;
+    color: #696f71;
+}
+
+.sizeIcon{
+    font-size: 45px;
+}
+
+[data-toggle="tooltip"]{
+    cursor: pointer;
+    color: #4a4c55;
+    transition: 0.3s;
+}
+
+[data-toggle="tooltip"]:hover{
+    color: #ce4f59;
+}
+
+.editar-imagen{
+    display: none;
+}
+
+
+.edit-image{
+    border-radius: 99px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.edit-image:hover{
+    -webkit-box-shadow: -1px -2px 38px -6px rgba(0,0,0,0.73);
+    -moz-box-shadow: -1px -2px 38px -6px rgba(0,0,0,0.73);
+    box-shadow: -1px -2px 38px -6px rgba(0,0,0,0.73);
+}
+
+.icono-info{
+    font-size: 25px;
+    border-radius: 100px;
+    color: #424242 !important;
+    transition: 0.3s;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 2px 26px 2px rgba(0,0,0,0.34);
+    -moz-box-shadow: 0px 2px 26px 2px rgba(0,0,0,0.34);
+    box-shadow: 0px 2px 26px 2px rgba(0, 0, 0, 0.411);  
+    
+}
+
+.icono-info:hover{
+    color: #ce4f59 !important;
+}
+
+.iconoEntusiasta{color: #dc6502; cursor: pointer; transition: 0.3s; }
+.iconoFeliz{color: #e7c412; cursor: pointer; transition: 0.3s;}
+.iconoTranquilo{color: #1cbb44; cursor: pointer; transition: 0.3s;}
+.iconoCansado{color: #099dc2; cursor: pointer; transition: 0.3s;}
+.iconoTriste{color: #341479; cursor: pointer; transition: 0.3s;}
+.iconoEnojado{color: #c71b15; cursor: pointer; transition: 0.3s;}
+
+.iconoEntusiasta:hover{color: #af4f00;}
+.iconoFeliz:hover{color: #b69a10;}
+.iconoTranquilo:hover{color: #158a32;}
+.iconoCansado:hover{color: #077996;}
+.iconoTriste:hover{color: #230d53;}
+.iconoEnojado:hover{color: #941410;}
+
+textarea{
+    font-family: 'Nunito Sans';
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 900px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 250px);
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
