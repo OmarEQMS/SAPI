@@ -47,7 +47,7 @@ public class FrontController extends HttpServlet {
                 request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
                 return;
             } else {
-                
+                /*
                 int keyRol = Integer.parseInt(sesion.getAttribute("idRol").toString());
                 switch(keyRol)
                 {
@@ -57,6 +57,7 @@ public class FrontController extends HttpServlet {
                     }
                 }                
                 return;
+                */
             }
         }
 
@@ -154,7 +155,8 @@ public class FrontController extends HttpServlet {
         } else {
                         
             System.out.println("filename else ".concat(file));
-            request.getRequestDispatcher("/" + file).forward(request, response);
+            
+            request.getRequestDispatcher("/".concat(file)).forward(request, response);
             return;
                         
         }

@@ -65,8 +65,8 @@ $(document).ready(function () {
     });
 
     $('#registrate').click(function () {
-        $.postGo("SAPI", {
-            file: "registro.jsp"
+        $.postGo("ZonaController", {            
+            key:"getRegistro"
         });
     });
 
