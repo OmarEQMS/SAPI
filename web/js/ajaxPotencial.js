@@ -195,12 +195,12 @@ $(document).ready(function () {
 
                             }
                         });
-
+                        $('#modalCambiarContraseña').modal('toggle');
                     } else {
 
                     }
                 });
-        $('#modalCambiarContrase&ntilde;a').modal('toggle');
+
 
     });
 /*
