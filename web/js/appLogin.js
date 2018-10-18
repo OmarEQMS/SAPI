@@ -46,7 +46,7 @@ $(document).ready(function () {
         var pass = $("#password");
         $.get("LoginController", {
                 key: "verificar",
-                file: "potencial/index.jsp",
+                //file: "potencial/index.jsp",
                 usuario: usu.val(),
                 password: pass.val()
             },
