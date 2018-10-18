@@ -186,7 +186,10 @@
     <script src="lib/jquery/jqueryPostGo.js"></script>
     <script src="lib/bootstrap/js/bootstrap.js"></script>
     <script src="lib/popper/popper.min.js"></script>
-    <script type="application/javascript" src="js/appRegistro.js"></script>    
+    <!--script type="application/javascript" src="js/appRegistro.js"></script--> 
+    <!--script type="application/javascript" src="js/validaciones.js"></script--> 
+    <script type="application/javascript" src="js/app.js"></script> 
+    <script type="module" src="js/asincrono.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.29/dist/sweetalert2.all.min.js"></script>
     
 
