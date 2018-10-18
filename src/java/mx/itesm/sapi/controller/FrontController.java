@@ -45,81 +45,31 @@ public class FrontController extends HttpServlet {
             if (sesion.getAttribute("idCuenta") == null) {
                 request.setAttribute("status", "");
                 request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
-
                 return;
             } else {
-                /*
+                
                 int keyRol = Integer.parseInt(sesion.getAttribute("idRol").toString());
-                switch (keyRol) {
-                    case 1: {
+                switch(keyRol)
+                {
+                    case 1:
+                    {
                         request.getRequestDispatcher("WEB-INF/potencial/index.jsp").forward(request, response);
                     }
-                }
-                
-                 */
+                }                
                 return;
             }
         }
 
-        if ("jsp".equals(file.substring(file.length() - 3))) {
-            System.out.println("llegue aqui ".concat(file));
-            HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
-            if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
-                System.out.println("llegue aqui 2 ".concat(file));
-                // request.setAttribute("status", "");
-                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
-                return;
-            } else { //Si tiene sesion iniciada
-                //Lo redireciono a su rol
-                int keyRol = (int) sesion.getAttribute("idRol");
-                System.out.println("llegue aqui 3 ".concat(String.valueOf(keyRol)));
-                switch (keyRol) {
-                    case 1: {
-                        String keyRuta = request.getParameter("file");
-                        System.out.println("llegue aqui 3.5 ".concat(keyRuta));
-                        switch (keyRuta) {
-
-                            case "potencial/cuentaPaciente.jsp": {
-                                
-                                System.out.println("llegue aqui 4 ".concat(keyRuta));
-                                                                                                
-                                PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
-                                Persona persona = personaServiceImpl.mostrarPersona((int)sesion.getAttribute("idPersona"));
-                                
-                                PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
-                                Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
-                                                                                   
-                                sesion.setAttribute("prz", paciente.getPrz());
-                                sesion.setAttribute("correo", persona.getCorreo());
-                                sesion.setAttribute("telefono", persona.getTelefono());
-                                
-                                request.setAttribute("nombre", sesion.getAttribute("nombre"));
-                                request.setAttribute("primerApellido",sesion.getAttribute("primerApellido"));
-                                request.setAttribute("segundoApellido",sesion.getAttribute("segundoApellido"));                                   
-                                request.setAttribute("telefono",sesion.getAttribute("telefono"));                               
-                                request.setAttribute("correo", sesion.getAttribute("correo"));
-                                request.setAttribute("usuario", sesion.getAttribute("usuario"));
-                                request.setAttribute("prz", sesion.getAttribute("prz"));
-                                                                
-                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al login
-                                break;
-                            }
-                        }
-
-                        break;
-                    }
-                }
-            }
-
-            //System.out.println("filename if ".concat(file));
-            // request.getRequestDispatcher("WEB-INF/" + file).forward(request, response);
-            // return;
+        if ("jsp".equals(file.substring(file.length()-3))) {
+            System.out.println("filename if ".concat(file));
+            request.getRequestDispatcher("WEB-INF/" + file).forward(request, response);
+            return;
         } else {
-
+                        
             System.out.println("filename else ".concat(file));
             request.getRequestDispatcher("/" + file).forward(request, response);
             return;
-
+                        
         }
 
     }
