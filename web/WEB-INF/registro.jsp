@@ -20,7 +20,7 @@
     <title>Registro</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/stylesRegistro.css">
     
 </head>
@@ -182,11 +182,14 @@
     </form>
 
 
-    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/jquery/jquery-3.3.1.js"></script>
     <script src="lib/jquery/jqueryPostGo.js"></script>
-    <script src="lib/bootstrap/bootstrap.js"></script>
-    <script src="lib/bootstrap/popper.min.js"></script>
-    <script type="application/javascript" src="js/appLogin.js"></script>    
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
+    <script src="lib/popper/popper.min.js"></script>
+    <!--script type="application/javascript" src="js/appRegistro.js"></script--> 
+    <!--script type="application/javascript" src="js/validaciones.js"></script--> 
+    <script type="application/javascript" src="js/app.js"></script> 
+    <script type="module" src="js/asincrono.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.29/dist/sweetalert2.all.min.js"></script>
     
 
