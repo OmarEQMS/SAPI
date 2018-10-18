@@ -61,8 +61,8 @@
                 </div>
                 <div class="row justify-content-center mb-2">
                     <div class="col-6 text-center">
-                        <span class="textoSidebar m-0">Julio Badillo</span>
-                        <span class="textoSidebar userSidebar m-0">@juliobadillo</span>
+                        <span class="textoSidebar m-0">${sessionScope.nombre} ${sessionScope.primerApellido}</span>
+                        <span class="textoSidebar userSidebar m-0">@${sessionScope.usuario}</span>
                     </div>
                 </div>
                 <div class="row justify-content-center">
@@ -110,9 +110,12 @@
                     <button id="sidebarCollapse" class="btn boton-collapse">
                         <i class="fas fa-align-justify"></i>
                     </button>
+                    
+                    <!-- aqui se inyecta la sesion de id-->
+                    <input type="hidden" id="sesionPaciente" value="${sessionScope.idSesion}" />
 
-                    <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">Julio
-                            Badillo
+                    <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
+                            ${sessionScope.nombre} ${sessionScope.primerApellido}
                         </span> <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
 
                 </div>
@@ -162,23 +165,23 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-4">
                                 <label for="name">Nombre</label>
-                                <input type="text" class="form-control" id="name" value="Diego" readonly/>
+                                <input type="text" class="form-control" id="name" value="${sessionScope.nombre}" readonly/>
                             </div>
                             <div class="col-4">
-                                <label for="surname1">Primer Apellido</label>
-                                <input type="text" class="form-control" id="surname1" value="Montoya" readonly/>
+                                <label for="surname1">Primer apellido</label>
+                                <input type="text" class="form-control" id="surname1" value="${sessionScope.primerApellido}" readonly/>
                             </div>
                         </div>
 
                         <!-- 2 -->
                         <div class="form-group row justify-content-center">
                             <div class="col-4">
-                                <label for="surname2">Segundo Apellido</label>
-                                <input type="text" class="form-control" id="surname2" value="Martínez" readonly/>
+                                <label for="surname2">Segundo apellido</label>
+                                <input type="text" class="form-control" id="surname2" value="${sessionScope.segundoApellido}" readonly/>
                             </div>
                             <div class="col-4">
                                 <label for="username">Usuario</label>
-                                <input type="text" class="form-control" id="username" value="diegommtz" readonly/>
+                                <input type="text" class="form-control" id="username" value="${sessionScope.usuario}" readonly/>
                             </div>
                         </div>
 
@@ -186,21 +189,21 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-4">
                                 <label for="myEmail">Correo</label>
-                                <input type="email" class="form-control" id="myEmail" value="diego.mmtz@hotmail.com" placeholder="Introduzca su correo" required
+                                <input type="email" class="form-control" id="myEmail" value="${sessionScope.correo}"  required
                                     pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
                                     />
                             </div>
                             <div class="col-4">
                                 <label for="telephoneNum">Teléfono</label>
-                                <input type="tel" class="form-control" id="telephoneNum" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890"
-                                    value="777-417-4428" required />
+                                <input type="tel" class="form-control" id="telephoneNum" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                    value="${sessionScope.telefono}" required />
                             </div>
                         </div>
 
                         <div class="form-group row justify-content-center">
                             <div class="col-8">
                                 <label for="myPRZ">PRZ</label>
-                                <input type="text" class="form-control" id="myPRZ" value="A01421007" placeholder="Introduzca su PRZ"
+                                <input type="text" class="form-control" id="myPRZ" value="${sessionScope.prz}" placeholder="Introduzca su PRZ"
                                     readonly/>
                             </div>
                         </div>
@@ -208,7 +211,7 @@
                         <!-- 5 -->
                         <div class="form-group row justify-content-center mt-4">
                             <div class="col-4">
-                                <button type="button" class="btn btn-outline-success btn-block" style="border-radius:20px"><i
+                                <button type="button" id = "guardarCambios" class="btn btn-outline-success btn-block" style="border-radius:20px"><i
                                         class="fas fa-save mr-1"></i>
                                     Guardar Cambios</button>
                             </div>
@@ -237,8 +240,6 @@
                                     Eliminar Cuenta</button>
                             </div>
                         </div>
-                         <!-- aqui se inyecta la sesion de id-->
-                        <input type="hidden" id="paciente" />
                     </form>
 
                 </div>

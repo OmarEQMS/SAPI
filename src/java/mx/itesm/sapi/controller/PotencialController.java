@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.persona.Estado;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Direccion;
@@ -23,6 +24,8 @@ import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.EstadoCivil;
 import mx.itesm.sapi.bean.persona.Municipio;
 import mx.itesm.sapi.service.ZonaServicioImpl;
+import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 
 /**
  *
@@ -44,16 +47,15 @@ public class PotencialController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String key = request.getParameter("key");
-        
-         switch (key) {
+
+        switch (key) {
 
             case "registrarCuenta": {
-                
+
                 //Inicio de servicios
-               // PersonaServicioImpl personaServicio = new PersonaServicioImpl();
-               // CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
-               // DireccionServicioImpl direccionServicio = new DireccionServicioImpl();
-                 
+                // PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                // CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+                // DireccionServicioImpl direccionServicio = new DireccionServicioImpl();
                 //Reibe los parametros de persona
                 String nombre = request.getParameter("nombre");
                 String apellido1 = request.getParameter("apellido1");
@@ -72,11 +74,10 @@ public class PotencialController extends HttpServlet {
                 String contraseña2 = request.getParameter("pass2");
                 String fechaNacimiento = request.getParameter("fechaNacimiento");
                 String usuario = request.getParameter("usuario");
-                
+
                 //Inicialización de objeto persona
-                
                 Persona per = new Persona();
-                
+
                 per.setNombre(nombre);
                 per.setTelefono(telefono);
 
@@ -89,24 +90,22 @@ public class PotencialController extends HttpServlet {
                 per.setIdMunicipio(municipio);
                 //per.setFechaNacimiento(fechaNacimiento);
 
-               
-
                 //Set cuenta
                 //Inicilizacion de cuenta
                 Cuenta cuenta = new Cuenta();
-                
+
                 cuenta.setPassword(contraseña1);
                 cuenta.setUsuario(usuario);
 
                 //DIRECCION
                 Direccion dir = new Direccion();
-                
+
                 dir.setCalle(calle);
                 dir.setColonia(colonia);
                 dir.setNoExterior(noExterior);
                 dir.setNoInterior(noInterior);
-                
-               // int id = personaServicio.agregarPersona(per);
+
+                // int id = personaServicio.agregarPersona(per);
 /*
                 if (id > 0) {
 
@@ -116,20 +115,76 @@ public class PotencialController extends HttpServlet {
                     direccionServicio.agregarDireccion(dir);
                     
                 }
-                */
-                break;
-                
-                
+                 */
             }
-            
-            case "InicioPotencial":
-            {
-                
-                request.getRequestDispatcher("/WEB-INF/potencial/index.jsp").forward(request, response);                              
-                break;
-            }
+            break;
 
-            
+            case "InicioPotencial": {
+
+                request.getRequestDispatcher("/WEB-INF/potencial/index.jsp").forward(request, response);
+            }
+            break;
+
+            case "guardarCambios": {
+                System.out.println("Hola 1");
+                String correo = request.getParameter("correo");
+                String telefono = request.getParameter("telefono");
+
+                System.out.println("Nuevo correo: ".concat(correo));
+                System.out.println("Nuevo telefono: ".concat(telefono));
+
+                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+                if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
+                    // request.setAttribute("status", "");
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                    return;
+                } else { //Si tiene sesion iniciada
+                    int keyRol = (int) sesion.getAttribute("idRol");
+                    switch (keyRol) {
+                        case 1: {
+                            //No se valida el telefono ni el correo aquí? Lo validamos nosotros o el front?
+                            PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
+                            Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
+
+                            persona.setCorreo(correo);
+                            persona.setTelefono(telefono);
+
+                            personaServiceImpl.actualizarPersona(persona);
+
+                            sesion.setAttribute("correo", persona.getCorreo());
+                            sesion.setAttribute("telefono", persona.getTelefono());
+
+                            request.setAttribute("correo", sesion.getAttribute("correo"));
+                            request.setAttribute("correo", sesion.getAttribute("telefono"));
+
+                            request.getRequestDispatcher("/WEB-INF/potencial/cuentaPaciente.jsp").forward(request, response);
+                        }
+                        break;
+                    }
+                }
+
+            }
+            break;
+
+            case "cambiarContrasena": {
+                int idCuenta = Integer.parseInt(request.getParameter("idCuenta"));
+                String contrasena = request.getParameter("password");
+                String contrasena2 = request.getParameter("password2");
+
+                if (contrasena.equals(contrasena2)) {
+
+                    CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+
+                    Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+
+                    cuenta.setPassword(contrasena);
+
+                    cuentaServicio.actualizarCuenta(cuenta);
+                }
+
+            }
+            break;
+
             /*
             case "zonaPorCp": {
 
@@ -230,9 +285,8 @@ public class PotencialController extends HttpServlet {
            
            break;
             
-            */
-            
-         }
+             */
+        }
 
     }
 

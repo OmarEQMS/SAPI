@@ -160,7 +160,7 @@ $(document).ready(function () {
 
     $("#btn-cambiarContrasena").on('click', function () {
 
-        console.log('hoa');
+        console.log('hola');
 
         //Modal cambiar contraseña 
         swal({
@@ -168,7 +168,7 @@ $(document).ready(function () {
             text: "No podras volver a usar tu contraseña anterior para ingresar",
             icon: "warning",
             buttons: true,
-            buttons: ['Regresar', 'Cambiar contrase&ntilde;a'],
+            buttons: ['Regresar', 'Cambiar contraseña'],
             dangerMode: true
         })
                 .then((cambiar) => {
@@ -180,7 +180,8 @@ $(document).ready(function () {
                             data: {
                                 key: "cambiarContrasena",
                                 idCuenta: $("#sesionPaciente").val(),
-                                password: $("#password").val()
+                                password: $("#password").val(),
+                                password2: $("#password2").val()
                             },
                             method: "POST",
                             success: function (response) {
@@ -202,7 +203,7 @@ $(document).ready(function () {
         $('#modalCambiarContrase&ntilde;a').modal('toggle');
 
     });
-
+/*
     $("#irACuenta").on('click', function () {
 
         $.ajax({
@@ -225,12 +226,38 @@ $(document).ready(function () {
             }
         });
     });
-    
+ */   
     $('#irACuenta').on('click', function () {
-       
-        $.get("FrontController", {
+        $.get("SAPI", {
                 file: "potencial/cuentaPaciente.jsp"
             },
+            function (response, status, xhr) {
+                console.log(response);
+                if (status == "success") {
+                    if (response == "error") {
+                        $("#msj-error").show();
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
+                    }
+                }
+            }
+        );
+    });
+    
+    $('#guardarCambios').on('click', function() {
+       console.log("Presionó GuardarCambios") 
+        var corr = $("#myEmail");
+        var tel = $("#telephoneNum");
+        $.get("PotencialController", {
+                key: "guardarCambios",
+                file: "potencial/cuentaPaciente.jsp",
+                correo: corr.val(),
+                telefono: tel.val()
+            },
+            //Esto de aquí abajo para que?
+            
             function (response, status, xhr) {
                 console.log(response);
                 if (status == "success") {
