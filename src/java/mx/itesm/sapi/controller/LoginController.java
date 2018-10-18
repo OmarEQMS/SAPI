@@ -144,6 +144,8 @@ public class LoginController extends HttpServlet {
                             }      
                             case 2:
                             {
+                                
+                                
                              break;
                             }      
                             case 3:
@@ -153,7 +155,32 @@ public class LoginController extends HttpServlet {
                             case 4:
                             {
                              break;
-                            }                                    
+                            }  
+                            /* CASE 5 PARA PACIENTE EN TRATAMIENTO*/
+                             case 5:
+                            {
+                                
+                                System.out.println("Cuenta de paciente en tratamiento:  ".concat(sesion.getAttribute("nombre").toString()));
+                                
+                               PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
+                               Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
+                                                                                                                            
+                               //Redirigir al paciente potencial a su dashboard correspondiente                               
+                               
+                               
+                               request.setAttribute("prz", sesion.getAttribute(paciente.getPrz()));
+                               request.setAttribute("nombre", sesion.getAttribute("nombre"));
+                               request.setAttribute("primerApellido",sesion.getAttribute("primerApellido"));
+                               request.setAttribute("segundoApellido",sesion.getAttribute("segundoApellido"));                                                              
+                                                          
+                               request.getRequestDispatcher("/WEB-INF/paciente/index.jsp").forward(request, response);                              
+                               //request.getRequestDispatcher("/FrontController").forward(request, response);             
+                               
+                               
+                               System.out.println("Se redirige el potencial. idPaciente " + String.valueOf(paciente.getIdPaciente()).concat(" idCuenta ").concat(String.valueOf(paciente.getIdCuenta())).concat(" Sesión idCuenta ").concat(String.valueOf(sesion.getAttribute("idCuenta"))));
+                                                                
+                             break;
+                            }     
                         }                       
 
                         //PrintWriter out = response.getWriter();
@@ -177,8 +204,15 @@ public class LoginController extends HttpServlet {
 
             case "cerrar-sesion": {
                 
+                HttpSession sesion = request.getSession(true);
+                System.out.println("Salir de la cuenta ".concat(sesion.getAttribute("nombre").toString()));                
                 
-
+                sesion.invalidate();
+                System.out.println("Salimos :)"); 
+                
+                request.setAttribute("status", "");
+                request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
+                                
                 break;
 
             }
