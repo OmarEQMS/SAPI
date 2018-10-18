@@ -26,6 +26,12 @@ import mx.itesm.sapi.bean.persona.Municipio;
 import mx.itesm.sapi.service.ZonaServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Base64;
+import javax.servlet.http.Part;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -188,6 +194,64 @@ public class PotencialController extends HttpServlet {
                 }
             }
             break;
+            //Desde aqui se sube guarda y muestra una imagen se debe cambiar por el nombre 
+            //de la tabla donde se guardan las imagenes
+            
+             case "upload": {
+                if (ServletFileUpload.isMultipartContent(request)) {
+                    Part part = request.getPart("archivo");
+
+                   
+                    InputStream contenido = part.getInputStream();
+                    PersonaServicioImpl person = new PersonaServicioImpl();
+
+                    Persona persona = new Persona();
+                    persona.setImagen(contenido);
+                    
+
+                    
+                    // request.setCharacterEncoding("UTF-8");
+                    PrintWriter out = response.getWriter();
+                    if (person.actualizarPersona(persona)) {
+                        out.print("success");
+
+                    } else {
+                        out.print("error");
+                    }
+                }
+             }
+                break;
+                
+                case "download":{
+                ArchivoServicioImpl asi = new ArchivoServicioImpl();
+               Archivo archivo = asi.downloadFile(1);
+                OutputStream out = response.getOutputStream();
+                
+                response.setContentType("application/octet-stream");
+                response.setHeader("Content-Disposition", "attachment;filename=".concat(archivo.getNombre()));
+                
+                out.write(IOUtils.toByteArray(archivo.getContenido()));
+                out.flush();
+               
+                //imprimir bytes
+                
+                break;
+            }
+            case "show":{
+                 ArchivoServicioImpl asi = new ArchivoServicioImpl();
+               Archivo archivo = asi.downloadFile(1);
+                PrintWriter out = response.getWriter();
+                
+                response.setContentType("application/octet-stream");
+        
+                byte[] bytes = IOUtils.toByteArray(archivo.getContenido());
+               String base64String = Base64.getEncoder().encodeToString(bytes);
+               
+               out.print(base64String);
+                
+                
+                break;
+            }
             
             
 
