@@ -45,18 +45,17 @@ public class FrontController extends HttpServlet {
             if (sesion.getAttribute("idCuenta") == null) {
                 request.setAttribute("status", "");
                 request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
-
                 return;
             } else {
-                /*
+                
                 int keyRol = Integer.parseInt(sesion.getAttribute("idRol").toString());
-                switch (keyRol) {
-                    case 1: {
+                switch(keyRol)
+                {
+                    case 1:
+                    {
                         request.getRequestDispatcher("WEB-INF/potencial/index.jsp").forward(request, response);
                     }
-                }
-                
-                 */
+                }                
                 return;
             }
         }
@@ -153,11 +152,11 @@ public class FrontController extends HttpServlet {
             // request.getRequestDispatcher("WEB-INF/" + file).forward(request, response);
             // return;
         } else {
-
+                        
             System.out.println("filename else ".concat(file));
             request.getRequestDispatcher("/" + file).forward(request, response);
             return;
-
+                        
         }
 
     }

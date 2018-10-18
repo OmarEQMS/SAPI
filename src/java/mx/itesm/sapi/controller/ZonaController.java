@@ -91,9 +91,16 @@ public class ZonaController extends HttpServlet {
                 List<String> estadoyMunicipio = zsi.getEstadoyMunicipio(CP);
                 
                 PrintWriter out = response.getWriter();
+                
+                if(estadoyMunicipio.size()==0)
+                {
+                    out.print("postalCodeDoesntExist");
+                }else{
+                
 
                 Gson json = new Gson();
                 out.print(json.toJson(estadoyMunicipio));
+                }
                 break;
             }
         }

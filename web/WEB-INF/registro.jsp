@@ -20,7 +20,7 @@
     <title>Registro</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/stylesRegistro.css">
     
 </head>
@@ -93,6 +93,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                     <input id="codigoPostal" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf3c5; CODIGO POSTAL">
                     <span class="text-danger" id="errorCodigoPostal">Formato incorrecto</span>
+                    <span class="text-danger" id="error-CPexiste" style="font-size:13px;">El codigo postal no existe</span>
                 </div>
 
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -170,7 +171,7 @@
 
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 mb-1">
-                <input type="button" id="btn-registro" class="btn btn-lg btn-danger btn-block btn-registro" value="REGISTRARME">
+                <input type="button" id="btn-registro" data-toggle="modal" class="btn btn-lg btn-danger btn-block btn-registro" value="REGISTRARME">
             </div>
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6">
                 <input type="button" id="btn-regresar" class="btn btn-lg btn-primary btn-block btn-regresar" value="REGRESAR">
@@ -179,15 +180,45 @@
 
         <h6 class="text-center mt-4 texto-cuenta mb-0"><span>Ya estas registrado?</span> <a href="#" id="regresarIndex">Inicia
                 sesión aquí</a></h6>
+        
+        <input type="hidden" id="tipoPaciente">
+        
     </form>
+    
+       <!------------------------MODAL TERMINOS Y CONDICIONES---------------------------->
+    <div class="modal fade" id="modalTerminos" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Aceptar Terminos y Condiciones</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">                    
+                    <label> <input type="checkbox" id="acepto-datos"> Acepto que mis datos sean usados para agilizar mi tratamiento</label>
+                    <label> <input type="checkbox" id="acepto-datos-anonimos"> Deseo que mis datos sean anonimos despues de haber culminado mi estancia en el instituto</label>
+                    <span class="text-danger" id="error-terminos">Para continuar debes de marcar ambos campos.</span>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnCancelar" type="button" style="border-radius:20px" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button id="btnAceptar" type="button" style="border-radius:20px" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-    <script src="lib/jquery/jquery.js"></script>
+
+    <script src="lib/jquery/jquery-3.3.1.js"></script>
     <script src="lib/jquery/jqueryPostGo.js"></script>
-    <script src="lib/bootstrap/bootstrap.js"></script>
-    <script src="lib/bootstrap/popper.min.js"></script>
-    <script type="application/javascript" src="js/appLogin.js"></script>    
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.29/dist/sweetalert2.all.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
+    <script src="lib/popper/popper.min.js"></script>
+    <!--script type="application/javascript" src="js/appRegistro.js"></script--> 
+    <!--script type="application/javascript" src="js/validaciones.js"></script--> 
+    <script type="application/javascript" src="js/app.js"></script> 
+    <script type="module" src="js/asincrono.js"></script> 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     
 
 </body>

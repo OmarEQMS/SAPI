@@ -66,8 +66,7 @@ $(document).ready(function () {
 
     $('#registrate').click(function () {
         $.postGo("SAPI", {
-            key: "JSP",
-            archivo: "registro",
+            file: "registro.jsp"
         });
     });
 
