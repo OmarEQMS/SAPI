@@ -24,6 +24,7 @@ import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.EstadoCivil;
 import mx.itesm.sapi.bean.persona.Municipio;
 import mx.itesm.sapi.service.ZonaServicioImpl;
+import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 
 /**
@@ -115,15 +116,14 @@ public class PotencialController extends HttpServlet {
                     
                 }
                  */
-                break;
-
             }
+            break;
 
             case "InicioPotencial": {
 
                 request.getRequestDispatcher("/WEB-INF/potencial/index.jsp").forward(request, response);
-                break;
             }
+            break;
 
             case "guardarCambios": {
                 System.out.println("Hola 1");
@@ -153,10 +153,10 @@ public class PotencialController extends HttpServlet {
 
                             sesion.setAttribute("correo", persona.getCorreo());
                             sesion.setAttribute("telefono", persona.getTelefono());
-                            
+
                             request.setAttribute("correo", sesion.getAttribute("correo"));
                             request.setAttribute("correo", sesion.getAttribute("telefono"));
-                            
+
                             request.getRequestDispatcher("/WEB-INF/potencial/cuentaPaciente.jsp").forward(request, response);
                         }
                         break;
@@ -164,6 +164,26 @@ public class PotencialController extends HttpServlet {
                 }
 
             }
+            break;
+
+            case "cambiarContrasena": {
+                int idCuenta = Integer.parseInt(request.getParameter("idCuenta"));
+                String contrasena = request.getParameter("password");
+                String contrasena2 = request.getParameter("password2");
+
+                if (contrasena.equals(contrasena2)) {
+
+                    CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+
+                    Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+
+                    cuenta.setPassword(contrasena);
+
+                    cuentaServicio.actualizarCuenta(cuenta);
+                }
+
+            }
+            break;
 
             /*
             case "zonaPorCp": {
