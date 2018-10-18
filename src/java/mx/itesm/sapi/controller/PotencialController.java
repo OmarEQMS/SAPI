@@ -183,6 +183,8 @@ public class PotencialController extends HttpServlet {
 
                         cuentaServicio.actualizarCuenta(cuenta);
                     }
+                    
+                    //Comentario para hacer commit xdxdxd
                 }
             }
             break;
