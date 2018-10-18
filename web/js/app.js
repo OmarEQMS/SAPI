@@ -3,7 +3,7 @@ $(document).ready(function () {
     $("#registrate").on('click', function () {
         $.postGo("ZonaController", {
             file: "registro.jsp",
-            key:"getRegistro"
+            key: "getRegistro"
         });
     });
 
@@ -12,7 +12,7 @@ $(document).ready(function () {
             file: "index.jsp"
         });
     });
-    
+
 
     var pantalla1 = $('#pantalla1');
     var pantalla2 = $('#pantalla2');
@@ -45,15 +45,13 @@ $(document).ready(function () {
 
     });
 
-    $('#btn-registro').on('click', function () {
-
-    });
-
-    function oculta(campo){
+   
+        
+    function oculta(campo) {
         campo.hide();
     }
 
-    function muestra(campo){
+    function muestra(campo) {
         campo.show();
     }
 

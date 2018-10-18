@@ -1,4 +1,3 @@
-
 export const validation = {
 
     //**** LOGIN ****/
@@ -27,9 +26,8 @@ export const validation = {
 
         var m = input.val();
 
-        //var expreg = /^[-a-zA-ZCñÑ. ]{8,14}$/;
+        //var expreg = /^[a-zA-Z0-9]{8,14}$/;
         var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
-        
         if (!expreg.test(m)) {
 
             input.css('border', '1px solid red');
@@ -91,7 +89,7 @@ export const validation = {
 
     },
 
-    isValidEmail: (input) => { 
+    isValidEmail: (input) => {
 
         var m = input.val();
 
@@ -156,7 +154,7 @@ export const validation = {
         var m = input.val();
 
         var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,500}$/;
-        
+
 
         if (!expreg.test(m)) {
 
@@ -195,7 +193,7 @@ export const validation = {
 
 
     },
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+
     isValidNumber: (input) => {
 
         var m = input.val();
@@ -247,7 +245,7 @@ export const validation = {
 
         let event = false;
 
-        today < date_from ? event=true : event=false;
+        today < date_from ? event = true : event = false;
 
 
         if (!input.val() || event) {
@@ -266,7 +264,74 @@ export const validation = {
 
     },
 
-    //**** SOLICITUD INICIAL ****/
+    isValidExpediente: (input) => {
+
+        var m = input.val();
+
+        var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,500}$/;
+
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    },
+
+    isValidCedula: (input) => {
+
+        var m = input.val();
+
+        var expreg = /^[0-9]{7,7}$/;
+
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    },
+
+    isValidNoExpediente: (input) => {
+
+        var m = input.val();
+
+        var expreg = /^[a-zA-Z0-9]{9,9}$/;
+
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    },
 
     validDocument: (input, archivos) => {
 
@@ -277,7 +342,7 @@ export const validation = {
                 || archivos[index]["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
                 archivos[index]["type"] == "application/msword" || archivos[index]["type"] == "application/zip"
                 || archivos[index]["type"] == "application/x-rar") {
-                
+
                 console.log('si se puede' + archivos[index]["type"]);
                 input.css('border', '');
                 return true;
@@ -293,7 +358,59 @@ export const validation = {
         return false;
     },
 
-    
+    isValidCheckbox: function (input) {
+
+        if (input.is(':checked')) {
+            return true;
+        }
+
+        return false;
+
+    },
+
+    isValidAllergy: (input) => {
+
+        var m = input.val();
+
+        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    },
+
+    isValidBloodType: (input) => {
+
+        var m = input.val();
+
+        var expreg = /^(A|B|AB|O)[-+]$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    },
+
+
 
 };
 

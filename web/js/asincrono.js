@@ -25,10 +25,47 @@ $(document).ready(function () {
     $('#errorNoExterior').hide();
     $('#errorNoInterior').hide();
     $('#errorUsuarioRepetido').hide();
-
+    $('#error-terminos').hide();
+    $('#error-CPexiste').hide();
+    
     $('#btn-registro').on('click', function () {
 
-        $.ajax({
+        swal(
+                "¿Te han tratado por cáncer de mama previamente?", {
+                    buttons: {
+                        primeraVez: "No",
+                        segundaOpinion: "Sí",
+                    }
+                })
+                .then((value) => {
+                    switch (value) {
+                        case "primeraVez":
+                                $('#tipoPaciente').val(0);
+                            break;
+                        case "segundaOpinion":
+                                $('#tipoPaciente').val(1);
+                            break;
+                    }
+                    
+                    console.log($('#tipoPaciente').val());
+                    $('#modalTerminos').modal('toggle');
+                });
+
+    });
+
+    $('#btnAceptar').on('click', function(){
+        
+        if(!validation.isValidCheckbox($('#acepto-datos')) || !validation.isValidCheckbox($('#acepto-datos-anonimos'))){
+            
+            $('#error-terminos').show();
+            
+        }else{
+            
+            $('#error-terminos').hide();
+            
+            //ajax para registrar
+            
+            $.ajax({
 
             url: 'RegistraUsuarioController',
             cache: false,
@@ -52,7 +89,8 @@ $(document).ready(function () {
                 fechaNacimiento: $("#fechaNacimiento").val(),
                 estado: $("#estado").val(),
                 municipio: $("#municipio").val(),
-                codigoPostal: $('#codigoPostal').val()
+                codigoPostal: $('#codigoPostal').val(),
+                tipoPaciente : $('#tipoPaciente').val()
 
 
             }
@@ -79,7 +117,16 @@ $(document).ready(function () {
                 });
 
 
+
+
+            
+        }
+        
     });
+
+    $('#btn-registro').on('click', function () {
+
+     });
 
 
     //Cargar los municipios con base en el estado
@@ -297,7 +344,12 @@ $(document).ready(function () {
 
             },
             success: function (response) {
-
+                
+                if(response=='postalCodeDoesntExist'){
+                    $('#error-CPexiste').show();
+                    
+                }else{
+                    $('#error-CPexiste').hide();
                 var json = JSON.parse(response);
 
                 if ($('#codigoPostal').val().length === 5) {
@@ -325,6 +377,7 @@ $(document).ready(function () {
                 }
 
                 console.log(json);
+            }
 
             }
 
