@@ -126,12 +126,8 @@ public class PotencialController extends HttpServlet {
             break;
 
             case "guardarCambios": {
-                System.out.println("Hola 1");
                 String correo = request.getParameter("correo");
                 String telefono = request.getParameter("telefono");
-
-                System.out.println("Nuevo correo: ".concat(correo));
-                System.out.println("Nuevo telefono: ".concat(telefono));
 
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
                 if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
@@ -167,23 +163,33 @@ public class PotencialController extends HttpServlet {
             break;
 
             case "cambiarContrasena": {
-                int idCuenta = Integer.parseInt(request.getParameter("idCuenta"));
-                String contrasena = request.getParameter("password");
-                String contrasena2 = request.getParameter("password2");
+                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+                if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
+                    // request.setAttribute("status", "");
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                    return;
+                } else {
+                    int idCuenta = (int) sesion.getAttribute("idCuenta");
+                    String contrasena = request.getParameter("password");
+                    String contrasena2 = request.getParameter("password2");
 
-                if (contrasena.equals(contrasena2)) {
+                    if (contrasena.equals(contrasena2)) {
 
-                    CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+                        CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
 
-                    Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+                        Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
 
-                    cuenta.setPassword(contrasena);
+                        cuenta.setPassword(contrasena);
 
-                    cuentaServicio.actualizarCuenta(cuenta);
+                        cuentaServicio.actualizarCuenta(cuenta);
+                    }
+                    
+                    //Comentario para hacer commit xdxdxd
                 }
-
             }
             break;
+            
+            
 
             /*
             case "zonaPorCp": {

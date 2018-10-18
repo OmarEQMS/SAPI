@@ -28,7 +28,7 @@ public class CuentaServicioImpl implements CuentaServicio {
         CallableStatement cstmt;
 
         //Call del store procedure
-        String stProcedure = "borradoLogicoCuenta";
+        String stProcedure = "CALL borradoLogicoCuenta";
 
         try {
             conn = Conexion.getConnection();
@@ -61,7 +61,7 @@ public class CuentaServicioImpl implements CuentaServicio {
         Cuenta cuenta = null;
 
         //Call del store procedure
-        String stProcedure = "mostrarCuenta(?)";
+        String stProcedure = "CALL mostrarCuenta(?)";
 
         try {
             cuenta = new Cuenta();
@@ -76,7 +76,7 @@ public class CuentaServicioImpl implements CuentaServicio {
             cuenta.setIdPersona(rs.getInt("idPersona"));
             cuenta.setIdRol(rs.getInt("idRol"));
             cuenta.setIdEstadoCuenta(rs.getInt("idEstadoCuenta"));
-            cuenta.setUsuario(rs.getString("usario"));
+            cuenta.setUsuario(rs.getString("usuario"));
             cuenta.setPassword(rs.getString("password"));
             cuenta.setToken(rs.getString("token"));
             cuenta.setEstatus(rs.getInt("estatus"));
@@ -105,7 +105,7 @@ public class CuentaServicioImpl implements CuentaServicio {
         try {
             cuentas = new ArrayList<>();
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall(" mostrarListaCuenta()");
+            cstmt = conn.prepareCall("CALL mostrarListaCuenta()");
             rs = cstmt.executeQuery();
             Cuenta cuenta;
 
@@ -116,7 +116,7 @@ public class CuentaServicioImpl implements CuentaServicio {
                 cuenta.setIdPersona(rs.getInt("idPersona"));
                 cuenta.setIdRol(rs.getInt("idRol"));
                 cuenta.setIdEstadoCuenta(rs.getInt("idEstadoCuenta"));
-                cuenta.setUsuario(rs.getString("usario"));
+                cuenta.setUsuario(rs.getString("usuario"));
                 cuenta.setPassword(rs.getString("password"));
                 cuenta.setToken(rs.getString("token"));
                 cuenta.setEstatus(rs.getInt("estatus"));
@@ -146,7 +146,7 @@ public class CuentaServicioImpl implements CuentaServicio {
 
         int id = -1;
         //Aquí va el call del procedure
-        String stProcedure = "agregarCuenta(?, ?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL agregarCuenta(?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
@@ -194,7 +194,7 @@ public class CuentaServicioImpl implements CuentaServicio {
         boolean exito = false;
 
         //Call del store procedure
-        String stProcedure = "actualizarCuenta(?, ?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL actualizarCuenta(?, ?, ?, ?, ?, ?, ?)";
 
         try {
 
@@ -207,17 +207,18 @@ public class CuentaServicioImpl implements CuentaServicio {
             cstmt.setString(5, cuenta.getUsuario());
             cstmt.setString(6, cuenta.getPassword());
             cstmt.setString(7, cuenta.getToken());
-            cstmt.setInt(8, cuenta.getEstatus());
 
             rs = cstmt.executeQuery();
 
             rs.next();
-            conn.close();
+            
+            exito = rs.getBoolean(1);
+            
             rs.close();
             cstmt.close();
+            conn.close();
 
-            return rs.getBoolean(1);
-
+            
         } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
