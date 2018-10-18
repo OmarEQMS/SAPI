@@ -67,9 +67,11 @@ public class FrontController extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
                 return;
             } else { //Si tiene sesion iniciada
+                
                 //Lo redireciono a su rol
                 int keyRol = (int) sesion.getAttribute("idRol");
                 switch (keyRol) {
+                    /*PACIENTE POTENCIAL*/
                     case 1: {
                         String keyRuta = request.getParameter("file");
                         switch (keyRuta) {
@@ -101,6 +103,48 @@ public class FrontController extends HttpServlet {
 
                         break;
                     }
+                    case 2: {break;}
+                    case 3: {break;}
+                    case 4: {break;}
+                    
+                    /*PACIENTE EN TRATAMIENTO*/
+                    case 5: {
+                        
+                        
+                        
+                           String keyRuta = request.getParameter("file");
+                        switch (keyRuta) {
+
+                            case "paciente/cuenta.jsp": {
+                                                                                                
+                                PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
+                                Persona persona = personaServiceImpl.mostrarPersona((int)sesion.getAttribute("idPersona"));
+                                
+                                PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
+                                Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
+                                                                                   
+                                sesion.setAttribute("prz", paciente.getPrz());
+                                sesion.setAttribute("correo", persona.getCorreo());
+                                sesion.setAttribute("telefono", persona.getTelefono());
+                                
+                                request.setAttribute("nombre", sesion.getAttribute("nombre"));
+                                request.setAttribute("primerApellido",sesion.getAttribute("primerApellido"));
+                                request.setAttribute("segundoApellido",sesion.getAttribute("segundoApellido"));                                   
+                                request.setAttribute("telefono",sesion.getAttribute("telefono"));                               
+                                request.setAttribute("correo", sesion.getAttribute("correo"));
+                                request.setAttribute("usuario", sesion.getAttribute("usuario"));
+                                request.setAttribute("prz", sesion.getAttribute("prz"));
+                                                                
+                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al login
+                                break;
+                            }
+                        }
+                        
+                        
+                        
+                        break;
+                    }
+                    
                 }
             }
 
