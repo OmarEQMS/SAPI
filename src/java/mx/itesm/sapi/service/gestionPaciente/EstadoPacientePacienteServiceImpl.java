@@ -105,21 +105,19 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarEstadoPacienteRegistro(?,?)";
+        String stProcedure = "CALL agregarEstadoPacientePaciente(?,?, ?, ?, ?)";
         int id = -1;
         
 	try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setInt(1, estadoPacientePaciente.getIdPaciente());
-            cstmt.setInt(2,0);
-            /*
-            cstmt.setTimestamp(3, estadoPacientePaciente.getFecha());
-            cstmt.setInt(4, estadoPacientePaciente.getSegundaOpinion());
-            cstmt.setInt(5, estadoPacientePaciente.getResultados());
-            cstmt.setInt(6, estadoPacientePaciente.getIdEmpleado());
-            */
+            cstmt.setInt(1, 1);
+            cstmt.setInt(2,estadoPacientePaciente.getIdPaciente());                       
+            cstmt.setInt(3, estadoPacientePaciente.getSegundaOpinion());
+            cstmt.setInt(4, estadoPacientePaciente.getResultados());
+            cstmt.setInt(5, 1);
+            
             
             rs = cstmt.executeQuery();
             rs.next();

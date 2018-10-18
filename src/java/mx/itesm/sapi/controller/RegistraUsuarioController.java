@@ -174,6 +174,8 @@ public class RegistraUsuarioController extends HttpServlet {
                             
                             if(idPac > 0){
                                 estadoPaPa.setIdPaciente(idPac);
+                                int tipoPaciente = Integer.parseInt(request.getParameter("tipoPaciente"));
+                                estadoPaPa.setSegundaOpinion(tipoPaciente);
                                 idEsPaPa = estadoPaPaServicio.agregarEstadoPacientePaciente(estadoPaPa);
                             }
                             

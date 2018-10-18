@@ -144,23 +144,22 @@ public class PacienteServiceImpl implements PacienteService{
         CallableStatement cstmt;
         int id = -1;
         
-        String stPrcedure="CALL agregarPaciente(?,?,?,?,?,?)";
+        String stPrcedure="CALL agregarPaciente(?,?,?,?,?,?,?)";
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stPrcedure);
             
           
             cstmt.setInt(1, paciente.getIdCuenta());
-           /* 
-            cstmt.setInt(3, paciente.getIdEscolaridad());
-            cstmt.setString(4, paciente.getPrz());
-            cstmt.setString(5, paciente.getExpediente());
-            cstmt.setDouble(6, paciente.getPeso() );
-            cstmt.setDouble(7, paciente.getAltura());
-            cstmt.setInt(8, paciente.getPosMenopausia());
-            cstmt.setInt(9, paciente.getEstatus());
-            */
-             rs = cstmt.executeQuery();
+            cstmt.setInt(2, 1);
+            cstmt.setString(3, paciente.getPrz());
+            cstmt.setString(4, paciente.getExpediente());
+            cstmt.setDouble(5, paciente.getPeso() );
+            cstmt.setDouble(6, paciente.getAltura());
+            cstmt.setInt(7, paciente.getPosMenopausia());
+            
+            
+            rs = cstmt.executeQuery();
             rs.next();
             id = rs.getInt(1);
             
