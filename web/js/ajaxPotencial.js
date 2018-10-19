@@ -294,6 +294,8 @@ $(document).ready(function () {
             }
         );
     });
+    
+    
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta1').on('click', function () {
         console.log("Salir cuenta");
