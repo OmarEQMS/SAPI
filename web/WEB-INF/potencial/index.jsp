@@ -71,7 +71,7 @@
                         <a class="iconoSidebar" href="<" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
                     </div>
                     <div class="col-2">
-                        <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
+                        <a class="iconoSidebar" id="salirCuenta1" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
 
                 <li><a href="./preguntasFrecuentes.html"><i class="fas fa-question-circle"></i>Preguntas Frecuentes</a></li>
 
-                <li><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+                <li id="salirCuenta"><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
             </ul>
 

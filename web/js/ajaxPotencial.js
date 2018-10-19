@@ -273,4 +273,48 @@ $(document).ready(function () {
         );
     });
     
+    
+    //PARA SALIR DE LA CUENTA
+    $('#salirCuenta').on('click', function () {
+        console.log("Salir cuenta");
+        $.get("LoginController", {
+                key: "cerrar-sesion"
+            },
+            function (response, status, xhr) {
+                console.log(response);
+                if (status == "success") {
+                    if (response == "error") {
+                        $("#msj-error").show();
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
+                    }
+                }
+            }
+        );
+    });
+    //PARA SALIR DE LA CUENTA
+    $('#salirCuenta1').on('click', function () {
+        console.log("Salir cuenta");
+        $.get("LoginController", {
+                key: "cerrar-sesion"
+            },
+            function (response, status, xhr) {
+                console.log(response);
+                if (status == "success") {
+                    if (response == "error") {
+                        $("#msj-error").show();
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
+                    }
+                }
+            }
+        );
+    });
+    
+    
+    
 });
