@@ -189,71 +189,62 @@ public class PotencialController extends HttpServlet {
 
                         cuentaServicio.actualizarCuenta(cuenta);
                     }
-                    
+
                     //Comentario para hacer commit x2 xdxdxd
                 }
             }
             break;
             //Desde aqui se sube guarda y muestra una imagen se debe cambiar por el nombre 
             //de la tabla donde se guardan las imagenes
-            
-             case "upload": {
-                if (ServletFileUpload.isMultipartContent(request)) {
-                    Part part = request.getPart("archivo");
 
-                   
-                    InputStream contenido = part.getInputStream();
-                    PersonaServicioImpl person = new PersonaServicioImpl();
+            case "upload": {
+                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+                if (sesion.getAttribute("idCuenta") == null) {
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                    return;
+                } else {
+                    if (ServletFileUpload.isMultipartContent(request)) {
+                        Part part = request.getPart("archivo");
+                        int idCuenta = (int) sesion.getAttribute("idCuenta");
+                        InputStream contenido = part.getInputStream();
+                        PersonaServicioImpl personaServicio = new PersonaServicioImpl();
 
-                    Persona persona = new Persona();
-                    persona.setImagen(contenido);
-                    
+                        Persona persona = personaServicio.mostrarPersona(idCuenta);
+                        persona.setImagen(contenido);
 
-                    
-                    // request.setCharacterEncoding("UTF-8");
-                    PrintWriter out = response.getWriter();
-                    if (person.actualizarPersona(persona)) {
-                        out.print("success");
+                        // request.setCharacterEncoding("UTF-8");
+                        PrintWriter out = response.getWriter();
+                        if (personaServicio.actualizarPersona(persona)) {
+                            out.print("success");
 
-                    } else {
-                        out.print("error");
+                        } else {
+                            out.print("error");
+                        }
                     }
                 }
-             }
-                break;
-                
-                case "download":{
-                ArchivoServicioImpl asi = new ArchivoServicioImpl();
-               Archivo archivo = asi.downloadFile(1);
-                OutputStream out = response.getOutputStream();
-                
-                response.setContentType("application/octet-stream");
-                response.setHeader("Content-Disposition", "attachment;filename=".concat(archivo.getNombre()));
-                
-                out.write(IOUtils.toByteArray(archivo.getContenido()));
-                out.flush();
-               
-                //imprimir bytes
-                
+            }
+            break;
+
+            case "show": {
+                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+                if (sesion.getAttribute("idCuenta") == null) {
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                    return;
+                } else {
+                    int idCuenta = (int) sesion.getAttribute("idCuenta");
+                    PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                    Persona persona = personaServicio.mostrarImagen(idCuenta);
+                    PrintWriter out = response.getWriter();
+
+                    response.setContentType("application/octet-stream");
+
+                    byte[] bytes = IOUtils.toByteArray(persona.getImagen());
+                    String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                    out.print(base64String);
+                }
                 break;
             }
-            case "show":{
-                 ArchivoServicioImpl asi = new ArchivoServicioImpl();
-               Archivo archivo = asi.downloadFile(1);
-                PrintWriter out = response.getWriter();
-                
-                response.setContentType("application/octet-stream");
-        
-                byte[] bytes = IOUtils.toByteArray(archivo.getContenido());
-               String base64String = Base64.getEncoder().encodeToString(bytes);
-               
-               out.print(base64String);
-                
-                
-                break;
-            }
-            
-            
 
             /*
             case "zonaPorCp": {
