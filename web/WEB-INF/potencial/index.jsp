@@ -421,7 +421,7 @@
                                                         </div>
                                                         <div class="row mt-2">
                                                             <div class="col-12 text-center">
-                                                                <img style="width:280px" src="../img/Masto.jpeg" alt="">
+                                                                <img style="width:280px" src="img/Masto.jpeg" alt="">
                                                             </div>
                                                         </div>
                                                     </span>
@@ -466,7 +466,7 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-12 text-center">
-                                                                <img style="width:280px" src="../img/Ultra.jpeg" alt="">
+                                                                <img style="width:280px" src="img/Ultra.jpeg" alt="">
                                                             </div>
                                                         </div>
                                                     </span>
@@ -514,7 +514,7 @@
                                                         </div>
                                                         <div class="row mt-2">
                                                             <div class="col-12 text-center">
-                                                                <img style="width:280px" src="../img/Biopsia.png" alt="">
+                                                                <img style="width:280px" src="img/Biopsia.jpeg" alt="">
                                                             </div>
                                                         </div>
                                                     </span>
@@ -649,7 +649,7 @@
                                                     </div>
                                                     <div class="row mt-2">
                                                         <div class="col-12 text-center">
-                                                            <img style="width:280px" src="../img/masto.jpeg" alt="">
+                                                            <img style="width:280px" src="img/masto.jpeg" alt="">
                                                         </div>
                                                     </div>
                                                 </span>
@@ -666,7 +666,7 @@
                                                     </div>
                                                     <div class="row mt-2">
                                                         <div class="col-12 text-center">
-                                                            <img style="width:280px" src="../img/Ultra.jpeg" alt="">
+                                                            <img style="width:280px" src="img/Ultra.jpeg" alt="">
                                                         </div>
                                                     </div>
                                                 </span>
@@ -687,7 +687,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-12 text-center">
-                                                            <img style="width:180px" src="../img/lami.jpeg" alt="">
+                                                            <img style="width:180px" src="img/lami.jpeg" alt="">
                                                         </div>
                                                     </div>
                                                     <div class="row mt-2">
@@ -697,7 +697,7 @@
                                                     </div>
                                                     <div class="row mt-2">
                                                         <div class="col-12 text-center">
-                                                            <img style="width:180px" src="../img/bloques.jpeg" alt="">
+                                                            <img style="width:180px" src="img/bloques.jpeg" alt="">
                                                         </div>
                                                     </div>
                                                 </span>
