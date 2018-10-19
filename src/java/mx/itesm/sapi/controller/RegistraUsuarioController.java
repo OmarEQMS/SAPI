@@ -57,6 +57,7 @@ public class RegistraUsuarioController extends HttpServlet {
         //switch con 2 keys
         // 1 key: verificarUsuario
         //2 key: reistroCompleto
+        
         String key = request.getParameter("key");
 
         /*
