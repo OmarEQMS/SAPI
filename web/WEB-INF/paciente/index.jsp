@@ -35,7 +35,7 @@
 
     <link rel="stylesheet" href="css/stylePaciente.css">
     <script src="js/appPaciente.js" type="module"></script>
-    <script src="js/calendars.js"></script>
+    <script src="js/calendarPaciente.js"></script>
     <script src="js/ajaxPaciente.js"></script>
 </head>
 
@@ -461,7 +461,7 @@
             </div>
         </div>
     </div>
-    <script type="module" src="../js/validaciones.js"></script>
+    
 </body>
 
 </html>
