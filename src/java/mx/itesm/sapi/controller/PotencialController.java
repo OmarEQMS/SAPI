@@ -30,6 +30,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Base64;
 import javax.servlet.http.Part;
+
+//Checar los de las librerias de clases Apache
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 
