@@ -1,4 +1,21 @@
+//import {validation} from './validaciones.js';
+
 $(document).ready(function () {
+    
+    //Esconder mensajes de error en cuenta
+    $('.error-correo').hide();
+    $('#error-noExpediente').hide();
+    $('#error-tel').hide();
+    $('#error-tipoSangre').hide();
+    $('#error-contraseña').hide();
+    $('#error-notEqualPasswords').hide();
+
+    //Esconder mensajes de error en index
+    $('#error-fecha').hide();
+    $('#error-tipoCita').hide();
+    $('#error-medico').hide();
+    $('#error-edificio').hide();
+    $('#error-piso').hide();
 
     // Inicializar plug in tooltipster
     $('.questionMark').tooltipster({
@@ -18,93 +35,6 @@ $(document).ready(function () {
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
 
-
-    //Cambiar de color los botones del calendario y varios textos
-    $('.fc-agendaWeek-button').removeClass('btn-primary').addClass('btn-outline-danger');
-    $('.fc-month-button').removeClass('btn-primary').addClass('btn-outline-danger');
-    $('.fc-agendaDay-button').removeClass('btn-primary').addClass('btn-outline-danger');
-    $('.fc-prev-button').removeClass('btn-primary').addClass('btn-outline-danger');
-    $('.fc-next-button').removeClass('btn-primary').addClass('btn-outline-danger');
-    $('.fc-today-button').removeClass('btn-primary').addClass('btn-outline-danger');
-    $('.fc-right h2').addClass('display-4').css({ 'color': '#696f71', 'font-size': '30px' });
-
-    $('#calendarCitasPaciente').fullCalendar({
-        locale: 'es',
-        height: 630,
-        themeSystem: 'bootstrap4',
-        header: {
-            left: 'prev,next today',
-            center: 'month,agendaWeek,agendaDay',
-            right: 'title'
-        },
-        eventBackgroundColor: "#eb5865",
-        eventBorderColor: "#de1f1f",
-        eventLimit: true, // allow "more" link when too many events
-        eventClick: function () {
-
-            $('#modalVerCita').modal('toggle');
-
-        },
-        dayClick: function (date) {
-            $('#modalAgregarCita').modal('toggle');
-        },
-        events: [
-            {
-                title: 'Cita Radiologo',
-                start: '2018-09-23'
-            },
-            {
-                title: 'Cita Nutriologo',
-                start: '2018-08-30'
-            }
-        ]
-    });
-
-    //Cambiar de color los botones del calendario y varios textos
-    $('.fc-agendaWeek-button').removeClass('btn-primary').addClass('btn-outline-danger');
-    $('.fc-month-button').removeClass('btn-primary').addClass('btn-outline-danger');
-    $('.fc-agendaDay-button').removeClass('btn-primary').addClass('btn-outline-danger');
-    $('.fc-prev-button').removeClass('btn-primary').addClass('btn-outline-danger');
-    $('.fc-next-button').removeClass('btn-primary').addClass('btn-outline-danger');
-    $('.fc-today-button').removeClass('btn-primary').addClass('btn-outline-danger');
-    $('.fc-right h2').addClass('display-4').css({ 'color': '#696f71', 'font-size': '30px' });
-
-    $("#btn-eliminarSintoma").on('click', function(){
-        var id = $(this).data('id');
-        console.log(id);
-
-        //Modal borrar sintoma
-        swal({
-            title: "Estás a punto de eliminar este sintoma:",
-            text: "-Dolor Muscular",
-            icon: "warning",
-            buttons: true,
-            buttons: ['Cancelar', 'Aceptar'],
-            dangerMode: true,
-        })
-            .then((eliminar) => {
-                if (eliminar) {
-                    $.ajax({
-                        url: ''/*VACIO POR EL MOMENTO*/,
-                        cache: false,
-                        method: 'POST',
-                        data: {
-                            key: '',//FALTA DEFINIR 'key', PUEDE SER "borrar",
-                            idSintoma: id
-                        }
-                    })
-                    .done(function (response) {
-                        console.log(response);
-                    })
-                    .fail(function (xhr, textStatus, errorThrown) {
-                        console.log(xhr.responseText);
-                    });
-                } else {
-
-                }
-            });
-
-    });
 
     ///////////////////////////////NAVEGADORAS
     $("#tablaSintomas").DataTable({
@@ -154,56 +84,6 @@ $(document).ready(function () {
 
     });
 
-    $('#btnAgregarSintoma').on('click', function () {
-
-        swal({
-            html: true, /*Julio, la consola me dijo esto
-                        SweetAlert warning: "html" option has been deprecated. Please use "content" instead.*/
-            title: "Estas apunto de agregar este sintoma:",
-            text: "-Dolor Muscular \n \n Se recomienda poner en contacto con su medico",
-            icon: "warning",
-            buttons: true,
-            buttons: ['Cancelar', 'Aceptar'],
-            dangerMode: true,
-        })
-            .then((agregar) => {
-                if (agregar) {
-                     $.ajax({
-                        url: ''/*VACIO POR EL MOMENTO*/,
-                        cache: false,
-                        method: 'POST',
-                        data: {
-                            key: '',//FALTA DEFINIR 'key', PUEDE SER "agregar",
-                            /*$('#estadoAnimo').data("idAnimo")*/
-                            Animo: $('#estadoAnimo').data("idanimo"),
-                            Peso: $('#inputPeso').val(),
-                            Pulso: $('#inputPulso').val(),
-                            Presion: $('#inputPresion').val(),
-                            Glucosa: $('#inputGlucosa').val(),
-                            Oxigenacion: $('#inputOxigenacion').val(),
-                            Temperatura: $('#inputTemperatura').val()
-                            /*FALTAN SLIDERS*/
-                        }
-                    })
-                    .done(function (response) {
-                        console.log(response);
-                    })
-                    .fail(function (xhr, textStatus, errorThrown) {
-                        console.log(xhr.responseText);
-                    });
-                    console.log($('#estadoAnimo').data("idanimo"));
-                    console.log($('#inputPeso').val());
-                    console.log($('#inputPulso').val());
-                    console.log($('#inputPresion').val());
-                    console.log($('#inputGlucosa').val());
-                    console.log($('#inputOxigenacion').val());
-                    console.log($('#inputTemperatura').val());
-                } else {
-
-                }
-            });
-
-    });
 
 
     $('[data-toggle="tooltip"]').tooltipster({
@@ -211,41 +91,7 @@ $(document).ready(function () {
         delay: '140'
     });
 
-    cambiarEstadoAnimo('#animo_1','1');
-    cambiarEstadoAnimo('#animo_2','2');
-    cambiarEstadoAnimo('#animo_3','3');
-    cambiarEstadoAnimo('#animo_4','4');
-    cambiarEstadoAnimo('#animo_5','5');
-    cambiarEstadoAnimo('#animo_6','6');
-
-    function cambiarEstadoAnimo(myIdAnimo,valor){
-        $(myIdAnimo).on('click', function () {
-            $('#estadoAnimo').data("idanimo",valor);
-            console.log($('#estadoAnimo').data("idanimo"));
-        });
-    }
-
-    $('#eliminarCuentaPaciente').on('click', () => {
-
-        swal({
-            title: "¿Estás segura(o)?",
-            text: "Los datos se eliminarán y no podrás recuperarlos.",
-            icon: "warning",
-            buttons: true,
-            buttons: ['Cancelar', 'Aceptar'],
-            dangerMode: true,
-        })
-            .then((eliminar) => {
-                if (eliminar) {
-
-
-
-                } else {
-
-                }
-            });
-
-    });
+  
 
     //AGREGAR Y QUITAR TRATAMIENTOS
     $('#add-Tratamiento').on('click', function(){
@@ -283,5 +129,111 @@ $(document).ready(function () {
         $(this).parent().parent().remove();
 
     });
+
+/*
+    //VALIDACIONES CUENTA
+
+    //1.- Correo
+    $('#myEmail').on('change', function(){
+        if(validation.isValidEmail($('#myEmail'))){
+            $('#error-correo').hide();
+        }else{
+            $('#error-correo').show();
+        }
+    }); 
+
+    //2.- No expediente
+    $('#numExpediente').on('change', function(){
+        if(validation.isValidNoExpediente($('#numExpediente'))){
+            $('#error-noExpediente').hide();
+        }else{
+            $('#error-noExpediente').show();
+        }
+    }); 
+
+    //3.- Telefono
+    $('#telephoneNum').on('change', function(){
+        if(validation.isValidPhoneNumber($('#telephoneNum'))){
+            $('#error-tel').hide();
+        }else{
+            $('#error-tel').show();
+        }
+    }); 
+
+    //4.- Tipo Sangre
+    $('#tipo-sangre').on('change', function(){
+        if(validation.isValidBloodType($('#tipo-sangre'))){
+            $('#error-tipoSangre').hide();
+        }else{
+            $('#error-tipoSangre').show();
+        }
+    });
+
+    //5.- Contraseña
+    $('#password').on('change', function(){
+        if(validation.isValidBloodType($('#password'))){
+            $('#error-contraseña').hide();
+        }else{
+            $('#error-contraseña').show();
+        }
+    });
+
+    //Verificar que las contraseñas son iguales
+    $('#password-confirm').on('change', function(){
+
+        areEqualPasswords($('#password'), $('#password-confirm'));
+
+    });
+
+    function areEqualPasswords(pass1, pass2) {
+
+        if (pass1.val() != pass2.val()) {
+
+            pass2.css('border', '1px solid red');
+            pass1.css('border', '1px solid red');
+            $('#error-notEqualPasswords').show();
+
+            return false;
+
+        } else {
+
+            pass2.css('border', '');
+            pass1.css('border', '');
+            $('#error-notEqualPasswords').hide();
+
+        }
+
+        return true;
+    }
+
+    //VALIDACIONES INDEX
+
+    //1.- Fecha
+    $('#RegistrarCita_fecha').on('change', function(){
+        if(validation.isValidDate($('#RegistrarCita_fecha'))){
+            $('#error-fecha').hide();
+        }else{
+            $('#error-fecha').show();
+        }
+    }); 
+
+    //2.- Tipo cita
+    $('#RegistrarCita_tipo').on('change', function(){
+        if(validation.isValidSelect($('#RegistrarCita_tipo'))){
+            $('#error-tipoCita').hide();
+        }else{
+            $('#error-tipoCita').show();
+        }
+    });
+
+     //3.- Médico
+     $('#RegistrarCita_medico').on('change', function(){
+        if(validation.isValidSelect($('#RegistrarCita_medico'))){
+            $('#error-medico').hide();
+        }else{
+            $('#error-medico').show();
+        }
+    });*/
+    
 
 });

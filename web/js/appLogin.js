@@ -50,7 +50,7 @@ $(document).ready(function () {
                 password: pass.val()
             },
             function (response, status, xhr) {
-                console.log(response);
+                //console.log(response);
                 if (status == "success") {
                     if (response == "error") {
                         $("#msj-error").show();
