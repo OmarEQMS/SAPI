@@ -30,9 +30,15 @@ import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 import mx.itesm.sapi.service.ZonaServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Base64;
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.Part;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.IOUtils;
+
 
 /**
  *
@@ -195,7 +201,7 @@ public class PotencialController extends HttpServlet {
 
                         cuentaServicio.actualizarCuenta(cuenta);
                     }
-                    
+
                     //Comentario para hacer commit x2 xdxdxd
                 }
                 break;
@@ -227,6 +233,57 @@ public class PotencialController extends HttpServlet {
                 break;
             }
            
+            //Desde aqui se sube guarda y muestra una imagen se debe cambiar por el nombre 
+            //de la tabla donde se guardan las imagenes
+
+            case "upload": {
+                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+                if (sesion.getAttribute("idCuenta") == null) {
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                    return;
+                } else {
+                    if (ServletFileUpload.isMultipartContent(request)) {
+                        Part part = request.getPart("archivo");
+                        int idCuenta = (int) sesion.getAttribute("idCuenta");
+                        InputStream contenido = part.getInputStream();
+                        PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+
+                        Persona persona = personaServicio.mostrarPersona(idCuenta);
+                        persona.setImagen(contenido);
+
+                        // request.setCharacterEncoding("UTF-8");
+                        PrintWriter out = response.getWriter();
+                        if (personaServicio.actualizarPersona(persona)) {
+                            out.print("success");
+
+                        } else {
+                            out.print("error");
+                        }
+                    }
+                }
+            }
+            break;
+
+            case "show": {
+                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+                if (sesion.getAttribute("idCuenta") == null) {
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                    return;
+                } else {
+                    int idCuenta = (int) sesion.getAttribute("idCuenta");
+                    PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                    Persona persona = personaServicio.mostrarImagen(idCuenta);
+                    PrintWriter out = response.getWriter();
+
+                    response.setContentType("application/octet-stream");
+
+                    byte[] bytes = IOUtils.toByteArray(persona.getImagen());
+                    String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                    out.print(base64String);
+                }
+                break;
+            }
 
             /*
             case "zonaPorCp": {
