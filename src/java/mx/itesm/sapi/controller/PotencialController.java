@@ -272,7 +272,7 @@ public class PotencialController extends HttpServlet {
                 } else {
                     int idCuenta = (int) sesion.getAttribute("idCuenta");
                     PersonaServicioImpl personaServicio = new PersonaServicioImpl();
-                    Persona persona = personaServicio.mostrarImagen(idCuenta);
+                    //Persona persona = personaServicio.mostrarImagen(idCuenta);
                     PrintWriter out = response.getWriter();
 
                     response.setContentType("application/octet-stream");
