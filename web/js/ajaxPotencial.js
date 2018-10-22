@@ -88,7 +88,7 @@ $(document).ready(function () {
 
     });
 
-    $("#btn-enviarSolicitud").on('click', () => {
+    $("#btn-enviarSolicitud").on('click', function(){
 
         //Modal borrar sintoma
         swal({
@@ -98,14 +98,31 @@ $(document).ready(function () {
             showCancelButton: false,
             showConfirmButton: true,
             buttons: [, 'Aceptar'],
-            dangerMode: true,
+            dangerMode: true
         });
-
+        
+        var form = $("form")[0];
+       
+        var data = new FormData(form);
+        
+        data.append("key","solicitarPreconsulta");
+        
+        /*
+        Imprimmir en consola los valores obtenidos del form para pruebas
+        data.forEach((value,key) => {
+                   console.log(key+" "+value);
+        });
+        */
+        
+        //console.log("after getting the form" + form.length);
+        
+        
+        /*
+         ¿Obtener los valores de entrada?   
         var masculino, femenino, camilla, sillaDeRuedas, baston, oxigeno, biopsia, motivoConsulta,
-                identificacionOficial, comprobanteDomicilio, estudioPrevio, estudioBiopsia;
+                identificacionOficial, comprobanteDomicilio, fileEstudioPrevioUsg, estudioBiopsia,
+                fileEstudioPrevioMasto;
 
-
-        var data = [];
 
         masculino = $('#masculino').is(':checked') ? 1 : 0;
         femenino = $('#femenino').is(':checked') ? 1 : 0;
@@ -116,34 +133,17 @@ $(document).ready(function () {
         oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
         motivoConsulta = $('#motivoConsulta').val();
         biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
-
-        identificacionOficial = $('#fileIdentificacion').prop('files')[0];
-        comprobanteDomicilio = $('#fileComprobanteDomicilio').prop('files')[0];
-        estudioPrevio = $('#fileEstudioPrevio').prop('files')[0];
-        estudioBiopsia = $('#fileEstudioBiopsia').prop('files')[0];
-
-        data.push(masculino);
-        data.push(femenino);
-        data.push(sillaDeRuedas);
-        data.push(camilla);
-        data.push(baston);
-        data.push(oxigeno);
-        data.push(biopsia);
-        data.push(motivoConsulta);
-        data.push(identificacionOficial);
-        data.push(comprobanteDomicilio);
-        data.push(estudioPrevio);
-        data.push(estudioBiopsia);
-
-        console.log("masculino: " + masculino + " femenino: " + femenino + " silla:  " + sillaDeRuedas + " camilla: " + camilla + " bastón: " +
+        */
+       //Imprimir los valores de entrada
+        /*console.log("masculino: " + masculino + " femenino: " + femenino + " silla:  " + sillaDeRuedas + " camilla: " + camilla + " bastón: " +
                 baston + " oxigeno " + oxigeno + " biopsia " + biopsia + " motivo " + motivoConsulta
-                + " identificacion: " + identificacionOficial.name + " comprobante: " + comprobanteDomicilio.name + " estudio: " + estudioPrevio.name
-                + " biopsia: " + estudioBiopsia.name);
-
+                + " identificacion: " + identificacionOficial.name + " comprobante: " + comprobanteDomicilio.name + " estudioMasto: " + fileEstudioPrevioMasto.name
+                +" estudioUsg: " + fileEstudioPrevioUsg.name + " biopsia: " + estudioBiopsia.name);
+        */
         $.ajax({
-            url: /*sin url aún,*/"URL",
+            url: "PotencialController",
             method: "POST",
-            data: data,
+            data: datos,
             enctype: "multipart/form-data",
             processData: false,
             contentType: false,
@@ -156,6 +156,7 @@ $(document).ready(function () {
             },
             error: function () {
                 console.log("error");
+                alert("No enontre el controlador" + xhr.statusText);
             }
 
 
@@ -259,6 +260,10 @@ $(document).ready(function () {
         console.log("Presionó GuardarCambios")
         var corr = $("#myEmail");
         var tel = $("#telephoneNum");
+        
+        var form = $("form")[0];
+        var datos = new FormData(form);
+        
         $.get("PotencialController", {
             key: "guardarCambios",
             file: "potencial/cuentaPaciente.jsp",
