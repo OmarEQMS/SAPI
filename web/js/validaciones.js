@@ -408,7 +408,7 @@ export const validation = {
 
         return true;
 
-    },
+    }
 
 
 
