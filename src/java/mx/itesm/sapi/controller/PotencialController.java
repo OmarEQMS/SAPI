@@ -36,8 +36,8 @@ import java.io.OutputStream;
 import java.util.Base64;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
-//import org.apache.commons.fileupload.servlet.ServletFileUpload;
-//import org.apache.commons.io.IOUtils;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.IOUtils;
 
 
 /**
@@ -284,11 +284,10 @@ public class PotencialController extends HttpServlet {
 
                     out.print(base64String);
                 }
-                */
+                
                 break;
             }
             */
-
             case "eliminarCuentaP": {
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
                 if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
