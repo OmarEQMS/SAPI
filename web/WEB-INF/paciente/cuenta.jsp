@@ -34,14 +34,18 @@
     <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
 
     <link rel="stylesheet" href="css/stylePaciente.css">
-    <script src="js/appPaciente.js" type="module"></script>
-    <script src="js/calendars.js"></script>
+    
+    <script src="js/calendarPaciente.js"></script>
+    <script src="js/appPaciente.js"></script>
     <script src="js/ajaxPaciente.js"></script>
+    
 </head>
 
 <body>
 
     <div class="wrapper">
+        
+        <span id="prueba-jeje">prueba</span>
 
         <!-- SIDEBAR -->
         <nav id="sidebar">
@@ -207,7 +211,7 @@
                             <div class="col-4">
                                 <label for="myEmail">Correo</label>
                                 <input type="email" class="form-control" id="myEmail" placeholder="Introduzca su correo" required />
-                                <span class="text-danger" id="error-correo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
+                                <span class="text-danger error-correo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
                             </div>
                             <div class="col-4">
                                 <label for="numExpediente">Número de Expediente</label>
@@ -383,8 +387,8 @@
 
     </div>
 
-    <script type="module" src="../js/validaciones.js"></script>
-
+    <script src="js/validacionesPaciente.js" type="module"></script>
+    
 </body>
 
 </html>

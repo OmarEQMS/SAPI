@@ -32,7 +32,7 @@
 
 
     <link rel="stylesheet" href="css/stylePotencial.css">
-    <script src="js/appPotencial.js"></script>
+    <script src="js/appPotencial.js" type="module"></script>
     <script src="js/ajaxPotencial.js"></script>
 
 </head>
@@ -248,6 +248,7 @@
 
                                                 <div class="custom-file col-8" id="customFile">
                                                     <input type="file" class="custom-file-input" id="fileIdentificacion" aria-describedby="fileHelp">
+                                                    <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
                                                     </label>
@@ -286,6 +287,7 @@
 
                                                 <div class="custom-file col-8" id="customFile">
                                                     <input type="file" class="custom-file-input" id="fileCURP" aria-describedby="fileHelp">
+                                                    <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
                                                     </label>
@@ -306,6 +308,7 @@
 
                                                 <div class="custom-file col-8" id="customFile">
                                                     <input type="file" class="custom-file-input" id="fileComprobanteDomicilio" aria-describedby="fileHelp">
+                                                    <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
                                                     </label>
@@ -350,6 +353,7 @@
                                                         <option>Me envían de otro hospital</option>
                                                         <option>Otro</option>
                                                     </select>
+                                                    <span class="text-danger ml-3" id="error-motivoConsulta">No seleccionaste un motivo de consulta</span>
                                                 </div>
 
 
@@ -391,6 +395,7 @@
 
                                                 <div class="custom-file col-8" id="customFileMasto">
                                                     <input type="file" class="custom-file-input" id="fileEstudioPrevioMasto" aria-describedby="fileHelp">
+                                                    <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
                                                     </label>
@@ -416,7 +421,7 @@
                                                         </div>
                                                         <div class="row mt-2">
                                                             <div class="col-12 text-center">
-                                                                <img style="width:280px" src="../img/Masto.jpeg" alt="">
+                                                                <img style="width:280px" src="img/Masto.jpeg" alt="">
                                                             </div>
                                                         </div>
                                                     </span>
@@ -435,6 +440,7 @@
 
                                                 <div class="custom-file col-8" id="customFileUsg">
                                                     <input type="file" class="custom-file-input" id="fileEstudioPrevioUsg" aria-describedby="fileHelp">
+                                                    <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
                                                     </label>
@@ -460,7 +466,7 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-12 text-center">
-                                                                <img style="width:280px" src="../img/Ultra.jpeg" alt="">
+                                                                <img style="width:280px" src="img/Ultra.jpeg" alt="">
                                                             </div>
                                                         </div>
                                                     </span>
@@ -485,6 +491,7 @@
 
                                                 <div class="custom-file col-8" id="biopsiaContenedor">
                                                     <input type="file" class="custom-file-input" id="fileEstudioBiopsia" aria-describedby="fileHelp">
+                                                    <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
                                                     </label>
@@ -507,7 +514,7 @@
                                                         </div>
                                                         <div class="row mt-2">
                                                             <div class="col-12 text-center">
-                                                                <img style="width:280px" src="../img/Biopsia.png" alt="">
+                                                                <img style="width:280px" src="img/Biopsia.jpeg" alt="">
                                                             </div>
                                                         </div>
                                                     </span>
@@ -642,7 +649,7 @@
                                                     </div>
                                                     <div class="row mt-2">
                                                         <div class="col-12 text-center">
-                                                            <img style="width:280px" src="../img/masto.jpeg" alt="">
+                                                            <img style="width:280px" src="img/masto.jpeg" alt="">
                                                         </div>
                                                     </div>
                                                 </span>
@@ -659,7 +666,7 @@
                                                     </div>
                                                     <div class="row mt-2">
                                                         <div class="col-12 text-center">
-                                                            <img style="width:280px" src="../img/Ultra.jpeg" alt="">
+                                                            <img style="width:280px" src="img/Ultra.jpeg" alt="">
                                                         </div>
                                                     </div>
                                                 </span>
@@ -680,7 +687,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-12 text-center">
-                                                            <img style="width:180px" src="../img/lami.jpeg" alt="">
+                                                            <img style="width:180px" src="img/lami.jpeg" alt="">
                                                         </div>
                                                     </div>
                                                     <div class="row mt-2">
@@ -690,7 +697,7 @@
                                                     </div>
                                                     <div class="row mt-2">
                                                         <div class="col-12 text-center">
-                                                            <img style="width:180px" src="../img/bloques.jpeg" alt="">
+                                                            <img style="width:180px" src="img/bloques.jpeg" alt="">
                                                         </div>
                                                     </div>
                                                 </span>
@@ -1034,7 +1041,7 @@
 
         </div>
     </div>
-
+<script src="js/validacionesPotencial.js" type="module"></script>
 </body>
 
 </html>
