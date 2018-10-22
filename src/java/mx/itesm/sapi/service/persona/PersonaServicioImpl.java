@@ -165,38 +165,39 @@ public class PersonaServicioImpl implements PersonaServicio {
 
         int id = -1;
         //Aquí va el call del procedure
-        String stProcedure = "CALL agregarPersona(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL agregarPersona(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
+            /*IN in_nombre VARCHAR (255), IN in_estatus TINYINT, IN in_primerApellido VARCHAR (127), IN in_segundoApellido VARCHAR (127),
+    IN in_curp VARCHAR (18), IN in_telefono VARCHAR (15), IN in_correo VARCHAR (127),IN in_fechaNacimiento DATE,
+    IN in_idSexo INT, IN in_idTipoSangre INT, IN in_idMunicipio INT, IN in_idEstadoCivil INT, IN in_idDireccion INT,
+    IN in_imagen MEDIUMBLOB, IN in_edad INT*/
             //Aquí van los sets
             //cstmt.setInt(1,citaEmpleado.getIdCitaEmpleado());
-            cstmt.setInt(1, persona.getIdPersona());
+            
+            cstmt.setString(1, persona.getNombre());
             cstmt.setString(2, persona.getPrimerApellido());
             cstmt.setString(3, persona.getSegundoApellido());
             cstmt.setString(4, persona.getCurp());
             cstmt.setString(5, persona.getTelefono());
             cstmt.setString(6, persona.getCorreo());
+
             cstmt.setDate(7, persona.getFechaNacimiento());
-            cstmt.setInt(8, persona.getIdSexo());
-            cstmt.setInt(9, persona.getIdTipoSangre());
+            cstmt.setInt(8, 1);
+            cstmt.setInt(9, 1);
             cstmt.setInt(10, persona.getIdMunicipio());
             cstmt.setInt(11, persona.getIdEstadoCivil());
             cstmt.setInt(12, persona.getIdDireccion());
-             cstmt.setBinaryStream(13,persona.getImagen());
-            cstmt.setInt(14, persona.getEdad());
-            cstmt.setInt(15, persona.getEstatus());
+            
+            cstmt.setInt(13, persona.getEdad());
 
             //Aquí va el registerOutParameter
             //cstmt.registerOutParameter(12,Types.INTEGER);
-            cstmt.executeUpdate();
-
-            rs = cstmt.getGeneratedKeys();
-
+             rs = cstmt.executeQuery();
             rs.next();
-
             id = rs.getInt(1);
 
             rs.close();
@@ -204,7 +205,6 @@ public class PersonaServicioImpl implements PersonaServicio {
             conn.close();
 
         } catch (SQLException ex) {
-            System.out.println("PersonaServicioImpl Lista mostrarPersona");
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             id = -1;

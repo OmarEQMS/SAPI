@@ -18,5 +18,6 @@ public interface CuentaServicio {
     public int agregarCuenta(Cuenta cuenta);
     public boolean actualizarCuenta(Cuenta cuenta);
     public boolean borradoLogicoCuenta(int idCuenta);
+    public boolean existsUsuario(String usuario);
     
 }

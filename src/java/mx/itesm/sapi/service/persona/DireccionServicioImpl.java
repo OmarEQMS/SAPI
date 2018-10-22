@@ -104,48 +104,40 @@ public class DireccionServicioImpl implements DireccionServicio {
 
     @Override
     public int agregarDireccion(Direccion direccion) {
+        
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
-
         int id = -1;
-        //Aquí va el call del procedure
-        String stProcedure = "agregarDireccion(?, ?, ?, ?, ?, ?)";
+        //AquÃ­ va el call del procedure
+        String stProcedure = "CALL agregarDireccion(?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
-            //Aquí van los sets
-            //cstmt.setInt(1,citaEmpleado.getIdCitaEmpleado());
-            cstmt.setInt(1, direccion.getIdDireccion());
-            cstmt.setString(2, direccion.getCalle());
-            cstmt.setString(3, direccion.getNoInterior());
-            cstmt.setString(4, direccion.getNoExterior());
-            cstmt.setString(5, direccion.getColonia());
-            cstmt.setInt(6, direccion.getEstatus());
+            //AquÃ­ van los sets
+            cstmt.setString(1, direccion.getCalle());
+            cstmt.setString(2, direccion.getNoInterior());
+            cstmt.setString(3, direccion.getNoExterior());
+            cstmt.setString(4, direccion.getColonia());
+            //cstmt.setInt(5, 1);
 
-            //Aquí va el registerOutParameter
-            //cstmt.registerOutParameter(12,Types.INTEGER);
-            cstmt.executeUpdate();
-
-            rs = cstmt.getGeneratedKeys();
-
+            //AquÃ­ va el registerOutParameter
+            //cstmt.registerOutParameter(5, Types.INTEGER);
+            
+            rs = cstmt.executeQuery();
             rs.next();
-
             id = rs.getInt(1);
-
+           
+               
             conn.close();
             rs.close();
             cstmt.close();
         } catch (SQLException ex) {
-
-            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
-                    .concat(ex.getMessage()));
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName()).concat(ex.getMessage()));
             id = -1;
-
         }
-
         return id;
     }
 

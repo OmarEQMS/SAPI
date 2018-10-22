@@ -5,8 +5,13 @@
  */
 package mx.itesm.sapi.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -14,8 +19,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,11 +41,12 @@ import mx.itesm.sapi.bean.moduloGestionPaciente.Paciente;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.bean.persona.Persona;
-import mx.itesm.sapi.service.CuentaServicioImpl;
-import mx.itesm.sapi.service.DireccionServicioImpl;
-import mx.itesm.sapi.service.PersonaServicioImpl;
+import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.service.persona.DireccionServicioImpl;
+import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
+import org.apache.poi.util.IOUtils;
 
 /**
  *
@@ -57,7 +73,6 @@ public class RegistraUsuarioController extends HttpServlet {
         //switch con 2 keys
         // 1 key: verificarUsuario
         //2 key: reistroCompleto
-        
         String key = request.getParameter("key");
 
         /*
@@ -100,7 +115,7 @@ public class RegistraUsuarioController extends HttpServlet {
 
             break;
 
-            case "registraUsuario":    {
+            case "registraUsuario": {
 
                 String nombre = request.getParameter("nombre");
                 String apellido1 = request.getParameter("apellido1");
@@ -117,14 +132,11 @@ public class RegistraUsuarioController extends HttpServlet {
                 String noInterior = request.getParameter("noInterior");
                 String contraseña1 = request.getParameter("pass1");
                 String contraseña2 = request.getParameter("pass2");
-                String fechaNacimiento=request.getParameter("fechaNacimiento");
-                
+                String fechaNacimiento = request.getParameter("fechaNacimiento");
+
                 Date fn = Date.valueOf(fechaNacimiento);
 
-                
                 per.setFechaNacimiento(fn);
-                
-            
 
                 String usuario = request.getParameter("usuario");
 
@@ -137,7 +149,6 @@ public class RegistraUsuarioController extends HttpServlet {
                 per.setCurp(curp);
                 per.setIdEstadoCivil(estadoCivil);
                 per.setIdMunicipio(municipio);
-                                           
 
                 //Set cuenta
                 cuenta.setPassword(contraseña1);
@@ -149,10 +160,8 @@ public class RegistraUsuarioController extends HttpServlet {
                 dir.setNoExterior(noExterior);
                 dir.setNoInterior(noInterior);
 
-                
-                
                 int idD = _rSD.agregarDireccion(dir);
-                
+
                 System.out.println("El id de direccion es: ".concat(Integer.toString(idD)));
                 int idC;
                 int idPac;
@@ -160,35 +169,90 @@ public class RegistraUsuarioController extends HttpServlet {
 
                 if (idD > 0) {
 
-                    
                     per.setIdDireccion(idD);
                     int idP = _registroServicio.agregarPersona(per);
-                    
-                    if(idP > 0){
+
+                    if (idP > 0) {
                         cuenta.setIdPersona(idP);
-                        idC=_rSC.agregarCuenta(cuenta);
-                        
-                        if(idC > 0){
-                            
+                        idC = _rSC.agregarCuenta(cuenta);
+
+                        if (idC > 0) {
+
                             pac.setIdCuenta(idC);
                             idPac = pacienteServicio.agregarPaciente(pac);
-                            
-                            if(idPac > 0){
+
+                            if (idPac > 0) {
                                 estadoPaPa.setIdPaciente(idPac);
                                 int tipoPaciente = Integer.parseInt(request.getParameter("tipoPaciente"));
                                 estadoPaPa.setSegundaOpinion(tipoPaciente);
                                 idEsPaPa = estadoPaPaServicio.agregarEstadoPacientePaciente(estadoPaPa);
+                                System.out.println("te voy a enviar un mail");
+                                enviaCorreo(usuario);
                             }
-                            
+
                         }
                     }
 
                 }
+                
 
             }
-
             break;
+            
+           
 
+        }
+
+    }
+
+    protected void enviaCorreo(String usuario) {
+        System.out.println("estoy en el metodo");
+        Properties config = new Properties();
+
+        try {
+            config.load(getClass().getResourceAsStream("/mail.properties"));
+            Session session = Session.getInstance(config,
+                    new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication("sapi.prueba@gmail.com", "prueba.Sapi1");
+
+                }
+            });
+
+            System.out.println("despues del try");
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("sapi.prueba@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse("A01422919@itesm.mx"));
+            message.setSubject("Prueba de mail de sapo");
+            //message.setText("Esto no es spam :)");
+
+            //Estos deberían ir como parametros dentro de la función de enviar correo
+            //String mail = "tucorreo@mail.com";
+            //String contrasena = "tucontrasena";
+            MimeBodyPart mimeBodyPart = new MimeBodyPart();
+            mimeBodyPart.setContent("<b>Bienvenido a sapi, estos son tus datos :)</b></br>".
+                    concat("<b>Usuario: ").
+                    concat(usuario), "text/html");
+
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(mimeBodyPart);
+
+            Path path = Files.createTempFile(null, ".properties");
+            File file = new File(path.toString());
+
+            OutputStream outputStream = new FileOutputStream(file);
+            IOUtils.copy(getClass().getResourceAsStream("/mail.properties"), outputStream);
+            outputStream.close();
+
+            //Comente este attach fail porque de lo contrario no se hace bien el set content de arriba (lo de los datos de usuario)
+            // mimeBodyPart.attachFile(file);
+            message.setContent(multipart);
+            Transport.send(message);
+
+        } catch (Exception ex) {
+            System.out.println("catch de envia correo");
+            System.out.println(this.getClass().toString().concat(ex.getMessage()));
         }
 
     }
