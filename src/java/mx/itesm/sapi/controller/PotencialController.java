@@ -265,6 +265,7 @@ public class PotencialController extends HttpServlet {
             break;
 
             case "show": {
+                /*
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
                 if (sesion.getAttribute("idCuenta") == null) {
                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
@@ -277,11 +278,12 @@ public class PotencialController extends HttpServlet {
 
                     response.setContentType("application/octet-stream");
 
-                    byte[] bytes = IOUtils.toByteArray(persona.getImagen());
+                    byte[] bytes = IOUtils.toByteArray(personaServicio.getImagen());
                     String base64String = Base64.getEncoder().encodeToString(bytes);
 
                     out.print(base64String);
                 }
+                */
                 break;
             }
 

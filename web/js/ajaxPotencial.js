@@ -94,13 +94,13 @@ $(document).ready(function () {
         
         var form = $("form")[0];
        
-        var datos = new FormData(form);
+        var data = new FormData(form);
         
-        datos.append("key","solicitarPreconsulta");
+        data.append("key","solicitarPreconsulta");
         
         /*
         Imprimmir en consola los valores obtenidos del form para pruebas
-        datos.forEach((value,key) => {
+        data.forEach((value,key) => {
                    console.log(key+" "+value);
         });
         */
@@ -251,6 +251,10 @@ $(document).ready(function () {
        console.log("Presionó GuardarCambios") 
         var corr = $("#myEmail");
         var tel = $("#telephoneNum");
+        
+        var form = $("form")[0];
+        var datos = new FormData(form);
+        
         $.get("PotencialController", {
                 key: "guardarCambios",
                 file: "potencial/cuentaPaciente.jsp",
