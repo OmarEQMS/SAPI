@@ -149,7 +149,7 @@
                         <!-- Imagen -->
                         <div class="form-group row justify-content-center">
                             <div class="col-12 text-center">
-                                <input type="file" class="editar-imagen" id="file-input" />
+                                <input type="file" class="editar-imagen" id="file-input" name="file-image"/>
                                 <label for="file-input">
                                     <img src="img/user.png" id="ImagenPerfil" class="edit-image" alt="Click aquí" title="Click aquí" width="200px" height="200px">
                                 </label>
@@ -189,13 +189,13 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-4">
                                 <label for="myEmail">Correo</label>
-                                <input type="email" class="form-control" id="myEmail" value="${sessionScope.correo}"  required
+                                <input type="email" class="form-control" id="myEmail" name="myEmail" value="${sessionScope.correo}"  required
                                     />
                                 <span class="text-danger" id="error-correo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
                             </div>
                             <div class="col-4">
                                 <label for="telephoneNum">Teléfono</label>
-                                <input type="text" class="form-control" id="telephoneNum"
+                                <input type="text" class="form-control" id="telephoneNum" name="telephoneNum"
                                     value="${sessionScope.telefono}" required />
                                 <span class="text-danger" id="error-tel">El formato no es correcto, deben ser 10 dígitos.</span>
                             </div>

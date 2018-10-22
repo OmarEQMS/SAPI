@@ -29,15 +29,19 @@ import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Base64;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
-//import org.apache.commons.fileupload.servlet.ServletFileUpload;
-//import org.apache.commons.io.IOUtils;
+import mx.itesm.sapi.bean.persona.Pic;
+import mx.itesm.sapi.service.persona.PicServicioImpl;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
  * @author feror
  */
 @WebServlet(name = "PotencialController", urlPatterns = {"/PotencialController"})
+@MultipartConfig(fileSizeThreshold=1024*1024*2, maxFileSize = 1024*1024, maxRequestSize=1024*1024*50)
 public class PotencialController extends HttpServlet {
 
     /**
@@ -132,9 +136,11 @@ public class PotencialController extends HttpServlet {
             break;
 
             case "guardarCambios": {
-                String correo = request.getParameter("correo");
-                String telefono = request.getParameter("telefono");
-
+                String correo = request.getParameter("myEmail");
+                String telefono = request.getParameter("telephoneNum");
+                Part part = request.getPart("file-image");
+                
+                
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
                 if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
                     // request.setAttribute("status", "");
@@ -147,7 +153,17 @@ public class PotencialController extends HttpServlet {
                             //No se valida el telefono ni el correo aquí? Lo validamos nosotros o el front?
                             PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
                             Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
-
+                            
+                            PicServicioImpl picServiceImpl = new PicServicioImpl();
+                            Pic pic = new Pic();
+                            
+                            pic.setIdPersona((int) sesion.getAttribute("idPersona"));
+                            pic.setContenido(part.getInputStream());
+                            pic.setTamano((int)part.getSize());
+                            pic.setTipo(part.getContentType());
+                            
+                            picServiceImpl.agregarPic(pic);
+                            
                             persona.setCorreo(correo);
                             persona.setTelefono(telefono);
 

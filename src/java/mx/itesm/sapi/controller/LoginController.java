@@ -113,7 +113,7 @@ public class LoginController extends HttpServlet {
                         sesion.setAttribute("nombre",nombre );
                         sesion.setAttribute("primerApellido", primerApellido);
                         sesion.setAttribute("segundoApellido",segundoApellido );
-                        sesion.setAttribute("imagen", persona.getImagen());
+                        //sesion.setAttribute("imagen", persona.getImagen());
                         
                         System.out.println("Rol cuenta:".concat(String.valueOf(rolCuenta)).concat(" ").concat(String.valueOf(cuenta.getIdRol())));
                              

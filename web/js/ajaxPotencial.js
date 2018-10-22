@@ -257,29 +257,28 @@ $(document).ready(function () {
 
     $('#guardarCambios').on('click', function () {
         console.log("Presionó GuardarCambios")
-        var corr = $("#myEmail");
-        var tel = $("#telephoneNum");
-        $.get("PotencialController", {
-            key: "guardarCambios",
-            file: "potencial/cuentaPaciente.jsp",
-            correo: corr.val(),
-            telefono: tel.val()
-        },
-            //Esto de aquí abajo para que?
-
-            function (response, status, xhr) {
-                console.log(response);
-                if (status == "success") {
-                    if (response == "error") {
-                        $("#msj-error").show();
-                    } else {
-                    document.open("text/html", "replace");
-                    document.write(response);
-                    document.close();
-                    }
-                }
+        var form = $("form")[0];
+        var data = new FormData(form);
+        
+        data.append("key","guardarCambios");
+        data.forEach((value,key) => {
+            console.log(key + " " + value);
+        })
+        
+        $.ajax({
+            url:"PotencialController",
+            data: data,
+            method: "POST",
+            encType: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            success: function(response){
+                alert("El archivo se cargó correctamente");
+            },
+            error:function(xhr){
+                alert(xhr.statusText);
             }
-        );
+        });        
     });
 
 

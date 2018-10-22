@@ -133,7 +133,6 @@ public class PersonaServicioImpl implements PersonaServicio {
                 persona.setIdMunicipio(rs.getInt("idMunicipio"));
                 persona.setIdEstadoCivil(rs.getInt("idEstadoCivil"));
                 persona.setIdDireccion(rs.getInt("idDireccion"));
-                persona.setImagen(rs.getBinaryStream("imagen"));
                 persona.setEdad(rs.getInt("edad"));
                 persona.setEstatus(rs.getInt("estatus"));
 
@@ -163,7 +162,7 @@ public class PersonaServicioImpl implements PersonaServicio {
 
         int id = -1;
         //Aquí va el call del procedure
-        String stProcedure = "CALL agregarPersona(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL agregarPersona(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
@@ -189,8 +188,7 @@ public class PersonaServicioImpl implements PersonaServicio {
             cstmt.setInt(10, persona.getIdMunicipio());
             cstmt.setInt(11, persona.getIdEstadoCivil());
             cstmt.setInt(12, persona.getIdDireccion());
-            cstmt.setBinaryStream(13, persona.getImagen());
-            cstmt.setInt(14, persona.getEdad());
+            cstmt.setInt(13, persona.getEdad());
 
             //Aquí va el registerOutParameter
             //cstmt.registerOutParameter(12,Types.INTEGER);
@@ -220,7 +218,7 @@ public class PersonaServicioImpl implements PersonaServicio {
         boolean exito = false;
 
         //Call del store procedure
-        String stProcedure = "actualizarPersona(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "actualizarPersona(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
@@ -237,9 +235,8 @@ public class PersonaServicioImpl implements PersonaServicio {
             cstmt.setInt(10, persona.getIdMunicipio());
             cstmt.setInt(11, persona.getIdEstadoCivil());
             cstmt.setInt(12, persona.getIdDireccion());
-            // cstmt.setInputStream(13,persona.getImagen());
-            cstmt.setInt(14, persona.getEdad());
-            cstmt.setInt(15, persona.getEstatus());
+            cstmt.setInt(13, persona.getEdad());
+            cstmt.setInt(14, persona.getEstatus());
 
             rs = cstmt.executeQuery();
 
