@@ -149,10 +149,10 @@
                         <!-- Imagen -->
                         <div class="form-group row justify-content-center">
                             <div class="col-12 text-center">
+                                <input type="file" class="editar-imagen" id="file-input" />
                                 <label for="file-input">
                                     <img src="img/user.png" id="ImagenPerfil" class="edit-image" alt="Click aquí" title="Click aquí" width="200px" height="200px">
                                 </label>
-                                <input type="file" class="editar-imagen" id="file-input" />
                             </div>
                         </div>
                         <div class="row mb-4">
@@ -236,7 +236,7 @@
 
                         <div class="form-group row justify-content-center mt-4">
                             <div class="col-4">
-                                <button type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaPotencial"><i
+                                <button id="eliminarCuenta" type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaPotencial"><i
                                         class="fas fa-trash-alt mr-1"></i>
                                     Eliminar Cuenta</button>
                             </div>

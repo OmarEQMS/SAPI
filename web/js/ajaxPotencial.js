@@ -7,7 +7,7 @@ $(document).ready(function () {
 
         swal({
             title: "¿Estás segura(o)?",
-            text: "Los datos se eliminarán y no podrás recuperarlos.",
+            text: "Los datos se eliminarán y no podrás recuperarlos ni poder acceder a tu cuenta.",
             icon: "warning",
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
@@ -15,7 +15,16 @@ $(document).ready(function () {
         })
                 .then((eliminar) => {
                     if (eliminar) {
-
+                        $.ajax({
+                            url: "PotencialController",
+                            data: {
+                                key: "cambiarContrasena",
+                                idCuenta: $("#sesionPaciente").val(),
+                                password: $("#password").val(),
+                                password2: $("#password2").val()
+                            },
+                            method: "POST"
+                        });
 
 
                     } else {
@@ -160,7 +169,7 @@ $(document).ready(function () {
 
     $("#btn-cambiarContrasena").on('click', function () {
 
-        console.log('hola');
+   
 
         //Modal cambiar contraseña 
         swal({
@@ -203,75 +212,76 @@ $(document).ready(function () {
 
 
     });
-/*
-    $("#irACuenta").on('click', function () {
-
-        $.ajax({
-            url: "FrontController",
-            data: {
-                key: "redirecionarACuenta",
-                idCuenta: $("#sesionPaciente").val()
-            },
-            method: "POST",
-            success: function (response) {
-                console.log(response);
-                if (response == "success") {
-                        
-                } else {
-                    //Aqui no se que hace
-                }
-            },
-            error: function (xhr) {
-
-            }
-        });
-    });
- */   
+    /*
+     $("#irACuenta").on('click', function () {
+     
+     $.ajax({
+     url: "FrontController",
+     data: {
+     key: "redirecionarACuenta",
+     idCuenta: $("#sesionPaciente").val()
+     },
+     method: "POST",
+     success: function (response) {
+     console.log(response);
+     if (response == "success") {
+     
+     } else {
+     //Aqui no se que hace
+     }
+     },
+     error: function (xhr) {
+     
+     }
+     });
+     });
+     */
     $('#irACuenta').on('click', function () {
         $.get("SAPI", {
-                file: "potencial/cuentaPaciente.jsp"
-            },
-            function (response, status, xhr) {
-                console.log(response);
-                if (status == "success") {
-                    if (response == "error") {
-                        $("#msj-error").show();
-                    } else {
-                        document.open("text/html", "replace");
-                        document.write(response);
-                        document.close();
+            file: "potencial/cuentaPaciente.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
                     }
                 }
-            }
         );
     });
-    
-    $('#guardarCambios').on('click', function() {
-       console.log("Presionó GuardarCambios") 
+
+    $('#guardarCambios').on('click', function () {
+        console.log("Presionó GuardarCambios")
         var corr = $("#myEmail");
         var tel = $("#telephoneNum");
         $.get("PotencialController", {
-                key: "guardarCambios",
-                file: "potencial/cuentaPaciente.jsp",
-                correo: corr.val(),
-                telefono: tel.val()
-            },
+            key: "guardarCambios",
+            file: "potencial/cuentaPaciente.jsp",
+            correo: corr.val(),
+            telefono: tel.val()
+        },
             //Esto de aquí abajo para que?
-            
+
             function (response, status, xhr) {
                 console.log(response);
                 if (status == "success") {
                     if (response == "error") {
                         $("#msj-error").show();
                     } else {
-                        document.open("text/html", "replace");
-                        document.write(response);
-                        document.close();
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
                     }
                 }
             }
         );
     });
+
     
     
     //PARA SALIR DE LA CUENTA
@@ -319,4 +329,26 @@ $(document).ready(function () {
     
     
     
+
+
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#ImagenPerfil').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#file-input").on('change', function () {
+        console.log("Llegó :D");
+        readURL(this);
+    });
+
+
+
 });
