@@ -27,6 +27,7 @@
     <script src="lib/popper/popper.min.js" type="application/javascript"></script>
     <script src="lib/bootstrap/js/bootstrap.js" type="application/javascript"></script>
     <script src='lib/moment/moment.min.js' type="application/javascript"></script>
+    <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
     <script src='lib/fullcalendar/fullcalendar.js' type="application/javascript"></script>
     <script src="lib/fullcalendar/locale-all.js"></script>
     <script src="lib/sweetalert/dist/sweetalert.min.js"></script>
@@ -67,7 +68,7 @@
                 <div class="row justify-content-center mb-2">
                     <div class="col-6 text-center">
                         <span class="textoSidebar m-0">${sessionScope.nombre} ${sessionScope.primerApellido}</span>
-                        <span class="textoSidebar userSidebar m-0">${sessionScope.usuario}</span>
+                        <span class="textoSidebar userSidebar m-0">@${sessionScope.usuario}</span>
                     </div>
                 </div>
 
@@ -118,7 +119,7 @@
                     </button>
                     
                      <!-- aqui se inyecta la sesion de id-->
-                    <input type="hidden" id="sesionPaciente" value="${sessionScope.idSesion}" />
+                    <input type="hidden" id="idPaciente" value="${sessionScope.idPaciente}" />
 
                     <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
                              <!--Julio Badillo-->
@@ -158,7 +159,10 @@
                     <div id="calendarCitasPaciente"></div>
                 </div>
             </div>
-
+            
+            <!-- Id paciente -->
+            <input type="hidden" id="idPaciente" value="${sessionScope.idSesion}" />
+            
             <div class="card">
                 <div class="card-footer">
                     <div class="row justify-content-center text-center">
@@ -204,14 +208,14 @@
 
                     <div class="row mb-4">
                         <div class="col-12">
-                            <h6 class="text-center display-4 tituloCitaModal text-primary">Cita con el nutriólogo</h6>
+                            <h6 class="text-center display-4 tituloCitaModal text-primary" id="titulo-cita"></h6>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-12 text-center">
                             <i class="fas fa-calendar-alt mr-2 text-danger"></i><span style="font-weight:bold; color: #2c2f39">Dia:
-                            </span><span style="color: #696a6b">28/09/2018</span>
+                            </span><span id="dia-cita" style="color: #696a6b">28/09/2018</span>
                             <hr>
                         </div>
                     </div>
@@ -219,17 +223,17 @@
                     <div class="row mt-1">
                         <div class="col-12 text-center">
                             <i class="fas fa-clock mr-2 text-primary"></i><span style="font-weight:bold; color: #2c2f39">Hora:
-                            </span><span style="color: #696a6b">14:00 hrs</span>
-                            <hr>
+                            </span><span id="hora-cita" style="color: #696a6b"></span>
+                            
                         </div>
                     </div>
 
-                    <div class="row mt-1">
+                    <!--<div class="row mt-1">
                         <div class="col-12 text-center">
                             <i class="fas fa-map-marker-alt mr-2 text-info"></i><span style="font-weight:bold; color: #2c2f39">Piso:
                             </span><span style="color: #696a6b">Primer Piso</span>
                         </div>
-                    </div>
+                    </div>-->
 
                 </div>
                 <div class="modal-footer">
@@ -246,7 +250,7 @@
                 <!-- ***** Titulo ***** -->
                 <div class="modal-header">
                     <h5 class="modal-title text-secondary display-4" style="font-size: 25px;" id="modalRegistrarCitaLabel">Registrar
-                        Cita
+                        Cita para el dia: <span class="text-primary" id="dia-registrarCita"></span>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff;">
                         <span aria-hidden="true">&times;</span>
@@ -265,7 +269,7 @@
                         </div>
 
                         <!-- ***** Fecha ***** -->
-                        <div class="row mb-3 justify-content-center">
+                        <!--<div class="row mb-3 justify-content-center">
                             <div class="col-1" data-toggle="tooltip" data-placement="top" title="Seleccione la fecha de su cita"><i
                                     class="fas fa-question-circle modalInfo"></i></div>
                             <div class="col-2"> <span class="colorGlobal">Fecha:</span></div>
@@ -279,7 +283,7 @@
                                 </div>
                                 <span class="text-danger" id="error-fecha">No es una fecha válida.</span>
                             </div>
-                        </div>
+                        </div>-->
 
                         <!-- ***** Hora ***** -->
                         <div class="row mb-3 justify-content-center">

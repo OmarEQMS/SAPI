@@ -1,35 +1,18 @@
 $(document).ready(function () {
 
-    /*PUSE ESTO PORQUE NO SUPE DE QUE OTRA FORMA CAPTURAR EL VALOR DE RADIO INPUT
-    SI CONOCEN UNA FORMA MEJOR, POR FAVOR CAMBIARLO*/
-    var selected = $("#RegistrarCita_piso").find("input[name='Pisos']");
-    var miPiso = "Piso 1";
-    selected.change(function(){
-        miPiso = $(this).val();
-    });
-    var edificios = $("#RegistrarCita_edificio").find("input[name='Edificios']");
-    var miEdificio;
-    edificios.change(function(){
-        miEdificio = $(this).val();
-    });
-    /*PUSE ESTO PORQUE NO SUPE DE QUE OTRA FORMA CAPTURAR EL VALOR DE RADIO INPUT
-    SI CONOCEN UNA FORMA MEJOR, POR FAVOR CAMBIARLO*/
 
     //REGISTRAR CITA
     $('#btn-citaRegistrar').on('click', () => {
         
         $.ajax({
-            url: ''/*VACIO POR EL MOMENTO*/,
+            url: 'PacienteController',
             cache: false,
             method: 'POST',
             data: {
-                key: '',//FALTA DEFINIR 'key', PUEDE SER "registrar",
-                fecha: $('#RegistrarCita_fecha').val(),
+                key: 'agregarEvento',
                 hora: $('#RegistrarCita_hora').val(),
                 tipo: $('#RegistrarCita_tipo').val(),
                 medico: $('#RegistrarCita_medico').val(),
-                piso: miPiso,
-                edificio: miEdificio
             }
         })
         .done(function (response) {

@@ -345,7 +345,7 @@ $(document).ready(function () {
     }
 
     $("#file-input").on('change', function () {
-        console.log("Llegó :D");
+        console.log("Llegó :)");
         readURL(this);
     });
 
