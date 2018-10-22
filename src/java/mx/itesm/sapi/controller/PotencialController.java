@@ -246,7 +246,32 @@ public class PotencialController extends HttpServlet {
                 break;
             }
 
-            /*
+            case "eliminarCuentaP": {
+                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+                if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
+                    // request.setAttribute("status", "");
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                    return;
+                } else {  
+                //Elimino su cuenta (borrrado logico)
+                    int idCuenta = (int) sesion.getAttribute("idCuenta");
+
+                    CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+
+                    Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+
+                    cuenta.setEstatus(1);
+
+                    cuentaServicio.actualizarCuenta(cuenta);
+                    //Al no tener cuenta se le redirecciona al login
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+                }
+
+                //Comentario para hacer commit x2 xdxdxd
+            
+        }
+        break;
+        /*
             case "zonaPorCp": {
 
                  //Inicio servicios
@@ -346,22 +371,22 @@ public class PotencialController extends HttpServlet {
            
            break;
             
-             */
-        }
-
+         */
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+}
+
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+/**
+ * Handles the HTTP <code>GET</code> method.
+ *
+ * @param request servlet request
+ * @param response servlet response
+ * @throws ServletException if a servlet-specific error occurs
+ * @throws IOException if an I/O error occurs
+ */
+@Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -375,7 +400,7 @@ public class PotencialController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -386,7 +411,7 @@ public class PotencialController extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 
