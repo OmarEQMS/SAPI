@@ -7,7 +7,7 @@ $(document).ready(function () {
 
         swal({
             title: "¿Estás segura(o)?",
-            text: "Los datos se eliminarán y no podrás recuperarlos.",
+            text: "Los datos se eliminarán y no podrás recuperarlos ni poder acceder a tu cuenta.",
             icon: "warning",
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
@@ -15,7 +15,16 @@ $(document).ready(function () {
         })
                 .then((eliminar) => {
                     if (eliminar) {
-
+                        $.ajax({
+                            url: "PotencialController",
+                            data: {
+                                key: "cambiarContrasena",
+                                idCuenta: $("#sesionPaciente").val(),
+                                password: $("#password").val(),
+                                password2: $("#password2").val()
+                            },
+                            method: "POST"
+                        });
 
 
                     } else {
@@ -160,7 +169,7 @@ $(document).ready(function () {
 
     $("#btn-cambiarContrasena").on('click', function () {
 
-        console.log('hola');
+   
 
         //Modal cambiar contraseña 
         swal({
@@ -273,6 +282,7 @@ $(document).ready(function () {
         );
     });
 
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -289,5 +299,6 @@ $(document).ready(function () {
         console.log("Llegó :D");
         readURL(this);
     });
+
 
 });

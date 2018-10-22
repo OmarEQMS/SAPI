@@ -236,7 +236,7 @@
 
                         <div class="form-group row justify-content-center mt-4">
                             <div class="col-4">
-                                <button type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaPotencial"><i
+                                <button id="eliminarCuenta" type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaPotencial"><i
                                         class="fas fa-trash-alt mr-1"></i>
                                     Eliminar Cuenta</button>
                             </div>
