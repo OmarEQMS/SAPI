@@ -64,8 +64,8 @@
                 </div>
                 <div class="row justify-content-center mb-2">
                     <div class="col-6 text-center">
-                        <span class="textoSidebar m-0">Julio Badillo</span>
-                        <span class="textoSidebar userSidebar m-0">@juliobadillo</span>
+                        <span class="textoSidebar m-0">${sessionScope.nombre}</span>
+                        <span class="textoSidebar userSidebar m-0">${sessionScope.cuenta}</span>
                     </div>
                 </div>
                 <div class="row justify-content-center">
@@ -125,7 +125,7 @@
 
                     <span class="pull-right d-block">
                         <span style="color:#6c6f80">Bienvenido, </span>
-                        <span style="font-weight:700; color:#6c6f80;">Julio Badillo
+                        <span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre}
                         </span>
                         <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
 
@@ -182,11 +182,11 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-4">
                                 <label for="name">Nombre</label>
-                                <input type="text" class="form-control" id="name" value="Diego" readonly />
+                                <input type="text" class="form-control" id="name" value="${sessionScope.nombre}" readonly />
                             </div>
                             <div class="col-4">
                                 <label for="surname1">Primer Apellido</label>
-                                <input type="text" class="form-control" id="surname1" value="Montoya" readonly />
+                                <input type="text" class="form-control" id="surname1" value="${sessionScope.primerApellido}" readonly />
                             </div>
                         </div>
 
@@ -194,11 +194,11 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-4">
                                 <label for="surname2">Segundo Apellido</label>
-                                <input type="text" class="form-control" id="surname2" value="Martínez" readonly />
+                                <input type="text" class="form-control" id="surname2" value="${sessionScope.segundoApellido}" readonly />
                             </div>
                             <div class="col-4">
                                 <label for="username">Usuario</label>
-                                <input type="text" class="form-control" id="username" value="diegommtz" readonly />
+                                <input type="text" class="form-control" id="username" value="${sessionScope.usuario}" readonly />
                             </div>
                         </div>
 
@@ -254,7 +254,7 @@
                             </div>
                             <div class="col-4">
                                 <label for="myPRZ">PRZ</label>
-                                <input type="text" class="form-control" id="myPRZ" value="UA7AJA8" readonly
+                                <input type="text" class="form-control" id="myPRZ" value="${sessionScope.prz}" readonly
                                 />
                             </div>
                         </div>
