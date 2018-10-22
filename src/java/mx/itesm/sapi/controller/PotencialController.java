@@ -7,6 +7,7 @@ package mx.itesm.sapi.controller;
 
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import mx.itesm.sapi.bean.persona.Estado;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Direccion;
@@ -23,20 +25,26 @@ import mx.itesm.sapi.bean.persona.Persona;
 
 import mx.itesm.sapi.bean.persona.EstadoCivil;
 import mx.itesm.sapi.bean.persona.Municipio;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
+
 import mx.itesm.sapi.service.ZonaServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Base64;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
+
 
 /**
  *
  * @author feror
  */
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 50)
 @WebServlet(name = "PotencialController", urlPatterns = {"/PotencialController"})
 public class PotencialController extends HttpServlet {
 
@@ -53,7 +61,7 @@ public class PotencialController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String key = request.getParameter("key");
-
+        System.out.println(key);
         switch (key) {
 
             case "registrarCuenta": {
@@ -122,14 +130,16 @@ public class PotencialController extends HttpServlet {
                     
                 }
                  */
+                break;
             }
-            break;
+            
 
             case "InicioPotencial": {
 
                 request.getRequestDispatcher("/WEB-INF/potencial/index.jsp").forward(request, response);
+                break;
             }
-            break;
+            
 
             case "guardarCambios": {
                 String correo = request.getParameter("correo");
@@ -160,13 +170,15 @@ public class PotencialController extends HttpServlet {
                             request.setAttribute("correo", sesion.getAttribute("telefono"));
 
                             request.getRequestDispatcher("/WEB-INF/potencial/cuentaPaciente.jsp").forward(request, response);
+                            break;
                         }
-                        break;
+                        
                     }
                 }
+                break;
 
             }
-            break;
+            
 
             case "cambiarContrasena": {
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
@@ -189,73 +201,119 @@ public class PotencialController extends HttpServlet {
 
                         cuentaServicio.actualizarCuenta(cuenta);
                     }
-                    
+
                     //Comentario para hacer commit x2 xdxdxd
+                }
+                break;
+            }
+            
+            case "solicitarPreconsulta": {
+                
+                System.out.println("Entro a solicitarPreconsulta");
+                //request.getPart("fileCURP").
+                
+                if(ServletFileUpload.isMultipartContent(request) ){
+                    /*
+                    Part part = request.getPart("fileCURP");
+                    
+                    String nombre = part.getSubmittedFileName();
+                    System.out.println("nombre del curp".concat(nombre));
+                    String tipo = part.getContentType();
+                    int tamano = (int) part.getSize();
+                    InputStream  contenido = part.getInputStream();
+                    
+                    DocumentoInicial documentoInicial = new DocumentoInicial();
+                    documentoInicial.setArchivo(contenido);
+                    documentoInicial.setAprobado(tamano);
+                    */
+                    
+                    
+                }
+                
+                break;
+            }
+           
+            //Desde aqui se sube guarda y muestra una imagen se debe cambiar por el nombre 
+            //de la tabla donde se guardan las imagenes
+
+            /*
+            case "upload": {
+                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+                if (sesion.getAttribute("idCuenta") == null) {
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                    return;
+                } else {
+                    if (ServletFileUpload.isMultipartContent(request)) {
+                        Part part = request.getPart("archivo");
+                        int idCuenta = (int) sesion.getAttribute("idCuenta");
+                        InputStream contenido = part.getInputStream();
+                        PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+
+                        Persona persona = personaServicio.mostrarPersona(idCuenta);
+                        persona.setImagen(contenido);
+
+                        // request.setCharacterEncoding("UTF-8");
+                        PrintWriter out = response.getWriter();
+                        if (personaServicio.actualizarPersona(persona)) {
+                            out.print("success");
+
+                        } else {
+                            out.print("error");
+                        }
+                    }
                 }
             }
             break;
-            //Desde aqui se sube guarda y muestra una imagen se debe cambiar por el nombre 
-            //de la tabla donde se guardan las imagenes
-            
-             case "upload": {
-                if (ServletFileUpload.isMultipartContent(request)) {
-                    Part part = request.getPart("archivo");
 
-                   
-                    InputStream contenido = part.getInputStream();
-                    PersonaServicioImpl person = new PersonaServicioImpl();
-
-                    Persona persona = new Persona();
-                    persona.setImagen(contenido);
-                    
-
-                    
-                    // request.setCharacterEncoding("UTF-8");
+            case "show": {
+                /*
+                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+                if (sesion.getAttribute("idCuenta") == null) {
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                    return;
+                } else {
+                    int idCuenta = (int) sesion.getAttribute("idCuenta");
+                    PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                    //Persona persona = personaServicio.mostrarImagen(idCuenta);
                     PrintWriter out = response.getWriter();
-                    if (person.actualizarPersona(persona)) {
-                        out.print("success");
 
-                    } else {
-                        out.print("error");
-                    }
+                    response.setContentType("application/octet-stream");
+
+                    byte[] bytes = IOUtils.toByteArray(personaServicio.getImagen());
+                    String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                    out.print(base64String);
                 }
-             }
-                break;
-                
-                case "download":{
-                ArchivoServicioImpl asi = new ArchivoServicioImpl();
-               Archivo archivo = asi.downloadFile(1);
-                OutputStream out = response.getOutputStream();
-                
-                response.setContentType("application/octet-stream");
-                response.setHeader("Content-Disposition", "attachment;filename=".concat(archivo.getNombre()));
-                
-                out.write(IOUtils.toByteArray(archivo.getContenido()));
-                out.flush();
-               
-                //imprimir bytes
                 
                 break;
             }
-            case "show":{
-                 ArchivoServicioImpl asi = new ArchivoServicioImpl();
-               Archivo archivo = asi.downloadFile(1);
-                PrintWriter out = response.getWriter();
-                
-                response.setContentType("application/octet-stream");
-        
-                byte[] bytes = IOUtils.toByteArray(archivo.getContenido());
-               String base64String = Base64.getEncoder().encodeToString(bytes);
-               
-               out.print(base64String);
-                
-                
-                break;
-            }
-            
-            
+            */
+            case "eliminarCuentaP": {
+                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+                if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
+                    // request.setAttribute("status", "");
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                    return;
+                } else {  
+                //Elimino su cuenta (borrrado logico)
+                    int idCuenta = (int) sesion.getAttribute("idCuenta");
 
-            /*
+                    CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+
+                    Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+
+                    cuenta.setEstatus(0);
+
+                    cuentaServicio.actualizarCuenta(cuenta);
+                    //Al no tener cuenta se le redirecciona al login
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+                }
+
+                //Comentario para hacer commit x2 xdxdxd
+            
+        }
+        break;
+        /*
             case "zonaPorCp": {
 
                  //Inicio servicios
@@ -328,10 +386,10 @@ public class PotencialController extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/registro.jsp").forward(request, response);
                 
                
-               
+               break;
             }
 
-            break;
+            
             
            case "existeUsuario": {
                
@@ -350,27 +408,27 @@ public class PotencialController extends HttpServlet {
                     out.print("UsuarioDoesntExist");
 
                 }
-               
+                break;
            }
            
-           break;
+           
             
-             */
-        }
-
+         */
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+}
+
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+/**
+ * Handles the HTTP <code>GET</code> method.
+ *
+ * @param request servlet request
+ * @param response servlet response
+ * @throws ServletException if a servlet-specific error occurs
+ * @throws IOException if an I/O error occurs
+ */
+@Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -384,7 +442,7 @@ public class PotencialController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -395,7 +453,7 @@ public class PotencialController extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

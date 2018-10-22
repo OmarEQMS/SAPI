@@ -7,7 +7,7 @@ $(document).ready(function () {
 
         swal({
             title: "¿Estás segura(o)?",
-            text: "Los datos se eliminarán y no podrás recuperarlos.",
+            text: "Los datos se eliminarán y no podrás recuperarlos ni poder acceder a tu cuenta.",
             icon: "warning",
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
@@ -15,7 +15,16 @@ $(document).ready(function () {
         })
                 .then((eliminar) => {
                     if (eliminar) {
-
+                        $.ajax({
+                            url: "PotencialController",
+                            data: {
+                                key: "cambiarContrasena",
+                                idCuenta: $("#sesionPaciente").val(),
+                                password: $("#password").val(),
+                                password2: $("#password2").val()
+                            },
+                            method: "POST"
+                        });
 
 
                     } else {
@@ -79,7 +88,7 @@ $(document).ready(function () {
 
     });
 
-    $("#btn-enviarSolicitud").on('click', () => {
+    $("#btn-enviarSolicitud").on('click', function(){
 
         //Modal borrar sintoma
         swal({
@@ -89,14 +98,31 @@ $(document).ready(function () {
             showCancelButton: false,
             showConfirmButton: true,
             buttons: [, 'Aceptar'],
-            dangerMode: true,
+            dangerMode: true
         });
-
+        
+        var form = $("form")[0];
+       
+        var data = new FormData(form);
+        
+        data.append("key","solicitarPreconsulta");
+        
+        /*
+        Imprimmir en consola los valores obtenidos del form para pruebas
+        data.forEach((value,key) => {
+                   console.log(key+" "+value);
+        });
+        */
+        
+        //console.log("after getting the form" + form.length);
+        
+        
+        /*
+         ¿Obtener los valores de entrada?   
         var masculino, femenino, camilla, sillaDeRuedas, baston, oxigeno, biopsia, motivoConsulta,
-                identificacionOficial, comprobanteDomicilio, estudioPrevio, estudioBiopsia;
+                identificacionOficial, comprobanteDomicilio, fileEstudioPrevioUsg, estudioBiopsia,
+                fileEstudioPrevioMasto;
 
-
-        var data = [];
 
         masculino = $('#masculino').is(':checked') ? 1 : 0;
         femenino = $('#femenino').is(':checked') ? 1 : 0;
@@ -107,34 +133,17 @@ $(document).ready(function () {
         oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
         motivoConsulta = $('#motivoConsulta').val();
         biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
-
-        identificacionOficial = $('#fileIdentificacion').prop('files')[0];
-        comprobanteDomicilio = $('#fileComprobanteDomicilio').prop('files')[0];
-        estudioPrevio = $('#fileEstudioPrevio').prop('files')[0];
-        estudioBiopsia = $('#fileEstudioBiopsia').prop('files')[0];
-
-        data.push(masculino);
-        data.push(femenino);
-        data.push(sillaDeRuedas);
-        data.push(camilla);
-        data.push(baston);
-        data.push(oxigeno);
-        data.push(biopsia);
-        data.push(motivoConsulta);
-        data.push(identificacionOficial);
-        data.push(comprobanteDomicilio);
-        data.push(estudioPrevio);
-        data.push(estudioBiopsia);
-
-        console.log("masculino: " + masculino + " femenino: " + femenino + " silla:  " + sillaDeRuedas + " camilla: " + camilla + " bastón: " +
+        */
+       //Imprimir los valores de entrada
+        /*console.log("masculino: " + masculino + " femenino: " + femenino + " silla:  " + sillaDeRuedas + " camilla: " + camilla + " bastón: " +
                 baston + " oxigeno " + oxigeno + " biopsia " + biopsia + " motivo " + motivoConsulta
-                + " identificacion: " + identificacionOficial.name + " comprobante: " + comprobanteDomicilio.name + " estudio: " + estudioPrevio.name
-                + " biopsia: " + estudioBiopsia.name);
-
+                + " identificacion: " + identificacionOficial.name + " comprobante: " + comprobanteDomicilio.name + " estudioMasto: " + fileEstudioPrevioMasto.name
+                +" estudioUsg: " + fileEstudioPrevioUsg.name + " biopsia: " + estudioBiopsia.name);
+        */
         $.ajax({
-            url: /*sin url aún,*/"URL",
+            url: "PotencialController",
             method: "POST",
-            data: data,
+            data: datos,
             enctype: "multipart/form-data",
             processData: false,
             contentType: false,
@@ -147,6 +156,7 @@ $(document).ready(function () {
             },
             error: function () {
                 console.log("error");
+                alert("No enontre el controlador" + xhr.statusText);
             }
 
 
@@ -160,7 +170,7 @@ $(document).ready(function () {
 
     $("#btn-cambiarContrasena").on('click', function () {
 
-        console.log('hola');
+   
 
         //Modal cambiar contraseña 
         swal({
@@ -203,74 +213,97 @@ $(document).ready(function () {
 
 
     });
-/*
-    $("#irACuenta").on('click', function () {
-
-        $.ajax({
-            url: "FrontController",
-            data: {
-                key: "redirecionarACuenta",
-                idCuenta: $("#sesionPaciente").val()
-            },
-            method: "POST",
-            success: function (response) {
-                console.log(response);
-                if (response == "success") {
-                        
-                } else {
-                    //Aqui no se que hace
-                }
-            },
-            error: function (xhr) {
-
-            }
-        });
-    });
- */   
+    /*
+     $("#irACuenta").on('click', function () {
+     
+     $.ajax({
+     url: "FrontController",
+     data: {
+     key: "redirecionarACuenta",
+     idCuenta: $("#sesionPaciente").val()
+     },
+     method: "POST",
+     success: function (response) {
+     console.log(response);
+     if (response == "success") {
+     
+     } else {
+     //Aqui no se que hace
+     }
+     },
+     error: function (xhr) {
+     
+     }
+     });
+     });
+     */
     $('#irACuenta').on('click', function () {
         $.get("SAPI", {
-                file: "potencial/cuentaPaciente.jsp"
-            },
-            function (response, status, xhr) {
-                console.log(response);
-                if (status == "success") {
-                    if (response == "error") {
-                        $("#msj-error").show();
-                    } else {
-                        document.open("text/html", "replace");
-                        document.write(response);
-                        document.close();
+            file: "potencial/cuentaPaciente.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
                     }
                 }
-            }
         );
     });
-    
-    $('#guardarCambios').on('click', function() {
-       console.log("Presionó GuardarCambios") 
+
+    $('#guardarCambios').on('click', function () {
+        console.log("Presionó GuardarCambios")
         var corr = $("#myEmail");
         var tel = $("#telephoneNum");
+        
+        var form = $("form")[0];
+        var datos = new FormData(form);
+        
         $.get("PotencialController", {
-                key: "guardarCambios",
-                file: "potencial/cuentaPaciente.jsp",
-                correo: corr.val(),
-                telefono: tel.val()
-            },
+            key: "guardarCambios",
+            file: "potencial/cuentaPaciente.jsp",
+            correo: corr.val(),
+            telefono: tel.val()
+        },
             //Esto de aquí abajo para que?
-            
+
             function (response, status, xhr) {
                 console.log(response);
                 if (status == "success") {
                     if (response == "error") {
                         $("#msj-error").show();
                     } else {
-                        document.open("text/html", "replace");
-                        document.write(response);
-                        document.close();
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
                     }
                 }
             }
         );
     });
-    
+
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#ImagenPerfil').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#file-input").on('change', function () {
+        console.log("Llegó :)");
+        readURL(this);
+    });
+
+
 });

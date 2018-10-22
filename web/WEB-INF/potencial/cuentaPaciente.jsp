@@ -149,10 +149,10 @@
                         <!-- Imagen -->
                         <div class="form-group row justify-content-center">
                             <div class="col-12 text-center">
+                                <input type="file" class="editar-imagen" id="file-input" />
                                 <label for="file-input">
                                     <img src="img/user.png" id="ImagenPerfil" class="edit-image" alt="Click aquí" title="Click aquí" width="200px" height="200px">
                                 </label>
-                                <input type="file" class="editar-imagen" id="file-input" />
                             </div>
                         </div>
                         <div class="row mb-4">
@@ -190,20 +190,21 @@
                             <div class="col-4">
                                 <label for="myEmail">Correo</label>
                                 <input type="email" class="form-control" id="myEmail" value="${sessionScope.correo}"  required
-                                    pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
                                     />
+                                <span class="text-danger" id="error-correo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
                             </div>
                             <div class="col-4">
                                 <label for="telephoneNum">Teléfono</label>
-                                <input type="tel" class="form-control" id="telephoneNum" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                <input type="text" class="form-control" id="telephoneNum"
                                     value="${sessionScope.telefono}" required />
+                                <span class="text-danger" id="error-tel">El formato no es correcto, deben ser 10 dígitos.</span>
                             </div>
                         </div>
 
                         <div class="form-group row justify-content-center">
                             <div class="col-8">
                                 <label for="myPRZ">PRZ</label>
-                                <input type="text" class="form-control" id="myPRZ" value="${sessionScope.prz}" placeholder="Introduzca su PRZ"
+                                <input type="text" class="form-control" id="myPRZ" value="${sessionScope.prz}"
                                     readonly/>
                             </div>
                         </div>
@@ -235,7 +236,7 @@
 
                         <div class="form-group row justify-content-center mt-4">
                             <div class="col-4">
-                                <button type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaPotencial"><i
+                                <button id="eliminarCuenta" type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaPotencial"><i
                                         class="fas fa-trash-alt mr-1"></i>
                                     Eliminar Cuenta</button>
                             </div>
@@ -282,7 +283,7 @@
 
     </div>
 
-
+<script src="js/validacionesPotencial.js" type="module"></script>
 </body>
 
 </html>

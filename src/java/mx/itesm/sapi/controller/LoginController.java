@@ -164,10 +164,14 @@ public class LoginController extends HttpServlet {
                                 
                                PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
-                                                                                                                            
+                               
+                               String idPacienteStr = String.valueOf(paciente.getIdPaciente());
+                               sesion.setAttribute("idPaciente", idPacienteStr);
+                               
                                //Redirigir al paciente potencial a su dashboard correspondiente                               
-                               
-                               
+                                System.out.println("idPaciente ".concat(idPacienteStr));
+                                                                                              
+                               request.setAttribute("idPaciente", sesion.getAttribute("idPaciente"));
                                request.setAttribute("prz", sesion.getAttribute(paciente.getPrz()));
                                request.setAttribute("nombre", sesion.getAttribute("nombre"));
                                request.setAttribute("primerApellido",sesion.getAttribute("primerApellido"));

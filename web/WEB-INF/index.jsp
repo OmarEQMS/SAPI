@@ -31,6 +31,13 @@
         <!-- Input submit -->
         <input type="button" id="btn-login" class="btn btn-lg btn-secondary btn-block btn-login" value="INICIAR SESIÓN">
         
+        <!-- Mensaje de cargando -->
+        <div class="row mt-3">
+            <div class="col-12 text-center">
+                <span id="msj-cargando" class="text-success"> <i class="fas fa-spinner fa-spin mr-1"></i> Iniciando Sesión</span>
+            </div>
+        </div>
+        
         <!-- MENSAJE DE ERROR -->
         <div class="row mt-3" id="msj-error">
             <div class="col-12 text-center">

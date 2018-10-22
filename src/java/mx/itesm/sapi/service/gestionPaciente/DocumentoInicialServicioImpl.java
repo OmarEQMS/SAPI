@@ -5,6 +5,7 @@
  */
 package mx.itesm.sapi.service.gestionPaciente;
 
+import java.io.InputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -39,7 +40,7 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
             documentoInicial.setIdDocumentoInicial(rs.getInt("idDocumentoInicial"));
             documentoInicial.setIdTipoDocumento(rs.getInt("idTipoDocumento"));
             documentoInicial.setIdPaciente(rs.getInt("idPaciente"));
-                documentoInicial.setArchivo(rs.getBytes("archivo"));
+                documentoInicial.setArchivo(rs.getBinaryStream("archivo"));
             documentoInicial.setComentario(rs.getString("comentario"));
             documentoInicial.setAprobado(rs.getInt("aprobado"));
             
@@ -75,7 +76,7 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
                 documentoInicial.setIdDocumentoInicial(rs.getInt("idDocumentoInicial"));
                 documentoInicial.setIdTipoDocumento(rs.getInt("idTipoDocumento"));
                 documentoInicial.setIdPaciente(rs.getInt("idPaciente"));
-                documentoInicial.setArchivo(rs.getBytes("archivo"));
+                documentoInicial.setArchivo(rs.getBinaryStream("archivo"));
                 documentoInicial.setComentario(rs.getString("comentario"));
                 documentoInicial.setAprobado(rs.getInt("aprobado"));
 
@@ -108,7 +109,7 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
             
             cstmt.setInt(1,documentoInicial.getIdTipoDocumento());
             cstmt.setInt(2,documentoInicial.getIdPaciente());
-            cstmt.setBytes(3,documentoInicial.getArchivo());
+            cstmt.setBinaryStream(3,documentoInicial.getArchivo());
             cstmt.setString(4,documentoInicial.getComentario());
             cstmt.setInt(5,documentoInicial.getAprobado());
             
@@ -171,7 +172,7 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
             
             cstmt.setInt(1,documentoInicial.getIdTipoDocumento());
             cstmt.setInt(2,documentoInicial.getIdPaciente());
-            cstmt.setBytes(3,documentoInicial.getArchivo());
+            cstmt.setBinaryStream(3,documentoInicial.getArchivo());
             cstmt.setString(4,documentoInicial.getComentario());
             cstmt.setInt(5,documentoInicial.getAprobado());
             

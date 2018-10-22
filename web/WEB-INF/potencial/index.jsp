@@ -32,7 +32,7 @@
 
 
     <link rel="stylesheet" href="css/stylePotencial.css">
-    <script src="js/appPotencial.js"></script>
+    <script src="js/appPotencial.js" type="module"></script>
     <script src="js/ajaxPotencial.js"></script>
 
 </head>
@@ -156,8 +156,9 @@
                             </nav>
 
                             <div class="tab-content dark" id="nav-tabContent">
-
+                                
                                 <!-- Solicitud -->
+                                
                                 <div class="tab-pane fade white mt-5" id="solicitud" role="tabpanel" aria-labelledby="nav-solicitud-tab">
 
                                     <!-- Aviso -->
@@ -174,7 +175,7 @@
                                         </div>
 
                                     </div>
-
+                                    <form>
                                     <div class="row mt-5">
                                         <div class="col-12">
 
@@ -188,13 +189,13 @@
                                                 <div class="col-8">
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" name="genero" type="radio" id="masculino" value="masculino">
-                                                        <label class="form-check-label" for="masculino"><i class="fas fa-female"></i>
-                                                            Mujer</label>
+                                                        <label class="form-check-label" for="masculino"><i class="fas fa-male"></i>
+                                                            Hombre</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" name="genero" type="radio" id="femenino" value="femenino">
-                                                        <label class="form-check-label" for="femenino"><i class="fas fa-male"></i>
-                                                            Hombre</label>
+                                                        <label class="form-check-label" for="femenino"><i class="fas fa-female"></i>
+                                                            Mujer</label>
                                                     </div>
 
                                                 </div>
@@ -209,14 +210,14 @@
                                                 <div class="col-9">
 
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="sillaRuedas" value="sillaRuedas">
+                                                        <input class="form-check-input" name="sillaRuedas"type="checkbox" id="sillaRuedas" value="sillaRuedas">
                                                         <label class="form-check-label" for="sillaRuedas"> <i class="fas fa-wheelchair"></i>
                                                             Silla de ruedas
                                                         </label>
                                                     </div>
 
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="camilla" value="camilla">
+                                                        <input class="form-check-input" name="camilla" type="checkbox" id="camilla" value="camilla">
                                                         <label class="form-check-label" for="camilla"><img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMS4xLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDM5Ni40ODEgMzk2LjQ4MSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzk2LjQ4MSAzOTYuNDgxOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCI+CjxnPgoJPGcgaWQ9IkxheWVyXzVfNDdfIj4KCQk8Zz4KCQkJPHBhdGggZD0iTTM0OS41NDEsNjMuNTA4Yy04LjMwNCwwLTE1LjQ5NSw0Ljc3Ny0xOS4wMTYsMTEuNzIyYy0wLjM5LDAuNzctMS4wMTMsMi4zODctMy42NzksMi4zODdoLTk2LjY2NyAgICAgYy0yLjE2NywwLTIuOTU3LTAuOTcxLTMuMzk0LTEuNDM2Yy01LjQxNy01Ljc1Ny0xMy4wOTgtOS4zNTYtMjEuNjA3LTkuMzU2aC0wLjI2NGwtODguMzY5LDYuNjggICAgIGMtMi43LDAuMjQtMi44ODgtMS4wOTMtMy4wMzMtMS43MzJjLTQuNTA4LTE5LjgwMi0yMi4yNDUtMzQuNjI5LTQzLjM5Mi0zNC42MjljLTI0LjU0NCwwLTQ0LjUxMiwxOS45NjgtNDQuNTEyLDQ0LjUxMiAgICAgczE5Ljk2OCw0NC41MTMsNDQuNTEyLDQ0LjUxM2MwLjQ1LDAsMjc4LjYyMiwwLDI3OS40MiwwYzExLjc2MywwLDIxLjMzMy05LjM5NiwyMS4zMzMtMjEuMTZWODQuODQyICAgICBDMzcwLjg3NCw3My4wNzgsMzYxLjMwNCw2My41MDgsMzQ5LjU0MSw2My41MDh6IiBmaWxsPSIjMDAwMDAwIi8+CgkJCTxwYXRoIGQ9Ik0zNzQuMjU3LDE1MS41NUgyMi4yMjRDOS45NywxNTEuNTUsMCwxNjEuNTIsMCwxNzMuNzc0djMwLjQ0NGMwLDEyLjI1NCw5Ljk2OSwyMi4yMjQsMjIuMjI0LDIyLjIyNCAgICAgYzAsMCw4Ni40NjYsMCwxMTUuMjg4LDBjMi4xODgsMCwzLjY4MywxLjM3NywzLjY4MywxLjM3N2wzNi44NDYsMzMuNDNjMCwwLDEuNDEzLDEuNjI3LTAuMTgyLDMuMDY0ICAgICBjLTEzLjg3NywxMi40OTQtNTIuNDQ5LDQ3LjU4MS01Mi40NDksNDcuNTgxYy0yLjQzOSwyLjE4NS01LjIwOSwxLjYwOC02LjY2LDEuNTAzYy0wLjU1Mi0wLjA0LTEuMTA5LTAuMDYxLTEuNjcxLTAuMDYxICAgICBjLTEyLjY4MiwwLTIzLDEwLjMxNy0yMywyM2MwLDEyLjY4MiwxMC4zMTgsMjMsMjMsMjNzMjMtMTAuMzE4LDIzLTIzYzAtMS4yNjUtMC42OTItMy4zNDIsMS43Mi01LjU1MWw1NC43NTQtNDkuNjc3ICAgICBjMCwwLDEuNTk5LTEuNjE1LDMuMzkzLDAuMDE1YzE0Ljc1NCwxMy40MDIsNTQuNzQxLDQ5LjY2OCw1NC43NDEsNDkuNjY4YzEuODY3LDEuNzg3LDEuNzE1LDQuMjgsMS43MTUsNS41NDUgICAgIGMwLDEyLjY4MiwxMC4zMTgsMjMsMjMsMjNzMjMtMTAuMzE4LDIzLTIzYzAtMTIuNjgzLTEwLjMxOC0yMy0yMy0yM2MtMi4wMzksMC01LjI2NSwwLjk5Mi03LjMzOC0wLjUzNmwtNTMuNjYxLTQ4LjY4NiAgICAgYzAsMC0xLjYwNi0xLjMzNiwwLjAxMS0yLjg0YzkuMzY0LTguNzExLDM2LjUyNC0zMy4xMzksMzYuNTI0LTMzLjEzOXMxLjYxNi0xLjY5Myw0LjM2Ni0xLjY5M2MyOC43MzgsMCwxMTQuOTUzLDAsMTE0Ljk1MywwICAgICBjMTIuMjU0LDAsMjIuMjI0LTkuOTcsMjIuMjI0LTIyLjIyNHYtMzAuNDQ0QzM5Ni40ODEsMTYxLjUxOSwzODYuNTEyLDE1MS41NSwzNzQuMjU3LDE1MS41NXogTTE5OC4yNDEsMjQ1LjExOSAgICAgYy0wLjc5MSwwLTEuMjI2LTAuNDExLTEuMjI2LTAuNDExbC0xOC4zOTgtMTYuNjkxYzAsMC0wLjg5Ni0xLjU3NSwxLjQ1OC0xLjU3NWM5Ljg4MSwwLDI3LjQ2OCwwLDM2LjIzMywwICAgICBjMy4yODgsMCwxLjUxNywxLjYwOSwxLjUxNywxLjYwOWwtMTguMzM4LDE2LjYzOEMxOTkuNDg4LDI0NC42ODgsMTk5LjA3NSwyNDUuMTE5LDE5OC4yNDEsMjQ1LjExOXoiIGZpbGw9IiMwMDAwMDAiLz4KCQk8L2c+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg=="
                                                             /> Camilla
                                                         </label>
@@ -248,6 +249,7 @@
 
                                                 <div class="custom-file col-8" id="customFile">
                                                     <input type="file" class="custom-file-input" id="fileIdentificacion" aria-describedby="fileHelp">
+                                                    <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
                                                     </label>
@@ -286,6 +288,7 @@
 
                                                 <div class="custom-file col-8" id="customFile">
                                                     <input type="file" class="custom-file-input" id="fileCURP" aria-describedby="fileHelp">
+                                                    <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
                                                     </label>
@@ -306,6 +309,7 @@
 
                                                 <div class="custom-file col-8" id="customFile">
                                                     <input type="file" class="custom-file-input" id="fileComprobanteDomicilio" aria-describedby="fileHelp">
+                                                    <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
                                                     </label>
@@ -350,6 +354,7 @@
                                                         <option>Me envían de otro hospital</option>
                                                         <option>Otro</option>
                                                     </select>
+                                                    <span class="text-danger ml-3" id="error-motivoConsulta">No seleccionaste un motivo de consulta</span>
                                                 </div>
 
 
@@ -391,6 +396,7 @@
 
                                                 <div class="custom-file col-8" id="customFileMasto">
                                                     <input type="file" class="custom-file-input" id="fileEstudioPrevioMasto" aria-describedby="fileHelp">
+                                                    <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
                                                     </label>
@@ -416,7 +422,7 @@
                                                         </div>
                                                         <div class="row mt-2">
                                                             <div class="col-12 text-center">
-                                                                <img style="width:280px" src="../img/Masto.jpeg" alt="">
+                                                                <img style="width:280px" src="img/Masto.jpeg" alt="">
                                                             </div>
                                                         </div>
                                                     </span>
@@ -435,6 +441,7 @@
 
                                                 <div class="custom-file col-8" id="customFileUsg">
                                                     <input type="file" class="custom-file-input" id="fileEstudioPrevioUsg" aria-describedby="fileHelp">
+                                                    <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
                                                     </label>
@@ -460,7 +467,7 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-12 text-center">
-                                                                <img style="width:280px" src="../img/Ultra.jpeg" alt="">
+                                                                <img style="width:280px" src="img/Ultra.jpeg" alt="">
                                                             </div>
                                                         </div>
                                                     </span>
@@ -485,6 +492,7 @@
 
                                                 <div class="custom-file col-8" id="biopsiaContenedor">
                                                     <input type="file" class="custom-file-input" id="fileEstudioBiopsia" aria-describedby="fileHelp">
+                                                    <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
                                                     </label>
@@ -507,7 +515,7 @@
                                                         </div>
                                                         <div class="row mt-2">
                                                             <div class="col-12 text-center">
-                                                                <img style="width:280px" src="../img/Biopsia.png" alt="">
+                                                                <img style="width:280px" src="img/Biopsia.jpeg" alt="">
                                                             </div>
                                                         </div>
                                                     </span>
@@ -531,9 +539,9 @@
 
                                         </div>
                                     </div>
-
+                                    </form>
                                 </div>
-
+                                
                                 <!-- APROBACION -->
 
                                 <div class="tab-pane  fade white mt-4" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
@@ -642,7 +650,7 @@
                                                     </div>
                                                     <div class="row mt-2">
                                                         <div class="col-12 text-center">
-                                                            <img style="width:280px" src="../img/masto.jpeg" alt="">
+                                                            <img style="width:280px" src="img/masto.jpeg" alt="">
                                                         </div>
                                                     </div>
                                                 </span>
@@ -659,7 +667,7 @@
                                                     </div>
                                                     <div class="row mt-2">
                                                         <div class="col-12 text-center">
-                                                            <img style="width:280px" src="../img/Ultra.jpeg" alt="">
+                                                            <img style="width:280px" src="img/Ultra.jpeg" alt="">
                                                         </div>
                                                     </div>
                                                 </span>
@@ -680,7 +688,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-12 text-center">
-                                                            <img style="width:180px" src="../img/lami.jpeg" alt="">
+                                                            <img style="width:180px" src="img/lami.jpeg" alt="">
                                                         </div>
                                                     </div>
                                                     <div class="row mt-2">
@@ -690,7 +698,7 @@
                                                     </div>
                                                     <div class="row mt-2">
                                                         <div class="col-12 text-center">
-                                                            <img style="width:180px" src="../img/bloques.jpeg" alt="">
+                                                            <img style="width:180px" src="img/bloques.jpeg" alt="">
                                                         </div>
                                                     </div>
                                                 </span>
@@ -1034,7 +1042,7 @@
 
         </div>
     </div>
-
+<script src="js/validacionesPotencial.js" type="module"></script>
 </body>
 
 </html>
