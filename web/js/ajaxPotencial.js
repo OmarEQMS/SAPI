@@ -2,6 +2,7 @@
 
 $(document).ready(function () {
 
+    console.log("Se Actualizó!");
 
     $('#eliminarCuentaPotencial').on('click', () => {
 
@@ -268,15 +269,16 @@ $(document).ready(function () {
         $.ajax({
             url:"PotencialController",
             data: data,
+            file: "potencial/cuentaPaciente.jsp",
             method: "POST",
             encType: "multipart/form-data",
             processData: false,
             contentType: false,
             success: function(response){
-                alert("El archivo se cargó correctamente");
+                //alert("El archivo se cargó correctamente");
             },
             error:function(xhr){
-                alert(xhr.statusText);
+                //alert(xhr.statusText);
             }
         });        
     });

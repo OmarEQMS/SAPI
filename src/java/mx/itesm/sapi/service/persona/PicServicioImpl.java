@@ -50,8 +50,6 @@ public class PicServicioImpl implements PicServicio {
             
             id = rs.getInt(1);
             
-            System.out.println("Llegó, el id es: " + id);
-            
             rs.close();
             cstmt.close();
             conn.close();
@@ -65,7 +63,7 @@ public class PicServicioImpl implements PicServicio {
     }
 
     @Override
-    public Pic mostrarPic(int idPic) {
+    public Pic mostrarPic(int idPersona) {
         
         Connection conn;
         CallableStatement cstmt;
@@ -81,7 +79,7 @@ public class PicServicioImpl implements PicServicio {
             cstmt = conn.prepareCall(stProcedure);
             pic = new Pic();
             
-            cstmt.setInt(1, idPic);
+            cstmt.setInt(1, idPersona);
             rs = cstmt.executeQuery();
             
             rs.next();
@@ -98,7 +96,7 @@ public class PicServicioImpl implements PicServicio {
            
         }catch(SQLException ex){
             pic = null;
-            System.out.println("ID: " + idPic);
+            System.out.println("IDPersona: " + idPersona);
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
         }

@@ -6,7 +6,9 @@
 package mx.itesm.sapi.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.Base64;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,8 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.persona.Persona;
+import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
+import mx.itesm.sapi.service.persona.PicServicioImpl;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -82,9 +87,18 @@ public class FrontController extends HttpServlet {
                                 PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
                                 Persona persona = personaServiceImpl.mostrarPersona((int)sesion.getAttribute("idPersona"));
                                 
+                                PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                Pic pic = picServicioImpl.mostrarPic((int)sesion.getAttribute("idPersona"));
+                                
                                 PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                 Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
-                                                                                   
+                                
+                                InputStream imagen = pic.getContenido();
+                                byte[] bytes = IOUtils.toByteArray(imagen);
+                                String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                sesion.setAttribute("base64Img", base64String);
+                                
                                 sesion.setAttribute("prz", paciente.getPrz());
                                 sesion.setAttribute("correo", persona.getCorreo());
                                 sesion.setAttribute("telefono", persona.getTelefono());

@@ -20,7 +20,7 @@ public class Pic implements Serializable {
     private int tamano;
     private String tipo;
     private int estatus;
-
+    
     @Override
     public String toString() {
         return "Pic{" + "idPic=" + idPic + ", idPersona=" + idPersona + ", contenido=" + contenido + ", tamano=" + tamano + ", tipo=" + tipo + ", estatus=" + estatus + '}';

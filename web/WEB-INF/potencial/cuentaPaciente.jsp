@@ -56,7 +56,7 @@
             <div class="profile">
                 <div class="row">
                     <div class="col-12 mb-2 mt-4">
-                        <img src="img/user.png" class="imagenPerfil" alt="">
+                        <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="imagenPerfil edit-image" width="66px" height="66px" alt="">
                     </div>
                 </div>
                 <div class="row justify-content-center mb-2">
@@ -116,7 +116,7 @@
 
                     <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
                             ${sessionScope.nombre} ${sessionScope.primerApellido}
-                        </span> <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
+                        </span> <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="ml-2 edit-image" width="30px" height="30px" alt=""> </span>
 
                 </div>
             </nav>
@@ -151,7 +151,7 @@
                             <div class="col-12 text-center">
                                 <input type="file" class="editar-imagen" id="file-input" name="file-image"/>
                                 <label for="file-input">
-                                    <img src="img/user.png" id="ImagenPerfil" class="edit-image" alt="Click aquí" title="Click aquí" width="200px" height="200px">
+                                    <img src="data:image/jpeg;base64,${sessionScope.base64Img}" id="ImagenPerfil" class="edit-image" alt="Click aquí" title="Click aquí" width="200px" height="200px">
                                 </label>
                             </div>
                         </div>
