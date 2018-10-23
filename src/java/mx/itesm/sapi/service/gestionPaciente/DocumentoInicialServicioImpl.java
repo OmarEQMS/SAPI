@@ -190,5 +190,41 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
         }
         return exito;
     }
+
+    @Override
+    public int agregarDocumentoInicialPreconsulta(DocumentoInicial documentoInicial) {                                        
+                
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL agregarDocumentoInicialPreconsulta(?,?,?);";
+        int id;
+
+        try{
+            conn  = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            
+            cstmt.setInt(1,documentoInicial.getIdTipoDocumento());
+            cstmt.setInt(2,documentoInicial.getIdPaciente());
+            cstmt.setBinaryStream(3,documentoInicial.getArchivo());
+                     
+            
+            rs = cstmt.executeQuery();
+            rs.next();
+            
+            id = rs.getInt(1);
+                
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        }catch(SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
+        }
+        return id;
+                
+    }
     
 }

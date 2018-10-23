@@ -126,7 +126,7 @@ public class LoginController extends HttpServlet {
                                 
                                PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
-                                                                                                                            
+                               sesion.setAttribute("idPaciente",paciente.getIdPaciente());
                                //Redirigir al paciente potencial a su dashboard correspondiente                               
                                
                                

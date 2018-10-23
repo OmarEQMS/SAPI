@@ -101,18 +101,37 @@ $(document).ready(function () {
             dangerMode: true
         });
         
-        var form = $("form")[0];
-       
+        var form = $("form")[0];      
         var data = new FormData(form);
         
+        var masculino = $('#masculino').is(':checked') ? 1 : 0;
+        var femenino = $('#femenino').is(':checked') ? 1 : 0;
+        var sillaDeRuedas = $('#sillaRuedas').is(':checked') ? 1 : 0;
+        var camilla = $('#camilla').is(':checked') ? 1 : 0;
+        var baston = $('#baston').is(':checked') ? 1 : 0;
+        var oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
+        var motivoConsulta = $('#motivoConsulta').val();
+        var biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
+                        
         data.append("key","solicitarPreconsulta");
+        data.append("femenino",femenino);
+        data.append("masculino",masculino);        
+        data.append("sillaDeRuedas",sillaDeRuedas);
+        data.append("camilla",camilla);
+        data.append("baston",baston);
+        data.append("oxigeno",oxigeno);
+        data.append("motivoConsulta",motivoConsulta);
+        data.append("biopsia",biopsia);
         
-        /*
-        Imprimmir en consola los valores obtenidos del form para pruebas
+        
+        
+        console.log(data);
+        
+       // Imprimmir en consola los valores obtenidos del form para pruebas
         data.forEach((value,key) => {
                    console.log(key+" "+value);
         });
-        */
+        
         
         //console.log("after getting the form" + form.length);
         
@@ -143,7 +162,7 @@ $(document).ready(function () {
         $.ajax({
             url: "PotencialController",
             method: "POST",
-            data: datos,
+            data: data,
             enctype: "multipart/form-data",
             processData: false,
             contentType: false,
@@ -151,11 +170,11 @@ $(document).ready(function () {
                 if (response == "success") {
                     console.log("ok");
                 } else {
-                    console.log("Algo pasó");
+                    console.log("Algo pasó" + response);
                 }
             },
             error: function () {
-                console.log("error");
+                console.log("error" + xhr.statusText);
                 alert("No enontre el controlador" + xhr.statusText);
             }
 
@@ -166,7 +185,7 @@ $(document).ready(function () {
 
 
     //Author: Angel Gtz
-    //este ajax hace que manda la nueva contraeña de la cuenta del paciente potencial
+    //este ajax hace que manda la nueva contraseña de la cuenta del paciente potencial
 
     $("#btn-cambiarContrasena").on('click', function () {
 

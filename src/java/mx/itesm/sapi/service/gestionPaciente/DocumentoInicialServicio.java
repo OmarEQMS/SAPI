@@ -16,6 +16,7 @@ interface DocumentoInicialServicio {
     public DocumentoInicial mostrarDocumentoInicial(int idDocumentoInicial);
     public List<DocumentoInicial> mostrarDocumentoInicial();
     public int agregarDocumentoInicial(DocumentoInicial documentoInicial);
+    public int agregarDocumentoInicialPreconsulta(DocumentoInicial documentoInicial);
     public boolean borradoLogicoDocumentoInicial(int idDocumentoInicial);
     public boolean actualizarDocumentoInicial(DocumentoInicial documentoInicial);
 }
