@@ -189,7 +189,7 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-4">
                                 <label for="myEmail">Correo</label>
-                                <input type="email" class="form-control" id="myEmail" value="${sessionScope.correo}"  required
+                                <input type="email" class="form-control" id="myEmail1" value="${sessionScope.correo}" required
                                     />
                                 <span class="text-danger" id="error-correo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
                             </div>
@@ -265,10 +265,20 @@
                                 <input type="password" class="form-control" id="password" placeholder="Ingresa tu nueva contraseña" />
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <span class="text-danger" id="error-contraseña">La contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
+                            </div>
+                        </div>
                         <div class="form-row">
                             <div class="form-group col-12">
                                 <label for="name">Confirma tu contraseña</label>
                                 <input type="password" class="form-control" id="password2" placeholder="Reingresa tu nueva contraseña" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <span class="text-danger" id="error-notEqualPasswords">Las contraseñas no son iguales.</span>
                             </div>
                         </div>
                     </div>
@@ -283,7 +293,7 @@
 
     </div>
 
-<script src="js/validacionesPotencial.js" type="module"></script>
+<script src="js/validacionesCuentaPotencial.js" type="module"></script>
 </body>
 
 </html>

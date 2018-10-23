@@ -19,14 +19,16 @@ public class Cita {
 	private int idEstadoCita;
 	private int idImportanciaCita;
 	private int idTipoTratamiento;
-	private int idEstudio;
-        private int idMotivoConsulta;
-	private Timestamp fechaProgramada;
-        private Timestamp fechaReal;
+	private Integer idEstudio;
+        private Integer idMotivoConsulta;
+	private String fechaProgramada;
+        private String fechaReal;
         private byte[] archivo;
         private String hospitalProcedencia;
-        private Timestamp fechaSolicitud;
+        private String fechaSolicitud;
 	private int estatus;
+        private int idEdificio;
+        private int idPiso;
 
 
     public Cita() {}
@@ -70,11 +72,11 @@ public class Cita {
         this.hospitalProcedencia = hospitalProcedencia;
     }
 
-    public Timestamp getFechaSolicitud() {
+    public String getFechaSolicitud() {
         return fechaSolicitud;
     }
 
-    public void setFechaSolicitud(Timestamp fechaSolicitud) {
+    public void setFechaSolicitud(String fechaSolicitud) {
         this.fechaSolicitud = fechaSolicitud;
     }
 
@@ -86,11 +88,11 @@ public class Cita {
         this.idTipoTratamiento = idTipoTratamiento;
     }
 
-    public int getIdEstudio() {
+    public Integer getIdEstudio() {
         return idEstudio;
     }
 
-    public void setIdEstudio(int idEstudio) {
+    public void setIdEstudio(Integer idEstudio) {
         this.idEstudio = idEstudio;
     }
 
@@ -126,11 +128,11 @@ public class Cita {
         this.idEstadoCita = idEstadoCita;
     }
 
-    public int getIdMotivoConsulta() {
+    public Integer getIdMotivoConsulta() {
         return idMotivoConsulta;
     }
 
-    public void setIdMotivoConsulta(int idMotivoConsulta) {
+    public void setIdMotivoConsulta(Integer idMotivoConsulta) {
         this.idMotivoConsulta = idMotivoConsulta;
     }
 
@@ -152,20 +154,36 @@ public class Cita {
         this.estatus = estatus;
     }
 
-    public Timestamp getFechaProgramada() {
+    public String getFechaProgramada() {
         return fechaProgramada;
     }
 
-    public void setFechaProgramada(Timestamp fechaProgramada) {
+    public void setFechaProgramada(String fechaProgramada) {
         this.fechaProgramada = fechaProgramada;
     }
 
-    public Timestamp getFechaReal() {
+    public String getFechaReal() {
         return fechaReal;
     }
 
-    public void setFechaReal(Timestamp fechaReal) {
+    public void setFechaReal(String fechaReal) {
         this.fechaReal = fechaReal;
+    }
+    
+    public int getIdEdificio(){
+        return idEdificio;
+    }
+    
+    public void setIdEdificio(int idEdificio) {
+        this.idEdificio = idEdificio;
+    }
+    
+    public int getIdPiso(){
+        return idPiso;
+    }
+    
+    public void setIdPiso(int idPiso) {
+        this.idPiso = idPiso;
     }
     
 }

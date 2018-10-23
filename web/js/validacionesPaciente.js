@@ -11,9 +11,9 @@ import {validation} from './validaciones.js';
     //1.- Correo
     $('#myEmail').on('change', function(){
         if(validation.isValidEmail($('#myEmail'))){
-            $('.error-correo').hide();
+            $('#error-correo').hide();
         }else{
-            $('.error-correo').show();
+            $('#error-correo').show();
         }
     }); 
 

@@ -210,7 +210,7 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-4">
                                 <label for="myEmail">Correo</label>
-                                <input type="email" class="form-control" id="myEmail" placeholder="Introduzca su correo" required />
+                                <input type="email" class="form-control" id="myEmail" placeholder="Introduce su correo" required />
                                 <span class="text-danger error-correo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
                             </div>
                             <div class="col-4">
@@ -278,7 +278,7 @@
                         <div id="tratamientos">
                             <div class="form-group row justify-content-center contenedor-tratamientos">
                                 <div class="col-7">
-                                    <select id="tratamiento" class="form-control">
+                                    <select class="tratamiento" class="form-control">
                                         <option disabled selected>Elegir Tratamiento</option>
                                         <option value="">Quimioterapia antes de la cirugía</option>
                                         <option value="">Quimioterapia después de la cirugía</option>

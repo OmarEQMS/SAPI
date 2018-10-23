@@ -7,6 +7,7 @@ package mx.itesm.sapi.service;
 
 import java.util.List;
 import mx.itesm.sapi.bean.calendario.FullCalendar;
+import mx.itesm.sapi.bean.gestionPaciente.Cita;
 
 /**
  *
@@ -15,6 +16,6 @@ import mx.itesm.sapi.bean.calendario.FullCalendar;
 public interface CalendarioServicio {
     
     List<FullCalendar> mostrarEventos(int idPaciente);
-    public int agregarEvento(FullCalendar calendario);
+    public int agregarEvento(Cita cita, String edificio);
     
 }
