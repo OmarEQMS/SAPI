@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.itesm.sapi.service.gestionTratamiento;
+package mx.itesm.sapi.service.persona;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -11,17 +11,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
+import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.util.Conexion;
 
 /**
  *
- * @author Admin
+ * @author Diego
  */
-public class TipoTratamientoServiceImpl implements TipoTratamientoService {
-    
+public class PicServicioImpl implements PicServicio {
+
     @Override
-    public int agregarTipoTratamiento(TipoTratamiento tipoTratamiento) {
+    public int agregarPic(Pic pic) {
                 
         Connection conn;
         CallableStatement cstmt;
@@ -31,7 +31,7 @@ public class TipoTratamientoServiceImpl implements TipoTratamientoService {
         int id = -1;
         
         //Aquí va el call del procedure
-        String stProcedure="CALL agregarTipoTratamiento(?,?,?)";
+        String stProcedure="CALL agregarPic(?,?,?,?)";
         
         try{
             conn = Conexion.getConnection();
@@ -39,26 +39,23 @@ public class TipoTratamientoServiceImpl implements TipoTratamientoService {
             
             //Aquí van los sets
             
-            cstmt.setInt(1,tipoTratamiento.getIdTratamiento());
-            cstmt.setString(2,tipoTratamiento.getNombre());
-            cstmt.setInt(3,tipoTratamiento.getEstatus());
+            cstmt.setInt(1,pic.getIdPersona());
+            cstmt.setBinaryStream(2,pic.getContenido());
+            cstmt.setInt(3,pic.getTamano());
+            cstmt.setString(4,pic.getTipo());
             
-            cstmt.executeUpdate();
+            rs = cstmt.executeQuery();
             
-            rs = cstmt.getGeneratedKeys();
             rs.next();
             
-            id = cstmt.getInt(1);
-           
+            id = rs.getInt(1);
+            
             rs.close();
             cstmt.close();
             conn.close();
             
         }catch(SQLException ex){
             id = -1;
-            System.out.println("IdTratamiento: " + tipoTratamiento.getIdTratamiento());
-            System.out.println("Nombre: " + tipoTratamiento.getNombre());
-            System.out.println("Estatus: " + tipoTratamiento.getEstatus());
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
         }
@@ -66,55 +63,57 @@ public class TipoTratamientoServiceImpl implements TipoTratamientoService {
     }
 
     @Override
-    public TipoTratamiento mostrarTipoTratamiento(int idTipoTratamiento) {
+    public Pic mostrarPic(int idPersona) {
         
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
         
-        TipoTratamiento tipoTratamiento = null;
+        Pic pic = null;
         
         //Call del stored procedure
-        String stProcedure="CALL mostrarTipoTratamiento(?)";
+        String stProcedure="CALL mostrarPic(?)";
         
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            tipoTratamiento = new TipoTratamiento();
+            pic = new Pic();
             
-            cstmt.setInt(1, idTipoTratamiento);
+            cstmt.setInt(1, idPersona);
             rs = cstmt.executeQuery();
             
             rs.next();
-            tipoTratamiento.setIdTipoTratamiento(rs.getInt(1));
-            tipoTratamiento.setIdTratamiento(rs.getInt(2));
-            tipoTratamiento.setNombre(rs.getString(3));
-            tipoTratamiento.setEstatus(rs.getInt(4));
+            pic.setIdPic(rs.getInt(1));
+            pic.setIdPersona(rs.getInt(2));
+            pic.setContenido(rs.getBinaryStream(3));
+            pic.setTamano(rs.getInt(4));
+            pic.setTipo(rs.getString(5));
+            pic.setEstatus(rs.getInt(6));
             
             rs.close();
             cstmt.close();
             conn.close();
            
         }catch(SQLException ex){
-            tipoTratamiento = null;
-            System.out.println("ID: " + idTipoTratamiento);
+            pic = null;
+            System.out.println("IDPersona: " + idPersona);
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
         }
-        return tipoTratamiento;
+        return pic;
     }
 
     @Override
-    public List<TipoTratamiento> mostrarTipoTratamiento() {
+    public List<Pic> mostrarPic() {
         
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
         
-        List<TipoTratamiento> tiposTratamiento = null;
+        List<Pic> tiposTratamiento = null;
         
         //Call del stored procedure
-        String stProcedure="CALL mostrarListaTipoTratamiento()";
+        String stProcedure="CALL mostrarListaPic(?)";
         
         try{
             conn = Conexion.getConnection();
@@ -122,16 +121,18 @@ public class TipoTratamientoServiceImpl implements TipoTratamientoService {
             tiposTratamiento = new ArrayList<>();
             
             rs = cstmt.executeQuery();
-            TipoTratamiento tipoTratamiento;
+            Pic pic;
             
             while(rs.next()){
-                tipoTratamiento = new TipoTratamiento();
-                tipoTratamiento.setIdTipoTratamiento(rs.getInt(1));
-                tipoTratamiento.setIdTratamiento(rs.getInt(2));
-                tipoTratamiento.setNombre(rs.getString(3));
-                tipoTratamiento.setEstatus(rs.getInt(4));
+                pic = new Pic();
+                pic.setIdPic(rs.getInt(1));
+                pic.setIdPersona(rs.getInt(2));
+                pic.setContenido(rs.getBinaryStream(3));
+                pic.setTamano(rs.getInt(4));
+                pic.setTipo(rs.getString(5));
+                pic.setEstatus(rs.getInt(6));
 
-                tiposTratamiento.add(tipoTratamiento);
+                tiposTratamiento.add(pic);
             }
             
             rs.close();
@@ -147,7 +148,7 @@ public class TipoTratamientoServiceImpl implements TipoTratamientoService {
     }
 
     @Override
-    public boolean actualizarTipoTratamiento(TipoTratamiento tipoTratamiento) {
+    public boolean actualizarPic(Pic pic) {
         
         Connection conn;
         CallableStatement cstmt;
@@ -156,17 +157,19 @@ public class TipoTratamientoServiceImpl implements TipoTratamientoService {
         boolean exito = false;
         
         //Call del store procedure
-        String stProcedure="CALL actualizarTipoTratamiento(?,?,?,?)";
+        String stProcedure="CALL actualizarPic(?,?,?,?)";
         
         
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setInt(1, tipoTratamiento.getIdTipoTratamiento());
-            cstmt.setInt(2, tipoTratamiento.getIdTratamiento());
-            cstmt.setString(3, tipoTratamiento.getNombre());
-            cstmt.setInt(4, tipoTratamiento.getEstatus());
+            cstmt.setInt(1, pic.getIdPic());
+            cstmt.setInt(2, pic.getIdPersona());
+            cstmt.setBinaryStream(3, pic.getContenido());
+            cstmt.setInt(4, pic.getTamano());
+            cstmt.setString(5, pic.getTipo());
+            cstmt.setInt(6, pic.getEstatus());
             
             rs = cstmt.executeQuery();
             
@@ -180,10 +183,6 @@ public class TipoTratamientoServiceImpl implements TipoTratamientoService {
             
         }catch(SQLException ex){
             exito = false;
-            System.out.println("IdTipoTratamiento: " + tipoTratamiento.getIdTipoTratamiento());
-            System.out.println("IdTratamiento: " + tipoTratamiento.getIdTratamiento());
-            System.out.println("Nombre: " + tipoTratamiento.getNombre());
-            System.out.println("Estatus: " + tipoTratamiento.getEstatus());
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
         }
@@ -191,7 +190,7 @@ public class TipoTratamientoServiceImpl implements TipoTratamientoService {
     }
 
     @Override
-    public boolean borradoLogicoTipoTratamiento(int idTipoTratamiento) {
+    public boolean borradoLogicoPic(int idPic) {
         
         Connection conn;
         CallableStatement cstmt;
@@ -200,13 +199,13 @@ public class TipoTratamientoServiceImpl implements TipoTratamientoService {
         boolean exito = false;
         
         //Call del store procedure
-        String stProcedure="CALL borradoLogicoTipoTratamiento(?)";
+        String stProcedure="CALL borradoLogicoPic(?)";
         
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setInt(1, idTipoTratamiento);
+            cstmt.setInt(1, idPic);
             
             rs = cstmt.executeQuery();
             
@@ -222,4 +221,5 @@ public class TipoTratamientoServiceImpl implements TipoTratamientoService {
         }
         return exito;
     }    
+    
 }

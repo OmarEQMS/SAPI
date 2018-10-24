@@ -1,4 +1,8 @@
 $(document).ready(function () {
+    
+    
+
+
 
     $("#msj-error").hide();
     $("#msj-cargando").hide();
@@ -75,6 +79,9 @@ $(document).ready(function () {
      */
 
     $('#btn-login').on('click', function () {
+        
+       
+        
         var usu = $("#user");
         var pass = $("#password");
         $.get("LoginController", {

@@ -4,6 +4,7 @@
     Author     : urieldiaz
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -68,8 +69,8 @@
                 </div>
                 <div class="row justify-content-center mb-2">
                     <div class="col-6 text-center">
-                        <span class="textoSidebar m-0">${sessionScope.nombre}</span>
-                        <span class="textoSidebar userSidebar m-0">${sessionScope.cuenta}</span>
+                        <span class="textoSidebar m-0">Julio Badillo</span>
+                        <span class="textoSidebar userSidebar m-0">@juliobadillo</span>
                     </div>
                 </div>
                 <div class="row justify-content-center">
@@ -129,7 +130,7 @@
 
                     <span class="pull-right d-block">
                         <span style="color:#6c6f80">Bienvenido, </span>
-                        <span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre}
+                        <span style="font-weight:700; color:#6c6f80;">Julio Badillo
                         </span>
                         <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
 
@@ -210,12 +211,12 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-4">
                                 <label for="myEmail">Correo</label>
-                                <input type="email" class="form-control" id="myEmail" placeholder="Introduzca su correo" required />
+                                <input type="email" class="form-control" id="correo" value="${sessionScope.correo}" placeholder="Introduzca su correo" required />
                                 <span class="text-danger error-correo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
                             </div>
                             <div class="col-4">
                                 <label for="numExpediente">Número de Expediente</label>
-                                <input type="text" class="form-control" id="numExpediente" placeholder="Introduce numero de expediente" />
+                                <input type="text" class="form-control" id="noExpediente" placeholder="Introduce numero de expediente" />
                                 <span class="text-danger" id="error-noExpediente">El formato no es correcto, deben ser 9 caracteres.</span>
                             </div>
                         </div>
@@ -224,7 +225,7 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-4">
                                 <label for="telephoneNum">Teléfono</label>
-                                <input type="text" class="form-control" id="telephoneNum" placeholder="Introduce teléfono"
+                                <input type="text" class="form-control" id="telefono" placeholder="Introduce teléfono"
                                  required />
                                  <span class="text-danger" id="error-tel">El formato no es correcto, deben ser 10 dígitos.</span>
                             </div>
@@ -233,17 +234,12 @@
 
                                 <label class="form-check-label" for="etapaClinica">Etapa Clínica</label>
                                 <div class="input-group">
-                                    <select class="form-control mt-2" id="estapaClinica">
+                                    <select class="form-control mt-2" id="etapaClinica">
                                         <option disabled selected>Seleccione etapa clínica</option>
-                                        <option>Estadio 0</option>
-                                        <option>In Situ</option>
-                                        <option>Estadio I</option>
-                                        <option>Estadio II A</option>
-                                        <option>Estadio II B</option>
-                                        <option>Estadio III A</option>
-                                        <option>Estadio III B</option>
-                                        <option>Estadio III C</option>
-                                        <option>Estadio IV</option>
+                                        <c:forEach items="${etapas}" var="etapa">  
+                                        <option value="<c:out value='${etapa.idEtapaClinica}'/>" ><c:out value='${etapa.nombre}'/> </option>
+                                        </c:forEach>
+                                        
                                     </select>
                                 </div>
 
@@ -253,7 +249,7 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-4">
                                 <label>Tipo de sangre</label>
-                                <input type="text" class="form-control" id="tipo-sangre" placeholder="Introduce tipo de sangre" />
+                                <input type="text" class="form-control" id="tipoSangre" placeholder="Introduce tipo de sangre" />
                                 <span class="text-danger" id="error-tipoSangre">El formato no es correcto.</span>
                             </div>
                             <div class="col-4">
@@ -278,19 +274,10 @@
                         <div id="tratamientos">
                             <div class="form-group row justify-content-center contenedor-tratamientos">
                                 <div class="col-7">
-                                    <select id="tratamiento" class="form-control">
-                                        <option disabled selected>Elegir Tratamiento</option>
-                                        <option value="">Quimioterapia antes de la cirugía</option>
-                                        <option value="">Quimioterapia después de la cirugía</option>
-                                        <option value="">Radioterapia antes de la cirugía</option>
-                                        <option value="">Radioterapia después de la cirugía</option>
-                                        <option value="">Hormonoterapia antes de la cirugía</option>
-                                        <option value="">Hormonoterapia después de la cirugía</option>
-                                        <option value="">Mastectomía</option>
-                                        <option value="">Cirugía conservadora</option>
-                                        <option value="">Reconstrucción</option>
-                                        <option value="">Paliativo</option>
-                                        <option value="">Ya terminé tratamiento</option>
+                                    <select id="tratamiento" class="form-control dataTratamiento">
+                                        <c:forEach items="${tratamientos}" var="tratamiento">  
+                                     <option value=<c:out value='${tratamiento.idTipoTratamiento}'/>><c:out value='${tratamiento.nombre}'/> </option>
+                                       </c:forEach>
                                     </select>
                                 </div>
                                 <div class="col-1">
@@ -304,7 +291,7 @@
                         <!-- 5 -->
                         <div class="form-group row justify-content-center mt-4">
                             <div class="col-4">
-                                <button type="button" class="btn btn-outline-success btn-block" style="border-radius:20px">
+                                <button type="button" class="btn btn-outline-success btn-block" id="guardarCambios" style="border-radius:20px">
                                     <i class="fas fa-save mr-1"></i>
                                     Guardar Cambios</button>
                             </div>

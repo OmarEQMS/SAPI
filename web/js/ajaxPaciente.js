@@ -1,5 +1,10 @@
 $(document).ready(function () {
 
+   
+ 
+   //Agregar contenido dinamico de etapaClinica
+
+
 
     //REGISTRAR CITA
     $('#btn-citaRegistrar').on('click', () => {
@@ -121,5 +126,77 @@ $(document).ready(function () {
             }
         );
     });
+    //
+    function getValues(selector) {
+        var els = document.querySelectorAll(selector);
+        return [].map.call(els, el => el.value);
+    }
+    
+    
+    //PARA GUARDAR CAMBIOS
+    $('#guardarCambios').on('click', function () {
+        
+        var data = [] = getValues('.dataTratamiento');
+        
+       // JSON.
+        // console.log(data);
+        
+         $.ajax({
+             url:'PacienteController',
+             cache:false,
+             method: 'POST',
+             data:{
+                 key:"cambiarDatos",
+                 correo : $("#correo").val(),
+                 telefono : $("#telefono").val(),
+                 noExpediente : $("#noExpediente").val(),
+                 etapaClinica: $("#etapaClinica").val(),
+                 tipoSangre: $("#tipoSangre").val(),
+                 tratamientos : data
+             }
+                     
+         })
+         
+         .done(function (response) {
+                    console.log(response);
+
+
+                    swal({
+                        title: 'Buen Trabajo',
+                        text: "Cambios guardados correctamente",
+                        type: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok'
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.reload();
+                        };
+                    });
+                })
+                .fail(function (xhr, textStatus, errorThrown) {
+                    console.log(xhr.responseText);
+                });
+        
+        
+        
+    });
+    
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#ImagenPerfil').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#file-input").on('change', function () {
+        console.log("Llegó :)");
+        readURL(this);
+    });
+    
     
 });

@@ -15,8 +15,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import mx.itesm.sapi.bean.calendario.FullCalendar;
+import mx.itesm.sapi.bean.diagnostico.EtapaClinica;
+import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
+import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
+import mx.itesm.sapi.bean.gestionTratamiento.Tratamiento;
+import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.Persona;
+import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.CalendarioServicioImpl;
+import mx.itesm.sapi.service.diagnostico.EtapaClinicaServiceImpl;
+import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
+import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.TratamientoServiceImpl;
+import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.service.persona.PersonaServicioImpl;
+import mx.itesm.sapi.service.persona.PicServicioImpl;
 
 /**
  *
@@ -37,40 +54,143 @@ public class PacienteController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-       //response.setContentType("text/html;charset=UTF-8");
-
+        response.setContentType("text/html;charset=UTF-8");
         String key = request.getParameter("key");
         String idPaciente = request.getParameter("idPaciente");
-        
+
         PrintWriter out = response.getWriter();
 
+        System.out.println("la key esssss");
+        System.out.println(key);
         switch (key) {
 
             case "obtenerEventos":
-                
+
                 System.out.println("El id paciente es:" + idPaciente);
-                
+
                 //Servicio
                 CalendarioServicioImpl csi = new CalendarioServicioImpl();
-                
+
                 //Lista Calendarios
                 List<FullCalendar> calendarios = csi.mostrarEventos(Integer.parseInt(idPaciente));
-                
+
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
-                
-                
+
                 out.print(new Gson().toJson(calendarios));
-                
 
                 break;
-                
+
             case "agregarEvento":
-                
-               
+
                 out.print("hola");
-                
+
                 break;
+
+            case "cambiarDatos": {
+
+                String correo = request.getParameter("correo");
+                String noExpediente = request.getParameter("noExpediente");
+                String telefono = request.getParameter("telefono");
+                String etapaClinica = request.getParameter("etapaClinica");
+                int tipoSangre = Integer.parseInt(request.getParameter("tipoSangre"));
+               // Part part = request.getPart("file-image");
+                String array[] = request.getParameterValues("tratamientos[]");
+
+                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+                if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
+                    // request.setAttribute("status", "");
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                    System.out.println("estoy en el if");
+                    return;
+                } else { //Si tiene sesion iniciada
+                    int keyRol = (int) sesion.getAttribute("idRol");
+                    System.out.println("estoy en el ELSE antes del case");
+                    // switch (keyRol) {
+                    //case 1: {
+                    //System.out.println("estoy en el case 1");
+                    //No se valida el telefono ni el correo aquí? Lo validamos nosotros o el front?
+                    PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
+                    Persona persona = personaServicioImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
+
+                    PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
+                    Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial((int) sesion.getAttribute("idCuenta"));
+
+                    int idPaciente2 = pacienteServicioImpl.mostrarPacientePotencial((int) sesion.getAttribute("idCuenta")).getIdPaciente();
+
+                    RegistroDiagnosticoServiceImpl registroDiagnosticoServicioImpl = new RegistroDiagnosticoServiceImpl();
+                    System.out.println("El idPaciente despues de registro: " + idPaciente2);
+                    RegistroDiagnostico registroDiagnostico = registroDiagnosticoServicioImpl.mostrarRegistroDiagnosticoPaciente(idPaciente2);
+                    
+                    System.out.println("Ya pase registro");
+                    
+                  /*  
+                     if ((int) part.getSize() > 0) {
+                                PicServicioImpl picServiceImpl = new PicServicioImpl();
+                                Pic pic = new Pic();
+
+                                pic.setIdPersona((int) sesion.getAttribute("idPersona"));
+                                pic.setContenido(part.getInputStream());
+                                pic.setTamano((int) part.getSize());
+                                pic.setTipo(part.getContentType());
+
+                                picServiceImpl.agregarPic(pic);
+                            }
+                    */
+                    
+                    
+                    persona.setCorreo(correo);
+                    persona.setTelefono(telefono);
+                    persona.setIdTipoSangre(tipoSangre);
+
+                    System.out.println("lo que tengo es:");
+                    System.out.println(persona.getCorreo());
+                    System.out.println(persona.getTelefono());
+
+                    System.out.println("la etapa es" + etapaClinica);
+                    registroDiagnostico.setIdEtapaClinica(Integer.parseInt(etapaClinica));
+                    paciente.setExpediente(noExpediente);
+
+                    personaServicioImpl.actualizarPersona(persona);
+                    pacienteServicioImpl.actualizarPaciente(paciente);
+
+                    if (registroDiagnosticoServicioImpl.actualizarRegistroDiagnostico(registroDiagnostico)) {
+                        System.out.println("Si se actualiza");
+                    } else {
+                        System.out.println("No se hizo compa");
+                    }
+
+                    sesion.setAttribute("correo", persona.getCorreo());
+                    sesion.setAttribute("telefono", persona.getTelefono());
+
+                    request.setAttribute("correo", sesion.getAttribute("correo"));
+                    request.setAttribute("telefono", sesion.getAttribute("telefono"));
+
+                    request.getRequestDispatcher("/WEB-INF/potencial/cuentaPaciente.jsp").forward(request, response);
+                    //break;
+                    // }
+
+                    //}
+                }
+            }
+            break;
+
+            case "getTratamientos": {
+
+                TipoTratamientoServiceImpl tratamientoServicio = new TipoTratamientoServiceImpl();
+
+                List<TipoTratamiento> tratamientos = tratamientoServicio.mostrarTipoTratamiento();
+
+                if (tratamientos.size() == 0) {
+                    out.print("No hay tratamientos");
+                } else {
+
+                    Gson json = new Gson();
+                    out.print(json.toJson(tratamientos));
+                }
+
+            }
+            break;
 
         }
 

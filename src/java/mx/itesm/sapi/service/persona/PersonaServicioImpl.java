@@ -86,7 +86,6 @@ public class PersonaServicioImpl implements PersonaServicio {
             persona.setIdMunicipio(rs.getInt("idMunicipio"));
             persona.setIdEstadoCivil(rs.getInt("idEstadoCivil"));
             persona.setIdDireccion(rs.getInt("idDireccion"));
-            persona.setImagen(rs.getBinaryStream("imagen"));
             persona.setEdad(rs.getInt("edad"));
             persona.setEstatus(rs.getInt("estatus"));
 
@@ -222,7 +221,7 @@ public class PersonaServicioImpl implements PersonaServicio {
         boolean exito = false;
 
         //Call del store procedure
-        String stProcedure = "CALL actualizarPersona(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL actualizarPersona(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
@@ -241,8 +240,7 @@ public class PersonaServicioImpl implements PersonaServicio {
             cstmt.setInt(11, persona.getIdMunicipio());
             cstmt.setInt(12, persona.getIdEstadoCivil());
             cstmt.setInt(13, persona.getIdDireccion());
-            cstmt.setBinaryStream(14,persona.getImagen());
-            cstmt.setInt(15, persona.getEdad());
+            cstmt.setInt(14, persona.getEdad());
 
 
             rs = cstmt.executeQuery();

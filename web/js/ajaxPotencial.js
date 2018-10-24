@@ -263,6 +263,9 @@ $(document).ready(function () {
         
         var form = $("form")[0];
         var datos = new FormData(form);
+        datos.append("correo",corr);
+        datos.append("telefono",tel);
+        datos.append("key","guardarCambios");
         
         $.get("PotencialController", {
             key: "guardarCambios",

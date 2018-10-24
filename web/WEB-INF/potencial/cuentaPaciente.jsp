@@ -212,7 +212,7 @@
                         <!-- 5 -->
                         <div class="form-group row justify-content-center mt-4">
                             <div class="col-4">
-                                <button type="button" id = "guardarCambios" class="btn btn-outline-success btn-block" style="border-radius:20px"><i
+                                <button type="button" id = "guardarCambios"  class="btn btn-outline-success btn-block" style="border-radius:20px"><i
                                         class="fas fa-save mr-1"></i>
                                     Guardar Cambios</button>
                             </div>

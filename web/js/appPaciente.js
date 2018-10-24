@@ -2,6 +2,9 @@
 
 $(document).ready(function () {
     
+    
+    
+    
     //Esconder mensajes de error en cuenta
     $('.error-correo').hide();
     $('#error-noExpediente').hide();
@@ -95,22 +98,55 @@ $(document).ready(function () {
 
     //AGREGAR Y QUITAR TRATAMIENTOS
     $('#add-Tratamiento').on('click', function(){
+        
+        
+        //Ajax para treaer otra vez los tratamientos en JSON
+        $.ajax({
+            url: 'PacienteController',
+            method: 'POST',
+            cache: false,
+            data: {key: 'getTratamientos'},
+            success: function(response){
+                
+                var data = JSON.parse(response);
+                
+                console.log(data);
+                
+                var option='';
+                data.forEach(function(element, index){
+                    
+                    console.log("Nombre: " + element.nombre);
+                    
+                    option+= `<option value="${element.idTipoTratamiento}">${element.nombre}</option>`;
+                    
+                });
+                
+                console.log(option);
+                
+               
+                    var plantilla = `<div class="form-group row justify-content-center contenedor-tratamientos">
+        <div class="col-7">
+            <select id="tratamiento" class="form-control dataTratamiento">
+                <option disabled selected>Elegir Tratamiento</option>` + 
+                option +
+           ` </select>
+        </div>
+            <div class="col-1">
+                <button type="button" id="remove-Tratamiento" class="btn btn-outline-danger" style="border-radius: 25px;">
+                <i class="fas fa-times"></i>
+            </div>
 
-        var plantilla = `<div class="form-group row justify-content-center contenedor-tratamientos">
+    </div>`;
+                    
+                  
+                    $('#tratamientos').append(plantilla);
+                    
+                
+         /*       var plantilla = `<div class="form-group row justify-content-center contenedor-tratamientos">
         <div class="col-7">
             <select id="tratamiento" class="form-control">
                 <option disabled selected>Elegir Tratamiento</option>
-                <option value="">Quimioterapia antes de la cirugía</option>
-                <option value="">Quimioterapia después de la cirugía</option>
-                <option value="">Radioterapia antes de la cirugía</option>
-                <option value="">Radioterapia después de la cirugía</option>
-                <option value="">Hormonoterapia antes de la cirugía</option>
-                <option value="">Hormonoterapia después de la cirugía</option>
-                <option value="">Mastectomía</option>
-                <option value="">Cirugía conservadora</option>
-                <option value="">Reconstrucción</option>
-                <option value="">Paliativo</option>
-                <option value="">Ya terminé tratamiento</option>
+                <option value="${response.id}">${response.nombreTratamiento}</option>
             </select>
         </div>
             <div class="col-1">
@@ -119,9 +155,19 @@ $(document).ready(function () {
             </div>
 
     </div>`;
+                
+                $('#tratamientos').append(plantilla);
+                
+                */
+                
+            }
+            
+        });
 
-        $('#tratamientos').append(plantilla);
+       
 
+       
+ 
     });
 
     $('body').on('click', '#remove-Tratamiento', function(){
