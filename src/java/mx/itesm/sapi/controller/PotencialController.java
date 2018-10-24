@@ -179,6 +179,7 @@ public class PotencialController extends HttpServlet {
                                 String base64String = Base64.getEncoder().encodeToString(bytes);
 
                                 sesion.setAttribute("base64Img", base64String);
+                                System.out.println("Debió actualizar la imagen en la sesión");
                             }
 
                             persona.setCorreo(correo);

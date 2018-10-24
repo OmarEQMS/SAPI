@@ -250,7 +250,7 @@ $(document).ready(function () {
                 }
         );
     });
-    
+
     $('#irAMisCitas').on('click', function () {
         $.post("SAPI", {
             //CAMBIAR ESTE FILE
@@ -270,7 +270,7 @@ $(document).ready(function () {
                 }
         );
     });
-    
+
     $('#irACuenta').on('click', function () {
         $.post("SAPI", {
             file: "potencial/cuentaPaciente.jsp"
@@ -309,35 +309,35 @@ $(document).ready(function () {
                 }
         );
     });
-/*
-    $('#guardarCambios').on('click', function() {
-       console.log("Presionó GuardarCambios") 
-        var corr = $("#myEmail");
-        var tel = $("#telephoneNum");
-        var input = $("#file-input")
-        $.get("PotencialController", {
-                key: "guardarCambios",
-                file: "potencial/cuentaPaciente.jsp",
-                input: input.val(),
-                correo: corr.val(),
-                telefono: tel.val()
-            },
-            //Esto de aquí abajo para que?
-            
-            function (response, status, xhr) {
-                console.log(response);
-                if (status == "success") {
-                    if (response == "error") {
-                        $("#msj-error").show();
-                    } else {
-                        document.open("text/html", "replace");
-                        document.write(response);
-                        document.close();
-                    }
-                }
-            }
-        );
-    });*/
+    /*
+     $('#guardarCambios').on('click', function() {
+     console.log("Presionó GuardarCambios") 
+     var corr = $("#myEmail");
+     var tel = $("#telephoneNum");
+     var input = $("#file-input")
+     $.get("PotencialController", {
+     key: "guardarCambios",
+     file: "potencial/cuentaPaciente.jsp",
+     input: input.val(),
+     correo: corr.val(),
+     telefono: tel.val()
+     },
+     //Esto de aquí abajo para que?
+     
+     function (response, status, xhr) {
+     console.log(response);
+     if (status == "success") {
+     if (response == "error") {
+     $("#msj-error").show();
+     } else {
+     document.open("text/html", "replace");
+     document.write(response);
+     document.close();
+     }
+     }
+     }
+     );
+     });*/
 
 
     $('#guardarCambios').on('click', function () {
@@ -359,31 +359,27 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log(response);
-                //alert("El archivo se cargó correctamente");
+                $.post("SAPI", {
+                    file: "potencial/cuentaPaciente.jsp"
+                },
+                        function (response, status, xhr) {
+                            console.log("El ajax fue exitoso!!-----------------------");
+                            if (status == "success") {
+                                if (response == "error") {
+                                    $("#msj-error").show();
+                                } else {
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
+                                }
+                            }
+                        }
+                );
             },
             error: function (xhr) {
                 //alert(xhr.statusText);
             }
         });
-        
-        $.post("SAPI", {
-            file: "potencial/cuentaPaciente.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log(response);
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
-                }
-        );
-        
     });
 
 
