@@ -7,7 +7,10 @@ package mx.itesm.sapi.controller;
 
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import static java.lang.Integer.parseInt;
+import java.util.Base64;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -35,6 +38,7 @@ import mx.itesm.sapi.service.gestionTratamiento.TratamientoServiceImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -94,16 +98,21 @@ public class PacienteController extends HttpServlet {
                 break;
 
             case "cambiarDatos": {
-
+                
                 String correo = request.getParameter("correo");
                 String noExpediente = request.getParameter("noExpediente");
                 String telefono = request.getParameter("telefono");
                 String etapaClinica = request.getParameter("etapaClinica");
                 int tipoSangre = Integer.parseInt(request.getParameter("tipoSangre"));
-               // Part part = request.getPart("file-image");
-                String tratamientos[] = request.getParameterValues("datosTratamiento");
+                String tratamientos = request.getParameter("datosTratamiento");
                 
-                System.out.println(tratamientos[0]);
+                System.out.println("pruebas el español españa");
+                System.out.println(tratamientos);
+               
+                
+                Part part = request.getPart("file-image");
+                
+               
 
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
                 if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
@@ -114,7 +123,7 @@ public class PacienteController extends HttpServlet {
                 } else { //Si tiene sesion iniciada
                     int keyRol = (int) sesion.getAttribute("idRol");
                     System.out.println("estoy en el ELSE antes del case");
-                    // switch (keyRol) {
+                    //switch (keyRol) {
                     //case 1: {
                     //System.out.println("estoy en el case 1");
                     //No se valida el telefono ni el correo aquí? Lo validamos nosotros o el front?
@@ -124,16 +133,7 @@ public class PacienteController extends HttpServlet {
                     PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                     Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial((int) sesion.getAttribute("idCuenta"));
 
-                    int idPaciente2 = pacienteServicioImpl.mostrarPacientePotencial((int) sesion.getAttribute("idCuenta")).getIdPaciente();
-
-                    RegistroDiagnosticoServiceImpl registroDiagnosticoServicioImpl = new RegistroDiagnosticoServiceImpl();
-                    System.out.println("El idPaciente despues de registro: " + idPaciente2);
-                    RegistroDiagnostico registroDiagnostico = registroDiagnosticoServicioImpl.mostrarRegistroDiagnosticoPaciente(idPaciente2);
-                    
-                    System.out.println("Ya pase registro");
-                    
-                  /*  
-                     if ((int) part.getSize() > 0) {
+                    if ((int) part.getSize() > 0) {
                                 PicServicioImpl picServiceImpl = new PicServicioImpl();
                                 Pic pic = new Pic();
 
@@ -143,9 +143,22 @@ public class PacienteController extends HttpServlet {
                                 pic.setTipo(part.getContentType());
 
                                 picServiceImpl.agregarPic(pic);
+                                
+                                InputStream imagen = pic.getContenido();
+                                byte[] bytes = IOUtils.toByteArray(imagen);
+                                String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                sesion.setAttribute("base64Img", base64String);
+                                System.out.println("Debió actualizar la imagen en la sesión");
                             }
-                    */
                     
+                    int idPaciente2 = pacienteServicioImpl.mostrarPacientePotencial((int) sesion.getAttribute("idCuenta")).getIdPaciente();
+
+                    RegistroDiagnosticoServiceImpl registroDiagnosticoServicioImpl = new RegistroDiagnosticoServiceImpl();
+                    System.out.println("El idPaciente despues de registro: " + idPaciente2);
+                    RegistroDiagnostico registroDiagnostico = registroDiagnosticoServicioImpl.mostrarRegistroDiagnosticoPaciente(idPaciente2);
+                    
+                    System.out.println("Ya pase registro");
                     
                     persona.setCorreo(correo);
                     persona.setTelefono(telefono);

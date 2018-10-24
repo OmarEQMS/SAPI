@@ -139,7 +139,7 @@ public class FrontController extends HttpServlet {
                                     PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                     Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
 
-                                   /* PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
                                     Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
 
                                     InputStream imagen = pic.getContenido();
@@ -148,7 +148,7 @@ public class FrontController extends HttpServlet {
 
                                     sesion.setAttribute("base64Img", base64String);
                                     
-                                    */
+                                    
                                     sesion.setAttribute("prz", paciente.getPrz());
                                     sesion.setAttribute("correo", persona.getCorreo());
                                     sesion.setAttribute("telefono", persona.getTelefono());
