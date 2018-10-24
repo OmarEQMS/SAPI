@@ -302,7 +302,7 @@ public class PotencialController extends HttpServlet {
 
                     Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
 
-                    cuenta.setEstatus(0);
+                    cuenta.eliminarCuentaP(idCuenta);
 
                     cuentaServicio.actualizarCuenta(cuenta);
                     //Al no tener cuenta se le redirecciona al login
