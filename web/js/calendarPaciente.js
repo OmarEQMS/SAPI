@@ -37,14 +37,13 @@ $(document).ready(function () {
             $('#modalVerCita').modal('toggle');
             $('#edificio-cita').html(edificios[parseInt(calEvent.edificio)]);
             $('#piso-cita').html(pisos[parseInt(calEvent.piso)]);
-            console.log(calEvent.edificio);
+            
 
         },
         dayClick: function (date, jsEvent, view) {
             
-            
-            var options = { year: 'numeric', month: 'long', day: 'numeric' };
-            var m = moment();
+      
+            var m = moment(date);
             
             $('#dia-registrarCita').html(m.locale("es").format("LL"));
             $('#fechaProgramada').val(date.format());
