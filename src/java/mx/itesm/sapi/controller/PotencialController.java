@@ -58,6 +58,8 @@ public class PotencialController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String key = request.getParameter("key");
 
+        System.out.println("URL PotencialController: ".concat(request.getRequestURL().toString()));
+        
         switch (key) {
 
             case "registrarCuenta": {
@@ -136,9 +138,14 @@ public class PotencialController extends HttpServlet {
             break;
 
             case "guardarCambios": {
+                System.out.println("Llegó al case de GuardarCambios");
+                
                 String correo = request.getParameter("myEmail");
                 String telefono = request.getParameter("telephoneNum");
                 Part part = request.getPart("file-image");
+                
+                System.out.println("Correo: ".concat(correo));
+                System.out.println("Telefono: ".concat(telefono));
 
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
                 if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
@@ -166,6 +173,12 @@ public class PotencialController extends HttpServlet {
                                 pic.setTipo(part.getContentType());
 
                                 picServiceImpl.agregarPic(pic);
+                                
+                                InputStream imagen = pic.getContenido();
+                                byte[] bytes = IOUtils.toByteArray(imagen);
+                                String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                sesion.setAttribute("base64Img", base64String);
                             }
 
                             persona.setCorreo(correo);
@@ -175,13 +188,7 @@ public class PotencialController extends HttpServlet {
 
                             sesion.setAttribute("correo", persona.getCorreo());
                             sesion.setAttribute("telefono", persona.getTelefono());
-
-                            request.setAttribute("correo", sesion.getAttribute("correo"));
-                            request.setAttribute("correo", sesion.getAttribute("telefono"));
-
-                            System.out.println("Se va a actualizar");
-                            request.getRequestDispatcher("/WEB-INF/potencial/cuentaPaciente.jsp").forward(request, response);
-                            System.out.println("Supuestamente se actualizó");
+                            
                         }
                         break;
                     }
@@ -189,6 +196,10 @@ public class PotencialController extends HttpServlet {
 
             }
             break;
+            
+            case "prueba":{
+                
+            }
 
             case "cambiarContrasena": {
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada

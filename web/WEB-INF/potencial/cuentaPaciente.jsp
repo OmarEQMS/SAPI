@@ -84,13 +84,13 @@
             <!-- MENU PRINCIPAL ENLACES -->
             <ul class="list-unstyled components">
 
-                <li><a href="./index.html"><i class="fas fa-home"></i>Cita a Preconsulta</a></li>
+                <li id ="irACitaPreconsulta"><a><i class="fas fa-home"></i>Cita a Preconsulta </a></li>
 
-                <li><a href="./mis-citas.html"><i class="fas fa-calendar-alt"></i>Mis Citas<span class="notificacion">1</span></a></li>
+                <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas<span class="notificacion">1</span></a></li>
 
-                <li><a href="./cuentaPaciente.html"><i class="far fa-user"></i>Mi Cuenta</a></li>
+                <li id ="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta </a></li>
 
-                <li><a href="./preguntasFrecuentes.html"><i class="fas fa-question-circle"></i>Preguntas Frecuentes</a></li>
+                <li id ="irAPreguntasFrecuentes"><a><i class="fas fa-question-circle"></i>Preguntas Frecuentes </a></li>
 
                 <li><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
@@ -116,8 +116,6 @@
 
                     <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
                             ${sessionScope.nombre} ${sessionScope.primerApellido}
-                        </span> <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="ml-2 edit-image" width="30px" height="30px" alt=""> </span>
-
                 </div>
             </nav>
 

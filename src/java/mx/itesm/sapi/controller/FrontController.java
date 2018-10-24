@@ -43,138 +43,145 @@ public class FrontController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        System.out.println("URL FrontController: ".concat(request.getRequestURL().toString()));
+        
         String file = request.getParameter("file");
-        //System.out.println("file:".concat(file));
         if (file == null) {
             HttpSession sesion = request.getSession(true);
             if (sesion.getAttribute("idCuenta") == null) {
                 request.setAttribute("status", "");
                 request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
                 return;
-            } else {
-                /*
-                int keyRol = Integer.parseInt(sesion.getAttribute("idRol").toString());
-                switch(keyRol)
-                {
-                    case 1:
-                    {
-                        request.getRequestDispatcher("WEB-INF/potencial/index.jsp").forward(request, response);
-                    }
-                }                
+            }else{
+                request.getRequestDispatcher("WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                 return;
-                */
             }
-        }
-
-        if ("jsp".equals(file.substring(file.length() - 3))) {
-            HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
-            if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
-                // request.setAttribute("status", "");
-                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
-                return;
-            } else { //Si tiene sesion iniciada
-                
-                //Lo redireciono a su rol
-                int keyRol = (int) sesion.getAttribute("idRol");
-                switch (keyRol) {
-                    /*PACIENTE POTENCIAL*/
-                    case 1: {
-                        String keyRuta = request.getParameter("file");
-                        switch (keyRuta) {
-
-                            case "potencial/cuentaPaciente.jsp": {
-                                                                                                
-                                PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
-                                Persona persona = personaServiceImpl.mostrarPersona((int)sesion.getAttribute("idPersona"));
-                                
-                                PicServicioImpl picServicioImpl = new PicServicioImpl();
-                                Pic pic = picServicioImpl.mostrarPic((int)sesion.getAttribute("idPersona"));
-                                
-                                PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
-                                Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
-                                
-                                InputStream imagen = pic.getContenido();
-                                byte[] bytes = IOUtils.toByteArray(imagen);
-                                String base64String = Base64.getEncoder().encodeToString(bytes);
-
-                                sesion.setAttribute("base64Img", base64String);
-                                
-                                sesion.setAttribute("prz", paciente.getPrz());
-                                sesion.setAttribute("correo", persona.getCorreo());
-                                sesion.setAttribute("telefono", persona.getTelefono());
-                                
-                                request.setAttribute("nombre", sesion.getAttribute("nombre"));
-                                request.setAttribute("primerApellido",sesion.getAttribute("primerApellido"));
-                                request.setAttribute("segundoApellido",sesion.getAttribute("segundoApellido"));                                   
-                                request.setAttribute("telefono",sesion.getAttribute("telefono"));                               
-                                request.setAttribute("correo", sesion.getAttribute("correo"));
-                                request.setAttribute("usuario", sesion.getAttribute("usuario"));
-                                request.setAttribute("prz", sesion.getAttribute("prz"));
-                                                                
-                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al login
-                                break;
-                            }
-                        }
-
-                        break;
-                    }
-                    case 2: {break;}
-                    case 3: {break;}
-                    case 4: {break;}
-                    
-                    /*PACIENTE EN TRATAMIENTO*/
-                    case 5: {
-                        
-                        
-                        
-                           String keyRuta = request.getParameter("file");
-                        switch (keyRuta) {
-
-                            case "paciente/cuenta.jsp": {
-                                                                                                
-                                PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
-                                Persona persona = personaServiceImpl.mostrarPersona((int)sesion.getAttribute("idPersona"));
-                                
-                                PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
-                                Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
-                                                                                   
-                                sesion.setAttribute("prz", paciente.getPrz());
-                                sesion.setAttribute("correo", persona.getCorreo());
-                                sesion.setAttribute("telefono", persona.getTelefono());
-                                
-                                request.setAttribute("nombre", sesion.getAttribute("nombre"));
-                                request.setAttribute("primerApellido",sesion.getAttribute("primerApellido"));
-                                request.setAttribute("segundoApellido",sesion.getAttribute("segundoApellido"));                                   
-                                request.setAttribute("telefono",sesion.getAttribute("telefono"));                               
-                                request.setAttribute("correo", sesion.getAttribute("correo"));
-                                request.setAttribute("usuario", sesion.getAttribute("usuario"));
-                                request.setAttribute("prz", sesion.getAttribute("prz"));
-                                                                
-                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al login
-                                break;
-                            }
-                        }
-                        
-                        
-                        
-                        break;
-                    }
-                    
-                }
-            }
-
-            //System.out.println("filename if ".concat(file));
-            // request.getRequestDispatcher("WEB-INF/" + file).forward(request, response);
-            // return;
         } else {
-                        
-            System.out.println("filename else ".concat(file));
-            
-            request.getRequestDispatcher("/".concat(file)).forward(request, response);
-            return;
-                        
-        }
+            if ("jsp".equals(file.substring(file.length() - 3))) {
+                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+                if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
+                    // request.setAttribute("status", "");
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                    return;
+                } else { //Si tiene sesion iniciada
 
+                    //Lo redireciono a su rol
+                    int keyRol = (int) sesion.getAttribute("idRol");
+                    switch (keyRol) {
+                        //PACIENTE POTENCIAL
+                        case 1: {
+                            String keyRuta = request.getParameter("file");
+                            switch (keyRuta) {
+
+                                case "potencial/cuentaPaciente.jsp": {
+
+                                    System.out.println("Entro al case de potencial/cuentaPaciente.jsp");
+                                    sesion.setAttribute("path", keyRuta);
+                                    PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
+                                    Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
+
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
+                                    Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                    sesion.setAttribute("base64Img", base64String);
+
+                                    sesion.setAttribute("prz", paciente.getPrz());
+                                    sesion.setAttribute("correo", persona.getCorreo());
+                                    sesion.setAttribute("telefono", persona.getTelefono());
+
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                } break;
+                                
+                                case "potencial/index.jsp": {
+                                    System.out.println("Entro al case de potencial/index.jsp");
+                                    
+                                    sesion.setAttribute("path", keyRuta);
+                                    PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
+                                    Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
+
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+                                    
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+                                    
+                                    sesion.setAttribute("base64Img", base64String);
+                                    
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al login
+                                    
+                                } break;
+                                
+                            }
+
+                            break;
+                        }
+                        case 2: {
+                            break;
+                        }
+                        case 3: {
+                            break;
+                        }
+                        case 4: {
+                            break;
+                        }
+
+                        //PACIENTE EN TRATAMIENTO
+                        case 5: {
+
+                            String keyRuta = request.getParameter("file");
+                            switch (keyRuta) {
+
+                                case "paciente/cuenta.jsp": {
+
+                                    PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
+                                    Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
+
+                                    PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
+                                    Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
+
+                                    sesion.setAttribute("prz", paciente.getPrz());
+                                    sesion.setAttribute("correo", persona.getCorreo());
+                                    sesion.setAttribute("telefono", persona.getTelefono());
+
+                                    request.setAttribute("nombre", sesion.getAttribute("nombre"));
+                                    request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));
+                                    request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
+                                    request.setAttribute("telefono", sesion.getAttribute("telefono"));
+                                    request.setAttribute("correo", sesion.getAttribute("correo"));
+                                    request.setAttribute("usuario", sesion.getAttribute("usuario"));
+                                    request.setAttribute("prz", sesion.getAttribute("prz"));
+
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al login
+                                    break;
+                                }
+                            }
+
+                            break;
+                        }
+
+                    }
+                }
+
+                //System.out.println("filename if ".concat(file));
+                // request.getRequestDispatcher("WEB-INF/" + file).forward(request, response);
+                // return;
+            } else {
+
+                System.out.println("filename else ".concat(file));
+
+                request.getRequestDispatcher("/".concat(file)).forward(request, response);
+                return;
+
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

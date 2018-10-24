@@ -170,7 +170,7 @@ $(document).ready(function () {
 
     $("#btn-cambiarContrasena").on('click', function () {
 
-   
+
 
         //Modal cambiar contraseña 
         swal({
@@ -213,32 +213,66 @@ $(document).ready(function () {
 
 
     });
-    /*
-     $("#irACuenta").on('click', function () {
-     
+
+    /* $("#irACuenta").on('click', function () {
+     console.log("Presionó ir a cuenta");
      $.ajax({
      url: "FrontController",
-     data: {
-     key: "redirecionarACuenta",
-     idCuenta: $("#sesionPaciente").val()
-     },
      method: "POST",
      success: function (response) {
-     console.log(response);
-     if (response == "success") {
      
-     } else {
-     //Aqui no se que hace
-     }
+     console.log("Va a cambiar de pag");
+     document.location.href = 'WEB-INF/index.jsp';
+     console.log("cambió de pag");
+     
      },
      error: function (xhr) {
-     
+     console.log("Algo pasó");
      }
      });
-     });
-     */
+     });*/
+    $('#irACitaPreconsulta').on('click', function () {
+        console.log("Presionó CitaPreConsulta")
+        $.post("SAPI", {
+            file: "potencial/index.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
+    $('#irAMisCitas').on('click', function () {
+        $.post("SAPI", {
+            //CAMBIAR ESTE FILE
+            file: "potencial/cuentaPaciente.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
     $('#irACuenta').on('click', function () {
-        $.get("SAPI", {
+        $.post("SAPI", {
             file: "potencial/cuentaPaciente.jsp"
         },
                 function (response, status, xhr) {
@@ -256,31 +290,100 @@ $(document).ready(function () {
         );
     });
 
+    $('#irAPreguntasFrecuentes').on('click', function () {
+        $.post("SAPI", {
+            //CAMBIAR ESTE NOMBRE
+            file: "potencial/cuentaPaciente.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+/*
+    $('#guardarCambios').on('click', function() {
+       console.log("Presionó GuardarCambios") 
+        var corr = $("#myEmail");
+        var tel = $("#telephoneNum");
+        var input = $("#file-input")
+        $.get("PotencialController", {
+                key: "guardarCambios",
+                file: "potencial/cuentaPaciente.jsp",
+                input: input.val(),
+                correo: corr.val(),
+                telefono: tel.val()
+            },
+            //Esto de aquí abajo para que?
+            
+            function (response, status, xhr) {
+                console.log(response);
+                if (status == "success") {
+                    if (response == "error") {
+                        $("#msj-error").show();
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
+                    }
+                }
+            }
+        );
+    });*/
+
+
     $('#guardarCambios').on('click', function () {
+
         console.log("Presionó GuardarCambios")
         var form = $("form")[0];
         var data = new FormData(form);
-        
-        data.append("key","guardarCambios");
-        data.forEach((value,key) => {
+
+        data.append("key", "guardarCambios");
+        data.forEach((value, key) => {
             console.log(key + " " + value);
         })
-        
+
         $.ajax({
-            url:"PotencialController",
+            url: "PotencialController",
             data: data,
-            file: "potencial/cuentaPaciente.jsp",
             method: "POST",
             encType: "multipart/form-data",
             processData: false,
             contentType: false,
-            success: function(response){
+            success: function (response) {
+                console.log(response);
                 //alert("El archivo se cargó correctamente");
             },
-            error:function(xhr){
+            error: function (xhr) {
                 //alert(xhr.statusText);
             }
-        });        
+        });
+        
+        $.post("SAPI", {
+            file: "potencial/cuentaPaciente.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+        
     });
 
 
