@@ -130,13 +130,15 @@
             </nav>
 
 
-            <!-- CONTENIDO -->
-            <div class="row mb-3 justify-content-end">
-                <div class="col-3 text-center">
-                    <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index2.html" class="colorMoradoLight">Inicio</a></span>
-                    - <span class="colorGlobal">Mis Citas</span>
+            <!-- RUTA -->
+             <div class="row mb-3">
+                <div class="col-12">
+                    <span class="pull-right d-block text-right"><span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index2.html" class="colorMoradoLight">Inicio</a></span>
+                        - <span class="colorGlobal">Mis Citas</span></span>
                 </div>
-            </div>
+            </div> 
+            
+            
 
             <!-- CONTENIDO -->
             <div class="jumbotron jumbotron-fluid p-2">
@@ -224,16 +226,24 @@
                         <div class="col-12 text-center">
                             <i class="fas fa-clock mr-2 text-primary"></i><span style="font-weight:bold; color: #2c2f39">Hora:
                             </span><span id="hora-cita" style="color: #696a6b"></span>
-                            
+                            <hr>
                         </div>
                     </div>
 
-                    <!--<div class="row mt-1">
+                    <div class="row mt-1">
+                        <div class="col-12 text-center">
+                            <i class="fas fa-map-marker-alt mr-2 text-info"></i><span style="font-weight:bold; color: #2c2f39">Edificio:
+                            </span><span style="color: #696a6b" id="edificio-cita"></span>
+                            <hr>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-1">
                         <div class="col-12 text-center">
                             <i class="fas fa-map-marker-alt mr-2 text-info"></i><span style="font-weight:bold; color: #2c2f39">Piso:
-                            </span><span style="color: #696a6b">Primer Piso</span>
+                            </span><span style="color: #696a6b" id="piso-cita"></span>
                         </div>
-                    </div>-->
+                    </div>
 
                 </div>
                 <div class="modal-footer">
@@ -268,23 +278,6 @@
                             </div>
                         </div>
 
-                        <!-- ***** Fecha ***** -->
-                        <!--<div class="row mb-3 justify-content-center">
-                            <div class="col-1" data-toggle="tooltip" data-placement="top" title="Seleccione la fecha de su cita"><i
-                                    class="fas fa-question-circle modalInfo"></i></div>
-                            <div class="col-2"> <span class="colorGlobal">Fecha:</span></div>
-                            <div class="col-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
-                                    </div>
-                                    <input placeholder="Fecha de tu cita" class="form-control" type="text" onfocus="(this.type='date')"
-                                        id="RegistrarCita_fecha">    
-                                </div>
-                                <span class="text-danger" id="error-fecha">No es una fecha válida.</span>
-                            </div>
-                        </div>-->
-
                         <!-- ***** Hora ***** -->
                         <div class="row mb-3 justify-content-center">
                             <div class="col-1" data-toggle="tooltip" data-placement="top" title="Seleccione la hora de su cita Horario 07:00 - 19:00"><i
@@ -299,6 +292,11 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <input type="hidden" id="fechaTemp">
+                        <input type="hidden" id="fechaProgramada">
+                        <input type="hidden" id="tituloCita">
+                        <input type="hidden" id="colorCita">
 
                         <!-- ***** Tipo ***** -->
                         <div class="row mb-3 justify-content-center">
@@ -308,11 +306,12 @@
                             <div class="col-8">
                                 <select class="custom-select" id="RegistrarCita_tipo">
                                     <option disabled selected>Seleccione tipo</option>
-                                    <option value="Consulta">Consulta</option>
-                                    <option value="Preonsulta">Preconsulta</option>
-                                    <option value="Tratamiento">Tratamiento</option>
-                                    <option value="Estudio">Estudio</option>
-                                    <option value="Cirugía">Cirugía</option>
+                                    <option value="2" data-nombre="Consulta">Consulta</option>
+                                    <option value="4" data-nombre="Preconsulta">Preconsulta</option>
+                                    <option value="3" data-nombre="Tratamiento">Tratamiento</option>
+                                    <option value="1" data-nombre="Estudio">Estudio</option>
+                                    <option value="5" data-nombre="Navegación">Navegación</option>
+                                    <option value="6" data-nombre="Cirugía">Cirugía</option>
                                 </select>
                                 <span class="text-danger mr-4" id="error-tipoCita">No has seleccionado un tipo de cita.</span>
                             </div>
@@ -338,7 +337,8 @@
                             
                         </div>
 
-                        <!-- ***** Edificio *****
+                         
+                        <!-- ** Edificio **-->
                         <div class="row mb-3 justify-content-center">
                             <div class="col-1" data-toggle="tooltip" data-placement="top" title="Seleccione el edificio de su cita"><i
                                     class="fas fa-question-circle modalInfo"></i></div>
@@ -346,115 +346,105 @@
                             <div class="col-8">
                                 <div>
                                     <div>
-                                        <input class="modalRadio1" id="RegistrarCita_edificioAntiguo" type="radio" name="Edificios" value="Edificio antiguo" />
+                                        <input class="modalRadio1" id="RegistrarCita_edificioAntiguo" type="radio" name="Edificios"
+                                            value="1" />
                                         <span class="badge">Edificio antiguo</span>
-                                        <i class="fas fa-question-circle modalInfo" id="EdAntiguo"></i>
+                                        <a href="#" class="questionMark" data-tooltip-content="#tooltip_contentInfoTorreAntigua"><i
+                                                class="fas fa-question-circle icono-infoTorre" style="font-size:17px"
+                                                id="EdAntiguo"></i></a>
                                     </div>
+
                                     <div>
-                                        <input class="modalRadio2" id="RegistrarCita_edificioNuevo" type="radio" name="Edificios" value="Torre de nueva hospitalización"  />
+                                        <input class="modalRadio2" id="RegistrarCita_edificioNuevo" type="radio" name="Edificios"
+                                            value="2" />
                                         <span class="badge">Torre nueva de hospitalización</span>
-                                        <i class="fas fa-question-circle modalInfo" id="EdTorre"></i>
-                                    </div>
-                                </div>
-                                <span class="text-danger mr-5" id="error-edificio">No has seleccionado un edificio.</span>
-                            </div>  
-                        </div> -->
-
-                        <!-- <div class="row mb-3 justify-content-center">
-                            <div class="col-10 text-center">
-
-
-                                
-                                <div class="infoEdificios text-center row" id="feedbackEdAntiguo">
-                                    <div class="col-12">
-                                        <span class="badge badge-secondary mb-3 d-block" style="font-size:15px">Áreas:</span>
-
-                                        <textarea id="t1" readonly="true" style="width: 100%;" rows="6" style="display:none;">
-
-                                                        • Banco de sangre           • Genética
-                                                        • Radioterapia                  • Electrocardiograma
-                                                        • Psicología                       • Clínica del dolor
-                                                        • Cuidados Paliativos
-                                        </textarea>
-                                    </div>
-                                </div>
-
-                  
-                                <div class="infoEdificios text-center row" id="feedbackEdTorre">
-                                    <div class="col-12">
-                                        <span class="badge badge-info mb-2 d-block" style="font-size:15px">Planta baja:</span>
-
-                                        <textarea class="plantaBajaArea" style="width: 100%;" readonly="true" style="display:none;">
-
-                                                        • Rayos- X                                    • Mastografía
-                                                        • Ultrasonido                                • Tomografía
-                                                        • Resonancia Magnética             • PET-CT
-                                                        • MUGA                                        • Gammagrafía ósea
-                                                        • Atención inmediata
-                                                        </textarea>
+                                        <a href="#" class="questionMark" data-tooltip-content="#tooltip_contentInfoTorreNueva"><i
+                                                class="fas fa-question-circle icono-infoTorre" style="font-size:17px"
+                                                id="EdTorre"></i></a>
                                     </div>
 
-
-                                    <div class="col-12">
-                                        <span class="badge badge-warning mb-2 d-block" style="font-size:15px; color:#fff">1er
-                                            Piso:
+                                    <div class="tooltip_templates">
+                                        <span id="tooltip_contentInfoTorreAntigua">
+                                            <span class="badge badge-secondary mb-3 d-block" style="font-size:15px">Áreas:</span>
+                                            <p> • Banco de sangre <br>
+                                             • Radioterapia <br>
+                                             • Electrocardiograma <br>
+                                             • Psicología <br>
+                                             • Clínica del dolor <br>
+                                             • Cuidados Paliativos <br>
+                                             • Genética </p>
                                         </span>
                                     </div>
 
 
-                                    <div class="col-12">
-                                        <textarea class="primerPisoArea" style="width: 100% !important;" readonly="true" style="display:none;">
+                                    <div class="tooltip_templates">
+                                        <span id="tooltip_contentInfoTorreNueva">
+                                            <span class="badge badge-info mb-2 d-block" style="font-size:15px">Planta baja:</span>
+                                            <p> • Rayos- X <br>
+                                             • Mastografía <br>
+                                             • Ultrasonido <br>
+                                             • Tomografía <br>
+                                             • Resonancia Magnética <br>
+                                             • PET-CT <br>
+                                             • MUGA <br>
+                                             • Gammagrafía ósea <br>
+                                             • Atención inmediata </p>
 
-                                                        • Laboratorio                                • Farmacia</textarea>
+                                             <span class="badge badge-warning mb-2 d-block" style="font-size:15px; color:#fff">1er
+                                                Piso:
+                                            </span>
+                                             <p> • Laboratorio <br>
+                                              • Farmacia </p>
+
+                                              <span class="badge badge-danger mb-2 d-block" style="font-size:15px">2do Piso:</span>
+                                              <p> • Clínica de Mama <br>
+                                                • Oncología médica <br>
+                                                • Unidad Funcional Mama <br>
+                                                • Cirugía oncológica <br>
+                                                • Cirugía plástica <br>
+                                                • Ecocardiograma <br>
+                                                • Trabajo Social <br>
+                                                • Quimioterapia <br>
+                                                • Protocolos <br>
+                                                • Nutrición <br>
+                                                • Odontología <br>
+                                                • M-8 <br>
+                                                • Programa Mujer Jóven <br>
+                                                • Donaciones <br>
+                                                • Valoración cardiovascular <br>
+                                                • Colocación de catéteres </p>
+                                        </span>
                                     </div>
 
-                                    <div class="col-12">
-                                        <span class="badge badge-danger mb-2 d-block" style="font-size:15px">2do Piso:</span>
-                                    </div>
 
-                                    <div class="col-12">
-                                        <textarea class="segundoPisoArea" style="width: 100%;" readonly="true" style="display:none;">
-
-
-                                                        • Clínica de Mama                       • Oncología médica
-                                                        • Unidad Funcional Mama          • Cirugía oncológica
-                                                        • Cirugía plástica                         •  Ecocardiograma
-                                                        • Trabajo Social                           •  Quimioterapia
-                                                        • Protocolos                                 •  Nutrición
-                                                        • Odontología                              •  M-8                   
-                                                        • Programa Mujer Jóven             •  Donaciones
-                                                        • Valoración cardiovascular
-                                                        • Colocación de catéteres</textarea>
-                                    </div>
 
                                 </div>
-
-                                
+                                <span class="text-danger mr-5" id="error-edificio">No has seleccionado un edificio.</span>
                             </div>
-                        </div> -->
+                        </div>
 
 
                         <!-- ***** Piso ***** -->
 
-                        <!-- <div class="row mb-3 justify-content-center btns-pisos" id="pisosDiv">
+                         <div class="row mb-3 justify-content-center btns-pisos" id="pisosDiv">
                             <div class="col-1" data-toggle="tooltip" data-placement="top" title="Seleccione el tipo de su cita"><i
                                     class="fas fa-question-circle modalInfo"></i></div>
                             <div class="col-2"> <span class="colorGlobal">Piso:</span></div>
 
                             <div class="col-8">
                                 <div id="RegistrarCita_piso">
-                                    <div><input class="modalRadio1" type="radio" name="Pisos" value="Planta Baja" for="piso1"
+                                    <div><input class="modalRadio1" type="radio" name="Pisos" value="0" data-color="#17a2b8" for="piso1"
                                              /> <span class="badge badge-info">Planta baja</span></div>
-                                    <div><input class="modalRadio2" type="radio" name="Pisos" value="Piso 1" for="piso2"
+                                    <div><input class="modalRadio2" type="radio" name="Pisos" value="1" data-color="#ffc107" for="piso2"
                                         />
                                         <span class="badge badge-warning">Primer piso</span></div>
-                                    <div><input class="modalRadio3" type="radio" name="Pisos" value="Piso 2" for="piso2"
+                                    <div><input class="modalRadio3" type="radio" name="Pisos" value="2" data-color="#FF53A9" for="piso2"
                                         />
                                         <span class="badge badge-danger">Segundo piso</span></div>
                                 </div>
                                 <span class="text-danger mr-5" id="error-piso">No has seleccionado un piso.</span>
                             </div>
-                        </div> -->
+                        </div> 
 
                     </div>
                     <div class="modal-footer">

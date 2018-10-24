@@ -22,21 +22,33 @@ $(document).ready(function () {
 
             var d = new Date(Date.parse(calEvent.start._i));
           
-            var dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"];
+            var dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
             
             var meses = [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
             "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ];
+        
+            var edificios = ["","Edificio Antiguo", "Torre nueva de especialización"];
+            
+            var pisos = ["Planta Baja", "Primer Piso", "Segundo Piso"];
             
             $('#titulo-cita').html(calEvent.title);
-            $('#dia-cita').html(dias[d.getDay()-1] + " " + d.getDay() + " " + "de " + meses[d.getMonth()]);
+            $('#dia-cita').html(dias[d.getDay()] + " " + d.getDay() + " " + "de " + meses[d.getMonth()]);
             $('#hora-cita').html(d.getHours()+":"+d.getMinutes());
             $('#modalVerCita').modal('toggle');
+            $('#edificio-cita').html(edificios[parseInt(calEvent.edificio)]);
+            $('#piso-cita').html(pisos[parseInt(calEvent.piso)]);
+            
 
         },
         dayClick: function (date, jsEvent, view) {
             
+      
+            var m = moment(date);
             
-            $('#dia-registrarCita').html(date.format('LL'));
+            $('#dia-registrarCita').html(m.locale("es").format("LL"));
+            $('#fechaProgramada').val(date.format());
+            $('#fechaTemp').val(date.format());
+            console.log($('#fechaProgramada').val());
             
             $('#modalAgregarCita').modal('toggle');
             

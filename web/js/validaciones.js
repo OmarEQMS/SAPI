@@ -340,8 +340,7 @@ export const validation = {
             if (archivos[index]["type"] == "image/jpg" || archivos[index]["type"] == "image/png"
                 || archivos[index]["type"] == "image/jpeg" || archivos[index]["type"] == "application/pdf"
                 || archivos[index]["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
-                archivos[index]["type"] == "application/msword" || archivos[index]["type"] == "application/zip"
-                || archivos[index]["type"] == "application/x-rar") {
+                archivos[index]["type"] == "application/msword") {
 
                 console.log('si se puede' + archivos[index]["type"]);
                 input.css('border', '');

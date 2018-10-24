@@ -17,6 +17,10 @@ public class FullCalendar implements Serializable{
     private String title;
     private String start;
     private String end;
+    private String color;
+    private String piso;
+    private String edificio;
+    
     
     @Override
     public String toString() {
@@ -55,7 +59,29 @@ public class FullCalendar implements Serializable{
         this.end = end;
     }
     
+    public String getColor(){
+        return color;
+    }
     
+    public void setColor(String color){
+        this.color=color;
+    }
+    
+    public String getPiso(){
+        return piso;
+    }
+    
+    public void setPiso(String piso){
+        this.piso=piso;
+    }
+    
+    public String getEdificio(){
+        return piso;
+    }
+    
+    public void setEdificio(String edificio){
+        this.edificio=edificio;
+    }
     
     
 }

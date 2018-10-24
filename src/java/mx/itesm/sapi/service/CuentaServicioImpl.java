@@ -169,7 +169,7 @@ public class CuentaServicioImpl implements CuentaServicio {
 
             //Aquí va el registerOutParameter
             //cstmt.registerOutParameter(12,Types.INTEGER);
-             rs = cstmt.executeQuery();
+            rs = cstmt.executeQuery();
             rs.next();
             id = rs.getInt(1);
             conn.close();

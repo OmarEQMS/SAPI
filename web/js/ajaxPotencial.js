@@ -317,7 +317,7 @@ $(document).ready(function () {
             file: "potencial/cuentaPaciente.jsp"
         },
                 function (response, status, xhr) {
-                    console.log(response);
+                    
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
