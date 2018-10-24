@@ -347,7 +347,7 @@
                                 <div>
                                     <div>
                                         <input class="modalRadio1" id="RegistrarCita_edificioAntiguo" type="radio" name="Edificios"
-                                            value="Edificio antiguo" />
+                                            value="1" />
                                         <span class="badge">Edificio antiguo</span>
                                         <a href="#" class="questionMark" data-tooltip-content="#tooltip_contentInfoTorreAntigua"><i
                                                 class="fas fa-question-circle icono-infoTorre" style="font-size:17px"
@@ -356,7 +356,7 @@
 
                                     <div>
                                         <input class="modalRadio2" id="RegistrarCita_edificioNuevo" type="radio" name="Edificios"
-                                            value="Torre de nueva hospitalización" />
+                                            value="2" />
                                         <span class="badge">Torre nueva de hospitalización</span>
                                         <a href="#" class="questionMark" data-tooltip-content="#tooltip_contentInfoTorreNueva"><i
                                                 class="fas fa-question-circle icono-infoTorre" style="font-size:17px"

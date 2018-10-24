@@ -175,11 +175,9 @@
                                             </div>
 
                                         </div>
-                                        <<<<<<< HEAD
-
-                                        =======
+                               
                                         <form>
-                                            >>>>>>> origin/Develop
+                                            
                                             <div class="row mt-5">
                                                 <div class="col-12">
 
@@ -192,7 +190,7 @@
 
                                                         <div class="col-8">
                                                             <div class="form-check form-check-inline">
-                                                                <<<<<<< HEAD
+                                                                
                                                                 <input class="form-check-input" name="masculino" type="radio" id="masculino" value="masculino">
                                                                 <label class="form-check-label" for="masculino"><i class="fas fa-female"></i>
                                                                     Mujer</label>
@@ -201,7 +199,7 @@
                                                                 <input class="form-check-input" name="femenino" type="radio" id="femenino" value="femenino">
                                                                 <label class="form-check-label" for="femenino"><i class="fas fa-male"></i>
                                                                     Hombre</label>
-                                                                =======
+                                                                
                                                                 <input class="form-check-input" name="genero" type="radio" id="masculino" value="masculino">
                                                                 <label class="form-check-label" for="masculino"><i class="fas fa-male"></i>
                                                                     Hombre</label>
@@ -210,7 +208,7 @@
                                                                 <input class="form-check-input" name="genero" type="radio" id="femenino" value="femenino">
                                                                 <label class="form-check-label" for="femenino"><i class="fas fa-female"></i>
                                                                     Mujer</label>
-                                                                >>>>>>> origin/Develop
+                                                                
                                                             </div>
 
                                                         </div>
@@ -225,11 +223,11 @@
                                                         <div class="col-9">
 
                                                             <div class="form-check form-check-inline">
-                                                                <<<<<<< HEAD
+                                                                
                                                                 <input class="form-check-input" name="sillaRuedas" type="checkbox" id="sillaRuedas" value="sillaRuedas">
-                                                                =======
-                                                                <input class="form-check-input" name="sillaRuedas"type="checkbox" id="sillaRuedas" value="sillaRuedas">
-                                                                >>>>>>> origin/Develop
+                                                               
+                                                                <!--<input class="form-check-input" name="sillaRuedas"type="checkbox" id="sillaRuedas" value="sillaRuedas">-->
+                                                                
                                                                 <label class="form-check-label" for="sillaRuedas"> <i class="fas fa-wheelchair"></i>
                                                                     Silla de ruedas
                                                                 </label>
@@ -558,10 +556,9 @@
 
                                                 </div>
                                             </div>
-                                            <<<<<<< HEAD
-                                            =======
+                                           
                                         </form>
-                                        >>>>>>> origin/Develop
+                                        
                                     </div>
 
                                     <!-- APROBACION -->
@@ -941,7 +938,7 @@
                                                     <hr>
                                                     <div class="row justify-content-center mt-3">
                                                         <div class="col-4 text-center">
-                                                            <a href="../documentos/reportePrimeraVez.pdf" download>
+                                                            <a href="documentos/reportePrimeraVez.pdf" download>
                                                                 <button style="border-radius:20px" type="button" class="btn btn-morado btn-block"><i
                                                                         class="fas fa-print"></i> Imprimir información
                                                                 </button>
