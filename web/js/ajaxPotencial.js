@@ -18,7 +18,7 @@ $(document).ready(function () {
                         $.ajax({
                             url: "PotencialController",
                             data: {
-                                key: "eliminarCuentaP",
+                                key: "eliminarCuentaPacientePotencial",
                                 idCuenta: $("#sesionPaciente").val(),
                                 
                             },

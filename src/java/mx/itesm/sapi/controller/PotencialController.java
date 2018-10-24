@@ -31,10 +31,12 @@ import javax.servlet.http.Part;
 import mx.itesm.sapi.bean.gestionPaciente.Cita;
 import mx.itesm.sapi.bean.gestionPaciente.CitaEmpleado;
 import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
+import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
 import mx.itesm.sapi.bean.gestionPaciente.OtroMotivo;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteMedicoTitular;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
 import mx.itesm.sapi.bean.persona.Login;
@@ -42,6 +44,7 @@ import mx.itesm.sapi.service.gestionPaciente.CitaEmpleadoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.ComentarioCitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.LlamadaCitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.OtroMotivoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
@@ -667,7 +670,7 @@ public class PotencialController extends HttpServlet {
              */
             
             //Author Angel Gtz
-            case "eliminarCuentaP": {
+            case "eliminarCuentaPacientePotencial": {
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
                 if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
                     // request.setAttribute("status", "");
@@ -680,7 +683,7 @@ public class PotencialController extends HttpServlet {
                     int idPaciente = (int) sesion.getAttribute("idPaciente");
                     int idPersona = (int) sesion.getAttribute("idPersona");
                     
-                    // creo los objetos de las tablas a modificar
+                    // creo los objetos de las tablas a modificar su estatus
                     CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
                     Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
                     
@@ -699,7 +702,7 @@ public class PotencialController extends HttpServlet {
                     PicServicioImpl picServicio = new PicServicioImpl();
                     Pic pic = picServicio.mostrarPic(idPersona);
                     
-                    EstadoPacientePacienteServicioImpl estadoPacientePacienteServicio = new EstadoPacientePacienteServicioImpl();
+                    EstadoPacientePacienteServiceImpl estadoPacientePacienteServicio = new EstadoPacientePacienteServiceImpl();
                     EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServicio.mostrarEstadoPacientePaciente(idPaciente);
                     
                     CitaServicioImpl citaServicio = new CitaServicioImpl();
@@ -729,10 +732,26 @@ public class PotencialController extends HttpServlet {
                     PacienteAlergiaServicioImpl pacienteAlergiaServicio = new PacienteAlergiaServicioImpl();
                     PacienteAlergia pacienteAlergia = pacienteAlergiaServicio.mostrarPacienteAlergia(idPaciente);
                     
+                    //Implemento el borrado logico llamando a su objetoServicio despues al procesos almacenado y al final al id del objeto
                     
-                    // sesion.setAttribute("idPaciente",paciente.getIdPaciente())
-
-                    cuentaServicio.actualizarCuenta(cuenta);
+                    pacienteAlergiaServicio.borradoLogicoPacienteAlergia(pacienteAlergia.getIdPacienteAlergia());
+                    pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(pacienteNecesidadEspecial.getIdNecesidadEspecial());
+                    documentoInicialServicio.borradoLogicoDocumentoInicial(documentoInicial.getIdDocumentoInicial());
+                    pacienteNavegadoraServicio.borradoLogicoPacienteNavegadora(pacienteNavegadora.getIdPacienteNavegadora());
+                    pacienteMedicoTitularServicio.borradoLogicoPacienteMedicoTitular(pacienteMedicoTitular.getIdPacienteMedicoTitular());
+                    llamadaCitaServicio.borradoLogicoLlamadaCita(llamadaCita.getIdLlamadaCita());
+                    citaEmpleadoServicio.borradoLogicoCitaEmpleado(citaEmpleado.getIdCitaEmpleado());
+                    comentarioCitaServicio.borradoLogicoComentarioCita(comentarioCita.getIdComentarioCita());
+                    citaServicio.borradoLogicoCita(cita.getIdCita());
+                    estadoPacientePacienteServicio.borradoLogicoEstadoPacientePaciente(estadoPacientePaciente.getIdEstadoPacientePaciente());
+                    picServicio.borradoLogicoPic(pic.getIdPic());
+                    direccionServicio.borradoLogicoDireccion(direccion.getIdDireccion());
+                    loginServicio.borradoLogicoLogin(login.getIdLogin());
+                    pacienteServicio.borradoLogicoPaciente(paciente.getIdCuenta());
+                    personaServicio.borradoLogicoPersona(persona.getIdPersona());
+                    cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
+                    
+                
                     
                     //Al no tener cuenta se le redirecciona al login
                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
