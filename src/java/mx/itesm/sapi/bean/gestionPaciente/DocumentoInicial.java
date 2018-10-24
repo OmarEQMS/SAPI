@@ -17,6 +17,8 @@ public class DocumentoInicial {
     private InputStream archivo;
     private String comentario;
     private int aprobado;
+    private String tipo;
+    private int tamano;
     private int estatus;
     
     public DocumentoInicial() {}
@@ -31,11 +33,30 @@ public class DocumentoInicial {
                 .concat(",comentario:").concat(comentario)
                 .concat(",aprobado:").concat(String.valueOf(aprobado))
                 .concat(",estatus:").concat(String.valueOf(estatus))
+                .concat(",tamano:").concat(String.valueOf(tamano))
+                .concat(",tipo:").concat(String.valueOf(tipo))
                 .concat("]");
         
         return str;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getTamano() {
+        return tamano;
+    }
+
+    public void setTamano(int tamano) {
+        this.tamano = tamano;
+    }
+
+    
     public int getIdDocumentoInicial() {
         return idDocumentoInicial;
     }

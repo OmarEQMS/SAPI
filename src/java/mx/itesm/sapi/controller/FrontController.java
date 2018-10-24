@@ -38,6 +38,7 @@ public class FrontController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        System.out.println("FrontController Method ".concat(request.getMethod()));
         String file = request.getParameter("file");
         //System.out.println("file:".concat(file));
         if (file == null) {
@@ -58,6 +59,7 @@ public class FrontController extends HttpServlet {
                 }                
                 return;
                 */
+                System.out.println("Request".concat(request.getRequestURI().concat(" ").concat(request.getRequestURI())));
             }
         }
 

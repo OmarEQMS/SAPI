@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    /////////////////////////////// GESTION MEDICOS
+    /////////////////////////////// GESTION MEDICOS //////
 
     /**AGREGAR MEDICO */
     $('#btn-agregarMedico').on('click', function () {

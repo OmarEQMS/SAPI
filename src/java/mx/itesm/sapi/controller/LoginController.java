@@ -126,7 +126,7 @@ public class LoginController extends HttpServlet {
                                 
                                PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
-                                                                                                                            
+                               sesion.setAttribute("idPaciente",paciente.getIdPaciente());
                                //Redirigir al paciente potencial a su dashboard correspondiente                               
                                
                                
@@ -160,11 +160,11 @@ public class LoginController extends HttpServlet {
                              case 5:
                             {
                                 
-                                System.out.println("Cuenta de paciente en tratamiento:  ".concat(sesion.getAttribute("nombre").toString()));
+                               System.out.println("Cuenta de paciente en tratamiento:  ".concat(sesion.getAttribute("nombre").toString()));
                                 
                                PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
-                               
+                               //Agregar el idPaciente a la sesión
                                String idPacienteStr = String.valueOf(paciente.getIdPaciente());
                                sesion.setAttribute("idPaciente", idPacienteStr);
                                
