@@ -186,9 +186,6 @@ public class PotencialController extends HttpServlet {
                             persona.setTelefono(telefono);
 
                             personaServiceImpl.actualizarPersona(persona);
-
-                            sesion.setAttribute("correo", persona.getCorreo());
-                            sesion.setAttribute("telefono", persona.getTelefono());
                             
                         }
                         break;
