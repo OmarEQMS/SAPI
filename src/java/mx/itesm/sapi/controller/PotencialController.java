@@ -29,13 +29,28 @@ import java.util.ResourceBundle;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
 import mx.itesm.sapi.bean.gestionPaciente.Cita;
+import mx.itesm.sapi.bean.gestionPaciente.CitaEmpleado;
+import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
+import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
 import mx.itesm.sapi.bean.gestionPaciente.OtroMotivo;
+import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
+import mx.itesm.sapi.bean.persona.Login;
+import mx.itesm.sapi.service.gestionPaciente.CitaEmpleadoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.ComentarioCitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.LlamadaCitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.OtroMotivoServicioImpl;
-//Checar los de las librerias de clases Apache
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.io.IOUtils;
+import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
+import mx.itesm.sapi.service.persona.DireccionServicioImpl;
+import mx.itesm.sapi.service.persona.LoginServicioImpl;
+
 
 /**
  *
@@ -650,6 +665,8 @@ public class PotencialController extends HttpServlet {
                 break;
             }
              */
+            
+            //Author Angel Gtz
             case "eliminarCuentaP": {
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
                 if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
@@ -658,15 +675,65 @@ public class PotencialController extends HttpServlet {
                     return;
                 } else {
                     //Elimino su cuenta (borrrado logico)
+                    //Obtengo los id's perifericos de la sesion
                     int idCuenta = (int) sesion.getAttribute("idCuenta");
-
+                    int idPaciente = (int) sesion.getAttribute("idPaciente");
+                    int idPersona = (int) sesion.getAttribute("idPersona");
+                    
+                    // creo los objetos de las tablas a modificar
                     CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
-
                     Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+                    
+                    PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                    Persona persona = personaServicio.mostrarPersona(idPersona);
+                    
+                    PacienteServicioImpl pacienteServicio = new PacienteServicioImpl();
+                    Paciente paciente = pacienteServicio.mostrarPaciente(idPaciente);
+                    
+                    LoginServicioImpl loginServicio = new LoginServicioImpl();
+                    Login login = loginServicio.mostrarLogin(idCuenta);
+                    
+                    DireccionServicioImpl direccionServicio = new DireccionServicioImpl();
+                    Direccion direccion = direccionServicio.mostrarDireccion(persona.getIdDireccion());
+                    
+                    PicServicioImpl picServicio = new PicServicioImpl();
+                    Pic pic = picServicio.mostrarPic(idPersona);
+                    
+                    EstadoPacientePacienteServicioImpl estadoPacientePacienteServicio = new EstadoPacientePacienteServicioImpl();
+                    EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServicio.mostrarEstadoPacientePaciente(idPaciente);
+                    
+                    CitaServicioImpl citaServicio = new CitaServicioImpl();
+                    Cita cita = citaServicio.mostrarCita(idPaciente);
+                    
+                    ComentarioCitaServicioImpl comentarioCitaServicio = new ComentarioCitaServicioImpl();
+                    ComentarioCita comentarioCita = comentarioCitaServicio.mostrarComentarioCita(cita.getIdCita());
+                    
+                    CitaEmpleadoServicioImpl citaEmpleadoServicio = new CitaEmpleadoServicioImpl();
+                    CitaEmpleado citaEmpleado = citaEmpleadoServicio.mostrarCitaEmpleado(cita.getIdCita());
+                    
+                    LlamadaCitaServicioImpl llamadaCitaServicio = new LlamadaCitaServicioImpl();
+                    LlamadaCita llamadaCita = llamadaCitaServicio.mostrarLlamadaCita(cita.getIdCita());
+                    
+                    PacienteMedicoTitularServicioImpl pacienteMedicoTitularServicio = new PacienteMedicoTitularServicioImpl();
+                    PacienteMedicoTitular pacienteMedicoTitular = pacienteMedicoTitularServicio.mostrarPacienteMedicoTitular(idPaciente);
 
-                    cuenta.eliminarCuentaP(idCuenta);
+                    PacienteNavegadoraServicioImpl pacienteNavegadoraServicio = new PacienteNavegadoraServicioImpl();
+                    PacienteNavegadora pacienteNavegadora = pacienteNavegadoraServicio.mostrarPacienteNavegadora(idPaciente);
+                    
+                    DocumentoInicialServicioImpl documentoInicialServicio = new DocumentoInicialServicioImpl();
+                    DocumentoInicial documentoInicial = documentoInicialServicio.mostrarDocumentoInicial(idPaciente);
+                    
+                    PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                    PacienteNecesidadEspecial pacienteNecesidadEspecial = pacienteNecesidadEspecialServicio.mostrarPacienteNecesidadEspecial(idPaciente);
+                    
+                    PacienteAlergiaServicioImpl pacienteAlergiaServicio = new PacienteAlergiaServicioImpl();
+                    PacienteAlergia pacienteAlergia = pacienteAlergiaServicio.mostrarPacienteAlergia(idPaciente);
+                    
+                    
+                    // sesion.setAttribute("idPaciente",paciente.getIdPaciente())
 
                     cuentaServicio.actualizarCuenta(cuenta);
+                    
                     //Al no tener cuenta se le redirecciona al login
                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
                     
