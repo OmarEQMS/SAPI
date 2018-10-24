@@ -119,7 +119,7 @@
                     
                     <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
                             <!--Julio Badillo-->
-                            ${sessionScope.nombre} ${sessionScope.primerApellido}
+                            ${sessionScope.nombre} ${sessionScope.primerApellido}</span></span>
                 </div>
             </nav>
 

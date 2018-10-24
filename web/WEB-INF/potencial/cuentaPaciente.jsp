@@ -115,7 +115,7 @@
                     <input type="hidden" id="sesionPaciente" value="${sessionScope.idSesion}" />
 
                     <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
-                            ${sessionScope.nombre} ${sessionScope.primerApellido}
+                            ${sessionScope.nombre} ${sessionScope.primerApellido}</span></span>
                 </div>
             </nav>
 
