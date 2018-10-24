@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +39,12 @@ import mx.itesm.sapi.service.persona.PicServicioImpl;
 /**
  *
  * @author julioguzman
+ * 
+ * 
  */
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 50)
+
+
 @WebServlet(name = "PacienteController", urlPatterns = {"/PacienteController"})
 public class PacienteController extends HttpServlet {
 
@@ -95,7 +101,9 @@ public class PacienteController extends HttpServlet {
                 String etapaClinica = request.getParameter("etapaClinica");
                 int tipoSangre = Integer.parseInt(request.getParameter("tipoSangre"));
                // Part part = request.getPart("file-image");
-                String array[] = request.getParameterValues("tratamientos[]");
+                String tratamientos[] = request.getParameterValues("datosTratamiento");
+                
+                System.out.println(tratamientos[0]);
 
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
                 if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada

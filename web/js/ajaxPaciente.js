@@ -132,7 +132,7 @@ $(document).ready(function () {
         return [].map.call(els, el => el.value);
     }
     
-    
+    /*
     //PARA GUARDAR CAMBIOS
     $('#guardarCambios').on('click', function () {
         
@@ -180,6 +180,56 @@ $(document).ready(function () {
         
         
     });
+    */
+   
+   $('#guardarCambios').on('click', function () {
+
+        console.log("Presionó GuardarCambios")
+        var form = $("form")[0];
+        var data = new FormData(form);
+        
+        var datos = [] = getValues('.dataTratamiento');
+        data.append("datosTratamiento", JSON.stringify(datos));
+        
+      
+
+        data.append("key", "cambiarDatos");
+        data.forEach((value, key) => {
+            console.log(key + " " + value);
+        })
+
+        $.ajax({
+            url: "PacienteController",
+            data: data,
+            method: "POST",
+            encType: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (response) {
+                $.post("SAPI", {
+                    file: "paciente/cuenta.jsp"
+                },
+                        function (response, status, xhr) {
+                            console.log("El ajax fue exitoso!!-----------------------");
+                            if (status == "success") {
+                                if (response == "error") {
+                                    $("#msj-error").show();
+                                } else {
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
+                                }
+                            }
+                        }
+                );
+            },
+            error: function (xhr) {
+                //alert(xhr.statusText);
+            }
+        });
+    });
+    
     
       function readURL(input) {
         if (input.files && input.files[0]) {
