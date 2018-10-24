@@ -197,7 +197,7 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarDocumentoInicialPreconsulta(?,?,?);";
+        String stProcedure = "CALL agregarDocumentoInicialPreconsulta(?,?,?,?,?);";
         int id;
 
         try{
@@ -205,8 +205,11 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
             cstmt = conn.prepareCall(stProcedure);
             
             cstmt.setInt(1,documentoInicial.getIdTipoDocumento());
-            cstmt.setInt(2,documentoInicial.getIdPaciente());
+            cstmt.setInt(2,documentoInicial.getIdPaciente());            
             cstmt.setBinaryStream(3,documentoInicial.getArchivo());
+            cstmt.setString(4,documentoInicial.getTipo());
+            cstmt.setInt(5,documentoInicial.getTamano());
+            
                      
             
             rs = cstmt.executeQuery();
