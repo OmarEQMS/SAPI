@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package mx.itesm.sapi.bean.gestionPaciente;
+import java.io.InputStream;
 /**
  *
  * @author Alex
@@ -13,9 +14,11 @@ public class DocumentoInicial {
     private int idDocumentoInicial;
     private int idTipoDocumento;
     private int idPaciente;
-    private byte[] archivo;
+    private InputStream archivo;
     private String comentario;
     private int aprobado;
+    private String tipo;
+    private int tamano;
     private int estatus;
     
     public DocumentoInicial() {}
@@ -30,11 +33,30 @@ public class DocumentoInicial {
                 .concat(",comentario:").concat(comentario)
                 .concat(",aprobado:").concat(String.valueOf(aprobado))
                 .concat(",estatus:").concat(String.valueOf(estatus))
+                .concat(",tamano:").concat(String.valueOf(tamano))
+                .concat(",tipo:").concat(String.valueOf(tipo))
                 .concat("]");
         
         return str;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getTamano() {
+        return tamano;
+    }
+
+    public void setTamano(int tamano) {
+        this.tamano = tamano;
+    }
+
+    
     public int getIdDocumentoInicial() {
         return idDocumentoInicial;
     }
@@ -59,11 +81,11 @@ public class DocumentoInicial {
         this.idPaciente = idPaciente;
     }
 
-    public byte[] getArchivo() {
+    public InputStream getArchivo() {
         return archivo;
     }
 
-    public void setArchivo(byte[] archivo) {
+    public void setArchivo(InputStream archivo) {
         this.archivo = archivo;
     }
 

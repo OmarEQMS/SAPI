@@ -131,8 +131,9 @@ public class LoginController extends HttpServlet {
 
                                 PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                 Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
-
+                                sesion.setAttribute("idPaciente", paciente.getIdPaciente());
                                 //Redirigir al paciente potencial a su dashboard correspondiente                               
+
                                 request.setAttribute("nombre", sesion.getAttribute("nombre"));
                                 request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));
                                 request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
@@ -154,18 +155,19 @@ public class LoginController extends HttpServlet {
                             case 4: {
                                 break;
                             }
-                            /* CASE 5 PARA PACIENTE EN TRATAMIENTO*/
-                            case 5: {
+                             case 5:
+                            {
+                                
+                               System.out.println("Cuenta de paciente en tratamiento:  ".concat(sesion.getAttribute("nombre").toString()));
+                                
+                               PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
+                               Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
+                               //Agregar el idPaciente a la sesión
+                               String idPacienteStr = String.valueOf(paciente.getIdPaciente());
+                               sesion.setAttribute("idPaciente", idPacienteStr);
+                               
+                               //Redirigir al paciente potencial a su dashboard correspondiente                               
 
-                                System.out.println("Cuenta de paciente en tratamiento:  ".concat(sesion.getAttribute("nombre").toString()));
-
-                                PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
-                                Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
-
-                                String idPacienteStr = String.valueOf(paciente.getIdPaciente());
-                                sesion.setAttribute("idPaciente", idPacienteStr);
-
-                                //Redirigir al paciente potencial a su dashboard correspondiente                               
                                 System.out.println("idPaciente ".concat(idPacienteStr));
 
                                 request.setAttribute("idPaciente", sesion.getAttribute("idPaciente"));
@@ -194,12 +196,14 @@ public class LoginController extends HttpServlet {
 
                     }
 
-                }
+                        }
 
-                break;
+                        break;
 
-            }
+                    }
 
+                
+            
             case "cerrar-sesion": {
 
                 HttpSession sesion = request.getSession(true);
@@ -229,33 +233,43 @@ public class LoginController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+            protected void doGet
+            (HttpServletRequest request,
+             HttpServletResponse response
+            )
+            throws ServletException
+            , IOException  {
+                processRequest(request, response);
+            }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+            /**
+             * Handles the HTTP <code>POST</code> method.
+             *
+             * @param request servlet request
+             * @param response servlet response
+             * @throws ServletException if a servlet-specific error occurs
+             * @throws IOException if an I/O error occurs
+             */
+            @Override
+            protected void doPost
+            (HttpServletRequest request,
+             HttpServletResponse response
+            )
+            throws ServletException
+            , IOException  {
+                processRequest(request, response);
+            }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+            /**
+             * Returns a short description of the servlet.
+             *
+             * @return a String containing servlet description
+             */
+            @Override
+            public String getServletInfo
+             
+                () {
         return "Short description";
-    }// </editor-fold>
+            }// </editor-fold>
 
-}
+        }

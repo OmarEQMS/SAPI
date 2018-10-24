@@ -218,5 +218,40 @@ public class CitaServicioImpl implements CitaServicio{
         }
         return exito;
     }
+
+    @Override
+    public int agregarPreconsulta(Cita cita) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL solicitarPreconsulta(?,?,?,?);";
+        int id = -1;
+
+        try{
+            conn  = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            
+            
+            cstmt.setInt(1,cita.getIdPaciente());
+            cstmt.setInt(2,cita.getIdMotivoConsulta());
+            cstmt.setString(3,cita.getHospitalProcedencia());            
+            cstmt.setTimestamp(4,cita.getFechaSolicitud());
+                      
+            rs = cstmt.executeQuery();
+            rs.next();
+            
+            id = rs.getInt(1);
+                
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        }catch(SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
+        }
+        return id;
+    }
     
 }

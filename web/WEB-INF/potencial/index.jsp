@@ -71,7 +71,7 @@
                         <a class="iconoSidebar" href="<" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
                     </div>
                     <div class="col-2">
-                        <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
+                        <a class="iconoSidebar" id="salirCuenta1" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
 
                 <li id ="irAPreguntasFrecuentes"><a><i class="fas fa-question-circle"></i>Preguntas Frecuentes </a></li>
 
-                <li><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+                <li id="salirCuenta"><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
 
 
@@ -156,8 +156,9 @@
                             </nav>
 
                             <div class="tab-content dark" id="nav-tabContent">
-
+                                
                                 <!-- Solicitud -->
+                                
                                 <div class="tab-pane fade white mt-5" id="solicitud" role="tabpanel" aria-labelledby="nav-solicitud-tab">
 
                                     <!-- Aviso -->
@@ -174,7 +175,7 @@
                                         </div>
 
                                     </div>
-
+                                    <form>
                                     <div class="row mt-5">
                                         <div class="col-12">
 
@@ -187,14 +188,14 @@
 
                                                 <div class="col-8">
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" name="genero" type="radio" id="masculino" value="masculino">
-                                                        <label class="form-check-label" for="masculino"><i class="fas fa-female"></i>
-                                                            Mujer</label>
+                                                        <input class="form-check-input" name="generoMasculino" type="radio" id="masculino" value="masculino">
+                                                        <label class="form-check-label" for="masculino"><i class="fas fa-male"></i>
+                                                            Hombre</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" name="genero" type="radio" id="femenino" value="femenino">
-                                                        <label class="form-check-label" for="femenino"><i class="fas fa-male"></i>
-                                                            Hombre</label>
+                                                        <input class="form-check-input" name="generoFemenino" type="radio" id="femenino" value="femenino">
+                                                        <label class="form-check-label" for="femenino"><i class="fas fa-female"></i>
+                                                            Mujer</label>
                                                     </div>
 
                                                 </div>
@@ -209,7 +210,7 @@
                                                 <div class="col-9">
 
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="sillaRuedas" value="sillaRuedas">
+                                                        <input class="form-check-input" name="sillaRuedas"type="checkbox" id="sillaRuedas" value="sillaRuedas">
                                                         <label class="form-check-label" for="sillaRuedas"> <i class="fas fa-wheelchair"></i>
                                                             Silla de ruedas
                                                         </label>
@@ -247,7 +248,7 @@
                                                 </div>
 
                                                 <div class="custom-file col-8" id="customFile">
-                                                    <input type="file" class="custom-file-input" id="fileIdentificacion" aria-describedby="fileHelp">
+                                                    <input type="file" class="custom-file-input" id="fileIdentificacion" name="fileIdentificacion" aria-describedby="fileHelp">
                                                     <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
@@ -286,7 +287,7 @@
                                                 </div>
 
                                                 <div class="custom-file col-8" id="customFile">
-                                                    <input type="file" class="custom-file-input" id="fileCURP" aria-describedby="fileHelp">
+                                                    <input type="file" class="custom-file-input" id="fileCURP" name="fileCURP" aria-describedby="fileHelp">
                                                     <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
@@ -307,7 +308,7 @@
                                                 </div>
 
                                                 <div class="custom-file col-8" id="customFile">
-                                                    <input type="file" class="custom-file-input" id="fileComprobanteDomicilio" aria-describedby="fileHelp">
+                                                    <input type="file" class="custom-file-input" id="fileComprobanteDomicilio" name="fileComprobanteDomicilio" aria-describedby="fileHelp">
                                                     <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
@@ -347,11 +348,11 @@
                                                 <div class="col-8 removePadding">
                                                     <select class="form-control" id="motivoConsulta">
                                                         <option>Seleccione el motivo de la consulta</option>
-                                                        <option>Me envió un méico</option>
-                                                        <option>Estudio con diagnóstico de cáncer de mama</option>
-                                                        <option>Me sentía una bolita en el seno</option>
-                                                        <option>Me envían de otro hospital</option>
-                                                        <option>Otro</option>
+                                                        <option value="1">Me envió un médico</option>
+                                                        <option value="2">Estudio con diagnóstico de cáncer de mama</option>
+                                                        <option value="3">Me sentí una bolita en el seno</option>
+                                                        <option value="4">Me envían de otro hospital</option>
+                                                        <option value="5">Otro</option>
                                                     </select>
                                                     <span class="text-danger ml-3" id="error-motivoConsulta">No seleccionaste un motivo de consulta</span>
                                                 </div>
@@ -394,7 +395,7 @@
                                                 </div>
 
                                                 <div class="custom-file col-8" id="customFileMasto">
-                                                    <input type="file" class="custom-file-input" id="fileEstudioPrevioMasto" aria-describedby="fileHelp">
+                                                    <input type="file" class="custom-file-input" id="fileEstudioPrevioMasto" name="fileEstudioPrevioMasto" aria-describedby="fileHelp">
                                                     <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
@@ -439,7 +440,7 @@
                                                 </div>
 
                                                 <div class="custom-file col-8" id="customFileUsg">
-                                                    <input type="file" class="custom-file-input" id="fileEstudioPrevioUsg" aria-describedby="fileHelp">
+                                                    <input type="file" class="custom-file-input" id="fileEstudioPrevioUsg" name="fileEstudioPrevioUsg" aria-describedby="fileHelp">
                                                     <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
@@ -490,7 +491,7 @@
                                                 </div>
 
                                                 <div class="custom-file col-8" id="biopsiaContenedor">
-                                                    <input type="file" class="custom-file-input" id="fileEstudioBiopsia" aria-describedby="fileHelp">
+                                                    <input type="file" class="custom-file-input" id="fileEstudioBiopsia" name="fileEstudioBiopsia" aria-describedby="fileHelp">
                                                     <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .zip, .rar, .jpg, .jpeg, .png, .pdf o .docx</span>
                                                     <label class="custom-file-label">
                                                         Elegir archivo...
@@ -538,9 +539,9 @@
 
                                         </div>
                                     </div>
-
+                                    </form>
                                 </div>
-
+                                
                                 <!-- APROBACION -->
 
                                 <div class="tab-pane  fade white mt-4" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">

@@ -50,7 +50,7 @@ $(document).ready(function () {
         console.log(motivo);
 
         switch (motivo) {
-            case "Me envió un médico":
+            case "1":
                 $('#documentoAdjuntoMotivo').html("");
                 $('#otroHospital').html("");
                 $('#estudioMotivo').html("");
@@ -60,7 +60,7 @@ $(document).ready(function () {
                     + '<span class="textoDocumento">Referencia</span>'
                     + '</div>'
                     + '<div class="custom-file col-8" id="customFile">'
-                    + '<input type="file" class="custom-file-input" multiple="multiple" aria-describedby="fileHelp">'
+                    + '<input type="file" class="custom-file-input" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp">'
                     + '<label class="custom-file-label">'
                     + 'Adjunta la hoja de referencia de médico.'
                     + '</label>'
@@ -68,7 +68,7 @@ $(document).ready(function () {
 
                 $('#documentoAdjuntoMotivo').html(referencia);
                 break;
-            case "Me envían de otro hospital":
+            case "4":
 
                 $('#documentoAdjuntoMotivo').html("");
                 $('#otroHospital').html("");
@@ -79,7 +79,7 @@ $(document).ready(function () {
                     + '<span class="textoDocumento">Hospital</span>'
                     + '</div>'
                     + '<div class="custom-file col-8 p-0 m-0" id="customFile">'
-                    + '<input type="text" class="form-control" placeholder="Introduce tu hospital de procedencia">'
+                    + '<input type="text" class="form-control" id="otroHospital" placeholder="Introduce tu hospital de procedencia">'
                     + '</div>';
 
                 var referencia =
@@ -87,7 +87,7 @@ $(document).ready(function () {
                     + '<span class="textoDocumento">Referencia</span>'
                     + '</div>'
                     + '<div class="custom-file col-8" id="customFile">'
-                    + '<input type="file" class="custom-file-input" multiple="multiple" aria-describedby="fileHelp">'
+                    + '<input type="file" class="custom-file-input" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp">'
                     + '<label class="custom-file-label">'
                     + 'Adjunta la hoja de referencia de médico del hospital.'
                     + '</label>'
@@ -96,7 +96,7 @@ $(document).ready(function () {
                 $('#documentoAdjuntoMotivo').html(referencia);
                 $('#otroHospital').html(otroHospital);
                 break;
-            case "Otro":
+            case "5":
                 console.log("OTRO");
                 $('#documentoAdjuntoMotivo').html("");
                 $('#otroHospital').html("");
@@ -107,12 +107,12 @@ $(document).ready(function () {
                     + '<span class="textoDocumento">Otro motivo</span>'
                     + '</div>'
                     + '<div class="custom-file col-8 p-0 m-0" id="customFile">'
-                    + '<input type="text" class="form-control" placeholder="Introduce otro motivo">'
+                    + '<input type="text" class="form-control" id="otro-motivo-consulta" placeholder="Introduce otro motivo">'
                     + '</div>';
 
                 $('#otroHospital').html(otroHospital);
                 break;
-            case "Estudio con diagnóstico de cáncer de mama":
+            case "2":
                 $('#documentoAdjuntoMotivo').html("");
                 $('#otroHospital').html("");
                 $('#estudioMotivo').html("");

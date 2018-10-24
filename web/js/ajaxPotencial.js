@@ -89,7 +89,7 @@ $(document).ready(function () {
 
     });
 
-    $("#btn-enviarSolicitud").on('click', () => {
+    $("#btn-enviarSolicitud").on('click', function () {
 
         //Modal borrar sintoma
         swal({
@@ -99,50 +99,69 @@ $(document).ready(function () {
             showCancelButton: false,
             showConfirmButton: true,
             buttons: [, 'Aceptar'],
-            dangerMode: true,
+            dangerMode: true
         });
 
-        var masculino, femenino, camilla, sillaDeRuedas, baston, oxigeno, biopsia, motivoConsulta,
-                identificacionOficial, comprobanteDomicilio, estudioPrevio, estudioBiopsia;
+        var form = $("form")[0];
+        var data = new FormData(form);
+
+        var masculino = $('#masculino').is(':checked') ? 1 : 0;
+        var femenino = $('#femenino').is(':checked') ? 1 : 0;
+        var sillaDeRuedas = $('#sillaRuedas').is(':checked') ? 1 : 0;
+        var camilla = $('#camilla').is(':checked') ? 1 : 0;
+        var baston = $('#baston').is(':checked') ? 1 : 0;
+        var oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
+        var motivoConsulta = $('#motivoConsulta').val();
+        var biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
+
+        data.append("key", "solicitarPreconsulta");
+        data.append("femenino", femenino);
+        data.append("masculino", masculino);
+        data.append("sillaDeRuedas", sillaDeRuedas);
+        data.append("camilla", camilla);
+        data.append("baston", baston);
+        data.append("oxigeno", oxigeno);
+        data.append("motivoConsulta", motivoConsulta);
+        data.append("biopsia", biopsia);
 
 
-        var data = [];
 
-        masculino = $('#masculino').is(':checked') ? 1 : 0;
-        femenino = $('#femenino').is(':checked') ? 1 : 0;
+        console.log(data);
 
-        sillaDeRuedas = $('#sillaRuedas').is(':checked') ? 1 : 0;
-        camilla = $('#camilla').is(':checked') ? 1 : 0;
-        baston = $('#baston').is(':checked') ? 1 : 0;
-        oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
-        motivoConsulta = $('#motivoConsulta').val();
-        biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
+        // Imprimmir en consola los valores obtenidos del form para pruebas
+        data.forEach((value, key) => {
+            console.log(key + " " + value);
+        });
 
-        identificacionOficial = $('#fileIdentificacion').prop('files')[0];
-        comprobanteDomicilio = $('#fileComprobanteDomicilio').prop('files')[0];
-        estudioPrevio = $('#fileEstudioPrevio').prop('files')[0];
-        estudioBiopsia = $('#fileEstudioBiopsia').prop('files')[0];
 
-        data.push(masculino);
-        data.push(femenino);
-        data.push(sillaDeRuedas);
-        data.push(camilla);
-        data.push(baston);
-        data.push(oxigeno);
-        data.push(biopsia);
-        data.push(motivoConsulta);
-        data.push(identificacionOficial);
-        data.push(comprobanteDomicilio);
-        data.push(estudioPrevio);
-        data.push(estudioBiopsia);
+        //console.log("after getting the form" + form.length);
 
-        console.log("masculino: " + masculino + " femenino: " + femenino + " silla:  " + sillaDeRuedas + " camilla: " + camilla + " bastón: " +
-                baston + " oxigeno " + oxigeno + " biopsia " + biopsia + " motivo " + motivoConsulta
-                + " identificacion: " + identificacionOficial.name + " comprobante: " + comprobanteDomicilio.name + " estudio: " + estudioPrevio.name
-                + " biopsia: " + estudioBiopsia.name);
 
+        /*
+         ¿Obtener los valores de entrada?   
+         var masculino, femenino, camilla, sillaDeRuedas, baston, oxigeno, biopsia, motivoConsulta,
+         identificacionOficial, comprobanteDomicilio, fileEstudioPrevioUsg, estudioBiopsia,
+         fileEstudioPrevioMasto;
+         
+         
+         masculino = $('#masculino').is(':checked') ? 1 : 0;
+         femenino = $('#femenino').is(':checked') ? 1 : 0;
+         
+         sillaDeRuedas = $('#sillaRuedas').is(':checked') ? 1 : 0;
+         camilla = $('#camilla').is(':checked') ? 1 : 0;
+         baston = $('#baston').is(':checked') ? 1 : 0;
+         oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
+         motivoConsulta = $('#motivoConsulta').val();
+         biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
+         */
+        //Imprimir los valores de entrada
+        /*console.log("masculino: " + masculino + " femenino: " + femenino + " silla:  " + sillaDeRuedas + " camilla: " + camilla + " bastón: " +
+         baston + " oxigeno " + oxigeno + " biopsia " + biopsia + " motivo " + motivoConsulta
+         + " identificacion: " + identificacionOficial.name + " comprobante: " + comprobanteDomicilio.name + " estudioMasto: " + fileEstudioPrevioMasto.name
+         +" estudioUsg: " + fileEstudioPrevioUsg.name + " biopsia: " + estudioBiopsia.name);
+         */
         $.ajax({
-            url: /*sin url aún,*/"URL",
+            url: "PotencialController",
             method: "POST",
             data: data,
             enctype: "multipart/form-data",
@@ -152,11 +171,12 @@ $(document).ready(function () {
                 if (response == "success") {
                     console.log("ok");
                 } else {
-                    console.log("Algo pasó");
+                    console.log("Algo pasó" + response);
                 }
             },
             error: function () {
-                console.log("error");
+                console.log("error" + xhr.statusText);
+                alert("No enontre el controlador" + xhr.statusText);
             }
 
 
@@ -166,7 +186,7 @@ $(document).ready(function () {
 
 
     //Author: Angel Gtz
-    //este ajax hace que manda la nueva contraeña de la cuenta del paciente potencial
+    //este ajax hace que manda la nueva contraseña de la cuenta del paciente potencial
 
     $("#btn-cambiarContrasena").on('click', function () {
 
@@ -271,12 +291,13 @@ $(document).ready(function () {
         );
     });
 
+
     $('#irACuenta').on('click', function () {
         $.post("SAPI", {
             file: "potencial/cuentaPaciente.jsp"
         },
                 function (response, status, xhr) {
-                    console.log(response);
+                    console.log("El ajax fue exitoso!!-----------------------");
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -383,6 +404,55 @@ $(document).ready(function () {
     });
 
 
+
+    //PARA SALIR DE LA CUENTA
+    $('#salirCuenta').on('click', function () {
+        console.log("Salir cuenta");
+        $.get("LoginController", {
+            key: "cerrar-sesion"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+
+
+    //PARA SALIR DE LA CUENTA
+    $('#salirCuenta1').on('click', function () {
+        console.log("Salir cuenta");
+        $.get("LoginController", {
+            key: "cerrar-sesion"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+
+
+
+
+
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -399,6 +469,7 @@ $(document).ready(function () {
         console.log("Llegó :)");
         readURL(this);
     });
+
 
 
 });

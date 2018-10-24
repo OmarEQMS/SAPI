@@ -43,8 +43,10 @@ public class FrontController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+
         System.out.println("URL FrontController: ".concat(request.getRequestURL().toString()));
-        
+        System.out.println("FrontController Method ".concat(request.getMethod()));
+
         String file = request.getParameter("file");
         if (file == null) {
             HttpSession sesion = request.getSession(true);
