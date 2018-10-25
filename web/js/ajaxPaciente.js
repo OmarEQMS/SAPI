@@ -188,11 +188,7 @@ $(document).ready(function () {
         var form = $("form")[0];
         var data = new FormData(form);
 
-        var datos = [] = getValues('.dataTratamiento');
-        data.append("datosTratamiento", JSON.stringify(datos));
-
-
-
+        
         data.append("key", "cambiarDatos");
         data.forEach((value, key) => {
             console.log(key + " " + value);

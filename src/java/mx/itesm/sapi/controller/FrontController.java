@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.diagnostico.EtapaClinica;
+import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.Tratamiento;
@@ -24,6 +25,7 @@ import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.bean.persona.TipoSangre;
 import mx.itesm.sapi.service.diagnostico.EtapaClinicaServiceImpl;
+import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TratamientoServiceImpl;
@@ -97,7 +99,8 @@ public class FrontController extends HttpServlet {
 
                                     PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                     Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
-
+                                    
+                                    
                                     sesion.setAttribute("prz", paciente.getPrz());
                                     sesion.setAttribute("correo", persona.getCorreo());
                                     sesion.setAttribute("telefono", persona.getTelefono());
@@ -109,7 +112,7 @@ public class FrontController extends HttpServlet {
                                     request.setAttribute("correo", sesion.getAttribute("correo"));
                                     request.setAttribute("usuario", sesion.getAttribute("usuario"));
                                     request.setAttribute("prz", sesion.getAttribute("prz"));
-
+                                   
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al login
                                     break;
                                 }
@@ -143,7 +146,18 @@ public class FrontController extends HttpServlet {
 
                                     PicServicioImpl picServicioImpl = new PicServicioImpl();
                                     Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
-
+                                    
+                                    RegistroDiagnosticoServiceImpl registroDiagnosticoServicio = new RegistroDiagnosticoServiceImpl();
+                                    RegistroDiagnostico registro = registroDiagnosticoServicio.mostrarRegistroDiagnosticoPaciente(paciente.getIdPaciente());
+                                   
+                                    System.out.println("esto es lo que hay en registro");
+                                    
+                                    System.out.println(registro.getIdEtapaClinica());
+                                    System.out.println(registro.getIdPaciente());
+                                    TipoSangreServicioImpl tipoSangreServicio = new TipoSangreServicioImpl();
+                                    
+                                    
+                                    
                                     InputStream imagen = pic.getContenido();
                                     byte[] bytes = IOUtils.toByteArray(imagen);
                                     String base64String = Base64.getEncoder().encodeToString(bytes);
@@ -162,6 +176,13 @@ public class FrontController extends HttpServlet {
                                     request.setAttribute("correo", sesion.getAttribute("correo"));
                                     request.setAttribute("usuario", sesion.getAttribute("usuario"));
                                     request.setAttribute("prz", sesion.getAttribute("prz"));
+                                    sesion.setAttribute("tipoSangre", persona.getIdTipoSangre());
+                                    sesion.setAttribute("etapaCli", registro.getIdEtapaClinica());
+                                    
+                                   
+                                    sesion.setAttribute("expediente", paciente.getExpediente());
+                                    
+
 
                                     EtapaClinicaServiceImpl etapaServicio = new EtapaClinicaServiceImpl();
                                     TipoTratamientoServiceImpl tratamientoServicio = new TipoTratamientoServiceImpl();
@@ -169,7 +190,7 @@ public class FrontController extends HttpServlet {
                                     List<EtapaClinica> etapas = etapaServicio.mostrarEtapaClinica();
                                     List<TipoTratamiento> tratamientos = tratamientoServicio.mostrarTipoTratamiento();
 
-                                    TipoSangreServicioImpl tipoSangreServicio = new TipoSangreServicioImpl();
+                                
                                     List<TipoSangre> tipoSangre = tipoSangreServicio.mostrarTipoDeSangre();
                                     
                                     request.setAttribute("tipoSangre", tipoSangre);

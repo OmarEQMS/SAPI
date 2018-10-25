@@ -1,7 +1,10 @@
 //import {validation} from './validaciones.js';
 
 $(document).ready(function () {
-
+    
+    $('#tipoSangre option[value="'+$('#selectSangre').val()+'"]').prop("selected", true);
+    $('#etapaClinica option[value="'+$('#selectEtapa').val()+'"]').prop("selected", true);
+    
     //Esconder mensajes de error en cuenta
     $('.error-correo').hide();
     $('#error-noExpediente').hide();

@@ -223,7 +223,7 @@
                                 </div>
                                 <div class="col-4">
                                     <label for="numExpediente">Número de Expediente</label>
-                                    <input type="text" class="form-control" id="noExpediente" name="noExpediente" placeholder="Introduce numero de expediente" />
+                                    <input type="text" class="form-control" id="noExpediente" value="${sessionScope.expediente}" name="noExpediente" placeholder="Introduce numero de expediente" />
                                     <span class="text-danger" id="error-noExpediente">El formato no es correcto, deben ser 9 caracteres.</span>
                                 </div>
                             </div>
@@ -232,7 +232,7 @@
                             <div class="form-group row justify-content-center">
                                 <div class="col-4">
                                     <label for="telephoneNum">Teléfono</label>
-                                    <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Introduce teléfono"
+                                    <input type="text" class="form-control" value="${sessionScope.telefono}" id="telefono" name="telefono" placeholder="Introduce teléfono"
                                            required />
                                     <span class="text-danger" id="error-tel">El formato no es correcto, deben ser 10 dígitos.</span>
                                 </div>
@@ -241,6 +241,7 @@
 
                                     <label class="form-check-label" for="etapaClinica">Etapa Clínica</label>
                                     <div class="input-group">
+                                        <input type="hidden" value="${sessionScope.etapaCli}" id="selectEtapa"/>
                                         <select class="form-control mt-2" id="etapaClinica" name="etapaClinica" >
                                             <option disabled selected>Seleccione etapa clínica</option>
                                             <c:forEach items="${etapas}" var="etapa">  
@@ -256,6 +257,7 @@
                             <div class="form-group row justify-content-center">
                                 <div class="col-4">
                                     <label>Tipo de sangre</label>
+                                    <input type="hidden" value="${sessionScope.tipoSangre}" id="selectSangre"/>
                                     <select class="form-control" id="tipoSangre" name="tipoSangre" >
                                         <option disabled selected>Seleccione tipo de sangre</option>
                                         <c:forEach items="${tipoSangre}" var="sangre">  

@@ -38,7 +38,7 @@ public class TipoSangreServicioImpl implements TipoSangreServicio{
         
         try{
             tipoSangre = new TipoSangre();
-             conn = Conexion.getConnection();
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idTipoSangre);
             

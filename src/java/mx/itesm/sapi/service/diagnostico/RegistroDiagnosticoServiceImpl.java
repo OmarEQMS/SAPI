@@ -93,8 +93,8 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
             registroDiagnostico.setIdRegistroDiagnostico(rs.getInt("idRegistroDiagnostico"));
             registroDiagnostico.setFecha(rs.getDate("fecha"));
             registroDiagnostico.setPrevioDiagnostico(rs.getInt("previoDiagnostico"));
+            registroDiagnostico.setIdEtapaClinica(rs.getInt("idEtapaClinica"));
             registroDiagnostico.setIdPaciente(rs.getInt("idPaciente"));
-            registroDiagnostico.setIdRegistroDiagnostico(rs.getInt("idRegistroDiagnostico"));
             registroDiagnostico.setIdRegistroTNM(rs.getInt("idRegistroTNM"));
             registroDiagnostico.setEstatus(rs.getInt("estatus"));
             
@@ -275,7 +275,7 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
             registroDiagnostico.setFecha(rs.getDate("fecha"));
             registroDiagnostico.setPrevioDiagnostico(rs.getInt("previoDiagnostico"));
             registroDiagnostico.setIdPaciente(rs.getInt("idPaciente"));
-            registroDiagnostico.setIdRegistroDiagnostico(rs.getInt("idRegistroDiagnostico"));
+            registroDiagnostico.setIdEtapaClinica(rs.getInt("idEtapaClinica"));
             registroDiagnostico.setIdRegistroTNM(rs.getInt("idRegistroTNM"));
             registroDiagnostico.setEstatus(rs.getInt("estatus"));
             
