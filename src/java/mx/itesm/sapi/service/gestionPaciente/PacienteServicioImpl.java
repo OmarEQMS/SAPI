@@ -199,6 +199,8 @@ public class PacienteServicioImpl implements PacienteServicio{
             
             rs = cstmt.executeQuery();
             
+            rs.next();
+            
             exito = rs.getBoolean(1);
             
             rs.close();

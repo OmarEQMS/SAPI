@@ -26,6 +26,7 @@ import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.Tratamiento;
+import mx.itesm.sapi.bean.gestionTratamiento.TratamientoPaciente;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
@@ -34,6 +35,7 @@ import mx.itesm.sapi.service.diagnostico.EtapaClinicaServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.TratamientoPacienteServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TratamientoServiceImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
@@ -104,7 +106,8 @@ public class PacienteController extends HttpServlet {
                 String telefono = request.getParameter("telefono");
                 String etapaClinica = request.getParameter("etapaClinica");
                 int tipoSangre = Integer.parseInt(request.getParameter("tipoSangre"));
-                String tratamientos = request.getParameter("datosTratamiento");
+                //String tratamientos = request.getParameter("datosTratamiento");
+                int tratamientos[] = {1, 2, 3};
                 
                 System.out.println("pruebas el español españa");
                 System.out.println(tratamientos);
@@ -132,6 +135,12 @@ public class PacienteController extends HttpServlet {
 
                     PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                     Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial((int) sesion.getAttribute("idCuenta"));
+                    
+                    TratamientoPacienteServiceImpl tratamientoPacienteServicoImpl= new TratamientoPacienteServiceImpl();
+                    TratamientoPaciente tratamientoPaciente = new TratamientoPaciente();
+                    
+                    
+                    
 
                     if ((int) part.getSize() > 0) {
                                 PicServicioImpl picServiceImpl = new PicServicioImpl();
@@ -171,7 +180,17 @@ public class PacienteController extends HttpServlet {
                     System.out.println("la etapa es" + etapaClinica);
                     registroDiagnostico.setIdEtapaClinica(Integer.parseInt(etapaClinica));
                     paciente.setExpediente(noExpediente);
+                    
+                    tratamientoPaciente.setIdPaciente(idPaciente2);
+                    
+                    for(int i=0;i<tratamientos.length;i++)
+                    {
+                       
+                        tratamientoPaciente.setIdTipoTratamiento(tratamientos[i]);
+                        tratamientoPacienteServicoImpl.agregarTratamientoPaciente(tratamientoPaciente);
+                    }
 
+                    
                     personaServicioImpl.actualizarPersona(persona);
                     pacienteServicioImpl.actualizarPaciente(paciente);
 
@@ -188,10 +207,8 @@ public class PacienteController extends HttpServlet {
                     request.setAttribute("telefono", sesion.getAttribute("telefono"));
 
                     request.getRequestDispatcher("/WEB-INF/potencial/cuentaPaciente.jsp").forward(request, response);
-                    //break;
-                    // }
-
-                    //}
+                    
+                    
                 }
             }
             break;
