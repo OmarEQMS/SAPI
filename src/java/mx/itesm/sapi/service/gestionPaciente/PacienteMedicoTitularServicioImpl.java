@@ -18,11 +18,11 @@ import mx.itesm.sapi.util.Conexion;
  *
  * @author Angel GTZ
  */
-public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularServicio{
+public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularServicio {
 
     @Override
     public PacienteMedicoTitular mostrarPacienteMedicoTitular(int idPacienteMedicoTitular) {
-           Connection conn;
+        Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
 
@@ -40,25 +40,24 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
             rs = cstmt.executeQuery();
 
             rs.next();
-            
+
             pacienteMedicoTitular.setIdPacienteMedicoTitular(rs.getInt("idPacienteMedicoTitular"));
             pacienteMedicoTitular.setIdPaciente(rs.getInt("idPaciente"));
             pacienteMedicoTitular.setIdEmpleado(rs.getInt("idEmpleado"));
-            pacienteMedicoTitular.setInicio(rs.getTimestamp("inicio"));
-            pacienteMedicoTitular.setFin(rs.getTimestamp("fin"));
+            pacienteMedicoTitular.setInicio(rs.getDate("inicio"));
+            pacienteMedicoTitular.setFin(rs.getDate("fin"));
             pacienteMedicoTitular.setEstatus(rs.getInt("estatus"));
-            
-        
+
             rs.close();
             cstmt.close();
             conn.close();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
-            pacienteMedicoTitular= null;
+            pacienteMedicoTitular = null;
         }
         return pacienteMedicoTitular;
-        
+
     }
 
     @Override
@@ -79,12 +78,12 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
             while (rs.next()) {
 
                 pacienteMedicoTitular = new PacienteMedicoTitular();
-                 pacienteMedicoTitular.setIdPacienteMedicoTitular(rs.getInt("idPacienteMedicoTitular"));
-            pacienteMedicoTitular.setIdPaciente(rs.getInt("idPaciente"));
-            pacienteMedicoTitular.setIdEmpleado(rs.getInt("idEmpleado"));
-            pacienteMedicoTitular.setInicio(rs.getTimestamp("inicio"));
-            pacienteMedicoTitular.setFin(rs.getTimestamp("fin"));
-            pacienteMedicoTitular.setEstatus(rs.getInt("estatus"));
+                pacienteMedicoTitular.setIdPacienteMedicoTitular(rs.getInt("idPacienteMedicoTitular"));
+                pacienteMedicoTitular.setIdPaciente(rs.getInt("idPaciente"));
+                pacienteMedicoTitular.setIdEmpleado(rs.getInt("idEmpleado"));
+                pacienteMedicoTitular.setInicio(rs.getDate("inicio"));
+                pacienteMedicoTitular.setFin(rs.getDate("fin"));
+                pacienteMedicoTitular.setEstatus(rs.getInt("estatus"));
 
                 pacienteMedicoTitulars.add(pacienteMedicoTitular);
 
@@ -105,17 +104,103 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
 
     @Override
     public int agregarPacienteAlergia(PacienteMedicoTitular pacienteMedicoTitular) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        int id = -1;
+        //Aquí va el call del procedure
+        String stProcedure = "CALL agregarPersona(?, ?, ?, ?)";
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+
+            cstmt.setInt(1, pacienteMedicoTitular.getIdPaciente());
+            cstmt.setInt(2, pacienteMedicoTitular.getIdEmpleado());
+            cstmt.setDate(3, pacienteMedicoTitular.getInicio());
+            cstmt.setDate(4, pacienteMedicoTitular.getFin());
+
+            rs = cstmt.executeQuery();
+            rs.next();
+            id = rs.getInt(1);
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
+
+        }
+
+        return id;
+
     }
 
     @Override
     public boolean actualizarPacienteMedicoTitular(PacienteMedicoTitular pacienteMedicoTitular) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+        boolean exito = false;
+
+        //Call del store procedure
+        String stProcedure = "actualizarpacienteMedicoTitular(?, ?, ?, ?, ?, ?)";
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, pacienteMedicoTitular.getIdPacienteMedicoTitular());
+            cstmt.setInt(2, pacienteMedicoTitular.getIdPaciente());
+            cstmt.setInt(3, pacienteMedicoTitular.getIdEmpleado());
+            cstmt.setDate(4, pacienteMedicoTitular.getInicio());
+            cstmt.setDate(5, pacienteMedicoTitular.getFin());
+            cstmt.setInt(6, pacienteMedicoTitular.getEstatus());
+
+            rs = cstmt.executeQuery();
+
+            rs.next();
+
+            exito = rs.getBoolean(1);
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+        }
+        return exito;
+
     }
 
     @Override
     public boolean borradoLogicoPacienteMedicoTitular(int idPacienteMedicoTitular) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL borradoLogicoCita";
+        boolean exito = false;
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+
+            cstmt.setInt(1, idPacienteMedicoTitular);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+            exito = rs.getBoolean(1);
+
+            rs.close();
+            conn.close();
+            cstmt.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+        }
+        return exito;
     }
-    
 }

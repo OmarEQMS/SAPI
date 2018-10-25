@@ -50,6 +50,7 @@ import mx.itesm.sapi.service.gestionPaciente.LlamadaCitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.OtroMotivoServicioImpl;
 
 import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
@@ -699,19 +700,19 @@ public class PotencialController extends HttpServlet {
             
             //Author Angel Gtz
             case "eliminarCuentaPacientePotencial": {
-                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+                HttpSession sesion = request.getSession(true); /** Veo si tiene sesion iniciada */
                 if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
                     // request.setAttribute("status", "");
-                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); /** Lo redirecciono al login */
                     return;
                 } else {
-                    //Elimino su cuenta (borrrado logico)
-                    //Obtengo los id's perifericos de la sesion
+                    /** Elimino su cuenta (borrrado logico) */
+                    /** Obtengo los id's perifericos de la sesion */
                     int idCuenta = (int) sesion.getAttribute("idCuenta");
                     int idPaciente = (int) sesion.getAttribute("idPaciente");
                     int idPersona = (int) sesion.getAttribute("idPersona");
                     
-                    // creo los objetos de las tablas a modificar su estatus
+                    /** creo los objetos de las tablas a modificar su estatus */
                     CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
                     Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
                     
@@ -760,7 +761,7 @@ public class PotencialController extends HttpServlet {
                     PacienteAlergiaServicioImpl pacienteAlergiaServicio = new PacienteAlergiaServicioImpl();
                     PacienteAlergia pacienteAlergia = pacienteAlergiaServicio.mostrarPacienteAlergia(idPaciente);
                     
-                    //Implemento el borrado logico llamando a su objetoServicio despues al procesos almacenado y al final al id del objeto
+                    /** Implemento el borrado logico llamando a su objetoServicio despues al procesos almacenado y al final al id del objeto */
                     
                     pacienteAlergiaServicio.borradoLogicoPacienteAlergia(pacienteAlergia.getIdPacienteAlergia());
                     pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(pacienteNecesidadEspecial.getIdNecesidadEspecial());
@@ -781,7 +782,7 @@ public class PotencialController extends HttpServlet {
                     
                 
                     
-                    //Al no tener cuenta se le redirecciona al login
+                    /** Al no tener cuenta se le redirecciona al login */
                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
                     
                 }
