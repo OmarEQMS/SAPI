@@ -9,8 +9,11 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.util.Conexion;
 
@@ -146,30 +149,27 @@ public class CuentaServicioImpl implements CuentaServicio {
 
         int id = -1;
         //Aquí va el call del procedure
-        String stProcedure = "CALL agregarCuenta(?, ?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL agregarCuenta(?, ?, ?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
+           /* IN in_idPersona INT, IN in_idRol INT, IN in_idEstadoCuenta INT, IN in_usuario VARCHAR(255),
+                               IN in_password VARCHAR(128), IN in_token VARCHAR(200), IN in_estatus TINYINT*/
             //Aquí van los sets 
-            cstmt.setInt(1, cuenta.getIdCuenta());
-            cstmt.setInt(2, cuenta.getIdPersona());
-            cstmt.setInt(3, cuenta.getIdRol());
-            cstmt.setInt(4, cuenta.getIdEstadoCuenta());
-            cstmt.setString(5, cuenta.getUsuario());
-            cstmt.setString(6, cuenta.getPassword());
-            cstmt.setString(7, cuenta.getToken());
-            cstmt.setInt(8, cuenta.getEstatus());
+            cstmt.setInt(1, cuenta.getIdPersona());
+            cstmt.setInt(2, 1);
+            cstmt.setInt(3, 1);
+            cstmt.setString(4, cuenta.getUsuario());
+            cstmt.setString(5, cuenta.getPassword());
+            cstmt.setString(6, cuenta.getToken());
+            //cstmt.setInt(7, cuenta.getEstatus());
 
             //Aquí va el registerOutParameter
             //cstmt.registerOutParameter(12,Types.INTEGER);
-            cstmt.executeUpdate();
-
-            rs = cstmt.getGeneratedKeys();
-
+            rs = cstmt.executeQuery();
             rs.next();
-
             id = rs.getInt(1);
             conn.close();
             rs.close();
@@ -227,4 +227,27 @@ public class CuentaServicioImpl implements CuentaServicio {
         return exito;
     }
 
+    @Override
+    public boolean existsUsuario(String usuario) {
+
+        Connection conn = Conexion.getConnection();
+
+        CallableStatement cstmt;
+
+        try {
+
+            cstmt = conn.prepareCall("CALL existeUsuario(?,?)");
+            cstmt.setString(1, usuario);
+            cstmt.registerOutParameter(2, Types.BOOLEAN);
+
+            cstmt.execute();
+            return cstmt.getBoolean(2);
+
+        } catch (SQLException ex) {
+
+            Logger.getLogger(CuentaServicioImpl.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+    }
 }

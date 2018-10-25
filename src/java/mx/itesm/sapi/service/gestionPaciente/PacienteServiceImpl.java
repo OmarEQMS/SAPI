@@ -242,5 +242,37 @@ public class PacienteServiceImpl implements PacienteService{
         }
         return exito;
     }
+
+    @Override
+    public int agregarPacienteRegistro(int idCuenta) {
+        Connection conn; 
+        ResultSet rs;
+        CallableStatement cstmt;
+        int id = -1;
+        
+        String stPrcedure="CALL agregarPacienteRegistro(?)";
+        try{
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stPrcedure);
+                      
+            cstmt.setInt(1, idCuenta);
+
+             rs = cstmt.executeQuery();
+            rs.next();
+            id = rs.getInt(1);
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+            
+        }catch(SQLException ex){
+            
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
+        }
+        
+        return id;   
+    }
     
 }

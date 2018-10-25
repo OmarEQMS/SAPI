@@ -6,6 +6,7 @@
 package mx.itesm.sapi.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -26,11 +27,13 @@ import mx.itesm.sapi.bean.moduloGestionPaciente.Paciente;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.bean.persona.Persona;
-import mx.itesm.sapi.service.CuentaServicioImpl;
-import mx.itesm.sapi.service.DireccionServicioImpl;
-import mx.itesm.sapi.service.PersonaServicioImpl;
+import mx.itesm.sapi.bean.persona.Pic;
+import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.service.persona.DireccionServicioImpl;
+import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
+import mx.itesm.sapi.service.persona.PicServicioImpl;
 
 /**
  *
@@ -57,12 +60,9 @@ public class RegistraUsuarioController extends HttpServlet {
         //switch con 2 keys
         // 1 key: verificarUsuario
         //2 key: reistroCompleto
-        
         String key = request.getParameter("key");
 
-        /*
-        
-         */
+
         //Servicios
         PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
         CuentaServicioImpl _rSC = new CuentaServicioImpl();
@@ -80,8 +80,28 @@ public class RegistraUsuarioController extends HttpServlet {
         //Set persona
         switch (key) {
 
-            case "repiteUsuario": {
+            case "repiteCurp": {
 
+                String curp = request.getParameter("curp");
+                System.out.println("El curp es: ".concat(curp));
+
+                //Checo si el usuario existe
+                if (_registroServicio.existsCurp(curp)) {
+                    System.out.println("El CURP EXISTE");
+                    out.print("CurpAlreadyExists");
+
+                } else {
+
+                    //Si no existe, lo inserto
+                    System.out.println("El CURP NO Existe");
+                    out.print("CurpDoesntExist");
+
+                }
+
+            }
+            break;
+
+            case "repiteUsuario": {
                 String usuario = request.getParameter("usuario");
 
                 //Checo si el usuario existe
@@ -95,12 +115,10 @@ public class RegistraUsuarioController extends HttpServlet {
                     out.print("UsuarioDoesntExist");
 
                 }
-
             }
-
             break;
 
-            case "registraUsuario":    {
+            case "registraUsuario": {
 
                 String nombre = request.getParameter("nombre");
                 String apellido1 = request.getParameter("apellido1");
@@ -117,14 +135,11 @@ public class RegistraUsuarioController extends HttpServlet {
                 String noInterior = request.getParameter("noInterior");
                 String contraseña1 = request.getParameter("pass1");
                 String contraseña2 = request.getParameter("pass2");
-                String fechaNacimiento=request.getParameter("fechaNacimiento");
-                
+                String fechaNacimiento = request.getParameter("fechaNacimiento");
+
                 Date fn = Date.valueOf(fechaNacimiento);
 
-                
                 per.setFechaNacimiento(fn);
-                
-            
 
                 String usuario = request.getParameter("usuario");
 
@@ -137,7 +152,6 @@ public class RegistraUsuarioController extends HttpServlet {
                 per.setCurp(curp);
                 per.setIdEstadoCivil(estadoCivil);
                 per.setIdMunicipio(municipio);
-                                           
 
                 //Set cuenta
                 cuenta.setPassword(contraseña1);
@@ -149,10 +163,8 @@ public class RegistraUsuarioController extends HttpServlet {
                 dir.setNoExterior(noExterior);
                 dir.setNoInterior(noInterior);
 
-                
-                
                 int idD = _rSD.agregarDireccion(dir);
-                
+
                 System.out.println("El id de direccion es: ".concat(Integer.toString(idD)));
                 int idC;
                 int idPac;
@@ -160,25 +172,36 @@ public class RegistraUsuarioController extends HttpServlet {
 
                 if (idD > 0) {
 
-                    
                     per.setIdDireccion(idD);
                     int idP = _registroServicio.agregarPersona(per);
+                    System.out.println("idPersona: " + idP);
                     
-                    if(idP > 0){
+                    if (idP > 0) {
                         cuenta.setIdPersona(idP);
-                        idC=_rSC.agregarCuenta(cuenta);
-                        
-                        if(idC > 0){
-                            
-                            pac.setIdCuenta(idC);
-                            idPac = pacienteServicio.agregarPaciente(pac);
-                            
-                            if(idPac > 0){
-                                estadoPaPa.setIdPaciente(idPac);
-                                idEsPaPa = estadoPaPaServicio.agregarEstadoPacientePaciente(estadoPaPa);
+                        idC = _rSC.agregarCuenta(cuenta);
+                        System.out.println("idCuenta: " + idC);
+                                
+                        if (idC > 0) {
+
+                            idPac = pacienteServicio.agregarPacienteRegistro(idC);
+
+                            idEsPaPa = estadoPaPaServicio.agregarEstadoPacientePacienteRegistro(idPac);
+                            System.out.println("idPac: " + idPac);
+                            System.out.println("idEsPaPa " + idEsPaPa);
+                            if (idEsPaPa > 0) {
+
                             }
-                            
+
                         }
+                        System.out.println("va a agregar imagen");
+                        PicServicioImpl picServiceImpl = new PicServicioImpl();
+                        Pic pic = new Pic();
+
+                        pic = picServiceImpl.mostrarPicDefault();
+                        pic.setIdPersona(idP);
+
+                        picServiceImpl.agregarPic(pic);
+                        System.out.println("agrego imagen");
                     }
 
                 }

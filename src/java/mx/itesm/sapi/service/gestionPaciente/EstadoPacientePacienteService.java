@@ -17,6 +17,7 @@ public interface EstadoPacientePacienteService {
         public EstadoPacientePaciente mostrarEstadoPacientePaciente(int idEstadoPacientePaciente);
     public List<EstadoPacientePaciente> mostrarEstadoPacientePaciente();
         public int agregarEstadoPacientePaciente(EstadoPacientePaciente estadoPacientePaciente);
+        public int agregarEstadoPacientePacienteRegistro(int idPaciente);
         public boolean borradoLogicoEstadoPacientePaciente(int idEstadoPacientePaciente);
         public boolean actualizarEstadoPacientePaciente(EstadoPacientePaciente estadoPacientePaciente);
 }

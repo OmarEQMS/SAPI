@@ -88,6 +88,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                     <input id="curp" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf2C2; CURP">
                     <span class="text-danger" id="errorCurp">Formato incorrecto</span>
+                    <span class="text-warning" id="errorCurpRepetido">El curp ya existe</span>
                 </div>
                 
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
