@@ -144,8 +144,8 @@ public class LoginController extends HttpServlet {
                                 try{
                                     
                                     cuenta.getToken();
-                                    keyRuta = "potencial/index.jsp";//Cambiar por recuperación de contraseña
-                                    System.out.println("Contraseña con token ".concat(cuenta.getToken()));
+                                    keyRuta = "recuperar.jsp";//Cambiar por recuperación de contraseña
+                                    System.out.println("Contraseña con token ");
                                     
                                 }catch(Exception ex)
                                 {
