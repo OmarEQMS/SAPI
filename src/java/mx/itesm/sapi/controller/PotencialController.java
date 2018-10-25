@@ -25,12 +25,14 @@ import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 import mx.itesm.sapi.bean.gestionPaciente.Cita;
 import mx.itesm.sapi.bean.gestionPaciente.OtroMotivo;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.OtroMotivoServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
 
 //Checar los de las librerias de clases Apache
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -258,8 +260,16 @@ public class PotencialController extends HttpServlet {
                     // ID ImportanciaCita
                     int idImportante = Integer.parseInt(sapiProperties.getString("Importante"));
                     
+                    // ID Sexo
+                    int idSexoMujer = Integer.parseInt(sapiProperties.getString("Mujer"));
+                    int idSexoHombre = Integer.parseInt(sapiProperties.getString("Hombre"));                    
                     
+                    // ID Necesidad Especial
                     
+                    int idSillaDeRuedas = Integer.parseInt(sapiProperties.getString("SillaDeRuedas"));
+                    int idCamilla = Integer.parseInt(sapiProperties.getString("Baston"));
+                    int idBaston = Integer.parseInt(sapiProperties.getString("Oxigeno"));
+                    int idOxigeno = Integer.parseInt(sapiProperties.getString("Camilla"));
 
                     if (ServletFileUpload.isMultipartContent(request)) {
                         System.out.println("Entro a solicitarPreconsulta if ");
@@ -288,8 +298,66 @@ public class PotencialController extends HttpServlet {
                         int biopsia = Integer.parseInt(request.getParameter("biopsia"));
                         System.out.println("biopsia ".concat(String.valueOf(biopsia)));
 
+                        //Si no hay motivo se termina el case y no hace la solicitud de preconsulta
                         if(motivoConsulta.isEmpty())
                             break;
+                        
+                        
+                        //Agregar sexo al paciente
+                        if(masculino.equals("1"))
+                        {
+                            PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
+                            personaServicioImpl.actualizarSexoPersona(idPacientePotencial,idSexoHombre);
+                            
+                        }else
+                        {
+                            if(femenino.equals("1"))
+                            {
+                                PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
+                                personaServicioImpl.actualizarSexoPersona(idPacientePotencial,idSexoHombre);
+                            }
+                        }
+                        
+                        //AGREGAR NECESIDADES ESPECIALES AL PACIENTE
+                        
+                        //Agregar la silla de ruedas, camilla, baston y oxigeno si los necesita
+                        if(!sillaDeRuedas.equals("0"))
+                        {
+                            PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
+                            pacienteNecesidadEspecial.setIdPaciente(idPacientePotencial);                            
+                            pacienteNecesidadEspecial.setIdNecesidadEspecial(idSillaDeRuedas);
+                            
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }
+                        if(!camilla.equals("0"))
+                        {
+                            PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
+                            pacienteNecesidadEspecial.setIdPaciente(idPacientePotencial);                            
+                            pacienteNecesidadEspecial.setIdNecesidadEspecial(idCamilla);
+                            
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }
+                        if(!baston.equals("0"))
+                        {
+                            PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
+                            pacienteNecesidadEspecial.setIdPaciente(idPacientePotencial);                            
+                            pacienteNecesidadEspecial.setIdNecesidadEspecial(idBaston);
+                            
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }
+                        if(!oxigeno.equals("0"))
+                        {
+                            PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
+                            pacienteNecesidadEspecial.setIdPaciente(idPacientePotencial);                            
+                            pacienteNecesidadEspecial.setIdNecesidadEspecial(idOxigeno);
+                            
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }
+                        
                         
                         Part partIdentificacion = request.getPart("fileIdentificacion");                        
                         System.out.println("PartIdentificacion ".concat(partIdentificacion.toString()));                        
@@ -304,6 +372,7 @@ public class PotencialController extends HttpServlet {
                             System.out.println(partName.charAt(i));
                         }
                         */
+                                                
                         InputStream contenidoIdentificacion = null; 
                         String tipoIdentficacion = null;
                         int tamanoIdentificacion = 0;                        
@@ -611,6 +680,8 @@ public class PotencialController extends HttpServlet {
                             OtroMotivoServicioImpl otroMotivoServicioImpl = new OtroMotivoServicioImpl();
                             otroMotivoServicioImpl.agregarOtroMotivo(motivo);                                                        
                         }                                                
+                        
+                       
                         request.getRequestDispatcher("WEB/INF/potencial/index.jsp").forward(request, response);
                     }
                 }

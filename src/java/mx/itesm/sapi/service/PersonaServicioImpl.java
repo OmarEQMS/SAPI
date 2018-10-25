@@ -252,4 +252,34 @@ public class PersonaServicioImpl implements PersonaServicio {
         return exito;
     }
 
+    @Override
+    public boolean actualizarSexoPersona(int idPersona, int idSexo) {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+        boolean exito = false;
+
+        //Call del store procedure
+        String stProcedure = "actualizarPersona(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPersona);
+            cstmt.setInt(2, idSexo);
+                        
+            rs = cstmt.executeQuery();
+
+            rs.next();
+
+            exito = rs.getBoolean(1);
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+        }
+        return exito;
+    }
+
 }

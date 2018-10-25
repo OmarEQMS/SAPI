@@ -137,10 +137,25 @@ public class LoginController extends HttpServlet {
                                 request.setAttribute("nombre", sesion.getAttribute("nombre"));
                                 request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));
                                 request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
-
-                                request.getRequestDispatcher("/WEB-INF/potencial/index.jsp").forward(request, response);
-                                //request.getRequestDispatcher("/FrontController").forward(request, response);             
-
+                                
+                                
+                                String keyRuta = "potencial/index.jsp";
+                                
+                                try{
+                                    
+                                    cuenta.getToken();
+                                    keyRuta = "potencial/index.jsp";//Cambiar por recuperación de contraseña
+                                    System.out.println("Contraseña con token ".concat(cuenta.getToken()));
+                                    
+                                }catch(Exception ex)
+                                {
+                                    System.out.println("Contraseña sin token");
+                                }
+                                                                                                
+                                sesion.setAttribute("path", keyRuta);                                
+                                request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
+                                //request.getRequestDispatcher("/FrontController").forward(request, response);                                                                             
+                                                                
                                 System.out.println("Se redirige el potencial. idPaciente " + String.valueOf(paciente.getIdPaciente()).concat(" idCuenta ").concat(String.valueOf(paciente.getIdCuenta())).concat(" Sesión idCuenta ").concat(String.valueOf(sesion.getAttribute("idCuenta"))));
 
                                 break;
@@ -175,10 +190,11 @@ public class LoginController extends HttpServlet {
                                 request.setAttribute("nombre", sesion.getAttribute("nombre"));
                                 request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));
                                 request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
-
-                                request.getRequestDispatcher("/WEB-INF/paciente/index.jsp").forward(request, response);
-                                //request.getRequestDispatcher("/FrontController").forward(request, response);             
-
+                                
+                                String keyRuta = "paciente/index.jsp";
+                                sesion.setAttribute("path", keyRuta);                                
+                                request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
+                                                                
                                 System.out.println("Se redirige el potencial. idPaciente " + String.valueOf(paciente.getIdPaciente()).concat(" idCuenta ").concat(String.valueOf(paciente.getIdCuenta())).concat(" Sesión idCuenta ").concat(String.valueOf(sesion.getAttribute("idCuenta"))));
 
                                 break;

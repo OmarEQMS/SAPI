@@ -59,6 +59,11 @@ public class LoginServicioImpl implements LoginServicio {
                     cuenta.setUsuario(rs.getString("usuario"));
                     cuenta.setIdCuenta(rs.getInt("idCuenta"));
                     cuenta.setIdPersona(rs.getInt("idPersona"));
+                    
+                    if(rs.getString("token") != null)                       
+                    {
+                        cuenta.setToken(rs.getString("token"));
+                    }
                     System.out.println("break;");
                     break;
                 }
