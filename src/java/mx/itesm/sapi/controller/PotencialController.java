@@ -585,7 +585,7 @@ public class PotencialController extends HttpServlet {
                         }
                                                                                           
                         /*DEBUG*/ 
-                        citaPreconsulta.setFechaSolicitud(timestamp);
+                        citaPreconsulta.setFechaSolicitud((timestamp).toString());
 
                         CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
                         int idCitaPreconsulta = citaServicioImpl.agregarPreconsulta(citaPreconsulta);
