@@ -141,15 +141,14 @@ public class LoginController extends HttpServlet {
                                 
                                 String keyRuta = "potencial/index.jsp";
                                 
-                                try{
-                                    
-                                    cuenta.getToken();
-                                    keyRuta = "recuperar.jsp";//Cambiar por recuperación de contraseña
-                                    System.out.println("Contraseña con token ");
-                                    
+                               //Si la contraseña no tiene el token de recuperar contraseña se continua al dashboard correspondiente                                                                 
+                                try
+                                {
+                                    System.out.println("Contraseña con token ".concat(cuenta.getToken()));
+                                    keyRuta = "recuperar.jsp";
                                 }catch(Exception ex)
                                 {
-                                    System.out.println("Contraseña sin token");
+                                    
                                 }
                                                                                                 
                                 sesion.setAttribute("path", keyRuta);                                
@@ -192,6 +191,17 @@ public class LoginController extends HttpServlet {
                                 request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
                                 
                                 String keyRuta = "paciente/index.jsp";
+                                    
+                                //Si la contraseña no tiene el token de recuperar contraseña se continua al dashboard correspondiente                                                                 
+                                try
+                                {
+                                    System.out.println("Contraseña con token ".concat(cuenta.getToken()));
+                                    keyRuta = "recuperar.jsp";
+                                }catch(Exception ex)
+                                {
+                                    
+                                }
+                                                                                                                                
                                 sesion.setAttribute("path", keyRuta);                                
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                                                                 
