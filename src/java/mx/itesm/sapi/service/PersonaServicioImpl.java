@@ -62,7 +62,7 @@ public class PersonaServicioImpl implements PersonaServicio {
         Persona persona = null;
 
         //Call del store procedure
-        String stProcedure = "mostrarAuditoriaCreacionCuenta(?)";
+        String stProcedure = "mostrarPerdona(?)";
 
         try {
             persona = new Persona();

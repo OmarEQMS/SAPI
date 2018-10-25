@@ -86,7 +86,6 @@ public class PersonaServicioImpl implements PersonaServicio {
             persona.setIdMunicipio(rs.getInt("idMunicipio"));
             persona.setIdEstadoCivil(rs.getInt("idEstadoCivil"));
             persona.setIdDireccion(rs.getInt("idDireccion"));
-            persona.setImagen(rs.getBinaryStream("imagen"));
             persona.setEdad(rs.getInt("edad"));
             persona.setEstatus(rs.getInt("estatus"));
 
@@ -133,7 +132,6 @@ public class PersonaServicioImpl implements PersonaServicio {
                 persona.setIdMunicipio(rs.getInt("idMunicipio"));
                 persona.setIdEstadoCivil(rs.getInt("idEstadoCivil"));
                 persona.setIdDireccion(rs.getInt("idDireccion"));
-                persona.setImagen(rs.getBinaryStream("imagen"));
                 persona.setEdad(rs.getInt("edad"));
                 persona.setEstatus(rs.getInt("estatus"));
 
@@ -165,7 +163,7 @@ public class PersonaServicioImpl implements PersonaServicio {
 
         int id = -1;
         //Aquí va el call del procedure
-        String stProcedure = "CALL agregarPersona(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL agregarPersona(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
@@ -173,21 +171,18 @@ public class PersonaServicioImpl implements PersonaServicio {
 
             //Aquí van los sets
             //cstmt.setInt(1,citaEmpleado.getIdCitaEmpleado());
-            cstmt.setInt(1, persona.getIdPersona());
-            cstmt.setString(2, persona.getPrimerApellido());
-            cstmt.setString(3, persona.getSegundoApellido());
-            cstmt.setString(4, persona.getCurp());
-            cstmt.setString(5, persona.getTelefono());
-            cstmt.setString(6, persona.getCorreo());
-            cstmt.setDate(7, persona.getFechaNacimiento());
-            cstmt.setInt(8, persona.getIdSexo());
-            cstmt.setInt(9, persona.getIdTipoSangre());
-            cstmt.setInt(10, persona.getIdMunicipio());
-            cstmt.setInt(11, persona.getIdEstadoCivil());
-            cstmt.setInt(12, persona.getIdDireccion());
-             cstmt.setBinaryStream(13,persona.getImagen());
-            cstmt.setInt(14, persona.getEdad());
-            cstmt.setInt(15, persona.getEstatus());
+            cstmt.setString(1, persona.getPrimerApellido());
+            cstmt.setString(2, persona.getSegundoApellido());
+            cstmt.setString(3, persona.getCurp());
+            cstmt.setString(4, persona.getTelefono());
+            cstmt.setString(5, persona.getCorreo());
+            cstmt.setDate(6, persona.getFechaNacimiento());
+            cstmt.setInt(7, persona.getIdSexo());
+            cstmt.setInt(8, persona.getIdTipoSangre());
+            cstmt.setInt(9, persona.getIdMunicipio());
+            cstmt.setInt(10, persona.getIdEstadoCivil());
+            cstmt.setInt(11, persona.getIdDireccion());
+            cstmt.setInt(12, persona.getEdad());
 
             //Aquí va el registerOutParameter
             //cstmt.registerOutParameter(12,Types.INTEGER);
@@ -222,7 +217,7 @@ public class PersonaServicioImpl implements PersonaServicio {
         boolean exito = false;
 
         //Call del store procedure
-        String stProcedure = "CALL actualizarPersona(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL actualizarPersona(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
@@ -241,8 +236,7 @@ public class PersonaServicioImpl implements PersonaServicio {
             cstmt.setInt(11, persona.getIdMunicipio());
             cstmt.setInt(12, persona.getIdEstadoCivil());
             cstmt.setInt(13, persona.getIdDireccion());
-            cstmt.setBinaryStream(14,persona.getImagen());
-            cstmt.setInt(15, persona.getEdad());
+            cstmt.setInt(14, persona.getEdad());
 
 
             rs = cstmt.executeQuery();

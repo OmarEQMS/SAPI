@@ -5,35 +5,31 @@
  */
 package mx.itesm.sapi.controller;
 
-import com.google.gson.Gson;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Base64;
+import java.util.ResourceBundle;
+import java.sql.Timestamp;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.Part;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.bean.persona.Persona;
-
+import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
-
-import mx.itesm.sapi.service.persona.CuentaServicioImpl;
-import mx.itesm.sapi.service.persona.PersonaServicioImpl;
-
-import java.io.InputStream;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.ResourceBundle;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.http.Part;
 import mx.itesm.sapi.bean.gestionPaciente.Cita;
 import mx.itesm.sapi.bean.gestionPaciente.CitaEmpleado;
 import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
 import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
 import mx.itesm.sapi.bean.gestionPaciente.OtroMotivo;
+
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteMedicoTitular;
@@ -41,12 +37,18 @@ import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
 import mx.itesm.sapi.bean.persona.Login;
 import mx.itesm.sapi.service.gestionPaciente.CitaEmpleadoServicioImpl;
+
+import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.service.persona.PersonaServicioImpl;
+import mx.itesm.sapi.service.persona.PicServicioImpl;
+
 import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.ComentarioCitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.LlamadaCitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.OtroMotivoServicioImpl;
+
 import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
@@ -54,6 +56,9 @@ import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
 import mx.itesm.sapi.service.persona.LoginServicioImpl;
 
+//Checar los de las librerias de clases Apache
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -79,7 +84,9 @@ public class PotencialController extends HttpServlet {
         System.out.println("PotencialController Method ".concat(request.getMethod()));
         
         String key = request.getParameter("key");
-        System.out.println(key);
+
+        System.out.println("URL PotencialController: ".concat(request.getRequestURL().toString()));
+
         switch (key) {
 
             case "registrarCuenta": {
@@ -158,8 +165,14 @@ public class PotencialController extends HttpServlet {
             }
 
             case "guardarCambios": {
-                String correo = request.getParameter("correo");
-                String telefono = request.getParameter("telefono");
+                System.out.println("Llegó al case de GuardarCambios");
+                
+                String correo = request.getParameter("myEmail");
+                String telefono = request.getParameter("telephoneNum");
+                Part part = request.getPart("file-image");
+                
+                System.out.println("Correo: ".concat(correo));
+                System.out.println("Telefono: ".concat(telefono));
 
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
                 if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
@@ -169,23 +182,37 @@ public class PotencialController extends HttpServlet {
                     int keyRol = (int) sesion.getAttribute("idRol");
                     switch (keyRol) {
                         case 1: {
+                            
+                            System.out.println("Entro al controller en guardarCambios");
+                            
                             //No se valida el telefono ni el correo aquí? Lo validamos nosotros o el front?
                             PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
                             Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
+
+                            if ((int) part.getSize() > 0) {
+                                PicServicioImpl picServiceImpl = new PicServicioImpl();
+                                Pic pic = new Pic();
+
+                                pic.setIdPersona((int) sesion.getAttribute("idPersona"));
+                                pic.setContenido(part.getInputStream());
+                                pic.setTamano((int) part.getSize());
+                                pic.setTipo(part.getContentType());
+
+                                picServiceImpl.agregarPic(pic);
+                                
+                                InputStream imagen = pic.getContenido();
+                                byte[] bytes = IOUtils.toByteArray(imagen);
+                                String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                sesion.setAttribute("base64Img", base64String);
+                                System.out.println("Debió actualizar la imagen en la sesión");
+                            }
 
                             persona.setCorreo(correo);
                             persona.setTelefono(telefono);
 
                             personaServiceImpl.actualizarPersona(persona);
 
-                            sesion.setAttribute("correo", persona.getCorreo());
-                            sesion.setAttribute("telefono", persona.getTelefono());
-
-                            request.setAttribute("correo", sesion.getAttribute("correo"));
-                            request.setAttribute("correo", sesion.getAttribute("telefono"));
-
-                            request.getRequestDispatcher("/WEB-INF/potencial/cuentaPaciente.jsp").forward(request, response);
-                            break;
                         }
 
                     }
@@ -193,6 +220,7 @@ public class PotencialController extends HttpServlet {
                 break;
 
             }
+
 
             case "cambiarContrasena": {
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
@@ -581,7 +609,7 @@ public class PotencialController extends HttpServlet {
                         }
                                                                                           
                         /*DEBUG*/ 
-                        citaPreconsulta.setFechaSolicitud(timestamp);
+                        citaPreconsulta.setFechaSolicitud((timestamp).toString());
 
                         CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
                         int idCitaPreconsulta = citaServicioImpl.agregarPreconsulta(citaPreconsulta);
@@ -758,7 +786,7 @@ public class PotencialController extends HttpServlet {
                     
                 }
 
-                
+
                 break;
             }
             /*
@@ -855,9 +883,11 @@ public class PotencialController extends HttpServlet {
                 }
                 break;
            }
+
                                   
              */
         }
+
 
     }
 

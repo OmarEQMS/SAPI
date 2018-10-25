@@ -2,6 +2,7 @@
 
 $(document).ready(function () {
 
+    console.log("Se Actualizó!");
 
     $('#eliminarCuentaPotencial').on('click', () => {
 
@@ -87,7 +88,7 @@ $(document).ready(function () {
 
     });
 
-    $("#btn-enviarSolicitud").on('click', function(){
+    $("#btn-enviarSolicitud").on('click', function () {
 
         //Modal borrar sintoma
         swal({
@@ -99,10 +100,10 @@ $(document).ready(function () {
             buttons: [, 'Aceptar'],
             dangerMode: true
         });
-        
-        var form = $("form")[0];      
+
+        var form = $("form")[0];
         var data = new FormData(form);
-        
+
         var masculino = $('#masculino').is(':checked') ? 1 : 0;
         var femenino = $('#femenino').is(':checked') ? 1 : 0;
         var sillaDeRuedas = $('#sillaRuedas').is(':checked') ? 1 : 0;
@@ -111,53 +112,53 @@ $(document).ready(function () {
         var oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
         var motivoConsulta = $('#motivoConsulta').val();
         var biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
-                        
-        data.append("key","solicitarPreconsulta");
-        data.append("femenino",femenino);
-        data.append("masculino",masculino);        
-        data.append("sillaDeRuedas",sillaDeRuedas);
-        data.append("camilla",camilla);
-        data.append("baston",baston);
-        data.append("oxigeno",oxigeno);
-        data.append("motivoConsulta",motivoConsulta);
-        data.append("biopsia",biopsia);
-        
-        
-        
+
+        data.append("key", "solicitarPreconsulta");
+        data.append("femenino", femenino);
+        data.append("masculino", masculino);
+        data.append("sillaDeRuedas", sillaDeRuedas);
+        data.append("camilla", camilla);
+        data.append("baston", baston);
+        data.append("oxigeno", oxigeno);
+        data.append("motivoConsulta", motivoConsulta);
+        data.append("biopsia", biopsia);
+
+
+
         console.log(data);
-        
-       // Imprimmir en consola los valores obtenidos del form para pruebas
-        data.forEach((value,key) => {
-                   console.log(key+" "+value);
+
+        // Imprimmir en consola los valores obtenidos del form para pruebas
+        data.forEach((value, key) => {
+            console.log(key + " " + value);
         });
-        
-        
+
+
         //console.log("after getting the form" + form.length);
-        
-        
+
+
         /*
          ¿Obtener los valores de entrada?   
-        var masculino, femenino, camilla, sillaDeRuedas, baston, oxigeno, biopsia, motivoConsulta,
-                identificacionOficial, comprobanteDomicilio, fileEstudioPrevioUsg, estudioBiopsia,
-                fileEstudioPrevioMasto;
-
-
-        masculino = $('#masculino').is(':checked') ? 1 : 0;
-        femenino = $('#femenino').is(':checked') ? 1 : 0;
-
-        sillaDeRuedas = $('#sillaRuedas').is(':checked') ? 1 : 0;
-        camilla = $('#camilla').is(':checked') ? 1 : 0;
-        baston = $('#baston').is(':checked') ? 1 : 0;
-        oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
-        motivoConsulta = $('#motivoConsulta').val();
-        biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
-        */
-       //Imprimir los valores de entrada
+         var masculino, femenino, camilla, sillaDeRuedas, baston, oxigeno, biopsia, motivoConsulta,
+         identificacionOficial, comprobanteDomicilio, fileEstudioPrevioUsg, estudioBiopsia,
+         fileEstudioPrevioMasto;
+         
+         
+         masculino = $('#masculino').is(':checked') ? 1 : 0;
+         femenino = $('#femenino').is(':checked') ? 1 : 0;
+         
+         sillaDeRuedas = $('#sillaRuedas').is(':checked') ? 1 : 0;
+         camilla = $('#camilla').is(':checked') ? 1 : 0;
+         baston = $('#baston').is(':checked') ? 1 : 0;
+         oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
+         motivoConsulta = $('#motivoConsulta').val();
+         biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
+         */
+        //Imprimir los valores de entrada
         /*console.log("masculino: " + masculino + " femenino: " + femenino + " silla:  " + sillaDeRuedas + " camilla: " + camilla + " bastón: " +
-                baston + " oxigeno " + oxigeno + " biopsia " + biopsia + " motivo " + motivoConsulta
-                + " identificacion: " + identificacionOficial.name + " comprobante: " + comprobanteDomicilio.name + " estudioMasto: " + fileEstudioPrevioMasto.name
-                +" estudioUsg: " + fileEstudioPrevioUsg.name + " biopsia: " + estudioBiopsia.name);
-        */
+         baston + " oxigeno " + oxigeno + " biopsia " + biopsia + " motivo " + motivoConsulta
+         + " identificacion: " + identificacionOficial.name + " comprobante: " + comprobanteDomicilio.name + " estudioMasto: " + fileEstudioPrevioMasto.name
+         +" estudioUsg: " + fileEstudioPrevioUsg.name + " biopsia: " + estudioBiopsia.name);
+         */
         $.ajax({
             url: "PotencialController",
             method: "POST",
@@ -188,7 +189,7 @@ $(document).ready(function () {
 
     $("#btn-cambiarContrasena").on('click', function () {
 
-   
+
 
         //Modal cambiar contraseña 
         swal({
@@ -231,32 +232,47 @@ $(document).ready(function () {
 
 
     });
-    /*
-     $("#irACuenta").on('click', function () {
-     
+
+    /* $("#irACuenta").on('click', function () {
+     console.log("Presionó ir a cuenta");
      $.ajax({
      url: "FrontController",
-     data: {
-     key: "redirecionarACuenta",
-     idCuenta: $("#sesionPaciente").val()
-     },
      method: "POST",
      success: function (response) {
-     console.log(response);
-     if (response == "success") {
      
-     } else {
-     //Aqui no se que hace
-     }
+     console.log("Va a cambiar de pag");
+     document.location.href = 'WEB-INF/index.jsp';
+     console.log("cambió de pag");
+     
      },
      error: function (xhr) {
-     
+     console.log("Algo pasó");
      }
      });
-     });
-     */
-    $('#irACuenta').on('click', function () {
-        $.get("SAPI", {
+     });*/
+    $('#irACitaPreconsulta').on('click', function () {
+        console.log("Presionó CitaPreConsulta")
+        $.post("SAPI", {
+            file: "potencial/index.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+
+    $('#irAMisCitas').on('click', function () {
+        $.post("SAPI", {
+            //CAMBIAR ESTE FILE
             file: "potencial/cuentaPaciente.jsp"
         },
                 function (response, status, xhr) {
@@ -274,84 +290,165 @@ $(document).ready(function () {
         );
     });
 
-    $('#guardarCambios').on('click', function () {
-        console.log("Presionó GuardarCambios")
-        var corr = $("#myEmail");
-        var tel = $("#telephoneNum");
-        
-        var form = $("form")[0];
-        var datos = new FormData(form);
-        
-        $.get("PotencialController", {
-            key: "guardarCambios",
-            file: "potencial/cuentaPaciente.jsp",
-            correo: corr.val(),
-            telefono: tel.val()
-        },
-            //Esto de aquí abajo para que?
 
-            function (response, status, xhr) {
-                console.log(response);
-                if (status == "success") {
-                    if (response == "error") {
-                        $("#msj-error").show();
-                    } else {
-                    document.open("text/html", "replace");
-                    document.write(response);
-                    document.close();
+    $('#irACuenta').on('click', function () {
+        $.post("SAPI", {
+            file: "potencial/cuentaPaciente.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
                     }
                 }
-            }
         );
     });
 
-    
-    
+    $('#irAPreguntasFrecuentes').on('click', function () {
+        $.post("SAPI", {
+            //CAMBIAR ESTE NOMBRE
+            file: "potencial/cuentaPaciente.jsp"
+        },
+                function (response, status, xhr) {
+                    
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    /*
+     $('#guardarCambios').on('click', function() {
+     console.log("Presionó GuardarCambios") 
+     var corr = $("#myEmail");
+     var tel = $("#telephoneNum");
+     var input = $("#file-input")
+     $.get("PotencialController", {
+     key: "guardarCambios",
+     file: "potencial/cuentaPaciente.jsp",
+     input: input.val(),
+     correo: corr.val(),
+     telefono: tel.val()
+     },
+     //Esto de aquí abajo para que?
+     
+     function (response, status, xhr) {
+     console.log(response);
+     if (status == "success") {
+     if (response == "error") {
+     $("#msj-error").show();
+     } else {
+     document.open("text/html", "replace");
+     document.write(response);
+     document.close();
+     }
+     }
+     }
+     );
+     });*/
+
+
+    $('#guardarCambios').on('click', function () {
+
+        console.log("Presionó GuardarCambios")
+        var form = $("form")[0];
+        var data = new FormData(form);
+
+        data.append("key", "guardarCambios");
+        data.forEach((value, key) => {
+            console.log(key + " " + value);
+        })
+
+        $.ajax({
+            url: "PotencialController",
+            data: data,
+            method: "POST",
+            encType: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                $.post("SAPI", {
+                    file: "potencial/cuentaPaciente.jsp"
+                },
+                        function (response, status, xhr) {
+                            console.log("El ajax fue exitoso!!-----------------------");
+                            if (status == "success") {
+                                if (response == "error") {
+                                    $("#msj-error").show();
+                                } else {
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
+                                }
+                            }
+                        }
+                );
+            },
+            error: function (xhr) {
+                //alert(xhr.statusText);
+            }
+        });
+    });
+
+
+
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
         console.log("Salir cuenta");
         $.get("LoginController", {
-                key: "cerrar-sesion"
-            },
-            function (response, status, xhr) {
-                console.log(response);
-                if (status == "success") {
-                    if (response == "error") {
-                        $("#msj-error").show();
-                    } else {
-                        document.open("text/html", "replace");
-                        document.write(response);
-                        document.close();
+            key: "cerrar-sesion"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
                     }
                 }
-            }
         );
     });
-    
-    
+
+
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta1').on('click', function () {
         console.log("Salir cuenta");
         $.get("LoginController", {
-                key: "cerrar-sesion"
-            },
-            function (response, status, xhr) {
-                console.log(response);
-                if (status == "success") {
-                    if (response == "error") {
-                        $("#msj-error").show();
-                    } else {
-                        document.open("text/html", "replace");
-                        document.write(response);
-                        document.close();
+            key: "cerrar-sesion"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
                     }
                 }
-            }
         );
     });
-    
-    
-    
+
+
+
 
 
 

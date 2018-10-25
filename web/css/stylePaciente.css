@@ -347,6 +347,10 @@ a.article:hover {
     visibility: hidden;
 }
 
+.ocultaBadge{
+    opacity: 0;
+}
+
 /*sintomas*/
 
 .tituloSintomas, .tituloMiCuenta{
@@ -367,6 +371,8 @@ a.article:hover {
 [data-toggle="tooltip"]:hover{
     color: #ce4f59;
 }
+
+.tooltip_templates { display: none; }
 
 .editar-imagen{
     display: none;
@@ -398,6 +404,19 @@ a.article:hover {
 }
 
 .icono-info:hover{
+    color: #ce4f59 !important;
+}
+
+.icono-infoTorre{
+    font-size: 25px;
+    border-radius: 100px;
+    color: #424242 !important;
+    transition: 0.3s;
+    cursor: pointer;
+    
+}
+
+.icono-infoTorre:hover{
     color: #ce4f59 !important;
 }
 

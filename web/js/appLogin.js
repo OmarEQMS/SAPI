@@ -14,7 +14,7 @@ $(document).ready(function () {
         if (e.keyCode == 13) {
             var usu = $("#user");
             var pass = $("#password");
-            $.get("LoginController", {
+            $.post("LoginController", {
                 key: "verificar",
                 usuario: usu.val(),
                 password: pass.val()

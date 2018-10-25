@@ -31,7 +31,6 @@ public class Persona implements Serializable {
     private Date fechaNacimiento;
 
     private int edad;
-    private InputStream imagen;
     private int estatus;
 
     
@@ -162,14 +161,6 @@ public class Persona implements Serializable {
 
     public void setEdad(int edad) {
         this.edad = edad;
-    }
-
-    public InputStream getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(InputStream imagen) {
-        this.imagen = imagen;
     }
 
     public int getEstatus() {

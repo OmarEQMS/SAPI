@@ -56,7 +56,7 @@
             <div class="profile">
                 <div class="row">
                     <div class="col-12 mb-2 mt-4">
-                        <img src="img/user.png" class="imagenPerfil" alt="">
+                        <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="imagenPerfil edit-image" width="66px" height="66px" alt="">
                     </div>
                 </div>
                 <div class="row justify-content-center mb-2">
@@ -84,13 +84,13 @@
             <!-- MENU PRINCIPAL ENLACES -->
             <ul class="list-unstyled components">
 
-                <li><a href="./index.html"><i class="fas fa-home"></i>Cita a Preconsulta</a></li>
+                <li id ="irACitaPreconsulta"><a><i class="fas fa-home"></i>Cita a Preconsulta </a></li>
 
-                <li><a href="./mis-citas.html"><i class="fas fa-calendar-alt"></i>Mis Citas<span class="notificacion">1</span></a></li>
+                <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas<span class="notificacion">1</span></a></li>
 
-                <li><a href="./cuentaPaciente.html"><i class="far fa-user"></i>Mi Cuenta</a></li>
+                <li id ="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta </a></li>
 
-                <li><a href="./preguntasFrecuentes.html"><i class="fas fa-question-circle"></i>Preguntas Frecuentes</a></li>
+                <li id ="irAPreguntasFrecuentes"><a><i class="fas fa-question-circle"></i>Preguntas Frecuentes </a></li>
 
                 <li><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
@@ -115,9 +115,7 @@
                     <input type="hidden" id="sesionPaciente" value="${sessionScope.idSesion}" />
 
                     <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
-                            ${sessionScope.nombre} ${sessionScope.primerApellido}
-                        </span> <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
-
+                            ${sessionScope.nombre} ${sessionScope.primerApellido}</span></span>
                 </div>
             </nav>
 
@@ -149,9 +147,9 @@
                         <!-- Imagen -->
                         <div class="form-group row justify-content-center">
                             <div class="col-12 text-center">
-                                <input type="file" class="editar-imagen" id="file-input" />
+                                <input type="file" class="editar-imagen" id="file-input" name="file-image"/>
                                 <label for="file-input">
-                                    <img src="img/user.png" id="ImagenPerfil" class="edit-image" alt="Click aquí" title="Click aquí" width="200px" height="200px">
+                                    <img src="data:image/jpeg;base64,${sessionScope.base64Img}" id="ImagenPerfil" class="edit-image" alt="Click aquí" title="Click aquí" width="200px" height="200px">
                                 </label>
                             </div>
                         </div>
@@ -189,13 +187,13 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-4">
                                 <label for="myEmail">Correo</label>
-                                <input type="email" class="form-control" id="myEmail" value="${sessionScope.correo}"  required
-                                    />
+
+                                <input type="email" class="form-control" id="myEmail" name="myEmail" value="${sessionScope.correo}"  required/>
                                 <span class="text-danger" id="error-correo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
                             </div>
                             <div class="col-4">
                                 <label for="telephoneNum">Teléfono</label>
-                                <input type="text" class="form-control" id="telephoneNum"
+                                <input type="text" class="form-control" id="telephoneNum" name="telephoneNum"
                                     value="${sessionScope.telefono}" required />
                                 <span class="text-danger" id="error-tel">El formato no es correcto, deben ser 10 dígitos.</span>
                             </div>
@@ -265,10 +263,20 @@
                                 <input type="password" class="form-control" id="password" placeholder="Ingresa tu nueva contraseña" />
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <span class="text-danger" id="error-contraseña">La contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
+                            </div>
+                        </div>
                         <div class="form-row">
                             <div class="form-group col-12">
                                 <label for="name">Confirma tu contraseña</label>
                                 <input type="password" class="form-control" id="password2" placeholder="Reingresa tu nueva contraseña" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <span class="text-danger" id="error-notEqualPasswords">Las contraseñas no son iguales.</span>
                             </div>
                         </div>
                     </div>
@@ -283,7 +291,7 @@
 
     </div>
 
-<script src="js/validacionesPotencial.js" type="module"></script>
+<script src="js/validacionesCuentaPotencial.js" type="module"></script>
 </body>
 
 </html>
