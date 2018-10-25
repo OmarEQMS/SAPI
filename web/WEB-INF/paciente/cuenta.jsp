@@ -256,44 +256,21 @@
                             <div class="form-group row justify-content-center">
                                 <div class="col-4">
                                     <label>Tipo de sangre</label>
-                                    <input type="text" class="form-control" id="tipoSangre" name="tipoSangre" placeholder="Introduce tipo de sangre" />
-                                    <span class="text-danger" id="error-tipoSangre">El formato no es correcto.</span>
+                                    <select class="form-control" id="tipoSangre" name="tipoSangre" >
+                                        <option disabled selected>Seleccione tipo de sangre</option>
+                                        <c:forEach items="${tipoSangre}" var="sangre">  
+                                                <option value="<c:out value='${sangre.idTipoSangre}'/>" ><c:out value='${sangre.nombre}'/> </option>
+                                        </c:forEach>                                             
+                                    </select>
                                 </div>
                                 <div class="col-4">
                                     <label for="myPRZ">PRZ</label>
-                                    <input type="text" class="form-control" id="myPRZ" value="${sessionScope.prz}" readonly
-                                           />
+                                    <input type="text" class="form-control" id="myPRZ" value="${sessionScope.prz}" readonly/>
                                 </div>
                             </div>
 
 
-                            <!-- 4 -->
-                            <div class="form-group row justify-content-center">
-                                <div class="col-7">
-                                    <label for="tratamiento">Tratamientos</label>
-                                </div>
-                                <div class="col-1">
-
-                                </div>
-
-                            </div>
-
-                            <div id="tratamientos">
-                                <div class="form-group row justify-content-center contenedor-tratamientos">
-                                    <div class="col-7">
-                                        <select id="tratamiento" class="form-control dataTratamiento">
-                                            <c:forEach items="${tratamientos}" var="tratamiento">  
-                                                <option value=<c:out value='${tratamiento.idTipoTratamiento}'/>><c:out value='${tratamiento.nombre}'/> </option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                    <div class="col-1">
-                                        <button type="button" id="add-Tratamiento" class="btn btn-morado" style="border-radius: 25px;">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                           
 
                             <!-- 5 -->
                             <div class="form-group row justify-content-center mt-4">

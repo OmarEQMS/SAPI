@@ -4,6 +4,17 @@
 /* ---------------------------------------------------
     GENERALES
 ----------------------------------------------------- */
+
+.select-Tratamiento , .fecha-Inicio-Tratamiento{
+
+    font-size:12.5px;
+}
+
+.button-clicked {
+    background: #1cbb44;
+    color: #fff;
+}
+
 .swal-button--confirm {
     padding: 7px 19px;
     border-radius: 25px;

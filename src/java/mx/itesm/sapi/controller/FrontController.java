@@ -22,12 +22,14 @@ import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.Tratamiento;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
+import mx.itesm.sapi.bean.persona.TipoSangre;
 import mx.itesm.sapi.service.diagnostico.EtapaClinicaServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TratamientoServiceImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
+import mx.itesm.sapi.service.persona.TipoSangreServicioImpl;
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -167,6 +169,10 @@ public class FrontController extends HttpServlet {
                                     List<EtapaClinica> etapas = etapaServicio.mostrarEtapaClinica();
                                     List<TipoTratamiento> tratamientos = tratamientoServicio.mostrarTipoTratamiento();
 
+                                    TipoSangreServicioImpl tipoSangreServicio = new TipoSangreServicioImpl();
+                                    List<TipoSangre> tipoSangre = tipoSangreServicio.mostrarTipoDeSangre();
+                                    
+                                    request.setAttribute("tipoSangre", tipoSangre);
                                     request.setAttribute("etapas", etapas);
                                     request.setAttribute("tratamientos", tratamientos);
 

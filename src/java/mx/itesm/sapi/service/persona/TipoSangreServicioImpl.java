@@ -75,7 +75,7 @@ public class TipoSangreServicioImpl implements TipoSangreServicio{
         try{
             tiposSangre = new ArrayList<>();
              conn = Conexion.getConnection();
-            cstmt = conn.prepareCall("mostrarListaTipoSangre()");
+            cstmt = conn.prepareCall("CALL mostrarListaTipoSangre()");
              rs = cstmt.executeQuery();
             TipoSangre tipoSangre;
             

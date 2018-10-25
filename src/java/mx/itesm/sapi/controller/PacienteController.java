@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -45,11 +46,10 @@ import org.apache.commons.io.IOUtils;
 /**
  *
  * @author julioguzman
- * 
- * 
+ *
+ *
  */
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 50)
-
 
 @WebServlet(name = "PacienteController", urlPatterns = {"/PacienteController"})
 public class PacienteController extends HttpServlet {
@@ -100,22 +100,17 @@ public class PacienteController extends HttpServlet {
                 break;
 
             case "cambiarDatos": {
-                
+
                 String correo = request.getParameter("correo");
                 String noExpediente = request.getParameter("noExpediente");
                 String telefono = request.getParameter("telefono");
                 String etapaClinica = request.getParameter("etapaClinica");
                 int tipoSangre = Integer.parseInt(request.getParameter("tipoSangre"));
-                //String tratamientos = request.getParameter("datosTratamiento");
-                int tratamientos[] = {1, 2, 3};
                 
-                System.out.println("pruebas el español españa");
-                System.out.println(tratamientos);
                
-                
+          
+
                 Part part = request.getPart("file-image");
-                
-               
 
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
                 if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
@@ -135,40 +130,34 @@ public class PacienteController extends HttpServlet {
 
                     PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                     Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial((int) sesion.getAttribute("idCuenta"));
-                    
-                    TratamientoPacienteServiceImpl tratamientoPacienteServicoImpl= new TratamientoPacienteServiceImpl();
-                    TratamientoPaciente tratamientoPaciente = new TratamientoPaciente();
-                    
-                    
-                    
 
                     if ((int) part.getSize() > 0) {
-                                PicServicioImpl picServiceImpl = new PicServicioImpl();
-                                Pic pic = new Pic();
+                        PicServicioImpl picServiceImpl = new PicServicioImpl();
+                        Pic pic = new Pic();
 
-                                pic.setIdPersona((int) sesion.getAttribute("idPersona"));
-                                pic.setContenido(part.getInputStream());
-                                pic.setTamano((int) part.getSize());
-                                pic.setTipo(part.getContentType());
+                        pic.setIdPersona((int) sesion.getAttribute("idPersona"));
+                        pic.setContenido(part.getInputStream());
+                        pic.setTamano((int) part.getSize());
+                        pic.setTipo(part.getContentType());
 
-                                picServiceImpl.agregarPic(pic);
-                                
-                                InputStream imagen = pic.getContenido();
-                                byte[] bytes = IOUtils.toByteArray(imagen);
-                                String base64String = Base64.getEncoder().encodeToString(bytes);
+                        picServiceImpl.agregarPic(pic);
 
-                                sesion.setAttribute("base64Img", base64String);
-                                System.out.println("Debió actualizar la imagen en la sesión");
-                            }
-                    
+                        InputStream imagen = pic.getContenido();
+                        byte[] bytes = IOUtils.toByteArray(imagen);
+                        String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                        sesion.setAttribute("base64Img", base64String);
+                        System.out.println("Debió actualizar la imagen en la sesión");
+                    }
+
                     int idPaciente2 = pacienteServicioImpl.mostrarPacientePotencial((int) sesion.getAttribute("idCuenta")).getIdPaciente();
 
                     RegistroDiagnosticoServiceImpl registroDiagnosticoServicioImpl = new RegistroDiagnosticoServiceImpl();
                     System.out.println("El idPaciente despues de registro: " + idPaciente2);
                     RegistroDiagnostico registroDiagnostico = registroDiagnosticoServicioImpl.mostrarRegistroDiagnosticoPaciente(idPaciente2);
-                    
+
                     System.out.println("Ya pase registro");
-                    
+
                     persona.setCorreo(correo);
                     persona.setTelefono(telefono);
                     persona.setIdTipoSangre(tipoSangre);
@@ -180,16 +169,6 @@ public class PacienteController extends HttpServlet {
                     System.out.println("la etapa es" + etapaClinica);
                     registroDiagnostico.setIdEtapaClinica(Integer.parseInt(etapaClinica));
                     paciente.setExpediente(noExpediente);
-                    
-                    tratamientoPaciente.setIdPaciente(idPaciente2);
-                    
-                    for(int i=0;i<tratamientos.length;i++)
-                    {
-                       
-                        tratamientoPaciente.setIdTipoTratamiento(tratamientos[i]);
-                        tratamientoPacienteServicoImpl.agregarTratamientoPaciente(tratamientoPaciente);
-                    }
-
                     
                     personaServicioImpl.actualizarPersona(persona);
                     pacienteServicioImpl.actualizarPaciente(paciente);
@@ -207,26 +186,36 @@ public class PacienteController extends HttpServlet {
                     request.setAttribute("telefono", sesion.getAttribute("telefono"));
 
                     request.getRequestDispatcher("/WEB-INF/potencial/cuentaPaciente.jsp").forward(request, response);
-                    
-                    
+
                 }
             }
             break;
 
-            case "getTratamientos": {
+       
 
-                TipoTratamientoServiceImpl tratamientoServicio = new TipoTratamientoServiceImpl();
-
-                List<TipoTratamiento> tratamientos = tratamientoServicio.mostrarTipoTratamiento();
-
-                if (tratamientos.size() == 0) {
-                    out.print("No hay tratamientos");
+            case "cambiarContrasena": {
+                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+                if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
+                    // request.setAttribute("status", "");
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                    return;
                 } else {
+                    int idCuenta = (int) sesion.getAttribute("idCuenta");
+                    String contrasena = request.getParameter("password");
+                    String contrasena2 = request.getParameter("password2");
 
-                    Gson json = new Gson();
-                    out.print(json.toJson(tratamientos));
+                    if (contrasena.equals(contrasena2)) {
+
+                        CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+
+                        Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+
+                        cuenta.setPassword(contrasena);
+
+                        cuentaServicio.actualizarCuenta(cuenta);
+                    }
+
                 }
-
             }
             break;
 
