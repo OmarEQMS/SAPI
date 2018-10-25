@@ -217,7 +217,6 @@ public class CuentaServicioImpl implements CuentaServicio {
             rs.close();
             cstmt.close();
             conn.close();
-
             
         } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())

@@ -96,18 +96,15 @@ public class PacienteNecesidadEspecialServicioImpl implements PacienteNecesidadE
         ResultSet rs;
         CallableStatement cstmt;
         int id = -1;
-        String stPrcedure="";
+        String stPrcedure="CALL agregarPacienteNecesidadEspecial(?,?)";
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stPrcedure);
-            
-            cstmt.setInt(1, pacienteNecesidadEspecial.getIdNecesidadPaciente());
-            cstmt.setInt(2, pacienteNecesidadEspecial.getIdPaciente());
-            cstmt.setInt(3, pacienteNecesidadEspecial.getIdNecesidadEspecial());
-            cstmt.setInt(4, pacienteNecesidadEspecial.getEstatus() );
-            
-            
-            cstmt.executeUpdate();
+                        
+            cstmt.setInt(1, pacienteNecesidadEspecial.getIdPaciente());
+            cstmt.setInt(2, pacienteNecesidadEspecial.getIdNecesidadEspecial());            
+                        
+            cstmt.executeQuery();
             rs = cstmt.getGeneratedKeys();
             rs.next();
             id=rs.getInt(1);

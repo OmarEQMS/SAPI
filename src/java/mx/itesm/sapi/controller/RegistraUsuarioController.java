@@ -13,6 +13,7 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -152,10 +153,14 @@ public class RegistraUsuarioController extends HttpServlet {
                 per.setCurp(curp);
                 per.setIdEstadoCivil(estadoCivil);
                 per.setIdMunicipio(municipio);
+                      
+                long unixTimestamp = Instant.now().getEpochSecond();
+                System.out.println(String.valueOf(unixTimestamp));
 
                 //Set cuenta
                 cuenta.setPassword(contraseña1);
                 cuenta.setUsuario(usuario);
+                cuenta.setToken(key);
 
                 //DIRECCION
                 dir.setCalle(calle);

@@ -59,13 +59,21 @@ public class LoginServicioImpl implements LoginServicio {
                     cuenta.setUsuario(rs.getString("usuario"));
                     cuenta.setIdCuenta(rs.getInt("idCuenta"));
                     cuenta.setIdPersona(rs.getInt("idPersona"));
+                    
+                    //No se recibe un token, con excepción que se haya usado para iniciar sesión
+                    try{
+                        cuenta.setToken(rs.getString("token"));
+                    }catch(Exception ex)
+                    {                        
+                        System.out.println("No token");                        
+                    }
                     System.out.println("break;");
                     break;
                 }
             }
             
         }catch(Exception ex){
-            System.out.println("CuentaServicio.verificaUsuario ".concat(ex.getLocalizedMessage()));
+            System.out.println("LoginServicioImpl.verificaUsuario ".concat(ex.getLocalizedMessage()));
         }
         
         return cuenta;                
