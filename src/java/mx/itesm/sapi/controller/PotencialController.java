@@ -758,7 +758,7 @@ public class PotencialController extends HttpServlet {
                     
                 }
 
-                //Comentario para hacer commit x2 xdxdxd
+                
                 break;
             }
             /*
