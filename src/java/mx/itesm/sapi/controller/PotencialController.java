@@ -345,7 +345,7 @@ public class PotencialController extends HttpServlet {
                         } else {
                             if (femenino.equals("1")) {
                                 PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
-                                personaServicioImpl.actualizarSexoPersona(idPacientePotencial, idSexoHombre);
+                                personaServicioImpl.actualizarSexoPersona(idPacientePotencial, idSexoMujer);
                             }
                         }
 
@@ -1166,7 +1166,7 @@ public class PotencialController extends HttpServlet {
                             if(femenino.equals("1"))
                             {
                                 PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
-                                personaServicioImpl.actualizarSexoPersona(idPacientePotencial,idSexoHombre);
+                                personaServicioImpl.actualizarSexoPersona(idPacientePotencial,idSexoMujer);
                             }
                         }
                         
