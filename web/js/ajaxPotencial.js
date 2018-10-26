@@ -274,7 +274,7 @@ $(document).ready(function () {
     $('#irAMisCitas').on('click', function () {
         $.post("SAPI", {
             //CAMBIAR ESTE FILE
-            file: "potencial/cuentaPaciente.jsp"
+            file: "potencial/misCitas.jsp"
         },
                 function (response, status, xhr) {
                     console.log(response);
@@ -314,7 +314,7 @@ $(document).ready(function () {
     $('#irAPreguntasFrecuentes').on('click', function () {
         $.post("SAPI", {
             //CAMBIAR ESTE NOMBRE
-            file: "potencial/cuentaPaciente.jsp"
+            file: "potencial/preguntasFrecuentes.jsp"
         },
                 function (response, status, xhr) {
                     

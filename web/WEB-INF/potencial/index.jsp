@@ -118,8 +118,8 @@
                     </div>
                 </nav>
 
-                <div class="row mb-3 justify-content-end">
-                    <div class="col-2 text-center">
+                <div class="row mb-3">
+                    <div class="col-12 text-right">
                         <span class="iconoHome mr-2"><i class="fas fa-home"></i></span></span><span><a href="./index2.html" class="colorMoradoLight">Inicio</a></span>
                     </div>
                 </div>
@@ -137,15 +137,15 @@
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
 
-                                        <a class="nav-item nav-link active text-center colorMoradoLight" id="nav-bienvenida-tab" data-toggle="tab" href="#nav-bienvenida"
+                                        <a class="nav-item nav-link active text-center colorMoradoLight texto-tab" id="nav-bienvenida-tab" data-toggle="tab" href="#nav-bienvenida"
                                            role="tab" aria-controls="nav-bienvenida" aria-selected="false" style="width:33%">INFORMACIÓN</a>
 
-                                        <a class="nav-item nav-link text-center colorMoradoLight" id="nav-solicitud-tab" data-toggle="tab" href="#solicitud" role="tab"
-                                           aria-controls="nav-solicitud" aria-selected="true" style="width:33%"><i
-                                                class="fas fa-check-circle text-success mr-2"></i>SOLICITUD</a>
+                                        <a class="nav-item nav-link text-center colorMoradoLight texto-tab" id="nav-solicitud-tab" data-toggle="tab" href="#solicitud" role="tab"
+                                           aria-controls="nav-solicitud" aria-selected="true" style="width:33%"><!--<i
+                                                class="fas fa-check-circle text-success mr-2"></i>-->SOLICITUD</a>
 
 
-                                        <a class="nav-item nav-link text-center colorMoradoLight" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                                        <a class="nav-item nav-link text-center colorMoradoLight texto-tab" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
                                            aria-controls="nav-contact" aria-selected="false" style="width:33%">APROBACIÓN</a>
                                     </div>
                                 </nav>
@@ -179,11 +179,11 @@
 
                                                     <!-- Genero -->
                                                     <div class="row">
-                                                        <div class="col-3 text-center">
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-center">
                                                             <span class="textoDocumento">Sexo</span>
                                                         </div>
 
-                                                        <div class="col-8">
+                                                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 text-center">
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" name="generoMasculino" type="radio" id="masculino" value="masculino">
                                                                 <label class="form-check-label" for="masculino"><i class="fas fa-male"></i>
@@ -199,11 +199,11 @@
 
                                                     <!-- Necesidades Especiales -->
                                                     <div class="row mt-4">
-                                                        <div class="col-3 text-center">
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-center mb-2">
                                                             <span class="textoDocumento">Necesidades Especiales</span>
                                                         </div>
 
-                                                        <div class="col-9">
+                                                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 text-center">
 
                                                             <div class="form-check form-check-inline">
 
@@ -243,11 +243,11 @@
                                                     -->
                                                     <div class="row mt-4">
 
-                                                        <div class="col-3 text-center">
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
                                                             <span class="textoDocumento">Identificación oficial</span>
                                                         </div>
 
-                                                        <div class="custom-file col-8" id="customFile">
+                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
                                                             <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacion" aria-describedby="fileHelp">
                                                             <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
                                                             <label class="custom-file-label">
@@ -255,7 +255,7 @@
                                                             </label>
                                                         </div>
 
-                                                        <div class="col-1 iconoQuestion align-self-center">
+                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 iconoQuestion align-self-center">
                                                             <a href="#" class="questionMark" data-tooltip-content="#tooltip_content"><i
                                                                     class="fas fa-question-circle"></i></a>
                                                         </div>
@@ -278,7 +278,7 @@
                                                     -->
                                                     <div class="row mt-4">
 
-                                                        <div class="col-3 text-center">
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
                                                             <span class="textoDocumento">CURP</span>
                                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                                 Se puede tramitar
@@ -286,8 +286,8 @@
                                                             </small>
                                                         </div>
 
-                                                        <div class="custom-file col-8" id="customFile">
-                                                            <input type="file" name="fileCURP" class="custom-file-input" id="fileCURP" aria-describedby="fileHelp">
+                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="customFile">
+                                                            <input type="file" name="fileCURP" class="custom-file-input centraInput" id="fileCURP" aria-describedby="fileHelp">
                                                             <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
                                                             <label class="custom-file-label">
                                                                 Elegir archivo...
@@ -300,14 +300,14 @@
 
                                                     <div class="row mt-4">
 
-                                                        <div class="col-3 text-center">
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
                                                             <span class="textoDocumento">Comprobante de domicilio</span>
                                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                                 Vigencia no mayor a 3 meses.
                                                             </small>
                                                         </div>
 
-                                                        <div class="custom-file col-8" id="customFile">
+                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFile">
                                                             <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilio" aria-describedby="fileHelp">
                                                             <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
                                                             <label class="custom-file-label">
@@ -315,7 +315,7 @@
                                                             </label>
                                                         </div>
 
-                                                        <div class="col-1 iconoQuestion">
+                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 iconoQuestion">
                                                             <a href="#" class="questionMark" data-tooltip-content="#tooltip_content3"><i
                                                                     class="fas fa-question-circle"></i></a>
                                                         </div>
@@ -341,11 +341,11 @@
 
                                                     <div class="row mt-4" id="formMotivoConsulta">
 
-                                                        <div class="col-3 text-center">
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center">
                                                             <span class="textoDocumento">Motivo de la consulta</span>
                                                         </div>
 
-                                                        <div class="col-8 removePadding">
+                                                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 removePadding">
                                                             <select class="form-control" id="motivoConsulta">
                                                                 <option>Seleccione el motivo de la consulta</option>
                                                                 <option value="1">Me envió un médico</option>
@@ -385,13 +385,13 @@
                                                     <!-- Estudios previos Mastografí­a-->
 
                                                     <div class="row mt-1">
-                                                        <div class="col-3 text-center">
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
                                                             <span class="textoDocumento">Reporte de resultados de estudios previos
                                                                 mastografía
                                                             </span>
                                                         </div>
 
-                                                        <div class="custom-file col-8" id="customFileMasto">
+                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
                                                             <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMasto" aria-describedby="fileHelp">
                                                             <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
                                                             <label class="custom-file-label">
@@ -429,13 +429,13 @@
                                                     <!-- Estudios previos Ultrasonido -->
 
                                                     <div class="row mt-4">
-                                                        <div class="col-3 text-center">
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-12 text-center">
                                                             <span class="textoDocumento">Reporte de resultados de estudios previos
                                                                 ultrasonido
                                                             </span>
                                                         </div>
 
-                                                        <div class="custom-file col-8" id="customFileUsg">
+                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
                                                             <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsg" aria-describedby="fileHelp">
                                                             <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
                                                             <label class="custom-file-label">
@@ -475,7 +475,7 @@
 
                                                     <div class="row mt-4">
 
-                                                        <div class="col-3 text-center">
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput">
                                                                 <label class="form-check-label textoDocumento">
@@ -484,7 +484,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="custom-file col-8" id="biopsiaContenedor">
+                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="biopsiaContenedor">
                                                             <input type="file" class="custom-file-input" id="fileEstudioBiopsia" name="fileEstudioBiopsia" aria-describedby="fileHelp">
                                                             <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
                                                             <label class="custom-file-label">
@@ -520,11 +520,11 @@
                                                     <!-- Botones -->
 
                                                     <div class="row justify-content-center mt-5">
-                                                        <div class="col-4">
+                                                        <div class="col-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-2">
                                                             <button class="btn btn-morado btn-block" id="btn-enviarSolicitud" style="border-radius:20px"><i
                                                                     class="fas fa-check-circle mr-2"></i>Enviar</button>
                                                         </div>
-                                                        <div class="col-4">
+                                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-2">
                                                             <button class="btn btn-guardar-continuar btn-block" style="border-radius:20px"><i
                                                                     class="fas fa-save mr-2"></i>Guardar y Continuar Después</button>
                                                         </div>
@@ -538,7 +538,8 @@
                                     </div>
 
                                     <!-- APROBACION -->
-                                    <div class="tab-pane  fade white mt-4" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                    
+                                    <div class="tab-pane fade white mt-4" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                                         <div class="card mb-3">
                                             <img class="card-img-top mt-3" style="width: 100px; display:block; margin:auto;" src="img/success2.png" alt="Card image cap">
                                             <div class="card-body">
@@ -926,7 +927,7 @@
 
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> 
 
                                     <!-- DOCUMENTACION -->
 
@@ -937,7 +938,7 @@
 
                                                 <div class="row justify-content-center">
                                                     <div class="col-9">
-                                                        <h4 class="display-4 text-secondary mb-3 text-center mt-3">¡BIENVENIDA (O)!
+                                                        <h4 class="display-4 text-secondary mb-3 text-center mt-3 texto-bienvenida">¡BIENVENIDA (O)!
                                                         </h4>
                                                         <p class="justificar">
                                                             Nuestro objetivo es brindar excelente atención médica especializada a pacientes con cáncer de mama.
@@ -1018,7 +1019,7 @@
 
                                                 <div class="row justify-content-center mt-3">
                                                     <div class="col-4 text-center">
-                                                        <button style="border-radius:20px" type="button" class="btn btn-morado btn-block">Continuar
+                                                        <button style="border-radius:20px" type="button" class="btn btn-morado btn-block" id="btn-continuar">Continuar
                                                             <i class="ml-2 fas fa-arrow-right"></i></button>
                                                     </div>
                                                 </div>

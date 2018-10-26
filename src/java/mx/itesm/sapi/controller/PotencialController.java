@@ -5,11 +5,14 @@
  */
 package mx.itesm.sapi.controller;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.Base64;
 import java.util.ResourceBundle;
 import java.sql.Timestamp;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
+import mx.itesm.sapi.bean.calendario.FullCalendar;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.bean.persona.Persona;
@@ -26,6 +30,7 @@ import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 import mx.itesm.sapi.bean.gestionPaciente.Cita;
 import mx.itesm.sapi.bean.gestionPaciente.OtroMotivo;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
+import mx.itesm.sapi.service.CalendarioServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
@@ -768,6 +773,28 @@ public class PotencialController extends HttpServlet {
                 //Comentario para hacer commit x2 xdxdxd
 
                 break;
+            }
+            
+            case "obtenerEventos": {
+                
+                String idPaciente = request.getParameter("idPaciente");
+
+                //Servicio
+                CalendarioServicioImpl csi = new CalendarioServicioImpl();
+
+                //Lista Calendarios
+                List<FullCalendar> calendarios = csi.mostrarEventos(Integer.parseInt(idPaciente));
+                
+                System.out.println("EL ID DEL PACIENTE ES:  " + idPaciente);
+
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+
+                PrintWriter out = response.getWriter();
+                out.print(new Gson().toJson(calendarios));
+
+                break;
+                
             }
             /*
             case "zonaPorCp": {
