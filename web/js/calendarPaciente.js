@@ -21,22 +21,20 @@ $(document).ready(function () {
         eventClick: function (calEvent, jsEvent, view) {
 
             var d = new Date(Date.parse(calEvent.start._i));
-          
-            var dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
             
-            var meses = [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ];
-        
+            var m = moment(new Date(Date.parse(calEvent.start._i)));
+           
             var edificios = ["","Edificio Antiguo", "Torre nueva de especialización"];
             
             var pisos = ["Planta Baja", "Primer Piso", "Segundo Piso"];
             
             $('#titulo-cita').html(calEvent.title);
-            $('#dia-cita').html(dias[d.getDay()] + " " + d.getDay() + " " + "de " + meses[d.getMonth()]);
+            $('#dia-cita').html(m.locale("es").format('LL'));
             $('#hora-cita').html(d.getHours()+":"+d.getMinutes());
-            $('#modalVerCita').modal('toggle');
+            
             $('#edificio-cita').html(edificios[parseInt(calEvent.edificio)]);
             $('#piso-cita').html(pisos[parseInt(calEvent.piso)]);
+            $('#modalVerCita').modal('toggle');
             
 
         },
