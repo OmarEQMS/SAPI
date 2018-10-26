@@ -5,8 +5,10 @@
  */
 package mx.itesm.sapi.controller;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.Base64;
 import java.util.ResourceBundle;
 import java.sql.Timestamp;
@@ -26,6 +28,7 @@ import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 import mx.itesm.sapi.bean.gestionPaciente.Cita;
 import mx.itesm.sapi.bean.gestionPaciente.OtroMotivo;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
+import mx.itesm.sapi.bean.gestionPaciente.SolicitudPreconsulta;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
@@ -870,13 +873,49 @@ public class PotencialController extends HttpServlet {
             
             case "consultarDocumentosPreconsulta":
             {
-                int idPacientePotencial = Integer.parseInt(request.getParameter("idPaciente"));
+                HttpSession sesion = request.getSession(true);
+
+                if (sesion.getId() == null) {
+                    //TODO 
+                } else {
+                response.setContentType("application/json");//Por default se envia un text/html, pero enviaremos un application/json para que se interprete en el ajax del front.
                 
+                 int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
+                
+                SolicitudPreconsulta solicitudPreconsulta;                
                 SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
-                System.out.println("Res".concat(solicitudPreconsultaServicioImpl.toString()));                
+                solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
                 
+                Gson json = new Gson();                
+                System.out.println("Res ".concat(json.toJson(solicitudPreconsulta)));
+                
+                PrintWriter out = response.getWriter();
+                out.print(json.toJson(json.toJson(solicitudPreconsulta)));
                 break;
+                }
             }
+            case "consultarEstadoPreconsulta":
+            {
+                HttpSession sesion = request.getSession(true);
+
+                if (sesion.getId() == null) {
+                    //TODO 
+                } else {
+                response.setContentType("application/json");//Por default se envia un text/html, pero enviaremos un application/json para que se interprete en el ajax del front.
+                
+                 int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
+                
+                CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
+                String estadoCita = citaServicioImpl.mostrarPreconsultaAceptada(idPacientePotencial);
+                String strJson = "{estado:".concat(estadoCita).concat("}");
+                
+                Gson json = new Gson();
+                System.out.println("JSON ".concat(json.toJson(estadoCita)));
+                
+                PrintWriter out = response.getWriter();
+                out.print(json.toJson(strJson));
+                }
+            }                        
         }
 
 

@@ -14,20 +14,41 @@ public class SolicitudPreconsulta {
     private int silla;
     private int camilla;
     private int baston;
-    private int oxiegno;
+    private int oxigeno;
     private int estudioPrevio;
     private int biopsiaPrevia;
     private int identificacion;
     private int comprobante;
     private int curp;
     private int referencia;
-    private int mastrografia;
+    private int mastografia;
     private int ultrasonido;
 
     public SolicitudPreconsulta()
     {
         
     }
+
+    @Override
+    public String toString() {
+        String str = "SolicitudPreconsulta[idSexo:".concat(String.valueOf(idSexo))
+        .concat(",silla:").concat(String.valueOf(silla))
+        .concat(",camilla:").concat(String.valueOf(camilla))
+        .concat(",baston:").concat(String.valueOf(baston))
+        .concat(",oxigeno:").concat(String.valueOf(oxigeno))
+        .concat(",estudioPrevio:").concat(String.valueOf(estudioPrevio))
+        .concat(",biopsiaPrevia:").concat(String.valueOf(biopsiaPrevia))
+        .concat(",identificacion:").concat(String.valueOf(identificacion)
+        .concat(",comprobante:").concat(String.valueOf(comprobante))
+        .concat(",curp:").concat(String.valueOf(curp))
+        .concat(",referencia:").concat(String.valueOf(referencia))
+        .concat(",mastografia:").concat(String.valueOf(mastografia))
+        .concat(",ultrasonido:").concat(String.valueOf(ultrasonido))
+        .concat("]"));
+        return str;
+    }
+    
+    
     
     public int getIdSexo() {
         return idSexo;
@@ -61,12 +82,12 @@ public class SolicitudPreconsulta {
         this.baston = baston;
     }
 
-    public int getOxiegno() {
-        return oxiegno;
+    public int getOxigeno() {
+        return oxigeno;
     }
 
-    public void setOxiegno(int oxiegno) {
-        this.oxiegno = oxiegno;
+    public void setOxigeno(int oxiegno) {
+        this.oxigeno = oxiegno;
     }
 
     public int getEstudioPrevio() {
@@ -117,12 +138,12 @@ public class SolicitudPreconsulta {
         this.referencia = referencia;
     }
 
-    public int getMastrografia() {
-        return mastrografia;
+    public int getMastografia() {
+        return mastografia;
     }
 
-    public void setMastrografia(int mastrografia) {
-        this.mastrografia = mastrografia;
+    public void setMastografia(int mastrografia) {
+        this.mastografia = mastrografia;
     }
 
     public int getUltrasonido() {

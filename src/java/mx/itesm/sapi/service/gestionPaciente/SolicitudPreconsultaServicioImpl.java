@@ -42,15 +42,15 @@ public class SolicitudPreconsultaServicioImpl implements SolicitudPreconsultaSer
             solicitudPreconsulta.setSilla(rs.getInt(2));
             solicitudPreconsulta.setCamilla(rs.getInt(3));
             solicitudPreconsulta.setBaston(rs.getInt(4));
-            solicitudPreconsulta.setOxiegno(rs.getInt(5));
+            solicitudPreconsulta.setOxigeno(rs.getInt(5));
             solicitudPreconsulta.setEstudioPrevio(rs.getInt(6));
             solicitudPreconsulta.setBiopsiaPrevia(rs.getInt(7));
             solicitudPreconsulta.setIdentificacion(rs.getInt(8));
             solicitudPreconsulta.setComprobante(rs.getInt(9));
             solicitudPreconsulta.setCurp(rs.getInt(10));
             solicitudPreconsulta.setReferencia(rs.getInt(11));
-            solicitudPreconsulta.setMastrografia(rs.getInt(12));
-            solicitudPreconsulta.setMastrografia(rs.getInt(13));
+            solicitudPreconsulta.setMastografia(rs.getInt(12));
+            solicitudPreconsulta.setUltrasonido(rs.getInt(13));
                         
             
             conn.close();
