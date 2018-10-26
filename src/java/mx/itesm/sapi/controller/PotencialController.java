@@ -33,6 +33,7 @@ import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.OtroMotivoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.SolicitudPreconsultaServicioImpl;
 
 //Checar los de las librerias de clases Apache
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -866,6 +867,16 @@ public class PotencialController extends HttpServlet {
 
                                   
              */
+            
+            case "consultarDocumentosPreconsulta":
+            {
+                int idPacientePotencial = Integer.parseInt(request.getParameter("idPaciente"));
+                
+                SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
+                System.out.println("Res".concat(solicitudPreconsultaServicioImpl.toString()));                
+                
+                break;
+            }
         }
 
 
