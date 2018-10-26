@@ -28,7 +28,7 @@ public class CitaServicioImpl implements CitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarCita";
+        String stProcedure = "CALL mostrarCita(?)";
         Cita cita = null;
 
         try {
@@ -184,7 +184,7 @@ public class CitaServicioImpl implements CitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL borradoLogicoCita";
+        String stProcedure = "CALL borradoLogicoCita(?)";
         boolean exito = false;
 
         try {
@@ -342,6 +342,34 @@ public class CitaServicioImpl implements CitaServicio {
             estadoCita = null;
         }
         return estadoCita;
+    }
+
+    @Override
+    public boolean cancelarCitaPreconsulta(int idPacientePotencial) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL cancelarCitaPreconsulta(?)";
+        boolean exito = false;
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+
+            cstmt.setInt(1, idPacientePotencial);
+           
+            rs = cstmt.executeQuery();
+            rs.next();
+            exito = rs.getBoolean(1);
+
+            rs.close();
+            conn.close();
+            cstmt.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+        }
+        return exito;
     }
 
 }

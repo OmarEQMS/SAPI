@@ -5,7 +5,8 @@
  */
 package mx.itesm.sapi.bean.gestionPaciente;
 
-import java.sql.Timestamp;
+import java.sql.Date;
+
 
 /**
  *
@@ -15,8 +16,8 @@ public class PacienteMedicoTitular {
     private int idPacienteMedicoTitular;
     private int idPaciente;
     private int idEmpleado;
-    private Timestamp inicio;
-    private Timestamp fin;
+    private Date inicio;
+    private Date fin;
     private int estatus;
     
     public PacienteMedicoTitular() {}
@@ -57,19 +58,19 @@ public class PacienteMedicoTitular {
         this.idEmpleado = idEmpleado;
     }
 
-    public Timestamp getInicio() {
+    public Date getInicio() {
         return inicio;
     }
 
-    public void setInicio(Timestamp inicio) {
+    public void setInicio(Date inicio) {
         this.inicio = inicio;
     }
 
-    public Timestamp getFin() {
+    public Date getFin() {
         return fin;
     }
 
-    public void setFin(Timestamp fin) {
+    public void setFin(Date fin) {
         this.fin = fin;
     }
 
