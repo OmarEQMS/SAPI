@@ -138,8 +138,9 @@ $(document).ready(function () {
 
     });
     
-    $("btn-GuardarContinuar").on('click',function()
+    $("#btn-GuardarContinuar").on('click',function()
     {       
+        console.log("Guardar-Continuar");
         var form = $("form")[0];
         var data = new FormData(form);
 
@@ -152,7 +153,7 @@ $(document).ready(function () {
         var motivoConsulta = $('#motivoConsulta').val();
         var biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
 
-        data.append("key", "GuardarCotinuar");
+        data.append("key", "GuardarContinuar");
         data.append("femenino", femenino);
         data.append("masculino", masculino);
         data.append("sillaDeRuedas", sillaDeRuedas);

@@ -71,6 +71,7 @@ public class PotencialController extends HttpServlet {
         String key = request.getParameter("key");
 
         System.out.println("URL PotencialController: ".concat(request.getRequestURL().toString()));
+        System.out.println("Key: ".concat(key));
 
         switch (key) {
 
@@ -933,8 +934,9 @@ public class PotencialController extends HttpServlet {
                 
                 PrintWriter out = response.getWriter();
                 out.print(json.toJson(json.toJson(solicitudPreconsulta)));
-                break;
+                
                 }
+                break;
             }
             case "consultarEstadoPreconsulta":
             {
@@ -976,6 +978,7 @@ public class PotencialController extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 out.print(json.toJson(strJson));
                 }
+                break;
             }
             case "cancelarPreconsulta":
             {
@@ -1011,7 +1014,7 @@ public class PotencialController extends HttpServlet {
                 }
                 break;
             }
-            case "GuardarCotinuar":
+            case "GuardarContinuar":
             {
                 System.out.println("Guardar y continuar");
                 
@@ -1058,7 +1061,9 @@ public class PotencialController extends HttpServlet {
                     int idCamilla = Integer.parseInt(sapiProperties.getString("Baston"));
                     int idBaston = Integer.parseInt(sapiProperties.getString("Oxigeno"));
                     int idOxigeno = Integer.parseInt(sapiProperties.getString("Camilla"));
-
+                    
+                    System.out.println("Antes del multipart");
+                    
                     if (ServletFileUpload.isMultipartContent(request)) {
                         System.out.println("Entro a solicitarPreconsulta if ");
 
