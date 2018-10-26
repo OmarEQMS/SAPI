@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -215,13 +217,43 @@ public class PacienteController extends HttpServlet {
                         }
                         break;
 
+                        case "agregarTratamiento": {
+
+                            System.out.println("entro a la key Agregar tratamiento");
+                            if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
+                                // request.setAttribute("status", "");
+                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                                return;
+                            } else {
+                                
+                                
+                                int idTipoTratamiento = Integer.parseInt(request.getParameter("idTipoTratamiento"));
+                                Date fechaInicio = Date.valueOf(request.getParameter("fechaInicio"));
+                                int idPaciente2 = (int) sesion.getAttribute("idPaciente");
+
+                                TratamientoPacienteServiceImpl tratamientoPacienteServiceImpl = new TratamientoPacienteServiceImpl();
+                                TratamientoPaciente tratamientoPaciente = new TratamientoPaciente();
+
+                                tratamientoPaciente.setIdTipoTratamiento(idTipoTratamiento);
+                                tratamientoPaciente.setFechaInicio(fechaInicio);
+                                tratamientoPaciente.setIdPaciente(idPaciente2);
+
+                                tratamientoPacienteServiceImpl.agregarTratamientoPaciente(tratamientoPaciente);
+
+                            }
+
+                        }
                     }
+                    break;
+
                 }
             }
+
         }
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

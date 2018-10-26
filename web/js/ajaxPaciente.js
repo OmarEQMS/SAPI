@@ -85,6 +85,28 @@ $(document).ready(function () {
                 }
         );
     });
+    
+     //PARA IR A LA CUENTA
+    $('#irATratamientos').on('click', function () {
+        
+        
+        $.get("SAPI", {
+            file: "paciente/misTratamientos.jsp"
+        },
+                function (response, status, xhr) {
+                    //console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
         console.log("Salir cuenta");
@@ -226,7 +248,7 @@ $(document).ready(function () {
         });
     });
 
-
+//Cambiar imagen temporalmente en elfront
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -243,6 +265,30 @@ $(document).ready(function () {
         console.log("Llegó :)");
         readURL(this);
     });
+    
+    
+    //Agregar tratamientos
+     $("#btn-agregarTratamiento").on('click', function () {
+       
+       $.ajax({
+            url: 'PacienteController',
+            cache: false,
+            method: 'POST',
+            data: {
+                key: 'agregarTratamiento',
+                idTipoTratamiento: $('#tipoTratamiento').val(),
+                fechaInicio: $('#fechaInicioTratamiento').val(),
+            }
+        })
+                .done(function (response) {
+                    console.log(response);
+                })
+                .fail(function (xhr, textStatus, errorThrown) {
+                    console.log(xhr.responseText);
+                });
+    });
+    
+    //Cambiar contraseña
 
     $("#btn-updatePassword").on('click', function () {
 

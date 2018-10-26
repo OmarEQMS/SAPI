@@ -99,8 +99,7 @@ public class FrontController extends HttpServlet {
 
                                     PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                     Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
-                                    
-                                    
+
                                     sesion.setAttribute("prz", paciente.getPrz());
                                     sesion.setAttribute("correo", persona.getCorreo());
                                     sesion.setAttribute("telefono", persona.getTelefono());
@@ -112,7 +111,7 @@ public class FrontController extends HttpServlet {
                                     request.setAttribute("correo", sesion.getAttribute("correo"));
                                     request.setAttribute("usuario", sesion.getAttribute("usuario"));
                                     request.setAttribute("prz", sesion.getAttribute("prz"));
-                                   
+
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al login
                                     break;
                                 }
@@ -146,25 +145,22 @@ public class FrontController extends HttpServlet {
 
                                     PicServicioImpl picServicioImpl = new PicServicioImpl();
                                     Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
-                                    
+
                                     RegistroDiagnosticoServiceImpl registroDiagnosticoServicio = new RegistroDiagnosticoServiceImpl();
                                     RegistroDiagnostico registro = registroDiagnosticoServicio.mostrarRegistroDiagnosticoPaciente(paciente.getIdPaciente());
-                                   
+
                                     System.out.println("esto es lo que hay en registro");
-                                    
+
                                     System.out.println(registro.getIdEtapaClinica());
                                     System.out.println(registro.getIdPaciente());
                                     TipoSangreServicioImpl tipoSangreServicio = new TipoSangreServicioImpl();
-                                    
-                                    
-                                    
+
                                     InputStream imagen = pic.getContenido();
                                     byte[] bytes = IOUtils.toByteArray(imagen);
                                     String base64String = Base64.getEncoder().encodeToString(bytes);
 
                                     sesion.setAttribute("base64Img", base64String);
-                                    
-                                    
+
                                     sesion.setAttribute("prz", paciente.getPrz());
                                     sesion.setAttribute("correo", persona.getCorreo());
                                     sesion.setAttribute("telefono", persona.getTelefono());
@@ -178,11 +174,8 @@ public class FrontController extends HttpServlet {
                                     request.setAttribute("prz", sesion.getAttribute("prz"));
                                     sesion.setAttribute("tipoSangre", persona.getIdTipoSangre());
                                     sesion.setAttribute("etapaCli", registro.getIdEtapaClinica());
-                                    
-                                   
-                                    sesion.setAttribute("expediente", paciente.getExpediente());
-                                    
 
+                                    sesion.setAttribute("expediente", paciente.getExpediente());
 
                                     EtapaClinicaServiceImpl etapaServicio = new EtapaClinicaServiceImpl();
                                     TipoTratamientoServiceImpl tratamientoServicio = new TipoTratamientoServiceImpl();
@@ -190,26 +183,46 @@ public class FrontController extends HttpServlet {
                                     List<EtapaClinica> etapas = etapaServicio.mostrarEtapaClinica();
                                     List<TipoTratamiento> tratamientos = tratamientoServicio.mostrarTipoTratamiento();
 
-                                
                                     List<TipoSangre> tipoSangre = tipoSangreServicio.mostrarTipoDeSangre();
-                                    
+
                                     request.setAttribute("tipoSangre", tipoSangre);
                                     request.setAttribute("etapas", etapas);
                                     request.setAttribute("tratamientos", tratamientos);
 
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al login
                                     break;
+
                                 }
+
+                                case "paciente/misTratamientos.jsp": {
+
+                                    PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
+                                    Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
+
+                                    TipoTratamientoServiceImpl tratamientoServicioImpl = new TipoTratamientoServiceImpl();
+
+                                    List<TipoTratamiento> tratamientos = tratamientoServicioImpl.mostrarTipoTratamiento();
+                                    
+                                    sesion.setAttribute("idPaciente", paciente.getIdPaciente());
+                                    
+                                    request.setAttribute("tipoTratamiento", tratamientos);
+
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+
+                                }
+                                break;
+
                             }
 
                             break;
+
                         }
 
                     }
                 }
 
                 //System.out.println("filename if ".concat(file));
-                // request.getRequestDispatcher("WEB-INF/" + file).forward(request, response);
+                // request.getRequestDispatcher("WEB-INF/" + file).forward(request, response
                 // return;
             } else {
 

@@ -6,6 +6,7 @@
 package mx.itesm.sapi.bean.gestionTratamiento;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -17,8 +18,8 @@ public class TratamientoPaciente implements Serializable{
     private int idTratamientoPaciente;
     private int idPaciente;
     private int idTipoTratamiento;
-    private Timestamp fechaInicio;
-    private Timestamp fechaFin;
+    private Date fechaInicio;
+    private Date fechaFin;
     private boolean recurrente;
     private boolean previoCirugia;
     private int estatus;
@@ -47,19 +48,19 @@ public class TratamientoPaciente implements Serializable{
         this.idTipoTratamiento = idTipoTratamiento;
     }
 
-    public Timestamp getFechaInicio() {
+    public Date getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Timestamp fechaInicio) {
+    public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Timestamp getFechaFin() {
+    public Date getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Timestamp fechaFin) {
+    public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
 
