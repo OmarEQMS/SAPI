@@ -5,28 +5,30 @@
  */
 //Author Angel Gtz
 
+$(document).ready(function () {
+    $("#RestablcerContra").on('click', function () {
+        console.log("Presionó cmabiar contrasena");
+        
+        $.ajax({
+            url: "RecuperarController",
+            data: {
+                key: "cambiarContrasena",
+            
+                password: $("#cambio1").val(),
+                password2: $("#cambio2").val()
+            },
+            method: "POST",
+            success: function (response) {
+                if (response == "success") {
 
-$("#btn-RestablcerContra").on('click', function () {
+                } else {
 
-    $.ajax({
-        url: "RecuperarController",
-        data: {
-            key: "cambiarContrasena",
-            idCuenta: $("#sesionPaciente").val(),
-            password: $("#contra-Cambio").val(),
-            password2: $("#confirmarContra-Cambio").val()
-        },
-        method: "POST",
-        success: function (response) {
-            if (response == "success") {
+                }
+            },
+            error: function (xhr) {
 
-            } else {
-                
             }
-        },
-        error: function (xhr) {
+        });
 
-        }
     });
-
 });

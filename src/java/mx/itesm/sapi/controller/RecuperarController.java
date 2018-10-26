@@ -51,22 +51,25 @@ public class RecuperarController extends HttpServlet {
                  * iguales y de ser asi se le actualiza en la base de datos
                  */
                 //lo que esta comentado es haciendo la sesion aqui
-                //HttpSession sesion = request.getSession(true);
+                HttpSession sesion = request.getSession(true);
                 String contra = request.getParameter("password");
                 String contra2 = request.getParameter("password2");
-                int idCuenta = Integer.parseInt(request.getParameter("idCita"));
+                
                 CuentaServicioImpl cuentaServiceImpl = new CuentaServicioImpl();
-                //Cuenta cuenta = cuentaServiceImpl.mostrarCuenta((int) sesion.getAttribute("idPersona"));
-
+                Cuenta cuenta = cuentaServiceImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));
+                
+               
                 if (contra.equals(contra2)) {
 
                     CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
 
-                    Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+                   // Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
 
                     cuenta.setPassword(contra);
 
                     cuentaServicio.actualizarCuenta(cuenta);
+                     System.out.println("Si entre ");
+                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
                 }
 
             }

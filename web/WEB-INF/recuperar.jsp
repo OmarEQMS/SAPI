@@ -34,7 +34,7 @@
 
     </head>
     <body>
-        <input type="hidden" id="sesionPaciente" value="${sessionScope.idSesion}" />
+       
 
         <form class="formulario">
 
@@ -42,10 +42,10 @@
 
             <div class="row">
                 <div class="col-12">
-                    <input type="correo" class="form-control" placeholder="Introduce tu nueva contraseña" id="contra-Cambio">
+                    <input id="cambio1" type="correo" class="form-control" placeholder="Introduce tu nueva contraseña" >
                 </div>
                 <div class="col-12">
-                        <input type="confirmarCorreo" class="form-control mt-3" placeholder="Confirma tu nueva contraseña" id="confirmarContra-Cambio">
+                        <input id="cambio2"type="confirmarCorreo" class="form-control mt-3" placeholder="Confirma tu nueva contraseña" >
                     </div>
             </div>
 
