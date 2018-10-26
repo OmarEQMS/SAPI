@@ -244,6 +244,12 @@ public class LoginController extends HttpServlet {
                 break;
 
             }
+            
+            case "recuperarContra":{
+            
+                
+                break;
+            }
 
         }
 
