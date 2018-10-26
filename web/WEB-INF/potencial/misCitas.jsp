@@ -162,7 +162,7 @@
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-12 text-center">
-                                                        <h5 class="display-4 textoCitaReservada mb-1">Tu cita de <strong>navegacion</strong> ha sido reservada para el:</h5>
+                                                        <h5 class="display-4 textoCitaReservada mb-1">Tu cita de <strong>navegación</strong> ha sido reservada para el:</h5>
                                                         <h5 class="display-4 textoCitaReservada m-0 d-inline mr-2" id="fechaCitaNavegacion">${sessionScope.fechaNavegacion}</h5><a href="#" class="questionMark pull-right"
                                                                                                                                                                                     title="¿Tienes dudas? Comunicate al: 01-800-1111-111-1"><i class="fas fa-info-circle"></i></a>
                                                     </div>
