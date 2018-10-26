@@ -238,8 +238,9 @@ public class PacienteController extends HttpServlet {
                                 tratamientoPaciente.setFechaInicio(fechaInicio);
                                 tratamientoPaciente.setIdPaciente(idPaciente2);
 
-                                tratamientoPacienteServiceImpl.agregarTratamientoPaciente(tratamientoPaciente);
-
+                                int idTratamientoPaciente= tratamientoPacienteServiceImpl.agregarTratamientoPaciente(tratamientoPaciente);
+                                out.flush();
+                                out.print(idTratamientoPaciente);
                             }
 
                         } break;
@@ -256,6 +257,8 @@ public class PacienteController extends HttpServlet {
                             tratamientoPaciente.setFechaFin(fechaFin);
                             
                             tratamientoPacienteServicio.actualizarTratamientoPaciente(tratamientoPaciente);
+                            
+                            
                             
                             
                             

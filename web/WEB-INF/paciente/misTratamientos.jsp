@@ -169,7 +169,7 @@
 
                         <!-- Table -->
 
-                        <table class="table table-striped mt-3" id="tablaPacientes">
+                        <table class="table table-striped mt-3" id="tablaTratamientos">
                             <thead>
                                 <tr>
                                     <th scope="col">Tratamiento</th>
@@ -253,6 +253,7 @@
                                                 <i class="fas fa-prescription-bottle"></i>
                                             </div>
                                         </div>
+                                        <input type="hidden" value="" id="nombreTipoTratamiento"/>
                                         <select class="custom-select" id="tipoTratamiento">
                                             <option disabled selected>Elegir Tratamiento</option>
                                             <c:forEach items="${tipoTratamiento}" var="tratamiento"> 
@@ -320,7 +321,7 @@
                                                 <i class="fas fa-prescription-bottle"></i>
                                             </div>
                                         </div>
-                                        <select disabled class="custom-select" id="tipoTratamiento">
+                                        <select disabled class="custom-select" id="tipoTratamiento2">
                                             <option disabled selected>Tratamiento</option>
                                         </select>
                                     </div>
