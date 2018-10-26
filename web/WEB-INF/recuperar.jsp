@@ -28,11 +28,13 @@
         <script src="lib/tooltipster/dist/js/tooltipster.bundle.min.js" type="text/javascript" ></script>
         <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
         
-        <link rel="stylesheet" href="css/styleLogin.css">	
+        <link rel="stylesheet" href="css/styleLogin.css">
+         <script src="js/ajaxRecuperar.js"></script>
     
 
     </head>
     <body>
+       
 
         <form class="formulario">
 
@@ -40,16 +42,16 @@
 
             <div class="row">
                 <div class="col-12">
-                    <input type="correo" class="form-control" placeholder="Introduce tu nueva contraseña" id="contra-Cambio">
+                    <input id="cambio1" type="correo" class="form-control" placeholder="Introduce tu nueva contraseña" >
                 </div>
                 <div class="col-12">
-                        <input type="confirmarCorreo" class="form-control mt-3" placeholder="Confirma tu nueva contraseña" id="confirmarContra-Cambio">
+                        <input id="cambio2"type="confirmarCorreo" class="form-control mt-3" placeholder="Confirma tu nueva contraseña" >
                     </div>
             </div>
 
             <div class="row justify-content-center mt-4">
                 <div class="col-12">
-                    <button class="btn btn-danger btn-block" style="background-color: #fc3955 !important">Cambiar</button>
+                    <button class="btn btn-danger btn-block" id="RestablcerContra" style="background-color: #fc3955 !important">Cambiar</button>
                 </div>
             </div>
 

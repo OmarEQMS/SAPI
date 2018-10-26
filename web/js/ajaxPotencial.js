@@ -68,10 +68,9 @@ $(document).ready(function () {
                         $.ajax({
                             url: "PotencialController",
                             data: {
-                                key: "cambiarContrasena",
+                                key: "eliminarCuentaPacientePotencial",
                                 idCuenta: $("#sesionPaciente").val(),
-                                password: $("#password").val(),
-                                password2: $("#password2").val()
+                                
                             },
                             method: "POST"
                         });

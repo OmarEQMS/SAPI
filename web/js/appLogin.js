@@ -85,7 +85,8 @@ $(document).ready(function () {
                 function (response, status, xhr) {
                     //console.log(response);
                     if (status == "success") {
-                        if (response == "error") {
+                        if (response == "LoginError") { 
+                            //console.log("No se pudo inicar sesion");
                             $("#msj-error").show();
                         } else {
                             $("#msj-cargando").show();

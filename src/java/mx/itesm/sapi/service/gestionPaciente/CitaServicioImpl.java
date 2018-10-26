@@ -28,7 +28,7 @@ public class CitaServicioImpl implements CitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarCita";
+        String stProcedure = "CALL mostrarCita(?)";
         Cita cita = null;
 
         try {
@@ -184,7 +184,7 @@ public class CitaServicioImpl implements CitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL borradoLogicoCita";
+        String stProcedure = "CALL borradoLogicoCita(?)";
         boolean exito = false;
 
         try {
