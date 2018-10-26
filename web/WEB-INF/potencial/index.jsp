@@ -346,13 +346,13 @@
                                                         </div>
 
                                                         <div class="col-8 removePadding">
-                                                            <select class="form-control" name="motivoConsulta" id="motivoConsulta">
+                                                            <select class="form-control" id="motivoConsulta">
                                                                 <option>Seleccione el motivo de la consulta</option>
-                                                                <option>Me envió un méico</option>
-                                                                <option>Estudio con diagnóstico de cáncer de mama</option>
-                                                                <option>Me sentía una bolita en el seno</option>
-                                                                <option>Me envían de otro hospital</option>
-                                                                <option>Otro</option>
+                                                                <option value="1">Me envió un médico</option>
+                                                                <option value="2">Estudio con diagnóstico de cáncer de mama</option>
+                                                                <option value="3">Me sentí una bolita en el seno</option>
+                                                                <option value="4">Me envían de otro hospital</option>
+                                                                <option value="5">Otro</option>
                                                             </select>
                                                             <span class="text-danger ml-3" id="error-motivoConsulta">No seleccionaste un motivo de consulta</span>
                                                         </div>

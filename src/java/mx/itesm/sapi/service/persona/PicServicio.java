@@ -15,6 +15,7 @@ import mx.itesm.sapi.bean.persona.Pic;
 public interface PicServicio {
     public Pic mostrarPic(int idPic);
     List<Pic> mostrarPic();
+    public Pic mostrarPicDefault();
     public int agregarPic(Pic pic);
     public boolean actualizarPic(Pic pic);
     public boolean borradoLogicoPic(int idPic);

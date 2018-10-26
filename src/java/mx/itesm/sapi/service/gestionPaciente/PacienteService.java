@@ -17,6 +17,7 @@ public interface PacienteService {
     public Paciente mostrarPaciente(String przPaciente);
     public List<Paciente> mostrarPaciente();
     public int agregarPaciente(Paciente paciente);
+    public int agregarPacienteRegistro(int idCuenta);
     public boolean actualizarPaciente(Paciente paciente);
     public boolean borradoLogicoPaciente(int idPaciente);
 }

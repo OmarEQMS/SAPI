@@ -10,6 +10,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
@@ -105,21 +106,53 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarEstadoPacienteRegistro(?,?)";
+        String stProcedure = "CALL agregarEstadoPacientePaciente(?,?,?,?,?,?)";
         int id = -1;
         
 	try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setInt(1, estadoPacientePaciente.getIdPaciente());
-            cstmt.setInt(2,0);
-            /*
+            cstmt.setInt(1, estadoPacientePaciente.getIdEstadoPaciente());
+            cstmt.setInt(2, estadoPacientePaciente.getIdPaciente());
             cstmt.setTimestamp(3, estadoPacientePaciente.getFecha());
             cstmt.setInt(4, estadoPacientePaciente.getSegundaOpinion());
             cstmt.setInt(5, estadoPacientePaciente.getResultados());
             cstmt.setInt(6, estadoPacientePaciente.getIdEmpleado());
-            */
+            
+            rs = cstmt.executeQuery();
+            rs.next();
+            
+            id = rs.getInt(1);
+                
+            conn.close();
+            cstmt.close();
+            rs.close();
+	}catch(SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
+	}
+        return id;
+    }
+    
+    @Override
+    public int agregarEstadoPacientePacienteRegistro(int idPaciente) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL agregarEstadoPacientePacienteRegistro(?,?,?)";
+        int id = -1;
+        
+	try{
+            conn  = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            
+            cstmt.setInt(1, 1);
+            cstmt.setInt(2, idPaciente);
+            //ME FALTA LA FECHA D:
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            cstmt.setTimestamp(3, timestamp);
             
             rs = cstmt.executeQuery();
             rs.next();
