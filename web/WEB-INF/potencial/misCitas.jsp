@@ -144,30 +144,52 @@
                                     <c:when test="${sessionScope.idRol==1}">
 
                                         <!-- APROBADA -->        
-                                        
+
                                         <div class="card bg-info text-white mb-3">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-12 text-center">
-                                                        <h5 class="display-4 textoCitaReservada mb-1">Tu cita ha sido reservada para el:</h5>
-                                                        <h5 class="display-4 textoCitaReservada m-0 d-inline mr-2">Jueves <strong>25 de octubre</strong>
-                                                            del 2018</h5><a href="#" class="questionMark pull-right"
-                                                                        title="¿Tienes dudas? Comunicate al: 01-800-1111-111-1"><i class="fas fa-info-circle"></i></a>
+                                                        <h5 class="display-4 textoCitaReservada mb-1">Tu cita de <strong>preconsulta</strong> ha sido reservada para el:</h5>
+                                                        <h5 class="display-4 textoCitaReservada m-0 d-inline mr-2" id="fechaCitaPreConsulta">${sessionScope.fechaPreConsulta}</h5><a href="#" class="questionMark pull-right"
+                                                                                                                                                                                    title="¿Tienes dudas? Comunicate al: 01-800-1111-111-1"><i class="fas fa-info-circle"></i></a>
                                                     </div>
                                                 </div>
-                                                <div class="row justify-content-center mt-2">
-                                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 text-center">
-                                                        <button class="btn btn-warning btn-block btnCancelarCita" id="btn-cancelarPreConsulta1">Cancelar
-                                                            Cita
-                                                        </button>
-                                                    </div>
-                                                </div>
+
                                             </div>
                                         </div>
 
+                                        <div class="card bg-info text-white mb-3">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12 text-center">
+                                                        <h5 class="display-4 textoCitaReservada mb-1">Tu cita de <strong>navegacion</strong> ha sido reservada para el:</h5>
+                                                        <h5 class="display-4 textoCitaReservada m-0 d-inline mr-2" id="fechaCitaNavegacion">${sessionScope.fechaNavegacion}</h5><a href="#" class="questionMark pull-right"
+                                                                                                                                                                                    title="¿Tienes dudas? Comunicate al: 01-800-1111-111-1"><i class="fas fa-info-circle"></i></a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="card bg-light text-white mb-3">
+                                            <div class="card-body">
+
+                                                <div class="row justify-content-center mt-2">
+                                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 text-center">
+                                                        <button class="btn btn-danger btn-block btnCancelarCita" id="btn-cancelarPreConsulta1">Cancelar
+                                                            Citas
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+
                                     </c:when>        
                                     <c:otherwise> 
-                                        
+
                                         <!-- CANCELADA -->
                                         <div class="card bg-danger text-white mb-3">
                                             <div class="card-body">
@@ -184,7 +206,7 @@
                                 </c:choose>
 
 
-                              
+
 
 
                                 <!-- Icono info -->

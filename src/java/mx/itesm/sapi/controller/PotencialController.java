@@ -780,7 +780,9 @@ public class PotencialController extends HttpServlet {
             case "obtenerEventos": {
                 
                 String idPaciente = request.getParameter("idPaciente");
-
+                
+                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+                
                 //Servicio
                 CalendarioServicioImpl csi = new CalendarioServicioImpl();
 
@@ -788,6 +790,22 @@ public class PotencialController extends HttpServlet {
                 List<FullCalendar> calendarios = csi.mostrarEventos(Integer.parseInt(idPaciente));
                 
                 System.out.println("EL ID DEL PACIENTE ES:  " + idPaciente);
+                
+                boolean revisarPre = true;
+                boolean revisarNav = true;
+                
+                for(FullCalendar calendario: calendarios){
+                    if(calendario.getTitle().equals("Preconsulta") && revisarPre){
+                        sesion.setAttribute("fechaPreConsulta", calendario.getStart());
+                        System.out.println("La fecha preconsulta es: " + calendario.getStart());
+                        revisarPre = false;
+                    }
+                    if(calendario.getTitle().equals("Navegacion") && revisarNav){
+                        System.out.println("La fecha navegacion es: " + calendario.getStart());
+                        sesion.setAttribute("fechaNavegacion", calendario.getStart());
+                        revisarNav = false;
+                    }
+                }
 
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
@@ -964,7 +982,7 @@ public class PotencialController extends HttpServlet {
                 } else {
                 response.setContentType("application/json");//Por default se envia un text/html, pero enviaremos un application/json para que se interprete en el ajax del front.
                 
-                 int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
+                int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
                 
                 CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
                 String estadoCita = citaServicioImpl.mostrarPreconsultaAceptada(idPacientePotencial);

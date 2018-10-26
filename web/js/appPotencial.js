@@ -183,6 +183,24 @@ $(document).ready(function () {
 
     });
     
+    //Parsear la fechas
+    
+    //Preconsulta
+    var fechaPre = $('#fechaCitaPreConsulta').html();
+    
+    var m = moment(new Date(fechaPre)).locale('es').format('LL') + ' a las: ' + "<strong>" + moment(new Date(fechaPre)).locale('es').format('LT') + "</strong>";
+    
+    $('#fechaCitaPreConsulta').html(m);
+    
+    //Navegacion
+    var fechaNav = $('#fechaCitaNavegacion').html();
+    
+    var m = moment(new Date(fechaNav)).locale('es').format('LL') + ' a las: ' + "<strong>" + moment(new Date(fechaNav)).locale('es').format('LT') + "</strong>";
+    
+    $('#fechaCitaNavegacion').html(m);
+    
+  
+    
     //MediaQueries
     
 
