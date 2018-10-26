@@ -263,7 +263,13 @@ public class PotencialController extends HttpServlet {
             }
 
             case "solicitarPreconsulta": {
-
+                /**
+                 * Uriel Díaz 26/10/2018.
+                 * 
+                 * El presente case funciona cuando un paciente agrega ciertos atributos y
+                 * documentos al proceso de solicitud de preconsulta sin enviarla.
+                 *                  *                  * 
+                 */
                 //request.getPart("fileCURP").
                 //Obtener la sesion
                 HttpSession sesion = request.getSession(true);
@@ -1079,6 +1085,13 @@ public class PotencialController extends HttpServlet {
             }
             case "GuardarContinuar":
             {
+                /**
+                 * Uriel Díaz 26/10/2018.
+                 * 
+                 * El presente case funciona cuando un paciente agrega ciertos atributos y
+                 * documentos al proceso de solicitud de preconsulta sin enviarla.
+                 *                  *                  * 
+                 */
                 System.out.println("Guardar y continuar");
                 
                 //request.getPart("fileCURP").
