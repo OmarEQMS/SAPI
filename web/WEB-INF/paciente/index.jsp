@@ -61,7 +61,8 @@
 
                 <div class="row">
                     <div class="col-12 mb-2 mt-4">
-                        <img src="img/user.png" class="imagenPerfil" alt="">
+                        
+                        <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="imagenPerfil edit-image" width="66px" height="66px" alt="">
                     </div>
                 </div>
 

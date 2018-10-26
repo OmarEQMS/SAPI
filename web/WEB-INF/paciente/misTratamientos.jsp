@@ -53,13 +53,14 @@
                 <div class="profile">
                     <div class="row">
                         <div class="col-12 mb-2 mt-4">
-                            <img src="img/user.png" class="imagenPerfil" alt="">
+                            <!-- <img src="img/user.png" class="imagenPerfil" alt=""> -->
+                            <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="imagenPerfil edit-image" width="66px" height="66px" alt="">
                         </div>
                     </div>
                     <div class="row justify-content-center mb-2">
                         <div class="col-6 text-center">
-                            <span class="textoSidebar m-0">Julio Badillo</span>
-                            <span class="textoSidebar userSidebar m-0">@juliobadillo</span>
+                            <span class="textoSidebar m-0">${sessionScope.nombre} ${sessionScope.primerApellido}</span>
+                            <span class="textoSidebar userSidebar m-0">@${sessionScope.usuario}</span>
                         </div>
                     </div>
                     <div class="row justify-content-center">
@@ -110,7 +111,7 @@
 
                         <span class="pull-right d-block">
                             <span style="color:#6c6f80">Bienvenido, </span>
-                            <span style="font-weight:700; color:#6c6f80;">Julio Badillo
+                            <span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
                             </span>
                             <img src="../img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
 

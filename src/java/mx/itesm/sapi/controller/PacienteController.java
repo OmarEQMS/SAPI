@@ -91,11 +91,12 @@ public class PacienteController extends HttpServlet {
                     System.out.println("estoy en el case 5");
                     switch (key) {
 
-                        case "obtenerEventos":
+                        case "obtenerEventos": {
 
                             System.out.println("El id paciente es:" + idPaciente);
 
                             //Servicio
+                            
                             CalendarioServicioImpl csi = new CalendarioServicioImpl();
 
                             //Lista Calendarios
@@ -105,8 +106,8 @@ public class PacienteController extends HttpServlet {
                             response.setCharacterEncoding("UTF-8");
 
                             out.print(new Gson().toJson(calendarios));
-
-                            break;
+                        }
+                        break;
 
                         case "agregarEvento":
 
@@ -161,10 +162,6 @@ public class PacienteController extends HttpServlet {
                             persona.setCorreo(correo);
                             persona.setTelefono(telefono);
                             persona.setIdTipoSangre(tipoSangre);
-
-                            System.out.println("lo que tengo es:");
-                            System.out.println(persona.getCorreo());
-                            System.out.println(persona.getTelefono());
 
                             System.out.println("la etapa es" + etapaClinica);
                             registroDiagnostico.setIdEtapaClinica(Integer.parseInt(etapaClinica));
@@ -225,8 +222,7 @@ public class PacienteController extends HttpServlet {
                                 request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
                                 return;
                             } else {
-                                
-                                
+
                                 int idTipoTratamiento = Integer.parseInt(request.getParameter("idTipoTratamiento"));
                                 Date fechaInicio = Date.valueOf(request.getParameter("fechaInicio"));
                                 int idPaciente2 = (int) sesion.getAttribute("idPaciente");
@@ -238,31 +234,29 @@ public class PacienteController extends HttpServlet {
                                 tratamientoPaciente.setFechaInicio(fechaInicio);
                                 tratamientoPaciente.setIdPaciente(idPaciente2);
 
-                                int idTratamientoPaciente= tratamientoPacienteServiceImpl.agregarTratamientoPaciente(tratamientoPaciente);
+                                int idTratamientoPaciente = tratamientoPacienteServiceImpl.agregarTratamientoPaciente(tratamientoPaciente);
                                 out.flush();
                                 out.print(idTratamientoPaciente);
                             }
 
-                        } break;
-                         case "terminarTratamiento":{
-                            
+                        }
+                        break;
+                        case "terminarTratamiento": {
+
                             int idTratamientoPaciente = Integer.parseInt(request.getParameter("idTratamientoPaciente"));
                             System.out.println("Este es el idTratamientoPaciente");
                             Date fechaFin = Date.valueOf(request.getParameter("fechaFin"));
-                            
+
                             TratamientoPacienteServiceImpl tratamientoPacienteServicio = new TratamientoPacienteServiceImpl();
-                            
-                            TratamientoPaciente tratamientoPaciente =tratamientoPacienteServicio.mostrarTratamientoPaciente(idTratamientoPaciente);
-                            
+
+                            TratamientoPaciente tratamientoPaciente = tratamientoPacienteServicio.mostrarTratamientoPaciente(idTratamientoPaciente);
+
                             tratamientoPaciente.setFechaFin(fechaFin);
-                            
+
                             tratamientoPacienteServicio.actualizarTratamientoPaciente(tratamientoPaciente);
-                            
-                            
-                            
-                            
-                            
-                        }break;
+
+                        }
+                        break;
                     }
                     break;
 

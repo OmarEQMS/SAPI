@@ -206,16 +206,22 @@ public class FrontController extends HttpServlet {
                                     TipoTratamientoServiceImpl tratamientoServicioImpl = new TipoTratamientoServiceImpl();
 
                                     List<TipoTratamiento> tratamientos = tratamientoServicioImpl.mostrarTipoTratamiento();
-                                    
-                                    UnionTratamientoPacienteServiceImpl unionTratamientoPacienteServiceImpl=new UnionTratamientoPacienteServiceImpl();
-                                   
-                                    int idPaciente=paciente.getIdPaciente();
-                               
-                                    List<UnionTratamientoPaciente> unionTratamientosPaciente=unionTratamientoPacienteServiceImpl.mostrarUnionTratamientoPaciente(idPaciente);
-                                    
-                                    
-                                    
-                                    
+
+                                    UnionTratamientoPacienteServiceImpl unionTratamientoPacienteServiceImpl = new UnionTratamientoPacienteServiceImpl();
+
+                                    int idPaciente = paciente.getIdPaciente();
+
+                                    List<UnionTratamientoPaciente> unionTratamientosPaciente = unionTratamientoPacienteServiceImpl.mostrarUnionTratamientoPaciente(idPaciente);
+
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                    sesion.setAttribute("base64Img", base64String);
+
                                     sesion.setAttribute("idPaciente", paciente.getIdPaciente());
                                     request.setAttribute("tipoTratamiento", tratamientos);
                                     request.setAttribute("UnionTratamientosPaciente", unionTratamientosPaciente);
@@ -224,9 +230,17 @@ public class FrontController extends HttpServlet {
 
                                 }
                                 break;
-                                
+
                                 case "paciente/index.jsp": {
-                                   
+
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                    sesion.setAttribute("base64Img", base64String);
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                 }
 
