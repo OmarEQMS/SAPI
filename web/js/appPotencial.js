@@ -43,6 +43,15 @@ $(document).ready(function () {
         $('.collapse.in').toggleClass('in');
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
+    
+    //Desabilitar los inputs subidos
+    $('#fileIdentificacionSubido').attr('disabled', 'disabled');
+    $('#fileComprobanteDomicilioSubido').attr('disabled', 'disabled');
+    $('#fileCURPSubido').attr('disabled', 'disabled');
+    $('#fileEstudioPrevioMastoSubido').attr('disabled', 'disabled');
+    $('#fileEstudioPrevioUsgSubido').attr('disabled', 'disabled');
+    $('#fileEstudioBiopsiaSubido').attr('disabled', 'disabled');
+    
 
     $("#motivoConsulta").on('change', () => {
 

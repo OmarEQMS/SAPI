@@ -262,19 +262,43 @@
 
                                                     <!-- Identificacion oficial
                                                     -->
+
+
+
+
                                                     <div class="row mt-4">
 
-                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                            <span class="textoDocumento">Identificación oficial</span>
-                                                        </div>
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.identificacionOficial==0}">
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
+                                                                    <span class="textoDocumento">Identificación oficial</span>
+                                                                </div>
 
-                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
-                                                            <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacion" aria-describedby="fileHelp">
-                                                            <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
-                                                            <label class="custom-file-label">
-                                                                Elegir archivo...
-                                                            </label>
-                                                        </div>
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
+                                                                    <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacion" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+                                                            </c:when>    
+                                                            <c:otherwise>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
+                                                                    <span class="textoDocumento text-success"><i class="fas fa-check text-success mr-1"></i>Identificación oficial</span><br>
+                                                                    <span class="text-success" style="font-size:11px;">Documento subido</span>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
+                                                                    <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacionSubido" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+                                                            </c:otherwise>
+                                                        </c:choose>
+
+
 
                                                         <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 iconoQuestion align-self-center">
                                                             <a href="#" class="questionMark" data-tooltip-content="#tooltip_content"><i
@@ -299,21 +323,48 @@
                                                     -->
                                                     <div class="row mt-4">
 
-                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                            <span class="textoDocumento">CURP</span>
-                                                            <small id="passwordHelpBlock" class="form-text text-muted">
-                                                                Se puede tramitar
-                                                                <a class="text-primary" target="_blank" href="https://www.gob.mx/curp/">aquí­</a>
-                                                            </small>
-                                                        </div>
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.curp==0}">
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
+                                                                    <span class="textoDocumento">CURP</span>
+                                                                    <small id="passwordHelpBlock" class="form-text text-muted">
+                                                                        Se puede tramitar
+                                                                        <a class="text-primary" target="_blank" href="https://www.gob.mx/curp/">aquí­</a>
+                                                                    </small>
+                                                                </div>
 
-                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="customFile">
-                                                            <input type="file" name="fileCURP" class="custom-file-input centraInput" id="fileCURP" aria-describedby="fileHelp">
-                                                            <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
-                                                            <label class="custom-file-label">
-                                                                Elegir archivo...
-                                                            </label>
-                                                        </div>
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="customFile">
+                                                                    <input type="file" name="fileCURP" class="custom-file-input centraInput" id="fileCURP" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+
+                                                            </c:when>    
+                                                            <c:otherwise>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
+                                                                    <span class="textoDocumento text-success">CURP</span>
+                                                                    <small id="passwordHelpBlock" class="form-text text-muted">
+                                                                        Se puede tramitar
+                                                                        <a class="text-primary" target="_blank" href="https://www.gob.mx/curp/">aquí­</a>
+                                                                    </small>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="customFile">
+                                                                    <input type="file" name="fileCURP" class="custom-file-input centraInput" id="fileCURPSubido" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+                                                            </c:otherwise>
+                                                        </c:choose>
+
+
+
+
+
 
                                                     </div>
 
@@ -321,20 +372,49 @@
 
                                                     <div class="row mt-4">
 
-                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                            <span class="textoDocumento">Comprobante de domicilio</span>
-                                                            <small id="passwordHelpBlock" class="form-text text-muted">
-                                                                Vigencia no mayor a 3 meses.
-                                                            </small>
-                                                        </div>
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.comprobante==0}">
 
-                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFile">
-                                                            <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilio" aria-describedby="fileHelp">
-                                                            <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
-                                                            <label class="custom-file-label">
-                                                                Elegir archivo...
-                                                            </label>
-                                                        </div>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
+                                                                    <span class="textoDocumento"><i class="fas fa-check text-success mr-1"></i>Comprobante de domicilio</span>
+                                                                    <small id="passwordHelpBlock" class="form-text text-muted">
+                                                                        Vigencia no mayor a 3 meses.
+                                                                    </small>
+                                                                    <span class="text-success" style="font-size:11px;">Documento subido</span>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFile">
+                                                                    <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilioSubido" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+
+                                                            </c:when>
+                                                            <c:otherwise>
+
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
+                                                                    <span class="textoDocumento">Comprobante de domicilio</span>
+                                                                    <small id="passwordHelpBlock" class="form-text text-muted">
+                                                                        Vigencia no mayor a 3 meses.
+                                                                    </small>
+
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFile">
+                                                                    <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilio" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+
+                                                            </c:otherwise>
+
+                                                        </c:choose>
+
+
 
                                                         <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 iconoQuestion">
                                                             <a href="#" class="questionMark" data-tooltip-content="#tooltip_content3"><i
@@ -405,20 +485,46 @@
 
                                                     <!-- Estudios previos Mastografí­a-->
 
-                                                    <div class="row mt-1">
-                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
-                                                            <span class="textoDocumento">Reporte de resultados de estudios previos
-                                                                mastografía
-                                                            </span>
-                                                        </div>
 
-                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
-                                                            <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMasto" aria-describedby="fileHelp">
-                                                            <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
-                                                            <label class="custom-file-label">
-                                                                Elegir archivo...
-                                                            </label>
-                                                        </div>
+
+                                                    <div class="row mt-1">
+
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.resultadoMastografia==0}">
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
+                                                                    <span class="textoDocumento text-success"><i class="fas fa-check text-success mr-1"></i>Reporte de resultados de estudios previos
+                                                                        mastografía
+                                                                    </span>
+                                                                    <span class="text-success" style="font-size:11px;">Documento subido</span>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
+                                                                    <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMastoSubido" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+                                                            </c:when>
+
+                                                            <c:otherwise>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
+                                                                    <span class="textoDocumento">Reporte de resultados de estudios previos
+                                                                        mastografía
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
+                                                                    <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMasto" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+                                                            </c:otherwise>
+                                                        </c:choose>
+
+
 
                                                         <div class="col-1 iconoQuestion align-self-center mb-4">
                                                             <a href="#" class="questionMark" data-tooltip-content="#tooltip_content2"><i
@@ -450,19 +556,44 @@
                                                     <!-- Estudios previos Ultrasonido -->
 
                                                     <div class="row mt-4">
-                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-12 text-center">
-                                                            <span class="textoDocumento">Reporte de resultados de estudios previos
-                                                                ultrasonido
-                                                            </span>
-                                                        </div>
 
-                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
-                                                            <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsg" aria-describedby="fileHelp">
-                                                            <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
-                                                            <label class="custom-file-label">
-                                                                Elegir archivo...
-                                                            </label>
-                                                        </div>
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.resultadosUltrasonidos==0}">
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-12 text-center">
+                                                                    <span class="textoDocumento text-success"><i class="fas fa-check text-success mr-1"></i>Reporte de resultados de estudios previos
+                                                                        ultrasonido
+                                                                    </span>
+                                                                    <span class="text-success" style="font-size:11px;">Documento subido</span>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
+                                                                    <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsgSubido" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+                                                            </c:when>
+
+                                                            <c:otherwise>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-12 text-center">
+                                                                    <span class="textoDocumento">Reporte de resultados de estudios previos
+                                                                        ultrasonido
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
+                                                                    <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsg" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+                                                            </c:otherwise>
+                                                        </c:choose>
+
+
+
 
                                                         <div class="col-1 iconoQuestion align-self-center mb-4">
                                                             <a href="#" class="questionMark" data-tooltip-content="#tooltip_content6"><i
@@ -496,24 +627,52 @@
 
                                                     <div class="row mt-4">
 
-                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput">
-                                                                <label class="form-check-label textoDocumento">
-                                                                    ¿Te han hecho una biopsia previamente?
-                                                                </label>
-                                                            </div>
-                                                        </div>
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.biopsiaPrevia==0}">
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput" checked>
+                                                                        <label class="form-check-label textoDocumento text-success">
+                                                                            ¿Te han hecho una biopsia previamente?
+                                                                        </label>
+                                                                        <span class="text-success" style="font-size:11px">Documento subido</span>
+                                                                    </div>
+                                                                </div>
 
-                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="biopsiaContenedor">
-                                                            <input type="file" class="custom-file-input" id="fileEstudioBiopsia" name="fileEstudioBiopsia" aria-describedby="fileHelp">
-                                                            <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
-                                                            <label class="custom-file-label">
-                                                                Elegir archivo...
-                                                            </label>
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                                                    <input type="file" class="custom-file-input" id="fileEstudioBiopsiaSubido" name="fileEstudioBiopsia" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
 
 
-                                                        </div>
+                                                                </div>
+                                                            </c:when>
+
+                                                            <c:otherwise>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput">
+                                                                        <label class="form-check-label textoDocumento">
+                                                                            ¿Te han hecho una biopsia previamente?
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="biopsiaContenedor">
+                                                                    <input type="file" class="custom-file-input" id="fileEstudioBiopsia" name="fileEstudioBiopsia" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+
+
+                                                                </div>
+                                                            </c:otherwise>
+                                                        </c:choose>
+
+
 
                                                         <div class="col-1 iconoQuestion align-self-center" id="biopsiaQuestion">
                                                             <a href="#" class="questionMark" data-tooltip-content="#tooltip_content4"><i

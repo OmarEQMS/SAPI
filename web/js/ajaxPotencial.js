@@ -15,8 +15,15 @@ $(document).ready(function () {
         processData: false,
         contentType: false,
         success: function (response) {
+            
             if (response != null) {
-                console.log("ok" + response);
+                
+               
+               var data = JSON.parse(response);
+                   
+                console.log(data);
+    
+               
 
             } else {
                 console.log("Algo pasó" + response);
@@ -48,8 +55,7 @@ $(document).ready(function () {
             }
         },
         error: function () {
-            console.log("error" + xhr.statusText);
-            alert("No enontre el controlador" + xhr.statusText);
+           
         }
 
     });
