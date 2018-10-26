@@ -92,8 +92,9 @@ public class RecuperarController extends HttpServlet {
                     System.out.println("Si entre ");
                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
                 }
-
-            }
+                
+                break;
+            } 
 
             case "recuperarEnviarCorreo": {
 

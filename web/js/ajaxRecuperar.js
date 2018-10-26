@@ -20,38 +20,39 @@ $(document).ready(function () {
             method: "POST",
             success: function (response) {
                 if (response == "success") {
-
-                } else {
-
-                }
-            },
-            error: function (xhr) {
-
-            }
-        });
-
-    });
-     $("#recuperarContra").on('click', function () {
-        console.log("Click en recuperarContra desde el Login");
-        
-        $.ajax({
-            url: "LoginController",
-            data: {
-                key: "recuperarContra"
-            },
-            method: "POST",
-            success: function (response) {
-                if (response == "success") {
                     
                 } else {
-
+                   
                 }
             },
             error: function (xhr) {
-
+                c
             }
         });
 
     });
+     $('#recuperarContra').on('click', function () {
+        console.log("Click en recuperarContra desde el Login"); 
+        $.get("LoginController",{
+            
+            key: "recuperarContra"
+        },
+                function (response,status) {
+                    console.log(response);
+                    
+                    if (response != "") {
+                        console.log("Intentando redireccionar");
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
+                    } else {
+                        console.log("Error al cargar");
+                    
+                    }
+                }
+        );
+            
+    });
+
     
 });
