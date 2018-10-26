@@ -21,7 +21,7 @@ public class TipoHistologico {
     @Override
     public String toString(){
 
-    	String str="TipoHistologico [idTipoHistologico".concat(String.valueOf(idTipoHistologico))
+    	String str="TipoHistologico [idTipoHistologico:".concat(String.valueOf(idTipoHistologico))
     		.concat(",nombre:").concat(nombre)
     		.concat(",estatus:").concat(String.valueOf(estatus))
     		.concat("]");

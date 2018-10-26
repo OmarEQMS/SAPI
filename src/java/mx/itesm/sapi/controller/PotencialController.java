@@ -30,6 +30,7 @@ import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 import mx.itesm.sapi.bean.gestionPaciente.Cita;
 import mx.itesm.sapi.bean.gestionPaciente.OtroMotivo;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
+import mx.itesm.sapi.bean.gestionPaciente.SolicitudPreconsulta;
 import mx.itesm.sapi.service.CalendarioServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
@@ -38,6 +39,7 @@ import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.OtroMotivoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.SolicitudPreconsultaServicioImpl;
 
 //Checar los de las librerias de clases Apache
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -893,6 +895,88 @@ public class PotencialController extends HttpServlet {
 
                                   
              */
+            
+            case "consultarDocumentosPreconsulta":
+            {
+                /**
+                 * * Uriel Díaz 26/10/2018
+                 * Case para saber que datos ya proporcionó un paciente en la solicitud de 
+                 * preconsulta.
+                 * 
+                 * 
+                 * Devuelve una instancia de la clase SolicitudPreconsulta.
+                 * Todos los valores dentro del objeto son int. Deberían ser
+                 * valores de 0 o mayores para sabes cuales ya han sido considerados
+                 * para la solicitud.
+                 * 
+                 * El único valor que no se puede dar en esta clase
+                 * es el motvio de la preconsulta puesto que puede cambiar
+                 * durante el tiempo de recolección de los archivos necesarios para hacer.
+                 * El motivo de la preconsulta solo se guardará en la solicitud.
+                 * 
+                */
+                HttpSession sesion = request.getSession(true);
+
+                if (sesion.getId() == null) {
+                    //TODO 
+                } else {
+                response.setContentType("application/json");//Por default se envia un text/html, pero enviaremos un application/json para que se interprete en el ajax del front.
+                
+                 int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
+                
+                SolicitudPreconsulta solicitudPreconsulta;                
+                SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
+                solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
+                
+                Gson json = new Gson();                
+                System.out.println("Res ".concat(json.toJson(solicitudPreconsulta)));
+                
+                PrintWriter out = response.getWriter();
+                out.print(json.toJson(json.toJson(solicitudPreconsulta)));
+                break;
+                }
+            }
+            case "consultarEstadoPreconsulta":
+            {
+                /** 
+                 * * Uriel Díaz 26/10/2018
+                 * Case para saber el estado de una preconsulta.
+                 * 
+                 * El presente case se utiliza para saber el estado actual de
+                 * una solicitud de preconsulta.
+                 * 
+                 * Los valores posibles son:
+                 * 
+                 * Cancelada = 1
+                 * Expirada = 2
+                 * Pendiente = 3
+                 * Perdida = 4
+                 * Aprobada = 5
+                 * 
+                 *El formato de entrega es un json. Ejemplo {estado:Aceptada};
+                 */
+                
+                
+                HttpSession sesion = request.getSession(true);
+
+                if (sesion.getId() == null) {
+                    //TODO 
+                } else {
+                response.setContentType("application/json");//Por default se envia un text/html, pero enviaremos un application/json para que se interprete en el ajax del front.
+                
+                 int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
+                
+                CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
+                String estadoCita = citaServicioImpl.mostrarPreconsultaAceptada(idPacientePotencial);
+                String strJson = "{estado:\"".concat(estadoCita).concat("\"}");
+                
+                Gson json = new Gson();
+                System.out.println("JSON ".concat(json.toJson(estadoCita)));
+                
+                PrintWriter out = response.getWriter();
+                out.print(json.toJson(strJson));
+                }
+            }                        
         }
 
 
