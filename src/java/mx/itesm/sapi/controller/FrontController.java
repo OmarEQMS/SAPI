@@ -21,6 +21,8 @@ import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.Tratamiento;
+import mx.itesm.sapi.bean.gestionTratamiento.TratamientoPaciente;
+import mx.itesm.sapi.bean.gestionTratamiento.UnionTratamientoPaciente;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.bean.persona.TipoSangre;
@@ -28,7 +30,9 @@ import mx.itesm.sapi.service.diagnostico.EtapaClinicaServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.TratamientoPacienteServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TratamientoServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.UnionTratamientoPacienteServiceImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import mx.itesm.sapi.service.persona.TipoSangreServicioImpl;
@@ -203,9 +207,18 @@ public class FrontController extends HttpServlet {
 
                                     List<TipoTratamiento> tratamientos = tratamientoServicioImpl.mostrarTipoTratamiento();
                                     
-                                    sesion.setAttribute("idPaciente", paciente.getIdPaciente());
+                                    UnionTratamientoPacienteServiceImpl unionTratamientoPacienteServiceImpl=new UnionTratamientoPacienteServiceImpl();
+                                   
+                                    int idPaciente=paciente.getIdPaciente();
+                               
+                                    List<UnionTratamientoPaciente> unionTratamientosPaciente=unionTratamientoPacienteServiceImpl.mostrarUnionTratamientoPaciente(idPaciente);
                                     
+                                    
+                                    
+                                    
+                                    sesion.setAttribute("idPaciente", paciente.getIdPaciente());
                                     request.setAttribute("tipoTratamiento", tratamientos);
+                                    request.setAttribute("UnionTratamientosPaciente", unionTratamientosPaciente);
 
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
 

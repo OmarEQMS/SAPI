@@ -180,17 +180,23 @@
                             </thead>
                             <tbody>
 
+                                <!--  <tr> 
+                                      <td>Reconstrucción</td>
+                                      <td>17/02/2018</td>
+                                      <td></td>
+                                      <td><button class="btn btn-primary btn-editarPaciente" data-id="" data-toggle="modal"
+                                                  data-target="#modalEditarTerminado"><i class="fas fa-edit"></i></button></td>
+                                  </tr>
+                                -->
+                                <c:forEach items="${UnionTratamientosPaciente}" var="unionTratamientoPaciente"> 
+
+
                                 <tr>
-                                    <td>Reconstrucción</td>
-                                    <td>17/02/2018</td>
-                                    <td></td>
-                                    <td><button class="btn btn-primary btn-editarPaciente" data-id="" data-toggle="modal"
-                                                data-target="#modalEditarTerminado"><i class="fas fa-edit"></i></button></td>
+                                <td> <c:out value="${unionTratamientoPaciente.nombre}"/> </td>
+                                <td> <c:out value="${unionTratamientoPaciente.fechaInicio}"/> </td>
+                                <td> <c:out value="${unionTratamientoPaciente.fechaFin}"/> </td>
                                 </tr>
-
-
-
-
+                            </c:forEach> 
 
                             </tbody>
                         </table>
@@ -247,7 +253,7 @@
                                             <c:forEach items="${tipoTratamiento}" var="tratamiento"> 
 
                                                 <option value='<c:out value="${tratamiento.idTipoTratamiento}"/>'><c:out value='${tratamiento.nombre}'/> </option>
-                                                
+
                                             </c:forEach> 
 
                                         </select>
@@ -258,7 +264,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" style="border-radius:20px;" data-dismiss="modal">Cancelar</button>
                             <button id="btn-agregarTratamiento" type="button" class="btn btn-primary" style="border-radius:20px;">Registrar</button>
-                           <!-- ***** este es el bueno***** -->
+                            <!-- ***** este es el bueno***** -->
                         </div>
                     </div>
                 </div>

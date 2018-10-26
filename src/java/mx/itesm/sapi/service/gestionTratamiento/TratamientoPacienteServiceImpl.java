@@ -93,8 +93,8 @@ public class TratamientoPacienteServiceImpl implements TratamientoPacienteServic
             
             rs.next();
             tratamientoPaciente.setIdTratamientoPaciente(rs.getInt(1));
-            tratamientoPaciente.setIdPaciente(rs.getInt(2));
-            tratamientoPaciente.setIdTipoTratamiento(rs.getInt(3));
+            tratamientoPaciente.setIdTipoTratamiento(rs.getInt(2));
+            tratamientoPaciente.setIdPaciente(rs.getInt(3));
             tratamientoPaciente.setFechaInicio(rs.getDate(4));
             tratamientoPaciente.setFechaFin(rs.getDate(5));
             tratamientoPaciente.setRecurrente(rs.getBoolean(6));
@@ -137,8 +137,8 @@ public class TratamientoPacienteServiceImpl implements TratamientoPacienteServic
             while(rs.next()){
                 tratamientoPaciente = new TratamientoPaciente();
             tratamientoPaciente.setIdTratamientoPaciente(rs.getInt(1));
-            tratamientoPaciente.setIdPaciente(rs.getInt(2));
-            tratamientoPaciente.setIdTipoTratamiento(rs.getInt(3));
+            tratamientoPaciente.setIdTipoTratamiento(rs.getInt(2));
+            tratamientoPaciente.setIdPaciente(rs.getInt(3));
             tratamientoPaciente.setFechaInicio(rs.getDate(4));
             tratamientoPaciente.setFechaFin(rs.getDate(5));
             tratamientoPaciente.setRecurrente(rs.getBoolean(6));
@@ -159,6 +159,8 @@ public class TratamientoPacienteServiceImpl implements TratamientoPacienteServic
         }
         return tratamientosPaciente;
     }
+    
+    
 
     @Override
     public boolean actualizarTratamientoPaciente(TratamientoPaciente tratamientoPaciente) {
