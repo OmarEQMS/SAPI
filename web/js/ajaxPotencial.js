@@ -152,7 +152,7 @@ $(document).ready(function () {
         var motivoConsulta = $('#motivoConsulta').val();
         var biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
 
-        data.append("key", "solicitarPreconsulta");
+        data.append("key", "GuardarCotinuar");
         data.append("femenino", femenino);
         data.append("masculino", masculino);
         data.append("sillaDeRuedas", sillaDeRuedas);
