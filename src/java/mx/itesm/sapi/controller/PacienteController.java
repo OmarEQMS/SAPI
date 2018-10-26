@@ -242,7 +242,24 @@ public class PacienteController extends HttpServlet {
 
                             }
 
-                        }
+                        } break;
+                         case "terminarTratamiento":{
+                            
+                            int idTratamientoPaciente = Integer.parseInt(request.getParameter("idTratamientoPaciente"));
+                            System.out.println("Este es el idTratamientoPaciente");
+                            Date fechaFin = Date.valueOf(request.getParameter("fechaFin"));
+                            
+                            TratamientoPacienteServiceImpl tratamientoPacienteServicio = new TratamientoPacienteServiceImpl();
+                            
+                            TratamientoPaciente tratamientoPaciente =tratamientoPacienteServicio.mostrarTratamientoPaciente(idTratamientoPaciente);
+                            
+                            tratamientoPaciente.setFechaFin(fechaFin);
+                            
+                            tratamientoPacienteServicio.actualizarTratamientoPaciente(tratamientoPaciente);
+                            
+                            
+                            
+                        }break;
                     }
                     break;
 

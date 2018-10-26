@@ -172,7 +172,7 @@ public class TratamientoPacienteServiceImpl implements TratamientoPacienteServic
         boolean exito = false;
         
         //Call del store procedure
-        String stProcedure="CALL actualizarTratamientoPaciente(?,?,?,?,?,?,?,?)";
+        String stProcedure="CALL actualizarTratamientoPaciente(?,?,?,?,?,?,?)";
         
         
         try{
@@ -186,7 +186,7 @@ public class TratamientoPacienteServiceImpl implements TratamientoPacienteServic
             cstmt.setDate(5, tratamientoPaciente.getFechaFin());
             cstmt.setBoolean(6, tratamientoPaciente.getRecurrente());
             cstmt.setBoolean(7, tratamientoPaciente.getPrevioCirugia());
-            cstmt.setInt(8, tratamientoPaciente.getEstatus());
+            //cstmt.setInt(8, tratamientoPaciente.getEstatus());
             
             rs = cstmt.executeQuery();
             

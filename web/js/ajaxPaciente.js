@@ -335,6 +335,43 @@ $(document).ready(function () {
 
 
     });
+    
+        //Terminar tratamiento
+    $("#fechaTerminarTratamiento").on('click', function(){
+        
+        $.ajax({
+            url: 'PacienteController',
+            cache: false,
+            method: 'POST',
+            data:{
+                key: 'terminarTratamiento',
+                idTratamientoPaciente: $('#idTratamientoPaciente').val(),
+                fechaFin: $('#fechaFinTratamiento').val()
+            }
+        })
+        
+        .done(function (response) {
+                    
+                    //actualizar la tabla
+                    $('#fecha-'+$('#idTratamientoPaciente').val()).html($('#fechaFinTratamiento').val());
+                    
+                })
+                .fail(function (xhr, textStatus, errorThrown) {
+                    console.log(xhr.responseText);
+                });
+        
+    });
+    
+    //Designar idTratamientoPaciente
+    $('body').on('click', '.terminarTratamiento',function(){
+        
+        $('#idTratamientoPaciente').val($(this).data('id'));
+        
+        console.log($('#idTratamientoPaciente').val());
+        
+    });
+    
+    
 
 
 

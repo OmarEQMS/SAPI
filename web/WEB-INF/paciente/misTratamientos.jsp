@@ -188,14 +188,19 @@
                                                   data-target="#modalEditarTerminado"><i class="fas fa-edit"></i></button></td>
                                   </tr>
                                 -->
+                                 <input type="hidden" value="" id="idTratamientoPaciente">
                                 <c:forEach items="${UnionTratamientosPaciente}" var="unionTratamientoPaciente"> 
 
 
                                 <tr>
                                 <td> <c:out value="${unionTratamientoPaciente.nombre}"/> </td>
                                 <td> <c:out value="${unionTratamientoPaciente.fechaInicio}"/> </td>
-                                <td> <c:out value="${unionTratamientoPaciente.fechaFin}"/> </td>
-                                </tr>
+                                <td id="fecha-${unionTratamientoPaciente.idTratamientoPaciente}"> <c:out value="${unionTratamientoPaciente.fechaFin}"/> </td>
+                                <td> 
+                                    <button class="btn btn-primary terminarTratamiento" data-id="${unionTratamientoPaciente.idTratamientoPaciente}"
+                                            data-toggle="modal"
+                                                  data-target="#modalEditarTerminado"><i class="fas fa-edit"></i></button></td>
+
                             </c:forEach> 
 
                             </tbody>
@@ -342,7 +347,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" style="border-radius:20px;" data-dismiss="modal">Cancelar</button>
-                            <button id="btn-registrarTratamientooo" type="button" class="btn btn-primary" style="border-radius:20px;">Registrarrrrrrrrrr</button>
+                            <button id="fechaTerminarTratamiento" type="button" class="btn btn-primary" style="border-radius:20px;">Registrarrrrrrrrrr</button>
                         </div>
                     </div>
                 </div>
