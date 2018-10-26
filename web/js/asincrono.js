@@ -14,6 +14,7 @@ $(document).ready(function () {
     $('#errorPass1').hide();
     $('#errorPass2').hide();
     $('#errorCurp').hide();
+    $('#errorCurpRepetido').hide();
     $('#errorCodigoPostal').hide();
     $('#errorTelefono').hide();
     $('#errorECivil').hide();
@@ -318,6 +319,27 @@ $(document).ready(function () {
 
     //8.- CURP
     $('#curp').on('change', function () {
+
+        $.ajax({
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+                key: "repiteCurp",
+                curp: $('#curp').val()
+            },
+            success: function (response) {                
+
+                if(response==='CurpAlreadyExists'){
+                    $('#curp').css('color', 'orange');
+                    $('#errorCurpRepetido').show();
+                }else{
+                    $('#errorCurpRepetido').hide();
+                }
+
+            }
+        });
+
 
         if (validation.isValidCURP($(this))) {
             $('#errorCurp').hide();

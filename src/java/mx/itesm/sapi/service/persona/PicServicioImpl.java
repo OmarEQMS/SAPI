@@ -221,5 +221,43 @@ public class PicServicioImpl implements PicServicio {
         }
         return exito;
     }    
+
+    @Override
+    public Pic mostrarPicDefault() {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        
+        Pic pic = null;
+        
+        //Call del stored procedure
+        String stProcedure="CALL mostrarPicDefault()";
+        
+        try{
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            pic = new Pic();
+            
+            rs = cstmt.executeQuery();
+            
+            rs.next();
+            pic.setIdPic(rs.getInt(1));
+            pic.setIdPersona(rs.getInt(2));
+            pic.setContenido(rs.getBinaryStream(3));
+            pic.setTamano(rs.getInt(4));
+            pic.setTipo(rs.getString(5));
+            pic.setEstatus(rs.getInt(6));
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+           
+        }catch(SQLException ex){
+            pic = null;
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+        return pic;
+    }
     
 }

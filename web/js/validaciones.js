@@ -140,10 +140,12 @@ export const validation = {
         if (!expreg.test(m)) {
 
             input.css('border', '1px solid red');
+            input.css('color', 'red');
             return false;
 
         } else {
             input.css('border', '');
+            input.css('color', '');
         }
 
         return true;
