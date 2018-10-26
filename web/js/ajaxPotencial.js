@@ -5,54 +5,80 @@ $(document).ready(function () {
     console.log("Se Actualizó!");
     var consultarDocumentosPreconsulta = new FormData;
     consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
-    
+
     console.log("Solicitar DOCUMENTOS de Preconsulta");
     $.ajax({
-            url: "PotencialController",
-            method: "POST",
-            data: consultarDocumentosPreconsulta,
-            enctype: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                if (response != null) {
-                    console.log("ok" + response);
-                    
-                } else {
-                    console.log("Algo pasó" + response);
-                }
-            },
-            error: function () {
-                console.log("error" + xhr.statusText);
-                alert("No enontre el controlador" + xhr.statusText);
-            }
+        url: "PotencialController",
+        method: "POST",
+        data: consultarDocumentosPreconsulta,
+        enctype: "multipart/form-data",
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response != null) {
+                console.log("ok" + response);
 
-        });
+            } else {
+                console.log("Algo pasó" + response);
+            }
+        },
+        error: function () {
+            console.log("error" + xhr.statusText);
+            alert("No enontre el controlador" + xhr.statusText);
+        }
+
+    });
     var consultarEstadoPreconsulta = new FormData;
     consultarEstadoPreconsulta.append("key", "consultarEstadoPreconsulta");
-    
+
     console.log("Solicitar ESTADO de Preconsulta");
     $.ajax({
-            url: "PotencialController",
-            method: "POST",
-            data: consultarEstadoPreconsulta,
-            enctype: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                if (response != null) {
-                    console.log("ok" + response);
-                    
-                } else {
-                    console.log("Algo pasó" + response);
-                }
-            },
-            error: function () {
-                console.log("error" + xhr.statusText);
-                alert("No enontre el controlador" + xhr.statusText);
-            }
+        url: "PotencialController",
+        method: "POST",
+        data: consultarEstadoPreconsulta,
+        enctype: "multipart/form-data",
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response != null) {
+                console.log("ok" + response);
 
-        });
+            } else {
+                console.log("Algo pasó" + response);
+            }
+        },
+        error: function () {
+            console.log("error" + xhr.statusText);
+            alert("No enontre el controlador" + xhr.statusText);
+        }
+
+    });
+
+    var consultarEstadoPaciente = new FormData;
+    consultarEstadoPaciente.append("key", "consultarEstadoPaciente");
+    console.log("Solicitar EstadoPaciente");
+    $.ajax({
+        url: "PotencialController",
+        method: "POST",
+        data: consultarEstadoPaciente,
+        enctype: "multipart/form-data",
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response != null) {
+                console.log("ok" + response);
+
+            } else {
+                console.log("Algo pasó" + response);
+            }
+        },
+        error: function () {
+            console.log("error" + xhr.statusText);
+            alert("No enontre el controlador" + xhr.statusText);
+        }
+
+    });
+
     $('#eliminarCuentaPotencial').on('click', () => {
 
         swal({
@@ -115,8 +141,8 @@ $(document).ready(function () {
                                 success: function (response) {
                                     if (response == "success") {
 
-                                    }else{
-                                        
+                                    } else {
+
                                     }
                                 },
                                 error: function (xhr) {
@@ -152,8 +178,8 @@ $(document).ready(function () {
 
                         $('#modalMotivoCancelacion').modal('toggle');
                         $('#modalVerCitaPreConsulta').modal('toggle');
-                        
-                        
+
+
                         //pegar ajax de cancelacion
 
                     } else {

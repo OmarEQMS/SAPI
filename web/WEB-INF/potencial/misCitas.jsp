@@ -141,7 +141,7 @@
                                 </div>
 
                                 <c:choose>
-                                    <c:when test="${sessionScope.idRol==1}">
+                                    <c:when test="${sessionScope.estatus==1}">
 
                                         <!-- APROBADA -->        
 
@@ -195,7 +195,7 @@
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-12 text-center">
-                                                        <h5 class="display-4 textoCitaReservada mb-1">Tu cita ha sido cancelada</h5>
+                                                        <h5 class="display-4 textoCitaReservada mb-1">Tus citas han sido canceladas</h5>
 
                                                     </div>
                                                 </div>

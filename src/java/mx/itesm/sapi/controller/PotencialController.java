@@ -37,6 +37,7 @@ import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.OtroMotivoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.SolicitudPreconsultaServicioImpl;
@@ -950,9 +951,9 @@ public class PotencialController extends HttpServlet {
                 System.out.println("Res ".concat(json.toJson(solicitudPreconsulta)));
                 
                 PrintWriter out = response.getWriter();
-                out.print(json.toJson(json.toJson(solicitudPreconsulta)));
-                break;
+                out.print(json.toJson(json.toJson(solicitudPreconsulta)));            
                 }
+                break;
             }
             case "consultarEstadoPreconsulta":
             {
@@ -985,16 +986,72 @@ public class PotencialController extends HttpServlet {
                 int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
                 
                 CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
+                
                 String estadoCita = citaServicioImpl.mostrarPreconsultaAceptada(idPacientePotencial);
                 String strJson = "{estado:\"".concat(estadoCita).concat("\"}");
                 
                 Gson json = new Gson();
+                String estatus = json.toJson(estadoCita);
+                estatus = estatus.substring(1,estatus.length()-1);
+                
+                System.out.println("El estatus es: " +  estatus);
+                
+                if(estatus.equals("Aprobada")){
+                    sesion.setAttribute("estatus", 1);
+                } else{
+                    sesion.setAttribute("estatus", 0);
+                }
+
                 System.out.println("JSON ".concat(json.toJson(estadoCita)));
                 
                 PrintWriter out = response.getWriter();
                 out.print(json.toJson(strJson));
                 }
-            }                        
+                break;
+            }    
+            
+            case "consultarEstadoPaciente":
+            {
+                /** 
+                 * * Diego Montoya 26/10/2018
+                 * Case para saber el estado de un paciente.
+                 * 
+                 * El presente case se utiliza para saber el estado actual de
+                 * un paciente.
+                 * 
+                 * Los valores posibles son:
+                 * 
+                 * Potencial = 1
+                 * Consulta = 2
+                 * Tratamiento = 3
+                 * Paliativo = 4
+                 * Recurrente = 5
+                 * Segunda Opinión = 6
+                 * Finado = 7
+                 * Alta = 8
+                 * Alta voluntaria = 9
+                 * 
+                 *El formato de entrega es un int.
+                 */
+                System.out.println("Entra al case de consultarEstadoPaciente");
+                
+                HttpSession sesion = request.getSession(true);
+
+                if (sesion.getId() == null) {
+                    //TODO 
+                } else {
+                
+                int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
+                
+                EstadoPacientePacienteServiceImpl estadoPaPa = new EstadoPacientePacienteServiceImpl();
+                
+                int estadoPaciente = estadoPaPa.estadoPrimeraSegundaVez(idPacientePotencial);
+                    System.out.println("EstadoPaciente: " + estadoPaciente);
+                sesion.setAttribute("estadoPaciente", estadoPaciente);
+                                
+                }
+                break;
+            }
         }
 
 
