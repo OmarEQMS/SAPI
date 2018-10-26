@@ -43,6 +43,15 @@ $(document).ready(function () {
         $('.collapse.in').toggleClass('in');
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
+    
+    //Desabilitar los inputs subidos
+    $('#fileIdentificacionSubido').attr('disabled', 'disabled');
+    $('#fileComprobanteDomicilioSubido').attr('disabled', 'disabled');
+    $('#fileCURPSubido').attr('disabled', 'disabled');
+    $('#fileEstudioPrevioMastoSubido').attr('disabled', 'disabled');
+    $('#fileEstudioPrevioUsgSubido').attr('disabled', 'disabled');
+    $('#fileEstudioBiopsiaSubido').attr('disabled', 'disabled');
+    
 
     $("#motivoConsulta").on('change', () => {
 
@@ -182,6 +191,24 @@ $(document).ready(function () {
         }, 400);
 
     });
+    
+    //Parsear la fechas
+    
+    //Preconsulta
+    var fechaPre = $('#fechaCitaPreConsulta').html();
+    
+    var m = moment(new Date(fechaPre)).locale('es').format('LL') + ' a las: ' + "<strong>" + moment(new Date(fechaPre)).locale('es').format('LT') + "</strong>";
+    
+    $('#fechaCitaPreConsulta').html(m);
+    
+    //Navegacion
+    var fechaNav = $('#fechaCitaNavegacion').html();
+    
+    var m = moment(new Date(fechaNav)).locale('es').format('LL') + ' a las: ' + "<strong>" + moment(new Date(fechaNav)).locale('es').format('LT') + "</strong>";
+    
+    $('#fechaCitaNavegacion').html(m);
+    
+  
     
     //MediaQueries
     

@@ -5,54 +5,86 @@ $(document).ready(function () {
     console.log("Se Actualizó!");
     var consultarDocumentosPreconsulta = new FormData;
     consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
-    
+
     console.log("Solicitar DOCUMENTOS de Preconsulta");
     $.ajax({
-            url: "PotencialController",
-            method: "POST",
-            data: consultarDocumentosPreconsulta,
-            enctype: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                if (response != null) {
-                    console.log("ok" + response);
-                    
-                } else {
-                    console.log("Algo pasó" + response);
-                }
-            },
-            error: function () {
-                console.log("error" + xhr.statusText);
-                alert("No enontre el controlador" + xhr.statusText);
-            }
+        url: "PotencialController",
+        method: "POST",
+        data: consultarDocumentosPreconsulta,
+        enctype: "multipart/form-data",
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            
+            if (response != null) {
+                
+               
+               var data = JSON.parse(response);
+                   
+                console.log(data);
+    
+               
 
-        });
+            } else {
+                console.log("Algo pasó" + response);
+            }
+        },
+        error: function () {
+            console.log("error" + xhr.statusText);
+            alert("No enontre el controlador" + xhr.statusText);
+        }
+
+    });
     var consultarEstadoPreconsulta = new FormData;
     consultarEstadoPreconsulta.append("key", "consultarEstadoPreconsulta");
-    
+
     console.log("Solicitar ESTADO de Preconsulta");
     $.ajax({
-            url: "PotencialController",
-            method: "POST",
-            data: consultarEstadoPreconsulta,
-            enctype: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                if (response != null) {
-                    console.log("ok" + response);
-                    
-                } else {
-                    console.log("Algo pasó" + response);
-                }
-            },
-            error: function () {
-                console.log("error" + xhr.statusText);
-                alert("No enontre el controlador" + xhr.statusText);
-            }
+        url: "PotencialController",
+        method: "POST",
+        data: consultarEstadoPreconsulta,
+        enctype: "multipart/form-data",
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response != null) {
+                console.log("ok" + response);
 
-        });
+            } else {
+                console.log("Algo pasó" + response);
+            }
+        },
+        error: function () {
+           
+        }
+
+    });
+
+    var consultarEstadoPaciente = new FormData;
+    consultarEstadoPaciente.append("key", "consultarEstadoPaciente");
+    console.log("Solicitar EstadoPaciente");
+    $.ajax({
+        url: "PotencialController",
+        method: "POST",
+        data: consultarEstadoPaciente,
+        enctype: "multipart/form-data",
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response != null) {
+                console.log("ok" + response);
+
+            } else {
+                console.log("Algo pasó" + response);
+            }
+        },
+        error: function () {
+            console.log("error" + xhr.statusText);
+            alert("No enontre el controlador" + xhr.statusText);
+        }
+
+    });
+
     $('#eliminarCuentaPotencial').on('click', () => {
 
         swal({
@@ -102,6 +134,29 @@ $(document).ready(function () {
 
                         $('#modalMotivoCancelacion').modal('toggle');
 
+                        $('#btn-cancelarDefinitivo').on('click', function () {
+
+                            $.ajax({
+                                url: "PotencialController",
+                                data: {
+                                    key: 'cancelarCita',
+                                    idPaciente: $('#idPaciente').val()
+                                },
+                                method: "POST",
+                                success: function (response) {
+                                    if (response == "success") {
+
+                                    } else {
+
+                                    }
+                                },
+                                error: function (xhr) {
+
+                                }
+                            });
+
+                        });
+
 
                     } else {
 
@@ -128,6 +183,9 @@ $(document).ready(function () {
 
                         $('#modalMotivoCancelacion').modal('toggle');
                         $('#modalVerCitaPreConsulta').modal('toggle');
+
+
+                        //pegar ajax de cancelacion
 
                     } else {
 
@@ -419,7 +477,7 @@ $(document).ready(function () {
             file: "potencial/preguntasFrecuentes.jsp"
         },
                 function (response, status, xhr) {
-                    
+
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();

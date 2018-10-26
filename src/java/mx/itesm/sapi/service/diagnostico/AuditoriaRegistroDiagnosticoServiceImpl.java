@@ -31,7 +31,7 @@ public class AuditoriaRegistroDiagnosticoServiceImpl implements AuditoriaRegistr
         int id = -1;
         
         //Aquí va el call del procedure
-        String stProcedure="-------";
+        String stProcedure="CALL agregarAuditoriaRegistroDiagnostico(?, ?, ?, ?)";
         
         try {
             conn = Conexion.getConnection();
@@ -75,7 +75,7 @@ public class AuditoriaRegistroDiagnosticoServiceImpl implements AuditoriaRegistr
         AuditoriaRegistroDiagnostico auditoriaRegistroDiagnostico = null;
         
         //Call del stored procedure
-        String stProcedure="-----";
+        String stProcedure="CALL mostrarAuditoriaRegistroDiagnostico(?)";
         
         try {    
             conn = Conexion.getConnection();
@@ -116,7 +116,7 @@ public class AuditoriaRegistroDiagnosticoServiceImpl implements AuditoriaRegistr
         List<AuditoriaRegistroDiagnostico> auditoriasRegistroDiagnostico = null;
         
         //Call del store procedure
-        String stProcedure="-----";
+        String stProcedure="CALL mostrarAuditoriaRegistroDiagnostico()";
         
         try{
             
@@ -163,7 +163,7 @@ public class AuditoriaRegistroDiagnosticoServiceImpl implements AuditoriaRegistr
         boolean exito = false;
         
         //Aquí va el call del procedure
-        String stProcedure="-------";
+        String stProcedure="CALL actualizarAuditoriaRegistroDiagnostico(?, ?, ?, ?)";
         
         try {
             
@@ -207,7 +207,7 @@ public class AuditoriaRegistroDiagnosticoServiceImpl implements AuditoriaRegistr
         boolean exito = false;
         
         //Call del store procedure
-        String stProcedure="";
+        String stProcedure="CALL borradoLogicoAuditoriaRegistroDiagnostico(?)";
         
         try{
             
