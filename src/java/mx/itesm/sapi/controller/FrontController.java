@@ -121,11 +121,28 @@ public class FrontController extends HttpServlet {
                                     
                                 } break;
                                 
+                                case "potencial/misCitas.jsp": {
+                                    System.out.println("Entro al case de potencial/misCitas.jsp");
+                                    
+                                    sesion.setAttribute("path", keyRuta);
+                                    
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                } break;
+                                
+                                case "potencial/preguntasFrecuentes.jsp":{
+                                    System.out.println("Entro al case de potencial/preguntasFrecuentes.jsp");
+                                    
+                                    sesion.setAttribute("path", keyRuta);
+                                    
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                }
+                                
                             }
 
                             break;
                         }
                         case 2: {
+                            
                             break;
                         }
                         case 3: {

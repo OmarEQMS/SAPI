@@ -56,15 +56,15 @@ $(document).ready(function () {
                 $('#estudioMotivo').html("");
 
                 var referencia =
-                    '<div class="col-3 text-center">'
-                    + '<span class="textoDocumento">Referencia</span>'
-                    + '</div>'
-                    + '<div class="custom-file col-8" id="customFile">'
-                    + '<input type="file" class="custom-file-input" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp">'
-                    + '<label class="custom-file-label">'
-                    + 'Adjunta la hoja de referencia de médico.'
-                    + '</label>'
-                    + '</div>';
+                        '<div class="col-3 text-center">'
+                        + '<span class="textoDocumento">Referencia</span>'
+                        + '</div>'
+                        + '<div class="custom-file col-8" id="customFile">'
+                        + '<input type="file" class="custom-file-input" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp">'
+                        + '<label class="custom-file-label">'
+                        + 'Adjunta la hoja de referencia de médico.'
+                        + '</label>'
+                        + '</div>';
 
                 $('#documentoAdjuntoMotivo').html(referencia);
                 break;
@@ -75,23 +75,23 @@ $(document).ready(function () {
                 $('#estudioMotivo').html("");
 
                 var otroHospital =
-                    '<div class="col-3 text-center">'
-                    + '<span class="textoDocumento">Hospital</span>'
-                    + '</div>'
-                    + '<div class="custom-file col-8 p-0 m-0" id="customFile">'
-                    + '<input type="text" class="form-control" id="otroHospital" placeholder="Introduce tu hospital de procedencia">'
-                    + '</div>';
+                        '<div class="col-3 text-center">'
+                        + '<span class="textoDocumento">Hospital</span>'
+                        + '</div>'
+                        + '<div class="custom-file col-8 p-0 m-0" id="customFile">'
+                        + '<input type="text" class="form-control" id="otroHospital" placeholder="Introduce tu hospital de procedencia">'
+                        + '</div>';
 
                 var referencia =
-                    '<div class="col-3 text-center">'
-                    + '<span class="textoDocumento">Referencia</span>'
-                    + '</div>'
-                    + '<div class="custom-file col-8" id="customFile">'
-                    + '<input type="file" class="custom-file-input" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp">'
-                    + '<label class="custom-file-label">'
-                    + 'Adjunta la hoja de referencia de médico del hospital.'
-                    + '</label>'
-                    + '</div>';
+                        '<div class="col-3 text-center">'
+                        + '<span class="textoDocumento">Referencia</span>'
+                        + '</div>'
+                        + '<div class="custom-file col-8" id="customFile">'
+                        + '<input type="file" class="custom-file-input" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp">'
+                        + '<label class="custom-file-label">'
+                        + 'Adjunta la hoja de referencia de médico del hospital.'
+                        + '</label>'
+                        + '</div>';
                 ;
                 $('#documentoAdjuntoMotivo').html(referencia);
                 $('#otroHospital').html(otroHospital);
@@ -103,12 +103,12 @@ $(document).ready(function () {
                 $('#estudioMotivo').html("");
 
                 var otroHospital =
-                    '<div class="col-3 text-center">'
-                    + '<span class="textoDocumento">Otro motivo</span>'
-                    + '</div>'
-                    + '<div class="custom-file col-8 p-0 m-0" id="customFile">'
-                    + '<input type="text" class="form-control" id="otro-motivo-consulta" placeholder="Introduce otro motivo">'
-                    + '</div>';
+                        '<div class="col-3 text-center">'
+                        + '<span class="textoDocumento">Otro motivo</span>'
+                        + '</div>'
+                        + '<div class="custom-file col-8 p-0 m-0" id="customFile">'
+                        + '<input type="text" class="form-control" id="otro-motivo-consulta" placeholder="Introduce otro motivo">'
+                        + '</div>';
 
                 $('#otroHospital').html(otroHospital);
                 break;
@@ -118,28 +118,27 @@ $(document).ready(function () {
                 $('#estudioMotivo').html("");
 
                 var estudio =
+                        '<div class="col-3 text-center">'
+                        + '<span class="textoDocumento">Estudios previos</span>'
+                        + '</div>'
 
-                    '<div class="col-3 text-center">'
-                    + '<span class="textoDocumento">Estudios previos</span>'
-                    + '</div>'
+                        + '<div class="custom-file col-8" id="customFile">'
+                        + '<input type="file" class="custom-file-input" multiple="multiple" aria-describedby="fileHelp">'
+                        + '<label class="custom-file-label">'
+                        + 'Elegir archivos...(Puedes subir mas de uno)'
+                        + '</label>'
+                        + '</div>'
 
-                    + '<div class="custom-file col-8" id="customFile">'
-                    + '<input type="file" class="custom-file-input" multiple="multiple" aria-describedby="fileHelp">'
-                    + '<label class="custom-file-label">'
-                    + 'Elegir archivos...(Puedes subir mas de uno)'
-                    + '</label>'
-                    + '</div>'
+                        + '<div class="col-1 iconoQuestion align-self-center">'
+                        + '<a href="#" class="questionMark" data-tooltip-content="#tooltip_content2"><i'
+                        + 'class="fas fa-question-circle"></i></a>'
+                        + '</div>'
 
-                    + '<div class="col-1 iconoQuestion align-self-center">'
-                    + '<a href="#" class="questionMark" data-tooltip-content="#tooltip_content2"><i'
-                    + 'class="fas fa-question-circle"></i></a>'
-                    + '</div>'
-
-                    + '<div class="tooltip_templates">'
-                    + '<span id="tooltip_content2">'
-                    + 'Puedes subir mas de un archivo'
-                    + '</span>'
-                    + '</div>';
+                        + '<div class="tooltip_templates">'
+                        + '<span id="tooltip_content2">'
+                        + 'Puedes subir mas de un archivo'
+                        + '</span>'
+                        + '</div>';
 
                 $('#estudioMotivo').html(estudio);
                 break;
@@ -166,9 +165,27 @@ $(document).ready(function () {
         }
     });
 
+
+    //Cambiar de pestañas al presionar continuar
+
+
+    $('#btn-continuar').on('click', function () {
+
+        $('#nav-bienvenida-tab').removeClass('active');
+        $('#nav-solicitud-tab').addClass('active');
+
+        $('#nav-bienvenida').removeClass('show').removeClass('active');
+        $('#solicitud').addClass('show').addClass('active');
+
+        $('html, body').animate({
+            scrollTop: $("#solicitud").offset().top - 100
+        }, 400);
+
+    });
+    
+    //MediaQueries
     
 
-    
 
 
 });

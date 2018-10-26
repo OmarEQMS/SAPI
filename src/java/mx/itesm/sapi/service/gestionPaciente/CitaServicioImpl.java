@@ -314,4 +314,62 @@ public class CitaServicioImpl implements CitaServicio {
         return id;
     }
 
+    @Override
+    public String mostrarPreconsultaAceptada(int idPacientePotencial) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarEstadoPreconsulta(?);";
+        String estadoCita = null;
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+
+            cstmt.setInt(1,idPacientePotencial);                                 
+            rs = cstmt.executeQuery();
+            rs.next();
+            
+            estadoCita = rs.getString("ESTADO_CITA");
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            estadoCita = null;
+        }
+        return estadoCita;
+    }
+
+    @Override
+    public boolean cancelarCitaPreconsulta(int idPacientePotencial) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL cancelarCitaPreconsulta(?)";
+        boolean exito = false;
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+
+            cstmt.setInt(1, idPacientePotencial);
+           
+            rs = cstmt.executeQuery();
+            rs.next();
+            exito = rs.getBoolean(1);
+
+            rs.close();
+            conn.close();
+            cstmt.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+        }
+        return exito;
+    }
+
 }

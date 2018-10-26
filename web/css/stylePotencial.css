@@ -5,6 +5,8 @@
     GENERALES
 ----------------------------------------------------- */
 
+
+
 .swal-button--confirm {
     padding: 7px 19px;
     border-radius: 25px;
@@ -12,16 +14,16 @@
     background-color: #007bff;
     font-size: 15px;
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
-  }
+}
 
-  .swal-button--cancel {
+.swal-button--cancel {
     padding: 7px 19px;
     border-radius: 25px;
     color: #fff;
     background-color: #dc3545;
     font-size: 15px;
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
-  }
+}
 
 .icono-info{
     font-size: 25px;
@@ -32,7 +34,7 @@
     -webkit-box-shadow: 0px 2px 26px 2px rgba(0,0,0,0.34);
     -moz-box-shadow: 0px 2px 26px 2px rgba(0,0,0,0.34);
     box-shadow: 0px 2px 26px 2px rgba(0, 0, 0, 0.411);  
-    
+
 }
 
 .colorIconos{
@@ -91,7 +93,7 @@ li a, li a i{
 }
 
 .title{
-    
+
     font-size: 24px;
     text-shadow: -1px -1px 14px rgba(150, 150, 150, 0.77);
     font-family: 'Poppins', sans-serif;
@@ -99,17 +101,17 @@ li a, li a i{
 
 .subtitle{
     font-size: 9px;
-    
+
 }
 
 .subtitle-name{
-    
+
     font-size: 20px;
 }
 
 .subtitle-user{
     font-size: 15px;
-   
+
 }
 
 .user{
@@ -174,14 +176,14 @@ li a, li a i{
     padding: 10px;
     /* background: #3e8ef7; */
     background: #1e1441;
-    
+
 }
 
 #sidebar .imagenPerfil{
     width: 30%;
     display:block;
     margin:auto;
-    
+
 }
 
 #sidebar .profile {
@@ -290,7 +292,7 @@ a.article:hover {
 .btn:focus,.btn:active {
     outline: none !important;
     box-shadow: none;
- }
+}
 
 .navbar {
     padding: 15px 10px;
@@ -366,14 +368,22 @@ a.article:hover {
     padding-right: 0;
 }
 
-.btn.btn-guardar-continuar{
-	background-color: #fff;
+#btn-enviarSolicitud{
+    
+}
+
+.btn-guardar-continuar{
+    
+    
+    background-color: #fff;
     border-color: #eb5865;
     color:#eb5865;
 }
 
+
+
 .btn.btn-guardar-continuar:hover{
-	background-color: #eb5865;
+    background-color: #eb5865;
     border-color: #fff;
     color:#fff;
 }
@@ -456,7 +466,7 @@ a.article:hover {
 /* QUESTION MARKS */
 
 .tooltip_templates { display: none; }
-  
+
 /******* INPUTS *******/
 
 
@@ -504,4 +514,25 @@ a.article:hover {
     #sidebarCollapse span {
         display: none;
     }
+}
+
+@media (max-width: 500px ){
+
+    .texto-bienvenida{
+        font-size:30px;
+    }
+
+    .texto-tab{
+        font-size:10px !important;
+    }
+
+}
+
+@media (max-width: 765px ){
+
+    .centraInput{
+        display:block;
+        margin: 0 auto;
+    }
+
 }
