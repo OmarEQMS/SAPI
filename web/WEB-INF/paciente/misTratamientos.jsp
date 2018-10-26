@@ -337,7 +337,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" style="border-radius:20px;" data-dismiss="modal">Cancelar</button>
-                            <button id="fechaTerminarTratamiento" type="button" class="btn btn-primary" style="border-radius:20px;">Registrarrrrrrrrrr</button>
+                            <button id="fechaTerminarTratamiento" type="button" class="btn btn-primary" style="border-radius:20px;">Registrar</button>
                         </div>
                     </div>
                 </div>

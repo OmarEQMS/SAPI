@@ -226,7 +226,7 @@ public class PacienteController extends HttpServlet {
                                 int idTipoTratamiento = Integer.parseInt(request.getParameter("idTipoTratamiento"));
                                 Date fechaInicio = Date.valueOf(request.getParameter("fechaInicio"));
                                 int idPaciente2 = (int) sesion.getAttribute("idPaciente");
-
+                                System.out.println("Este es el idPaciente tiene que ser esteQQQQ:"+ idPaciente2);
                                 TratamientoPacienteServiceImpl tratamientoPacienteServiceImpl = new TratamientoPacienteServiceImpl();
                                 TratamientoPaciente tratamientoPaciente = new TratamientoPaciente();
 
@@ -252,7 +252,7 @@ public class PacienteController extends HttpServlet {
                             TratamientoPaciente tratamientoPaciente = tratamientoPacienteServicio.mostrarTratamientoPaciente(idTratamientoPaciente);
 
                             tratamientoPaciente.setFechaFin(fechaFin);
-
+                            System.out.println("Este es el idPaciente tiene que ser de termnar:"+ tratamientoPaciente.getIdPaciente());
                             tratamientoPacienteServicio.actualizarTratamientoPaciente(tratamientoPaciente);
 
                         }

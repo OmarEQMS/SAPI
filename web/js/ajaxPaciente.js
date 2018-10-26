@@ -241,16 +241,30 @@ $(document).ready(function () {
                     file: "paciente/cuenta.jsp"
                 },
                         function (response, status, xhr) {
-                            console.log("El ajax fue exitoso!!-----------------------");
-                            if (status == "success") {
-                                if (response == "error") {
-                                    $("#msj-error").show();
-                                } else {
-                                    document.open("text/html", "replace");
-                                    document.write(response);
-                                    document.close();
+                            /*console.log("El ajax fue exitoso!!-----------------------");
+                             if (status == "success") {
+                             if (response == "error") {
+                             $("#msj-error").show();
+                             } else {
+                             
+                             
+                             document.open("text/html", "replace");
+                             document.write(response);
+                             document.close();
+                             }
+                             }*/
+                            swal({
+                                title: 'Buen Trabajo',
+                                text: "Cambios guardados correctamente",
+                                type: 'success',
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Ok'
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location.reload();
                                 }
-                            }
+                                ;
+                            });
                         }
                 );
             },
@@ -289,10 +303,15 @@ $(document).ready(function () {
             }
         })
                 .done(function (response) {
+                    $('#modalAgregarTratamiento').modal('toggle'); //cerrar modal
+                    swal({
+                        title: "Tratamiento registrado correctamente",
+                        icon: "success",
+                    });
                     var row = "<tr>" +
                             "<td>" + $("#nombreTipoTratamiento").val() + "</td>" +
                             "<td>" + $("#fechaInicioTratamiento").val() + "</td>" +
-                            "<td>" + $("#fechaFinTratamiento").val() + "</td>" +
+                            "<td  id='fecha-"+response+"'>"  + "</td>" +
                             "<td><button class='btn btn-primary terminarTratamiento' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button></td > " +
                             "</tr>";
                     $("#tablaTratamientos").append(row);
@@ -362,6 +381,11 @@ $(document).ready(function () {
 
                 .done(function (response) {
 
+                    $('#modalEditarTerminado').modal('toggle'); //cerrar modal
+                    swal({
+                        title: "Tratamiento finalizado",
+                        icon: "success",
+                    });
                     //actualizar la tabla
                     $('#fecha-' + $('#idTratamientoPaciente').val()).html($('#fechaFinTratamiento').val());
                 })
@@ -384,7 +408,7 @@ $(document).ready(function () {
         $('#nombreTipoTratamiento').val($('#tipoTratamiento option:selected').text());
         console.log($('#nombreTipoTratamiento').val());
     });
-    
+
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta1').on('click', function () {
         console.log("Salir cuenta");
