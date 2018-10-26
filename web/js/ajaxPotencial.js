@@ -137,6 +137,61 @@ $(document).ready(function () {
 
 
     });
+    
+    $("btn-GuardarContinuar").on('click',function()
+    {       
+        var form = $("form")[0];
+        var data = new FormData(form);
+
+        var masculino = $('#masculino').is(':checked') ? 1 : 0;
+        var femenino = $('#femenino').is(':checked') ? 1 : 0;
+        var sillaDeRuedas = $('#sillaRuedas').is(':checked') ? 1 : 0;
+        var camilla = $('#camilla').is(':checked') ? 1 : 0;
+        var baston = $('#baston').is(':checked') ? 1 : 0;
+        var oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
+        var motivoConsulta = $('#motivoConsulta').val();
+        var biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
+
+        data.append("key", "solicitarPreconsulta");
+        data.append("femenino", femenino);
+        data.append("masculino", masculino);
+        data.append("sillaDeRuedas", sillaDeRuedas);
+        data.append("camilla", camilla);
+        data.append("baston", baston);
+        data.append("oxigeno", oxigeno);
+        data.append("motivoConsulta", motivoConsulta);
+        data.append("biopsia", biopsia);
+
+        console.log(data);
+
+        // Imprimmir en consola los valores obtenidos del form para pruebas
+        data.forEach((value, key) => {
+            console.log(key + " " + value);
+        });
+
+        $.ajax({
+            url: "PotencialController",
+            method: "POST",
+            data: data,
+            enctype: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response == "success") {
+                    console.log("ok");
+                } else {
+                    console.log("Algo pasó" + response);
+                }
+            },
+            error: function () {
+                console.log("error" + xhr.statusText);
+                alert("No enontre el controlador" + xhr.statusText);
+            }
+
+
+        });
+       
+    });
 
     $("#btn-enviarSolicitud").on('click', function () {
 
@@ -172,8 +227,6 @@ $(document).ready(function () {
         data.append("oxigeno", oxigeno);
         data.append("motivoConsulta", motivoConsulta);
         data.append("biopsia", biopsia);
-
-
 
         console.log(data);
 

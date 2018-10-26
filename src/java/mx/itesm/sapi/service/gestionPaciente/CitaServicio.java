@@ -18,6 +18,7 @@ public interface CitaServicio {
     public int agregarCita(Cita cita);    
     public boolean borradoLogicoCita(int idCita);
     public boolean actualizarCita(Cita  cita);
+    public boolean cancelarCitaPreconsulta(int idPacientePotencial);
     public int agregarPreconsulta(Cita cita);
     public String mostrarPreconsultaAceptada(int idPacientePotencaial);
 }
