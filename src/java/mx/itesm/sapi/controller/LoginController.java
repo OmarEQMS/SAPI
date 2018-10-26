@@ -229,7 +229,6 @@ public class LoginController extends HttpServlet {
 
                     }
 
-                
             
             case "cerrar-sesion": {
 
@@ -244,6 +243,14 @@ public class LoginController extends HttpServlet {
 
                 break;
 
+            }
+            
+            case "recuperarContra":{
+                System.out.println("LoginController recuperar conttra");
+               
+                request.getRequestDispatcher("WEB-INF/recuperarContrasena.jsp").forward(request, response);
+                
+                break;
             }
 
         }

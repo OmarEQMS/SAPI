@@ -35,14 +35,14 @@ $(document).ready(function () {
         console.log("Click en recuperarContra desde el Login");
         
         $.ajax({
-            url: "RecuperarController",
+            url: "LoginController",
             data: {
                 key: "recuperarContra"
             },
             method: "POST",
             success: function (response) {
                 if (response == "success") {
-
+                    
                 } else {
 
                 }
