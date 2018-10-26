@@ -217,8 +217,9 @@ public class LoginController extends HttpServlet {
 
                         /*request.getRequestDispatcher("/WEB-INF/index.html")
                                 .forward(request, response);*/
+                        //request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
                         PrintWriter out = response.getWriter();
-                        out.print("doesntExist");
+                        out.print("LoginError");
 
                     }
 
