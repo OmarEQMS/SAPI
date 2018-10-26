@@ -233,14 +233,7 @@ public class FrontController extends HttpServlet {
 
                                 case "paciente/index.jsp": {
 
-                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
-                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
-
-                                    InputStream imagen = pic.getContenido();
-                                    byte[] bytes = IOUtils.toByteArray(imagen);
-                                    String base64String = Base64.getEncoder().encodeToString(bytes);
-
-                                    sesion.setAttribute("base64Img", base64String);
+                                    
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                 }
 

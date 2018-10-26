@@ -6,7 +6,9 @@
 package mx.itesm.sapi.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.Base64;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,9 +18,12 @@ import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Persona;
+import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.LoginServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
+import mx.itesm.sapi.service.persona.PicServicioImpl;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -175,7 +180,19 @@ public class LoginController extends HttpServlet {
                                request.setAttribute("prz", sesion.getAttribute(paciente.getPrz()));
                                request.setAttribute("nombre", sesion.getAttribute("nombre"));
                                request.setAttribute("primerApellido",sesion.getAttribute("primerApellido"));
-                               request.setAttribute("segundoApellido",sesion.getAttribute("segundoApellido"));                                                              
+                               request.setAttribute("segundoApellido",sesion.getAttribute("segundoApellido"));       
+                               
+                               //Ponedlo Aquí
+                               
+                               PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                    sesion.setAttribute("base64Img", base64String);
+                               //Ponedlo Aquí
                                                           
                                request.getRequestDispatcher("/WEB-INF/paciente/index.jsp").forward(request, response);                              
                                //request.getRequestDispatcher("/FrontController").forward(request, response);             
