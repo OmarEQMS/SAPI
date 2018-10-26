@@ -73,26 +73,30 @@
                         </div>
                         <div class="col-2">
                             <a class="iconoSidebar" id="salirCuenta1" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
-                            <div class="col-12 text-center">
-                                <hr style="background-color:white !important">
-                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- MENU PRINCIPAL ENLACES -->
-                    <ul class="list-unstyled components">
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center">
+                        <hr style="background-color:white !important">
+                    </div>
+                </div>
 
-                        <li id ="irACitaPreconsulta"><a><i class="fas fa-home"></i>Cita a Preconsulta </a></li>
+                <!-- MENU PRINCIPAL ENLACES -->
+                <ul class="list-unstyled components">
 
-                        <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas<span class="notificacion">1</span></a></li>
+                    <li id ="irACitaPreconsulta"><a><i class="fas fa-home"></i>Cita a Preconsulta </a></li>
 
-                        <li id ="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta </a></li>
+                    <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas<span class="notificacion">1</span></a></li>
 
-                        <li id ="irAPreguntasFrecuentes"><a><i class="fas fa-question-circle"></i>Preguntas Frecuentes </a></li>
+                    <li id ="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta </a></li>
 
-                        <li id="salirCuenta"><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+                    <li id ="irAPreguntasFrecuentes"><a><i class="fas fa-question-circle"></i>Preguntas Frecuentes </a></li>
 
-                    </ul>
+                    <li id="salirCuenta"><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+
+                </ul>
 
             </nav>
 
@@ -137,16 +141,33 @@
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
 
-                                        <a class="nav-item nav-link active text-center colorMoradoLight texto-tab" id="nav-bienvenida-tab" data-toggle="tab" href="#nav-bienvenida"
-                                           role="tab" aria-controls="nav-bienvenida" aria-selected="false" style="width:33%">INFORMACIÓN</a>
-
-                                        <a class="nav-item nav-link text-center colorMoradoLight texto-tab" id="nav-solicitud-tab" data-toggle="tab" href="#solicitud" role="tab"
-                                           aria-controls="nav-solicitud" aria-selected="true" style="width:33%"><!--<i
-                                                class="fas fa-check-circle text-success mr-2"></i>-->SOLICITUD</a>
 
 
-                                        <a class="nav-item nav-link text-center colorMoradoLight texto-tab" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-                                           aria-controls="nav-contact" aria-selected="false" style="width:33%">APROBACIÓN</a>
+                                        <c:choose>
+                                            <c:when test="${sessionScope.estatus==1}">
+
+                                                <a class="nav-item nav-link active text-center colorMoradoLight texto-tab" id="nav-bienvenida-tab" data-toggle="tab" href="#nav-bienvenida"
+                                                   role="tab" aria-controls="nav-bienvenida" aria-selected="false" style="width:33%">INFORMACIÓN</a>
+
+                                                <a class="nav-item nav-link text-center colorMoradoLight texto-tab" id="nav-solicitud-tab" data-toggle="tab" href="#solicitud" role="tab"
+                                                   aria-controls="nav-solicitud" aria-selected="true" style="width:33%"><!--<i
+                                                        class="fas fa-check-circle text-success mr-2"></i>-->SOLICITUD</a>
+
+                                                <a class="nav-item nav-link text-center colorMoradoLight texto-tab" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                                                   aria-controls="nav-contact" aria-selected="false" style="width:33%">RESOLUCIÓN</a>
+                                            </c:when>
+
+                                            <c:otherwise>
+                                                <a class="nav-item nav-link active text-center colorMoradoLight texto-tab" id="nav-bienvenida-tab" data-toggle="tab" href="#nav-bienvenida"
+                                                   role="tab" aria-controls="nav-bienvenida" aria-selected="false" style="width:50%">INFORMACIÓN</a>
+
+                                                <a class="nav-item nav-link text-center colorMoradoLight texto-tab" id="nav-solicitud-tab" data-toggle="tab" href="#solicitud" role="tab"
+                                                   aria-controls="nav-solicitud" aria-selected="true" style="width:50%"><!--<i
+                                                        class="fas fa-check-circle text-success mr-2"></i>-->SOLICITUD</a>
+                                                </c:otherwise>
+
+                                        </c:choose>
+
                                     </div>
                                 </nav>
 
@@ -241,19 +262,43 @@
 
                                                     <!-- Identificacion oficial
                                                     -->
+
+
+
+
                                                     <div class="row mt-4">
 
-                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                            <span class="textoDocumento">Identificación oficial</span>
-                                                        </div>
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.identificacionOficial==0}">
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
+                                                                    <span class="textoDocumento">Identificación oficial</span>
+                                                                </div>
 
-                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
-                                                            <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacion" aria-describedby="fileHelp">
-                                                            <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
-                                                            <label class="custom-file-label">
-                                                                Elegir archivo...
-                                                            </label>
-                                                        </div>
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
+                                                                    <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacion" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+                                                            </c:when>    
+                                                            <c:otherwise>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
+                                                                    <span class="textoDocumento text-success"><i class="fas fa-check text-success mr-1"></i>Identificación oficial</span><br>
+                                                                    <span class="text-success" style="font-size:11px;">Documento subido</span>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
+                                                                    <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacionSubido" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+                                                            </c:otherwise>
+                                                        </c:choose>
+
+
 
                                                         <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 iconoQuestion align-self-center">
                                                             <a href="#" class="questionMark" data-tooltip-content="#tooltip_content"><i
@@ -278,21 +323,48 @@
                                                     -->
                                                     <div class="row mt-4">
 
-                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                            <span class="textoDocumento">CURP</span>
-                                                            <small id="passwordHelpBlock" class="form-text text-muted">
-                                                                Se puede tramitar
-                                                                <a class="text-primary" target="_blank" href="https://www.gob.mx/curp/">aquí­</a>
-                                                            </small>
-                                                        </div>
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.curp==0}">
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
+                                                                    <span class="textoDocumento">CURP</span>
+                                                                    <small id="passwordHelpBlock" class="form-text text-muted">
+                                                                        Se puede tramitar
+                                                                        <a class="text-primary" target="_blank" href="https://www.gob.mx/curp/">aquí­</a>
+                                                                    </small>
+                                                                </div>
 
-                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="customFile">
-                                                            <input type="file" name="fileCURP" class="custom-file-input centraInput" id="fileCURP" aria-describedby="fileHelp">
-                                                            <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
-                                                            <label class="custom-file-label">
-                                                                Elegir archivo...
-                                                            </label>
-                                                        </div>
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="customFile">
+                                                                    <input type="file" name="fileCURP" class="custom-file-input centraInput" id="fileCURP" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+
+                                                            </c:when>    
+                                                            <c:otherwise>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
+                                                                    <span class="textoDocumento text-success">CURP</span>
+                                                                    <small id="passwordHelpBlock" class="form-text text-muted">
+                                                                        Se puede tramitar
+                                                                        <a class="text-primary" target="_blank" href="https://www.gob.mx/curp/">aquí­</a>
+                                                                    </small>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="customFile">
+                                                                    <input type="file" name="fileCURP" class="custom-file-input centraInput" id="fileCURPSubido" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+                                                            </c:otherwise>
+                                                        </c:choose>
+
+
+
+
+
 
                                                     </div>
 
@@ -300,20 +372,49 @@
 
                                                     <div class="row mt-4">
 
-                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                            <span class="textoDocumento">Comprobante de domicilio</span>
-                                                            <small id="passwordHelpBlock" class="form-text text-muted">
-                                                                Vigencia no mayor a 3 meses.
-                                                            </small>
-                                                        </div>
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.comprobante==0}">
 
-                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFile">
-                                                            <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilio" aria-describedby="fileHelp">
-                                                            <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
-                                                            <label class="custom-file-label">
-                                                                Elegir archivo...
-                                                            </label>
-                                                        </div>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
+                                                                    <span class="textoDocumento"><i class="fas fa-check text-success mr-1"></i>Comprobante de domicilio</span>
+                                                                    <small id="passwordHelpBlock" class="form-text text-muted">
+                                                                        Vigencia no mayor a 3 meses.
+                                                                    </small>
+                                                                    <span class="text-success" style="font-size:11px;">Documento subido</span>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFile">
+                                                                    <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilioSubido" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+
+                                                            </c:when>
+                                                            <c:otherwise>
+
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
+                                                                    <span class="textoDocumento">Comprobante de domicilio</span>
+                                                                    <small id="passwordHelpBlock" class="form-text text-muted">
+                                                                        Vigencia no mayor a 3 meses.
+                                                                    </small>
+
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFile">
+                                                                    <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilio" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+
+                                                            </c:otherwise>
+
+                                                        </c:choose>
+
+
 
                                                         <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 iconoQuestion">
                                                             <a href="#" class="questionMark" data-tooltip-content="#tooltip_content3"><i
@@ -384,20 +485,46 @@
 
                                                     <!-- Estudios previos Mastografí­a-->
 
-                                                    <div class="row mt-1">
-                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
-                                                            <span class="textoDocumento">Reporte de resultados de estudios previos
-                                                                mastografía
-                                                            </span>
-                                                        </div>
 
-                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
-                                                            <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMasto" aria-describedby="fileHelp">
-                                                            <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
-                                                            <label class="custom-file-label">
-                                                                Elegir archivo...
-                                                            </label>
-                                                        </div>
+
+                                                    <div class="row mt-1">
+
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.resultadoMastografia==0}">
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
+                                                                    <span class="textoDocumento text-success"><i class="fas fa-check text-success mr-1"></i>Reporte de resultados de estudios previos
+                                                                        mastografía
+                                                                    </span>
+                                                                    <span class="text-success" style="font-size:11px;">Documento subido</span>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
+                                                                    <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMastoSubido" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+                                                            </c:when>
+
+                                                            <c:otherwise>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
+                                                                    <span class="textoDocumento">Reporte de resultados de estudios previos
+                                                                        mastografía
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
+                                                                    <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMasto" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+                                                            </c:otherwise>
+                                                        </c:choose>
+
+
 
                                                         <div class="col-1 iconoQuestion align-self-center mb-4">
                                                             <a href="#" class="questionMark" data-tooltip-content="#tooltip_content2"><i
@@ -429,19 +556,44 @@
                                                     <!-- Estudios previos Ultrasonido -->
 
                                                     <div class="row mt-4">
-                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-12 text-center">
-                                                            <span class="textoDocumento">Reporte de resultados de estudios previos
-                                                                ultrasonido
-                                                            </span>
-                                                        </div>
 
-                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
-                                                            <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsg" aria-describedby="fileHelp">
-                                                            <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
-                                                            <label class="custom-file-label">
-                                                                Elegir archivo...
-                                                            </label>
-                                                        </div>
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.resultadosUltrasonidos==0}">
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-12 text-center">
+                                                                    <span class="textoDocumento text-success"><i class="fas fa-check text-success mr-1"></i>Reporte de resultados de estudios previos
+                                                                        ultrasonido
+                                                                    </span>
+                                                                    <span class="text-success" style="font-size:11px;">Documento subido</span>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
+                                                                    <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsgSubido" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+                                                            </c:when>
+
+                                                            <c:otherwise>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-12 text-center">
+                                                                    <span class="textoDocumento">Reporte de resultados de estudios previos
+                                                                        ultrasonido
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
+                                                                    <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsg" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+                                                            </c:otherwise>
+                                                        </c:choose>
+
+
+
 
                                                         <div class="col-1 iconoQuestion align-self-center mb-4">
                                                             <a href="#" class="questionMark" data-tooltip-content="#tooltip_content6"><i
@@ -475,24 +627,52 @@
 
                                                     <div class="row mt-4">
 
-                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput">
-                                                                <label class="form-check-label textoDocumento">
-                                                                    ¿Te han hecho una biopsia previamente?
-                                                                </label>
-                                                            </div>
-                                                        </div>
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.biopsiaPrevia==0}">
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput" checked>
+                                                                        <label class="form-check-label textoDocumento text-success">
+                                                                            ¿Te han hecho una biopsia previamente?
+                                                                        </label>
+                                                                        <span class="text-success" style="font-size:11px">Documento subido</span>
+                                                                    </div>
+                                                                </div>
 
-                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="biopsiaContenedor">
-                                                            <input type="file" class="custom-file-input" id="fileEstudioBiopsia" name="fileEstudioBiopsia" aria-describedby="fileHelp">
-                                                            <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
-                                                            <label class="custom-file-label">
-                                                                Elegir archivo...
-                                                            </label>
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                                                    <input type="file" class="custom-file-input" id="fileEstudioBiopsiaSubido" name="fileEstudioBiopsia" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
 
 
-                                                        </div>
+                                                                </div>
+                                                            </c:when>
+
+                                                            <c:otherwise>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput">
+                                                                        <label class="form-check-label textoDocumento">
+                                                                            ¿Te han hecho una biopsia previamente?
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="biopsiaContenedor">
+                                                                    <input type="file" class="custom-file-input" id="fileEstudioBiopsia" name="fileEstudioBiopsia" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+
+
+                                                                </div>
+                                                            </c:otherwise>
+                                                        </c:choose>
+
+
 
                                                         <div class="col-1 iconoQuestion align-self-center" id="biopsiaQuestion">
                                                             <a href="#" class="questionMark" data-tooltip-content="#tooltip_content4"><i
@@ -538,99 +718,539 @@
                                     </div>
 
                                     <!-- APROBACION -->
-                                    
+
+
+
                                     <div class="tab-pane fade white mt-4" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                                         <div class="card mb-3">
                                             <img class="card-img-top mt-3" style="width: 100px; display:block; margin:auto;" src="img/success2.png" alt="Card image cap">
                                             <div class="card-body">
 
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <h5 class="card-title display-4 tituloAprobacion text-center">Tu solicitud
-                                                            ha sido aprobada <br> como paciente de <strong><span class="colorMoradoLight">primera
-                                                                    vez
-                                                                </span></strong></h5>
-                                                        <p class="card-text text-center subTituloAprobacion">La preconsulta del
-                                                            Departamento de Tumores Mamarios consta de <strong><span class="text-secondary">dos
-                                                                    días
-                                                                </span></strong> consecutivos</p>
-                                                        <hr>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="row justify-content-center mb-2">
-                                                            <div class="col-12 text-center">
-                                                                <i class="fas fa-dollar-sign text-success text-center" style="font-size:100px"></i>
-                                                            </div>
-                                                        </div>
-                                                        <h5 class="card-title display-4 tituloPago text-center mt-3">Pago</h5>
-                                                        <div class="row mb-4">
-                                                            <div class="col-12 text-center">
-                                                                <span class="text-secondary display-4" style="font-size:30px;">Realiza
-                                                                    el pago para la preconsulta:</span>
-                                                            </div>
-                                                        </div>
+                                                <c:choose>
+                                                    <c:when test="${sessionScope.estadoPaciente==1}">
                                                         <div class="row">
+                                                            <div class="col-12">
+                                                                <h5 class="card-title display-4 tituloAprobacion text-center">Tu solicitud
+                                                                    ha sido aprobada <br> como paciente de <strong><span class="colorMoradoLight">primera
+                                                                            vez
+                                                                        </span></strong></h5>
+                                                                <p class="card-text text-center subTituloAprobacion">La preconsulta del
+                                                                    Departamento de Tumores Mamarios consta de <strong><span class="text-secondary">dos
+                                                                            días
+                                                                        </span></strong> consecutivos</p>
+                                                                <hr>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="row justify-content-center mb-2">
+                                                                    <div class="col-12 text-center">
+                                                                        <i class="fas fa-dollar-sign text-success text-center" style="font-size:100px"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <h5 class="card-title display-4 tituloPago text-center mt-3">Pago</h5>
+                                                                <div class="row mb-4">
+                                                                    <div class="col-12 text-center">
+                                                                        <span class="text-secondary display-4" style="font-size:30px;">Realiza
+                                                                            el pago para la preconsulta:</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-12 text-center">
+                                                                        <ul class="text-secondary" style="list-style:none;">
+                                                                            <li>-<strong>Banco:</strong> SANTANDER(En ventanilla del
+                                                                                banco)
+                                                                            </li>
+                                                                            <li>-<strong>Costo:</strong> $176.00 MXN </li>
+                                                                            <li>-<strong>Cuenta de banco:</strong> 65502136912</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+
+                                                                <hr>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="row justify-content-center mb-2">
+                                                                    <div class="col-12 text-center">
+                                                                        <i class="far fa-file-alt text-muted text-center" style="font-size:100px"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <h5 class="card-title display-4 tituloPago text-center">Documentos</h5>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-3">
                                                             <div class="col-12 text-center">
-                                                                <ul class="text-secondary" style="list-style:none;">
-                                                                    <li>-<strong>Banco:</strong> SANTANDER(En ventanilla del
-                                                                        banco)
+                                                                <span class="text-secondary">Debes traer todos los siguientes documentos:
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-7 ml-5 text-secondary">
+                                                                <ul style="list-style:none">
+                                                                    <li>-IFE/INE</li>
+                                                                    <li>-Comprobante de domicilio</li>
+                                                                    <li>-Poliza de seguro popular (si tienes)</li>
+                                                                    <li>-Estudios previos por los que te mandan al INCan, pueden ser:
+                                                                        <ul style="list-style:none" class="justificar">
+                                                                            <li>
+                                                                                <strong>Mastografía:</strong>
+                                                                                Imágenes y reporte de resultado.<a class="questionMark icono-info2 fas fa-question-circle"
+                                                                                                                   style="background: #fff;" href="#" data-tooltip-content="#tooltip_contentmasto"></a></li>
+                                                                            <li><strong>Ultrasonido de mama:</strong>
+                                                                                Imágenes y reporte de resultado.<a style="background: #fff;"
+                                                                                                                   href="#" class="questionMark icono-info2 fas fa-question-circle"
+                                                                                                                   data-tooltip-content="#tooltip_contentultra"></a></li>
+                                                                            <li><strong>Biopsia:</strong>
+                                                                                Reporte de patología, laminillas y bloques de parafina.<a
+                                                                                    style="background: #fff;" href="#" class="questionMark icono-info2 fas fa-question-circle"
+                                                                                    data-tooltip-content="#tooltip_contentbiopsia"></a></li>
+                                                                        </ul>
                                                                     </li>
-                                                                    <li>-<strong>Costo:</strong> $176.00 MXN </li>
-                                                                    <li>-<strong>Cuenta de banco:</strong> 65502136912</li>
                                                                 </ul>
                                                             </div>
                                                         </div>
 
-                                                        <hr>
-                                                    </div>
-                                                </div>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <hr>
+                                                            </div>
+                                                        </div>
 
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="row justify-content-center mb-2">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="row justify-content-center mb-2">
+                                                                    <div class="col-12 text-center">
+                                                                        <i class="fas fa-x-ray colorIconos" style="font-size:80px"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <h5 class="card-title display-4 tituloPago text-center">Día Uno
+                                                                </h5>
+                                                            </div>
+                                                        </div>
+
+                                                        <div id="accordion">
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingOne">
+                                                                    <h5 class="mb-0">
+                                                                        <button class="btn btn-link colorMoradoLight" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                                            UBICACIÓN Y HORARIO
+                                                                        </button>
+                                                                    </h5>
+                                                                </div>
+
+                                                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                                                    <div class="card-body m-3 justificar">
+                                                                        Tu cita es a las <strong>7:50 am</strong>, favor de llegar puntual
+                                                                        para no perderla.
+                                                                        <p>Debes llegar al área de preconsulta, el acceso es por la entrada
+                                                                            principal del <a class="text-primary" target="_blank" href="https://goo.gl/maps/q2VdVP2RdMQ2">edificio
+                                                                                antiguo (Av. San Fernando #22)</a> , para que te permitan
+                                                                            la entrada debes mostrar <strong>tu comprobante de pago
+                                                                            </strong>.</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingTwo">
+                                                                    <h5 class="mb-0">
+                                                                        <button class="btn btn-link colorMoradoLight collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                                                                aria-controls="collapseTwo">
+                                                                            ¿EN QUÉ CONSISTE?
+                                                                        </button>
+                                                                    </h5>
+                                                                </div>
+                                                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                                                    <div class="card-body m-3 justificar">
+                                                                        El primer día nuestro servicio de <strong>navegación</strong>
+                                                                        te recibirá¡ en el área de preconsulta, te llamarán por tu nombre y te pedirán estudios previos que tengas. Al terminar, ellas
+                                                                        te navegarán por el hospital y te llevarán al servicio de imagenología,
+                                                                        donde te harán los estudios de <strong>mastografía</strong>
+                                                                        y
+                                                                        <strong>ultrasonido de mama</strong>. Es requisito del hospital
+                                                                        que estos estudios se hagan aquí, aunque ya te los hayan hecho
+                                                                        en otro lugar. También, el médico valorará¡ si necesitas que te
+                                                                        realicen una biopsia, si ya te realizaron una biopsia fuera del
+                                                                        INCan debes pedir las laminillas y bloques de parafina en el
+                                                                        lugar en que te realizaste la biopsia y traerlos para que los
+                                                                        vuelvan a analizar aquí.
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingThree">
+                                                                    <h5 class="mb-0">
+                                                                        <button class="btn btn-link colorMoradoLight collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                                                                                aria-controls="collapseThree">
+                                                                            INDICACIONES
+                                                                        </button>
+                                                                    </h5>
+                                                                </div>
+                                                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                                                    <div class="card-body m-3 justificar">
+                                                                        <div class="row justify-content-center">
+                                                                            <div class="col-9 ml-5">
+                                                                                <ul style="list-style:none">
+                                                                                    <li>1.- Debes venir depilada de las axilas. No te
+                                                                                        apliques ningún producto (cremas, talco, desodorante,
+                                                                                        perfume, ungúentos, etc).</li>
+
+                                                                                    <li>2.- Trae dinero para pagar tus estudios:
+                                                                                        <ul style="list-style:none" class="justificar">
+                                                                                            <li>-El costo de la mastografía y el ultrasonido
+                                                                                                es de <strong>$695.00 MXN (Obligatorio)
+                                                                                                </strong></li>
+                                                                                            <li>-El costo de la biopsia es de
+                                                                                                <strong>$1300.00 MXN</strong>
+                                                                                                aproximadamente, aunque no es indispensable, es preferible que vengas preparada para que te la realicen ese día. Es muy importante
+                                                                                                hacer este estudio lo más pronto posible.</li>
+                                                                                        </ul>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-4">
+                                                            <div class="col-12">
+                                                                <hr>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="row justify-content-center mb-2">
+                                                                    <div class="col-12 text-center">
+                                                                        <i class="fas fa-user-md colorIconos" style="font-size:100px"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-4">
+                                                            <div class="col-12">
+                                                                <h5 class="card-title display-4 tituloPago text-center">Día Dos
+                                                                </h5>
+                                                            </div>
+                                                        </div>
+
+                                                        <div id="accordion2">
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingSecondOne">
+                                                                    <h5 class="mb-0">
+                                                                        <button class="btn btn-link colorMoradoLight" data-toggle="collapse" data-target="#collapseSecondOne" aria-expanded="true"
+                                                                                aria-controls="collapseSecondOne">
+                                                                            UBICACIÓN Y HORARIO
+                                                                        </button>
+                                                                    </h5>
+                                                                </div>
+
+                                                                <div id="collapseSecondOne" class="collapse show" aria-labelledby="headingSecondOne" data-parent="#accordion2">
+                                                                    <div class="card-body m-3 justificar">
+                                                                        Tu cita es a las <strong>7:50 am</strong>, favor de llegar puntual
+                                                                        para no perderla.
+                                                                        <p>Debes llegar al área de preconsulta, el acceso es por la entrada
+                                                                            principal del <a class="text-primary" target="_blank" href="https://goo.gl/maps/q2VdVP2RdMQ2">edificio
+                                                                                antiguo (Av. San Fernando #22)</a> , para que te permitan
+                                                                            la entrada debes mostrar <strong>tu comprobante de pago
+                                                                            </strong>.</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingSecondTwo">
+                                                                    <h5 class="mb-0">
+                                                                        <button class="btn btn-link colorMoradoLight collapsed" data-toggle="collapse" data-target="#collapseSecondTwo" aria-expanded="false"
+                                                                                aria-controls="collapseSecondTwo">
+                                                                            ¿EN QUÉ CONSISTE?
+                                                                        </button>
+                                                                    </h5>
+                                                                </div>
+                                                                <div id="collapseSecondTwo" class="collapse" aria-labelledby="headingSecondTwo" data-parent="#accordion2">
+                                                                    <div class="card-body m-3 justificar">
+                                                                        El segundo día pasarás a <strong>consulta</strong> con el médico,
+                                                                        revisará todos tus estudios, te explicará¡ si necesitas otros
+                                                                        y te dirá¡ que sigue. Al igual que el primer día ,nuestro servicio
+                                                                        de navegación te recibirá¡ en el área de preconsulta,  nuevamente
+                                                                        te pedirán los documentos que entregaste el día anterior. Si
+                                                                        te realizaron una biopsia fuera del INCan debes traer dos copias
+                                                                        del reporte de patología que contiene los resultados. Al terminar,
+                                                                        ellas te solicitarán pasar a la sala de espera mientras el médico
+                                                                        te recibe.
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingSecondThree">
+                                                                    <h5 class="mb-0">
+                                                                        <button class="btn btn-link colorMoradoLight collapsed" data-toggle="collapse" data-target="#collapseSecondThree" aria-expanded="false"
+                                                                                aria-controls="collapseSecondThree">
+                                                                            RECOMENDACIONES
+                                                                        </button>
+                                                                    </h5>
+                                                                </div>
+                                                                <div id="collapseSecondThree" class="collapse" aria-labelledby="headingSecondThree" data-parent="#accordion2">
+                                                                    <div class="card-body m-3 justificar">
+                                                                        El médico decidirá el orden en el que pasen las pacientes, debes venir con disponibilidad de tiempo, desayunada y te recomendamos
+                                                                        traer un libro o revista. Al finalizar tu consulta el médico
+                                                                        te pude pedir diversos estudios, el costo de estos estudios está
+                                                                        entre <strong>$350.00
+                                                                            MXN
+                                                                        </strong>Â y
+                                                                        <strong>$3000.00 MNX</strong>Â te recomendamos vengas preparada con
+                                                                        esa cantidad de dinero para que los puedas agendar y agilizar
+                                                                        el proceso de tu atención.
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <hr>
+                                                            <div class="row justify-content-center mt-3">
+                                                                <div class="col-4 text-center">
+                                                                    <a href="documentos/reportePrimeraVez.pdf" download>
+                                                                        <button style="border-radius:20px" type="button" class="btn btn-morado btn-block"><i
+                                                                                class="fas fa-print"></i> Imprimir información
+                                                                        </button>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </c:when>
+
+                                                    <c:otherwise>
+
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <h5 class="card-title display-4 tituloAprobacion text-center">Tu solicitud
+                                                                    ha sido aprobada <br> como paciente de <strong><span class="colorMoradoLight">segunda opinion
+                                                                        </span></strong></h5>
+                                                                <p class="card-text text-center subTituloAprobacion">Los mejores resultados para tratar el cáncer de mama se obtienen si recibes atención continua en un solo lugar.</p>
+                                                                <p class="card-text text-center subTituloAprobacion">Te recomendamos que si ya estás siendo atendida continúes ahí mismo tu proceso de tratamiento.</p>
+                                                                <p class="card-text text-center subTituloAprobacion">Te recordamos que el hospital da prioridad a pacientes que no han tenido la oportunidad de recibir ningún tratamiento</p>
+                                                                <hr>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="row justify-content-center mb-2">
+                                                                    <div class="col-12 text-center">
+                                                                        <i class="fas fa-dollar-sign text-success text-center" style="font-size:100px"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <h5 class="card-title display-4 tituloPago text-center mt-3">Pago</h5>
+                                                                <div class="row mb-4">
+                                                                    <div class="col-12 text-center">
+                                                                        <span class="text-secondary display-4" style="font-size:30px;">Realiza
+                                                                            el pago para la preconsulta:</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-12 text-center">
+                                                                        <ul class="text-secondary" style="list-style:none;">
+                                                                            <li>-<strong>Banco:</strong> SANTANDER(En ventanilla del
+                                                                                banco)
+                                                                            </li>
+                                                                            <li>-<strong>Costo:</strong> $176.00 MXN </li>
+                                                                            <li>-<strong>Cuenta de banco:</strong> 65502136912</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+
+                                                                <hr>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="row justify-content-center mb-2">
+                                                                    <div class="col-12 text-center">
+                                                                        <i class="far fa-file-alt text-muted text-center" style="font-size:100px"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <h5 class="card-title display-4 tituloPago text-center">Documentos</h5>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-3">
                                                             <div class="col-12 text-center">
-                                                                <i class="far fa-file-alt text-muted text-center" style="font-size:100px"></i>
+                                                                <span class="text-secondary">Debes traer todos los siguientes documentos:
+                                                                </span>
                                                             </div>
                                                         </div>
-                                                        <h5 class="card-title display-4 tituloPago text-center">Documentos</h5>
-                                                    </div>
-                                                </div>
 
-                                                <div class="row mb-3">
-                                                    <div class="col-12 text-center">
-                                                        <span class="text-secondary">Debes traer todos los siguientes documentos:
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row justify-content-center">
-                                                    <div class="col-7 ml-5 text-secondary">
-                                                        <ul style="list-style:none">
-                                                            <li>-IFE/INE</li>
-                                                            <li>-Comprobante de domicilio</li>
-                                                            <li>-Poliza de seguro popular (si tienes)</li>
-                                                            <li>-Estudios previos por los que te mandan al INCan, pueden ser:
-                                                                <ul style="list-style:none" class="justificar">
-                                                                    <li>
-                                                                        <strong>Mastografía:</strong>
-                                                                        Imágenes y reporte de resultado.<a class="questionMark icono-info2 fas fa-question-circle"
-                                                                                                           style="background: #fff;" href="#" data-tooltip-content="#tooltip_contentmasto"></a></li>
-                                                                    <li><strong>Ultrasonido de mama:</strong>
-                                                                        Imágenes y reporte de resultado.<a style="background: #fff;"
-                                                                                                           href="#" class="questionMark icono-info2 fas fa-question-circle"
-                                                                                                           data-tooltip-content="#tooltip_contentultra"></a></li>
-                                                                    <li><strong>Biopsia:</strong>
-                                                                        Reporte de patología, laminillas y bloques de parafina.<a
-                                                                            style="background: #fff;" href="#" class="questionMark icono-info2 fas fa-question-circle"
-                                                                            data-tooltip-content="#tooltip_contentbiopsia"></a></li>
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-7 ml-5 text-secondary">
+                                                                <ul style="list-style:none">
+                                                                    <li>-IFE/INE</li>
+                                                                    <li>-Comprobante de domicilio</li>
+                                                                    <li>-Poliza de seguro popular (si tienes)</li>
+                                                                    <li>-Estudios previos por los que te mandan al INCan, pueden ser:
+                                                                        <ul style="list-style:none" class="justificar">
+                                                                            <li>
+                                                                                <strong>Mastografía:</strong>
+                                                                                Imágenes y reporte de resultado.<a class="questionMark icono-info2 fas fa-question-circle"
+                                                                                                                   style="background: #fff;" href="#" data-tooltip-content="#tooltip_contentmasto"></a></li>
+                                                                            <li><strong>Ultrasonido de mama:</strong>
+                                                                                Imágenes y reporte de resultado.<a style="background: #fff;"
+                                                                                                                   href="#" class="questionMark icono-info2 fas fa-question-circle"
+                                                                                                                   data-tooltip-content="#tooltip_contentultra"></a></li>
+                                                                            <li><strong>Biopsia:</strong>
+                                                                                Reporte de patología, laminillas y bloques de parafina.<a
+                                                                                    style="background: #fff;" href="#" class="questionMark icono-info2 fas fa-question-circle"
+                                                                                    data-tooltip-content="#tooltip_contentbiopsia"></a></li>
+                                                                        </ul>
+                                                                    </li>
                                                                 </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <hr>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="row justify-content-center mb-2">
+                                                                    <div class="col-12 text-center">
+                                                                        <i class="fas fa-user-md colorIconos" style="font-size:100px"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <h5 class="card-title display-4 tituloPago text-center">EL
+                                                                    DÍA DE TU CITA </h5>
+                                                            </div>
+                                                        </div>
+
+                                                        <div id="accordion">
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingOne">
+                                                                    <h5 class="mb-0">
+                                                                        <button class="btn btn-link colorMoradoLight" data-toggle="collapse"
+                                                                                data-target="#collapseOne" aria-expanded="true"
+                                                                                aria-controls="collapseOne">
+                                                                            UBICACIÓN Y HORARIO
+                                                                        </button>
+                                                                    </h5>
+                                                                </div>
+
+                                                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                                                     data-parent="#accordion">
+                                                                    <div class="card-body m-3 justificar">
+                                                                        Tu cita es a las
+                                                                        <strong>7:50 am</strong>, favor de llegar puntual para no
+                                                                        perderla.
+                                                                        <p>Debes llegar al área de preconsulta, el acceso es por la
+                                                                            entrada
+                                                                            principal
+                                                                            del
+                                                                            <a class="text-primary" target="_blank" href="https://goo.gl/maps/q2VdVP2RdMQ2">edificio
+                                                                                antiguo (Av. San Fernando #22)</a> , para que te
+                                                                            permitan la entrada debes
+                                                                            mostrar
+                                                                            <strong>tu comprobante de pago</strong>.</p>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                            </div>
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingTwo">
+                                                                    <h5 class="mb-0">
+                                                                        <button class="btn btn-link collapsed colorMoradoLight"
+                                                                                data-toggle="collapse" data-target="#collapseTwo"
+                                                                                aria-expanded="false" aria-controls="collapseTwo">
+                                                                            ¿EN QUÉ CONSISTE?
+                                                                        </button>
+                                                                    </h5>
+                                                                </div>
+                                                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                                                     data-parent="#accordion">
+                                                                    <div class="card-body  m-3 justificar">
+                                                                        Nuestro servicio de navegación te recibirá en el área de
+                                                                        preconsulta,
+                                                                        te llamarán por tu nombre y te pedirán los resultados y
+                                                                        estudios previos
+                                                                        que tengas. Al terminar, ellas te solicitarán pasar a la
+                                                                        sala de espera mientras
+                                                                        el médico te recibe.
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingThree">
+                                                                    <h5 class="mb-0">
+                                                                        <button class="btn btn-link collapsed colorMoradoLight"
+                                                                                data-toggle="collapse" data-target="#collapseThree"
+                                                                                aria-expanded="false" aria-controls="collapseThree">
+                                                                            RECOMENDACIONES
+                                                                        </button>
+                                                                    </h5>
+                                                                </div>
+                                                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                                                     data-parent="#accordion">
+                                                                    <div class="card-body  m-3 justificar">
+                                                                        El médico decidirá el orden en el que pasen las pacientes,
+                                                                        debes venir con disponibilidad de tiempo, desayunada y te
+                                                                        recomendamos traer un libro o revista.Al finalizar tu
+                                                                        consulta el médico te pude pedir diversos estudios, el
+                                                                        costo de estos estudios está entre <strong>$350.00 MXN</strong> y <strong>$3000.00
+                                                                            MXN</strong> te
+                                                                        recomendamos vengas preparada con esa cantidad de dinero
+                                                                        para que los puedas agendar y agilizar el proceso de tu
+                                                                        atención.
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="row justify-content-center mt-3">
+                                                                <div class="col-4 text-center">
+                                                                    <button style="border-radius:20px" type="button" class="btn btn-morado btn-block"><i
+                                                                            class="fas fa-print"></i> Imprimir información
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </c:otherwise>
+                                                </c:choose>
+
 
                                                 <!-- questions -->
 
@@ -702,226 +1322,7 @@
 
                                                 <!-- sigue -->
 
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <hr>
-                                                    </div>
-                                                </div>
 
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="row justify-content-center mb-2">
-                                                            <div class="col-12 text-center">
-                                                                <i class="fas fa-x-ray colorIconos" style="font-size:80px"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <h5 class="card-title display-4 tituloPago text-center">Día Uno
-                                                        </h5>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div id="accordion">
-                                                    <div class="card">
-                                                        <div class="card-header" id="headingOne">
-                                                            <h5 class="mb-0">
-                                                                <button class="btn btn-link colorMoradoLight" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                                    UBICACIÓN Y HORARIO
-                                                                </button>
-                                                            </h5>
-                                                        </div>
-
-                                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                                            <div class="card-body m-3 justificar">
-                                                                Tu cita es a las <strong>7:50 am</strong>, favor de llegar puntual
-                                                                para no perderla.
-                                                                <p>Debes llegar al área de preconsulta, el acceso es por la entrada
-                                                                    principal del <a class="text-primary" target="_blank" href="https://goo.gl/maps/q2VdVP2RdMQ2">edificio
-                                                                        antiguo (Av. San Fernando #22)</a> , para que te permitan
-                                                                    la entrada debes mostrar <strong>tu comprobante de pago
-                                                                    </strong>.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card">
-                                                        <div class="card-header" id="headingTwo">
-                                                            <h5 class="mb-0">
-                                                                <button class="btn btn-link colorMoradoLight collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-                                                                        aria-controls="collapseTwo">
-                                                                    ¿EN QUÉ CONSISTE?
-                                                                </button>
-                                                            </h5>
-                                                        </div>
-                                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                                            <div class="card-body m-3 justificar">
-                                                                El primer día nuestro servicio de <strong>navegación</strong>
-                                                                te recibirá¡ en el área de preconsulta, te llamarán por tu nombre y te pedirán estudios previos que tengas. Al terminar, ellas
-                                                                te navegarán por el hospital y te llevarán al servicio de imagenología,
-                                                                donde te harán los estudios de <strong>mastografía</strong>
-                                                                y
-                                                                <strong>ultrasonido de mama</strong>. Es requisito del hospital
-                                                                que estos estudios se hagan aquí, aunque ya te los hayan hecho
-                                                                en otro lugar. También, el médico valorará¡ si necesitas que te
-                                                                realicen una biopsia, si ya te realizaron una biopsia fuera del
-                                                                INCan debes pedir las laminillas y bloques de parafina en el
-                                                                lugar en que te realizaste la biopsia y traerlos para que los
-                                                                vuelvan a analizar aquí.
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card">
-                                                        <div class="card-header" id="headingThree">
-                                                            <h5 class="mb-0">
-                                                                <button class="btn btn-link colorMoradoLight collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
-                                                                        aria-controls="collapseThree">
-                                                                    INDICACIONES
-                                                                </button>
-                                                            </h5>
-                                                        </div>
-                                                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                                            <div class="card-body m-3 justificar">
-                                                                <div class="row justify-content-center">
-                                                                    <div class="col-9 ml-5">
-                                                                        <ul style="list-style:none">
-                                                                            <li>1.- Debes venir depilada de las axilas. No te
-                                                                                apliques ningún producto (cremas, talco, desodorante,
-                                                                                perfume, ungúentos, etc).</li>
-
-                                                                            <li>2.- Trae dinero para pagar tus estudios:
-                                                                                <ul style="list-style:none" class="justificar">
-                                                                                    <li>-El costo de la mastografía y el ultrasonido
-                                                                                        es de <strong>$695.00 MXN (Obligatorio)
-                                                                                        </strong></li>
-                                                                                    <li>-El costo de la biopsia es de
-                                                                                        <strong>$1300.00 MXN</strong>
-                                                                                        aproximadamente, aunque no es indispensable, es preferible que vengas preparada para que te la realicen ese día. Es muy importante
-                                                                                        hacer este estudio lo más pronto posible.</li>
-                                                                                </ul>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="row mt-4">
-                                                    <div class="col-12">
-                                                        <hr>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="row justify-content-center mb-2">
-                                                            <div class="col-12 text-center">
-                                                                <i class="fas fa-user-md colorIconos" style="font-size:100px"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row mt-4">
-                                                    <div class="col-12">
-                                                        <h5 class="card-title display-4 tituloPago text-center">Día Dos
-                                                        </h5>
-                                                    </div>
-                                                </div>
-
-                                                <div id="accordion2">
-                                                    <div class="card">
-                                                        <div class="card-header" id="headingSecondOne">
-                                                            <h5 class="mb-0">
-                                                                <button class="btn btn-link colorMoradoLight" data-toggle="collapse" data-target="#collapseSecondOne" aria-expanded="true"
-                                                                        aria-controls="collapseSecondOne">
-                                                                    UBICACIÓN Y HORARIO
-                                                                </button>
-                                                            </h5>
-                                                        </div>
-
-                                                        <div id="collapseSecondOne" class="collapse show" aria-labelledby="headingSecondOne" data-parent="#accordion2">
-                                                            <div class="card-body m-3 justificar">
-                                                                Tu cita es a las <strong>7:50 am</strong>, favor de llegar puntual
-                                                                para no perderla.
-                                                                <p>Debes llegar al área de preconsulta, el acceso es por la entrada
-                                                                    principal del <a class="text-primary" target="_blank" href="https://goo.gl/maps/q2VdVP2RdMQ2">edificio
-                                                                        antiguo (Av. San Fernando #22)</a> , para que te permitan
-                                                                    la entrada debes mostrar <strong>tu comprobante de pago
-                                                                    </strong>.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card">
-                                                        <div class="card-header" id="headingSecondTwo">
-                                                            <h5 class="mb-0">
-                                                                <button class="btn btn-link colorMoradoLight collapsed" data-toggle="collapse" data-target="#collapseSecondTwo" aria-expanded="false"
-                                                                        aria-controls="collapseSecondTwo">
-                                                                    ¿EN QUÉ CONSISTE?
-                                                                </button>
-                                                            </h5>
-                                                        </div>
-                                                        <div id="collapseSecondTwo" class="collapse" aria-labelledby="headingSecondTwo" data-parent="#accordion2">
-                                                            <div class="card-body m-3 justificar">
-                                                                El segundo día pasarás a <strong>consulta</strong> con el médico,
-                                                                revisará todos tus estudios, te explicará¡ si necesitas otros
-                                                                y te dirá¡ que sigue. Al igual que el primer día ,nuestro servicio
-                                                                de navegación te recibirá¡ en el área de preconsulta,  nuevamente
-                                                                te pedirán los documentos que entregaste el día anterior. Si
-                                                                te realizaron una biopsia fuera del INCan debes traer dos copias
-                                                                del reporte de patología que contiene los resultados. Al terminar,
-                                                                ellas te solicitarán pasar a la sala de espera mientras el médico
-                                                                te recibe.
-
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card">
-                                                        <div class="card-header" id="headingSecondThree">
-                                                            <h5 class="mb-0">
-                                                                <button class="btn btn-link colorMoradoLight collapsed" data-toggle="collapse" data-target="#collapseSecondThree" aria-expanded="false"
-                                                                        aria-controls="collapseSecondThree">
-                                                                    RECOMENDACIONES
-                                                                </button>
-                                                            </h5>
-                                                        </div>
-                                                        <div id="collapseSecondThree" class="collapse" aria-labelledby="headingSecondThree" data-parent="#accordion2">
-                                                            <div class="card-body m-3 justificar">
-                                                                El médico decidirá el orden en el que pasen las pacientes, debes venir con disponibilidad de tiempo, desayunada y te recomendamos
-                                                                traer un libro o revista. Al finalizar tu consulta el médico
-                                                                te pude pedir diversos estudios, el costo de estos estudios está
-                                                                entre <strong>$350.00
-                                                                    MXN
-                                                                </strong>Â y
-                                                                <strong>$3000.00 MNX</strong>Â te recomendamos vengas preparada con
-                                                                esa cantidad de dinero para que los puedas agendar y agilizar
-                                                                el proceso de tu atención.
-
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <hr>
-                                                    <div class="row justify-content-center mt-3">
-                                                        <div class="col-4 text-center">
-                                                            <a href="documentos/reportePrimeraVez.pdf" download>
-                                                                <button style="border-radius:20px" type="button" class="btn btn-morado btn-block"><i
-                                                                        class="fas fa-print"></i> Imprimir información
-                                                                </button>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
 
 
 

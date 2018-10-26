@@ -122,8 +122,8 @@
                                 </div>
                                 </nav>
 
-                                <div class="row mb-3 justify-content-end">
-                                    <div class="col-4 text-center">
+                                <div class="row mb-3">
+                                    <div class="col-12 text-right">
                                         <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index2.html" class="colorMoradoLight">Inicio</a></span>
                                         - <span class="colorGlobal">Preguntas Frecuentes</span>
                                     </div>

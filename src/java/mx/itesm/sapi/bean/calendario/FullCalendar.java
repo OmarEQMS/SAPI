@@ -22,6 +22,7 @@ public class FullCalendar implements Serializable{
     private String edificio;
     
     
+    
     @Override
     public String toString() {
         return "FullCalendar{" + "id=" + id + ", title=" + title + ", start=" + start + ", end=" + end + '}';
