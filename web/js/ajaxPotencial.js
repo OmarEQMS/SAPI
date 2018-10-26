@@ -54,6 +54,29 @@ $(document).ready(function () {
 
                         $('#modalMotivoCancelacion').modal('toggle');
 
+                        $('#btn-cancelarDefinitivo').on('click', function () {
+
+                            $.ajax({
+                                url: "PotencialController",
+                                data: {
+                                    key: 'cancelarCita',
+                                    idPaciente: $('#idPaciente').val()
+                                },
+                                method: "POST",
+                                success: function (response) {
+                                    if (response == "success") {
+
+                                    }else{
+                                        
+                                    }
+                                },
+                                error: function (xhr) {
+
+                                }
+                            });
+
+                        });
+
 
                     } else {
 
@@ -80,6 +103,9 @@ $(document).ready(function () {
 
                         $('#modalMotivoCancelacion').modal('toggle');
                         $('#modalVerCitaPreConsulta').modal('toggle');
+                        
+                        
+                        //pegar ajax de cancelacion
 
                     } else {
 
@@ -317,7 +343,7 @@ $(document).ready(function () {
             file: "potencial/preguntasFrecuentes.jsp"
         },
                 function (response, status, xhr) {
-                    
+
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();

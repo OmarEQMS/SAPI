@@ -4,6 +4,7 @@
     Author     : julioguzman, shannonrosas
 --%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -139,25 +140,52 @@
                                     </div>
                                 </div>
 
-                                <div class="card bg-info text-white mb-3">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-12 text-center">
-                                                <h5 class="display-4 textoCitaReservada mb-1">Tu cita ha sido reservada para el:</h5>
-                                                <h5 class="display-4 textoCitaReservada m-0 d-inline mr-2">Jueves <strong>25 de octubre</strong>
-                                                    del 2018</h5><a href="#" class="questionMark pull-right"
-                                                                title="¿Tienes dudas? Comunicate al: 01-800-1111-111-1"><i class="fas fa-info-circle"></i></a>
+                                <c:choose>
+                                    <c:when test="${sessionScope.idRol==1}">
+
+                                        <!-- APROBADA -->        
+                                        
+                                        <div class="card bg-info text-white mb-3">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12 text-center">
+                                                        <h5 class="display-4 textoCitaReservada mb-1">Tu cita ha sido reservada para el:</h5>
+                                                        <h5 class="display-4 textoCitaReservada m-0 d-inline mr-2">Jueves <strong>25 de octubre</strong>
+                                                            del 2018</h5><a href="#" class="questionMark pull-right"
+                                                                        title="¿Tienes dudas? Comunicate al: 01-800-1111-111-1"><i class="fas fa-info-circle"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-center mt-2">
+                                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 text-center">
+                                                        <button class="btn btn-warning btn-block btnCancelarCita" id="btn-cancelarPreConsulta1">Cancelar
+                                                            Cita
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="row justify-content-center mt-2">
-                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 text-center">
-                                                <button class="btn btn-warning btn-block btnCancelarCita" id="btn-cancelarPreConsulta1">Cancelar
-                                                    Cita
-                                                </button>
+
+                                    </c:when>        
+                                    <c:otherwise> 
+                                        
+                                        <!-- CANCELADA -->
+                                        <div class="card bg-danger text-white mb-3">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12 text-center">
+                                                        <h5 class="display-4 textoCitaReservada mb-1">Tu cita ha sido cancelada</h5>
+
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </c:otherwise>
+                                </c:choose>
+
+
+                              
+
 
                                 <!-- Icono info -->
 
@@ -237,7 +265,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" style="border-radius: 20px;" data-dismiss="modal">Cerrar</button>
-                                                <button type="button" class="btn btn-primary" style="border-radius: 20px;">Cancelar Cita</button>
+                                                <button type="button" id="btn-cancelarDefinitivo" class="btn btn-primary" style="border-radius: 20px;">Cancelar Cita</button>
                                             </div>
                                         </div>
                                     </div>
