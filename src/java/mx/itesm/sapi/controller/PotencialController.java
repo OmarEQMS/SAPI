@@ -94,7 +94,7 @@ public class PotencialController extends HttpServlet {
 
             case "registrarCuenta": {
 
-                //Inicio de servicios
+                /** Inicio de servicios*/
                 // PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                 // CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
                 // DireccionServicioImpl direccionServicio = new DireccionServicioImpl();
