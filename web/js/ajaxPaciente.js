@@ -78,12 +78,34 @@ file: "paciente/cuenta.jsp"
         }
 );
 });
-        //PARA IR A LA CUENTA
+        //PARA IR A mis Tratamientos
         $('#irATratamientos').on('click', function () {
 
 
 $.get("SAPI", {
 file: "paciente/misTratamientos.jsp"
+},
+        function (response, status, xhr) {
+        //console.log(response);
+        if (status == "success") {
+        if (response == "error") {
+        $("#msj-error").show();
+        } else {
+        document.open("text/html", "replace");
+                document.write(response);
+                document.close();
+        }
+        }
+        }
+);
+});
+
+ //PARA IR A mis Tratamientos
+        $('#irMisCitas').on('click', function () {
+
+
+$.get("SAPI", {
+file: "paciente/index.jsp"
 },
         function (response, status, xhr) {
         //console.log(response);

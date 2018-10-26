@@ -95,8 +95,7 @@
             <!-- MENU PRINCIPAL ENLACES -->
             <ul class="list-unstyled components">
 
-                <li><a href="#"><i class="fas fa-home"></i>Mis Citas</a></li>
-
+                <li id="irMisCitas"><a><i class="far fa-user"></i>Mis citas</a></li>
                 <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
                 <li id="irATratamientos"><a><i class="far fa-user"></i>Mis Tratamientos</a></li>
                 <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>

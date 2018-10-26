@@ -224,6 +224,11 @@ public class FrontController extends HttpServlet {
 
                                 }
                                 break;
+                                
+                                case "paciente/index.jsp": {
+                                   
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                }
 
                             }
 
