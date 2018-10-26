@@ -976,7 +976,41 @@ public class PotencialController extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 out.print(json.toJson(strJson));
                 }
-            }                        
+            }
+            case "cancelarPreconsulta":
+            {
+                 /** 
+                 * * Uriel Díaz 26/10/2018
+                 * Case preconsulta.
+                 * 
+                 * El presente case se utiliza para cancelar una preconsulta
+                 * aceptadaba. La cita de navegación se cancela
+                 * por su relación con la preconsulta
+                 *                 
+                 * 
+                 * El formato de entrega es un json. Ejemplo {cancelada:true};
+                 */
+                HttpSession sesion = request.getSession(true);
+
+                if (sesion.getId() == null) {
+                    //TODO 
+                } else {
+                response.setContentType("application/json");//Por default se envia un text/html, pero enviaremos un application/json para que se interprete en el ajax del front.
+                
+                int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
+                
+                CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
+                boolean estadoCita = citaServicioImpl.cancelarCitaPreconsulta(idPacientePotencial);
+                String strJson = "{Cancelada:\"".concat(String.valueOf(estadoCita)).concat("\"}");
+                
+                Gson json = new Gson();
+                System.out.println("JSON ".concat(json.toJson(estadoCita)));
+                
+                PrintWriter out = response.getWriter();
+                out.print(json.toJson(strJson));
+                }
+                break;
+            }
         }
 
 
