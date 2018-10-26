@@ -52,6 +52,9 @@ import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 
 import mx.itesm.sapi.service.CalendarioServicioImpl;
+import mx.itesm.sapi.service.diagnostico.AuditoriaRegistroDiagnosticoServiceImpl;
+import mx.itesm.sapi.service.diagnostico.EstadiajeTNMServiceImpl;
+import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.BiopsiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.CitaEmpleadoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
@@ -68,6 +71,10 @@ import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioIm
 import mx.itesm.sapi.service.gestionPaciente.PacienteSeguroServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.ProgramaPacienteServicioImpl;
+import mx.itesm.sapi.service.gestionTratamiento.AlergiaPacienteFarmacoServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.AuditoriaTratamientoPacienteServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.PacienteTratamientoPrevioServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.TratamientoPacienteServiceImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
 import mx.itesm.sapi.service.persona.LoginServicioImpl;
@@ -267,29 +274,29 @@ public class PacienteController extends HttpServlet {
                     OtroResultadoPatologiaServicioImpl otroResultadoPatologiaServicio = new OtroResultadoPatologiaServicioImpl();
                     OtroResultadoPatologia otroResultadoPatologia = otroResultadoPatologiaServicio.mostrarOtroResultadoPatologia(biopsia.getIdBiopsia());
 
-                    TratamientoPacienteServicioImpl tratamientoPacienteServicio = new TratamientoPacienteServicioImpl();
+                    TratamientoPacienteServiceImpl tratamientoPacienteServicio = new TratamientoPacienteServiceImpl();
                     TratamientoPaciente tratamientoPaciente = tratamientoPacienteServicio.mostrarTratamientoPaciente(idPaciente);
 
-                    AuditoriaTratamientoPacienteServicioImpl auditoriaTratamientoPacienteServicio = new AuditoriaTratamientoPacienteServicioImpl();
+                    AuditoriaTratamientoPacienteServiceImpl auditoriaTratamientoPacienteServicio = new AuditoriaTratamientoPacienteServiceImpl();
                     AuditoriaTratamientoPaciente auditoriaTratamientoPaciente = auditoriaTratamientoPacienteServicio.mostrarAuditoriaTratamientoPaciente(tratamientoPaciente.getIdTratamientoPaciente());
 
                     ProgramaPacienteServicioImpl programaPacienteServicio = new ProgramaPacienteServicioImpl();
                     ProgramaPaciente programaPaciente = programaPacienteServicio.mostrarProgramaPaciente(idPaciente);
 
-                    PacienteTratamientoPrevioServicioImpl pacienteTratamientoPrevioServicio = new PacienteTratamientoPrevioServicioImpl();
+                    PacienteTratamientoPrevioServiceImpl pacienteTratamientoPrevioServicio = new PacienteTratamientoPrevioServiceImpl();
                     PacienteTratamientoPrevio pacienteTratamientoPrevio = pacienteTratamientoPrevioServicio.mostrarPacienteTratamientoPrevio(idPaciente);
 
-                    AlergiaPacienteFarmacoServicioImpl alergiaPacienteFarmacoServicio = new AlergiaPacienteFarmacoServicioImpl();
+                    AlergiaPacienteFarmacoServiceImpl alergiaPacienteFarmacoServicio = new AlergiaPacienteFarmacoServiceImpl();
                     AlergiaPacienteFarmaco alergiaPacienteFarmaco = alergiaPacienteFarmacoServicio.mostrarAlergiaPacienteFarmaco(idPaciente);
                     
-                    RegistroDiagnosticoServicioImpl registroDiagnosticoServicio = new RegistroDiagnosticoServicioImpl();
+                    RegistroDiagnosticoServiceImpl registroDiagnosticoServicio = new RegistroDiagnosticoServiceImpl();
                     RegistroDiagnostico registroDiagnostico = registroDiagnosticoServicio.mostrarRegistroDiagnostico(idPaciente);
                     
-                    EstadiajeTNMServicioImpl estadiajeTNMServicio = new EstadiajeTNMServicioImpl();
+                    EstadiajeTNMServiceImpl estadiajeTNMServicio = new EstadiajeTNMServiceImpl();
                     EstadiajeTNM estadiajeTNM = estadiajeTNMServicio.mostrarEstadiajeTNM(registroDiagnostico.getIdRegistroTNM());
                     
-                    AuditoriaRegistroDiagnosticoServicioImpl auditoriaRegistroDiagnosticoServicio = new AuditoriaRegistroDiagnosticoServicioImpl();
-                    AuditoriaRegistroDiagnostico auditoriaRegistroDiagnostico = auditoriaRegistroDiagnosticoServicio.mostrarSuditoriaRegistroDiagnostico(registroDiagnostico.getIdRegistroDiagnostico());
+                    AuditoriaRegistroDiagnosticoServiceImpl auditoriaRegistroDiagnosticoServicio = new AuditoriaRegistroDiagnosticoServiceImpl();
+                    AuditoriaRegistroDiagnostico auditoriaRegistroDiagnostico = auditoriaRegistroDiagnosticoServicio.mostrarAuditoriaRegistroDiagnostico(registroDiagnostico.getIdRegistroDiagnostico());
                            
                     /** Implemento el borrado logico llamando a su objetoServicio despues al procesos almacenado y al final al id del objeto                     */
                     pacienteAlergiaServicio.borradoLogicoPacienteAlergia(pacienteAlergia.getIdPacienteAlergia());
@@ -319,7 +326,7 @@ public class PacienteController extends HttpServlet {
                     alergiaPacienteFarmacoServicio.borradoLogicoAlergiaPacienteFarmaco(alergiaPacienteFarmaco.getIdAlergiaPacienteFarmaco());
                     registroDiagnosticoServicio.borradoLogicoRegistroDiagnostico(registroDiagnostico.getIdRegistroDiagnostico());
                     estadiajeTNMServicio.borradoLogicoEstadiajeTNM(estadiajeTNM.getIdRegistroTNM());
-                    auditoriaRegistroDiagnosticoServicio.borradoLogico(auditoriaRegistroDiagnostico.getIdAuditoriaRegistroDiagnostico());
+                    auditoriaRegistroDiagnosticoServicio.borradoLogicoAuditoriaRegistroDiagnostico(auditoriaRegistroDiagnostico.getIdAuditoriaRegistroDiagnostico());
                             
                             
                     

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/styleLogin.css">
+    
 </head>
 <body>
 
@@ -56,6 +57,7 @@
     <script src="lib/jquery/jqueryPostGo.js"></script>
     <script src="lib/bootstrap/js/bootstrap.js"></script>
     <script src="lib/popper/popper.min.js"></script>
+    <script src="js/ajaxRecuperar.js"></script>
     <!--<script type="module" src="js/asincrono.js"></script>-->
     
 </body>

@@ -28,6 +28,7 @@
         <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
         
         <link rel="stylesheet" href="css/styleLogin.css">	
+        <script src="js/ajaxRecuperar.js"></script>
     
 
     </head>
