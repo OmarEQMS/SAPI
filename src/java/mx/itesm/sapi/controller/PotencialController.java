@@ -873,6 +873,23 @@ public class PotencialController extends HttpServlet {
             
             case "consultarDocumentosPreconsulta":
             {
+                /**
+                 * * Uriel Díaz 26/10/2018
+                 * Case para saber que datos ya proporcionó un paciente en la solicitud de 
+                 * preconsulta.
+                 * 
+                 * 
+                 * Devuelve una instancia de la clase SolicitudPreconsulta.
+                 * Todos los valores dentro del objeto son int. Deberían ser
+                 * valores de 0 o mayores para sabes cuales ya han sido considerados
+                 * para la solicitud.
+                 * 
+                 * El único valor que no se puede dar en esta clase
+                 * es el motvio de la preconsulta puesto que puede cambiar
+                 * durante el tiempo de recolección de los archivos necesarios para hacer.
+                 * El motivo de la preconsulta solo se guardará en la solicitud.
+                 * 
+                */
                 HttpSession sesion = request.getSession(true);
 
                 if (sesion.getId() == null) {
@@ -896,6 +913,25 @@ public class PotencialController extends HttpServlet {
             }
             case "consultarEstadoPreconsulta":
             {
+                /** 
+                 * * Uriel Díaz 26/10/2018
+                 * Case para saber el estado de una preconsulta.
+                 * 
+                 * El presente case se utiliza para saber el estado actual de
+                 * una solicitud de preconsulta.
+                 * 
+                 * Los valores posibles son:
+                 * 
+                 * Cancelada = 1
+                 * Expirada = 2
+                 * Pendiente = 3
+                 * Perdida = 4
+                 * Aprobada = 5
+                 * 
+                 *El formato de entrega es un json. Ejemplo {estado:Aceptada};
+                 */
+                
+                
                 HttpSession sesion = request.getSession(true);
 
                 if (sesion.getId() == null) {
@@ -907,7 +943,7 @@ public class PotencialController extends HttpServlet {
                 
                 CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
                 String estadoCita = citaServicioImpl.mostrarPreconsultaAceptada(idPacientePotencial);
-                String strJson = "{estado:".concat(estadoCita).concat("}");
+                String strJson = "{estado:\"".concat(estadoCita).concat("\"}");
                 
                 Gson json = new Gson();
                 System.out.println("JSON ".concat(json.toJson(estadoCita)));
