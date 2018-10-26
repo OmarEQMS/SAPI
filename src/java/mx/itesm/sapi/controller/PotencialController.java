@@ -1031,6 +1031,13 @@ public class PotencialController extends HttpServlet {
                     sesion.setAttribute("biopsiaPrevia", solicitudPreconsulta.getBiopsiaPrevia());
                     
                     
+                    System.out.println("identificacionOficial: " + solicitudPreconsulta.getIdentificacion());
+                    System.out.println("curp: " + solicitudPreconsulta.getCurp());
+                    System.out.println("comprobante: " + solicitudPreconsulta.getComprobante());
+                    System.out.println("resultadoMastografia: " + solicitudPreconsulta.getMastografia());
+                    System.out.println("resultadosUltrasonidos: " + solicitudPreconsulta.getUltrasonido());
+                    System.out.println("biopsiaPrevia: " + solicitudPreconsulta.getBiopsiaPrevia());
+                    
                     Gson json = new Gson();
                     System.out.println("Res ".concat(json.toJson(solicitudPreconsulta)));
 
