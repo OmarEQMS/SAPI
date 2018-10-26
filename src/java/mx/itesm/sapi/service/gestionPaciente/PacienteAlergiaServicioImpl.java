@@ -24,7 +24,7 @@ public class PacienteAlergiaServicioImpl implements PacienteAlergiaServicio{
 
     @Override
     public PacienteAlergia mostrarPacienteAlergia(int idPacienteAlergia) {
-         Connection conn; 
+        Connection conn; 
         CallableStatement cstmt;
         ResultSet rs;
         

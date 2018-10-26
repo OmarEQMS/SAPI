@@ -28,6 +28,13 @@ import mx.itesm.sapi.bean.moduloGestionPaciente.Paciente;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.bean.persona.Persona;
+
+import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
+import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.service.persona.DireccionServicioImpl;
+import mx.itesm.sapi.service.persona.PersonaServicioImpl;
+
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
@@ -35,6 +42,7 @@ import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
+
 
 /**
  *

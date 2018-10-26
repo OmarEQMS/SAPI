@@ -546,7 +546,7 @@
                                                                     class="fas fa-check-circle mr-2"></i>Enviar</button>
                                                         </div>
                                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-2">
-                                                            <button class="btn btn-guardar-continuar btn-block" style="border-radius:20px"><i
+                                                            <button class="btn btn-guardar-continuar btn-block" id="btn-GuardarContinuar" style="border-radius:20px"><i
                                                                     class="fas fa-save mr-2"></i>Guardar y Continuar Después</button>
                                                         </div>
                                                     </div>
