@@ -214,14 +214,14 @@ public class RegistraUsuarioController extends HttpServlet {
             Session session = Session.getInstance(config,
                     new javax.mail.Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication("sapi.prueba@gmail.com", "prueba.Sapi1");
+                    return new PasswordAuthentication("pablocesarlugo@gmail.com", "pacelufa");
 
                 }
             });
 
             System.out.println("despues del try");
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("sapi.prueba@gmail.com"));
+            message.setFrom(new InternetAddress("pablocesarlugo@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse("A01422919@itesm.mx"));
             message.setSubject("Prueba de mail de sapo");
