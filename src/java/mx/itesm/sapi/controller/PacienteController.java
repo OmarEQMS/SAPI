@@ -105,7 +105,7 @@ public class PacienteController extends HttpServlet {
 
         HttpSession sesion = request.getSession(true);
         PrintWriter out = response.getWriter();
-        int idPaciente = (int) sesion.getAttribute("idPaciente");
+        int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
         String idPacienteS = request.getParameter("idPaciente");
 
         switch (key) {
