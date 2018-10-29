@@ -38,7 +38,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.IOUtils;
 
-
 /**
  *
  * @author Angel GTZ
@@ -92,9 +91,9 @@ public class RecuperarController extends HttpServlet {
                     System.out.println("Si entre ");
                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
                 }
-                
+
                 break;
-            } 
+            }
 
             case "recuperarEnviarCorreo": {
 
@@ -103,12 +102,59 @@ public class RecuperarController extends HttpServlet {
                 String correo = request.getParameter("email");
                 //System.out.println("El correo es: ".concat(correo));
                 //HttpSession sesion = request.getSession(true);
-                
+
                 CuentaServicioImpl cuenta = new CuentaServicioImpl();
                 String token = cuenta.getToken(correo);
+                System.out.println("el token es: ".concat(token));
+               
+                try {
+                    config.load(getClass().getResourceAsStream("/mail.properties"));
+                    Session session = Session.getInstance(config,
+                            new javax.mail.Authenticator() {
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication("alexdghranda@gmail.com", "#AESR73c73c");
+
+                        }
+                    });
+
+                    //System.out.println("despues del try");
+                    Message message = new MimeMessage(session);
+                    message.setFrom(new InternetAddress("alexdghranda@gmail.com"));
+                    message.setRecipients(Message.RecipientType.TO,
+                            InternetAddress.parse(correo));
+                    message.setSubject("Recuperar Conraseña");
+                    //message.setText("Esto no es spam :)");
+
+                    //Estos deberían ir como parametros dentro de la función de enviar correo
+                    //String mail = "tucorreo@mail.com";
+                    //String contrasena = "tucontrasena";
+                    MimeBodyPart mimeBodyPart = new MimeBodyPart();
+                    mimeBodyPart.setContent("<b>Estimado usuario, usted ha solicitado Recuperar su Contraseña</b></br>".
+                            concat("<b>Su token para iniciar sesion es:  ").
+                            concat(token), "text/html");
+
+                    Multipart multipart = new MimeMultipart();
+                    multipart.addBodyPart(mimeBodyPart);
+
+                    Path path = Files.createTempFile(null, ".properties");
+                    File file = new File(path.toString());
+
+                    OutputStream outputStream = new FileOutputStream(file);
+                    IOUtils.copy(getClass().getResourceAsStream("/mail.properties"), outputStream);
+                    outputStream.close();
+
+                    //Comente este attach fail porque de lo contrario no se hace bien el set content de arriba (lo de los datos de usuario)
+                    // mimeBodyPart.attachFile(file);
+                    message.setContent(multipart);
+                    Transport.send(message);
+
+                } catch (Exception ex) {
+                    System.out.println("catch de envia correo");
+                    System.out.println(this.getClass().toString().concat(ex.getMessage()));
+                }
                 break;
             }
-           
+
         }
     }
 
