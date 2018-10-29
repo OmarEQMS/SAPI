@@ -20,4 +20,5 @@ public interface EstadoPacientePacienteService {
         public int agregarEstadoPacientePacienteRegistro(int idPaciente);
         public boolean borradoLogicoEstadoPacientePaciente(int idEstadoPacientePaciente);
         public boolean actualizarEstadoPacientePaciente(EstadoPacientePaciente estadoPacientePaciente);
+        public int estadoPrimeraSegundaVez(int idPaciente);
 }

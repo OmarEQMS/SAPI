@@ -228,12 +228,21 @@ public class LoginController extends HttpServlet {
                         break;
 
                     }
+            
+            case "ir-a-login": {
 
-                
+                request.setAttribute("status", "");
+                request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
+
+                break;
+
+            }
+
             
             case "cerrar-sesion": {
 
                 HttpSession sesion = request.getSession(true);
+                
                 System.out.println("Salir de la cuenta ".concat(sesion.getAttribute("nombre").toString()));
 
                 sesion.invalidate();
@@ -244,6 +253,15 @@ public class LoginController extends HttpServlet {
 
                 break;
 
+            }
+            
+            case "recuperarContra":{
+               
+                
+                request.getRequestDispatcher("/WEB-INF/recuperarContrasena.jsp").forward(request, response);
+                
+               
+                break;
             }
 
         }

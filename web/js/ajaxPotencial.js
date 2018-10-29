@@ -5,54 +5,86 @@ $(document).ready(function () {
     console.log("Se Actualizó!");
     var consultarDocumentosPreconsulta = new FormData;
     consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
-    
+
     console.log("Solicitar DOCUMENTOS de Preconsulta");
     $.ajax({
-            url: "PotencialController",
-            method: "POST",
-            data: consultarDocumentosPreconsulta,
-            enctype: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                if (response != null) {
-                    console.log("ok" + response);
-                    
-                } else {
-                    console.log("Algo pasó" + response);
-                }
-            },
-            error: function () {
-                console.log("error" + xhr.statusText);
-                alert("No enontre el controlador" + xhr.statusText);
-            }
+        url: "PotencialController",
+        method: "POST",
+        data: consultarDocumentosPreconsulta,
+        enctype: "multipart/form-data",
+        processData: false,
+        contentType: false,
+        success: function (response) {
 
-        });
+            if (response != null) {
+
+
+                var data = JSON.parse(response);
+
+                console.log(data);
+
+
+
+            } else {
+                console.log("Algo pasó" + response);
+            }
+        },
+        error: function () {
+            console.log("error" + xhr.statusText);
+            alert("No enontre el controlador" + xhr.statusText);
+        }
+
+    });
     var consultarEstadoPreconsulta = new FormData;
     consultarEstadoPreconsulta.append("key", "consultarEstadoPreconsulta");
-    
+
     console.log("Solicitar ESTADO de Preconsulta");
     $.ajax({
-            url: "PotencialController",
-            method: "POST",
-            data: consultarEstadoPreconsulta,
-            enctype: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                if (response != null) {
-                    console.log("ok" + response);
-                    
-                } else {
-                    console.log("Algo pasó" + response);
-                }
-            },
-            error: function () {
-                console.log("error" + xhr.statusText);
-                alert("No enontre el controlador" + xhr.statusText);
-            }
+        url: "PotencialController",
+        method: "POST",
+        data: consultarEstadoPreconsulta,
+        enctype: "multipart/form-data",
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response != null) {
+                console.log("ok" + response);
 
-        });
+            } else {
+                console.log("Algo pasó" + response);
+            }
+        },
+        error: function () {
+
+        }
+
+    });
+
+    var consultarEstadoPaciente = new FormData;
+    consultarEstadoPaciente.append("key", "consultarEstadoPaciente");
+    console.log("Solicitar EstadoPaciente");
+    $.ajax({
+        url: "PotencialController",
+        method: "POST",
+        data: consultarEstadoPaciente,
+        enctype: "multipart/form-data",
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response != null) {
+                console.log("ok" + response);
+
+            } else {
+                console.log("Algo pasó" + response);
+            }
+        },
+        error: function () {
+            console.log("error" + xhr.statusText);
+            alert("No enontre el controlador" + xhr.statusText);
+        }
+
+    });
+
     $('#eliminarCuentaPotencial').on('click', () => {
 
         swal({
@@ -70,7 +102,7 @@ $(document).ready(function () {
                             data: {
                                 key: "eliminarCuentaPacientePotencial",
                                 idCuenta: $("#sesionPaciente").val(),
-                                
+
                             },
                             method: "POST"
                         });
@@ -102,6 +134,29 @@ $(document).ready(function () {
 
                         $('#modalMotivoCancelacion').modal('toggle');
 
+                        $('#btn-cancelarDefinitivo').on('click', function () {
+
+                            $.ajax({
+                                url: "PotencialController",
+                                data: {
+                                    key: 'cancelarCita',
+                                    idPaciente: $('#idPaciente').val()
+                                },
+                                method: "POST",
+                                success: function (response) {
+                                    if (response == "success") {
+
+                                    } else {
+
+                                    }
+                                },
+                                error: function (xhr) {
+
+                                }
+                            });
+
+                        });
+
 
                     } else {
 
@@ -129,11 +184,70 @@ $(document).ready(function () {
                         $('#modalMotivoCancelacion').modal('toggle');
                         $('#modalVerCitaPreConsulta').modal('toggle');
 
+
+                        //pegar ajax de cancelacion
+
                     } else {
 
                     }
                 });
 
+
+    });
+
+    $("#btn-GuardarContinuar").on('click', function ()
+    {
+        console.log("Guardar-Continuar");
+        var form = $("form")[0];
+        var data = new FormData(form);
+
+        var masculino = $('#masculino').is(':checked') ? 1 : 0;
+        var femenino = $('#femenino').is(':checked') ? 1 : 0;
+        var sillaDeRuedas = $('#sillaRuedas').is(':checked') ? 1 : 0;
+        var camilla = $('#camilla').is(':checked') ? 1 : 0;
+        var baston = $('#baston').is(':checked') ? 1 : 0;
+        var oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
+        var motivoConsulta = $('#motivoConsulta').val();
+        var biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
+
+        data.append("key", "GuardarContinuar");
+        data.append("femenino", femenino);
+        data.append("masculino", masculino);
+        data.append("sillaDeRuedas", sillaDeRuedas);
+        data.append("camilla", camilla);
+        data.append("baston", baston);
+        data.append("oxigeno", oxigeno);
+        data.append("motivoConsulta", motivoConsulta);
+        data.append("biopsia", biopsia);
+
+        console.log(data);
+
+        // Imprimmir en consola los valores obtenidos del form para pruebas
+        data.forEach((value, key) => {
+            console.log(key + " " + value);
+        });
+
+        $.ajax({
+            url: "PotencialController",
+            method: "POST",
+            data: data,
+            enctype: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response == "success") {
+                    console.log("ok");
+                } else {
+                    console.log("Algo pasó" + response);
+                }
+            },
+            error: function () {
+                console.log("error" + xhr.statusText);
+                alert("No enontre el controlador" + xhr.statusText);
+            }
+
+
+        });
 
     });
 
@@ -171,8 +285,6 @@ $(document).ready(function () {
         data.append("oxigeno", oxigeno);
         data.append("motivoConsulta", motivoConsulta);
         data.append("biopsia", biopsia);
-
-
 
         console.log(data);
 
@@ -320,12 +432,49 @@ $(document).ready(function () {
     });
 
     $('#irAMisCitas').on('click', function () {
-        $.post("SAPI", {
-            //CAMBIAR ESTE FILE
-            file: "potencial/misCitas.jsp"
+        $.post("PotencialController", {
+            key: 'obtenerEventos',
+            idPaciente: $('#idPaciente').val()
         },
                 function (response, status, xhr) {
-                    console.log(response);
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        ).then(function () {
+            $.post("SAPI", {
+                file: "potencial/misCitas.jsp"
+            },
+                    function (response, status, xhr) {
+                        console.log(response);
+                        if (status == "success") {
+                            if (response == "error") {
+                                $("#msj-error").show();
+                            } else {
+                                document.open("text/html", "replace");
+                                document.write(response);
+                                document.close();
+                            }
+                        }
+                    }
+            );
+        });
+
+    });
+
+    $('#irACuenta').on('click', function () {
+        $.post("SAPI", {
+            file: "potencial/cuentaPaciente.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -339,8 +488,7 @@ $(document).ready(function () {
         );
     });
 
-
-    $('#irACuenta').on('click', function () {
+    $('#irACuenta1').on('click', function () {
         $.post("SAPI", {
             file: "potencial/cuentaPaciente.jsp"
         },
@@ -365,7 +513,7 @@ $(document).ready(function () {
             file: "potencial/preguntasFrecuentes.jsp"
         },
                 function (response, status, xhr) {
-                    
+
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -378,36 +526,6 @@ $(document).ready(function () {
                 }
         );
     });
-    /*
-     $('#guardarCambios').on('click', function() {
-     console.log("Presionó GuardarCambios") 
-     var corr = $("#myEmail");
-     var tel = $("#telephoneNum");
-     var input = $("#file-input")
-     $.get("PotencialController", {
-     key: "guardarCambios",
-     file: "potencial/cuentaPaciente.jsp",
-     input: input.val(),
-     correo: corr.val(),
-     telefono: tel.val()
-     },
-     //Esto de aquí abajo para que?
-     
-     function (response, status, xhr) {
-     console.log(response);
-     if (status == "success") {
-     if (response == "error") {
-     $("#msj-error").show();
-     } else {
-     document.open("text/html", "replace");
-     document.write(response);
-     document.close();
-     }
-     }
-     }
-     );
-     });*/
-
 
     $('#guardarCambios').on('click', function () {
 

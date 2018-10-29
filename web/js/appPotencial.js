@@ -44,6 +44,15 @@ $(document).ready(function () {
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
 
+    //Desabilitar los inputs subidos
+    $('#fileIdentificacionSubido').attr('disabled', 'disabled');
+    $('#fileComprobanteDomicilioSubido').attr('disabled', 'disabled');
+    $('#fileCURPSubido').attr('disabled', 'disabled');
+    $('#fileEstudioPrevioMastoSubido').attr('disabled', 'disabled');
+    $('#fileEstudioPrevioUsgSubido').attr('disabled', 'disabled');
+    $('#fileEstudioBiopsiaSubido').attr('disabled', 'disabled');
+
+
     $("#motivoConsulta").on('change', () => {
 
         var motivo = $('#motivoConsulta').val();
@@ -148,7 +157,21 @@ $(document).ready(function () {
         }
     });
 
-    //Checkbox biopsia
+    //Checkbox biopsia al cargar la página
+    var tieneBiopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
+
+    switch (tieneBiopsia) {
+        case 1:
+            $('#biopsiaContenedor').show();
+            $('#biopsiaQuestion').show();
+            break;
+        case 0:
+            $('#biopsiaContenedor').hide();
+            $('#biopsiaQuestion').hide();
+            break;
+    }
+
+    //Checkbox biopsia al picar el checkbox
     $('#biopsiaInput').on('change', () => {
 
         var tieneBiopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
@@ -171,6 +194,7 @@ $(document).ready(function () {
 
     $('#btn-continuar').on('click', function () {
 
+        console.log("Presionó continuar")
         $('#nav-bienvenida-tab').removeClass('active');
         $('#nav-solicitud-tab').addClass('active');
 
@@ -182,10 +206,24 @@ $(document).ready(function () {
         }, 400);
 
     });
-    
+
+    //Parsear la fechas
+
+    //Preconsulta
+    var fechaPre = $('#fechaCitaPreConsulta').html();
+
+    var m = moment(new Date(fechaPre)).locale('es').format('LL') + ' a las: ' + "<strong>" + moment(new Date(fechaPre)).locale('es').format('LT') + "</strong>";
+
+    $('#fechaCitaPreConsulta').html(m);
+
+    //Navegacion
+    var fechaNav = $('#fechaCitaNavegacion').html();
+
+    var m = moment(new Date(fechaNav)).locale('es').format('LL') + ' a las: ' + "<strong>" + moment(new Date(fechaNav)).locale('es').format('LT') + "</strong>";
+
+    $('#fechaCitaNavegacion').html(m);
+
+
     //MediaQueries
-    
-
-
 
 });
