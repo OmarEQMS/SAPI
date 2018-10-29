@@ -26,16 +26,17 @@ $(document).ready(function () {
                 }
             },
             error: function (xhr) {
-                c
+            
             }
         });
 
     });
-     $('#recuperarContra').on('click', function () {
-        console.log("Click en recuperarContra desde el Login"); 
-        $.get("LoginController",{
-            
-            key: "recuperarContra"
+     $('#recuperarEnviarCorreo').on('click', function () {
+        console.log("Click en Recuperar después de ingresar el correo"); 
+        var mail = $('#email');
+        $.get("RecuperarController",{
+            key: "recuperarEnviarCorreo",
+            email: mail.val()
         },
                 function (response,status) {
                     console.log(response);

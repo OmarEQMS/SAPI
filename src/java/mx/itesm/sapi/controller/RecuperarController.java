@@ -98,9 +98,10 @@ public class RecuperarController extends HttpServlet {
 
             case "recuperarEnviarCorreo": {
 
-                System.out.println("estoy en el metodo");
+                System.out.println("Estoy en RecuperarController case: recuperarEnviarCorreo");
                 Properties config = new Properties();
                 String correo = request.getParameter("email");
+                System.out.println("El correo es: ".concat(correo));
                 HttpSession sesion = request.getSession(true);
                 CuentaServicioImpl cuentaServiceImpl = new CuentaServicioImpl();
                 Cuenta cuenta = cuentaServiceImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));

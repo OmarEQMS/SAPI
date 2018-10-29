@@ -40,7 +40,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <input type="email" id="email" class="form-control" placeholder="Introduce tu correo electrónico" id="correo-recuperacion">
+                    <input type="email" id="email" class="form-control" placeholder="Introduce tu correo electrónico">
                 </div>
             </div>
 
