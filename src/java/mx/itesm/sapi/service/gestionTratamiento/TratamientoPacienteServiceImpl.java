@@ -180,8 +180,8 @@ public class TratamientoPacienteServiceImpl implements TratamientoPacienteServic
             cstmt = conn.prepareCall(stProcedure);
             
             cstmt.setInt(1, tratamientoPaciente.getIdTratamientoPaciente());
-            cstmt.setInt(2, tratamientoPaciente.getIdPaciente());
-            cstmt.setInt(3,tratamientoPaciente.getIdTipoTratamiento());
+            cstmt.setInt(2,tratamientoPaciente.getIdTipoTratamiento());
+            cstmt.setInt(3, tratamientoPaciente.getIdPaciente());
             cstmt.setDate(4, tratamientoPaciente.getFechaInicio());
             cstmt.setDate(5, tratamientoPaciente.getFechaFin());
             cstmt.setBoolean(6, tratamientoPaciente.getRecurrente());

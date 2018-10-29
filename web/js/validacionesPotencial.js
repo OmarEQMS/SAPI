@@ -6,6 +6,8 @@
 
 import {validation} from './validaciones.js';
 
+
+$(document).ready(function () {
 //VALIDACIONES CUENTA
 
     //1.- Correo

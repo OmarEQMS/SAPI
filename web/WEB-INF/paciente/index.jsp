@@ -124,7 +124,7 @@
                     <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
                              <!--Julio Badillo-->
                             ${sessionScope.nombre} ${sessionScope.primerApellido}
-                        </span> <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
+                        </span>  </span>
 
                 </div>
             </nav>

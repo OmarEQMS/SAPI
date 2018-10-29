@@ -38,7 +38,8 @@
 
         <script src="js/calendarPaciente.js"></script>
         <script src="js/appPaciente.js"></script>
-        <script src="js/ajaxPaciente.js"></script>
+        <script src="js/ajaxPaciente.js"></script>         
+        <script type="module" src="js/validacionesPaciente.js"></script> 
 
     </head>
 
@@ -97,12 +98,12 @@
                 <!-- MENU PRINCIPAL ENLACES -->
                 <ul class="list-unstyled components">
 
-                <li id="irMisCitas"><a><i class="far fa-user"></i>Mis citas</a></li>
-                <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
-                <li id="irATratamientos"><a><i class="far fa-user"></i>Mis Tratamientos</a></li>
-                <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+                    <li id="irMisCitas"><a><i class="far fa-user"></i>Mis citas</a></li>
+                    <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+                    <li id="irATratamientos"><a><i class="far fa-user"></i>Mis Tratamientos</a></li>
+                    <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
-            </ul>
+                </ul>
 
             </nav>
 
@@ -123,7 +124,7 @@
                             <span style="color:#6c6f80">Bienvenido, </span>
                             <span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
                             </span>
-                            <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
+                        </span>
 
                     </div>
                 </nav>
@@ -203,18 +204,19 @@
                                     <input type="text" class="form-control" id="username" value="${sessionScope.usuario}" readonly />
                                 </div>
                             </div>
-
+                            <!-- 3 -->
+                          
                             <!-- 3 -->
                             <div class="form-group row justify-content-center">
                                 <div class="col-4">
                                     <label for="myEmail">Correo</label>
-                                    <input type="email" class="form-control" id="correo" name="correo" value="${sessionScope.correo}" placeholder="Introduzca su correo" required />
-                                    <span class="text-danger error-correo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
+                                    <input type="text" class="form-control" id="correo" name="correo" value="${sessionScope.correo}" placeholder="Introduzca su correo" required />
+                                    <span class="text-danger error-correo" id="error-correo">Formato incorrecto</span>
                                 </div>
                                 <div class="col-4">
                                     <label for="numExpediente">Número de Expediente</label>
                                     <input type="text" class="form-control" id="noExpediente" value="${sessionScope.expediente}" name="noExpediente" placeholder="Introduce numero de expediente" />
-                                    <span class="text-danger" id="error-noExpediente">El formato no es correcto, deben ser 9 caracteres.</span>
+                                    <span class="text-danger error-noExpediente" id="error-noExpediente">El formato no es correcto, deben ser 9 caracteres.</span>
                                 </div>
                             </div>
 
@@ -222,7 +224,7 @@
                             <div class="form-group row justify-content-center">
                                 <div class="col-4">
                                     <label for="telephoneNum">Teléfono</label>
-                                    <input type="text" class="form-control" value="${sessionScope.telefono}" id="telefono" name="telefono" placeholder="Introduce teléfono"
+                                    <input type="text" class="form-control" value="${sessionScope.telefono}" id="telephoneNum" name="telefono" placeholder="Introduce teléfono"
                                            required />
                                     <span class="text-danger" id="error-tel">El formato no es correcto, deben ser 10 dígitos.</span>
                                 </div>
@@ -251,7 +253,7 @@
                                     <select class="form-control" id="tipoSangre" name="tipoSangre" >
                                         <option disabled selected>Seleccione tipo de sangre</option>
                                         <c:forEach items="${tipoSangre}" var="sangre">  
-                                                <option value="<c:out value='${sangre.idTipoSangre}'/>" ><c:out value='${sangre.nombre}'/> </option>
+                                            <option value="<c:out value='${sangre.idTipoSangre}'/>" ><c:out value='${sangre.nombre}'/> </option>
                                         </c:forEach>                                             
                                     </select>
                                 </div>
@@ -262,7 +264,7 @@
                             </div>
 
 
-                           
+
 
                             <!-- 5 -->
                             <div class="form-group row justify-content-center mt-4">
@@ -350,7 +352,7 @@
 
         </div>
 
-        <script src="js/validacionesPaciente.js" type="module"></script>
+       
 
     </body>
 

@@ -3,14 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import {validation} from './validaciones.js';
+
+
+$(document).ready(function () {
 
 //VALIDACIONES CUENTA
 
+     $('.error-correo').hide();
+        
     //1.- Correo
-    $('#myEmail').on('change', function(){
-        if(validation.isValidEmail($('#myEmail'))){
+    $('#correo').on('change', function(){
+        
+        if(validation.isValidEmail($('#correo'))){
             $('.error-correo').hide();
         }else{
             $('.error-correo').show();
@@ -18,8 +23,8 @@ import {validation} from './validaciones.js';
     }); 
 
     //2.- No expediente
-    $('#numExpediente').on('change', function(){
-        if(validation.isValidNoExpediente($('#numExpediente'))){
+    $('#noExpediente').on('change', function(){
+        if(validation.isValidNoExpediente($('#noExpediente'))){
             $('#error-noExpediente').hide();
         }else{
             $('#error-noExpediente').show();
@@ -110,4 +115,4 @@ import {validation} from './validaciones.js';
         }
     });
 
-
+});

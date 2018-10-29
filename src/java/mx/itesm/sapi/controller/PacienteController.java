@@ -235,6 +235,8 @@ public class PacienteController extends HttpServlet {
                                 tratamientoPaciente.setIdPaciente(idPaciente2);
 
                                 int idTratamientoPaciente = tratamientoPacienteServiceImpl.agregarTratamientoPaciente(tratamientoPaciente);
+                                
+                                
                                 out.flush();
                                 out.print(idTratamientoPaciente);
                             }
@@ -248,12 +250,13 @@ public class PacienteController extends HttpServlet {
                             Date fechaFin = Date.valueOf(request.getParameter("fechaFin"));
 
                             TratamientoPacienteServiceImpl tratamientoPacienteServicio = new TratamientoPacienteServiceImpl();
-
+                            
                             TratamientoPaciente tratamientoPaciente = tratamientoPacienteServicio.mostrarTratamientoPaciente(idTratamientoPaciente);
 
                             tratamientoPaciente.setFechaFin(fechaFin);
                             System.out.println("Este es el idPaciente tiene que ser de termnar:"+ tratamientoPaciente.getIdPaciente());
                             tratamientoPacienteServicio.actualizarTratamientoPaciente(tratamientoPaciente);
+                            
 
                         }
                         break;

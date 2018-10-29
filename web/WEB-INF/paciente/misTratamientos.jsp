@@ -30,6 +30,7 @@
         <script src="js/appPaciente.js" type="module"></script>
         <script src="js/calendars.js"></script>
         <script src="js/ajaxPaciente.js"></script>
+        <script type="module" src="js/validacionesPaciente.js"></script> 
 
     </head>
 
@@ -84,15 +85,15 @@
                 </div>
 
                 <!-- MENU PRINCIPAL ENLACES -->
-               <ul class="list-unstyled components">
+                <ul class="list-unstyled components">
 
-                
-                <li id="irMisCitas"><a><i class="far fa-user"></i>Mis citas</a></li>
-                <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
-                <li id="irATratamientos"><a><i class="far fa-user"></i>Mis Tratamientos</a></li>
-                <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
-            </ul>
+                    <li id="irMisCitas"><a><i class="far fa-user"></i>Mis citas</a></li>
+                    <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+                    <li id="irATratamientos"><a><i class="far fa-user"></i>Mis Tratamientos</a></li>
+                    <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+
+                </ul>
 
             </nav>
 
@@ -113,7 +114,7 @@
                             <span style="color:#6c6f80">Bienvenido, </span>
                             <span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
                             </span>
-                            <img src="../img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
+                        </span>
 
                     </div>
                 </nav>
@@ -177,18 +178,20 @@
                                                   data-target="#modalEditarTerminado"><i class="fas fa-edit"></i></button></td>
                                   </tr>
                                 -->
-                                 <input type="hidden" value="" id="idTratamientoPaciente">
-                                <c:forEach items="${UnionTratamientosPaciente}" var="unionTratamientoPaciente"> 
+                            <input type="hidden" value="" id="idTratamientoPaciente">
+                            <c:forEach items="${UnionTratamientosPaciente}" var="unionTratamientoPaciente"> 
 
 
                                 <tr>
-                                <td> <c:out value="${unionTratamientoPaciente.nombre}"/> </td>
-                                <td> <c:out value="${unionTratamientoPaciente.fechaInicio}"/> </td>
+                                <input type="hidden" value="${unionTratamientoPaciente.nombre}" id="nombre-${unionTratamientoPaciente.idTratamientoPaciente}">
+                                <input type="hidden" value="${unionTratamientoPaciente.fechaInicio}" id="fechaInicio-${unionTratamientoPaciente.idTratamientoPaciente}">
+                                <td id="nombre-${unionTratamientoPaciente.idTratamientoPaciente}" value="${unionTratamientoPaciente.nombre}" > <c:out value="${unionTratamientoPaciente.nombre}"/> </td>
+                                <td id="fechaInicio-${unionTratamientoPaciente.idTratamientoPaciente}" value="${unionTratamientoPaciente.fechaInicio}"> <c:out value="${unionTratamientoPaciente.fechaInicio}"/> </td>
                                 <td id="fecha-${unionTratamientoPaciente.idTratamientoPaciente}"> <c:out value="${unionTratamientoPaciente.fechaFin}"/> </td>
                                 <td> 
-                                    <button class="btn btn-primary terminarTratamiento" data-id="${unionTratamientoPaciente.idTratamientoPaciente}"
+                                    <button class="btn btn-primary terminarTratamiento" id="modal-${unionTratamientoPaciente.idTratamientoPaciente}" data-id="${unionTratamientoPaciente.idTratamientoPaciente}"
                                             data-toggle="modal"
-                                                  data-target="#modalEditarTerminado"><i class="fas fa-edit"></i></button></td>
+                                            data-target="#modalEditarTerminado"><i class="fas fa-edit"></i></button></td>
 
                             </c:forEach> 
 
@@ -228,6 +231,7 @@
                                         </div>
                                         <input placeholder="Introduce la fecha de inicio" class="selectStyle form-control textbox-n"
                                                type="text" onfocus="(this.type = 'date')" id="fechaInicioTratamiento">
+                                               <span class="text-danger error-fecha" id="error-fecha">Fecha incorrecta</span>
                                     </div>
                                 </div>
 
@@ -295,7 +299,7 @@
                                             </div>
                                         </div>
                                         <input placeholder="Introduce la fecha de inicio" class="selectStyle form-control textbox-n"
-                                               type="text" onfocus="(this.type = 'date')" id="fechaInicioTratamiento" readonly>
+                                               type="text" onfocus="(this.type = 'date')" id="fechaInicioTratamiento2" readonly>
                                     </div>
                                 </div>
 
@@ -310,9 +314,7 @@
                                                 <i class="fas fa-prescription-bottle"></i>
                                             </div>
                                         </div>
-                                        <select disabled class="custom-select" id="tipoTratamiento2">
-                                            <option disabled selected>Tratamiento</option>
-                                        </select>
+                                        <input disabled class="form-control" value="" id="tipoTratamiento2"/>
                                     </div>
                                 </div>
                             </div>
