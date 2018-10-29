@@ -69,7 +69,7 @@
 
                     <div class="row justify-content-center">
                         <div class="col-2 text-center">
-                            <a class="iconoSidebar" href="<" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
+                            <a class="iconoSidebar" id="irACuenta1" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
                         </div>
                         <div class="col-2">
                             <a class="iconoSidebar" id="salirCuenta1" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
@@ -94,7 +94,7 @@
 
                     <li id ="irAPreguntasFrecuentes"><a><i class="fas fa-question-circle"></i>Preguntas Frecuentes </a></li>
 
-                    <li id="salirCuenta"><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+                    <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
                 </ul>
 
@@ -115,6 +115,7 @@
 
                         <!-- aqui se inyecta la sesion de id-->
                         <input type="hidden" id="sesionPaciente" value="${sessionScope.idSesion}" />
+                        <input type="hidden" id="idPaciente" value="${sessionScope.idPaciente}"/>
 
                         <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
                                 <!--Julio Badillo-->

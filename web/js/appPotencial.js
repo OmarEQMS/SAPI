@@ -194,6 +194,7 @@ $(document).ready(function () {
 
     $('#btn-continuar').on('click', function () {
 
+        console.log("Presionó continuar")
         $('#nav-bienvenida-tab').removeClass('active');
         $('#nav-solicitud-tab').addClass('active');
 
@@ -223,10 +224,6 @@ $(document).ready(function () {
     $('#fechaCitaNavegacion').html(m);
 
 
-
     //MediaQueries
-
-
-
 
 });

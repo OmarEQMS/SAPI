@@ -67,10 +67,10 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-2 text-center">
-                        <a class="iconoSidebar" href=""><i class="fas fa-cog"></i></a>
+                        <a class="iconoSidebar" id="irACuenta1"><i class="fas fa-cog"></i></a>
                     </div>
                     <div class="col-2">
-                        <a class="iconoSidebar" href=""><i class="fas fa-power-off"></i></a>
+                        <a class="iconoSidebar" id="salirCuenta1"><i class="fas fa-power-off"></i></a>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
 
                 <li id ="irAPreguntasFrecuentes"><a><i class="fas fa-question-circle"></i>Preguntas Frecuentes </a></li>
 
-                <li><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+                <li id ="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
                 
             </ul>
 
