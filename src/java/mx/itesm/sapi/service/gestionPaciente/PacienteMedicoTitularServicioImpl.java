@@ -148,7 +148,7 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
         boolean exito = false;
 
         //Call del store procedure
-        String stProcedure = "actualizarpacienteMedicoTitular(?, ?, ?, ?, ?, ?)";
+        String stProcedure = "actualizarpacienteMedicoTitular(?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
@@ -180,7 +180,7 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL borradoLogicoCita";
+        String stProcedure = "CALL borradoLogicoCita()";
         boolean exito = false;
 
         try {
@@ -202,5 +202,44 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
             exito = false;
         }
         return exito;
+    }
+
+    @Override
+    public PacienteMedicoTitular mostrarPacienteMedicoTitularIdPaciente(int idPaciente) {
+         Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        PacienteMedicoTitular pacienteMedicoTitular = null;
+
+        //Call del store procedure
+        String stProcedure = "mostrarPacienteMedicoTitularIdPaciente(?)";
+
+        try {
+            pacienteMedicoTitular = new PacienteMedicoTitular();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+
+            rs.next();
+
+            pacienteMedicoTitular.setIdPacienteMedicoTitular(rs.getInt("idPacienteMedicoTitular"));
+            pacienteMedicoTitular.setIdPaciente(rs.getInt("idPaciente"));
+            pacienteMedicoTitular.setIdEmpleado(rs.getInt("idEmpleado"));
+            pacienteMedicoTitular.setInicio(rs.getDate("inicio"));
+            pacienteMedicoTitular.setFin(rs.getDate("fin"));
+            pacienteMedicoTitular.setEstatus(rs.getInt("estatus"));
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            pacienteMedicoTitular = null;
+        }
+        return pacienteMedicoTitular;
     }
 }

@@ -63,6 +63,7 @@ import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
 import mx.itesm.sapi.service.persona.LoginServicioImpl;
@@ -751,6 +752,7 @@ public class PotencialController extends HttpServlet {
              */
             //Author Angel Gtz
             case "eliminarCuentaPacientePotencial": {
+                System.out.println("Si llego aqui potencial");
                 HttpSession sesion = request.getSession(true);
                 /**
                  * Veo si tiene sesion iniciada
@@ -771,6 +773,8 @@ public class PotencialController extends HttpServlet {
                      */
                     int idCuenta = (int) sesion.getAttribute("idCuenta");
                     int idPaciente = (int) sesion.getAttribute("idPaciente");
+                       System.out.println(idPaciente);
+                       System.out.println(idCuenta); 
                     int idPersona = (int) sesion.getAttribute("idPersona");
 
                     /**
@@ -782,11 +786,12 @@ public class PotencialController extends HttpServlet {
                     PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                     Persona persona = personaServicio.mostrarPersona(idPersona);
 
-                    PacienteServicioImpl pacienteServicio = new PacienteServicioImpl();
+                    PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
                     Paciente paciente = pacienteServicio.mostrarPaciente(idPaciente);
+                     
 
                     LoginServicioImpl loginServicio = new LoginServicioImpl();
-                    Login login = loginServicio.mostrarLogin(idCuenta);
+                    Login login = loginServicio.mostrarLoginIdCuenta(idCuenta);
 
                     DireccionServicioImpl direccionServicio = new DireccionServicioImpl();
                     Direccion direccion = direccionServicio.mostrarDireccion(persona.getIdDireccion());
@@ -795,34 +800,37 @@ public class PotencialController extends HttpServlet {
                     Pic pic = picServicio.mostrarPic(idPersona);
 
                     EstadoPacientePacienteServiceImpl estadoPacientePacienteServicio = new EstadoPacientePacienteServiceImpl();
-                    EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServicio.mostrarEstadoPacientePaciente(idPaciente);
+                    EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServicio.mostrarEstadoPacientePacienteIdPaciente(idPaciente);
 
                     CitaServicioImpl citaServicio = new CitaServicioImpl();
-                    Cita cita = citaServicio.mostrarCita(idPaciente);
-
+                    Cita cita = citaServicio.mostrarCitaIdPaciente(idPaciente);
+                   int idCita = cita.getIdCita();
+                    
+                    System.out.println("Pase de aqui"); 
                     ComentarioCitaServicioImpl comentarioCitaServicio = new ComentarioCitaServicioImpl();
-                    ComentarioCita comentarioCita = comentarioCitaServicio.mostrarComentarioCita(cita.getIdCita());
+                    ComentarioCita comentarioCita = comentarioCitaServicio.mostrarComentarioCitaIdCita(idCita);
 
                     CitaEmpleadoServicioImpl citaEmpleadoServicio = new CitaEmpleadoServicioImpl();
-                    CitaEmpleado citaEmpleado = citaEmpleadoServicio.mostrarCitaEmpleado(cita.getIdCita());
+                    CitaEmpleado citaEmpleado = citaEmpleadoServicio.mostrarCitaEmpleadoIdCita(idCita);
 
                     LlamadaCitaServicioImpl llamadaCitaServicio = new LlamadaCitaServicioImpl();
-                    LlamadaCita llamadaCita = llamadaCitaServicio.mostrarLlamadaCita(cita.getIdCita());
+                    LlamadaCita llamadaCita = llamadaCitaServicio.mostrarLlamadaCitaIdCita(idCita);
+                    
 
                     PacienteMedicoTitularServicioImpl pacienteMedicoTitularServicio = new PacienteMedicoTitularServicioImpl();
-                    PacienteMedicoTitular pacienteMedicoTitular = pacienteMedicoTitularServicio.mostrarPacienteMedicoTitular(idPaciente);
+                    PacienteMedicoTitular pacienteMedicoTitular = pacienteMedicoTitularServicio.mostrarPacienteMedicoTitularIdPaciente(idPaciente);
 
                     PacienteNavegadoraServicioImpl pacienteNavegadoraServicio = new PacienteNavegadoraServicioImpl();
-                    PacienteNavegadora pacienteNavegadora = pacienteNavegadoraServicio.mostrarPacienteNavegadora(idPaciente);
+                    PacienteNavegadora pacienteNavegadora = pacienteNavegadoraServicio.mostrarPacienteNavegadoraIdPaciente(idPaciente);
 
                     DocumentoInicialServicioImpl documentoInicialServicio = new DocumentoInicialServicioImpl();
-                    DocumentoInicial documentoInicial = documentoInicialServicio.mostrarDocumentoInicial(idPaciente);
+                    DocumentoInicial documentoInicial = documentoInicialServicio.mostrarDocumentoInicialIdPaciente(idPaciente);
 
                     PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
-                    PacienteNecesidadEspecial pacienteNecesidadEspecial = pacienteNecesidadEspecialServicio.mostrarPacienteNecesidadEspecial(idPaciente);
+                    PacienteNecesidadEspecial pacienteNecesidadEspecial = pacienteNecesidadEspecialServicio.mostrarPacienteNecesidadEspecialIdPaciente(idPaciente);
 
                     PacienteAlergiaServicioImpl pacienteAlergiaServicio = new PacienteAlergiaServicioImpl();
-                    PacienteAlergia pacienteAlergia = pacienteAlergiaServicio.mostrarPacienteAlergia(idPaciente);
+                    PacienteAlergia pacienteAlergia = pacienteAlergiaServicio.mostrarPacienteAlergiaIdPaciente(idPaciente);
 
                     /**
                      * Implemento el borrado logico llamando a su objetoServicio

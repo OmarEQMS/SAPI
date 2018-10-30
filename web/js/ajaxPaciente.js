@@ -5,30 +5,30 @@ $(document).ready(function () {
 
     $("input:radio[name=Edificios]").click(function () {
         edificio = $(this).val();
-       
+
     });
-    
+
     //Recupera ColoR
-    
-    $('input[type=radio][name=Edificios]').on('change',function () {
-        
+
+    $('input[type=radio][name=Edificios]').on('change', function () {
+
         console.log('Valor seleccionado de EDIFICIOS: ' + parseInt($(this).val()));
-        
-        if(parseInt($(this).val()) === 1){
+
+        if (parseInt($(this).val()) === 1) {
             $('#colorCita').val($('input:radio[name=Edificios]:checked').attr("data-color"));
             console.log($('#colorCita').val());
         }
-        
+
     });
-    
-    $('input[type=radio][name=Pisos]').on('change',function () {
-        
+
+    $('input[type=radio][name=Pisos]').on('change', function () {
+
         console.log('Valor seleccionado de PISOS: ' + parseInt($(this).val()));
-        
+
         $('#colorCita').val($('input:radio[name=Pisos]:checked').attr("data-color"));
-        
+
         console.log($('#colorCita').val());
-        
+
     });
 
     //Recuperar piso
@@ -44,14 +44,14 @@ $(document).ready(function () {
 
         console.log($('#fechaProgramada').val());
     });
-    
+
     //Recupera Titulo
-    $('#RegistrarCita_tipo').on('change', function(){
-        
+    $('#RegistrarCita_tipo').on('change', function () {
+
         $('#tituloCita').val($(this).find(':selected').data('nombre'));
-        
+
         console.log($('#tituloCita').val());
-        
+
     });
 
     //REGISTRAR CITA
@@ -77,8 +77,8 @@ $(document).ready(function () {
 
                     console.log(response);
 
-                    if (response === "success") { 
-                        
+                    if (response === "success") {
+
                         var newEvent = {
 
                             title: $('#tituloCita').val(),
@@ -87,7 +87,7 @@ $(document).ready(function () {
                             textColor: 'white'
 
                         };
-                        
+
                         $('#calendarCitasPaciente').fullCalendar('renderEvent', newEvent);
 
                         swal({
@@ -95,7 +95,7 @@ $(document).ready(function () {
                             text: "La cita se ha registrado correctamente!",
                             icon: "success",
                         });
-                        
+
 
                         $('#modalAgregarCita').modal('toggle');
 
@@ -191,6 +191,40 @@ $(document).ready(function () {
                 }
         );
     });
+
+    //Eliminar Cuenta
+    $('#eliminarCuenta').on('click',  function (){
+
+        swal({
+            title: "¿Estás segura(o)?",
+            text: "Los datos se eliminarán y no podrás recuperarlos ni poder acceder a tu cuenta.",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Cancelar', 'Aceptar'],
+
+        })
+                .then((eliminar) => {
+                    if (eliminar) {
+                        $.ajax({
+                            url: "PacienteController",
+                            data: {
+                                key: "eliminarCuentaPaciente",
+                                idCuenta: $("#sesionPaciente").val(),
+
+                            },
+                            method: "POST"
+                        });
+
+
+                    } else {
+
+                    }
+                });
+
+
+
+    });
+
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta1').on('click', function () {
         console.log("Salir cuenta");
@@ -211,5 +245,7 @@ $(document).ready(function () {
                 }
         );
     });
+
+
 
 });

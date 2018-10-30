@@ -29,10 +29,11 @@ public class PacienteNecesidadEspecialServicioImpl implements PacienteNecesidadE
         
         PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
         
-        String stProcedure ="";
+        String stProcedure ="CALL mostrarPacienteNecesidadEspecial(?)";
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPacienteNecesidadEspecial);
             rs = cstmt.executeQuery();
             rs.next();
             
@@ -58,7 +59,7 @@ public class PacienteNecesidadEspecialServicioImpl implements PacienteNecesidadE
         Connection conn;
         List<PacienteNecesidadEspecial> listpacienteNecesidadEspecial = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure="";
+        String stProcedure="CALL mostrarListaPacienteNecesidadEspecial()";
         
         ResultSet rs;
         
@@ -127,7 +128,7 @@ public class PacienteNecesidadEspecialServicioImpl implements PacienteNecesidadE
     public boolean borradoLogicoPacienteNecesidadEspecial(int idPacienteNecesidadEspecial) {
         Connection conn; 
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL borradoLogicoPacienteNecesidadEspecial(?)";
         boolean exito = false;
         ResultSet rs;
         try{
@@ -156,7 +157,7 @@ public class PacienteNecesidadEspecialServicioImpl implements PacienteNecesidadE
     public boolean actualizarPacienteNecesidadEspecial(PacienteNecesidadEspecial pacienteNecesidadEspecial) {
         Connection conn;
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL actualizarPacienteNecesidadEspecial(?, ?)";
         boolean exito= false;
         ResultSet rs;
         try{
@@ -181,6 +182,39 @@ public class PacienteNecesidadEspecialServicioImpl implements PacienteNecesidadE
             exito=false;
         }
         return exito;
+    }
+
+    @Override
+    public PacienteNecesidadEspecial mostrarPacienteNecesidadEspecialIdPaciente(int idPaciente) {
+     Connection conn; 
+        CallableStatement cstmt;
+        ResultSet rs;
+        
+        PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
+        
+        String stProcedure ="CALL mostrarPacienteNecesidadEspecialIdPaciente(?)";
+        try{
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+            rs.next();
+            
+            pacienteNecesidadEspecial.setIdNecesidadEspecial(rs.getInt("idPaciente"));
+            pacienteNecesidadEspecial.setIdPaciente(rs.getInt("idCuenta"));
+            pacienteNecesidadEspecial.setIdNecesidadEspecial(rs.getInt("idEscolaridad"));
+            pacienteNecesidadEspecial.setEstatus(rs.getInt("idSeguro"));
+           
+        
+            rs.close();
+            cstmt.close();
+            conn.close();
+        }catch(SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            pacienteNecesidadEspecial = null;
+        }
+        return pacienteNecesidadEspecial;
     }
     
 }

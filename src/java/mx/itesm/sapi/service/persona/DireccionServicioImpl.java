@@ -29,7 +29,7 @@ public class DireccionServicioImpl implements DireccionServicio {
         Direccion direccion = null;
 
         //Call del store procedure
-        String stProcedure = "mostrarDireccion(?)";
+        String stProcedure = "CALL mostrarDireccion(?)";
 
         try {
             direccion = new Direccion();
@@ -71,7 +71,7 @@ public class DireccionServicioImpl implements DireccionServicio {
             direcciones = new ArrayList<>();
             conn = Conexion.getConnection();
 
-            cstmt = conn.prepareCall("mostrarListaDireccion()");
+            cstmt = conn.prepareCall("CALL mostrarListaDireccion()");
             rs = cstmt.executeQuery();
             Direccion direccion;
 
@@ -148,7 +148,7 @@ public class DireccionServicioImpl implements DireccionServicio {
         CallableStatement cstmt;
 
         //Call del store procedure
-        String stProcedure = "actualizarDireccion(?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL actualizarDireccion(?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
@@ -184,7 +184,7 @@ public class DireccionServicioImpl implements DireccionServicio {
         CallableStatement cstmt;
 
         //Call del store procedure
-        String stProcedure = "borradoLogicoDireccion(?)";
+        String stProcedure = "CALL borradoLogicoDireccion(?)";
 
         try {
             conn = Conexion.getConnection();

@@ -15,16 +15,9 @@ $(document).ready(function () {
         processData: false,
         contentType: false,
         success: function (response) {
-            
             if (response != null) {
-                
-               
                var data = JSON.parse(response);
-                   
                 console.log(data);
-    
-               
-
             } else {
                 console.log("Algo pasó" + response);
             }
@@ -85,8 +78,8 @@ $(document).ready(function () {
 
     });
 
-    $('#eliminarCuentaPotencial').on('click', () => {
-
+    $('#eliminarCuentaPotencial').on('click', function() {
+            console.log("vaya vaya si llego");
         swal({
             title: "¿Estás segura(o)?",
             text: "Los datos se eliminarán y no podrás recuperarlos ni poder acceder a tu cuenta.",
@@ -101,7 +94,7 @@ $(document).ready(function () {
                             url: "PotencialController",
                             data: {
                                 key: "eliminarCuentaPacientePotencial",
-                                idCuenta: $("#sesionPaciente").val(),
+                                idCuenta: $("#sesionPaciente").val()
                                 
                             },
                             method: "POST"

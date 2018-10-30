@@ -106,7 +106,7 @@ public class PacienteController extends HttpServlet {
         HttpSession sesion = request.getSession(true);
         PrintWriter out = response.getWriter();
         int idPaciente = (int) sesion.getAttribute("idPaciente");
-        String idPacienteS = request.getParameter("idPaciente");
+        String idPacienteS = request.getParameter("idPaciente").toString();
 
         switch (key) {
 
@@ -159,7 +159,7 @@ public class PacienteController extends HttpServlet {
 
                 //No se setea
                 //cita.setIdTipoTratamiento(Integer.parseInt(tipo));
-                cita.setFechaProgramada(fechaProgramada);
+                cita.setFechaProgramada(Timestamp.valueOf(fechaProgramada));
 
                 //No se setea porque no hay estudios
                 //cita.setIdEstudio();
@@ -200,8 +200,8 @@ public class PacienteController extends HttpServlet {
             break;
 
             //Author Angel Gtz
-            case "eliminarCuentaPacientePotencial": {
-
+            case "eliminarCuentaPaciente": {
+                    System.out.println("Si llego aqui potencial");
                 if (sesion.getAttribute("idCuenta") == null) { /** Si no tiene sesion iniciada */
                     // request.setAttribute("status", "");
                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); /** Lo redirecciono al login */
