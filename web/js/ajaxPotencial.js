@@ -292,7 +292,7 @@ $(document).ready(function () {
         
         
         //AJAX PARA ENVIAR SOLICITUD
-        /*
+        
         $.ajax({
             url: "PotencialController",
             method: "POST",
@@ -310,7 +310,7 @@ $(document).ready(function () {
             error: function () {
                 console.log("error" + xhr.statusText);
                 alert("No enontre el controlador" + xhr.statusText);
-            }*/
+            }
 
 
         });

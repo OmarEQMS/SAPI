@@ -16,6 +16,7 @@ $(document).ready(function () {
     $('#error-previoMasto').hide();
     $('#error-previoUsg').hide();
     $('#error-biopsia').hide();
+    
 
     // Inicializar plug in tooltipster
     $('.questionMark').tooltipster({
@@ -33,9 +34,7 @@ $(document).ready(function () {
 
 
     //Reemplazar el nombre del archivo en el input
-    $('body').on('change', '.custom-file-input', function () {
-        $(this).next('.custom-file-label').addClass("selected").html($(this).val());
-    });
+    
 
     //Esconder menu lateral a presionar click en el menu hamburguesa
     $('#sidebarCollapse').on('click', () => {
@@ -71,13 +70,17 @@ $(document).ready(function () {
                         + '<span class="textoDocumento">Referencia</span>'
                         + '</div>'
                         + '<div class="custom-file col-8" id="customFile">'
-                        + '<input type="file" class="custom-file-input" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp">'
+                        + '<input type="file" class="custom-file-input" id="referenciaArchivo" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp">'
+                        + '<span class="text-danger" id="error-referencia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>'
                         + '<label class="custom-file-label">'
                         + 'Adjunta la hoja de referencia de médico.'
                         + '</label>'
                         + '</div>';
 
                 $('#documentoAdjuntoMotivo').html(referencia);
+                
+                $('#error-referencia').hide();
+                
                 break;
             case "4":
 

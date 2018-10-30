@@ -9,18 +9,31 @@ $(document).ready(function(){
     
     //VALIDACIONES INDEX
 
+function cambiaNombre(input){
+     input.next().next('.custom-file-label').addClass("selected").html(input.val());
+}
+
 //1.- Identificación oficial
 $('#fileIdentificacion').on('change', function () {
+    
+    cambiaNombre($(this));
+    
     if (validDocument($('#fileIdentificacion'), document.querySelector('#fileIdentificacion').files)) {
+        $(this).next('.custom-file-label').addClass("selected").html($(this).val());
         $('#error-identificacionOficial').hide();
     } else {
+        $(this).next('.custom-file-label').addClass("selected").html($(this).val());
         $('#error-identificacionOficial').show();
     }
 });
 
 //2.- CURP
 $('#fileCURP').on('change', function () {
+    
+   cambiaNombre($(this));
+    
     if (validDocument($('#fileCURP'), document.querySelector('#fileCURP').files)) {
+        
         $('#error-CURP').hide();
         console.log('si se puede ' + document.querySelector('#fileCURP').files);
     } else {
@@ -31,6 +44,9 @@ $('#fileCURP').on('change', function () {
 
 //3.- Comprobante de docimicilio
 $('#fileComprobanteDomicilio').on('change', function () {
+    
+    cambiaNombre($(this));
+    
     if (validDocument($('#fileComprobanteDomicilio'), document.querySelector('#fileComprobanteDomicilio').files)) {
         $('#error-comprobanteDomicilio').hide();
     } else {
@@ -40,6 +56,9 @@ $('#fileComprobanteDomicilio').on('change', function () {
 
 //4.- Motivo de consulta
 $('#motivoConsulta').on('change', function () {
+    
+    
+    
     if (isValidSelect($('#motivoConsulta'))) {
         $('#error-motivoConsulta').hide();
     } else {
@@ -49,6 +68,9 @@ $('#motivoConsulta').on('change', function () {
 
 //5.- Estudios previos masto
 $('#fileEstudioPrevioMasto').on('change', function () {
+    
+    cambiaNombre($(this));
+    
     if (validDocument($('#fileEstudioPrevioMasto'), document.querySelector('#fileEstudioPrevioMasto').files)) {
         $('#error-previoMasto').hide();
     } else {
@@ -58,6 +80,9 @@ $('#fileEstudioPrevioMasto').on('change', function () {
 
 //6.- Estudios previos usg
 $('#fileEstudioPrevioUsg').on('change', function () {
+    
+    cambiaNombre($(this));
+    
     if (validDocument($('#fileEstudioPrevioUsg'), document.querySelector('#fileEstudioPrevioUsg').files)) {
         $('#error-previoUsg').hide();
     } else {
@@ -67,10 +92,25 @@ $('#fileEstudioPrevioUsg').on('change', function () {
 
 //7.- Biopsia previa
 $('#fileEstudioBiopsia').on('change', function () {
+    
+    cambiaNombre($(this));
+    
     if (validDocument($('#fileEstudioBiopsia'), document.querySelector('#fileEstudioBiopsia').files)) {
         $('#error-biopsia').hide();
     } else {
         $('#error-biopsia').show();
+    }
+});
+
+//7.- Biopsia previa
+$('body').on('change', '#referenciaArchivo', function () {
+    
+    cambiaNombre($(this));
+    
+    if (validDocument($('#referenciaArchivo'), document.querySelector('#referenciaArchivo').files)) {
+        $('#error-referencia').hide();
+    } else {
+        $('#error-referencia').show();
     }
 });
 
