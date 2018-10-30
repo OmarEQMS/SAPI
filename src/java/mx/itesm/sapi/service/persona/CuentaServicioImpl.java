@@ -256,11 +256,11 @@ public class CuentaServicioImpl implements CuentaServicio {
         ResultSet rs;
         CallableStatement cstmt;
 
-        String token = "Este es un token provicional jeje";
+        String token;
 
         //Call del store procedure
         String stProcedure = "CALL getToken(?)";
-        /*
+       
         try {
            
             conn = Conexion.getConnection();
@@ -268,8 +268,8 @@ public class CuentaServicioImpl implements CuentaServicio {
             cstmt.setString(1, correo);
             rs = cstmt.executeQuery();
             rs.next();
-            token=rs.getString("password");
-
+            token = rs.getString("token");
+            
             conn.close();
             rs.close();
             cstmt.close();
@@ -280,7 +280,7 @@ public class CuentaServicioImpl implements CuentaServicio {
                     .concat(ex.getMessage()));
             token = null;
         }
-        */
+        
         return token;
     }
 }

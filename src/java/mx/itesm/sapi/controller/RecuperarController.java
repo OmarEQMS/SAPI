@@ -104,7 +104,9 @@ public class RecuperarController extends HttpServlet {
                 //HttpSession sesion = request.getSession(true);
 
                 CuentaServicioImpl cuenta = new CuentaServicioImpl();
+                //System.out.println("El correo es: ".concat(correo));
                 String token = cuenta.getToken(correo);
+                
                 System.out.println("el token es: ".concat(token));
                
                 try {
