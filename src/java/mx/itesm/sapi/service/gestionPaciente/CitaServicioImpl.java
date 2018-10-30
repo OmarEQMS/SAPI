@@ -283,20 +283,31 @@ public class CitaServicioImpl implements CitaServicio {
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-
-            cstmt.setInt(1, cita.getIdPaciente());
-            cstmt.setInt(2, cita.getIdMotivoConsulta());
-            cstmt.setString(3, cita.getHospitalProcedencia());
-
-            try {
+            
+            int idPaciente = cita.getIdPaciente();
+            int idMotivo = cita.getIdMotivoConsulta();
+            String hospitalProcedencia = cita.getHospitalProcedencia();
+            Timestamp fechaSolicitud = null;
+            
+             try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
                 Date parsedDate = dateFormat.parse(cita.getFechaSolicitud());
-                Timestamp fechaSolicitud = new java.sql.Timestamp(parsedDate.getTime());
-                cstmt.setTimestamp(4, fechaSolicitud);
+                fechaSolicitud = new java.sql.Timestamp(parsedDate.getTime());
+                
             } catch (Exception e) { //this generic but you can control nother types of exception
                 // look the origin of excption 
             }
+             
+             System.out.println("Params Preconsulta ".concat(String.valueOf(idPaciente)).concat(" ").concat(String.valueOf(idMotivo)).concat(" ")
+                     .concat(" ").concat(hospitalProcedencia).concat(" ").concat(fechaSolicitud.toString()));
+                        
+            cstmt.setInt(1, idPaciente);
+            cstmt.setInt(2, idMotivo);
+            cstmt.setString(3, hospitalProcedencia);
+            cstmt.setTimestamp(4, fechaSolicitud);
+           
             
+            System.out.println("PROCEDURE ".concat(cstmt.toString()));
             rs = cstmt.executeQuery();
             rs.next();
 

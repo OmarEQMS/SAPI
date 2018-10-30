@@ -265,12 +265,12 @@ public class PotencialController extends HttpServlet {
             case "solicitarPreconsulta": {
                 /**
                  * Uriel Díaz 26/10/2018.
+                 *
+                 * El presente case funciona cuando un paciente agrega ciertos
+                 * atributos y documentos al proceso de solicitud de preconsulta sin enviarla.
                  * 
-                 * El presente case funciona cuando un paciente agrega ciertos atributos y
-                 * documentos al proceso de solicitud de preconsulta sin enviarla.
-                 *                  *                  * 
-                 */
-                //request.getPart("fileCURP").
+                 * * *
+                 */                
                 //Obtener la sesion
                 HttpSession sesion = request.getSession(true);
 
@@ -390,111 +390,179 @@ public class PotencialController extends HttpServlet {
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
                         }
 
-                        Part partIdentificacion = request.getPart("fileIdentificacion");
-                        System.out.println("PartIdentificacion ".concat(partIdentificacion.toString()));
-                        System.out.println("PartIdentificacion lenghtname ".concat(partIdentificacion.getName().length() + " " + partIdentificacion.getSubmittedFileName().length()));
-                        System.out.println("PartIdentificacion type ".concat(partIdentificacion.getContentType()));
-                        String partName = partIdentificacion.getName();
+                        Part partIdentificacion = null;
+                        boolean booleanIdentificacion = true;
+                        try {
+                            partIdentificacion = request.getPart("fileIdentificacion");
+                            System.out.println(partIdentificacion.toString());
 
-                        /*
-                        for(int i = 0; i < partIdentificacion.getName().length(); i++)
-                        {
-                            System.out.println(partName.charAt(i));
+                        } catch (Exception ex) {
+                            booleanIdentificacion = false;
                         }
-                         */
+
+                        //System.out.println("PartIdentificacion ".concat(partIdentificacion.toString()));
+                        //System.out.println("PartIdentificacion lenghtname ".concat(partIdentificacion.getName().length() + " " + partIdentificacion.getSubmittedFileName().length()));
+                        //System.out.println("PartIdentificacion type ".concat(partIdentificacion.getContentType()));
+                        //String partName = partIdentificacion.getName();
+                       
                         InputStream contenidoIdentificacion = null;
+                        String strIdentificacion = null;
                         String tipoIdentficacion = null;
                         int tamanoIdentificacion = 0;
 
-                        if (partIdentificacion.getSubmittedFileName().length() > 0 && (partIdentificacion.getContentType().equals("image/jpeg") || partIdentificacion.getContentType().equals("application/pdf") || partIdentificacion.getContentType().equals("image/png") || partIdentificacion.getContentType().equals(" application/msword") || partIdentificacion.getContentType().equals(" application/msword") || partIdentificacion.getContentType().equals(" application/vnd.ms-excel"))) {
-                            String identificacion = partIdentificacion.getSubmittedFileName();
-                            contenidoIdentificacion = partIdentificacion.getInputStream();
-                            tipoIdentficacion = partIdentificacion.getContentType();
-                            tamanoIdentificacion = (int) partIdentificacion.getSize();
-                            System.out.println("Identificacion ".concat(identificacion).concat(" ").concat(partIdentificacion.getContentType()));
+                        if (booleanIdentificacion) {
+                            if (partIdentificacion.getSubmittedFileName().length() > 0 && (partIdentificacion.getContentType().equals("image/jpeg") || partIdentificacion.getContentType().equals("application/pdf") || partIdentificacion.getContentType().equals("image/png") || partIdentificacion.getContentType().equals(" application/msword") || partIdentificacion.getContentType().equals(" application/msword") || partIdentificacion.getContentType().equals(" application/vnd.ms-excel"))) {
+                                                                
+                                strIdentificacion = partIdentificacion.getSubmittedFileName();
+                                contenidoIdentificacion = partIdentificacion.getInputStream();                                                                        
+                                tipoIdentficacion = partIdentificacion.getContentType();
+                                
+                                tamanoIdentificacion = (int) partIdentificacion.getSize();
+                                System.out.println("Identificacion ".concat(strIdentificacion).concat(" ").concat(partIdentificacion.getContentType()));
+                            }
+
                         }
 
-                        Part partCURP = request.getPart("fileCURP");
+                        Part partCURP = null;
+                        boolean booleanCURP = true;
+
+                        try {
+                            partCURP = request.getPart("fileCURP");
+                            System.out.println("Part CURP ".concat(partCURP.getSubmittedFileName()));
+                        } catch (Exception ex) {
+                            booleanCURP = false;
+                        }
+
                         InputStream contenidoCURP = null;
+                        String strCurp = null;
                         String tipoCurp = null;
                         int tamanoCurp = 0;
 
-                        if (partCURP.getSubmittedFileName().length() > 0 && (partCURP.getContentType().equals("image/jpeg") || partCURP.getContentType().equals("application/pdf") || partCURP.getContentType().equals("image/png") || partCURP.getContentType().equals(" application/msword") || partCURP.getContentType().equals(" application/msword") || partCURP.getContentType().equals(" application/vnd.ms-excel"))) {
-                            String nombre = partCURP.getSubmittedFileName();
-                            contenidoCURP = partCURP.getInputStream();
-                            tipoCurp = partCURP.getContentType();
-                            tamanoCurp = (int) partCURP.getSize();
-                            System.out.println("nombre del curp ".concat(nombre));
+                        if (booleanCURP) {
+                            if (partCURP.getSubmittedFileName().length() > 0 && (partCURP.getContentType().equals("image/jpeg") || partCURP.getContentType().equals("application/pdf") || partCURP.getContentType().equals("image/png") || partCURP.getContentType().equals(" application/msword") || partCURP.getContentType().equals(" application/msword") || partCURP.getContentType().equals(" application/vnd.ms-excel"))) {
+                                strCurp = partCURP.getSubmittedFileName();
+                                contenidoCURP = partCURP.getInputStream();                                                                 
+                                tipoCurp = partCURP.getContentType();
+                                
+                                tamanoCurp = (int) partCURP.getSize();
+                                System.out.println("nombre del curp ".concat(strCurp));
+                            }
                         }
 
-                        Part partComprobanteDomicilio = request.getPart("fileComprobanteDomicilio");
+                        Part partComprobanteDomicilio = null;
+                        boolean booleanComprobante = true;
+                        try {
+                            partComprobanteDomicilio = request.getPart("fileComprobanteDomicilio");
+                        } catch (Exception ex) {
+                            booleanComprobante = false;
+                        }
+
                         InputStream contenidoComprobanteDomicilio = null;
+                        String strComprobante = null;
                         String tipoComprobanteDomicilio = null;
                         int tamanoComprobanteDomicilio = 0;
 
-                        if (partComprobanteDomicilio.getSubmittedFileName().length() > 0 && (partComprobanteDomicilio.getContentType().equals("image/jpeg") || partComprobanteDomicilio.getContentType().equals("application/pdf") || partComprobanteDomicilio.getContentType().equals("image/png") || partComprobanteDomicilio.getContentType().equals(" application/msword") || partComprobanteDomicilio.getContentType().equals(" application/msword") || partComprobanteDomicilio.getContentType().equals(" application/vnd.ms-excel"))) {
-                            String comprobanteDomicilio = partComprobanteDomicilio.getSubmittedFileName();
-                            contenidoComprobanteDomicilio = partComprobanteDomicilio.getInputStream();
-                            tipoComprobanteDomicilio = partComprobanteDomicilio.getContentType();
-                            tamanoComprobanteDomicilio = (int) partComprobanteDomicilio.getSize();
-                            System.out.println("comprobante ".concat(comprobanteDomicilio));
+                        if (booleanComprobante) {
+                            if (partComprobanteDomicilio.getSubmittedFileName().length() > 0 && (partComprobanteDomicilio.getContentType().equals("image/jpeg") || partComprobanteDomicilio.getContentType().equals("application/pdf") || partComprobanteDomicilio.getContentType().equals("image/png") || partComprobanteDomicilio.getContentType().equals(" application/msword") || partComprobanteDomicilio.getContentType().equals(" application/msword") || partComprobanteDomicilio.getContentType().equals(" application/vnd.ms-excel"))) {
+                                
+                                strComprobante = partComprobanteDomicilio.getSubmittedFileName();                                                                
+                                tipoComprobanteDomicilio = partComprobanteDomicilio.getContentType();                                
+                                contenidoComprobanteDomicilio = partComprobanteDomicilio.getInputStream();                                
+                                tamanoComprobanteDomicilio = (int) partComprobanteDomicilio.getSize();
+                                System.out.println("comprobante ".concat(strComprobante));
+                            }
                         }
 
-                        Part partMastoPrevia = request.getPart("fileEstudioPrevioMasto");
+                        Part partMastoPrevia = null;
+                        boolean booleanMastoPrevia = true;
+
+                        try {
+                            partMastoPrevia = request.getPart("fileEstudioPrevioMasto");
+                        } catch (Exception ex) {
+                            booleanMastoPrevia = false;
+                        }
+
                         InputStream contenidoMastoPrevia = null;
+                        String strMastoPrevia = null;
                         String tipoMastoPrevia = null;
                         int tamanoMastoPrevia = 0;
 
-                        if (partMastoPrevia.getSubmittedFileName().length() > 0 && (partMastoPrevia.getContentType().equals("image/jpeg") || partMastoPrevia.getContentType().equals("application/pdf") || partMastoPrevia.getContentType().equals("image/png") || partMastoPrevia.getContentType().equals(" application/msword") || partMastoPrevia.getContentType().equals(" application/msword") || partMastoPrevia.getContentType().equals(" application/vnd.ms-excel"))) {
-                            String stringPartMastoPrevia = partMastoPrevia.getSubmittedFileName();
-                            contenidoMastoPrevia = partMastoPrevia.getInputStream();
-                            tipoMastoPrevia = partMastoPrevia.getContentType();
-                            tamanoMastoPrevia = (int) partMastoPrevia.getSize();
-                            System.out.println("Masto ".concat(stringPartMastoPrevia));
+                        if (booleanMastoPrevia) {
+
+                            if (partMastoPrevia.getSubmittedFileName().length() > 0 && (partMastoPrevia.getContentType().equals("image/jpeg") || partMastoPrevia.getContentType().equals("application/pdf") || partMastoPrevia.getContentType().equals("image/png") || partMastoPrevia.getContentType().equals(" application/msword") || partMastoPrevia.getContentType().equals(" application/msword") || partMastoPrevia.getContentType().equals(" application/vnd.ms-excel"))) {
+                                
+                                strMastoPrevia = partMastoPrevia.getSubmittedFileName();                                                                                                                                
+                                tipoMastoPrevia = partMastoPrevia.getContentType();
+                                contenidoMastoPrevia = partMastoPrevia.getInputStream();                                
+                                tamanoMastoPrevia = (int) partMastoPrevia.getSize();
+                                System.out.println("Masto ".concat(strMastoPrevia));
+                            }
                         }
 
-                        Part partUltrasonidoPrevio = request.getPart("fileEstudioPrevioUsg");
+                        Part partUltrasonidoPrevio = null;
+                        boolean booleanUltraSonidoPrevio = true;
+                        partUltrasonidoPrevio = request.getPart("fileEstudioPrevioUsg");
                         InputStream contenidoPartUltrasonidoPrevio = null;
+                        String strUltrasonido = null;
                         String tipoUltrasonido = null;
                         int tamanoUltrasonido = 0;
 
-                        if (partUltrasonidoPrevio.getSubmittedFileName().length() > 0 && (partUltrasonidoPrevio.getContentType().equals("image/jpeg") || partUltrasonidoPrevio.getContentType().equals("application/pdf") || partUltrasonidoPrevio.getContentType().equals("image/png") || partUltrasonidoPrevio.getContentType().equals(" application/msword") || partUltrasonidoPrevio.getContentType().equals(" application/msword") || partUltrasonidoPrevio.getContentType().equals(" application/vnd.ms-excel"))) {
-                            String stringpartUltrasonidoPrevio = partUltrasonidoPrevio.getSubmittedFileName();
-                            contenidoPartUltrasonidoPrevio = partUltrasonidoPrevio.getInputStream();
-                            tipoUltrasonido = partUltrasonidoPrevio.getContentType();
-                            tamanoUltrasonido = (int) partUltrasonidoPrevio.getSize();
-                            System.out.println("USG ".concat(stringpartUltrasonidoPrevio));
-                        }
+                        if (booleanUltraSonidoPrevio) {
 
-                        Part partEstudioBiopsia = request.getPart("fileEstudioBiopsia");
+                            if (partUltrasonidoPrevio.getSubmittedFileName().length() > 0 && (partUltrasonidoPrevio.getContentType().equals("image/jpeg") || partUltrasonidoPrevio.getContentType().equals("application/pdf") || partUltrasonidoPrevio.getContentType().equals("image/png") || partUltrasonidoPrevio.getContentType().equals(" application/msword") || partUltrasonidoPrevio.getContentType().equals(" application/msword") || partUltrasonidoPrevio.getContentType().equals(" application/vnd.ms-excel"))) {
+                                
+                                strUltrasonido = partUltrasonidoPrevio.getSubmittedFileName();                                                                                                                               
+                                contenidoPartUltrasonidoPrevio = partUltrasonidoPrevio.getInputStream();
+                                tipoUltrasonido = partUltrasonidoPrevio.getContentType();
+                                tamanoUltrasonido = (int) partUltrasonidoPrevio.getSize();
+                                System.out.println("USG ".concat(strUltrasonido));                                
+                            }
+
+                        }
+                        
+                        Part partEstudioBiopsia = null;
+                        boolean booleanEstudioBiopsia = true;
+                        partEstudioBiopsia = request.getPart("fileEstudioBiopsia");
                         InputStream contenidoEstudioBiopsia = null;
+                        String strBiopsia = null;
                         String tipoBiopsia = null;
                         int tamanoBiopsia = 0;
 
-                        if (partEstudioBiopsia.getSubmittedFileName().length() > 0 && (partEstudioBiopsia.getContentType().equals("image/jpeg") || partEstudioBiopsia.getContentType().equals("application/pdf") || partEstudioBiopsia.getContentType().equals("image/png") || partEstudioBiopsia.getContentType().equals(" application/msword") || partEstudioBiopsia.getContentType().equals(" application/msword") || partEstudioBiopsia.getContentType().equals(" application/vnd.ms-excel"))) {
-                            String stringPartEstudioBiopsia = partEstudioBiopsia.getSubmittedFileName();
-                            contenidoEstudioBiopsia = partEstudioBiopsia.getInputStream();
-                            tipoBiopsia = partEstudioBiopsia.getContentType();
-                            tamanoBiopsia = (int) partEstudioBiopsia.getSize();
-                            System.out.println("Biopsia ".concat(stringPartEstudioBiopsia));
+                        if (booleanEstudioBiopsia) {
+
+                            if (partEstudioBiopsia.getSubmittedFileName().length() > 0 && (partEstudioBiopsia.getContentType().equals("image/jpeg") || partEstudioBiopsia.getContentType().equals("application/pdf") || partEstudioBiopsia.getContentType().equals("image/png") || partEstudioBiopsia.getContentType().equals(" application/msword") || partEstudioBiopsia.getContentType().equals(" application/msword") || partEstudioBiopsia.getContentType().equals(" application/vnd.ms-excel"))) {
+                                strBiopsia = partEstudioBiopsia.getSubmittedFileName();
+                                                                                                                                
+                                contenidoEstudioBiopsia = partEstudioBiopsia.getInputStream();
+                                tipoBiopsia = partEstudioBiopsia.getContentType();
+                                tamanoBiopsia = (int) partEstudioBiopsia.getSize();
+                                System.out.println("Biopsia ".concat(strBiopsia));
+                            }
                         }
 
-                        Part partReferenciaArchivo = request.getPart("referenciaArchivo");
+                        Part partReferenciaArchivo = null;
+                        boolean booleanReferenciaArchivo = true;
+                        partReferenciaArchivo = request.getPart("referenciaArchivo");
                         InputStream contenidoReferenciaArchivo = null;
+                        String strReferencia = null;
                         String tipoArchivo = null;
                         int tamanoArchivo = 0;
 
                         if (motivoConsulta.equals("1") || motivoConsulta.equals("4")) {
+                            if (booleanReferenciaArchivo == true) {
 
-                            if (partReferenciaArchivo.getSubmittedFileName().length() > 0 && (partReferenciaArchivo.getContentType().equals("image/jpeg") || partReferenciaArchivo.getContentType().equals("application/pdf") || partReferenciaArchivo.getContentType().equals("image/png") || partReferenciaArchivo.getContentType().equals(" application/msword") || partReferenciaArchivo.getContentType().equals(" application/msword") || partReferenciaArchivo.getContentType().equals(" application/vnd.ms-excel"))) {
-                                String stringReferenciaArchivo = partReferenciaArchivo.getSubmittedFileName();
-                                contenidoReferenciaArchivo = partReferenciaArchivo.getInputStream();
-                                tipoArchivo = partReferenciaArchivo.getContentType();
-                                tamanoArchivo = (int) partReferenciaArchivo.getSize();
-                                System.out.println("Referencia médico ".concat(stringReferenciaArchivo));
+                                if (partReferenciaArchivo.getSubmittedFileName().length() > 0 && (partReferenciaArchivo.getContentType().equals("image/jpeg") || partReferenciaArchivo.getContentType().equals("application/pdf") || partReferenciaArchivo.getContentType().equals("image/png") || partReferenciaArchivo.getContentType().equals(" application/msword") || partReferenciaArchivo.getContentType().equals(" application/msword") || partReferenciaArchivo.getContentType().equals(" application/vnd.ms-excel"))) {
+                                    
+                                    strReferencia = partReferenciaArchivo.getSubmittedFileName();                                                                                                                                                                            
+                                    contenidoReferenciaArchivo = partReferenciaArchivo.getInputStream();
+                                    tipoArchivo = partReferenciaArchivo.getContentType();
+                                    tamanoArchivo = (int) partReferenciaArchivo.getSize();
+                                    System.out.println("Referencia médico ".concat(strReferencia));
+                                    
+                                }
                             }
-
                         }
+                        
                         DocumentoInicial docIdentificacion = null;
                         if (contenidoIdentificacion != null) {
 
@@ -504,6 +572,7 @@ public class PotencialController extends HttpServlet {
                             docIdentificacion.setIdTipoDocumento(idIdentificacion);
                             docIdentificacion.setTipo(tipoIdentficacion);
                             docIdentificacion.setTamano(tamanoIdentificacion);
+                            docIdentificacion.setNombre(strIdentificacion);
                             docIdentificacion.setEstatus(1);
                         }
 
@@ -515,6 +584,7 @@ public class PotencialController extends HttpServlet {
                             docCURP.setIdTipoDocumento(idCURP);
                             docCURP.setTipo(tipoCurp);
                             docCURP.setTamano(tamanoCurp);
+                            docCURP.setNombre(strCurp);
                             docCURP.setEstatus(1);
                         }
 
@@ -527,6 +597,7 @@ public class PotencialController extends HttpServlet {
                             docComprobanteDomicilio.setIdTipoDocumento(idComprobanteDomicilio);
                             docComprobanteDomicilio.setTipo(tipoComprobanteDomicilio);
                             docComprobanteDomicilio.setTamano(tamanoComprobanteDomicilio);
+                            docComprobanteDomicilio.setNombre(tipoCurp);
                             docComprobanteDomicilio.setEstatus(1);
                         }
 
@@ -535,9 +606,10 @@ public class PotencialController extends HttpServlet {
                             docMasto = new DocumentoInicial();
                             docMasto.setIdPaciente(idPacientePotencial);
                             docMasto.setArchivo(contenidoMastoPrevia);
-                            docMasto.setIdTipoDocumento(idEstudioPrevio);
+                            docMasto.setIdTipoDocumento(idMastografia);
                             docMasto.setTipo(tipoMastoPrevia);
                             docMasto.setTamano(tamanoMastoPrevia);
+                            docMasto.setNombre(strMastoPrevia);
                             docMasto.setEstatus(1);
                         }
 
@@ -549,6 +621,7 @@ public class PotencialController extends HttpServlet {
                             docUltraSonido.setIdTipoDocumento(idUltrasonido);
                             docUltraSonido.setTipo(tipoUltrasonido);
                             docUltraSonido.setTamano(tamanoUltrasonido);
+                            docUltraSonido.setNombre(strUltrasonido);
                             docUltraSonido.setEstatus(1);
                         }
 
@@ -560,6 +633,7 @@ public class PotencialController extends HttpServlet {
                             docBiopsia.setIdTipoDocumento(idBiopsiaPrevia);
                             docBiopsia.setTipo(tipoBiopsia);
                             docBiopsia.setTamano(tamanoBiopsia);
+                            docBiopsia.setNombre(strBiopsia);
                             docBiopsia.setEstatus(1);
                         }
 
@@ -609,6 +683,8 @@ public class PotencialController extends HttpServlet {
                         citaPreconsulta.setIdEstadoCita(idPendiente);
                         citaPreconsulta.setIdImportanciaCita(idImportante);
                         citaPreconsulta.setIdMotivoConsulta(Integer.parseInt(motivoConsulta));
+                        citaPreconsulta.setHospitalProcedencia("\'NULL\'");//Se coloca NULL por si no hay otro hospital de referencia y MySQL lo reconozca.
+                        
 
                         switch (motivoConsulta) {
                             case "1": {
@@ -621,6 +697,7 @@ public class PotencialController extends HttpServlet {
                                     docReferencia.setIdTipoDocumento(idReferenciaMedico);
                                     docReferencia.setTipo(tipoArchivo);
                                     docReferencia.setTamano(tamanoArchivo);
+                                    docReferencia.setNombre(strReferencia);
                                     docReferencia.setEstatus(1);
                                 }
 
@@ -631,26 +708,38 @@ public class PotencialController extends HttpServlet {
                                 break;
                             }
                             case "4": {
-
-                                String otroHospital = request.getParameter("otroHospital");
-                                if (otroHospital.length() > 0) {
+                                
+                                String otroHospital = null;
+                                boolean booleanOtroHospital = true;
+                                        
+                                try{
+                                    otroHospital = request.getParameter("otroHospital");
+                                    System.out.println("otro hospital ".concat(otroHospital));
+                                }catch(Exception ex)
+                                {
+                                    booleanOtroHospital = false;
+                                }
+                             
+                                if (booleanOtroHospital) {
+                                    
                                     citaPreconsulta.setHospitalProcedencia(otroHospital);
-                                }
+                                    DocumentoInicial docReferencia = null;
+                                    
+                                    if (contenidoReferenciaArchivo != null) {
+                                        docReferencia = new DocumentoInicial();
+                                        docReferencia.setIdPaciente(idPacientePotencial);
+                                        docReferencia.setArchivo(contenidoReferenciaArchivo);
+                                        docReferencia.setIdTipoDocumento(idReferenciaMedico);
+                                        docReferencia.setTipo(tipoArchivo);
+                                        docReferencia.setTamano(tamanoArchivo);
+                                        docReferencia.setNombre(strReferencia);
+                                        docReferencia.setEstatus(1);
+                                    }
 
-                                DocumentoInicial docReferencia = null;
-                                if (contenidoReferenciaArchivo != null) {
-                                    docReferencia = new DocumentoInicial();
-                                    docReferencia.setIdPaciente(idPacientePotencial);
-                                    docReferencia.setArchivo(contenidoReferenciaArchivo);
-                                    docReferencia.setIdTipoDocumento(idReferenciaMedico);
-                                    docReferencia.setTipo(tipoArchivo);
-                                    docReferencia.setTamano(tamanoArchivo);
-                                    docReferencia.setEstatus(1);
-                                }
-
-                                if (docReferencia != null) {
-                                    DocumentoInicialServicioImpl documentoInicialReferencia = new DocumentoInicialServicioImpl();
-                                    documentoInicialReferencia.agregarDocumentoInicialPreconsulta(docReferencia);
+                                    if (docReferencia != null) {
+                                        DocumentoInicialServicioImpl documentoInicialReferencia = new DocumentoInicialServicioImpl();
+                                        documentoInicialReferencia.agregarDocumentoInicialPreconsulta(docReferencia);
+                                    }
                                 }
 
                                 break;
@@ -663,10 +752,16 @@ public class PotencialController extends HttpServlet {
 
                         /*DEBUG*/
                         citaPreconsulta.setFechaSolicitud((timestamp).toString());
+                        
+                        System.out.println("Cita ".concat(String.valueOf(citaPreconsulta.getIdPaciente())));
+                        System.out.println("Cita ".concat(String.valueOf(citaPreconsulta.getIdMotivoConsulta())));
+                        System.out.println("Cita ".concat(citaPreconsulta.getHospitalProcedencia()));
+                        System.out.println("Cita ".concat(citaPreconsulta.getFechaSolicitud()));
+                        
 
                         CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
                         int idCitaPreconsulta = citaServicioImpl.agregarPreconsulta(citaPreconsulta);
-
+                        
                         System.out.println("Identificacion ".concat(String.valueOf(idIdentificacionBD)));
                         System.out.println("CURP ".concat(String.valueOf(idCURPDB)));
                         System.out.println("Comprobante ".concat(String.valueOf(idComprobanteDB)));
@@ -674,7 +769,7 @@ public class PotencialController extends HttpServlet {
                         System.out.println("Ultrasonido ".concat(String.valueOf(idUltrasonidoDB)));
                         System.out.println("Biopsia ".concat(String.valueOf(idBiopsiaPreviaDB)));
                         System.out.println("Preconsulta ".concat(String.valueOf(idCitaPreconsulta)));
-
+                        
                         if ("5".equals(motivoConsulta)) {
                             System.out.println("Otro motivo");
                             String otroMotivo = request.getParameter("otroMotivo");
@@ -1029,10 +1124,9 @@ public class PotencialController extends HttpServlet {
                     sesion.setAttribute("resultadoMastografia", solicitudPreconsulta.getMastografia());
                     sesion.setAttribute("resultadosUltrasonidos", solicitudPreconsulta.getUltrasonido());
                     sesion.setAttribute("biopsiaPrevia", solicitudPreconsulta.getBiopsiaPrevia());
-                    
-                    
+
                     Gson json = new Gson();
-                    System.out.println("Res ".concat(json.toJson(solicitudPreconsulta)));
+                    System.out.println("Res Id ".concat(String.valueOf(idPacientePotencial)).concat(json.toJson(solicitudPreconsulta)));
 
                     PrintWriter out = response.getWriter();
 
@@ -1118,26 +1212,21 @@ public class PotencialController extends HttpServlet {
                 break;
             }
 
-            case "GuardarContinuar":
-            {
+            case "GuardarContinuar": {
                 /**
                  * Uriel Díaz 26/10/2018.
+                 *
+                 * El presente case funciona cuando un paciente agrega ciertos
+                 * atributos y documentos al proceso de solicitud de preconsulta sin enviarla.
                  * 
-                 * El presente case funciona cuando un paciente agrega ciertos atributos y
-                 * documentos al proceso de solicitud de preconsulta sin enviarla.
-                 *                  *                  * 
-                 */
-
-                System.out.println("Guardar y continuar");
-                
+                 * * *
+                 */                
                 //Obtener la sesion
                 HttpSession sesion = request.getSession(true);
 
                 if (sesion.getId() == null) {
                     //TODO 
-                    System.out.println("No hay sesión");
                 } else {
-                    System.out.println("hay sesión");
 
                     int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
 
@@ -1172,8 +1261,6 @@ public class PotencialController extends HttpServlet {
                     int idBaston = Integer.parseInt(sapiProperties.getString("Oxigeno"));
                     int idOxigeno = Integer.parseInt(sapiProperties.getString("Camilla"));
 
-                    System.out.println("Antes del multipart");
-
                     if (ServletFileUpload.isMultipartContent(request)) {
                         System.out.println("Entro a solicitarPreconsulta if ");
 
@@ -1200,6 +1287,7 @@ public class PotencialController extends HttpServlet {
 
                         int biopsia = Integer.parseInt(request.getParameter("biopsia"));
                         System.out.println("biopsia ".concat(String.valueOf(biopsia)));
+                        
 
                         //Agregar sexo al paciente
                         if (masculino.equals("1")) {
@@ -1248,105 +1336,181 @@ public class PotencialController extends HttpServlet {
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
                         }
 
-                        Part partIdentificacion = request.getPart("fileIdentificacion");
-                        System.out.println("PartIdentificacion ".concat(partIdentificacion.toString()));
-                        System.out.println("PartIdentificacion lenghtname ".concat(partIdentificacion.getName().length() + " " + partIdentificacion.getSubmittedFileName().length()));
-                        System.out.println("PartIdentificacion type ".concat(partIdentificacion.getContentType()));
-                        String partName = partIdentificacion.getName();
+                        
+                        Part partIdentificacion = null;
+                        boolean booleanIdentificacion = true;
+                        try {
+                            partIdentificacion = request.getPart("fileIdentificacion");
+                            System.out.println(partIdentificacion.toString());
 
+                        } catch (Exception ex) {
+                            booleanIdentificacion = false;
+                        }
+
+                        //System.out.println("PartIdentificacion ".concat(partIdentificacion.toString()));
+                        //System.out.println("PartIdentificacion lenghtname ".concat(partIdentificacion.getName().length() + " " + partIdentificacion.getSubmittedFileName().length()));
+                        //System.out.println("PartIdentificacion type ".concat(partIdentificacion.getContentType()));
+                        //String partName = partIdentificacion.getName();
+                       
                         InputStream contenidoIdentificacion = null;
+                        String strIdentificacion = null;
                         String tipoIdentficacion = null;
                         int tamanoIdentificacion = 0;
 
-                        if (partIdentificacion.getSubmittedFileName().length() > 0 && (partIdentificacion.getContentType().equals("image/jpeg") || partIdentificacion.getContentType().equals("application/pdf") || partIdentificacion.getContentType().equals("image/png") || partIdentificacion.getContentType().equals(" application/msword") || partIdentificacion.getContentType().equals(" application/msword") || partIdentificacion.getContentType().equals(" application/vnd.ms-excel"))) {
-                            String identificacion = partIdentificacion.getSubmittedFileName();
-                            contenidoIdentificacion = partIdentificacion.getInputStream();
-                            tipoIdentficacion = partIdentificacion.getContentType();
-                            tamanoIdentificacion = (int) partIdentificacion.getSize();
-                            System.out.println("Identificacion ".concat(identificacion).concat(" ").concat(partIdentificacion.getContentType()));
+                        if (booleanIdentificacion) {
+                            if (partIdentificacion.getSubmittedFileName().length() > 0 && (partIdentificacion.getContentType().equals("image/jpeg") || partIdentificacion.getContentType().equals("application/pdf") || partIdentificacion.getContentType().equals("image/png") || partIdentificacion.getContentType().equals(" application/msword") || partIdentificacion.getContentType().equals(" application/msword") || partIdentificacion.getContentType().equals(" application/vnd.ms-excel"))) {
+                                                                
+                                strIdentificacion = partIdentificacion.getSubmittedFileName();
+                                contenidoIdentificacion = partIdentificacion.getInputStream();                                                                        
+                                tipoIdentficacion = partIdentificacion.getContentType();
+                                
+                                tamanoIdentificacion = (int) partIdentificacion.getSize();
+                                System.out.println("Identificacion ".concat(strIdentificacion).concat(" ").concat(partIdentificacion.getContentType()));
+                            }
+
                         }
 
-                        Part partCURP = request.getPart("fileCURP");
+                        Part partCURP = null;
+                        boolean booleanCURP = true;
+
+                        try {
+                            partCURP = request.getPart("fileCURP");
+                            System.out.println("Part CURP ".concat(partCURP.getSubmittedFileName()));
+                        } catch (Exception ex) {
+                            booleanCURP = false;
+                        }
+
                         InputStream contenidoCURP = null;
+                        String strCurp = null;
                         String tipoCurp = null;
                         int tamanoCurp = 0;
 
-                        if (partCURP.getSubmittedFileName().length() > 0 && (partCURP.getContentType().equals("image/jpeg") || partCURP.getContentType().equals("application/pdf") || partCURP.getContentType().equals("image/png") || partCURP.getContentType().equals(" application/msword") || partCURP.getContentType().equals(" application/msword") || partCURP.getContentType().equals(" application/vnd.ms-excel"))) {
-                            String nombre = partCURP.getSubmittedFileName();
-                            contenidoCURP = partCURP.getInputStream();
-                            tipoCurp = partCURP.getContentType();
-                            tamanoCurp = (int) partCURP.getSize();
-                            System.out.println("nombre del curp ".concat(nombre));
+                        if (booleanCURP) {
+                            if (partCURP.getSubmittedFileName().length() > 0 && (partCURP.getContentType().equals("image/jpeg") || partCURP.getContentType().equals("application/pdf") || partCURP.getContentType().equals("image/png") || partCURP.getContentType().equals(" application/msword") || partCURP.getContentType().equals(" application/msword") || partCURP.getContentType().equals(" application/vnd.ms-excel"))) {
+                                strCurp = partCURP.getSubmittedFileName();
+                                contenidoCURP = partCURP.getInputStream();                                                                 
+                                tipoCurp = partCURP.getContentType();
+                                
+                                tamanoCurp = (int) partCURP.getSize();
+                                System.out.println("nombre del curp ".concat(strCurp));
+                            }
                         }
 
-                        Part partComprobanteDomicilio = request.getPart("fileComprobanteDomicilio");
+                        Part partComprobanteDomicilio = null;
+                        boolean booleanComprobante = true;
+                        try {
+                            partComprobanteDomicilio = request.getPart("fileComprobanteDomicilio");
+                        } catch (Exception ex) {
+                            booleanComprobante = false;
+                        }
+
                         InputStream contenidoComprobanteDomicilio = null;
+                        String strComprobante = null;
                         String tipoComprobanteDomicilio = null;
                         int tamanoComprobanteDomicilio = 0;
 
-                        if (partComprobanteDomicilio.getSubmittedFileName().length() > 0 && (partComprobanteDomicilio.getContentType().equals("image/jpeg") || partComprobanteDomicilio.getContentType().equals("application/pdf") || partComprobanteDomicilio.getContentType().equals("image/png") || partComprobanteDomicilio.getContentType().equals(" application/msword") || partComprobanteDomicilio.getContentType().equals(" application/msword") || partComprobanteDomicilio.getContentType().equals(" application/vnd.ms-excel"))) {
-                            String comprobanteDomicilio = partComprobanteDomicilio.getSubmittedFileName();
-                            contenidoComprobanteDomicilio = partComprobanteDomicilio.getInputStream();
-                            tipoComprobanteDomicilio = partComprobanteDomicilio.getContentType();
-                            tamanoComprobanteDomicilio = (int) partComprobanteDomicilio.getSize();
-                            System.out.println("comprobante ".concat(comprobanteDomicilio));
+                        if (booleanComprobante) {
+                            if (partComprobanteDomicilio.getSubmittedFileName().length() > 0 && (partComprobanteDomicilio.getContentType().equals("image/jpeg") || partComprobanteDomicilio.getContentType().equals("application/pdf") || partComprobanteDomicilio.getContentType().equals("image/png") || partComprobanteDomicilio.getContentType().equals(" application/msword") || partComprobanteDomicilio.getContentType().equals(" application/msword") || partComprobanteDomicilio.getContentType().equals(" application/vnd.ms-excel"))) {
+                                
+                                strComprobante = partComprobanteDomicilio.getSubmittedFileName();                                                                
+                                tipoComprobanteDomicilio = partComprobanteDomicilio.getContentType();                                
+                                contenidoComprobanteDomicilio = partComprobanteDomicilio.getInputStream();                                
+                                tamanoComprobanteDomicilio = (int) partComprobanteDomicilio.getSize();
+                                System.out.println("comprobante ".concat(strComprobante));
+                            }
                         }
 
-                        Part partMastoPrevia = request.getPart("fileEstudioPrevioMasto");
+                        Part partMastoPrevia = null;
+                        boolean booleanMastoPrevia = true;
+
+                        try {
+                            partMastoPrevia = request.getPart("fileEstudioPrevioMasto");
+                        } catch (Exception ex) {
+                            booleanMastoPrevia = false;
+                        }
+
                         InputStream contenidoMastoPrevia = null;
+                        String strMastoPrevia = null;
                         String tipoMastoPrevia = null;
                         int tamanoMastoPrevia = 0;
 
-                        if (partMastoPrevia.getSubmittedFileName().length() > 0 && (partMastoPrevia.getContentType().equals("image/jpeg") || partMastoPrevia.getContentType().equals("application/pdf") || partMastoPrevia.getContentType().equals("image/png") || partMastoPrevia.getContentType().equals(" application/msword") || partMastoPrevia.getContentType().equals(" application/msword") || partMastoPrevia.getContentType().equals(" application/vnd.ms-excel"))) {
-                            String stringPartMastoPrevia = partMastoPrevia.getSubmittedFileName();
-                            contenidoMastoPrevia = partMastoPrevia.getInputStream();
-                            tipoMastoPrevia = partMastoPrevia.getContentType();
-                            tamanoMastoPrevia = (int) partMastoPrevia.getSize();
-                            System.out.println("Masto ".concat(stringPartMastoPrevia));
+                        if (booleanMastoPrevia) {
+
+                            if (partMastoPrevia.getSubmittedFileName().length() > 0 && (partMastoPrevia.getContentType().equals("image/jpeg") || partMastoPrevia.getContentType().equals("application/pdf") || partMastoPrevia.getContentType().equals("image/png") || partMastoPrevia.getContentType().equals(" application/msword") || partMastoPrevia.getContentType().equals(" application/msword") || partMastoPrevia.getContentType().equals(" application/vnd.ms-excel"))) {
+                                
+                                strMastoPrevia = partMastoPrevia.getSubmittedFileName();                                                                                                                                
+                                tipoMastoPrevia = partMastoPrevia.getContentType();
+                                contenidoMastoPrevia = partMastoPrevia.getInputStream();                                
+                                tamanoMastoPrevia = (int) partMastoPrevia.getSize();
+                                System.out.println("Masto ".concat(strMastoPrevia));
+                            }
                         }
 
-                        Part partUltrasonidoPrevio = request.getPart("fileEstudioPrevioUsg");
+                        Part partUltrasonidoPrevio = null;
+                        boolean booleanUltraSonidoPrevio = true;
+                        partUltrasonidoPrevio = request.getPart("fileEstudioPrevioUsg");
                         InputStream contenidoPartUltrasonidoPrevio = null;
+                        String strUltrasonido = null;
                         String tipoUltrasonido = null;
                         int tamanoUltrasonido = 0;
 
-                        if (partUltrasonidoPrevio.getSubmittedFileName().length() > 0 && (partUltrasonidoPrevio.getContentType().equals("image/jpeg") || partUltrasonidoPrevio.getContentType().equals("application/pdf") || partUltrasonidoPrevio.getContentType().equals("image/png") || partUltrasonidoPrevio.getContentType().equals(" application/msword") || partUltrasonidoPrevio.getContentType().equals(" application/msword") || partUltrasonidoPrevio.getContentType().equals(" application/vnd.ms-excel"))) {
-                            String stringpartUltrasonidoPrevio = partUltrasonidoPrevio.getSubmittedFileName();
-                            contenidoPartUltrasonidoPrevio = partUltrasonidoPrevio.getInputStream();
-                            tipoUltrasonido = partUltrasonidoPrevio.getContentType();
-                            tamanoUltrasonido = (int) partUltrasonidoPrevio.getSize();
-                            System.out.println("USG ".concat(stringpartUltrasonidoPrevio));
-                        }
+                        if (booleanUltraSonidoPrevio) {
 
-                        Part partEstudioBiopsia = request.getPart("fileEstudioBiopsia");
+                            if (partUltrasonidoPrevio.getSubmittedFileName().length() > 0 && (partUltrasonidoPrevio.getContentType().equals("image/jpeg") || partUltrasonidoPrevio.getContentType().equals("application/pdf") || partUltrasonidoPrevio.getContentType().equals("image/png") || partUltrasonidoPrevio.getContentType().equals(" application/msword") || partUltrasonidoPrevio.getContentType().equals(" application/msword") || partUltrasonidoPrevio.getContentType().equals(" application/vnd.ms-excel"))) {
+                                
+                                strUltrasonido = partUltrasonidoPrevio.getSubmittedFileName();                                                                                                                               
+                                contenidoPartUltrasonidoPrevio = partUltrasonidoPrevio.getInputStream();
+                                tipoUltrasonido = partUltrasonidoPrevio.getContentType();
+                                tamanoUltrasonido = (int) partUltrasonidoPrevio.getSize();
+                                System.out.println("USG ".concat(strUltrasonido));                                
+                            }
+
+                        }
+                        
+                        Part partEstudioBiopsia = null;
+                        boolean booleanEstudioBiopsia = true;
+                        partEstudioBiopsia = request.getPart("fileEstudioBiopsia");
                         InputStream contenidoEstudioBiopsia = null;
+                        String strBiopsia = null;
                         String tipoBiopsia = null;
                         int tamanoBiopsia = 0;
 
-                        if (partEstudioBiopsia.getSubmittedFileName().length() > 0 && (partEstudioBiopsia.getContentType().equals("image/jpeg") || partEstudioBiopsia.getContentType().equals("application/pdf") || partEstudioBiopsia.getContentType().equals("image/png") || partEstudioBiopsia.getContentType().equals(" application/msword") || partEstudioBiopsia.getContentType().equals(" application/msword") || partEstudioBiopsia.getContentType().equals(" application/vnd.ms-excel"))) {
-                            String stringPartEstudioBiopsia = partEstudioBiopsia.getSubmittedFileName();
-                            contenidoEstudioBiopsia = partEstudioBiopsia.getInputStream();
-                            tipoBiopsia = partEstudioBiopsia.getContentType();
-                            tamanoBiopsia = (int) partEstudioBiopsia.getSize();
-                            System.out.println("Biopsia ".concat(stringPartEstudioBiopsia));
+                        if (booleanEstudioBiopsia) {
+
+                            if (partEstudioBiopsia.getSubmittedFileName().length() > 0 && (partEstudioBiopsia.getContentType().equals("image/jpeg") || partEstudioBiopsia.getContentType().equals("application/pdf") || partEstudioBiopsia.getContentType().equals("image/png") || partEstudioBiopsia.getContentType().equals(" application/msword") || partEstudioBiopsia.getContentType().equals(" application/msword") || partEstudioBiopsia.getContentType().equals(" application/vnd.ms-excel"))) {
+                                strBiopsia = partEstudioBiopsia.getSubmittedFileName();
+                                                                                                                                
+                                contenidoEstudioBiopsia = partEstudioBiopsia.getInputStream();
+                                tipoBiopsia = partEstudioBiopsia.getContentType();
+                                tamanoBiopsia = (int) partEstudioBiopsia.getSize();
+                                System.out.println("Biopsia ".concat(strBiopsia));
+                            }
                         }
 
-                        Part partReferenciaArchivo = request.getPart("referenciaArchivo");
+                        Part partReferenciaArchivo = null;
+                        boolean booleanReferenciaArchivo = true;
+                        partReferenciaArchivo = request.getPart("referenciaArchivo");
                         InputStream contenidoReferenciaArchivo = null;
+                        String strReferencia = null;
                         String tipoArchivo = null;
                         int tamanoArchivo = 0;
 
                         if (motivoConsulta.equals("1") || motivoConsulta.equals("4")) {
+                            if (booleanReferenciaArchivo == true) {
 
-                            if (partReferenciaArchivo.getSubmittedFileName().length() > 0 && (partReferenciaArchivo.getContentType().equals("image/jpeg") || partReferenciaArchivo.getContentType().equals("application/pdf") || partReferenciaArchivo.getContentType().equals("image/png") || partReferenciaArchivo.getContentType().equals(" application/msword") || partReferenciaArchivo.getContentType().equals(" application/msword") || partReferenciaArchivo.getContentType().equals(" application/vnd.ms-excel"))) {
-                                String stringReferenciaArchivo = partReferenciaArchivo.getSubmittedFileName();
-                                contenidoReferenciaArchivo = partReferenciaArchivo.getInputStream();
-                                tipoArchivo = partReferenciaArchivo.getContentType();
-                                tamanoArchivo = (int) partReferenciaArchivo.getSize();
-                                System.out.println("Referencia médico ".concat(stringReferenciaArchivo));
+                                if (partReferenciaArchivo.getSubmittedFileName().length() > 0 && (partReferenciaArchivo.getContentType().equals("image/jpeg") || partReferenciaArchivo.getContentType().equals("application/pdf") || partReferenciaArchivo.getContentType().equals("image/png") || partReferenciaArchivo.getContentType().equals(" application/msword") || partReferenciaArchivo.getContentType().equals(" application/msword") || partReferenciaArchivo.getContentType().equals(" application/vnd.ms-excel"))) {
+                                    
+                                    strReferencia = partReferenciaArchivo.getSubmittedFileName();                                                                                                                                                                            
+                                    contenidoReferenciaArchivo = partReferenciaArchivo.getInputStream();
+                                    tipoArchivo = partReferenciaArchivo.getContentType();
+                                    tamanoArchivo = (int) partReferenciaArchivo.getSize();
+                                    System.out.println("Referencia médico ".concat(strReferencia));
+                                    
+                                }
                             }
 
                         }
+                        
                         DocumentoInicial docIdentificacion = null;
                         if (contenidoIdentificacion != null) {
 
@@ -1356,6 +1520,7 @@ public class PotencialController extends HttpServlet {
                             docIdentificacion.setIdTipoDocumento(idIdentificacion);
                             docIdentificacion.setTipo(tipoIdentficacion);
                             docIdentificacion.setTamano(tamanoIdentificacion);
+                            docIdentificacion.setNombre(strIdentificacion);
                             docIdentificacion.setEstatus(1);
                         }
 
@@ -1367,6 +1532,7 @@ public class PotencialController extends HttpServlet {
                             docCURP.setIdTipoDocumento(idCURP);
                             docCURP.setTipo(tipoCurp);
                             docCURP.setTamano(tamanoCurp);
+                            docCURP.setNombre(strCurp);
                             docCURP.setEstatus(1);
                         }
 
@@ -1379,6 +1545,7 @@ public class PotencialController extends HttpServlet {
                             docComprobanteDomicilio.setIdTipoDocumento(idComprobanteDomicilio);
                             docComprobanteDomicilio.setTipo(tipoComprobanteDomicilio);
                             docComprobanteDomicilio.setTamano(tamanoComprobanteDomicilio);
+                            docComprobanteDomicilio.setNombre(strComprobante);
                             docComprobanteDomicilio.setEstatus(1);
                         }
 
@@ -1387,9 +1554,10 @@ public class PotencialController extends HttpServlet {
                             docMasto = new DocumentoInicial();
                             docMasto.setIdPaciente(idPacientePotencial);
                             docMasto.setArchivo(contenidoMastoPrevia);
-                            docMasto.setIdTipoDocumento(idEstudioPrevio);
+                            docMasto.setIdTipoDocumento(idMastografia);
                             docMasto.setTipo(tipoMastoPrevia);
                             docMasto.setTamano(tamanoMastoPrevia);
+                            docMasto.setNombre(strMastoPrevia);
                             docMasto.setEstatus(1);
                         }
 
@@ -1401,6 +1569,7 @@ public class PotencialController extends HttpServlet {
                             docUltraSonido.setIdTipoDocumento(idUltrasonido);
                             docUltraSonido.setTipo(tipoUltrasonido);
                             docUltraSonido.setTamano(tamanoUltrasonido);
+                            docUltraSonido.setNombre(strUltrasonido);
                             docUltraSonido.setEstatus(1);
                         }
 
@@ -1412,6 +1581,7 @@ public class PotencialController extends HttpServlet {
                             docBiopsia.setIdTipoDocumento(idBiopsiaPrevia);
                             docBiopsia.setTipo(tipoBiopsia);
                             docBiopsia.setTamano(tamanoBiopsia);
+                            docBiopsia.setNombre(strBiopsia);
                             docBiopsia.setEstatus(1);
                         }
 
@@ -1452,6 +1622,17 @@ public class PotencialController extends HttpServlet {
                             idBiopsiaPreviaDB = documentoInicialBiopia.agregarDocumentoInicialPreconsulta(docBiopsia);
                         }
 
+                        //Se utilizará para guardar la fecha de solicitud de preconsulta
+                        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                        
+                        /* DATOS QUE NO APLICAN PARA ESTE CASE
+                        Cita citaPreconsulta = new Cita();
+                        citaPreconsulta.setIdTipoCita(idPreconsulta);
+                        citaPreconsulta.setIdPaciente(idPacientePotencial);
+                        citaPreconsulta.setIdEstadoCita(idPendiente);
+                        citaPreconsulta.setIdImportanciaCita(idImportante);
+                        citaPreconsulta.setIdMotivoConsulta(Integer.parseInt(motivoConsulta));
+                        */
                         switch (motivoConsulta) {
                             case "1": {
 
@@ -1463,6 +1644,7 @@ public class PotencialController extends HttpServlet {
                                     docReferencia.setIdTipoDocumento(idReferenciaMedico);
                                     docReferencia.setTipo(tipoArchivo);
                                     docReferencia.setTamano(tamanoArchivo);
+                                    docReferencia.setNombre(strReferencia);
                                     docReferencia.setEstatus(1);
                                 }
 
@@ -1474,6 +1656,12 @@ public class PotencialController extends HttpServlet {
                             }
                             case "4": {
 
+                                /* DATOS QUE NO APLICAN PARA ESTE CASE
+                                String otroHospital = request.getParameter("otroHospital");
+                                if (otroHospital.length() > 0) {
+                                    citaPreconsulta.setHospitalProcedencia(otroHospital);
+                                }*/
+
                                 DocumentoInicial docReferencia = null;
                                 if (contenidoReferenciaArchivo != null) {
                                     docReferencia = new DocumentoInicial();
@@ -1482,6 +1670,7 @@ public class PotencialController extends HttpServlet {
                                     docReferencia.setIdTipoDocumento(idReferenciaMedico);
                                     docReferencia.setTipo(tipoArchivo);
                                     docReferencia.setTamano(tamanoArchivo);
+                                    docReferencia.setNombre(strReferencia);
                                     docReferencia.setEstatus(1);
                                 }
 
@@ -1498,18 +1687,40 @@ public class PotencialController extends HttpServlet {
                             }
                         }
 
+                        /*DEBUG*/
+                        //citaPreconsulta.setFechaSolicitud((timestamp).toString());
+
+                        /*
+                        CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
+                        int idCitaPreconsulta = citaServicioImpl.agregarPreconsulta(citaPreconsulta);
+                        */
+                        /*
                         System.out.println("Identificacion ".concat(String.valueOf(idIdentificacionBD)));
                         System.out.println("CURP ".concat(String.valueOf(idCURPDB)));
                         System.out.println("Comprobante ".concat(String.valueOf(idComprobanteDB)));
                         System.out.println("Masto ".concat(String.valueOf(idMastoDB)));
                         System.out.println("Ultrasonido ".concat(String.valueOf(idUltrasonidoDB)));
                         System.out.println("Biopsia ".concat(String.valueOf(idBiopsiaPreviaDB)));
+                        System.out.println("Preconsulta ".concat(String.valueOf(idCitaPreconsulta)));
+                         */
+                        /*
+                        if ("5".equals(motivoConsulta)) {
+                            System.out.println("Otro motivo");
+                            String otroMotivo = request.getParameter("otroMotivo");
 
+                            OtroMotivo motivo = new OtroMotivo();
+                            motivo.setIdCita(idCitaPreconsulta);
+                            motivo.setNombre(otroMotivo);
+                            motivo.setEstatus(1);
+
+                            OtroMotivoServicioImpl otroMotivoServicioImpl = new OtroMotivoServicioImpl();
+                            otroMotivoServicioImpl.agregarOtroMotivo(motivo);
+                        }
+                        */
                         request.getRequestDispatcher("WEB/INF/potencial/index.jsp").forward(request, response);
                     }
                 }
                 break;
-
             }
 
             case "consultarEstadoPaciente": {
