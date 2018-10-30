@@ -1,3 +1,5 @@
+alert("Hello! I am an alert box!");
+
 export const validation = {
 
     //**** LOGIN ****/

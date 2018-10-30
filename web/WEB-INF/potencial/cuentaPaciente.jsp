@@ -291,7 +291,7 @@
 
     </div>
 
-<script src="js/validacionesCuentaPotencial.js" type="module"></script>
+<script src="js/validacionesCuentaPotencial.js" type="application/javascript"></script>
 </body>
 
 </html>

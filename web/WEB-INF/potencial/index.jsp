@@ -32,7 +32,7 @@
 
 
         <link rel="stylesheet" href="css/stylePotencial.css">
-        <script src="js/appPotencial.js" type="module"></script>
+        <script src="js/appPotencial.js"></script>
         <script src="js/ajaxPotencial.js"></script>
 
     </head>
@@ -1435,7 +1435,7 @@
 
             </div>
         </div>
-        <script src="js/validacionesPotencial.js" type="module"></script>
+        <script src="js/validacionesPotencial.js" type="application/javascript"></script>
     </body>
 
 </html>

@@ -296,7 +296,7 @@
                                 </div>
                                 </div>
                                 </div>
-                                <script type="module" src="../js/validaciones.js"></script>
+                                <!--<script type="application/javascript" src="js/validaciones.js"></script> -->
                                 </body>
 
                                 </html>

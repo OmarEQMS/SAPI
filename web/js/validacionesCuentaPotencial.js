@@ -4,11 +4,9 @@
  * and open the template in the editor.
  */
 
-import {validation} from './validaciones.js';
-
 //1.- Correo
 $('#myEmail1').on('change', function () {
-    if (validation.isValidEmail($('#myEmail1'))) {
+    if (isValidEmail($('#myEmail1'))) {
         $('#error-correo').hide();
         console.log('saludos');
     } else {
@@ -19,7 +17,7 @@ $('#myEmail1').on('change', function () {
 
 //2.- Telefono
 $('#telephoneNum').on('change', function () {
-    if (validation.isValidPhoneNumber($('#telephoneNum'))) {
+    if (isValidPhoneNumber($('#telephoneNum'))) {
         $('#error-tel').hide();
     } else {
         $('#error-tel').show();
@@ -28,7 +26,7 @@ $('#telephoneNum').on('change', function () {
 
 //3.- Contraseña
 $('#password').on('change', function () {
-    if (validation.isValidBloodType($('#password'))) {
+    if (isValidBloodType($('#password'))) {
         $('#error-contraseña').hide();
     } else {
         $('#error-contraseña').show();
@@ -42,6 +40,8 @@ $('#password2').on('change', function () {
 
 });
 
+
+//Métodos de las validaciones
 function areEqualPasswords(pass1, pass2) {
 
     if (pass1.val() != pass2.val()) {
@@ -62,3 +62,67 @@ function areEqualPasswords(pass1, pass2) {
 
     return true;
 }
+
+function isValidEmail(input) {
+
+    var m = input.val();
+
+    ////Expresion regular por el estandard: RFC 5322
+    var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+}
+
+function isValidPhoneNumber(input) {
+
+    var m = input.val();
+
+    var expreg = /^[0-9]{10,10}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+function isValidBloodType(input) {
+
+    var m = input.val();
+
+    var expreg = /^(A|B|AB|O)[-+]$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+}
+           

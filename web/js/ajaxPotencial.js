@@ -3,38 +3,7 @@
 $(document).ready(function () {
 
     console.log("Se Actualizó!");
-    var consultarDocumentosPreconsulta = new FormData;
-    consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
 
-    console.log("Solicitar DOCUMENTOS de Preconsulta");
-    $.ajax({
-        url: "PotencialController",
-        method: "POST",
-        data: consultarDocumentosPreconsulta,
-        enctype: "multipart/form-data",
-        processData: false,
-        contentType: false,
-        success: function (response) {
-
-            if (response != null) {
-
-
-                var data = JSON.parse(response);
-
-                console.log(data);
-
-
-
-            } else {
-                console.log("Algo pasó" + response);
-            }
-        },
-        error: function () {
-            console.log("error" + xhr.statusText);
-            alert("No enontre el controlador" + xhr.statusText);
-        }
-
-    });
     var consultarEstadoPreconsulta = new FormData;
     consultarEstadoPreconsulta.append("key", "consultarEstadoPreconsulta");
 
@@ -320,6 +289,10 @@ $(document).ready(function () {
          + " identificacion: " + identificacionOficial.name + " comprobante: " + comprobanteDomicilio.name + " estudioMasto: " + fileEstudioPrevioMasto.name
          +" estudioUsg: " + fileEstudioPrevioUsg.name + " biopsia: " + estudioBiopsia.name);
          */
+        
+        
+        //AJAX PARA ENVIAR SOLICITUD
+        /*
         $.ajax({
             url: "PotencialController",
             method: "POST",
@@ -337,7 +310,7 @@ $(document).ready(function () {
             error: function () {
                 console.log("error" + xhr.statusText);
                 alert("No enontre el controlador" + xhr.statusText);
-            }
+            }*/
 
 
         });
@@ -413,22 +386,66 @@ $(document).ready(function () {
      });*/
     $('#irACitaPreconsulta').on('click', function () {
         console.log("Presionó CitaPreConsulta")
-        $.post("SAPI", {
-            file: "potencial/index.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log(response);
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
+        var consultarDocumentosPreconsulta = new FormData;
+        consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
+
+        console.log("Solicitar DOCUMENTOS de Preconsulta");
+        $.ajax({
+            url: "PotencialController",
+            method: "POST",
+            data: consultarDocumentosPreconsulta,
+            enctype: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            success: function (response) {
+
+                if (response != null) {
+                    var data = JSON.parse(response);
+                    console.log(data);
+
+                    $.post("SAPI", {
+                        file: "potencial/index.jsp"
+                    },
+                            function (response, status, xhr) {
+                                console.log(response);
+                                if (status == "success") {
+                                    if (response == "error") {
+                                        $("#msj-error").show();
+                                    } else {
+                                        document.open("text/html", "replace");
+                                        document.write(response);
+                                        document.close();
+                                    }
+                                }
+                            }
+                    );
+
+
+                } else {
+                    console.log("Algo pasó" + response);
                 }
-        );
+            },
+            error: function () {
+                console.log("error" + xhr.statusText);
+                alert("No enontre el controlador" + xhr.statusText);
+            }
+
+        });
+    });
+
+    $('#enviar').on('click', function () {
+        $.ajax({
+            url: "PotencialController",
+            method: "POST",
+            data: consultarDocumentosPreconsulta,
+            enctype: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                var data = JSON.parse(response);
+                console.log(data);
+            }
+        });
     });
 
     $('#irAMisCitas').on('click', function () {

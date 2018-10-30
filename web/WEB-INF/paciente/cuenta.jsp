@@ -387,7 +387,7 @@
 
     </div>
 
-    <script src="js/validacionesPaciente.js" type="module"></script>
+    <script src="js/validacionesPaciente.js" type="application/javascript"></script>
     
 </body>
 
