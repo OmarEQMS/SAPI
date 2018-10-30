@@ -179,22 +179,36 @@
                                   </tr>
                                 -->
                             <input type="hidden" value="" id="idTratamientoPaciente">
-                            <c:forEach items="${UnionTratamientosPaciente}" var="unionTratamientoPaciente"> 
-
-
-                                <tr>
+                          
+                            
+                            <c:forEach  items="${UnionTratamientosPaciente}" var="unionTratamientoPaciente">
+                            <tr>
                                 <input type="hidden" value="${unionTratamientoPaciente.nombre}" id="nombre-${unionTratamientoPaciente.idTratamientoPaciente}">
                                 <input type="hidden" value="${unionTratamientoPaciente.fechaInicio}" id="fechaInicio-${unionTratamientoPaciente.idTratamientoPaciente}">
-                                <td id="nombre-${unionTratamientoPaciente.idTratamientoPaciente}" value="${unionTratamientoPaciente.nombre}" > <c:out value="${unionTratamientoPaciente.nombre}"/> </td>
-                                <td id="fechaInicio-${unionTratamientoPaciente.idTratamientoPaciente}" value="${unionTratamientoPaciente.fechaInicio}"> <c:out value="${unionTratamientoPaciente.fechaInicio}"/> </td>
+                                <input type="hidden" value="${unionTratamiento.idTratamientoPaciente}" id="boton-${unionTratamiento.idTratamientoPaciente}">
+                                 <td id="nombre-${unionTratamientoPaciente.idTratamientoPaciente}" value="${unionTratamientoPaciente.nombre}" > <c:out value="${unionTratamientoPaciente.nombre}"/> </td>
+                                <td id="fechaInicio-${unionTratamientoPaciente.idTratamientoPaciente}" > <c:out value="${unionTratamientoPaciente.fechaInicio}"/> </td>
                                 <td id="fecha-${unionTratamientoPaciente.idTratamientoPaciente}"> <c:out value="${unionTratamientoPaciente.fechaFin}"/> </td>
-                                <td> 
+                                <c:choose>
+                                <c:when test="${unionTratamientoPaciente.terminado}">
+                                    <td> 
+                                    <button class="btn btn-secondary terminarTratamiento" id="modal-${unionTratamientoPaciente.idTratamientoPaciente}" data-id="${unionTratamientoPaciente.idTratamientoPaciente}"
+                                            data-toggle="modal"
+                                            data-target="#modalEditarTerminado" disabled="disabled"><i class="fas fa-edit" ></i></button></td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td> 
                                     <button class="btn btn-primary terminarTratamiento" id="modal-${unionTratamientoPaciente.idTratamientoPaciente}" data-id="${unionTratamientoPaciente.idTratamientoPaciente}"
                                             data-toggle="modal"
-                                            data-target="#modalEditarTerminado"><i class="fas fa-edit"></i></button></td>
-
-                            </c:forEach> 
-
+                                            data-target="#modalEditarTerminado" ><i class="fas fa-edit" ></i></button></td>
+                                    
+                                </c:otherwise>
+                                
+                            </c:choose>
+                                 </tr>
+                            </c:forEach>
+                              <input type="hidden" id="botonHidden">
+                             
                             </tbody>
                         </table>
                     </div>
@@ -232,7 +246,7 @@
                                         <input placeholder="Introduce la fecha de inicio" class="selectStyle form-control textbox-n"
                                                type="text" onfocus="(this.type = 'date')" id="fechaInicioTratamiento">
                                         
-                                               <span class="text-danger error-fecha" id="error-fecha">Fecha incorrecta</span>
+                                               <span class="text-danger error-fecha" id="error-fechaInicio">Fecha incorrecta</span>
                                     </div>
                                 </div>
 

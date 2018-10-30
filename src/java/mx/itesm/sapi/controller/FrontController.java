@@ -103,7 +103,9 @@ public class FrontController extends HttpServlet {
 
                                     PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                     Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
-
+                                    
+                                    
+                                    
                                     sesion.setAttribute("prz", paciente.getPrz());
                                     sesion.setAttribute("correo", persona.getCorreo());
                                     sesion.setAttribute("telefono", persona.getTelefono());
@@ -213,6 +215,10 @@ public class FrontController extends HttpServlet {
 
                                     List<UnionTratamientoPaciente> unionTratamientosPaciente = unionTratamientoPacienteServiceImpl.mostrarUnionTratamientoPaciente(idPaciente);
 
+                                    for(int i=0; i<unionTratamientosPaciente.size(); i++){
+                                        unionTratamientosPaciente.get(i).setTerminado();                                        
+                                    }
+                                    
                                     PicServicioImpl picServicioImpl = new PicServicioImpl();
                                     Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
 

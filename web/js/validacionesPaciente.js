@@ -12,7 +12,8 @@ $(document).ready(function () {
 
      $('.error-correo').hide();
      $('#error-fecha').hide();
-      $('#error-fechaFin').hide();
+     $('#error-fechaFin').hide();
+     $('#error-fechaInicio').hide();
         
     //1.- Correo
     $('#correo').on('change', function(){
@@ -92,16 +93,19 @@ $(document).ready(function () {
 
     //1.- Fecha inicio
     $('#fechaInicioTratamiento').on('change', function(){
+        
+        
         if(validation.isValidDate($('#fechaInicioTratamiento'))){
-            $('#error-fecha').hide();
+            $('#error-fechaInicio').hide();
         }else{
-            $('#error-fecha').show();
+            $('#error-fechaInicio').show();
         }
     }); 
     
         //1.- Fecha fin
     $('#fechaFinTratamiento').on('change', function(){
-        if(validation.isValidDate2($('#fechaFinTratamiento'))){
+        alert($("#fechaInicio-"+$("#botonHidden").val()).val());
+        if(validation.isValidDate2($('#fechaFinTratamiento'), $("#fechaInicio-"+$("#botonHidden").val()).val())){
             $('#error-fechaFin').hide();
         }else{
             $('#error-fechaFin').show();

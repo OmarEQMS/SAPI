@@ -18,6 +18,7 @@ public class UnionTratamientoPaciente {
     private String nombre;
     private Date fechaInicio;
     private Date fechaFin;
+    private boolean terminado;
     
     
     public UnionTratamientoPaciente(){}
@@ -73,6 +74,15 @@ public class UnionTratamientoPaciente {
 
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
+    }
+    
+    public void setTerminado(){
+        
+        terminado=(fechaFin!=null);
+    }
+    
+    public boolean getTerminado(){
+        return terminado;
     }
     
     

@@ -407,6 +407,11 @@ $(".terminarTratamiento").on('click', function(){
                     //actualizar la tabla
                     $('#fecha-' + $('#idTratamientoPaciente').val()).html($('#fechaFinTratamiento').val());
                      $("#fechaFinTratamiento").val('');
+                     
+                     $("#modal-"+$("#botonHidden").val()).attr("disabled", "disabled").removeClass("btn-primary").addClass("btn-secondary");
+                     
+                     
+                     
                 })
                 .fail(function (xhr, textStatus, errorThrown) {
                     console.log(xhr.responseText);
@@ -416,6 +421,8 @@ $(".terminarTratamiento").on('click', function(){
     $('body').on('click', '.terminarTratamiento', function () {
 
         $('#idTratamientoPaciente').val($(this).data('id'));
+        
+        $("#botonHidden").val($(this).data('id'));
         
        alert($('#idTratamientoPaciente').val());
         
