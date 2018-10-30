@@ -9,18 +9,37 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Base64;
+import java.util.Base64;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import mx.itesm.sapi.bean.diagnostico.EtapaClinica;
+import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
+import mx.itesm.sapi.bean.gestionTratamiento.Tratamiento;
+import mx.itesm.sapi.bean.gestionTratamiento.TratamientoPaciente;
+import mx.itesm.sapi.bean.gestionTratamiento.UnionTratamientoPaciente;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
+import mx.itesm.sapi.bean.persona.Pic;
+import mx.itesm.sapi.bean.persona.TipoSangre;
+import mx.itesm.sapi.service.diagnostico.EtapaClinicaServiceImpl;
+import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
+import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.TratamientoPacienteServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.TratamientoServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.UnionTratamientoPacienteServiceImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
+import org.apache.commons.io.IOUtils;
+import mx.itesm.sapi.service.persona.PicServicioImpl;
+import mx.itesm.sapi.service.persona.TipoSangreServicioImpl;
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -66,7 +85,6 @@ public class FrontController extends HttpServlet {
                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
                     return;
                 } else { //Si tiene sesion iniciada
-
                     //Lo redireciono a su rol
                     int keyRol = (int) sesion.getAttribute("idRol");
                     switch (keyRol) {
@@ -142,7 +160,6 @@ public class FrontController extends HttpServlet {
                             break;
                         }
                         case 2: {
-                            
                             break;
                         }
                         case 3: {
@@ -152,7 +169,7 @@ public class FrontController extends HttpServlet {
                             break;
                         }
 
-                        //PACIENTE EN TRATAMIENTO
+                        /*PACIENTE EN TRATAMIENTO*/
                         case 5: {
 
                             String keyRuta = request.getParameter("file");
@@ -166,6 +183,24 @@ public class FrontController extends HttpServlet {
                                     PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                     Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
 
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    RegistroDiagnosticoServiceImpl registroDiagnosticoServicio = new RegistroDiagnosticoServiceImpl();
+                                    RegistroDiagnostico registro = registroDiagnosticoServicio.mostrarRegistroDiagnosticoPaciente(paciente.getIdPaciente());
+
+                                    System.out.println("esto es lo que hay en registro");
+
+                                    System.out.println(registro.getIdEtapaClinica());
+                                    System.out.println(registro.getIdPaciente());
+                                    TipoSangreServicioImpl tipoSangreServicio = new TipoSangreServicioImpl();
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                    sesion.setAttribute("base64Img", base64String);
+
                                     sesion.setAttribute("prz", paciente.getPrz());
                                     sesion.setAttribute("correo", persona.getCorreo());
                                     sesion.setAttribute("telefono", persona.getTelefono());
@@ -177,12 +212,72 @@ public class FrontController extends HttpServlet {
                                     request.setAttribute("correo", sesion.getAttribute("correo"));
                                     request.setAttribute("usuario", sesion.getAttribute("usuario"));
                                     request.setAttribute("prz", sesion.getAttribute("prz"));
+                                    sesion.setAttribute("tipoSangre", persona.getIdTipoSangre());
+                                    sesion.setAttribute("etapaCli", registro.getIdEtapaClinica());
+
+                                    sesion.setAttribute("expediente", paciente.getExpediente());
+
+                                    EtapaClinicaServiceImpl etapaServicio = new EtapaClinicaServiceImpl();
+                                    TipoTratamientoServiceImpl tratamientoServicio = new TipoTratamientoServiceImpl();
+
+                                    List<EtapaClinica> etapas = etapaServicio.mostrarEtapaClinica();
+                                    List<TipoTratamiento> tratamientos = tratamientoServicio.mostrarTipoTratamiento();
+
+                                    List<TipoSangre> tipoSangre = tipoSangreServicio.mostrarTipoDeSangre();
+
+                                    request.setAttribute("tipoSangre", tipoSangre);
+                                    request.setAttribute("etapas", etapas);
+                                    request.setAttribute("tratamientos", tratamientos);
 
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al login
                                     break;
-                                }
-                            }
 
+                                }
+
+                                case "paciente/misTratamientos.jsp": {
+
+                                    PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
+                                    Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
+
+                                    TipoTratamientoServiceImpl tratamientoServicioImpl = new TipoTratamientoServiceImpl();
+
+                                    List<TipoTratamiento> tratamientos = tratamientoServicioImpl.mostrarTipoTratamiento();
+
+                                    UnionTratamientoPacienteServiceImpl unionTratamientoPacienteServiceImpl = new UnionTratamientoPacienteServiceImpl();
+
+                                    int idPaciente = paciente.getIdPaciente();
+
+                                    List<UnionTratamientoPaciente> unionTratamientosPaciente = unionTratamientoPacienteServiceImpl.mostrarUnionTratamientoPaciente(idPaciente);
+
+                                    for(int i=0; i<unionTratamientosPaciente.size(); i++){
+                                        unionTratamientosPaciente.get(i).setTerminado();                                        
+                                    }
+                                    
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                    sesion.setAttribute("base64Img", base64String);
+
+                                    sesion.setAttribute("idPaciente", paciente.getIdPaciente());
+                                    request.setAttribute("tipoTratamiento", tratamientos);
+                                    request.setAttribute("UnionTratamientosPaciente", unionTratamientosPaciente);
+
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    break;
+                                }
+                                
+
+                                case "paciente/index.jsp": {
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    break;
+                                }
+
+
+                            }
                             break;
                         }
 
@@ -193,11 +288,11 @@ public class FrontController extends HttpServlet {
                 // request.getRequestDispatcher("WEB-INF/" + file).forward(request, response);
                 // return;
             } else {
-
-                System.out.println("filename else ".concat(file));
-
-                request.getRequestDispatcher("/".concat(file)).forward(request, response);
-                return;
+                        
+            System.out.println("filename else ".concat(file));
+            
+            request.getRequestDispatcher("/".concat(file)).forward(request, response);
+            return;
 
             }
         }

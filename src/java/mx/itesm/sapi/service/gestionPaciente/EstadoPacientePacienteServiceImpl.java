@@ -27,7 +27,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarEstadoPacientePaciente";
+        String stProcedure = "CALL mostrarEstadoPacientePaciente(?)";
         EstadoPacientePaciente estadoPacientePaciente = null;
      
         try {
@@ -63,7 +63,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarEstadoPacientePaciente";
+        String stProcedure = "CALL mostrarEstadoPacientePaciente()";
         List<EstadoPacientePaciente> listaestadoPacientePacientes = null;
         EstadoPacientePaciente estadoPacientePaciente;
 
@@ -106,19 +106,20 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarEstadoPacientePaciente(?,?,?,?,?,?)";
+        
+        String stProcedure = "CALL agregarEstadoPacientePaciente(?,?, ?, ?, ?)";
+
         int id = -1;
         
 	try{
             conn  = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setInt(1, estadoPacientePaciente.getIdEstadoPaciente());
+            cstmt.setInt(1, 1);                        
             cstmt.setInt(2, estadoPacientePaciente.getIdPaciente());
-            cstmt.setTimestamp(3, estadoPacientePaciente.getFecha());
-            cstmt.setInt(4, estadoPacientePaciente.getSegundaOpinion());
-            cstmt.setInt(5, estadoPacientePaciente.getResultados());
-            cstmt.setInt(6, estadoPacientePaciente.getIdEmpleado());
+            cstmt.setInt(3, estadoPacientePaciente.getSegundaOpinion());
+            cstmt.setInt(4, estadoPacientePaciente.getResultados());
+            cstmt.setInt(5, 1);
             
             rs = cstmt.executeQuery();
             rs.next();

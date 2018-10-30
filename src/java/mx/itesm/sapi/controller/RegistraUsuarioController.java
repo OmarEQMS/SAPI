@@ -5,9 +5,14 @@
  */
 package mx.itesm.sapi.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -16,8 +21,18 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,9 +54,18 @@ import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
+import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.service.persona.DireccionServicioImpl;
+import mx.itesm.sapi.service.persona.PersonaServicioImpl;
+
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
+
 import mx.itesm.sapi.service.persona.PicServicioImpl;
+import org.apache.commons.io.IOUtils;
+
+
+
 
 /**
  *
@@ -168,7 +192,6 @@ public class RegistraUsuarioController extends HttpServlet {
                 cuenta.setUsuario(usuario);
                 cuenta.setToken(String.valueOf(unixTimestamp));
 
-
                 //DIRECCION
                 dir.setCalle(calle);
                 dir.setColonia(colonia);
@@ -186,6 +209,7 @@ public class RegistraUsuarioController extends HttpServlet {
 
                     per.setIdDireccion(idD);
                     int idP = _registroServicio.agregarPersona(per);
+
                     System.out.println("idPersona: " + idP);
 
                     if (idP > 0) {
@@ -210,6 +234,7 @@ public class RegistraUsuarioController extends HttpServlet {
 
                                 picServiceImpl.agregarPic(pic);
                                 System.out.println("agrego imagen");
+                                enviaCorreo(usuario);
                             }
 
                         }
@@ -221,6 +246,58 @@ public class RegistraUsuarioController extends HttpServlet {
 
             break;
 
+        }
+
+    }
+
+    protected void enviaCorreo(String usuario) {
+        System.out.println("estoy en el metodo");
+        Properties config = new Properties();
+
+        try {
+            config.load(getClass().getResourceAsStream("/mail.properties"));
+            Session session = Session.getInstance(config,
+                    new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication("pablocesarlugo@gmail.com", "pacelufa");
+
+                }
+            });
+
+            System.out.println("despues del try");
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("pablocesarlugo@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse("A01422919@itesm.mx"));
+            message.setSubject("Prueba de mail de sapo");
+            //message.setText("Esto no es spam :)");
+
+            //Estos deberían ir como parametros dentro de la función de enviar correo
+            //String mail = "tucorreo@mail.com";
+            //String contrasena = "tucontrasena";
+            MimeBodyPart mimeBodyPart = new MimeBodyPart();
+            mimeBodyPart.setContent("<b>Bienvenido a sapi, estos son tus datos :)</b></br>".
+                    concat("<b>Usuario: ").
+                    concat(usuario), "text/html");
+
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(mimeBodyPart);
+
+            Path path = Files.createTempFile(null, ".properties");
+            File file = new File(path.toString());
+
+            OutputStream outputStream = new FileOutputStream(file);
+            IOUtils.copy(getClass().getResourceAsStream("/mail.properties"), outputStream);
+            outputStream.close();
+
+            //Comente este attach fail porque de lo contrario no se hace bien el set content de arriba (lo de los datos de usuario)
+            // mimeBodyPart.attachFile(file);
+            message.setContent(multipart);
+            Transport.send(message);
+
+        } catch (Exception ex) {
+            System.out.println("catch de envia correo");
+            System.out.println(this.getClass().toString().concat(ex.getMessage()));
         }
 
     }

@@ -4,243 +4,288 @@
  * and open the template in the editor.
  */
 
-//1.- Correo
-$('#myEmail').on('change', function () {
-    if (isValidEmail($('#myEmail'))) {
-        $('#error-correo').hide();
-    } else {
-        $('#error-correo').show();
-    }
-});
 
-//2.- No expediente
-$('#numExpediente').on('change', function () {
-    if (isValidNoExpediente($('#numExpediente'))) {
-        $('#error-noExpediente').hide();
-    } else {
-        $('#error-noExpediente').show();
-    }
-});
 
-//3.- Telefono
-$('#telephoneNum').on('change', function () {
-    if (isValidPhoneNumber($('#telephoneNum'))) {
-        $('#error-tel').hide();
-    } else {
-        $('#error-tel').show();
-    }
-});
+$(document).ready(function () {
 
-//4.- Tipo Sangre
-$('#tipo-sangre').on('change', function () {
-    if (isValidBloodType($('#tipo-sangre'))) {
-        $('#error-tipoSangre').hide();
-    } else {
-        $('#error-tipoSangre').show();
-    }
-});
+//VALIDACIONES CUENTA
 
-//5.- Contraseña
-$('#password').on('change', function () {
-    if (isValidBloodType($('#password'))) {
-        $('#error-contraseña').hide();
-    } else {
-        $('#error-contraseña').show();
-    }
-});
+     $('.error-correo').hide();
+     $('#error-fecha').hide();
+     $('#error-fechaFin').hide();
+     $('#error-fechaInicio').hide();
+        
+    //1.- Correo
+    $('#correo').on('change', function(){
+        
+        if(isValidEmail($('#correo'))){
+            $('.error-correo').hide();
+        }else{
+            $('.error-correo').show();
+        }
+    }); 
 
-//Verificar que las contraseñas son iguales
-$('#password-confirm').on('change', function () {
+    //2.- No expediente
+    $('#noExpediente').on('change', function(){
+        if(isValidNoExpediente($('#noExpediente'))){
+            $('#error-noExpediente').hide();
+        }else{
+            $('#error-noExpediente').show();
+        }
+    }); 
 
-    areEqualPasswords($('#password'), $('#password-confirm'));
+    //3.- Telefono
+    $('#telephoneNum').on('change', function(){
+        if(isValidPhoneNumber($('#telephoneNum'))){
+            $('#error-tel').hide();
+        }else{
+            $('#error-tel').show();
+        }
+    }); 
 
-});
+    //4.- Tipo Sangre
+    $('#tipo-sangre').on('change', function(){
+        if(isValidBloodType($('#tipo-sangre'))){
+            $('#error-tipoSangre').hide();
+        }else{
+            $('#error-tipoSangre').show();
+        }
+    });
 
-function areEqualPasswords(pass1, pass2) {
+    //5.- Contraseña
+    $('#password').on('change', function(){
+        if(isValidBloodType($('#password'))){
+            $('#error-contraseña').hide();
+        }else{
+            $('#error-contraseña').show();
+        }
+    });
 
-    if (pass1.val() != pass2.val()) {
+    //Verificar que las contraseñas son iguales
+    $('#password-confirm').on('change', function(){
 
-        pass2.css('border', '1px solid red');
-        pass1.css('border', '1px solid red');
-        $('#error-notEqualPasswords').show();
+        areEqualPasswords($('#password'), $('#password-confirm'));
 
-        return false;
+    });
 
-    } else {
+    function areEqualPasswords(pass1, pass2) {
 
-        pass2.css('border', '');
-        pass1.css('border', '');
-        $('#error-notEqualPasswords').hide();
+        if (pass1.val() != pass2.val()) {
 
-    }
+            pass2.css('border', '1px solid red');
+            pass1.css('border', '1px solid red');
+            $('#error-notEqualPasswords').show();
 
-    return true;
-}
+            return false;
 
-//VALIDACIONES INDEX
+        } else {
 
-//1.- Fecha
-$('#RegistrarCita_fecha').on('change', function () {
-    if (isValidDate($('#RegistrarCita_fecha'))) {
-        $('#error-fecha').hide();
-    } else {
-        $('#error-fecha').show();
-    }
-});
+            pass2.css('border', '');
+            pass1.css('border', '');
+            $('#error-notEqualPasswords').hide();
 
-//2.- Tipo cita
-$('#RegistrarCita_tipo').on('change', function () {
-    if (isValidSelect($('#RegistrarCita_tipo'))) {
-        $('#error-tipoCita').hide();
-    } else {
-        $('#error-tipoCita').show();
-    }
-});
+        }
 
-//3.- Médico
-$('#RegistrarCita_medico').on('change', function () {
-    if (isValidSelect($('#RegistrarCita_medico'))) {
-        $('#error-medico').hide();
-    } else {
-        $('#error-medico').show();
-    }
-});
-
-function isValidEmail(input) {
-
-    var m = input.val();
-
-    ////Expresion regular por el estandard: RFC 5322
-    var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-
-    if (!expreg.test(m)) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
+        return true;
     }
 
-    return true;
+    //VALIDACIONES INDEX
 
-}
+    //1.- Fecha inicio
+    $('#fechaInicioTratamiento').on('change', function(){
+        
+        
+        if(isValidDate($('#fechaInicioTratamiento'))){
+            $('#error-fechaInicio').hide();
+        }else{
+            $('#error-fechaInicio').show();
+        }
+    }); 
+    
+        //1.- Fecha fin
+    $('#fechaFinTratamiento').on('change', function(){
+        alert($("#fechaInicio-"+$("#botonHidden").val()).val());
+        if(isValidDate2($('#fechaFinTratamiento'), $("#fechaInicio-"+$("#botonHidden").val()).val())){
+            $('#error-fechaFin').hide();
+        }else{
+            $('#error-fechaFin').show();
+        }
+    }); 
 
-function isValidNoExpediente(input) {
+    //2.- Tipo cita
+    $('#RegistrarCita_tipo').on('change', function(){
+        if(isValidSelect($('#RegistrarCita_tipo'))){
+            $('#error-tipoCita').hide();
+        }else{
+            $('#error-tipoCita').show();
+        }
+    });
 
-    var m = input.val();
+     //3.- Médico
+     $('#RegistrarCita_medico').on('change', function(){
+        if(isValidSelect($('#RegistrarCita_medico'))){
+            $('#error-medico').hide();
+        }else{
+            $('#error-medico').show();
+        }
+    });
+    
+    function isValidNoExpediente (input) {
 
-    var expreg = /^[a-zA-Z0-9]{9,9}$/;
+        var m = input.val();
+
+        var expreg = /^[a-zA-Z0-9]{9,9}$/;
 
 
-    if (!expreg.test(m)) {
+        if (!expreg.test(m)) {
 
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
 
-    } else {
-        input.css('border', '');
-        input.css('color', '');
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    };
+    
+    function isValidEmail (input)  {
+
+        var m = input.val();
+
+        ////Expresion regular por el estandard: RFC 5322
+        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    };
+    
+    function isValidPhoneNumber (input) {
+
+        var m = input.val();
+
+        var expreg = /^[0-9]{10,10}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    };
+    
+    function isValidDate (input) {
+
+        //Obtener fecha
+        let today = new Date();
+
+        //Valor seleccionado del input
+        let date_from = input.val();
+        date_from = new Date(date_from);
+
+        let event = false;
+
+        today < date_from ? event = true : event = false;
+
+
+        if (!input.val() || event) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    };
+
+    function isValidDate2 (input, fechaInicio) {
+
+        //var mydate = new Date('2014-04-03');
+        //Obtener fecha
+        let today = new Date();
+
+        //Valor seleccionado del input
+        let date_from = input.val();
+       
+        console.log(fechaInicio);
+        date_from = new Date(date_from);
+        var date_Inicio = new Date(fechaInicio);
+
+        let event = false;
+        
+        console.log(input.val());
+        console.log("Date inicio"+date_Inicio);
+        console.log("Date from" +date_from);
+        date_Inicio > date_from ? event = true : event = false;
+
+
+        if (!input.val() || event) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
     }
 
-    return true;
+   function isValidExpediente(input){
+
+        var m = input.val();
+
+        var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,500}$/;
 
 
-}
+        if (!expreg.test(m)) {
 
-function isValidPhoneNumber(input) {
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
 
-    var m = input.val();
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
 
-    var expreg = /^[0-9]{10,10}$/;
-
-    if (!expreg.test(m)) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-}
-
-function isValidBloodType(input) {
-
-    var m = input.val();
-
-    var expreg = /^(A|B|AB|O)[-+]$/;
-
-    if (!expreg.test(m)) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-
-}
-
-function isValidSelect(input) {
-
-    if (!input.val()) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
+        return true;
 
 
-}
-
-function isValidDate(input) {
-
-    //Obtener fecha
-    let today = new Date();
-
-    //Valor seleccionado del input
-    let date_from = input.val();
-    date_from = new Date(date_from);
-
-    let event = false;
-
-    today < date_from ? event = true : event = false;
-
-
-    if (!input.val() || event) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-
-
-}
-
-function isValidPassword(input) {
+    };
+    
+     isValidPassword: (input) => {
 
         var m = input.val();
 
@@ -260,4 +305,6 @@ function isValidPassword(input) {
 
         return true;
 
-    }
+    };
+
+});

@@ -178,6 +178,7 @@ public class PersonaServicioImpl implements PersonaServicio {
     IN in_imagen MEDIUMBLOB, IN in_edad INT*/
             //Aquí van los sets
             //cstmt.setInt(1,citaEmpleado.getIdCitaEmpleado());
+
             cstmt.setString(1, persona.getNombre());
             cstmt.setString(2, persona.getPrimerApellido());
             cstmt.setString(3, persona.getSegundoApellido());
@@ -191,6 +192,7 @@ public class PersonaServicioImpl implements PersonaServicio {
             cstmt.setInt(10, persona.getIdMunicipio());
             cstmt.setInt(11, persona.getIdEstadoCivil());
             cstmt.setInt(12, persona.getIdDireccion());
+
             cstmt.setInt(13, persona.getEdad());
 
             //Aquí va el registerOutParameter

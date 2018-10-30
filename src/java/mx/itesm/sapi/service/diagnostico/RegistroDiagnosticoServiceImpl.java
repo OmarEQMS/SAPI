@@ -29,27 +29,25 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
         
         int id = -1;
         //Aquí va el call del procedure
-        String stProcedure="-------";
+
         
         try {
             
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall(stProcedure);
+            cstmt = conn.prepareCall("CALL agregarRegistroDiagnostico(?,?,?,?,?)");
             
-            cstmt.setInt(1, registroDiagnostico.getIdRegistroDiagnostico());
-            cstmt.setDate(2, registroDiagnostico.getFecha());
-            cstmt.setInt(3, registroDiagnostico.getPrevioDiagnostico());
-            cstmt.setInt(4, registroDiagnostico.getIdPaciente());
-            cstmt.setInt(5, registroDiagnostico.getIdRegistroDiagnostico());
-            cstmt.setInt(6, registroDiagnostico.getIdRegistroTNM());
-            cstmt.setInt(7, registroDiagnostico.getEstatus());
-            
-            cstmt.executeQuery();
-            
+            //cstmt.setInt(1, registroDiagnostico.getIdRegistroDiagnostico());
+            cstmt.setDate(1, registroDiagnostico.getFecha());
+            cstmt.setInt(2, registroDiagnostico.getPrevioDiagnostico());
+            cstmt.setInt(3, registroDiagnostico.getIdPaciente());
+            cstmt.setInt(4, registroDiagnostico.getIdEtapaClinica());
+            cstmt.setInt(5, 0);
+           // cstmt.setInt(6, registroDiagnostico.getEstatus());
+           
+             cstmt.executeQuery();
             rs = cstmt.getGeneratedKeys();
             rs.next();
-            
-            id = rs.getInt(1);
+            id=rs.getInt(1);
             
             rs.close();
             cstmt.close();
@@ -61,7 +59,6 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
             System.out.println("Fecha: " + registroDiagnostico.getFecha());
             System.out.println("PrevioDiagnostico: " + registroDiagnostico.getPrevioDiagnostico());
             System.out.println("IdPaciente: " + registroDiagnostico.getIdPaciente());
-            System.out.println("IdRegistroDiagnostico: " + registroDiagnostico.getIdRegistroDiagnostico());
             System.out.println("IdRegistroTNM: " + registroDiagnostico.getIdRegistroTNM());
             System.out.println("Estatus: " + registroDiagnostico.getEstatus());
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
@@ -96,8 +93,8 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
             registroDiagnostico.setIdRegistroDiagnostico(rs.getInt("idRegistroDiagnostico"));
             registroDiagnostico.setFecha(rs.getDate("fecha"));
             registroDiagnostico.setPrevioDiagnostico(rs.getInt("previoDiagnostico"));
+            registroDiagnostico.setIdEtapaClinica(rs.getInt("idEtapaClinica"));
             registroDiagnostico.setIdPaciente(rs.getInt("idPaciente"));
-            registroDiagnostico.setIdRegistroDiagnostico(rs.getInt("idRegistroDiagnostico"));
             registroDiagnostico.setIdRegistroTNM(rs.getInt("idRegistroTNM"));
             registroDiagnostico.setEstatus(rs.getInt("estatus"));
             
@@ -173,21 +170,22 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
         boolean exito = false;
         
         //Aquí va el call del procedure
-        String stProcedure="-------";
+        //String stProcedure="-------";
         
         try {
             
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall(stProcedure);
+            cstmt = conn.prepareCall("CALL actualizarRegistroDiagnostico(?,?,?,?,?,?)");
             
             cstmt.setInt(1, registroDiagnostico.getIdRegistroDiagnostico());
             cstmt.setDate(2, registroDiagnostico.getFecha());
             cstmt.setInt(3, registroDiagnostico.getPrevioDiagnostico());
             cstmt.setInt(4, registroDiagnostico.getIdPaciente());
-            cstmt.setInt(5, registroDiagnostico.getIdRegistroDiagnostico());
-            cstmt.setInt(6, registroDiagnostico.getIdRegistroTNM());
-            cstmt.setInt(7, registroDiagnostico.getEstatus());
-            
+            cstmt.setInt(5, registroDiagnostico.getIdEtapaClinica());
+            cstmt.setInt(6, 0);
+           // cstmt.setInt(7, registroDiagnostico.getEstatus());
+           
+        
             rs = cstmt.executeQuery();
             
             rs.next();
@@ -248,6 +246,50 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
                     .concat(ex.getMessage()));
         }
         return exito;
+    }
+
+    @Override
+    public RegistroDiagnostico mostrarRegistroDiagnosticoPaciente(int idPaciente) {
+
+         Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        
+        RegistroDiagnostico registroDiagnostico = null;
+        
+        //Call del stored procedure
+
+        
+        try {    
+            
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL mostrarRegistroDiagnosticoPaciente(?)");
+            registroDiagnostico = new RegistroDiagnostico();
+            
+            cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+            
+            // Asignación de valores devuletos a registroDiagnostico
+            rs.next();
+            registroDiagnostico.setIdRegistroDiagnostico(rs.getInt("idRegistroDiagnostico"));
+            registroDiagnostico.setFecha(rs.getDate("fecha"));
+            registroDiagnostico.setPrevioDiagnostico(rs.getInt("previoDiagnostico"));
+            registroDiagnostico.setIdPaciente(rs.getInt("idPaciente"));
+            registroDiagnostico.setIdEtapaClinica(rs.getInt("idEtapaClinica"));
+            registroDiagnostico.setIdRegistroTNM(rs.getInt("idRegistroTNM"));
+            registroDiagnostico.setEstatus(rs.getInt("estatus"));
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+            
+        } catch (SQLException ex) {
+            registroDiagnostico = null;
+            System.out.println("ID: " + idPaciente);
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+        return registroDiagnostico;
     }
 
 }

@@ -65,7 +65,7 @@ public class EtapaClinicaServiceImpl implements EtapaClinicaService{
         List<EtapaClinica> etapasClinicas = null;
         
         //Call del store procedure
-        String stProcedure="-----";
+        String stProcedure="CALL mostrarListaEtapaClinica()";
         
         try{
             conn = Conexion.getConnection();
@@ -82,6 +82,8 @@ public class EtapaClinicaServiceImpl implements EtapaClinicaService{
                 etapaClinica.setNombre(rs.getString(2));
                 etapaClinica.setEstatus(rs.getInt(3));
                 
+                System.out.println(rs.toString());
+                System.out.println(etapaClinica.getNombre());
                 etapasClinicas.add(etapaClinica);
             
             }

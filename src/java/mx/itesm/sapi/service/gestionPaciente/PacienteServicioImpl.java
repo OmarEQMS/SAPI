@@ -181,24 +181,25 @@ public class PacienteServicioImpl implements PacienteServicio{
     public boolean actualizarPaciente(Paciente paciente) {
         Connection conn;
         CallableStatement cstmt;
-        String stProcedure = "";
         boolean exito= false;
         ResultSet rs;
         try{
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall(stProcedure);
+            cstmt = conn.prepareCall("CALL actualizarPaciente(?,?,?,?,?,?,?,?)");
             
             cstmt.setInt(1, paciente.getIdPaciente());
             cstmt.setInt(2, paciente.getIdCuenta());
-            cstmt.setInt(3, paciente.getIdEscolaridad());
+            cstmt.setInt(3, 1);
             cstmt.setString(4, paciente.getPrz());
             cstmt.setString(5, paciente.getExpediente());
             cstmt.setDouble(6, paciente.getPeso() );
             cstmt.setDouble(7, paciente.getAltura());
             cstmt.setInt(8, paciente.getPosMenopausia());
-            cstmt.setInt(9, paciente.getEstatus());
+            //cstmt.setInt(9, paciente.getEstatus());
             
             rs = cstmt.executeQuery();
+            
+            rs.next();
             
             exito = rs.getBoolean(1);
             

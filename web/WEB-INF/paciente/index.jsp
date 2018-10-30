@@ -61,7 +61,8 @@
 
                 <div class="row">
                     <div class="col-12 mb-2 mt-4">
-                        <img src="img/user.png" class="imagenPerfil" alt="">
+                        
+                        <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="imagenPerfil edit-image" width="66px" height="66px" alt="">
                     </div>
                 </div>
 
@@ -95,10 +96,9 @@
             <!-- MENU PRINCIPAL ENLACES -->
             <ul class="list-unstyled components">
 
-                <li><a href="#"><i class="fas fa-home"></i>Mis Citas</a></li>
-
+                <li id="irMisCitas"><a><i class="far fa-user"></i>Mis citas</a></li>
                 <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
-
+                <li id="irATratamientos"><a><i class="far fa-user"></i>Mis Tratamientos</a></li>
                 <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
             </ul>
@@ -124,7 +124,7 @@
                     <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
                              <!--Julio Badillo-->
                             ${sessionScope.nombre} ${sessionScope.primerApellido}
-                        </span> <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
+                        </span>  </span>
 
                 </div>
             </nav>

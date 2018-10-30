@@ -137,24 +137,21 @@ public class LoginController extends HttpServlet {
                                 request.setAttribute("nombre", sesion.getAttribute("nombre"));
                                 request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));
                                 request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
-                                
-                                
+
                                 String keyRuta = "potencial/index.jsp";
-                                
-                               //Si la contraseña no tiene el token de recuperar contraseña se continua al dashboard correspondiente                                                                 
-                                try
-                                {
+
+                                //Si la contraseña no tiene el token de recuperar contraseña se continua al dashboard correspondiente                                                                 
+                                try {
                                     System.out.println("Contraseña con token ".concat(cuenta.getToken()));
                                     keyRuta = "recuperar.jsp";
-                                }catch(Exception ex)
-                                {
-                                    
+                                } catch (Exception ex) {
+
                                 }
-                                                                                                
-                                sesion.setAttribute("path", keyRuta);                                
+
+                                sesion.setAttribute("path", keyRuta);
                                 //request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                                 //request.getRequestDispatcher("/FrontController").forward(request, response);                                                                             
-                                                                
+
                                 System.out.println("Se redirige el potencial. idPaciente " + String.valueOf(paciente.getIdPaciente()).concat(" idCuenta ").concat(String.valueOf(paciente.getIdCuenta())).concat(" Sesión idCuenta ").concat(String.valueOf(sesion.getAttribute("idCuenta"))));
 
                                 break;
@@ -169,19 +166,17 @@ public class LoginController extends HttpServlet {
                             case 4: {
                                 break;
                             }
-                             case 5:
-                            {
-                                
-                               System.out.println("Cuenta de paciente en tratamiento:  ".concat(sesion.getAttribute("nombre").toString()));
-                                
-                               PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
-                               Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
-                               //Agregar el idPaciente a la sesión
-                               String idPacienteStr = String.valueOf(paciente.getIdPaciente());
-                               sesion.setAttribute("idPaciente", idPacienteStr);
-                               
-                               //Redirigir al paciente potencial a su dashboard correspondiente                               
+                            case 5: {
 
+                                System.out.println("Cuenta de paciente en tratamiento:  ".concat(sesion.getAttribute("nombre").toString()));
+
+                                PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
+                                Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
+                                //Agregar el idPaciente a la sesión
+                                String idPacienteStr = String.valueOf(paciente.getIdPaciente());
+                                sesion.setAttribute("idPaciente", idPacienteStr);
+
+                                //Redirigir al paciente potencial a su dashboard correspondiente                               
                                 System.out.println("idPaciente ".concat(idPacienteStr));
 
                                 request.setAttribute("idPaciente", sesion.getAttribute("idPaciente"));
@@ -189,22 +184,22 @@ public class LoginController extends HttpServlet {
                                 request.setAttribute("nombre", sesion.getAttribute("nombre"));
                                 request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));
                                 request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
-                                
+
                                 String keyRuta = "paciente/index.jsp";
-                                    
+
                                 //Si la contraseña no tiene el token de recuperar contraseña se continua al dashboard correspondiente                                                                 
-                                try
-                                {
+                                try {
                                     System.out.println("Contraseña con token ".concat(cuenta.getToken()));
                                     keyRuta = "recuperar.jsp";
-                                }catch(Exception ex)
-                                {
-                                    
+                                } catch (Exception ex) {
+
                                 }
-                                                                                                                                
-                                sesion.setAttribute("path", keyRuta);                                
-                                //request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
-                                                                
+
+                                sesion.setAttribute("path", keyRuta);
+
+                                request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
+                                //request.getRequestDispatcher("/FrontController").forward(request, response);             
+
                                 System.out.println("Se redirige el potencial. idPaciente " + String.valueOf(paciente.getIdPaciente()).concat(" idCuenta ").concat(String.valueOf(paciente.getIdCuenta())).concat(" Sesión idCuenta ").concat(String.valueOf(sesion.getAttribute("idCuenta"))));
 
                                 break;
@@ -223,12 +218,12 @@ public class LoginController extends HttpServlet {
 
                     }
 
-                        }
+                }
 
-                        break;
+                break;
 
-                    }
-            
+            }
+
             case "ir-a-login": {
 
                 request.setAttribute("status", "");
@@ -238,11 +233,10 @@ public class LoginController extends HttpServlet {
 
             }
 
-            
             case "cerrar-sesion": {
 
                 HttpSession sesion = request.getSession(true);
-                
+
                 System.out.println("Salir de la cuenta ".concat(sesion.getAttribute("nombre").toString()));
 
                 sesion.invalidate();
@@ -254,13 +248,11 @@ public class LoginController extends HttpServlet {
                 break;
 
             }
-            
-            case "recuperarContra":{
-               
-                
+
+            case "recuperarContra": {
+
                 request.getRequestDispatcher("/WEB-INF/recuperarContrasena.jsp").forward(request, response);
-                
-               
+
                 break;
             }
 
@@ -278,43 +270,39 @@ public class LoginController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-            protected void doGet
-            (HttpServletRequest request,
-             HttpServletResponse response
-            )
-            throws ServletException
-            , IOException  {
-                processRequest(request, response);
-            }
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response
+    )
+            throws ServletException,
+             IOException {
+        processRequest(request, response);
+    }
 
-            /**
-             * Handles the HTTP <code>POST</code> method.
-             *
-             * @param request servlet request
-             * @param response servlet response
-             * @throws ServletException if a servlet-specific error occurs
-             * @throws IOException if an I/O error occurs
-             */
-            @Override
-            protected void doPost
-            (HttpServletRequest request,
-             HttpServletResponse response
-            )
-            throws ServletException
-            , IOException  {
-                processRequest(request, response);
-            }
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request,
+            HttpServletResponse response
+    )
+            throws ServletException,
+             IOException {
+        processRequest(request, response);
+    }
 
-            /**
-             * Returns a short description of the servlet.
-             *
-             * @return a String containing servlet description
-             */
-            @Override
-            public String getServletInfo
-             
-                () {
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
         return "Short description";
-            }// </editor-fold>
+    }// </editor-fold>
 
-        }
+}
