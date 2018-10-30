@@ -30,7 +30,7 @@
         <script src="js/appPaciente.js" type="module"></script>
         <script src="js/calendars.js"></script>
         <script src="js/ajaxPaciente.js"></script>
-        <script type="module" src="js/validacionesPaciente.js"></script> 
+        <script src="js/validacionesPaciente.js"></script>
 
     </head>
 
