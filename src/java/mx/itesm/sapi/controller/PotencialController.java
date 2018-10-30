@@ -968,12 +968,36 @@ public class PotencialController extends HttpServlet {
                     SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
                     solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
 
-                    sesion.setAttribute("identificacionOficial", solicitudPreconsulta.getIdentificacion());
-                    sesion.setAttribute("curp", solicitudPreconsulta.getCurp());
-                    sesion.setAttribute("comprobante", solicitudPreconsulta.getComprobante());
-                    sesion.setAttribute("resultadoMastografia", solicitudPreconsulta.getMastografia());
-                    sesion.setAttribute("resultadosUltrasonidos", solicitudPreconsulta.getUltrasonido());
-                    sesion.setAttribute("biopsiaPrevia", solicitudPreconsulta.getBiopsiaPrevia());
+                    if(solicitudPreconsulta.getIdentificacion() != null){
+                        sesion.setAttribute("identificacionOficial", 1);
+                    }else{
+                        sesion.setAttribute("identificacionOficial", 0);
+                    }
+                    if(solicitudPreconsulta.getCurp() != null){
+                        sesion.setAttribute("curp", 1);
+                    }else{
+                        sesion.setAttribute("curp", 0);
+                    }
+                    if(solicitudPreconsulta.getComprobante() != null){
+                        sesion.setAttribute("comprobante", 1);
+                    }else{
+                        sesion.setAttribute("comprobante", 0);
+                    }
+                    if(solicitudPreconsulta.getMastografia() != null){
+                        sesion.setAttribute("resultadoMastografia", 1);
+                    }else{
+                        sesion.setAttribute("resultadoMastografia", 0);
+                    }
+                    if(solicitudPreconsulta.getUltrasonido() != null){
+                        sesion.setAttribute("resultadoUltrasonido", 1);
+                    }else{
+                        sesion.setAttribute("resultadoUltrasonido", 0);
+                    }
+                    if(solicitudPreconsulta.getBiopsiaPrevia() != null){
+                        sesion.setAttribute("biopsiaPrevia", 1);
+                    }else{
+                        sesion.setAttribute("biopsiaPrevia", 0);
+                    }
                     
                     
                     System.out.println("identificacionOficial: " + solicitudPreconsulta.getIdentificacion());

@@ -145,7 +145,7 @@
 
 
                                         <c:choose>
-                                            <c:when test="${sessionScope.estatus==1}">
+                                            <c:when test="${sessionScope.estatus>=1}">
 
                                                 <a class="nav-item nav-link active text-center colorMoradoLight texto-tab" id="nav-bienvenida-tab" data-toggle="tab" href="#nav-bienvenida"
                                                    role="tab" aria-controls="nav-bienvenida" aria-selected="false" style="width:33%">INFORMACIÓN</a>
@@ -270,7 +270,7 @@
                                                     <div class="row mt-4">
 
                                                         <c:choose>
-                                                            <c:when test="${sessionScope.identificacionOficial==0}">
+                                                            <c:when test="${sessionScope.identificacionOficial<=0}">
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
                                                                     <span class="textoDocumento">Identificación oficial</span>
                                                                 </div>
@@ -325,7 +325,7 @@
                                                     <div class="row mt-4">
 
                                                         <c:choose>
-                                                            <c:when test="${sessionScope.curp==0}">
+                                                            <c:when test="${sessionScope.curp<=0}">
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
                                                                     <span class="textoDocumento">CURP</span>
                                                                     <small id="passwordHelpBlock" class="form-text text-muted">
@@ -374,7 +374,7 @@
                                                     <div class="row mt-4">
 
                                                         <c:choose>
-                                                            <c:when test="${sessionScope.comprobante==0}">
+                                                            <c:when test="${sessionScope.comprobante<=0}">
 
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
                                                                     <span class="textoDocumento">Comprobante de domicilio</span>
@@ -491,7 +491,7 @@
                                                     <div class="row mt-1">
 
                                                         <c:choose>
-                                                            <c:when test="${sessionScope.resultadoMastografia==0}">
+                                                            <c:when test="${sessionScope.resultadoMastografia<=0}">
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
                                                                     <span class="textoDocumento">Reporte de resultados de estudios previos
                                                                         mastografía
@@ -558,7 +558,7 @@
                                                     <div class="row mt-4">
 
                                                         <c:choose>
-                                                            <c:when test="${sessionScope.resultadosUltrasonidos==0}">
+                                                            <c:when test="${sessionScope.resultadoUltrasonido<=0}">
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-12 text-center">
                                                                     <span class="textoDocumento">Reporte de resultados de estudios previos
                                                                         ultrasonido
@@ -627,7 +627,7 @@
                                                     <div class="row mt-4">
 
                                                         <c:choose>
-                                                            <c:when test="${sessionScope.biopsiaPrevia==0}">
+                                                            <c:when test="${sessionScope.biopsiaPrevia<=0}">
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
                                                                     <div class="form-check">
                                                                         <input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput">
@@ -722,7 +722,7 @@
                                             <div class="card-body">
 
                                                 <c:choose>
-                                                    <c:when test="${sessionScope.estadoPaciente==1}">
+                                                    <c:when test="${sessionScope.estadoPaciente>=1}">
                                                         <div class="row">
                                                             <div class="col-12">
                                                                 <h5 class="card-title display-4 tituloAprobacion text-center">Tu solicitud
