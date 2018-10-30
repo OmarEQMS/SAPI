@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.util.Base64;
 import java.util.ResourceBundle;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -266,10 +267,10 @@ public class PotencialController extends HttpServlet {
             case "solicitarPreconsulta": {
                 /**
                  * Uriel Díaz 26/10/2018.
-                 * 
-                 * El presente case funciona cuando un paciente agrega ciertos atributos y
-                 * documentos al proceso de solicitud de preconsulta sin enviarla.
-                 *                  *                  * 
+                 *
+                 * El presente case funciona cuando un paciente agrega ciertos
+                 * atributos y documentos al proceso de solicitud de preconsulta
+                 * sin enviarla. * *
                  */
                 //request.getPart("fileCURP").
                 //Obtener la sesion
@@ -773,9 +774,10 @@ public class PotencialController extends HttpServlet {
                      */
                     int idCuenta = (int) sesion.getAttribute("idCuenta");
                     int idPaciente = (int) sesion.getAttribute("idPaciente");
-                       System.out.println(idPaciente);
-                       System.out.println(idCuenta); 
                     int idPersona = (int) sesion.getAttribute("idPersona");
+                    System.out.println(idPaciente);
+                    System.out.println(idCuenta);
+                    System.out.println(idPersona);
 
                     /**
                      * creo los objetos de las tablas a modificar su estatus
@@ -788,7 +790,6 @@ public class PotencialController extends HttpServlet {
 
                     PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
                     Paciente paciente = pacienteServicio.mostrarPaciente(idPaciente);
-                     
 
                     LoginServicioImpl loginServicio = new LoginServicioImpl();
                     Login login = loginServicio.mostrarLoginIdCuenta(idCuenta);
@@ -803,19 +804,37 @@ public class PotencialController extends HttpServlet {
                     EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServicio.mostrarEstadoPacientePacienteIdPaciente(idPaciente);
 
                     CitaServicioImpl citaServicio = new CitaServicioImpl();
-                    Cita cita = citaServicio.mostrarCitaIdPaciente(idPaciente);
-                   int idCita = cita.getIdCita();
+                    List<Cita> citas = new ArrayList<>();
+                   
+                    citas = citaServicio.mostrarCitaIdEspecifico(idPaciente);
+                    int citasTotales = citas.size();
                     
-                    System.out.println("Pase de aqui"); 
-                    ComentarioCitaServicioImpl comentarioCitaServicio = new ComentarioCitaServicioImpl();
-                    ComentarioCita comentarioCita = comentarioCitaServicio.mostrarComentarioCitaIdCita(idCita);
+                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+                     
+                    int idCita = 0;
+                    while (citasTotales >= citas.size()) {
+                        System.out.println(citasTotales);
+                        idCita = citas.get(citasTotales).getIdCita();
+                        
+                        System.out.println(idCita);
+                        
+                        ComentarioCitaServicioImpl comentarioCitaServicio = new ComentarioCitaServicioImpl();
+                        ComentarioCita comentarioCita = comentarioCitaServicio.mostrarComentarioCitaIdCita(idCita);
 
-                    CitaEmpleadoServicioImpl citaEmpleadoServicio = new CitaEmpleadoServicioImpl();
-                    CitaEmpleado citaEmpleado = citaEmpleadoServicio.mostrarCitaEmpleadoIdCita(idCita);
+                        CitaEmpleadoServicioImpl citaEmpleadoServicio = new CitaEmpleadoServicioImpl();
+                        CitaEmpleado citaEmpleado = citaEmpleadoServicio.mostrarCitaEmpleadoIdCita(idCita);
 
-                    LlamadaCitaServicioImpl llamadaCitaServicio = new LlamadaCitaServicioImpl();
-                    LlamadaCita llamadaCita = llamadaCitaServicio.mostrarLlamadaCitaIdCita(idCita);
-                    
+                        LlamadaCitaServicioImpl llamadaCitaServicio = new LlamadaCitaServicioImpl();
+                        LlamadaCita llamadaCita = llamadaCitaServicio.mostrarLlamadaCitaIdCita(idCita);
+
+                        llamadaCitaServicio.borradoLogicoLlamadaCita(llamadaCita.getIdLlamadaCita());
+                        citaEmpleadoServicio.borradoLogicoCitaEmpleado(citaEmpleado.getIdCitaEmpleado());
+                        comentarioCitaServicio.borradoLogicoComentarioCita(comentarioCita.getIdComentarioCita());
+                        citaServicio.borradoLogicoCita(idCita);
+
+                        citasTotales = citasTotales-1;
+                        System.out.println(citasTotales);
+                    }
 
                     PacienteMedicoTitularServicioImpl pacienteMedicoTitularServicio = new PacienteMedicoTitularServicioImpl();
                     PacienteMedicoTitular pacienteMedicoTitular = pacienteMedicoTitularServicio.mostrarPacienteMedicoTitularIdPaciente(idPaciente);
@@ -842,10 +861,7 @@ public class PotencialController extends HttpServlet {
                     documentoInicialServicio.borradoLogicoDocumentoInicial(documentoInicial.getIdDocumentoInicial());
                     pacienteNavegadoraServicio.borradoLogicoPacienteNavegadora(pacienteNavegadora.getIdPacienteNavegadora());
                     pacienteMedicoTitularServicio.borradoLogicoPacienteMedicoTitular(pacienteMedicoTitular.getIdPacienteMedicoTitular());
-                    llamadaCitaServicio.borradoLogicoLlamadaCita(llamadaCita.getIdLlamadaCita());
-                    citaEmpleadoServicio.borradoLogicoCitaEmpleado(citaEmpleado.getIdCitaEmpleado());
-                    comentarioCitaServicio.borradoLogicoComentarioCita(comentarioCita.getIdComentarioCita());
-                    citaServicio.borradoLogicoCita(cita.getIdCita());
+
                     estadoPacientePacienteServicio.borradoLogicoEstadoPacientePaciente(estadoPacientePaciente.getIdEstadoPacientePaciente());
                     picServicio.borradoLogicoPic(pic.getIdPic());
                     direccionServicio.borradoLogicoDireccion(direccion.getIdDireccion());
@@ -1037,8 +1053,7 @@ public class PotencialController extends HttpServlet {
                     sesion.setAttribute("resultadoMastografia", solicitudPreconsulta.getMastografia());
                     sesion.setAttribute("resultadosUltrasonidos", solicitudPreconsulta.getUltrasonido());
                     sesion.setAttribute("biopsiaPrevia", solicitudPreconsulta.getBiopsiaPrevia());
-                    
-                    
+
                     Gson json = new Gson();
                     System.out.println("Res ".concat(json.toJson(solicitudPreconsulta)));
 
@@ -1126,18 +1141,17 @@ public class PotencialController extends HttpServlet {
                 break;
             }
 
-            case "GuardarContinuar":
-            {
+            case "GuardarContinuar": {
                 /**
                  * Uriel Díaz 26/10/2018.
-                 * 
-                 * El presente case funciona cuando un paciente agrega ciertos atributos y
-                 * documentos al proceso de solicitud de preconsulta sin enviarla.
-                 *                  *                  * 
+                 *
+                 * El presente case funciona cuando un paciente agrega ciertos
+                 * atributos y documentos al proceso de solicitud de preconsulta
+                 * sin enviarla. * *
                  */
 
                 System.out.println("Guardar y continuar");
-                
+
                 //Obtener la sesion
                 HttpSession sesion = request.getSession(true);
 
