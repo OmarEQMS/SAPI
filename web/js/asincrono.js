@@ -28,7 +28,7 @@ $(document).ready(function () {
     $('#errorUsuarioRepetido').hide();
     $('#error-terminos').hide();
     $('#error-CPexiste').hide();
-    
+
     $('#btn-registro').on('click', function () {
 
         swal(
@@ -41,93 +41,107 @@ $(document).ready(function () {
                 .then((value) => {
                     switch (value) {
                         case "primeraVez":
-                                $('#tipoPaciente').val(0);
+                            $('#tipoPaciente').val(0);
                             break;
                         case "segundaOpinion":
-                                $('#tipoPaciente').val(1);
+                            $('#tipoPaciente').val(1);
                             break;
                     }
-                    
+
                     console.log($('#tipoPaciente').val());
                     $('#modalTerminos').modal('toggle');
                 });
 
     });
 
-    $('#btnAceptar').on('click', function(){
-        
-        if(!validation.isValidCheckbox($('#acepto-datos')) || !validation.isValidCheckbox($('#acepto-datos-anonimos'))){
-            
+    $('#btnAceptar').on('click', function () {
+
+        if (!validation.isValidCheckbox($('#acepto-datos')) || !validation.isValidCheckbox($('#acepto-datos-anonimos'))) {
+
             $('#error-terminos').show();
-            
-        }else{
-            
+
+        } else {
+
             $('#error-terminos').hide();
-            
+
             //ajax para registrar
-            
+
             $.ajax({
 
-            url: 'RegistraUsuarioController',
-            cache: false,
-            method: 'POST',
-            data: {
-                key: "registraUsuario",
-                nombre: $('#nombre').val(),
-                apellido1: $('#apellido1').val(),
-                apellido2: $('#apellido2').val(),
-                usuario: $("#usuario").val(),
-                correo: $('#correo').val(),
-                curp: $('#curp').val(),
-                colonia: $('#colonia').val(),
-                calle: $('#calle').val(),
-                noExterior: $("#noExterior").val(),
-                noInterior: $("#noInterior").val(),
-                pass1: $("#pass1").val(),
-                pass2: $("#pass2").val(),
-                telefono: $("#telefono").val(),
-                estadoCivil: $("#estadoCivil").val(),
-                fechaNacimiento: $("#fechaNacimiento").val(),
-                estado: $("#estado").val(),
-                municipio: $("#municipio").val(),
-                codigoPostal: $('#codigoPostal').val(),
-                tipoPaciente : $('#tipoPaciente').val()
+                url: 'RegistraUsuarioController',
+                cache: false,
+                method: 'POST',
+                data: {
+                    key: "registraUsuario",
+                    nombre: $('#nombre').val(),
+                    apellido1: $('#apellido1').val(),
+                    apellido2: $('#apellido2').val(),
+                    usuario: $("#usuario").val(),
+                    correo: $('#correo').val(),
+                    curp: $('#curp').val(),
+                    colonia: $('#colonia').val(),
+                    calle: $('#calle').val(),
+                    noExterior: $("#noExterior").val(),
+                    noInterior: $("#noInterior").val(),
+                    pass1: $("#pass1").val(),
+                    pass2: $("#pass2").val(),
+                    telefono: $("#telefono").val(),
+                    estadoCivil: $("#estadoCivil").val(),
+                    fechaNacimiento: $("#fechaNacimiento").val(),
+                    estado: $("#estado").val(),
+                    municipio: $("#municipio").val(),
+                    codigoPostal: $('#codigoPostal').val(),
+                    tipoPaciente: $('#tipoPaciente').val()
 
 
-            }
+                }
 
-        })
-                .done(function (response) {
-                    console.log(response);
+            })
+                    .done(function (response) {
+                        console.log(response);
 
-
-                    swal({
-                        title: 'Buen Trabajo',
-                        text: "Cuenta registrada correctamente",
-                        type: 'success',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Ok'
-                    }).then((result) => {
-                        if (result.value) {
-                            window.location.reload();
-                        };
+                        swal({
+                            title: 'Buen Trabajo',
+                            text: "Cuenta registrada correctamente",
+                            type: 'success',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        })
+                                .then(function () {
+                                    console.log("Redirección a login");
+                                    $.get("LoginController", {
+                                        key: "ir-a-login"
+                                    },
+                                            function (response, status, xhr) {
+                                                console.log(response);
+                                                if (status == "success") {
+                                                    if (response == "error") {
+                                                        $("#msj-error").show();
+                                                    } else {
+                                                        document.open("text/html", "replace");
+                                                        document.write(response);
+                                                        document.close();
+                                                    }
+                                                }
+                                            }
+                                    );
+                                });
+                    })
+                    .fail(function (xhr, textStatus, errorThrown) {
+                        console.log(xhr.responseText);
                     });
-                })
-                .fail(function (xhr, textStatus, errorThrown) {
-                    console.log(xhr.responseText);
-                });
 
 
 
 
-            
+
         }
-        
+
     });
 
     $('#btn-registro').on('click', function () {
 
-     });
+    });
 
 
     //Cargar los municipios con base en el estado
@@ -242,7 +256,7 @@ $(document).ready(function () {
 
     //4.- NOMBRE DE USUARIO
     $('#usuario').on('change', function () {
-        
+
         $.ajax({
 
             url: 'RegistraUsuarioController',
@@ -252,15 +266,15 @@ $(document).ready(function () {
 
                 key: "repiteUsuario",
                 usuario: $('#usuario').val()
-                
+
 
             },
-            success: function (response) {                
+            success: function (response) {
 
-                if(response==='UsuarioAlreadyExists'){
+                if (response === 'UsuarioAlreadyExists') {
                     $('#usuario').css('color', 'orange');
                     $('#errorUsuarioRepetido').show();
-                }else{
+                } else {
                     $('#errorUsuarioRepetido').hide();
                 }
 
@@ -328,12 +342,12 @@ $(document).ready(function () {
                 key: "repiteCurp",
                 curp: $('#curp').val()
             },
-            success: function (response) {                
+            success: function (response) {
 
-                if(response==='CurpAlreadyExists'){
+                if (response === 'CurpAlreadyExists') {
                     $('#curp').css('color', 'orange');
                     $('#errorCurpRepetido').show();
-                }else{
+                } else {
                     $('#errorCurpRepetido').hide();
                 }
 
@@ -366,40 +380,40 @@ $(document).ready(function () {
 
             },
             success: function (response) {
-                
-                if(response=='postalCodeDoesntExist'){
+
+                if (response == 'postalCodeDoesntExist') {
                     $('#error-CPexiste').show();
-                    
-                }else{
-                    $('#error-CPexiste').hide();
-                var json = JSON.parse(response);
-
-                if ($('#codigoPostal').val().length === 5) {
-
-                    //Limpia los campos 
-                    $("#estado").each(function () {
-                        $(this).children().remove();
-                    });
-
-                    $("#municipio").each(function () {
-                        $(this).children().remove();
-                    });
-
-                    //Carga estado
-                    $('#estado').append("<option value='" + json[0] + "'>" + json[1] + "</option>");
-
-                    //Carga Municipio
-                    $('#municipio').append("<option value='" + json[2] + "'>" + json[3] + "</option>");
 
                 } else {
+                    $('#error-CPexiste').hide();
+                    var json = JSON.parse(response);
 
-                    $('#estado').removeAttr('disabled');
-                    $('#estado').removeAttr('selected');
+                    if ($('#codigoPostal').val().length === 5) {
 
+                        //Limpia los campos 
+                        $("#estado").each(function () {
+                            $(this).children().remove();
+                        });
+
+                        $("#municipio").each(function () {
+                            $(this).children().remove();
+                        });
+
+                        //Carga estado
+                        $('#estado').append("<option value='" + json[0] + "'>" + json[1] + "</option>");
+
+                        //Carga Municipio
+                        $('#municipio').append("<option value='" + json[2] + "'>" + json[3] + "</option>");
+
+                    } else {
+
+                        $('#estado').removeAttr('disabled');
+                        $('#estado').removeAttr('selected');
+
+                    }
+
+                    console.log(json);
                 }
-
-                console.log(json);
-            }
 
             }
 
@@ -508,7 +522,7 @@ $(document).ready(function () {
         }
 
     });
-    
+
     ///////////////////////////////////////////////LOGIN
     $('#btn-login').on('click', function () {
 

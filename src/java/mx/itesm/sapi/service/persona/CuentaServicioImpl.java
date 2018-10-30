@@ -249,4 +249,38 @@ public class CuentaServicioImpl implements CuentaServicio {
         }
 
     }
+    
+    @Override
+    public String getToken(String correo) {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        String token;
+
+        //Call del store procedure
+        String stProcedure = "CALL getToken(?)";
+       
+        try {
+           
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setString(1, correo);
+            rs = cstmt.executeQuery();
+            rs.next();
+            token = rs.getString("token");
+            
+            conn.close();
+            rs.close();
+            cstmt.close();
+            
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            token = null;
+        }
+        
+        return token;
+    }
 }

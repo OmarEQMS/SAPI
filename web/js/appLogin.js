@@ -106,7 +106,53 @@ $(document).ready(function () {
             key: "getRegistro"
         });
     });
-
+    $('#btn-login').on('click', function () {
+        var usu = $("#user");
+        var pass = $("#password");
+        $.get("LoginController", {
+            key: "verificar",
+            usuario: usu.val(),
+            password: pass.val()
+        },
+                function (response, status, xhr) {
+                    //console.log(response);
+                    if (status == "success") {
+                        if (response == "LoginError") { 
+                            //console.log("No se pudo inicar sesion");
+                            $("#msj-error").show();
+                        } else {
+                            $("#msj-cargando").show();
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    $('#recuperarContra').on('click', function () {
+        console.log("Click en recuperarContra desde el Login"); 
+        $.get("LoginController",{
+            
+            key: "recuperarContra"
+        },
+                function (response,status) {
+                    console.log(response);
+                    
+                    if (response != "") {
+                        console.log("Intentando redireccionar");
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
+                    } else {
+                        console.log("Error al cargar");
+                    
+                    }
+                }
+        );
+            
+    });
+    
 });
 
 

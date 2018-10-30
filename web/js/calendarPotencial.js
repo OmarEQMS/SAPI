@@ -36,7 +36,7 @@ $(document).ready(function () {
         },
         eventSources: [
             {
-                url: 'PotencialController',
+                /*url: 'PotencialController',
                 type: 'POST',
                 cache: false,
                 data: {
@@ -46,7 +46,7 @@ $(document).ready(function () {
                 textColor: 'white',
                 success: function (response) {
                     console.log(response);
-                }
+                }*/
             }
 
         ],

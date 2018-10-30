@@ -789,61 +789,6 @@ public class PotencialController extends HttpServlet {
                 break;
             }
 
-            //Desde aqui se sube guarda y muestra una imagen se debe cambiar por el nombre 
-            //de la tabla donde se guardan las imagenes
-
-            /*
-            case "upload": {
-                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
-                if (sesion.getAttribute("idCuenta") == null) {
-                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
-                    return;
-                } else {
-                    if (ServletFileUpload.isMultipartContent(request)) {
-                        Part part = request.getPart("archivo");
-                        int idCuenta = (int) sesion.getAttribute("idCuenta");
-                        InputStream contenido = part.getInputStream();
-                        PersonaServicioImpl personaServicio = new PersonaServicioImpl();
-
-                        Persona persona = personaServicio.mostrarPersona(idCuenta);
-                        persona.setImagen(contenido);
-
-                        // request.setCharacterEncoding("UTF-8");
-                        PrintWriter out = response.getWriter();
-                        if (personaServicio.actualizarPersona(persona)) {
-                            out.print("success");
-
-                        } else {
-                            out.print("error");
-                        }
-                    }
-                }
-            }
-            break;
-
-            case "show": {
-                /*
-                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
-                if (sesion.getAttribute("idCuenta") == null) {
-                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
-                    return;
-                } else {
-                    int idCuenta = (int) sesion.getAttribute("idCuenta");
-                    PersonaServicioImpl personaServicio = new PersonaServicioImpl();
-                    //Persona persona = personaServicio.mostrarImagen(idCuenta);
-                    PrintWriter out = response.getWriter();
-
-                    response.setContentType("application/octet-stream");
-
-                    byte[] bytes = IOUtils.toByteArray(personaServicio.getImagen());
-                    String base64String = Base64.getEncoder().encodeToString(bytes);
-
-                    out.print(base64String);
-                }
-                
-                break;
-            }
-             */
             //Author Angel Gtz
             case "eliminarCuentaPacientePotencial": {
                 HttpSession sesion = request.getSession(true);
@@ -954,7 +899,7 @@ public class PotencialController extends HttpServlet {
             case "obtenerEventos": {
 
                 String idPaciente = request.getParameter("idPaciente");
-
+                System.out.println("El idPaciente es: " + idPaciente);
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
 
                 //Servicio
@@ -963,18 +908,18 @@ public class PotencialController extends HttpServlet {
                 //Lista Calendarios
                 List<FullCalendar> calendarios = csi.mostrarEventos(Integer.parseInt(idPaciente));
 
-                System.out.println("EL ID DEL PACIENTE ES:  " + idPaciente);
 
                 boolean revisarPre = true;
                 boolean revisarNav = true;
 
                 for (FullCalendar calendario : calendarios) {
                     if (calendario.getTitle().equals("Preconsulta") && revisarPre) {
-                        sesion.setAttribute("fechaPreConsulta", calendario.getStart());
                         System.out.println("La fecha preconsulta es: " + calendario.getStart());
+                        sesion.setAttribute("fechaPreConsulta", calendario.getStart());
                         revisarPre = false;
                     }
-                    if (calendario.getTitle().equals("Navegacion") && revisarNav) {
+                    
+                    if (calendario.getTitle().equals("Navegación") && revisarNav) {
                         System.out.println("La fecha navegacion es: " + calendario.getStart());
                         sesion.setAttribute("fechaNavegacion", calendario.getStart());
                         revisarNav = false;
@@ -1118,13 +1063,55 @@ public class PotencialController extends HttpServlet {
                     SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
                     solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
 
+
+/*HEAD
                     sesion.setAttribute("identificacionOficial", solicitudPreconsulta.getIdentificacion());
                     sesion.setAttribute("curp", solicitudPreconsulta.getCurp());
                     sesion.setAttribute("comprobante", solicitudPreconsulta.getComprobante());
                     sesion.setAttribute("resultadoMastografia", solicitudPreconsulta.getMastografia());
                     sesion.setAttribute("resultadosUltrasonidos", solicitudPreconsulta.getUltrasonido());
                     sesion.setAttribute("biopsiaPrevia", solicitudPreconsulta.getBiopsiaPrevia());
+*/
 
+                    if(solicitudPreconsulta.getIdentificacion() != null){
+                        sesion.setAttribute("identificacionOficial", 1);
+                    }else{
+                        sesion.setAttribute("identificacionOficial", 0);
+                    }
+                    if(solicitudPreconsulta.getCurp() != null){
+                        sesion.setAttribute("curp", 1);
+                    }else{
+                        sesion.setAttribute("curp", 0);
+                    }
+                    if(solicitudPreconsulta.getComprobante() != null){
+                        sesion.setAttribute("comprobante", 1);
+                    }else{
+                        sesion.setAttribute("comprobante", 0);
+                    }
+                    if(solicitudPreconsulta.getMastografia() != null){
+                        sesion.setAttribute("resultadoMastografia", 1);
+                    }else{
+                        sesion.setAttribute("resultadoMastografia", 0);
+                    }
+                    if(solicitudPreconsulta.getUltrasonido() != null){
+                        sesion.setAttribute("resultadoUltrasonido", 1);
+                    }else{
+                        sesion.setAttribute("resultadoUltrasonido", 0);
+                    }
+                    if(solicitudPreconsulta.getBiopsiaPrevia() != null){
+                        sesion.setAttribute("biopsiaPrevia", 1);
+                    }else{
+                        sesion.setAttribute("biopsiaPrevia", 0);
+                    }
+                    
+                    
+                    System.out.println("identificacionOficial: " + solicitudPreconsulta.getIdentificacion());
+                    System.out.println("curp: " + solicitudPreconsulta.getCurp());
+                    System.out.println("comprobante: " + solicitudPreconsulta.getComprobante());
+                    System.out.println("resultadoMastografia: " + solicitudPreconsulta.getMastografia());
+                    System.out.println("resultadosUltrasonidos: " + solicitudPreconsulta.getUltrasonido());
+                    System.out.println("biopsiaPrevia: " + solicitudPreconsulta.getBiopsiaPrevia());
+                    
                     Gson json = new Gson();
                     System.out.println("Res Id ".concat(String.valueOf(idPacientePotencial)).concat(json.toJson(solicitudPreconsulta)));
 

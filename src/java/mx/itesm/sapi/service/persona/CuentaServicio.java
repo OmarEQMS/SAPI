@@ -19,5 +19,6 @@ public interface CuentaServicio {
     public boolean actualizarCuenta(Cuenta cuenta);
     public boolean borradoLogicoCuenta(int idCuenta);
     public boolean existsUsuario(String usuario);
+    public String getToken(String email);
     
 }

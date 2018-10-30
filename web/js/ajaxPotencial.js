@@ -15,15 +15,15 @@ $(document).ready(function () {
         processData: false,
         contentType: false,
         success: function (response) {
-            
+
             if (response != null) {
-                
-               
-               var data = JSON.parse(response);
-                   
+
+
+                var data = JSON.parse(response);
+
                 console.log(data);
-    
-               
+
+
 
             } else {
                 console.log("Algo pasó" + response);
@@ -55,7 +55,7 @@ $(document).ready(function () {
             }
         },
         error: function () {
-           
+
         }
 
     });
@@ -102,7 +102,7 @@ $(document).ready(function () {
                             data: {
                                 key: "eliminarCuentaPacientePotencial",
                                 idCuenta: $("#sesionPaciente").val(),
-                                
+
                             },
                             method: "POST"
                         });
@@ -194,9 +194,9 @@ $(document).ready(function () {
 
 
     });
-    
-    $("#btn-GuardarContinuar").on('click',function()
-    {       
+
+    $("#btn-GuardarContinuar").on('click', function ()
+    {
         console.log("Guardar-Continuar");
         var form = $("form")[0];
         var data = new FormData(form);
@@ -248,7 +248,7 @@ $(document).ready(function () {
 
 
         });
-       
+
     });
 
     $("#btn-enviarSolicitud").on('click', function () {
@@ -432,12 +432,49 @@ $(document).ready(function () {
     });
 
     $('#irAMisCitas').on('click', function () {
-        $.post("SAPI", {
-            //CAMBIAR ESTE FILE
-            file: "potencial/misCitas.jsp"
+        $.post("PotencialController", {
+            key: 'obtenerEventos',
+            idPaciente: $('#idPaciente').val()
         },
                 function (response, status, xhr) {
-                    console.log(response);
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        ).then(function () {
+            $.post("SAPI", {
+                file: "potencial/misCitas.jsp"
+            },
+                    function (response, status, xhr) {
+                        console.log(response);
+                        if (status == "success") {
+                            if (response == "error") {
+                                $("#msj-error").show();
+                            } else {
+                                document.open("text/html", "replace");
+                                document.write(response);
+                                document.close();
+                            }
+                        }
+                    }
+            );
+        });
+
+    });
+
+    $('#irACuenta').on('click', function () {
+        $.post("SAPI", {
+            file: "potencial/cuentaPaciente.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -451,8 +488,7 @@ $(document).ready(function () {
         );
     });
 
-
-    $('#irACuenta').on('click', function () {
+    $('#irACuenta1').on('click', function () {
         $.post("SAPI", {
             file: "potencial/cuentaPaciente.jsp"
         },
@@ -490,36 +526,6 @@ $(document).ready(function () {
                 }
         );
     });
-    /*
-     $('#guardarCambios').on('click', function() {
-     console.log("Presionó GuardarCambios") 
-     var corr = $("#myEmail");
-     var tel = $("#telephoneNum");
-     var input = $("#file-input")
-     $.get("PotencialController", {
-     key: "guardarCambios",
-     file: "potencial/cuentaPaciente.jsp",
-     input: input.val(),
-     correo: corr.val(),
-     telefono: tel.val()
-     },
-     //Esto de aquí abajo para que?
-     
-     function (response, status, xhr) {
-     console.log(response);
-     if (status == "success") {
-     if (response == "error") {
-     $("#msj-error").show();
-     } else {
-     document.open("text/html", "replace");
-     document.write(response);
-     document.close();
-     }
-     }
-     }
-     );
-     });*/
-
 
     $('#guardarCambios').on('click', function () {
 

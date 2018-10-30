@@ -43,7 +43,6 @@ import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 
-
 /**
  *
  * @author Admin
@@ -70,7 +69,6 @@ public class RegistraUsuarioController extends HttpServlet {
         // 1 key: verificarUsuario
         //2 key: reistroCompleto
         String key = request.getParameter("key");
-
 
         //Servicios
         PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
@@ -161,7 +159,7 @@ public class RegistraUsuarioController extends HttpServlet {
                 per.setCurp(curp);
                 per.setIdEstadoCivil(estadoCivil);
                 per.setIdMunicipio(municipio);
-                      
+
                 long unixTimestamp = Instant.now().getEpochSecond();
                 System.out.println(String.valueOf(unixTimestamp));
 
@@ -169,6 +167,7 @@ public class RegistraUsuarioController extends HttpServlet {
                 cuenta.setPassword(contraseña1);
                 cuenta.setUsuario(usuario);
                 cuenta.setToken(String.valueOf(unixTimestamp));
+
 
                 //DIRECCION
                 dir.setCalle(calle);
@@ -188,12 +187,12 @@ public class RegistraUsuarioController extends HttpServlet {
                     per.setIdDireccion(idD);
                     int idP = _registroServicio.agregarPersona(per);
                     System.out.println("idPersona: " + idP);
-                    
+
                     if (idP > 0) {
                         cuenta.setIdPersona(idP);
                         idC = _rSC.agregarCuenta(cuenta);
                         System.out.println("idCuenta: " + idC);
-                                
+
                         if (idC > 0) {
 
                             idPac = pacienteServicio.agregarPacienteRegistro(idC);
@@ -202,19 +201,18 @@ public class RegistraUsuarioController extends HttpServlet {
                             System.out.println("idPac: " + idPac);
                             System.out.println("idEsPaPa " + idEsPaPa);
                             if (idEsPaPa > 0) {
+                                System.out.println("va a agregar imagen");
+                                PicServicioImpl picServiceImpl = new PicServicioImpl();
+                                Pic pic = new Pic();
 
+                                pic = picServiceImpl.mostrarPicDefault();
+                                pic.setIdPersona(idP);
+
+                                picServiceImpl.agregarPic(pic);
+                                System.out.println("agrego imagen");
                             }
 
                         }
-                        System.out.println("va a agregar imagen");
-                        PicServicioImpl picServiceImpl = new PicServicioImpl();
-                        Pic pic = new Pic();
-
-                        pic = picServiceImpl.mostrarPicDefault();
-                        pic.setIdPersona(idP);
-
-                        picServiceImpl.agregarPic(pic);
-                        System.out.println("agrego imagen");
                     }
 
                 }

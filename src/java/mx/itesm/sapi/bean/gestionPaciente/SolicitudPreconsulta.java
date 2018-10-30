@@ -48,6 +48,10 @@ public class SolicitudPreconsulta {
         return str;
     }
 
+/*
+        return "SolicitudPreconsulta{" + "idSexo=" + idSexo + ", silla=" + silla + ", camilla=" + camilla + ", baston=" + baston + ", oxigeno=" + oxigeno + ", estudioPrevio=" + estudioPrevio + ", biopsiaPrevia=" + biopsiaPrevia + ", identificacion=" + identificacion + ", comprobante=" + comprobante + ", curp=" + curp + ", referencia=" + referencia + ", mastografia=" + mastografia + ", ultrasonido=" + ultrasonido + '}';
+    }
+ */   
     public int getIdSexo() {
         return idSexo;
     }
@@ -151,6 +155,7 @@ public class SolicitudPreconsulta {
     public void setUltrasonido(String ultrasonido) {
         this.ultrasonido = ultrasonido;
     }
+
     
                
 }
