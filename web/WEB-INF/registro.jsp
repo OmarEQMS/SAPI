@@ -147,7 +147,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <input id="calle" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf015; CALLE">
                     <span class="text-danger" id="errorCalle">Formato incorrecto</span>
-                </div>
+                </div> 
 
             </div>
 

@@ -11,6 +11,8 @@ $(document).ready(function () {
 //VALIDACIONES CUENTA
 
      $('.error-correo').hide();
+     $('#error-fecha').hide();
+      $('#error-fechaFin').hide();
         
     //1.- Correo
     $('#correo').on('change', function(){
@@ -88,12 +90,21 @@ $(document).ready(function () {
 
     //VALIDACIONES INDEX
 
-    //1.- Fecha
-    $('#RegistrarCita_fecha').on('change', function(){
-        if(validation.isValidDate($('#RegistrarCita_fecha'))){
+    //1.- Fecha inicio
+    $('#fechaInicioTratamiento').on('change', function(){
+        if(validation.isValidDate($('#fechaInicioTratamiento'))){
             $('#error-fecha').hide();
         }else{
             $('#error-fecha').show();
+        }
+    }); 
+    
+        //1.- Fecha fin
+    $('#fechaFinTratamiento').on('change', function(){
+        if(validation.isValidDate2($('#fechaFinTratamiento'))){
+            $('#error-fechaFin').hide();
+        }else{
+            $('#error-fechaFin').show();
         }
     }); 
 

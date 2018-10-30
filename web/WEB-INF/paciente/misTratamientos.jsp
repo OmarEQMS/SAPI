@@ -231,12 +231,15 @@
                                         </div>
                                         <input placeholder="Introduce la fecha de inicio" class="selectStyle form-control textbox-n"
                                                type="text" onfocus="(this.type = 'date')" id="fechaInicioTratamiento">
+                                        
                                                <span class="text-danger error-fecha" id="error-fecha">Fecha incorrecta</span>
                                     </div>
                                 </div>
 
                             </div>
-
+                            
+                             <!-- ***** Tipo ***** -->
+                            
                             <!-- ***** Tipo ***** -->
                             <div class="row mb-3 justify-content-center">
                                 <div class="col-8">
@@ -331,6 +334,7 @@
                                         </div>
                                         <input placeholder="Introduce la fecha de fin" class="selectStyle form-control textbox-n"
                                                type="text" onfocus="(this.type = 'date')" id="fechaFinTratamiento">
+                                         <span class="text-danger error-fechaFin" id="error-fechaFin">Fecha incorrecta</span>
                                     </div>
                                 </div>
 
