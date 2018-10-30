@@ -31,9 +31,27 @@ public class SolicitudPreconsulta {
 
     @Override
     public String toString() {
+        String str = "SolicitudPreconsulta[idSexo:".concat(String.valueOf(idSexo))
+        .concat(",silla:").concat(String.valueOf(silla))
+        .concat(",camilla:").concat(String.valueOf(camilla))
+        .concat(",baston:").concat(String.valueOf(baston))
+        .concat(",oxigeno:").concat(String.valueOf(oxigeno))
+        .concat(",estudioPrevio:").concat(estudioPrevio)
+        .concat(",biopsiaPrevia:").concat(biopsiaPrevia)
+        .concat(",identificacion:").concat(identificacion)
+        .concat(",comprobante:").concat(comprobante)
+        .concat(",curp:").concat(curp)
+        .concat(",referencia:").concat(referencia)
+        .concat(",mastografia:").concat(mastografia)
+        .concat(",ultrasonido:").concat(ultrasonido)
+        .concat("]");
+        return str;
+    }
+
+/*
         return "SolicitudPreconsulta{" + "idSexo=" + idSexo + ", silla=" + silla + ", camilla=" + camilla + ", baston=" + baston + ", oxigeno=" + oxigeno + ", estudioPrevio=" + estudioPrevio + ", biopsiaPrevia=" + biopsiaPrevia + ", identificacion=" + identificacion + ", comprobante=" + comprobante + ", curp=" + curp + ", referencia=" + referencia + ", mastografia=" + mastografia + ", ultrasonido=" + ultrasonido + '}';
     }
-    
+ */   
     public int getIdSexo() {
         return idSexo;
     }
@@ -139,5 +157,5 @@ public class SolicitudPreconsulta {
     }
 
     
-    
+               
 }

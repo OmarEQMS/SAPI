@@ -109,6 +109,7 @@ public class PacienteNecesidadEspecialServicioImpl implements PacienteNecesidadE
             rs.next();
             id=rs.getInt(1);
             
+            //System.out.println("INT IdNecesidadEspecial ".concat(String.valueOf(id)));
             rs.close();
             cstmt.close();
             conn.close();

@@ -166,7 +166,8 @@ public class RegistraUsuarioController extends HttpServlet {
                 //Set cuenta
                 cuenta.setPassword(contraseña1);
                 cuenta.setUsuario(usuario);
-                cuenta.setToken("1111111116");
+                cuenta.setToken(String.valueOf(unixTimestamp));
+
 
                 //DIRECCION
                 dir.setCalle(calle);

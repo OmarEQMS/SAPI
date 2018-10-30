@@ -45,6 +45,7 @@ $(document).ready(function () {
     });
 
     //Desabilitar los inputs subidos
+
     /*$('#fileIdentificacionSubido').attr('disabled', 'disabled');
     $('#fileComprobanteDomicilioSubido').attr('disabled', 'disabled');
     $('#fileCURPSubido').attr('disabled', 'disabled');
@@ -52,6 +53,7 @@ $(document).ready(function () {
     $('#fileEstudioPrevioUsgSubido').attr('disabled', 'disabled');
     $('#fileEstudioBiopsiaSubido').attr('disabled', 'disabled');
 */
+
 
     $("#motivoConsulta").on('change', () => {
 

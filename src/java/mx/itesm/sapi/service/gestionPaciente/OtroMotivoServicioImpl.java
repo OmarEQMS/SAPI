@@ -94,14 +94,13 @@ public class OtroMotivoServicioImpl implements OtroMotivoServicio {
         ResultSet rs;
         CallableStatement cstmt;
         int id = -1;
-        String stPrcedure = "CALL agregarOtroMotivo(?,?,?)";
+        String stPrcedure = "CALL agregarOtroMotivo(?,?)";
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stPrcedure);
             
             cstmt.setInt(1, otroMotivo.getIdCita());
             cstmt.setString(2, otroMotivo.getNombre());
-            cstmt.setInt(3, otroMotivo.getEstatus());
             
             cstmt.executeQuery();
             rs = cstmt.getGeneratedKeys();
