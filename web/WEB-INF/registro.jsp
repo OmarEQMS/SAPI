@@ -36,19 +36,19 @@
             <div class="form-group row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <input id="nombre" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf007; NOMBRE" autofocus>
-                    <span class="text-danger" id="errorNombre">Formato incorrecto</span>
+                    <span class="text-danger" id="errorNombre">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 255 caracteres.</span>
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                     <input id="apellido1" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf007; APELLIDO PATERNO">
-                    <span class="text-danger" id="errorApellidoPaterno">Formato incorrecto</span>
+                    <span class="text-danger" id="errorApellidoPaterno">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                 </div>
 
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                    <input id="apellido2" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf007; APELLIDO MATERNO">
-                    <span class="text-danger" id="errorApellidoMaterno">Formato incorrecto</span>
+                    <input id="apellido2" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf007; APELLIDO MATERNO (OPCIONAL)">
+                    <span class="text-danger" id="errorApellidoMaterno">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                 </div>
             </div>
 
@@ -56,12 +56,12 @@
             <div class="form-group row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                     <input id="usuario" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf2bd; NOMBRE DE USUARIO">
-                    <span class="text-danger" id="errorNombreUsuario">Formato incorrecto</span>
-                    <span class="text-warning" id="errorUsuarioRepetido">El usuario ya existe</span>
+                    <span class="text-danger" id="errorNombreUsuario">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 4 y un máximo de 16 caracteres.</span>
+                    <span class="text-warning" id="errorUsuarioRepetido">El usuario ya existe.</span>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                     <input id="correo" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf0e0; CORREO ELECTRÓNICO (OPCIONAL)">
-                    <span class="text-danger" id="errorCorreo">Formato incorrecto</span>
+                    <span class="text-danger" id="errorCorreo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
                 </div>
             </div>
 
@@ -69,13 +69,13 @@
             <div class="form-group row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <input id="pass1" type="password" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf023; CONTRASEÑA" autofocus>
-                    <span class="text-danger" id="errorPass1">Formato incorrecto</span>
+                    <span class="text-danger" id="errorPass1">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                 </div>
        
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <input id="pass2" type="password" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf023; CONFIRMAR CONTRASEÑA">
-                    <span class="text-warning" id="noEqualPasswordsError">Las contraseñas no son iguales</span>
-                    <span class="text-danger" id="errorPass2">Formato incorrecto</span>
+                    <span class="text-warning" id="noEqualPasswordsError">Las contraseñas no son iguales.</span>
+                    <span class="text-danger" id="errorPass2">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                 </div>
                 
             </div>
@@ -87,19 +87,19 @@
             <div class="form-group row">
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                     <input id="curp" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf2C2; CURP">
-                    <span class="text-danger" id="errorCurp">Formato incorrecto</span>
-                    <span class="text-warning" id="errorCurpRepetido">El curp ya existe</span>
+                    <span class="text-danger" id="errorCurp">Formato incorrecto, introduce un CURP válido.</span>
+                    <span class="text-warning" id="errorCurpRepetido">El curp ya existe.</span>
                 </div>
                 
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                     <input id="codigoPostal" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf3c5; CODIGO POSTAL">
-                    <span class="text-danger" id="errorCodigoPostal">Formato incorrecto</span>
-                    <span class="text-danger" id="error-CPexiste" style="font-size:13px;">El codigo postal no existe</span>
+                    <span class="text-danger" id="errorCodigoPostal">Formato incorrecto, deben ser 5 dígitos.</span>
+                    <span class="text-danger" id="error-CPexiste" style="font-size:13px;">El codigo postal no existe.</span>
                 </div>
 
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                     <input id="telefono" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf095; TELEFONO">
-                    <span class="text-danger" id="errorTelefono">Formato incorrecto</span>
+                    <span class="text-danger" id="errorTelefono">Formato incorrecto, deben ser 10 dígitos.</span>
                 </div>
             </div>
 
@@ -127,40 +127,40 @@
                             <option value="<c:out value='${estado.idEstado}'/>"><c:out value='${estado.nombre}'/></option>
                         </c:forEach>
                     </select>
-                    <span class="text-danger" id="errorEstado">Fecha incorrecta</span>
+                    <span class="text-danger" id="errorEstado">Campo vacío</span>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 municipios">
                     <select class="form-control selectStyle" id="municipio">
                         <option selected disabled>Municipio</option>
                         
                     </select>
-                    <span class="text-danger" id="errorMunicipio">Formato Incorrecto</span>
+                    <span class="text-danger" id="errorMunicipio">Campo vacío</span>
                 </div>
             </div>
 
             <div class="form-group row">
 
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <input id="colonia" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf015; COLONIA" autofocus>
-                    <span class="text-danger" id="errorColonia">Formato incorrecto</span>
+                    <input id="colonia" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf015; COLONIA (OPCIONAL)" autofocus>
+                    <span class="text-danger" id="errorColonia">Formato incorrecto, introducir caracteres alfanuméricos.</span>
                 </div>
 
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <input id="calle" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf015; CALLE">
-                    <span class="text-danger" id="errorCalle">Formato incorrecto</span>
+                    <input id="calle" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf015; CALLE (OPCIONAL)">
+                    <span class="text-danger" id="errorCalle">Formato incorrecto, introducir caracteres alfanuméricos.</span>
                 </div>
 
             </div>
 
             <div class="form-group row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <input id="noExterior" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf3c5; NO.EXT">
-                    <span class="text-danger" id="errorNoExterior">Formato incorrecto</span>
+                    <input id="noExterior" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf3c5; NO.EXT (OPCIONAL)">
+                    <span class="text-danger" id="errorNoExterior">Formato incorrecto, solo dígitos.</span>
                 </div>
 
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <input id="noInterior" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf3c5; NO.INT (Opcional)">
-                    <span class="text-danger" id="errorNoInterior">Formato incorrecto</span>
+                    <input id="noInterior" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf3c5; NO.INT (OPCIONAL)">
+                    <span class="text-danger" id="errorNoInterior">Formato incorrecto, solo dígitos.</span>
                 </div>
             </div>
 
