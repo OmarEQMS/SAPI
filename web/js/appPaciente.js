@@ -212,6 +212,17 @@ $(document).ready(function () {
         $(this).attr('disabled', true);
 
     });
+    
+    $("body").on("click",".myCleaner", function(){
+		$(".hora").val("");
+                $(".tipo").prop('selectedIndex',0);
+                $(".medico").prop('selectedIndex',0);
+                $("#RegistrarCita_edificioAntiguo").prop("checked", false);
+                $("#RegistrarCita_edificioNuevo").prop("checked", false);
+                $('input[name=Pisos]').prop("checked", false);
+                $('#pisosDiv').hide();
+                
+	});
 
     //Cambiar color al botón de confirmación de tratamiento terminado
     $('body').on('click', '.button-Fin-Tratamiento', function () {

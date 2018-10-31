@@ -542,7 +542,8 @@ $(document).ready(function () {
 
         $("#botonHidden").val($(this).data('id'));
 
-        alert($('#idTratamientoPaciente').val());
+       //alert($('#idTratamientoPaciente').val());
+        
 
         $("#tipoTratamiento2").val(
                 $("#nombre-" + $(this).data('id')).val()

@@ -306,7 +306,7 @@
                                         class="fas fa-question-circle modalInfo"></i></div>
                                 <div class="col-2"> <span class="colorGlobal">Tipo:</span> </div>
                                 <div class="col-8">
-                                    <select class="custom-select" id="RegistrarCita_tipo" required>
+                                    <select class="custom-select tipo" id="RegistrarCita_tipo" required>
                                         <option disabled selected>Seleccione tipo</option>
                                         <option value="2" data-nombre="Consulta">Consulta</option>
                                         <option value="4" data-nombre="Preconsulta">Preconsulta</option>
@@ -327,7 +327,7 @@
                                         class="fas fa-question-circle modalInfo"></i></div>
                                 <div class="col-2"> <span class="colorGlobal">Médico Adscrito:</span></div>
                                 <div class="col-8">
-                                    <select class="custom-select" id="RegistrarCita_medico" required>
+                                    <select class="custom-select medico" id="RegistrarCita_medico" required>
                                         <option disabled selected>Seleccione médico</option>
                                         <c:forEach items="${listaMedicos}" var="medico"> 
 
@@ -459,7 +459,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" style="border-radius:20px;" data-dismiss="modal">Cerrar</button>
-                            <button id="btn-citaRegistrar" type="button" class="btn btn-primary" style="border-radius:20px;">Registrar</button>
+                            <button id="btn-citaRegistrar" type="button" class="btn btn-primary myCleaner" style="border-radius:20px;">Registrar</button>
                         </div>
                     </div>
                 </div>
