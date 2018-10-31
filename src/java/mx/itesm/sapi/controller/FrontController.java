@@ -272,6 +272,12 @@ public class FrontController extends HttpServlet {
                                 
 
                                 case "paciente/index.jsp": {
+                                    
+                                    PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                                    List<Persona> medicos = personaServicio.mostrarMedicos();
+                                    
+                                    request.setAttribute("listaMedicos", medicos);
+                                    
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     break;
                                 }
