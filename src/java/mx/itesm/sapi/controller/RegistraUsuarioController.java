@@ -234,7 +234,7 @@ public class RegistraUsuarioController extends HttpServlet {
 
                                 picServiceImpl.agregarPic(pic);
                                 System.out.println("agrego imagen");
-                                enviaCorreo(usuario);
+                                enviaCorreo(usuario,correo);
                             }
 
                         }
@@ -250,7 +250,7 @@ public class RegistraUsuarioController extends HttpServlet {
 
     }
 
-    protected void enviaCorreo(String usuario) {
+    protected void enviaCorreo(String usuario,String correo) {
         System.out.println("estoy en el metodo");
         Properties config = new Properties();
 
@@ -268,7 +268,7 @@ public class RegistraUsuarioController extends HttpServlet {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("pablocesarlugo@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("A01422919@itesm.mx"));
+                    InternetAddress.parse(correo));
             message.setSubject("Prueba de mail de sapo");
             //message.setText("Esto no es spam :)");
 
