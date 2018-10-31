@@ -194,7 +194,7 @@ public class PacienteNavegadoraServicioImpl implements PacienteNavegadoraServici
 
         PacienteNavegadora pacienteNavegadora = new PacienteNavegadora();
 
-        String stProcedure = "CALL mostrarPacienteNavegadoraIPaciente(?)";
+        String stProcedure = "CALL mostrarPacienteNavegadoraIdPaciente(?)";
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);

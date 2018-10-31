@@ -25,10 +25,11 @@ public class LlamadaCitaServicioImpl implements LlamadaCitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        LlamadaCita llamadaCita = new LlamadaCita();
+        LlamadaCita llamadaCita = null;
         String stProcedure = "CALL mostrarLlamadaCita(?)";
         try {
             conn = Conexion.getConnection();
+            llamadaCita = new LlamadaCita();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idLlamadaCita);
             rs = cstmt.executeQuery();

@@ -180,7 +180,7 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL borradoLogicoCita()";
+        String stProcedure = "CALL borradoLogicoCita(?)";
         boolean exito = false;
 
         try {

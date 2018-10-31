@@ -31,7 +31,7 @@ public class CuentaServicioImpl implements CuentaServicio {
         CallableStatement cstmt;
 
         //Call del store procedure
-        String stProcedure = "CALL borradoLogicoCuenta";
+        String stProcedure = "CALL borradoLogicoCuenta(?)";
 
         try {
             conn = Conexion.getConnection();
