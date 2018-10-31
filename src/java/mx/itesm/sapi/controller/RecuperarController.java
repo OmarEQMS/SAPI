@@ -114,14 +114,14 @@ public class RecuperarController extends HttpServlet {
                     Session session = Session.getInstance(config,
                             new javax.mail.Authenticator() {
                         protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication("alexdghranda@gmail.com", "#AESR73c73c");
+                            return new PasswordAuthentication("sapi.prueba@gmail.com", "prueba.Sapi1");
 
                         }
                     });
 
                     //System.out.println("despues del try");
                     Message message = new MimeMessage(session);
-                    message.setFrom(new InternetAddress("alexdghranda@gmail.com"));
+                    message.setFrom(new InternetAddress("sapi.prueba@gmail.com"));
                     message.setRecipients(Message.RecipientType.TO,
                             InternetAddress.parse(correo));
                     message.setSubject("Recuperar Conraseña");

@@ -164,11 +164,32 @@ public class LoginController extends HttpServlet {
                                 break;
                             }
                             case 4: {
+                                // CASE Para Navegadora
+                                System.out.println("Cuenta de NAVEGADORA:  ".concat(sesion.getAttribute("nombre").toString()));
+                                
+                                request.setAttribute("nombre", sesion.getAttribute("nombre"));
+                                request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));
+                                request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
+                                
+                                String keyRuta = "navegadora/cuentaNavegadora.jsp";
+
+                                //Si la contraseña no tiene el token de recuperar contraseña se continua al dashboard correspondiente                                                                 
+                                try {
+                                    System.out.println("Contraseña con token ".concat(cuenta.getToken()));
+                                    keyRuta = "recuperar.jsp";
+                                } catch (Exception ex) {
+
+                                }
+
+                                sesion.setAttribute("path", keyRuta);
+                                
+                                
+                                request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                                 break;
                             }
                             case 5: {
 
-                                System.out.println("Cuenta de paciente en tratamiento:  ".concat(sesion.getAttribute("nombre").toString()));
+                                System.out.println("Cuenta de paciente en tratamiento:  ".concat(sesion.getAttribute("nombre").toString()));                                                                                               
 
                                 PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                 Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);

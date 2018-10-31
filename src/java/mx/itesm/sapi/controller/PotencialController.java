@@ -93,11 +93,15 @@ public class PotencialController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         System.out.println("PotencialController Method ".concat(request.getMethod()));
-
-        String key = request.getParameter("key");
-
         System.out.println("URL PotencialController: ".concat(request.getRequestURL().toString()));
-        System.out.println("Key: ".concat(key));
+        String key = null;
+        try{
+               key = request.getParameter("key");
+               System.out.println("Key: ".concat(key));
+            }
+        catch(Exception ex){
+                System.out.println("SIN KEY PotencialController");
+            }              
 
         switch (key) {
 
