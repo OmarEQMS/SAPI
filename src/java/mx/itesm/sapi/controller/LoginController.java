@@ -195,6 +195,7 @@ public class LoginController extends HttpServlet {
                                 Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
                                 //Agregar el idPaciente a la sesión
                                 String idPacienteStr = String.valueOf(paciente.getIdPaciente());
+                                
                                 sesion.setAttribute("idPaciente", idPacienteStr);
 
                                 //Redirigir al paciente potencial a su dashboard correspondiente                               

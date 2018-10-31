@@ -24,6 +24,7 @@ import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.Tratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.TratamientoPaciente;
 import mx.itesm.sapi.bean.gestionTratamiento.UnionTratamientoPaciente;
+import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.bean.persona.Pic;
@@ -35,6 +36,7 @@ import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TratamientoPacienteServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.UnionTratamientoPacienteServiceImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import org.apache.commons.io.IOUtils;
@@ -62,7 +64,6 @@ public class FrontController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-
         System.out.println("URL FrontController: ".concat(request.getRequestURL().toString()));
         System.out.println("FrontController Method ".concat(request.getMethod()));
 
@@ -73,7 +74,7 @@ public class FrontController extends HttpServlet {
                 request.setAttribute("status", "");
                 request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
                 return;
-            }else{
+            } else {
                 request.getRequestDispatcher("WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                 return;
             }
@@ -117,44 +118,47 @@ public class FrontController extends HttpServlet {
                                     sesion.setAttribute("telefono", persona.getTelefono());
 
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
-                                } break;
-                                
+                                }
+                                break;
+
                                 case "potencial/index.jsp": {
                                     System.out.println("Entro al case de potencial/index.jsp");
-                                    
+
                                     sesion.setAttribute("path", keyRuta);
                                     PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
                                     Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
 
                                     PicServicioImpl picServicioImpl = new PicServicioImpl();
                                     Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
-                                    
+
                                     InputStream imagen = pic.getContenido();
                                     byte[] bytes = IOUtils.toByteArray(imagen);
                                     String base64String = Base64.getEncoder().encodeToString(bytes);
-                                    
+
                                     sesion.setAttribute("base64Img", base64String);
-                                    
+
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al login
-                                    
-                                } break;
-                                
+
+                                }
+                                break;
+
                                 case "potencial/misCitas.jsp": {
                                     System.out.println("Entro al case de potencial/misCitas.jsp");
-                                    
+
                                     sesion.setAttribute("path", keyRuta);
-                                    
-                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
-                                } break;
-                                
-                                case "potencial/preguntasFrecuentes.jsp":{
-                                    System.out.println("Entro al case de potencial/preguntasFrecuentes.jsp");
-                                    
-                                    sesion.setAttribute("path", keyRuta);
-                                    
+
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                 }
-                                
+                                break;
+
+                                case "potencial/preguntasFrecuentes.jsp": {
+                                    System.out.println("Entro al case de potencial/preguntasFrecuentes.jsp");
+
+                                    sesion.setAttribute("path", keyRuta);
+
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                }
+
                             }
 
                             break;
@@ -165,7 +169,25 @@ public class FrontController extends HttpServlet {
                         case 3: {
                             break;
                         }
+
+                        /*NAVEGADORA*/
                         case 4: {
+                            String keyRuta = request.getParameter("file");
+                            switch (keyRuta) {
+
+                                case "navegadora/cuenta.jsp": {
+                                    PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
+                                    Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
+                                    
+                                    
+                                    
+                                    /*MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl=new MedicoEspecialidadServicioImpl();
+                                    MedicoEspecialidad medicoEspecialidad= medicoEspecialidadServicioImpl.mostrarMedicoEspecialidad(keyRol)
+                                    */
+                                    
+                                    break;
+                                }
+                            }
                             break;
                         }
 
@@ -249,10 +271,10 @@ public class FrontController extends HttpServlet {
 
                                     List<UnionTratamientoPaciente> unionTratamientosPaciente = unionTratamientoPacienteServiceImpl.mostrarUnionTratamientoPaciente(idPaciente);
 
-                                    for(int i=0; i<unionTratamientosPaciente.size(); i++){
-                                        unionTratamientosPaciente.get(i).setTerminado();                                        
+                                    for (int i = 0; i < unionTratamientosPaciente.size(); i++) {
+                                        unionTratamientosPaciente.get(i).setTerminado();
                                     }
-                                    
+
                                     PicServicioImpl picServicioImpl = new PicServicioImpl();
                                     Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
 
@@ -261,7 +283,7 @@ public class FrontController extends HttpServlet {
                                     String base64String = Base64.getEncoder().encodeToString(bytes);
 
                                     sesion.setAttribute("base64Img", base64String);
-
+                                    System.out.println("en front controller esss"+paciente.getIdPaciente());
                                     sesion.setAttribute("idPaciente", paciente.getIdPaciente());
                                     request.setAttribute("tipoTratamiento", tratamientos);
                                     request.setAttribute("UnionTratamientosPaciente", unionTratamientosPaciente);
@@ -269,13 +291,11 @@ public class FrontController extends HttpServlet {
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     break;
                                 }
-                                
 
                                 case "paciente/index.jsp": {
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     break;
                                 }
-
 
                             }
                             break;
@@ -288,11 +308,11 @@ public class FrontController extends HttpServlet {
                 // request.getRequestDispatcher("WEB-INF/" + file).forward(request, response);
                 // return;
             } else {
-                        
-            System.out.println("filename else ".concat(file));
-            
-            request.getRequestDispatcher("/".concat(file)).forward(request, response);
-            return;
+
+                System.out.println("filename else ".concat(file));
+
+                request.getRequestDispatcher("/".concat(file)).forward(request, response);
+                return;
 
             }
         }

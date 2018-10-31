@@ -132,7 +132,8 @@ public class PacienteController extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         String key = request.getParameter("key");
-        int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
+        System.out.println("En paciente controller es"+request.getParameter("idPaciente"));
+        
         String idPacienteS = request.getParameter("idPaciente");
 
         PrintWriter out = response.getWriter();
@@ -341,7 +342,8 @@ public class PacienteController extends HttpServlet {
                         break;
 
                         case "agregarTratamiento": {
-
+                                
+                            System.out.println("Entre a agregar tratamiento");
                             System.out.println("entro a la key Agregar tratamiento");
                             if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
                                 // request.setAttribute("status", "");
@@ -365,9 +367,9 @@ public class PacienteController extends HttpServlet {
                                 out.flush();
                                 out.print(idTratamientoPaciente);
                             }
-
+                              break;
                         }
-                        break;
+                        
                         case "terminarTratamiento": {
 
                             int idTratamientoPaciente = Integer.parseInt(request.getParameter("idTratamientoPaciente"));
@@ -407,7 +409,8 @@ public class PacienteController extends HttpServlet {
                                 int idCuenta = (int) sesion.getAttribute("idCuenta");
 
                                 int idPersona = (int) sesion.getAttribute("idPersona");
-
+                                
+                                int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
                                 /**
                                  * creo los objetos de las tablas a modificar su
                                  * estatus

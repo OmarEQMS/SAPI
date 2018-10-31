@@ -77,10 +77,8 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-2 text-center">
-                            <a class="iconoSidebar" href="">
-                                <i class="fas fa-cog"></i>
-                            </a>
-                        </div>
+                        <a class="iconoSidebar irACuenta" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
+                    </div>
                         <div class="col-2">
                             <a class="iconoSidebar" href="">
                                 <i class="fas fa-power-off"></i>
@@ -99,7 +97,7 @@
                 <ul class="list-unstyled components">
 
                     <li id="irMisCitas"><a><i class="far fa-user"></i>Mis citas</a></li>
-                    <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+                    <li id="irACuenta" class="irACuenta"><a><i class="far fa-user irACuenta"></i>Mi Cuenta</a></li>
                     <li id="irATratamientos"><a><i class="far fa-user"></i>Mis Tratamientos</a></li>
                     <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
