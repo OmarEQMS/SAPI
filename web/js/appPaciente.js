@@ -212,6 +212,14 @@ $(document).ready(function () {
         $(this).attr('disabled', true);
 
     });
+    
+    $("body").on("click",".myCleaner", function(){
+		$(".hora").val("");
+                $(".tipo").prop('selectedIndex',0);
+                $(".medico").prop('selectedIndex',0);
+                $( "#RegistrarCita_edificioAntiguo" ).prop( "checked", false );
+                $( "#RegistrarCita_edificioAntiguo" ).prop( "checked", false );
+	});
 
     //Cambiar color al botón de confirmación de tratamiento terminado
     $('body').on('click', '.button-Fin-Tratamiento', function () {

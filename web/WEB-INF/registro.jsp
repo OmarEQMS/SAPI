@@ -60,7 +60,7 @@
                     <span class="text-warning" id="errorUsuarioRepetido">El usuario ya existe.</span>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                    <input id="correo" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf0e0; CORREO ELECTRÓNICO (OPCIONAL)">
+                    <input id="correo" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf0e0; CORREO ELECTRÓNICO">
                     <span class="text-danger" id="errorCorreo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                 </div>
                 
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                    <input id="codigoPostal" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf3c5; CODIGO POSTAL">
+                    <input id="codigoPostal" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf3c5; C.P. (OPCIONAL)">
                     <span class="text-danger" id="errorCodigoPostal">Formato incorrecto, deben ser 5 dígitos.</span>
                     <span class="text-danger" id="error-CPexiste" style="font-size:13px;">El codigo postal no existe.</span>
                 </div>
@@ -106,7 +106,7 @@
             <div class="form-group row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <select class="form-control selectStyle" id="estadoCivil">
-                        <option selected disabled>Estado civil</option>
+                        <option selected disabled>ESTADO CIVIL (OPCIONAL)</option>
                         <c:forEach items="${estadoCivil}" var="estadoC">  
                             <option value="<c:out value='${estadoC.idEstadoCivil}'/>"><c:out value='${estadoC.nombre}'/></option>
                         </c:forEach>
@@ -114,7 +114,7 @@
                     <span class="text-danger" id="errorECivil">Selecciona una opcion</span>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <input type="date" id="fechaNacimiento" class="selectStyle form-control">
+                    <input placeholder="FECHA DE NACIMIENTO" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type='date')"  id="fechaNacimiento">
                     <span class="text-danger" id="errorFecha">Fecha incorrecta</span>
                 </div>
             </div>
@@ -122,7 +122,7 @@
             <div class="form-group row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <select class="form-control selectStyle" id="estado">
-                        <option selected disabled>Estado</option>
+                        <option selected disabled>ESTADO</option>
                         <c:forEach items="${estados}" var="estado">  
                             <option value="<c:out value='${estado.idEstado}'/>"><c:out value='${estado.nombre}'/></option>
                         </c:forEach>
@@ -131,7 +131,7 @@
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 municipios">
                     <select class="form-control selectStyle" id="municipio">
-                        <option selected disabled>Municipio</option>
+                        <option selected disabled>MUNICIPIO</option>
                         
                     </select>
                     <span class="text-danger" id="errorMunicipio">Campo vacío</span>
