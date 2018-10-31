@@ -312,7 +312,6 @@
                                         <option value="4" data-nombre="Preconsulta">Preconsulta</option>
                                         <option value="3" data-nombre="Tratamiento">Tratamiento</option>
                                         <option value="1" data-nombre="Estudio">Estudio</option>
-                                        <option value="5" data-nombre="Navegación">Navegación</option>
                                         <option value="6" data-nombre="Cirugía">Cirugía</option>
                                     </select>
                                     <!--<span class="text-danger mr-4" id="error-tipoCita">No has seleccionado un tipo de cita.</span>-->
