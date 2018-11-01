@@ -42,10 +42,10 @@
 
             <div class="row">
                 <div class="col-12">
-                    <input id="cambio1" type="correo" class="form-control" placeholder="Introduce tu nueva contraseña" >
+                    <input id="cambio1" type="password" class="form-control" placeholder="Introduce tu nueva contraseña" >
                 </div>
                 <div class="col-12">
-                        <input id="cambio2"type="confirmarCorreo" class="form-control mt-3" placeholder="Confirma tu nueva contraseña" >
+                        <input id="cambio2"type="password" class="form-control mt-3" placeholder="Confirma tu nueva contraseña" >
                     </div>
             </div>
 
