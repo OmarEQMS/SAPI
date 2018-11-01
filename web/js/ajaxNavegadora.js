@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+
+    alert();
+    
+    
     //Eliminar cuenta
     $('#eliminarCuentaNavegadora').on('click', () => {
 
@@ -162,6 +166,61 @@ $(document).ready(function () {
 
     });
 
+    $('#guardarCambios').on('click', function () {
+
+        console.log("Presionó GuardarCambios")
+        var form = $("form")[0];
+        var data = new FormData(form);
+        data.append("key", "cambiarDatos");
+        data.forEach((value, key) => {
+            console.log(key + " " + value);
+        })
+
+        $.ajax({
+            url: "NavegadoraController",
+            data: data,
+            method: "POST",
+            encType: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (response) {
+                $.post("SAPI", {
+                    file: "navegadora/cuentaNavegadora.jsp"
+                },
+                        function (response, status, xhr) {
+                            /*console.log("El ajax fue exitoso!!-----------------------");
+                             if (status == "success") {
+                             if (response == "error") {
+                             $("#msj-error").show();
+                             } else {
+                             
+                             
+                             document.open("text/html", "replace");
+                             document.write(response);
+                             document.close();
+                             }
+                             }*/
+                            swal({
+                                title: 'Buen Trabajo',
+                                text: "Cambios guardados correctamente",
+                                type: 'success',
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Ok'
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location.reload();
+                                }
+                                ;
+                            });
+                        }
+                );
+            },
+            error: function (xhr) {
+                //alert(xhr.statusText);
+            }
+        });
+    });
 
 });
 

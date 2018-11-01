@@ -268,11 +268,10 @@ public class LoginController extends HttpServlet {
                                     
                                     
                                     
-                                    System.out.println("holiiii");
+                                    
                                     sesion.setAttribute("nombre", persona.getNombre());
                                     sesion.setAttribute("primerApellido", persona.getPrimerApellido());
                                     sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
-                                    System.out.println("el correo es:"+persona.getCorreo());
                                     sesion.setAttribute("correo", persona.getCorreo());
                                     sesion.setAttribute("telefono", persona.getTelefono());
                                     sesion.setAttribute("usuario", cuenta.getUsuario());

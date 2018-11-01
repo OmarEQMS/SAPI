@@ -219,7 +219,7 @@
                             </div>
                             <div class="col-4">
                                 <label for="telephoneNum">Teléfono</label>
-                                <input type="tel" class="form-control" id="telephoneNum" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890"
+                                <input name="telefono" type="tel" class="form-control" id="telephoneNum" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890"
                                     value="${sessionScope.telefono}" required />
                             </div>
                         </div>
@@ -228,7 +228,7 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-8">
                                 <label for="myEmail">Correo</label>
-                                <input type="email" class="form-control" id="myEmail" value="${sessionScope.correo}" placeholder="Introduzca su correo" required
+                                <input name="correo" type="email" class="form-control" id="myEmail" value="${sessionScope.correo}" placeholder="Introduzca su correo" required
                                     pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
                                 />
                             </div>                           
@@ -237,7 +237,7 @@
                         <!-- 6 -->
                         <div class="form-group row justify-content-center mt-4">
                             <div class="col-4">
-                                <button type="button" class="btn btn-outline-success btn-block" style="border-radius:20px"><i class="fas fa-save mr-1"></i>
+                                <button type="button" class="btn btn-outline-success btn-block" style="border-radius:20px" id="guardarCambios"><i class="fas fa-save mr-1"></i>
                                     Guardar Cambios</button>
                             </div>
                         </div>
