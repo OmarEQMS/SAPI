@@ -108,27 +108,27 @@ $(document).ready(function () {
     });
 
     $('#btn-login').on('click', function () {
-        var usu = $("#user");
-        var pass = $("#password");
-        $.post("LoginController", {
-            key: "verificar",
-            usuario: usu.val(),
-            password: pass.val()
-        },
-                function (response, status, xhr) {
-                    //console.log(response);
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            $("#msj-cargando").show();
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
+       var usu = $("#user");
+            var pass = $("#password");
+            $.post("LoginController", {
+                key: "verificar",
+                usuario: usu.val(),
+                password: pass.val()
+            },
+                    function (response, status, xhr) {
+                        //console.log(response);
+                        if (status == "success") {
+                            if (response == "error") {
+                                $("#msj-error").show();
+                            } else {
+                                $("#msj-cargando").show();
+                                document.open("text/html", "replace");
+                                document.write(response);
+                                document.close();
+                            }
                         }
                     }
-                }
-        );
+            ); 
     });
 
 
@@ -142,15 +142,15 @@ $(document).ready(function () {
         },
                 function (response, status) {
                     console.log(response);
-
-                    if (response != "") {
+                    if (response == "error") {
+                        console.log("Error al cargar");
+                    } else {
+                        
                         console.log("Intentando redireccionar");
                         document.open("text/html", "replace");
                         document.write(response);
                         document.close();
-                    } else {
-                        console.log("Error al cargar");
-
+                        
                     }
                 }
         );

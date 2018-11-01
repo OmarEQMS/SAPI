@@ -65,7 +65,7 @@ public class FrontController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         System.out.println("URL FrontController: ".concat(request.getRequestURL().toString()));
-        System.out.println("FrontController Method ".concat(request.getMethod()));
+        System.out.println("FrontController Method ".concat(request.getMethod()));        
 
         String file = request.getParameter("file");
         if (file == null) {
@@ -74,10 +74,12 @@ public class FrontController extends HttpServlet {
                 request.setAttribute("status", "");
                 request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
                 return;
-            } else {
-                request.getRequestDispatcher("WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
-                return;
-            }
+            }else{
+                String strPath = sesion.getAttribute("path").toString();
+                System.out.println("FrontController No path ".concat(strPath));                
+                request.getRequestDispatcher("WEB-INF/".concat(strPath)).forward(request, response);                
+             //   System.out.println("FrontController Message ".concat(request.getParameter("message")));
+            } 
         } else {
             if ("jsp".equals(file.substring(file.length() - 3))) {
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada

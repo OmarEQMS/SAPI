@@ -59,7 +59,7 @@ public class LoginController extends HttpServlet {
                 String usuario = request.getParameter("usuario");
                 String password = request.getParameter("password");
 
-                System.out.println("Usuario".concat(usuario).concat(" password: ").concat(password));
+                System.out.println("Login Controller, case 'verificar' Usuario: ".concat(usuario).concat(" password: ").concat(password));
                 if (usuario == null || password == null) {
 
                 } else {
@@ -154,6 +154,7 @@ public class LoginController extends HttpServlet {
 
                                 sesion.setAttribute("path", keyRuta);
 
+
                                 String rol = "potencial";
                                 //request.setAttribute("rol", rol);
 
@@ -209,6 +210,7 @@ public class LoginController extends HttpServlet {
                                 PrintWriter out = response.getWriter();
 
                                 out.print(json.toJson(json.toJson(solicitudPreconsulta)));
+
 
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                                 //request.getRequestDispatcher("/FrontController").forward(request, response);                                                                             
@@ -285,9 +287,9 @@ public class LoginController extends HttpServlet {
                                 request.setAttribute("listaMedicos", medicos);
 
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
-                                //request.getRequestDispatcher("/FrontController").forward(request, response);                                                                                                            
 
-                                System.out.println("Se redirige el paciente. idPaciente " + String.valueOf(paciente.getIdPaciente()).concat(" idCuenta ").concat(String.valueOf(paciente.getIdCuenta())).concat(" Sesión idCuenta ").concat(String.valueOf(sesion.getAttribute("idCuenta"))));
+                                System.out.println("Se redirige el potencial. idPaciente " + String.valueOf(paciente.getIdPaciente()).concat(" idCuenta ").concat(String.valueOf(paciente.getIdCuenta())).concat(" Sesión idCuenta ").concat(String.valueOf(sesion.getAttribute("idCuenta"))));
+
 
                                 break;
                             }
@@ -312,7 +314,6 @@ public class LoginController extends HttpServlet {
             }
 
             case "ir-a-login": {
-
                 request.setAttribute("status", "");
                 request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
 
@@ -323,10 +324,9 @@ public class LoginController extends HttpServlet {
             case "cerrar-sesion": {
 
                 HttpSession sesion = request.getSession(true);
-
-                System.out.println("Salir de la cuenta ".concat(sesion.getAttribute("nombre").toString()));
-
+                
                 sesion.invalidate();
+                //System.out.println("Salir de la cuenta ".concat(sesion.getAttribute("nombre").toString()));
                 System.out.println("Salimos :)");
 
                 request.setAttribute("status", "");

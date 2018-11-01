@@ -12,7 +12,10 @@ import java.io.PrintWriter;
 import java.util.Base64;
 import java.util.ResourceBundle;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -281,6 +284,10 @@ public class PotencialController extends HttpServlet {
                 if (sesion.getId() == null) {
                     //TODO 
                 } else {
+                    
+                    Map<String,String> respuestaSolicitud = new HashMap<>();
+                    PrintWriter out = response.getWriter();                  
+                    Gson json = new Gson();
 
                     int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
 
@@ -343,18 +350,29 @@ public class PotencialController extends HttpServlet {
                         System.out.println("biopsia ".concat(String.valueOf(biopsia)));
 
                         //Si no hay motivo se termina el case y no hace la solicitud de preconsulta
-                        if (motivoConsulta.isEmpty()) {
+                        if (motivoConsulta.equals("0")) {
+                            System.out.println("No motivo saliendo :(");
+                            //respuestaSolicitud.put("Respuesta", "No Motivo");
+                            //response.setContentType("application/json");
+                            //response.setCharacterEncoding("UTF-8");
+                            
+                            out.print("No motivo");
+                            //request.setAttribute("message", out);
+                            //request.getRequestDispatcher("/SAPI").forward(request, response);
+                            
                             break;
                         }
 
                         //Agregar sexo al paciente
                         if (masculino.equals("1")) {
                             PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
+                            System.out.println("Actualizar a hombre");
                             personaServicioImpl.actualizarSexoPersona(idPacientePotencial, idSexoHombre);
 
                         } else {
                             if (femenino.equals("1")) {
                                 PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
+                                System.out.println("Actualizar a mujer");
                                 personaServicioImpl.actualizarSexoPersona(idPacientePotencial, idSexoMujer);
                             }
                         }
@@ -787,7 +805,21 @@ public class PotencialController extends HttpServlet {
                             otroMotivoServicioImpl.agregarOtroMotivo(motivo);
                         }
 
-                        request.getRequestDispatcher("WEB/INF/potencial/index.jsp").forward(request, response);
+                            
+                        if(idCitaPreconsulta != 0)
+                        {
+                          respuestaSolicitud.put("Respuesta", "Si cita");                            
+                        }                        
+                        else
+                        {
+                           respuestaSolicitud.put("Respuesta", "No cita");                            
+                        }
+                        
+                        String res = json.toJson(respuestaSolicitud);
+                        System.out.println("Res solictud preconsulta".concat(res));
+                        out.print(res);
+                                                                       
+                        request.getRequestDispatcher("WEB-INF/potencial/index.jsp").forward(request, response);
                     }
                 }
                 break;
@@ -1067,6 +1099,25 @@ public class PotencialController extends HttpServlet {
                     SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
                     solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
 
+
+/*HEAD
+                    sesion.setAttribute("identificacionOficial", solicitudPreconsulta.getIdentificacion());
+                    sesion.setAttribute("curp", solicitudPreconsulta.getCurp());
+                    sesion.setAttribute("comprobante", solicitudPreconsulta.getComprobante());
+                    sesion.setAttribute("resultadoMastografia", solicitudPreconsulta.getMastografia());
+                    sesion.setAttribute("resultadosUltrasonidos", solicitudPreconsulta.getUltrasonido());
+                    sesion.setAttribute("biopsiaPrevia", solicitudPreconsulta.getBiopsiaPrevia());
+*/
+                    System.out.println("Consultar documentos");
+                    //System.out.println("Documentos ".concat(solicitudPreconsulta.toString()));
+                    if(solicitudPreconsulta.getIdSexo() == 0)
+                    {
+                        sesion.setAttribute("idSexo", 0);
+                    }else
+                    {
+                        sesion.setAttribute("idSexo", solicitudPreconsulta.getIdSexo());
+                    }
+
                     if(solicitudPreconsulta.getIdentificacion() != null){
                         sesion.setAttribute("identificacionOficial", 1);
                     }else{
@@ -1273,11 +1324,13 @@ public class PotencialController extends HttpServlet {
                         //Agregar sexo al paciente
                         if (masculino.equals("1")) {
                             PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
+                            System.out.println("Actualizar a hombre");
                             personaServicioImpl.actualizarSexoPersona(idPacientePotencial, idSexoHombre);
 
                         } else {
                             if (femenino.equals("1")) {
                                 PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
+                                System.out.println("Actualizar a mujer");
                                 personaServicioImpl.actualizarSexoPersona(idPacientePotencial, idSexoMujer);
                             }
                         }

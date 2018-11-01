@@ -210,18 +210,19 @@ $(document).ready(function () {
                     console.log("Algo pasó" + response);
                 }
             },
-            error: function () {
-                console.log("error" + xhr.statusText);
-                alert("No enontre el controlador" + xhr.statusText);
+            error: function (request, status, error) {                                
+                console.log("Enviar solicitud Error request " + request.responseText);
+                console.log("Enviar solicitud Error status " + status);
+                console.log("Enviar solicitud Error error" + error);
+                //alert("No enontre el controlador" + status);                               
             }
-
-
         });
 
     });
 
     $("#btn-enviarSolicitud").on('click', function () {
 
+        console.log("Enviar solicitud");
         //Modal borrar sintoma
         swal({
             title: "¡Buen Trabajo! se ha enviado tu solicitud",
@@ -295,26 +296,30 @@ $(document).ready(function () {
         
         $.ajax({
             url: "PotencialController",
-            method: "POST",
+            method: "POST",            
             data: data,
             enctype: "multipart/form-data",
             processData: false,
             contentType: false,
             success: function (response) {
-                if (response == "success") {
-                    console.log("ok");
+               
+                console.log("Enviar solicitud " + response);
+                if (response === "success") {
+                    console.log("Enviar solicitud ok ");
                 } else {
-                    console.log("Algo pasó" + response);
+                    console.log("Enviar solicitud Algo pasó" + response);
                 }
             },
-            error: function () {
-                console.log("error" + xhr.statusText);
-                alert("No enontre el controlador" + xhr.statusText);
+            error: function (request, status, error) {                                
+                console.log("Enviar solicitud Error request " + request.responseText);
+                console.log("Enviar solicitud Error status " + status);
+                console.log("Enviar solicitud Error error" + error);
+                //alert("No enontre el controlador" + status);                               
             }
 
 
         });
-
+        
     });
 
 

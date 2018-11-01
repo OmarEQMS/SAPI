@@ -193,6 +193,25 @@ $(document).ready(function () {
         }
     });
 
+    //Radio de hombre y mujer
+    $('#masculino').on('change',()=>
+    {
+        var masculino = $('#masculino').is(':checked') ? 1 : 0;       
+        
+        if(masculino === 1)
+        {
+            $('#femenino').prop('checked', false);
+        }
+    });
+    $('#femenino').on('change',()=>
+    {
+        var femenino = $('#femenino').is(':checked') ? 1 : 0;       
+        
+        if(femenino === 1)
+        {
+            $('#masculino').prop('checked', false);
+        }
+    });
 
     //Cambiar de pestañas al presionar continuar
 
