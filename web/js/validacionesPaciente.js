@@ -216,10 +216,21 @@ $(document).ready(function () {
         //Valor seleccionado del input
         let date_from = input.val();
         date_from = new Date(date_from);
+        var todayYear= today.getFullYear();
+        var inicioYear = date_from.getFullYear();
+        var event = false;
+        
+        if(today > date_from && inicioYear >= todayYear-5){
+            event=false;
+            console.log("Valido");
+        }
+        else{
+            event=true;
+            console.log("Invalido");
+        }
+        
 
-        let event = false;
-
-        today < date_from ? event = true : event = false;
+       
 
 
         if (!input.val() || event) {
@@ -251,13 +262,30 @@ $(document).ready(function () {
         date_from = new Date(date_from);
         var date_Inicio = new Date(fechaInicio);
 
-        let event = false;
+        var event = false;
         
         console.log(input.val());
+        
         console.log("Date inicio"+date_Inicio);
+        console.log("El años es: "+date_Inicio.getFullYear());
         console.log("Date from" +date_from);
-        date_Inicio > date_from ? event = true : event = false;
-
+        console.log("El años es: "+date_from.getFullYear());
+         
+        var inicioYear = date_Inicio.getFullYear();
+        var inputYear = date_from.getFullYear();
+        
+        if(inputYear < inicioYear+5 &&  date_Inicio <= date_from ){
+            event = false;
+            console.log(event);
+            console.log("fechaValida");
+        }
+        else{
+            event= true;
+            console.log(event);
+            console.log("fechaInValida");
+        }
+        
+       // date_Inicio > date_from ? event = true : event = false;
 
         if (!input.val() || event) {
 
