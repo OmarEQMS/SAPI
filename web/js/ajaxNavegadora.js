@@ -180,6 +180,64 @@ $(document).ready(function () {
                 }
         );
     });
+    
+    $('#idACalendario').on('click', function () {
+        $.post("SAPI", {
+            file: "navegadora/calendar.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    $('#irARendimiento').on('click', function () {
+        $.post("SAPI", {
+            file: "navegadora/rendimiento.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+        
 
+    $('#irACuenta').on('click', function () {
+        $.post("SAPI", {
+            file: "navegadora/cuentaNavegadora.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
+    
 });
 
