@@ -45,11 +45,11 @@
             </div>
 
             <div class="row justify-content-center mt-4">
-                <div class="col-12">
-                    <button class="btn btn-danger btn-block" id="recuperarEnviarCorreo" style="background-color: #fc3955 !important">Recuperar</button>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 mb-1">
+                    <input type="button" id="recuperarEnviarCorreo" data-toggle="modal" class="btn btn-lg btn-danger btn-block btn-registro" value="RECUPERAR">
                 </div>
-                <div class="col-12">
-                    <button class="btn btn-danger btn-block" id="ir-a-loginR" style="background-color: #fc3955 !important">Regresar</button>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6">
+                    <input type="button" id="ir-a-loginR" class="btn btn-lg btn-primary btn-block btn-regresar" value="REGRESAR">
                 </div>
             </div>
 
