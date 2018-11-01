@@ -179,11 +179,11 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-4">
                                 <label for="name">Nombre</label>
-                                <input type="text" class="form-control" id="name" value="Diego" readonly/>
+                                <input type="text" class="form-control" id="name" value="${sessionScope.nombre}" readonly/>
                             </div>
                             <div class="col-4">
                                 <label for="employeeNumber">Número de empleado</label>
-                                <input type="text" class="form-control" id="employeeNumber" value="A01421413" readonly/>
+                                <input type="text" class="form-control" id="employeeNumber" value="${sessionScope.noEmpleado}" readonly/>
                             </div>
                         </div>
 
@@ -191,11 +191,11 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-4">
                                 <label for="surname1">Primer Apellido</label>
-                                <input type="text" class="form-control" id="surname1" value="Montoya" readonly/>
+                                <input type="text" class="form-control" id="surname1" value="${sessionScope.primerApellido}" readonly/>
                             </div>
                             <div class="col-4">
                                 <label for="specialty">Especialidad</label>
-                                <input type="text" class="form-control" id="specilaty" value="Estudiante" readonly/>
+                                <input type="text" class="form-control" id="specilaty" value="${sessionScope.especialidad}" readonly/>
                             </div>
                         </div>
 
@@ -203,11 +203,11 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-4">
                                 <label for="surname2">Segundo Apellido</label>
-                                <input type="text" class="form-control" id="surname2" value="Martínez" readonly/>
+                                <input type="text" class="form-control" id="surname2" value="${sessionScope.segundoApellido}" readonly/>
                             </div>
                             <div class="col-4">
                                 <label for="profesionalLic">Cédula profesional</label>
-                                <input type="text" class="form-control" id="profesionalLic" value="MOMD9808DF3" readonly/>
+                                <input type="text" class="form-control" id="profesionalLic" value="${sessionScope.cedulaProfesional}" readonly/>
                             </div>
                         </div>
 
@@ -215,12 +215,12 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-4">
                                 <label for="username">Usuario</label>
-                                <input type="text" class="form-control" id="username" value="diegommtz" readonly/>
+                                <input type="text" class="form-control" id="username" value="${sessionScope.usuario}" readonly/>
                             </div>
                             <div class="col-4">
                                 <label for="telephoneNum">Teléfono</label>
                                 <input type="tel" class="form-control" id="telephoneNum" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890"
-                                    value="777-417-4428" required />
+                                    value="${sessionScope.telefono}" required />
                             </div>
                         </div>
 
@@ -228,7 +228,7 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-8">
                                 <label for="myEmail">Correo</label>
-                                <input type="email" class="form-control" id="myEmail" value="diego.mmtz@hotmail.com" placeholder="Introduzca su correo" required
+                                <input type="email" class="form-control" id="myEmail" value="${sessionScope.correo}" placeholder="Introduzca su correo" required
                                     pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
                                 />
                             </div>                           

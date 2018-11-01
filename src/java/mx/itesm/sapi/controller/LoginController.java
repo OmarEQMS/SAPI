@@ -19,12 +19,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.gestionPaciente.SolicitudPreconsulta;
+import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
+import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
+import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.LoginServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.SolicitudPreconsultaServicioImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
+import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import org.apache.commons.io.IOUtils;
@@ -246,6 +253,36 @@ public class LoginController extends HttpServlet {
 
                                 sesion.setAttribute("path", keyRuta);
 
+                                /*Insert your code here*/
+                                
+                                PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
+                                    
+                                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                                    Empleado empleado = empleadoServicioImpl.mostrarEmpleadoCuenta((int) sesion.getAttribute("idCuenta"));
+                                    
+                                    MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
+                                    MedicoEspecialidad medicoEspecialidad = medicoEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(empleado.getIdEmpleado());
+                                    
+                                    EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
+                                    Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());
+                                    
+                                    
+                                    
+                                    System.out.println("holiiii");
+                                    sesion.setAttribute("nombre", persona.getNombre());
+                                    sesion.setAttribute("primerApellido", persona.getPrimerApellido());
+                                    sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
+                                    System.out.println("el correo es:"+persona.getCorreo());
+                                    sesion.setAttribute("correo", persona.getCorreo());
+                                    sesion.setAttribute("telefono", persona.getTelefono());
+                                    sesion.setAttribute("usuario", cuenta.getUsuario());
+                                    sesion.setAttribute("noEmpleado", empleado.getNoEmpleado());
+                                    sesion.setAttribute("especialidad",especialidad.getNombre());
+                                    sesion.setAttribute("cedulaProfesional",medicoEspecialidad.getCedulaProfesional());
+                                
+                                /*Insert your code here*/
+                                
+                                
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                                 break;
                             }
