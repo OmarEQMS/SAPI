@@ -164,7 +164,7 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-12 text-center">
                                 <label for="file-input">
-                                    <img src="img/user.png" class="edit-image" alt="Click aquí" title="Click aquí" width="200px" height="200px">
+                                    <img src="img/user.png" class="edit-image" id="ImagenPerfil" alt="Click aquí" title="Click aquí" width="200px" height="200px">
                                 </label>
                                 <input type="file" class="editar-imagen" id="file-input" />
                             </div>

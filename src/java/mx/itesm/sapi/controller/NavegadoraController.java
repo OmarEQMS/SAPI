@@ -74,7 +74,7 @@ public class NavegadoraController extends HttpServlet {
                             String correo = request.getParameter("correo");
                             String telefono = request.getParameter("telefono");
 
-                            //Part part = request.getPart("file-image");
+                            Part part = request.getPart("file-image");
 
                             //No se valida el telefono ni el correo aquí? Lo validamos nosotros o el front?
                             PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
@@ -82,7 +82,7 @@ public class NavegadoraController extends HttpServlet {
 
                             
 
-                            /*if ((int) part.getSize() > 0) {
+                            if ((int) part.getSize() > 0) {
                                 PicServicioImpl picServiceImpl = new PicServicioImpl();
                                 Pic pic = new Pic();
 
@@ -99,7 +99,7 @@ public class NavegadoraController extends HttpServlet {
 
                                 sesion.setAttribute("base64Img", base64String);
                                 System.out.println("Debió actualizar la imagen en la sesión");
-                            }-*/
+                            }
 
                            
 

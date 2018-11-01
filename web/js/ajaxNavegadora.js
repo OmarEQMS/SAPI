@@ -221,6 +221,23 @@ $(document).ready(function () {
             }
         });
     });
+    
+    //Cambiar imagen temporalmente en elfront
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#ImagenPerfil').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#file-input").on('change', function () {
+        console.log("Llegó :)");
+        readURL(this);
+    });
 
 });
 
