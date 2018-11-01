@@ -1067,16 +1067,6 @@ public class PotencialController extends HttpServlet {
                     SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
                     solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
 
-
-/*HEAD
-                    sesion.setAttribute("identificacionOficial", solicitudPreconsulta.getIdentificacion());
-                    sesion.setAttribute("curp", solicitudPreconsulta.getCurp());
-                    sesion.setAttribute("comprobante", solicitudPreconsulta.getComprobante());
-                    sesion.setAttribute("resultadoMastografia", solicitudPreconsulta.getMastografia());
-                    sesion.setAttribute("resultadosUltrasonidos", solicitudPreconsulta.getUltrasonido());
-                    sesion.setAttribute("biopsiaPrevia", solicitudPreconsulta.getBiopsiaPrevia());
-*/
-
                     if(solicitudPreconsulta.getIdentificacion() != null){
                         sesion.setAttribute("identificacionOficial", 1);
                     }else{
