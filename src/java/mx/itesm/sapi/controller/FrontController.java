@@ -24,7 +24,10 @@ import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.Tratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.TratamientoPaciente;
 import mx.itesm.sapi.bean.gestionTratamiento.UnionTratamientoPaciente;
+import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
+import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
 import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
+import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.bean.persona.Pic;
@@ -36,7 +39,10 @@ import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TratamientoPacienteServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.UnionTratamientoPacienteServiceImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
+import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import org.apache.commons.io.IOUtils;
@@ -177,9 +183,36 @@ public class FrontController extends HttpServlet {
                             String keyRuta = request.getParameter("file");
                             switch (keyRuta) {
 
-                                case "navegadora/cuenta.jsp": {
+                                case "navegadora/cuentaNavegadora.jsp": {
+                                    
                                     PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
                                     Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
+                                    
+                                    CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
+                                    Cuenta cuenta = cuentaServicioImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));
+                                    
+                                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                                    Empleado empleado = empleadoServicioImpl.mostrarEmpleadoCuenta((int) sesion.getAttribute("idCuenta"));
+                                    
+                                    MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
+                                    MedicoEspecialidad medicoEspecialidad = medicoEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(empleado.getIdEmpleado());
+                                    
+                                    EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
+                                    Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());
+                                    
+                                    
+                                    
+                                    System.out.println("holiiii");
+                                    sesion.setAttribute("nombre", persona.getNombre());
+                                    sesion.setAttribute("primerApellido", persona.getPrimerApellido());
+                                    sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
+                                    System.out.println("el correo es:"+persona.getCorreo());
+                                    sesion.setAttribute("correo", persona.getCorreo());
+                                    sesion.setAttribute("telefono", persona.getTelefono());
+                                    sesion.setAttribute("usuario", cuenta.getUsuario());
+                                    sesion.setAttribute("noEmpleado", empleado.getNoEmpleado());
+                                    sesion.setAttribute("especialidad",especialidad.getNombre());
+                                    sesion.setAttribute("cedulaProfesional",medicoEspecialidad.getCedulaProfesional());
                                     
                                     
                                     

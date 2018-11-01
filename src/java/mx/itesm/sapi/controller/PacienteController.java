@@ -311,9 +311,10 @@ public class PacienteController extends HttpServlet {
 
                             request.getRequestDispatcher("/WEB-INF/potencial/cuentaPaciente.jsp").forward(request, response);
 
+                            break;
                         }
 
-                        break;
+                        
 
                         case "cambiarContrasena": {
 
