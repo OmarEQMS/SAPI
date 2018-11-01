@@ -223,6 +223,16 @@ $(document).ready(function () {
                 $('#pisosDiv').hide();
                 
 	});
+        
+        $("body").on("click",".myCleanerAddTratamientos", function(){
+		$(".fechaInicio").val("");
+                $(".tratamiento").prop('selectedIndex',0);
+	});
+        
+        $("body").on("click",".myCleanerAddFinTratamientos", function(){
+		$(".fechaFin").val("");
+	});
+
 
     //Cambiar color al botón de confirmación de tratamiento terminado
     $('body').on('click', '.button-Fin-Tratamiento', function () {

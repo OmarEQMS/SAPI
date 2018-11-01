@@ -239,7 +239,7 @@
                                                 <i class="fas fa-calendar-alt"></i>
                                             </div>
                                         </div>
-                                        <input placeholder="Introduce la fecha de inicio" class="selectStyle form-control textbox-n"
+                                        <input placeholder="Introduce la fecha de inicio" class="selectStyle form-control textbox-n fechaInicio"
                                                type="text" onfocus="(this.type = 'date')" id="fechaInicioTratamiento">
 
                                     </div>
@@ -260,7 +260,7 @@
                                             </div>
                                         </div>
                                         <input type="hidden" value="" id="nombreTipoTratamiento"/>
-                                        <select class="custom-select" id="tipoTratamiento">
+                                        <select class="custom-select tratamiento" id="tipoTratamiento">
                                             <option disabled selected>Elegir Tratamiento</option>
                                             <c:forEach items="${tipoTratamiento}" var="tratamiento"> 
 
@@ -275,7 +275,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" style="border-radius:20px;" data-dismiss="modal">Cancelar</button>
-                            <button id="btn-agregarTratamiento" type="button" class="btn btn-primary" style="border-radius:20px;">Registrar</button>
+                            <button id="btn-agregarTratamiento" type="button" class="btn btn-primary myCleanerAddTratamientos" style="border-radius:20px;">Registrar</button>
                             <!-- ***** este es el bueno***** -->
                         </div>
                     </div>
@@ -342,7 +342,7 @@
                                                 <i class="fas fa-calendar-alt"></i>
                                             </div>
                                         </div>
-                                        <input placeholder="Introduce la fecha de fin" class="selectStyle form-control textbox-n"
+                                        <input placeholder="Introduce la fecha de fin" class="selectStyle form-control textbox-n fechaFin"
                                                type="text" onfocus="(this.type = 'date')" id="fechaFinTratamiento">
                                     </div>
                                     <span class="text-danger error-fechaFin" id="error-fechaFin"> Fecha incorrecta.</span>
@@ -353,7 +353,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" style="border-radius:20px;" data-dismiss="modal">Cancelar</button>
-                            <button id="fechaTerminarTratamiento" type="button" class="btn btn-primary" style="border-radius:20px;">Registrar</button>
+                            <button id="fechaTerminarTratamiento" type="button" class="btn btn-primary myCleanerAddFinTratamientos" style="border-radius:20px;">Registrar</button>
                         </div>
                     </div>
                 </div>
