@@ -246,7 +246,6 @@ public class LoginController extends HttpServlet {
             }
 
             case "ir-a-login": {
-
                 request.setAttribute("status", "");
                 request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
 

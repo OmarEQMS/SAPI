@@ -250,7 +250,7 @@ $(document).ready(function () {
                         document.open("text/html", "replace");
                         document.write(response);
                         document.close();
-
+                        
                     }
                 }
         );

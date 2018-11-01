@@ -55,6 +55,7 @@ $(document).ready(function () {
             
     });
     $('#ir-a-loginR').on('click', function () {
+        console.log("Entro a ajaxRecuperar.jps btn ir-a-LoginR");
         $.get("LoginController",{
             key: "ir-a-login"
         },
