@@ -1,34 +1,37 @@
 $(document).ready(function () {
+    
+    //esconder mensajes de error
+    $("#error-campos").hide();
 
     //Recuperar edificio
     var edificio;
 
     $("input:radio[name=Edificios]").click(function () {
         edificio = $(this).val();
-       
+
     });
-    
+
     //Recupera ColoR
-    
-    $('input[type=radio][name=Edificios]').on('change',function () {
-        
+
+    $('input[type=radio][name=Edificios]').on('change', function () {
+
         console.log('Valor seleccionado de EDIFICIOS: ' + parseInt($(this).val()));
-        
-        if(parseInt($(this).val()) === 1){
+
+        if (parseInt($(this).val()) === 1) {
             $('#colorCita').val($('input:radio[name=Edificios]:checked').attr("data-color"));
             console.log($('#colorCita').val());
         }
-        
+
     });
-    
-    $('input[type=radio][name=Pisos]').on('change',function () {
-        
+
+    $('input[type=radio][name=Pisos]').on('change', function () {
+
         console.log('Valor seleccionado de PISOS: ' + parseInt($(this).val()));
-        
+
         $('#colorCita').val($('input:radio[name=Pisos]:checked').attr("data-color"));
-        
+
         console.log($('#colorCita').val());
-        
+
     });
 
     //Recuperar piso
@@ -44,95 +47,114 @@ $(document).ready(function () {
 
         console.log($('#fechaProgramada').val());
     });
-    
+
     //Recupera Titulo
-    $('#RegistrarCita_tipo').on('change', function(){
-        
+    $('#RegistrarCita_tipo').on('change', function () {
+
         $('#tituloCita').val($(this).find(':selected').data('nombre'));
-        
+
         console.log($('#tituloCita').val());
-        
+
     });
 
 
 //Agregar contenido dinamico de etapaClinica
 
 //Valor a inputs modal
-$(".terminarTratamiento").on('click', function(){
-    
-    
-    
-    
-});
+    $(".terminarTratamiento").on('click', function () {
+
+
+
+
+    });
 
 //REGISTRAR CITA
     $('#btn-citaRegistrar').on('click', () => {
-
-        $.ajax({
-            url: 'PacienteController',
-            cache: false,
-            method: 'POST',
-            data: {
-                key: 'agregarEvento',
-                //hora: $('#RegistrarCita_hora').val(),
-                tipo: $('#RegistrarCita_tipo').val(),
-                medico: $('#RegistrarCita_medico').val(),
-                edificio: edificio,
-                piso: piso,
-                idPaciente: $('#idPaciente').val(),
-                fechaProgramada: $('#fechaProgramada').val()
-
+        
+        var esValid = false;
+        //Verificar que todos los campos que han marcado
+        if (isValidHour($('#RegistrarCita_hora')) && isValidSelect($('#RegistrarCita_tipo')) && isValidSelect($('#RegistrarCita_medico')) && isValidRadioChecked($('input[name=Edificios]'))) {
+            $("#error-campos").hide();
+            if (parseInt($('input[name=Edificios]:checked').val()) == 1) {
+                esValid = true;
+            } else {
+                //Validamos los pisos
+                 if(isValidRadioChecked($('input[name=Pisos]'))){
+                     esValid=true;
+                     $("#error-campos").hide();
+                 }else{
+                     $("#error-campos").show();
+                 }
             }
-        })
-                .done(function (response) {
 
-                    console.log(response);
+            if (esValid) {
 
-                    if (response === "success") { 
-                        
-                        var newEvent = {
+                $.ajax({
+                    url: 'PacienteController',
+                    cache: false,
+                    method: 'POST',
+                    data: {
+                        key: 'agregarEvento',
+                        //hora: $('#RegistrarCita_hora').val(),
+                        tipo: $('#RegistrarCita_tipo').val(),
+                        medico: $('#RegistrarCita_medico').val(),
+                        edificio: edificio,
+                        piso: piso,
+                        idPaciente: $('#idPaciente').val(),
+                        fechaProgramada: $('#fechaProgramada').val()
 
-                            title: $('#tituloCita').val(),
-                            start: $('#fechaProgramada').val(),
-                            color: $('#colorCita').val(),
-                            textColor: 'white'
-
-                        };
-                        
-                        $('#calendarCitasPaciente').fullCalendar('renderEvent', newEvent);
-
-                        swal({
-                            title: "Buen Trabajo!",
-                            text: "La cita se ha registrado correctamente!",
-                            icon: "success",
-                        });
-                        
-
-                        $('#modalAgregarCita').modal('toggle');
-
-                    } else {
-                        swal({
-                            title: "Algo salió mal!",
-                            text: "No se pudo registrar la cita, intentalo de nuevo!",
-                            icon: "error",
-                        });
                     }
-
                 })
-                .fail(function (xhr, textStatus, errorThrown) {
-                    console.log(xhr.responseText);
-                });
+                        .done(function (response) {
 
-        //VERIFICACION
-        console.log($('#RegistrarCita_fecha').val());
-        console.log($('#RegistrarCita_hora').val());
-        console.log($('#RegistrarCita_tipo').val());
-        console.log($('#RegistrarCita_medico').val());
-        console.log(miPiso);
-        console.log(miEdificio);
-         //CERRAR MODAL
-        $('#modalAgregarCita').modal('toggle')
+                            console.log(response);
+
+                            if (response === "success") {
+
+                                var newEvent = {
+
+                                    title: $('#tituloCita').val(),
+                                    start: $('#fechaProgramada').val(),
+                                    color: $('#colorCita').val(),
+                                    textColor: 'white'
+
+                                };
+
+                                $('#calendarCitasPaciente').fullCalendar('renderEvent', newEvent);
+
+                                swal({
+                                    title: "Buen Trabajo!",
+                                    text: "La cita se ha registrado correctamente!",
+                                    icon: "success",
+                                });
+
+
+                                $('#modalAgregarCita').modal('toggle');
+
+                            } else {
+                                swal({
+                                    title: "Algo salió mal!",
+                                    text: "No se pudo registrar la cita, intentalo de nuevo!",
+                                    icon: "error",
+                                });
+                            }
+
+                        })
+                        .fail(function (xhr, textStatus, errorThrown) {
+                            console.log(xhr.responseText);
+                        });
+            }
+
+        }
+        else{
+            $("#error-campos").show();
+            //alert("SELECCIONA TODO -.-");
+        }
+
+        //CERRAR MODAL
+        
     });
+
     $('#feedbackEdAntiguo').hide();
     $('#feedbackEdTorre').hide();
     $('#pisosDiv').hide();
@@ -151,14 +173,14 @@ $(".terminarTratamiento").on('click', function(){
         $('#feedbackEdTorre').hide();
     });
     $('input:radio[name=Edificios]').change(function () {
-if (this.value == 1) {
+        if (this.value == 1) {
             $("input:radio[name=Pisos]").prop('checked', false);
             $('#pisosDiv').hide();
         } else if (this.value == 2) {
             $('#pisosDiv').show();
         }
     });
-        
+
     //PARA IR A LA CUENTA
     $('.irACuenta').on('click', function () {
         $.get("SAPI", {
@@ -218,7 +240,7 @@ if (this.value == 1) {
                 }
         );
     });
-    
+
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
         console.log("Salir cuenta");
@@ -239,7 +261,7 @@ if (this.value == 1) {
                 }
         );
     });
-    
+
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta1').on('click', function () {
         console.log("Salir cuenta");
@@ -260,7 +282,7 @@ if (this.value == 1) {
                 }
         );
     });
-    
+
     //
     function getValues(selector) {
         var els = document.querySelectorAll(selector);
@@ -403,30 +425,30 @@ if (this.value == 1) {
             }
         })
                 .done(function (response) {
-                    
+
                     console.log(response);
-                    
+
                     $('#modalAgregarTratamiento').modal('toggle'); //cerrar modal
                     swal({
                         title: "Tratamiento registrado correctamente",
                         icon: "success",
                     });
                     var row = "<tr>" +
-                            "<input type='hidden' id='nombre-"+response+"' value='"+$("#nombreTipoTratamiento").val()+"'/>"+
-                            "<input type='hidden' id='fechaInicio-"+response+"' value='"+$("#fechaInicioTratamiento").val()+"'/>"+
-                            "<td id='nombre-"+response+"' value='"+$("#tipoTratamiento").val()+"' >" + $("#nombreTipoTratamiento").val() + "</td>" +
-                            "<td id='fechaInicio-"+response+"' value='"+$("#fechaInicioTratamiento").val()+"' >"  + $("#fechaInicioTratamiento").val() + "</td>" +
-                            "<td  id='fecha-"+response+"'>"  + "</td>" +
-                            "<td><button class='btn btn-primary terminarTratamiento' id='modal-"+response+"' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button></td > " +
+                            "<input type='hidden' id='nombre-" + response + "' value='" + $("#nombreTipoTratamiento").val() + "'/>" +
+                            "<input type='hidden' id='fechaInicio-" + response + "' value='" + $("#fechaInicioTratamiento").val() + "'/>" +
+                            "<td id='nombre-" + response + "' value='" + $("#tipoTratamiento").val() + "' >" + $("#nombreTipoTratamiento").val() + "</td>" +
+                            "<td id='fechaInicio-" + response + "' value='" + $("#fechaInicioTratamiento").val() + "' >" + $("#fechaInicioTratamiento").val() + "</td>" +
+                            "<td  id='fecha-" + response + "'>" + "</td>" +
+                            "<td><button class='btn btn-primary terminarTratamiento' id='modal-" + response + "' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button></td > " +
                             "</tr>";
                     $("#tablaTratamientos").append(row);
-                    
-                    $('#tipoTratamiento').prop('selectedIndex',0);
-                    
+
+                    $('#tipoTratamiento').prop('selectedIndex', 0);
+
                     $("#fechaInicioTratamiento").val('');
-                    
+
                     $('#idTratamientoPaciente').val(response);
-                   
+
                 })
                 .fail(function (xhr, textStatus, errorThrown) {
                     console.log(xhr.responseText);
@@ -501,12 +523,12 @@ if (this.value == 1) {
                     });
                     //actualizar la tabla
                     $('#fecha-' + $('#idTratamientoPaciente').val()).html($('#fechaFinTratamiento').val());
-                     $("#fechaFinTratamiento").val('');
-                     
-                     $("#modal-"+$("#botonHidden").val()).attr("disabled", "disabled").removeClass("btn-primary").addClass("btn-secondary");
-                     
-                     
-                     
+                    $("#fechaFinTratamiento").val('');
+
+                    $("#modal-" + $("#botonHidden").val()).attr("disabled", "disabled").removeClass("btn-primary").addClass("btn-secondary");
+
+
+
                 })
                 .fail(function (xhr, textStatus, errorThrown) {
                     console.log(xhr.responseText);
@@ -516,20 +538,21 @@ if (this.value == 1) {
     $('body').on('click', '.terminarTratamiento', function () {
 
         $('#idTratamientoPaciente').val($(this).data('id'));
-        
+
         $("#botonHidden").val($(this).data('id'));
-        
-       
+
+       //alert($('#idTratamientoPaciente').val());
         
         $("#tipoTratamiento2").val(
-                $("#nombre-"+$(this).data('id')).val()
-               
-              );
-        $("#fechaInicioTratamiento2").val(
-                 $("#fechaInicio-"+$(this).data('id')).val()
+                $("#nombre-" + $(this).data('id')).val()
+
                 );
-        
+        $("#fechaInicioTratamiento2").val(
+                $("#fechaInicio-" + $(this).data('id')).val()
+                );
+
     });
+
     //Conseguir contenido del select
 
     $("#tipoTratamiento").on('change', function () {
@@ -539,4 +562,51 @@ if (this.value == 1) {
         $('#nombreTipoTratamiento').val($('#tipoTratamiento option:selected').text());
         console.log($('#nombreTipoTratamiento').val());
     });
+
+    function isValidHour(input) {
+
+        if (!input.val()) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    }
+
+    function isValidSelect(input) {
+
+        if (!input.val()) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    }
+
+    function isValidRadioChecked(input) {
+
+        if (!input.is(':checked')) {
+
+            return false;
+        }
+
+        return true;
+    }
+
 });

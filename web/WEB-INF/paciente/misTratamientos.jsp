@@ -28,7 +28,7 @@
 
         <link rel="stylesheet" href="css/stylePaciente.css">
         <script src="js/appPaciente.js" type="module"></script>
-        <script src="js/calendars.js"></script>
+        <script src="js/calendarPaciente.js"></script>
         <script src="js/ajaxPaciente.js"></script>
         <script src="js/validacionesPaciente.js"></script>
 
@@ -67,10 +67,9 @@
                         <div class="col-2 text-center">
                             <a class="iconoSidebar irACuenta" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
                         </div>
+
                         <div class="col-2">
-                            <a class="iconoSidebar" href="">
-                                <i class="fas fa-power-off"></i>
-                            </a>
+                            <a class="iconoSidebar" id="salirCuenta1" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
                         </div>
                     </div>
                 </div>
@@ -240,11 +239,11 @@
                                                 <i class="fas fa-calendar-alt"></i>
                                             </div>
                                         </div>
-                                        <input placeholder="Introduce la fecha de inicio" class="selectStyle form-control textbox-n"
+                                        <input placeholder="Introduce la fecha de inicio" class="selectStyle form-control textbox-n fechaInicio"
                                                type="text" onfocus="(this.type = 'date')" id="fechaInicioTratamiento">
 
-                                        <span class="text-danger error-fecha" id="error-fechaInicio">Fecha incorrecta</span>
                                     </div>
+                                    <span class="text-danger error-fecha" id="error-fechaInicio"> Fecha incorrecta.</span>
                                 </div>
 
                             </div>
@@ -261,7 +260,7 @@
                                             </div>
                                         </div>
                                         <input type="hidden" value="" id="nombreTipoTratamiento"/>
-                                        <select class="custom-select" id="tipoTratamiento">
+                                        <select class="custom-select tratamiento" id="tipoTratamiento">
                                             <option disabled selected>Elegir Tratamiento</option>
                                             <c:forEach items="${tipoTratamiento}" var="tratamiento"> 
 
@@ -276,7 +275,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" style="border-radius:20px;" data-dismiss="modal">Cancelar</button>
-                            <button id="btn-agregarTratamiento" type="button" class="btn btn-primary" style="border-radius:20px;">Registrar</button>
+                            <button id="btn-agregarTratamiento" type="button" class="btn btn-primary myCleanerAddTratamientos" style="border-radius:20px;">Registrar</button>
                             <!-- ***** este es el bueno***** -->
                         </div>
                     </div>
@@ -343,10 +342,10 @@
                                                 <i class="fas fa-calendar-alt"></i>
                                             </div>
                                         </div>
-                                        <input placeholder="Introduce la fecha de fin" class="selectStyle form-control textbox-n"
+                                        <input placeholder="Introduce la fecha de fin" class="selectStyle form-control textbox-n fechaFin"
                                                type="text" onfocus="(this.type = 'date')" id="fechaFinTratamiento">
-                                        <span class="text-danger error-fechaFin" id="error-fechaFin">Fecha incorrecta</span>
                                     </div>
+                                    <span class="text-danger error-fechaFin" id="error-fechaFin"> Fecha incorrecta.</span>
                                 </div>
 
                             </div>
@@ -354,7 +353,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" style="border-radius:20px;" data-dismiss="modal">Cancelar</button>
-                            <button id="fechaTerminarTratamiento" type="button" class="btn btn-primary" style="border-radius:20px;">Registrar</button>
+                            <button id="fechaTerminarTratamiento" type="button" class="btn btn-primary myCleanerAddFinTratamientos" style="border-radius:20px;">Registrar</button>
                         </div>
                     </div>
                 </div>

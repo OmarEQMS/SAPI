@@ -207,12 +207,26 @@
 
                                                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 text-center">
                                                             <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" name="generoMasculino" type="radio" id="masculino" value="masculino">
+                                                                <c:choose>                                                                  
+                                                                    <c:when test="${sessionScope.idSexo == 2}">
+                                                                        <input class="form-check-input" name="generoMasculino" type="radio" id="masculino" value="masculino" checked="checked">
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                         <input class="form-check-input" name="generoMasculino" type="radio" id="masculino" value="masculino">
+                                                                    </c:otherwise>                                                                                                                                                    
+                                                                 </c:choose>                                                                
                                                                 <label class="form-check-label" for="masculino"><i class="fas fa-male"></i>
                                                                     Hombre</label>
                                                             </div>
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" name="generoFemenino" type="radio" id="femenino" value="femenino">
+                                                            <div class="form-check form-check-inline">                                                                
+                                                                <c:choose>                                                                   
+                                                                    <c:when test="${sessionScope.idSexo == 1}">
+                                                                        <input class="form-check-input" name="generoFemenino" type="radio" id="femenino" value="femenino"checked="checked">
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <input class="form-check-input" name="generoFemenino" type="radio" id="femenino" value="femenino">
+                                                                    </c:otherwise>
+                                                                 </c:choose>        
                                                                 <label class="form-check-label" for="femenino"><i class="fas fa-female"></i>
                                                                     Mujer</label>
                                                             </div>
@@ -449,7 +463,7 @@
 
                                                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 removePadding">
                                                             <select class="form-control" id="motivoConsulta">
-                                                                <option>Seleccione el motivo de la consulta</option>
+                                                                <option value="0">Seleccione el motivo de la consulta</option>
                                                                 <option value="1">Me envió un médico</option>
                                                                 <option value="2">Estudio con diagnóstico de cáncer de mama</option>
                                                                 <option value="3">Me sentí una bolita en el seno</option>
@@ -649,7 +663,7 @@
                                                             <c:otherwise>
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
                                                                     <div class="form-check">
-                                                                        <input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput" checked>
+                                                                        <input class="form-check-input" name="biopsiaInput" type="checkbox" onclick="return false;" id="biopsiaInput" checked>
                                                                         <label class="form-check-label textoDocumento text-success">
                                                                             ¿Te han hecho una biopsia previamente?
                                                                         </label>
@@ -868,13 +882,13 @@
                                                                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                                                     <div class="card-body m-3 justificar">
                                                                         El primer día nuestro servicio de <strong>navegación</strong>
-                                                                        te recibirá¡ en el área de preconsulta, te llamarán por tu nombre y te pedirán estudios previos que tengas. Al terminar, ellas
+                                                                        te recibirá en el área de preconsulta, te llamarán por tu nombre y te pedirán estudios previos que tengas. Al terminar, ellas
                                                                         te navegarán por el hospital y te llevarán al servicio de imagenología,
                                                                         donde te harán los estudios de <strong>mastografía</strong>
                                                                         y
                                                                         <strong>ultrasonido de mama</strong>. Es requisito del hospital
                                                                         que estos estudios se hagan aquí, aunque ya te los hayan hecho
-                                                                        en otro lugar. También, el médico valorará¡ si necesitas que te
+                                                                        en otro lugar. También, el médico valorará si necesitas que te
                                                                         realicen una biopsia, si ya te realizaron una biopsia fuera del
                                                                         INCan debes pedir las laminillas y bloques de parafina en el
                                                                         lugar en que te realizaste la biopsia y traerlos para que los
@@ -979,9 +993,9 @@
                                                                 <div id="collapseSecondTwo" class="collapse" aria-labelledby="headingSecondTwo" data-parent="#accordion2">
                                                                     <div class="card-body m-3 justificar">
                                                                         El segundo día pasarás a <strong>consulta</strong> con el médico,
-                                                                        revisará todos tus estudios, te explicará¡ si necesitas otros
-                                                                        y te dirá¡ que sigue. Al igual que el primer día ,nuestro servicio
-                                                                        de navegación te recibirá¡ en el área de preconsulta,  nuevamente
+                                                                        revisará todos tus estudios, te explicará si necesitas otros
+                                                                        y te dirá que sigue. Al igual que el primer día ,nuestro servicio
+                                                                        de navegación te recibirá en el área de preconsulta,  nuevamente
                                                                         te pedirán los documentos que entregaste el día anterior. Si
                                                                         te realizaron una biopsia fuera del INCan debes traer dos copias
                                                                         del reporte de patología que contiene los resultados. Al terminar,
@@ -1346,7 +1360,7 @@
                                                             investigación y forman profesionales de la salud.
                                                         </p>
                                                         <p>
-                                                            Tenemos personal calificado que te acompañará¡ durante todo el proceso diagnóstico, de tratamiento, de rehabilitación, seguimiento
+                                                            Tenemos personal calificado que te acompañará durante todo el proceso diagnóstico, de tratamiento, de rehabilitación, seguimiento
                                                             y supervivencia.
 
                                                         </p>
@@ -1376,7 +1390,7 @@
                                                     <div class="col-10">
                                                         <ul style="list-style:none" class="justificar">
                                                             <li>1.- La preconsulta solo es un método para evaluar tu diagnóstico
-                                                                y el área médica determinará¡ si eres candidata para ser paciente
+                                                                y el área médica determinará si eres candidata para ser paciente
                                                                 del Instituto. Por lo que es indispensable que tengas un diagnóstico
                                                                 oncológico (de cáncer) probable o definitivo.</li>
                                                             <p>

@@ -1,11 +1,11 @@
-<%-- 
+<!-- 
     Document   : recuperarContrasena
     Created on : 26/10/2018, 11:10:36 AM
     Author     : Angel GTZ
---%>
+-->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,7 +46,10 @@
 
             <div class="row justify-content-center mt-4">
                 <div class="col-12">
-                    <button class="btn btn-danger btn-block" id="recuperarEnviarCorreo" style="background-color: #fc3955 !important">Recuperar</button>
+                    <button class="btn btn-danger btn-block" id="recuperarEnviarCorreo">Recuperar</button>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary btn-block mt-2" id="ir-a-loginR">Regresar</button>
                 </div>
             </div>
 

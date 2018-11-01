@@ -77,12 +77,11 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-2 text-center">
-                        <a class="iconoSidebar irACuenta" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
-                    </div>
+                            <a class="iconoSidebar irACuenta" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
+                        </div>
+
                         <div class="col-2">
-                            <a class="iconoSidebar" href="">
-                                <i class="fas fa-power-off"></i>
-                            </a>
+                            <a class="iconoSidebar" id="salirCuenta1" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
                         </div>
                     </div>
                 </div>

@@ -124,8 +124,9 @@ public class PersonaServicioImpl implements PersonaServicio {
 
                 persona = new Persona();
                 persona.setIdPersona(rs.getInt("idPersona"));
+                persona.setNombre(rs.getString("nombre"));
                 persona.setPrimerApellido(rs.getString("primerApellido"));
-                persona.setSegundoApellido(rs.getString("segundpApellido"));
+                persona.setSegundoApellido(rs.getString("segundoApellido"));
                 persona.setCurp(rs.getString("curp"));
                 persona.setTelefono(rs.getString("telefono"));
                 persona.setCorreo(rs.getString("correo"));
@@ -287,7 +288,7 @@ public class PersonaServicioImpl implements PersonaServicio {
          Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
-        boolean exito = false;
+        boolean exito;
 
         //Call del store procedure
         String stProcedure = "CALL actualizarSexo(?,?)";
@@ -302,13 +303,70 @@ public class PersonaServicioImpl implements PersonaServicio {
 
             rs.next();
 
-            exito = rs.getBoolean(1);
+            exito = rs.getInt(1) == idSexo;
 
+            System.out.println("Exito ".concat(String.valueOf(exito)));
         } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             exito = false;
         }
         return exito;
-    }    
+    }
+
+    @Override
+    public List<Persona> mostrarMedicos() {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        List<Persona> personas = null;
+
+        try {
+            personas = new ArrayList<>();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL mostrarListaMedicos()");
+            rs = cstmt.executeQuery();
+            Persona persona;
+
+            while (rs.next()) {
+
+                persona = new Persona();
+                persona.setIdPersona(rs.getInt("idPersona"));
+                persona.setNombre(rs.getString("nombre"));
+                persona.setPrimerApellido(rs.getString("primerApellido"));
+                persona.setSegundoApellido(rs.getString("segundoApellido"));
+                persona.setCurp(rs.getString("curp"));
+                persona.setTelefono(rs.getString("telefono"));
+                persona.setCorreo(rs.getString("correo"));
+                persona.setFechaNacimiento(rs.getDate("fechaNacimiento"));
+                persona.setIdSexo(rs.getInt("idSexo"));
+                persona.setIdTipoSangre(rs.getInt("idTipoSangre"));
+                persona.setIdMunicipio(rs.getInt("idMunicipio"));
+                persona.setIdEstadoCivil(rs.getInt("idEstadoCivil"));
+                persona.setIdDireccion(rs.getInt("idDireccion"));
+                persona.setEdad(rs.getInt("edad"));
+                persona.setEstatus(rs.getInt("estatus"));
+
+                personas.add(persona);
+                
+                System.out.println("personaId: " + persona.getIdPersona());
+
+            }
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+            
+            System.out.println("PersonaServicioImpl mostrarPersona Lista");
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            personas = null;
+        }
+
+        return personas;
+
+    }
 }

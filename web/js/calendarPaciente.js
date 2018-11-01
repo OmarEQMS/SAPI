@@ -25,7 +25,7 @@ $(document).ready(function () {
             
             var m = moment(new Date(Date.parse(calEvent.start._i)));
            
-            var edificios = ["","Edificio Antiguo", "Torre nueva de especialización"];
+            var edificios = ["","Edificio Antiguo", "Torre nueva de hospitalización"];
             
             var pisos = ["Planta Baja", "Primer Piso", "Segundo Piso"];
             
