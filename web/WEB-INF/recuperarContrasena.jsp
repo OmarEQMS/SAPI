@@ -1,11 +1,11 @@
-<%-- 
+<!-- 
     Document   : recuperarContrasena
     Created on : 26/10/2018, 11:10:36 AM
     Author     : Angel GTZ
---%>
+-->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,17 +36,20 @@
 
         <form class="formulario">
 
-            <h1 class="h3 mb-4 titulo-login text-center">Recuperar Contraseña</h1>
+            <h1 class="h3 mb-4 titulo-login text-center">Recuperar ContraseÃ±a</h1>
 
             <div class="row">
                 <div class="col-12">
-                    <input type="email" id="email" class="form-control" placeholder="Introduce tu correo electrónico">
+                    <input type="email" id="email" class="form-control" placeholder="Introduce tu correo electrÃ³nico">
                 </div>
             </div>
 
             <div class="row justify-content-center mt-4">
                 <div class="col-12">
                     <button class="btn btn-danger btn-block" id="recuperarEnviarCorreo" style="background-color: #fc3955 !important">Recuperar</button>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-danger btn-block" id="ir-a-loginR" style="background-color: #fc3955 !important">Regresar</button>
                 </div>
             </div>
 

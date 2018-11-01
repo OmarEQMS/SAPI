@@ -242,14 +242,14 @@ $(document).ready(function () {
         },
                 function (response, status) {
                     console.log(response);
-
-                    if (response != "") {
+                    if (response == "error") {
+                        console.log("Error al cargar");
+                    } else {
+                        
                         console.log("Intentando redireccionar");
                         document.open("text/html", "replace");
                         document.write(response);
                         document.close();
-                    } else {
-                        console.log("Error al cargar");
 
                     }
                 }

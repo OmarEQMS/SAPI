@@ -54,6 +54,24 @@ $(document).ready(function () {
         );
             
     });
-
+    $('#ir-a-loginR').on('click', function () {
+        $.get("LoginController",{
+            key: "ir-a-login"
+        },
+                function (response,status) {
+                    console.log(response);
+                    
+                    if (response == "error") {
+                        console.log("Error al cargar");
+                    } else {
+                        console.log("Intentando redireccionar");
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
+                    }
+                }
+        );
+            
+    });
     
 });

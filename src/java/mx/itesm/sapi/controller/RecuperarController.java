@@ -149,6 +149,7 @@ public class RecuperarController extends HttpServlet {
                     // mimeBodyPart.attachFile(file);
                     message.setContent(multipart);
                     Transport.send(message);
+                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 
                 } catch (Exception ex) {
                     System.out.println("catch de envia correo");
