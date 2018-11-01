@@ -36,11 +36,11 @@
 
         <form class="formulario">
 
-            <h1 class="h3 mb-4 titulo-login text-center">Recuperar Contraseña</h1>
+            <h1 class="h3 mb-4 titulo-login text-center">Recuperar Contrase�a</h1>
 
             <div class="row">
                 <div class="col-12">
-                    <input type="email" id="email" class="form-control" placeholder="Introduce tu correo electrónico">
+                    <input type="email" id="email" class="form-control" placeholder="Introduce tu correo electr�nico">
                 </div>
             </div>
 
@@ -50,6 +50,7 @@
                 </div>
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6">
                     <input type="button" id="ir-a-loginR" class="btn btn-lg btn-primary btn-block btn-regresar" value="REGRESAR">
+
                 </div>
             </div>
 
