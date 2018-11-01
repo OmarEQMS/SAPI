@@ -1118,6 +1118,7 @@ public class PotencialController extends HttpServlet {
                     {
                         sesion.setAttribute("idSexo", solicitudPreconsulta.getIdSexo());
                     }
+
                     if(solicitudPreconsulta.getIdentificacion() != null){
                         sesion.setAttribute("identificacionOficial", 1);
                     }else{

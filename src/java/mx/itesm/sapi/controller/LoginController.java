@@ -5,6 +5,7 @@
  */
 package mx.itesm.sapi.controller;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -17,11 +18,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.gestionPaciente.SolicitudPreconsulta;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.LoginServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.SolicitudPreconsultaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import org.apache.commons.io.IOUtils;
@@ -150,6 +153,65 @@ public class LoginController extends HttpServlet {
                                 }
 
                                 sesion.setAttribute("path", keyRuta);
+
+
+                                String rol = "potencial";
+                                //request.setAttribute("rol", rol);
+
+                                response.setContentType("application/json");//Por default se envia un text/html, pero enviaremos un application/json para que se interprete en el ajax del front.
+
+                                int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
+
+                                SolicitudPreconsulta solicitudPreconsulta;
+                                SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
+                                solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
+
+                                if (solicitudPreconsulta.getIdentificacion() != null) {
+                                    sesion.setAttribute("identificacionOficial", 1);
+                                } else {
+                                    sesion.setAttribute("identificacionOficial", 0);
+                                }
+                                if (solicitudPreconsulta.getCurp() != null) {
+                                    sesion.setAttribute("curp", 1);
+                                } else {
+                                    sesion.setAttribute("curp", 0);
+                                }
+                                if (solicitudPreconsulta.getComprobante() != null) {
+                                    sesion.setAttribute("comprobante", 1);
+                                } else {
+                                    sesion.setAttribute("comprobante", 0);
+                                }
+                                if (solicitudPreconsulta.getMastografia() != null) {
+                                    sesion.setAttribute("resultadoMastografia", 1);
+                                } else {
+                                    sesion.setAttribute("resultadoMastografia", 0);
+                                }
+                                if (solicitudPreconsulta.getUltrasonido() != null) {
+                                    sesion.setAttribute("resultadoUltrasonido", 1);
+                                } else {
+                                    sesion.setAttribute("resultadoUltrasonido", 0);
+                                }
+                                if (solicitudPreconsulta.getBiopsiaPrevia() != null) {
+                                    sesion.setAttribute("biopsiaPrevia", 1);
+                                } else {
+                                    sesion.setAttribute("biopsiaPrevia", 0);
+                                }
+
+                                System.out.println("identificacionOficial: " + solicitudPreconsulta.getIdentificacion());
+                                System.out.println("curp: " + solicitudPreconsulta.getCurp());
+                                System.out.println("comprobante: " + solicitudPreconsulta.getComprobante());
+                                System.out.println("resultadoMastografia: " + solicitudPreconsulta.getMastografia());
+                                System.out.println("resultadosUltrasonidos: " + solicitudPreconsulta.getUltrasonido());
+                                System.out.println("biopsiaPrevia: " + solicitudPreconsulta.getBiopsiaPrevia());
+
+                                Gson json = new Gson();
+                                System.out.println("Res Id ".concat(String.valueOf(idPacientePotencial)).concat(json.toJson(solicitudPreconsulta)));
+
+                                PrintWriter out = response.getWriter();
+
+                                out.print(json.toJson(json.toJson(solicitudPreconsulta)));
+
+
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                                 //request.getRequestDispatcher("/FrontController").forward(request, response);                                                                             
 
@@ -167,11 +229,11 @@ public class LoginController extends HttpServlet {
                             case 4: {
                                 // CASE Para Navegadora
                                 System.out.println("Cuenta de NAVEGADORA:  ".concat(sesion.getAttribute("nombre").toString()));
-                                
+
                                 request.setAttribute("nombre", sesion.getAttribute("nombre"));
                                 request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));
                                 request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
-                                
+
                                 String keyRuta = "navegadora/cuentaNavegadora.jsp";
 
                                 //Si la contraseña no tiene el token de recuperar contraseña se continua al dashboard correspondiente                                                                 
@@ -183,20 +245,19 @@ public class LoginController extends HttpServlet {
                                 }
 
                                 sesion.setAttribute("path", keyRuta);
-                                
-                                
+
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                                 break;
                             }
                             case 5: {
 
-                                System.out.println("Cuenta de paciente en tratamiento:  ".concat(sesion.getAttribute("nombre").toString()));                                                                                               
+                                System.out.println("Cuenta de paciente en tratamiento:  ".concat(sesion.getAttribute("nombre").toString()));
 
                                 PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                 Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
                                 //Agregar el idPaciente a la sesión
                                 String idPacienteStr = String.valueOf(paciente.getIdPaciente());
-                                
+
                                 sesion.setAttribute("idPaciente", idPacienteStr);
 
                                 //Redirigir al paciente potencial a su dashboard correspondiente                               
@@ -219,16 +280,16 @@ public class LoginController extends HttpServlet {
                                 }
 
                                 sesion.setAttribute("path", keyRuta);
-                                
-                                
+
                                 PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                                 List<Persona> medicos = personaServicio.mostrarMedicos();
-                                    
+
                                 request.setAttribute("listaMedicos", medicos);
 
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
-                                
+
                                 System.out.println("Se redirige el potencial. idPaciente " + String.valueOf(paciente.getIdPaciente()).concat(" idCuenta ").concat(String.valueOf(paciente.getIdCuenta())).concat(" Sesión idCuenta ").concat(String.valueOf(sesion.getAttribute("idCuenta"))));
+
 
                                 break;
                             }
@@ -300,7 +361,7 @@ public class LoginController extends HttpServlet {
             HttpServletResponse response
     )
             throws ServletException,
-             IOException {
+            IOException {
         processRequest(request, response);
     }
 
@@ -317,7 +378,7 @@ public class LoginController extends HttpServlet {
             HttpServletResponse response
     )
             throws ServletException,
-             IOException {
+            IOException {
         processRequest(request, response);
     }
 

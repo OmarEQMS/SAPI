@@ -36,20 +36,20 @@
 
         <form class="formulario">
 
-            <h1 class="h3 mb-4 titulo-login text-center">Recuperar ContraseÃ±a</h1>
+            <h1 class="h3 mb-4 titulo-login text-center">Recuperar Contraseña</h1>
 
             <div class="row">
                 <div class="col-12">
-                    <input type="email" id="email" class="form-control" placeholder="Introduce tu correo electrÃ³nico">
+                    <input type="email" id="email" class="form-control" placeholder="Introduce tu correo electrónico">
                 </div>
             </div>
 
             <div class="row justify-content-center mt-4">
                 <div class="col-12">
-                    <button class="btn btn-danger btn-block" id="recuperarEnviarCorreo" style="background-color: #fc3955 !important">Recuperar</button>
+                    <button class="btn btn-danger btn-block" id="recuperarEnviarCorreo">Recuperar</button>
                 </div>
                 <div class="col-12">
-                    <button class="btn btn-danger btn-block" id="ir-a-loginR" style="background-color: #fc3955 !important">Regresar</button>
+                    <button class="btn btn-primary btn-block mt-2" id="ir-a-loginR">Regresar</button>
                 </div>
             </div>
 
