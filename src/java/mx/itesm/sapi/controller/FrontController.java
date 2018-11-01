@@ -189,6 +189,12 @@ public class FrontController extends HttpServlet {
                                     
                                     break;
                                 }
+                                case "navegadora/index.jsp":
+                                {
+                                    System.out.println("Index Navegadora ");
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al dashboard navgeadora
+                                    break;
+                                }
                             }
                             break;
                         }

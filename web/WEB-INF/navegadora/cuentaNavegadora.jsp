@@ -3,7 +3,7 @@
     Created on : 31-oct-2018, 11:51:06
     Author     : urieldiaz
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -96,7 +96,7 @@
             <!-- MENU PRINCIPAL ENLACES -->
             <ul class="list-unstyled components">
 
-                <li><a href="index.html"><i class="fas fa-home"></i>Inicio</a></li>
+                <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
 
                 <li><a href="calendar.html"><i class="fas fa-calendar-alt"></i>Calendario</a></li>
                 <li>

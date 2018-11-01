@@ -162,6 +162,24 @@ $(document).ready(function () {
 
     });
 
+        $('#irADashboard').on('click', function () {
+        $.post("SAPI", {
+            file: "navegadora/index.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
 
 });
 
