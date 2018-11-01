@@ -88,7 +88,14 @@
 
                     <li id ="irACitaPreconsulta"><a><i class="fas fa-home"></i>Cita a Preconsulta </a></li>
 
-                    <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas<span class="notificacion">1</span></a></li>
+                    <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas
+                            <c:choose>
+                                <c:when test="${sessionScope.estatus>=1}">
+                                    <span class="notificacion">1</span>                        
+                                </c:when>
+                            </c:choose>
+                        </a>                    
+                    </li>
 
                     <li id ="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta </a></li>
 
@@ -212,9 +219,9 @@
                                                                         <input class="form-check-input" name="generoMasculino" type="radio" id="masculino" value="masculino" checked="checked">
                                                                     </c:when>
                                                                     <c:otherwise>
-                                                                         <input class="form-check-input" name="generoMasculino" type="radio" id="masculino" value="masculino">
+                                                                        <input class="form-check-input" name="generoMasculino" type="radio" id="masculino" value="masculino">
                                                                     </c:otherwise>                                                                                                                                                    
-                                                                 </c:choose>                                                                
+                                                                </c:choose>                                                                
                                                                 <label class="form-check-label" for="masculino"><i class="fas fa-male"></i>
                                                                     Hombre</label>
                                                             </div>
@@ -226,7 +233,7 @@
                                                                     <c:otherwise>
                                                                         <input class="form-check-input" name="generoFemenino" type="radio" id="femenino" value="femenino">
                                                                     </c:otherwise>
-                                                                 </c:choose>        
+                                                                </c:choose>        
                                                                 <label class="form-check-label" for="femenino"><i class="fas fa-female"></i>
                                                                     Mujer</label>
                                                             </div>
@@ -658,7 +665,7 @@
                                                                         Elegir archivo...
                                                                     </label>
                                                                 </div>
-                                                                
+
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">

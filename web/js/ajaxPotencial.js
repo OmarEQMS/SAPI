@@ -572,7 +572,7 @@ $(document).ready(function () {
                     file: "potencial/cuentaPaciente.jsp"
                 },
                         function (response, status, xhr) {
-                            console.log("El ajax fue exitoso!!-----------------------");
+                            /*console.log("El ajax fue exitoso!!-----------------------");
                             if (status == "success") {
                                 if (response == "error") {
                                     $("#msj-error").show();
@@ -581,7 +581,19 @@ $(document).ready(function () {
                                     document.write(response);
                                     document.close();
                                 }
-                            }
+                            }*/
+                            swal({
+                                title: 'Buen Trabajo',
+                                text: "Cambios guardados correctamente",
+                                type: 'success',
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Ok'
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location.reload();
+                                }
+                                ;
+                            });
                         }
                 );
             },
