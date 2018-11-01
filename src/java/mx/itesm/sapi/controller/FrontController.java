@@ -294,6 +294,7 @@ public class FrontController extends HttpServlet {
 
                                 case "paciente/index.jsp": {
                                     
+                                    
                                     PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                                     List<Persona> medicos = personaServicio.mostrarMedicos();
                                     

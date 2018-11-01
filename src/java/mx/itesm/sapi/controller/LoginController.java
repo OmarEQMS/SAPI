@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Base64;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -218,6 +219,12 @@ public class LoginController extends HttpServlet {
                                 }
 
                                 sesion.setAttribute("path", keyRuta);
+                                
+                                
+                                PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                                List<Persona> medicos = personaServicio.mostrarMedicos();
+                                    
+                                request.setAttribute("listaMedicos", medicos);
 
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                                 //request.getRequestDispatcher("/FrontController").forward(request, response);             
