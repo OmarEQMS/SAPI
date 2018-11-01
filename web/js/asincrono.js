@@ -30,38 +30,32 @@ $(document).ready(function () {
 
     $('#btn-registro').on('click', function () {
 
-        var esValid = false;
         //Verificar que todos los campos que han marcado
         if (isValidName($('#nombre')) && isValidLastName($('#apellido1')) && isValidUserName($('#usuario')) && isValidEmail($('#correo')) && isValidPassword($('#pass1')) && isValidCURP($('#curp')) && isValidPhoneNumber($('#telefono')) && isValidDate($('#fechaNacimiento')) && isValidSelect($('#estado')) && isValidSelect($('#municipio'))) {
             $("#error-campos").hide();
-            if (esValid) {
-                swal(
-                        "¿Te han tratado por cáncer de mama previamente?", {
-                            buttons: {
-                                primeraVez: "No",
-                                segundaOpinion: "Sí",
-                            }
-                        })
-                        .then((value) => {
-                            switch (value) {
-                                case "primeraVez":
-                                    $('#tipoPaciente').val(0);
-                                    break;
-                                case "segundaOpinion":
-                                    $('#tipoPaciente').val(1);
-                                    break;
-                            }
 
-                            console.log($('#tipoPaciente').val());
-                            $('#modalTerminos').modal('toggle');
-                        });
+            swal(
+                    "¿Te han tratado por cáncer de mama previamente?", {
+                        buttons: {
+                            primeraVez: "No",
+                            segundaOpinion: "Sí",
+                        }
+                    })
+                    .then((value) => {
+                        switch (value) {
+                            case "primeraVez":
+                                $('#tipoPaciente').val(0);
+                                break;
+                            case "segundaOpinion":
+                                $('#tipoPaciente').val(1);
+                                break;
+                        }
 
-            } else {
-                $("#error-campos").show();
-                //alert("SELECCIONA TODO -.-");
-            }
-        }
-        else{
+                        console.log($('#tipoPaciente').val());
+                        $('#modalTerminos').modal('toggle');
+                    });
+        } else {
+            console.log("Entro al segundo else");
             $("#error-campos").show();
         }
     });
@@ -290,7 +284,7 @@ $(document).ready(function () {
 
         });
 
-        if (isValidLastName($(this))) {
+        if (isValidUserName($(this))) {
             $('#errorNombreUsuario').hide();
         } else if ($(this).val() == '') {
             $('#errorNombreUsuario').hide();
@@ -809,6 +803,26 @@ $(document).ready(function () {
         return true;
 
 
+    }
+
+    function isValidUserName(input) {
+
+        var m = input.val();
+
+        var expreg = /^[a-zA-Z0-9]{4,16}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
     }
 
 });
