@@ -89,7 +89,7 @@ $(document).ready(function () {
         return true;
     }
 
-    //VALIDACIONES INDEX
+    //VALIDACIONES TRATAMIENTO
 
     //1.- Fecha inicio
     $('#fechaInicioTratamiento').on('change', function(){
@@ -104,7 +104,20 @@ $(document).ready(function () {
     
         //1.- Fecha fin
     $('#fechaFinTratamiento').on('change', function(){
+        if(isValidDate2($('#fechaFinTratamiento'), $("#fechaInicio-"+$("#botonHidden").val()).val())){
+            $('#error-fechaFin').hide();
+        }else{
+            $('#error-fechaFin').show();
+        }
+    }); 
+    
+    //VALIDACIONES INDEX
+    /*
+    //1.- Fecha cita
+    $('#fechaFinTratamiento').on('change', function(){
         alert($("#fechaInicio-"+$("#botonHidden").val()).val());
+
+
         if(isValidDate2($('#fechaFinTratamiento'), $("#fechaInicio-"+$("#botonHidden").val()).val())){
             $('#error-fechaFin').hide();
         }else{
@@ -128,7 +141,7 @@ $(document).ready(function () {
         }else{
             $('#error-medico').show();
         }
-    });
+    });*/
     
     function isValidNoExpediente (input) {
 
@@ -285,7 +298,7 @@ $(document).ready(function () {
 
     };
     
-     isValidPassword: (input) => {
+     function isValidPassword(input){
 
         var m = input.val();
 

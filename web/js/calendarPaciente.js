@@ -6,6 +6,7 @@
 
 $(document).ready(function () {
 
+        console.log($("#idPaciente").val());
     $('#calendarCitasPaciente').fullCalendar({
         locale: 'es',
         height: 630,
@@ -24,7 +25,7 @@ $(document).ready(function () {
             
             var m = moment(new Date(Date.parse(calEvent.start._i)));
            
-            var edificios = ["","Edificio Antiguo", "Torre nueva de especialización"];
+            var edificios = ["","Edificio Antiguo", "Torre nueva de hospitalización"];
             
             var pisos = ["Planta Baja", "Primer Piso", "Segundo Piso"];
             
@@ -61,6 +62,7 @@ $(document).ready(function () {
                 },
                 textColor: 'white',
                 success: function (response) {
+                    
                     console.log(response);
                 }
             }
