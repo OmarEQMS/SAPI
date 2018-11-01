@@ -287,7 +287,7 @@ public class PersonaServicioImpl implements PersonaServicio {
          Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
-        boolean exito = false;
+        boolean exito;
 
         //Call del store procedure
         String stProcedure = "CALL actualizarSexo(?,?)";
@@ -302,8 +302,9 @@ public class PersonaServicioImpl implements PersonaServicio {
 
             rs.next();
 
-            exito = rs.getBoolean(1);
+            exito = rs.getInt(1) == idSexo;
 
+            System.out.println("Exito ".concat(String.valueOf(exito)));
         } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
