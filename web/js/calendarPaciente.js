@@ -6,6 +6,7 @@
 
 $(document).ready(function () {
 
+        console.log($("#idPaciente").val());
     $('#calendarCitasPaciente').fullCalendar({
         locale: 'es',
         height: 630,
@@ -61,6 +62,7 @@ $(document).ready(function () {
                 },
                 textColor: 'white',
                 success: function (response) {
+                    
                     console.log(response);
                 }
             }

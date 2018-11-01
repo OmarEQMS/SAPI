@@ -28,7 +28,7 @@
 
         <link rel="stylesheet" href="css/stylePaciente.css">
         <script src="js/appPaciente.js" type="module"></script>
-        <script src="js/calendars.js"></script>
+        <script src="js/calendarPaciente.js"></script>
         <script src="js/ajaxPaciente.js"></script>
         <script src="js/validacionesPaciente.js"></script>
 
@@ -45,8 +45,7 @@
 
                     <div class="row text-center justify-content-center mt-2">
                         <div class="col-12">
-                            <img src="../img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
-                        </div>
+                            <img src="img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">                        </div>
                     </div>
 
                 </div>
@@ -66,14 +65,11 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-2 text-center">
-                            <a class="iconoSidebar" href="">
-                                <i class="fas fa-cog"></i>
-                            </a>
+                            <a class="iconoSidebar irACuenta" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
                         </div>
+
                         <div class="col-2">
-                            <a class="iconoSidebar" href="">
-                                <i class="fas fa-power-off"></i>
-                            </a>
+                            <a class="iconoSidebar" id="salirCuenta1" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
                         </div>
                     </div>
                 </div>
@@ -89,7 +85,7 @@
 
 
                     <li id="irMisCitas"><a><i class="far fa-user"></i>Mis citas</a></li>
-                    <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+                    <li id="irACuenta" class="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
                     <li id="irATratamientos"><a><i class="far fa-user"></i>Mis Tratamientos</a></li>
                     <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
@@ -179,36 +175,36 @@
                                   </tr>
                                 -->
                             <input type="hidden" value="" id="idTratamientoPaciente">
-                          
-                            
+
+
                             <c:forEach  items="${UnionTratamientosPaciente}" var="unionTratamientoPaciente">
-                            <tr>
+                                <tr>
                                 <input type="hidden" value="${unionTratamientoPaciente.nombre}" id="nombre-${unionTratamientoPaciente.idTratamientoPaciente}">
                                 <input type="hidden" value="${unionTratamientoPaciente.fechaInicio}" id="fechaInicio-${unionTratamientoPaciente.idTratamientoPaciente}">
                                 <input type="hidden" value="${unionTratamiento.idTratamientoPaciente}" id="boton-${unionTratamiento.idTratamientoPaciente}">
-                                 <td id="nombre-${unionTratamientoPaciente.idTratamientoPaciente}" value="${unionTratamientoPaciente.nombre}" > <c:out value="${unionTratamientoPaciente.nombre}"/> </td>
+                                <td id="nombre-${unionTratamientoPaciente.idTratamientoPaciente}" value="${unionTratamientoPaciente.nombre}" > <c:out value="${unionTratamientoPaciente.nombre}"/> </td>
                                 <td id="fechaInicio-${unionTratamientoPaciente.idTratamientoPaciente}" > <c:out value="${unionTratamientoPaciente.fechaInicio}"/> </td>
                                 <td id="fecha-${unionTratamientoPaciente.idTratamientoPaciente}"> <c:out value="${unionTratamientoPaciente.fechaFin}"/> </td>
                                 <c:choose>
-                                <c:when test="${unionTratamientoPaciente.terminado}">
-                                    <td> 
-                                    <button class="btn btn-secondary terminarTratamiento" id="modal-${unionTratamientoPaciente.idTratamientoPaciente}" data-id="${unionTratamientoPaciente.idTratamientoPaciente}"
-                                            data-toggle="modal"
-                                            data-target="#modalEditarTerminado" disabled="disabled"><i class="fas fa-edit" ></i></button></td>
-                                </c:when>
-                                <c:otherwise>
-                                    <td> 
-                                    <button class="btn btn-primary terminarTratamiento" id="modal-${unionTratamientoPaciente.idTratamientoPaciente}" data-id="${unionTratamientoPaciente.idTratamientoPaciente}"
-                                            data-toggle="modal"
-                                            data-target="#modalEditarTerminado" ><i class="fas fa-edit" ></i></button></td>
-                                    
-                                </c:otherwise>
-                                
-                            </c:choose>
-                                 </tr>
+                                    <c:when test="${unionTratamientoPaciente.terminado}">
+                                        <td> 
+                                            <button class="btn btn-secondary terminarTratamiento" id="modal-${unionTratamientoPaciente.idTratamientoPaciente}" data-id="${unionTratamientoPaciente.idTratamientoPaciente}"
+                                                    data-toggle="modal"
+                                                    data-target="#modalEditarTerminado" disabled="disabled"><i class="fas fa-edit" ></i></button></td>
+                                            </c:when>
+                                            <c:otherwise>
+                                        <td> 
+                                            <button class="btn btn-primary terminarTratamiento" id="modal-${unionTratamientoPaciente.idTratamientoPaciente}" data-id="${unionTratamientoPaciente.idTratamientoPaciente}"
+                                                    data-toggle="modal"
+                                                    data-target="#modalEditarTerminado" ><i class="fas fa-edit" ></i></button></td>
+
+                                    </c:otherwise>
+
+                                </c:choose>
+                                </tr>
                             </c:forEach>
-                              <input type="hidden" id="botonHidden">
-                             
+                            <input type="hidden" id="botonHidden">
+
                             </tbody>
                         </table>
                     </div>
@@ -245,15 +241,15 @@
                                         </div>
                                         <input placeholder="Introduce la fecha de inicio" class="selectStyle form-control textbox-n"
                                                type="text" onfocus="(this.type = 'date')" id="fechaInicioTratamiento">
-                                        
+
                                     </div>
                                     <span class="text-danger error-fecha" id="error-fechaInicio"> Fecha incorrecta.</span>
                                 </div>
 
                             </div>
-                            
-                             <!-- ***** Tipo ***** -->
-                            
+
+                            <!-- ***** Tipo ***** -->
+
                             <!-- ***** Tipo ***** -->
                             <div class="row mb-3 justify-content-center">
                                 <div class="col-8">

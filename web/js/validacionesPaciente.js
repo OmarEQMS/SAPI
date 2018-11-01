@@ -104,7 +104,6 @@ $(document).ready(function () {
     
         //1.- Fecha fin
     $('#fechaFinTratamiento').on('change', function(){
-        //alert($("#fechaInicio-"+$("#botonHidden").val()).val());
         if(isValidDate2($('#fechaFinTratamiento'), $("#fechaInicio-"+$("#botonHidden").val()).val())){
             $('#error-fechaFin').hide();
         }else{
@@ -117,6 +116,8 @@ $(document).ready(function () {
     //1.- Fecha cita
     $('#fechaFinTratamiento').on('change', function(){
         alert($("#fechaInicio-"+$("#botonHidden").val()).val());
+
+
         if(isValidDate2($('#fechaFinTratamiento'), $("#fechaInicio-"+$("#botonHidden").val()).val())){
             $('#error-fechaFin').hide();
         }else{
