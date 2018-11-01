@@ -649,7 +649,7 @@
                                                             <c:otherwise>
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
                                                                     <div class="form-check">
-                                                                        <input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput" checked>
+                                                                        <input class="form-check-input" name="biopsiaInput" type="checkbox" onclick="return false;" id="biopsiaInput" checked>
                                                                         <label class="form-check-label textoDocumento text-success">
                                                                             ¿Te han hecho una biopsia previamente?
                                                                         </label>
