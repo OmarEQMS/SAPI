@@ -1101,6 +1101,7 @@ public class PotencialController extends HttpServlet {
                      */
                     System.out.println("Consultar documentos");
                     //System.out.println("Documentos ".concat(solicitudPreconsulta.toString()));
+                    
                     if (solicitudPreconsulta.getIdSexo() == 0) {
                         sesion.setAttribute("idSexo", 0);
                     } else {
