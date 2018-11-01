@@ -147,7 +147,7 @@ $(document).ready(function () {
 
         var m = input.val();
 
-        var expreg = /^[a-zA-Z0-9]{9,9}$/;
+        var expreg = /^[a-zA-Z0-9]{3}[0-9]{6}$/;
 
 
         if (!expreg.test(m)) {
