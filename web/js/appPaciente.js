@@ -225,12 +225,12 @@ $(document).ready(function () {
 	});
         
         $("body").on("click",".myCleanerAddTratamientos", function(){
-		$(".fechaInicio").val("");
+		$(".fechaInicio").attr("type","text");
                 $(".tratamiento").prop('selectedIndex',0);
 	});
         
         $("body").on("click",".myCleanerAddFinTratamientos", function(){
-		$(".fechaFin").val("");
+		$(".fechaFin").attr("type","text");
 	});
 
 
