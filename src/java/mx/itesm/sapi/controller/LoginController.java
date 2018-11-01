@@ -56,7 +56,7 @@ public class LoginController extends HttpServlet {
                 String usuario = request.getParameter("usuario");
                 String password = request.getParameter("password");
 
-                System.out.println("Usuario".concat(usuario).concat(" password: ").concat(password));
+                System.out.println("Login Controller, case 'verificar' Usuario: ".concat(usuario).concat(" password: ").concat(password));
                 if (usuario == null || password == null) {
 
                 } else {

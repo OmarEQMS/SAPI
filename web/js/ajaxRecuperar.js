@@ -19,10 +19,13 @@ $(document).ready(function () {
             },
             method: "POST",
             success: function (response) {
-                if (response == "success") {
+                if (response == "error") {
                     
                 } else {
-                   
+                        console.log("Intentando redireccionar");
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close(); 
                 }
             },
             error: function (xhr) {

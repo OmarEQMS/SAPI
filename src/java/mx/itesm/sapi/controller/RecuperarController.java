@@ -88,7 +88,7 @@ public class RecuperarController extends HttpServlet {
                     cuenta.setPassword(contra);
 
                     cuentaServicio.actualizarCuenta(cuenta);
-                    System.out.println("Si entre ");
+                    System.out.println("RecuperarController case 'cambiarSontrasena'");
                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
                 }
 
