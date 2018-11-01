@@ -207,12 +207,26 @@
 
                                                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 text-center">
                                                             <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" name="generoMasculino" type="radio" id="masculino" value="masculino">
+                                                                <c:choose>                                                                  
+                                                                    <c:when test="${sessionScope.idSexo == 2}">
+                                                                        <input class="form-check-input" name="generoMasculino" type="radio" id="masculino" value="masculino" checked="checked">
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                         <input class="form-check-input" name="generoMasculino" type="radio" id="masculino" value="masculino">
+                                                                    </c:otherwise>                                                                                                                                                    
+                                                                 </c:choose>                                                                
                                                                 <label class="form-check-label" for="masculino"><i class="fas fa-male"></i>
                                                                     Hombre</label>
                                                             </div>
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" name="generoFemenino" type="radio" id="femenino" value="femenino">
+                                                            <div class="form-check form-check-inline">                                                                
+                                                                <c:choose>                                                                   
+                                                                    <c:when test="${sessionScope.idSexo == 1}">
+                                                                        <input class="form-check-input" name="generoFemenino" type="radio" id="femenino" value="femenino"checked="checked">
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <input class="form-check-input" name="generoFemenino" type="radio" id="femenino" value="femenino">
+                                                                    </c:otherwise>
+                                                                 </c:choose>        
                                                                 <label class="form-check-label" for="femenino"><i class="fas fa-female"></i>
                                                                     Mujer</label>
                                                             </div>
@@ -449,7 +463,7 @@
 
                                                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 removePadding">
                                                             <select class="form-control" id="motivoConsulta">
-                                                                <option>Seleccione el motivo de la consulta</option>
+                                                                <option value="0">Seleccione el motivo de la consulta</option>
                                                                 <option value="1">Me envió un médico</option>
                                                                 <option value="2">Estudio con diagnóstico de cáncer de mama</option>
                                                                 <option value="3">Me sentí una bolita en el seno</option>
@@ -649,7 +663,7 @@
                                                             <c:otherwise>
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
                                                                     <div class="form-check">
-                                                                        <input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput" checked>
+                                                                        <input class="form-check-input" name="biopsiaInput" type="checkbox" onclick="return false;" id="biopsiaInput" checked>
                                                                         <label class="form-check-label textoDocumento text-success">
                                                                             ¿Te han hecho una biopsia previamente?
                                                                         </label>

@@ -74,7 +74,6 @@ $(document).ready(function () {
         var esValid = false;
         //Verificar que todos los campos que han marcado
         if (isValidHour($('#RegistrarCita_hora')) && isValidSelect($('#RegistrarCita_tipo')) && isValidSelect($('#RegistrarCita_medico')) && isValidRadioChecked($('input[name=Edificios]'))) {
-            alert("Entro al if");
             $("#error-campos").hide();
             if (parseInt($('input[name=Edificios]:checked').val()) == 1) {
                 esValid = true;
@@ -183,7 +182,7 @@ $(document).ready(function () {
     });
 
     //PARA IR A LA CUENTA
-    $('#irACuenta').on('click', function () {
+    $('.irACuenta').on('click', function () {
         $.get("SAPI", {
             file: "paciente/cuenta.jsp"
         },
@@ -544,7 +543,6 @@ $(document).ready(function () {
 
        //alert($('#idTratamientoPaciente').val());
         
-
         $("#tipoTratamiento2").val(
                 $("#nombre-" + $(this).data('id')).val()
 

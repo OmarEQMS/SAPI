@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Base64;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -149,7 +150,7 @@ public class LoginController extends HttpServlet {
                                 }
 
                                 sesion.setAttribute("path", keyRuta);
-                                //request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
+                                request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                                 //request.getRequestDispatcher("/FrontController").forward(request, response);                                                                             
 
                                 System.out.println("Se redirige el potencial. idPaciente " + String.valueOf(paciente.getIdPaciente()).concat(" idCuenta ").concat(String.valueOf(paciente.getIdCuenta())).concat(" Sesión idCuenta ").concat(String.valueOf(sesion.getAttribute("idCuenta"))));
@@ -195,6 +196,7 @@ public class LoginController extends HttpServlet {
                                 Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(idCuenta);
                                 //Agregar el idPaciente a la sesión
                                 String idPacienteStr = String.valueOf(paciente.getIdPaciente());
+                                
                                 sesion.setAttribute("idPaciente", idPacienteStr);
 
                                 //Redirigir al paciente potencial a su dashboard correspondiente                               
@@ -217,10 +219,15 @@ public class LoginController extends HttpServlet {
                                 }
 
                                 sesion.setAttribute("path", keyRuta);
+                                
+                                
+                                PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                                List<Persona> medicos = personaServicio.mostrarMedicos();
+                                    
+                                request.setAttribute("listaMedicos", medicos);
 
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
-                                //request.getRequestDispatcher("/FrontController").forward(request, response);             
-
+                                
                                 System.out.println("Se redirige el potencial. idPaciente " + String.valueOf(paciente.getIdPaciente()).concat(" idCuenta ").concat(String.valueOf(paciente.getIdCuenta())).concat(" Sesión idCuenta ").concat(String.valueOf(sesion.getAttribute("idCuenta"))));
 
                                 break;
@@ -256,10 +263,9 @@ public class LoginController extends HttpServlet {
             case "cerrar-sesion": {
 
                 HttpSession sesion = request.getSession(true);
-
-                System.out.println("Salir de la cuenta ".concat(sesion.getAttribute("nombre").toString()));
-
+                
                 sesion.invalidate();
+                //System.out.println("Salir de la cuenta ".concat(sesion.getAttribute("nombre").toString()));
                 System.out.println("Salimos :)");
 
                 request.setAttribute("status", "");
