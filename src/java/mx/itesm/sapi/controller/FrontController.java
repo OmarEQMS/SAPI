@@ -71,7 +71,7 @@ public class FrontController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         System.out.println("URL FrontController: ".concat(request.getRequestURL().toString()));
-        System.out.println("FrontController Method ".concat(request.getMethod()));        
+        System.out.println("FrontController Method ".concat(request.getMethod()));
 
         String file = request.getParameter("file");
         if (file == null) {
@@ -80,12 +80,12 @@ public class FrontController extends HttpServlet {
                 request.setAttribute("status", "");
                 request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
                 return;
-            }else{
+            } else {
                 String strPath = sesion.getAttribute("path").toString();
-                System.out.println("FrontController No path ".concat(strPath));                
-                request.getRequestDispatcher("WEB-INF/".concat(strPath)).forward(request, response);                
-             //   System.out.println("FrontController Message ".concat(request.getParameter("message")));
-            } 
+                System.out.println("FrontController No path ".concat(strPath));
+                request.getRequestDispatcher("WEB-INF/".concat(strPath)).forward(request, response);
+                //   System.out.println("FrontController Message ".concat(request.getParameter("message")));
+            }
         } else {
             if ("jsp".equals(file.substring(file.length() - 3))) {
                 HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
@@ -184,42 +184,48 @@ public class FrontController extends HttpServlet {
                             switch (keyRuta) {
 
                                 case "navegadora/cuentaNavegadora.jsp": {
-                                    
+
                                     PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
                                     Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
-                                    
+
                                     CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
                                     Cuenta cuenta = cuentaServicioImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));
-                                    
-                                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+
+                                    /*EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
                                     Empleado empleado = empleadoServicioImpl.mostrarEmpleadoCuenta((int) sesion.getAttribute("idCuenta"));
-                                    
+
                                     MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
                                     MedicoEspecialidad medicoEspecialidad = medicoEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(empleado.getIdEmpleado());
-                                    
+
                                     EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
-                                    Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());
-                                    
-                                    
-                                    
+                                    Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());*/
+
                                     System.out.println("holiiii");
                                     sesion.setAttribute("nombre", persona.getNombre());
                                     sesion.setAttribute("primerApellido", persona.getPrimerApellido());
                                     sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
-                                    System.out.println("el correo es:"+persona.getCorreo());
+                                    System.out.println("el correo es:" + persona.getCorreo());
                                     sesion.setAttribute("correo", persona.getCorreo());
                                     sesion.setAttribute("telefono", persona.getTelefono());
                                     sesion.setAttribute("usuario", cuenta.getUsuario());
-                                    sesion.setAttribute("noEmpleado", empleado.getNoEmpleado());
-                                    sesion.setAttribute("especialidad",especialidad.getNombre());
-                                    sesion.setAttribute("cedulaProfesional",medicoEspecialidad.getCedulaProfesional());
-                                    
-                                    
-                                    
+                                    //sesion.setAttribute("noEmpleado", empleado.getNoEmpleado());
+                                    //sesion.setAttribute("especialidad", especialidad.getNombre());
+                                    //sesion.setAttribute("cedulaProfesional", medicoEspecialidad.getCedulaProfesional());
+
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                    sesion.setAttribute("base64Img", base64String);
+
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+
                                     /*MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl=new MedicoEspecialidadServicioImpl();
                                     MedicoEspecialidad medicoEspecialidad= medicoEspecialidadServicioImpl.mostrarMedicoEspecialidad(keyRol)
-                                    */
-                                    
+                                     */
                                     break;
                                 }
                             }
@@ -318,7 +324,7 @@ public class FrontController extends HttpServlet {
                                     String base64String = Base64.getEncoder().encodeToString(bytes);
 
                                     sesion.setAttribute("base64Img", base64String);
-                                    System.out.println("en front controller esss"+paciente.getIdPaciente());
+                                    System.out.println("en front controller esss" + paciente.getIdPaciente());
                                     sesion.setAttribute("idPaciente", paciente.getIdPaciente());
                                     request.setAttribute("tipoTratamiento", tratamientos);
                                     request.setAttribute("UnionTratamientosPaciente", unionTratamientosPaciente);
@@ -328,13 +334,12 @@ public class FrontController extends HttpServlet {
                                 }
 
                                 case "paciente/index.jsp": {
-                                    
-                                    
+
                                     PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                                     List<Persona> medicos = personaServicio.mostrarMedicos();
-                                    
+
                                     request.setAttribute("listaMedicos", medicos);
-                                    
+
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     break;
                                 }

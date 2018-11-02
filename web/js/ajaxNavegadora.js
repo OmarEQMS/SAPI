@@ -1,8 +1,6 @@
 $(document).ready(function () {
 
 
-    alert();
-    
     
     //Eliminar cuenta
     $('#eliminarCuentaNavegadora').on('click', () => {
@@ -166,7 +164,7 @@ $(document).ready(function () {
 
     });
 
-    $('#guardarCambios').on('click', function () {
+     $('#guardarCambios').on('click', function () {
 
         console.log("Presionó GuardarCambios")
         var form = $("form")[0];
@@ -189,30 +187,27 @@ $(document).ready(function () {
                     file: "navegadora/cuentaNavegadora.jsp"
                 },
                         function (response, status, xhr) {
-                            /*console.log("El ajax fue exitoso!!-----------------------");
+                            console.log("El ajax fue exitoso!!-----------------------");
                              if (status == "success") {
                              if (response == "error") {
                              $("#msj-error").show();
                              } else {
                              
-                             
-                             document.open("text/html", "replace");
-                             document.write(response);
-                             document.close();
-                             }
-                             }*/
-                            swal({
+                             swal({
                                 title: 'Buen Trabajo',
                                 text: "Cambios guardados correctamente",
                                 type: 'success',
                                 confirmButtonColor: '#3085d6',
                                 confirmButtonText: 'Ok'
-                            }).then((result) => {
-                                if (result.value) {
-                                    window.location.reload();
-                                }
-                                ;
-                            });
+                            })
+                            
+                             document.open("text/html", "replace");
+                             document.write(response);
+                             document.close();
+                             }
+                             }
+                          
+                            
                         }
                 );
             },
@@ -237,6 +232,53 @@ $(document).ready(function () {
     $("#file-input").on('change', function () {
         console.log("Llegó :)");
         readURL(this);
+    });
+    
+        //Cambiar contraseña
+
+    $("#btn-updatePassword").on('click', function () {
+
+
+
+        //Modal cambiar contraseña 
+        swal({
+            title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
+            text: "No podras volver a usar tu contraseña anterior para ingresar",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Regresar', 'Cambiar contraseña'],
+            dangerMode: true
+        })
+                .then((cambiar) => {
+                    if (cambiar) {
+
+
+                        $.ajax({
+                            url: "NavegadoraController",
+                            data: {
+                                key: "cambiarContrasena",
+                                idCuenta: $("#sesionPaciente").val(),
+                                password: $("#password").val(),
+                                password2: $("#password-confirm").val()
+                            },
+                            method: "POST",
+                            success: function (response) {
+                                if (response == "success") {
+
+                                } else {
+                                    //Aqui no se que hace
+                                }
+                            },
+                            error: function (xhr) {
+
+                            }
+                        });
+                        $('#modalCambiarContraseña').modal('toggle');
+                    } else {
+
+                    }
+
+                });
     });
 
 });

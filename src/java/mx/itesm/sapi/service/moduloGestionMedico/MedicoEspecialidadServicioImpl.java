@@ -57,7 +57,7 @@ public class MedicoEspecialidadServicioImpl implements MedicoEspecialidadServici
 
         } catch (SQLException ex) {
 
-            System.out.println("Estoy en el catch de agregarEquipoEmpleado");
+            System.out.println("Estoy en el catch de agregarMedicoEspecialidad");
             System.out.println(ex.getMessage());
 
         }
@@ -92,7 +92,7 @@ public class MedicoEspecialidadServicioImpl implements MedicoEspecialidadServici
             return medicoEspecialidad;
         } catch (SQLException ex) {
 
-            System.out.println("Estoy en el catch de mostrarEquipoEmpleado");
+            System.out.println("Estoy en el catch de mostrarMedicoEspecialidad");
             System.out.println(ex.getMessage());
             return medicoEspecialidad;
         }
@@ -108,7 +108,7 @@ public class MedicoEspecialidadServicioImpl implements MedicoEspecialidadServici
         MedicoEspecialidad medicoEspecialidad = new MedicoEspecialidad();
 
         //Call del store procedure
-        String stProcedure = "CALL mostrarMedicoEspecialidadCuenta(?)";
+        String stProcedure = "CALL mostrarMedicoEspecialidadEmpleado(?)";
 
         try {
 
@@ -126,7 +126,7 @@ public class MedicoEspecialidadServicioImpl implements MedicoEspecialidadServici
             return medicoEspecialidad;
         } catch (SQLException ex) {
 
-            System.out.println("Estoy en el catch de mostrarEquipoEmpleado");
+            System.out.println("Estoy en el catch de mostrarMedicoEspecialidadEmpleado");
             System.out.println(ex.getMessage());
             return medicoEspecialidad;
         }

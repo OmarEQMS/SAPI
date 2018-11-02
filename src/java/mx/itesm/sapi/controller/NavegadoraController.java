@@ -19,10 +19,12 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
+import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import org.apache.commons.io.IOUtils;
@@ -33,6 +35,7 @@ import org.apache.commons.io.IOUtils;
  */
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 50)
+
 @WebServlet(name = "NavegadoraController", urlPatterns = {"/NavegadoraController"})
 public class NavegadoraController extends HttpServlet {
 
@@ -74,7 +77,7 @@ public class NavegadoraController extends HttpServlet {
                             String correo = request.getParameter("correo");
                             String telefono = request.getParameter("telefono");
 
-                            Part part = request.getPart("file-image");
+                           Part part = request.getPart("file-image");
 
                             //No se valida el telefono ni el correo aquí? Lo validamos nosotros o el front?
                             PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
@@ -122,6 +125,32 @@ public class NavegadoraController extends HttpServlet {
 
                             break;
                         }
+                           case "cambiarContrasena": {
+
+                            if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
+                                // request.setAttribute("status", "");
+                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                                return;
+                            } else {
+                                int idCuenta = (int) sesion.getAttribute("idCuenta");
+                                String contrasena = request.getParameter("password");
+                                String contrasena2 = request.getParameter("password2");
+
+                                if (contrasena.equals(contrasena2)) {
+
+                                    CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+
+                                    Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+
+                                    cuenta.setPassword(contrasena);
+
+                                    cuentaServicio.actualizarCuenta(cuenta);
+                                }
+
+                            }
+                             break;
+                        }
+                       
                         
                     }
                     

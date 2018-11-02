@@ -339,8 +339,9 @@ public class PacienteController extends HttpServlet {
                                 }
 
                             }
+                             break;
                         }
-                        break;
+                       
 
                         case "agregarTratamiento": {
                                 

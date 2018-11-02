@@ -260,13 +260,13 @@ public class LoginController extends HttpServlet {
                                     EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
                                     Empleado empleado = empleadoServicioImpl.mostrarEmpleadoCuenta((int) sesion.getAttribute("idCuenta"));
                                     
-                                    MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
+                                   /* MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
                                     MedicoEspecialidad medicoEspecialidad = medicoEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(empleado.getIdEmpleado());
                                     
                                     EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
                                     Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());
                                     
-                                    
+                                    */
                                     
                                     
                                     sesion.setAttribute("nombre", persona.getNombre());
@@ -276,8 +276,8 @@ public class LoginController extends HttpServlet {
                                     sesion.setAttribute("telefono", persona.getTelefono());
                                     sesion.setAttribute("usuario", cuenta.getUsuario());
                                     sesion.setAttribute("noEmpleado", empleado.getNoEmpleado());
-                                    sesion.setAttribute("especialidad",especialidad.getNombre());
-                                    sesion.setAttribute("cedulaProfesional",medicoEspecialidad.getCedulaProfesional());
+                                   // sesion.setAttribute("especialidad",especialidad.getNombre());
+                                   // sesion.setAttribute("cedulaProfesional",medicoEspecialidad.getCedulaProfesional());
                                 
                                 /*Insert your code here*/
                                 
