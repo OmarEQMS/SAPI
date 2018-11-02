@@ -26,7 +26,7 @@
     
         <!-- Input contraseÃ±a -->
         <div class="input-group">
-            <input id="password" type="password" value="SoyFrida1" class="form-control input-pass mb-4 useFontAwesomeFamily" placeholder="&#xf023; CONTRASEÑA">
+            <input id="password" type="password" value="SoyFrida2" class="form-control input-pass mb-4 useFontAwesomeFamily" placeholder="&#xf023; CONTRASEÑA">
         </div>
     
         <!-- Input submit -->

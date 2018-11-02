@@ -364,36 +364,16 @@ $(document).ready(function () {
                 },
                         function (response, status, xhr) {
                             console.log("El ajax fue exitoso!!-----------------------");
-                             if (status == "success") {
-                             if (response == "error") {
-                             $("#msj-error").show();
-                             } else {
-                             
-                             swal({
-                                title: 'Buen Trabajo',
-                                text: "Cambios guardados correctamente",
-                                type: 'success',
-                                confirmButtonColor: '#3085d6',
-                                confirmButtonText: 'Ok'
-                            })
-                            
-                             document.open("text/html", "replace");
-                             document.write(response);
-                             document.close();
-                             }
-                             }
-                            /*swal({
-                                title: 'Buen Trabajo',
-                                text: "Cambios guardados correctamente",
-                                type: 'success',
-                                confirmButtonColor: '#3085d6',
-                                confirmButtonText: 'Ok'
-                            }).then((result) => {
-                                if (result.value) {
-                                    window.location.reload();
+                            if (status == "success") {
+                                if (response == "error") {
+                                    $("#msj-error").show();
+                                } else {
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
+                                    
                                 }
-                                ;
-                            });*/
+                            }
                         }
                 );
             },
