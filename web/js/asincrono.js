@@ -506,7 +506,7 @@ $(document).ready(function () {
     //15.- NUMERO EXTERIOR
     $('#noExterior').on('change', function () {
 
-        if (isValidNumber($(this))) {
+        if (isValidExtNumber($(this))) {
             $('#errorNoExterior').hide();
         } else {
             $('#errorNoExterior').show();
@@ -517,7 +517,7 @@ $(document).ready(function () {
     //16.- NUMERO INTERIOR
     $('#noInterior').on('change', function () {
 
-        if (isValidNumber($(this))) {
+        if (isValidIntNumber($(this))) {
             $('#errorNoInterior').hide();
         } else {
             $('#errorNoInterior').show();
@@ -783,7 +783,29 @@ $(document).ready(function () {
 
     }
 
-    function isValidNumber(input) {
+    function isValidIntNumber(input) {
+
+        var m = input.val();
+
+        var expreg = /^[#a-zA-Z0-9]{1,100000}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    }
+    
+    function isValidExtNumber(input) {
 
         var m = input.val();
 

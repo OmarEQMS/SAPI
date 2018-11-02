@@ -16,7 +16,7 @@ $(document).ready(function () {
     $('#error-previoMasto').hide();
     $('#error-previoUsg').hide();
     $('#error-biopsia').hide();
-    
+
 
     // Inicializar plug in tooltipster
     $('.questionMark').tooltipster({
@@ -34,7 +34,7 @@ $(document).ready(function () {
 
 
     //Reemplazar el nombre del archivo en el input
-    
+
 
     //Esconder menu lateral a presionar click en el menu hamburguesa
     $('#sidebarCollapse').on('click', () => {
@@ -46,12 +46,12 @@ $(document).ready(function () {
     //Desabilitar los inputs subidos
 
     /*$('#fileIdentificacionSubido').attr('disabled', 'disabled');
-    $('#fileComprobanteDomicilioSubido').attr('disabled', 'disabled');
-    $('#fileCURPSubido').attr('disabled', 'disabled');
-    $('#fileEstudioPrevioMastoSubido').attr('disabled', 'disabled');
-    $('#fileEstudioPrevioUsgSubido').attr('disabled', 'disabled');
-    $('#fileEstudioBiopsiaSubido').attr('disabled', 'disabled');
-*/
+     $('#fileComprobanteDomicilioSubido').attr('disabled', 'disabled');
+     $('#fileCURPSubido').attr('disabled', 'disabled');
+     $('#fileEstudioPrevioMastoSubido').attr('disabled', 'disabled');
+     $('#fileEstudioPrevioUsgSubido').attr('disabled', 'disabled');
+     $('#fileEstudioBiopsiaSubido').attr('disabled', 'disabled');
+     */
 
 
     $("#motivoConsulta").on('change', () => {
@@ -60,10 +60,14 @@ $(document).ready(function () {
         console.log(motivo);
 
         switch (motivo) {
+            case "0":
+                $('#documentoAdjuntoMotivo').html("");
+                $('#otroHospital').html("");
+                break;
+                
             case "1":
                 $('#documentoAdjuntoMotivo').html("");
                 $('#otroHospital').html("");
-                $('#estudioMotivo').html("");
 
                 var referencia =
                         '<div class="col-3 text-center">'
@@ -78,66 +82,25 @@ $(document).ready(function () {
                         + '</div>';
 
                 $('#documentoAdjuntoMotivo').html(referencia);
-                
+
                 $('#error-referencia').hide();
-                
+
                 break;
-            case "4":
 
-                $('#documentoAdjuntoMotivo').html("");
-                $('#otroHospital').html("");
-                $('#estudioMotivo').html("");
-
-                var otroHospital =
-                        '<div class="col-3 text-center">'
-                        + '<span class="textoDocumento">Hospital</span>'
-                        + '</div>'
-                        + '<div class="custom-file col-8 p-0 m-0" id="customFile">'
-                        + '<input type="text" class="form-control" id="otroHospital" placeholder="Introduce tu hospital de procedencia">'
-                        + '</div>';
-
-                var referencia =
-                        '<div class="col-3 text-center">'
-                        + '<span class="textoDocumento">Referencia</span>'
-                        + '</div>'
-                        + '<div class="custom-file col-8" id="customFile">'
-                        + '<input type="file" class="custom-file-input" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp">'
-                        + '<label class="custom-file-label">'
-                        + 'Adjunta la hoja de referencia de médico del hospital.'
-                        + '</label>'
-                        + '</div>';
-                ;
-                $('#documentoAdjuntoMotivo').html(referencia);
-                $('#otroHospital').html(otroHospital);
-                break;
-            case "5":
-                console.log("OTRO");
-                $('#documentoAdjuntoMotivo').html("");
-                $('#otroHospital').html("");
-                $('#estudioMotivo').html("");
-
-                var otroHospital =
-                        '<div class="col-3 text-center">'
-                        + '<span class="textoDocumento">Otro motivo</span>'
-                        + '</div>'
-                        + '<div class="custom-file col-8 p-0 m-0" id="customFile">'
-                        + '<input type="text" class="form-control" id="otro-motivo-consulta" placeholder="Introduce otro motivo">'
-                        + '</div>';
-
-                $('#otroHospital').html(otroHospital);
-                break;
             case "2":
+                console.log("Estudio con diagnostico de cancer de mama");
+
                 $('#documentoAdjuntoMotivo').html("");
                 $('#otroHospital').html("");
-                $('#estudioMotivo').html("");
 
-                var estudio =
+                var estudioMotivo =
                         '<div class="col-3 text-center">'
                         + '<span class="textoDocumento">Estudios previos</span>'
                         + '</div>'
 
                         + '<div class="custom-file col-8" id="customFile">'
-                        + '<input type="file" class="custom-file-input" multiple="multiple" aria-describedby="fileHelp">'
+                        + '<input type="file" class="custom-file-input" id="referenciaArchivo" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp">'
+                        + '<span class="text-danger" id="error-referencia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>'
                         + '<label class="custom-file-label">'
                         + 'Elegir archivos...(Puedes subir mas de uno)'
                         + '</label>'
@@ -154,8 +117,63 @@ $(document).ready(function () {
                         + '</span>'
                         + '</div>';
 
-                $('#estudioMotivo').html(estudio);
+                $('#documentoAdjuntoMotivo').html(estudioMotivo);
+                $('#error-referencia').hide();
                 break;
+
+            case "3":
+                $('#documentoAdjuntoMotivo').html("");
+                $('#otroHospital').html("");
+                break;
+
+            case "4":
+
+                $('#documentoAdjuntoMotivo').html("");
+                $('#otroHospital').html("");
+
+                var otroHospital =
+                        '<div class="col-3 text-center">'
+                        + '<span class="textoDocumento">Hospital</span>'
+                        + '</div>'
+                        + '<div class="custom-file col-8 p-0 m-0" id="customFile">'
+                        + '<input type="text" class="form-control" id="otroHospital" name="otroHospital" placeholder="Introduce tu hospital de procedencia">'
+                        + '</div>';
+
+                var referencia =
+                        '<div class="col-3 text-center">'
+                        + '<span class="textoDocumento">Referencia</span>'
+                        + '</div>'
+                        + '<div class="custom-file col-8" id="customFile">'
+                        + '<input type="file" class="custom-file-input" id="referenciaArchivo" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp">'
+                        + '<span class="text-danger" id="error-referencia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>'
+                        + '<label class="custom-file-label">'
+                        + 'Adjunta la hoja de referencia de médico del hospital.'
+                        + '</label>'
+                        + '</div>';
+                ;
+                $('#documentoAdjuntoMotivo').html(referencia);
+                $('#otroHospital').html(otroHospital);
+                $('#error-referencia').hide();
+                break;
+
+            case "5":
+                console.log("OTRO");
+                $('#documentoAdjuntoMotivo').html("");
+                $('#otroHospital').html("");
+
+                var otroHospital =
+                        '<div class="col-3 text-center">'
+                        + '<span class="textoDocumento">Otro motivo</span>'
+                        + '</div>'
+                        + '<div class="custom-file col-8 p-0 m-0" id="customFile">'
+                        + '<input type="text" class="form-control" id="otro-motivo-consulta" placeholder="Introduce otro motivo">'
+                        + '</div>';
+
+                $('#documentoAdjuntoMotivo').html(otroHospital);
+                break;
+
+
+
             default:
                 console.log("default");
                 break;
@@ -194,20 +212,20 @@ $(document).ready(function () {
     });
 
     //Radio de hombre y mujer
-    $('#masculino').on('change',()=>
+    $('#masculino').on('change', () =>
     {
-        var masculino = $('#masculino').is(':checked') ? 1 : 0;       
-        
-        if(masculino === 1)
+        var masculino = $('#masculino').is(':checked') ? 1 : 0;
+
+        if (masculino === 1)
         {
             $('#femenino').prop('checked', false);
         }
     });
-    $('#femenino').on('change',()=>
+    $('#femenino').on('change', () =>
     {
-        var femenino = $('#femenino').is(':checked') ? 1 : 0;       
-        
-        if(femenino === 1)
+        var femenino = $('#femenino').is(':checked') ? 1 : 0;
+
+        if (femenino === 1)
         {
             $('#masculino').prop('checked', false);
         }

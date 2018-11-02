@@ -88,7 +88,14 @@
 
                     <li id ="irACitaPreconsulta"><a><i class="fas fa-home"></i>Cita a Preconsulta </a></li>
 
-                    <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas<span class="notificacion">1</span></a></li>
+                    <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas
+                            <c:choose>
+                                <c:when test="${sessionScope.estatus>=1}">
+                                    <span class="notificacion">1</span>                        
+                                </c:when>
+                            </c:choose>
+                        </a>                    
+                    </li>
 
                     <li id ="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta </a></li>
 

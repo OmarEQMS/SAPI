@@ -453,12 +453,12 @@
 
                         <div class="row" id="error-campos">
                             <div class="col-12 text-center">
-                                <span class="text-danger">Rellena todos los campos para registrar tu cita </span>
+                                <span class="text-danger">Completa todos los campos para registrar tu cita </span>
                             </div>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" style="border-radius:20px;" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-danger myCleaner" style="border-radius:20px;" data-dismiss="modal">Cerrar</button>
                             <button id="btn-citaRegistrar" type="button" class="btn btn-primary myCleaner" style="border-radius:20px;">Registrar</button>
                         </div>
                     </div>

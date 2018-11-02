@@ -1,7 +1,7 @@
 <!-- 
     Document   : recuperarContrasena
     Created on : 26/10/2018, 11:10:36 AM
-    Author     : Angel GTZ
+    Author     : Angel GTZ, Julio Badillo
 -->
 
 <!DOCTYPE html>
@@ -45,14 +45,18 @@
             </div>
 
             <div class="row justify-content-center mt-4">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 mb-1">
-                    <input type="button" id="recuperarEnviarCorreo" data-toggle="modal" class="btn btn-lg btn-danger btn-block btn-registro" value="RECUPERAR">
+                <div class="col-12">
+                    <button class="btn btn-danger btn-block btn-recuperar" id="recuperarEnviarCorreo">Recuperar</button> 
+                    
                 </div>
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6">
-                    <input type="button" id="ir-a-loginR" class="btn btn-lg btn-primary btn-block btn-regresar" value="REGRESAR">
-
+                <div class="col-12">
+                     <button class="btn btn-primary btn-block btn-regresar mt-3" id="ir-a-loginR">Regresar</button> 
+                    
                 </div>
             </div>
+            
+            
+             
 
         </form>
 

@@ -46,9 +46,9 @@
             </div>
         </div>
         
-        <h6 class="text-center mt-3 texto-pass"><span>Olvidaste tu contraseña?</span> <a href="#" id="recuperarContra" >Recuperala aquí­</a></h6>
+        <h6 class="text-center mt-3 texto-pass"><span>¿Olvidaste tu contraseña?</span> <a href="#" id="recuperarContra" >Recupérala aquí­</a></h6>
 
-        <h6 class="text-center mt-2 texto-cuenta mb-0"><span>No tienes cuenta?</span> <a href="#" id="registrate">Regístrate aquí­</a></h6>
+        <h6 class="text-center mt-2 texto-cuenta mb-0"><span>¿No tienes cuenta?</span> <a href="#" id="registrate">Regístrate aquí­</a></h6>
     
     </form>
   
