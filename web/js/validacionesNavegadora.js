@@ -14,6 +14,7 @@ $(document).ready(function () {
      $('#error-fecha').hide();
      $('#error-fechaFin').hide();
      $('#error-fechaInicio').hide();
+     $("#error-telefono").hide();
         
     //1.- Correo
     $('#correo').on('change', function(){
@@ -37,9 +38,9 @@ $(document).ready(function () {
     //3.- Telefono
     $('#telefono').on('change', function(){
         if(isValidPhoneNumber($('#telefono'))){
-            $('#error-tel').hide();
+            $('#error-telefono').hide();
         }else{
-            $('#error-tel').show();
+            $('#error-telefono').show();
         }
     }); 
 

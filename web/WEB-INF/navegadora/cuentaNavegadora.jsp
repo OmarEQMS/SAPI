@@ -38,6 +38,7 @@
     <script src="js/appNavegadora.js"></script>
     <script src="js/appNavegadora2.js"></script>
     <script src="js/ajaxNavegadora.js"></script>
+    <script src="js/validacionesNavegadora.js"></script>
 
 </head>
 
@@ -219,8 +220,9 @@
                             </div>
                             <div class="col-4">
                                 <label for="telephoneNum">Teléfono</label>
-                                <input name="telefono" type="tel" class="form-control" id="telephoneNum" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890"
+                                <input name="telefono" type="tel" class="form-control" id="telefono" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890"
                                     value="${sessionScope.telefono}" required />
+                                 <span class="text-danger" id="error-telefono">El formato no es correcto, deben ser 10 dígitos.</span>
                             </div>
                         </div>
 
@@ -228,9 +230,11 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-8">
                                 <label for="myEmail">Correo</label>
-                                <input name="correo" type="email" class="form-control" id="myEmail" value="${sessionScope.correo}" placeholder="Introduzca su correo" required
+                                <input name="correo" type="email" class="form-control" id="correo" value="${sessionScope.correo}" placeholder="Introduzca su correo" required
                                     pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
                                 />
+                                 <span class="text-danger error-correo" id="error-correo">Formato incorrecto</span>
+                               
                             </div>                           
                         </div>
 

@@ -66,6 +66,8 @@ public class NavegadoraController extends HttpServlet {
             
             int keyRol = (int) sesion.getAttribute("idRol");
             
+            
+            
             switch(keyRol){
                 
                 case 4: {
