@@ -87,40 +87,6 @@ $(document).ready(function () {
 
                 break;
 
-            case "2":
-                console.log("Estudio con diagnostico de cancer de mama");
-
-                $('#documentoAdjuntoMotivo').html("");
-                $('#otroHospital').html("");
-
-                var estudioMotivo =
-                        '<div class="col-3 text-center">'
-                        + '<span class="textoDocumento">Estudios previos</span>'
-                        + '</div>'
-
-                        + '<div class="custom-file col-8" id="customFile">'
-                        + '<input type="file" class="custom-file-input" id="referenciaArchivo" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp">'
-                        + '<span class="text-danger" id="error-referencia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>'
-                        + '<label class="custom-file-label">'
-                        + 'Elegir archivos...(Puedes subir mas de uno)'
-                        + '</label>'
-                        + '</div>'
-
-                        + '<div class="col-1 iconoQuestion align-self-center">'
-                        + '<a href="#" class="questionMark" data-tooltip-content="#tooltip_content2"><i'
-                        + 'class="fas fa-question-circle"></i></a>'
-                        + '</div>'
-
-                        + '<div class="tooltip_templates">'
-                        + '<span id="tooltip_content2">'
-                        + 'Puedes subir mas de un archivo'
-                        + '</span>'
-                        + '</div>';
-
-                $('#documentoAdjuntoMotivo').html(estudioMotivo);
-                $('#error-referencia').hide();
-                break;
-
             case "3":
                 $('#documentoAdjuntoMotivo').html("");
                 $('#otroHospital').html("");
