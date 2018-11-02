@@ -146,8 +146,8 @@ $(document).ready(function () {
     function isValidNoExpediente (input) {
 
         var m = input.val();
-
-        var expreg = /^[a-zA-Z0-9]{9,9}$/;
+     
+        var expreg = /^([a-zA-Z]{3}|[\d]{3})([\d]{6})$/;
 
 
         if (!expreg.test(m)) {

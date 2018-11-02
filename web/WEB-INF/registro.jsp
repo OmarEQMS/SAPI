@@ -42,12 +42,12 @@
 
                 <div class="form-group row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                        <input id="apellido1" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf007; APELLIDO PATERNO">
+                        <input id="apellido1" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf007; PRIMER APELLIDO">
                         <span class="text-danger" id="errorApellidoPaterno">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                     </div>
 
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                        <input id="apellido2" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf007; APELLIDO MATERNO (OPCIONAL)">
+                        <input id="apellido2" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf007; SEGUNDO APELLIDO (OPCIONAL)">
                         <span class="text-danger" id="errorApellidoMaterno">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                     </div>
                 </div>
@@ -87,7 +87,9 @@
                 <div class="form-group row">
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                         <input id="curp" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf2C2; CURP">
-                        <span class="text-danger" id="errorCurp">Formato incorrecto, introduce un CURP válido.</span>
+                        <span class="text-danger " id="errorCurp">Formato incorrecto, introduce un CURP válido. Puedes consultarlo 
+                        <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí­</a>
+                        </span>
                         <span class="text-warning" id="errorCurpRepetido">El curp ya existe.</span>
                     </div>
 
@@ -160,7 +162,7 @@
 
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                         <input id="noInterior" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf3c5; NO.INT (OPCIONAL)">
-                        <span class="text-danger" id="errorNoInterior">Formato incorrecto, solo dígitos.</span>
+                        <span class="text-danger" id="errorNoInterior">Formato incorrecto, solo dígitos y/o letras.</span>
                     </div>
                 </div>
 
@@ -184,7 +186,7 @@
                 </div>
             </div>
 
-            <h6 class="text-center mt-4 texto-cuenta mb-0"><span>Ya estas registrado?</span> <a href="#" id="regresarIndex">Inicia
+            <h6 class="text-center mt-4 texto-cuenta mb-0"><span>¿Ya estás registrado?</span> <a href="#" id="regresarIndex">Inicia
                     sesión aquí</a></h6>
 
             <input type="hidden" id="tipoPaciente">
