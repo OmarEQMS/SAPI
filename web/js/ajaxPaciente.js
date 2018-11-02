@@ -341,6 +341,12 @@ $(document).ready(function () {
 
 
     $('#guardarCambios').on('click', function () {
+        
+        if(isValidEmail($("#correo")) &&
+                isValidPhoneNumber($("#telefono")) &&
+                isValidNoExpediente($("#noExpediente"))
+                ){
+
 
         console.log("Presionó GuardarCambios")
         var form = $("form")[0];
@@ -363,30 +369,17 @@ $(document).ready(function () {
                     file: "paciente/cuenta.jsp"
                 },
                         function (response, status, xhr) {
-                            /*console.log("El ajax fue exitoso!!-----------------------");
-                             if (status == "success") {
-                             if (response == "error") {
-                             $("#msj-error").show();
-                             } else {
-                             
-                             
-                             document.open("text/html", "replace");
-                             document.write(response);
-                             document.close();
-                             }
-                             }*/
-                            swal({
-                                title: 'Buen Trabajo',
-                                text: "Cambios guardados correctamente",
-                                type: 'success',
-                                confirmButtonColor: '#3085d6',
-                                confirmButtonText: 'Ok'
-                            }).then((result) => {
-                                if (result.value) {
-                                    window.location.reload();
+                            console.log("El ajax fue exitoso!!-----------------------");
+                            if (status == "success") {
+                                if (response == "error") {
+                                    $("#msj-error").show();
+                                } else {
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
+                                    
                                 }
-                                ;
-                            });
+                            }
                         }
                 );
             },
@@ -394,6 +387,14 @@ $(document).ready(function () {
                 //alert(xhr.statusText);
             }
         });
+        
+        }else{
+              swal({
+  title: "Datos invalidos!",
+  text: "Revisa todos los campos antes de continuar",
+  icon: "error",
+});
+        }
     });
 //Cambiar imagen temporalmente en elfront
     function readURL(input) {
@@ -414,6 +415,11 @@ $(document).ready(function () {
     //Agregar tratamientos
     $("#btn-agregarTratamiento").on('click', function () {
 
+    if($("#tipoTratamiento").val()!="Elegir Tratamiento")
+        console.log($("#tipoTratamiento").val());
+            
+        if(isValidDate($('#fechaInicioTratamiento')) && $("#tipoTratamiento").val()!=null ){
+    
         $.ajax({
             url: 'PacienteController',
             cache: false,
@@ -453,6 +459,13 @@ $(document).ready(function () {
                 .fail(function (xhr, textStatus, errorThrown) {
                     console.log(xhr.responseText);
                 });
+            }else{
+                swal({
+  title: "Datos invalidos!",
+  text: "Revisa todos los campos antes de continuar",
+  icon: "error",
+});
+            }
     });
     //Cambiar contraseña
 
@@ -503,6 +516,8 @@ $(document).ready(function () {
     //Terminar tratamiento
     $("#fechaTerminarTratamiento").on('click', function () {
 
+        if(isValidDate2($('#fechaFinTratamiento'), $("#fechaInicio-"+$("#botonHidden").val()).val())){
+    
         $.ajax({
             url: 'PacienteController',
             cache: false,
@@ -533,6 +548,14 @@ $(document).ready(function () {
                 .fail(function (xhr, textStatus, errorThrown) {
                     console.log(xhr.responseText);
                 });
+                
+        }else{
+            swal({
+  title: "Datos invalidos!",
+  text: "Revisa todos los campos antes de continuar",
+  icon: "error",
+});
+        }
     });
     //Designar idTratamientoPaciente
     $('body').on('click', '.terminarTratamiento', function () {
@@ -562,6 +585,71 @@ $(document).ready(function () {
         $('#nombreTipoTratamiento').val($('#tipoTratamiento option:selected').text());
         console.log($('#nombreTipoTratamiento').val());
     });
+    
+    function isValidNoExpediente (input) {
+
+        var m = input.val();
+
+        var expreg = /^[a-zA-Z0-9]{9,9}$/;
+
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    };
+    
+    function isValidEmail (input)  {
+
+        var m = input.val();
+
+        ////Expresion regular por el estandard: RFC 5322
+        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    };
+    
+    function isValidPhoneNumber (input) {
+
+        var m = input.val();
+
+        var expreg = /^[0-9]{10,10}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    };
 
     function isValidHour(input) {
 
@@ -579,7 +667,7 @@ $(document).ready(function () {
         return true;
 
 
-    }
+    };
 
     function isValidSelect(input) {
 
@@ -597,7 +685,7 @@ $(document).ready(function () {
         return true;
 
 
-    }
+    };
 
     function isValidRadioChecked(input) {
 
@@ -607,6 +695,102 @@ $(document).ready(function () {
         }
 
         return true;
-    }
+    };
+    
+    function isValidDate (input) {
+
+        //Obtener fecha
+        let today = new Date();
+
+        //Valor seleccionado del input
+        let date_from = input.val();
+        date_from = new Date(date_from);
+        var todayYear= today.getFullYear();
+        var inicioYear = date_from.getFullYear();
+        var event = false;
+        
+        if(today > date_from && inicioYear >= todayYear-5){
+            event=false;
+            console.log("Valido");
+        }
+        else{
+            event=true;
+            console.log("Invalido");
+        }
+        
+
+       
+
+
+        if (!input.val() || event) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    };
+
+    function isValidDate2 (input, fechaInicio) {
+
+        //var mydate = new Date('2014-04-03');
+        //Obtener fecha
+        let today = new Date();
+
+        //Valor seleccionado del input
+        let date_from = input.val();
+       
+        console.log(fechaInicio);
+        date_from = new Date(date_from);
+        var date_Inicio = new Date(fechaInicio);
+
+        var event = false;
+        
+        console.log(input.val());
+        
+        console.log("Date inicio"+date_Inicio);
+        console.log("El años es: "+date_Inicio.getFullYear());
+        console.log("Date from" +date_from);
+        console.log("El años es: "+date_from.getFullYear());
+         
+        var inicioYear = date_Inicio.getFullYear();
+        var inputYear = date_from.getFullYear();
+        
+        if(inputYear < inicioYear+5 &&  date_Inicio <= date_from ){
+            event = false;
+            console.log(event);
+            console.log("fechaValida");
+        }
+        else{
+            event= true;
+            console.log(event);
+            console.log("fechaInValida");
+        }
+        
+       // date_Inicio > date_from ? event = true : event = false;
+
+        if (!input.val() || event) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    };
+
 
 });

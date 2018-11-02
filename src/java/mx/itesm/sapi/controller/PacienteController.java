@@ -311,9 +311,10 @@ public class PacienteController extends HttpServlet {
 
                             request.getRequestDispatcher("/WEB-INF/potencial/cuentaPaciente.jsp").forward(request, response);
 
+                            break;
                         }
 
-                        break;
+                        
 
                         case "cambiarContrasena": {
 
@@ -338,8 +339,9 @@ public class PacienteController extends HttpServlet {
                                 }
 
                             }
+                             break;
                         }
-                        break;
+                       
 
                         case "agregarTratamiento": {
                                 
@@ -369,7 +371,7 @@ public class PacienteController extends HttpServlet {
                             }
                               break;
                         }
-                        
+                        /****************/
                         case "terminarTratamiento": {
 
                             int idTratamientoPaciente = Integer.parseInt(request.getParameter("idTratamientoPaciente"));

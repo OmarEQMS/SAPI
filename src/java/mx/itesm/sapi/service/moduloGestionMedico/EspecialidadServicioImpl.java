@@ -29,7 +29,7 @@ public class EspecialidadServicioImpl implements EspecialidadServicio{
         Especialidad especialidad = new Especialidad();
         
         //Call del store procedure
-        String stProcedure="CALL estado(?)";
+        String stProcedure="CALL mostrarEspecialidad(?)";
         
         try{
             
