@@ -371,7 +371,7 @@ public class PacienteController extends HttpServlet {
                             }
                               break;
                         }
-                        
+                        /****************/
                         case "terminarTratamiento": {
 
                             int idTratamientoPaciente = Integer.parseInt(request.getParameter("idTratamientoPaciente"));
