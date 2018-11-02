@@ -166,6 +166,8 @@ $(document).ready(function () {
 
      $('#guardarCambios').on('click', function () {
 
+        if(isValidPhoneNumber($("#telefono")) &&  isValidEmail($("#correo")) ){
+        
         console.log("Presionó GuardarCambios")
         var form = $("form")[0];
         var data = new FormData(form);
@@ -188,22 +190,44 @@ $(document).ready(function () {
                 },
                         function (response, status, xhr) {
                             console.log("El ajax fue exitoso!!-----------------------");
-                            if (status == "success") {
-                                if (response == "error") {
-                                    $("#msj-error").show();
-                                } else {
-                                    document.open("text/html", "replace");
-                                    document.write(response);
-                                    document.close();
-                                }
-                            }
+
+                             if (status == "success") {
+                                 
+                                 
+                                 
+                             if (response == "error") {
+                             $("#msj-error").show();
+                             } else {
+                             
+                             swal({
+                                title: 'Buen Trabajo',
+                                text: "Cambios guardados correctamente",
+                                type: 'success',
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Ok'
+                            })
+                            
+                             document.open("text/html", "replace");
+                             document.write(response);
+                             document.close();
+                             }
+                             }
+
                         }
                 );
             },
             error: function (xhr) {
                 //alert(xhr.statusText);
             }
+            
         });
+    }else{
+        swal({
+  title: "Datos invalidos!",
+  text: "Revisa todos los campos antes de continuar",
+  icon: "error",
+    });
+    }
     });
     
     //Cambiar imagen temporalmente en elfront
@@ -269,6 +293,48 @@ $(document).ready(function () {
 
                 });
     });
+
+function isValidEmail (input)  {
+
+        var m = input.val();
+
+        ////Expresion regular por el estandard: RFC 5322
+        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    };
+    
+    function isValidPhoneNumber (input) {
+
+        var m = input.val();
+
+        var expreg = /^[0-9]{10,10}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    };
 
 });
 
