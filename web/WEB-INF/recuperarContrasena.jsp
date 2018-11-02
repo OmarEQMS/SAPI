@@ -1,11 +1,11 @@
-<%-- 
+<!-- 
     Document   : recuperarContrasena
     Created on : 26/10/2018, 11:10:36 AM
-    Author     : Angel GTZ
---%>
+    Author     : Angel GTZ, Julio Badillo
+-->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,15 +40,23 @@
 
             <div class="row">
                 <div class="col-12">
-                    <input type="email" id="email" class="form-control" placeholder="Introduce tu correo electrónico" id="correo-recuperacion">
+                    <input type="email" id="email" class="form-control" placeholder="Introduce tu correo electrónico">
                 </div>
             </div>
 
             <div class="row justify-content-center mt-4">
                 <div class="col-12">
-                    <button class="btn btn-danger btn-block" id="recuperarEnviarCorreo" style="background-color: #fc3955 !important">Recuperar</button>
+                    <button class="btn btn-danger btn-block btn-recuperar" id="recuperarEnviarCorreo">Recuperar</button> 
+                    
+                </div>
+                <div class="col-12">
+                     <button class="btn btn-primary btn-block btn-regresar mt-3" id="ir-a-loginR">Regresar</button> 
+                    
                 </div>
             </div>
+            
+            
+             
 
         </form>
 

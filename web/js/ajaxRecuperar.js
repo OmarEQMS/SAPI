@@ -19,23 +19,29 @@ $(document).ready(function () {
             },
             method: "POST",
             success: function (response) {
-                if (response == "success") {
+                if (response == "error") {
                     
                 } else {
-                   
+                        console.log("Intentando redireccionar");
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close(); 
                 }
             },
             error: function (xhr) {
-                c
+            
             }
         });
 
     });
-     $('#recuperarContra').on('click', function () {
-        console.log("Click en recuperarContra desde el Login"); 
-        $.post("LoginController",{
-            
-            key: "recuperarContra"
+
+     $('#recuperarEnviarCorreo').on('click', function () {
+        console.log("Click en Recuperar después de ingresar el correo"); 
+        var mail = $('#email');
+        $.post("RecuperarController",{
+            key: "recuperarEnviarCorreo",
+            email: mail.val()
+
         },
                 function (response,status) {
                     console.log(response);
@@ -54,6 +60,25 @@ $(document).ready(function () {
         );
             
     });
-
+    $('#ir-a-loginR').on('click', function () {
+        console.log("Entro a ajaxRecuperar.jps btn ir-a-LoginR");
+        $.get("LoginController",{
+            key: "ir-a-login"
+        },
+                function (response,status) {
+                    console.log(response);
+                    
+                    if (response == "error") {
+                        console.log("Error al cargar");
+                    } else {
+                        console.log("Intentando redireccionar");
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
+                    }
+                }
+        );
+            
+    });
     
 });

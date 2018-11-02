@@ -104,16 +104,19 @@ public class DireccionServicioImpl implements DireccionServicio {
 
     @Override
     public int agregarDireccion(Direccion direccion) {
+        
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
         int id = -1;
+
         //Aquí va el call del procedure
         String stProcedure = "CALL agregarDireccion(?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
+
 
             //Aquí van los sets
             cstmt.setString(1, direccion.getCalle());

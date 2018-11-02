@@ -32,7 +32,7 @@ public class TratamientoPacienteServiceImpl implements TratamientoPacienteServic
         int id = -1;
         
         //Aquí va el call del procedure
-        String stProcedure="CALL agregarTratamientoPaciente(?,?,?,?,?,?,?)";
+        String stProcedure="CALL agregarTratamientoPaciente(?,?,?,?,?,?)";
         
         try{
             conn = Conexion.getConnection();
@@ -40,21 +40,18 @@ public class TratamientoPacienteServiceImpl implements TratamientoPacienteServic
             
             //Aquí van los sets
             
-            cstmt.setInt(1,tratamientoPaciente.getIdPaciente());
-            cstmt.setInt(2,tratamientoPaciente.getIdTipoTratamiento());
-            cstmt.setTimestamp(3,tratamientoPaciente.getFechaInicio());
-            cstmt.setTimestamp(4,tratamientoPaciente.getFechaFin());
+            cstmt.setInt(1,tratamientoPaciente.getIdTipoTratamiento());
+            cstmt.setInt(2,tratamientoPaciente.getIdPaciente());
+            cstmt.setDate(3,tratamientoPaciente.getFechaInicio());
+            cstmt.setDate(4,tratamientoPaciente.getFechaFin());
             cstmt.setBoolean(5,tratamientoPaciente.getRecurrente());
             cstmt.setBoolean(6, tratamientoPaciente.getPrevioCirugia());
-            cstmt.setInt(7, tratamientoPaciente.getEstatus());
+            //cstmt.setInt(7, tratamientoPaciente.getEstatus());
             
-            cstmt.executeUpdate();
-            
-            rs = cstmt.getGeneratedKeys();
+           rs = cstmt.executeQuery();
             rs.next();
+            id = rs.getInt(1);
             
-            id = cstmt.getInt(1);
-           
             rs.close();
             cstmt.close();
             conn.close();
@@ -96,10 +93,10 @@ public class TratamientoPacienteServiceImpl implements TratamientoPacienteServic
             
             rs.next();
             tratamientoPaciente.setIdTratamientoPaciente(rs.getInt(1));
-            tratamientoPaciente.setIdPaciente(rs.getInt(2));
-            tratamientoPaciente.setIdTipoTratamiento(rs.getInt(3));
-            tratamientoPaciente.setFechaInicio(rs.getTimestamp(4));
-            tratamientoPaciente.setFechaFin(rs.getTimestamp(5));
+            tratamientoPaciente.setIdTipoTratamiento(rs.getInt(2));
+            tratamientoPaciente.setIdPaciente(rs.getInt(3));
+            tratamientoPaciente.setFechaInicio(rs.getDate(4));
+            tratamientoPaciente.setFechaFin(rs.getDate(5));
             tratamientoPaciente.setRecurrente(rs.getBoolean(6));
             tratamientoPaciente.setPrevioCirugia(rs.getBoolean(7));
             tratamientoPaciente.setEstatus(rs.getInt(8));
@@ -140,10 +137,10 @@ public class TratamientoPacienteServiceImpl implements TratamientoPacienteServic
             while(rs.next()){
                 tratamientoPaciente = new TratamientoPaciente();
             tratamientoPaciente.setIdTratamientoPaciente(rs.getInt(1));
-            tratamientoPaciente.setIdPaciente(rs.getInt(2));
-            tratamientoPaciente.setIdTipoTratamiento(rs.getInt(3));
-            tratamientoPaciente.setFechaInicio(rs.getTimestamp(4));
-            tratamientoPaciente.setFechaFin(rs.getTimestamp(5));
+            tratamientoPaciente.setIdTipoTratamiento(rs.getInt(2));
+            tratamientoPaciente.setIdPaciente(rs.getInt(3));
+            tratamientoPaciente.setFechaInicio(rs.getDate(4));
+            tratamientoPaciente.setFechaFin(rs.getDate(5));
             tratamientoPaciente.setRecurrente(rs.getBoolean(6));
             tratamientoPaciente.setPrevioCirugia(rs.getBoolean(7));
             tratamientoPaciente.setEstatus(rs.getInt(8));
@@ -162,6 +159,8 @@ public class TratamientoPacienteServiceImpl implements TratamientoPacienteServic
         }
         return tratamientosPaciente;
     }
+    
+    
 
     @Override
     public boolean actualizarTratamientoPaciente(TratamientoPaciente tratamientoPaciente) {
@@ -173,7 +172,7 @@ public class TratamientoPacienteServiceImpl implements TratamientoPacienteServic
         boolean exito = false;
         
         //Call del store procedure
-        String stProcedure="CALL actualizarTratamientoPaciente(?,?,?,?,?,?,?,?)";
+        String stProcedure="CALL actualizarTratamientoPaciente(?,?,?,?,?,?,?)";
         
         
         try{
@@ -181,13 +180,13 @@ public class TratamientoPacienteServiceImpl implements TratamientoPacienteServic
             cstmt = conn.prepareCall(stProcedure);
             
             cstmt.setInt(1, tratamientoPaciente.getIdTratamientoPaciente());
-            cstmt.setInt(2, tratamientoPaciente.getIdPaciente());
-            cstmt.setInt(3,tratamientoPaciente.getIdTipoTratamiento());
-            cstmt.setTimestamp(4, tratamientoPaciente.getFechaInicio());
-            cstmt.setTimestamp(5, tratamientoPaciente.getFechaFin());
+            cstmt.setInt(2,tratamientoPaciente.getIdTipoTratamiento());
+            cstmt.setInt(3, tratamientoPaciente.getIdPaciente());
+            cstmt.setDate(4, tratamientoPaciente.getFechaInicio());
+            cstmt.setDate(5, tratamientoPaciente.getFechaFin());
             cstmt.setBoolean(6, tratamientoPaciente.getRecurrente());
             cstmt.setBoolean(7, tratamientoPaciente.getPrevioCirugia());
-            cstmt.setInt(8, tratamientoPaciente.getEstatus());
+            //cstmt.setInt(8, tratamientoPaciente.getEstatus());
             
             rs = cstmt.executeQuery();
             

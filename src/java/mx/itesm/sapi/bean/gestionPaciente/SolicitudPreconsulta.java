@@ -15,14 +15,14 @@ public class SolicitudPreconsulta {
     private int camilla;
     private int baston;
     private int oxigeno;
-    private int estudioPrevio;
-    private int biopsiaPrevia;
-    private int identificacion;
-    private int comprobante;
-    private int curp;
-    private int referencia;
-    private int mastografia;
-    private int ultrasonido;
+    private String estudioPrevio;
+    private String biopsiaPrevia;
+    private String identificacion;
+    private String comprobante;
+    private String curp;
+    private String referencia;
+    private String mastografia;
+    private String ultrasonido;
 
     public SolicitudPreconsulta()
     {
@@ -36,20 +36,22 @@ public class SolicitudPreconsulta {
         .concat(",camilla:").concat(String.valueOf(camilla))
         .concat(",baston:").concat(String.valueOf(baston))
         .concat(",oxigeno:").concat(String.valueOf(oxigeno))
-        .concat(",estudioPrevio:").concat(String.valueOf(estudioPrevio))
-        .concat(",biopsiaPrevia:").concat(String.valueOf(biopsiaPrevia))
-        .concat(",identificacion:").concat(String.valueOf(identificacion)
-        .concat(",comprobante:").concat(String.valueOf(comprobante))
-        .concat(",curp:").concat(String.valueOf(curp))
-        .concat(",referencia:").concat(String.valueOf(referencia))
-        .concat(",mastografia:").concat(String.valueOf(mastografia))
-        .concat(",ultrasonido:").concat(String.valueOf(ultrasonido))
-        .concat("]"));
+        .concat(",estudioPrevio:").concat(estudioPrevio)
+        .concat(",biopsiaPrevia:").concat(biopsiaPrevia)
+        .concat(",identificacion:").concat(identificacion)
+        .concat(",comprobante:").concat(comprobante)
+        .concat(",curp:").concat(curp)
+        .concat(",referencia:").concat(referencia)
+        .concat(",mastografia:").concat(mastografia)
+        .concat(",ultrasonido:").concat(ultrasonido)
+        .concat("]");
         return str;
     }
-    
-    
-    
+
+/*
+        return "SolicitudPreconsulta{" + "idSexo=" + idSexo + ", silla=" + silla + ", camilla=" + camilla + ", baston=" + baston + ", oxigeno=" + oxigeno + ", estudioPrevio=" + estudioPrevio + ", biopsiaPrevia=" + biopsiaPrevia + ", identificacion=" + identificacion + ", comprobante=" + comprobante + ", curp=" + curp + ", referencia=" + referencia + ", mastografia=" + mastografia + ", ultrasonido=" + ultrasonido + '}';
+    }
+ */   
     public int getIdSexo() {
         return idSexo;
     }
@@ -86,73 +88,74 @@ public class SolicitudPreconsulta {
         return oxigeno;
     }
 
-    public void setOxigeno(int oxiegno) {
-        this.oxigeno = oxiegno;
+    public void setOxigeno(int oxigeno) {
+        this.oxigeno = oxigeno;
     }
 
-    public int getEstudioPrevio() {
+    public String getEstudioPrevio() {
         return estudioPrevio;
     }
 
-    public void setEstudioPrevio(int estudioPrevio) {
+    public void setEstudioPrevio(String estudioPrevio) {
         this.estudioPrevio = estudioPrevio;
     }
 
-    public int getBiopsiaPrevia() {
+    public String getBiopsiaPrevia() {
         return biopsiaPrevia;
     }
 
-    public void setBiopsiaPrevia(int biopsiaPrevia) {
+    public void setBiopsiaPrevia(String biopsiaPrevia) {
         this.biopsiaPrevia = biopsiaPrevia;
     }
 
-    public int getIdentificacion() {
+    public String getIdentificacion() {
         return identificacion;
     }
 
-    public void setIdentificacion(int identificacion) {
+    public void setIdentificacion(String identificacion) {
         this.identificacion = identificacion;
     }
 
-    public int getComprobante() {
+    public String getComprobante() {
         return comprobante;
     }
 
-    public void setComprobante(int comprobante) {
+    public void setComprobante(String comprobante) {
         this.comprobante = comprobante;
     }
 
-    public int getCurp() {
+    public String getCurp() {
         return curp;
     }
 
-    public void setCurp(int curp) {
+    public void setCurp(String curp) {
         this.curp = curp;
     }
 
-    public int getReferencia() {
+    public String getReferencia() {
         return referencia;
     }
 
-    public void setReferencia(int referencia) {
+    public void setReferencia(String referencia) {
         this.referencia = referencia;
     }
 
-    public int getMastografia() {
+    public String getMastografia() {
         return mastografia;
     }
 
-    public void setMastografia(int mastrografia) {
-        this.mastografia = mastrografia;
+    public void setMastografia(String mastografia) {
+        this.mastografia = mastografia;
     }
 
-    public int getUltrasonido() {
+    public String getUltrasonido() {
         return ultrasonido;
     }
 
-    public void setUltrasonido(int ultrasonido) {
+    public void setUltrasonido(String ultrasonido) {
         this.ultrasonido = ultrasonido;
     }
+
     
-    
+               
 }

@@ -4,22 +4,30 @@
  * and open the template in the editor.
  */
 
-import {validation} from './validaciones.js';
+
+
+$(document).ready(function () {
 
 //VALIDACIONES CUENTA
 
+     $('.error-correo').hide();
+     $('#error-fecha').hide();
+     $('#error-fechaFin').hide();
+     $('#error-fechaInicio').hide();
+        
     //1.- Correo
-    $('#myEmail').on('change', function(){
-        if(validation.isValidEmail($('#myEmail'))){
-            $('#error-correo').hide();
+    $('#correo').on('change', function(){
+        
+        if(isValidEmail($('#correo'))){
+            $('.error-correo').hide();
         }else{
-            $('#error-correo').show();
+            $('.error-correo').show();
         }
     }); 
 
     //2.- No expediente
-    $('#numExpediente').on('change', function(){
-        if(validation.isValidNoExpediente($('#numExpediente'))){
+    $('#noExpediente').on('change', function(){
+        if(isValidNoExpediente($('#noExpediente'))){
             $('#error-noExpediente').hide();
         }else{
             $('#error-noExpediente').show();
@@ -28,7 +36,7 @@ import {validation} from './validaciones.js';
 
     //3.- Telefono
     $('#telephoneNum').on('change', function(){
-        if(validation.isValidPhoneNumber($('#telephoneNum'))){
+        if(isValidPhoneNumber($('#telephoneNum'))){
             $('#error-tel').hide();
         }else{
             $('#error-tel').show();
@@ -37,7 +45,7 @@ import {validation} from './validaciones.js';
 
     //4.- Tipo Sangre
     $('#tipo-sangre').on('change', function(){
-        if(validation.isValidBloodType($('#tipo-sangre'))){
+        if(isValidBloodType($('#tipo-sangre'))){
             $('#error-tipoSangre').hide();
         }else{
             $('#error-tipoSangre').show();
@@ -46,7 +54,7 @@ import {validation} from './validaciones.js';
 
     //5.- Contraseña
     $('#password').on('change', function(){
-        if(validation.isValidBloodType($('#password'))){
+        if(isValidBloodType($('#password'))){
             $('#error-contraseña').hide();
         }else{
             $('#error-contraseña').show();
@@ -81,20 +89,45 @@ import {validation} from './validaciones.js';
         return true;
     }
 
-    //VALIDACIONES INDEX
+    //VALIDACIONES TRATAMIENTO
 
-    //1.- Fecha
-    $('#RegistrarCita_fecha').on('change', function(){
-        if(validation.isValidDate($('#RegistrarCita_fecha'))){
-            $('#error-fecha').hide();
+    //1.- Fecha inicio
+    $('#fechaInicioTratamiento').on('change', function(){
+        
+        
+        if(isValidDate($('#fechaInicioTratamiento'))){
+            $('#error-fechaInicio').hide();
         }else{
-            $('#error-fecha').show();
+            $('#error-fechaInicio').show();
+        }
+    }); 
+    
+        //1.- Fecha fin
+    $('#fechaFinTratamiento').on('change', function(){
+        if(isValidDate2($('#fechaFinTratamiento'), $("#fechaInicio-"+$("#botonHidden").val()).val())){
+            $('#error-fechaFin').hide();
+        }else{
+            $('#error-fechaFin').show();
+        }
+    }); 
+    
+    //VALIDACIONES INDEX
+    /*
+    //1.- Fecha cita
+    $('#fechaFinTratamiento').on('change', function(){
+        alert($("#fechaInicio-"+$("#botonHidden").val()).val());
+
+
+        if(isValidDate2($('#fechaFinTratamiento'), $("#fechaInicio-"+$("#botonHidden").val()).val())){
+            $('#error-fechaFin').hide();
+        }else{
+            $('#error-fechaFin').show();
         }
     }); 
 
     //2.- Tipo cita
     $('#RegistrarCita_tipo').on('change', function(){
-        if(validation.isValidSelect($('#RegistrarCita_tipo'))){
+        if(isValidSelect($('#RegistrarCita_tipo'))){
             $('#error-tipoCita').hide();
         }else{
             $('#error-tipoCita').show();
@@ -103,11 +136,188 @@ import {validation} from './validaciones.js';
 
      //3.- Médico
      $('#RegistrarCita_medico').on('change', function(){
-        if(validation.isValidSelect($('#RegistrarCita_medico'))){
+        if(isValidSelect($('#RegistrarCita_medico'))){
             $('#error-medico').hide();
         }else{
             $('#error-medico').show();
         }
-    });
+    });*/
+    
+    function isValidNoExpediente (input) {
+
+        var m = input.val();
+     
+        var expreg = /^([a-zA-Z]{3}|[\d]{3})([\d]{6})$/;
 
 
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    };
+    
+    function isValidEmail (input)  {
+
+        var m = input.val();
+
+        ////Expresion regular por el estandard: RFC 5322
+        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    };
+    
+    function isValidPhoneNumber (input) {
+
+        var m = input.val();
+
+        var expreg = /^[0-9]{10,10}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    };
+    
+    function isValidDate (input) {
+
+        //Obtener fecha
+        let today = new Date();
+
+        //Valor seleccionado del input
+        let date_from = input.val();
+        date_from = new Date(date_from);
+
+        let event = false;
+
+        today < date_from ? event = true : event = false;
+
+
+        if (!input.val() || event) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    };
+
+    function isValidDate2 (input, fechaInicio) {
+
+        //var mydate = new Date('2014-04-03');
+        //Obtener fecha
+        let today = new Date();
+
+        //Valor seleccionado del input
+        let date_from = input.val();
+       
+        console.log(fechaInicio);
+        date_from = new Date(date_from);
+        var date_Inicio = new Date(fechaInicio);
+
+        let event = false;
+        
+        console.log(input.val());
+        console.log("Date inicio"+date_Inicio);
+        console.log("Date from" +date_from);
+        date_Inicio > date_from ? event = true : event = false;
+
+
+        if (!input.val() || event) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    }
+
+   function isValidExpediente(input){
+
+        var m = input.val();
+
+        var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,500}$/;
+
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    };
+    
+     function isValidPassword(input){
+
+        var m = input.val();
+
+        //var expreg = /^[a-zA-Z0-9]{8,14}$/;
+        var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    };
+
+});

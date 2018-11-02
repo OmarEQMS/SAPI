@@ -114,7 +114,7 @@ public class TipoTratamientoServiceImpl implements TipoTratamientoService {
         List<TipoTratamiento> tiposTratamiento = null;
         
         //Call del stored procedure
-        String stProcedure="CALL mostrarListaTipoTratamiento(?)";
+        String stProcedure="CALL mostrarListaTipoTratamiento()";
         
         try{
             conn = Conexion.getConnection();

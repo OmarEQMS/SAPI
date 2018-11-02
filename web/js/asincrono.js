@@ -1,5 +1,3 @@
-import {validation} from './validaciones.js';
-
 $(document).ready(function () {
 
 
@@ -28,106 +26,124 @@ $(document).ready(function () {
     $('#errorUsuarioRepetido').hide();
     $('#error-terminos').hide();
     $('#error-CPexiste').hide();
-    
+    $("#error-campos").hide();
+
     $('#btn-registro').on('click', function () {
 
-        swal(
-                "¿Te han tratado por cáncer de mama previamente?", {
-                    buttons: {
-                        primeraVez: "No",
-                        segundaOpinion: "Sí",
-                    }
-                })
-                .then((value) => {
-                    switch (value) {
-                        case "primeraVez":
-                                $('#tipoPaciente').val(0);
-                            break;
-                        case "segundaOpinion":
-                                $('#tipoPaciente').val(1);
-                            break;
-                    }
-                    
-                    console.log($('#tipoPaciente').val());
-                    $('#modalTerminos').modal('toggle');
-                });
+        //Verificar que todos los campos que han marcado
+        if (isValidName($('#nombre')) && isValidLastName($('#apellido1')) && isValidUserName($('#usuario')) && isValidEmail($('#correo')) && isValidPassword($('#pass1')) && isValidCURP($('#curp')) && isValidPhoneNumber($('#telefono')) && isValidDate($('#fechaNacimiento')) && isValidSelect($('#estado')) && isValidSelect($('#municipio'))) {
+            $("#error-campos").hide();
 
+            swal(
+                    "¿Te han tratado por cáncer de mama previamente?", {
+                        buttons: {
+                            primeraVez: "No",
+                            segundaOpinion: "Sí",
+                        }
+                    })
+                    .then((value) => {
+                        switch (value) {
+                            case "primeraVez":
+                                $('#tipoPaciente').val(0);
+                                break;
+                            case "segundaOpinion":
+                                $('#tipoPaciente').val(1);
+                                break;
+                        }
+
+                        console.log($('#tipoPaciente').val());
+                        $('#modalTerminos').modal('toggle');
+                    });
+        } else {
+            console.log("Entro al segundo else");
+            $("#error-campos").show();
+        }
     });
 
-    $('#btnAceptar').on('click', function(){
-        
-        if(!validation.isValidCheckbox($('#acepto-datos')) || !validation.isValidCheckbox($('#acepto-datos-anonimos'))){
-            
+    $('#btnAceptar').on('click', function () {
+
+        if (!isValidCheckbox($('#acepto-datos')) || !isValidCheckbox($('#acepto-datos-anonimos'))) {
+
             $('#error-terminos').show();
-            
-        }else{
-            
+
+        } else {
+
             $('#error-terminos').hide();
-            
+
             //ajax para registrar
-            
+
             $.ajax({
 
-            url: 'RegistraUsuarioController',
-            cache: false,
-            method: 'POST',
-            data: {
-                key: "registraUsuario",
-                nombre: $('#nombre').val(),
-                apellido1: $('#apellido1').val(),
-                apellido2: $('#apellido2').val(),
-                usuario: $("#usuario").val(),
-                correo: $('#correo').val(),
-                curp: $('#curp').val(),
-                colonia: $('#colonia').val(),
-                calle: $('#calle').val(),
-                noExterior: $("#noExterior").val(),
-                noInterior: $("#noInterior").val(),
-                pass1: $("#pass1").val(),
-                pass2: $("#pass2").val(),
-                telefono: $("#telefono").val(),
-                estadoCivil: $("#estadoCivil").val(),
-                fechaNacimiento: $("#fechaNacimiento").val(),
-                estado: $("#estado").val(),
-                municipio: $("#municipio").val(),
-                codigoPostal: $('#codigoPostal').val(),
-                tipoPaciente : $('#tipoPaciente').val()
+                url: 'RegistraUsuarioController',
+                cache: false,
+                method: 'POST',
+                data: {
+                    key: "registraUsuario",
+                    nombre: $('#nombre').val(),
+                    apellido1: $('#apellido1').val(),
+                    apellido2: $('#apellido2').val(),
+                    usuario: $("#usuario").val(),
+                    correo: $('#correo').val(),
+                    curp: $('#curp').val(),
+                    colonia: $('#colonia').val(),
+                    calle: $('#calle').val(),
+                    noExterior: $("#noExterior").val(),
+                    noInterior: $("#noInterior").val(),
+                    pass1: $("#pass1").val(),
+                    pass2: $("#pass2").val(),
+                    telefono: $("#telefono").val(),
+                    estadoCivil: $("#estadoCivil").val(),
+                    fechaNacimiento: $("#fechaNacimiento").val(),
+                    estado: $("#estado").val(),
+                    municipio: $("#municipio").val(),
+                    codigoPostal: $('#codigoPostal').val(),
+                    tipoPaciente: $('#tipoPaciente').val()
 
 
-            }
+                }
 
-        })
-                .done(function (response) {
-                    console.log(response);
+            })
+                    .done(function (response) {
+                        console.log(response);
 
-
-                    swal({
-                        title: 'Buen Trabajo',
-                        text: "Cuenta registrada correctamente",
-                        type: 'success',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Ok'
-                    }).then((result) => {
-                        if (result.value) {
-                            window.location.reload();
-                        };
+                        swal({
+                            title: 'Buen Trabajo',
+                            text: "Cuenta registrada correctamente",
+                            type: 'success',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        })
+                                .then(function () {
+                                    console.log("Redirección a login");
+                                    $.get("LoginController", {
+                                        key: "ir-a-login"
+                                    },
+                                            function (response, status, xhr) {
+                                                console.log(response);
+                                                if (status == "success") {
+                                                    if (response == "error") {
+                                                        $("#msj-error").show();
+                                                    } else {
+                                                        document.open("text/html", "replace");
+                                                        document.write(response);
+                                                        document.close();
+                                                    }
+                                                }
+                                            }
+                                    );
+                                });
+                    })
+                    .fail(function (xhr, textStatus, errorThrown) {
+                        console.log(xhr.responseText);
                     });
-                })
-                .fail(function (xhr, textStatus, errorThrown) {
-                    console.log(xhr.responseText);
-                });
 
 
 
 
-            
+
         }
-        
+
     });
-
-    $('#btn-registro').on('click', function () {
-
-     });
 
 
     //Cargar los municipios con base en el estado
@@ -204,7 +220,7 @@ $(document).ready(function () {
     //1.- NOMBRE
     $('#nombre').on('change', function () {
 
-        if (validation.isValidName($(this))) {
+        if (isValidName($(this))) {
             $('#errorNombre').hide();
         } else if ($(this).val() == '') {
             $('#errorNombre').hide();
@@ -217,7 +233,7 @@ $(document).ready(function () {
     //2.- APELLIDO PATERNO
     $('#apellido1').on('change', function () {
 
-        if (validation.isValidLastName($(this))) {
+        if (isValidLastName($(this))) {
             $('#errorApellidoPaterno').hide();
         } else if ($(this).val() == '') {
             $('#errorApellidoPaterno').hide();
@@ -230,7 +246,7 @@ $(document).ready(function () {
     //3.- APELLIDO MATERNO
     $('#apellido2').on('change', function () {
 
-        if (validation.isValidLastName($(this))) {
+        if (isValidLastName($(this))) {
             $('#errorApellidoMaterno').hide();
         } else if ($(this).val() == '') {
             $('#errorApellidoMaterno').hide();
@@ -242,7 +258,7 @@ $(document).ready(function () {
 
     //4.- NOMBRE DE USUARIO
     $('#usuario').on('change', function () {
-        
+
         $.ajax({
 
             url: 'RegistraUsuarioController',
@@ -252,15 +268,15 @@ $(document).ready(function () {
 
                 key: "repiteUsuario",
                 usuario: $('#usuario').val()
-                
+
 
             },
-            success: function (response) {                
+            success: function (response) {
 
-                if(response==='UsuarioAlreadyExists'){
+                if (response === 'UsuarioAlreadyExists') {
                     $('#usuario').css('color', 'orange');
                     $('#errorUsuarioRepetido').show();
-                }else{
+                } else {
                     $('#errorUsuarioRepetido').hide();
                 }
 
@@ -268,7 +284,7 @@ $(document).ready(function () {
 
         });
 
-        if (validation.isValidLastName($(this))) {
+        if (isValidUserName($(this))) {
             $('#errorNombreUsuario').hide();
         } else if ($(this).val() == '') {
             $('#errorNombreUsuario').hide();
@@ -281,7 +297,7 @@ $(document).ready(function () {
     //5.- CORREO
     $('#correo').on('change', function () {
 
-        if (validation.isValidEmail($(this))) {
+        if (isValidEmail($(this))) {
             $('#errorCorreo').hide();
         } else if ($(this).val() == '') {
             $('#errorCorreo').hide();
@@ -294,7 +310,7 @@ $(document).ready(function () {
     //6.- CONTRASEÑA1
     $('#pass1').on('change', function () {
 
-        if (validation.isValidPassword($(this))) {
+        if (isValidPassword($(this))) {
             $('#errorPass1').hide();
         } else if ($(this).val() == '') {
             $('#errorPass1').hide();
@@ -307,7 +323,7 @@ $(document).ready(function () {
     //7.- CONTRASEÑA2
     $('#pass2').on('change', function () {
 
-        if (validation.isValidPassword($(this))) {
+        if (isValidPassword($(this))) {
             $('#errorPass2').hide();
         } else if ($(this).val() == '') {
             $('#errorPass2').hide();
@@ -328,12 +344,12 @@ $(document).ready(function () {
                 key: "repiteCurp",
                 curp: $('#curp').val()
             },
-            success: function (response) {                
+            success: function (response) {
 
-                if(response==='CurpAlreadyExists'){
+                if (response === 'CurpAlreadyExists') {
                     $('#curp').css('color', 'orange');
                     $('#errorCurpRepetido').show();
-                }else{
+                } else {
                     $('#errorCurpRepetido').hide();
                 }
 
@@ -341,7 +357,7 @@ $(document).ready(function () {
         });
 
 
-        if (validation.isValidCURP($(this))) {
+        if (isValidCURP($(this))) {
             $('#errorCurp').hide();
         } else if ($(this).val() == '') {
             $('#errorCurp').hide();
@@ -366,40 +382,40 @@ $(document).ready(function () {
 
             },
             success: function (response) {
-                
-                if(response=='postalCodeDoesntExist'){
+
+                if (response == 'postalCodeDoesntExist') {
                     $('#error-CPexiste').show();
-                    
-                }else{
-                    $('#error-CPexiste').hide();
-                var json = JSON.parse(response);
-
-                if ($('#codigoPostal').val().length === 5) {
-
-                    //Limpia los campos 
-                    $("#estado").each(function () {
-                        $(this).children().remove();
-                    });
-
-                    $("#municipio").each(function () {
-                        $(this).children().remove();
-                    });
-
-                    //Carga estado
-                    $('#estado').append("<option value='" + json[0] + "'>" + json[1] + "</option>");
-
-                    //Carga Municipio
-                    $('#municipio').append("<option value='" + json[2] + "'>" + json[3] + "</option>");
 
                 } else {
+                    $('#error-CPexiste').hide();
+                    var json = JSON.parse(response);
 
-                    $('#estado').removeAttr('disabled');
-                    $('#estado').removeAttr('selected');
+                    if ($('#codigoPostal').val().length === 5) {
 
+                        //Limpia los campos 
+                        $("#estado").each(function () {
+                            $(this).children().remove();
+                        });
+
+                        $("#municipio").each(function () {
+                            $(this).children().remove();
+                        });
+
+                        //Carga estado
+                        $('#estado').append("<option value='" + json[0] + "'>" + json[1] + "</option>");
+
+                        //Carga Municipio
+                        $('#municipio').append("<option value='" + json[2] + "'>" + json[3] + "</option>");
+
+                    } else {
+
+                        $('#estado').removeAttr('disabled');
+                        $('#estado').removeAttr('selected');
+
+                    }
+
+                    console.log(json);
                 }
-
-                console.log(json);
-            }
 
             }
 
@@ -411,7 +427,7 @@ $(document).ready(function () {
     //10.- TELEFONO
     $('#telefono').on('change', function () {
 
-        if (validation.isValidPhoneNumber($(this))) {
+        if (isValidPhoneNumber($(this))) {
             $('#errorTelefono').hide();
         } else if ($(this).val() == '') {
             $('#errorTelefono').hide();
@@ -424,7 +440,7 @@ $(document).ready(function () {
     //11.- ESTADO CIVIL
     $('#estadoCivil').on('change', function () {
 
-        if (validation.isValidSelect($(this))) {
+        if (isValidSelect($(this))) {
             $('#errorECivil').hide();
         } else {
             $('#errorECivil').show();
@@ -435,7 +451,7 @@ $(document).ready(function () {
     //12.- FECHA
     $('#fechaNacimiento').on('change', function () {
 
-        if (validation.isValidDate($(this))) {
+        if (isValidDate($(this))) {
             $('#errorFecha').hide();
         } else {
             $('#errorFecha').show();
@@ -446,7 +462,7 @@ $(document).ready(function () {
     //12.- ESTADO
     $('#estado').on('change', function () {
 
-        if (validation.isValidSelect($(this))) {
+        if (isValidSelect($(this))) {
             $('#errorEstado').hide();
         } else {
             $('#errorEstado').show();
@@ -457,7 +473,7 @@ $(document).ready(function () {
     //13.- MUNICIPIO
     $('#municipio').on('change', function () {
 
-        if (validation.isValidSelect($(this))) {
+        if (isValidSelect($(this))) {
             $('#errorMunicipio').hide();
         } else {
             $('#errorMunicipio').show();
@@ -468,7 +484,7 @@ $(document).ready(function () {
     //13.- COLONIA
     $('#colonia').on('change', function () {
 
-        if (validation.isValidColonia($(this))) {
+        if (isValidColonia($(this))) {
             $('#errorColonia').hide();
         } else {
             $('#errorColonia').show();
@@ -479,7 +495,7 @@ $(document).ready(function () {
     //14.- CALLE
     $('#calle').on('change', function () {
 
-        if (validation.isValidStreet($(this))) {
+        if (isValidStreet($(this))) {
             $('#errorCalle').hide();
         } else {
             $('#errorCalle').show();
@@ -490,7 +506,7 @@ $(document).ready(function () {
     //15.- NUMERO EXTERIOR
     $('#noExterior').on('change', function () {
 
-        if (validation.isValidNumber($(this))) {
+        if (isValidExtNumber($(this))) {
             $('#errorNoExterior').hide();
         } else {
             $('#errorNoExterior').show();
@@ -501,14 +517,14 @@ $(document).ready(function () {
     //16.- NUMERO INTERIOR
     $('#noInterior').on('change', function () {
 
-        if (validation.isValidNumber($(this))) {
+        if (isValidIntNumber($(this))) {
             $('#errorNoInterior').hide();
         } else {
             $('#errorNoInterior').show();
         }
 
     });
-    
+
     ///////////////////////////////////////////////LOGIN
     $('#btn-login').on('click', function () {
 
@@ -543,5 +559,292 @@ $(document).ready(function () {
 
     });
 
+    //VALIDACIONES
+
+    function isValidCheckbox(input) {
+
+        if (input.is(':checked')) {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    function isValidName(input) {
+
+        var m = input.val();
+
+        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    }
+
+    function isValidLastName(input) {
+
+        var m = input.val();
+
+        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,127}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+
+    function isValidEmail(input) {
+
+        var m = input.val();
+
+        ////Expresion regular por el estandard: RFC 5322
+        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    }
+
+    function isValidPassword(input) {
+
+        var m = input.val();
+
+        //var expreg = /^[a-zA-Z0-9]{8,14}$/;
+        var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    }
+
+    function isValidCURP(input) {
+
+        var m = input.val();
+
+        var expreg = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+
+    function isValidPhoneNumber(input) {
+
+        var m = input.val();
+
+        var expreg = /^[0-9]{10,10}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+
+    function isValidSelect(input) {
+
+        if (!input.val()) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+
+    function isValidDate(input) {
+
+        //Obtener fecha
+        let today = new Date();
+
+        //Valor seleccionado del input
+        let date_from = input.val();
+        date_from = new Date(date_from);
+
+        let event = false;
+
+        today < date_from ? event = true : event = false;
+
+
+        if (!input.val() || event) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+
+    function isValidColonia(input) {
+
+        var m = input.val();
+
+        var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,500}$/;
+
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+
+    function isValidStreet(input) {
+
+        var m = input.val();
+
+        var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,255}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    }
+
+    function isValidIntNumber(input) {
+
+        var m = input.val();
+
+        var expreg = /^[#a-zA-Z0-9]{1,100000}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    }
+    
+    function isValidExtNumber(input) {
+
+        var m = input.val();
+
+        var expreg = /^[#0-9]{1,100000}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    }
+
+    function isValidUserName(input) {
+
+        var m = input.val();
+
+        var expreg = /^[a-zA-Z0-9]{4,16}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
 
 });

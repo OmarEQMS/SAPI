@@ -72,10 +72,10 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-2 text-center">
-                            <a class="iconoSidebar" href="" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
+                            <a class="iconoSidebar" id="irACuenta1" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
                         </div>
                         <div class="col-2">
-                            <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
+                            <a class="iconoSidebar" id="salirCuenta1" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
                         </div>
                     </div>
                 </div>
@@ -91,13 +91,20 @@
 
                     <li id ="irACitaPreconsulta"><a><i class="fas fa-home"></i>Cita a Preconsulta </a></li>
 
-                    <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas<span class="notificacion">1</span></a></li>
+                    <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas
+                            <c:choose>
+                                <c:when test="${sessionScope.estatus>=1}">
+                                    <span class="notificacion">1</span>                        
+                                </c:when>
+                            </c:choose>
+                        </a>                    
+                    </li>
 
                     <li id ="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta </a></li>
 
                     <li id ="irAPreguntasFrecuentes"><a><i class="fas fa-question-circle"></i>Preguntas Frecuentes </a></li>
 
-                    <li id="salirCuenta"><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+                    <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
                 </ul>
 
@@ -150,7 +157,8 @@
                                                 <div class="row">
                                                     <div class="col-12 text-center">
                                                         <h5 class="display-4 textoCitaReservada mb-1">Tu cita de <strong>preconsulta</strong> ha sido reservada para el:</h5>
-                                                        <h5 class="display-4 textoCitaReservada m-0 d-inline mr-2" id="fechaCitaPreConsulta">${sessionScope.fechaPreConsulta}</h5><a href="#" class="questionMark pull-right"
+                                                        <h5 class="display-4 textoCitaReservada m-0 d-inline mr-2" id="fechaCitaPreConsulta">${sessionScope.fechaPreConsulta}</h5>
+                                                        <a href="#" class="questionMark pull-right"
                                                                                                                                                                                     title="¿Tienes dudas? Comunicate al: 01-800-1111-111-1"><i class="fas fa-info-circle"></i></a>
                                                     </div>
                                                 </div>
@@ -163,7 +171,8 @@
                                                 <div class="row">
                                                     <div class="col-12 text-center">
                                                         <h5 class="display-4 textoCitaReservada mb-1">Tu cita de <strong>navegación</strong> ha sido reservada para el:</h5>
-                                                        <h5 class="display-4 textoCitaReservada m-0 d-inline mr-2" id="fechaCitaNavegacion">${sessionScope.fechaNavegacion}</h5><a href="#" class="questionMark pull-right"
+                                                        <h5 class="display-4 textoCitaReservada m-0 d-inline mr-2" id="fechaCitaNavegacion">${sessionScope.fechaNavegacion}</h5>
+                                                        <a href="#" class="questionMark pull-right"
                                                                                                                                                                                     title="¿Tienes dudas? Comunicate al: 01-800-1111-111-1"><i class="fas fa-info-circle"></i></a>
                                                     </div>
                                                 </div>
@@ -188,8 +197,10 @@
 
 
                                     </c:when>        
-                                    <c:otherwise> 
+                                </c:choose>
 
+                                <c:choose>
+                                    <c:when test="${sessionScope.estatus==2}">
                                         <!-- CANCELADA -->
                                         <div class="card bg-danger text-white mb-3">
                                             <div class="card-body">
@@ -202,11 +213,8 @@
 
                                             </div>
                                         </div>
-                                    </c:otherwise>
+                                    </c:when>        
                                 </c:choose>
-
-
-
 
 
                                 <!-- Icono info -->
@@ -294,7 +302,7 @@
                                 </div>
                                 </div>
                                 </div>
-                                <script type="module" src="../js/validaciones.js"></script>
+                                <!--<script type="application/javascript" src="js/validaciones.js"></script> -->
                                 </body>
 
                                 </html>

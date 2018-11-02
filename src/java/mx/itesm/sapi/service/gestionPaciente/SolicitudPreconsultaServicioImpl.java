@@ -16,7 +16,10 @@ import mx.itesm.sapi.util.Conexion;
  *
  * @author urieldiaz
  */
+
+ 
 public class SolicitudPreconsultaServicioImpl implements SolicitudPreconsultaServicio {
+    
 
     @Override
     public SolicitudPreconsulta mostrarSolicitudPreconsulta(int idPaciente) {
@@ -42,17 +45,17 @@ public class SolicitudPreconsultaServicioImpl implements SolicitudPreconsultaSer
             solicitudPreconsulta.setSilla(rs.getInt(2));
             solicitudPreconsulta.setCamilla(rs.getInt(3));
             solicitudPreconsulta.setBaston(rs.getInt(4));
-            solicitudPreconsulta.setOxigeno(rs.getInt(5));
-            solicitudPreconsulta.setEstudioPrevio(rs.getInt(6));
-            solicitudPreconsulta.setBiopsiaPrevia(rs.getInt(7));
-            solicitudPreconsulta.setIdentificacion(rs.getInt(8));
-            solicitudPreconsulta.setComprobante(rs.getInt(9));
-            solicitudPreconsulta.setCurp(rs.getInt(10));
-            solicitudPreconsulta.setReferencia(rs.getInt(11));
-            solicitudPreconsulta.setMastografia(rs.getInt(12));
-            solicitudPreconsulta.setUltrasonido(rs.getInt(13));
-                        
+            solicitudPreconsulta.setOxigeno(rs.getInt(5));                                   
             
+            solicitudPreconsulta.setEstudioPrevio(rs.getNString(6));                                   
+            solicitudPreconsulta.setBiopsiaPrevia(rs.getNString(7));                                    
+            solicitudPreconsulta.setIdentificacion(rs.getNString(8));                                    
+            solicitudPreconsulta.setComprobante(rs.getNString(9));                                    
+            solicitudPreconsulta.setCurp(rs.getNString(10));                                   
+            solicitudPreconsulta.setReferencia(rs.getNString(11));                                    
+            solicitudPreconsulta.setMastografia(rs.getNString(12));                                    
+            solicitudPreconsulta.setUltrasonido(rs.getNString(13));            
+                                    
             conn.close();
             rs.close();
             cstmt.close();

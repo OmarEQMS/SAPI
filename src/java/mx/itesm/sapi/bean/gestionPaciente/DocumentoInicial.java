@@ -16,10 +16,11 @@ public class DocumentoInicial {
     private int idPaciente;
     private InputStream archivo;
     private String comentario;
-    private int aprobado;
+    private int aprobado;    
     private String tipo;
     private int tamano;
     private int estatus;
+    private String nombre;
     
     public DocumentoInicial() {}
     
@@ -35,11 +36,21 @@ public class DocumentoInicial {
                 .concat(",estatus:").concat(String.valueOf(estatus))
                 .concat(",tamano:").concat(String.valueOf(tamano))
                 .concat(",tipo:").concat(String.valueOf(tipo))
+                .concat(",nombre:".concat(nombre))
                 .concat("]");
         
         return str;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    
     public String getTipo() {
         return tipo;
     }

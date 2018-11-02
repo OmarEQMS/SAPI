@@ -3,31 +3,7 @@
 $(document).ready(function () {
 
     console.log("Se Actualizó!");
-    var consultarDocumentosPreconsulta = new FormData;
-    consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
 
-    console.log("Solicitar DOCUMENTOS de Preconsulta");
-    $.ajax({
-        url: "PotencialController",
-        method: "POST",
-        data: consultarDocumentosPreconsulta,
-        enctype: "multipart/form-data",
-        processData: false,
-        contentType: false,
-        success: function (response) {
-            if (response != null) {
-                var data = JSON.parse(response);
-                console.log(data);
-            } else {
-                console.log("Algo pasó" + response);
-            }
-        },
-        error: function () {
-            console.log("error" + xhr.statusText);
-            alert("No enontre el controlador" + xhr.statusText);
-        }
-
-    });
     var consultarEstadoPreconsulta = new FormData;
     consultarEstadoPreconsulta.append("key", "consultarEstadoPreconsulta");
 
@@ -41,14 +17,16 @@ $(document).ready(function () {
         contentType: false,
         success: function (response) {
             if (response != null) {
-                console.log("ok" + response);
+                 var data = JSON.parse(response);
+                console.log(data);
 
             } else {
                 console.log("Algo pasó" + response);
             }
         },
         error: function () {
-
+            console.log("error" + xhr.statusText);
+            alert("No enontre el controlador" + xhr.statusText);
         }
 
     });
@@ -94,7 +72,8 @@ $(document).ready(function () {
                             url: "PotencialController",
                             data: {
                                 key: "eliminarCuentaPacientePotencial",
-                                idCuenta: $("#sesionPaciente").val()
+
+                                idCuenta: $("#sesionPaciente").val(),
 
                             },
                             method: "POST",
@@ -253,18 +232,19 @@ $(document).ready(function () {
                     console.log("Algo pasó" + response);
                 }
             },
-            error: function () {
-                console.log("error" + xhr.statusText);
-                alert("No enontre el controlador" + xhr.statusText);
+            error: function (request, status, error) {                                
+                console.log("Enviar solicitud Error request " + request.responseText);
+                console.log("Enviar solicitud Error status " + status);
+                console.log("Enviar solicitud Error error" + error);
+                //alert("No enontre el controlador" + status);                               
             }
-
-
         });
 
     });
 
     $("#btn-enviarSolicitud").on('click', function () {
 
+        console.log("Enviar solicitud");
         //Modal borrar sintoma
         swal({
             title: "¡Buen Trabajo! se ha enviado tu solicitud",
@@ -332,28 +312,36 @@ $(document).ready(function () {
          + " identificacion: " + identificacionOficial.name + " comprobante: " + comprobanteDomicilio.name + " estudioMasto: " + fileEstudioPrevioMasto.name
          +" estudioUsg: " + fileEstudioPrevioUsg.name + " biopsia: " + estudioBiopsia.name);
          */
+        
+        
+        //AJAX PARA ENVIAR SOLICITUD
+        
         $.ajax({
             url: "PotencialController",
-            method: "POST",
+            method: "POST",            
             data: data,
             enctype: "multipart/form-data",
             processData: false,
             contentType: false,
             success: function (response) {
-                if (response == "success") {
-                    console.log("ok");
+               
+                console.log("Enviar solicitud " + response);
+                if (response === "success") {
+                    console.log("Enviar solicitud ok ");
                 } else {
-                    console.log("Algo pasó" + response);
+                    console.log("Enviar solicitud Algo pasó" + response);
                 }
             },
-            error: function () {
-                console.log("error" + xhr.statusText);
-                alert("No enontre el controlador" + xhr.statusText);
+            error: function (request, status, error) {                                
+                console.log("Enviar solicitud Error request " + request.responseText);
+                console.log("Enviar solicitud Error status " + status);
+                console.log("Enviar solicitud Error error" + error);
+                //alert("No enontre el controlador" + status);                               
             }
 
 
         });
-
+        
     });
 
 
@@ -425,31 +413,112 @@ $(document).ready(function () {
      });*/
     $('#irACitaPreconsulta').on('click', function () {
         console.log("Presionó CitaPreConsulta")
-        $.post("SAPI", {
-            file: "potencial/index.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log(response);
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
+        var consultarDocumentosPreconsulta = new FormData;
+        consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
+
+        console.log("Solicitar DOCUMENTOS de Preconsulta");
+        $.ajax({
+            url: "PotencialController",
+            method: "POST",
+            data: consultarDocumentosPreconsulta,
+            enctype: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            success: function (response) {
+
+                if (response != null) {
+                    var data = JSON.parse(response);
+                    console.log(data);
+
+                    $.post("SAPI", {
+                        file: "potencial/index.jsp"
+                    },
+                            function (response, status, xhr) {
+                                console.log(response);
+                                if (status == "success") {
+                                    if (response == "error") {
+                                        $("#msj-error").show();
+                                    } else {
+                                        document.open("text/html", "replace");
+                                        document.write(response);
+                                        document.close();
+                                    }
+                                }
+                            }
+                    );
+
+
+                } else {
+                    console.log("Algo pasó" + response);
                 }
-        );
+            },
+            error: function () {
+                console.log("error" + xhr.statusText);
+                alert("No enontre el controlador" + xhr.statusText);
+            }
+
+        });
+    });
+
+    $('#enviar').on('click', function () {
+        $.ajax({
+            url: "PotencialController",
+            method: "POST",
+            data: consultarDocumentosPreconsulta,
+            enctype: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                var data = JSON.parse(response);
+                console.log(data);
+            }
+        });
     });
 
     $('#irAMisCitas').on('click', function () {
-        $.post("SAPI", {
-            //CAMBIAR ESTE FILE
-            file: "potencial/misCitas.jsp"
+        $.post("PotencialController", {
+            key: 'obtenerEventos',
+            idPaciente: $('#idPaciente').val()
         },
                 function (response, status, xhr) {
-                    console.log(response);
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        ).then(function () {
+            $.post("SAPI", {
+                file: "potencial/misCitas.jsp"
+            },
+                    function (response, status, xhr) {
+                        console.log(response);
+                        if (status == "success") {
+                            if (response == "error") {
+                                $("#msj-error").show();
+                            } else {
+                                document.open("text/html", "replace");
+                                document.write(response);
+                                document.close();
+                            }
+                        }
+                    }
+            );
+        });
+
+    });
+
+    $('#irACuenta').on('click', function () {
+        $.post("SAPI", {
+            file: "potencial/cuentaPaciente.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -463,8 +532,7 @@ $(document).ready(function () {
         );
     });
 
-
-    $('#irACuenta').on('click', function () {
+    $('#irACuenta1').on('click', function () {
         $.post("SAPI", {
             file: "potencial/cuentaPaciente.jsp"
         },
@@ -502,36 +570,6 @@ $(document).ready(function () {
                 }
         );
     });
-    /*
-     $('#guardarCambios').on('click', function() {
-     console.log("Presionó GuardarCambios") 
-     var corr = $("#myEmail");
-     var tel = $("#telephoneNum");
-     var input = $("#file-input")
-     $.get("PotencialController", {
-     key: "guardarCambios",
-     file: "potencial/cuentaPaciente.jsp",
-     input: input.val(),
-     correo: corr.val(),
-     telefono: tel.val()
-     },
-     //Esto de aquí abajo para que?
-     
-     function (response, status, xhr) {
-     console.log(response);
-     if (status == "success") {
-     if (response == "error") {
-     $("#msj-error").show();
-     } else {
-     document.open("text/html", "replace");
-     document.write(response);
-     document.close();
-     }
-     }
-     }
-     );
-     });*/
-
 
     $('#guardarCambios').on('click', function () {
 
@@ -556,7 +594,7 @@ $(document).ready(function () {
                     file: "potencial/cuentaPaciente.jsp"
                 },
                         function (response, status, xhr) {
-                            console.log("El ajax fue exitoso!!-----------------------");
+                            /*console.log("El ajax fue exitoso!!-----------------------");
                             if (status == "success") {
                                 if (response == "error") {
                                     $("#msj-error").show();
@@ -565,7 +603,19 @@ $(document).ready(function () {
                                     document.write(response);
                                     document.close();
                                 }
-                            }
+                            }*/
+                            swal({
+                                title: 'Buen Trabajo',
+                                text: "Cambios guardados correctamente",
+                                type: 'success',
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Ok'
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location.reload();
+                                }
+                                ;
+                            });
                         }
                 );
             },

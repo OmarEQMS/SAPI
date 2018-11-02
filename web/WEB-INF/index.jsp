@@ -21,12 +21,12 @@
     
         <!-- Input usuario -->
         <div class="input-group">
-            <input id="user" type="text" class="form-control input-usuario mb-2 useFontAwesomeFamily effect3" placeholder="&#xf007; USUARIO" autofocus>
+            <input id="user" type="text" value="Dieguito" class="form-control input-usuario mb-2 useFontAwesomeFamily effect3" placeholder="&#xf007; USUARIO" autofocus>
         </div>
     
         <!-- Input contraseÃ±a -->
         <div class="input-group">
-            <input id="password" type="password" class="form-control input-pass mb-4 useFontAwesomeFamily" placeholder="&#xf023; CONTRASEÑA">
+            <input id="password" type="password" value="Dieguito1" class="form-control input-pass mb-4 useFontAwesomeFamily" placeholder="&#xf023; CONTRASEÑA">
         </div>
     
         <!-- Input submit -->
@@ -46,9 +46,9 @@
             </div>
         </div>
         
-        <h6 class="text-center mt-3 texto-pass"><span>Olvidaste tu contraseña?</span> <a href="#" id="recuperarContra" >Recuperala aquí­</a></h6>
+        <h6 class="text-center mt-3 texto-pass"><span>¿Olvidaste tu contraseña?</span> <a href="#" id="recuperarContra" >Recupérala aquí­</a></h6>
 
-        <h6 class="text-center mt-2 texto-cuenta mb-0"><span>No tienes cuenta?</span> <a href="#" id="registrate">Regístrate aquí­</a></h6>
+        <h6 class="text-center mt-2 texto-cuenta mb-0"><span>¿No tienes cuenta?</span> <a href="#" id="registrate">Regístrate aquí­</a></h6>
     
     </form>
   
@@ -57,7 +57,7 @@
     <script src="lib/jquery/jqueryPostGo.js"></script>
     <script src="lib/bootstrap/js/bootstrap.js"></script>
     <script src="lib/popper/popper.min.js"></script>
-    <script src="js/ajaxRecuperar.js"></script>
+   <!-- <script src="js/ajaxRecuperar.js"></script> -->
     <!--<script type="module" src="js/asincrono.js"></script>-->
     
 </body>

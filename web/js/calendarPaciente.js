@@ -6,6 +6,7 @@
 
 $(document).ready(function () {
 
+        console.log($("#idPaciente").val());
     $('#calendarCitasPaciente').fullCalendar({
         locale: 'es',
         height: 630,
@@ -24,13 +25,22 @@ $(document).ready(function () {
             
             var m = moment(new Date(Date.parse(calEvent.start._i)));
            
-            var edificios = ["","Edificio Antiguo", "Torre nueva de especialización"];
+            var edificios = ["Prueba","Edificio Antiguo", "Torre nueva de hospitalización"];
             
             var pisos = ["Planta Baja", "Primer Piso", "Segundo Piso"];
             
             $('#titulo-cita').html(calEvent.title);
             $('#dia-cita').html(m.locale("es").format('LL'));
-            $('#hora-cita').html(d.getHours()+":"+d.getMinutes());
+            
+            if(d.getMinutes()<10){
+                $('#hora-cita').html(d.getHours()+":0"+d.getMinutes());
+            }else{
+                $('#hora-cita').html(d.getHours()+":"+d.getMinutes());
+            }
+            
+            
+            console.log($('#hora-cita').html());
+            console.log(d.getMinutes());
             
             $('#edificio-cita').html(edificios[parseInt(calEvent.edificio)]);
             $('#piso-cita').html(pisos[parseInt(calEvent.piso)]);
@@ -61,6 +71,7 @@ $(document).ready(function () {
                 },
                 textColor: 'white',
                 success: function (response) {
+                    
                     console.log(response);
                 }
             }

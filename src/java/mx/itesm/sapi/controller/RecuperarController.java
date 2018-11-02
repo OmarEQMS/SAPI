@@ -38,7 +38,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.IOUtils;
 
-
 /**
  *
  * @author Angel GTZ
@@ -89,22 +88,27 @@ public class RecuperarController extends HttpServlet {
                     cuenta.setPassword(contra);
 
                     cuentaServicio.actualizarCuenta(cuenta);
-                    System.out.println("Si entre ");
+                    System.out.println("RecuperarController case 'cambiarSontrasena'");
                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
                 }
-                
+
                 break;
-            } 
+            }
 
             case "recuperarEnviarCorreo": {
 
-                System.out.println("estoy en el metodo");
+                //System.out.println("Estoy en RecuperarController case: recuperarEnviarCorreo");
                 Properties config = new Properties();
                 String correo = request.getParameter("email");
-                HttpSession sesion = request.getSession(true);
-                CuentaServicioImpl cuentaServiceImpl = new CuentaServicioImpl();
-                Cuenta cuenta = cuentaServiceImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));
-               // Token token = cuenta.getToken();
+                //System.out.println("El correo es: ".concat(correo));
+                //HttpSession sesion = request.getSession(true);
+
+                CuentaServicioImpl cuenta = new CuentaServicioImpl();
+                //System.out.println("El correo es: ".concat(correo));
+                String token = cuenta.getToken(correo);
+                
+                System.out.println("el token es: ".concat(token));
+               
                 try {
                     config.load(getClass().getResourceAsStream("/mail.properties"));
                     Session session = Session.getInstance(config,
@@ -115,21 +119,21 @@ public class RecuperarController extends HttpServlet {
                         }
                     });
 
-                    System.out.println("despues del try");
+                    //System.out.println("despues del try");
                     Message message = new MimeMessage(session);
                     message.setFrom(new InternetAddress("sapi.prueba@gmail.com"));
                     message.setRecipients(Message.RecipientType.TO,
                             InternetAddress.parse(correo));
-                    message.setSubject("Recuperar Contraseña");
+                    message.setSubject("Recuperar Conraseña");
                     //message.setText("Esto no es spam :)");
 
                     //Estos deberían ir como parametros dentro de la función de enviar correo
                     //String mail = "tucorreo@mail.com";
                     //String contrasena = "tucontrasena";
                     MimeBodyPart mimeBodyPart = new MimeBodyPart();
-                    mimeBodyPart.setContent("<b>Esta es tu contraseña temporal usala para restablecer tu cuenta:)</b></br>".
-                            concat("<b>Contraseña temporal: ").
-                            concat(cuenta.getToken()), "text/html");
+                    mimeBodyPart.setContent("<b>Estimado usuario, usted ha solicitado Recuperar su Contraseña</b></br>".
+                            concat("<b>Su token para iniciar sesion es:  ").
+                            concat(token), "text/html");
 
                     Multipart multipart = new MimeMultipart();
                     multipart.addBodyPart(mimeBodyPart);
@@ -145,15 +149,15 @@ public class RecuperarController extends HttpServlet {
                     // mimeBodyPart.attachFile(file);
                     message.setContent(multipart);
                     Transport.send(message);
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 
                 } catch (Exception ex) {
                     System.out.println("catch de envia correo");
                     System.out.println(this.getClass().toString().concat(ex.getMessage()));
                 }
-
                 break;
             }
-           
+
         }
     }
 

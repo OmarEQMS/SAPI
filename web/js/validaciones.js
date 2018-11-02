@@ -266,6 +266,43 @@ export const validation = {
 
     },
 
+    isValidDate2: (input, fechaInicio) => {
+
+        //var mydate = new Date('2014-04-03');
+        //Obtener fecha
+        let today = new Date();
+
+        //Valor seleccionado del input
+        let date_from = input.val();
+       
+        console.log(fechaInicio);
+        date_from = new Date(date_from);
+        var date_Inicio = new Date(fechaInicio);
+
+        let event = false;
+        
+        console.log(input.val());
+        console.log("Date inicio"+date_Inicio);
+        console.log("Date from" +date_from);
+        date_Inicio > date_from ? event = true : event = false;
+
+
+        if (!input.val() || event) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    },
+
     isValidExpediente: (input) => {
 
         var m = input.val();

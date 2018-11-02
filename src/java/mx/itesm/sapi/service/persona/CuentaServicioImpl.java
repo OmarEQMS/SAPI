@@ -249,4 +249,80 @@ public class CuentaServicioImpl implements CuentaServicio {
         }
 
     }
+    
+    @Override
+    public String getToken(String correo) {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        String token;
+
+        //Call del store procedure
+        String stProcedure = "CALL getToken(?)";
+       
+        try {
+           
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setString(1, correo);
+            rs = cstmt.executeQuery();
+            rs.next();
+            token = rs.getString("token");
+            
+            conn.close();
+            rs.close();
+            cstmt.close();
+            
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            token = null;
+        }
+        
+        return token;
+    }
+
+    @Override
+    public Cuenta mostrarCuentaEmpleado(int idEmpleado) {
+         Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        Cuenta cuenta = null;
+
+        //Call del store procedure
+        String stProcedure = "CALL mostrarCuentaEmpleado(?)";
+
+        try {
+            cuenta = new Cuenta();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idEmpleado);
+
+            rs = cstmt.executeQuery();
+
+            rs.next();
+            cuenta.setIdCuenta(rs.getInt("idCuenta"));
+            cuenta.setIdPersona(rs.getInt("idPersona"));
+            cuenta.setIdRol(rs.getInt("idRol"));
+            cuenta.setIdEstadoCuenta(rs.getInt("idEstadoCuenta"));
+            cuenta.setUsuario(rs.getString("usuario"));
+            cuenta.setPassword(rs.getString("password"));
+            cuenta.setToken(rs.getString("token"));
+            cuenta.setEstatus(rs.getInt("estatus"));
+
+            conn.close();
+            rs.close();
+            cstmt.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            cuenta = null;
+        }
+        return cuenta;
+    }
 }

@@ -32,7 +32,7 @@
 
 
         <link rel="stylesheet" href="css/stylePotencial.css">
-        <script src="js/appPotencial.js" type="module"></script>
+        <script src="js/appPotencial.js"></script>
         <script src="js/ajaxPotencial.js"></script>
 
     </head>
@@ -69,7 +69,7 @@
 
                     <div class="row justify-content-center">
                         <div class="col-2 text-center">
-                            <a class="iconoSidebar" href="<" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
+                            <a class="iconoSidebar" id="irACuenta1" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
                         </div>
                         <div class="col-2">
                             <a class="iconoSidebar" id="salirCuenta1" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
@@ -88,13 +88,20 @@
 
                     <li id ="irACitaPreconsulta"><a><i class="fas fa-home"></i>Cita a Preconsulta </a></li>
 
-                    <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas<span class="notificacion">1</span></a></li>
+                    <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas
+                            <c:choose>
+                                <c:when test="${sessionScope.estatus>=1}">
+                                    <span class="notificacion">1</span>                        
+                                </c:when>
+                            </c:choose>
+                        </a>                    
+                    </li>
 
                     <li id ="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta </a></li>
 
                     <li id ="irAPreguntasFrecuentes"><a><i class="fas fa-question-circle"></i>Preguntas Frecuentes </a></li>
 
-                    <li id="salirCuenta"><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+                    <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
                 </ul>
 
@@ -115,6 +122,7 @@
 
                         <!-- aqui se inyecta la sesion de id-->
                         <input type="hidden" id="sesionPaciente" value="${sessionScope.idSesion}" />
+                        <input type="hidden" id="idPaciente" value="${sessionScope.idPaciente}"/>
 
                         <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
                                 <!--Julio Badillo-->
@@ -144,7 +152,7 @@
 
 
                                         <c:choose>
-                                            <c:when test="${sessionScope.estatus==1}">
+                                            <c:when test="${sessionScope.estatus>=1}">
 
                                                 <a class="nav-item nav-link active text-center colorMoradoLight texto-tab" id="nav-bienvenida-tab" data-toggle="tab" href="#nav-bienvenida"
                                                    role="tab" aria-controls="nav-bienvenida" aria-selected="false" style="width:33%">INFORMACIÓN</a>
@@ -206,12 +214,26 @@
 
                                                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 text-center">
                                                             <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" name="generoMasculino" type="radio" id="masculino" value="masculino">
+                                                                <c:choose>                                                                  
+                                                                    <c:when test="${sessionScope.idSexo == 2}">
+                                                                        <input class="form-check-input" name="generoMasculino" type="radio" id="masculino" value="masculino" checked="checked">
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <input class="form-check-input" name="generoMasculino" type="radio" id="masculino" value="masculino">
+                                                                    </c:otherwise>                                                                                                                                                    
+                                                                </c:choose>                                                                
                                                                 <label class="form-check-label" for="masculino"><i class="fas fa-male"></i>
                                                                     Hombre</label>
                                                             </div>
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" name="generoFemenino" type="radio" id="femenino" value="femenino">
+                                                            <div class="form-check form-check-inline">                                                                
+                                                                <c:choose>                                                                   
+                                                                    <c:when test="${sessionScope.idSexo == 1}">
+                                                                        <input class="form-check-input" name="generoFemenino" type="radio" id="femenino" value="femenino"checked="checked">
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <input class="form-check-input" name="generoFemenino" type="radio" id="femenino" value="femenino">
+                                                                    </c:otherwise>
+                                                                </c:choose>        
                                                                 <label class="form-check-label" for="femenino"><i class="fas fa-female"></i>
                                                                     Mujer</label>
                                                             </div>
@@ -269,7 +291,7 @@
                                                     <div class="row mt-4">
 
                                                         <c:choose>
-                                                            <c:when test="${sessionScope.identificacionOficial==0}">
+                                                            <c:when test="${sessionScope.identificacionOficial<=0}">
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
                                                                     <span class="textoDocumento">Identificación oficial</span>
                                                                 </div>
@@ -324,7 +346,7 @@
                                                     <div class="row mt-4">
 
                                                         <c:choose>
-                                                            <c:when test="${sessionScope.curp==0}">
+                                                            <c:when test="${sessionScope.curp<=0}">
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
                                                                     <span class="textoDocumento">CURP</span>
                                                                     <small id="passwordHelpBlock" class="form-text text-muted">
@@ -373,26 +395,7 @@
                                                     <div class="row mt-4">
 
                                                         <c:choose>
-                                                            <c:when test="${sessionScope.comprobante==0}">
-
-                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                                    <span class="textoDocumento"><i class="fas fa-check text-success mr-1"></i>Comprobante de domicilio</span>
-                                                                    <small id="passwordHelpBlock" class="form-text text-muted">
-                                                                        Vigencia no mayor a 3 meses.
-                                                                    </small>
-                                                                    <span class="text-success" style="font-size:11px;">Documento subido</span>
-                                                                </div>
-
-                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFile">
-                                                                    <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilioSubido" aria-describedby="fileHelp">
-                                                                    <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
-                                                                    <label class="custom-file-label">
-                                                                        Elegir archivo...
-                                                                    </label>
-                                                                </div>
-
-                                                            </c:when>
-                                                            <c:otherwise>
+                                                            <c:when test="${sessionScope.comprobante<=0}">
 
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
                                                                     <span class="textoDocumento">Comprobante de domicilio</span>
@@ -409,6 +412,25 @@
                                                                         Elegir archivo...
                                                                     </label>
                                                                 </div>
+
+                                                            </c:when>
+                                                            <c:otherwise>
+
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
+                                                                    <span class="textoDocumento"><i class="fas fa-check text-success mr-1"></i>Comprobante de domicilio</span>
+                                                                    <small id="passwordHelpBlock" class="form-text text-muted">
+                                                                        Vigencia no mayor a 3 meses.
+                                                                    </small>
+                                                                    <span class="text-success" style="font-size:11px;">Documento subido</span>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFile">
+                                                                    <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilioSubido" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>                                                                                                                                
 
                                                             </c:otherwise>
 
@@ -448,7 +470,7 @@
 
                                                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 removePadding">
                                                             <select class="form-control" id="motivoConsulta">
-                                                                <option>Seleccione el motivo de la consulta</option>
+                                                                <option value="0">Seleccione el motivo de la consulta</option>
                                                                 <option value="1">Me envió un médico</option>
                                                                 <option value="2">Estudio con diagnóstico de cáncer de mama</option>
                                                                 <option value="3">Me sentí una bolita en el seno</option>
@@ -460,37 +482,32 @@
                                                     </div>
 
                                                     <div class="row mt-4" id="documentoAdjuntoMotivo">
-
-                                                        <!--
-                                                        <div class="col-3 text-center">
-                                                                <span class="textoDocumento">Prueba</span>
-                                                        </div>
-                                                        <div class="custom-file col-8 p-0 m-0" id="customFile">
-                                                                <input type="text" class="form-control" placeholder="Introduce tu hospital de procedencia">                                                        
-                                                        </div>  
-                                                        -->
                                                     </div>
 
                                                     <div class="row mt-4 mb-4" id="otroHospital">
-
-                                                        <!--
-                                                            <div class="col-3 text-center">
-                                                                    <span class="textoDocumento">Prueba</span>
-                                                            </div>
-                                                            <div class="custom-file col-8 p-0 m-0" id="customFile">
-                                                                    <input type="text" class="form-control" placeholder="Introduce tu hospital de procedencia">                                                        
-                                                            </div>  
-                                                        -->
                                                     </div>
 
+
                                                     <!-- Estudios previos Mastografí­a-->
-
-
-
                                                     <div class="row mt-1">
 
                                                         <c:choose>
-                                                            <c:when test="${sessionScope.resultadoMastografia==0}">
+                                                            <c:when test="${sessionScope.resultadoMastografia<=0}">
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
+                                                                    <span class="textoDocumento">Reporte de resultados de estudios previos
+                                                                        mastografía
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
+                                                                    <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMasto" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>
+                                                            </c:when>
+                                                            <c:otherwise>                                                                
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
                                                                     <span class="textoDocumento text-success"><i class="fas fa-check text-success mr-1"></i>Reporte de resultados de estudios previos
                                                                         mastografía
@@ -500,22 +517,6 @@
 
                                                                 <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
                                                                     <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMastoSubido" aria-describedby="fileHelp">
-                                                                    <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
-                                                                    <label class="custom-file-label">
-                                                                        Elegir archivo...
-                                                                    </label>
-                                                                </div>
-                                                            </c:when>
-
-                                                            <c:otherwise>
-                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
-                                                                    <span class="textoDocumento">Reporte de resultados de estudios previos
-                                                                        mastografía
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
-                                                                    <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMasto" aria-describedby="fileHelp">
                                                                     <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
                                                                     <label class="custom-file-label">
                                                                         Elegir archivo...
@@ -558,24 +559,7 @@
                                                     <div class="row mt-4">
 
                                                         <c:choose>
-                                                            <c:when test="${sessionScope.resultadosUltrasonidos==0}">
-                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-12 text-center">
-                                                                    <span class="textoDocumento text-success"><i class="fas fa-check text-success mr-1"></i>Reporte de resultados de estudios previos
-                                                                        ultrasonido
-                                                                    </span>
-                                                                    <span class="text-success" style="font-size:11px;">Documento subido</span>
-                                                                </div>
-
-                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
-                                                                    <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsgSubido" aria-describedby="fileHelp">
-                                                                    <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
-                                                                    <label class="custom-file-label">
-                                                                        Elegir archivo...
-                                                                    </label>
-                                                                </div>
-                                                            </c:when>
-
-                                                            <c:otherwise>
+                                                            <c:when test="${sessionScope.resultadoUltrasonido<=0}">
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-12 text-center">
                                                                     <span class="textoDocumento">Reporte de resultados de estudios previos
                                                                         ultrasonido
@@ -589,6 +573,22 @@
                                                                         Elegir archivo...
                                                                     </label>
                                                                 </div>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-12 text-center">
+                                                                    <span class="textoDocumento text-success"><i class="fas fa-check text-success mr-1"></i>Reporte de resultados de estudios previos
+                                                                        ultrasonido
+                                                                    </span>
+                                                                    <span class="text-success" style="font-size:11px;">Documento subido</span>
+                                                                </div>
+
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
+                                                                    <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsgSubido" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
+                                                                </div>                                                                
                                                             </c:otherwise>
                                                         </c:choose>
 
@@ -628,29 +628,7 @@
                                                     <div class="row mt-4">
 
                                                         <c:choose>
-                                                            <c:when test="${sessionScope.biopsiaPrevia==0}">
-                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput" checked>
-                                                                        <label class="form-check-label textoDocumento text-success">
-                                                                            ¿Te han hecho una biopsia previamente?
-                                                                        </label>
-                                                                        <span class="text-success" style="font-size:11px">Documento subido</span>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
-                                                                    <input type="file" class="custom-file-input" id="fileEstudioBiopsiaSubido" name="fileEstudioBiopsia" aria-describedby="fileHelp">
-                                                                    <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
-                                                                    <label class="custom-file-label">
-                                                                        Elegir archivo...
-                                                                    </label>
-
-
-                                                                </div>
-                                                            </c:when>
-
-                                                            <c:otherwise>
+                                                            <c:when test="${sessionScope.biopsiaPrevia<=0}">
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
                                                                     <div class="form-check">
                                                                         <input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput">
@@ -666,8 +644,26 @@
                                                                     <label class="custom-file-label">
                                                                         Elegir archivo...
                                                                     </label>
+                                                                </div>
 
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" name="biopsiaInput" type="checkbox" onclick="return false;" id="biopsiaInput" checked>
+                                                                        <label class="form-check-label textoDocumento text-success">
+                                                                            ¿Te han hecho una biopsia previamente?
+                                                                        </label>
+                                                                        <span class="text-success" style="font-size:11px">Documento subido</span>
+                                                                    </div>
+                                                                </div>
 
+                                                                <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                                                    <input type="file" class="custom-file-input" id="fileEstudioBiopsiaSubido" name="fileEstudioBiopsia" aria-describedby="fileHelp">
+                                                                    <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                    <label class="custom-file-label">
+                                                                        Elegir archivo...
+                                                                    </label>
                                                                 </div>
                                                             </c:otherwise>
                                                         </c:choose>
@@ -727,7 +723,7 @@
                                             <div class="card-body">
 
                                                 <c:choose>
-                                                    <c:when test="${sessionScope.estadoPaciente==1}">
+                                                    <c:when test="${sessionScope.estadoPaciente>=1}">
                                                         <div class="row">
                                                             <div class="col-12">
                                                                 <h5 class="card-title display-4 tituloAprobacion text-center">Tu solicitud
@@ -873,13 +869,13 @@
                                                                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                                                     <div class="card-body m-3 justificar">
                                                                         El primer día nuestro servicio de <strong>navegación</strong>
-                                                                        te recibirá¡ en el área de preconsulta, te llamarán por tu nombre y te pedirán estudios previos que tengas. Al terminar, ellas
+                                                                        te recibirá en el área de preconsulta, te llamarán por tu nombre y te pedirán estudios previos que tengas. Al terminar, ellas
                                                                         te navegarán por el hospital y te llevarán al servicio de imagenología,
                                                                         donde te harán los estudios de <strong>mastografía</strong>
                                                                         y
                                                                         <strong>ultrasonido de mama</strong>. Es requisito del hospital
                                                                         que estos estudios se hagan aquí, aunque ya te los hayan hecho
-                                                                        en otro lugar. También, el médico valorará¡ si necesitas que te
+                                                                        en otro lugar. También, el médico valorará si necesitas que te
                                                                         realicen una biopsia, si ya te realizaron una biopsia fuera del
                                                                         INCan debes pedir las laminillas y bloques de parafina en el
                                                                         lugar en que te realizaste la biopsia y traerlos para que los
@@ -984,9 +980,9 @@
                                                                 <div id="collapseSecondTwo" class="collapse" aria-labelledby="headingSecondTwo" data-parent="#accordion2">
                                                                     <div class="card-body m-3 justificar">
                                                                         El segundo día pasarás a <strong>consulta</strong> con el médico,
-                                                                        revisará todos tus estudios, te explicará¡ si necesitas otros
-                                                                        y te dirá¡ que sigue. Al igual que el primer día ,nuestro servicio
-                                                                        de navegación te recibirá¡ en el área de preconsulta,  nuevamente
+                                                                        revisará todos tus estudios, te explicará si necesitas otros
+                                                                        y te dirá que sigue. Al igual que el primer día ,nuestro servicio
+                                                                        de navegación te recibirá en el área de preconsulta,  nuevamente
                                                                         te pedirán los documentos que entregaste el día anterior. Si
                                                                         te realizaron una biopsia fuera del INCan debes traer dos copias
                                                                         del reporte de patología que contiene los resultados. Al terminar,
@@ -1351,7 +1347,7 @@
                                                             investigación y forman profesionales de la salud.
                                                         </p>
                                                         <p>
-                                                            Tenemos personal calificado que te acompañará¡ durante todo el proceso diagnóstico, de tratamiento, de rehabilitación, seguimiento
+                                                            Tenemos personal calificado que te acompañará durante todo el proceso diagnóstico, de tratamiento, de rehabilitación, seguimiento
                                                             y supervivencia.
 
                                                         </p>
@@ -1381,7 +1377,7 @@
                                                     <div class="col-10">
                                                         <ul style="list-style:none" class="justificar">
                                                             <li>1.- La preconsulta solo es un método para evaluar tu diagnóstico
-                                                                y el área médica determinará¡ si eres candidata para ser paciente
+                                                                y el área médica determinará si eres candidata para ser paciente
                                                                 del Instituto. Por lo que es indispensable que tengas un diagnóstico
                                                                 oncológico (de cáncer) probable o definitivo.</li>
                                                             <p>
@@ -1440,7 +1436,7 @@
 
             </div>
         </div>
-        <script src="js/validacionesPotencial.js" type="module"></script>
+        <script src="js/validacionesPotencial.js" type="application/javascript"></script>
     </body>
 
 </html>
