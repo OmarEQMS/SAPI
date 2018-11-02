@@ -181,38 +181,38 @@
                 <div class="col-6 text-center">
                     <ul class="list-group">
                         <li class="list-group-item">Estado Civil:
-                            <strong>Casada</strong>
+                            <strong>${sessionScope.estadoCivil}</strong>
                         </li>
                         <li class="list-group-item">Fecha de Nacimiento:
-                            <strong>12 de enero de 1989</strong>
+                            <strong>${sessionScope.fechaNacimiento}</strong>
                         </li>
                         <li class="list-group-item">Lugar de residencia:
-                            <strong>Morelos, Cuernavaca</strong>
+                            <strong>${sessionScope.estado}, ${sessionScope.municipio}</strong>
                         </li>
                         <li class="list-group-item">Direccion:
-                            <strong>Calle del empleado #421, CP. 2345</strong>
+                            <strong>${sessionScope.calle}, # ${sessionScope.noExterior}, interior ${sessionScope.noInt}, colonia ${sessionScope.colonia}</strong>
                         </li>
                         <li class="list-group-item">Fecha de Registro:
-                            <strong>12 de julio de 2018</strong>
+                            <strong>${sessionScope.fechaRegistro}</strong>
                         </li>
                     </ul>
                 </div>
                 <div class="col-6 text-center">
                     <ul class="list-group">
                         <li class="list-group-item">CURP:
-                            <strong>PEFU123567TAM23</strong>
+                            <strong>${sessionScope.curp}</strong>
                         </li>
                         <li class="list-group-item">Teléfono:
-                            <strong>12344567</strong>
+                            <strong>${sessionScope.telefono}</strong>
                         </li>
                         <li class="list-group-item">Edad:
                             <strong>29</strong>
                         </li>
                         <li class="list-group-item">Correo:
-                            <strong>tam@correo.mx</strong>
+                            <strong>${sessionScope.correo}</strong>
                         </li>
                         <li class="list-group-item">Visita:
-                            <span class="badge badge-success">Primera vez</span>
+                            <span class="badge badge-success">${sessionScope.segundaOpinion}</span>
                         </li>
                     </ul>
                 </div>

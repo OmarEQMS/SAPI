@@ -29,7 +29,7 @@ public class DireccionServicioImpl implements DireccionServicio {
         Direccion direccion = null;
 
         //Call del store procedure
-        String stProcedure = "mostrarDireccion(?)";
+        String stProcedure = "CALL mostrarDireccion(?)";
 
         try {
             direccion = new Direccion();

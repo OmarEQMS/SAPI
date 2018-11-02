@@ -176,7 +176,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL borradoLogicoEstadoPacientePaciente";
+        String stProcedure = "CALL borradoLogicoEstadoPacientePaciente ";
         boolean exito = false;
 
         try{
@@ -261,6 +261,42 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
             idEstadoPaciente = -1;
 	}
         return idEstadoPaciente;
+    }
+
+    @Override
+    public EstadoPacientePaciente mostrarEstadoPacientePacienteIdPaciente(int idPaciente) {
+         Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarEstadoPacientePacienteIdPaciente(?)";
+        EstadoPacientePaciente estadoPacientePaciente = null;
+     
+        try {
+            conn = Conexion.getConnection();
+            estadoPacientePaciente = new EstadoPacientePaciente();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+                  
+            rs = cstmt.executeQuery();
+            rs.next();
+            estadoPacientePaciente.setIdEstadoPacientePaciente(rs.getInt("idEstadoPacientePaciente"));
+            estadoPacientePaciente.setIdEstadoPaciente(rs.getInt("idEstadoPaciente"));
+            estadoPacientePaciente.setIdPaciente(rs.getInt("idEstadoPaciente"));
+            estadoPacientePaciente.setFecha(rs.getTimestamp("fecha"));
+            estadoPacientePaciente.setSegundaOpinion(rs.getInt("segundaOpinion"));
+            estadoPacientePaciente.setResultados(rs.getInt("resultados"));
+            estadoPacientePaciente.setIdEmpleado(rs.getInt("idEmpleado"));
+            
+            conn.close();
+            cstmt.close();
+            rs.close();
+            
+        } catch (SQLException ex) {
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                   .concat(ex.getMessage()));
+           estadoPacientePaciente = null;
+        }   
+        return estadoPacientePaciente;
     }
     
 }

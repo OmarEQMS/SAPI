@@ -29,10 +29,11 @@ public class PacienteServicioImpl implements PacienteServicio{
         
         Paciente paciente = new Paciente();
         
-        String stProcedure ="";
+        String stProcedure ="CALL mostrarPaciente(?)";
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
             rs = cstmt.executeQuery();
             rs.next();
             
@@ -65,7 +66,7 @@ public class PacienteServicioImpl implements PacienteServicio{
         
         Paciente paciente = new Paciente();
         
-        String stProcedure ="";
+        String stProcedure ="CALL mostrarPaciente(?)";
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
