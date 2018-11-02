@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
     //Redirige a documentos
     $('#irADocumentos').on('click', function () {
         $.get("SAPI", {
@@ -20,6 +21,7 @@ $(document).ready(function () {
         );
     });
     
+
     //Eliminar cuenta
     $('#eliminarCuentaNavegadora').on('click', () => {
 
@@ -31,15 +33,15 @@ $(document).ready(function () {
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
-            .then((eliminar) => {
-                if (eliminar) {
+                .then((eliminar) => {
+                    if (eliminar) {
 
 
 
-                } else {
+                    } else {
 
-                }
-            });
+                    }
+                });
 
     });
 
@@ -54,17 +56,17 @@ $(document).ready(function () {
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
-            .then((enviar) => {
-                if (enviar) {
+                .then((enviar) => {
+                    if (enviar) {
 
-                    //ajax para aprobar
+                        //ajax para aprobar
 
-                    location.href = "./index.html"
+                        location.href = "./index.html"
 
-                } else {
+                    } else {
 
-                }
-            });
+                    }
+                });
 
     });
 
@@ -78,15 +80,15 @@ $(document).ready(function () {
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
-            .then((cancelar) => {
-                if (cancelar) {
+                .then((cancelar) => {
+                    if (cancelar) {
 
 
 
-                } else {
+                    } else {
 
-                }
-            });
+                    }
+                });
 
     });
 
@@ -101,15 +103,15 @@ $(document).ready(function () {
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
-            .then((enviar) => {
-                if (enviar) {
+                .then((enviar) => {
+                    if (enviar) {
 
 
 
-                } else {
+                    } else {
 
-                }
-            });
+                    }
+                });
 
     });
 
@@ -124,17 +126,17 @@ $(document).ready(function () {
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
-            .then((aprobar) => {
-                if (aprobar) {
+                .then((aprobar) => {
+                    if (aprobar) {
 
-                    //ajax para aprobar
+                        //ajax para aprobar
 
-                    //location.href = "./documentos3.html"
+                        //location.href = "./documentos3.html"
 
-                } else {
+                    } else {
 
-                }
-            });
+                    }
+                });
 
     });
 
@@ -148,15 +150,15 @@ $(document).ready(function () {
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
-            .then((eliminar) => {
-                if (eliminar) {
+                .then((eliminar) => {
+                    if (eliminar) {
 
 
 
-                } else {
+                    } else {
 
-                }
-            });
+                    }
+                });
 
     });
 
@@ -170,84 +172,161 @@ $(document).ready(function () {
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
-            .then((eliminar) => {
-                if (eliminar) {
+                .then((eliminar) => {
+                    if (eliminar) {
 
 
 
-                } else {
+                    } else {
 
-                }
-            });
+                    }
+                });
 
     });
 
-     $('#guardarCambios').on('click', function () {
-
-        if(isValidPhoneNumber($("#telefono")) &&  isValidEmail($("#correo")) ){
-        
-        console.log("Presionó GuardarCambios")
-        var form = $("form")[0];
-        var data = new FormData(form);
-        data.append("key", "cambiarDatos");
-        data.forEach((value, key) => {
-            console.log(key + " " + value);
-        })
-
-        $.ajax({
-            url: "NavegadoraController",
-            data: data,
-            method: "POST",
-            encType: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            cache: false,
-             success: function (response) {
-                $.post("SAPI", {
-                    file: "navegadora/cuentaNavegadora.jsp"
-                },
-                        function (response, status, xhr) {
-                            console.log("El ajax fue exitoso!!-----------------------");
-
-                             if (status == "success") {
-                                 
-                                 
-                                 
-                             if (response == "error") {
-                             $("#msj-error").show();
-                             } else {
-                             
-                             swal({
-                                title: 'Buen Trabajo',
-                                text: "Cambios guardados correctamente",
-                                type: 'success',
-                                confirmButtonColor: '#3085d6',
-                                confirmButtonText: 'Ok'
-                            })
-                            
-                             document.open("text/html", "replace");
-                             document.write(response);
-                             document.close();
-                             }
-                             }
-
+    $('#irADashboard').on('click', function () {
+        $.post("SAPI", {
+            file: "navegadora/index.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
                         }
-                );
-            },
-            error: function (xhr) {
-                //alert(xhr.statusText);
-            }
-            
-        });
-    }else{
-        swal({
-  title: "Datos invalidos!",
-  text: "Revisa todos los campos antes de continuar",
-  icon: "error",
+                    }
+                }
+        );
     });
-    }
+
+    $('#idACalendario').on('click', function () {
+        $.post("SAPI", {
+            file: "navegadora/calendar.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
     });
-    
+    $('#irARendimiento').on('click', function () {
+        $.post("SAPI", {
+            file: "navegadora/rendimiento.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+
+
+    $('#irACuenta').on('click', function () {
+        $.post("SAPI", {
+            file: "navegadora/cuentaNavegadora.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+
+
+    $('#guardarCambios').on('click', function () {
+
+        if (isValidPhoneNumber($("#telefono")) && isValidEmail($("#correo"))) {
+
+            console.log("Presionó GuardarCambios")
+            var form = $("form")[0];
+            var data = new FormData(form);
+            data.append("key", "cambiarDatos");
+            data.forEach((value, key) => {
+                console.log(key + " " + value);
+            })
+
+            $.ajax({
+                url: "NavegadoraController",
+                data: data,
+                method: "POST",
+                encType: "multipart/form-data",
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (response) {
+                    $.post("SAPI", {
+                        file: "navegadora/cuentaNavegadora.jsp"
+                    },
+                            function (response, status, xhr) {
+                                console.log("El ajax fue exitoso!!-----------------------");
+
+                                if (status == "success") {
+
+
+
+                                    if (response == "error") {
+                                        $("#msj-error").show();
+                                    } else {
+
+                                        swal({
+                                            title: 'Buen Trabajo',
+                                            text: "Cambios guardados correctamente",
+                                            type: 'success',
+                                            confirmButtonColor: '#3085d6',
+                                            confirmButtonText: 'Ok'
+                                        })
+
+                                        document.open("text/html", "replace");
+                                        document.write(response);
+                                        document.close();
+                                    }
+                                }
+
+                            }
+                    );
+                },
+                error: function (xhr) {
+                    //alert(xhr.statusText);
+                }
+
+            });
+        } else {
+            swal({
+                title: "Datos invalidos!",
+                text: "Revisa todos los campos antes de continuar",
+                icon: "error",
+            });
+        }
+    });
+
     //Cambiar imagen temporalmente en elfront
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -264,8 +343,8 @@ $(document).ready(function () {
         console.log("Llegó :)");
         readURL(this);
     });
-    
-        //Cambiar contraseña
+
+    //Cambiar contraseña
 
     $("#btn-updatePassword").on('click', function () {
 
@@ -312,7 +391,7 @@ $(document).ready(function () {
                 });
     });
 
-function isValidEmail (input)  {
+    function isValidEmail(input) {
 
         var m = input.val();
 
@@ -332,9 +411,10 @@ function isValidEmail (input)  {
 
         return true;
 
-    };
-    
-    function isValidPhoneNumber (input) {
+    }
+    ;
+
+    function isValidPhoneNumber(input) {
 
         var m = input.val();
 
@@ -352,7 +432,8 @@ function isValidEmail (input)  {
         }
 
         return true;
-    };
+    }
+    ;
 
 });
 

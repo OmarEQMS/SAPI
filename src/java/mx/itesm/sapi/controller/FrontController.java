@@ -228,12 +228,25 @@ public class FrontController extends HttpServlet {
                                      */
                                     break;
                                 }
-                                
-                                case "navegadora/documentos.jsp":{
-                                
-                                    
-                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
-                                break;
+
+                                case "navegadora/index.jsp":
+                                {
+                                    System.out.println("Index Navegadora ");
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al dashboard navgeadora
+                                    break;
+                                }
+                                 case "navegadora/calendar.jsp":
+                                {
+                                    System.out.println("Index Navegadora ");
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al calendario de navgeadora
+                                    break;
+                                }
+                                 case "navegadora/rendimiento.jsp":
+                                {
+                                    System.out.println("Index Navegadora ");
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
+                                    break;
+
                                 }
                             }
                             break;

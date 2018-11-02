@@ -146,8 +146,8 @@ $(document).ready(function () {
     function isValidNoExpediente (input) {
 
         var m = input.val();
-
-        var expreg = /^[a-zA-Z0-9]{9,9}$/;
+     
+        var expreg = /^([a-zA-Z]{3}|[\d]{3})([\d]{6})$/;
 
 
         if (!expreg.test(m)) {
@@ -171,7 +171,7 @@ $(document).ready(function () {
         var m = input.val();
 
         ////Expresion regular por el estandard: RFC 5322
-        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+        var expreg = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
         if (!expreg.test(m)) {
 

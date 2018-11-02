@@ -1,7 +1,7 @@
 <!-- 
     Document   : recuperarContrasena
     Created on : 26/10/2018, 11:10:36 AM
-    Author     : Angel GTZ
+    Author     : Angel GTZ, Julio Badillo
 -->
 
 <!DOCTYPE html>
@@ -46,12 +46,17 @@
 
             <div class="row justify-content-center mt-4">
                 <div class="col-12">
-                    <button class="btn btn-danger btn-block" id="recuperarEnviarCorreo">Recuperar</button>
+                    <button class="btn btn-danger btn-block btn-recuperar" id="recuperarEnviarCorreo">Recuperar</button> 
+                    
                 </div>
                 <div class="col-12">
-                    <button class="btn btn-primary btn-block mt-2" id="ir-a-loginR">Regresar</button>
+                     <button class="btn btn-primary btn-block btn-regresar mt-3" id="ir-a-loginR">Regresar</button> 
+                    
                 </div>
             </div>
+            
+            
+             
 
         </form>
 

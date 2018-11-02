@@ -102,7 +102,7 @@ $('#fileEstudioBiopsia').on('change', function () {
     }
 });
 
-//7.- Biopsia previa
+//4.5.1 - Motivo Preconsulta
 $('body').on('change', '#referenciaArchivo', function () {
     
     cambiaNombre($(this));
@@ -113,6 +113,8 @@ $('body').on('change', '#referenciaArchivo', function () {
         $('#error-referencia').show();
     }
 });
+
+
 
 //Métodos validaciones
 function validDocument(input, archivos) {

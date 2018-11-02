@@ -23,6 +23,31 @@ body {
   background-size: cover;
 }
 
+.btn-recuperar{
+    border-radius: 0px !important;
+    border:none;
+    padding: 15px;
+    font-family:'Roboto Condensed';
+    font-size: 15px;
+    width: 95% !important;
+    margin: auto;
+    letter-spacing: 1px;
+    background-color:rgb(252, 57, 85) !important;
+    
+}
+
+.btn-regresar{
+    border-radius: 0px !important;
+    border:none;
+    padding: 15px;
+    font-family:'Roboto Condensed';
+    font-size: 15px;
+    width: 95% !important;
+    margin: auto;
+    letter-spacing: 1px;
+    background-color: #26537C !important;
+}
+
 .swal-button--confirm {
     padding: 7px 19px;
     border-radius: 25px;

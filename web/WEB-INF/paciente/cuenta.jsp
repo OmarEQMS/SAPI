@@ -209,12 +209,12 @@
                                 <div class="col-4">
                                     <label for="myEmail">Correo</label>
                                     <input type="text" class="form-control" id="correo" name="correo" value="${sessionScope.correo}" placeholder="Introduzca su correo" required />
-                                    <span class="text-danger error-correo" id="error-correo">Formato incorrecto</span>
+                                    <span class="text-danger error-correo" id="error-correo">Formato incorrecto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
                                 </div>
                                 <div class="col-4">
                                     <label for="numExpediente">Número de Expediente</label>
                                     <input type="text" class="form-control" id="noExpediente" value="${sessionScope.expediente}" name="noExpediente" placeholder="Introduce numero de expediente" />
-                                    <span class="text-danger error-noExpediente" id="error-noExpediente">El formato no es correcto, deben ser 9 caracteres.</span>
+                                    <span class="text-danger error-noExpediente" id="error-noExpediente">El formato no es correcto, deben ser 9 caracteres y solo los 3 primeros pueden empezar con letras.</span>
                                 </div>
                             </div>
 
