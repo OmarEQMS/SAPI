@@ -63,7 +63,7 @@
                     <div class="row justify-content-center mb-2">
                         <div class="col-6 text-center">
                             <span class="textoSidebar m-0">${sessionScope.nombre} ${sessionScope.primerApellido}</span>
-                            <span class="textoSidebar userSidebar m-0">${sessionScope.usuario}</span>
+                            <span class="textoSidebar userSidebar m-0">@${sessionScope.usuario}</span>
                         </div>
                     </div>
 

@@ -18,6 +18,7 @@ public interface MedicoEspecialidadServicio {
     
     public int agregarMedicoEspecialidad(MedicoEspecialidad medicoEspecialidad);
     public MedicoEspecialidad mostrarMedicoEspecialidad(int idMedicoEspecialidad);
+    public MedicoEspecialidad mostrarMedicoEspecialidadEmpleado(int idEmpleado);
     public List<MedicoEspecialidad> mostrarMedicoEspecialidad();
     public boolean borradoLogicoMedicoEspecialidad(int idMedicoEspecialidad);
     public boolean actualizarMedicoEspecialidad(MedicoEspecialidad medicoEspecialidad);

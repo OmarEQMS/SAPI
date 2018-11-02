@@ -14,6 +14,7 @@ $(document).ready(function () {
      $('#error-fecha').hide();
      $('#error-fechaFin').hide();
      $('#error-fechaInicio').hide();
+     $("#error-telefono").hide();
         
     //1.- Correo
     $('#correo').on('change', function(){
@@ -37,9 +38,9 @@ $(document).ready(function () {
     //3.- Telefono
     $('#telefono').on('change', function(){
         if(isValidPhoneNumber($('#telefono'))){
-            $('#error-tel').hide();
+            $('#error-telefono').hide();
         }else{
-            $('#error-tel').show();
+            $('#error-telefono').show();
         }
     }); 
 
@@ -146,8 +147,8 @@ $(document).ready(function () {
     function isValidNoExpediente (input) {
 
         var m = input.val();
-     
-        var expreg = /^([a-zA-Z]{3}|[\d]{3})([\d]{6})$/;
+
+        var expreg = /^[a-zA-Z0-9]{9,9}$/;
 
 
         if (!expreg.test(m)) {
@@ -171,7 +172,7 @@ $(document).ready(function () {
         var m = input.val();
 
         ////Expresion regular por el estandard: RFC 5322
-        var expreg = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
         if (!expreg.test(m)) {
 
@@ -301,7 +302,7 @@ $(document).ready(function () {
         return true;
 
 
-    };
+    }
 
    function isValidExpediente(input){
 
