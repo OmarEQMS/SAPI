@@ -301,7 +301,7 @@ $(document).ready(function () {
         return true;
 
 
-    }
+    };
 
    function isValidExpediente(input){
 

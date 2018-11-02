@@ -39,7 +39,7 @@
         <script src="js/calendarPaciente.js"></script>
         <script src="js/appPaciente.js"></script>
         <script src="js/ajaxPaciente.js"></script>         
-        <script type="module" src="js/validacionesPaciente.js"></script> 
+        <script  src="js/validacionesPaciente.js"></script> 
 
     </head>
 
@@ -222,7 +222,7 @@
                             <div class="form-group row justify-content-center">
                                 <div class="col-4">
                                     <label for="telephoneNum">Teléfono</label>
-                                    <input type="text" class="form-control" value="${sessionScope.telefono}" id="telephoneNum" name="telefono" placeholder="Introduce teléfono"
+                                    <input type="text" class="form-control" value="${sessionScope.telefono}" id="telefono" name="telefono" placeholder="Introduce teléfono"
                                            required />
                                     <span class="text-danger" id="error-tel">El formato no es correcto, deben ser 10 dígitos.</span>
                                 </div>
