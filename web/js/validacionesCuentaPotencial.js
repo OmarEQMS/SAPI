@@ -5,8 +5,8 @@
  */
 
 //1.- Correo
-$('#myEmail1').on('change', function () {
-    if (isValidEmail($('#myEmail1'))) {
+$('#myEmail').on('change', function () {
+    if (isValidEmail($('#myEmail'))) {
         $('#error-correo').hide();
         console.log('saludos');
     } else {
@@ -68,7 +68,7 @@ function isValidEmail(input) {
     var m = input.val();
 
     ////Expresion regular por el estandard: RFC 5322
-    var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+    var expreg = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
     if (!expreg.test(m)) {
 
