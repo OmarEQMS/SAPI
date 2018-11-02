@@ -346,8 +346,7 @@ public class PacienteController extends HttpServlet {
                         while (documentosTotales > -1) {
                             idDocumento = docuemntoEstudios.get(documentosTotales).getIdDocumentoEstudio();
                             documentoEstudioServicio.borradoLogicoDocumentoEstudio(idDocumento);
-                        
-                        documentosTotales = documentosTotales - 1;
+                            documentosTotales = documentosTotales - 1;
                         }
                     }
 
@@ -360,10 +359,19 @@ public class PacienteController extends HttpServlet {
                         while (segurosTotales > -1) {
                             idSeguro = seguros.get(segurosTotales).getIdPacienteSeguro();
                             pacienteSeguroServicio.borradoLogicoPacienteSeguro(idSeguro);
-                            segurosTotales = segurosTotales -1;
+                            segurosTotales = segurosTotales - 1;
                         }
 
                     }
+                    
+                      BiopsiaServicioImpl biopsiaServicio = new BiopsiaServicioImpl();
+                      if(biopsiaServicio.mostrarBiopsiaIdEspecifico(idPaciente) != null){
+                      List<Biopsia> biopsias = new ArrayList<>();
+                      biopsias = biopsiaServicio.mostrarBiopsiaIdEspecifico(idPaciente);
+                      
+                      }
+                    
+                    
 
                     if (cuentaServicio.mostrarCuenta(idCuenta) != null) {
                         //     Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
@@ -379,8 +387,7 @@ public class PacienteController extends HttpServlet {
                     /**
                      * Al no tener cuenta se le redirecciona al login
                      */
-                    BiopsiaServicioImpl biopsiaServicio = new BiopsiaServicioImpl();
-                    Biopsia biopsia = biopsiaServicio.mostrarBiopsia(idPaciente);
+                  
 //van encadenando
                     OtroResultadoPatologiaServicioImpl otroResultadoPatologiaServicio = new OtroResultadoPatologiaServicioImpl();
                     OtroResultadoPatologia otroResultadoPatologia = otroResultadoPatologiaServicio.mostrarOtroResultadoPatologia(biopsia.getIdBiopsia());
