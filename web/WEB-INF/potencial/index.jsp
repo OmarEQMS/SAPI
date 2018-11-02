@@ -482,33 +482,13 @@
                                                     </div>
 
                                                     <div class="row mt-4" id="documentoAdjuntoMotivo">
-
-                                                        <!--
-                                                        <div class="col-3 text-center">
-                                                                <span class="textoDocumento">Prueba</span>
-                                                        </div>
-                                                        <div class="custom-file col-8 p-0 m-0" id="customFile">
-                                                                <input type="text" class="form-control" placeholder="Introduce tu hospital de procedencia">                                                        
-                                                        </div>  
-                                                        -->
                                                     </div>
 
                                                     <div class="row mt-4 mb-4" id="otroHospital">
-
-                                                        <!--
-                                                            <div class="col-3 text-center">
-                                                                    <span class="textoDocumento">Prueba</span>
-                                                            </div>
-                                                            <div class="custom-file col-8 p-0 m-0" id="customFile">
-                                                                    <input type="text" class="form-control" placeholder="Introduce tu hospital de procedencia">                                                        
-                                                            </div>  
-                                                        -->
                                                     </div>
 
+
                                                     <!-- Estudios previos Mastografí­a-->
-
-
-
                                                     <div class="row mt-1">
 
                                                         <c:choose>
