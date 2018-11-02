@@ -766,7 +766,7 @@ public class PotencialController extends HttpServlet {
                      */
                     return;
                 } else {
-                    /**
+                   /**
                      * Elimino su cuenta (borrrado logico)
                      */
                     /**
@@ -779,6 +779,7 @@ public class PotencialController extends HttpServlet {
                     System.out.println(idCuenta);
                     System.out.println(idPersona);
 
+                    
                     /**
                      * creo los objetos de las tablas a modificar su estatus
                      */
@@ -788,34 +789,34 @@ public class PotencialController extends HttpServlet {
                     PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                     
                     Persona persona = personaServicio.mostrarPersona(idPersona);
-                    personaServicio.borradoLogicoPersona(persona.getIdPersona());
+                   // personaServicio.borradoLogicoPersona(persona.getIdPersona());
 
                     PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
                     if (pacienteServicio.mostrarPaciente(idPaciente) != null) {
 
                         Paciente paciente = pacienteServicio.mostrarPaciente(idPaciente);
-                        pacienteServicio.borradoLogicoPaciente(paciente.getIdCuenta());
+                        //pacienteServicio.borradoLogicoPaciente(paciente.getIdCuenta());
                     }
 
                     LoginServicioImpl loginServicio = new LoginServicioImpl();
                     if (loginServicio.mostrarLoginIdCuenta(idCuenta) != null) {
                         Login login = loginServicio.mostrarLoginIdCuenta(idCuenta);
-                        loginServicio.borradoLogicoLogin(login.getIdLogin());
+                       // loginServicio.borradoLogicoLogin(login.getIdLogin());
                     }
                     DireccionServicioImpl direccionServicio = new DireccionServicioImpl();
                     if (direccionServicio.mostrarDireccion(persona.getIdDireccion()) != null) {
                         Direccion direccion = direccionServicio.mostrarDireccion(persona.getIdDireccion());
-                        direccionServicio.borradoLogicoDireccion(direccion.getIdDireccion());
+                       // direccionServicio.borradoLogicoDireccion(direccion.getIdDireccion());
                     }
                     PicServicioImpl picServicio = new PicServicioImpl();
                     if (picServicio.mostrarPic(idPersona) != null) {
                         Pic pic = picServicio.mostrarPic(idPersona);
-                        picServicio.borradoLogicoPic(pic.getIdPic());
+                       // picServicio.borradoLogicoPic(pic.getIdPic());
                     }
                     EstadoPacientePacienteServiceImpl estadoPacientePacienteServicio = new EstadoPacientePacienteServiceImpl();
                     if (estadoPacientePacienteServicio.mostrarEstadoPacientePacienteIdPaciente(idPaciente) != null) {
                         EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServicio.mostrarEstadoPacientePacienteIdPaciente(idPaciente);
-                        estadoPacientePacienteServicio.borradoLogicoEstadoPacientePaciente(estadoPacientePaciente.getIdEstadoPacientePaciente());
+                       // estadoPacientePacienteServicio.borradoLogicoEstadoPacientePaciente(estadoPacientePaciente.getIdEstadoPacientePaciente());
                     }
 
                     CitaServicioImpl citaServicio = new CitaServicioImpl();
@@ -870,7 +871,7 @@ public class PotencialController extends HttpServlet {
                         PacienteNavegadora pacienteNavegadora = pacienteNavegadoraServicio.mostrarPacienteNavegadoraIdPaciente(idPaciente);
                         pacienteNavegadoraServicio.borradoLogicoPacienteNavegadora(pacienteNavegadora.getIdPacienteNavegadora());
 
-                    } else System.out.println("No entre");
+                    } 
                     DocumentoInicialServicioImpl documentoInicialServicio = new DocumentoInicialServicioImpl();
                     if (documentoInicialServicio.mostrarDocumentoInicialIdPaciente(idPaciente) != null) {
                         DocumentoInicial documentoInicial = documentoInicialServicio.mostrarDocumentoInicialIdPaciente(idPaciente);
@@ -890,11 +891,11 @@ public class PotencialController extends HttpServlet {
                     }
                     
                     if (cuentaServicio.mostrarCuenta(idCuenta) != null) {
-                        Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
-                        System.out.println(cuenta.getEstatus());
-                        cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
-                        System.out.println(cuenta.getEstatus());
-                    } else System.out.println("NO PINCHES ENTRE");
+                   //     Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+                      
+                  //      cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
+                       
+                    } 
 
                     /**
                      * Implemento el borrado logico llamando a su objetoServicio
@@ -904,10 +905,11 @@ public class PotencialController extends HttpServlet {
                     /**
                      * Al no tener cuenta se le redirecciona al login
                      */
-                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-
+                     
+                    
+                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+                    
                 }
-
                 break;
             }
 

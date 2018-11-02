@@ -277,7 +277,7 @@ public class CitaServicioImpl implements CitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL solicitarPreconsulta(?,?,?,?);";
+        String stProcedure = "CALL solicitarPreconsulta(?,?,?,?)";
         int id = -1;
 
         try {
@@ -319,7 +319,7 @@ public class CitaServicioImpl implements CitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarEstadoPreconsulta(?);";
+        String stProcedure = "CALL mostrarEstadoPreconsulta(?)";
         String estadoCita = null;
 
         try {

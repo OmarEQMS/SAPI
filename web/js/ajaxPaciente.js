@@ -209,10 +209,25 @@ $(document).ready(function () {
                             url: "PacienteController",
                             data: {
                                 key: "eliminarCuentaPaciente",
-                                idCuenta: $("#sesionPaciente").val(),
+                                idCuenta: $("#sesionPaciente").val()
 
                             },
-                            method: "POST"
+                            method: "POST",
+                            success: function (response) {
+                                if (response == "error") {
+                                     console.log("Error al cargar");
+                                } else {
+                                    console.log("Intentando redireccionar");
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
+                                   
+                                }
+                            },
+                            error: function (xhr) {
+
+                            }
+
                         });
 
 
@@ -224,7 +239,6 @@ $(document).ready(function () {
 
 
     });
-
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta1').on('click', function () {
         console.log("Salir cuenta");
