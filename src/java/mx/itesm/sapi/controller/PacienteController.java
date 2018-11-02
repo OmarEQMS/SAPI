@@ -272,7 +272,6 @@ public class PacienteController extends HttpServlet {
                                 int idPersona = (int) sesion.getAttribute("idPersona");
                                 int idPaciente = (int) sesion.getAttribute("idPaciente");
 
-
                                 /**
                                  * creo los objetos de las tablas a modificar su
                                  * estatus
@@ -387,7 +386,7 @@ public class PacienteController extends HttpServlet {
                                     PacienteAlergia pacienteAlergia = pacienteAlergiaServicio.mostrarPacienteAlergiaIdPaciente(idPaciente);
                                     pacienteAlergiaServicio.borradoLogicoPacienteAlergia(pacienteAlergia.getIdPacienteAlergia());
                                 }
-
+//aqui
                                 DocumentoEstudioServicioImpl documentoEstudioServicio = new DocumentoEstudioServicioImpl();
                                 if (documentoEstudioServicio.mostrarDocumentoEstudioIdEspecifico(idPaciente) != null) {
                                     List<DocumentoEstudio> docuemntoEstudios = new ArrayList<>();
@@ -416,12 +415,34 @@ public class PacienteController extends HttpServlet {
                                 }
 
                                 BiopsiaServicioImpl biopsiaServicio = new BiopsiaServicioImpl();
-                                if (biopsiaServicio.mostrarBiopsiaIdEspecifico(idPaciente) != null) {
+                                if (biopsiaServicio.mostrarAllBiopsiaIdEspecifico(idPaciente) != null) {
                                     List<Biopsia> biopsias = new ArrayList<>();
-                                    biopsias = biopsiaServicio.mostrarBiopsiaIdEspecifico(idPaciente);
-                                     biopsiaServicio.borradoLogicoBiopsia(biopsia.getIdBiopsia());
+                                    biopsias = biopsiaServicio.mostrarAllBiopsiaIdEspecifico(idPaciente);
+                                    int biopsiasTotales = biopsias.size() - 1;
+                                    int idBiopsia = 0;
+                                    while (biopsiasTotales > -1) {
+                                        idBiopsia = biopsias.get(biopsiasTotales).getIdBiopsia();
+                                        OtroResultadoPatologiaServicioImpl otroResultadoPatologiaServicio = new OtroResultadoPatologiaServicioImpl();
+                                        if (otroResultadoPatologiaServicio.mostrarOtroResultadoPatologiaIdBiopsia(idBiopsia) != null) {
+                                            OtroResultadoPatologia otroResultadoPatologia = otroResultadoPatologiaServicio.mostrarOtroResultadoPatologiaIdBiopsia(idBiopsia);
+                                            otroResultadoPatologiaServicio.borradoLogicoOtroResultadoPatologia(otroResultadoPatologia.getIdOtroResultadoPatologia());
+
+                                        }
+                                        biopsiaServicio.borradoLogicoBiopsia(idBiopsia);
+                                        biopsiasTotales = biopsiasTotales - 1;
+                                    }
 
                                 }
+                                
+                                  TratamientoPacienteServiceImpl tratamientoPacienteServicio = new TratamientoPacienteServiceImpl();
+                                TratamientoPaciente tratamientoPaciente = tratamientoPacienteServicio.mostrarTratamientoPaciente(idPaciente);
+
+                                
+                                
+                                
+                                
+                                
+                                
 
                                 if (cuentaServicio.mostrarCuenta(idCuenta) != null) {
                                     //     Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
@@ -438,13 +459,9 @@ public class PacienteController extends HttpServlet {
                                  * Al no tener cuenta se le redirecciona al
                                  * login
                                  */
-//van encadenando
-                                OtroResultadoPatologiaServicioImpl otroResultadoPatologiaServicio = new OtroResultadoPatologiaServicioImpl();
-                                OtroResultadoPatologia otroResultadoPatologia = otroResultadoPatologiaServicio.mostrarOtroResultadoPatologia(biopsia.getIdBiopsia());
-
-                                TratamientoPacienteServiceImpl tratamientoPacienteServicio = new TratamientoPacienteServiceImpl();
-                                TratamientoPaciente tratamientoPaciente = tratamientoPacienteServicio.mostrarTratamientoPaciente(idPaciente);
-//adentro
+                                
+                               //adentro
+                               
                                 AuditoriaTratamientoPacienteServiceImpl auditoriaTratamientoPacienteServicio = new AuditoriaTratamientoPacienteServiceImpl();
                                 AuditoriaTratamientoPaciente auditoriaTratamientoPaciente = auditoriaTratamientoPacienteServicio.mostrarAuditoriaTratamientoPaciente(tratamientoPaciente.getIdTratamientoPaciente());
 
@@ -471,8 +488,6 @@ public class PacienteController extends HttpServlet {
                                  * objetoServicio despues al procesos almacenado
                                  * y al final al id del objeto
                                  */
-                               
-                                otroResultadoPatologiaServicio.borradoLogicoOtroResultadoPatologia(otroResultadoPatologia.getIdOtroResultadoPatologia());
                                 tratamientoPacienteServicio.borradoLogicoTratamientoPaciente(tratamientoPaciente.getIdTratamientoPaciente());
                                 auditoriaTratamientoPacienteServicio.borradoLogicoAuditoriaTratamientoPaciente(auditoriaTratamientoPaciente.getIdAuditoriaTratamientoPaciente());
                                 programaPacienteServicio.borradoLogicoProgramaPaciente(programaPaciente.getIdProgramaPaciente());
@@ -489,10 +504,9 @@ public class PacienteController extends HttpServlet {
                                 request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
                             }
                         }
-                            break;
+                        break;
 
-                        
-                    case "cambiarDatos": {
+                        case "cambiarDatos": {
 
                             String correo = request.getParameter("correo");
                             String noExpediente = request.getParameter("noExpediente");
@@ -505,7 +519,6 @@ public class PacienteController extends HttpServlet {
                             //No se valida el telefono ni el correo aquí? Lo validamos nosotros o el front?
                             PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                             Persona persona = personaServicioImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
-
 
                             PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                             Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial((int) sesion.getAttribute("idCuenta"));
@@ -534,8 +547,6 @@ public class PacienteController extends HttpServlet {
                             RegistroDiagnosticoServiceImpl registroDiagnosticoServicioImpl = new RegistroDiagnosticoServiceImpl();
                             System.out.println("El idPaciente despues de registro: " + idPaciente2);
                             RegistroDiagnostico registroDiagnostico = registroDiagnosticoServicioImpl.mostrarRegistroDiagnosticoPaciente(idPaciente2);
-
-            
 
                             System.out.println("Ya pase registro");
 
@@ -595,7 +606,7 @@ public class PacienteController extends HttpServlet {
                         break;
 
                         case "agregarTratamiento": {
-                                
+
                             System.out.println("Entre a agregar tratamiento");
                             System.out.println("entro a la key Agregar tratamiento");
                             if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
@@ -620,9 +631,9 @@ public class PacienteController extends HttpServlet {
                                 out.flush();
                                 out.print(idTratamientoPaciente);
                             }
-                              break;
+                            break;
                         }
-                        
+
                         case "terminarTratamiento": {
 
                             int idTratamientoPaciente = Integer.parseInt(request.getParameter("idTratamientoPaciente"));
@@ -662,7 +673,7 @@ public class PacienteController extends HttpServlet {
                                 int idCuenta = (int) sesion.getAttribute("idCuenta");
 
                                 int idPersona = (int) sesion.getAttribute("idPersona");
-                                
+
                                 int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
                                 /**
                                  * creo los objetos de las tablas a modificar su
@@ -798,58 +809,54 @@ public class PacienteController extends HttpServlet {
                         }
                     }
                 }
- 
-                }
+
             }
         }
+    }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-        /**
-         * Handles the HTTP <code>GET</code> method.
-         *
-         * @param request servlet request
-         * @param response servlet response
-         * @throws ServletException if a servlet-specific error occurs
-         * @throws IOException if an I/O error occurs
-         */
-        @Override
-        protected void doGet
-        (HttpServletRequest request,
-                HttpServletResponse response
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response
     )
             throws ServletException,
-             IOException {
-            processRequest(request, response);
-        }
-
-        /**
-         * Handles the HTTP <code>POST</code> method.
-         *
-         * @param request servlet request
-         * @param response servlet response
-         * @throws ServletException if a servlet-specific error occurs
-         * @throws IOException if an I/O error occurs
-         */
-        @Override
-        protected void doPost
-        (HttpServletRequest request,
-                HttpServletResponse response
-    )
-            throws ServletException,
-             IOException {
-            processRequest(request, response);
-        }
-
-        /**
-         * Returns a short description of the servlet.
-         *
-         * @return a String containing servlet description
-         */
-        @Override
-        public String getServletInfo
-        
-            () {
-        return "Short description";
-        }// </editor-fold>
-
+            IOException {
+        processRequest(request, response);
     }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request,
+            HttpServletResponse response
+    )
+            throws ServletException,
+            IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}
