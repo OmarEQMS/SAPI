@@ -388,10 +388,7 @@ public class PacienteController extends HttpServlet {
                              * al paciente
                              */
                             
-                            //esto solo lo estoy poniendo para que el git me detecte un cambio
-                            PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
-                            Persona persona = personaServicioImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
-                             //esto solo lo estoy poniendo para que el git me detecte un cambio
+                      
                              
                             System.out.println("Entre a agregar tratamiento");
                             System.out.println("entro a la key Agregar tratamiento");
