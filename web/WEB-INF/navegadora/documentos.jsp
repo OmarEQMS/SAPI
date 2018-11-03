@@ -4,6 +4,7 @@
     Author     : feror
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -232,12 +233,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <c:forEach items="${documentos}" var="documento">
+                                <tr>
                                 <td>
                                     <i class="fas fa-comments mr-2 iconoComentarios" data-toggle="modal" data-target="#modalVerComentario"></i>
 
-                                    Identificación oficial
-                                    <span class=" ml-2 badge badge-danger">Rechazado</span>
+                                    <c:out value="${documento.nombre}"/>
+                                    
+                                    
+                                    
+                                    <c:choose>
+                                        <c:when test="${documento.aprobado==1}">
+                                            <span class=" ml-2 badge badge-danger">Aprobado</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class=" ml-2 badge badge-danger">Rechazado</span>
+                                        </c:otherwise>
+                                        
+                                    </c:choose>
                                 </td>
                                 <td>
                                     <a href='verDocumento.html' class="btn btn-info" id="btn-ver ">
@@ -249,49 +262,9 @@
                                         <i class="fas fa-cloud-download-alt"></i>
                                         </button>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>Comprobante de domicilio
-                                    <span class=" ml-2 badge badge-success ">Aceptado</span>
-                                </td>
-                                <td>
-                                    <a href='verDocumento.html' class="btn btn-info" id="btn-ver">
-                                        <i class="far fa-eye"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary " id="btn-descargar ">
-                                        <i class="fas fa-cloud-download-alt"></i>
-                                        </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Estudios previos</td>
-                                <td>
-                                    <button class="btn btn-info " id="btn-ver ">
-                                        <i class="far fa-eye "></i>
-                                    </button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary " id="btn-descargar ">
-                                        <i class="fas fa-cloud-download-alt"></i>
-                                        </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Motivo de consulta</td>
-                                <td>
-                                    <button class="btn btn-info " id="btn-ver ">
-                                        <i class="far fa-eye "></i>
-                                    </button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary " id="btn-descargar ">
-                                        <i class="fas fa-cloud-download-alt"></i>
-                                        </button>
-                                </td>
                                 
-                            </tr>
+                                </tr>
+                            </c:forEach>
                             
 
                         </tbody>

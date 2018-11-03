@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.diagnostico.EtapaClinica;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialTipoDocumento;
 import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
@@ -39,6 +40,7 @@ import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.bean.persona.TipoSangre;
 import mx.itesm.sapi.service.diagnostico.EtapaClinicaServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialTipoDocumentoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
@@ -288,6 +290,20 @@ public class FrontController extends HttpServlet {
                                     System.out.println("el id paciente es...."+paciente.getIdPaciente());
                                     EstadoPacientePacienteServiceImpl estadoPacientePacienteServiceImpl=new EstadoPacientePacienteServiceImpl();
                                     EstadoPacientePaciente estadoPacientePaciente=estadoPacientePacienteServiceImpl.mostrarEstadoPacientePacienteIdPaciente(paciente.getIdPaciente());
+                                    
+                                    //
+                                    DocumentoInicialTipoDocumentoServicioImpl documentoInicialTipoDocumentoServcioImpl = new DocumentoInicialTipoDocumentoServicioImpl();
+                                    
+                                    List<DocumentoInicialTipoDocumento> documentosInicialTipoDocumentos = documentoInicialTipoDocumentoServcioImpl.mostrarDocumentoInicialTipoDocumento(1);
+                                     
+                                    if(documentosInicialTipoDocumentos.size()>0){
+                                        System.out.println("Esta llena");
+                                    }else{
+                                        System.out.println("Esta vacía");
+                                    }
+                                    
+                                    request.setAttribute("documentos", documentosInicialTipoDocumentos);
+                                    
                                     
                                     sesion.setAttribute("estadoCivil", estadoCivil.getNombre());
                                     sesion.setAttribute("fechaNacimiento", persona.getFechaNacimiento());
