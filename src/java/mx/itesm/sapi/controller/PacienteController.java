@@ -272,7 +272,7 @@ public class PacienteController extends HttpServlet {
 
                             PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                             Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial((int) sesion.getAttribute("idCuenta"));
-
+                            //jeje
                             /** 
                              * El case cambiarDatos también se encarga de cambiar la foto de perfil 
                              * del paciente cuando el así lo desee
