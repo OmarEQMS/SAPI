@@ -1,6 +1,26 @@
 $(document).ready(function () {
 
 
+    //Redirige a documentos
+    $('#irADocumentos').on('click', function () {
+        $.get("SAPI", {
+            file: "navegadora/documentos.jsp"
+        },
+                function (response, status, xhr) {
+                    //console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
 
     //Eliminar cuenta
     $('#eliminarCuentaNavegadora').on('click', () => {

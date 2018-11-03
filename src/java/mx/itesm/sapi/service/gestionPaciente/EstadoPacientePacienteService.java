@@ -28,5 +28,5 @@ public interface EstadoPacientePacienteService {
 
     public boolean actualizarEstadoPacientePaciente(EstadoPacientePaciente estadoPacientePaciente);
 
-    public int estadoPrimeraSegundaVez(int idPaciente);
+    public int estadoPrimeraSegundaVez(int idPaciente);       
 }

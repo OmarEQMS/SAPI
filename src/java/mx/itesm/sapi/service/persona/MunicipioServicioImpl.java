@@ -34,7 +34,7 @@ public class MunicipioServicioImpl implements MunicipioServicio {
         Municipio municipio = null;
 
         //Call del store procedure
-        String stProcedure = "mostrarMunicipio(?)";
+        String stProcedure = "CALL mostrarMunicipio(?)";
 
         try {
             municipio = new Municipio();

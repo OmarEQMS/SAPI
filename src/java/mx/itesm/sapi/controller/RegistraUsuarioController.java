@@ -87,32 +87,56 @@ public class RegistraUsuarioController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        /** Fernanda Orduña y Pablo Lugo
+        * 
+        * Controlador de Registro Uusuario
+        * Permite a un usuario registrar un usuario con credenciales únicas.
+        *
+        */
+        
+        
+        /** 
+        * Recepción de parametro key que permite escoger un case en el Switch
+        * Declaración PrintWriter para imprimir respuestas
+        */
         PrintWriter out = response.getWriter();
-
-        //switch con 2 keys
-        // 1 key: verificarUsuario
-        //2 key: reistroCompleto
         String key = request.getParameter("key");
-
-        //Servicios
+        
+        /** 
+        * Declaración de servicios para la inserción en tablas.
+        * Las tablas son Persona, Cuenta, Dirección, Paciente, EstadoPacientePaciente
+        */
+        
+        
         PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
         CuentaServicioImpl _rSC = new CuentaServicioImpl();
         DireccionServicioImpl _rSD = new DireccionServicioImpl();
         PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
         EstadoPacientePacienteServiceImpl estadoPaPaServicio = new EstadoPacientePacienteServiceImpl();
 
-        //Verifica existencia de usuario
+        /** 
+        * Declaración de objetos para la manipulación en el back.
+        * Los bean son Persona, Cuenta, Dirección, Paciente, EstadoPacientePaciente
+        */
         Persona per = new Persona();
         Cuenta cuenta = new Cuenta();
         Direccion dir = new Direccion();
         Paciente pac = new Paciente();
         EstadoPacientePaciente estadoPaPa = new EstadoPacientePaciente();
 
-        //Set persona
+       
         switch (key) {
 
             case "repiteCurp": {
 
+                /** 
+                * El case repiteCurp tiene como función verificar la unicidad del Curp ingresado por parte del Usuario.
+                * Se recibe como parametro el curp.
+                * Se utiliza el metodo existsCurp del servicio PersonaServcioImpl que verficia la unicidad en la base de datos.
+                * Devuelve la respuesta sobre la unicidad del curp con un objeto PrintWriter
+                */
+                
+                
                 String curp = request.getParameter("curp");
                 System.out.println("El curp es: ".concat(curp));
 
@@ -133,6 +157,14 @@ public class RegistraUsuarioController extends HttpServlet {
             break;
 
             case "repiteUsuario": {
+                
+                /** 
+                * El case repiteUsuario tiene como función verificar la unicidad del Usuario ingresado por parte del Usuario.
+                * Se recibe como parametro el usuario.
+                * Se utiliza el metodo existsUsuario del servicio CuentaServcioImpl que verficia la unicidad en la base de datos.
+                * Devuelve la respuesta sobre la unicidad del curp con un objeto PrintWriter
+                */
+                
                 String usuario = request.getParameter("usuario");
 
                 //Checo si el usuario existe
@@ -151,6 +183,16 @@ public class RegistraUsuarioController extends HttpServlet {
 
             case "registraUsuario": {
 
+                /** 
+                * El case registraUsuario tiene como función la inserción de los datos del Usuario, en las tablas Persona, Cuenta, Paciente y EstadoPacientePaciente.
+                * Se reciben como Parametros los inputs del achivo registro.jsp.
+                * Se convierten algunos variables para después ser seteadas en sus respectivos objetos.
+                * Se prosigue a insertar los objetos haciendo uso de los Servicios y Objetos previamente declarados.
+                * El orden de inserción es el siguiente (Cada inserción recibe un "id" necesario para la siguiente inserción):
+                * Dirección, Persona, Cuenta, Paciente, EstadoPacientePaciente.
+                * Al finalizar la inserción se ejecuta el método enviCorreo(String mail);
+                */
+                
                 String nombre = request.getParameter("nombre");
                 String apellido1 = request.getParameter("apellido1");
                 String apellido2 = request.getParameter("apellido2");
@@ -251,6 +293,14 @@ public class RegistraUsuarioController extends HttpServlet {
     }
 
     protected void enviaCorreo(String usuario,String correo) {
+        
+                /** 
+                * El metodo enviaCorreo tiene como función el envío de un correo de confirmación al Usuario registrado.
+                * Se recibe como parametro el correo del Usuario.
+                * Mediante una cuenta ya introduciida dentro del codigo se envía el correo.
+                * El contenido del correo puede ser configurado en el mimeBodyPart.
+                */
+        
         System.out.println("estoy en el metodo");
         Properties config = new Properties();
 
