@@ -17,14 +17,16 @@ $(document).ready(function () {
         contentType: false,
         success: function (response) {
             if (response != null) {
-                console.log("ok" + response);
+                 var data = JSON.parse(response);
+                console.log(data);
 
             } else {
                 console.log("Algo pasó" + response);
             }
         },
         error: function () {
-
+            console.log("error" + xhr.statusText);
+            alert("No enontre el controlador" + xhr.statusText);
         }
 
     });
@@ -54,8 +56,8 @@ $(document).ready(function () {
 
     });
 
-    $('#eliminarCuentaPotencial').on('click', () => {
-
+    $('#eliminarCuentaPotencial').on('click', function () {
+        console.log("vaya vaya si llego");
         swal({
             title: "¿Estás segura(o)?",
             text: "Los datos se eliminarán y no podrás recuperarlos ni poder acceder a tu cuenta.",
@@ -70,10 +72,26 @@ $(document).ready(function () {
                             url: "PotencialController",
                             data: {
                                 key: "eliminarCuentaPacientePotencial",
+
                                 idCuenta: $("#sesionPaciente").val(),
 
                             },
-                            method: "POST"
+                            method: "POST",
+                            success: function (response) {
+                                if (response == "error") {
+                                     console.log("Error al cargar");
+                                } else {
+                                    console.log("Intentando redireccionar");
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
+                                   
+                                }
+                            },
+                            error: function (xhr) {
+
+                            }
+
                         });
 
 
@@ -85,6 +103,10 @@ $(document).ready(function () {
 
 
     });
+
+
+
+
 
     $("#btn-cancelarPreConsulta1").on('click', () => {
 
@@ -596,7 +618,7 @@ $(document).ready(function () {
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
         console.log("Salir cuenta");
-        $.get("LoginController", {
+        $.post("LoginController", {
             key: "cerrar-sesion"
         },
                 function (response, status, xhr) {

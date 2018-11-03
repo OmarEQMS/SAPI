@@ -14,6 +14,7 @@ import mx.itesm.sapi.bean.persona.Direccion;
  */
 public interface DireccionServicio {
     public Direccion mostrarDireccion(int idDireccion);
+  
     List<Direccion> mostrarDireccion();
     public int agregarDireccion(Direccion direccion);
     public boolean actualizarDireccion(Direccion direccion);

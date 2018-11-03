@@ -13,9 +13,16 @@ import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
  * @author urieldiaz
  */
 public interface LlamadaCitaServicio {
+
     public LlamadaCita mostrarLlamadaCita(int idLlamadaCita);
+
+    public LlamadaCita mostrarLlamadaCitaIdCita(int idCita);
+
     public List<LlamadaCita> mostrarLlamadaCita();
+
     public int agregarLlamadaCita(LlamadaCita llamadaCita);
+
     public boolean actualizarLlamadaCita(LlamadaCita llamadaCita);
-    public boolean borradoLogicoLlamadaCita(int idLlamadaCita);    
+
+    public boolean borradoLogicoLlamadaCita(int idLlamadaCita);
 }

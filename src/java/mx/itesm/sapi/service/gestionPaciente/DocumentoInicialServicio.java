@@ -14,6 +14,7 @@ import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
  */
 interface DocumentoInicialServicio {
     public DocumentoInicial mostrarDocumentoInicial(int idDocumentoInicial);
+    public DocumentoInicial mostrarDocumentoInicialIdPaciente(int idPaciente);
     public List<DocumentoInicial> mostrarDocumentoInicial();
     public int agregarDocumentoInicial(DocumentoInicial documentoInicial);
     public int agregarDocumentoInicialPreconsulta(DocumentoInicial documentoInicial);

@@ -110,8 +110,8 @@ public class CalendarioServicioImpl implements CalendarioServicio {
             cstmt.setNull(6, java.sql.Types.INTEGER);
             cstmt.setNull(7, java.sql.Types.INTEGER);
             cstmt.setNull(8, java.sql.Types.INTEGER);
-            cstmt.setString(9, cita.getFechaProgramada());
-            cstmt.setString(10, cita.getFechaReal());
+            cstmt.setTimestamp(9, cita.getFechaProgramada());
+            cstmt.setTimestamp(10, cita.getFechaReal());
             cstmt.setString(11, edificio);
   
             
