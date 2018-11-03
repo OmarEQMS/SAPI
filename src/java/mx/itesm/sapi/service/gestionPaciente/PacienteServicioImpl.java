@@ -11,6 +11,7 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import mx.itesm.sapi.bean.gestionPaciente.DatosPacienteDocumentoInicial;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.util.Conexion;
 
@@ -280,6 +281,42 @@ public class PacienteServicioImpl implements PacienteServicio{
             paciente= null;
         }
         return paciente;
+        
+        
     }
+    
+     @Override
+    public DatosPacienteDocumentoInicial mostrarDatosPacienteDocumentoInicial(int idPaciente) {
+        Connection conn; 
+        ResultSet rs;
+        CallableStatement cstmt;
+        DatosPacienteDocumentoInicial datosPacienteDocumentoInicial  = new DatosPacienteDocumentoInicial();
+        
+        String stPrcedure="CALL mostrarDatosPacienteDocumentoInicial(?)";
+        try{
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stPrcedure);                      
+            cstmt.setInt(1, idPaciente);           
+            
+            rs = cstmt.executeQuery();
+            rs.next();
+            
+            datosPacienteDocumentoInicial.setIdPaciente(rs.getInt(1)); 
+            datosPacienteDocumentoInicial.setIdCuenta(rs.getInt(2));
+            datosPacienteDocumentoInicial.setIdPersona(rs.getInt(3));
+            datosPacienteDocumentoInicial.setNombre(rs.getString("nombre"));
+            datosPacienteDocumentoInicial.setPrimerApellido(rs.getString("primerApellido"));
+            datosPacienteDocumentoInicial.setSegundoApellido(rs.getString("segundoApellido"));
+                                                       
+            rs.close();
+            cstmt.close();
+            conn.close();
+            
+        }catch(SQLException ex){
+            
+            System.out.println("PacienteServiceImpl mostrarDatosPacienteDocumentoInicial ".concat(ex.getMessage()));            
+        }         
+        return datosPacienteDocumentoInicial;
+    }    
     
 }

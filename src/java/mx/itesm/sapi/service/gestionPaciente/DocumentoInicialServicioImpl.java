@@ -26,7 +26,7 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarDocumentoInicial";
+        String stProcedure = "CALL mostrarDocumentoInicial(?)";
         DocumentoInicial documentoInicial = null;
      
         try {

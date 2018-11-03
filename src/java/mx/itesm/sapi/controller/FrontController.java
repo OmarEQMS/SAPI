@@ -19,7 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.diagnostico.EtapaClinica;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
+import mx.itesm.sapi.bean.gestionPaciente.DatosPacienteDocumentoInicial;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.Tratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.TratamientoPaciente;
@@ -34,6 +37,7 @@ import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.bean.persona.TipoSangre;
 import mx.itesm.sapi.service.diagnostico.EtapaClinicaServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TratamientoPacienteServiceImpl;
@@ -243,6 +247,57 @@ public class FrontController extends HttpServlet {
                                  case "navegadora/rendimiento.jsp":
                                 {
                                     System.out.println("Index Navegadora ");
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
+                                    break;
+                                }
+                                 case "navegadora/verDocumento.jsp":
+                                {
+                                    
+                                    PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
+                                    Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
+
+                                    CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
+                                    Cuenta cuenta = cuentaServicioImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));
+                                                                                                                                                
+                                    System.out.println("holiiii");
+                                    sesion.setAttribute("nombre", persona.getNombre());
+                                    sesion.setAttribute("primerApellido", persona.getPrimerApellido());
+                                    sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
+                                    System.out.println("el correo es:" + persona.getCorreo());
+                                    sesion.setAttribute("correo", persona.getCorreo());
+                                    sesion.setAttribute("telefono", persona.getTelefono());
+                                    sesion.setAttribute("usuario", cuenta.getUsuario());                                    
+
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                    sesion.setAttribute("base64Img", base64String);
+                                                                        
+                                    
+                                    int idDocumentoInicial = 216;
+                                    int idPaciente = 10;
+                                    
+                                    sesion.setAttribute("idPacientePotencialAtendido", idPaciente);                                                                        
+                                    sesion.setAttribute("idDocumentoInicial", idDocumentoInicial);
+                                    
+                                    PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
+                                    DatosPacienteDocumentoInicial datosPacienteDocumentoInicial = pacienteServicioImpl.mostrarDatosPacienteDocumentoInicial(idPaciente);                                    
+                                    
+                                    sesion.setAttribute("nombrePacientePotencial", datosPacienteDocumentoInicial.getNombre());                                                                        
+                                    sesion.setAttribute("primerApellidoPacientePotencial", datosPacienteDocumentoInicial.getPrimerApellido());                                                                        
+                                    sesion.setAttribute("segundoApellidoPacientePotencial", datosPacienteDocumentoInicial.getSegundoApellido());                                                                        
+                                    
+                                    
+                                    DocumentoInicialServicioImpl documentoInicialServicioImpl = new DocumentoInicialServicioImpl();
+                                    DocumentoInicial documentoInicial = documentoInicialServicioImpl.mostrarDocumentoInicial(idDocumentoInicial);
+                                    
+                                    TipoDocumento tipoDocumento = new TipoDocumento();
+                                    
+                                    
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
                                     break;
                                 }
