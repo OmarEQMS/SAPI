@@ -67,7 +67,7 @@ public class EstadoCivilServicioImpl implements EstadoCivilServicio {
         try {
             estadoCiviles = new ArrayList<>();
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall("CALL getEstadoCivil()");
+            cstmt = conn.prepareCall("CALL mostrarListaEstadoCivil()");
             rs = cstmt.executeQuery();
             EstadoCivil estadoCivil;
 

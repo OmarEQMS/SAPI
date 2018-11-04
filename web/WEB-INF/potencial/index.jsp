@@ -89,8 +89,8 @@
                     <li id ="irACitaPreconsulta"><a><i class="fas fa-home"></i>Cita a Preconsulta </a></li>
 
                     <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas
-                            <c:choose>
-                                <c:when test="${sessionScope.estatus>=1}">
+                                <c:choose>
+                                    <c:when test="${sessionScope.estatus>=1}">
                                     <span class="notificacion">1</span>                        
                                 </c:when>
                             </c:choose>
@@ -200,12 +200,12 @@
 
                                         </div>
 
-                                        <form>
-
-                                            <div class="row mt-5">
-                                                <div class="col-12">
 
 
+                                        <div class="row mt-5">
+                                            <div class="col-12">
+
+                                                <form>
                                                     <!-- Genero -->
                                                     <div class="row">
                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-center">
@@ -692,23 +692,25 @@
 
                                                     </div>
 
-                                                    <!-- Botones -->
+                                                </form>
 
-                                                    <div class="row justify-content-center mt-5">
-                                                        <div class="col-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-2">
-                                                            <button class="btn btn-morado btn-block" id="btn-enviarSolicitud" style="border-radius:20px"><i
-                                                                    class="fas fa-check-circle mr-2"></i>Enviar</button>
-                                                        </div>
-                                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-2">
-                                                            <button class="btn btn-guardar-continuar btn-block" id="btn-GuardarContinuar" style="border-radius:20px"><i
-                                                                    class="fas fa-save mr-2"></i>Guardar y Continuar Después</button>
-                                                        </div>
+                                                <!-- Botones -->
+                                                <div class="row justify-content-center mt-5">
+
+                                                    <div class="col-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-2">
+                                                        <button class="btn btn-morado btn-block" id="btn-enviarSolicitud" style="border-radius:20px"><i
+                                                                class="fas fa-check-circle mr-2"></i>Enviar</button>
                                                     </div>
-
-
+                                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-2">
+                                                        <button class="btn btn-guardar-continuar btn-block" id="btn-GuardarContinuar" style="border-radius:20px"><i
+                                                                class="fas fa-save mr-2"></i>Guardar y Continuar Después</button>
+                                                    </div>
                                                 </div>
+
+
                                             </div>
-                                        </form>
+                                        </div>
+
 
                                     </div>
 

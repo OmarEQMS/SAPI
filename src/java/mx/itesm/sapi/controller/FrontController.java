@@ -28,6 +28,7 @@ import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
 import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
 import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
 import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.EstadoCivil;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.bean.persona.Pic;
@@ -43,6 +44,7 @@ import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.service.persona.EstadoCivilServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import org.apache.commons.io.IOUtils;
@@ -199,7 +201,6 @@ public class FrontController extends HttpServlet {
 
                                     EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
                                     Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());*/
-
                                     System.out.println("holiiii");
                                     sesion.setAttribute("nombre", persona.getNombre());
                                     sesion.setAttribute("primerApellido", persona.getPrimerApellido());
@@ -228,20 +229,22 @@ public class FrontController extends HttpServlet {
                                      */
                                     break;
                                 }
-                                case "navegadora/index.jsp":
-                                {
+                                case "navegadora/index.jsp": {
                                     System.out.println("Index Navegadora ");
+
+                                    EstadoCivilServicioImpl estadoCivilServicio = new EstadoCivilServicioImpl();
+                                    List<EstadoCivil> estados = estadoCivilServicio.mostrarEstadoCivil();
+                                    request.setAttribute("estadoCivil", estados);
+
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al dashboard navgeadora
                                     break;
                                 }
-                                 case "navegadora/calendar.jsp":
-                                {
+                                case "navegadora/calendar.jsp": {
                                     System.out.println("Index Navegadora ");
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al calendario de navgeadora
                                     break;
                                 }
-                                 case "navegadora/rendimiento.jsp":
-                                {
+                                case "navegadora/rendimiento.jsp": {
                                     System.out.println("Index Navegadora ");
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
                                     break;
