@@ -20,4 +20,5 @@ public interface PacienteService {
     public int agregarPacienteRegistro(int idCuenta);
     public boolean actualizarPaciente(Paciente paciente);
     public boolean borradoLogicoPaciente(int idPaciente);
+    
 }

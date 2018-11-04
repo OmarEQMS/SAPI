@@ -508,21 +508,41 @@ public class PacienteController extends HttpServlet {
 
                         case "cambiarDatos": {
 
+                            /**
+                             * Fernanda Orduña y Pablo Lugo
+                             *
+                             * El case cambiarDatos se encarga de guardar los
+                             * cambios que el paciente haya realizado de los
+                             * datos correo, número de expediente, telefono,
+                             * etapa clínica y tipo de sangre desde Mi Cuenta
+                             * Paciente
+                             */
+                            /**
+                             * Declaro las variables que reciben los datos como
+                             * parámetro
+                             */
                             String correo = request.getParameter("correo");
                             String noExpediente = request.getParameter("noExpediente");
                             String telefono = request.getParameter("telefono");
                             String etapaClinica = request.getParameter("etapaClinica");
                             int tipoSangre = Integer.parseInt(request.getParameter("tipoSangre"));
-
                             Part part = request.getPart("file-image");
 
                             //No se valida el telefono ni el correo aquí? Lo validamos nosotros o el front?
+                            /**
+                             * Declaro los objetos de tipo Persona y Paciente
+                             */
                             PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                             Persona persona = personaServicioImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
 
                             PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                             Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial((int) sesion.getAttribute("idCuenta"));
-
+                            //jeje
+                            /**
+                             * El case cambiarDatos también se encarga de
+                             * cambiar la foto de perfil del paciente cuando el
+                             * así lo desee
+                             */
                             if ((int) part.getSize() > 0) {
                                 PicServicioImpl picServiceImpl = new PicServicioImpl();
                                 Pic pic = new Pic();
@@ -550,6 +570,10 @@ public class PacienteController extends HttpServlet {
 
                             System.out.println("Ya pase registro");
 
+                            /**
+                             * Asigno los nuevos datos a los objetos declarador
+                             * anteriormente para poder actualizarlos
+                             */
                             persona.setCorreo(correo);
                             persona.setTelefono(telefono);
                             persona.setIdTipoSangre(tipoSangre);
@@ -578,37 +602,56 @@ public class PacienteController extends HttpServlet {
                             break;
                         }
 
-                        
-
                         case "cambiarContrasena": {
 
+                            /**
+                             * El case cambiarContraseña se encarga de
+                             * actualizar la contraseña de la cuenta del
+                             * paciente cuando el así lo desee
+                             */
                             if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
                                 // request.setAttribute("status", "");
                                 request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
                                 return;
                             } else {
+                                /**
+                                 * Declaro las variables que reciben como
+                                 * parámetro la nueva contraseña y el idCuenta
+                                 */
                                 int idCuenta = (int) sesion.getAttribute("idCuenta");
                                 String contrasena = request.getParameter("password");
                                 String contrasena2 = request.getParameter("password2");
 
+                                /**
+                                 * Comparo que ambas contraseñas sean iguales
+                                 */
                                 if (contrasena.equals(contrasena2)) {
 
                                     CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
 
                                     Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
-
+                                    /**
+                                     * Asigno la nueva contraseña a la cuenta
+                                     */
                                     cuenta.setPassword(contrasena);
 
                                     cuentaServicio.actualizarCuenta(cuenta);
                                 }
 
                             }
-                             break;
+                            break;
                         }
-                       
 
                         case "agregarTratamiento": {
 
+                            /**
+                             * El case agregarTratamiento recopila los datos de
+                             * tipo tratamiento, fecha de inicio y id paciente
+                             * para asignárselos a un nuevo objeto de tipo
+                             * TratamientoPaciente y posteriormente agregárselo
+                             * al paciente
+                             */
+                                                                              
                             System.out.println("Entre a agregar tratamiento");
                             System.out.println("entro a la key Agregar tratamiento");
                             if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
@@ -617,10 +660,21 @@ public class PacienteController extends HttpServlet {
                                 return;
                             } else {
 
+                                /**
+                                 * Declaro las variables que recibirán como
+                                 * parámetro el id del tratamiento, la fecha de
+                                 * inicio y el idPaciente
+                                 */
                                 int idTipoTratamiento = Integer.parseInt(request.getParameter("idTipoTratamiento"));
                                 Date fechaInicio = Date.valueOf(request.getParameter("fechaInicio"));
                                 int idPaciente2 = (int) sesion.getAttribute("idPaciente");
                                 System.out.println("Este es el idPaciente tiene que ser esteQQQQ:" + idPaciente2);
+
+                                /**
+                                 * Declaro el objeto tratamientoPaciente para
+                                 * posteriormente asignarle los datos
+                                 * correspondientes al nuevo tratamiento
+                                 */
                                 TratamientoPacienteServiceImpl tratamientoPacienteServiceImpl = new TratamientoPacienteServiceImpl();
                                 TratamientoPaciente tratamientoPaciente = new TratamientoPaciente();
 
@@ -637,6 +691,12 @@ public class PacienteController extends HttpServlet {
                         }
 
                         case "terminarTratamiento": {
+                            /**
+                             * terminarTratamiento es el case encargado de
+                             * asignar una fecha de fin a un objeto de tipo
+                             * tratamientoPaciente a partir del
+                             * idTratamientoPaciente que obtiene como parámetro
+                             */
 
                             int idTratamientoPaciente = Integer.parseInt(request.getParameter("idTratamientoPaciente"));
                             System.out.println("Este es el idTratamientoPaciente");
@@ -646,6 +706,10 @@ public class PacienteController extends HttpServlet {
 
                             TratamientoPaciente tratamientoPaciente = tratamientoPacienteServicio.mostrarTratamientoPaciente(idTratamientoPaciente);
 
+                            /**
+                             * Asigno la fecha de fin de tratamiento al objeto
+                             * tratamientoPaciente
+                             */
                             tratamientoPaciente.setFechaFin(fechaFin);
                             System.out.println("Este es el idPaciente tiene que ser de termnar:" + tratamientoPaciente.getIdPaciente());
                             tratamientoPacienteServicio.actualizarTratamientoPaciente(tratamientoPaciente);

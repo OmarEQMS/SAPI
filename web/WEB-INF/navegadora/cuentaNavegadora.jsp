@@ -83,6 +83,8 @@
                     <div class="col-2">
                         <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
                     </div>
+                    
+                    
 
                 </div>
 
@@ -103,6 +105,9 @@
                 <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
                 <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+                
+                <li id="irADocumentos"><a><i class="far fa-user"></i>Documentos</a></li>
+                
 
                 <li>
                     <a href="#">
@@ -139,7 +144,7 @@
 
             <div class="row mb-3 justify-content-end">
                 <div class="col-3 text-center">
-                    <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="index.html" class="colorMoradoLight">Inicio</a></span>
+                    <span class="iconoHome mr-2" id="irVerDocumento"><i class="fas fa-home"></i></span><span><a href="index.html" class="colorMoradoLight">Inicio</a></span>
                     - <span class="colorGlobal">Mi Cuenta</span>
                 </div>
             </div>

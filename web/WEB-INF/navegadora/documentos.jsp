@@ -4,6 +4,7 @@
     Author     : feror
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -181,38 +182,38 @@
                 <div class="col-6 text-center">
                     <ul class="list-group">
                         <li class="list-group-item">Estado Civil:
-                            <strong>Casada</strong>
+                            <strong>${sessionScope.estadoCivil}</strong>
                         </li>
                         <li class="list-group-item">Fecha de Nacimiento:
-                            <strong>12 de enero de 1989</strong>
+                            <strong>${sessionScope.fechaNacimiento}</strong>
                         </li>
                         <li class="list-group-item">Lugar de residencia:
-                            <strong>Morelos, Cuernavaca</strong>
+                            <strong>${sessionScope.estado}, ${sessionScope.municipio}</strong>
                         </li>
                         <li class="list-group-item">Direccion:
-                            <strong>Calle del empleado #421, CP. 2345</strong>
+                            <strong>${sessionScope.calle}, # ${sessionScope.noExterior}, interior ${sessionScope.noInt}, colonia ${sessionScope.colonia}</strong>
                         </li>
                         <li class="list-group-item">Fecha de Registro:
-                            <strong>12 de julio de 2018</strong>
+                            <strong>${sessionScope.fechaRegistro}</strong>
                         </li>
                     </ul>
                 </div>
                 <div class="col-6 text-center">
                     <ul class="list-group">
                         <li class="list-group-item">CURP:
-                            <strong>PEFU123567TAM23</strong>
+                            <strong>${sessionScope.curp}</strong>
                         </li>
                         <li class="list-group-item">Teléfono:
-                            <strong>12344567</strong>
+                            <strong>${sessionScope.telefono}</strong>
                         </li>
                         <li class="list-group-item">Edad:
                             <strong>29</strong>
                         </li>
                         <li class="list-group-item">Correo:
-                            <strong>tam@correo.mx</strong>
+                            <strong>${sessionScope.correo}</strong>
                         </li>
                         <li class="list-group-item">Visita:
-                            <span class="badge badge-success">Primera vez</span>
+                            <span class="badge badge-success">${sessionScope.segundaOpinion}</span>
                         </li>
                     </ul>
                 </div>
@@ -232,12 +233,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <c:forEach items="${documentos}" var="documento">
+                                <tr>
                                 <td>
                                     <i class="fas fa-comments mr-2 iconoComentarios" data-toggle="modal" data-target="#modalVerComentario"></i>
 
-                                    Identificación oficial
-                                    <span class=" ml-2 badge badge-danger">Rechazado</span>
+                                    <c:out value="${documento.nombre}"/>
+                                    
+                                    
+                                    
+                                    <c:choose>
+                                        <c:when test="${documento.aprobado==1}">
+                                            <span class=" ml-2 badge badge-danger">Aprobado</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class=" ml-2 badge badge-danger">Rechazado</span>
+                                        </c:otherwise>
+                                        
+                                    </c:choose>
                                 </td>
                                 <td>
                                     <a href='verDocumento.html' class="btn btn-info" id="btn-ver ">
@@ -249,49 +262,9 @@
                                         <i class="fas fa-cloud-download-alt"></i>
                                         </button>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>Comprobante de domicilio
-                                    <span class=" ml-2 badge badge-success ">Aceptado</span>
-                                </td>
-                                <td>
-                                    <a href='verDocumento.html' class="btn btn-info" id="btn-ver">
-                                        <i class="far fa-eye"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary " id="btn-descargar ">
-                                        <i class="fas fa-cloud-download-alt"></i>
-                                        </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Estudios previos</td>
-                                <td>
-                                    <button class="btn btn-info " id="btn-ver ">
-                                        <i class="far fa-eye "></i>
-                                    </button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary " id="btn-descargar ">
-                                        <i class="fas fa-cloud-download-alt"></i>
-                                        </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Motivo de consulta</td>
-                                <td>
-                                    <button class="btn btn-info " id="btn-ver ">
-                                        <i class="far fa-eye "></i>
-                                    </button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary " id="btn-descargar ">
-                                        <i class="fas fa-cloud-download-alt"></i>
-                                        </button>
-                                </td>
                                 
-                            </tr>
+                                </tr>
+                            </c:forEach>
                             
 
                         </tbody>
