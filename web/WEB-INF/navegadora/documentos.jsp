@@ -258,9 +258,13 @@
                                         </button>
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary descargarDocumento"  data-id="${documento.idDocumentoInicial}">
+                                    <form action="NavegadoraController">
+                                        <input type="hidden" value="${documento.idDocumentoInicial}" name="idDocumento">
+                                        <input type="hidden" value="descargarArchivo" name="key">
+                                    <input type="submit" class="btn btn-primary descargarDocumento"  data-id="${documento.idDocumentoInicial}">
                                         <i class="fas fa-cloud-download-alt"></i>
-                                        </button>
+                                        </input>
+                                    </form>
                                 </td>
                                 
                                 </tr>
