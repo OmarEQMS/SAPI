@@ -34,23 +34,26 @@ $(document).ready(function () {
         });
 
     });
+
      $('#recuperarEnviarCorreo').on('click', function () {
         console.log("Click en Recuperar después de ingresar el correo"); 
         var mail = $('#email');
-        $.get("RecuperarController",{
+        $.post("RecuperarController",{
             key: "recuperarEnviarCorreo",
             email: mail.val()
+
         },
                 function (response,status) {
                     console.log(response);
                     
-                    if (response != "") {
+                    if (response == "") {
+                        console.log("Error al cargar");
+                        
+                    } else {
                         console.log("Intentando redireccionar");
                         document.open("text/html", "replace");
                         document.write(response);
                         document.close();
-                    } else {
-                        console.log("Error al cargar");
                     
                     }
                 }

@@ -242,7 +242,11 @@
                                 <td>
                                     <i class="fas fa-comments mr-2 iconoComentarios verComentario" data-id="${documento.idDocumentoInicial}" data-toggle="modal" data-target="#modalVerComentario" ></i>
 
+<<<<<<< HEAD
                                     <c:out value="${documento.nombreTipo}"/>
+=======
+                                    <c:out value="${documento.nombreDocumento}"/>
+>>>>>>> origin/Lugos
                                     
                                     
                                     
@@ -262,9 +266,17 @@
                                         </button>
                                 </td>
                                 <td>
+<<<<<<< HEAD
                                     <button class="btn btn-primary " id="btn-descargar " data-id="${documento.idDocumentoInicial}">
+=======
+                                    <form action="NavegadoraController">
+                                        <input type="hidden" value="${documento.idDocumentoInicial}" name="idDocumento">
+                                        <input type="hidden" value="descargarArchivo" name="key">
+                                    <input type="submit" class="btn btn-primary descargarDocumento"  data-id="${documento.idDocumentoInicial}">
+>>>>>>> origin/Lugos
                                         <i class="fas fa-cloud-download-alt"></i>
-                                        </button>
+                                        </input>
+                                    </form>
                                 </td>
                                 <input type="hidden" value="${documento.comentario}" id="comentario-${documento.idDocumentoInicial}">
                                 </tr>

@@ -14,12 +14,19 @@ import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
  * @author urieldiaz
  */
 public interface EstadoPacientePacienteService {
-        public EstadoPacientePaciente mostrarEstadoPacientePaciente(int idEstadoPacientePaciente);
-        public EstadoPacientePaciente mostrarEstadoPacientePacienteIdPaciente(int idPaciente);
-        public List<EstadoPacientePaciente> mostrarEstadoPacientePaciente();
-        public int agregarEstadoPacientePaciente(EstadoPacientePaciente estadoPacientePaciente);
-        public int agregarEstadoPacientePacienteRegistro(int idPaciente);
-        public boolean borradoLogicoEstadoPacientePaciente(int idEstadoPacientePaciente);
-        public boolean actualizarEstadoPacientePaciente(EstadoPacientePaciente estadoPacientePaciente);
-        public int estadoPrimeraSegundaVez(int idPaciente);
+
+    public EstadoPacientePaciente mostrarEstadoPacientePaciente(int idEstadoPacientePaciente);
+    public EstadoPacientePaciente mostrarEstadoPacientePacienteIdPaciente(int idPaciente);
+
+    public List<EstadoPacientePaciente> mostrarEstadoPacientePaciente();
+
+    public int agregarEstadoPacientePaciente(EstadoPacientePaciente estadoPacientePaciente);
+
+    public int agregarEstadoPacientePacienteRegistro(int idPaciente);
+
+    public boolean borradoLogicoEstadoPacientePaciente(int idEstadoPacientePaciente);
+
+    public boolean actualizarEstadoPacientePaciente(EstadoPacientePaciente estadoPacientePaciente);
+
+    public int estadoPrimeraSegundaVez(int idPaciente);       
 }

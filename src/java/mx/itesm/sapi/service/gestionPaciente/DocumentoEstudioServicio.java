@@ -13,10 +13,19 @@ import mx.itesm.sapi.bean.gestionPaciente.DocumentoEstudio;
  * @author Oscar Miranda
  */
 public interface DocumentoEstudioServicio {
+
     public DocumentoEstudio mostrarDocumentoEstudio(int idDocumentoEstudio);
+
+    public DocumentoEstudio mostrarDocumentoEstudioIdPaciente(int idPaciente);
+
     public List<DocumentoEstudio> mostrarDocumentoEstudio();
+
+    public List<DocumentoEstudio> mostrarDocumentoEstudioIdEspecifico(int idPaciente);
+
     public int agregarDocumentoEstudio(DocumentoEstudio documentoEstudio);
+
     public boolean borradoLogicoDocumentoEstudio(int idDocumentoEstudio);
-    public boolean actualizarDocumentoEstudio(DocumentoEstudio  documentoEstudio);
-    
+
+    public boolean actualizarDocumentoEstudio(DocumentoEstudio documentoEstudio);
+
 }

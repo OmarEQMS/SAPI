@@ -20,6 +20,7 @@ $(document).ready(function () {
                 }
         );
     });
+<<<<<<< HEAD
     
     
     $('.irAVerDocumento').on('click', function () {
@@ -50,6 +51,9 @@ $(document).ready(function () {
                 }
         );
     });
+=======
+
+>>>>>>> origin/Lugos
 
     //Eliminar cuenta
     $('#eliminarCuentaNavegadora').on('click', () => {
@@ -464,5 +468,36 @@ $(document).ready(function () {
     }
     ;
 
+    $('#irVerDocumento').on('click', function () {
+        $.post("SAPI", {
+            file: "navegadora/verDocumento.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+
+    $('.descargarDocumento').on('click', function () {
+        
+        
+        $.post("NavegadoraController",
+        {
+                key: 'descargarArchivo',
+                idDocumento: $(this).data('id')
+        },
+    function(data, status){
+        
+    });
+    });
 });
 

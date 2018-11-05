@@ -14,6 +14,8 @@ import mx.itesm.sapi.bean.gestionPaciente.Biopsia;
  */
 public interface BiopsiaServicio {
     public Biopsia mostrarBiopsia(int idBiopsia);
+    public Biopsia mostrarBiopsiaIdPaciente(int idPaciente);
+     public List<Biopsia> mostrarAllBiopsiaIdEspecifico(int idPaciente);
     public List<Biopsia> mostrarAllBiopsia();
     public int agregarBiopsia(Biopsia biopsia);
     public boolean borradoLogicoBiopsia (int idBiopsia);

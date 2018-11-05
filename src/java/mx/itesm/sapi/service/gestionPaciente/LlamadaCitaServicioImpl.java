@@ -19,17 +19,21 @@ import mx.itesm.sapi.util.Conexion;
  * @author urieldiaz
  */
 public class LlamadaCitaServicioImpl implements LlamadaCitaServicio {
-
+    
+    @Override
     public LlamadaCita mostrarLlamadaCita(int idLlamadaCita) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        LlamadaCita llamadaCita = new LlamadaCita();
-        String stProcedure = "";
+        LlamadaCita llamadaCita = null;
+        String stProcedure = "CALL mostrarLlamadaCita(?)";
         try {
             conn = Conexion.getConnection();
+            llamadaCita = new LlamadaCita();
             cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idLlamadaCita);
             rs = cstmt.executeQuery();
+            rs.next();
 
             llamadaCita.setIdLlamadaCita(rs.getInt("idLllamadaCita"));
             llamadaCita.setIdCita(rs.getInt("idCita"));
@@ -55,7 +59,7 @@ public class LlamadaCitaServicioImpl implements LlamadaCitaServicio {
         Connection conn;
         List<LlamadaCita> llamadaCitas = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL mostrarListaLlamadaCita()";
 
         ResultSet rs;
 
@@ -94,7 +98,7 @@ public class LlamadaCitaServicioImpl implements LlamadaCitaServicio {
         ResultSet rs;
         CallableStatement cstmt;
         int id = -1;
-        String stPrcedure="";
+        String stPrcedure="CALL agregarLlamadaCita(?, ?, ?, ?)";
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stPrcedure);
@@ -131,7 +135,7 @@ public class LlamadaCitaServicioImpl implements LlamadaCitaServicio {
     public boolean actualizarLlamadaCita(LlamadaCita llamadaCita) {
        Connection conn;
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL actualizarLlamadaCita(?, ?, ?, ?)";
         boolean exito= false;
         ResultSet rs;
         try{
@@ -164,7 +168,7 @@ public class LlamadaCitaServicioImpl implements LlamadaCitaServicio {
     public boolean borradoLogicoLlamadaCita(int idLlamadaCita) {
          Connection conn; 
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL actualizarLlamadaCita(?)";
         boolean exito = false;
         ResultSet rs;
         try{
@@ -187,6 +191,40 @@ public class LlamadaCitaServicioImpl implements LlamadaCitaServicio {
             exito=false;
         }
         return exito;
+    }
+
+    @Override
+    public LlamadaCita mostrarLlamadaCitaIdCita(int idCita) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        LlamadaCita llamadaCita = new LlamadaCita();
+        String stProcedure = "CALL mostrarLlamadaCitaIdCita(?)";
+        
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idCita);
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            llamadaCita.setIdLlamadaCita(rs.getInt("idLllamadaCita"));
+            llamadaCita.setIdCita(rs.getInt("idCita"));
+            llamadaCita.setIdEmpleado(rs.getInt("idEmpleado"));
+            llamadaCita.setFecha(rs.getTimestamp("fecha"));
+            llamadaCita.setLlamada(rs.getInt("llamada"));
+            llamadaCita.setEstatus(rs.getInt("estatus"));
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            llamadaCita = null;
+        }
+        return llamadaCita;
     }
 
 }

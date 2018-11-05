@@ -30,10 +30,11 @@ public class PacienteAlergiaServicioImpl implements PacienteAlergiaServicio{
         
         PacienteAlergia pacienteAlergia = new PacienteAlergia();
         
-        String stProcedure ="";
+        String stProcedure ="CALL mostrarPacienteAlergia(?)";
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
+             cstmt.setInt(1, idPacienteAlergia);
             rs = cstmt.executeQuery();
             rs.next();
             
@@ -59,7 +60,7 @@ public class PacienteAlergiaServicioImpl implements PacienteAlergiaServicio{
         Connection conn;
         List<PacienteAlergia> listPacienteAlergia = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure="";
+        String stProcedure="CALL mostrarListaPacienteAlergia()";
         
         ResultSet rs;
         
@@ -98,7 +99,7 @@ public class PacienteAlergiaServicioImpl implements PacienteAlergiaServicio{
         ResultSet rs;
         CallableStatement cstmt;
         int id = -1;
-        String stPrcedure="";
+        String stPrcedure="CALL agregarPacienteAlergia(?, ?)";
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stPrcedure);
@@ -132,7 +133,7 @@ public class PacienteAlergiaServicioImpl implements PacienteAlergiaServicio{
     public boolean actualizarPacienteAlergia(PacienteAlergia pacienteAlergia) {
         Connection conn;
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL actualizarPacienteAlergia(?, ?)";
         boolean exito= false;
         ResultSet rs;
         try{
@@ -163,7 +164,7 @@ public class PacienteAlergiaServicioImpl implements PacienteAlergiaServicio{
     public boolean borradoLogicoPacienteAlergia(int idPacienteAlergia) {
         Connection conn; 
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL borradoLogicoPacienteAlergia(?)";
         boolean exito = false;
         ResultSet rs;
         try{
@@ -187,6 +188,39 @@ public class PacienteAlergiaServicioImpl implements PacienteAlergiaServicio{
         }
         return exito;
         
+    }
+
+    @Override
+    public PacienteAlergia mostrarPacienteAlergiaIdPaciente(int idPaciente) {
+    Connection conn; 
+        CallableStatement cstmt;
+        ResultSet rs;
+        
+        PacienteAlergia pacienteAlergia = new PacienteAlergia();
+        
+        String stProcedure ="CALL mostrarPacienteAlergiaIdPaciente(?)";
+        try{
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+             cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+            rs.next();
+            
+            pacienteAlergia.setIdPacienteAlergia(rs.getInt("idPacienteAlergia"));
+            pacienteAlergia.setIdPaciente(rs.getInt("idPaciente"));
+            pacienteAlergia.setIdAlergia(rs.getInt("idAlergia"));
+            pacienteAlergia.setEstatus(rs.getInt("estatus"));
+            
+        
+            rs.close();
+            cstmt.close();
+            conn.close();
+        }catch(SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            pacienteAlergia= null;
+        }
+        return pacienteAlergia;
     }
     
 }
