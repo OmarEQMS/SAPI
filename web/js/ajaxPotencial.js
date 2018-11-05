@@ -24,7 +24,7 @@ $(document).ready(function () {
         error: function (xhr) {
             console.log("error" + xhr.statusText);
             console.log("Error SolicitarEstadoPreconsulta");
-            alert(xhr);
+            //alert(xhr);
         }
 
     });
