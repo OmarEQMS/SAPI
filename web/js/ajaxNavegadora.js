@@ -238,6 +238,26 @@ $(document).ready(function () {
         );
     });
     
+    $('#irAForm').on('click', function () {
+        $.post("SAPI", {
+            file: "navegadora/form.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            console.log(response);
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+
     
 });
 

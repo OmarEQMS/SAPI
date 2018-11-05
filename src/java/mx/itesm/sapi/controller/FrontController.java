@@ -207,6 +207,12 @@ public class FrontController extends HttpServlet {
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
                                     break;
                                 }
+                                case "navegadora/form.jsp":
+                                {
+                                    System.out.println("Front Controller case:  Form Navegadora");
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a form
+                                    break;
+                                }
                             }
                             break;
                         }
