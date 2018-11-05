@@ -238,7 +238,7 @@
                                 <td>
                                     <i class="fas fa-comments mr-2 iconoComentarios" data-toggle="modal" data-target="#modalVerComentario"></i>
 
-                                    <c:out value="${documento.nombre}"/>
+                                    <c:out value="${documento.nombreDocumento}"/>
                                     
                                     
                                     
@@ -258,7 +258,7 @@
                                         </button>
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary " id="btn-descargar ">
+                                    <button class="btn btn-primary descargarDocumento"  data-id="${documento.idDocumentoInicial}">
                                         <i class="fas fa-cloud-download-alt"></i>
                                         </button>
                                 </td>

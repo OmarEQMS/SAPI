@@ -20,7 +20,7 @@ $(document).ready(function () {
                 }
         );
     });
-    
+
 
     //Eliminar cuenta
     $('#eliminarCuentaNavegadora').on('click', () => {
@@ -434,7 +434,7 @@ $(document).ready(function () {
         return true;
     }
     ;
-    
+
     $('#irVerDocumento').on('click', function () {
         $.post("SAPI", {
             file: "navegadora/verDocumento.jsp"
@@ -453,7 +453,18 @@ $(document).ready(function () {
                 }
         );
     });
-    
-    
+
+    $('.descargarDocumento').on('click', function () {
+        
+        
+        $.post("NavegadoraController",
+        {
+                key: 'descargarArchivo',
+                idDocumento: $(this).data('id')
+        },
+    function(data, status){
+        
+    });
+    });
 });
 

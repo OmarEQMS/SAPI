@@ -40,9 +40,11 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
             documentoInicial.setIdDocumentoInicial(rs.getInt("idDocumentoInicial"));
             documentoInicial.setIdTipoDocumento(rs.getInt("idTipoDocumento"));
             documentoInicial.setIdPaciente(rs.getInt("idPaciente"));
-                documentoInicial.setArchivo(rs.getBinaryStream("archivo"));
+            documentoInicial.setArchivo(rs.getBinaryStream("archivo"));
             documentoInicial.setComentario(rs.getString("comentario"));
             documentoInicial.setAprobado(rs.getInt("aprobado"));
+            documentoInicial.setTipo(rs.getString("tipo"));
+            documentoInicial.setNombre(rs.getString("nombre"));
             
             conn.close();
             cstmt.close();
