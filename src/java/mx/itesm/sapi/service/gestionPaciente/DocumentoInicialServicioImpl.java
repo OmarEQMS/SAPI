@@ -26,7 +26,7 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarDocumentoInicial";
+        String stProcedure = "CALL mostrarDocumentoInicial(?)";
         DocumentoInicial documentoInicial = null;
      
         try {
@@ -61,7 +61,7 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarDocumentoInicial";
+        String stProcedure = "CALL mostrarDocumentoInicial()";
         List<DocumentoInicial> documentosIniciales = null;
         DocumentoInicial documentoInicial;
 
@@ -100,7 +100,7 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarDocumentoInicial";
+        String stProcedure = "CALL agregarDocumentoInicial(?, ?, ?, ?, ?)";
         int id = -1;
 
         try{
@@ -135,7 +135,7 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL borradoLogicoDocumentoInicial";
+        String stProcedure = "CALL borradoLogicoDocumentoInicial(?)";
         boolean exito = false;
 
         try{
@@ -164,7 +164,7 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarDocumentoInicial";
+        String stProcedure = "CALL actualizarDocumentoInicial(?, ?, ?, ?, ?)";
         boolean exito = false;
         try{
             conn  = Conexion.getConnection();
@@ -197,7 +197,9 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
+
         String stProcedure = "CALL agregarDocumentoInicialPreconsulta(?,?,?,?,?,?);";
+
         int id;
 
         try{
@@ -228,6 +230,41 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
         }
         return id;
                 
+    }
+
+    @Override
+    public DocumentoInicial mostrarDocumentoInicialIdPaciente(int idPaciente) {
+    Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarDocumentoInicial(?)";
+        DocumentoInicial documentoInicial = null;
+     
+        try {
+            conn = Conexion.getConnection();
+            documentoInicial = new DocumentoInicial();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+                  
+            rs = cstmt.executeQuery();
+            rs.next();
+            documentoInicial.setIdDocumentoInicial(rs.getInt("idDocumentoInicial"));
+            documentoInicial.setIdTipoDocumento(rs.getInt("idTipoDocumento"));
+            documentoInicial.setIdPaciente(rs.getInt("idPaciente"));
+                documentoInicial.setArchivo(rs.getBinaryStream("archivo"));
+            documentoInicial.setComentario(rs.getString("comentario"));
+            documentoInicial.setAprobado(rs.getInt("aprobado"));
+            
+            conn.close();
+            cstmt.close();
+            rs.close();
+            
+        } catch (SQLException ex) {
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                   .concat(ex.getMessage()));
+           documentoInicial = null;
+        }   
+        return documentoInicial;   
     }
     
 }

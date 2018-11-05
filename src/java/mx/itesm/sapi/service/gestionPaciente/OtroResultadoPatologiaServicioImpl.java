@@ -58,7 +58,7 @@ public class OtroResultadoPatologiaServicioImpl implements OtroResultadoPatologi
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarOtroResultadoPatologia";
+        String stProcedure = "CALL mostrarOtroResultadoPatologia()";
         List<OtroResultadoPatologia> otroResultadoPatologias = null;
         OtroResultadoPatologia otroResultadoPatologia;
 
@@ -162,7 +162,7 @@ public class OtroResultadoPatologiaServicioImpl implements OtroResultadoPatologi
         boolean exito = false;
 
         //Call del store procedure
-        String stProcedure = "actualizarOtroResultadoPatologia(?, ?, ?)";
+        String stProcedure = "CALL actualizarOtroResultadoPatologia(?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
@@ -186,5 +186,37 @@ public class OtroResultadoPatologiaServicioImpl implements OtroResultadoPatologi
         return exito;
 
     }
+
+    @Override
+    public OtroResultadoPatologia mostrarOtroResultadoPatologiaIdBiopsia(int idBiopsia) {
+     Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarOtroResultadoPatologia(?)";
+        OtroResultadoPatologia otroResultadoPatologia = null;
+
+        try {
+            conn = Conexion.getConnection();
+            otroResultadoPatologia = new OtroResultadoPatologia();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idBiopsia);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            otroResultadoPatologia.setIdOtroResultadoPatologia(rs.getInt("idOtroResultadoPatologia"));
+            otroResultadoPatologia.setIdBiopsia(rs.getInt("idBiopsia"));
+            otroResultadoPatologia.setNombre(rs.getString("nombre"));
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            otroResultadoPatologia = null;
+        }
+        return otroResultadoPatologia;}
 
 }

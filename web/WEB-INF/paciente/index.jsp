@@ -309,7 +309,6 @@
                                     <select class="custom-select tipo" id="RegistrarCita_tipo" required>
                                         <option disabled selected>Seleccione tipo</option>
                                         <option value="2" data-nombre="Consulta">Consulta</option>
-                                        <option value="4" data-nombre="Preconsulta">Preconsulta</option>
                                         <option value="3" data-nombre="Tratamiento">Tratamiento</option>
                                         <option value="1" data-nombre="Estudio">Estudio</option>
                                         <option value="6" data-nombre="Cirugía">Cirugía</option>

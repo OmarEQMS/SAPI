@@ -6,7 +6,9 @@
 package mx.itesm.sapi.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.Base64;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +16,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
+import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.Persona;
+import mx.itesm.sapi.bean.persona.Pic;
+import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
+import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.service.persona.PersonaServicioImpl;
+import mx.itesm.sapi.service.persona.PicServicioImpl;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -21,6 +35,7 @@ import javax.servlet.http.HttpSession;
  */
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 50)
+
 @WebServlet(name = "NavegadoraController", urlPatterns = {"/NavegadoraController"})
 public class NavegadoraController extends HttpServlet {
 
@@ -51,17 +66,93 @@ public class NavegadoraController extends HttpServlet {
             
             int keyRol = (int) sesion.getAttribute("idRol");
             
+            
+            
             switch(keyRol){
                 
                 case 4: {
                     
                     switch(key){
                         
-                        case "":{
+                        case "cambiarDatos": {
+
+                            String correo = request.getParameter("correo");
+                            String telefono = request.getParameter("telefono");
+
+                           Part part = request.getPart("file-image");
+
+                            //No se valida el telefono ni el correo aquí? Lo validamos nosotros o el front?
+                            PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
+                            Persona persona = personaServicioImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
+
                             
+
+                            if ((int) part.getSize() > 0) {
+                                PicServicioImpl picServiceImpl = new PicServicioImpl();
+                                Pic pic = new Pic();
+
+                                pic.setIdPersona((int) sesion.getAttribute("idPersona"));
+                                pic.setContenido(part.getInputStream());
+                                pic.setTamano((int) part.getSize());
+                                pic.setTipo(part.getContentType());
+
+                                picServiceImpl.agregarPic(pic);
+
+                                InputStream imagen = pic.getContenido();
+                                byte[] bytes = IOUtils.toByteArray(imagen);
+                                String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                sesion.setAttribute("base64Img", base64String);
+                                System.out.println("Debió actualizar la imagen en la sesión");
+                            }
+
+                           
+
+                           
+                            System.out.println("Ya pase registro");
+
+                            persona.setCorreo(correo);
+                            persona.setTelefono(telefono);
+
+                            personaServicioImpl.actualizarPersona(persona);
                             
+
+                            sesion.setAttribute("correo", persona.getCorreo());
+                            sesion.setAttribute("telefono", persona.getTelefono());
+
+                            request.setAttribute("correo", sesion.getAttribute("correo"));
+                            request.setAttribute("telefono", sesion.getAttribute("telefono"));
+
+                            request.getRequestDispatcher("/WEB-INF/potencial/cuentaPaciente.jsp").forward(request, response);
+
                             break;
                         }
+                           case "cambiarContrasena": {
+
+                            if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
+                                // request.setAttribute("status", "");
+                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                                return;
+                            } else {
+                                int idCuenta = (int) sesion.getAttribute("idCuenta");
+                                String contrasena = request.getParameter("password");
+                                String contrasena2 = request.getParameter("password2");
+
+                                if (contrasena.equals(contrasena2)) {
+
+                                    CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+
+                                    Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+
+                                    cuenta.setPassword(contrasena);
+
+                                    cuentaServicio.actualizarCuenta(cuenta);
+                                }
+
+                            }
+                             break;
+                        }
+                       
                         
                     }
                     

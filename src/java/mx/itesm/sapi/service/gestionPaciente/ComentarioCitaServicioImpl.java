@@ -25,7 +25,7 @@ public class ComentarioCitaServicioImpl implements ComentarioCitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarComentarioCita";
+        String stProcedure = "CALL mostrarComentarioCita(?)";
         ComentarioCita comentarioCita = null;
      
         try {
@@ -58,7 +58,7 @@ public class ComentarioCitaServicioImpl implements ComentarioCitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarComentarioCita";
+        String stProcedure = "CALL mostrarComentarioCita()";
         List<ComentarioCita> comentarioCitas = null;
         ComentarioCita comentarioCita;
 
@@ -96,7 +96,7 @@ public class ComentarioCitaServicioImpl implements ComentarioCitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarComentarioCita";
+        String stProcedure = "CALL agregarComentarioCita(?,?,?)";
         int id = -1;
 
         try{
@@ -129,7 +129,7 @@ public class ComentarioCitaServicioImpl implements ComentarioCitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL borradoLogicoComentarioCita";
+        String stProcedure = "CALL borradoLogicoComentarioCita(?)";
         boolean exito = false;
 
         try{
@@ -158,7 +158,7 @@ public class ComentarioCitaServicioImpl implements ComentarioCitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarComentarioCita";
+        String stProcedure = "CALL actualizarComentarioCita(?,?,?)";
         boolean exito = false;
         try{
             conn  = Conexion.getConnection();
@@ -181,6 +181,39 @@ public class ComentarioCitaServicioImpl implements ComentarioCitaServicio {
             exito = false;
         }
         return exito;
+    }
+
+    @Override
+    public ComentarioCita mostrarComentarioCitaIdCita(int idCita) {
+         Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarComentarioCitaIdCita(?)";
+        ComentarioCita comentarioCita = null;
+     
+        try {
+            conn = Conexion.getConnection();
+            comentarioCita = new ComentarioCita();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idCita);
+                  
+            rs = cstmt.executeQuery();
+            rs.next();
+            comentarioCita.setIdComentarioCita(rs.getInt("idComentarioCita"));
+            comentarioCita.setComentario(rs.getString("comentario"));
+            comentarioCita.setIdCita(rs.getInt("idCita"));
+            comentarioCita.setNavegadora(rs.getInt("navegadora"));
+            
+            conn.close();
+            cstmt.close();
+            rs.close();
+            
+        } catch (SQLException ex) {
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                   .concat(ex.getMessage()));
+           comentarioCita = null;
+        }   
+        return comentarioCita;
     }
     
 }

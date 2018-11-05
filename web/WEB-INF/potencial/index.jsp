@@ -63,7 +63,7 @@
                     <div class="row justify-content-center mb-2">
                         <div class="col-6 text-center">
                             <span class="textoSidebar m-0">${sessionScope.nombre} ${sessionScope.primerApellido}</span>
-                            <span class="textoSidebar userSidebar m-0">${sessionScope.usuario}</span>
+                            <span class="textoSidebar userSidebar m-0">@${sessionScope.usuario}</span>
                         </div>
                     </div>
 
@@ -89,8 +89,8 @@
                     <li id ="irACitaPreconsulta"><a><i class="fas fa-home"></i>Cita a Preconsulta </a></li>
 
                     <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas
-                            <c:choose>
-                                <c:when test="${sessionScope.estatus>=1}">
+                                <c:choose>
+                                    <c:when test="${sessionScope.estatus>=1}">
                                     <span class="notificacion">1</span>                        
                                 </c:when>
                             </c:choose>
@@ -200,12 +200,12 @@
 
                                         </div>
 
-                                        <form>
-
-                                            <div class="row mt-5">
-                                                <div class="col-12">
 
 
+                                        <div class="row mt-5">
+                                            <div class="col-12">
+
+                                                <form>
                                                     <!-- Genero -->
                                                     <div class="row">
                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-center">
@@ -472,7 +472,6 @@
                                                             <select class="form-control" id="motivoConsulta">
                                                                 <option value="0">Seleccione el motivo de la consulta</option>
                                                                 <option value="1">Me envió un médico</option>
-                                                                <option value="2">Estudio con diagnóstico de cáncer de mama</option>
                                                                 <option value="3">Me sentí una bolita en el seno</option>
                                                                 <option value="4">Me envían de otro hospital</option>
                                                                 <option value="5">Otro</option>
@@ -693,23 +692,25 @@
 
                                                     </div>
 
-                                                    <!-- Botones -->
+                                                </form>
 
-                                                    <div class="row justify-content-center mt-5">
-                                                        <div class="col-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-2">
-                                                            <button class="btn btn-morado btn-block" id="btn-enviarSolicitud" style="border-radius:20px"><i
-                                                                    class="fas fa-check-circle mr-2"></i>Enviar</button>
-                                                        </div>
-                                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-2">
-                                                            <button class="btn btn-guardar-continuar btn-block" id="btn-GuardarContinuar" style="border-radius:20px"><i
-                                                                    class="fas fa-save mr-2"></i>Guardar y Continuar Después</button>
-                                                        </div>
+                                                <!-- Botones -->
+                                                <div class="row justify-content-center mt-5">
+
+                                                    <div class="col-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-2">
+                                                        <button class="btn btn-morado btn-block" id="btn-enviarSolicitud" style="border-radius:20px"><i
+                                                                class="fas fa-check-circle mr-2"></i>Enviar</button>
                                                     </div>
-
-
+                                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-2">
+                                                        <button class="btn btn-guardar-continuar btn-block" id="btn-GuardarContinuar" style="border-radius:20px"><i
+                                                                class="fas fa-save mr-2"></i>Guardar y Continuar Después</button>
+                                                    </div>
                                                 </div>
+
+
                                             </div>
-                                        </form>
+                                        </div>
+
 
                                     </div>
 

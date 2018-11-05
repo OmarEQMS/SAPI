@@ -14,6 +14,7 @@ import mx.itesm.sapi.bean.persona.Login;
  */
 public interface LoginServicio {
     public Login mostrarLogin(int idLogin);
+    public Login mostrarLoginIdCuenta(int idCuenta) ;
     List<Login> mostrarLogin();
     public int agregarLogin(Login login);
     public boolean actualizarLogin(Login login);

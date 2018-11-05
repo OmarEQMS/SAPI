@@ -57,7 +57,7 @@ public class MedicoEspecialidadServicioImpl implements MedicoEspecialidadServici
 
         } catch (SQLException ex) {
 
-            System.out.println("Estoy en el catch de agregarEquipoEmpleado");
+            System.out.println("Estoy en el catch de agregarMedicoEspecialidad");
             System.out.println(ex.getMessage());
 
         }
@@ -92,12 +92,47 @@ public class MedicoEspecialidadServicioImpl implements MedicoEspecialidadServici
             return medicoEspecialidad;
         } catch (SQLException ex) {
 
-            System.out.println("Estoy en el catch de mostrarEquipoEmpleado");
+            System.out.println("Estoy en el catch de mostrarMedicoEspecialidad");
             System.out.println(ex.getMessage());
             return medicoEspecialidad;
         }
     }
 
+    
+     @Override
+    public MedicoEspecialidad mostrarMedicoEspecialidadEmpleado(int idEmpleado) {
+        Connection conn = Conexion.getConnection();
+
+        CallableStatement cstmt;
+
+        MedicoEspecialidad medicoEspecialidad = new MedicoEspecialidad();
+
+        //Call del store procedure
+        String stProcedure = "CALL mostrarMedicoEspecialidadEmpleado(?)";
+
+        try {
+
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idEmpleado);
+            ResultSet rs = cstmt.executeQuery();
+
+            rs.next();
+            medicoEspecialidad.setIdMedicoEspecialidad(rs.getInt("idMedicoEspecialidad"));
+            medicoEspecialidad.setIdEmpleado(rs.getInt("idEmpleado"));
+            medicoEspecialidad.setIdEspecialidad(rs.getInt("idEspecialidad"));
+            medicoEspecialidad.setCedulaProfesional(rs.getString("cedulaProfesional"));
+            medicoEspecialidad.setIdEmpleado(rs.getInt("estatus"));
+
+            return medicoEspecialidad;
+        } catch (SQLException ex) {
+
+            System.out.println("Estoy en el catch de mostrarMedicoEspecialidadEmpleado");
+            System.out.println(ex.getMessage());
+            return medicoEspecialidad;
+        }
+    }
+
+    
     @Override
     public List<MedicoEspecialidad> mostrarMedicoEspecialidad() {
         Connection conn = Conexion.getConnection();

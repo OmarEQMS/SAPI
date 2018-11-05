@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.util.Base64;
 import java.util.ResourceBundle;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,6 +67,7 @@ import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
 import mx.itesm.sapi.service.persona.LoginServicioImpl;
@@ -273,10 +275,13 @@ public class PotencialController extends HttpServlet {
                  * Uriel Díaz 26/10/2018.
                  *
                  * El presente case funciona cuando un paciente agrega ciertos
-                 * atributos y documentos al proceso de solicitud de preconsulta
+                 * atributos y documentos al proceso de solicitud de preconsulta                  <<<<<<< HEAD
+                 * sin enviarla. * *
+                 * =======
                  * sin enviarla.
                  *
                  * * *
+                 * >>>>>>> origin/Develop
                  */
                 //Obtener la sesion
                 HttpSession sesion = request.getSession(true);
@@ -819,6 +824,7 @@ public class PotencialController extends HttpServlet {
 
             //Author Angel Gtz
             case "eliminarCuentaPacientePotencial": {
+                System.out.println("Si llego aqui potencial");
                 HttpSession sesion = request.getSession(true);
                 /**
                  * Veo si tiene sesion iniciada
@@ -840,87 +846,136 @@ public class PotencialController extends HttpServlet {
                     int idCuenta = (int) sesion.getAttribute("idCuenta");
                     int idPaciente = (int) sesion.getAttribute("idPaciente");
                     int idPersona = (int) sesion.getAttribute("idPersona");
+                    System.out.println(idPaciente);
+                    System.out.println(idCuenta);
+                    System.out.println(idPersona);
 
                     /**
                      * creo los objetos de las tablas a modificar su estatus
                      */
                     CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
-                    Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
 
                     PersonaServicioImpl personaServicio = new PersonaServicioImpl();
-                    Persona persona = personaServicio.mostrarPersona(idPersona);
 
-                    PacienteServicioImpl pacienteServicio = new PacienteServicioImpl();
-                    Paciente paciente = pacienteServicio.mostrarPaciente(idPaciente);
+                    Persona persona = personaServicio.mostrarPersona(idPersona);
+                    // personaServicio.borradoLogicoPersona(persona.getIdPersona());
+
+                    PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
+                    if (pacienteServicio.mostrarPaciente(idPaciente) != null) {
+
+                        Paciente paciente = pacienteServicio.mostrarPaciente(idPaciente);
+                        //pacienteServicio.borradoLogicoPaciente(paciente.getIdCuenta());
+                    }
 
                     LoginServicioImpl loginServicio = new LoginServicioImpl();
-                    Login login = loginServicio.mostrarLogin(idCuenta);
-
+                    if (loginServicio.mostrarLoginIdCuenta(idCuenta) != null) {
+                        Login login = loginServicio.mostrarLoginIdCuenta(idCuenta);
+                        // loginServicio.borradoLogicoLogin(login.getIdLogin());
+                    }
                     DireccionServicioImpl direccionServicio = new DireccionServicioImpl();
-                    Direccion direccion = direccionServicio.mostrarDireccion(persona.getIdDireccion());
-
+                    if (direccionServicio.mostrarDireccion(persona.getIdDireccion()) != null) {
+                        Direccion direccion = direccionServicio.mostrarDireccion(persona.getIdDireccion());
+                        // direccionServicio.borradoLogicoDireccion(direccion.getIdDireccion());
+                    }
                     PicServicioImpl picServicio = new PicServicioImpl();
-                    Pic pic = picServicio.mostrarPic(idPersona);
-
+                    if (picServicio.mostrarPic(idPersona) != null) {
+                        Pic pic = picServicio.mostrarPic(idPersona);
+                        // picServicio.borradoLogicoPic(pic.getIdPic());
+                    }
                     EstadoPacientePacienteServiceImpl estadoPacientePacienteServicio = new EstadoPacientePacienteServiceImpl();
-                    EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServicio.mostrarEstadoPacientePaciente(idPaciente);
+                    if (estadoPacientePacienteServicio.mostrarEstadoPacientePacienteIdPaciente(idPaciente) != null) {
+                        EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServicio.mostrarEstadoPacientePacienteIdPaciente(idPaciente);
+                        // estadoPacientePacienteServicio.borradoLogicoEstadoPacientePaciente(estadoPacientePaciente.getIdEstadoPacientePaciente());
+                    }
 
                     CitaServicioImpl citaServicio = new CitaServicioImpl();
-                    Cita cita = citaServicio.mostrarCita(idPaciente);
+                    if (citaServicio.mostrarCitaIdEspecifico(idPaciente) != null) {
 
-                    ComentarioCitaServicioImpl comentarioCitaServicio = new ComentarioCitaServicioImpl();
-                    ComentarioCita comentarioCita = comentarioCitaServicio.mostrarComentarioCita(cita.getIdCita());
+                        List<Cita> citas = new ArrayList<>();
 
-                    CitaEmpleadoServicioImpl citaEmpleadoServicio = new CitaEmpleadoServicioImpl();
-                    CitaEmpleado citaEmpleado = citaEmpleadoServicio.mostrarCitaEmpleado(cita.getIdCita());
+                        citas = citaServicio.mostrarCitaIdEspecifico(idPaciente);
+                        int citasTotales = citas.size() - 1;
 
-                    LlamadaCitaServicioImpl llamadaCitaServicio = new LlamadaCitaServicioImpl();
-                    LlamadaCita llamadaCita = llamadaCitaServicio.mostrarLlamadaCita(cita.getIdCita());
+                        int idCita = 0;
+                        while (citasTotales > -1) {
+
+                            System.out.println(citasTotales);
+                            idCita = citas.get(citasTotales).getIdCita();
+
+                            System.out.println(idCita);
+
+                            ComentarioCitaServicioImpl comentarioCitaServicio = new ComentarioCitaServicioImpl();
+                            if (comentarioCitaServicio.mostrarComentarioCitaIdCita(idCita) != null) {
+                                ComentarioCita comentarioCita = comentarioCitaServicio.mostrarComentarioCitaIdCita(idCita);
+                                comentarioCitaServicio.borradoLogicoComentarioCita(comentarioCita.getIdComentarioCita());
+                            }
+
+                            CitaEmpleadoServicioImpl citaEmpleadoServicio = new CitaEmpleadoServicioImpl();
+                            if (citaEmpleadoServicio.mostrarCitaEmpleadoIdCita(idCita) != null) {
+                                CitaEmpleado citaEmpleado = citaEmpleadoServicio.mostrarCitaEmpleadoIdCita(idCita);
+                                citaEmpleadoServicio.borradoLogicoCitaEmpleado(citaEmpleado.getIdCitaEmpleado());
+                            }
+
+                            LlamadaCitaServicioImpl llamadaCitaServicio = new LlamadaCitaServicioImpl();
+                            if (llamadaCitaServicio.mostrarLlamadaCitaIdCita(idCita) != null) {
+                                LlamadaCita llamadaCita = llamadaCitaServicio.mostrarLlamadaCitaIdCita(idCita);
+                                llamadaCitaServicio.borradoLogicoLlamadaCita(llamadaCita.getIdLlamadaCita());
+                            }
+
+                            citaServicio.borradoLogicoCita(idCita);
+
+                            citasTotales = citasTotales - 1;
+                            System.out.println(citasTotales);
+                        }
+                    }
 
                     PacienteMedicoTitularServicioImpl pacienteMedicoTitularServicio = new PacienteMedicoTitularServicioImpl();
-                    PacienteMedicoTitular pacienteMedicoTitular = pacienteMedicoTitularServicio.mostrarPacienteMedicoTitular(idPaciente);
+                    if (pacienteMedicoTitularServicio.mostrarPacienteMedicoTitularIdPaciente(idPaciente) != null) {
+                        PacienteMedicoTitular pacienteMedicoTitular = pacienteMedicoTitularServicio.mostrarPacienteMedicoTitularIdPaciente(idPaciente);
+                        pacienteMedicoTitularServicio.borradoLogicoPacienteMedicoTitular(pacienteMedicoTitular.getIdPacienteMedicoTitular());
+                    }
 
                     PacienteNavegadoraServicioImpl pacienteNavegadoraServicio = new PacienteNavegadoraServicioImpl();
-                    PacienteNavegadora pacienteNavegadora = pacienteNavegadoraServicio.mostrarPacienteNavegadora(idPaciente);
+                    if (pacienteNavegadoraServicio.mostrarPacienteNavegadoraIdPaciente(idPaciente) != null) {
+                        PacienteNavegadora pacienteNavegadora = pacienteNavegadoraServicio.mostrarPacienteNavegadoraIdPaciente(idPaciente);
+                        pacienteNavegadoraServicio.borradoLogicoPacienteNavegadora(pacienteNavegadora.getIdPacienteNavegadora());
 
+                    }
                     DocumentoInicialServicioImpl documentoInicialServicio = new DocumentoInicialServicioImpl();
-                    DocumentoInicial documentoInicial = documentoInicialServicio.mostrarDocumentoInicial(idPaciente);
+                    if (documentoInicialServicio.mostrarDocumentoInicialIdPaciente(idPaciente) != null) {
+                        DocumentoInicial documentoInicial = documentoInicialServicio.mostrarDocumentoInicialIdPaciente(idPaciente);
+                        documentoInicialServicio.borradoLogicoDocumentoInicial(documentoInicial.getIdDocumentoInicial());
 
+                    }
                     PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
-                    PacienteNecesidadEspecial pacienteNecesidadEspecial = pacienteNecesidadEspecialServicio.mostrarPacienteNecesidadEspecial(idPaciente);
+                    if (pacienteNecesidadEspecialServicio.mostrarPacienteNecesidadEspecialIdPaciente(idPaciente) != null) {
+                        PacienteNecesidadEspecial pacienteNecesidadEspecial = pacienteNecesidadEspecialServicio.mostrarPacienteNecesidadEspecialIdPaciente(idPaciente);
+                        pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(pacienteNecesidadEspecial.getIdNecesidadEspecial());
 
+                    }
                     PacienteAlergiaServicioImpl pacienteAlergiaServicio = new PacienteAlergiaServicioImpl();
-                    PacienteAlergia pacienteAlergia = pacienteAlergiaServicio.mostrarPacienteAlergia(idPaciente);
+                    if (pacienteAlergiaServicio.mostrarPacienteAlergiaIdPaciente(idPaciente) != null) {
+                        PacienteAlergia pacienteAlergia = pacienteAlergiaServicio.mostrarPacienteAlergiaIdPaciente(idPaciente);
+                        pacienteAlergiaServicio.borradoLogicoPacienteAlergia(pacienteAlergia.getIdPacienteAlergia());
+                    }
+
+                    if (cuentaServicio.mostrarCuenta(idCuenta) != null) {
+                        //     Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+
+                        //      cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
+                    }
 
                     /**
                      * Implemento el borrado logico llamando a su objetoServicio
                      * despues al procesos almacenado y al final al id del
                      * objeto
                      */
-                    pacienteAlergiaServicio.borradoLogicoPacienteAlergia(pacienteAlergia.getIdPacienteAlergia());
-                    pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(pacienteNecesidadEspecial.getIdNecesidadEspecial());
-                    documentoInicialServicio.borradoLogicoDocumentoInicial(documentoInicial.getIdDocumentoInicial());
-                    pacienteNavegadoraServicio.borradoLogicoPacienteNavegadora(pacienteNavegadora.getIdPacienteNavegadora());
-                    pacienteMedicoTitularServicio.borradoLogicoPacienteMedicoTitular(pacienteMedicoTitular.getIdPacienteMedicoTitular());
-                    llamadaCitaServicio.borradoLogicoLlamadaCita(llamadaCita.getIdLlamadaCita());
-                    citaEmpleadoServicio.borradoLogicoCitaEmpleado(citaEmpleado.getIdCitaEmpleado());
-                    comentarioCitaServicio.borradoLogicoComentarioCita(comentarioCita.getIdComentarioCita());
-                    citaServicio.borradoLogicoCita(cita.getIdCita());
-                    estadoPacientePacienteServicio.borradoLogicoEstadoPacientePaciente(estadoPacientePaciente.getIdEstadoPacientePaciente());
-                    picServicio.borradoLogicoPic(pic.getIdPic());
-                    direccionServicio.borradoLogicoDireccion(direccion.getIdDireccion());
-                    loginServicio.borradoLogicoLogin(login.getIdLogin());
-                    pacienteServicio.borradoLogicoPaciente(paciente.getIdCuenta());
-                    personaServicio.borradoLogicoPersona(persona.getIdPersona());
-                    cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
-
                     /**
                      * Al no tener cuenta se le redirecciona al login
                      */
                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 
                 }
-
                 break;
             }
 
@@ -1098,10 +1153,12 @@ public class PotencialController extends HttpServlet {
                     sesion.setAttribute("resultadoMastografia", solicitudPreconsulta.getMastografia());
                     sesion.setAttribute("resultadosUltrasonidos", solicitudPreconsulta.getUltrasonido());
                     sesion.setAttribute("biopsiaPrevia", solicitudPreconsulta.getBiopsiaPrevia());
+<<<<<<< HEAD
+=======
                      */
                     System.out.println("Consultar documentos");
                     //System.out.println("Documentos ".concat(solicitudPreconsulta.toString()));
-                    
+
                     if (solicitudPreconsulta.getIdSexo() == 0) {
                         sesion.setAttribute("idSexo", 0);
                     } else {
@@ -1145,6 +1202,7 @@ public class PotencialController extends HttpServlet {
                     System.out.println("resultadoMastografia: " + solicitudPreconsulta.getMastografia());
                     System.out.println("resultadosUltrasonidos: " + solicitudPreconsulta.getUltrasonido());
                     System.out.println("biopsiaPrevia: " + solicitudPreconsulta.getBiopsiaPrevia());
+                    
 
                     Gson json = new Gson();
                     System.out.println("Res Id ".concat(String.valueOf(idPacientePotencial)).concat(json.toJson(solicitudPreconsulta)));
@@ -1247,11 +1305,12 @@ public class PotencialController extends HttpServlet {
                  *
                  * El presente case funciona cuando un paciente agrega ciertos
                  * atributos y documentos al proceso de solicitud de preconsulta
-                 * sin enviarla.
-                 *
-                 * * *
+                 * <<<<<<< HEAD sin enviarla. * *
                  */
-                //Obtener la sesion
+
+                System.out.println("Guardar y continuar");
+
+                   
                 HttpSession sesion = request.getSession(true);
 
                 if (sesion.getId() == null) {

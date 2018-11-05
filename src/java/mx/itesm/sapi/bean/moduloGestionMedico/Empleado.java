@@ -17,7 +17,7 @@ public class Empleado implements Serializable{
     private int idDepartamentoDepartamentoInterno;
     private String noEmpleado;
     private int estatus;
-
+    private int idCuenta; 
     
     public Empleado(){}
     
@@ -59,5 +59,15 @@ public class Empleado implements Serializable{
     public void setEstatus(int estatus) {
         this.estatus = estatus;
     }
+
+    public int getIdCuenta() {
+        return idCuenta;
+    }
+
+    public void setIdCuenta(int idCuenta) {
+        this.idCuenta = idCuenta;
+    }
+    
+    
    
 }

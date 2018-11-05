@@ -1,5 +1,27 @@
 $(document).ready(function () {
 
+
+    //Redirige a documentos
+    $('#irADocumentos').on('click', function () {
+        $.get("SAPI", {
+            file: "navegadora/documentos.jsp"
+        },
+                function (response, status, xhr) {
+                    //console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
+
     //Eliminar cuenta
     $('#eliminarCuentaNavegadora').on('click', () => {
 
@@ -11,15 +33,15 @@ $(document).ready(function () {
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
-            .then((eliminar) => {
-                if (eliminar) {
+                .then((eliminar) => {
+                    if (eliminar) {
 
 
 
-                } else {
+                    } else {
 
-                }
-            });
+                    }
+                });
 
     });
 
@@ -34,17 +56,17 @@ $(document).ready(function () {
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
-            .then((enviar) => {
-                if (enviar) {
+                .then((enviar) => {
+                    if (enviar) {
 
-                    //ajax para aprobar
+                        //ajax para aprobar
 
-                    location.href = "./index.html"
+                        location.href = "./index.html"
 
-                } else {
+                    } else {
 
-                }
-            });
+                    }
+                });
 
     });
 
@@ -58,15 +80,15 @@ $(document).ready(function () {
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
-            .then((cancelar) => {
-                if (cancelar) {
+                .then((cancelar) => {
+                    if (cancelar) {
 
 
 
-                } else {
+                    } else {
 
-                }
-            });
+                    }
+                });
 
     });
 
@@ -81,15 +103,15 @@ $(document).ready(function () {
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
-            .then((enviar) => {
-                if (enviar) {
+                .then((enviar) => {
+                    if (enviar) {
 
 
 
-                } else {
+                    } else {
 
-                }
-            });
+                    }
+                });
 
     });
 
@@ -104,17 +126,17 @@ $(document).ready(function () {
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
-            .then((aprobar) => {
-                if (aprobar) {
+                .then((aprobar) => {
+                    if (aprobar) {
 
-                    //ajax para aprobar
+                        //ajax para aprobar
 
-                    //location.href = "./documentos3.html"
+                        //location.href = "./documentos3.html"
 
-                } else {
+                    } else {
 
-                }
-            });
+                    }
+                });
 
     });
 
@@ -128,15 +150,15 @@ $(document).ready(function () {
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
-            .then((eliminar) => {
-                if (eliminar) {
+                .then((eliminar) => {
+                    if (eliminar) {
 
 
 
-                } else {
+                    } else {
 
-                }
-            });
+                    }
+                });
 
     });
 
@@ -150,19 +172,19 @@ $(document).ready(function () {
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
-            .then((eliminar) => {
-                if (eliminar) {
+                .then((eliminar) => {
+                    if (eliminar) {
 
 
 
-                } else {
+                    } else {
 
-                }
-            });
+                    }
+                });
 
     });
 
-        $('#irADashboard').on('click', function () {
+    $('#irADashboard').on('click', function () {
         $.post("SAPI", {
             file: "navegadora/index.jsp"
         },
@@ -180,7 +202,7 @@ $(document).ready(function () {
                 }
         );
     });
-    
+
     $('#idACalendario').on('click', function () {
         $.post("SAPI", {
             file: "navegadora/calendar.jsp"
@@ -217,11 +239,205 @@ $(document).ready(function () {
                 }
         );
     });
-        
+
 
     $('#irACuenta').on('click', function () {
         $.post("SAPI", {
             file: "navegadora/cuentaNavegadora.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+
+
+    $('#guardarCambios').on('click', function () {
+
+        if (isValidPhoneNumber($("#telefono")) && isValidEmail($("#correo"))) {
+
+            console.log("Presionó GuardarCambios")
+            var form = $("form")[0];
+            var data = new FormData(form);
+            data.append("key", "cambiarDatos");
+            data.forEach((value, key) => {
+                console.log(key + " " + value);
+            })
+
+            $.ajax({
+                url: "NavegadoraController",
+                data: data,
+                method: "POST",
+                encType: "multipart/form-data",
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (response) {
+                    $.post("SAPI", {
+                        file: "navegadora/cuentaNavegadora.jsp"
+                    },
+                            function (response, status, xhr) {
+                                console.log("El ajax fue exitoso!!-----------------------");
+
+                                if (status == "success") {
+
+
+
+                                    if (response == "error") {
+                                        $("#msj-error").show();
+                                    } else {
+
+                                        swal({
+                                            title: 'Buen Trabajo',
+                                            text: "Cambios guardados correctamente",
+                                            type: 'success',
+                                            confirmButtonColor: '#3085d6',
+                                            confirmButtonText: 'Ok'
+                                        })
+
+                                        document.open("text/html", "replace");
+                                        document.write(response);
+                                        document.close();
+                                    }
+                                }
+
+                            }
+                    );
+                },
+                error: function (xhr) {
+                    //alert(xhr.statusText);
+                }
+
+            });
+        } else {
+            swal({
+                title: "Datos invalidos!",
+                text: "Revisa todos los campos antes de continuar",
+                icon: "error",
+            });
+        }
+    });
+
+    //Cambiar imagen temporalmente en elfront
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#ImagenPerfil').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#file-input").on('change', function () {
+        console.log("Llegó :)");
+        readURL(this);
+    });
+
+    //Cambiar contraseña
+
+    $("#btn-updatePassword").on('click', function () {
+
+
+
+        //Modal cambiar contraseña 
+        swal({
+            title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
+            text: "No podras volver a usar tu contraseña anterior para ingresar",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Regresar', 'Cambiar contraseña'],
+            dangerMode: true
+        })
+                .then((cambiar) => {
+                    if (cambiar) {
+
+
+                        $.ajax({
+                            url: "NavegadoraController",
+                            data: {
+                                key: "cambiarContrasena",
+                                idCuenta: $("#sesionPaciente").val(),
+                                password: $("#password").val(),
+                                password2: $("#password-confirm").val()
+                            },
+                            method: "POST",
+                            success: function (response) {
+                                if (response == "success") {
+
+                                } else {
+                                    //Aqui no se que hace
+                                }
+                            },
+                            error: function (xhr) {
+
+                            }
+                        });
+                        $('#modalCambiarContraseña').modal('toggle');
+                    } else {
+
+                    }
+
+                });
+    });
+
+    function isValidEmail(input) {
+
+        var m = input.val();
+
+        ////Expresion regular por el estandard: RFC 5322
+        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    }
+    ;
+
+    function isValidPhoneNumber(input) {
+
+        var m = input.val();
+
+        var expreg = /^[0-9]{10,10}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+    ;
+    
+    $('#irVerDocumento').on('click', function () {
+        $.post("SAPI", {
+            file: "navegadora/verDocumento.jsp"
         },
                 function (response, status, xhr) {
                     console.log("El ajax fue exitoso!!-----------------------");

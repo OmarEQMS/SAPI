@@ -25,7 +25,7 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarCitaEmpleado";
+        String stProcedure = "CALL mostrarCitaEmpleado(?)";
         CitaEmpleado citaEmpleado = null;
      
         try {
@@ -60,7 +60,7 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarCitaEmpleado";
+        String stProcedure = "CALL mostrarCitaEmpleado()";
         List<CitaEmpleado> citaEmpleados = null;
         CitaEmpleado citaEmpleado;
 
@@ -100,7 +100,7 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarCitaEmpleado";
+        String stProcedure = "CALL agregarCitaEmpleado(?, ?, ?, ?, ?)";
         int id = -1;
 
         try{
@@ -135,7 +135,7 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL borradoLogicoCitaEmpleado";
+        String stProcedure = "CALL borradoLogicoCitaEmpleado(?)";
         boolean exito = false;
 
         try{
@@ -164,7 +164,7 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarCitaEmpleado";
+        String stProcedure = "CALL actualizarCitaEmpleado(?, ?, ?, ?, ?)";
         boolean exito = false;
         try{
             conn  = Conexion.getConnection();
@@ -189,6 +189,41 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
             exito = false;
         }
         return exito;
+    }
+
+    @Override
+    public CitaEmpleado mostrarCitaEmpleadoIdCita(int idCita) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarCitaEmpleado(?)";
+        CitaEmpleado citaEmpleado = null;
+     
+        try {
+            conn = Conexion.getConnection();
+            citaEmpleado = new CitaEmpleado();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idCita);
+                  
+            rs = cstmt.executeQuery();
+            rs.next();
+            citaEmpleado.setIdCitaEmpleado(rs.getInt("idCitaEmpleado"));
+            citaEmpleado.setIdCita(rs.getInt("idCita"));
+            citaEmpleado.setIdEmpleado(rs.getInt("idEmpleado"));
+            citaEmpleado.setMedicoSustituto(rs.getInt("medicoSustituto"));
+            citaEmpleado.setAdscritoPresente(rs.getInt("adscridoPresente"));
+            citaEmpleado.setIdEmpleadoSustituto(rs.getInt("idEmpleadoSustitutos"));
+            
+            conn.close();
+            cstmt.close();
+            rs.close();
+            
+        } catch (SQLException ex) {
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                   .concat(ex.getMessage()));
+           citaEmpleado = null;
+        }   
+        return citaEmpleado;
     }
     
 }
