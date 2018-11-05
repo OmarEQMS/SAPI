@@ -229,4 +229,43 @@ public class AuditoriaTratamientoPacienteServiceImpl implements AuditoriaTratami
         }
         return exito;
     }
+
+    @Override
+    public AuditoriaTratamientoPaciente mostrarAuditoriaTratamientoPacienteIdTratamiento(int idTratamiento) {
+     Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        
+        AuditoriaTratamientoPaciente auditoriaTratamientoPaciente = null;
+        
+        //Call del stored procedure
+        String stProcedure="CALL mostrarAuditoriaTratamientoPacienteIdTratamiento(?)";
+        
+        try{
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            auditoriaTratamientoPaciente = new AuditoriaTratamientoPaciente();
+            
+            cstmt.setInt(1, idTratamiento);
+            rs = cstmt.executeQuery();
+            
+            rs.next();
+            auditoriaTratamientoPaciente.setIdAuditoriaTratamientoPaciente(rs.getInt(1));
+            auditoriaTratamientoPaciente.setIdTratamientoPaciente(rs.getInt(2));
+            auditoriaTratamientoPaciente.setIdEmpleado(rs.getInt(3));
+            auditoriaTratamientoPaciente.setFecha(rs.getTimestamp(4));
+            auditoriaTratamientoPaciente.setEstatus(rs.getInt(5));
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+           
+        }catch(SQLException ex){
+            auditoriaTratamientoPaciente = null;
+            System.out.println("ID: " + idTratamiento);
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+        return auditoriaTratamientoPaciente;
+    }
 }

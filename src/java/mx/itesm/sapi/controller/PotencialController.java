@@ -858,34 +858,34 @@ public class PotencialController extends HttpServlet {
                     PersonaServicioImpl personaServicio = new PersonaServicioImpl();
 
                     Persona persona = personaServicio.mostrarPersona(idPersona);
-                    // personaServicio.borradoLogicoPersona(persona.getIdPersona());
+                     personaServicio.borradoLogicoPersona(persona.getIdPersona());
 
                     PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
                     if (pacienteServicio.mostrarPaciente(idPaciente) != null) {
 
                         Paciente paciente = pacienteServicio.mostrarPaciente(idPaciente);
-                        //pacienteServicio.borradoLogicoPaciente(paciente.getIdCuenta());
+                        pacienteServicio.borradoLogicoPaciente(paciente.getIdCuenta());
                     }
 
                     LoginServicioImpl loginServicio = new LoginServicioImpl();
                     if (loginServicio.mostrarLoginIdCuenta(idCuenta) != null) {
                         Login login = loginServicio.mostrarLoginIdCuenta(idCuenta);
-                        // loginServicio.borradoLogicoLogin(login.getIdLogin());
+                        loginServicio.borradoLogicoLogin(login.getIdLogin());
                     }
                     DireccionServicioImpl direccionServicio = new DireccionServicioImpl();
                     if (direccionServicio.mostrarDireccion(persona.getIdDireccion()) != null) {
                         Direccion direccion = direccionServicio.mostrarDireccion(persona.getIdDireccion());
-                        // direccionServicio.borradoLogicoDireccion(direccion.getIdDireccion());
+                        direccionServicio.borradoLogicoDireccion(direccion.getIdDireccion());
                     }
                     PicServicioImpl picServicio = new PicServicioImpl();
                     if (picServicio.mostrarPic(idPersona) != null) {
                         Pic pic = picServicio.mostrarPic(idPersona);
-                        // picServicio.borradoLogicoPic(pic.getIdPic());
+                         picServicio.borradoLogicoPic(pic.getIdPic());
                     }
                     EstadoPacientePacienteServiceImpl estadoPacientePacienteServicio = new EstadoPacientePacienteServiceImpl();
                     if (estadoPacientePacienteServicio.mostrarEstadoPacientePacienteIdPaciente(idPaciente) != null) {
                         EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServicio.mostrarEstadoPacientePacienteIdPaciente(idPaciente);
-                        // estadoPacientePacienteServicio.borradoLogicoEstadoPacientePaciente(estadoPacientePaciente.getIdEstadoPacientePaciente());
+                         estadoPacientePacienteServicio.borradoLogicoEstadoPacientePaciente(estadoPacientePaciente.getIdEstadoPacientePaciente());
                     }
 
                     CitaServicioImpl citaServicio = new CitaServicioImpl();
@@ -960,9 +960,9 @@ public class PotencialController extends HttpServlet {
                     }
 
                     if (cuentaServicio.mostrarCuenta(idCuenta) != null) {
-                        //     Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+                            Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
 
-                        //      cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
+                             cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
                     }
 
                     /**
@@ -1153,8 +1153,7 @@ public class PotencialController extends HttpServlet {
                     sesion.setAttribute("resultadoMastografia", solicitudPreconsulta.getMastografia());
                     sesion.setAttribute("resultadosUltrasonidos", solicitudPreconsulta.getUltrasonido());
                     sesion.setAttribute("biopsiaPrevia", solicitudPreconsulta.getBiopsiaPrevia());
-<<<<<<< HEAD
-=======
+
                      */
                     System.out.println("Consultar documentos");
                     //System.out.println("Documentos ".concat(solicitudPreconsulta.toString()));

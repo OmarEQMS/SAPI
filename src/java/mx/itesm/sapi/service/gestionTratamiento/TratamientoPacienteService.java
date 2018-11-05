@@ -13,10 +13,18 @@ import mx.itesm.sapi.bean.gestionTratamiento.TratamientoPaciente;
  * @author Admin
  */
 public interface TratamientoPacienteService {
-    
-    public int agregarTratamientoPaciente(TratamientoPaciente tratamientoPaciente); //
+
+    public int agregarTratamientoPaciente(TratamientoPaciente tratamientoPaciente);
+
     public TratamientoPaciente mostrarTratamientoPaciente(int idTratamientoPaciente);
+
+    public TratamientoPaciente mostrarTratamientoPacienteIdPaciente(int idPaciente);
+
     public List<TratamientoPaciente> mostrarTratamientoPaciente();
+
+    public List<TratamientoPaciente> mostrarTratamientoPacienteIdEspecifico(int idPaciente);
+
     public boolean actualizarTratamientoPaciente(TratamientoPaciente tratamientoPaciente);
+
     public boolean borradoLogicoTratamientoPaciente(int idTratamientoPaciente);
 }

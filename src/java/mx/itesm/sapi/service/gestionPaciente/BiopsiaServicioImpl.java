@@ -223,7 +223,7 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarBiopsia(?)";
+        String stProcedure = "CALL mostrarBiopsiaIdPaciente(?)";
         Biopsia biopsia = null;
 
         try {
@@ -265,7 +265,7 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
          Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarBiopsia(?)";
+        String stProcedure = "CALL mostrarAllBiopsiaIdEspecifico(?)";
         List<Biopsia> biopsias = null;
         Biopsia biopsia;
 

@@ -192,7 +192,7 @@ public class OtroResultadoPatologiaServicioImpl implements OtroResultadoPatologi
      Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarOtroResultadoPatologia(?)";
+        String stProcedure = "CALL mostrarOtroResultadoPatologiaIdBiopsia(?)";
         OtroResultadoPatologia otroResultadoPatologia = null;
 
         try {
