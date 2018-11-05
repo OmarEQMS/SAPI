@@ -156,6 +156,10 @@
             <!-- ***** A PARTIR DE AQUI ESCRIBEN EL CODIGO QUE QUIERAN..... ***** -->
             <!-- **************************************************************** -->
 
+            <!--Input hidden -->
+            <input type="hidden" value="${sessionScope.idPaciente}" id="hiddenIdPaciente">
+            
+            
             <div class="row mb-3 justify-content-end">
                 <div class="col-3 text-center">
                     <span class="iconoHome mr-2">
@@ -236,9 +240,9 @@
                             <c:forEach items="${documentos}" var="documento">
                                 <tr>
                                 <td>
-                                    <i class="fas fa-comments mr-2 iconoComentarios" data-toggle="modal" data-target="#modalVerComentario"></i>
+                                    <i class="fas fa-comments mr-2 iconoComentarios verComentario" data-id="${documento.idDocumentoInicial}" data-toggle="modal" data-target="#modalVerComentario" ></i>
 
-                                    <c:out value="${documento.nombre}"/>
+                                    <c:out value="${documento.nombreTipo}"/>
                                     
                                     
                                     
@@ -253,16 +257,16 @@
                                     </c:choose>
                                 </td>
                                 <td>
-                                    <a href='verDocumento.html' class="btn btn-info" id="btn-ver ">
+                                    <a  class="btn btn-info irAVerDocumento" id="btn-ver " data-id="${documento.idDocumentoInicial}">
                                         <i class="far fa-eye "></i>
                                         </button>
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary " id="btn-descargar ">
+                                    <button class="btn btn-primary " id="btn-descargar " data-id="${documento.idDocumentoInicial}">
                                         <i class="fas fa-cloud-download-alt"></i>
                                         </button>
                                 </td>
-                                
+                                <input type="hidden" value="${documento.comentario}" id="comentario-${documento.idDocumentoInicial}">
                                 </tr>
                             </c:forEach>
                             
@@ -297,16 +301,16 @@
                     </div>
                     <div class="modal-body ">
                         <div class="row ">
-                            <div class="col-12 ">
-                                <span class="d-block">1.- La imagen esta muy borrosa</span>
-                                <span class="d-block">2.- No esta actualizada</span>
+                            <div class="col-12 " id="modalComentario">
+                                <span class="d-block"> </span>
+                                
                             </div>
                         </div>
 
                     </div>
                     <div class="modal-footer ">
-                        <button type="button" class="btn btn-danger" style="border-radius: 20px" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" style="border-radius: 20px" data-dismiss="modal">Aceptar</button>
+                        <button type="button" id="cerrarModal" class="btn btn-danger" style="border-radius: 20px" data-dismiss="modal">Cerrar</button>
+                        <button type="button" id="aceptarModal" class="btn btn-primary" style="border-radius: 20px" data-dismiss="modal">Aceptar</button>
                     </div>
                 </div>
             </div>

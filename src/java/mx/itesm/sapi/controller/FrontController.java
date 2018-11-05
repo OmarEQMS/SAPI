@@ -327,8 +327,17 @@ public class FrontController extends HttpServlet {
                                     break;
 
                                 }
+                                 case "navegadora/verDocumento.jsp":{
+                                    System.out.println("VerDocumento Navegadora ");
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
+                                    break;
+                           }
+                           
+                                
                             }
                             break;
+                            
+                           
                         }
 
                         /*PACIENTE EN TRATAMIENTO*/

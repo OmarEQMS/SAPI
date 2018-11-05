@@ -45,13 +45,13 @@ public class DocumentoInicialTipoDocumentoServicioImpl implements DocumentoInici
                 documentoInicialTipoDocumento.setIdDocumentoInicial(rs.getInt("idDocumentoInicial"));
                 documentoInicialTipoDocumento.setIdTipoDocumento(rs.getInt("idTipoDocumento"));
                 documentoInicialTipoDocumento.setIdPaciente(rs.getInt("idPaciente"));
-                documentoInicialTipoDocumento.setNombre(rs.getString("nombre"));
+                documentoInicialTipoDocumento.setNombreDocumento(rs.getString("nombreDocumento"));
+                documentoInicialTipoDocumento.setNombreTipo(rs.getString("nombreTipo"));
                 documentoInicialTipoDocumento.setComentario(rs.getString("comentario"));
                 documentoInicialTipoDocumento.setArchivo(rs.getAsciiStream("archivo"));
                 documentoInicialTipoDocumento.setAprobado(rs.getInt("aprobado"));
                
                 
-
                 documentoInicialTipoDocumentos.add(documentoInicialTipoDocumento);
             }
 
