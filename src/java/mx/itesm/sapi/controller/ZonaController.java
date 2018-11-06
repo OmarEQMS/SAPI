@@ -48,7 +48,12 @@ public class ZonaController extends HttpServlet {
 
             case "getByEstado": {
 
-                //Recoge desde el ajax
+                /** Fernanda Orduña y Pablo Lugo
+                 * 
+                 * El case getByEstado se encarga de obtener la lista de municipios a partir de
+                 * que el usuario selecciona un estado
+                 * 
+                 */
                 int idEstado = Integer.parseInt(request.getParameter("idEstado"));
                 Estado estado = new Estado();
 
@@ -71,7 +76,10 @@ public class ZonaController extends HttpServlet {
             }
 
             case "getRegistro": {
-                //Cargar los estados
+                /** 
+                 * El case getRegistro se encarga de cargar los modales de Estado y Estado Civil
+                 * en cuanto el paciente ingresa al registro
+                 */
                 ZonaServicioImpl zsi = new ZonaServicioImpl();
                 
                 List<Estado> allEstados = zsi.getEstados();
@@ -83,6 +91,11 @@ public class ZonaController extends HttpServlet {
                 break;
             }
             case "getEstadoyMunicipio": {
+                
+                /**
+                 * El case getEstadoyMunicipio me devuelve el estado y municipio dependiendo del 
+                 * codigo postal que el usuario ingresó
+                 */
                String numeroCP = request.getParameter("numeroCP");
                 CodigoPostal CP = new CodigoPostal();
 

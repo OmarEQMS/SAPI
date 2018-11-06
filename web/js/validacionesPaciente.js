@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 
-
-
 $(document).ready(function () {
 
 //VALIDACIONES CUENTA
@@ -14,6 +12,8 @@ $(document).ready(function () {
      $('#error-fecha').hide();
      $('#error-fechaFin').hide();
      $('#error-fechaInicio').hide();
+     $('#error-contraseña').hide();
+     $('#error-contraseña2').hide();
         
     //1.- Correo
     $('#correo').on('change', function(){
@@ -54,9 +54,21 @@ $(document).ready(function () {
 
     //5.- Contraseña
     $('#password').on('change', function(){
-        if(isValidBloodType($('#password'))){
+        if (isValidPassword($(this))) {
             $('#error-contraseña').hide();
-        }else{
+        } else if ($(this).val() == '') {
+            $('#error-contraseña').hide();
+        } else {
+            $('#error-contraseña').show();
+        }
+    });
+    
+    $('#password-confirm').on('change', function(){
+        if (isValidPassword($(this))) {
+            $('#error-contraseña').hide();
+        } else if ($(this).val() == '') {
+            $('#error-contraseña').hide();
+        } else {
             $('#error-contraseña').show();
         }
     });

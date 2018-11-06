@@ -137,7 +137,7 @@
 
                 <div class="row mb-3 justify-content-end">
                     <div class="col-3 text-center">
-                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index.html" class="colorMoradoLight">Inicio</a></span>
+                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="irAInicioPotencial" class="colorMoradoLight">Inicio</a></span>
                         - <span class="colorGlobal">Mi Cuenta</span>
                     </div>
                 </div>
@@ -243,7 +243,6 @@
                                     <hr>
                                 </div>
                             </div>
-
 
                         <div class="form-group row justify-content-center mt-4">
                             <div class="col-4">

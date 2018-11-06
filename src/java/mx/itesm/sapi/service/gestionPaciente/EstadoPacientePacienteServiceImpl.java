@@ -187,7 +187,9 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
+
         String stProcedure = "CALL borradoLogicoEstadoPacientePaciente(?)";
+        
         boolean exito = false;
 
         try {
@@ -276,7 +278,9 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
 
     @Override
     public EstadoPacientePaciente mostrarEstadoPacientePacienteIdPaciente(int idPaciente) {
+
         Connection conn;
+
         CallableStatement cstmt;
         ResultSet rs;
         String stProcedure = "CALL mostrarEstadoPacientePacienteIdPaciente(?)";
@@ -287,6 +291,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
             estadoPacientePaciente = new EstadoPacientePaciente();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idPaciente);
+/*<<<<<<< HEAD
 
             rs = cstmt.executeQuery();
             rs.next();
@@ -312,3 +317,29 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
     }
 
 }
+=======*/
+                  
+            rs = cstmt.executeQuery();
+            rs.next();
+            estadoPacientePaciente.setIdEstadoPacientePaciente(rs.getInt("idEstadoPacientePaciente"));
+            estadoPacientePaciente.setIdEstadoPaciente(rs.getInt("idEstadoPaciente"));
+            estadoPacientePaciente.setIdPaciente(rs.getInt("idEstadoPaciente"));
+            estadoPacientePaciente.setFecha(rs.getTimestamp("fecha"));
+            estadoPacientePaciente.setSegundaOpinion(rs.getInt("segundaOpinion"));
+            estadoPacientePaciente.setResultados(rs.getInt("resultados"));
+            estadoPacientePaciente.setIdEmpleado(rs.getInt("idEmpleado"));
+            
+            conn.close();
+            cstmt.close();
+            rs.close();
+            
+        } catch (SQLException ex) {
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                   .concat(ex.getMessage()));
+           estadoPacientePaciente = null;
+        }   
+        return estadoPacientePaciente;
+    }
+    
+}
+//>>>>>> Lugos

@@ -29,7 +29,7 @@ public class EstadoCivilServicioImpl implements EstadoCivilServicio {
         EstadoCivil estadoCivil = null;
 
         //Call del store procedure
-        String stProcedure = "mostrarEstadoCivil(?)";
+        String stProcedure = "CALL mostrarEstadoCivil(?)";
 
         try {
             estadoCivil = new EstadoCivil();
@@ -67,7 +67,7 @@ public class EstadoCivilServicioImpl implements EstadoCivilServicio {
         try {
             estadoCiviles = new ArrayList<>();
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall("CALL getEstadoCivil()");
+            cstmt = conn.prepareCall("CALL mostrarListaEstadoCivil()");
             rs = cstmt.executeQuery();
             EstadoCivil estadoCivil;
 

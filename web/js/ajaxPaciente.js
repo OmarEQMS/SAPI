@@ -212,6 +212,26 @@ $(document).ready(function () {
                 }
         );
     });
+    
+    //PARA IR A INICIO PACIENTE
+    $('#irAInicioPaciente').on('click', function () {
+        $.post("SAPI", {
+            file: "paciente/index.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
 
     //PARA IR A mis Tratamientos
     $('#irATratamientos').on('click', function () {
