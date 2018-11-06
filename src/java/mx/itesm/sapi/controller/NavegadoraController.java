@@ -23,6 +23,7 @@ import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
@@ -152,8 +153,37 @@ public class NavegadoraController extends HttpServlet {
                             }
                              break;
                         }
-                       
-                        
+                           
+                           case "aprobarDocumento":
+                           {
+                               int idDocumentoInicial = (int) sesion.getAttribute("idDocumentoInicialVista");
+                               System.out.println("Aprobar Documento");
+                               System.out.println("id Documento ".concat(String.valueOf(idDocumentoInicial)));
+                               
+                               DocumentoInicialServicioImpl documentoInicialServicioImpl= new DocumentoInicialServicioImpl();
+                               boolean aprobado = documentoInicialServicioImpl.agregarAprobacionDocumento(idDocumentoInicial);
+                               
+                               System.out.println("Se aprobo ".concat(String.valueOf(aprobado)));
+                               PrintWriter out = response.getWriter();
+                               out.print(aprobado);
+                               break;
+                           }                                                      
+                           case "rechazarDocumento":
+                           {
+                               int idDocumentoInicial = (int) sesion.getAttribute("idDocumentoInicialVista");
+                               String comentario = request.getParameter("comentario");
+                               System.out.println("rechazar Documento");
+                               System.out.println("id Documento ".concat(String.valueOf(idDocumentoInicial)));
+                               System.out.println("motivo rechazo  ".concat(String.valueOf(comentario)));
+                               
+                               DocumentoInicialServicioImpl documentoInicialServicioImpl= new DocumentoInicialServicioImpl();
+                               boolean rechazado = documentoInicialServicioImpl.agregarRechazoDocumento(idDocumentoInicial,comentario);
+                               
+                               System.out.println("Se rechazo ".concat(String.valueOf(rechazado)));
+                               PrintWriter out = response.getWriter();
+                               out.print(rechazado);
+                               break;
+                           }
                     }
                     
                     break;

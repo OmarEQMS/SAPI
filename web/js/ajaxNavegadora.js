@@ -132,14 +132,106 @@ $(document).ready(function () {
                         //ajax para aprobar
 
                         //location.href = "./documentos3.html"
+                        var data = {key:"aprobarDocumento"};
+                        $.ajax({
+                            url: "NavegadoraController", 
+                            data:data,
+                            method: "POST",                            
+                            success: function (response) {
+                                if (response == "true")
+                                {
+                                    swal({
+                                        type: 'success',
+                                        title: 'Éxito',
+                                        text: 'Se aprobó con éxito el documento.',
+                                    });
+                                } else
+                                {
+                                    swal({
+                                        type: 'error',
+                                        title: 'Ups',
+                                        text: 'Hubo un problema al aprobar el documento.',
+                                    });
+                                }
+                            },
+                            error: function (xhr) {
+                                //alert(xhr.statusText);
+                            }
 
+                        });
+                        
                     } else {
-
+                        
                     }
                 });
 
     });
+    
+    
+    //rechazar documento
+    $('#btn-rechazarDocumento').on('click', () => {
 
+       
+        //ajax para rechazar
+
+        //location.href = "./documentos3.html"
+        var data = {key: "rechazarDocumento",comentario:$('#motivoRechazo').val()};
+        $('#motivoRechazo').val("");        
+        $.ajax({
+            url: "NavegadoraController",
+            data: data,
+            method: "POST",
+            success: function (response) {
+                if(response == "true")
+                {
+                    swal({
+                        type: 'success',
+                        icon:'success',
+                        title: 'Éxito',
+                        text: 'Se rechazo con éxito el documento.',
+                    });
+                }else
+                {
+                    swal({
+                        type: 'error',
+                        icon:'error',
+                        title: 'Ups',
+                        text: 'Hubo un problema al rechazar el documento.',
+                    });
+                }
+            },
+            error: function (xhr) {
+                //alert(xhr.statusText);
+            }
+
+        });                 
+
+    });
+    
+     $('#btn-siguiente').on('click', function () {
+        
+        $.post("SAPI", {
+            file: "navegadora/verDocumento.jsp",
+            idDocumentoInicial:$('#idDocumentoInicialVista').val(),
+            idPacientePotencialAtendido:$('#idPacientePotencialAtendido').val(),
+            siguiente: 1
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
+    
     $('#btn-eliminar').on('click', () => {
 
         swal({
@@ -272,6 +364,7 @@ $(document).ready(function () {
             data.forEach((value, key) => {
                 console.log(key + " " + value);
             })
+            
 
             $.ajax({
                 url: "NavegadoraController",

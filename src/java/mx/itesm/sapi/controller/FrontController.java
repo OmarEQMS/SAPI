@@ -5,12 +5,19 @@
  */
 package mx.itesm.sapi.controller;
 
+import java.awt.Image;
+import java.awt.image.RenderedImage;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Base64;
 import java.util.Base64;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +29,7 @@ import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
 import mx.itesm.sapi.bean.gestionPaciente.DatosPacienteDocumentoInicial;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialTipoDocumento;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialVista;
 import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
@@ -66,6 +74,8 @@ import org.apache.commons.io.IOUtils;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import mx.itesm.sapi.service.persona.TipoSangreServicioImpl;
 import org.apache.commons.io.IOUtils;
+import org.ghost4j.document.PDFDocument;
+import org.ghost4j.renderer.SimpleRenderer;
 
 /**
  *
@@ -358,26 +368,118 @@ public class FrontController extends HttpServlet {
 
                                     sesion.setAttribute("base64Img", base64String);
                                                                         
+                                                                        
+                                    int idDocumentoInicial;
+                                    int idPaciente;
+                                    int siguiente;
                                     
-                                    int idDocumentoInicial = 216;
-                                    int idPaciente = 10;
+                                    
+                                    try
+                                    {
+                                        idDocumentoInicial = Integer.parseInt(request.getParameter("idDocumentoInicial"));
+                                    }catch(Exception ex)
+                                    {
+                                        System.out.println("Catch parameter idDocumentoInicial ".concat(ex.getMessage()));
+                                        idDocumentoInicial = 225;
+                                    }
+                                     
+                                    try
+                                    {
+                                        idPaciente = Integer.parseInt(request.getParameter("idPacientePotencial"));
+                                    }catch(Exception ex)
+                                    {
+                                        System.out.println("Catch parameter idPacientePotencial ".concat(ex.getMessage()));
+                                        idPaciente = 68;
+                                    }                                                                         
+                                    try
+                                    {
+                                        siguiente = Integer.parseInt(request.getParameter("siguiente"));
+                                    }catch(Exception ex)
+                                    {
+                                        System.out.println("Catch parameter siguiente ".concat(ex.getMessage()));
+                                        siguiente = 0;
+                                    }
+                                    
                                     
                                     sesion.setAttribute("idPacientePotencialAtendido", idPaciente);                                                                        
                                     sesion.setAttribute("idDocumentoInicial", idDocumentoInicial);
-                                    
+                                                                        
                                     PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                     DatosPacienteDocumentoInicial datosPacienteDocumentoInicial = pacienteServicioImpl.mostrarDatosPacienteDocumentoInicial(idPaciente);                                    
-                                    
+                                                                        
                                     sesion.setAttribute("nombrePacientePotencial", datosPacienteDocumentoInicial.getNombre());                                                                        
                                     sesion.setAttribute("primerApellidoPacientePotencial", datosPacienteDocumentoInicial.getPrimerApellido());                                                                        
                                     sesion.setAttribute("segundoApellidoPacientePotencial", datosPacienteDocumentoInicial.getSegundoApellido());                                                                        
-                                    
-                                    
+                                                                                                                                                                                    
                                     DocumentoInicialServicioImpl documentoInicialServicioImpl = new DocumentoInicialServicioImpl();
-                                    DocumentoInicial documentoInicial = documentoInicialServicioImpl.mostrarDocumentoInicial(idDocumentoInicial);
+                                    DocumentoInicialVista documentoInicialVista = documentoInicialServicioImpl.mostrarDocumentoInicialVista(idDocumentoInicial,idPaciente,siguiente);
                                     
-                                    TipoDocumento tipoDocumento = new TipoDocumento();
+                                    System.out.println("Ver Documento id ".concat(String.valueOf(documentoInicialVista.getIdDocumentoInicial())));
+                                    System.out.println("Ver Documento nombre archivo: ".concat(documentoInicialVista.getNombreDocumento()));
+                                    System.out.println("Ver Documento extensión archivo ".concat(documentoInicialVista.getTipoArchivo()));
+                                    System.out.println("Ver Documento tipo documento ".concat(documentoInicialVista.getTipoDocumento()));
+                                    System.out.println("Ver Documento siguiente ".concat(String.valueOf(siguiente)));
                                     
+                                    InputStream documento;
+                                    String strDocumentoB64;
+                                    String extension = documentoInicialVista.getTipoArchivo();
+                                    sesion.setAttribute("idDocumentoInicialVista",documentoInicialVista.getIdDocumentoInicial());
+                                    switch(extension)
+                                    {
+                                        case "image/png":
+                                        {             
+                                            InputStream imageDoc = documentoInicialVista.getArchivo();                                                                                                                                     
+                                            byte[] bytesDocumento = IOUtils.toByteArray(imageDoc);
+                                            strDocumentoB64 = Base64.getEncoder().encodeToString(bytesDocumento);                                            
+                                                                                                                            
+                                            sesion.setAttribute("tipoDocumentoInicial", documentoInicialVista.getTipoDocumento());
+                                            sesion.setAttribute("extensionArchivo",1);                                            
+                                            sesion.setAttribute("documentB64", strDocumentoB64);
+                                            break;
+                                        }                                            
+                                        case "image/jpeg":
+                                        {
+                                             InputStream imageDoc = documentoInicialVista.getArchivo();                                                                                                                                     
+                                            byte[] bytesDocumento = IOUtils.toByteArray(imageDoc);
+                                            strDocumentoB64 = Base64.getEncoder().encodeToString(bytesDocumento);                                            
+                                                                                                                            
+                                            sesion.setAttribute("tipoDocumentoInicial", documentoInicialVista.getTipoDocumento());
+                                            sesion.setAttribute("extensionArchivo",2);                                            
+                                            sesion.setAttribute("documentB64", strDocumentoB64);
+                                            break;
+                                        }
+                                        case "application/pdf":
+                                        {
+                                            try
+                                            {
+                                            /*    
+                                            PDFDocument document = new PDFDocument();
+                                            document.load(documentoInicialVista.getArchivo());
+                                            
+                                            SimpleRenderer renderer = new SimpleRenderer();
+                                            renderer.setResolution(300);
+                                                                                        
+                                            List<Image> images = renderer.render(document);                                                                                                                                    
+                                            ByteArrayOutputStream os = new ByteArrayOutputStream();                                            
+                                            ImageIO.write((RenderedImage) images.get(0),"png", os); 
+                                            */
+                                                
+                                            InputStream imageDoc = documentoInicialVista.getArchivo();                                                                                                                                     
+                                            byte[] bytesDocumento = IOUtils.toByteArray(imageDoc);
+                                            strDocumentoB64 = Base64.getEncoder().encodeToString(bytesDocumento);                                            
+                                                                                                                            
+                                            sesion.setAttribute("tipoDocumentoInicial", documentoInicialVista.getTipoDocumento());
+                                            sesion.setAttribute("extensionArchivo",3);                                            
+                                            sesion.setAttribute("documentB64", strDocumentoB64);
+                                            
+                                            }catch(Exception ex)                                            
+                                            {
+                                                System.out.println("EX pdf Document ".concat(ex.getMessage()));
+                                            }
+                                                                                                                                    
+                                            break;
+                                        }
+                                    }                                                                                                                                                                                                                        
                                     
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
                                     break;
@@ -483,6 +585,7 @@ public class FrontController extends HttpServlet {
                                     request.setAttribute("tipoTratamiento", tratamientos);
                                     request.setAttribute("UnionTratamientosPaciente", unionTratamientosPaciente);
 
+                                    
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     break;
                                 }
