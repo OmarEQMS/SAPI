@@ -7,6 +7,7 @@ package mx.itesm.sapi.service.gestionPaciente;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -45,13 +46,13 @@ public class DocumentoInicialTipoDocumentoServicioImpl implements DocumentoInici
                 documentoInicialTipoDocumento.setIdDocumentoInicial(rs.getInt("idDocumentoInicial"));
                 documentoInicialTipoDocumento.setIdTipoDocumento(rs.getInt("idTipoDocumento"));
                 documentoInicialTipoDocumento.setIdPaciente(rs.getInt("idPaciente"));
-                documentoInicialTipoDocumento.setNombre(rs.getString("nombre"));
+                documentoInicialTipoDocumento.setNombreDocumento(rs.getString("nombreDocumento"));
+                documentoInicialTipoDocumento.setNombreTipo(rs.getString("nombreTipo"));
                 documentoInicialTipoDocumento.setComentario(rs.getString("comentario"));
-                documentoInicialTipoDocumento.setArchivo(rs.getAsciiStream("archivo"));
+                documentoInicialTipoDocumento.setArchivo(rs.getBinaryStream("archivo"));
                 documentoInicialTipoDocumento.setAprobado(rs.getInt("aprobado"));
                
                 
-
                 documentoInicialTipoDocumentos.add(documentoInicialTipoDocumento);
             }
 
@@ -69,7 +70,49 @@ public class DocumentoInicialTipoDocumentoServicioImpl implements DocumentoInici
     
 
    
+ @Override
+    public DocumentoInicialTipoDocumento descargarArchivo(int idArchivo) {
+         Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
 
+        DocumentoInicialTipoDocumento documentoInicialTipoDocumento = null;
+
+        //Call del stored procedure
+        String stProcedure = "CALL descargarArchivo(?)";
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+           
+
+            cstmt.setInt(1, idArchivo);
+            rs = cstmt.executeQuery();
+
+            while (rs.next()) {
+                documentoInicialTipoDocumento = new DocumentoInicialTipoDocumento();
+                documentoInicialTipoDocumento.setIdDocumentoInicial(rs.getInt("idDocumentoInicial"));
+                documentoInicialTipoDocumento.setIdTipoDocumento(rs.getInt("idTipoDocumento"));
+                documentoInicialTipoDocumento.setIdPaciente(rs.getInt("idPaciente"));
+                documentoInicialTipoDocumento.setNombreDocumento(rs.getString("nombreDocumento"));
+                documentoInicialTipoDocumento.setNombreTipo(rs.getString("nombreTipo"));
+                documentoInicialTipoDocumento.setComentario(rs.getString("comentario"));
+                documentoInicialTipoDocumento.setArchivo(rs.getBinaryStream("archivo"));
+                documentoInicialTipoDocumento.setAprobado(rs.getInt("aprobado"));
+              
+            }
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+            documentoInicialTipoDocumento = null;
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+        return documentoInicialTipoDocumento;
+    }
     
     
 }

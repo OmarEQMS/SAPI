@@ -7,6 +7,7 @@ package mx.itesm.sapi.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Base64;
 import javax.servlet.ServletException;
@@ -18,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialTipoDocumento;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Login;
@@ -25,6 +28,7 @@ import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialTipoDocumentoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.LoginServicioImpl;
@@ -122,6 +126,7 @@ public class NavegadoraController extends HttpServlet {
                             break;
                         }
 
+
                         case "eliminarCuentaNavegadora": {
                             System.out.println("Si llego aqui navegadora");
                
@@ -169,6 +174,7 @@ public class NavegadoraController extends HttpServlet {
                             }
                             break;
                         }
+
                         case "cambiarContrasena": {
 
                             if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
@@ -194,7 +200,7 @@ public class NavegadoraController extends HttpServlet {
                             }
                             break;
                         }
-                           
+               
                            case "aprobarDocumento":
                            {
                                int idDocumentoInicial = (int) sesion.getAttribute("idDocumentoInicialVista");
@@ -225,6 +231,35 @@ public class NavegadoraController extends HttpServlet {
                                out.print(rechazado);
                                break;
                            }
+
+
+                        case "descargarArchivo": {
+                            
+                            int idDocumento = Integer.parseInt(request.getParameter("idDocumento"));
+                            
+                            System.out.println("El documento del id es: "+idDocumento);
+                            
+                            DocumentoInicialServicioImpl documentoInicialServicioImpl = new DocumentoInicialServicioImpl();
+                            DocumentoInicial documentoInicial = documentoInicialServicioImpl.mostrarDocumentoInicial(idDocumento);
+                            OutputStream out = response.getOutputStream();
+
+                            if(documentoInicial.getArchivo()==null)
+                                System.out.println("valio madre");
+                            else{
+                                System.out.println("si hay algo");
+                            }
+                            
+                            response.setContentType(documentoInicial.getTipo());
+                            
+                            System.out.println(documentoInicial.getTipo());
+                            response.setHeader("Content-Disposition", "attachment;filename=".concat(documentoInicial.getNombre())); //Forzar descarga
+
+                            out.write(IOUtils.toByteArray(documentoInicial.getArchivo()));
+                            out.flush();
+                            
+                            break;
+                        }
+
                     }
 
                     break;

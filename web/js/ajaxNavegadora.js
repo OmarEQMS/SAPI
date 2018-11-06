@@ -20,7 +20,56 @@ $(document).ready(function () {
                 }
         );
     });
-    
+
+$('.irAVerDocumento').on('click', function () {
+        $.get("SAPI", {
+            
+        file: "navegadora/verDocumento.jsp",
+            idDocumentoInicial : $(this).data('id'),
+           idPaciente: $("#hiddenIdPaciente").val(),
+           siguiente: 0
+        },
+                function (response, status, xhr) {
+                    //console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+
+
+    /*
+    $('.irAVerDocumento').on('click', function () {     
+        
+        $.get("SAPI", {
+           file: "navegadora/verDocumento.jsp",
+           idDocumentoInicial : $(this).data('id'),
+           idPaciente: $("#hiddenIdPaciente")
+           
+           
+        },
+                function (response, status, xhr) {
+                    //console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+*/
 
     //Eliminar cuenta
     $('#eliminarCuentaNavegadora').on('click', () => {
@@ -573,7 +622,7 @@ $(document).ready(function () {
         return true;
     }
     ;
-    
+
     $('#irVerDocumento').on('click', function () {
         $.post("SAPI", {
             file: "navegadora/verDocumento.jsp"
@@ -592,7 +641,49 @@ $(document).ready(function () {
                 }
         );
     });
+
+    $('.descargarDocumento').on('click', function () {
+        
+        
+        $.post("NavegadoraController",
+        {
+                key: 'descargarArchivo',
+                idDocumento: $(this).data('id')
+        },
+    function(data, status){
+        
+    });
+    });
     
     
+    //PARA SALIR DE LA CUENTA
+   $('#salirCuenta').on('click', function () {
+       
+        console.log("Salir cuenta");
+        $.get("LoginController", {
+            key: "cerrar-sesion"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
+    function salir() {
+         alert();
+       
+    };
+    
+   
+
 });
 

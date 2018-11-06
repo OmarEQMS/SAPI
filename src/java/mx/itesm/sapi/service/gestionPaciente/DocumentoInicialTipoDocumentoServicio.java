@@ -15,7 +15,7 @@ import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialTipoDocumento;
 public interface DocumentoInicialTipoDocumentoServicio {
     
     public List<DocumentoInicialTipoDocumento> mostrarDocumentoInicialTipoDocumento(int idPaciente);
-   
+    public DocumentoInicialTipoDocumento descargarArchivo(int idArchivo);
     
     
 }

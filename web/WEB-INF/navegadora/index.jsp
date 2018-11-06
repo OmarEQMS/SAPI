@@ -89,6 +89,13 @@
                             </a>
                         </div>
 
+<<<<<<< HEAD
+=======
+                    <div class="col-2">
+                        <a class="iconoSidebar" href="" title="Cerrar Sesión" id="salirCuenta2">
+                            <i class="fas fa-power-off"></i>
+                        </a>
+>>>>>>> origin/Lugos
                     </div>
 
                 </div>
@@ -107,6 +114,7 @@
                             <i class="fas fa-home"></i>Inicio</a>
                     </li>
 
+<<<<<<< HEAD
                     <li>
                         <a href="./calendar.html">
                             <i class="fas fa-calendar-alt"></i>Calendario</a>
@@ -128,6 +136,18 @@
                     </li>
 
                 </ul>
+=======
+                <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
+
+                <li id="idACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+                <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
+
+                <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+                
+                <li id="irADocumentos"><a><i class="far fa-user"></i>Documentos</a></li>
+                
+                <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+>>>>>>> origin/Lugos
 
             </nav>
 
