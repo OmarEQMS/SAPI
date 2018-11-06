@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="col-2">
-                        <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
+                        <a class="iconoSidebar" href="" title="Cerrar Sesión" id="salirCuenta"><i class="fas fa-power-off"></i></a>
                     </div>
 
                 </div>
@@ -109,7 +109,7 @@
 
                 <li>
                     <a href="#">
-                        <i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a>
+                        <i class="fas fa-sign-out-alt" id="salirCuenta"></i>Cerrar Sesión</a>
                 </li>
 
             </ul>
