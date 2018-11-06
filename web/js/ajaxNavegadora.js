@@ -210,20 +210,14 @@ $(document).ready(function () {
     
      $('#btn-siguiente').on('click', function () {
         
+               
         swal({
-            title: 'Obteniendo siguiente documento.',            
-            timer: 7000,
-            showCancelButton: true,
-            showConfirmButton: true
-        }).then(
-                function () {},
-                // handling the promise rejection
-                        function (dismiss) {
-                            if (dismiss === 'timer') {
-                                //console.log('I was closed by the timer')
-                            }
-                        }
-                );
+            icon: 'info',
+            title: 'Cargando',
+            text: 'Estamos buscando el siguiente documento',
+            //timer:8000,         
+            buttons:false
+        });
         
         var data = {idPacientePotencialAtendido: $('#idPacientePotencialAtendido').val(),idDocumentoInicialVista:$('#idDocumentoInicialVista').val(),key:1};
         
@@ -250,6 +244,7 @@ $(document).ready(function () {
                             });
                         }                            
                         else {
+                            swal.close();
                             document.open("text/html", "replace");
                             document.write(response);
                             document.close();
