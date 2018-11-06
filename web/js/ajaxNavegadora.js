@@ -20,16 +20,34 @@ $(document).ready(function () {
                 }
         );
     });
-<<<<<<< HEAD
-    
-    
-    $('.irAVerDocumento').on('click', function () {
+
+$('.irAVerDocumento').on('click', function () {
+        $.get("SAPI", {
+            
+        file: "navegadora/verDocumento.jsp",
+            idDocumentoInicial : $(this).data('id'),
+           idPaciente: $("#hiddenIdPaciente").val(),
+           siguiente: 0
+        },
+                function (response, status, xhr) {
+                    //console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+
+
+    /*
+    $('.irAVerDocumento').on('click', function () {     
         
-        //$('#idTratamientoPaciente').val($(this).data('id'));
-        
-       
-        
-        console.log('Me dieron click, verDocumento');
         $.get("SAPI", {
            file: "navegadora/verDocumento.jsp",
            idDocumentoInicial : $(this).data('id'),
@@ -51,9 +69,7 @@ $(document).ready(function () {
                 }
         );
     });
-=======
-
->>>>>>> origin/Lugos
+*/
 
     //Eliminar cuenta
     $('#eliminarCuentaNavegadora').on('click', () => {

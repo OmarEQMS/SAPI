@@ -217,7 +217,15 @@
                             <strong>${sessionScope.correo}</strong>
                         </li>
                         <li class="list-group-item">Visita:
-                            <span class="badge badge-success">${sessionScope.segundaOpinion}</span>
+                            <c:choose>
+                                <c:when test="${sessionScope.segundaOpinion==1}">
+                            <span class="badge badge-success">Segunda opinion</span>
+                            </c:when>
+                            <c:otherwise>
+                            <span class="badge badge-success">Primera vez</span>
+                            </c:otherwise>
+                            
+                            </c:choose>
                         </li>
                     </ul>
                 </div>
@@ -240,21 +248,22 @@
                             <c:forEach items="${documentos}" var="documento">
                                 <tr>
                                 <td>
-                                    <i class="fas fa-comments mr-2 iconoComentarios verComentario" data-id="${documento.idDocumentoInicial}" data-toggle="modal" data-target="#modalVerComentario" ></i>
+                                   
 
-<<<<<<< HEAD
-                                    <c:out value="${documento.nombreTipo}"/>
-=======
-                                    <c:out value="${documento.nombreDocumento}"/>
->>>>>>> origin/Lugos
+                                    
+
                                     
                                     
                                     
                                     <c:choose>
                                         <c:when test="${documento.aprobado==1}">
-                                            <span class=" ml-2 badge badge-danger">Aprobado</span>
+                                             <c:out value="${documento.nombreTipo}"/>
+                                            <span class=" ml-2 badge badge-success">Aprobado</span>
                                         </c:when>
                                         <c:otherwise>
+                                             <i class="fas fa-comments mr-2 iconoComentarios verComentario" data-id="${documento.idDocumentoInicial}" data-toggle="modal" data-target="#modalVerComentario" ></i>
+
+                                             <c:out value="${documento.nombreTipo}"/>
                                             <span class=" ml-2 badge badge-danger">Rechazado</span>
                                         </c:otherwise>
                                         
@@ -266,16 +275,14 @@
                                         </button>
                                 </td>
                                 <td>
-<<<<<<< HEAD
-                                    <button class="btn btn-primary " id="btn-descargar " data-id="${documento.idDocumentoInicial}">
-=======
+
                                     <form action="NavegadoraController">
                                         <input type="hidden" value="${documento.idDocumentoInicial}" name="idDocumento">
                                         <input type="hidden" value="descargarArchivo" name="key">
-                                    <input type="submit" class="btn btn-primary descargarDocumento"  data-id="${documento.idDocumentoInicial}">
->>>>>>> origin/Lugos
+                                    <button type="submit" class="btn btn-primary descargarDocumento"  data-id="${documento.idDocumentoInicial}">
+
                                         <i class="fas fa-cloud-download-alt"></i>
-                                        </input>
+                                        </button>
                                     </form>
                                 </td>
                                 <input type="hidden" value="${documento.comentario}" id="comentario-${documento.idDocumentoInicial}">
@@ -286,11 +293,7 @@
                         </tbody>
                     </table>
 
-                    <div class="row justify-content-center mt-3">
-                        <div class="col-4">
-                            <button class="btn btn-outline-primary btn-block" id="enviarObservaciones" style="border-radius: 20px">
-                                <i class="fas fa-arrow-alt-circle-right mr-2"></i>Enviar observaciones</button>
-                        </div>
+                    
 
                     </div>
                 </div>
