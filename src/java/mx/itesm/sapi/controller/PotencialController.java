@@ -822,7 +822,7 @@ public class PotencialController extends HttpServlet {
                 break;
             }
 
-            //Author Angel Gtz
+             /**Author Angel Gtz*/
             case "eliminarCuentaPacientePotencial": {
                 System.out.println("Si llego aqui potencial");
                 HttpSession sesion = request.getSession(true);
@@ -853,6 +853,10 @@ public class PotencialController extends HttpServlet {
                     /**
                      * creo los objetos de las tablas a modificar su estatus
                      */
+                      /**
+                       * Se comprueba que los objetos no sean nulos o vacios para crearlos
+                       * al crearlos  si tienen dependencia ciclan para buscar todos los datos que tienen encadenados para proseguir con el borrado logico en la base de datos
+                      */
                     CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
 
                     PersonaServicioImpl personaServicio = new PersonaServicioImpl();
@@ -965,11 +969,7 @@ public class PotencialController extends HttpServlet {
                              cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
                     }
 
-                    /**
-                     * Implemento el borrado logico llamando a su objetoServicio
-                     * despues al procesos almacenado y al final al id del
-                     * objeto
-                     */
+                  
                     /**
                      * Al no tener cuenta se le redirecciona al login
                      */
