@@ -27,40 +27,41 @@
         <script src="lib/sweetalert/dist/sweetalert.min.js"></script>
         <script src="lib/tooltipster/dist/js/tooltipster.bundle.min.js" type="text/javascript" ></script>
         <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
-        
+
         <link rel="stylesheet" href="css/styleLogin.css">
         <script src="js/ajaxRecuperar.js"></script>
-    
+
 
     </head>
     <body>
-       
 
-        <form class="formulario">
 
-            <h1 class="h3 mb-4 titulo-login text-center">Cambiar Contraseña</h1>
+        <div class="formulario">
+            <form>
+                <h1 class="h3 mb-4 titulo-login text-center">Cambiar Contraseña</h1>
 
-            <div class="row">
-                <div class="col-12">
-                    <input id="cambio1" type="password" class="form-control" placeholder="Introduce tu nueva contraseña" >
-                    <span class="text-danger" id="errorPass1">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
-                </div>
-                <div class="col-12">
+                <div class="row">
+                    <div class="col-12">
+                        <input id="cambio1" type="password" class="form-control" placeholder="Introduce tu nueva contraseña" >
+                        <span class="text-danger" id="errorPass1">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
+                    </div>
+                    <div class="col-12">
                         <input id="cambio2"type="password" class="form-control mt-3" placeholder="Confirma tu nueva contraseña" >
                         <span class="text-warning" id="noEqualPasswordsError">Las contraseñas no son iguales.</span>
                         <span class="text-danger" id="errorPass2">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                     </div>
-            </div>
-
+                </div>
+            </form>
             <div class="row justify-content-center mt-4">
                 <div class="col-12">
                     <button class="btn btn-danger btn-block" id="RestablcerContra" style="background-color: #fc3955 !important">Cambiar</button>
+                    <span class="text-danger" id="errorCambiar">Las contraseñas no tienen un formáto válido o no coinciden</span>
                 </div>
             </div>
 
-        </form>
+        </div>
 
-        <script type="module" src="js/asincrono.js"></script>
-        
+        <script src="js/asincrono.js"></script>
+
     </body>
 </html>

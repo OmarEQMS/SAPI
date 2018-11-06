@@ -57,6 +57,6 @@
             </div>
 
         </form>
-        <script type="module" src="js/asincrono.js"></script>
+        <script src="js/asincrono.js"></script>
     </body>
 </html>

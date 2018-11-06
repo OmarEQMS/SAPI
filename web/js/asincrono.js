@@ -221,27 +221,6 @@ $(document).ready(function () {
 
     });
 
-    function areEqualPasswords(pass1, pass2) {
-
-        if (pass1.val() != pass2.val()) {
-
-            pass2.css('border', '1px solid red');
-            pass1.css('border', '1px solid red');
-            $('#noEqualPasswordsError').show();
-
-            return false;
-
-        } else {
-
-            pass2.css('border', '');
-            pass1.css('border', '');
-            $('#noEqualPasswordsError').hide();
-
-        }
-
-        return true;
-    }
-
 
     //////////////////////////////////VALIDACIONES
 
