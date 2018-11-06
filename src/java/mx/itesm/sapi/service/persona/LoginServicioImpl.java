@@ -232,7 +232,7 @@ public class LoginServicioImpl implements LoginServicio {
         Login login = null;
 
         //Call del store procedure
-        String stProcedure = "CALL mostrarLoginIdCuenta(?)";
+        String stProcedure = "CALL mostrarLoginidCuenta(?)";
 
         try {
             login = new Login();

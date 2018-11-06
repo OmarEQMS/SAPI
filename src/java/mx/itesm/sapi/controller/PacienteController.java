@@ -248,11 +248,11 @@ public class PacienteController extends HttpServlet {
 
                         break;
 
-                        //Author Angel Gtz
                         case "eliminarCuentaPaciente": {
                             System.out.println("Si llego aqui paciente");
                             if (sesion.getAttribute("idCuenta") == null) {
                                 /**
+                                 * Angel Gutiérrez 01/11/2018
                                  * Si no tiene sesion iniciada
                                  */
                                 // request.setAttribute("status", "");
@@ -270,52 +270,58 @@ public class PacienteController extends HttpServlet {
                                  */
                                 int idCuenta = (int) sesion.getAttribute("idCuenta");
                                 int idPersona = (int) sesion.getAttribute("idPersona");
-                                int idPaciente = (int) sesion.getAttribute("idPaciente");
+                                int idPaciente = Integer.parseInt(sesion.getAttribute("idPaciente").toString());
+                                System.out.println(idPaciente);
+                                System.out.println(idCuenta);
+                                System.out.println(idPersona);
 
                                 /**
                                  * creo los objetos de las tablas a modificar su
                                  * estatus
                                  */
                                 /**
-                                 * creo los objetos de las tablas a modificar su
-                                 * estatus
+                                 * Se comprueba que los objetos no sean nulos o
+                                 * vacios para crearlos al crearlos si tienen
+                                 * dependencia ciclan para buscar todos los
+                                 * datos que tienen encadenados para proseguir
+                                 * con el borrado logico en la base de datos
                                  */
                                 CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
 
                                 PersonaServicioImpl personaServicio = new PersonaServicioImpl();
 
                                 Persona persona = personaServicio.mostrarPersona(idPersona);
-                                // personaServicio.borradoLogicoPersona(persona.getIdPersona());
+                                personaServicio.borradoLogicoPersona(persona.getIdPersona());
 
                                 PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
                                 if (pacienteServicio.mostrarPaciente(idPaciente) != null) {
 
                                     Paciente paciente = pacienteServicio.mostrarPaciente(idPaciente);
-                                    //pacienteServicio.borradoLogicoPaciente(paciente.getIdCuenta());
+                                    pacienteServicio.borradoLogicoPaciente(idPaciente);
                                 }
 
                                 LoginServicioImpl loginServicio = new LoginServicioImpl();
                                 if (loginServicio.mostrarLoginIdCuenta(idCuenta) != null) {
                                     Login login = loginServicio.mostrarLoginIdCuenta(idCuenta);
-                                    // loginServicio.borradoLogicoLogin(login.getIdLogin());
+                                    loginServicio.borradoLogicoLogin(login.getIdLogin());
                                 }
 
                                 DireccionServicioImpl direccionServicio = new DireccionServicioImpl();
                                 if (direccionServicio.mostrarDireccion(persona.getIdDireccion()) != null) {
                                     Direccion direccion = direccionServicio.mostrarDireccion(persona.getIdDireccion());
-                                    // direccionServicio.borradoLogicoDireccion(direccion.getIdDireccion());
+                                    direccionServicio.borradoLogicoDireccion(direccion.getIdDireccion());
                                 }
                                 PicServicioImpl picServicio = new PicServicioImpl();
                                 if (picServicio.mostrarPic(idPersona) != null) {
                                     Pic pic = picServicio.mostrarPic(idPersona);
-                                    // picServicio.borradoLogicoPic(pic.getIdPic());
+                                     picServicio.borradoLogicoPic(pic.getIdPic());
                                 }
                                 EstadoPacientePacienteServiceImpl estadoPacientePacienteServicio = new EstadoPacientePacienteServiceImpl();
                                 if (estadoPacientePacienteServicio.mostrarEstadoPacientePacienteIdPaciente(idPaciente) != null) {
                                     EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServicio.mostrarEstadoPacientePacienteIdPaciente(idPaciente);
-                                    // estadoPacientePacienteServicio.borradoLogicoEstadoPacientePaciente(estadoPacientePaciente.getIdEstadoPacientePaciente());
+                                    estadoPacientePacienteServicio.borradoLogicoEstadoPacientePaciente(estadoPacientePaciente.getIdEstadoPacientePaciente());
                                 }
-
+                                System.out.println("precitas");
                                 CitaServicioImpl citaServicio = new CitaServicioImpl();
                                 if (citaServicio.mostrarCitaIdEspecifico(idPaciente) != null) {
 
@@ -356,7 +362,7 @@ public class PacienteController extends HttpServlet {
                                         System.out.println(citasTotales);
                                     }
                                 }
-
+                                System.out.println("poscitas");
                                 PacienteMedicoTitularServicioImpl pacienteMedicoTitularServicio = new PacienteMedicoTitularServicioImpl();
                                 if (pacienteMedicoTitularServicio.mostrarPacienteMedicoTitularIdPaciente(idPaciente) != null) {
                                     PacienteMedicoTitular pacienteMedicoTitular = pacienteMedicoTitularServicio.mostrarPacienteMedicoTitularIdPaciente(idPaciente);
@@ -386,7 +392,7 @@ public class PacienteController extends HttpServlet {
                                     PacienteAlergia pacienteAlergia = pacienteAlergiaServicio.mostrarPacienteAlergiaIdPaciente(idPaciente);
                                     pacienteAlergiaServicio.borradoLogicoPacienteAlergia(pacienteAlergia.getIdPacienteAlergia());
                                 }
-//aqui
+
                                 DocumentoEstudioServicioImpl documentoEstudioServicio = new DocumentoEstudioServicioImpl();
                                 if (documentoEstudioServicio.mostrarDocumentoEstudioIdEspecifico(idPaciente) != null) {
                                     List<DocumentoEstudio> docuemntoEstudios = new ArrayList<>();
@@ -433,70 +439,101 @@ public class PacienteController extends HttpServlet {
                                     }
 
                                 }
-                                
-                                  TratamientoPacienteServiceImpl tratamientoPacienteServicio = new TratamientoPacienteServiceImpl();
-                                TratamientoPaciente tratamientoPaciente = tratamientoPacienteServicio.mostrarTratamientoPaciente(idPaciente);
 
-                                
-                                
-                                
-                                
-                                
-                                
+                                TratamientoPacienteServiceImpl tratamientoPacienteServicio = new TratamientoPacienteServiceImpl();
+                                if (tratamientoPacienteServicio.mostrarTratamientoPacienteIdEspecifico(idPaciente) != null) {
+                                    List<TratamientoPaciente> tratamientos = new ArrayList<>();
+                                    tratamientos = tratamientoPacienteServicio.mostrarTratamientoPacienteIdEspecifico(idPaciente);
+                                    int tratamientosTotales = tratamientos.size() - 1;
+                                    int idTratamiento = 0;
+                                    while (tratamientosTotales > -1) {
+                                        idTratamiento = tratamientos.get(idTratamiento).getIdTipoTratamiento();
+                                        AuditoriaTratamientoPacienteServiceImpl auditoriaTratamientoPacienteServicio = new AuditoriaTratamientoPacienteServiceImpl();
 
-                                if (cuentaServicio.mostrarCuenta(idCuenta) != null) {
-                                    //     Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+                                        if (auditoriaTratamientoPacienteServicio.mostrarAuditoriaTratamientoPacienteIdTratamiento(idTratamiento) != null) {
+                                            AuditoriaTratamientoPaciente auditoriaTratamientoPaciente = auditoriaTratamientoPacienteServicio.mostrarAuditoriaTratamientoPacienteIdTratamiento(idTratamiento);
+                                            auditoriaTratamientoPacienteServicio.borradoLogicoAuditoriaTratamientoPaciente(auditoriaTratamientoPaciente.getIdAuditoriaTratamientoPaciente());
 
-                                    //      cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
+                                        }
+                                        tratamientoPacienteServicio.borradoLogicoTratamientoPaciente(idTratamiento);
+                                        tratamientosTotales = tratamientosTotales - 1;
+                                    }
+
                                 }
 
-                                /**
-                                 * Implemento el borrado logico llamando a su
-                                 * objetoServicio despues al procesos almacenado
-                                 * y al final al id del objeto
-                                 */
-                                /**
-                                 * Al no tener cuenta se le redirecciona al
-                                 * login
-                                 */
-                                
-                               //adentro
-                               
-                                AuditoriaTratamientoPacienteServiceImpl auditoriaTratamientoPacienteServicio = new AuditoriaTratamientoPacienteServiceImpl();
-                                AuditoriaTratamientoPaciente auditoriaTratamientoPaciente = auditoriaTratamientoPacienteServicio.mostrarAuditoriaTratamientoPaciente(tratamientoPaciente.getIdTratamientoPaciente());
-
                                 ProgramaPacienteServicioImpl programaPacienteServicio = new ProgramaPacienteServicioImpl();
-                                ProgramaPaciente programaPaciente = programaPacienteServicio.mostrarProgramaPaciente(idPaciente);
+                                if (programaPacienteServicio.mostrarProgramaPacienteIdPaciente(idPaciente) != null) {
+                                    List<ProgramaPaciente> programas = new ArrayList<>();
+                                    programas = programaPacienteServicio.mostrarProgramaPacienteSeguroIdEspecifico(idPaciente);
+                                    int programasTotales = programas.size() - 1;
+                                    int idPrograma = 0;
+                                    while (programasTotales > -1) {
+                                        idPrograma = programas.get(programasTotales).getIdProgramaPaciente();
+                                        programaPacienteServicio.borradoLogicoProgramaPaciente(idPrograma);
+                                        programasTotales = programasTotales - 1;
+                                    }
+                                }
 
                                 PacienteTratamientoPrevioServiceImpl pacienteTratamientoPrevioServicio = new PacienteTratamientoPrevioServiceImpl();
-                                PacienteTratamientoPrevio pacienteTratamientoPrevio = pacienteTratamientoPrevioServicio.mostrarPacienteTratamientoPrevio(idPaciente);
+                                if (pacienteTratamientoPrevioServicio.mostrarPacienteTratamientoPrevioIdPaciente(idPaciente) != null) {
+                                    List<PacienteTratamientoPrevio> tratamientos = new ArrayList<>();
+                                    tratamientos = pacienteTratamientoPrevioServicio.mostrarPacienteTratamientoPrevioIdEspecifico(idPaciente);
+                                    int tratamientosTotales = tratamientos.size() - 1;
+                                    int idTratamiento = 0;
+                                    while (tratamientosTotales > - 1) {
+                                        idTratamiento = tratamientos.get(tratamientosTotales).getIdPacienteTratamientoPrevio();
+                                        pacienteTratamientoPrevioServicio.borradoLogicoPacienteTratamientoPrevio(idTratamiento);
+                                        tratamientosTotales = tratamientosTotales - 1;
+                                    }
+                                }
 
                                 AlergiaPacienteFarmacoServiceImpl alergiaPacienteFarmacoServicio = new AlergiaPacienteFarmacoServiceImpl();
-                                AlergiaPacienteFarmaco alergiaPacienteFarmaco = alergiaPacienteFarmacoServicio.mostrarAlergiaPacienteFarmaco(idPaciente);
+                                if (alergiaPacienteFarmacoServicio.mostrarAlergiaPacienteFarmacoIdPaciente(idPaciente) != null) {
+                                    List< AlergiaPacienteFarmaco> alergias = new ArrayList<>();
+                                    alergias = alergiaPacienteFarmacoServicio.mostrarAlergiaPacienteFarmacoIdEspecifico(idPaciente);
+                                    int alergiasTotales = alergias.size() - 1;
+                                    int idAlergias = 0;
+                                    while (alergiasTotales > - 1) {
+                                        idAlergias = alergias.get(alergiasTotales).getIdAlergiaPacienteFarmaco();
+                                        alergiaPacienteFarmacoServicio.borradoLogicoAlergiaPacienteFarmaco(idAlergias);
+                                        alergiasTotales = alergiasTotales - 1;
+                                    }
+                                }
 
                                 RegistroDiagnosticoServiceImpl registroDiagnosticoServicio = new RegistroDiagnosticoServiceImpl();
-                                RegistroDiagnostico registroDiagnostico = registroDiagnosticoServicio.mostrarRegistroDiagnostico(idPaciente);
+                                if (registroDiagnosticoServicio.mostrarRegistroDiagnosticoPaciente(idPaciente) != null) {
+                                    List< RegistroDiagnostico> registros = new ArrayList<>();
+                                    registros = registroDiagnosticoServicio.mostrarRegistroDiagnosticoIdEspecifico(idPaciente);
+                                    int registrosTotales = registros.size() - 1;
+                                    int idRegistro = 0, idEstadiaje = 0;
+                                    while (registrosTotales > - 1) {
+                                        idRegistro = registros.get(registrosTotales).getIdRegistroDiagnostico();
+                                        idEstadiaje = registros.get(registrosTotales).getIdRegistroTNM();
 
-                                EstadiajeTNMServiceImpl estadiajeTNMServicio = new EstadiajeTNMServiceImpl();
-                                EstadiajeTNM estadiajeTNM = estadiajeTNMServicio.mostrarEstadiajeTNM(registroDiagnostico.getIdRegistroTNM());
-//adentro registro diagnostico
-                                AuditoriaRegistroDiagnosticoServiceImpl auditoriaRegistroDiagnosticoServicio = new AuditoriaRegistroDiagnosticoServiceImpl();
-                                AuditoriaRegistroDiagnostico auditoriaRegistroDiagnostico = auditoriaRegistroDiagnosticoServicio.mostrarAuditoriaRegistroDiagnostico(registroDiagnostico.getIdRegistroDiagnostico());
+                                        EstadiajeTNMServiceImpl estadiajeTNMServicio = new EstadiajeTNMServiceImpl();
+                                        if (estadiajeTNMServicio.mostrarEstadiajeTNM(idEstadiaje) != null) {
+                                            estadiajeTNMServicio.borradoLogicoEstadiajeTNM(idEstadiaje);
 
-                                /**
-                                 * Implemento el borrado logico llamando a su
-                                 * objetoServicio despues al procesos almacenado
-                                 * y al final al id del objeto
-                                 */
-                                tratamientoPacienteServicio.borradoLogicoTratamientoPaciente(tratamientoPaciente.getIdTratamientoPaciente());
-                                auditoriaTratamientoPacienteServicio.borradoLogicoAuditoriaTratamientoPaciente(auditoriaTratamientoPaciente.getIdAuditoriaTratamientoPaciente());
-                                programaPacienteServicio.borradoLogicoProgramaPaciente(programaPaciente.getIdProgramaPaciente());
-                                pacienteTratamientoPrevioServicio.borradoLogicoPacienteTratamientoPrevio(pacienteTratamientoPrevio.getIdPacienteTratamientoPrevio());
-                                alergiaPacienteFarmacoServicio.borradoLogicoAlergiaPacienteFarmaco(alergiaPacienteFarmaco.getIdAlergiaPacienteFarmaco());
-                                registroDiagnosticoServicio.borradoLogicoRegistroDiagnostico(registroDiagnostico.getIdRegistroDiagnostico());
-                                estadiajeTNMServicio.borradoLogicoEstadiajeTNM(estadiajeTNM.getIdRegistroTNM());
-                                auditoriaRegistroDiagnosticoServicio.borradoLogicoAuditoriaRegistroDiagnostico(auditoriaRegistroDiagnostico.getIdAuditoriaRegistroDiagnostico());
+                                        }
 
+                                        AuditoriaRegistroDiagnosticoServiceImpl auditoriaRegistroDiagnosticoServicio = new AuditoriaRegistroDiagnosticoServiceImpl();
+                                        if (auditoriaRegistroDiagnosticoServicio.mostrarAuditoriaRegistroDiagnosticoIdRegistro(idRegistro) != null) {
+                                            AuditoriaRegistroDiagnostico auditoriaRegistro = auditoriaRegistroDiagnosticoServicio.mostrarAuditoriaRegistroDiagnosticoIdRegistro(idRegistro);
+                                            auditoriaRegistroDiagnosticoServicio.borradoLogicoAuditoriaRegistroDiagnostico(auditoriaRegistro.getIdAuditoriaRegistroDiagnostico());
+                                        }
+
+                                        registroDiagnosticoServicio.borradoLogicoRegistroDiagnostico(idRegistro);
+                                        registrosTotales = registrosTotales - 1;
+                                    }
+                                }
+
+                                if (cuentaServicio.mostrarCuenta(idCuenta) != null) {
+                                         Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+
+                                         cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
+                                }
+
+                                
                                 /**
                                  * Al no tener cuenta se le redirecciona al
                                  * login
@@ -717,162 +754,7 @@ public class PacienteController extends HttpServlet {
                         }
                         break;
 
-                        case "eliminarCuentaPacientePotencial": {
-
-                            if (sesion.getAttribute("idCuenta") == null) {
-                                /**
-                                 * Si no tiene sesion iniciada
-                                 */
-                                // request.setAttribute("status", "");
-                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-                                /**
-                                 * Lo redirecciono al login
-                                 */
-                                return;
-                            } else {
-                                /**
-                                 * Elimino su cuenta (borrrado logico)
-                                 */
-                                /**
-                                 * Obtengo los id's perifericos de la sesion
-                                 */
-                                int idCuenta = (int) sesion.getAttribute("idCuenta");
-
-                                int idPersona = (int) sesion.getAttribute("idPersona");
-
-                                int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
-                                /**
-                                 * creo los objetos de las tablas a modificar su
-                                 * estatus
-                                 */
-                                CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
-                                Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
-
-                                PersonaServicioImpl personaServicio = new PersonaServicioImpl();
-                                Persona persona = personaServicio.mostrarPersona(idPersona);
-
-                                PacienteServicioImpl pacienteServicio = new PacienteServicioImpl();
-                                Paciente paciente = pacienteServicio.mostrarPaciente(idPaciente);
-
-                                LoginServicioImpl loginServicio = new LoginServicioImpl();
-                                Login login = loginServicio.mostrarLogin(idCuenta);
-
-                                DireccionServicioImpl direccionServicio = new DireccionServicioImpl();
-                                Direccion direccion = direccionServicio.mostrarDireccion(persona.getIdDireccion());
-
-                                PicServicioImpl picServicio = new PicServicioImpl();
-                                Pic pic = picServicio.mostrarPic(idPersona);
-
-                                EstadoPacientePacienteServiceImpl estadoPacientePacienteServicio = new EstadoPacientePacienteServiceImpl();
-                                EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServicio.mostrarEstadoPacientePaciente(idPaciente);
-
-                                CitaServicioImpl citaServicio = new CitaServicioImpl();
-                                Cita cita = citaServicio.mostrarCita(idPaciente);
-
-                                ComentarioCitaServicioImpl comentarioCitaServicio = new ComentarioCitaServicioImpl();
-                                ComentarioCita comentarioCita = comentarioCitaServicio.mostrarComentarioCita(cita.getIdCita());
-
-                                CitaEmpleadoServicioImpl citaEmpleadoServicio = new CitaEmpleadoServicioImpl();
-                                CitaEmpleado citaEmpleado = citaEmpleadoServicio.mostrarCitaEmpleado(cita.getIdCita());
-
-                                LlamadaCitaServicioImpl llamadaCitaServicio = new LlamadaCitaServicioImpl();
-                                LlamadaCita llamadaCita = llamadaCitaServicio.mostrarLlamadaCita(cita.getIdCita());
-
-                                PacienteMedicoTitularServicioImpl pacienteMedicoTitularServicio = new PacienteMedicoTitularServicioImpl();
-                                PacienteMedicoTitular pacienteMedicoTitular = pacienteMedicoTitularServicio.mostrarPacienteMedicoTitular(idPaciente);
-
-                                PacienteNavegadoraServicioImpl pacienteNavegadoraServicio = new PacienteNavegadoraServicioImpl();
-                                PacienteNavegadora pacienteNavegadora = pacienteNavegadoraServicio.mostrarPacienteNavegadora(idPaciente);
-
-                                DocumentoInicialServicioImpl documentoInicialServicio = new DocumentoInicialServicioImpl();
-                                DocumentoInicial documentoInicial = documentoInicialServicio.mostrarDocumentoInicial(idPaciente);
-
-                                PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
-                                PacienteNecesidadEspecial pacienteNecesidadEspecial = pacienteNecesidadEspecialServicio.mostrarPacienteNecesidadEspecial(idPaciente);
-
-                                PacienteAlergiaServicioImpl pacienteAlergiaServicio = new PacienteAlergiaServicioImpl();
-                                PacienteAlergia pacienteAlergia = pacienteAlergiaServicio.mostrarPacienteAlergia(idPaciente);
-
-                                DocumentoEstudioServicioImpl documentoEstudioServicio = new DocumentoEstudioServicioImpl();
-                                DocumentoEstudio documentoEstudio = documentoEstudioServicio.mostrarDocumentoEstudio(idPaciente);
-
-                                PacienteSeguroServicioImpl pacienteSeguroServicio = new PacienteSeguroServicioImpl();
-                                PacienteSeguro pacienteSeguro = pacienteSeguroServicio.mostrarPacienteSeguro(idPaciente);
-
-                                BiopsiaServicioImpl biopsiaServicio = new BiopsiaServicioImpl();
-                                Biopsia biopsia = biopsiaServicio.mostrarBiopsia(idPaciente);
-
-                                OtroResultadoPatologiaServicioImpl otroResultadoPatologiaServicio = new OtroResultadoPatologiaServicioImpl();
-                                OtroResultadoPatologia otroResultadoPatologia = otroResultadoPatologiaServicio.mostrarOtroResultadoPatologia(biopsia.getIdBiopsia());
-
-                                TratamientoPacienteServiceImpl tratamientoPacienteServicio = new TratamientoPacienteServiceImpl();
-                                TratamientoPaciente tratamientoPaciente = tratamientoPacienteServicio.mostrarTratamientoPaciente(idPaciente);
-
-                                AuditoriaTratamientoPacienteServiceImpl auditoriaTratamientoPacienteServicio = new AuditoriaTratamientoPacienteServiceImpl();
-                                AuditoriaTratamientoPaciente auditoriaTratamientoPaciente = auditoriaTratamientoPacienteServicio.mostrarAuditoriaTratamientoPaciente(tratamientoPaciente.getIdTratamientoPaciente());
-
-                                ProgramaPacienteServicioImpl programaPacienteServicio = new ProgramaPacienteServicioImpl();
-                                ProgramaPaciente programaPaciente = programaPacienteServicio.mostrarProgramaPaciente(idPaciente);
-
-                                PacienteTratamientoPrevioServiceImpl pacienteTratamientoPrevioServicio = new PacienteTratamientoPrevioServiceImpl();
-                                PacienteTratamientoPrevio pacienteTratamientoPrevio = pacienteTratamientoPrevioServicio.mostrarPacienteTratamientoPrevio(idPaciente);
-
-                                AlergiaPacienteFarmacoServiceImpl alergiaPacienteFarmacoServicio = new AlergiaPacienteFarmacoServiceImpl();
-                                AlergiaPacienteFarmaco alergiaPacienteFarmaco = alergiaPacienteFarmacoServicio.mostrarAlergiaPacienteFarmaco(idPaciente);
-
-                                RegistroDiagnosticoServiceImpl registroDiagnosticoServicio = new RegistroDiagnosticoServiceImpl();
-                                RegistroDiagnostico registroDiagnostico = registroDiagnosticoServicio.mostrarRegistroDiagnostico(idPaciente);
-
-                                EstadiajeTNMServiceImpl estadiajeTNMServicio = new EstadiajeTNMServiceImpl();
-                                EstadiajeTNM estadiajeTNM = estadiajeTNMServicio.mostrarEstadiajeTNM(registroDiagnostico.getIdRegistroTNM());
-
-                                AuditoriaRegistroDiagnosticoServiceImpl auditoriaRegistroDiagnosticoServicio = new AuditoriaRegistroDiagnosticoServiceImpl();
-                                AuditoriaRegistroDiagnostico auditoriaRegistroDiagnostico = auditoriaRegistroDiagnosticoServicio.mostrarAuditoriaRegistroDiagnostico(registroDiagnostico.getIdRegistroDiagnostico());
-
-                                /**
-                                 * Implemento el borrado logico llamando a su
-                                 * objetoServicio despues al procesos almacenado
-                                 * y al final al id del objeto
-                                 */
-                                pacienteAlergiaServicio.borradoLogicoPacienteAlergia(pacienteAlergia.getIdPacienteAlergia());
-                                pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(pacienteNecesidadEspecial.getIdNecesidadEspecial());
-                                documentoInicialServicio.borradoLogicoDocumentoInicial(documentoInicial.getIdDocumentoInicial());
-                                pacienteNavegadoraServicio.borradoLogicoPacienteNavegadora(pacienteNavegadora.getIdPacienteNavegadora());
-                                pacienteMedicoTitularServicio.borradoLogicoPacienteMedicoTitular(pacienteMedicoTitular.getIdPacienteMedicoTitular());
-                                llamadaCitaServicio.borradoLogicoLlamadaCita(llamadaCita.getIdLlamadaCita());
-                                citaEmpleadoServicio.borradoLogicoCitaEmpleado(citaEmpleado.getIdCitaEmpleado());
-                                comentarioCitaServicio.borradoLogicoComentarioCita(comentarioCita.getIdComentarioCita());
-                                citaServicio.borradoLogicoCita(cita.getIdCita());
-                                estadoPacientePacienteServicio.borradoLogicoEstadoPacientePaciente(estadoPacientePaciente.getIdEstadoPacientePaciente());
-                                picServicio.borradoLogicoPic(pic.getIdPic());
-                                direccionServicio.borradoLogicoDireccion(direccion.getIdDireccion());
-                                loginServicio.borradoLogicoLogin(login.getIdLogin());
-                                pacienteServicio.borradoLogicoPaciente(paciente.getIdCuenta());
-                                personaServicio.borradoLogicoPersona(persona.getIdPersona());
-                                cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
-                                documentoEstudioServicio.borradoLogicoDocumentoEstudio(documentoEstudio.getIdDocumentoEstudio());
-                                pacienteSeguroServicio.borradoLogicoPacienteSeguro(pacienteSeguro.getIdPacienteSeguro());
-                                biopsiaServicio.borradoLogicoBiopsia(biopsia.getIdBiopsia());
-                                otroResultadoPatologiaServicio.borradoLogicoOtroResultadoPatologia(otroResultadoPatologia.getIdOtroResultadoPatologia());
-                                tratamientoPacienteServicio.borradoLogicoTratamientoPaciente(tratamientoPaciente.getIdTratamientoPaciente());
-                                auditoriaTratamientoPacienteServicio.borradoLogicoAuditoriaTratamientoPaciente(auditoriaTratamientoPaciente.getIdAuditoriaTratamientoPaciente());
-                                programaPacienteServicio.borradoLogicoProgramaPaciente(programaPaciente.getIdProgramaPaciente());
-                                pacienteTratamientoPrevioServicio.borradoLogicoPacienteTratamientoPrevio(pacienteTratamientoPrevio.getIdPacienteTratamientoPrevio());
-                                alergiaPacienteFarmacoServicio.borradoLogicoAlergiaPacienteFarmaco(alergiaPacienteFarmaco.getIdAlergiaPacienteFarmaco());
-                                registroDiagnosticoServicio.borradoLogicoRegistroDiagnostico(registroDiagnostico.getIdRegistroDiagnostico());
-                                estadiajeTNMServicio.borradoLogicoEstadiajeTNM(estadiajeTNM.getIdRegistroTNM());
-                                auditoriaRegistroDiagnosticoServicio.borradoLogicoAuditoriaRegistroDiagnostico(auditoriaRegistroDiagnostico.getIdAuditoriaRegistroDiagnostico());
-
-                                /**
-                                 * Al no tener cuenta se le redirecciona al
-                                 * login
-                                 */
-                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-
-                            }
-
-                            break;
-                        }
+                       
                     }
                 }
 

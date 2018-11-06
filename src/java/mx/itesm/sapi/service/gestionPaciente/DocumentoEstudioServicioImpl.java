@@ -205,7 +205,7 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarDocumentoEstudio(?)";
+        String stProcedure = "CALL mostrarDocumentoEstudioIdPaciente(?)";
         DocumentoEstudio documentoEstudio = null;
 
         try {
@@ -243,7 +243,7 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarDocumentoEstudio(?)";
+        String stProcedure = "CALL mostrarDocumentoEstudioIdEspecifico(?)";
         List<DocumentoEstudio> documentoEstudios = null;
         DocumentoEstudio documentoEstudio;
 

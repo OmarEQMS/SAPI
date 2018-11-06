@@ -16,6 +16,7 @@ public interface AuditoriaTratamientoPacienteService {
 
     public int agregarAuditoriaTratamientoPaciente(AuditoriaTratamientoPaciente auditoriaTratamientoPaciente); 
     public AuditoriaTratamientoPaciente mostrarAuditoriaTratamientoPaciente(int idAuditoriaTratamientoPaciente);
+    public AuditoriaTratamientoPaciente mostrarAuditoriaTratamientoPacienteIdTratamiento(int idTratamiento);
     public List<AuditoriaTratamientoPaciente> mostrarAuditoriaTratamientoPaciente();
     public boolean actualizarAuditoriaTratamientoPaciente(AuditoriaTratamientoPaciente auditoriaTratamientoPaciente);
     public boolean borradoLogicoAuditoriaTratamientoPaciente(int idAuditoriaTratamientoPaciente);

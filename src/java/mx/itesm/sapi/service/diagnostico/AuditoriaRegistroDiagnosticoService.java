@@ -16,6 +16,7 @@ public interface AuditoriaRegistroDiagnosticoService {
     public int agregarAuditoriaRegistroDiagnostico(AuditoriaRegistroDiagnostico auditoriaRegistroDiagnostico);
     public AuditoriaRegistroDiagnostico mostrarAuditoriaRegistroDiagnostico(int idAuditoriaRegistroDiagnostico);
     List<AuditoriaRegistroDiagnostico> mostrarAuditoriaRegistroDiagnostico();
+    public AuditoriaRegistroDiagnostico mostrarAuditoriaRegistroDiagnosticoIdRegistro(int idRegistro);
     public boolean actualizarAuditoriaRegistroDiagnostico(AuditoriaRegistroDiagnostico AuditoriaRegistroDiagnostico);
     public boolean borradoLogicoAuditoriaRegistroDiagnostico(int idAuditoriaRegistroDiagnostico);
 }

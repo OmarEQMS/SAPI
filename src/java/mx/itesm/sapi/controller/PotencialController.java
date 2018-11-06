@@ -275,7 +275,7 @@ public class PotencialController extends HttpServlet {
                  * Uriel Díaz 26/10/2018.
                  *
                  * El presente case funciona cuando un paciente agrega ciertos
-                 * atributos y documentos al proceso de solicitud de preconsulta                  <<<<<<< HEAD
+                 * atributos y documentos al proceso de solicitud de preconsulta null                 <<<<<<< HEAD
                  * sin enviarla. * *
                  * =======
                  * sin enviarla.
@@ -822,7 +822,9 @@ public class PotencialController extends HttpServlet {
                 break;
             }
 
-            //Author Angel Gtz
+            /**
+             * Author Angel Gtz
+             */
             case "eliminarCuentaPacientePotencial": {
                 System.out.println("Si llego aqui potencial");
                 HttpSession sesion = request.getSession(true);
@@ -853,39 +855,45 @@ public class PotencialController extends HttpServlet {
                     /**
                      * creo los objetos de las tablas a modificar su estatus
                      */
+                    /**
+                     * Se comprueba que los objetos no sean nulos o vacios para
+                     * crearlos al crearlos si tienen dependencia ciclan para
+                     * buscar todos los datos que tienen encadenados para
+                     * proseguir con el borrado logico en la base de datos
+                     */
                     CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
 
                     PersonaServicioImpl personaServicio = new PersonaServicioImpl();
 
                     Persona persona = personaServicio.mostrarPersona(idPersona);
-                    // personaServicio.borradoLogicoPersona(persona.getIdPersona());
+                    personaServicio.borradoLogicoPersona(persona.getIdPersona());
 
                     PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
                     if (pacienteServicio.mostrarPaciente(idPaciente) != null) {
 
                         Paciente paciente = pacienteServicio.mostrarPaciente(idPaciente);
-                        //pacienteServicio.borradoLogicoPaciente(paciente.getIdCuenta());
+                        pacienteServicio.borradoLogicoPaciente(paciente.getIdCuenta());
                     }
 
                     LoginServicioImpl loginServicio = new LoginServicioImpl();
                     if (loginServicio.mostrarLoginIdCuenta(idCuenta) != null) {
                         Login login = loginServicio.mostrarLoginIdCuenta(idCuenta);
-                        // loginServicio.borradoLogicoLogin(login.getIdLogin());
+                        loginServicio.borradoLogicoLogin(login.getIdLogin());
                     }
                     DireccionServicioImpl direccionServicio = new DireccionServicioImpl();
                     if (direccionServicio.mostrarDireccion(persona.getIdDireccion()) != null) {
                         Direccion direccion = direccionServicio.mostrarDireccion(persona.getIdDireccion());
-                        // direccionServicio.borradoLogicoDireccion(direccion.getIdDireccion());
+                        direccionServicio.borradoLogicoDireccion(direccion.getIdDireccion());
                     }
                     PicServicioImpl picServicio = new PicServicioImpl();
                     if (picServicio.mostrarPic(idPersona) != null) {
                         Pic pic = picServicio.mostrarPic(idPersona);
-                        // picServicio.borradoLogicoPic(pic.getIdPic());
+                        picServicio.borradoLogicoPic(pic.getIdPic());
                     }
                     EstadoPacientePacienteServiceImpl estadoPacientePacienteServicio = new EstadoPacientePacienteServiceImpl();
                     if (estadoPacientePacienteServicio.mostrarEstadoPacientePacienteIdPaciente(idPaciente) != null) {
                         EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServicio.mostrarEstadoPacientePacienteIdPaciente(idPaciente);
-                        // estadoPacientePacienteServicio.borradoLogicoEstadoPacientePaciente(estadoPacientePaciente.getIdEstadoPacientePaciente());
+                        estadoPacientePacienteServicio.borradoLogicoEstadoPacientePaciente(estadoPacientePaciente.getIdEstadoPacientePaciente());
                     }
 
                     CitaServicioImpl citaServicio = new CitaServicioImpl();
@@ -960,16 +968,11 @@ public class PotencialController extends HttpServlet {
                     }
 
                     if (cuentaServicio.mostrarCuenta(idCuenta) != null) {
-                        //     Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+                        Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
 
-                        //      cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
+                        cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
                     }
 
-                    /**
-                     * Implemento el borrado logico llamando a su objetoServicio
-                     * despues al procesos almacenado y al final al id del
-                     * objeto
-                     */
                     /**
                      * Al no tener cuenta se le redirecciona al login
                      */
@@ -1153,8 +1156,7 @@ public class PotencialController extends HttpServlet {
                     sesion.setAttribute("resultadoMastografia", solicitudPreconsulta.getMastografia());
                     sesion.setAttribute("resultadosUltrasonidos", solicitudPreconsulta.getUltrasonido());
                     sesion.setAttribute("biopsiaPrevia", solicitudPreconsulta.getBiopsiaPrevia());
-<<<<<<< HEAD
-=======
+
                      */
                     System.out.println("Consultar documentos");
                     //System.out.println("Documentos ".concat(solicitudPreconsulta.toString()));
@@ -1202,7 +1204,6 @@ public class PotencialController extends HttpServlet {
                     System.out.println("resultadoMastografia: " + solicitudPreconsulta.getMastografia());
                     System.out.println("resultadosUltrasonidos: " + solicitudPreconsulta.getUltrasonido());
                     System.out.println("biopsiaPrevia: " + solicitudPreconsulta.getBiopsiaPrevia());
-                    
 
                     Gson json = new Gson();
                     System.out.println("Res Id ".concat(String.valueOf(idPacientePotencial)).concat(json.toJson(solicitudPreconsulta)));
@@ -1266,35 +1267,50 @@ public class PotencialController extends HttpServlet {
                 }
                 break;
             }
-            case "cancelarPreconsulta": {
-                /**
-                 * * Uriel Díaz 26/10/2018 Case preconsulta.
-                 *
-                 * El presente case se utiliza para cancelar una preconsulta
-                 * aceptadaba. La cita de navegación se cancela por su relación
-                 * con la preconsulta
-                 *
-                 *
-                 * El formato de entrega es un json. Ejemplo {cancelada:true};
-                 */
+            case "cancelarCita": {
                 HttpSession sesion = request.getSession(true);
-
-                if (sesion.getId() == null) {
-                    //TODO 
+                if (sesion.getAttribute("idCuenta") == null) {
+                    /**
+                     * Angel Gutiérrez 06/11/2018
+                     * Se eliminan las citas mediante una iteración donde se sacan todas las citas y se eliminan en orden 
+                     * despues de que se crea su objeto
+                     */
+                    // request.setAttribute("status", "");
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+                    
+                    return;
                 } else {
-                    response.setContentType("application/json");//Por default se envia un text/html, pero enviaremos un application/json para que se interprete en el ajax del front.
+                    
+                    int idCuenta = (int) sesion.getAttribute("idCuenta");
+                    int idPaciente = Integer.parseInt(sesion.getAttribute("idPaciente").toString());
+                    System.out.println(idPaciente);
+                    System.out.println(idCuenta);
 
-                    int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
+                    CitaServicioImpl citaServicio = new CitaServicioImpl();
+                    if (citaServicio.mostrarCitaIdEspecifico(idPaciente) != null) {
 
-                    CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
-                    boolean estadoCita = citaServicioImpl.cancelarCitaPreconsulta(idPacientePotencial);
-                    String strJson = "{Cancelada:\"".concat(String.valueOf(estadoCita)).concat("\"}");
+                        List<Cita> citas = new ArrayList<>();
 
-                    Gson json = new Gson();
-                    System.out.println("JSON ".concat(json.toJson(estadoCita)));
+                        citas = citaServicio.mostrarCitaIdEspecifico(idPaciente);
+                        int citasTotales = citas.size() - 1;
 
-                    PrintWriter out = response.getWriter();
-                    out.print(json.toJson(strJson));
+                        int idCita = 0;
+                        while (citasTotales > -1) {
+
+                            System.out.println(citasTotales);
+                            idCita = citas.get(citasTotales).getIdCita();
+
+                            System.out.println(idCita);
+
+                            citaServicio.borradoLogicoCita(idCita);
+
+                            citasTotales = citasTotales - 1;
+                            System.out.println(citasTotales);
+                        }
+                    }
+                                                    request.getRequestDispatcher("/WEB-INF/misCitas.jsp").forward(request, response);
+
+
                 }
                 break;
             }
@@ -1310,7 +1326,6 @@ public class PotencialController extends HttpServlet {
 
                 System.out.println("Guardar y continuar");
 
-                   
                 HttpSession sesion = request.getSession(true);
 
                 if (sesion.getId() == null) {
