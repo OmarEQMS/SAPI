@@ -83,7 +83,7 @@
                     </div>
 
                     <div class="col-2">
-                        <a class="iconoSidebar" href="" title="Cerrar Sesión" id="salirCuenta">
+                        <a class="iconoSidebar" href="" title="Cerrar Sesión" id="salirCuenta2">
                             <i class="fas fa-power-off"></i>
                         </a>
                     </div>
@@ -101,30 +101,16 @@
             <!-- MENU PRINCIPAL ENLACES -->
             <ul class="list-unstyled components">
 
-                <li>
-                    <a href="index.html">
-                        <i class="fas fa-home"></i>Inicio</a>
-                </li>
+              <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
 
-                <li>
-                    <a href="calendar.html">
-                        <i class="fas fa-calendar-alt"></i>Calendario</a>
-                </li>
-                <li>
-                    <a href="rendimiento.html">
-                        <i class="fas fa-chart-line"></i>Mi Rendimiento</a>
-                </li>
+                <li id="idACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+                <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
-
-                <li>
-                    <a href="cuenta.html">
-                        <i class="far fa-user"></i>Mi Cuenta</a>
-                </li>
-
-                <li>
-                    <a id="salirCuenta">
-                        <i class="fas fa-sign-out-alt" ></i>Cerrar Sesión</a>
-                </li>
+                <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+                
+                <li id="irADocumentos"><a><i class="far fa-user"></i>Documentos</a></li>
+                
+                <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
             </ul>
 

@@ -518,8 +518,8 @@ $('.irAVerDocumento').on('click', function () {
     
     
     //PARA SALIR DE LA CUENTA
-    $('#salirCuenta').on('click', function () {
-        alert();
+   $('#salirCuenta').on('click', function () {
+       
         console.log("Salir cuenta");
         $.get("LoginController", {
             key: "cerrar-sesion"
@@ -538,6 +538,13 @@ $('.irAVerDocumento').on('click', function () {
                 }
         );
     });
+    
+    function salir() {
+         alert();
+       
+    };
+    
+   
 
 });
 
