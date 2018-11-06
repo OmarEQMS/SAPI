@@ -121,7 +121,7 @@
                             <i class="fas fa-home"></i>
                         </span>
                         <span>
-                            <a href="./index.html" class="colorMoradoLight">Inicio</a>
+                            <a id="irAInicioPaciente" class="colorMoradoLight">Inicio</a>
                         </span>
                         -
                         <span class="colorGlobal">Mis Tratamientos</span>

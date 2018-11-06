@@ -134,7 +134,7 @@
 
                                 <div class="row mb-3">
                                     <div class="col-12 text-right">
-                                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index2.html" class="colorMoradoLight">Inicio</a></span>
+                                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="irAInicioPotencial" class="colorMoradoLight">Inicio</a></span>
                                         - <span class="colorGlobal">Mis Citas</span>
                                     </div>
                                 </div>
