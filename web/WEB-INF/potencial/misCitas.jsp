@@ -185,7 +185,7 @@
 
                                                 <div class="row justify-content-center mt-2">
                                                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 text-center">
-                                                        <button class="btn btn-danger btn-block btnCancelarCita" id="btn-cancelarPreConsulta1">Cancelar
+                                                        <button class="btn btn-danger btn-block btnCancelarCita" id="mitadCancelar">Cancelar
                                                             Citas
                                                         </button>
                                                     </div>
@@ -268,7 +268,7 @@
 
                                                 <div class="row mt-1 justify-content-center">
                                                     <div class="col-6 text-center">
-                                                        <button class="btn btn-danger btn-block" id="btn-cancelarPreConsulta2" style="border-radius: 20px;">Cancelar
+                                                        <button class="btn btn-danger btn-block" id="mitadCancelar" style="border-radius: 20px;">Cancelar
                                                             Cita
                                                         </button>
                                                     </div>

@@ -104,25 +104,22 @@ $(document).ready(function () {
 
 
 
-    $("#btn-cancelarPreConsulta1").on('click', () => {
+    $('#btn-cancelarDefinitivo').on('click', () => {
 
         //Modal borrar sintoma
-        swal({
+       /* swal({
             title: "¿Estás segura(o) que deseas cancelar la cita?",
-            text: "Tendrás que reiniciar tu solicitud a preconsulta",
+            text: "Tendrás que reiniciar tu solicitud a preconsulta ya que se cancelaran ambas",
             icon: "warning",
             buttons: true,
             buttons: ['Regresar', 'Cancelar cita'],
             dangerMode: true,
         })
 
-                .then((cancelar) => {
-                    if (cancelar) {
-
-                        $('#modalMotivoCancelacion').modal('toggle');
-
-                        $('#btn-cancelarDefinitivo').on('click', function () {
-
+               .then((cancelar) => {
+                   if (cancelar) {
+*/
+                       
                             $.ajax({
                                 url: "PotencialController",
                                 data: {
@@ -131,34 +128,39 @@ $(document).ready(function () {
                                 },
                                 method: "POST",
                                 success: function (response) {
-                                    if (response == "success") {
+                                    if (response == "error") {
+                                    console.log("Error al cargar");
+                                } else {
+                                    console.log("Intentando redireccionar");
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
 
-                                    } else {
-
-                                    }
+                                }
                                 },
                                 error: function (xhr) {
 
                                 }
-                            });
+                           
 
-                        });
+                    //    });
 
 
-                    } else {
+          /*          } else {
 
-                    }
+                  }
+           */
                 });
 
 
     });
 
-    $("#btn-cancelarPreConsulta2").on('click', () => {
+    $('#mitadCancelar').on('click',  function () {
 
         //Modal borrar sintoma
-        swal({
-            title: "¿Estás seguro que deseas cancelar la cita?",
-            text: "Tendrás que reiniciar tu solicitud a preconsulta",
+       swal({
+            title: "¿Estás segura(o) que deseas cancelar la cita?",
+            text: "Tendrás que reiniciar tu solicitud a preconsulta ya que se cancelaran ambas",
             icon: "warning",
             buttons: true,
             buttons: ['Regresar', 'Cancelar cita'],
@@ -169,10 +171,7 @@ $(document).ready(function () {
                     if (cancelar) {
 
                         $('#modalMotivoCancelacion').modal('toggle');
-                        $('#modalVerCitaPreConsulta').modal('toggle');
-
-
-                        //pegar ajax de cancelacion
+       
 
                     } else {
 
