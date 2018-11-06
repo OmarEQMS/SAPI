@@ -516,6 +516,26 @@ $(document).ready(function () {
                 }
         );
     });
+    
+    $('#irAInicioPotencial').on('click', function () {
+        $.post("SAPI", {
+            file: "potencial/index.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
 
     $('#irACuenta1').on('click', function () {
         $.post("SAPI", {

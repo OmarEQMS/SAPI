@@ -29,7 +29,7 @@
         <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
         
         <link rel="stylesheet" href="css/styleLogin.css">
-         <script src="js/ajaxRecuperar.js"></script>
+        <script src="js/ajaxRecuperar.js"></script>
     
 
     </head>
@@ -43,9 +43,12 @@
             <div class="row">
                 <div class="col-12">
                     <input id="cambio1" type="password" class="form-control" placeholder="Introduce tu nueva contraseña" >
+                    <span class="text-danger" id="errorPass1">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                 </div>
                 <div class="col-12">
                         <input id="cambio2"type="password" class="form-control mt-3" placeholder="Confirma tu nueva contraseña" >
+                        <span class="text-warning" id="noEqualPasswordsError">Las contraseñas no son iguales.</span>
+                        <span class="text-danger" id="errorPass2">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                     </div>
             </div>
 
@@ -57,5 +60,7 @@
 
         </form>
 
+        <script type="module" src="js/asincrono.js"></script>
+        
     </body>
 </html>

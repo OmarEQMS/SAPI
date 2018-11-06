@@ -133,7 +133,7 @@
                 <!-- RUTA -->
                 <div class="row mb-3">
                     <div class="col-12">
-                        <span class="pull-right d-block text-right"><span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index2.html" class="colorMoradoLight">Inicio</a></span>
+                        <span class="pull-right d-block text-right"><span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="irAInicioPaciente" class="colorMoradoLight">Inicio</a></span>
                             - <span class="colorGlobal">Mis Citas</span></span>
                     </div>
                 </div> 

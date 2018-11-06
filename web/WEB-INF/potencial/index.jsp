@@ -132,7 +132,7 @@
 
                 <div class="row mb-3">
                     <div class="col-12 text-right">
-                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span></span><span><a href="./index2.html" class="colorMoradoLight">Inicio</a></span>
+                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span></span><span><a id="irAInicioPotencial" class="colorMoradoLight">Inicio</a></span>
                     </div>
                 </div>
 
@@ -365,12 +365,9 @@
 
                                                             </c:when>    
                                                             <c:otherwise>
-                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                                    <span class="textoDocumento text-success">CURP</span>
-                                                                    <small id="passwordHelpBlock" class="form-text text-muted">
-                                                                        Se puede tramitar
-                                                                        <a class="text-primary" target="_blank" href="https://www.gob.mx/curp/">aquí­</a>
-                                                                    </small>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">                                                                    
+                                                                    <span class="textoDocumento text-success"><i class="fas fa-check text-success mr-1"></i>CURP</span><br>
+                                                                    <span class="text-success" style="font-size:11px;">Documento subido</span>
                                                                 </div>
 
                                                                 <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="customFile">
@@ -416,11 +413,9 @@
                                                             </c:when>
                                                             <c:otherwise>
 
-                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                                    <span class="textoDocumento"><i class="fas fa-check text-success mr-1"></i>Comprobante de domicilio</span>
-                                                                    <small id="passwordHelpBlock" class="form-text text-muted">
-                                                                        Vigencia no mayor a 3 meses.
-                                                                    </small>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">                                                                    
+                                                                    
+                                                                    <span class="textoDocumento text-success"><i class="fas fa-check text-success mr-1"></i>Comprobante de domicilio</span><br>
                                                                     <span class="text-success" style="font-size:11px;">Documento subido</span>
                                                                 </div>
 
@@ -510,7 +505,7 @@
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
                                                                     <span class="textoDocumento text-success"><i class="fas fa-check text-success mr-1"></i>Reporte de resultados de estudios previos
                                                                         mastografía
-                                                                    </span>
+                                                                    </span><br>
                                                                     <span class="text-success" style="font-size:11px;">Documento subido</span>
                                                                 </div>
 
@@ -575,9 +570,7 @@
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-12 text-center">
-                                                                    <span class="textoDocumento text-success"><i class="fas fa-check text-success mr-1"></i>Reporte de resultados de estudios previos
-                                                                        ultrasonido
-                                                                    </span>
+                                                                    <span class="textoDocumento text-success"><i class="fas fa-check text-success mr-1"></i>Reporte de resultados de estudios previos ultrasonido</span><br>
                                                                     <span class="text-success" style="font-size:11px;">Documento subido</span>
                                                                 </div>
 
@@ -653,8 +646,8 @@
                                                                         <label class="form-check-label textoDocumento text-success">
                                                                             ¿Te han hecho una biopsia previamente?
                                                                         </label>
-                                                                        <span class="text-success" style="font-size:11px">Documento subido</span>
                                                                     </div>
+                                                                    <span class="text-success" style="font-size:11px">Documento subido</span>
                                                                 </div>
 
                                                                 <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
