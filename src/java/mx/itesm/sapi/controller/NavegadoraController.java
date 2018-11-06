@@ -33,7 +33,6 @@ import org.apache.commons.io.IOUtils;
  *
  * @author Admin
  */
-
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 50)
 
 @WebServlet(name = "NavegadoraController", urlPatterns = {"/NavegadoraController"})
@@ -51,41 +50,37 @@ public class NavegadoraController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         response.setContentType("text/html;charset=UTF-8");
         String key = request.getParameter("key");
-        
+
         HttpSession sesion = request.getSession(true);
-        
+
         if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
             // request.setAttribute("status", "");
             request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
             System.out.println("estoy en el if");
             return;
         } else {
-            
+
             int keyRol = (int) sesion.getAttribute("idRol");
-            
-            
-            
-            switch(keyRol){
-                
+
+            switch (keyRol) {
+
                 case 4: {
-                    
-                    switch(key){
-                        
+
+                    switch (key) {
+
                         case "cambiarDatos": {
 
                             String correo = request.getParameter("correo");
                             String telefono = request.getParameter("telefono");
 
-                           Part part = request.getPart("file-image");
+                            Part part = request.getPart("file-image");
 
                             //No se valida el telefono ni el correo aquí? Lo validamos nosotros o el front?
                             PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                             Persona persona = personaServicioImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
-
-                            
 
                             if ((int) part.getSize() > 0) {
                                 PicServicioImpl picServiceImpl = new PicServicioImpl();
@@ -106,16 +101,12 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Debió actualizar la imagen en la sesión");
                             }
 
-                           
-
-                           
                             System.out.println("Ya pase registro");
 
                             persona.setCorreo(correo);
                             persona.setTelefono(telefono);
 
                             personaServicioImpl.actualizarPersona(persona);
-                            
 
                             sesion.setAttribute("correo", persona.getCorreo());
                             sesion.setAttribute("telefono", persona.getTelefono());
@@ -127,7 +118,11 @@ public class NavegadoraController extends HttpServlet {
 
                             break;
                         }
-                           case "cambiarContrasena": {
+
+                        case "eliminarCuenta": {
+
+                        }
+                        case "cambiarContrasena": {
 
                             if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
                                 // request.setAttribute("status", "");
@@ -150,17 +145,16 @@ public class NavegadoraController extends HttpServlet {
                                 }
 
                             }
-                             break;
+                            break;
                         }
-                       
-                        
+
                     }
-                    
+
                     break;
                 }
-                
+
             }
-            
+
         }
     }
 
