@@ -20,11 +20,13 @@ import javax.servlet.http.Part;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.Login;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.service.persona.LoginServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import org.apache.commons.io.IOUtils;
@@ -119,8 +121,52 @@ public class NavegadoraController extends HttpServlet {
                             break;
                         }
 
-                        case "eliminarCuenta": {
+                        case "eliminarCuentaNavegadora": {
+                            System.out.println("Si llego aqui navegadora");
+               
+                            /**
+                             * Veo si tiene sesion iniciada
+                             */
+                            if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
+                                // request.setAttribute("status", "");
+                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+                                /**
+                                 * Lo redirecciono al login
+                                 */
+                                return;
+                            } else {
+                                /**
+                                 * Elimino su cuenta (borrrado logico)
+                                 */
+                                /**
+                                 * Obtengo los id's de sue cuenta y llogin de la sesion
+                                 */
+                                int idCuenta = (int) sesion.getAttribute("idCuenta");     
+                                System.out.println(idCuenta);
+                                
 
+                                CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+
+                                LoginServicioImpl loginServicio = new LoginServicioImpl();
+                                if (loginServicio.mostrarLoginIdCuenta(idCuenta) != null) {
+                                    Login login = loginServicio.mostrarLoginIdCuenta(idCuenta);
+                                    loginServicio.borradoLogicoLogin(login.getIdLogin());
+                                }
+
+                                if (cuentaServicio.mostrarCuenta(idCuenta) != null) {
+                                    Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+
+                                    cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
+                                }
+
+                                /**
+                                 * Al no tener cuenta se le redirecciona al
+                                 * login
+                                 */
+                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+
+                            }
+                            break;
                         }
                         case "cambiarContrasena": {
 

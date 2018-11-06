@@ -27,15 +27,38 @@ $(document).ready(function () {
 
         swal({
             title: "¿Estás segura(o)?",
-            text: "Los datos se eliminarán y no podrás recuperarlos.",
+            text: "Los datos se eliminarán y no podrás recuperarlos ni poder acceder a tu cuenta.",
             icon: "warning",
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
-            dangerMode: true,
+
         })
                 .then((eliminar) => {
                     if (eliminar) {
+                        $.ajax({
+                            url: "NavegadoraController",
+                            data: {
+                                key: "eliminarCuentaNavegadora",
+                                idCuenta: $("#sesionPaciente").val()
 
+                            },
+                            method: "POST",
+                            success: function (response) {
+                                if (response == "error") {
+                                    console.log("Error al cargar");
+                                } else {
+                                    console.log("Intentando redireccionar");
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
+
+                                }
+                            },
+                            error: function (xhr) {
+
+                            }
+
+                        });
 
 
                     } else {
