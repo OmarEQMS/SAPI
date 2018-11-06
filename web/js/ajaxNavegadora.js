@@ -1,6 +1,59 @@
 $(document).ready(function () {
 
 
+    //Terminos y condiciones
+    $('#acepto-terminos').change(function () {
+
+        if (parseInt($(this).val()) === parseInt('0')){
+            $(this).val('1');
+        } else{
+            $(this).val('0');
+        }
+        
+        
+    });
+
+    //Agregar Paciente
+    $('#agregarPaciente').on('click', function (e) {
+
+
+        $.ajax({
+
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+
+                key: "registraUsuario",
+                nombre: $('#nombreNavegadora').val(),
+                curp: $('#curpNavegadora').val(),
+                fechaNacimiento: $('#cumpleNavegadora').val(),
+                apellido1: $('#primer-apellidoNavegadora').val(),
+                apellido2: $('#segundo-apellidoNavegadora').val(),
+                usuario: $('#usuarioNavegadora').val(),
+                estadoCivil: $('#estado-civilNavegadora').val(),
+                calle: $('#calleNavegadora').val(),
+                noInterior: $('#numIntNavegadora').val(),
+                noExterior: $('#numExtNavegadora').val(),
+                codigoPostal: $('#codigo-postalNavegadora').val(),
+                estado: $('#estadoNavegadora').val(),
+                municipio: $('#municipioNavegadora').val(),
+                telefono: $('#telNavegadora').val(),
+                correo: $('#correoNavegadora').val(),
+                colonia: $('#colNavegadora').val(),
+                pass1: $('#contraNavegadora').val(),
+                pass2: $('#confContraNavegadora').val(),
+                terminos: $('#acepto-terminos').val()
+
+            },
+            success: function (response) {
+                console.log(response);
+            }
+
+        });
+
+
+    });
 
     //Eliminar cuenta
     $('#eliminarCuentaNavegadora').on('click', () => {
@@ -142,27 +195,7 @@ $(document).ready(function () {
 
     });
 
-    $('#btn-eliminar2').on('click', () => {
 
-        swal({
-            title: "¿Estás segura?",
-            text: "Una vez eliminado, el paciente y sus datos ya no se podrán recuperar.",
-            icon: "warning",
-            buttons: true,
-            buttons: ['Cancelar', 'Aceptar'],
-            dangerMode: true,
-        })
-                .then((eliminar) => {
-                    if (eliminar) {
-
-
-
-                    } else {
-
-                    }
-                });
-
-    });
 
     $('#irADashboard').on('click', function () {
         $.post("SAPI", {
