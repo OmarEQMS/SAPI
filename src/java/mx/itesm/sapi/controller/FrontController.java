@@ -373,16 +373,15 @@ public class FrontController extends HttpServlet {
                                     String base64String = Base64.getEncoder().encodeToString(bytes);
 
                                     sesion.setAttribute("base64Img", base64String);
-                                                                        
-                                                                        
+                                                                                                                                                
                                     int idDocumentoInicial;
                                     int idPaciente;
                                     int siguiente;
-                                    
-                                    
+                                                                        
                                     try
                                     {
-                                        idDocumentoInicial = Integer.parseInt(request.getParameter("idDocumentoInicial"));
+                                        idDocumentoInicial = Integer.parseInt(request.getParameter("idDocumentoInicialVista"));
+                                        System.out.println("idDocumentoInicial parameter"+idDocumentoInicial);
                                     }catch(Exception ex)
                                     {
                                         System.out.println("Catch parameter idDocumentoInicial ".concat(ex.getMessage()));
@@ -391,7 +390,7 @@ public class FrontController extends HttpServlet {
                                      
                                     try
                                     {
-                                        idPaciente = Integer.parseInt(request.getParameter("idPacientePotencial"));
+                                        idPaciente = Integer.parseInt(request.getParameter("idPacientePotencialAtendido"));
                                     }catch(Exception ex)
                                     {
                                         System.out.println("Catch parameter idPacientePotencial ".concat(ex.getMessage()));
@@ -409,6 +408,7 @@ public class FrontController extends HttpServlet {
                                     
                                     sesion.setAttribute("idPacientePotencialAtendido", idPaciente);                                                                        
                                     sesion.setAttribute("idDocumentoInicial", idDocumentoInicial);
+                                    
                                                                         
                                     PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                     DatosPacienteDocumentoInicial datosPacienteDocumentoInicial = pacienteServicioImpl.mostrarDatosPacienteDocumentoInicial(idPaciente);                                    
@@ -420,7 +420,17 @@ public class FrontController extends HttpServlet {
                                     DocumentoInicialServicioImpl documentoInicialServicioImpl = new DocumentoInicialServicioImpl();
                                     DocumentoInicialVista documentoInicialVista = documentoInicialServicioImpl.mostrarDocumentoInicialVista(idDocumentoInicial,idPaciente,siguiente);
                                     
-                                    System.out.println("Ver Documento id ".concat(String.valueOf(documentoInicialVista.getIdDocumentoInicial())));
+                                    try{
+                                        idDocumentoInicial = documentoInicialVista.getIdDocumentoInicial();
+                                    }catch(Exception ex)
+                                    {
+                                        System.out.println("No más documentos");
+                                        PrintWriter out = response.getWriter();
+                                        out.print("todos");
+                                        break;
+                                    }
+                                                                                                            
+                                    System.out.println("Ver Documento id ".concat(String.valueOf(idDocumentoInicial)));
                                     System.out.println("Ver Documento nombre archivo: ".concat(documentoInicialVista.getNombreDocumento()));
                                     System.out.println("Ver Documento extensión archivo ".concat(documentoInicialVista.getTipoArchivo()));
                                     System.out.println("Ver Documento tipo documento ".concat(documentoInicialVista.getTipoDocumento()));
@@ -430,6 +440,7 @@ public class FrontController extends HttpServlet {
                                     String strDocumentoB64;
                                     String extension = documentoInicialVista.getTipoArchivo();
                                     sesion.setAttribute("idDocumentoInicialVista",documentoInicialVista.getIdDocumentoInicial());
+                                    sesion.setAttribute("idDocumentoInicial", idDocumentoInicial);
                                     switch(extension)
                                     {
                                         case "image/png":
@@ -445,7 +456,7 @@ public class FrontController extends HttpServlet {
                                         }                                            
                                         case "image/jpeg":
                                         {
-                                             InputStream imageDoc = documentoInicialVista.getArchivo();                                                                                                                                     
+                                            InputStream imageDoc = documentoInicialVista.getArchivo();                                                                                                                                     
                                             byte[] bytesDocumento = IOUtils.toByteArray(imageDoc);
                                             strDocumentoB64 = Base64.getEncoder().encodeToString(bytesDocumento);                                            
                                                                                                                             

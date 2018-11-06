@@ -210,18 +210,46 @@ $(document).ready(function () {
     
      $('#btn-siguiente').on('click', function () {
         
+        swal({
+            title: 'Obteniendo siguiente documento.',            
+            timer: 7000,
+            showCancelButton: true,
+            showConfirmButton: true
+        }).then(
+                function () {},
+                // handling the promise rejection
+                        function (dismiss) {
+                            if (dismiss === 'timer') {
+                                //console.log('I was closed by the timer')
+                            }
+                        }
+                );
+        
+        var data = {idPacientePotencialAtendido: $('#idPacientePotencialAtendido').val(),idDocumentoInicialVista:$('#idDocumentoInicialVista').val(),key:1};
+        
+        console.log(JSON.stringify(data));
+        
         $.post("SAPI", {
-            file: "navegadora/verDocumento.jsp",
-            idDocumentoInicial:$('#idDocumentoInicialVista').val(),
-            idPacientePotencialAtendido:$('#idPacientePotencialAtendido').val(),
-            siguiente: 1
+            idPacientePotencialAtendido: $('#idPacientePotencialAtendido').val(),
+            idDocumentoInicialVista:$('#idDocumentoInicialVista').val(),
+            siguiente:1,
+            file: "navegadora/verDocumento.jsp"           
         },
                 function (response, status, xhr) {
                     console.log("El ajax fue exitoso!!-----------------------");
                     if (status == "success") {
                         if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
+                           
+                        } 
+                        else if (response == "todos")
+                        {
+                             
+                            swal({
+                                title: 'No más documentos por revisar.',
+                                timer:3000
+                            });
+                        }                            
+                        else {
                             document.open("text/html", "replace");
                             document.write(response);
                             document.close();
