@@ -99,7 +99,6 @@
                         <hr style="background-color:white !important">
                     </div>
                 </div>
-                <<<<<<< HEAD
 
 
                 <!-- MENU PRINCIPAL ENLACES -->
@@ -305,7 +304,25 @@
                                             <tbody>
 
                                                 <c:forEach items="${listaPacientesAprobados}" var="pacienteAprobado">
-                                                    <tr>                                                                                                                      
+                                                    <c:choose>
+                                                        <c:when test="${pacienteAprobado.color==0}">
+                                                            <tr class="table-danger">
+                                                            </c:when>
+                                                            <c:when test="${pacienteAprobado.color==1}">
+                                                            <tr class="table-warning">
+                                                            </c:when>
+                                                            <c:when test="${pacienteAprobado.color==2}">
+                                                            <tr class="table-primary">
+                                                            </c:when>
+                                                            <c:when test="${pacienteAprobado.color==3}">
+                                                            <tr class="table-success">
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <tr>
+                                                            </c:otherwise>
+                                                        </c:choose>
+
+
 
                                                         <td>${pacienteAprobado.prz}</td>
                                                         <td>${pacienteAprobado.nombre}</td>
