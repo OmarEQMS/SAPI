@@ -1,7 +1,7 @@
 <%-- 
     Document   : preguntasFrecuentes
     Created on : 25/10/2018, 10:48:05 PM
-    Author     : julioguzman
+    Author     : julioguzman, shannonrosas
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

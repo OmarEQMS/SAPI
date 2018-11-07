@@ -1,7 +1,7 @@
 <%-- 
     Document   : cuentaNavegadora
     Created on : 31-oct-2018, 11:51:06
-    Author     : urieldiaz
+    Author     : urieldiaz, julioguzman, shannonrosas
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -35,8 +35,7 @@
 
     <link rel="stylesheet" href="css/styleNavegadora.css">
     <link rel="stylesheet" href="css/styleNavegadoraImg.css">
-    <script src="js/appNavegadora.js"></script>
-    <script src="js/appNavegadora2.js"></script>
+    <script src="js/appNavegadora.js"></script>    
     <script src="js/ajaxNavegadora.js"></script>
     <script src="js/validacionesNavegadora.js"></script>
 
@@ -261,12 +260,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row justify-content-center mt-4">
-                            <div class="col-4">
-                                <button type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaNavegadora"><i class="fas fa-trash-alt mr-1"></i>
-                                    Eliminar Cuenta</button>
-                            </div>
-                        </div>
 
                     </form>
 

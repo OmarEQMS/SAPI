@@ -1,7 +1,7 @@
 <%-- 
     Document   : verDocumento
     Created on : 2/11/2018, 11:32:19 AM
-    Author     : feror
+    Author     : feror, julioguzman, shannonrosas
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

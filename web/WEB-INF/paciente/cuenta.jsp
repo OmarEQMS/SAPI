@@ -1,7 +1,7 @@
 <%-- 
     Document   : cuenta
     Created on : 18-oct-2018, 15:41:30
-    Author     : urieldiaz
+    Author     : urieldiaz, julioguzman, shannonrosas
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

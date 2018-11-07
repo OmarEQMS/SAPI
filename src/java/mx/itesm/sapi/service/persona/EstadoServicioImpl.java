@@ -72,7 +72,7 @@ public class EstadoServicioImpl implements EstadoServicio {
         try {
             estados = new ArrayList<>();
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall("mostrarListaEstado()");
+            cstmt = conn.prepareCall("CALL mostrarListaEstado()");
             rs = cstmt.executeQuery();
             Estado estado;
 

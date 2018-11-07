@@ -34,6 +34,7 @@ import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialTipoDocumento;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialVista;
 import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.gestionPaciente.PacientePotencial;
 import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.Tratamiento;
@@ -43,6 +44,7 @@ import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
 import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
 import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
 import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.Estado;
 import mx.itesm.sapi.bean.persona.EstadoCivil;
 import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.bean.persona.Estado;
@@ -50,10 +52,10 @@ import mx.itesm.sapi.bean.persona.EstadoCivil;
 import mx.itesm.sapi.bean.persona.Municipio;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
-import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.bean.persona.TipoSangre;
 import mx.itesm.sapi.service.diagnostico.EtapaClinicaServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialTipoDocumentoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
@@ -68,18 +70,19 @@ import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
 import mx.itesm.sapi.service.persona.CodigoPostalServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.EstadoCivilServicioImpl;
+import mx.itesm.sapi.service.persona.EstadoServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
 import mx.itesm.sapi.service.persona.EstadoCivilServicioImpl;
-import mx.itesm.sapi.service.persona.EstadoServicioImpl;
 import mx.itesm.sapi.service.persona.MunicipioServicioImpl;
+
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import org.apache.commons.io.IOUtils;
-import mx.itesm.sapi.service.persona.PicServicioImpl;
 import mx.itesm.sapi.service.persona.TipoSangreServicioImpl;
-import org.apache.commons.io.IOUtils;
+
+/*
 import org.ghost4j.document.PDFDocument;
-import org.ghost4j.renderer.SimpleRenderer;
+import org.ghost4j.renderer.SimpleRenderer;*/
 
 /**
  *
@@ -218,11 +221,29 @@ public class FrontController extends HttpServlet {
                                 
 
                                 case "navegadora/index.jsp": {
-                                    System.out.println("Index Navegadora ");
+                                    PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
+                                    List<PacientePotencial> pacientes = pacienteServicio.mostrarPacientesPotenciales();
+                                    request.setAttribute("listaPacientes", pacientes);
 
+                                    //Estado civil
                                     EstadoCivilServicioImpl estadoCivilServicio = new EstadoCivilServicioImpl();
-                                    List<EstadoCivil> estados = estadoCivilServicio.mostrarEstadoCivil();
-                                    request.setAttribute("estadoCivil", estados);
+                                    List<EstadoCivil> estadosCiviles = estadoCivilServicio.mostrarEstadoCivil();
+                                    request.setAttribute("estadoCivil", estadosCiviles);
+
+                                    //Estados
+                                    EstadoServicioImpl estadoServicio = new EstadoServicioImpl();
+                                    List<Estado> estados = estadoServicio.mostrarEstado();
+                                    request.setAttribute("estado", estados);
+
+                                    //Pacientes aprobados  
+                                    List<PacientePotencial> pacientesAprobados = pacienteServicio.mostrarPacientesPotencialesAprobados();
+                                    
+                                    for (int i = 0; i < pacientesAprobados.size(); i++) {
+                                        pacientesAprobados.get(i).setColor(pacienteServicio.mostrarColor(pacientesAprobados.get(i).getIdPaciente()));                                        
+                                        //Recorrer la lista y uno por uno ir asignando los colores
+                                    }
+
+                                    request.setAttribute("listaPacientesAprobados", pacientesAprobados);
 
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al dashboard navgeadora
                                     break;
@@ -277,6 +298,10 @@ public class FrontController extends HttpServlet {
 
                                     MunicipioServicioImpl municipioServicioImpl = new MunicipioServicioImpl();
                                     Municipio municipio = municipioServicioImpl.mostrarMunicipio(persona.getIdMunicipio());
+
+                                    /*
+                                    EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
+                                    Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());*/
 
                                     EstadoServicioImpl estadoServicioImpl = new EstadoServicioImpl();
                                     Estado estado = estadoServicioImpl.mostrarEstado(municipio.getIdEstado());
@@ -487,11 +512,11 @@ public class FrontController extends HttpServlet {
                                         }
                                     }                                                                                                                                                                                                                        
                                     
-
-                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
+                                    /*MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl=new MedicoEspecialidadServicioImpl();
+                                    MedicoEspecialidad medicoEspecialidad= medicoEspecialidadServicioImpl.mostrarMedicoEspecialidad(keyRol)
+                                     */
                                     break;
-                                }
-
+                                }                                
                             }
                             break;
 
@@ -603,7 +628,6 @@ public class FrontController extends HttpServlet {
 
                                     PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                                     List<Persona> medicos = personaServicio.mostrarMedicos();
-
                                     request.setAttribute("listaMedicos", medicos);
 
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);

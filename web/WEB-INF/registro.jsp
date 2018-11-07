@@ -1,7 +1,7 @@
 <%-- 
     Document   : registro
     Created on : 14/09/2018, 11:08:13 AM
-    Author     : feror
+    Author     : feror, julioguzman, shannonrosas
 --%>
 
 <%@page import="java.util.ArrayList"%>
@@ -87,8 +87,8 @@
                 <div class="form-group row">
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                         <input id="curp" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf2C2; CURP">
-                        <span class="text-danger " id="errorCurp">Formato incorrecto, introduce un CURP válido. Puedes consultarlo 
-                        <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí­</a>
+                        <span class="text-danger " id="errorCurp">Formato incorrecto, las letras deben estar en mayúsculas y asegúrate de introducir un CURP válido y sin espacios. Puedes consultarlo 
+                        <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí.</a>
                         </span>
                         <span class="text-warning" id="errorCurpRepetido">El curp ya existe.</span>
                     </div>

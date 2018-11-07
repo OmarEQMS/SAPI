@@ -997,6 +997,8 @@ public class PotencialController extends HttpServlet {
                 boolean revisarPre = true;
                 boolean revisarNav = true;
 
+                System.out.println("------------------------------------------------------------------------------------------------------------------------------");
+                
                 for (FullCalendar calendario : calendarios) {
                     if (calendario.getTitle().equals("Preconsulta") && revisarPre) {
                         System.out.println("La fecha preconsulta es: " + calendario.getStart());
@@ -1011,6 +1013,8 @@ public class PotencialController extends HttpServlet {
                     }
                 }
 
+                System.out.println("------------------------------------------------------------------------------------------------------------------------------");
+                
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
 
@@ -1856,6 +1860,37 @@ public class PotencialController extends HttpServlet {
                     int estadoPaciente = estadoPaPa.estadoPrimeraSegundaVez(idPacientePotencial);
                     System.out.println("EstadoPaciente: " + estadoPaciente);
                     sesion.setAttribute("estadoPaciente", estadoPaciente);
+
+                }
+                break;
+            }
+            case "consultarCitaPendiente": {
+                
+                /**
+                 * * Shannon Rosas 06/11/2018 Case para saber el si un paciente
+                 * tiene su cita pendiente.
+                 *
+                 * El presente case se utiliza para saber si un 
+                 * paciente tiene su cita como pendiente.
+                 *
+                 * Los valores posibles son:
+                 *
+                 * El formato de entrega es un int.
+                 */
+
+                HttpSession sesion = request.getSession(true);
+
+                if (sesion.getId() == null) {
+                    //TODO 
+                } else {
+
+                    int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
+
+                    CitaServicioImpl pendientePaciente = new CitaServicioImpl();
+
+                    int pacientePendiente = pendientePaciente.citaPendiente(idPacientePotencial);
+                    
+                    sesion.setAttribute("estadoPendientePaciente", pacientePendiente);
 
                 }
                 break;

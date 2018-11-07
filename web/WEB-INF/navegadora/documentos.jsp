@@ -1,7 +1,7 @@
 <%-- 
     Document   : documentos
     Created on : 2/11/2018, 11:15:08 AM
-    Author     : feror
+    Author     : feror, julioguzman, shannonrosas
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -36,8 +36,7 @@
 
     <link rel="stylesheet" href="css/styleNavegadora.css">
     <link rel="stylesheet" href="css/styleNavegadoraImg.css">
-    <script src="js/appNavegadora.js"></script>
-    <script src="js/appNavegadora2.js"></script>
+    <script src="js/appNavegadora.js"></script>    
     <script src="js/ajaxNavegadora.js"></script>
 
 </head>

@@ -383,6 +383,57 @@ public class CitaServicioImpl implements CitaServicio {
         }
         return exito;
     }
+    
+    @Override
+    public boolean aprobarPaciente(int idPaciente, String fechaNav, String fechaCon, int segundaOpinion) {
+        
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL AprobarPaciente(?,?,?,?)";
+        boolean exito = false;
+        int idCitaNav, idCitaCon;
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+
+             Timestamp fechaNavegacion = null;
+             Timestamp fechaConsulta = null;
+            
+             try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+                Date parsedDate = dateFormat.parse(fechaNav);
+                fechaNavegacion = new java.sql.Timestamp(parsedDate.getTime());
+                parsedDate = dateFormat.parse(fechaCon);
+                fechaConsulta = new java.sql.Timestamp(parsedDate.getTime());
+                
+            } catch (Exception e) { //this generic but you can control nother types of exception
+                // look the origin of excption 
+            }
+            
+            cstmt.setInt(1, idPaciente);
+            cstmt.setTimestamp(2, fechaNavegacion);
+            cstmt.setTimestamp(3, fechaConsulta);
+            cstmt.setInt(4, segundaOpinion);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+            idCitaNav = rs.getInt(1);
+            idCitaCon = rs.getInt(2);
+            
+            exito = true;
+
+            rs.close();
+            conn.close();
+            cstmt.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+        }
+        return exito;
+    }
 
     @Override
     public Cita mostrarCitaIdPaciente(int idPaciente) {
@@ -479,6 +530,33 @@ public class CitaServicioImpl implements CitaServicio {
             citas = null;
         }
         return citas;
+    }
+
+    @Override
+    public int citaPendiente(int idPaciente) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL agregarCitaPendiente(?)";
+        int id = -1;
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+        return id;
     }
 
 }
