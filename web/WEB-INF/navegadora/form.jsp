@@ -797,7 +797,7 @@
 
                                         <!-- tipo biopsia -->
                                         <div class="col-3">
-                                            <input type="text" class="form-control tipoBiopsia" placeholder="Tipo de biopsia">
+                                            <input name= "tipoBiopsia_dinamico" type="text" class="form-control tipoBiopsia" placeholder="Tipo de biopsia">
                                         </div>
 
                                         <!-- fecha biopsia -->
@@ -1389,8 +1389,8 @@
                                             <i class="fas fa-undo mr-2"></i>Regresar</button>
                                     </div>
                                     <div class="col-4">
-                                        <button class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                            <i class="fas fa-save mr-2" id="btn-save3"></i>Guardar y Continuar Despu�s</button>
+                                        <button id="btn-save3" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                            <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despu�s</button>
                                     </div>
                                     <div class="col-4">
                                         <button class="btn btn-outline-success btn-block" id="btn-continue3" style="border-radius:20px">

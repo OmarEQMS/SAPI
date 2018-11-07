@@ -397,7 +397,7 @@ $(document).ready(function () {
     //BOTONES DE AGREGAR
 
     //agregar biopsia
-    var i=1;
+    
     $('.add-biopsia').on('click', function () {
         
         var plantilla =
@@ -405,7 +405,7 @@ $(document).ready(function () {
 
             <!-- tipo biopsia -->
             <div class="col-3">
-                <input name="biopsia-${i}" type="text" class="form-control tipoBiopsia" placeholder="Tipo de biopsiaa">
+                <input name="tipo-BipsiaAdded" type="text" class="form-control tipoBiopsia" placeholder="Tipo de biopsiaa">
             </div>
 
             <!-- fecha biopsia -->
@@ -416,7 +416,7 @@ $(document).ready(function () {
                             <i class="fas fa-calendar-alt"></i>
                         </div>
                     </div>
-                    <input placeholder="Fecha de la biopsia" class="form-control fechaBiopsia" type="text" onfocus="(this.type='date')">
+                    <input name="fecha-BipsiaAdded" placeholder="Fecha de la biopsia" class="form-control fechaBiopsia" type="text" onfocus="(this.type='date')">
                 </div>
             </div>
 
@@ -428,7 +428,7 @@ $(document).ready(function () {
                             <i class="fas fa-hand-paper"></i>
                         </div>
                     </div>
-                    <input type="text" class="form-control parteCuerpoBiopsia" placeholder="Parte del cuerpo">
+                    <input name ="parte-BipsiaAdded" type="text" class="form-control parteCuerpoBiopsia" placeholder="Parte del cuerpo">
                 </div>
             </div>
 
@@ -439,9 +439,7 @@ $(document).ready(function () {
             </div>
 
 
-        </div>`
-        
-        i++;
+        </div>` 
 
         $('#biopsia-contenedor').append(plantilla);
 
@@ -462,7 +460,7 @@ $(document).ready(function () {
 
                 <!-- tipo rayos -->
                 <div class="col-5">
-                    <input type="text" class="form-control tipoBiopsia" placeholder="Tipo de rayos X">
+                    <input name="tipo-RayosXAdded" type="text" class="form-control tipoBiopsia" placeholder="Tipo de rayos X">
                 </div>
 
                 <!-- fecha rayos -->
@@ -473,7 +471,7 @@ $(document).ready(function () {
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                         </div>
-                        <input placeholder="Fecha de los Rayos X" class="form-control fechaRayos" type="text" onfocus="(this.type='date')">
+                        <input name ="fecha-RayosXAdded" placeholder="Fecha de los Rayos X" class="form-control fechaRayos" type="text" onfocus="(this.type='date')">
                     </div>
                 </div>
 
@@ -505,7 +503,7 @@ $(document).ready(function () {
 
                
                 <div class="col-5">
-                    <input type="text" class="form-control parteCuerpoUltrasonido" placeholder="Parte del cuerpo">
+                    <input name ="parteCuperpo-USGAdded"type="text" class="form-control parteCuerpoUltrasonido" placeholder="Parte del cuerpo">
                 </div>
 
             
@@ -516,7 +514,7 @@ $(document).ready(function () {
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                         </div>
-                        <input placeholder="Fecha de USG" class="form-control fechaUltrasonido" type="text" onfocus="(this.type='date')">
+                        <input name ="fecha-USGAdded" placeholder="Fecha de USG" class="form-control fechaUltrasonido" type="text" onfocus="(this.type='date')">
                     </div>
                 </div>
 
@@ -548,7 +546,7 @@ $(document).ready(function () {
             <div class="form-group row mt-2 tuplaMedicinaNuclear">
     
                     <div class="col-5">
-                        <input type="text" class="form-control medicinaNuclear" placeholder="Introduce medicina nuclear">
+                        <input name ="mNuclearAdded" type="text" class="form-control medicinaNuclear" placeholder="Introduce medicina nuclear">
                     </div>
 
       
@@ -559,7 +557,7 @@ $(document).ready(function () {
                                     <i class="fas fa-calendar-alt"></i>
                                 </div>
                             </div>
-                            <input placeholder="Fecha de medicina nuclear" class="form-control fechaMedicinaNuclear" type="text" onfocus="(this.type='date')">
+                            <input name ="fecha-mNuclearAdded" placeholder="Fecha de medicina nuclear" class="form-control fechaMedicinaNuclear" type="text" onfocus="(this.type='date')">
                         </div>
                     </div>
 
@@ -596,7 +594,7 @@ $(document).ready(function () {
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                         </div>
-                        <input placeholder="Fecha de laboratorio" class="form-control fechaLaboratorio" type="text" onfocus="(this.type='date')">
+                        <input name ="fecha-LaboAdded" placeholder="Fecha de laboratorio" class="form-control fechaLaboratorio" type="text" onfocus="(this.type='date')">
                     </div>
                 </div>
 
@@ -628,7 +626,7 @@ $(document).ready(function () {
 
        
                 <div class="col-5">
-                    <input type="text" class="form-control valoracion" placeholder="Introduce valoración">
+                    <input name ="valoracionAdded" type="text" class="form-control valoracion" placeholder="Introduce valoración">
                 </div>
 
                 <div class="col-5">
@@ -638,7 +636,7 @@ $(document).ready(function () {
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                         </div>
-                        <input placeholder="Fecha de valoración" class="form-control fechaValoracion" type="text" onfocus="(this.type='date')">
+                        <input name ="fecha-valoracionAdded" placeholder="Fecha de valoración" class="form-control fechaValoracion" type="text" onfocus="(this.type='date')">
                     </div>
                 </div>
 
@@ -675,7 +673,7 @@ $(document).ready(function () {
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                         </div>
-                        <input placeholder="Fecha de espirometría" class="form-control fechaEspirometria" type="text" onfocus="(this.type='date')">
+                        <input name="fecha-espilometriaAdded" placeholder="Fecha de espirometría" class="form-control fechaEspirometria" type="text" onfocus="(this.type='date')">
                     </div>
                 </div>
 
@@ -712,7 +710,7 @@ $(document).ready(function () {
                                     <i class="fas fa-calendar-alt"></i>
                                 </div>
                             </div>
-                            <input placeholder="Fecha de electrocardiograma" class="form-control fechaElectrocardiograma" type="text" onfocus="(this.type='date')">
+                            <input name="fecha-ECGAdded" placeholder="Fecha de electrocardiograma" class="form-control fechaElectrocardiograma" type="text" onfocus="(this.type='date')">
                         </div>
                     </div>
 
@@ -749,7 +747,7 @@ $(document).ready(function () {
                                     <i class="fas fa-calendar-alt"></i>
                                 </div>
                             </div>
-                            <input placeholder="Fecha de ecocardiograma" class="form-control fechaEcocardiograma" type="text" onfocus="(this.type='date')">
+                            <input name="fecha-ecoAdded" placeholder="Fecha de ecocardiograma" class="form-control fechaEcocardiograma" type="text" onfocus="(this.type='date')">
                         </div>
                     </div>
 
@@ -787,7 +785,7 @@ $(document).ready(function () {
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                         </div>
-                        <input placeholder="Fecha de trabajo social" class="form-control fechaTrabajoSocial" type="text" onfocus="(this.type='date')">
+                        <input name="fecha-tSocilaAdded" placeholder="Fecha de trabajo social" class="form-control fechaTrabajoSocial" type="text" onfocus="(this.type='date')">
                     </div>
                 </div>
 
@@ -819,7 +817,7 @@ $(document).ready(function () {
 
 
                     <div class="col-5">
-                        <input type="text" id="tipoPrograma" class="form-control" placeholder="Introduce programa">
+                        <input name="programaAdded" type="text" id="tipoPrograma" class="form-control" placeholder="Introduce programa">
                     </div>
 
                     <div class="col-5">
@@ -829,7 +827,7 @@ $(document).ready(function () {
                                     <i class="fas fa-calendar-alt"></i>
                                 </div>
                             </div>
-                            <input placeholder="Fecha del programa" class="form-control fechaPrograma" type="text" onfocus="(this.type='date')">
+                            <input name="fecha-programaAdded" placeholder="Fecha del programa" class="form-control fechaPrograma" type="text" onfocus="(this.type='date')">
                         </div>
                     </div>
 
@@ -866,12 +864,12 @@ $(document).ready(function () {
                                     <i class="fas fa-calendar-alt"></i>
                                 </div>
                             </div>
-                            <input placeholder="Fecha de otro" class="form-control fechaOtro" type="text" onfocus="(this.type='date')">
+                            <input name="fecha-otroAdded" placeholder="Fecha de otro" class="form-control fechaOtro" type="text" onfocus="(this.type='date')">
                         </div>
                     </div>
 
                     <div class="col-5">
-                        <input type="text" class="form-control otro-estudioPreconsulta" placeholder="Introduce otro">
+                        <input name="otroAdded" type="text" class="form-control otro-estudioPreconsulta" placeholder="Introduce otro">
                     </div>
 
                     <div class="col-2">

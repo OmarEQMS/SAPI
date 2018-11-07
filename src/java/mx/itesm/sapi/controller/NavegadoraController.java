@@ -160,7 +160,16 @@ public class NavegadoraController extends HttpServlet {
                             System.out.println("prz: "+ prz + ", tiene: "+ tiene+ " alergias: " +alergias);
                             break;                        
                         }
-                       
+                        case "guardarP3":{
+                            System.out.println("NavegadoraController, case: guardarP3");
+                           // String prz = request.getParameter("prz-expediente");
+                            //String tiene = request.getParameter("nivelEducativo");
+                            String[] Biopsia = request.getParameterValues("tipoBiopsia_dinamico");
+                            for(int i =0 ; i< Biopsia.length;i++){
+                                System.out.println(Biopsia[i]);
+                            }
+                            break;                        
+                        }
                         
                     }
                     //Termina key navegadora
