@@ -76,18 +76,19 @@ $(document).ready(function () {
     });
 
 $('.irAVerDocumento').on('click', function () {
-        $.get("SAPI", {
-            
+    console.log("Click");
+    console.log($(this).data('id') + " " +$("#hiddenIdPaciente").val());
+        $.post("SAPI", {                    
         file: "navegadora/verDocumento.jsp",
-            idDocumentoInicial : $(this).data('id'),
-           idPaciente: $("#hiddenIdPaciente").val(),
+           idDocumentoInicialVista : $(this).data('id'),
+           idPacientePotencialAtendido: $("#hiddenIdPaciente").val(),
            siguiente: 0
         },
                 function (response, status, xhr) {
                     //console.log(response);
                     if (status == "success") {
                         if (response == "error") {
-                            $("#msj-error").show();
+                            console.log(response);
                         } else {
                             document.open("text/html", "replace");
                             document.write(response);

@@ -92,31 +92,29 @@
 
                     </div>
 
-                </div>
-
-                <div class="row justify-content-center">
-                    <div class="col-12 text-center">
-                        <hr style="background-color:white !important">
+                    <div class="row justify-content-center">
+                        <div class="col-12 text-center">
+                            <hr style="background-color:white !important">
+                        </div>
                     </div>
-                </div>
 
 
-                <!-- MENU PRINCIPAL ENLACES -->
-                <ul class="list-unstyled components">
+                    <!-- MENU PRINCIPAL ENLACES -->
+                    <ul class="list-unstyled components">
 
-                    <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
+                                                
+                        <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
 
-                    <li id="idACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+                        <li id="idACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+                        <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
-                    <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
+                        <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
 
-                    <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+                        <li id="irADocumentos"><a><i class="far fa-user"></i>Documentos</a></li>
 
-                    <li id="irADocumentos"><a><i class="far fa-user"></i>Documentos</a></li>
+                        <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
-                    <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
-
-                </ul>
+                    </ul>
             </nav>
 
             <!-- CONTENIDO PRINCIPAL  -->
@@ -318,7 +316,7 @@
                                                             <tr class="table-success">
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <tr>
+                                                            <tr>
                                                             </c:otherwise>
                                                         </c:choose>
 

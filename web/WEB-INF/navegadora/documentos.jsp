@@ -36,8 +36,7 @@
 
     <link rel="stylesheet" href="css/styleNavegadora.css">
     <link rel="stylesheet" href="css/styleNavegadoraImg.css">
-    <script src="js/appNavegadora.js"></script>
-    <script src="js/appNavegadora2.js"></script>
+    <script src="js/appNavegadora.js"></script>    
     <script src="js/ajaxNavegadora.js"></script>
 
 </head>
@@ -63,14 +62,14 @@
 
                 <div class="row">
                     <div class="col-12 mb-2 mt-4">
-                        <img src="img/user.png" class="imagenPerfil" alt="">
+                        <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="imagenPerfil edit-image" width="66px" height="66px" alt="">
                     </div>
                 </div>
 
                 <div class="row justify-content-center mb-2">
                     <div class="col-6 text-center">
-                        <span class="textoSidebar m-0">Shannon Rosas</span>
-                        <span class="textoSidebar userSidebar m-0">@shannonrosas</span>
+                        <span class="textoSidebar m-0">${sessionScope.nombre} ${sessionScope.primerApellido}</span>
+                        <span class="textoSidebar userSidebar m-0">@${sessionScope.usuario}</span>
                     </div>
                 </div>
 
@@ -131,7 +130,7 @@
 
                     <span class="pull-right d-block">
                         <span style="color:#6c6f80">Bienvenido, </span>
-                        <span style="font-weight:700; color:#6c6f80;">Shannon Rosas
+                        <span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
                         </span>
                         <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
 
@@ -164,7 +163,9 @@
             <div class="jumbotron jumbotron-fluid p-2">
                 <div class="container">
                     <h1 class="display-4 tituloPacientes text-center m-0" id="pacienteSelec">Documentos de: </h1>
-                    <h6 class="display-4 text-center m-0 text-secondary" id="pacienteSelec" style="font-size:25px;">María Esther Domínguez Mayoral</h6>
+                    <h6 class="display-4 text-center m-0 text-secondary" id="pacienteSelec" style="font-size:25px;">
+                        ${sessionScope.nombrePacientePotencial} ${sessionScope.primerApellidoPacientePotencial} ${sessionScope.segundoApellidoPacientePotencial}
+                    </h6>
                 </div>
             </div>
 
