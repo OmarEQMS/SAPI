@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.BloqueParafina;
 
 /**
  *
- * @author OscarMiranda
+ * @author Oscar Miranda
  */
 public interface BloqueParafinaServicio {
     public BloqueParafina mostrarBloqueParafina(int idBloqueParafina);

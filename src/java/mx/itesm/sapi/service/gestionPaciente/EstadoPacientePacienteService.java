@@ -11,7 +11,7 @@ import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public interface EstadoPacientePacienteService {
 

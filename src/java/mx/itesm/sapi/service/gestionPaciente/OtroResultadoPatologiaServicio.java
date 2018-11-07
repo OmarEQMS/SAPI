@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.OtroResultadoPatologia;
 
 /**
  *
- * @author Angel GTZ
+ * @author Angel Gutierrez
  */
 public interface OtroResultadoPatologiaServicio {
 

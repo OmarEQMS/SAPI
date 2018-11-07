@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.diagnostico.EstadiajeTNM;
 
 /**
  *
- * @author Diego
+ * @author Diego Montoya
  */
 public interface EstadiajeTNMService {
     public int agregarEstadiajeTNM(EstadiajeTNM estadiajeTNM);

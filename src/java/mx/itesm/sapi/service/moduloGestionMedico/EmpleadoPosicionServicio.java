@@ -12,7 +12,7 @@ import mx.itesm.sapi.bean.moduloGestionMedico.EmpleadoPosicion;
 
 /**
  *
- * @author feror
+ * @author Fernanda Orduña & Pablo Lugo
  */
 public interface EmpleadoPosicionServicio {
     

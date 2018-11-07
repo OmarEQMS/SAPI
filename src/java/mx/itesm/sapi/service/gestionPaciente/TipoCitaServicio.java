@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.TipoCita;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz & Alexis España
  */
 public interface TipoCitaServicio {
     public TipoCita mostrarTipoCita(int idTipoCita);

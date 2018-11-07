@@ -11,7 +11,7 @@ import mx.itesm.sapi.bean.gestionPaciente.ProgramaPaciente;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public interface ProgramaPacienteServicio {
 

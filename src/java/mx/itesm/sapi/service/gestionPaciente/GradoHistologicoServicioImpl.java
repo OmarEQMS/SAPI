@@ -17,7 +17,7 @@ import mx.itesm.sapi.bean.gestionPaciente.GradoHistologico;
 
 /**
  *
- * @author Alex
+ * @author Alexis España
  */
 public class GradoHistologicoServicioImpl implements GradoHistologicoServicio{
 

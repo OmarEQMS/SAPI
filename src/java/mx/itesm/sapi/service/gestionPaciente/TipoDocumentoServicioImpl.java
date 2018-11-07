@@ -18,7 +18,7 @@ import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz & Alexis España
  */
 public class TipoDocumentoServicioImpl implements TipoDocumentoServicio{
 

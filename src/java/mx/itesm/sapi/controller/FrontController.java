@@ -71,7 +71,7 @@ import org.apache.commons.io.IOUtils;
 
 /**
  *
- * @author quint
+ * @author Omar Quintero
  */
 @WebServlet(name = "FrontController", urlPatterns = {"/SAPI"})
 public class FrontController extends HttpServlet {

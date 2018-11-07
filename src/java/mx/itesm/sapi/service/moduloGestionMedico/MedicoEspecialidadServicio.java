@@ -12,7 +12,7 @@ import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
 
 /**
  *
- * @author feror
+ * @author Fernanda Orduña & Pablo Lugo
  */
 public interface MedicoEspecialidadServicio {
     

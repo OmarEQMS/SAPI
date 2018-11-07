@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz & Alexis España
  */
 public interface TipoDocumentoServicio {
     public TipoDocumento mostrarTipoDocumento(int idTipoDocumento);

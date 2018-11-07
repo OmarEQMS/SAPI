@@ -17,7 +17,7 @@ import mx.itesm.sapi.bean.gestionPaciente.OtroEstudio;
 
 /**
  *
- * @author Alex
+ * @author Alexis España
  */
 public class OtroEstudioServicioImpl implements OtroEstudioServicio {
 

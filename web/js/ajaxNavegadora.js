@@ -473,7 +473,6 @@ $(document).ready(function () {
                 }
         );
     });
-
     
 });
 

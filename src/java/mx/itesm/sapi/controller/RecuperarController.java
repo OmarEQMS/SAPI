@@ -40,7 +40,7 @@ import org.apache.commons.io.IOUtils;
 
 /**
  *
- * @author Angel GTZ
+ * @author Angel Guitierrez
  */
 @WebServlet(name = "RecuperarController", urlPatterns = {"/RecuperarController"})
 public class RecuperarController extends HttpServlet {

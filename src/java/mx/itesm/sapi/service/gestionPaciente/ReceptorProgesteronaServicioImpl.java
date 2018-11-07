@@ -16,7 +16,7 @@ import mx.itesm.sapi.bean.gestionPaciente.ReceptorProgesterona;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz & Alexis España
  */
 public class ReceptorProgesteronaServicioImpl implements ReceptorProgesteronaServicio{
 

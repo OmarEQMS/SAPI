@@ -397,14 +397,15 @@ $(document).ready(function () {
     //BOTONES DE AGREGAR
 
     //agregar biopsia
+    var i=1;
     $('.add-biopsia').on('click', function () {
-
+        
         var plantilla =
             `<div class="form-group row mt-2 tuplaBiopsia">
 
             <!-- tipo biopsia -->
             <div class="col-3">
-                <input type="text" class="form-control tipoBiopsia" placeholder="Tipo de biopsia">
+                <input name="biopsia-${i}" type="text" class="form-control tipoBiopsia" placeholder="Tipo de biopsiaa">
             </div>
 
             <!-- fecha biopsia -->
@@ -439,6 +440,8 @@ $(document).ready(function () {
 
 
         </div>`
+        
+        i++;
 
         $('#biopsia-contenedor').append(plantilla);
 

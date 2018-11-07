@@ -31,6 +31,7 @@
     <script src="js/appNavegadora.js"></script>
     <script src="js/appNavegadora2.js"></script>
     <script src="js/ajaxNavegadora.js"></script>
+    <script src="js/formNavegadora.js"></script>
 
 </head>
 
@@ -197,28 +198,28 @@
                                     </div>
 
                                     <div class="col-6">
-                                        <label for="">Médico Adscrito</label>
+                                        <label for="">Mï¿½dico Adscrito</label>
                                         <div class="input-group">
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
                                                     <i class="fas fa-user-md"></i>
                                                 </div>
                                             </div>
-                                            <select class="form-control" id="medico-adscrito">
-                                                <option disabled selected>Seleccione un Médico Adscrito</option>
-                                                <option>Dr. Bargalló</option>
+                                            <select name="medico-adscrito" class="form-control" id="medico-adscrito">
+                                                <option disabled selected>Seleccione un Mï¿½dico Adscrito</option>
+                                                <option>Dr. Bargallï¿½</option>
                                                 <option>Dra. Esparza</option>
                                                 <option>Dra. Shaw</option>
                                                 <option>Dra. Stankov</option>
                                                 <option>Dr. Robles</option>
-                                                <option>Dr. Velázquez</option>
+                                                <option>Dr. Velï¿½zquez</option>
                                                 <option>Dra. Villareal</option>
                                             </select>
                                         </div>
                                         <div class="form-check mt-2">
                                             <input name="noAdscrito" class="form-check-input" type="checkbox" value="" id="noAdscrito">
                                             <label class="form-check-label" for="defaultCheck1">
-                                                No estuvo el médico adscrito
+                                                No estuvo el Mï¿½dico adscrito
                                             </label>
                                         </div>
                                     </div>
@@ -233,35 +234,35 @@
                                     <div class="col-6">
                                         <label for="">Tipo de paciente</label>
                                         <div class="input-group">
-                                            <select class="form-control" id="tipoPaciente">
+                                            <select name= "tipoPaciente" class="form-control" id="tipoPaciente">
                                                 <option disabled selected>Seleccione un tipo de paciente</option>
                                                 <option>Primera vez</option>
-                                                <option>Segunda opinión</option>
+                                                <option>Segunda opiniï¿½n</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="col-6">
-                                        <label for="">Médico Radiólogo</label>
+                                        <label for="">Mï¿½dico Radiï¿½logo</label>
                                         <div class="input-group">
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
                                                     <i class="fas fa-user-md"></i>
                                                 </div>
                                             </div>
-                                            <select class="form-control" id="medico-radiologo">
-                                                <option disabled selected>Seleccione un Radiologo</option>
+                                            <select name="medico-radiologo" class="form-control" id="medico-radiologo">
+                                                <option disabled selected>Seleccione un Radiï¿½logo</option>
                                                 <option>Dra. Patricia</option>
                                                 <option>Dra. Lesvia</option>
                                                 <option>Dra. Liliana</option>
-                                                <option>Dra. Mara González</option>
-                                                <option>Dra. Pavón</option>
+                                                <option>Dra. Mara Gonzï¿½lez</option>
+                                                <option>Dra. Pavï¿½n</option>
                                                 <option value="otro">Otro</option>
                                             </select>
 
                                         </div>
                                         <div class="form-check mt-2">
-                                            <input name="esSustituto" class="form-check-input" type="checkbox" value="" id="esSustituto">
+                                            <input name="esSustituto" class=" form-check-input" type="checkbox" value="" id="esSustituto">
                                             <label class="form-check-label" for="defaultCheck1">
                                                 Sustituto
                                             </label>
@@ -281,14 +282,14 @@
                                 <div class="form-group row mt-4">
 
                                     <div class="col-6">
-                                        <label for="">Fecha de navegación</label>
+                                        <label for="">Fecha de navegaciï¿½n</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     <i class="fas fa-calendar-alt"></i>
                                                 </div>
                                             </div>
-                                            <input name= "fechaNavegacion" placeholder="Introduce la fecha de navegación" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type='date')"
+                                            <input name= "fechaNavegacion" placeholder="Introduce la fecha de navegaciï¿½n" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type='date')"
                                                 id="fechaNavegacion">
                                         </div>
                                     </div>
@@ -296,14 +297,14 @@
 
                                     <!-- Mï¿½dico residente -->
                                     <div class="col-6">
-                                        <label for="">Médico Residente</label>
+                                        <label for="">Mï¿½dico Residente</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     <i class="fas fa-user-md"></i>
                                                 </div>
                                             </div>
-                                            <input name = "medico-residente" type="text" id="medico-residente" class="form-control" class="form-control" placeholder="Introduce Médico Residente">
+                                            <input name = "medico-residente" type="text" id="medico-residente" class="form-control" class="form-control" placeholder="Introduce Mï¿½dico Residente">
                                         </div>
                                     </div>
 
@@ -320,7 +321,7 @@
                                                     <i class="fas fa-calendar-alt"></i>
                                                 </div>
                                             </div>
-                                            <input nmae="fechaConsulta" placeholder="Introduce la fecha de consulta" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type='date')"
+                                            <input name="fechaConsulta" placeholder="Introduce la fecha de consulta" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type='date')"
                                                 id="fechaConsulta">
                                         </div>
                                     </div>
@@ -330,8 +331,8 @@
                                 <!-- Boton guardar y continuar -->
                                 <div class="row justify-content-center mt-5">
                                     <div class="col-4">
-                                        <button class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                            <i class="fas fa-save mr-2" id="btn-save1"></i>Guardar y Continuar Después</button>
+                                        <button id="btn-save1" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                            <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
                                     </div>
                                     <div class="col-4">
                                         <button class="btn btn-outline-success btn-block" id="btn-continue1" style="border-radius:20px">
@@ -355,7 +356,7 @@
                                                     <i class="fas fa-graduation-cap"></i>
                                                 </div>
                                             </div>
-                                            <select class="form-control" id="nivelEducativo">
+                                            <select name = "nivelEducativo" class="form-control" id="nivelEducativo">
                                                 <option disabled selected>Seleccione un nivel educativo</option>
                                                 <option>Analfabeta</option>
                                                 <option>Primaria</option>
@@ -379,7 +380,7 @@
                                                     <i class="fas fa-file-contract"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" id="alergias" class="form-control" placeholder="Introduce las alergias separadas por comas ( , )">
+                                            <input name="alergias" type="text" id="alergias" class="form-control" placeholder="Introduce las alergias separadas por comas ( , )">
 
                                         </div>
                                     </div>
@@ -396,10 +397,10 @@
                                                     <i class="fas fa-thermometer-three-quarters"></i>
                                                 </div>
                                             </div>
-                                            <select class="form-control" id="nivelEducativo">
+                                            <select name=estadoHormonal" class="form-control" id="estadoHormonal">
                                                 <option disabled selected>Selecciona un estado hormonal</option>
-                                                <option>Premenopáusica</option>
-                                                <option>Postmenopáusica</option>
+                                                <option>Premenopï¿½usica</option>
+                                                <option>Postmenopï¿½usica</option>
                                             </select>
                                         </div>
                                     </div>
@@ -411,12 +412,12 @@
 
                                     <div class="col-12">
                                         <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input" id="tieneSeguroPopular">
-                                            <label class="form-check-label" for="tieneSeguroP">¿Cuentas con algún seguro?
+                                            <input name="tieneSeguroPopular" type="checkbox" class="form-check-input" id="tieneSeguroPopular">
+                                            <label class="form-check-label" for="tieneSeguroP">ï¿½Cuentas con algï¿½n seguro?
                                             </label>
                                         </div>
                                         <div class="input-group">
-                                            <select class="form-control" id="tiene-seguro">
+                                            <select name="tieneSeguroPopularSelect" class="form-control" id="tiene-seguro">
                                                 <option disabled selected>Seleccione un seguro</option>
                                                 <option value="seguroPopular">Seguro Popular</option>
                                                 <option>IMSS</option>
@@ -428,7 +429,7 @@
 
                                             </select>
                                         </div>
-                                        <input type="text" id="numSeguro" class="form-control mt-2" placeholder="Introduce el número de tu seguro">
+                                        <input type="text" id="numSeguro" class="form-control mt-2" placeholder="Introduce el nï¿½mero de tu seguro">
                                     </div>
 
 
@@ -440,7 +441,7 @@
                                     <div class="col-12">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                            <label class="form-check-label" for="inlineCheckbox1">Mastografía en el INCan
+                                            <label class="form-check-label" for="inlineCheckbox1">Mastografï¿½a en el INCan
                                                 antes de su primera cita</label>
                                         </div>
                                     </div>
@@ -463,8 +464,8 @@
                                 <div class="form-group row">
                                     <div class="col-12">
                                         <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input" id="tiene-cirugia">
-                                            <label class="form-check-label" for="tiene-cirugia">Cirugía</label>
+                                            <input name="tiene-cirugia" type="checkbox" class="form-check-input" id="tiene-cirugia">
+                                            <label class="form-check-label" for="tiene-cirugia">Cirugï¿½a</label>
                                         </div>
                                     </div>
                                 </div>
@@ -478,7 +479,7 @@
                                                     <i class="fas fa-calendar-alt"></i>
                                                 </div>
                                             </div>
-                                            <input placeholder="Introduce la fecha de cirugía" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type='date')"
+                                            <input placeholder="Introduce la fecha de cirugï¿½a" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type='date')"
                                                 id="fecha-cirugia">
                                         </div>
                                     </div>
@@ -486,10 +487,10 @@
                                     <div class="row mt-3">
                                         <div class="col-12 input-group">
                                             <select class="form-control" id="cirugia">
-                                                <option disabled selected>Introduce la cirugía</option>
-                                                <option>Mastectomía</option>
-                                                <option>Cirugía conservadora</option>
-                                                <option>Reconstrucción</option>
+                                                <option disabled selected>Introduce la cirugï¿½a</option>
+                                                <option>Mastectomï¿½a</option>
+                                                <option>Cirugï¿½a conservadora</option>
+                                                <option>Reconstrucciï¿½n</option>
                                             </select>
                                         </div>
                                     </div>
@@ -507,7 +508,7 @@
                                 <div class="form-group row mt-3">
                                     <div class="col-12">
                                         <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input" id="tiene-quimioterapia">
+                                            <input name="tiene-quimioterapia" type="checkbox" class="form-check-input" id="tiene-quimioterapia">
                                             <label class="form-check-label" for="tiene-quimioterapia">Quimioterapia</label>
                                         </div>
                                     </div>
@@ -529,7 +530,7 @@
 
                                     <div class="row mt-3">
                                         <div class="col-12 input-group">
-                                            <input type="text" id="quimioterapia" class="form-control" class="form-control" placeholder="Introduce el número de ciclos">
+                                            <input type="text" id="quimioterapia" class="form-control" class="form-control" placeholder="Introduce el nï¿½mero de ciclos">
                                         </div>
                                     </div>
 
@@ -568,7 +569,7 @@
 
                                     <div class="row mt-3">
                                         <div class="col-12 input-group">
-                                            <input type="text" id="radioterapia" class="form-control" class="form-control" placeholder="Introduce el número de ciclos">
+                                            <input type="text" id="radioterapia" class="form-control" class="form-control" placeholder="Introduce el nï¿½mero de ciclos">
                                         </div>
                                     </div>
 
@@ -593,12 +594,12 @@
 
                                     <div class="col-10 mt-2">
                                         <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input" id="tiene-mastografia">
-                                            <label class="form-check-label" for="tiene-mastografia">Mastrografía</label>
+                                            <input name="tiene-mastografia" type="checkbox" class="form-check-input" id="tiene-mastografia">
+                                            <label class="form-check-label" for="tiene-mastografia">Mastrografï¿½a</label>
                                         </div>
                                         <div class="input-group">
                                             <select class="form-control" id="tipoMastografia">
-                                                <option disabled selected>Mastrografía BI-RADS</option>
+                                                <option disabled selected>Mastrografï¿½a BI-RADS</option>
                                                 <option>BI-RADS 0</option>
                                                 <option>BI-RADS 1</option>
                                                 <option>BI-RADS 2</option>
@@ -614,7 +615,7 @@
                                                         <i class="fas fa-calendar-alt"></i>
                                                     </div>
                                                 </div>
-                                                <input placeholder="Introduce la fecha de mastografía" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type='date')"
+                                                <input placeholder="Introduce la fecha de mastografï¿½a" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type='date')"
                                                     id="fechaPreMasto">
                                             </div>
                                         </div>
@@ -627,7 +628,7 @@
 
                                     <div class="col-10 mt-3">
                                         <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input" id="tiene-ultrasonido-mama">
+                                            <input name = "tiene-ultrasonido-mama" type="checkbox" class="form-check-input" id="tiene-ultrasonido-mama">
                                             <label class="form-check-label" for="tiene-ultrasonido-mama">Ultrasonido de mama</label>
                                         </div>
                                         <div class="input-group">
@@ -664,12 +665,12 @@
                                 <div class="row mt-4 mb-3">
                                     <div class="col-12">
                                         <h6 class="display-4 text-secondary" style="font-size:26px;">Resultado o reporte
-                                            de patología:</h6>
+                                            de patologï¿½a:</h6>
                                     </div>
                                 </div>
                                 <div class="input-group">
-                                    <select class="form-control" id="resultadoAnterior-patologia">
-                                        <option disabled selected>Seleccione Resultado Patología:</option>
+                                    <select name="resultadoAnterior-patologia" class="form-control" id="resultadoAnterior-patologia">
+                                        <option disabled selected>Seleccione Resultado Patologï¿½a:</option>
                                         <option>Carcinoma ductal in situ</option>
                                         <option>Carcinoma lobulillar in situ</option>
                                         <option>Carcinoma ductal infiltrante</option>
@@ -679,8 +680,8 @@
                                         <option>Carcinoma medular</option>
                                         <option>Carcinoma tubulolobulillar</option>
                                         <option>Carcinoma micropapilar</option>
-                                        <option>Carcinoma metaplásico</option>
-                                        <option>Carcinoma adenoideo quístico</option>
+                                        <option>Carcinoma metaplï¿½sico</option>
+                                        <option>Carcinoma adenoideo quï¿½stico</option>
                                         <option>Sarcoma</option>
                                         <option>Hiperplasia ductal con atipia</option>
                                         <option>Hiperplasia lobulillar con atipia</option>
@@ -709,7 +710,7 @@
                                         <label class="d-block display-4 text-secondary mb-3" for=""><h6 style="font-size:26px;">Entrega:
                                             </h6></label>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="entregaLaminillas" value="laminillas">
+                                            <input name="entregaLaminillas" class="form-check-input" type="checkbox" id="entregaLaminillas" value="laminillas">
                                             <label class="form-check-label" for="entregaLaminillas">Laminillas</label>
                                         </div>
                                     </div>
@@ -717,7 +718,7 @@
 
                                 <div class="row" id="contenedor-laminillas">
                                     <div class="col-4">
-                                        <input type="text" id="numLaminillas" class="form-control" placeholder="Introduce el número">
+                                        <input type="text" id="numLaminillas" class="form-control" placeholder="Introduce el nï¿½mero">
                                     </div>
                                     <div class="col-6">
                                         <input type="text" id="serieLaminillas" class="form-control" placeholder="Identificadores separados por ( , )">
@@ -727,7 +728,7 @@
                                 <div class="form-group row mt-4">
                                     <div class="col-12">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="entregaBloques" value="laminillas">
+                                            <input name="entregaBloques" class="form-check-input" type="checkbox" id="entregaBloques" value="laminillas">
                                             <label class="form-check-label" for="entregaBloques">Bloques de parafina</label>
                                         </div>
                                     </div>
@@ -735,7 +736,7 @@
 
                                 <div class="row" id="contenedor-bloques">
                                     <div class="col-4">
-                                        <input type="text" id="numBloques" class="form-control" class="form-control" placeholder="Introduce el número">
+                                        <input type="text" id="numBloques" class="form-control" class="form-control" placeholder="Introduce el nï¿½mero">
                                     </div>
                                     <div class="col-6">
                                         <input type="text" id="serieBloques" class="form-control" placeholder="Identificadores separados por ( , )">
@@ -748,8 +749,8 @@
                                             <i class="fas fa-undo mr-2"></i>Regresar</button>
                                     </div>
                                     <div class="col-4">
-                                        <button class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                            <i class="fas fa-save mr-2" id="btn-save2"></i>Guardar y Continuar Después</button>
+                                        <button id="btn-save2" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                            <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
                                     </div>
                                 </div>
                                 <div class="row justify-content-center mt-2">
@@ -1046,7 +1047,7 @@
                                     <div class="col-12">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="checkbox" id="tiene-valoracion">
-                                            <label class="form-check-label" for="tiene-valoracion"> Valoración</label>
+                                            <label class="form-check-label" for="tiene-valoracion"> Valoraciï¿½n</label>
                                         </div>
                                     </div>
                                 </div>
@@ -1057,7 +1058,7 @@
 
                                         <!-- valoracion -->
                                         <div class="col-5">
-                                            <input type="text" class="form-control valoracion" placeholder="Introduce valoración">
+                                            <input type="text" class="form-control valoracion" placeholder="Introduce valoraciï¿½n">
                                         </div>
 
                                         <!-- fecha medicina valoracion -->
@@ -1068,7 +1069,7 @@
                                                         <i class="fas fa-calendar-alt"></i>
                                                     </div>
                                                 </div>
-                                                <input placeholder="Fecha de valoración" class="form-control fechaValoracion" type="text" onfocus="(this.type='date')">
+                                                <input placeholder="Fecha de valoraciï¿½n" class="form-control fechaValoracion" type="text" onfocus="(this.type='date')">
                                             </div>
                                         </div>
 
@@ -1096,7 +1097,7 @@
                                     <div class="col-12">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="checkbox" id="tiene-espirometria">
-                                            <label class="form-check-label" for="tiene-espirometria"> Espirometría/Inhaloterapia</label>
+                                            <label class="form-check-label" for="tiene-espirometria"> Espirometrï¿½a/Inhaloterapia</label>
                                         </div>
                                     </div>
                                 </div>
@@ -1114,7 +1115,7 @@
                                                         <i class="fas fa-calendar-alt"></i>
                                                     </div>
                                                 </div>
-                                                <input placeholder="Fecha de espirometría" class="form-control fechaEspirometria" type="text" onfocus="(this.type='date')">
+                                                <input placeholder="Fecha de espirometrï¿½a" class="form-control fechaEspirometria" type="text" onfocus="(this.type='date')">
                                             </div>
                                         </div>
 
@@ -1389,7 +1390,7 @@
                                     </div>
                                     <div class="col-4">
                                         <button class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                            <i class="fas fa-save mr-2" id="btn-save3"></i>Guardar y Continuar Después</button>
+                                            <i class="fas fa-save mr-2" id="btn-save3"></i>Guardar y Continuar Despuï¿½s</button>
                                     </div>
                                     <div class="col-4">
                                         <button class="btn btn-outline-success btn-block" id="btn-continue3" style="border-radius:20px">
@@ -1413,14 +1414,14 @@
                                 <div class="form-group row mt-4">
 
                                     <div class="col-3">
-                                        <span>Decisión preconsulta</span>
+                                        <span>Decisiï¿½n preconsulta</span>
                                     </div>
 
                                     <div class="col-4">
 
                                         <div class="input-group">
                                             <select class="form-control" id="exampleFormControlSelect1">
-                                                <option disabled selected>Seleccione la decisión</option>
+                                                <option disabled selected>Seleccione la decisiï¿½n</option>
                                                 <option>Unidad funcional</option>
                                                 <option>Alta</option>
                                                 <option>Alta voluntaria</option>
@@ -1437,7 +1438,7 @@
                                                     <i class="fas fa-calendar-alt"></i>
                                                 </div>
                                             </div>
-                                            <input placeholder="Fecha decisión" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type='date')" id="fecha-decisionPreconsulta">
+                                            <input placeholder="Fecha decisiï¿½n" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type='date')" id="fecha-decisionPreconsulta">
                                         </div>
                                     </div>
                                 </div>
@@ -1445,14 +1446,14 @@
                                 <div class="form-group row mt-4">
 
                                         <div class="col-3">
-                                            <span>Nivel socioeconómico</span>
+                                            <span>Nivel socioeconï¿½mico</span>
                                         </div>
     
                                         <div class="col-4">
     
                                             <div class="input-group">
                                                 <select class="form-control" id="exampleFormControlSelect1">
-                                                    <option disabled selected>Seleccione el nivel socioeconómico</option>
+                                                    <option disabled selected>Seleccione el nivel socioeconï¿½mico</option>
                                                     <option>1</option>
                                                     <option>2</option>
                                                     <option>3</option>
@@ -1542,7 +1543,7 @@
                                 <div class="row mt-5 mb-3">
                                     <div class="col-12">
                                         <h6 class="display-4 text-secondary" style="font-size:26px;">Comentarios adicionales
-                                            del médico:</h6>
+                                            del mï¿½dico:</h6>
                                     </div>
                                 </div>
                         </form>
@@ -1559,7 +1560,7 @@
                                     </div>
                                     <div class="col-4">
                                         <button class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                            <i class="fas fa-save mr-2" id="btn-save4"></i>Guardar y Continuar Después</button>
+                                            <i class="fas fa-save mr-2" id="btn-save4"></i>Guardar y Continuar Despuï¿½s</button>
                                     </div>
                                     <div class="col-4">
                                         <button class="btn btn-outline-success btn-block" id="btn-continue4" style="border-radius:20px">
@@ -1580,11 +1581,11 @@
                                     <div class="col-12">
                                         <div class="form-group">
 
-                                            <label class="form-check-label" for="etapaClinica">Etapa Clínica</label>
+                                            <label class="form-check-label" for="etapaClinica">Etapa Clï¿½nica</label>
                                         </div>
                                         <div class="input-group">
                                             <select class="form-control" id="estapaClinica">
-                                                <option disabled selected>Seleccione etapa clínica</option>
+                                                <option disabled selected>Seleccione etapa clï¿½nica</option>
                                                 <option>Estadio 0</option>
                                                 <option>In Situ</option>
                                                 <option>Estadio I</option>
@@ -1600,10 +1601,10 @@
                                     </div>
 
                                     <div class="col-6 mt-4">
-                                        <label for="">Resultados de mastografía</label>
+                                        <label for="">Resultados de mastografï¿½a</label>
                                         <div class="input-group">
                                             <select class="form-control" id="tipoMastografia">
-                                                <option disabled selected>Mastrografía BI-RADS</option>
+                                                <option disabled selected>Mastrografï¿½a BI-RADS</option>
                                                 <option>BI-RADS 0</option>
                                                 <option>BI-RADS 1</option>
                                                 <option>BI-RADS 2</option>
@@ -1619,7 +1620,7 @@
                                         <label for="">Resultados del ultrasonido</label>
                                         <div class="input-group">
                                             <select class="form-control" id="tipoMastografia">
-                                                <option disabled selected>Mastrografía BI-RADS</option>
+                                                <option disabled selected>Mastrografï¿½a BI-RADS</option>
                                                 <option>BI-RADS 0</option>
                                                 <option>BI-RADS 1</option>
                                                 <option>BI-RADS 2</option>
@@ -1712,11 +1713,11 @@
                                     <div class="col-6">
                                         <div class="form-group">
 
-                                            <label class="form-check-label" for="etapaClinica">Resultado Patología:</label>
+                                            <label class="form-check-label" for="etapaClinica">Resultado Patologï¿½a:</label>
                                         </div>
                                         <div class="input-group">
                                             <select class="form-control" id="resultado-patologia">
-                                                <option disabled selected>Seleccione Resultado Patología:</option>
+                                                <option disabled selected>Seleccione Resultado Patologï¿½a:</option>
                                                 <option>Carcinoma ductal in situ</option>
                                                 <option>Carcinoma lobulillar in situ</option>
                                                 <option>Carcinoma ductal infiltrante</option>
@@ -1726,8 +1727,8 @@
                                                 <option>Carcinoma medular</option>
                                                 <option>Carcinoma tubulolobulillar</option>
                                                 <option>Carcinoma micropapilar</option>
-                                                <option>Carcinoma metaplásico</option>
-                                                <option>Carcinoma adenoideo quístico</option>
+                                                <option>Carcinoma metaplï¿½sico</option>
+                                                <option>Carcinoma adenoideo quï¿½stico</option>
                                                 <option>Sarcoma</option>
                                                 <option>Hiperplasia ductal con atipia</option>
                                                 <option>Hiperplasia lobulillar con atipia</option>
@@ -1747,11 +1748,11 @@
                                     <div class="col-6">
                                         <div class="form-group">
 
-                                            <label class="form-check-label" for="etapaClinica">Grado Histológico:</label>
+                                            <label class="form-check-label" for="etapaClinica">Grado Histolï¿½gico:</label>
                                         </div>
                                         <div class="input-group">
                                             <select class="form-control" id="grado-histologico">
-                                                <option disabled selected>Seleccione Grado Histológico:</option>
+                                                <option disabled selected>Seleccione Grado Histolï¿½gico:</option>
                                                 <option>G1</option>
                                                 <option>G2</option>
                                                 <option>G3</option>
@@ -1856,7 +1857,7 @@
                                     </div>
                                     <div class="col-4">
                                         <button class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                            <i class="fas fa-save mr-2" id="btn-save4"></i>Guardar y Continuar Después</button>
+                                            <i class="fas fa-save mr-2" id="btn-save5"></i>Guardar y Continuar Despuï¿½s</button>
                                     </div>
 
                                 </div>

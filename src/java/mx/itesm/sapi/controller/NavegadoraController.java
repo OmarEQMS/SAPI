@@ -31,7 +31,7 @@ import org.apache.commons.io.IOUtils;
 
 /**
  *
- * @author Admin
+ * @author Who?
  */
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 50)
@@ -54,7 +54,7 @@ public class NavegadoraController extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         String key = request.getParameter("key");
-        
+        System.out.println("La key es: "+ key);
         HttpSession sesion = request.getSession(true);
         
         if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
@@ -152,10 +152,18 @@ public class NavegadoraController extends HttpServlet {
                             }
                              break;
                         }
+                        case "guardarP2":{
+                            System.out.println("NavegadoraController, case: guardarP2");
+                            String prz = request.getParameter("prz-expediente");
+                            String tiene = request.getParameter("nivelEducativo");
+                            String alergias = request.getParameter("alergias");
+                            System.out.println("prz: "+ prz + ", tiene: "+ tiene+ " alergias: " +alergias);
+                            break;                        
+                        }
                        
                         
                     }
-                    
+                    //Termina key navegadora
                     break;
                 }
                 

@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionTratamiento.AlergiaPacienteFarmaco;
 
 /**
  *
- * @author Diego
+ * @author Diego Montoya
  */
 public interface AlergiaPacienteFarmacoService {
     

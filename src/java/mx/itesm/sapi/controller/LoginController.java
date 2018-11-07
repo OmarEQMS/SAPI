@@ -38,7 +38,7 @@ import org.apache.commons.io.IOUtils;
 
 /**
  *
- * @author julioguzman
+ * @author Julio Badillo 
  */
 @WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
