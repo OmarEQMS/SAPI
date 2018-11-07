@@ -360,7 +360,6 @@ public class FrontController extends HttpServlet {
                                     break;
 
                                 }
-
                                 case "navegadora/verDocumento.jsp": {
                                     System.out.println("navegadora/verDocumento.jsp");
 
@@ -512,11 +511,10 @@ public class FrontController extends HttpServlet {
                                         }
                                     }                                                                                                                                                                                                                        
                                     
-                                    /*MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl=new MedicoEspecialidadServicioImpl();
-                                    MedicoEspecialidad medicoEspecialidad= medicoEspecialidadServicioImpl.mostrarMedicoEspecialidad(keyRol)
-                                     */
+
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
                                     break;
-                                }                                
+                                }
                             }
                             break;
 
