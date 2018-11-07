@@ -1,7 +1,7 @@
 <%-- 
     Document   : rendimiento
     Created on : 01-nov-2018, 15:19:59
-    Author     : urieldiaz
+    Author     : urieldiaz, julioguzman, shannonrosas
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

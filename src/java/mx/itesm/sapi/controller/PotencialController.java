@@ -1864,6 +1864,37 @@ public class PotencialController extends HttpServlet {
                 }
                 break;
             }
+            case "consultarCitaPendiente": {
+                
+                /**
+                 * * Shannon Rosas 06/11/2018 Case para saber el si un paciente
+                 * tiene su cita pendiente.
+                 *
+                 * El presente case se utiliza para saber si un 
+                 * paciente tiene su cita como pendiente.
+                 *
+                 * Los valores posibles son:
+                 *
+                 * El formato de entrega es un int.
+                 */
+
+                HttpSession sesion = request.getSession(true);
+
+                if (sesion.getId() == null) {
+                    //TODO 
+                } else {
+
+                    int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
+
+                    CitaServicioImpl pendientePaciente = new CitaServicioImpl();
+
+                    int pacientePendiente = pendientePaciente.citaPendiente(idPacientePotencial);
+                    
+                    sesion.setAttribute("estadoPendientePaciente", pacientePendiente);
+
+                }
+                break;
+            }
         }
 
     }
