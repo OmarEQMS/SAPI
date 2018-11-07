@@ -1,4 +1,7 @@
-
+<%-- 
+    Document   : index
+    Author     : julioguzman, shannonrosas
+--%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -1021,6 +1024,10 @@
                                                                                 class="fas fa-print"></i> Imprimir información
                                                                         </button>
                                                                     </a>
+                                                                </div>
+                                                                <div class="col-4 text-center">
+                                                                    <button style="border-radius:20px" type="button" id="irAMisCitas2" class="btn btn-outline-info btn-block"><i class="fas fa-calendar-alt"></i> Ver citas 
+                                                                    </button>
                                                                 </div>
                                                             </div>
                                                         </div>

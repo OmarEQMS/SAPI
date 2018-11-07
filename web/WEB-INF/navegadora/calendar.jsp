@@ -1,7 +1,7 @@
 <%-- 
     Document   : calendar
     Created on : 01-nov-2018, 15:16:42
-    Author     : urieldiaz
+    Author     : urieldiaz, julioguzman, shannonrosas
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

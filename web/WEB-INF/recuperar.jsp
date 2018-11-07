@@ -1,7 +1,7 @@
 <%-- 
     Document   : recuperar
     Created on : 25/10/2018, 03:02:32 PM
-    Author     : shannon
+    Author     : shannonrosas
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
