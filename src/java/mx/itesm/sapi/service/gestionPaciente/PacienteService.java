@@ -23,4 +23,5 @@ public interface PacienteService {
     public boolean borradoLogicoPaciente(int idPaciente);
     public List<PacientePotencial> mostrarPacientesPotenciales();
     public List<PacientePotencial> mostrarPacientesPotencialesAprobados();
+    public int mostrarColor(int idPaciente);
 }

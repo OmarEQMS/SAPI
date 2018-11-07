@@ -20,7 +20,6 @@ public interface CitaServicio {
     public boolean actualizarCita(Cita  cita);
     public boolean cancelarCitaPreconsulta(int idPacientePotencial);
     public int agregarPreconsulta(Cita cita);
-
     public String mostrarPreconsultaAceptada(int idPacientePotencaial);
-
+    public boolean aprobarPaciente(int idPaciente, String fechaNav, String fechaCon, int segundaOpinion);
 }

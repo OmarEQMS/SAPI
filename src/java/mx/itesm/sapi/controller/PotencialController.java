@@ -939,6 +939,8 @@ public class PotencialController extends HttpServlet {
                 boolean revisarPre = true;
                 boolean revisarNav = true;
 
+                System.out.println("------------------------------------------------------------------------------------------------------------------------------");
+                
                 for (FullCalendar calendario : calendarios) {
                     if (calendario.getTitle().equals("Preconsulta") && revisarPre) {
                         System.out.println("La fecha preconsulta es: " + calendario.getStart());
@@ -953,6 +955,8 @@ public class PotencialController extends HttpServlet {
                     }
                 }
 
+                System.out.println("------------------------------------------------------------------------------------------------------------------------------");
+                
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
 

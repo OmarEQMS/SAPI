@@ -25,6 +25,7 @@ import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
@@ -154,6 +155,16 @@ public class NavegadoraController extends HttpServlet {
 
                             out.print("hola");
 
+                            break;
+                        }
+                        
+                        case "aprobar-paciente": {
+                            
+                            //Falta obtener los datos, y falta asignarlos en el servicio
+                            
+                            CitaServicioImpl citaServicio = new CitaServicioImpl();
+                            citaServicio.aprobarPaciente(keyRol, key, key, keyRol);
+                            
                             break;
                         }
 

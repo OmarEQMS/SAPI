@@ -25,10 +25,11 @@ public class PacientePotencial {
     private int tipoPaciente;
     private int tieneResultados;
     private Date fechaNavegacion;
+    private int color;
 
     @Override
     public String toString() {
-        return "PacientePotencial{" + "idPaciente=" + idPaciente + ", nombre=" + nombre + ", primerApellido=" + primerApellido + ", segundoApellido=" + segundoApellido + ", estadoPaciente=" + estadoPaciente + ", fechaRegistro=" + fechaRegistro + ", curp=" + curp + ", telefono=" + telefono + '}';
+        return "PacientePotencial{" + "idPaciente=" + idPaciente + ", nombre=" + nombre + ", primerApellido=" + primerApellido + ", segundoApellido=" + segundoApellido + ", estadoPaciente=" + estadoPaciente + ", prz=" + prz + ", fechaRegistro=" + fechaRegistro + ", curp=" + curp + ", telefono=" + telefono + ", tipoPaciente=" + tipoPaciente + ", tieneResultados=" + tieneResultados + ", fechaNavegacion=" + fechaNavegacion + ", color=" + color + '}';
     }
 
     public int getIdPaciente() {
@@ -126,6 +127,14 @@ public class PacientePotencial {
 
     public void setTipoPaciente(int tipoPaciente) {
         this.tipoPaciente = tipoPaciente;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
     
     

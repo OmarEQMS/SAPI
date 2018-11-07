@@ -239,21 +239,26 @@ public class FrontController extends HttpServlet {
                                     PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
                                     List<PacientePotencial> pacientes = pacienteServicio.mostrarPacientesPotenciales();
                                     request.setAttribute("listaPacientes", pacientes);
-                                    
+
                                     //Estado civil
                                     EstadoCivilServicioImpl estadoCivilServicio = new EstadoCivilServicioImpl();
                                     List<EstadoCivil> estadosCiviles = estadoCivilServicio.mostrarEstadoCivil();
                                     request.setAttribute("estadoCivil", estadosCiviles);
-                                    
+
                                     //Estados
                                     EstadoServicioImpl estadoServicio = new EstadoServicioImpl();
                                     List<Estado> estados = estadoServicio.mostrarEstado();
                                     request.setAttribute("estado", estados);
-                                    
+
                                     //Pacientes aprobados  
                                     List<PacientePotencial> pacientesAprobados = pacienteServicio.mostrarPacientesPotencialesAprobados();
-                                    request.setAttribute("listaPacientesAprobados", pacientesAprobados);
+                                    
+                                    for (int i = 0; i < pacientesAprobados.size(); i++) {
+                                        pacientesAprobados.get(i).setColor(pacienteServicio.mostrarColor(pacientesAprobados.get(i).getIdPaciente()));                                        
+                                        //Recorrer la lista y uno por uno ir asignando los colores
+                                    }
 
+                                    request.setAttribute("listaPacientesAprobados", pacientesAprobados);
 
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al dashboard navgeadora
                                     break;

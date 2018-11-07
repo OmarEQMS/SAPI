@@ -283,7 +283,6 @@ public class PacienteServiceImpl implements PacienteService {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             rs = cstmt.executeQuery();
-            rs.next();
 
             pacientes = new ArrayList<>();
             PacientePotencial paciente;
@@ -329,7 +328,6 @@ public class PacienteServiceImpl implements PacienteService {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             rs = cstmt.executeQuery();
-            rs.next();
 
             pacientes = new ArrayList<>();
             PacientePotencial paciente;
@@ -362,4 +360,35 @@ public class PacienteServiceImpl implements PacienteService {
 
     }
 
+    @Override
+    public int mostrarColor(int idPaciente) {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+        int id = -1;
+
+        String stPrcedure = "CALL getColor(?)";
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stPrcedure);
+
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+            id = rs.getInt(1);
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
+        }
+
+        return id;
+    }
 }
