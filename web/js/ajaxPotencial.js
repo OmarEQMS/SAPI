@@ -212,8 +212,15 @@ $(document).ready(function () {
         data.forEach((value, key) => {
             console.log(key + " " + value);
         });
+swal({
+            title: "Datos guardados correctamente",
+            text: "Puedes regresar a editar/completar el resto de información en cualquier momento.",
+            icon: "success",
+            buttons: true,
+            buttons: [, 'Aceptar']
 
-        $.ajax({
+        }).then(function () {
+           $.ajax({
             url: "PotencialController",
             method: "POST",
             data: data,
@@ -232,9 +239,9 @@ $(document).ready(function () {
                 console.log("Enviar solicitud Error status " + status);
                 console.log("Enviar solicitud Error error" + error);
                 //alert("No enontre el controlador" + status);                               
-            }
-        });
-
+                }
+            });
+        })
     });
 
     $("#btn-enviarSolicitud").on('click', function () {
@@ -264,6 +271,13 @@ $(document).ready(function () {
         data.append("biopsia", biopsia);
 
         console.log(data);
+        
+        //Al presionar enviar los campos quedan ineditables
+
+        $('#masculino').attr('readonly', 'true');
+        $('#femenino').attr('readonly', 'true');
+        $('#fileIdentificacionSubido').prop('disabled', true);
+        
 
         // Imprimmir en consola los valores obtenidos del form para pruebas
         data.forEach((value, key) => {
@@ -495,6 +509,25 @@ $(document).ready(function () {
             );
         });
 
+    });
+    
+    $('#irAMisCitas2').on('click', function () {
+        $.post("SAPI", {
+            file: "potencial/misCitas.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
     });
 
     $('#irACuenta').on('click', function () {

@@ -16,13 +16,15 @@ public class DocumentoInicialTipoDocumento implements Serializable {
     
    private int idDocumentoInicial;
    private int idTipoDocumento;
-   private String nombre;
+   private String nombreTipo;
+   private String tipo;
    private InputStream archivo;
    private int idPaciente;
    private String comentario;
    private int aprobado; 
-
-    public DocumentoInicialTipoDocumento() {
+   private String nombreDocumento;
+    
+   public DocumentoInicialTipoDocumento() {
     }
 
     public int getIdDocumentoInicial() {
@@ -41,12 +43,20 @@ public class DocumentoInicialTipoDocumento implements Serializable {
         this.idTipoDocumento = idTipoDocumento;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreTipo() {
+        return nombreTipo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreTipo(String nombreTipo) {
+        this.nombreTipo = nombreTipo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public InputStream getArchivo() {
@@ -80,7 +90,16 @@ public class DocumentoInicialTipoDocumento implements Serializable {
     public void setAprobado(int aprobado) {
         this.aprobado = aprobado;
     }
-   
-   
+
+    public String getNombreDocumento() {
+        return nombreDocumento;
+    }
+
+    public void setNombreDocumento(String nombreDocumento) {
+        this.nombreDocumento = nombreDocumento;
+    }
+
     
+
 }
+

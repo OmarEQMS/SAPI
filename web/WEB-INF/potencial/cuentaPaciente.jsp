@@ -1,7 +1,7 @@
 <%-- 
     Document   : cuentaPaciente
     Created on : 15/10/2018, 01:59:33 PM
-    Author     : Angel GTZ
+    Author     : Angel GTZ, julioguzman, shannonrosas
 --%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>

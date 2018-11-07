@@ -1,7 +1,7 @@
 <!-- 
     Document   : recuperarContrasena
     Created on : 26/10/2018, 11:10:36 AM
-    Author     : Angel GTZ, Julio Badillo
+    Author     : Angel GTZ, julioguzman, shannonrosas
 -->
 
 <!DOCTYPE html>

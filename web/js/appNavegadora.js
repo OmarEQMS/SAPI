@@ -1365,7 +1365,28 @@ $(document).ready(function () {
 
 
 
+    //Ver Comentario navegadora
+    
+    
+    $('body').on('click', '.verComentario', function () {
+        
+        $(this).data('id')
+        
+        var comentario = "<span class='d-block'>"+ $("#comentario-"+$(this).data('id')).val() +"</span>";
+        $("#modalComentario").append(comentario);
+        
+        
+    });
+    $("#cerrarModal").on("click", function(){
+       $("#modalComentario").empty(); 
+    });
+    
+     $("#aceptarModal").on("click", function(){
+      $("#modalComentario").empty(); 
+    });
+    
 
+    
 
 
 });
