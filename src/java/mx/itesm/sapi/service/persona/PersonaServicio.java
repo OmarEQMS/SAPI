@@ -6,6 +6,7 @@
 package mx.itesm.sapi.service.persona;
 
 import java.util.List;
+import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
 import mx.itesm.sapi.bean.persona.Persona;
 
 /**
@@ -21,4 +22,5 @@ public interface PersonaServicio {
     public boolean existsCurp(String curp);
     public boolean actualizarSexoPersona(int idPersona,int idSexo);
     List<Persona> mostrarMedicos();
+    public InformacionGeneralPersona mostrarInformacionGeneralPersona(int idPaciente);
 }

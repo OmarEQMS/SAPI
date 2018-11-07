@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.util.Conexion;
 
@@ -368,5 +369,55 @@ public class PersonaServicioImpl implements PersonaServicio {
 
         return personas;
 
+    }
+
+    @Override
+    public InformacionGeneralPersona mostrarInformacionGeneralPersona(int idPaciente) {
+        
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        InformacionGeneralPersona informacion = null;
+        
+        try {
+            informacion = new InformacionGeneralPersona();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL mostrarInformacionGeneral(?)");
+            cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+            
+            rs.next();
+                
+                informacion.setNombre(rs.getString("nombre"));
+                informacion.setCurp(rs.getString("curp"));
+                informacion.setFechaNacimiento(rs.getDate("fechaNacimiento"));
+                informacion.setPrimerApellido(rs.getString("primerApellido"));
+                informacion.setSegundoApellido(rs.getString("segundoApellido"));
+                informacion.setUsuario(rs.getString("usuario"));
+                informacion.setIdEstadoCivil(rs.getInt("idEstadoCivil"));
+                informacion.setColonia(rs.getString("colonia"));
+                informacion.setCalle(rs.getString("calle"));
+                informacion.setNoInt(rs.getString("noInterior"));
+                informacion.setNoExt(rs.getString("noExterior"));
+                informacion.setIdEstado(rs.getInt("idEstado"));
+                informacion.setIdMunicipio(rs.getInt("idMunicipio"));
+                informacion.setTelefono(rs.getString("telefono"));
+                informacion.setCorreo(rs.getString("correo"));
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+            
+            System.out.println("PersonaServicioImpl mostrarInformacionGeneral");
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            informacion = null;
+        }
+
+        return informacion;
+        
     }
 }
