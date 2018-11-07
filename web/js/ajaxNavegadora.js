@@ -54,21 +54,115 @@ $(document).ready(function () {
 
 
     });
+    
+    //Redirige a documentos
+    $('#irADocumentos').on('click', function () {
+        $.get("SAPI", {
+            file: "navegadora/documentos.jsp"
+        },
+                function (response, status, xhr) {
+                    //console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+
+$('.irAVerDocumento').on('click', function () {
+        $.get("SAPI", {
+            
+        file: "navegadora/verDocumento.jsp",
+            idDocumentoInicial : $(this).data('id'),
+           idPaciente: $("#hiddenIdPaciente").val(),
+           siguiente: 0
+        },
+                function (response, status, xhr) {
+                    //console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+
+
+    /*
+    $('.irAVerDocumento').on('click', function () {     
+        
+        $.get("SAPI", {
+           file: "navegadora/verDocumento.jsp",
+           idDocumentoInicial : $(this).data('id'),
+           idPaciente: $("#hiddenIdPaciente")
+           
+           
+        },
+                function (response, status, xhr) {
+                    //console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+*/
+
 
     //Eliminar cuenta
     $('#eliminarCuentaNavegadora').on('click', () => {
 
         swal({
             title: "¿Estás segura(o)?",
-            text: "Los datos se eliminarán y no podrás recuperarlos.",
+            text: "Los datos se eliminarán y no podrás recuperarlos ni poder acceder a tu cuenta.",
             icon: "warning",
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
-            dangerMode: true,
+
         })
                 .then((eliminar) => {
                     if (eliminar) {
+                        $.ajax({
+                            url: "NavegadoraController",
+                            data: {
+                                key: "eliminarCuentaNavegadora",
+                                idCuenta: $("#sesionPaciente").val()
 
+                            },
+                            method: "POST",
+                            success: function (response) {
+                                if (response == "error") {
+                                    console.log("Error al cargar");
+                                } else {
+                                    console.log("Intentando redireccionar");
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
+
+                                }
+                            },
+                            error: function (xhr) {
+
+                            }
+
+                        });
 
 
                     } else {
@@ -165,14 +259,129 @@ $(document).ready(function () {
                         //ajax para aprobar
 
                         //location.href = "./documentos3.html"
+                        var data = {key:"aprobarDocumento"};
+                        $.ajax({
+                            url: "NavegadoraController", 
+                            data:data,
+                            method: "POST",                            
+                            success: function (response) {
+                                if (response == "true")
+                                {
+                                    swal({
+                                        type: 'success',
+                                        title: 'Éxito',
+                                        text: 'Se aprobó con éxito el documento.',
+                                    });
+                                } else
+                                {
+                                    swal({
+                                        type: 'error',
+                                        title: 'Ups',
+                                        text: 'Hubo un problema al aprobar el documento.',
+                                    });
+                                }
+                            },
+                            error: function (xhr) {
+                                //alert(xhr.statusText);
+                            }
 
+                        });
+                        
                     } else {
-
+                        
                     }
                 });
 
     });
+    
+    
+    //rechazar documento
+    $('#btn-rechazarDocumento').on('click', () => {
 
+       
+        //ajax para rechazar
+
+        //location.href = "./documentos3.html"
+        var data = {key: "rechazarDocumento",comentario:$('#motivoRechazo').val()};
+        $('#motivoRechazo').val("");        
+        $.ajax({
+            url: "NavegadoraController",
+            data: data,
+            method: "POST",
+            success: function (response) {
+                if(response == "true")
+                {
+                    swal({
+                        type: 'success',
+                        icon:'success',
+                        title: 'Éxito',
+                        text: 'Se rechazo con éxito el documento.',
+                    });
+                }else
+                {
+                    swal({
+                        type: 'error',
+                        icon:'error',
+                        title: 'Ups',
+                        text: 'Hubo un problema al rechazar el documento.',
+                    });
+                }
+            },
+            error: function (xhr) {
+                //alert(xhr.statusText);
+            }
+
+        });                 
+
+    });
+    
+     $('#btn-siguiente').on('click', function () {
+        
+               
+        swal({
+            icon: 'info',
+            title: 'Cargando',
+            text: 'Estamos buscando el siguiente documento',
+            //timer:8000,         
+            buttons:false
+        });
+        
+        var data = {idPacientePotencialAtendido: $('#idPacientePotencialAtendido').val(),idDocumentoInicialVista:$('#idDocumentoInicialVista').val(),key:1};
+        
+        console.log(JSON.stringify(data));
+        
+        $.post("SAPI", {
+            idPacientePotencialAtendido: $('#idPacientePotencialAtendido').val(),
+            idDocumentoInicialVista:$('#idDocumentoInicialVista').val(),
+            siguiente:1,
+            file: "navegadora/verDocumento.jsp"           
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                           
+                        } 
+                        else if (response == "todos")
+                        {
+                             
+                            swal({
+                                title: 'No más documentos por revisar.',
+                                timer:3000
+                            });
+                        }                            
+                        else {
+                            swal.close();
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
+    
     $('#btn-eliminar').on('click', () => {
 
         swal({
@@ -285,6 +494,7 @@ $(document).ready(function () {
             data.forEach((value, key) => {
                 console.log(key + " " + value);
             })
+            
 
             $.ajax({
                 url: "NavegadoraController",
@@ -447,6 +657,68 @@ $(document).ready(function () {
         return true;
     }
     ;
+
+    $('#irVerDocumento').on('click', function () {
+        $.post("SAPI", {
+            file: "navegadora/verDocumento.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+
+    $('.descargarDocumento').on('click', function () {
+        
+        
+        $.post("NavegadoraController",
+        {
+                key: 'descargarArchivo',
+                idDocumento: $(this).data('id')
+        },
+    function(data, status){
+        
+    });
+    });
+    
+    
+    //PARA SALIR DE LA CUENTA
+   $('#salirCuenta').on('click', function () {
+       
+        console.log("Salir cuenta");
+        $.get("LoginController", {
+            key: "cerrar-sesion"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
+    function salir() {
+         alert();
+       
+    };
+    
+   
 
 });
 

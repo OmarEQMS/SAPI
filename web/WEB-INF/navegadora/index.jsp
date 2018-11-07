@@ -5,6 +5,7 @@
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -38,6 +39,7 @@
         <link rel="stylesheet" href="css/styleNavegadoraImg.css">
         <script src="js/appNavegadora.js"></script>
         <script src="js/ajaxNavegadora.js"></script>
+
 
     </head>
 
@@ -81,8 +83,9 @@
                             </a>
                         </div>
 
+
                         <div class="col-2">
-                            <a class="iconoSidebar" href="" title="Cerrar Sesión">
+                            <a class="iconoSidebar" href="" title="Cerrar Sesión" id="salirCuenta2">
                                 <i class="fas fa-power-off"></i>
                             </a>
                         </div>
@@ -96,48 +99,35 @@
                         <hr style="background-color:white !important">
                     </div>
                 </div>
+                <<<<<<< HEAD
+
 
                 <!-- MENU PRINCIPAL ENLACES -->
                 <ul class="list-unstyled components">
 
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-home"></i>Inicio</a>
-                    </li>
+                    <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
 
-                    <li>
-                        <a href="./calendar.html">
-                            <i class="fas fa-calendar-alt"></i>Calendario</a>
-                    </li>
+                    <li id="idACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
-                    <li>
-                        <a href="./rendimiento.html">
-                            <i class="fas fa-chart-line"></i>Mi Rendimiento</a>
-                    </li>
+                    <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
-                    <li>
-                        <a href="./cuenta.html">
-                            <i class="far fa-user"></i>Mi Cuenta</a>
-                    </li>
+                    <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
 
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a>
-                    </li>
+                    <li id="irADocumentos"><a><i class="far fa-user"></i>Documentos</a></li>
+
+                    <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
                 </ul>
-
             </nav>
 
             <!-- CONTENIDO PRINCIPAL  -->
-
-
             <div id="content">
 
                 <!-- MENU -->
 
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="container-fluid">
+
 
                         <button id="sidebarCollapse" class="btn boton-collapse">
                             <i class="fas fa-align-justify"></i>
@@ -172,8 +162,6 @@
                         <h1 class="display-4 tituloPacientes text-center m-0">Pacientes</h1>
                     </div>
                 </div>
-
-                <!-- CONTENIDO -->
 
                 <!-- CONTENIDO -->
 
@@ -265,9 +253,6 @@
                                     <!-- 2do contenido: APROBACION -->
                                     <div class="tab-pane active fade white mt-4" id="nav-formulario" role="tabpanel" aria-labelledby="nav-formulario-tab">
 
-
-
-
                                         <!-- Icono info colores -->
 
                                         <div class="row justify-content-end mt-5">
@@ -276,7 +261,6 @@
                                                 <a href="#" class="questionMark float-right" data-tooltip-content="#tooltip_contentnew"><i
                                                         class="fas fa-question-circle icono-info" style="font-size:25px"></i></a>
                                             </div>
-
 
                                             <div class="tooltip_templates">
                                                 <span id="tooltip_contentnew">
@@ -300,14 +284,8 @@
                                                         </li>
                                                     </ul>
                                                 </span>
-                                                </span>
-
                                             </div>
-
-
                                         </div>
-
-
 
                                         <!-- segunda tabla -->
                                         <table class="display responsive no-wrap table table-striped mt-3" id="tabla2" width="100%">
@@ -343,48 +321,43 @@
                                                             </c:otherwise>
                                                         </c:choose>
 
-                                                
-                                                <c:choose>
-                                                    <c:when test="${pacienteAprobado.tieneResultados==1}">
-                                                        <td><span class="badge badge-success">R</span> </td>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <td></td>
-                                                    </c:otherwise>
-                                                </c:choose>
 
-                                                <td>${pacienteAprobado.fechaRegistro}</td>                  
-                                                <td>${pacienteAprobado.telefono}</td>
-                                                <td>
-                                                    <button class="btn btn-info btn-ver" data-id="${pacienteAprobado.idPaciente}" id="btn-ver">
-                                                        <i class="far fa-eye"></i>
-                                                    </button>
-                                                    <button class="btn btn-success btn-aceptar" data-id="${pacienteAprobado.idPaciente}" id="btn-aceptar" data-toggle="modal" data-target="#modalAceptarUsuario">
-                                                        <i class="fas fa-check"></i>
-                                                    </button>
-                                                    <button class="btn btn-primary btn-editar" data-id="${pacienteAprobado.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarUsuario">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="btn btn-danger mt-1 btn-eliminar" data-id="${pacienteAprobado.idPaciente}" id="btn-eliminar" data-toggle="modal" data-target="#modalEliminarUsuario">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                </td>
+                                                        <c:choose>
+                                                            <c:when test="${pacienteAprobado.tieneResultados==1}">
+                                                                <td><span class="badge badge-success">R</span> </td>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <td></td>
+                                                            </c:otherwise>
+                                                        </c:choose>
 
-                                                </tr>
-                                            </c:forEach>
+                                                        <td>${pacienteAprobado.fechaRegistro}</td>                  
+                                                        <td>${pacienteAprobado.telefono}</td>
+                                                        <td>
+                                                            <button class="btn btn-info btn-ver" data-id="${pacienteAprobado.idPaciente}" id="btn-ver">
+                                                                <i class="far fa-eye"></i>
+                                                            </button>
+                                                            <button class="btn btn-success btn-aceptar" data-id="${pacienteAprobado.idPaciente}" id="btn-aceptar" data-toggle="modal" data-target="#modalAceptarUsuario">
+                                                                <i class="fas fa-check"></i>
+                                                            </button>
+                                                            <button class="btn btn-primary btn-editar" data-id="${pacienteAprobado.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarUsuario">
+                                                                <i class="fas fa-edit"></i>
+                                                            </button>
+                                                            <button class="btn btn-danger mt-1 btn-eliminar" data-id="${pacienteAprobado.idPaciente}" id="btn-eliminar" data-toggle="modal" data-target="#modalEliminarUsuario">
+                                                                <i class="fas fa-trash-alt"></i>
+                                                            </button>
+                                                        </td>
 
-
+                                                    </tr>
+                                                </c:forEach>
                                             </tbody>
                                         </table>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div class="modal fade" id="modalAgregarPaciente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -422,9 +395,7 @@
                                         <input type="text" class="form-control" id="curpNavegadora" name="curpNavegadora" placeholder="CURP">
                                     </div>
                                 </div>
-
                             </div>
-
                             <div class="form-group row">
                                 <div class="col-12">
                                     <div class="input-group">
@@ -1121,4 +1092,4 @@
 
     </body>
 
-</html>
+</html>                                                                                                                                                                            </html>

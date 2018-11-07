@@ -15,6 +15,7 @@ import mx.itesm.sapi.bean.gestionPaciente.OtroResultadoPatologia;
 public interface OtroResultadoPatologiaServicio {
 
     public OtroResultadoPatologia mostrarOtroResultadoPatologia(int idOtroResultadoPatologia);
+    public OtroResultadoPatologia mostrarOtroResultadoPatologiaIdBiopsia(int idBiopsia);
 
     public List<OtroResultadoPatologia> mostrarOtroResultadoPatologia();
 

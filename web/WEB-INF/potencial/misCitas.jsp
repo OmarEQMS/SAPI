@@ -134,7 +134,7 @@
 
                                 <div class="row mb-3">
                                     <div class="col-12 text-right">
-                                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index2.html" class="colorMoradoLight">Inicio</a></span>
+                                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="irAInicioPotencial" class="colorMoradoLight">Inicio</a></span>
                                         - <span class="colorGlobal">Mis Citas</span>
                                     </div>
                                 </div>
@@ -185,7 +185,7 @@
 
                                                 <div class="row justify-content-center mt-2">
                                                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 text-center">
-                                                        <button class="btn btn-danger btn-block btnCancelarCita" id="btn-cancelarPreConsulta1">Cancelar
+                                                        <button class="btn btn-danger btn-block btnCancelarCita" id="mitadCancelar">Cancelar
                                                             Citas
                                                         </button>
                                                     </div>
@@ -268,7 +268,7 @@
 
                                                 <div class="row mt-1 justify-content-center">
                                                     <div class="col-6 text-center">
-                                                        <button class="btn btn-danger btn-block" id="btn-cancelarPreConsulta2" style="border-radius: 20px;">Cancelar
+                                                        <button class="btn btn-danger btn-block" id="mitadCancelar" style="border-radius: 20px;">Cancelar
                                                             Cita
                                                         </button>
                                                     </div>

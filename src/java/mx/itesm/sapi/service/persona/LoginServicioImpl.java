@@ -28,7 +28,7 @@ public class LoginServicioImpl implements LoginServicio {
         CallableStatement cstmt;
 
         //Call del store procedure
-        String stProcedure = "borradoLogicoLogin(?)";
+        String stProcedure = "CALL borradoLogicoLogin(?)";
 
         try {
             conn = Conexion.getConnection();
@@ -65,7 +65,7 @@ public class LoginServicioImpl implements LoginServicio {
         Login login = null;
 
         //Call del store procedure
-        String stProcedure = "mostrarLogin(?)";
+        String stProcedure = "CALL mostrarLogin(?)";
 
         try {
             login = new Login();
@@ -105,7 +105,7 @@ public class LoginServicioImpl implements LoginServicio {
 
         try {
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall("mostrarListaLogin()");
+            cstmt = conn.prepareCall("CALL mostrarListaLogin(?)");
             rs = cstmt.executeQuery();
             logins = new ArrayList<>();
             Login login;
@@ -146,7 +146,7 @@ public class LoginServicioImpl implements LoginServicio {
 
         int id = -1;
         //Aquí va el call del procedure
-        String stProcedure = "agregarLogin(?, ?, ?, ?, ?)";
+        String stProcedure = "CALL agregarLogin(?, ?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
@@ -193,7 +193,7 @@ public class LoginServicioImpl implements LoginServicio {
         boolean exito = false;
 
         //Call del store procedure
-        String stProcedure = "actualizarLogin(?, ?, ?, ?, ?)";
+        String stProcedure = "CALL actualizarLogin(?, ?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
@@ -220,6 +220,46 @@ public class LoginServicioImpl implements LoginServicio {
 
         }
         return exito;
+    }
+
+    @Override
+    public Login mostrarLoginIdCuenta(int idCuenta) {
+         Connection conn;
+        ResultSet rs;
+
+        CallableStatement cstmt;
+
+        Login login = null;
+
+        //Call del store procedure
+        String stProcedure = "CALL mostrarLoginidCuenta(?)";
+
+        try {
+            login = new Login();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idCuenta);
+
+            rs = cstmt.executeQuery();
+
+            rs.next();
+            login.setIdLogin(rs.getInt("idLogin"));
+            login.setIdCuenta(rs.getInt("idCuenta"));
+            login.setFecha(rs.getDate("fecha"));
+            login.setExitoso(rs.getInt("exitoso"));
+            login.setEstatus(rs.getInt("estatus"));
+
+            conn.close();
+            rs.close();
+            cstmt.close();
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            login = null;
+
+        }
+        return login;
     }
 
 }

@@ -11,20 +11,20 @@ $(document).ready(function () {
     $.ajax({
         url: "PotencialController",
         method: "POST",
-        data: consultarEstadoPreconsulta,
-        enctype: "multipart/form-data",
-        processData: false,
-        contentType: false,
+        data: {key: "consultarEstadoPreconsulta"},
         success: function (response) {
             if (response != null) {
-                console.log("ok" + response);
+                var data = JSON.parse(response);
+                console.log(data);
 
             } else {
                 console.log("Algo pasó" + response);
             }
         },
-        error: function () {
-
+        error: function (xhr) {
+            console.log("error" + xhr.statusText);
+            console.log("Error SolicitarEstadoPreconsulta");
+            //alert(xhr);
         }
 
     });
@@ -35,10 +35,7 @@ $(document).ready(function () {
     $.ajax({
         url: "PotencialController",
         method: "POST",
-        data: consultarEstadoPaciente,
-        enctype: "multipart/form-data",
-        processData: false,
-        contentType: false,
+        data: {key: "consultarEstadoPaciente"},
         success: function (response) {
             if (response != null) {
                 console.log("ok" + response);
@@ -50,12 +47,13 @@ $(document).ready(function () {
         error: function () {
             console.log("error" + xhr.statusText);
             alert("No enontre el controlador" + xhr.statusText);
+            console.log("Error SolicitarEstadoPaciente");
         }
 
     });
 
-    $('#eliminarCuentaPotencial').on('click', () => {
-
+    $('#eliminarCuentaPotencial').on('click', function () {
+        console.log("vaya vaya si llego");
         swal({
             title: "¿Estás segura(o)?",
             text: "Los datos se eliminarán y no podrás recuperarlos ni poder acceder a tu cuenta.",
@@ -70,10 +68,26 @@ $(document).ready(function () {
                             url: "PotencialController",
                             data: {
                                 key: "eliminarCuentaPacientePotencial",
+
                                 idCuenta: $("#sesionPaciente").val(),
 
                             },
-                            method: "POST"
+                            method: "POST",
+                            success: function (response) {
+                                if (response == "error") {
+                                    console.log("Error al cargar");
+                                } else {
+                                    console.log("Intentando redireccionar");
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
+
+                                }
+                            },
+                            error: function (xhr) {
+
+                            }
+
                         });
 
 
@@ -86,25 +100,26 @@ $(document).ready(function () {
 
     });
 
-    $("#btn-cancelarPreConsulta1").on('click', () => {
+
+
+
+
+    $('#btn-cancelarDefinitivo').on('click', () => {
 
         //Modal borrar sintoma
-        swal({
+       /* swal({
             title: "¿Estás segura(o) que deseas cancelar la cita?",
-            text: "Tendrás que reiniciar tu solicitud a preconsulta",
+            text: "Tendrás que reiniciar tu solicitud a preconsulta ya que se cancelaran ambas",
             icon: "warning",
             buttons: true,
             buttons: ['Regresar', 'Cancelar cita'],
             dangerMode: true,
         })
 
-                .then((cancelar) => {
-                    if (cancelar) {
-
-                        $('#modalMotivoCancelacion').modal('toggle');
-
-                        $('#btn-cancelarDefinitivo').on('click', function () {
-
+               .then((cancelar) => {
+                   if (cancelar) {
+*/
+                       
                             $.ajax({
                                 url: "PotencialController",
                                 data: {
@@ -113,34 +128,39 @@ $(document).ready(function () {
                                 },
                                 method: "POST",
                                 success: function (response) {
-                                    if (response == "success") {
+                                    if (response == "error") {
+                                    console.log("Error al cargar");
+                                } else {
+                                    console.log("Intentando redireccionar");
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
 
-                                    } else {
-
-                                    }
+                                }
                                 },
                                 error: function (xhr) {
 
                                 }
-                            });
+                           
 
-                        });
+                    //    });
 
 
-                    } else {
+          /*          } else {
 
-                    }
+                  }
+           */
                 });
 
 
     });
 
-    $("#btn-cancelarPreConsulta2").on('click', () => {
+    $('#mitadCancelar').on('click',  function () {
 
         //Modal borrar sintoma
-        swal({
-            title: "¿Estás seguro que deseas cancelar la cita?",
-            text: "Tendrás que reiniciar tu solicitud a preconsulta",
+       swal({
+            title: "¿Estás segura(o) que deseas cancelar la cita?",
+            text: "Tendrás que reiniciar tu solicitud a preconsulta ya que se cancelaran ambas",
             icon: "warning",
             buttons: true,
             buttons: ['Regresar', 'Cancelar cita'],
@@ -151,10 +171,7 @@ $(document).ready(function () {
                     if (cancelar) {
 
                         $('#modalMotivoCancelacion').modal('toggle');
-                        $('#modalVerCitaPreConsulta').modal('toggle');
-
-
-                        //pegar ajax de cancelacion
+       
 
                     } else {
 
@@ -223,16 +240,6 @@ $(document).ready(function () {
     $("#btn-enviarSolicitud").on('click', function () {
 
         console.log("Enviar solicitud");
-        //Modal borrar sintoma
-        swal({
-            title: "¡Buen Trabajo! se ha enviado tu solicitud",
-            text: "En un lapso no mayor a 36 horas recibirás una respuesta",
-            icon: "success",
-            showCancelButton: false,
-            showConfirmButton: true,
-            buttons: [, 'Aceptar'],
-            dangerMode: true
-        });
 
         var form = $("form")[0];
         var data = new FormData(form);
@@ -283,42 +290,44 @@ $(document).ready(function () {
          oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
          motivoConsulta = $('#motivoConsulta').val();
          biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
-         */
-        //Imprimir los valores de entrada
-        /*console.log("masculino: " + masculino + " femenino: " + femenino + " silla:  " + sillaDeRuedas + " camilla: " + camilla + " bastón: " +
+         
+         //Imprimir los valores de entrada
+         /*console.log("masculino: " + masculino + " femenino: " + femenino + " silla:  " + sillaDeRuedas + " camilla: " + camilla + " bastón: " +
          baston + " oxigeno " + oxigeno + " biopsia " + biopsia + " motivo " + motivoConsulta
          + " identificacion: " + identificacionOficial.name + " comprobante: " + comprobanteDomicilio.name + " estudioMasto: " + fileEstudioPrevioMasto.name
-         +" estudioUsg: " + fileEstudioPrevioUsg.name + " biopsia: " + estudioBiopsia.name);
-         */
+         +" estudioUsg: " + fileEstudioPrevioUsg.name + " biopsia: " + estudioBiopsia.name);*/
 
-
-        //AJAX PARA ENVIAR SOLICITUD
-
-        $.ajax({
-            url: "PotencialController",
-            method: "POST",
-            data: data,
-            enctype: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            success: function (response) {
-
-                console.log("Enviar solicitud " + response);
-                if (response === "success") {
-                    console.log("Enviar solicitud ok ");
-                } else {
-                    console.log("Enviar solicitud Algo pasó" + response);
+        swal({
+            title: "¡Buen Trabajo! se ha enviado tu solicitud",
+            text: "En un lapso no mayor a 36 horas recibirás una respuesta",
+            icon: "success",
+            showCancelButton: false,
+            showConfirmButton: true,
+            buttons: [, 'Aceptar'],
+            dangerMode: true
+        }).then(function () {
+            //AJAX PARA ENVIAR SOLICITUD
+            $.ajax({
+                url: "PotencialController",
+                method: "POST",
+                data: data,
+                enctype: "multipart/form-data",
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    console.log("Enviar solicitud " + response);
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
+                },
+                error: function (request, status, error) {
+                    console.log("Enviar solicitud Error request " + request.responseText);
+                    console.log("Enviar solicitud Error status " + status);
+                    console.log("Enviar solicitud Error error" + error);
+                    //alert("No enontre el controlador" + status);                               
                 }
-            },
-            error: function (request, status, error) {
-                console.log("Enviar solicitud Error request " + request.responseText);
-                console.log("Enviar solicitud Error status " + status);
-                console.log("Enviar solicitud Error error" + error);
-                //alert("No enontre el controlador" + status);                               
-            }
-
-
-        });
+            });
+        })
 
     });
 
@@ -327,8 +336,6 @@ $(document).ready(function () {
     //este ajax hace que manda la nueva contraseña de la cuenta del paciente potencial
 
     $("#btn-cambiarContrasena").on('click', function () {
-
-
 
         //Modal cambiar contraseña 
         swal({
@@ -431,8 +438,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                console.log("error" + xhr.statusText);
-                alert("No enontre el controlador" + xhr.statusText);
+                alert("No enontre el controlador");
             }
 
         });
@@ -509,6 +515,26 @@ $(document).ready(function () {
                 }
         );
     });
+    
+    $('#irAInicioPotencial').on('click', function () {
+        $.post("SAPI", {
+            file: "potencial/index.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
 
     $('#irACuenta1').on('click', function () {
         $.post("SAPI", {
@@ -596,7 +622,7 @@ $(document).ready(function () {
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
         console.log("Salir cuenta");
-        $.get("LoginController", {
+        $.post("LoginController", {
             key: "cerrar-sesion"
         },
                 function (response, status, xhr) {

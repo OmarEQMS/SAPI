@@ -29,10 +29,11 @@ public class PacienteNavegadoraServicioImpl implements PacienteNavegadoraServici
 
         PacienteNavegadora pacienteNavegadora = new PacienteNavegadora();
 
-        String stProcedure = "";
+        String stProcedure = "CALL mostrarPacienteNavegadora(?)";
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPacienteNavegadora);
             rs = cstmt.executeQuery();
             rs.next();
 
@@ -57,7 +58,7 @@ public class PacienteNavegadoraServicioImpl implements PacienteNavegadoraServici
         Connection conn;
         List<PacienteNavegadora> listspacienteNavegaora = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL mostrarListaPacienteNavegadora()";
 
         ResultSet rs;
 
@@ -96,7 +97,7 @@ public class PacienteNavegadoraServicioImpl implements PacienteNavegadoraServici
         ResultSet rs;
         CallableStatement cstmt;
         int id = -1;
-        String stPrcedure="";
+        String stPrcedure="CALL agregarPacienteNavegadora(?, ?)";
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stPrcedure);
@@ -130,7 +131,7 @@ public class PacienteNavegadoraServicioImpl implements PacienteNavegadoraServici
     public boolean actualizarPacienteNavegadora(PacienteNavegadora pacienteNavegadora) {
          Connection conn;
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL actualizarPacienteNavegadora(?, ?)";
         boolean exito= false;
         ResultSet rs;
         try{
@@ -160,7 +161,7 @@ public class PacienteNavegadoraServicioImpl implements PacienteNavegadoraServici
     public boolean borradoLogicoPacienteNavegadora(int idPacienteNavegadora) {
         Connection conn; 
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL borradoLogicoPacienteNavegadora()";
         boolean exito = false;
         ResultSet rs;
         try{
@@ -183,6 +184,38 @@ public class PacienteNavegadoraServicioImpl implements PacienteNavegadoraServici
             exito=false;
         }
         return exito;
+    }
+
+    @Override
+    public PacienteNavegadora mostrarPacienteNavegadoraIdPaciente(int idPaciente) {
+    Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+
+        PacienteNavegadora pacienteNavegadora = new PacienteNavegadora();
+
+        String stProcedure = "CALL mostrarPacienteNavegadoraIdPaciente(?)";
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            pacienteNavegadora.setIdPacienteNavegadora(rs.getInt("idPaciente"));
+            pacienteNavegadora.setIdPaciente(rs.getInt("idCuenta"));
+            pacienteNavegadora.setIdEmpleado(rs.getInt("idEscolaridad"));
+            pacienteNavegadora.setEstatus(rs.getInt("idSeguro"));
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            pacienteNavegadora = null;
+        }
+        return pacienteNavegadora; 
     }
 
 }

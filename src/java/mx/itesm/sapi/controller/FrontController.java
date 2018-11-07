@@ -5,12 +5,21 @@
  */
 package mx.itesm.sapi.controller;
 
+import java.awt.Image;
+import java.awt.image.RenderedImage;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Base64;
 import java.util.Base64;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +28,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.diagnostico.EtapaClinica;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
+import mx.itesm.sapi.bean.gestionPaciente.DatosPacienteDocumentoInicial;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialTipoDocumento;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialVista;
+import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.gestionPaciente.PacientePotencial;
+import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.Tratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.TratamientoPaciente;
@@ -31,13 +46,19 @@ import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Estado;
 import mx.itesm.sapi.bean.persona.EstadoCivil;
+import mx.itesm.sapi.bean.persona.Direccion;
+import mx.itesm.sapi.bean.persona.Estado;
+import mx.itesm.sapi.bean.persona.EstadoCivil;
+import mx.itesm.sapi.bean.persona.Municipio;
 import mx.itesm.sapi.bean.persona.Persona;
-import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.bean.persona.TipoSangre;
 import mx.itesm.sapi.service.diagnostico.EtapaClinicaServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialTipoDocumentoServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TratamientoPacienteServiceImpl;
@@ -46,15 +67,22 @@ import mx.itesm.sapi.service.gestionTratamiento.UnionTratamientoPacienteServiceI
 import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
+import mx.itesm.sapi.service.persona.CodigoPostalServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.EstadoCivilServicioImpl;
 import mx.itesm.sapi.service.persona.EstadoServicioImpl;
+import mx.itesm.sapi.service.persona.DireccionServicioImpl;
+import mx.itesm.sapi.service.persona.EstadoCivilServicioImpl;
+import mx.itesm.sapi.service.persona.MunicipioServicioImpl;
+
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import org.apache.commons.io.IOUtils;
-import mx.itesm.sapi.service.persona.PicServicioImpl;
 import mx.itesm.sapi.service.persona.TipoSangreServicioImpl;
-import org.apache.commons.io.IOUtils;
+
+/*
+import org.ghost4j.document.PDFDocument;
+import org.ghost4j.renderer.SimpleRenderer;*/
 
 /**
  *
@@ -189,53 +217,9 @@ public class FrontController extends HttpServlet {
                             String keyRuta = request.getParameter("file");
                             switch (keyRuta) {
 
-                                case "navegadora/cuentaNavegadora.jsp": {
+                                
 
-                                    PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
-                                    Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
-
-                                    CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
-                                    Cuenta cuenta = cuentaServicioImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));
-
-                                    /*EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
-                                    Empleado empleado = empleadoServicioImpl.mostrarEmpleadoCuenta((int) sesion.getAttribute("idCuenta"));
-
-                                    MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
-                                    MedicoEspecialidad medicoEspecialidad = medicoEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(empleado.getIdEmpleado());
-
-                                    EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
-                                    Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());*/
-                                    System.out.println("holiiii");
-                                    sesion.setAttribute("nombre", persona.getNombre());
-                                    sesion.setAttribute("primerApellido", persona.getPrimerApellido());
-                                    sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
-                                    System.out.println("el correo es:" + persona.getCorreo());
-                                    sesion.setAttribute("correo", persona.getCorreo());
-                                    sesion.setAttribute("telefono", persona.getTelefono());
-                                    sesion.setAttribute("usuario", cuenta.getUsuario());
-                                    //sesion.setAttribute("noEmpleado", empleado.getNoEmpleado());
-                                    //sesion.setAttribute("especialidad", especialidad.getNombre());
-                                    //sesion.setAttribute("cedulaProfesional", medicoEspecialidad.getCedulaProfesional());
-
-                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
-                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
-
-                                    InputStream imagen = pic.getContenido();
-                                    byte[] bytes = IOUtils.toByteArray(imagen);
-                                    String base64String = Base64.getEncoder().encodeToString(bytes);
-
-                                    sesion.setAttribute("base64Img", base64String);
-
-                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
-
-                                    /*MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl=new MedicoEspecialidadServicioImpl();
-                                    MedicoEspecialidad medicoEspecialidad= medicoEspecialidadServicioImpl.mostrarMedicoEspecialidad(keyRol)
-                                     */
-                                    break;
-                                }
                                 case "navegadora/index.jsp": {
-                                    System.out.println("Index Navegadora ");
-
                                     PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
                                     List<PacientePotencial> pacientes = pacienteServicio.mostrarPacientesPotenciales();
                                     request.setAttribute("listaPacientes", pacientes);
@@ -272,9 +256,243 @@ public class FrontController extends HttpServlet {
                                     System.out.println("Index Navegadora ");
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
                                     break;
+
                                 }
+
+                                case "navegadora/documentos.jsp": {
+                                    System.out.println("Index Navegadora ");
+
+                                    PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
+                                    Paciente paciente = pacienteServicioImpl.mostrarPaciente(1);
+
+                                    CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
+                                    Cuenta cuenta = cuentaServicioImpl.mostrarCuenta(paciente.getIdCuenta());
+
+                                    PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
+                                    Persona persona = personaServiceImpl.mostrarPersona(cuenta.getIdPersona());
+
+                                    EstadoCivilServicioImpl estadoCivilServicioImpl = new EstadoCivilServicioImpl();
+                                    EstadoCivil estadoCivil = estadoCivilServicioImpl.mostrarEstadoCivil(persona.getIdEstadoCivil());
+
+                                    MunicipioServicioImpl municipioServicioImpl = new MunicipioServicioImpl();
+                                    Municipio municipio = municipioServicioImpl.mostrarMunicipio(persona.getIdMunicipio());
+
+                                    /*
+                                    EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
+                                    Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());*/
+
+                                    EstadoServicioImpl estadoServicioImpl = new EstadoServicioImpl();
+                                    Estado estado = estadoServicioImpl.mostrarEstado(municipio.getIdEstado());
+
+                                    DireccionServicioImpl direccionServicioImpl = new DireccionServicioImpl();
+                                    Direccion direccion = direccionServicioImpl.mostrarDireccion(persona.getIdDireccion());
+
+                                    System.out.println("el id paciente es...." + paciente.getIdPaciente());
+                                    sesion.setAttribute("idPaciente", 1);
+                                    EstadoPacientePacienteServiceImpl estadoPacientePacienteServiceImpl = new EstadoPacientePacienteServiceImpl();
+                                    EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServiceImpl.mostrarEstadoPacientePacienteIdPaciente(paciente.getIdPaciente());
+
+                                    //
+                                    DocumentoInicialTipoDocumentoServicioImpl documentoInicialTipoDocumentoServcioImpl = new DocumentoInicialTipoDocumentoServicioImpl();
+
+                                    List<DocumentoInicialTipoDocumento> documentosInicialTipoDocumentos = documentoInicialTipoDocumentoServcioImpl.mostrarDocumentoInicialTipoDocumento(1);
+
+                                    if (documentosInicialTipoDocumentos.size() > 0) {
+                                        System.out.println("Esta llena");
+                                    } else {
+                                        System.out.println("Esta vacía");
+                                    }
+
+                                    request.setAttribute("documentos", documentosInicialTipoDocumentos);
+
+                                    sesion.setAttribute("estadoCivil", estadoCivil.getNombre());
+                                    sesion.setAttribute("fechaNacimiento", persona.getFechaNacimiento());
+                                    sesion.setAttribute("municipio", municipio.getNombre());
+                                    sesion.setAttribute("estado", estado.getNombre());
+                                    sesion.setAttribute("fechaNacimiento", persona.getFechaNacimiento());
+                                    sesion.setAttribute("calle", direccion.getCalle());
+                                    sesion.setAttribute("colonia", direccion.getColonia());
+                                    sesion.setAttribute("noExterior", direccion.getNoExterior());
+                                    sesion.setAttribute("noInterior", direccion.getColonia());
+                                    // Date fecha = Date.valueOf(cuenta.getFecha().toString());
+                                    //String fecha = cuenta.getFecha().toString();
+                                    //fecha = fecha.substring(0, 10);
+
+                                    Timestamp ts = cuenta.getFecha();
+                                    Date fecha = new Date(ts.getTime());
+                                    sesion.setAttribute("fechaRegistro", fecha);
+                                    System.out.println("El id de la cuenta es: " + cuenta.getIdCuenta());
+                                    System.out.println("Esta es la fecha registro: " + cuenta.getFecha());
+                                    sesion.setAttribute("curp", persona.getCurp());
+                                    sesion.setAttribute("telefono", persona.getTelefono());
+                                    sesion.setAttribute("correo", persona.getCorreo());
+                                    sesion.setAttribute("segundaOpinion", estadoPacientePaciente.getSegundaOpinion());
+
+                                    //sesion.setAttribute("idDocumento", file);
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
+                                    break;
+
+                                }
+
+                                case "navegadora/verDocumento.jsp": {
+
+                                    PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
+                                    Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
+
+                                    CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
+                                    Cuenta cuenta = cuentaServicioImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));
+
+                                    System.out.println("holiiii");
+                                    sesion.setAttribute("nombre", persona.getNombre());
+                                    sesion.setAttribute("primerApellido", persona.getPrimerApellido());
+                                    sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
+                                    System.out.println("el correo es:" + persona.getCorreo());
+                                    sesion.setAttribute("correo", persona.getCorreo());
+                                    sesion.setAttribute("telefono", persona.getTelefono());
+                                    sesion.setAttribute("usuario", cuenta.getUsuario());
+
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                    sesion.setAttribute("base64Img", base64String);
+
+                                                                                                                                                
+                                    int idDocumentoInicial;
+                                    int idPaciente;
+                                    int siguiente;
+                                                                        
+                                    try
+                                    {
+                                        idDocumentoInicial = Integer.parseInt(request.getParameter("idDocumentoInicialVista"));
+                                        System.out.println("idDocumentoInicial parameter"+idDocumentoInicial);
+                                    }catch(Exception ex)
+                                    {
+                                        System.out.println("Catch parameter idDocumentoInicial ".concat(ex.getMessage()));
+                                        idDocumentoInicial = 225;
+                                    }
+                                     
+                                    try
+                                    {
+                                        idPaciente = Integer.parseInt(request.getParameter("idPacientePotencialAtendido"));
+                                    }catch(Exception ex)
+                                    {
+                                        System.out.println("Catch parameter idPacientePotencial ".concat(ex.getMessage()));
+                                        idPaciente = 68;
+                                    }                                                                         
+                                    try
+                                    {
+                                        siguiente = Integer.parseInt(request.getParameter("siguiente"));
+                                    }catch(Exception ex)
+                                    {
+                                        System.out.println("Catch parameter siguiente ".concat(ex.getMessage()));
+                                        siguiente = 0;
+                                    }
+                                    
+                                    
+                                    sesion.setAttribute("idPacientePotencialAtendido", idPaciente);                                                                        
+                                    sesion.setAttribute("idDocumentoInicial", idDocumentoInicial);
+                                    
+                                                                        
+                                    PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
+                                    DatosPacienteDocumentoInicial datosPacienteDocumentoInicial = pacienteServicioImpl.mostrarDatosPacienteDocumentoInicial(idPaciente);                                    
+                                                                        
+                                    sesion.setAttribute("nombrePacientePotencial", datosPacienteDocumentoInicial.getNombre());                                                                        
+                                    sesion.setAttribute("primerApellidoPacientePotencial", datosPacienteDocumentoInicial.getPrimerApellido());                                                                        
+                                    sesion.setAttribute("segundoApellidoPacientePotencial", datosPacienteDocumentoInicial.getSegundoApellido());                                                                        
+                                                                                                                                                                                    
+                                    DocumentoInicialServicioImpl documentoInicialServicioImpl = new DocumentoInicialServicioImpl();
+                                    DocumentoInicialVista documentoInicialVista = documentoInicialServicioImpl.mostrarDocumentoInicialVista(idDocumentoInicial,idPaciente,siguiente);
+                                    
+                                    try{
+                                        idDocumentoInicial = documentoInicialVista.getIdDocumentoInicial();
+                                    }catch(Exception ex)
+                                    {
+                                        System.out.println("No más documentos");
+                                        PrintWriter out = response.getWriter();
+                                        out.print("todos");
+                                        break;
+                                    }
+                                                                                                            
+                                    System.out.println("Ver Documento id ".concat(String.valueOf(idDocumentoInicial)));
+                                    System.out.println("Ver Documento nombre archivo: ".concat(documentoInicialVista.getNombreDocumento()));
+                                    System.out.println("Ver Documento extensión archivo ".concat(documentoInicialVista.getTipoArchivo()));
+                                    System.out.println("Ver Documento tipo documento ".concat(documentoInicialVista.getTipoDocumento()));
+                                    System.out.println("Ver Documento siguiente ".concat(String.valueOf(siguiente)));
+                                    
+                                    InputStream documento;
+                                    String strDocumentoB64;
+                                    String extension = documentoInicialVista.getTipoArchivo();
+                                    sesion.setAttribute("idDocumentoInicialVista",documentoInicialVista.getIdDocumentoInicial());
+                                    sesion.setAttribute("idDocumentoInicial", idDocumentoInicial);
+                                    switch(extension)
+                                    {
+                                        case "image/png":
+                                        {             
+                                            InputStream imageDoc = documentoInicialVista.getArchivo();                                                                                                                                     
+                                            byte[] bytesDocumento = IOUtils.toByteArray(imageDoc);
+                                            strDocumentoB64 = Base64.getEncoder().encodeToString(bytesDocumento);                                            
+                                                                                                                            
+                                            sesion.setAttribute("tipoDocumentoInicial", documentoInicialVista.getTipoDocumento());
+                                            sesion.setAttribute("extensionArchivo",1);                                            
+                                            sesion.setAttribute("documentB64", strDocumentoB64);
+                                            break;
+                                        }                                            
+                                        case "image/jpeg":
+                                        {
+                                            InputStream imageDoc = documentoInicialVista.getArchivo();                                                                                                                                     
+                                            byte[] bytesDocumento = IOUtils.toByteArray(imageDoc);
+                                            strDocumentoB64 = Base64.getEncoder().encodeToString(bytesDocumento);                                            
+                                                                                                                            
+                                            sesion.setAttribute("tipoDocumentoInicial", documentoInicialVista.getTipoDocumento());
+                                            sesion.setAttribute("extensionArchivo",2);                                            
+                                            sesion.setAttribute("documentB64", strDocumentoB64);
+                                            break;
+                                        }
+                                        case "application/pdf":
+                                        {
+                                            try
+                                            {
+                                            /*    
+                                            PDFDocument document = new PDFDocument();
+                                            document.load(documentoInicialVista.getArchivo());
+                                            
+                                            SimpleRenderer renderer = new SimpleRenderer();
+                                            renderer.setResolution(300);
+                                                                                        
+                                            List<Image> images = renderer.render(document);                                                                                                                                    
+                                            ByteArrayOutputStream os = new ByteArrayOutputStream();                                            
+                                            ImageIO.write((RenderedImage) images.get(0),"png", os); 
+                                            */
+                                                
+                                            InputStream imageDoc = documentoInicialVista.getArchivo();                                                                                                                                     
+                                            byte[] bytesDocumento = IOUtils.toByteArray(imageDoc);
+                                            strDocumentoB64 = Base64.getEncoder().encodeToString(bytesDocumento);                                            
+                                                                                                                            
+                                            sesion.setAttribute("tipoDocumentoInicial", documentoInicialVista.getTipoDocumento());
+                                            sesion.setAttribute("extensionArchivo",3);                                            
+                                            sesion.setAttribute("documentB64", strDocumentoB64);
+                                            
+                                            }catch(Exception ex)                                            
+                                            {
+                                                System.out.println("EX pdf Document ".concat(ex.getMessage()));
+                                            }
+                                                                                                                                    
+                                            break;
+                                        }
+                                    }                                                                                                                                                                                                                        
+                                    
+                                    /*MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl=new MedicoEspecialidadServicioImpl();
+                                    MedicoEspecialidad medicoEspecialidad= medicoEspecialidadServicioImpl.mostrarMedicoEspecialidad(keyRol)
+                                     */
+                                    break;
+                                }                                
                             }
                             break;
+
                         }
 
                         /*PACIENTE EN TRATAMIENTO*/
@@ -374,6 +592,7 @@ public class FrontController extends HttpServlet {
                                     request.setAttribute("tipoTratamiento", tratamientos);
                                     request.setAttribute("UnionTratamientosPaciente", unionTratamientosPaciente);
 
+                                    
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     break;
                                 }

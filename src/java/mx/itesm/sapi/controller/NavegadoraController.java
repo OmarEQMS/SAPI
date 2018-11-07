@@ -8,6 +8,7 @@ package mx.itesm.sapi.controller;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.Base64;
@@ -20,14 +21,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialTipoDocumento;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.Login;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialTipoDocumentoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.service.persona.LoginServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import org.apache.commons.io.IOUtils;
@@ -121,6 +128,55 @@ public class NavegadoraController extends HttpServlet {
 
                             break;
                         }
+
+                        case "eliminarCuentaNavegadora": {
+                            System.out.println("Si llego aqui navegadora");
+
+                            /**
+                             * Veo si tiene sesion iniciada
+                             */
+                            if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
+                                // request.setAttribute("status", "");
+                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+                                /**
+                                 * Lo redirecciono al login
+                                 */
+                                return;
+                            } else {
+                                /**
+                                 * Elimino su cuenta (borrrado logico)
+                                 */
+                                /**
+                                 * Obtengo los id's de sue cuenta y llogin de la
+                                 * sesion
+                                 */
+                                int idCuenta = (int) sesion.getAttribute("idCuenta");
+                                System.out.println(idCuenta);
+
+                                CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+
+                                LoginServicioImpl loginServicio = new LoginServicioImpl();
+                                if (loginServicio.mostrarLoginIdCuenta(idCuenta) != null) {
+                                    Login login = loginServicio.mostrarLoginIdCuenta(idCuenta);
+                                    loginServicio.borradoLogicoLogin(login.getIdLogin());
+                                }
+
+                                if (cuentaServicio.mostrarCuenta(idCuenta) != null) {
+                                    Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+
+                                    cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
+                                }
+
+                                /**
+                                 * Al no tener cuenta se le redirecciona al
+                                 * login
+                                 */
+                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+
+                            }
+                            break;
+                        }
+
                         case "cambiarContrasena": {
 
                             if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
@@ -149,22 +205,76 @@ public class NavegadoraController extends HttpServlet {
 
                         case "agregar-paciente": {
 
-                            
-
                             PrintWriter out = response.getWriter();
-
                             out.print("hola");
 
                             break;
                         }
+
+                        case "aprobarDocumento": {
+                            int idDocumentoInicial = (int) sesion.getAttribute("idDocumentoInicialVista");
+                            System.out.println("Aprobar Documento");
+                            System.out.println("id Documento ".concat(String.valueOf(idDocumentoInicial)));
+
+                            DocumentoInicialServicioImpl documentoInicialServicioImpl = new DocumentoInicialServicioImpl();
+                            boolean aprobado = documentoInicialServicioImpl.agregarAprobacionDocumento(idDocumentoInicial);
+
+                            System.out.println("Se aprobo ".concat(String.valueOf(aprobado)));
+                            PrintWriter out = response.getWriter();
+                            out.print(aprobado);
+                            break;
+                        }
+                        case "rechazarDocumento": {
+                            int idDocumentoInicial = (int) sesion.getAttribute("idDocumentoInicialVista");
+                            String comentario = request.getParameter("comentario");
+                            System.out.println("rechazar Documento");
+                            System.out.println("id Documento ".concat(String.valueOf(idDocumentoInicial)));
+                            System.out.println("motivo rechazo  ".concat(String.valueOf(comentario)));
+
+                            DocumentoInicialServicioImpl documentoInicialServicioImpl = new DocumentoInicialServicioImpl();
+                            boolean rechazado = documentoInicialServicioImpl.agregarRechazoDocumento(idDocumentoInicial, comentario);
+
+                            System.out.println("Se rechazo ".concat(String.valueOf(rechazado)));
+                            PrintWriter out = response.getWriter();
+                            out.print(rechazado);
+                            break;
+                        }
+
+                        case "descargarArchivo": {
+
+                            int idDocumento = Integer.parseInt(request.getParameter("idDocumento"));
+
+                            System.out.println("El documento del id es: " + idDocumento);
+
+                            DocumentoInicialServicioImpl documentoInicialServicioImpl = new DocumentoInicialServicioImpl();
+                            DocumentoInicial documentoInicial = documentoInicialServicioImpl.mostrarDocumentoInicial(idDocumento);
+                            OutputStream out = response.getOutputStream();
+
+                            if (documentoInicial.getArchivo() == null) {
+                                System.out.println("valio madre");
+                            } else {
+                                System.out.println("si hay algo");
+                            }
+
+                            response.setContentType(documentoInicial.getTipo());
+
+                            System.out.println(documentoInicial.getTipo());
+                            response.setHeader("Content-Disposition", "attachment;filename=".concat(documentoInicial.getNombre())); //Forzar descarga
+
+                            out.write(IOUtils.toByteArray(documentoInicial.getArchivo()));
+                            out.flush();
+
+                            break;
+                         
+                        }
+                        
                         
                         case "aprobar-paciente": {
-                            
+
                             //Falta obtener los datos, y falta asignarlos en el servicio
-                            
                             CitaServicioImpl citaServicio = new CitaServicioImpl();
                             citaServicio.aprobarPaciente(keyRol, key, key, keyRol);
-                            
+
                             break;
                         }
 

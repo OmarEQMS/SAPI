@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
     //esconder mensajes de error
     $("#error-campos").hide();
 
@@ -63,14 +63,26 @@ $(document).ready(function () {
 //Valor a inputs modal
     $(".terminarTratamiento").on('click', function () {
 
+        if (response === "success") {
 
+            var newEvent = {
 
+            };
+
+            $('#calendarCitasPaciente').fullCalendar('renderEvent', newEvent);
+
+            swal({
+                title: "Buen Trabajo!",
+                text: "La cita se ha registrado correctamente!",
+                icon: "success",
+            });
+        }
 
     });
 
 //REGISTRAR CITA
     $('#btn-citaRegistrar').on('click', () => {
-        
+
         var esValid = false;
         //Verificar que todos los campos que han marcado
         if (isValidHour($('#RegistrarCita_hora')) && isValidSelect($('#RegistrarCita_tipo')) && isValidSelect($('#RegistrarCita_medico')) && isValidRadioChecked($('input[name=Edificios]'))) {
@@ -79,15 +91,16 @@ $(document).ready(function () {
                 esValid = true;
             } else {
                 //Validamos los pisos
-                 if(isValidRadioChecked($('input[name=Pisos]'))){
-                     esValid=true;
-                     $("#error-campos").hide();
-                 }else{
-                     $("#error-campos").show();
-                 }
+                if (isValidRadioChecked($('input[name=Pisos]'))) {
+                    esValid = true;
+                    $("#error-campos").hide();
+                } else {
+                    $("#error-campos").show();
+                }
             }
+        
 
-            if (esValid) {
+                    if (esValid) {
 
                 $.ajax({
                     url: 'PacienteController',
@@ -145,14 +158,13 @@ $(document).ready(function () {
                         });
             }
 
-        }
-        else{
+        } else {
             $("#error-campos").show();
             //alert("SELECCIONA TODO -.-");
         }
 
         //CERRAR MODAL
-        
+
     });
 
     $('#feedbackEdAntiguo').hide();
@@ -188,6 +200,26 @@ $(document).ready(function () {
         },
                 function (response, status, xhr) {
                     //console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
+    //PARA IR A INICIO PACIENTE
+    $('#irAInicioPaciente').on('click', function () {
+        $.post("SAPI", {
+            file: "paciente/index.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -262,6 +294,55 @@ $(document).ready(function () {
         );
     });
 
+
+    //Eliminar Cuenta
+    $('#eliminarCuenta').on('click', function () {
+
+        swal({
+            title: "¿Estás segura(o)?",
+            text: "Los datos se eliminarán y no podrás recuperarlos ni poder acceder a tu cuenta.",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Cancelar', 'Aceptar'],
+
+        })
+                .then((eliminar) => {
+                    if (eliminar) {
+                        $.ajax({
+                            url: "PacienteController",
+                            data: {
+                                key: "eliminarCuentaPaciente",
+                                idCuenta: $("#sesionPaciente").val()
+
+                            },
+                            method: "POST",
+                            success: function (response) {
+                                if (response == "error") {
+                                    console.log("Error al cargar");
+                                } else {
+                                    console.log("Intentando redireccionar");
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
+
+                                }
+                            },
+                            error: function (xhr) {
+
+                            }
+
+                        });
+
+
+                    } else {
+
+                    }
+                });
+
+
+
+    });
+
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta1').on('click', function () {
         console.log("Salir cuenta");
@@ -282,6 +363,7 @@ $(document).ready(function () {
                 }
         );
     });
+
 
     //
     function getValues(selector) {
@@ -564,8 +646,8 @@ $(document).ready(function () {
 
         $("#botonHidden").val($(this).data('id'));
 
-       //alert($('#idTratamientoPaciente').val());
-        
+        //alert($('#idTratamientoPaciente').val());
+
         $("#tipoTratamiento2").val(
                 $("#nombre-" + $(this).data('id')).val()
 
@@ -791,6 +873,7 @@ $(document).ready(function () {
 
 
     };
+
 
 
 });

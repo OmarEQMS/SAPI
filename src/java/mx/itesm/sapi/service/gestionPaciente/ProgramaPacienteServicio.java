@@ -16,7 +16,9 @@ import mx.itesm.sapi.bean.gestionPaciente.ProgramaPaciente;
 public interface ProgramaPacienteServicio {
 
     public ProgramaPaciente mostrarProgramaPaciente(int idProgramaAtencion);
+     public ProgramaPaciente mostrarProgramaPacienteIdPaciente(int idPaciente);
     public List<ProgramaPaciente> mostrarProgramaPaciente();
+      public List<ProgramaPaciente> mostrarProgramaPacienteSeguroIdEspecifico(int idPaciente);
     public int agregarProgramaPaciente(ProgramaPaciente programaAtencion);
     public boolean borradoLogicoProgramaPaciente(int idProgramaAtencion);
     public boolean actualizarProgramaPaciente(ProgramaPaciente programaAtencion);

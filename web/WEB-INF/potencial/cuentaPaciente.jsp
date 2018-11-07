@@ -137,7 +137,7 @@
 
                 <div class="row mb-3 justify-content-end">
                     <div class="col-3 text-center">
-                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index.html" class="colorMoradoLight">Inicio</a></span>
+                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="irAInicioPotencial" class="colorMoradoLight">Inicio</a></span>
                         - <span class="colorGlobal">Mi Cuenta</span>
                     </div>
                 </div>
@@ -244,12 +244,12 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row justify-content-center mt-4">
-                                <div class="col-4">
-                                    <button id="eliminarCuenta" type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaPotencial"><i
-                                            class="fas fa-trash-alt mr-1"></i>
-                                        Eliminar Cuenta</button>
-                                </div>
+                        <div class="form-group row justify-content-center mt-4">
+                            <div class="col-4">
+                                <button type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaPotencial"><i
+                                        class="fas fa-trash-alt mr-1"></i>
+                                    Eliminar Cuenta</button>
+
                             </div>
                         </form>
 

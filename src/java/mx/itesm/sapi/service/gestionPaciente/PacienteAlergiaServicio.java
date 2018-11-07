@@ -14,6 +14,7 @@ import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
  */
 public interface PacienteAlergiaServicio {
     public PacienteAlergia mostrarPacienteAlergia(int idPacienteAlergia);
+        public PacienteAlergia mostrarPacienteAlergiaIdPaciente(int idPaciente);
     public List<PacienteAlergia> mostrarPacienteAlergia();
     public int agregarPacienteAlergia(PacienteAlergia pacienteAlergia);
     public boolean actualizarPacienteAlergia(PacienteAlergia pacienteAlergia);

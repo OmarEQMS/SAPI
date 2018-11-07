@@ -30,21 +30,21 @@ public class EstadiajeTNMServiceImpl implements EstadiajeTNMService{
         int id = -1;
         
         //Aquí va el call del procedure
-        String stProcedure="-------";
+        String stProcedure="CALL agregarEstadiajeTNM(?, ?, ?, ?, ? ,?)";
         
         try {
             
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             
-            cstmt.setInt(1, estadiajeTNM.getIdRegistroTNM());
-            cstmt.setInt(2, estadiajeTNM.getIdTCodificado());
-            cstmt.setInt(3, estadiajeTNM.getIdNCodificado());
-            cstmt.setInt(4, estadiajeTNM.getIdMCodificado());
-            cstmt.setDouble(5, estadiajeTNM.gettClinico());
-            cstmt.setDouble(6, estadiajeTNM.gettImagen());
-            cstmt.setInt(7, estadiajeTNM.getMetastasis());
-            cstmt.setInt(8, estadiajeTNM.getEstatus());
+            
+            cstmt.setInt(1, estadiajeTNM.getIdTCodificado());
+            cstmt.setInt(2, estadiajeTNM.getIdNCodificado());
+            cstmt.setInt(3, estadiajeTNM.getIdMCodificado());
+            cstmt.setDouble(4, estadiajeTNM.gettClinico());
+            cstmt.setDouble(5, estadiajeTNM.gettImagen());
+            cstmt.setInt(6, estadiajeTNM.getMetastasis());
+            
             
             cstmt.executeQuery();
             
@@ -83,7 +83,7 @@ public class EstadiajeTNMServiceImpl implements EstadiajeTNMService{
         EstadiajeTNM estadiajeTNM = null;
         
         //Call del stored procedure
-        String stProcedure="-----";
+        String stProcedure="CALL mostrarEstadiajeTNM(?)";
         
         try {    
             conn = Conexion.getConnection();
@@ -128,7 +128,7 @@ public class EstadiajeTNMServiceImpl implements EstadiajeTNMService{
         List<EstadiajeTNM> estadiajesTNM = null;
         
         //Call del store procedure
-        String stProcedure="-----";
+        String stProcedure="CALL mostrarListaEstadiajeTNM()";
         
         try{
             
@@ -179,7 +179,7 @@ public class EstadiajeTNMServiceImpl implements EstadiajeTNMService{
         boolean exito = false;
         
         //Aquí va el call del procedure
-        String stProcedure="-------";
+        String stProcedure="CALL actualizarEstadiajeTNM(?, ?, ?, ?, ? ,?)";
         
         try {
             
@@ -229,7 +229,7 @@ public class EstadiajeTNMServiceImpl implements EstadiajeTNMService{
         boolean exito = false;
         
         //Call del store procedure
-        String stProcedure="";
+        String stProcedure="CALL borradoLogicoEstadiajeTNM(?)";
         
         try{
             

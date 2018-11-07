@@ -26,10 +26,10 @@
         <script src="lib/sweetalert/dist/sweetalert.min.js"></script>
         <script src="lib/tooltipster/dist/js/tooltipster.bundle.min.js" type="text/javascript" ></script>
         <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
-        
+
         <link rel="stylesheet" href="css/styleLogin.css">	
         <script src="js/ajaxRecuperar.js"></script>
-    
+
 
     </head>
     <body>
@@ -41,24 +41,22 @@
             <div class="row">
                 <div class="col-12">
                     <input type="email" id="email" class="form-control" placeholder="Introduce tu correo electrónico">
+                    <span class="text-danger" id="errorCorreo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
                 </div>
             </div>
 
             <div class="row justify-content-center mt-4">
                 <div class="col-12">
                     <button class="btn btn-danger btn-block btn-recuperar" id="recuperarEnviarCorreo">Recuperar</button> 
-                    
+
                 </div>
                 <div class="col-12">
-                     <button class="btn btn-primary btn-block btn-regresar mt-3" id="ir-a-loginR">Regresar</button> 
-                    
+                    <button class="btn btn-primary btn-block btn-regresar mt-3" id="ir-a-loginR">Regresar</button> 
+
                 </div>
             </div>
-            
-            
-             
 
         </form>
-
+        <script src="js/asincrono.js"></script>
     </body>
 </html>

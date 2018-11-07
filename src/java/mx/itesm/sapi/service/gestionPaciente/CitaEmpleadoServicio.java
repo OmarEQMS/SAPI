@@ -13,7 +13,8 @@ import mx.itesm.sapi.bean.gestionPaciente.CitaEmpleado;
  * @author Oscar Miranda
  */
 public interface CitaEmpleadoServicio {
-    public CitaEmpleado mostrarCitaEmpleado(int idCitaEmpleado);
+    public CitaEmpleado mostrarCitaEmpleado(int idCitaEmpleado);    
+    public CitaEmpleado mostrarCitaEmpleadoIdCita(int idCita);
     public List<CitaEmpleado> mostrarCitaEmpleado();
     public int agregarCitaEmpleado(CitaEmpleado citaEmpleado);
     public boolean borradoLogicoCitaEmpleado(int idCitaEmpleado);

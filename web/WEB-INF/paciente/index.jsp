@@ -133,7 +133,7 @@
                 <!-- RUTA -->
                 <div class="row mb-3">
                     <div class="col-12">
-                        <span class="pull-right d-block text-right"><span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index2.html" class="colorMoradoLight">Inicio</a></span>
+                        <span class="pull-right d-block text-right"><span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="irAInicioPaciente" class="colorMoradoLight">Inicio</a></span>
                             - <span class="colorGlobal">Mis Citas</span></span>
                     </div>
                 </div> 
@@ -309,7 +309,6 @@
                                     <select class="custom-select tipo" id="RegistrarCita_tipo" required>
                                         <option disabled selected>Seleccione tipo</option>
                                         <option value="2" data-nombre="Consulta">Consulta</option>
-                                        <option value="4" data-nombre="Preconsulta">Preconsulta</option>
                                         <option value="3" data-nombre="Tratamiento">Tratamiento</option>
                                         <option value="1" data-nombre="Estudio">Estudio</option>
                                         <option value="6" data-nombre="Cirugía">Cirugía</option>

@@ -4,6 +4,7 @@
     Author     : feror
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -82,7 +83,7 @@
                     </div>
 
                     <div class="col-2">
-                        <a class="iconoSidebar" href="" title="Cerrar Sesión">
+                        <a class="iconoSidebar" href="" title="Cerrar Sesión" id="salirCuenta2">
                             <i class="fas fa-power-off"></i>
                         </a>
                     </div>
@@ -100,30 +101,16 @@
             <!-- MENU PRINCIPAL ENLACES -->
             <ul class="list-unstyled components">
 
-                <li>
-                    <a href="index.html">
-                        <i class="fas fa-home"></i>Inicio</a>
-                </li>
+              <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
 
-                <li>
-                    <a href="calendar.html">
-                        <i class="fas fa-calendar-alt"></i>Calendario</a>
-                </li>
-                <li>
-                    <a href="rendimiento.html">
-                        <i class="fas fa-chart-line"></i>Mi Rendimiento</a>
-                </li>
+                <li id="idACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+                <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
-
-                <li>
-                    <a href="cuenta.html">
-                        <i class="far fa-user"></i>Mi Cuenta</a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a>
-                </li>
+                <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+                
+                <li id="irADocumentos"><a><i class="far fa-user"></i>Documentos</a></li>
+                
+                <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
             </ul>
 
@@ -155,6 +142,10 @@
             <!-- ***** A PARTIR DE AQUI ESCRIBEN EL CODIGO QUE QUIERAN..... ***** -->
             <!-- **************************************************************** -->
 
+            <!--Input hidden -->
+            <input type="hidden" value="${sessionScope.idPaciente}" id="hiddenIdPaciente">
+            
+            
             <div class="row mb-3 justify-content-end">
                 <div class="col-3 text-center">
                     <span class="iconoHome mr-2">
@@ -181,38 +172,46 @@
                 <div class="col-6 text-center">
                     <ul class="list-group">
                         <li class="list-group-item">Estado Civil:
-                            <strong>Casada</strong>
+                            <strong>${sessionScope.estadoCivil}</strong>
                         </li>
                         <li class="list-group-item">Fecha de Nacimiento:
-                            <strong>12 de enero de 1989</strong>
+                            <strong>${sessionScope.fechaNacimiento}</strong>
                         </li>
                         <li class="list-group-item">Lugar de residencia:
-                            <strong>Morelos, Cuernavaca</strong>
+                            <strong>${sessionScope.estado}, ${sessionScope.municipio}</strong>
                         </li>
                         <li class="list-group-item">Direccion:
-                            <strong>Calle del empleado #421, CP. 2345</strong>
+                            <strong>${sessionScope.calle}, # ${sessionScope.noExterior}, interior ${sessionScope.noInt}, colonia ${sessionScope.colonia}</strong>
                         </li>
                         <li class="list-group-item">Fecha de Registro:
-                            <strong>12 de julio de 2018</strong>
+                            <strong>${sessionScope.fechaRegistro}</strong>
                         </li>
                     </ul>
                 </div>
                 <div class="col-6 text-center">
                     <ul class="list-group">
                         <li class="list-group-item">CURP:
-                            <strong>PEFU123567TAM23</strong>
+                            <strong>${sessionScope.curp}</strong>
                         </li>
                         <li class="list-group-item">Teléfono:
-                            <strong>12344567</strong>
+                            <strong>${sessionScope.telefono}</strong>
                         </li>
                         <li class="list-group-item">Edad:
                             <strong>29</strong>
                         </li>
                         <li class="list-group-item">Correo:
-                            <strong>tam@correo.mx</strong>
+                            <strong>${sessionScope.correo}</strong>
                         </li>
                         <li class="list-group-item">Visita:
+                            <c:choose>
+                                <c:when test="${sessionScope.segundaOpinion==1}">
+                            <span class="badge badge-success">Segunda opinion</span>
+                            </c:when>
+                            <c:otherwise>
                             <span class="badge badge-success">Primera vez</span>
+                            </c:otherwise>
+                            
+                            </c:choose>
                         </li>
                     </ul>
                 </div>
@@ -232,76 +231,55 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <c:forEach items="${documentos}" var="documento">
+                                <tr>
                                 <td>
-                                    <i class="fas fa-comments mr-2 iconoComentarios" data-toggle="modal" data-target="#modalVerComentario"></i>
+                                   
 
-                                    Identificación oficial
-                                    <span class=" ml-2 badge badge-danger">Rechazado</span>
+                                    
+
+                                    
+                                    
+                                    
+                                    <c:choose>
+                                        <c:when test="${documento.aprobado==1}">
+                                             <c:out value="${documento.nombreTipo}"/>
+                                            <span class=" ml-2 badge badge-success">Aprobado</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                             <i class="fas fa-comments mr-2 iconoComentarios verComentario" data-id="${documento.idDocumentoInicial}" data-toggle="modal" data-target="#modalVerComentario" ></i>
+
+                                             <c:out value="${documento.nombreTipo}"/>
+                                            <span class=" ml-2 badge badge-danger">Rechazado</span>
+                                        </c:otherwise>
+                                        
+                                    </c:choose>
                                 </td>
                                 <td>
-                                    <a href='verDocumento.html' class="btn btn-info" id="btn-ver ">
+                                    <a  class="btn btn-info irAVerDocumento" id="btn-ver " data-id="${documento.idDocumentoInicial}">
                                         <i class="far fa-eye "></i>
                                         </button>
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary " id="btn-descargar ">
+
+                                    <form action="NavegadoraController">
+                                        <input type="hidden" value="${documento.idDocumentoInicial}" name="idDocumento">
+                                        <input type="hidden" value="descargarArchivo" name="key">
+                                    <button type="submit" class="btn btn-primary descargarDocumento"  data-id="${documento.idDocumentoInicial}">
+
                                         <i class="fas fa-cloud-download-alt"></i>
                                         </button>
+                                    </form>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>Comprobante de domicilio
-                                    <span class=" ml-2 badge badge-success ">Aceptado</span>
-                                </td>
-                                <td>
-                                    <a href='verDocumento.html' class="btn btn-info" id="btn-ver">
-                                        <i class="far fa-eye"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary " id="btn-descargar ">
-                                        <i class="fas fa-cloud-download-alt"></i>
-                                        </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Estudios previos</td>
-                                <td>
-                                    <button class="btn btn-info " id="btn-ver ">
-                                        <i class="far fa-eye "></i>
-                                    </button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary " id="btn-descargar ">
-                                        <i class="fas fa-cloud-download-alt"></i>
-                                        </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Motivo de consulta</td>
-                                <td>
-                                    <button class="btn btn-info " id="btn-ver ">
-                                        <i class="far fa-eye "></i>
-                                    </button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary " id="btn-descargar ">
-                                        <i class="fas fa-cloud-download-alt"></i>
-                                        </button>
-                                </td>
-                                
-                            </tr>
+                                <input type="hidden" value="${documento.comentario}" id="comentario-${documento.idDocumentoInicial}">
+                                </tr>
+                            </c:forEach>
                             
 
                         </tbody>
                     </table>
 
-                    <div class="row justify-content-center mt-3">
-                        <div class="col-4">
-                            <button class="btn btn-outline-primary btn-block" id="enviarObservaciones" style="border-radius: 20px">
-                                <i class="fas fa-arrow-alt-circle-right mr-2"></i>Enviar observaciones</button>
-                        </div>
+                    
 
                     </div>
                 </div>
@@ -324,16 +302,16 @@
                     </div>
                     <div class="modal-body ">
                         <div class="row ">
-                            <div class="col-12 ">
-                                <span class="d-block">1.- La imagen esta muy borrosa</span>
-                                <span class="d-block">2.- No esta actualizada</span>
+                            <div class="col-12 " id="modalComentario">
+                                <span class="d-block"> </span>
+                                
                             </div>
                         </div>
 
                     </div>
                     <div class="modal-footer ">
-                        <button type="button" class="btn btn-danger" style="border-radius: 20px" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" style="border-radius: 20px" data-dismiss="modal">Aceptar</button>
+                        <button type="button" id="cerrarModal" class="btn btn-danger" style="border-radius: 20px" data-dismiss="modal">Cerrar</button>
+                        <button type="button" id="aceptarModal" class="btn btn-primary" style="border-radius: 20px" data-dismiss="modal">Aceptar</button>
                     </div>
                 </div>
             </div>

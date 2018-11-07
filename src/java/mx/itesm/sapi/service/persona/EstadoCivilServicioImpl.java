@@ -29,7 +29,7 @@ public class EstadoCivilServicioImpl implements EstadoCivilServicio {
         EstadoCivil estadoCivil = null;
 
         //Call del store procedure
-        String stProcedure = "mostrarEstadoCivil(?)";
+        String stProcedure = "CALL mostrarEstadoCivil(?)";
 
         try {
             estadoCivil = new EstadoCivil();

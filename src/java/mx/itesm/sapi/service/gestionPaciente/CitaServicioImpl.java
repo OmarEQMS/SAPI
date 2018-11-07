@@ -45,11 +45,13 @@ public class CitaServicioImpl implements CitaServicio {
             cita.setIdPaciente(rs.getInt("idPaciente"));
             cita.setIdEstadoCita(rs.getInt("idEstadoCita"));
             cita.setIdImportanciaCita(rs.getInt("idImportanciaCita"));
+            cita.setIdPiso(rs.getInt("idPiso"));
             cita.setIdTipoTratamiento(rs.getInt("idTipoTratamiento"));
             cita.setIdEstudio(rs.getInt("idEstudio"));
-            cita.setIdMotivoConsulta(rs.getInt("MotivoConsulta"));
-            cita.setFechaProgramada((rs.getTimestamp("fechaProgramada")).toString());
-            cita.setFechaReal((rs.getTimestamp("fechaReal")).toString());
+            cita.setIdMotivoConsulta(rs.getInt("idMotivoConsulta"));
+            cita.setFechaProgramada((rs.getTimestamp("fechaProgramada")));
+            cita.setFechaReal((rs.getTimestamp("fechaReal")));
+            cita.setEstatus(rs.getInt("estatus"));
             cita.setArchivo(rs.getBytes("archivo"));
             cita.setHospitalProcedencia(rs.getString("hospitalProcedencia"));
             cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")).toString());
@@ -71,7 +73,7 @@ public class CitaServicioImpl implements CitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarCita";
+        String stProcedure = "CALL mostrarCita()";
         List<Cita> citas = null;
         Cita cita;
 
@@ -90,9 +92,9 @@ public class CitaServicioImpl implements CitaServicio {
                 cita.setIdImportanciaCita(rs.getInt("idImportanciaCita"));
                 cita.setIdTipoTratamiento(rs.getInt("idTipoTratamiento"));
                 cita.setIdEstudio(rs.getInt("idEstudio"));
-                cita.setIdMotivoConsulta(rs.getInt("MotivoConsulta"));
-                cita.setFechaProgramada((rs.getTimestamp("fechaProgramada")).toString());
-                cita.setFechaReal((rs.getTimestamp("fechaReal")).toString());
+                cita.setIdMotivoConsulta(rs.getInt("idMotivoConsulta"));
+                cita.setFechaProgramada((rs.getTimestamp("fechaProgramada")));
+                cita.setFechaReal((rs.getTimestamp("fechaReal")));
                 cita.setArchivo(rs.getBytes("archivo"));
                 cita.setHospitalProcedencia(rs.getString("hospitalProcedencia"));
                 cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")).toString());
@@ -117,7 +119,7 @@ public class CitaServicioImpl implements CitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarCita";
+        String stProcedure = "CALL agregarCita(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int id = -1;
 
         try {
@@ -134,7 +136,7 @@ public class CitaServicioImpl implements CitaServicio {
 
             try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-                Date parsedDate = dateFormat.parse(cita.getFechaProgramada());
+                Date parsedDate = dateFormat.parse(cita.getFechaProgramada().toString());
                 Timestamp fechaProgramada = new java.sql.Timestamp(parsedDate.getTime());
                 cstmt.setTimestamp(8, fechaProgramada);
             } catch (Exception e) { //this generic but you can control nother types of exception
@@ -143,7 +145,7 @@ public class CitaServicioImpl implements CitaServicio {
 
             try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-                Date parsedDate = dateFormat.parse(cita.getFechaReal());
+                Date parsedDate = dateFormat.parse(cita.getFechaReal().toString());
                 Timestamp fechaReal = new java.sql.Timestamp(parsedDate.getTime());
                 cstmt.setTimestamp(9, fechaReal);
             } catch (Exception e) { //this generic but you can control nother types of exception
@@ -226,10 +228,10 @@ public class CitaServicioImpl implements CitaServicio {
             cstmt.setInt(5, cita.getIdTipoTratamiento());
             cstmt.setInt(6, cita.getIdEstudio());
             cstmt.setInt(7, cita.getIdMotivoConsulta());
-            
+
             try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-                Date parsedDate = dateFormat.parse(cita.getFechaProgramada());
+                Date parsedDate = dateFormat.parse(cita.getFechaProgramada().toString());
                 Timestamp fechaProgramada = new java.sql.Timestamp(parsedDate.getTime());
                 cstmt.setTimestamp(8, fechaProgramada);
             } catch (Exception e) { //this generic but you can control nother types of exception
@@ -238,7 +240,7 @@ public class CitaServicioImpl implements CitaServicio {
 
             try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-                Date parsedDate = dateFormat.parse(cita.getFechaReal());
+                Date parsedDate = dateFormat.parse(cita.getFechaReal().toString());
                 Timestamp fechaReal = new java.sql.Timestamp(parsedDate.getTime());
                 cstmt.setTimestamp(9, fechaReal);
             } catch (Exception e) { //this generic but you can control nother types of exception
@@ -277,36 +279,35 @@ public class CitaServicioImpl implements CitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL solicitarPreconsulta(?,?,?,?);";
+        String stProcedure = "CALL solicitarPreconsulta(?,?,?,?)";
         int id = -1;
 
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            
+
             int idPaciente = cita.getIdPaciente();
             int idMotivo = cita.getIdMotivoConsulta();
             String hospitalProcedencia = cita.getHospitalProcedencia();
             Timestamp fechaSolicitud = null;
-            
-             try {
+
+            try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
                 Date parsedDate = dateFormat.parse(cita.getFechaSolicitud());
                 fechaSolicitud = new java.sql.Timestamp(parsedDate.getTime());
-                
+
             } catch (Exception e) { //this generic but you can control nother types of exception
                 // look the origin of excption 
             }
-             
-             System.out.println("Params Preconsulta ".concat(String.valueOf(idPaciente)).concat(" ").concat(String.valueOf(idMotivo)).concat(" ")
-                     .concat(" ").concat(hospitalProcedencia).concat(" ").concat(fechaSolicitud.toString()));
-                        
+
+            System.out.println("Params Preconsulta ".concat(String.valueOf(idPaciente)).concat(" ").concat(String.valueOf(idMotivo)).concat(" ")
+                    .concat(" ").concat(hospitalProcedencia).concat(" ").concat(fechaSolicitud.toString()));
+
             cstmt.setInt(1, idPaciente);
             cstmt.setInt(2, idMotivo);
             cstmt.setString(3, hospitalProcedencia);
             cstmt.setTimestamp(4, fechaSolicitud);
-           
-            
+
             System.out.println("PROCEDURE ".concat(cstmt.toString()));
             rs = cstmt.executeQuery();
             rs.next();
@@ -330,17 +331,17 @@ public class CitaServicioImpl implements CitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarEstadoPreconsulta(?);";
+        String stProcedure = "CALL mostrarEstadoPreconsulta(?)";
         String estadoCita = null;
 
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
-            cstmt.setInt(1,idPacientePotencial);                                 
+            cstmt.setInt(1, idPacientePotencial);
             rs = cstmt.executeQuery();
             rs.next();
-            
+
             estadoCita = rs.getString("ESTADO_CITA");
 
             conn.close();
@@ -367,7 +368,7 @@ public class CitaServicioImpl implements CitaServicio {
             cstmt = conn.prepareCall(stProcedure);
 
             cstmt.setInt(1, idPacientePotencial);
-           
+
             rs = cstmt.executeQuery();
             rs.next();
             exito = rs.getBoolean(1);
@@ -421,6 +422,8 @@ public class CitaServicioImpl implements CitaServicio {
             rs.next();
             idCitaNav = rs.getInt(1);
             idCitaCon = rs.getInt(2);
+            
+            exito = true;
 
             rs.close();
             conn.close();
@@ -432,4 +435,102 @@ public class CitaServicioImpl implements CitaServicio {
         }
         return exito;
     }
+
+    @Override
+    public Cita mostrarCitaIdPaciente(int idPaciente) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarCitaIdPaciente(?)";
+        Cita cita = null;
+
+        try {
+            conn = Conexion.getConnection();
+            cita = new Cita();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            cita.setIdCita(rs.getInt("idCita"));
+            cita.setIdTipoCita(rs.getInt("idTipoCita"));
+            cita.setIdPaciente(rs.getInt("idPaciente"));
+            cita.setIdEstadoCita(rs.getInt("idEstadoCita"));
+            cita.setIdImportanciaCita(rs.getInt("idImportanciaCita"));
+            cita.setIdPiso(rs.getInt("idPiso"));
+            cita.setIdTipoTratamiento(rs.getInt("idTipoTratamiento"));
+            cita.setIdEstudio(rs.getInt("idEstudio"));
+            cita.setIdMotivoConsulta(rs.getInt("idMotivoConsulta"));
+
+            cita.setFechaProgramada((rs.getTimestamp("fechaProgramada")));
+            System.out.println("Pre fechareal");
+            cita.setFechaReal((rs.getTimestamp("fechaReal")));
+            System.out.println("post fecha real");
+            cita.setEstatus(rs.getInt("estatus"));
+            cita.setArchivo(rs.getBytes("archivo"));
+            cita.setHospitalProcedencia(rs.getString("hospitalProcedencia"));
+            cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")).toString());
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            cita = null;
+        }
+        return cita;
+    }
+
+    @Override
+    public List<Cita> mostrarCitaIdEspecifico(int idPaciente) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarListaCitaIdEspecifico(?)";
+        List<Cita> citas = null;
+        Cita cita;
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+            citas = new ArrayList<>();
+
+            while (rs.next()) {
+                cita = new Cita();
+                cita.setIdCita(rs.getInt("idCita"));
+                cita.setIdTipoCita(rs.getInt("idTipoCita"));
+                cita.setIdPaciente(rs.getInt("idPaciente"));
+                cita.setIdEstadoCita(rs.getInt("idEstadoCita"));
+                cita.setIdImportanciaCita(rs.getInt("idImportanciaCita"));
+                cita.setIdPiso(rs.getInt("idPiso"));
+                cita.setIdTipoTratamiento(rs.getInt("idTipoTratamiento"));
+                cita.setIdEstudio(rs.getInt("idEstudio"));
+                cita.setIdMotivoConsulta(rs.getInt("idMotivoConsulta"));
+                cita.setFechaProgramada((rs.getTimestamp("fechaProgramada")));
+                cita.setFechaReal((rs.getTimestamp("fechaReal")));
+                cita.setEstatus(rs.getInt("estatus"));
+                cita.setArchivo(rs.getBytes("archivo"));
+                cita.setHospitalProcedencia(rs.getString("hospitalProcedencia"));
+                cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")).toString());
+
+                citas.add(cita);
+            }
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            citas = null;
+        }
+        return citas;
+    }
+
 }

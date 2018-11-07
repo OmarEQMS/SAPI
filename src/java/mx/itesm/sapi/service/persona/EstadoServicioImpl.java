@@ -34,7 +34,7 @@ public class EstadoServicioImpl implements EstadoServicio {
         Estado estado = null;
 
         //Call del store procedure
-        String stProcedure = "mostrarEstado(?)";
+        String stProcedure = "CALL mostrarEstado(?)";
 
         try {
             estado = new Estado();

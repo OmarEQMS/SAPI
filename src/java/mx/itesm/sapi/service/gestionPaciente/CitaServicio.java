@@ -14,7 +14,9 @@ import mx.itesm.sapi.bean.gestionPaciente.Cita;
  */
 public interface CitaServicio {
     public Cita mostrarCita(int idCita);
+    public Cita mostrarCitaIdPaciente(int idPaciente);
     public List<Cita> mostrarCita();
+    public List<Cita> mostrarCitaIdEspecifico(int idPaciente);
     public int agregarCita(Cita cita);    
     public boolean borradoLogicoCita(int idCita);
     public boolean actualizarCita(Cita  cita);

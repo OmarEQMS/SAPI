@@ -7,6 +7,7 @@ package mx.itesm.sapi.service.gestionPaciente;
 
 import java.util.List;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialVista;
 
 /**
  *
@@ -14,9 +15,13 @@ import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
  */
 interface DocumentoInicialServicio {
     public DocumentoInicial mostrarDocumentoInicial(int idDocumentoInicial);
+    public DocumentoInicial mostrarDocumentoInicialIdPaciente(int idPaciente);
     public List<DocumentoInicial> mostrarDocumentoInicial();
     public int agregarDocumentoInicial(DocumentoInicial documentoInicial);
     public int agregarDocumentoInicialPreconsulta(DocumentoInicial documentoInicial);
     public boolean borradoLogicoDocumentoInicial(int idDocumentoInicial);
     public boolean actualizarDocumentoInicial(DocumentoInicial documentoInicial);
+    public DocumentoInicialVista mostrarDocumentoInicialVista(int idDocumentoInicialVista,int idPaciente, int siguiente);
+    public boolean agregarAprobacionDocumento(int idDocumentoInicial);
+    public boolean agregarRechazoDocumento(int idDocumentoInicial,String comentario);
 }

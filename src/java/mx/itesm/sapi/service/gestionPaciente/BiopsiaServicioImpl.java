@@ -18,22 +18,22 @@ import mx.itesm.sapi.util.Conexion;
  *
  * @author Oscar Miranda
  */
-public class BiopsiaServicioImpl implements BiopsiaServicio{
+public class BiopsiaServicioImpl implements BiopsiaServicio {
 
     @Override
     public Biopsia mostrarBiopsia(int idBiopsia) {
-         Connection conn;
-         CallableStatement cstmt;
-         ResultSet rs;
-         String stProcedure = "CALL mostrarBiopsia";
-         Biopsia biopsia = null;
-     
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarBiopsia(?)";
+        Biopsia biopsia = null;
+
         try {
             conn = Conexion.getConnection();
             biopsia = new Biopsia();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idBiopsia);
-                  
+
             rs = cstmt.executeQuery();
             rs.next();
             biopsia.setIdBiopsia(rs.getInt("idBiopsia"));
@@ -49,16 +49,16 @@ public class BiopsiaServicioImpl implements BiopsiaServicio{
             biopsia.setLaminillas(rs.getInt("laminillas"));
             biopsia.setBloques(rs.getInt("bloques"));
             biopsia.setPrevia(rs.getInt("previa"));
-            
+
             conn.close();
             cstmt.close();
             rs.close();
-            
+
         } catch (SQLException ex) {
-           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
-                   .concat(ex.getMessage()));
-           biopsia = null;
-        }   
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            biopsia = null;
+        }
         return biopsia;
     }
 
@@ -67,17 +67,17 @@ public class BiopsiaServicioImpl implements BiopsiaServicio{
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarBiopsia";
+        String stProcedure = "CALL mostrarBiopsia()";
         List<Biopsia> biopsias = null;
         Biopsia biopsia;
 
-	try{
-            conn  = Conexion.getConnection();
+        try {
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             rs = cstmt.executeQuery();
-            biopsias =  new ArrayList<>();
-            
-            while(rs.next()){
+            biopsias = new ArrayList<>();
+
+            while (rs.next()) {
                 biopsia = new Biopsia();
                 biopsia.setIdBiopsia(rs.getInt("idBiopsia"));
                 biopsia.setIdPaciente(rs.getInt("idPaciente"));
@@ -95,16 +95,16 @@ public class BiopsiaServicioImpl implements BiopsiaServicio{
 
                 biopsias.add(biopsia);
             }
-		
-		conn.close();
-		cstmt.close();
-		rs.close();
-                
-	}catch(SQLException ex){
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             biopsias = null;
-	}
+        }
         return biopsias;
     }
 
@@ -113,108 +113,198 @@ public class BiopsiaServicioImpl implements BiopsiaServicio{
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarBiopsia";
+        String stProcedure = "CALL agregarBiopsia(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int id = -1;
-        
-	try{
-            conn  = Conexion.getConnection();
+
+        try {
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            
-            cstmt.setInt(1,biopsia.getIdPaciente());
-            cstmt.setInt(2,biopsia.getIdLugarDelCuerpo());
-            cstmt.setInt(3,biopsia.getIdHer2());
-            cstmt.setInt(4,biopsia.getIdReceptorProgesterona());
-            cstmt.setInt(5,biopsia.getIdReceptorEstrogeno());
-            cstmt.setInt(6,biopsia.getIdFish());
-            cstmt.setInt(7,biopsia.getIdKi67());
-            cstmt.setInt(8,biopsia.getIdTipoHistologico());
-            cstmt.setInt(9,biopsia.getIdGradoHistologico());
-            cstmt.setInt(10,biopsia.getLaminillas());
-            cstmt.setInt(11,biopsia.getBloques());
-            cstmt.setInt(12,biopsia.getPrevia());
-            
+
+            cstmt.setInt(1, biopsia.getIdPaciente());
+            cstmt.setInt(2, biopsia.getIdLugarDelCuerpo());
+            cstmt.setInt(3, biopsia.getIdHer2());
+            cstmt.setInt(4, biopsia.getIdReceptorProgesterona());
+            cstmt.setInt(5, biopsia.getIdReceptorEstrogeno());
+            cstmt.setInt(6, biopsia.getIdFish());
+            cstmt.setInt(7, biopsia.getIdKi67());
+            cstmt.setInt(8, biopsia.getIdTipoHistologico());
+            cstmt.setInt(9, biopsia.getIdGradoHistologico());
+            cstmt.setInt(10, biopsia.getLaminillas());
+            cstmt.setInt(11, biopsia.getBloques());
+            cstmt.setInt(12, biopsia.getPrevia());
+
             rs = cstmt.executeQuery();
             rs.next();
             id = rs.getInt(1);
-                
+
             conn.close();
             cstmt.close();
             rs.close();
-	}catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             id = -1;
-	}
+        }
         return id;
     }
 
     @Override
     public boolean borradoLogicoBiopsia(int idBiopsia) {
         Connection conn;
-	CallableStatement cstmt;
+        CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL borradoLogicoBiopsia";
+        String stProcedure = "CALL borradoLogicoBiopsia(?)";
         boolean exito = false;
 
-	try{
-            conn  = Conexion.getConnection();
+        try {
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            
+
             cstmt.setInt(1, idBiopsia);
-            
+
             rs = cstmt.executeQuery();
             rs.next();
-            exito  = rs.getBoolean(1);
-            
+            exito = rs.getBoolean(1);
+
             rs.close();
             conn.close();
             cstmt.close();
-	}catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             exito = false;
-	}
+        }
         return exito;
     }
 
     @Override
     public boolean actualizarBiopsia(Biopsia biopsia) {
         Connection conn;
-	CallableStatement cstmt;
+        CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarBiopsia";
+        String stProcedure = "CALL actualizarBiopsia(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         boolean exito = false;
 
-	try{
-            conn  = Conexion.getConnection();
+        try {
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            
-            cstmt.setInt(1,biopsia.getIdPaciente());
-            cstmt.setInt(2,biopsia.getIdLugarDelCuerpo());
-            cstmt.setInt(3,biopsia.getIdHer2());
-            cstmt.setInt(4,biopsia.getIdReceptorProgesterona());
-            cstmt.setInt(5,biopsia.getIdReceptorEstrogeno());
-            cstmt.setInt(6,biopsia.getIdFish());
-            cstmt.setInt(7,biopsia.getIdKi67());
-            cstmt.setInt(8,biopsia.getIdTipoHistologico());
-            cstmt.setInt(9,biopsia.getIdGradoHistologico());
-            cstmt.setInt(10,biopsia.getLaminillas());
-            cstmt.setInt(11,biopsia.getBloques());
-            cstmt.setInt(12,biopsia.getPrevia());
-            
+
+            cstmt.setInt(1, biopsia.getIdPaciente());
+            cstmt.setInt(2, biopsia.getIdLugarDelCuerpo());
+            cstmt.setInt(3, biopsia.getIdHer2());
+            cstmt.setInt(4, biopsia.getIdReceptorProgesterona());
+            cstmt.setInt(5, biopsia.getIdReceptorEstrogeno());
+            cstmt.setInt(6, biopsia.getIdFish());
+            cstmt.setInt(7, biopsia.getIdKi67());
+            cstmt.setInt(8, biopsia.getIdTipoHistologico());
+            cstmt.setInt(9, biopsia.getIdGradoHistologico());
+            cstmt.setInt(10, biopsia.getLaminillas());
+            cstmt.setInt(11, biopsia.getBloques());
+            cstmt.setInt(12, biopsia.getPrevia());
+
             rs = cstmt.executeQuery();
             rs.next();
             exito = rs.getBoolean(1);
-            
+
             rs.close();
             conn.close();
             cstmt.close();
-	}catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             exito = false;
-	}
+        }
         return exito;
     }
-    
+
+    @Override
+    public Biopsia mostrarBiopsiaIdPaciente(int idPaciente) {
+
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarBiopsiaIdPaciente(?)";
+        Biopsia biopsia = null;
+
+        try {
+            conn = Conexion.getConnection();
+            biopsia = new Biopsia();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+            biopsia.setIdBiopsia(rs.getInt("idBiopsia"));
+            biopsia.setIdPaciente(rs.getInt("idPaciente"));
+            biopsia.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
+            biopsia.setIdHer2(rs.getInt("idHer2"));
+            biopsia.setIdReceptorProgesterona(rs.getInt("idReceptorProgesterona"));
+            biopsia.setIdReceptorEstrogeno(rs.getInt("idReceptorEstrogeno"));
+            biopsia.setIdFish(rs.getInt("idFish"));
+            biopsia.setIdKi67(rs.getInt("idKi67"));
+            biopsia.setIdTipoHistologico(rs.getInt("idTipoHistologico"));
+            biopsia.setIdGradoHistologico(rs.getInt("idGradoHistologico"));
+            biopsia.setLaminillas(rs.getInt("laminillas"));
+            biopsia.setBloques(rs.getInt("bloques"));
+            biopsia.setPrevia(rs.getInt("previa"));
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            biopsia = null;
+        }
+        return biopsia;
+    }
+
+    @Override
+    public List<Biopsia> mostrarAllBiopsiaIdEspecifico(int idPaciente) {
+         Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarAllBiopsiaIdEspecifico(?)";
+        List<Biopsia> biopsias = null;
+        Biopsia biopsia;
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+            biopsias = new ArrayList<>();
+
+            while (rs.next()) {
+                biopsia = new Biopsia();
+                biopsia.setIdBiopsia(rs.getInt("idBiopsia"));
+                biopsia.setIdPaciente(rs.getInt("idPaciente"));
+                biopsia.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
+                biopsia.setIdHer2(rs.getInt("idHer2"));
+                biopsia.setIdReceptorProgesterona(rs.getInt("idReceptorProgesterona"));
+                biopsia.setIdReceptorEstrogeno(rs.getInt("idReceptorEstrogeno"));
+                biopsia.setIdFish(rs.getInt("idFish"));
+                biopsia.setIdKi67(rs.getInt("idKi67"));
+                biopsia.setIdTipoHistologico(rs.getInt("idTipoHistologico"));
+                biopsia.setIdGradoHistologico(rs.getInt("idGradoHistologico"));
+                biopsia.setLaminillas(rs.getInt("laminillas"));
+                biopsia.setBloques(rs.getInt("bloques"));
+                biopsia.setPrevia(rs.getInt("previa"));
+
+                biopsias.add(biopsia);
+            }
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            biopsias = null;
+        }
+        return biopsias;
+    }
+
 }

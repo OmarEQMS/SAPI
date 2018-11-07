@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import mx.itesm.sapi.bean.gestionPaciente.PacientePotencial;
-import mx.itesm.sapi.bean.moduloGestionPaciente.Paciente;
+import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.util.Conexion;
 
 /**
@@ -27,13 +27,17 @@ public class PacienteServiceImpl implements PacienteService {
         CallableStatement cstmt;
         ResultSet rs;
 
-        Paciente paciente = new Paciente();
+        String stProcedure = "CALL mostrarPaciente(?)";
+        Paciente paciente = null;
 
-        String stProcedure = "";
         try {
             conn = Conexion.getConnection();
+            paciente = new Paciente();
             cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+
             rs = cstmt.executeQuery();
+
             rs.next();
 
             paciente.setIdPaciente(rs.getInt("idPaciente"));
@@ -57,6 +61,7 @@ public class PacienteServiceImpl implements PacienteService {
         return paciente;
     }
 
+    /*
     @Override
     public Paciente mostrarPaciente(String przPaciente) {
         Connection conn;
@@ -64,9 +69,19 @@ public class PacienteServiceImpl implements PacienteService {
         ResultSet rs;
 
         Paciente paciente = new Paciente();
+<<<<<<< HEAD
 
         String stProcedure = "";
         try {
+||||||| merged common ancestors
+        
+        String stProcedure ="";
+        try{
+=======
+        
+        String stProcedure ="CALL mostrarPaciente(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try{
+>>>>>>> origin/Develop
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             rs = cstmt.executeQuery();
@@ -93,13 +108,13 @@ public class PacienteServiceImpl implements PacienteService {
         }
         return paciente;
     }
-
+     */
     @Override
     public List<Paciente> mostrarPaciente() {
         Connection conn;
         List<Paciente> pacientes = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL mostrarListaPaciente(?) ";
 
         ResultSet rs;
 
@@ -144,6 +159,7 @@ public class PacienteServiceImpl implements PacienteService {
 
         String stPrcedure = "CALL agregarPaciente(?,?,?,?,?,?,?)";
         try {
+
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stPrcedure);
 
@@ -174,10 +190,11 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public boolean actualizarPaciente(Paciente paciente) {
+    public boolean actualizarPaciente(Paciente paciente
+    ) {
         Connection conn;
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL actualizarPaciente(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         boolean exito = false;
         ResultSet rs;
         try {
@@ -210,10 +227,11 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public boolean borradoLogicoPaciente(int idPaciente) {
+    public boolean borradoLogicoPaciente(int idPaciente
+    ) {
         Connection conn;
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL borradoLogicoPaciente(?)";
         boolean exito = false;
         ResultSet rs;
         try {
@@ -239,7 +257,8 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public int agregarPacienteRegistro(int idCuenta) {
+    public int agregarPacienteRegistro(int idCuenta
+    ) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
@@ -265,8 +284,8 @@ public class PacienteServiceImpl implements PacienteService {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             id = -1;
-        }
-
+        }     
+               
         return id;
     }
 
@@ -361,7 +380,8 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public int mostrarColor(int idPaciente) {
+    public int mostrarColor(int idPaciente
+    ) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
