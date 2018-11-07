@@ -172,6 +172,8 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println(Biopsia[i]);
                             }
                             */
+                            
+                            
                         }
                         case "guardarP3":{
                             
