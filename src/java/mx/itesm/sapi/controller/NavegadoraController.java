@@ -152,22 +152,29 @@ public class NavegadoraController extends HttpServlet {
                             }
                              break;
                         }
-                        case "guardarP2":{
+                        case "guardar-enviar":{
+                            /* 
+                            Para jalar un valor NORMAL
                             System.out.println("NavegadoraController, case: guardarP2");
                             String prz = request.getParameter("prz-expediente");
                             String tiene = request.getParameter("nivelEducativo");
                             String alergias = request.getParameter("alergias");
                             System.out.println("prz: "+ prz + ", tiene: "+ tiene+ " alergias: " +alergias);
                             break;                        
-                        }
-                        case "guardarP3":{
-                            System.out.println("NavegadoraController, case: guardarP3");
-                           // String prz = request.getParameter("prz-expediente");
-                            //String tiene = request.getParameter("nivelEducativo");
-                            String[] Biopsia = request.getParameterValues("tipoBiopsia_dinamico");
+                            */
+                            
+                            /*
+                            Para jalar contenido DINAMICO (se usa la key) y se recibe en un arreglo :D 
+                            String[] Biopsia = request.getParameterValues("tipo-BiopsiaAdded");
+                            String[] fechaBiopsia = request.getParameterValues("fecha-BipsiAdded");
+                           
                             for(int i =0 ; i< Biopsia.length;i++){
                                 System.out.println(Biopsia[i]);
                             }
+                            */
+                        }
+                        case "guardarP3":{
+                            
                             break;                        
                         }
                         
