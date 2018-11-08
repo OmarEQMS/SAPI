@@ -16,6 +16,7 @@ public class EstadiajeTNM implements Serializable{
     int idTCodificado;
     int idNCodificado;
     int idMCodificado;
+    int idTipoHistologico;
     double tClinico;
     double tImagen;
     int Metastasis;
@@ -23,7 +24,8 @@ public class EstadiajeTNM implements Serializable{
 
     @Override
     public String toString() {
-        return "EstadiajeTNM{" + "idRegistroTNM=" + idRegistroTNM + ", idTCodificado=" + idTCodificado + ", idNCodificado=" + idNCodificado + ", idMCodificado=" + idMCodificado + ", tClinico=" + tClinico + ", tImagen=" + tImagen + ", Metastasis=" + Metastasis + ", estatus=" + estatus + '}';
+        return "EstadiajeTNM{" + "idRegistroTNM=" + idRegistroTNM + ", idTCodificado=" + idTCodificado + ", idNCodificado=" + idNCodificado + ", idMCodificado=" + idMCodificado 
+                + "idTipoHistologico" + idTipoHistologico + ", tClinico=" + tClinico + ", tImagen=" + tImagen + ", Metastasis=" + Metastasis + ", estatus=" + estatus + '}';
     }
     
     public int getIdRegistroTNM() {
@@ -88,6 +90,14 @@ public class EstadiajeTNM implements Serializable{
 
     public void setEstatus(int estatus) {
         this.estatus = estatus;
+    }
+
+    public int getIdTipoHistologico() {
+        return idTipoHistologico;
+    }
+
+    public void setIdTipoHistologico(int idTipoHistologico) {
+        this.idTipoHistologico = idTipoHistologico;
     }
     
     

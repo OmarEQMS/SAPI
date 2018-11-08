@@ -12,20 +12,22 @@ package mx.itesm.sapi.bean.gestionPaciente;
 public class ComentarioCita {
 
 	private int idComentarioCita;
-	private String comentario;
+	private String comentarioIncidencia ;
 	private int idCita;
 	private int navegadora;
 	private int estatus;
+        private String comentarioMedico;
 
     public ComentarioCita() {}
 
     @Override 
     public String toString(){
     	String str="ComentarioCita [idComentarioCita:".concat(String.valueOf(idComentarioCita))
-    		.concat(",comentario:").concat(comentario)
+    		.concat(",comentarioIncidencia :").concat(comentarioIncidencia )
     		.concat(",idCita:").concat(String.valueOf(idCita))
     		.concat(",navegadora:").concat(String.valueOf(navegadora))
     		.concat(",estatus:").concat(String.valueOf(estatus))
+                .concat(",comentarioMedico :").concat(comentarioMedico)
     		.concat("]");
 
     	return str;
@@ -39,13 +41,23 @@ public class ComentarioCita {
         this.idComentarioCita = idComentarioCita;
     }
 
-    public String getComentario() {
-        return comentario;
+    public String getComentarioIncidencia() {
+        return comentarioIncidencia;
     }
 
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
+    public String getComentarioMedico() {
+        return comentarioMedico;
     }
+
+    public void setComentarioIncidencia(String comentarioIncidencia) {
+        this.comentarioIncidencia = comentarioIncidencia;
+    }
+
+    public void setComentarioMedico(String comentarioMedico) {
+        this.comentarioMedico = comentarioMedico;
+    }
+
+   
 
     public int getIdCita() {
         return idCita;

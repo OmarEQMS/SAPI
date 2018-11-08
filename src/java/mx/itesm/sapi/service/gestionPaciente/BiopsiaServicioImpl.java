@@ -49,6 +49,8 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
             biopsia.setLaminillas(rs.getInt("laminillas"));
             biopsia.setBloques(rs.getInt("bloques"));
             biopsia.setPrevia(rs.getInt("previa"));
+            biopsia.setEstatus(rs.getInt("estatus"));
+            biopsia.setIdTipoBiopsia(rs.getInt("idTipoBiopsia"));
 
             conn.close();
             cstmt.close();
@@ -67,7 +69,7 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarBiopsia()";
+        String stProcedure = "CALL mostrarListaBiopsia()";
         List<Biopsia> biopsias = null;
         Biopsia biopsia;
 
@@ -92,6 +94,8 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
                 biopsia.setLaminillas(rs.getInt("laminillas"));
                 biopsia.setBloques(rs.getInt("bloques"));
                 biopsia.setPrevia(rs.getInt("previa"));
+                biopsia.setEstatus(rs.getInt("estatus"));
+                biopsia.setIdTipoBiopsia(rs.getInt("idTipoBiopsia"));
 
                 biopsias.add(biopsia);
             }
@@ -113,7 +117,7 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarBiopsia(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL agregarBiopsia(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int id = -1;
 
         try {
@@ -132,6 +136,8 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
             cstmt.setInt(10, biopsia.getLaminillas());
             cstmt.setInt(11, biopsia.getBloques());
             cstmt.setInt(12, biopsia.getPrevia());
+            cstmt.setInt(13, biopsia.getEstatus());
+            cstmt.setInt(14, biopsia.getIdTipoBiopsia());
 
             rs = cstmt.executeQuery();
             rs.next();
@@ -182,7 +188,7 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarBiopsia(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL actualizarBiopsia(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         boolean exito = false;
 
         try {
@@ -201,6 +207,8 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
             cstmt.setInt(10, biopsia.getLaminillas());
             cstmt.setInt(11, biopsia.getBloques());
             cstmt.setInt(12, biopsia.getPrevia());
+            cstmt.setInt(13, biopsia.getEstatus());
+            cstmt.setInt(14, biopsia.getIdTipoBiopsia());
 
             rs = cstmt.executeQuery();
             rs.next();
@@ -247,6 +255,8 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
             biopsia.setLaminillas(rs.getInt("laminillas"));
             biopsia.setBloques(rs.getInt("bloques"));
             biopsia.setPrevia(rs.getInt("previa"));
+            biopsia.setEstatus(rs.getInt("estatus"));
+            biopsia.setIdTipoBiopsia(rs.getInt("idTipoBiopsia"));
 
             conn.close();
             cstmt.close();
@@ -262,7 +272,7 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
 
     @Override
     public List<Biopsia> mostrarAllBiopsiaIdEspecifico(int idPaciente) {
-         Connection conn;
+        Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
         String stProcedure = "CALL mostrarAllBiopsiaIdEspecifico(?)";
@@ -291,6 +301,8 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
                 biopsia.setLaminillas(rs.getInt("laminillas"));
                 biopsia.setBloques(rs.getInt("bloques"));
                 biopsia.setPrevia(rs.getInt("previa"));
+                biopsia.setEstatus(rs.getInt("estatus"));
+                biopsia.setIdTipoBiopsia(rs.getInt("idTipoBiopsia"));
 
                 biopsias.add(biopsia);
             }
