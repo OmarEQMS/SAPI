@@ -201,10 +201,10 @@ public class PacienteNecesidadEspecialServicioImpl implements PacienteNecesidadE
             rs = cstmt.executeQuery();
             rs.next();
             
-            pacienteNecesidadEspecial.setIdNecesidadEspecial(rs.getInt("idPaciente"));
-            pacienteNecesidadEspecial.setIdPaciente(rs.getInt("idCuenta"));
-            pacienteNecesidadEspecial.setIdNecesidadEspecial(rs.getInt("idEscolaridad"));
-            pacienteNecesidadEspecial.setEstatus(rs.getInt("idSeguro"));
+            pacienteNecesidadEspecial.setIdNecesidadEspecial(rs.getInt("idNecesidadPaciente"));
+            pacienteNecesidadEspecial.setIdPaciente(rs.getInt("idPaciente"));
+            pacienteNecesidadEspecial.setIdNecesidadEspecial(rs.getInt("idNecesidadEspecial"));
+            pacienteNecesidadEspecial.setEstatus(rs.getInt("estatus"));
            
         
             rs.close();
