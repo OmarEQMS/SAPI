@@ -36,12 +36,14 @@
 
         <form class="formulario">
 
-            <h1 class="h3 mb-4 titulo-login text-center">Recuperar Contraseña</h1>
+            <h1 class="h3 mb-4 titulo-login text-center">Recuperar Contraseï¿½a</h1>
 
             <div class="row">
                 <div class="col-12">
+
                     <input type="email" id="email" class="form-control" placeholder="Introduce tu correo electrónico">
                     <span class="text-danger" id="errorCorreo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
+
                 </div>
             </div>
 

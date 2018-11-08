@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public interface PacienteNavegadoraServicio {
     public PacienteNavegadora mostrarPacienteNavegadora(int idPacienteNavegadora);

@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.GradoHistologico;
 
 /**
  *
- * @author Alex
+ * @author Alexis España
  */
 public interface GradoHistologicoServicio {
     public GradoHistologico mostrarTipoHistologico(int idTipoHistologico);

@@ -16,7 +16,7 @@ import mx.itesm.sapi.bean.gestionPaciente.TipoCita;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz & Alexis España
  */
 public class TipoCitaServicioImpl implements TipoCitaServicio{
 

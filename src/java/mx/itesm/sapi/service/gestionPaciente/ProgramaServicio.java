@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Programa;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public interface ProgramaServicio {
     public Programa mostrarPrograma(int idPrograma);

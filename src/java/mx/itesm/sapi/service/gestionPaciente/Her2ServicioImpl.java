@@ -16,7 +16,7 @@ import mx.itesm.sapi.util.Conexion;
 
 /**
  *
- * @author Alex
+ * @author Alexis España
  */
 public class Her2ServicioImpl implements Her2Servicio {
 

@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.moduloGestionMedico.DepartamentoDepartamentoInterno;
 
 /**
  *
- * @author feror
+ * @author Fernanda Orduña & Pablo Lugo
  */
 public interface DepartamentoDepartamentoInternoServicio {
 

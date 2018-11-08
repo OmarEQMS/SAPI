@@ -9,7 +9,7 @@ import java.util.List;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public interface PacienteNecesidadEspecialServicio {
     public PacienteNecesidadEspecial mostrarPacienteNecesidadEspecial(int idPacienteNecesidadEspecial);

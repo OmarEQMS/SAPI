@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.diagnostico.AuditoriaRegistroDiagnostico;
 
 /**
  *
- * @author Diego
+ * @author Diego Montoya
  */
 public interface AuditoriaRegistroDiagnosticoService {
     public int agregarAuditoriaRegistroDiagnostico(AuditoriaRegistroDiagnostico auditoriaRegistroDiagnostico);

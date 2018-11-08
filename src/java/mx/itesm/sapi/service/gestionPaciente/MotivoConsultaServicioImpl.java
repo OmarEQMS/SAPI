@@ -16,7 +16,7 @@ import mx.itesm.sapi.bean.gestionPaciente.MotivoConsulta;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public class MotivoConsultaServicioImpl implements MotivoConsultaServicio{
 

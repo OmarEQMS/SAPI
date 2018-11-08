@@ -22,7 +22,7 @@ import mx.itesm.sapi.service.ZonaServicioImpl;
 
 /**
  *
- * @author feror
+ * @author Fernanda Orduña & Pablo Lugo
  */
 @WebServlet(name = "ZonaController", urlPatterns = {"/ZonaController"})
 public class ZonaController extends HttpServlet {

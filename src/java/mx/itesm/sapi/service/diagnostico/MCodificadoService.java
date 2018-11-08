@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.diagnostico.MCodificado;
 
 /**
  *
- * @author Diego
+ * @author Diego Montoya
  */
 public interface MCodificadoService {
     public MCodificado mostrarMCodificado(int idMCodificado);

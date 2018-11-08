@@ -11,7 +11,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public interface PacienteServicio {
     public Paciente mostrarPacientePotencial(int idCuenta);

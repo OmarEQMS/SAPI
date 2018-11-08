@@ -16,7 +16,7 @@ import mx.itesm.sapi.bean.gestionPaciente.ReceptorEstrogeno;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public class ReceptorEstrogenoServicioImpl implements ReceptorEstrogenoServicio{
 

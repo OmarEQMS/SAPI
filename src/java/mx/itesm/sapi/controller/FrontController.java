@@ -86,7 +86,7 @@ import org.ghost4j.renderer.SimpleRenderer;*/
 
 /**
  *
- * @author quint
+ * @author Omar Quintero
  */
 @WebServlet(name = "FrontController", urlPatterns = {"/SAPI"})
 public class FrontController extends HttpServlet {
@@ -513,6 +513,12 @@ public class FrontController extends HttpServlet {
                                     
 
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
+                                    break;
+                                }
+                                case "navegadora/form.jsp":
+                                {
+                                    System.out.println("Front Controller case:  Form Navegadora");
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a form
                                     break;
                                 }
                             }

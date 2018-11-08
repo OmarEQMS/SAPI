@@ -12,7 +12,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Laminilla;
 
 /**
  *
- * @author Alex
+ * @author Alexis España
  */
 public interface LaminillaServicio {
     public Laminilla mostrarLaminilla(int idLaminilla);
