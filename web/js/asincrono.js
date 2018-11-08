@@ -60,6 +60,8 @@ $(document).ready(function () {
         }
     });
 
+    $(document).ajaxStop($.unblockUI);
+
     $('#btnAceptar').on('click', function () {
 
         if (!isValidCheckbox($('#acepto-datos')) || !isValidCheckbox($('#acepto-datos-anonimos'))) {
@@ -115,15 +117,20 @@ $(document).ready(function () {
                         })
                                 .then(function () {
                                     console.log("Redirección a login");
+                                    $.blockUI({message: '<h1><img src="img/load.gif" /> Espere un momento...</h1>'});
                                     $.get("LoginController", {
                                         key: "ir-a-login"
                                     },
                                             function (response, status, xhr) {
                                                 console.log(response);
+
                                                 if (status == "success") {
                                                     if (response == "error") {
                                                         $("#msj-error").show();
                                                     } else {
+
+                                                        $.unblockUI
+
                                                         document.open("text/html", "replace");
                                                         document.write(response);
                                                         document.close();
