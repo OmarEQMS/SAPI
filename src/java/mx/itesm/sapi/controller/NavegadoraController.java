@@ -152,7 +152,7 @@ public class NavegadoraController extends HttpServlet {
                             }
                              break;
                         }
-                        case "guardar-enviar":{
+                        case "btn-save":{
                             /* 
                             Para jalar un valor NORMAL
                             System.out.println("NavegadoraController, case: guardarP2");
@@ -173,7 +173,7 @@ public class NavegadoraController extends HttpServlet {
                             }
                             */
                         }
-                        case "guardarP3":{
+                        case "":{
                             
                             break;                        
                         }
