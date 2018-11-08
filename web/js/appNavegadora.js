@@ -369,7 +369,7 @@ $(document).ready(function () {
 
         var opcion = $(this).val();
 
-        if (opcion == "Otro") {
+        if (parseInt(opcion) == parseInt("16")) { 
             muestra($('#introducirOtro'));
         } else {
             oculta($('#introducirOtro'));
@@ -384,7 +384,7 @@ $(document).ready(function () {
 
         var opcion = $(this).val();
 
-        if (opcion == "Otro") {
+        if (parseInt(opcion) == parseInt("16")) { 
             muestra($('#introducirOtroPatologia'));
         } else {
             oculta($('#introducirOtroPatologia'));
@@ -966,7 +966,7 @@ $(document).ready(function () {
 
         var opcion = $(this).val();
 
-        if (opcion == "seguroPopular") {
+        if (parseInt(opcion) == parseInt("1")) { 
             muestra($('#numSeguro'));
         } else {
             oculta($('#numSeguro'));
