@@ -369,4 +369,59 @@ public class PersonaServicioImpl implements PersonaServicio {
         return personas;
 
     }
+
+    @Override
+    public List<Persona> mostrarMedicosRadiologos() {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        List<Persona> personas = null;
+
+        try {
+            personas = new ArrayList<>();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL ANGEL()"); 
+            rs = cstmt.executeQuery();
+            Persona persona;
+
+            while (rs.next()) {
+
+                persona = new Persona();
+                persona.setIdPersona(rs.getInt("idPersona"));
+                persona.setNombre(rs.getString("nombre"));
+                persona.setPrimerApellido(rs.getString("primerApellido"));
+                persona.setSegundoApellido(rs.getString("segundoApellido"));
+                persona.setCurp(rs.getString("curp"));
+                persona.setTelefono(rs.getString("telefono"));
+                persona.setCorreo(rs.getString("correo"));
+                persona.setFechaNacimiento(rs.getDate("fechaNacimiento"));
+                persona.setIdSexo(rs.getInt("idSexo"));
+                persona.setIdTipoSangre(rs.getInt("idTipoSangre"));
+                persona.setIdMunicipio(rs.getInt("idMunicipio"));
+                persona.setIdEstadoCivil(rs.getInt("idEstadoCivil"));
+                persona.setIdDireccion(rs.getInt("idDireccion"));
+                persona.setEdad(rs.getInt("edad"));
+                persona.setEstatus(rs.getInt("estatus"));
+
+                personas.add(persona);
+                
+                System.out.println("personaId: " + persona.getIdPersona());
+
+            }
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+            
+            System.out.println("PersonaServicioImpl mostrarPersona Lista");
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            personas = null;
+        }
+
+        return personas;
+    }
 }

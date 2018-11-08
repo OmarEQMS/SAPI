@@ -21,4 +21,5 @@ public interface PersonaServicio {
     public boolean existsCurp(String curp);
     public boolean actualizarSexoPersona(int idPersona,int idSexo);
     List<Persona> mostrarMedicos();
+    List<Persona> mostrarMedicosRadiologos();
 }
