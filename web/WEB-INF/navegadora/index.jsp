@@ -594,7 +594,7 @@
                                                 <i class="fas fa-lock"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control" id="contraNavegadora" placeholder="Contraseña">
+                                        <input type="password" class="form-control" id="contraNavegadora" placeholder="Contraseña">
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -604,7 +604,7 @@
                                                 <i class="fas fa-lock"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control" id="confContraNavegadora" placeholder="Confirmar contraseña">
+                                        <input type="password" class="form-control" id="confContraNavegadora" placeholder="Confirmar contraseña">
                                     </div>
                                 </div>
                             </div>
