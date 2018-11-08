@@ -13,6 +13,63 @@ $(document).ready(function () {
 
     });
 
+    //Codigo Postal en Agregar Paciente
+    $('#codigo-postalNavegadora').on('change', function () {
+
+        $.ajax({
+
+            url: 'ZonaController',
+            cache: false,
+            method: 'POST',
+            data: {
+
+                key: "getEstadoyMunicipio",
+                numeroCP: $('#codigo-postalNavegadora').val()
+
+            },
+            success: function (response) {
+
+                if (response == 'postalCodeDoesntExist') {
+                    $('#error-CPexiste').show();
+
+                } else {
+                    $('#error-CPexiste').hide();
+                    var json = JSON.parse(response);
+
+                    if ($('#codigo-postalNavegadora').val().length === 5) {
+
+                        //Limpia los campos 
+                        $("#estadoNavegadora").each(function () {
+                            $(this).children().remove();
+                        });
+
+                        $("#municipioNavegadora").each(function () {
+                            $(this).children().remove();
+                        });
+
+                        //Carga estado
+                        $('#estadoNavegadora').append("<option value='" + json[0] + "'>" + json[1] + "</option>");
+
+                        //Carga Municipio
+                        $('#municipioNavegadora').append("<option value='" + json[2] + "'>" + json[3] + "</option>");
+
+                    } else {
+
+                        $('#estadoNavegadora').removeAttr('disabled');
+                        $('#estadoNavegadora').removeAttr('selected');
+
+                    }
+
+                    console.log(json);
+                }
+
+            }
+
+        });
+
+
+    });
+
     //Agregar Paciente
     $('#agregarPaciente').on('click', function (e) {
 
