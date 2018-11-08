@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>SAPI | Inicio</title>
+    <title>SAPI | Inicio</title>
 
-        <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-        <link href="lib/fontawesome/css/all.css" rel="stylesheet"/>
-        <link href='lib/fullcalendar/fullcalendar.css' rel='stylesheet'/>
-        <link href="lib/tooltipster/dist/css/tooltipster.bundle.min.css" rel="stylesheet" />
-        <link href="lib/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css" rel="stylesheet" />
-        <link href="lib/datatables/datatables.min.css" rel="stylesheet" type="text/css"/> 
-        <script src="lib/jquery/jquery-3.3.1.js" type="application/javascript"></script>
-        <script src="lib/jquery/jqueryPostGo.js" type="application/javascript"></script>
-        <script src="lib/popper/popper.min.js" type="application/javascript"></script>
-        <script src="lib/bootstrap/js/bootstrap.js" type="application/javascript"></script> 
-        <script src='lib/moment/moment.min.js' type="application/javascript" ></script>
-        <script src='lib/fullcalendar/fullcalendar.js' type="application/javascript"></script>
-        <script src="lib/fullcalendar/locale-all.js"></script>
-        <script src="lib/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="lib/tooltipster/dist/js/tooltipster.bundle.min.js" type="text/javascript" ></script>
-        <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <link href="lib/fontawesome/css/all.css" rel="stylesheet"/>
+    <link href='lib/fullcalendar/fullcalendar.css' rel='stylesheet'/>
+    <link href="lib/tooltipster/dist/css/tooltipster.bundle.min.css" rel="stylesheet" />
+    <link href="lib/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css" rel="stylesheet" />
+    <link href="lib/datatables/datatables.min.css" rel="stylesheet" type="text/css"/> 
+    <script src="lib/jquery/jquery-3.3.1.js" type="application/javascript"></script>
+    <script src="lib/jquery/jqueryPostGo.js" type="application/javascript"></script>
+    <script src="lib/popper/popper.min.js" type="application/javascript"></script>
+    <script src="lib/bootstrap/js/bootstrap.js" type="application/javascript"></script> 
+    <script src='lib/moment/moment.min.js' type="application/javascript" ></script>
+    <script src='lib/fullcalendar/fullcalendar.js' type="application/javascript"></script>
+    <script src="lib/fullcalendar/locale-all.js"></script>
+    <script src="lib/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="lib/tooltipster/dist/js/tooltipster.bundle.min.js" type="text/javascript" ></script>
+    <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
 
 
-        <link rel="stylesheet" href="css/styleNavegadora.css">
-        <link rel="stylesheet" href="css/styleNavegadoraImg.css">
-        <script src="js/appNavegadora.js"></script>
-        <script src="js/appNavegadora2.js"></script>
-        <script src="js/ajaxNavegadora.js"></script>
-        <script src="js/formNavegadora.js"></script>
+    <link rel="stylesheet" href="css/styleNavegadora.css">
+    <link rel="stylesheet" href="css/styleNavegadoraImg.css">
+    <script src="js/appNavegadora.js"></script>
+    <script src="js/appNavegadora2.js"></script>
+    <script src="js/ajaxNavegadora.js"></script>
+    
 
-    </head>
+</head>
 
-    <body>
+<body>
 
-        <div class="wrapper">
+    <div class="wrapper">
 
-            <!-- SIDEBAR -->
-            <nav id="sidebar">
+        <!-- SIDEBAR -->
+        <nav id="sidebar">
 
-                <div class="sidebar-header">
+            <div class="sidebar-header">
 
-                    <div class="row text-center justify-content-center mt-2">
-                        <div class="col-12">
-                            <img src="../img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
-                        </div>
+                <div class="row text-center justify-content-center mt-2">
+                    <div class="col-12">
+                        <img src="../img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
+
                     </div>
 
                 </div>
@@ -1533,23 +1533,21 @@
                                         </div>
                                     </div>
 
-                                    <div class="row justify-content-center mt-5">
-                                        <div class="col-4">
-                                            <button class="btn btn-outline-danger btn-block" id="btn-back4" style="border-radius:20px">
-                                                <i class="fas fa-undo mr-2"></i>Regresar</button>
-                                        </div>
-                                        <div class="col-4">
-                                            <button class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                                <i class="fas fa-save mr-2" id="btn-save4"></i>Guardar y Continuar Despu�s</button>
-                                        </div>
-                                        <div class="col-4">
-                                            <button class="btn btn-outline-success btn-block" id="btn-continue4" style="border-radius:20px">
-                                                <i class="fas fa-arrow-circle-right mr-2"></i>Continuar</button>
-                                        </div>
+                                <div class="row justify-content-center mt-5">
+                                    <div class="col-4">
+                                        <button class="btn btn-outline-danger btn-block" id="btn-back4" style="border-radius:20px">
+                                            <i class="fas fa-undo mr-2"></i>Regresar</button>
                                     </div>
-
-
-
+                                    <div class="col-4">
+                                        <button id="btn-save4" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                            <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despu�s</button>
+                                    </div>
+                                    <div class="col-4">
+                                        <button class="btn btn-outline-success btn-block" id="btn-continue4" style="border-radius:20px">
+                                            <i class="fas fa-arrow-circle-right mr-2"></i>Continuar</button>
+                                    </div>
+                                    
+                                </div>
                                 </div>
 
                                 <!-- PANTALLA 5 -->
@@ -1811,9 +1809,10 @@
                                                 <i class="fas fa-undo mr-2"></i>Regresar</button>
                                         </div>
                                         <div class="col-4">
-                                            <button class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                                <i class="fas fa-save mr-2" id="btn-save5"></i>Guardar y Continuar Despu�s</button>
-                                        </div>
+                                        <button id="btn-save5" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                            <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despu�s</button>
+
+                                    </div>
 
                                     </div>
 
@@ -1829,16 +1828,12 @@
                                             <button class="btn btn-outline-success btn-block" id="btn-sendAll" style="border-radius:20px">
                                                 <i class="fas fa-check-circle mr-2"></i>Enviar</button>
                                         </div>
-                                    </div>
-
                                 </div>
 
 
 
                             </div>
                         </div>
-
-
 
                     </div>
                 </div>
