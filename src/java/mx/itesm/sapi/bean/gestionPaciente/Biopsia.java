@@ -25,6 +25,7 @@ public class Biopsia {
     private int bloques;
     private int previa;
     private int estatus;
+    private int idTipoBiopsia;
     
     public Biopsia() {}
  	@Override
@@ -43,11 +44,21 @@ public class Biopsia {
  			.concat(",bloques:").concat(String.valueOf(bloques))
  			.concat(",previa:").concat(String.valueOf(previa))
  			.concat(",estatus:").concat(String.valueOf(estatus))
+                        .concat(",idTipoBiopsia:").concat(String.valueOf(idTipoBiopsia))
  			.concat("]");
  		return str;
 
  	}
 
+    public int getIdTipoBiopsia() {
+        return idTipoBiopsia;
+    }
+
+    public void setIdTipoBiopsia(int idTipoBiopsia) {
+        this.idTipoBiopsia = idTipoBiopsia;
+    }
+
+        
     public int getIdGradoHistologico() {
         return idGradoHistologico;
     }

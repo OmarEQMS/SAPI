@@ -35,7 +35,7 @@ public class LlamadaCitaServicioImpl implements LlamadaCitaServicio {
             rs = cstmt.executeQuery();
             rs.next();
 
-            llamadaCita.setIdLlamadaCita(rs.getInt("idLllamadaCita"));
+            llamadaCita.setIdLlamadaCita(rs.getInt("idLlamadaCita"));
             llamadaCita.setIdCita(rs.getInt("idCita"));
             llamadaCita.setIdEmpleado(rs.getInt("idEmpleado"));
             llamadaCita.setFecha(rs.getTimestamp("fecha"));

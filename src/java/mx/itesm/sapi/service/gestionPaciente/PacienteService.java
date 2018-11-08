@@ -24,5 +24,7 @@ public interface PacienteService {
     public List<PacientePotencial> mostrarPacientesPotenciales();
     public List<PacientePotencial> mostrarPacientesPotencialesAprobados();
     public int mostrarColor(int idPaciente);
+    public int obtenerCuenta(int idPaciente);
+    public int obtenerPersona(int idCuenta);
 
 }

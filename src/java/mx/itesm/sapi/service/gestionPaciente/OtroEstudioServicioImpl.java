@@ -29,10 +29,11 @@ public class OtroEstudioServicioImpl implements OtroEstudioServicio {
 
         OtroEstudio otroEstudio = new OtroEstudio();
 
-        String stProcedure = "";
+        String stProcedure = "CALL mostrarOtroEstudio(?)";
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idOtroEstudio);
             rs = cstmt.executeQuery();
             rs.next();
 
@@ -57,7 +58,7 @@ public class OtroEstudioServicioImpl implements OtroEstudioServicio {
         Connection conn;
         List<OtroEstudio> pacientes = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL mostrarListaOtroEstudio()";
 
         ResultSet rs;
 
@@ -94,7 +95,7 @@ public class OtroEstudioServicioImpl implements OtroEstudioServicio {
         ResultSet rs;
         CallableStatement cstmt;
         int id = -1;
-        String stPrcedure = "";
+        String stPrcedure = "CALL agregarOtroEstudio(?, ?, ?, ?)";
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stPrcedure);
@@ -128,7 +129,7 @@ public class OtroEstudioServicioImpl implements OtroEstudioServicio {
     public boolean actualizarOtroEstudio(OtroEstudio otroEstudio) {
         Connection conn;
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL actualizarOtroEstudio(?, ?, ? , ?)";
         boolean exito = false;
         ResultSet rs;
         try {
@@ -158,7 +159,7 @@ public class OtroEstudioServicioImpl implements OtroEstudioServicio {
     public boolean borradoLogicoOtroEstudio(int idOtroEstudio) {
         Connection conn;
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL borradoLogicoOtroEstudio(?)";
         boolean exito = false;
         ResultSet rs;
         try {

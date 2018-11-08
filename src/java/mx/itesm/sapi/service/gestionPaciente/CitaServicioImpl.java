@@ -383,10 +383,10 @@ public class CitaServicioImpl implements CitaServicio {
         }
         return exito;
     }
-    
+
     @Override
     public boolean aprobarPaciente(int idPaciente, String fechaNav, String fechaCon, int segundaOpinion) {
-        
+
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
@@ -398,20 +398,12 @@ public class CitaServicioImpl implements CitaServicio {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
-             Timestamp fechaNavegacion = null;
-             Timestamp fechaConsulta = null;
-            
-             try {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-                Date parsedDate = dateFormat.parse(fechaNav);
-                fechaNavegacion = new java.sql.Timestamp(parsedDate.getTime());
-                parsedDate = dateFormat.parse(fechaCon);
-                fechaConsulta = new java.sql.Timestamp(parsedDate.getTime());
-                
-            } catch (Exception e) { //this generic but you can control nother types of exception
-                // look the origin of excption 
-            }
-            
+            Timestamp fechaNavegacion = null;
+            Timestamp fechaConsulta = null;
+
+            fechaNavegacion = Timestamp.valueOf(fechaNav);
+            fechaConsulta = Timestamp.valueOf(fechaCon);
+
             cstmt.setInt(1, idPaciente);
             cstmt.setTimestamp(2, fechaNavegacion);
             cstmt.setTimestamp(3, fechaConsulta);
@@ -421,7 +413,7 @@ public class CitaServicioImpl implements CitaServicio {
             rs.next();
             idCitaNav = rs.getInt(1);
             idCitaCon = rs.getInt(2);
-            
+
             exito = true;
 
             rs.close();

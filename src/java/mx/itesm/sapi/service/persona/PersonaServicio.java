@@ -6,6 +6,7 @@
 package mx.itesm.sapi.service.persona;
 
 import java.util.List;
+import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
 import mx.itesm.sapi.bean.persona.Persona;
 
 /**
@@ -22,4 +23,6 @@ public interface PersonaServicio {
     public boolean actualizarSexoPersona(int idPersona,int idSexo);
     public Persona mostrarPersonaPorIdPaciente(int idPaciente);
     List<Persona> mostrarMedicos();
+    public InformacionGeneralPersona mostrarInformacionGeneralPersona(int idPaciente);
+    public boolean actualizarInformacionGeneralPersona(int idPaciente, InformacionGeneralPersona persona);
 }
