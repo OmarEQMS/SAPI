@@ -27,9 +27,9 @@ $(document).ready(function () {
     $('#error-editar-NombreNavegadora').hide();
     $('#error-editar-ApellidoPaternoNavegadora').hide();
     $('#error-editar-ApellidoMaternoNavegadora').hide();
-    $('#error-editar-NombreeditarUsuarioNavegadoraAPaciente').hide();
+    $('#error-editar-NombreUsuarioNavegadora').hide();
     $('#error-editar-CorreoNavegadora').hide();
-    $('#error-editar-editarCurpNavegadoraAPaciente').hide();
+    $('#error-editar-CurpNavegadora').hide();
     $('#error-editar-ColoniaNavegadora').hide();
     $('#error-editar-CalleNavegadora').hide();
     $('#error-editar-NoExteriorNavegadora').hide();
@@ -1449,7 +1449,7 @@ $(document).ready(function () {
 
                 if (response === 'UsuarioAlreadyExists') {
                     $('#editarUsuarioNavegadoraAPaciente').css('color', 'orange');
-                    $('#error-editar-UsuarioRepetidoNavegadora').show();
+                    $('#error-editar-UsuarioRepetidoNavegadora').show();                    
                 } else {
                     $('#error-editar-UsuarioRepetidoNavegadora').hide();
                 }
@@ -1459,11 +1459,11 @@ $(document).ready(function () {
         });
 
         if (isValidUserName($(this))) {
-            $('#error-editar-NombreeditarUsuarioNavegadoraAPaciente').hide();
+            $('#error-editar-NombreUsuarioNavegadora').hide();
         } else if ($(this).val() == '') {
-            $('#error-editar-NombreeditarUsuarioNavegadoraAPaciente').hide();
+            $('#error-editar-NombreUsuarioNavegadora').hide();
         } else {
-            $('#error-editar-NombreeditarUsuarioNavegadoraAPaciente').show();
+            $('#error-editar-NombreUsuarioNavegadora').show();
         }
 
     });
@@ -1507,11 +1507,11 @@ $(document).ready(function () {
 
 
         if (isValidCURP($(this))) {
-            $('#error-editar-editarCurpNavegadoraAPaciente').hide();
+            $('#error-editar-CurpNavegadora').hide();
         } else if ($(this).val() == '') {
-            $('#error-editar-editarCurpNavegadoraAPaciente').hide();
+            $('#error-editar-CurpNavegadora').hide();
         } else {
-            $('#error-editar-editarCurpNavegadoraAPaciente').show();
+            $('#error-editar-CurpNavegadora').show();
         }
 
     });
