@@ -285,11 +285,11 @@ public class NavegadoraController extends HttpServlet {
                          
                             int pacientePotencial = (int) sesion.getAttribute("idPacientePotencialAtendido");
                             PersonaServicioImpl personaServicio = new PersonaServicioImpl();
-                            Persona persona = personaServicio.mostrarPersona(pacientePotencial);
+                            Persona persona = personaServicio.mostrarPersonaPorIdPaciente(pacientePotencial);
                             
                             Properties config = new Properties();
                             String correo = persona.getCorreo();
-                
+                            System.out.println("Correo potencial ".concat(correo));
                             try {
                                 config.load(getClass().getResourceAsStream("/mail.properties"));
                                 Session session = Session.getInstance(config,
@@ -312,9 +312,10 @@ public class NavegadoraController extends HttpServlet {
                                 //String mail = "tucorreo@mail.com";
                                 //String contrasena = "tucontrasena";
                                 
-                                String mensaje = "Estimada(o) ".concat(persona.getNombre()).concat(" el equipo del INCan le informa él tipo de documento ")
-                                        .concat(tipoDocumento.getNombre()).concat(" con nombre ").concat(documentoInicial.getNombre()).concat(" ha sido rechazado. ")
-                                        .concat("A conuación le explicamos los motivos: ").concat(comentario).concat(". <br> Por su atención, <br> Muchas gracias.");
+                                String mensaje = "Estimada(o) ".concat(persona.getNombre()).concat(" el equipo del INCan le informa; él tipo de documento \"")
+                                        .concat(tipoDocumento.getNombre()).concat("\" con nombre \"").concat(documentoInicial.getNombre()).concat("\" ha sido rechazado. ")
+                                        .concat("A continuación le explicamos los motivos: ").concat(comentario).concat(". <br> Por su atención, <br><br> Muchas gracias.")
+                                        .concat("Atte. nombre y domicilios reservados.");
                                 MimeBodyPart mimeBodyPart = new MimeBodyPart();
                                 mimeBodyPart.setContent(mensaje, "text/html");
 

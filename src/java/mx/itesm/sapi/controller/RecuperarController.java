@@ -123,14 +123,14 @@ public class RecuperarController extends HttpServlet {
                     message.setFrom(new InternetAddress("sapi.prueba@gmail.com"));
                     message.setRecipients(Message.RecipientType.TO,
                             InternetAddress.parse(correo));
-                    message.setSubject("Recuperar Conraseña");
+                    message.setSubject("Recuperar Contraseña");
                     //message.setText("Esto no es spam :)");
 
                     //Estos deberían ir como parametros dentro de la función de enviar correo
                     //String mail = "tucorreo@mail.com";
                     //String contrasena = "tucontrasena";
                     MimeBodyPart mimeBodyPart = new MimeBodyPart();
-                    mimeBodyPart.setContent("<b>Estimado usuario, usted ha solicitado Recuperar su Contraseña</b></br>".
+                    mimeBodyPart.setContent("<b>Estimada(o) usuario, usted ha solicitado Recuperar su Contraseña</b></br>".
                             concat("<b>Su token para iniciar sesion es:  ").
                             concat(token), "text/html");
 
