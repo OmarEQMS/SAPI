@@ -9,7 +9,7 @@ import java.util.List;
 import mx.itesm.sapi.bean.gestionPaciente.Ki67;
 /**
  *
- * @author Alex
+ * @author Alexis España
  */
 public interface Ki67Servicio {
     public Ki67 mostrarKi67(int idKi67);

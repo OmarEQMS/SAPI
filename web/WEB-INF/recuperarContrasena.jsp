@@ -36,11 +36,11 @@
 
         <form class="formulario">
 
-            <h1 class="h3 mb-4 titulo-login text-center">Recuperar Contraseña</h1>
+            <h1 class="h3 mb-4 titulo-login text-center">Recuperar Contraseï¿½a</h1>
 
             <div class="row">
                 <div class="col-12">
-                    <input type="email" id="email" class="form-control" placeholder="Introduce tu correo electrónico">
+                    <input type="email" id="email" class="form-control" placeholder="Introduce tu correo electrï¿½nico">
                 </div>
             </div>
 

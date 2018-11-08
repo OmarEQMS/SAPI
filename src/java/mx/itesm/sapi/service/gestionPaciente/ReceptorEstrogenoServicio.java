@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.ReceptorEstrogeno;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public interface ReceptorEstrogenoServicio {
     public ReceptorEstrogeno mostrarReceptorEstrogeno(int idReceptorEstrogeno);

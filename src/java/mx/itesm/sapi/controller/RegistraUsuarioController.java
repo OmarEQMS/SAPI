@@ -69,7 +69,7 @@ import org.apache.commons.io.IOUtils;
 
 /**
  *
- * @author Admin
+ * @author Who is admin?
  */
 @WebServlet(name = "RegistraUsuarioController", urlPatterns = {"/RegistraUsuarioController"})
 public class RegistraUsuarioController extends HttpServlet {

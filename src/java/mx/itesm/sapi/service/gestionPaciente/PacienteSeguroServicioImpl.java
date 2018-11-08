@@ -18,7 +18,7 @@ import mx.itesm.sapi.bean.gestionPaciente.PacienteSeguro;
 
 /**
  *
- * @author Alex
+ * @author Alexis España
  */
 public class PacienteSeguroServicioImpl implements PacienteSeguroServicio {
 

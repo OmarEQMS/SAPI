@@ -16,7 +16,7 @@ import mx.itesm.sapi.util.Conexion;
 
 /**
  *
- * @author feror
+ * @author Fernanda Orduña & Pablo Lugo
  */
 public class EspecialidadServicioImpl implements EspecialidadServicio{
 

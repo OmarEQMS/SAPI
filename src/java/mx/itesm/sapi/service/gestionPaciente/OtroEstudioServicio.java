@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.OtroEstudio;
 
 /**
  *
- * @author Alex
+ * @author Alexis España
  */
 public interface OtroEstudioServicio {
     public OtroEstudio mostrarOtroEstudio(int idOtroEstudio);

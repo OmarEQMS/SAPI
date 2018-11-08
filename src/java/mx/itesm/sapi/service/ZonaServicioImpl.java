@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author feror
+ * @author Fernanda Orduña & Pablo Lugo
  */
 public class ZonaServicioImpl implements ZonaServicio {
 

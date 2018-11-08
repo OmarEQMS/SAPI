@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Fish;
 
 /**
  *
- * @author Alex
+ * @author Alexis España
  */
 public interface FishServicio {
     public Fish mostrarFish(int idFish);

@@ -18,7 +18,7 @@ import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public class PacienteAlergiaServicioImpl implements PacienteAlergiaServicio{
 

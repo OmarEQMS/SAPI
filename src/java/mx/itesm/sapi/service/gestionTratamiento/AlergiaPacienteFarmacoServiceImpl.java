@@ -16,7 +16,7 @@ import mx.itesm.sapi.util.Conexion;
 
 /**
  *
- * @author Diego
+ * @author Diego Montoya
  */
 public class AlergiaPacienteFarmacoServiceImpl implements AlergiaPacienteFarmacoService {
     

@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.PacienteMedicoTitular;
 
 /**
  *
- * @author Angel GTZ
+ * @author Angel Gutierrez
  */
 public interface PacienteMedicoTitularServicio {
 

@@ -17,7 +17,7 @@ import mx.itesm.sapi.util.Conexion;
 
 /**
  *
- * @author Alex
+ * @author Alexis España 
  */
 public class FishServicioImpl implements FishServicio {
 

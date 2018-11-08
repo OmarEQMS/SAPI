@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.NecesidadEspecial;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public interface NecesidadEspecialServicio {
     public NecesidadEspecial mostrarNecesidadEspecial(int idNecesidadEspecial);

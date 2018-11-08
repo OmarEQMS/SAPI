@@ -16,7 +16,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Seguro;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz & Alexis España
  */
 public class SeguroServicioImpl implements SeguroServicio{
 

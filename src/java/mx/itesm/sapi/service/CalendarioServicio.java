@@ -11,7 +11,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Cita;
 
 /**
  *
- * @author julioguzman
+ * @author Julio Badillo
  */
 public interface CalendarioServicio {
     
