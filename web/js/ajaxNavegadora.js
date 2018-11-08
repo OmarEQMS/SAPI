@@ -678,11 +678,29 @@ $(document).ready(function () {
 
                         } else if (response == "todos")
                         {
-
+                            console.log("Redireccionar a documentos"); 
+                            $.post("SAPI", {
+                                file: "navegadora/documentos.jsp",
+                                idPacientePotencialAtendido: "hola"
+                            },
+                                    function (response, status, xhr) {
+                                        //console.log(response);
+                                        if (status == "success") {
+                                            if (response == "error") {
+                                                $("#msj-error").show();
+                                            } else {
+                                                document.open("text/html", "replace");
+                                                document.write(response);
+                                                document.close();
+                                            }
+                                        }
+                                    }
+                            );
                             swal({
                                 title: 'No más documentos por revisar.',
                                 timer: 3000
-                            });
+                            });                                                      
+                            
                         } else {
                             swal.close();
                             document.open("text/html", "replace");
