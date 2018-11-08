@@ -266,7 +266,7 @@ public class NavegadoraController extends HttpServlet {
                             }
                             if(request.getParameter("nivelSocioeconomico")!=null){
                                 String nivelSocioeconomico = request.getParameter("nivelSocioeconomico");
-                                paciente.setIdNivelSocioEconomico(nivelSocioeconomico);
+                                //paciente.setIdNivelSocioEconomico(nivelSocioeconomico);
                             }
                              pacienteServicioImpl.actualizarPaciente(paciente);
                             
@@ -295,7 +295,7 @@ public class NavegadoraController extends HttpServlet {
                          
                             if(request.getParameter("medico-radiologo")!=null){
                                 String medicoRadiologo = request.getParameter("medico-radiologo");
-                                pacienteMedicoTitular.set
+                                //pacienteMedicoTitular.set
                             }
                             if(request.getParameter("medico-residente")!=null){
                                 String medicoResidente= request.getParameter("medico-residente");
