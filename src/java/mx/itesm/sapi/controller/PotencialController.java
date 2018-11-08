@@ -275,7 +275,8 @@ public class PotencialController extends HttpServlet {
                  * Uriel Díaz 26/10/2018.
                  *
                  * El presente case funciona cuando un paciente agrega ciertos
-                 * atributos y documentos al proceso de solicitud de preconsulta null                 <<<<<<< HEAD
+                 * atributos y documentos al proceso de solicitud de preconsulta
+                 * null null                 <<<<<<< HEAD
                  * sin enviarla. * *
                  * =======
                  * sin enviarla.
@@ -793,9 +794,10 @@ public class PotencialController extends HttpServlet {
                         System.out.println("Biopsia ".concat(String.valueOf(idBiopsiaPreviaDB)));
                         System.out.println("Preconsulta ".concat(String.valueOf(idCitaPreconsulta)));
 
-                        if ("5".equals(motivoConsulta)) {
-                            System.out.println("Otro motivo");
+                        if ("5".equals(motivoConsulta)) {                            
+                            
                             String otroMotivo = request.getParameter("otroMotivo");
+                            System.out.println("Otro motivo: ".concat(otroMotivo));
 
                             OtroMotivo motivo = new OtroMotivo();
                             motivo.setIdCita(idCitaPreconsulta);
@@ -1275,16 +1277,16 @@ public class PotencialController extends HttpServlet {
                 HttpSession sesion = request.getSession(true);
                 if (sesion.getAttribute("idCuenta") == null) {
                     /**
-                     * Angel Gutiérrez 06/11/2018
-                     * Se eliminan las citas mediante una iteración donde se sacan todas las citas y se eliminan en orden 
-                     * despues de que se crea su objeto
+                     * Angel Gutiérrez 06/11/2018 Se eliminan las citas mediante
+                     * una iteración donde se sacan todas las citas y se
+                     * eliminan en orden despues de que se crea su objeto
                      */
                     // request.setAttribute("status", "");
                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-                    
+
                     return;
                 } else {
-                    
+
                     int idCuenta = (int) sesion.getAttribute("idCuenta");
                     int idPaciente = Integer.parseInt(sesion.getAttribute("idPaciente").toString());
                     System.out.println(idPaciente);
@@ -1312,8 +1314,7 @@ public class PotencialController extends HttpServlet {
                             System.out.println(citasTotales);
                         }
                     }
-                                                    request.getRequestDispatcher("/WEB-INF/misCitas.jsp").forward(request, response);
-
+                    request.getRequestDispatcher("/WEB-INF/misCitas.jsp").forward(request, response);
 
                 }
                 break;
