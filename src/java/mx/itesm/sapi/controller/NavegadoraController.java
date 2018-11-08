@@ -268,13 +268,7 @@ public class NavegadoraController extends HttpServlet {
                                 String nivelSocioeconomico = request.getParameter("nivelSocioeconomico");
                                 paciente.setIdNivelSocioEconomico(nivelSocioeconomico);
                             }
-                            
-                            
-                            
-                            
-                            
-
-                            pacienteServicioImpl.agregarPaciente(paciente);
+                             pacienteServicioImpl.actualizarPaciente(paciente);
                             
                             System.out.println("PRZ->" + paciente.getPrz());
                             System.out.println("NivelEducativo->"+ paciente.getIdEscolaridad());
