@@ -1553,8 +1553,8 @@
                                             <i class="fas fa-undo mr-2"></i>Regresar</button>
                                     </div>
                                     <div class="col-4">
-                                        <button class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                            <i class="fas fa-save mr-2" id="btn-save4"></i>Guardar y Continuar Despu�s</button>
+                                        <button id="btn-save4" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                            <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despu�s</button>
                                     </div>
                                     <div class="col-4">
                                         <button class="btn btn-outline-success btn-block" id="btn-continue4" style="border-radius:20px">
@@ -1850,8 +1850,8 @@
                                             <i class="fas fa-undo mr-2"></i>Regresar</button>
                                     </div>
                                     <div class="col-4">
-                                        <button class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                            <i class="fas fa-save mr-2" id="btn-save5"></i>Guardar y Continuar Despu�s</button>
+                                        <button id="btn-save5" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                            <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despu�s</button>
                                     </div>
 
                                 </div>
