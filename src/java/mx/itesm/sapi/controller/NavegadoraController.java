@@ -51,6 +51,7 @@ import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteMedicoTitular;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
+import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
@@ -71,6 +72,7 @@ import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.TipoDocumentoServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
 import mx.itesm.sapi.service.persona.LoginServicioImpl;
@@ -265,7 +267,7 @@ public class NavegadoraController extends HttpServlet {
                         }
                         case "rechazarDocumento": {
                             //FALTA LA CORRECIÓN DE URI
-                            /*
+                            
                             int idDocumentoInicial = (int) sesion.getAttribute("idDocumentoInicialVista");
                             String comentario = request.getParameter("comentario");
                             System.out.println("rechazar Documento");
@@ -273,6 +275,11 @@ public class NavegadoraController extends HttpServlet {
                             System.out.println("motivo rechazo  ".concat(String.valueOf(comentario)));
 
                             DocumentoInicialServicioImpl documentoInicialServicioImpl = new DocumentoInicialServicioImpl();
+                            DocumentoInicial documentoInicial = documentoInicialServicioImpl.mostrarDocumentoInicial(idDocumentoInicial);
+                            
+                            TipoDocumentoServicioImpl tipoDocumentoServicioImpl  = new TipoDocumentoServicioImpl();
+                            TipoDocumento tipoDocumento = tipoDocumentoServicioImpl.mostrarTipoDocumento(documentoInicial.getIdTipoDocumento());
+                            
                             boolean rechazado = documentoInicialServicioImpl.agregarRechazoDocumento(idDocumentoInicial, comentario);
                             //ESto es para el correo
                          
@@ -281,7 +288,7 @@ public class NavegadoraController extends HttpServlet {
                             Persona persona = personaServicio.mostrarPersona(pacientePotencial);
                             
                             Properties config = new Properties();
-                            String correo = request.getParameter("email");
+                            String correo = persona.getCorreo();
                 
                             try {
                                 config.load(getClass().getResourceAsStream("/mail.properties"));
@@ -293,21 +300,23 @@ public class NavegadoraController extends HttpServlet {
                                     }
                                 });
 
-                                //System.out.println("despues del try");
+                                System.out.println("despues del try");
                                 Message message = new MimeMessage(session);
                                 message.setFrom(new InternetAddress("sapi.prueba@gmail.com"));
                                 message.setRecipients(Message.RecipientType.TO,
                                         InternetAddress.parse(correo));
-                                message.setSubject("Recuperar Conraseña");
+                                message.setSubject("Documento rechazado");
                                 //message.setText("Esto no es spam :)");
 
                                 //Estos deberían ir como parametros dentro de la función de enviar correo
                                 //String mail = "tucorreo@mail.com";
                                 //String contrasena = "tucontrasena";
+                                
+                                String mensaje = "Estimada(o) ".concat(persona.getNombre()).concat(" el equipo del INCan le informa él tipo de documento ")
+                                        .concat(tipoDocumento.getNombre()).concat(" con nombre ").concat(documentoInicial.getNombre()).concat(" ha sido rechazado. ")
+                                        .concat("A conuación le explicamos los motivos: ").concat(comentario).concat(". <br> Por su atención, <br> Muchas gracias.");
                                 MimeBodyPart mimeBodyPart = new MimeBodyPart();
-                                mimeBodyPart.setContent("<b>Estimado usuario, usted ha solicitado Recuperar su Contraseña</b></br>".
-                                        concat("<b>Su token para iniciar sesion es:  ").
-                                        concat(token), "text/html");
+                                mimeBodyPart.setContent(mensaje, "text/html");
 
                                 Multipart multipart = new MimeMultipart();
                                 multipart.addBodyPart(mimeBodyPart);
@@ -323,13 +332,15 @@ public class NavegadoraController extends HttpServlet {
                                 // mimeBodyPart.attachFile(file);
                                 message.setContent(multipart);
                                 Transport.send(message);
-                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+                                
+                                //request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+                                System.out.println("Fin del try enviar correo");
 
                             } catch (Exception ex) {
                                 System.out.println("catch de envia correo");
                                 System.out.println(this.getClass().toString().concat(ex.getMessage()));
                          }
-                            */
+                            
                             break;
                         }
 

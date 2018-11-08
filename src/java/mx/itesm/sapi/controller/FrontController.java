@@ -271,7 +271,7 @@ public class FrontController extends HttpServlet {
                                     String base64String = Base64.getEncoder().encodeToString(bytes);
 
                                     sesion.setAttribute("base64Img", base64String);
-                                    
+                                    //DEBUG se cambiará cuando haya routing desde la lista de potenciales.
                                     int idPacientePotencial = 68;
                                     
                                     try

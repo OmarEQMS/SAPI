@@ -30,10 +30,11 @@ public class TipoDocumentoServicioImpl implements TipoDocumentoServicio{
         
         TipoDocumento tipoDocumento = new TipoDocumento();
         
-        String stProcedure ="";
+        String stProcedure ="CALL mostrarTipoDocumento(?)";
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idTipoDocumento);
             rs = cstmt.executeQuery();
             rs.next();
             
