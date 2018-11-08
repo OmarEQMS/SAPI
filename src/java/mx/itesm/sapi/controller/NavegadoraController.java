@@ -264,10 +264,10 @@ public class NavegadoraController extends HttpServlet {
                             break;
                         }
                         case "rechazarDocumento": {
-                            
+                            //FALTA LA CORRECIÓN DE URI
+                            /*
                             int idDocumentoInicial = (int) sesion.getAttribute("idDocumentoInicialVista");
                             String comentario = request.getParameter("comentario");
-                            
                             System.out.println("rechazar Documento");
                             System.out.println("id Documento ".concat(String.valueOf(idDocumentoInicial)));
                             System.out.println("motivo rechazo  ".concat(String.valueOf(comentario)));
@@ -284,7 +284,6 @@ public class NavegadoraController extends HttpServlet {
                             String correo = request.getParameter("email");
                 
                             try {
-                                
                                 config.load(getClass().getResourceAsStream("/mail.properties"));
                                 Session session = Session.getInstance(config,
                                         new javax.mail.Authenticator() {
@@ -298,7 +297,7 @@ public class NavegadoraController extends HttpServlet {
                                 Message message = new MimeMessage(session);
                                 message.setFrom(new InternetAddress("sapi.prueba@gmail.com"));
                                 message.setRecipients(Message.RecipientType.TO,
-                                        InternetAddress.parse(persona.getCorreo()));
+                                        InternetAddress.parse(correo));
                                 message.setSubject("Recuperar Conraseña");
                                 //message.setText("Esto no es spam :)");
 
@@ -308,7 +307,7 @@ public class NavegadoraController extends HttpServlet {
                                 MimeBodyPart mimeBodyPart = new MimeBodyPart();
                                 mimeBodyPart.setContent("<b>Estimado usuario, usted ha solicitado Recuperar su Contraseña</b></br>".
                                         concat("<b>Su token para iniciar sesion es:  ").
-                                        concat(comentario), "text/html");
+                                        concat(token), "text/html");
 
                                 Multipart multipart = new MimeMultipart();
                                 multipart.addBodyPart(mimeBodyPart);
@@ -329,11 +328,8 @@ public class NavegadoraController extends HttpServlet {
                             } catch (Exception ex) {
                                 System.out.println("catch de envia correo");
                                 System.out.println(this.getClass().toString().concat(ex.getMessage()));
-                            }
-                            //Hasta aqui
-                               System.out.println("Se rechazo ".concat(String.valueOf(rechazado)));
-                            PrintWriter out = response.getWriter();
-                            out.print(rechazado);
+                         }
+                            */
                             break;
                         }
 
@@ -567,6 +563,8 @@ public class NavegadoraController extends HttpServlet {
                             String telefono = request.getParameter("telefono");
                             String correo = request.getParameter("correo");
                             String colonia = request.getParameter("colonia");
+                            
+                            
                             
                             Date fn = Date.valueOf(fechaNacimiento);
                             
