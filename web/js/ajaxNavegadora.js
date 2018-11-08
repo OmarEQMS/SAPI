@@ -254,10 +254,15 @@ $(document).ready(function () {
     });
 
     //Redirige a documentos
-    $('#irADocumentos').on('click', function () {
+    $('.btn-ver').on('click', function () {
+        
+        $('#hidden-idPaciente').val($(this).data('id'));
+        
+        //alert('saludos con el id: ' +  $('#hidden-idPaciente').val())
+        
         $.post("SAPI", {
             file: "navegadora/documentos.jsp",
-            idPacientePotencialAtendido: "hola"
+            idPacientePotencialAtendido: $('#hidden-idPaciente').val()
         },
 
                 function (response, status, xhr) {

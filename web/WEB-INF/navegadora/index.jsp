@@ -419,11 +419,15 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="curpNavegadora" name="curpNavegadora" placeholder="CURP">
-                                        <span class="text-danger" id="errorCurpNavegadora">Formato incorrecto, las letras deben estar en mayúsculas y asegúrate de introducir un CURP válido y sin espacios. Puedes consultarlo 
-                                            <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí.</a>
-                                        </span>
-                                        <span class="text-warning" id="errorCurpRepetidoNavegadora">El curp ya existe.</span>
+
+
                                     </div>
+
+                                    <span class="text-danger" id="errorCurpNavegadora">Formato incorrecto, las letras deben estar en mayúsculas y asegúrate de introducir un CURP válido y sin espacios. Puedes consultarlo 
+                                        <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí.</a>
+                                    </span><br>
+
+                                    <span class="text-warning" id="errorCurpRepetidoNavegadora">El curp ya existe.</span>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -436,8 +440,9 @@
                                         </div>
                                         <input placeholder="Fecha de nacimiento" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                id="cumpleNavegadora" name="cumpleNavegadora">
-                                        <span class="text-danger" id="errorFechaNavegadora">Fecha incorrecta</span>
+
                                     </div>
+                                    <span class="text-danger" id="errorFechaNavegadora">Fecha incorrecta</span>
                                 </div>
                             </div>
 
@@ -476,9 +481,10 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="usuarioNavegadora" usuario="usuarioNavegadora" placeholder="Usuario">
-                                        <span class="text-danger" id="errorNombreUsuarioNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 4 y un máximo de 16 caracteres.</span>
-                                        <span class="text-warning" id="errorUsuarioRepetidoNavegadora">El usuario ya existe.</span>
+
                                     </div>
+                                    <span class="text-danger" id="errorNombreUsuarioNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 4 y un máximo de 16 caracteres.</span><br>
+                                    <span class="text-warning" id="errorUsuarioRepetidoNavegadora">El usuario ya existe.</span>
                                 </div>
                                 <div class="col-6">
                                     <div class="input-group">
@@ -488,8 +494,9 @@
                                                 <option value='<c:out value="${estadoC.idEstadoCivil}"/>'><c:out value='${estadoC.nombre}'/> </option>
                                             </c:forEach>
                                         </select>
-                                        <span class="text-danger" id="errorECivilNavegadora">Selecciona una opcion</span>
+
                                     </div>
+                                    <span class="text-danger" id="errorECivilNavegadora">Selecciona una opcion</span>
                                 </div>
                             </div>
 
@@ -513,9 +520,10 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="codigo-postalNavegadora" placeholder="Codigo Postal">
-                                        <span class="text-danger" id="errorCodigoPostalNavegadora">Formato incorrecto, deben ser 5 dígitos.</span>
-                                        <span class="text-danger" id="error-CPexisteNavegadora" style="font-size:13px;">El codigo postal no existe.</span>
+
                                     </div>
+                                    <span class="text-danger" id="errorCodigoPostalNavegadora">Formato incorrecto, deben ser 5 dígitos.</span><br>
+                                    <span class="text-danger" id="error-CPexisteNavegadora" style="font-size:13px;">El codigo postal no existe.</span>
                                 </div>
                             </div>
 
@@ -564,16 +572,18 @@
                                                 <option value='<c:out value="${estado.idEstado}"/>'><c:out value='${estado.nombre}'/> </option>
                                             </c:forEach>
                                         </select>
-                                        <span class="text-danger" id="errorEstadoNavegadora">Campo vacío</span>
+
                                     </div>
+                                    <span class="text-danger" id="errorEstadoNavegadora">Campo vacío</span>
                                 </div>
                                 <div class="col-6">
                                     <div class="input-group municipios">
                                         <select class="form-control" id="municipioNavegadora">
                                             <option disabled selected>Seleccione Municipio</option>
                                         </select>
-                                        <span class="text-danger" id="errorMunicipioNavegadora">Campo vacío</span>
+
                                     </div>
+                                    <span class="text-danger" id="errorMunicipioNavegadora">Campo vacío</span>
                                 </div>
                             </div>
 
@@ -586,8 +596,9 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="telNavegadora" placeholder="Teléfono">
-                                        <span class="text-danger" id="errorTelefonoNavegadora">Formato incorrecto, deben ser 10 dígitos.</span>
+
                                     </div>
+                                    <span class="text-danger" id="errorTelefonoNavegadora">Formato incorrecto, deben ser 10 dígitos.</span>
                                 </div>
 
                                 <div class="col-6">
