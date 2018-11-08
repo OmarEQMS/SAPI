@@ -246,28 +246,40 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println(Biopsia[i]);
                             }
                             */
+                            int idPaciente = (int) sesion.getAttribute("idPaciente");
+                            
                             PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                             Paciente paciente = pacienteServicioImpl.mostrarPaciente(idPaciente);
                             
                             if(request.getParameter("prz-expediente") != null){
                                  String prz = request.getParameter("prz-expediente");
+                                 paciente.setPrz(prz);
                             }
                             if(request.getParameter("nivelEducativo") != null){
                                 String nivelE = request.getParameter("nivelEducativo");
+                                paciente.setIdEscolaridad(Integer.parseInt(nivelE));
+                                
                             }
                             if(request.getParameter("estadoHormonal")!=null){
                                 String estadoHormonal=request.getParameter("estadoHormonal"); 
+                                paciente.setPosMenopausia(Integer.parseInt(estadoHormonal));
                             }
                             if(request.getParameter("nivelSocioeconomico")!=null){
                                 String nivelSocioeconomico = request.getParameter("nivelSocioeconomico");
+                                paciente.setIdNivelSocioEconomico(nivelSocioeconomico);
                             }
+                            
+                            
+                            
+                            
+                            
 
                             pacienteServicioImpl.agregarPaciente(paciente);
                             
-                            System.out.println("PRZ->");
-                            System.out.println("NivelEducativo->");
-                            System.out.println("Estado Hormonal->");
-                            System.out.println("Nivel socioeconómico->");
+                            System.out.println("PRZ->" + paciente.getPrz());
+                            System.out.println("NivelEducativo->"+ paciente.getIdEscolaridad());
+                            System.out.println("Estado Hormonal->"+ paciente.getPosMenopausia());
+                            System.out.println("Nivel socioeconómico->" + paciente.getIdNivelSocioEconomico());
                             /*
                             Aquí le vamos a meter lista de inputs:
                             
@@ -284,12 +296,12 @@ public class NavegadoraController extends HttpServlet {
                             
                             if(request.getParameter("medico-adscrito")!=null){
                                 String medicoAdscrito = request.getParameter("medico-adscrito");
+                                pacienteMedicoTitular.setIdEmpleado(Integer.parseInt(medicoAdscrito));
                             }
-                            if(request.getParameter("medico-adscrito")!=null){
-                                String medicoAdscrito = request.getParameter("medico-adscrito");
-                            }
+                         
                             if(request.getParameter("medico-radiologo")!=null){
                                 String medicoRadiologo = request.getParameter("medico-radiologo");
+                                pacienteMedicoTitular.set
                             }
                             if(request.getParameter("medico-residente")!=null){
                                 String medicoResidente= request.getParameter("medico-residente");
@@ -554,12 +566,6 @@ public class NavegadoraController extends HttpServlet {
                             BiopsiaServicioImpl biopsiaServicioImpl = new BiopsiaServicioImpl();
                             Biopsia biopsia = new Biopsia();
 
-                            if(request.getParameterValues("resultadoAnterior-patologia") != null){
-                               String fechaPreMasto = request.getParameter("resultadoAnterior-patologia"); 
-                            }
-                            BiopsiaServicioImpl biopsiaServicioImpl = new BiopsiaServicioImpl();
-                            Biopsia biopsia = biopsiaServicioImpl.mostrarBiopsia(1);
-                            
                             if(request.getParameterValues("resultadoAnterior-patologia") != null){
                                String resultAnteriorPatologia = request.getParameter("resultadoAnterior-patologia"); 
                             }
