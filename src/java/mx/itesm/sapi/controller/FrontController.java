@@ -215,6 +215,7 @@ public class FrontController extends HttpServlet {
                         /*NAVEGADORA*/
                         case 4: {
                             String keyRuta = request.getParameter("file");
+                            sesion.setAttribute("path", keyRuta);
                             switch (keyRuta) {
 
                                 
@@ -261,9 +262,30 @@ public class FrontController extends HttpServlet {
 
                                 case "navegadora/documentos.jsp": {
                                     System.out.println("Index Navegadora ");
+                                    
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                    sesion.setAttribute("base64Img", base64String);
+                                    
+                                    int idPacientePotencial = 68;
+                                    
+                                    try
+                                    {
+                                        idPacientePotencial = Integer.parseInt(request.getParameter("idPacientePotencialAtendido"));
+                                    }catch(Exception ex)
+                                    {
+                                        System.out.println("Catch parameter idPacientePotencial ".concat(ex.getMessage()));
+                                        idPacientePotencial = 68;
+                                    }         
+                                    
 
                                     PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
-                                    Paciente paciente = pacienteServicioImpl.mostrarPaciente(1);
+                                    Paciente paciente = pacienteServicioImpl.mostrarPaciente(idPacientePotencial);
 
                                     CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
                                     Cuenta cuenta = cuentaServicioImpl.mostrarCuenta(paciente.getIdCuenta());
@@ -288,14 +310,14 @@ public class FrontController extends HttpServlet {
                                     Direccion direccion = direccionServicioImpl.mostrarDireccion(persona.getIdDireccion());
 
                                     System.out.println("el id paciente es...." + paciente.getIdPaciente());
-                                    sesion.setAttribute("idPaciente", 1);
+                                    sesion.setAttribute("idPaciente", idPacientePotencial);
                                     EstadoPacientePacienteServiceImpl estadoPacientePacienteServiceImpl = new EstadoPacientePacienteServiceImpl();
                                     EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServiceImpl.mostrarEstadoPacientePacienteIdPaciente(paciente.getIdPaciente());
 
                                     //
                                     DocumentoInicialTipoDocumentoServicioImpl documentoInicialTipoDocumentoServcioImpl = new DocumentoInicialTipoDocumentoServicioImpl();
 
-                                    List<DocumentoInicialTipoDocumento> documentosInicialTipoDocumentos = documentoInicialTipoDocumentoServcioImpl.mostrarDocumentoInicialTipoDocumento(1);
+                                    List<DocumentoInicialTipoDocumento> documentosInicialTipoDocumentos = documentoInicialTipoDocumentoServcioImpl.mostrarDocumentoInicialTipoDocumento(idPacientePotencial);
 
                                     if (documentosInicialTipoDocumentos.size() > 0) {
                                         System.out.println("Esta llena");
@@ -305,6 +327,11 @@ public class FrontController extends HttpServlet {
 
                                     request.setAttribute("documentos", documentosInicialTipoDocumentos);
 
+                                    
+                                     sesion.setAttribute("nombrePacientePotencial",persona.getNombre());                                                                        
+                                    sesion.setAttribute("primerApellidoPacientePotencial", persona.getPrimerApellido());                                                                        
+                                    sesion.setAttribute("segundoApellidoPacientePotencial", persona.getSegundoApellido());           
+                                    
                                     sesion.setAttribute("estadoCivil", estadoCivil.getNombre());
                                     sesion.setAttribute("fechaNacimiento", persona.getFechaNacimiento());
                                     sesion.setAttribute("municipio", municipio.getNombre());
@@ -333,16 +360,15 @@ public class FrontController extends HttpServlet {
                                     break;
 
                                 }
-
                                 case "navegadora/verDocumento.jsp": {
+                                    System.out.println("navegadora/verDocumento.jsp");
 
                                     PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
                                     Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
 
                                     CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
                                     Cuenta cuenta = cuentaServicioImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));
-
-                                    System.out.println("holiiii");
+                                    
                                     sesion.setAttribute("nombre", persona.getNombre());
                                     sesion.setAttribute("primerApellido", persona.getPrimerApellido());
                                     sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
@@ -485,11 +511,10 @@ public class FrontController extends HttpServlet {
                                         }
                                     }                                                                                                                                                                                                                        
                                     
-                                    /*MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl=new MedicoEspecialidadServicioImpl();
-                                    MedicoEspecialidad medicoEspecialidad= medicoEspecialidadServicioImpl.mostrarMedicoEspecialidad(keyRol)
-                                     */
+
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
                                     break;
-                                }                                
+                                }
                             }
                             break;
 

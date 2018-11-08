@@ -92,32 +92,29 @@
 
                     </div>
 
-                </div>
-
-                <div class="row justify-content-center">
-                    <div class="col-12 text-center">
-                        <hr style="background-color:white !important">
+                    <div class="row justify-content-center">
+                        <div class="col-12 text-center">
+                            <hr style="background-color:white !important">
+                        </div>
                     </div>
-                </div>
-                <<<<<<< HEAD
 
 
-                <!-- MENU PRINCIPAL ENLACES -->
-                <ul class="list-unstyled components">
+                    <!-- MENU PRINCIPAL ENLACES -->
+                    <ul class="list-unstyled components">
 
-                    <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
 
-                    <li id="idACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+                        <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
 
-                    <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
+                        <li id="idACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+                        <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
-                    <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+                        <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
 
-                    <li id="irADocumentos"><a><i class="far fa-user"></i>Documentos</a></li>
+                        <li id="irADocumentos"><a><i class="far fa-user"></i>Documentos</a></li>
 
-                    <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+                        <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
-                </ul>
+                    </ul>
             </nav>
 
             <!-- CONTENIDO PRINCIPAL  -->
@@ -230,9 +227,16 @@
                                                             <button class="btn btn-info btn-ver" data-id="${paciente.idPaciente}" id="btn-ver">
                                                                 <i class="far fa-eye"></i>
                                                             </button>
-                                                            <button class="btn btn-success btn-aceptar" data-id="${paciente.idPaciente}" id="btn-aceptar" data-toggle="modal" data-target="#modalAceptarUsuario">
-                                                                <i class="fas fa-check"></i>
-                                                            </button>
+
+                                                            <c:choose>
+                                                                <c:when test="${paciente.estadoPaciente=='Potencial en proceso'}">
+                                                                    <button class="btn btn-success btn-aceptar" data-id="${paciente.idPaciente}" data-toggle="modal" data-target="#modalAceptarUsuario">
+                                                                        <i class="fas fa-check"></i>
+                                                                    </button>
+                                                                </c:when>    
+
+                                                            </c:choose>
+
                                                             <button class="btn btn-primary btn-editar" data-id="${paciente.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarUsuario">
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
@@ -302,10 +306,31 @@
                                                     <th scope="col"></th>
                                                 </tr>
                                             </thead>
+
+
+
                                             <tbody>
 
                                                 <c:forEach items="${listaPacientesAprobados}" var="pacienteAprobado">
-                                                    <tr>                                                                                                                      
+                                                    <c:choose>
+                                                        <c:when test="${pacienteAprobado.color==0}">
+                                                            <tr class="table-danger">
+                                                            </c:when>
+                                                            <c:when test="${pacienteAprobado.color==1}">
+                                                            <tr class="table-warning">
+                                                            </c:when>
+                                                            <c:when test="${pacienteAprobado.color==2}">
+                                                            <tr class="table-primary">
+                                                            </c:when>
+                                                            <c:when test="${pacienteAprobado.color==3}">
+                                                            <tr class="table-success">
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                            <tr>
+                                                            </c:otherwise>
+                                                        </c:choose>
+
+
 
                                                         <td>${pacienteAprobado.prz}</td>
                                                         <td>${pacienteAprobado.nombre}</td>
@@ -382,6 +407,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="nombreNavegadora" name="nombreNavegadora" placeholder="Nombre">
+                                        <span class="text-danger" id="errorNombreNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 255 caracteres.</span>
                                     </div>
                                 </div>
 
@@ -393,7 +419,15 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="curpNavegadora" name="curpNavegadora" placeholder="CURP">
+
+
                                     </div>
+
+                                    <span class="text-danger" id="errorCurpNavegadora">Formato incorrecto, las letras deben estar en mayúsculas y asegúrate de introducir un CURP válido y sin espacios. Puedes consultarlo 
+                                        <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí.</a>
+                                    </span><br>
+
+                                    <span class="text-warning" id="errorCurpRepetidoNavegadora">El curp ya existe.</span>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -406,7 +440,9 @@
                                         </div>
                                         <input placeholder="Fecha de nacimiento" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                id="cumpleNavegadora" name="cumpleNavegadora">
+
                                     </div>
+                                    <span class="text-danger" id="errorFechaNavegadora">Fecha incorrecta</span>
                                 </div>
                             </div>
 
@@ -419,6 +455,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="primer-apellidoNavegadora" name="primer-apellidoNavegadora" placeholder="Primer Apellido">
+                                        <span class="text-danger" id="errorApellidoPaternoNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                     </div>
                                 </div>
 
@@ -430,6 +467,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="segundo-apellidoNavegadora" name="segundo-apellidoNavegadora" placeholder="Segundo Apellido">
+                                        <span class="text-danger" id="errorApellidoMaternoNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                     </div>
                                 </div>
                             </div>
@@ -443,7 +481,10 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="usuarioNavegadora" usuario="usuarioNavegadora" placeholder="Usuario">
+
                                     </div>
+                                    <span class="text-danger" id="errorNombreUsuarioNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 4 y un máximo de 16 caracteres.</span><br>
+                                    <span class="text-warning" id="errorUsuarioRepetidoNavegadora">El usuario ya existe.</span>
                                 </div>
                                 <div class="col-6">
                                     <div class="input-group">
@@ -453,7 +494,9 @@
                                                 <option value='<c:out value="${estadoC.idEstadoCivil}"/>'><c:out value='${estadoC.nombre}'/> </option>
                                             </c:forEach>
                                         </select>
+
                                     </div>
+                                    <span class="text-danger" id="errorECivilNavegadora">Selecciona una opcion</span>
                                 </div>
                             </div>
 
@@ -466,6 +509,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="colNavegadora" placeholder="Colonia">
+                                        <span class="text-danger" id="errorColoniaNavegadora">Formato incorrecto, introducir caracteres alfanuméricos.</span>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -476,7 +520,10 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="codigo-postalNavegadora" placeholder="Codigo Postal">
+
                                     </div>
+                                    <span class="text-danger" id="errorCodigoPostalNavegadora">Formato incorrecto, deben ser 5 dígitos.</span><br>
+                                    <span class="text-danger" id="error-CPexisteNavegadora" style="font-size:13px;">El codigo postal no existe.</span>
                                 </div>
                             </div>
 
@@ -489,6 +536,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="calleNavegadora" calle="calleNavegadora" placeholder="Calle">
+                                        <span class="text-danger" id="errorCalleNavegadora">Formato incorrecto, introducir caracteres alfanuméricos.</span>
                                     </div>
                                 </div>
                                 <div class="col-3">
@@ -499,6 +547,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="numIntNavegadora" placeholder="No. int">
+                                        <span class="text-danger" id="errorNoInteriorNavegadora">Formato incorrecto, solo dígitos y/o letras.</span>
                                     </div>
                                 </div>
                                 <div class="col-3">
@@ -509,6 +558,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="numExtNavegadora" placeholder="No. ext">
+                                        <span class="text-danger" id="errorNoExteriorNavegadora">Formato incorrecto, solo dígitos.</span>
                                     </div>
                                 </div>
                             </div>
@@ -522,16 +572,18 @@
                                                 <option value='<c:out value="${estado.idEstado}"/>'><c:out value='${estado.nombre}'/> </option>
                                             </c:forEach>
                                         </select>
+
                                     </div>
+                                    <span class="text-danger" id="errorEstadoNavegadora">Campo vacío</span>
                                 </div>
                                 <div class="col-6">
-                                    <div class="input-group">
+                                    <div class="input-group municipios">
                                         <select class="form-control" id="municipioNavegadora">
                                             <option disabled selected>Seleccione Municipio</option>
-                                            <option value="1">Prueba</option>
-                                            <option value=""></option>
                                         </select>
+
                                     </div>
+                                    <span class="text-danger" id="errorMunicipioNavegadora">Campo vacío</span>
                                 </div>
                             </div>
 
@@ -544,7 +596,9 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="telNavegadora" placeholder="Teléfono">
+
                                     </div>
+                                    <span class="text-danger" id="errorTelefonoNavegadora">Formato incorrecto, deben ser 10 dígitos.</span>
                                 </div>
 
                                 <div class="col-6">
@@ -555,6 +609,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="correoNavegadora" placeholder="Correo">
+                                        <span class="text-danger" id="errorCorreoNavegadora">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
                                     </div>
                                 </div>
 
@@ -571,7 +626,8 @@
                                                 <i class="fas fa-lock"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control" id="contraNavegadora" placeholder="Contraseña">
+                                        <input type="password" class="form-control" id="contraNavegadora" placeholder="Contraseña">
+                                        <span class="text-danger" id="errorPass1Navegadora">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -581,7 +637,9 @@
                                                 <i class="fas fa-lock"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control" id="confContraNavegadora" placeholder="Confirmar contraseña">
+                                        <input type="password" class="form-control" id="confContraNavegadora" placeholder="Confirmar contraseña">
+                                        <span class="text-warning" id="noEqualPasswordsErrorNavegadora">Las contraseñas no son iguales.</span>
+                                        <span class="text-danger" id="errorPass2Navegadora">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                     </div>
                                 </div>
                             </div>
@@ -626,6 +684,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
+
                             <div class="form-group row">
                                 <div class="col-6">
                                     <div class="input-group">
@@ -652,6 +711,21 @@
                             </div>
 
                             <div class="form-group row">
+                                <div class="col-12">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-calendar-alt"></i>
+                                            </div>
+                                        </div>
+                                        <input placeholder="Fecha de nacimiento" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
+                                               id="editarCumpleNavegadoraAPaciente">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
                                 <div class="col-6">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -675,19 +749,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-calendar-alt"></i>
-                                            </div>
-                                        </div>
-                                        <input placeholder="Fecha de nacimiento" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
-                                               id="editarCumpleNavegadoraAPaciente">
-                                    </div>
-                                </div>
-                            </div>
+
 
                             <div class="form-group row">
                                 <div class="col-6">
@@ -702,13 +764,29 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="input-group">
-                                        <select class="form-control" name="" id="">
+                                        <select class="form-control" name="estado-civilNavegadora" id="editarEstado-civilNavegadora">
                                             <option disabled selected>Estado Civil</option>
-                                            <option value=""></option>
-                                            <option value=""></option>
+                                            <c:forEach items="${estadoCivil}" var="estadoC">  
+                                                <option value='<c:out value="${estadoC.idEstadoCivil}"/>'><c:out value='${estadoC.nombre}'/> </option>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control" id="editarColNavegadoraAPaciente" placeholder="Colonia">
+                                    </div>
+                                </div>
+
+
                             </div>
 
                             <div class="form-group row">
@@ -747,215 +825,18 @@
                             <div class="form-group row">
                                 <div class="col-6">
                                     <div class="input-group">
-                                        <select class="form-control" name="" id="">
-                                            <option disabled selected>Estado</option>
-                                            <option value=""></option>
-                                            <option value=""></option>
+                                        <select class="form-control" id="editarEstadoNavegadoraAPaciente">
+                                            <option disabled selected>Seleccione estado</option>
+                                            <c:forEach items="${estado}" var="estado">  
+                                                <option value='<c:out value="${estado.idEstado}"/>'><c:out value='${estado.nombre}'/> </option>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <div class="input-group">
-                                        <select class="form-control" name="" id="">
-                                            <option disabled selected>Ciudad</option>
-                                            <option value=""></option>
-                                            <option value=""></option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-6">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-phone"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text" class="form-control" id="editarTelNavegadoraAPaciente" placeholder="Teléfono">
-                                    </div>
-                                </div>
-
-                                <div class="col-6">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-at"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text" class="form-control" id="editarCorreoNavegadoraAPaciente" placeholder="Correo">
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-map-marker-alt"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text" class="form-control" id="editarColNavegadoraAPaciente" placeholder="Colonia">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" style="border-radius:20px">Cancelar</button>
-                            <button type="button" class="btn btn-primary" style="border-radius:20px">Guardar Cambios</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="modalEditarUsuarioTabla2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Editar paciente</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group row">
-                                <div class="col-6">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-user"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text" class="form-control" id="editarNombreNavegadoraAPaciente" placeholder="Nombre">
-                                    </div>
-                                </div>
-
-                                <div class="col-6">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-id-card"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text" class="form-control" id="editarCurpNavegadoraAPaciente" placeholder="CURP">
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-6">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-user"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text" class="form-control" id="editarPrimer-apellidoNavegadoraAPaciente" placeholder="Primer Apellido">
-                                    </div>
-                                </div>
-
-                                <div class="col-6">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-user"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text" class="form-control" id="editarSegundo-apellidoNavegadoraAPaciente" placeholder="Segundo Apellido">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-calendar-alt"></i>
-                                            </div>
-                                        </div>
-                                        <input placeholder="Fecha de nacimiento" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
-                                               id="editarCumpleNavegadoraAPaciente">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-6">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-user-circle"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text" class="form-control" id="editarUsuarioNavegadoraAPaciente" placeholder="Usuario">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="input-group">
-                                        <select class="form-control" name="" id="">
-                                            <option disabled selected>Estado Civil</option>
-                                            <option value=""></option>
-                                            <option value=""></option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-6">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-map-marker-alt"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text" class="form-control" id="editarCalleNavegadoraAPaciente" placeholder="Calle">
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-map-marker-alt"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text" class="form-control" id="editarNumIntNavegadoraAPaciente" placeholder="No. int">
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-map-marker-alt"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text" class="form-control" id="editarNumExtNavegadoraAPaciente" placeholder="No. ext">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-6">
-                                    <div class="input-group">
-                                        <select class="form-control" name="" id="">
-                                            <option disabled selected>Estado</option>
-                                            <option value=""></option>
-                                            <option value=""></option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="input-group">
-                                        <select class="form-control" name="" id="">
-                                            <option disabled selected>Ciudad</option>
-                                            <option value=""></option>
-                                            <option value=""></option>
+                                    <div class="input-group editarMunicipios">
+                                        <select class="form-control" name="" id="editarMunicipioNavegadoraAPaciente">
+                                            <option disabled selected>Municipio</option>
                                         </select>
                                     </div>
                                 </div>
@@ -986,37 +867,18 @@
 
                             </div>
 
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-map-marker-alt"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text" class="form-control" id="editarColNavegadoraAPaciente" placeholder="Colonia">
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="form-group row text-center">
-
-                                <div class="col-12">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                        <label class="form-check-label" for="inlineCheckbox1">Cambio a paciente</label>
-                                    </div>
-                                </div>
-                            </div>
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal" style="border-radius:20px">Cancelar</button>
-                            <button type="button" class="btn btn-primary" style="border-radius:20px">Guardar Cambios</button>
+                            <button type="button" class="btn btn-primary" id="btn-guardarCambios" style="border-radius:20px">Guardar Cambios</button>
                         </div>
                     </div>
                 </div>
             </div>
+
+
 
             <div class="modal fade" id="modalAceptarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1043,6 +905,8 @@
                                            id="Fecha-Navegacion">
                                 </div>
 
+
+
                                 <div class="col-6 mt-3">
                                     <span class="textoFechas">Fecha preconsulta:</span>
                                 </div>
@@ -1064,23 +928,23 @@
                                             <i class="fas fa-user"></i>
                                         </div>
                                     </div>
-                                    <select class="form-control" id="tipoPaciente0">
+                                    <select class="form-control" id="tipo-paciente">
                                         <option disabled selected>Seleccione un tipo de paciente</option>
-                                        <option>Primera vez</option>
-                                        <option>Segunda opinión</option>
+                                        <option value="0">Primera vez</option>
+                                        <option value="1">Segunda opinión</option>
                                     </select>
                                 </div>
 
                             </div>
 
 
-
+                            <input type="hidden" id="hidden-idPaciente">
 
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" style="border-radius:20px" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary" style="border-radius:20px">Aceptar</button>
+                            <button type="button" class="btn btn-primary" style="border-radius:20px" id="btn-aceptarDocumento">Aceptar</button>
                         </div>
                     </div>
                 </div>

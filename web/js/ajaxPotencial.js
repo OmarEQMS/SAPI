@@ -259,6 +259,7 @@ swal({
         var oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
         var motivoConsulta = $('#motivoConsulta').val();
         var biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
+        var otroMotivo = $('#otro-motivo-consulta').val();
 
         data.append("key", "solicitarPreconsulta");
         data.append("femenino", femenino);
@@ -268,6 +269,7 @@ swal({
         data.append("baston", baston);
         data.append("oxigeno", oxigeno);
         data.append("motivoConsulta", motivoConsulta);
+        data.append("otroMotivo",otroMotivo);
         data.append("biopsia", biopsia);
 
         console.log(data);

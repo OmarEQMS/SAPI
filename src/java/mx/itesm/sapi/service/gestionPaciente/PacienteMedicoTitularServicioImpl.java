@@ -213,7 +213,7 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
         PacienteMedicoTitular pacienteMedicoTitular = null;
 
         //Call del store procedure
-        String stProcedure = "mostrarPacienteMedicoTitularIdPaciente(?)";
+        String stProcedure = "CALL mostrarPacienteMedicoTitularIdPaciente(?)";
 
         try {
             pacienteMedicoTitular = new PacienteMedicoTitular();
