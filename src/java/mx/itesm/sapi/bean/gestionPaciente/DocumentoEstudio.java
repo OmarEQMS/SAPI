@@ -23,24 +23,27 @@ public class DocumentoEstudio {
     private int previo;
     private int estatus;
     private Date fechaEstudioPrevio;
+    private int idLugarDelCuerpo;
 
-    public DocumentoEstudio() {}
+    public DocumentoEstudio() {
+    }
 
     @Override
-    public String toString(){
-    	String str="DocumentoEstudio [idDocumentoEstudio:".concat(String.valueOf(idDocumentoEstudio))
-    		.concat("idEstadoEstudio:").concat(String.valueOf(idEstadoEstudio))
-    		.concat("idPaciente:").concat(String.valueOf(idPaciente))
-    		.concat("idEstudio:").concat(String.valueOf(idEstudio))
-    		.concat("idBirads:").concat(String.valueOf(idBirads))
-    		.concat("archivo:").concat(String.valueOf(archivo))
-    		.concat("previo:").concat(String.valueOf(previo))
-    		.concat("estatus:").concat(String.valueOf(estatus))
+    public String toString() {
+        String str = "DocumentoEstudio [idDocumentoEstudio:".concat(String.valueOf(idDocumentoEstudio))
+                .concat("idEstadoEstudio:").concat(String.valueOf(idEstadoEstudio))
+                .concat("idPaciente:").concat(String.valueOf(idPaciente))
+                .concat("idEstudio:").concat(String.valueOf(idEstudio))
+                .concat("idBirads:").concat(String.valueOf(idBirads))
+                .concat("archivo:").concat(String.valueOf(archivo))
+                .concat("previo:").concat(String.valueOf(previo))
+                .concat("estatus:").concat(String.valueOf(estatus))
                 .concat(",fechaEstudioPrecio:").concat(String.valueOf(fechaEstudioPrevio))
-    		.concat("]");
+                .concat("idLugarDelCuerpo:").concat(String.valueOf(idLugarDelCuerpo))
+                .concat("]");
 
-    	return str;
-        
+        return str;
+
     }
 
     public Date getFechaEstudioPrevio() {
@@ -114,6 +117,13 @@ public class DocumentoEstudio {
     public void setEstatus(int estatus) {
         this.estatus = estatus;
     }
-    
+
+    public void setIdLugarDelCuerpo(int idLugarDelCuerpo) {
+        this.idLugarDelCuerpo = idLugarDelCuerpo;
+    }
+
+    public int getIdLugarDelCuerpo() {
+        return idLugarDelCuerpo;
+    }
 
 }
