@@ -1,29 +1,46 @@
 $(document).ready(function () {
 
-    $('#noEqualPasswordsErrorNavegadora').hide();
     $('#errorNombreNavegadora').hide();
+    $('#errorCurpNavegadora').hide();
+    $('#errorCurpRepetidoNavegadora').hide();
+    $('#errorFechaNavegadora').hide();
     $('#errorApellidoPaternoNavegadora').hide();
     $('#errorApellidoMaternoNavegadora').hide();
     $('#errorNombreUsuarioNavegadora').hide();
+    $('#errorUsuarioRepetidoNavegadora').hide();
+    $('#errorECivilNavegadora').hide();
+    $('#errorColoniaNavegadora').hide();
+    $('#errorCalleNavegadora').hide();
+    $('#errorNoInteriorNavegadora').hide();
+    $('#errorNoExteriorNavegadora').hide();
+    $('#errorEstadoNavegadora').hide();
+    $('#errorMunicipioNavegadora').hide();
+    $('#errorTelefonoNavegadora').hide();
     $('#errorCorreoNavegadora').hide();
     $('#errorPass1Navegadora').hide();
     $('#errorPass2Navegadora').hide();
-    $('#errorCurpNavegadora').hide();
-    $('#errorColoniaNavegadora').hide();
-    $('#errorCalleNavegadora').hide();
-    $('#errorNoExteriorNavegadora').hide();
-    $('#errorNoInteriorNavegadora').hide();
     $('#error-CPexisteNavegadora').hide();
-    
-    //A partir de aqui :(
-    $('#errorCurpRepetidoNavegadora').hide();
     $('#errorCodigoPostalNavegadora').hide();
-    $('#errorTelefonoNavegadora').hide();
-    $('#errorECivilNavegadora').hide();
-    $('#errorFechaNavegadora').hide();
-    $('#errorEstadoNavegadora').hide();
-    $('#errorMunicipioNavegadora').hide();
-    $('#errorUsuarioRepetidoNavegadora').hide();
+    $('#noEqualPasswordsErrorNavegadora').hide();
+
+    
+    $('#error-editar-NombreNavegadora').hide();
+    $('#error-editar-ApellidoPaternoNavegadora').hide();
+    $('#error-editar-ApellidoMaternoNavegadora').hide();
+    $('#error-editar-NombreeditarUsuarioNavegadoraAPaciente').hide();
+    $('#error-editar-CorreoNavegadora').hide();
+    $('#error-editar-editarCurpNavegadoraAPaciente').hide();
+    $('#error-editar-ColoniaNavegadora').hide();
+    $('#error-editar-CalleNavegadora').hide();
+    $('#error-editar-NoExteriorNavegadora').hide();
+    $('#error-editar-NoInteriorNavegadora').hide();
+    $('#error-editar-CurpRepetidoNavegadora').hide();
+    $('#error-editar-TelefonoNavegadora').hide();
+    $('#error-editar-ECivilNavegadora').hide();
+    $('#error-editar-FechaNavegadora').hide();
+    $('#error-editar-EstadoNavegadora').hide();
+    $('#error-editar-MunicipioNavegadora').hide();
+    $('#error-editar-UsuarioRepetidoNavegadora').hide();
         
 
     //Terminos y condiciones
@@ -264,7 +281,6 @@ $(document).ready(function () {
             file: "navegadora/documentos.jsp",
             idPacientePotencialAtendido: $('#hidden-idPaciente').val()
         },
-
                 function (response, status, xhr) {
                     //console.log(response);
                     if (status == "success") {
@@ -275,7 +291,7 @@ $(document).ready(function () {
                             document.write(response);
                             document.close();
                         }
-                    }
+                    }                    
                 }
         );
     });
@@ -1374,8 +1390,232 @@ $(document).ready(function () {
         }
 
     });
+    
+    //NOMBRE AL EDITAR
+    $('#editarNombreNavegadoraAPaciente').on('change', function () {
+
+        if (isValidName($(this))) {
+            $('#error-editar-NombreNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#error-editar-NombreNavegadora').hide();
+        } else {
+            $('#error-editar-NombreNavegadora').show();
+        }
+
+    });
+
+    //PRIMER APELLIDO AL EDITAR
+    $('#editarPrimer-apellidoNavegadoraAPaciente').on('change', function () {
+
+        if (isValidLastName($(this))) {
+            $('#error-editar-ApellidoPaternoNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#error-editar-ApellidoPaternoNavegadora').hide();
+        } else {
+            $('#error-editar-ApellidoPaternoNavegadora').show();
+        }
+
+    });
+
+    //SEGUNDO APELLIDO AL EDITAR
+    $('#editarSegundo-apellidoNavegadoraAPaciente').on('change', function () {
+
+        if (isValidLastName($(this))) {
+            $('#error-editar-ApellidoMaternoNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#error-editar-ApellidoMaternoNavegadora').hide();
+        } else {
+            $('#error-editar-ApellidoMaternoNavegadora').show();
+        }
+
+    });
+
+    //NOMBRE DE USUARIO AL EDITAR
+    $('#editarUsuarioNavegadoraAPaciente').on('change', function () {
+
+        $.ajax({
+
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+
+                key: "repiteUsuario",
+                usuario: $('#editarUsuarioNavegadoraAPaciente').val()
 
 
+            },
+            success: function (response) {
+
+                if (response === 'UsuarioAlreadyExists') {
+                    $('#editarUsuarioNavegadoraAPaciente').css('color', 'orange');
+                    $('#error-editar-UsuarioRepetidoNavegadora').show();
+                } else {
+                    $('#error-editar-UsuarioRepetidoNavegadora').hide();
+                }
+
+            }
+
+        });
+
+        if (isValidUserName($(this))) {
+            $('#error-editar-NombreeditarUsuarioNavegadoraAPaciente').hide();
+        } else if ($(this).val() == '') {
+            $('#error-editar-NombreeditarUsuarioNavegadoraAPaciente').hide();
+        } else {
+            $('#error-editar-NombreeditarUsuarioNavegadoraAPaciente').show();
+        }
+
+    });
+
+    //CORREO AL EDITAR
+    $('#editarCorreoNavegadoraAPaciente').on('change', function () {
+
+        if (isValidEmail($(this))) {
+            $('#error-editar-CorreoNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#error-editar-CorreoNavegadora').hide();
+        } else {
+            $('#error-editar-CorreoNavegadora').show();
+        }
+
+    });
+
+
+    //CURP AL EDITAR
+    $('#editarCurpNavegadoraAPaciente').on('change', function () {
+
+        $.ajax({
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+                key: "repiteCurp",
+                curp: $('#editarCurpNavegadoraAPaciente').val()
+            },
+            success: function (response) {
+
+                if (response === 'CurpAlreadyExists') {
+                    $('#editarCurpNavegadoraAPaciente').css('color', 'orange');
+                    $('#error-editar-CurpRepetidoNavegadora').show();
+                } else {
+                    $('#error-editar-CurpRepetidoNavegadora').hide();
+                }
+
+            }
+        });
+
+
+        if (isValidCURP($(this))) {
+            $('#error-editar-editarCurpNavegadoraAPaciente').hide();
+        } else if ($(this).val() == '') {
+            $('#error-editar-editarCurpNavegadoraAPaciente').hide();
+        } else {
+            $('#error-editar-editarCurpNavegadoraAPaciente').show();
+        }
+
+    });
+
+    //TELEFONO AL EDITAR
+    $('#editarTelNavegadoraAPaciente').on('change', function () {
+
+        if (isValidPhoneNumber($(this))) {
+            $('#error-editar-TelefonoNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#error-editar-TelefonoNavegadora').hide();
+        } else {
+            $('#error-editar-TelefonoNavegadora').show();
+        }
+
+    });
+
+    //ESTADO CIVIL AL EDITAR
+    $('#editarEstado-civilNavegadora').on('change', function () {
+
+        if (isValidSelect($(this))) {
+            $('#error-editar-ECivilNavegadora').hide();
+        } else {
+            $('#error-editar-ECivilNavegadora').show();
+        }
+
+    });
+
+    //FECHA DE NACIMIENTO AL EDITAR
+    $('#editarCumpleNavegadoraAPaciente').on('change', function () {
+
+        if (isValidDate($(this))) {
+            $('#error-editar-FechaNavegadora').hide();
+        } else {
+            $('#error-editar-FechaNavegadora').show();
+        }
+
+    });
+
+    //ESTADO AL EDITAR
+    $('#editarEstadoNavegadoraAPaciente').on('change', function () {
+
+        if (isValidSelect($(this))) {
+            $('#error-editar-EstadoNavegadora').hide();
+        } else {
+            $('#error-editar-EstadoNavegadora').show();
+        }
+
+    });
+
+    //MUNICIPIO AL EDITAR
+    $('#editarMunicipioNavegadoraAPaciente').on('change', function () {
+
+        if (isValidSelect($(this))) {
+            $('#error-editar-MunicipioNavegadora').hide();
+        } else {
+            $('#error-editar-MunicipioNavegadora').show();
+        }
+
+    });
+
+    //COLONIA AL EDITAR
+    $('#editarColNavegadoraAPaciente').on('change', function () {
+
+        if (isValidColonia($(this))) {
+            $('#error-editar-ColoniaNavegadora').hide();
+        } else {
+            $('#error-editar-ColoniaNavegadora').show();
+        }
+
+    });
+
+    //CALLE AL EDITAR
+    $('#editarCalleNavegadoraAPaciente').on('change', function () {
+
+        if (isValidStreet($(this))) {
+            $('#error-editar-CalleNavegadora').hide();
+        } else {
+            $('#error-editar-CalleNavegadora').show();
+        }
+
+    });
+
+    //NUMERO EXTERIOR AL EDITAR
+    $('#editarNumExtNavegadoraAPaciente').on('change', function () {
+
+        if (isValidExtNumber($(this))) {
+            $('#error-editar-NoExteriorNavegadora').hide();
+        } else {
+            $('#error-editar-NoExteriorNavegadora').show();
+        }
+
+    });
+
+    //NUMERO INTERIOR AL EDITAR
+    $('#editarNumIntNavegadoraAPaciente').on('change', function () {
+
+        if (isValidIntNumber($(this))) {
+            $('#error-editar-NoInteriorNavegadora').hide();
+        } else {
+            $('#error-editar-NoInteriorNavegadora').show();
+        }
+
+    });
 
 });
 
