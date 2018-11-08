@@ -494,6 +494,8 @@ public class NavegadoraController extends HttpServlet {
                             String correo = request.getParameter("correo");
                             String colonia = request.getParameter("colonia");
                             
+                            
+                            
                             Date fn = Date.valueOf(fechaNacimiento);
                             
                             datos.setNombre(nombre);
