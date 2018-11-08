@@ -23,4 +23,5 @@ public interface PersonaServicio {
     public boolean actualizarSexoPersona(int idPersona,int idSexo);
     List<Persona> mostrarMedicos();
     public InformacionGeneralPersona mostrarInformacionGeneralPersona(int idPaciente);
+    public boolean actualizarInformacionGeneralPersona(int idPaciente, InformacionGeneralPersona persona);
 }

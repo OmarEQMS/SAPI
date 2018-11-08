@@ -550,11 +550,9 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <div class="input-group">
+                                    <div class="input-group municipios">
                                         <select class="form-control" id="municipioNavegadora">
                                             <option disabled selected>Seleccione Municipio</option>
-                                            <option value="1">Prueba</option>
-                                            <option value=""></option>
                                         </select>
                                     </div>
                                 </div>
@@ -731,10 +729,11 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="input-group">
-                                        <select class="form-control" name="" id="">
+                                        <select class="form-control" name="estado-civilNavegadora" id="editarEstado-civilNavegadora">
                                             <option disabled selected>Estado Civil</option>
-                                            <option value=""></option>
-                                            <option value=""></option>
+                                            <c:forEach items="${estadoCivil}" var="estadoC">  
+                                                <option value='<c:out value="${estadoC.idEstadoCivil}"/>'><c:out value='${estadoC.nombre}'/> </option>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                 </div>
@@ -791,19 +790,18 @@
                             <div class="form-group row">
                                 <div class="col-6">
                                     <div class="input-group">
-                                        <select class="form-control" name="" id="">
-                                            <option disabled selected>Estado</option>
-                                            <option value=""></option>
-                                            <option value=""></option>
+                                        <select class="form-control" id="editarEstadoNavegadoraAPaciente">
+                                            <option disabled selected>Seleccione estado</option>
+                                            <c:forEach items="${estado}" var="estado">  
+                                                <option value='<c:out value="${estado.idEstado}"/>'><c:out value='${estado.nombre}'/> </option>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <div class="input-group">
-                                        <select class="form-control" name="" id="">
+                                    <div class="input-group editarMunicipios">
+                                        <select class="form-control" name="" id="editarMunicipioNavegadoraAPaciente">
                                             <option disabled selected>Municipio</option>
-                                            <option value=""></option>
-                                            <option value=""></option>
                                         </select>
                                     </div>
                                 </div>
@@ -839,7 +837,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal" style="border-radius:20px">Cancelar</button>
-                            <button type="button" class="btn btn-primary" style="border-radius:20px">Guardar Cambios</button>
+                            <button type="button" class="btn btn-primary" id="btn-guardarCambios" style="border-radius:20px">Guardar Cambios</button>
                         </div>
                     </div>
                 </div>

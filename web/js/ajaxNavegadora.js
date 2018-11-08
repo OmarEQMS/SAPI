@@ -58,10 +58,9 @@ $(document).ready(function () {
     //  Editar paciente
     $('.btn-editar').on('click', function () {
 
-    
         $('#hidden-idPaciente').val($(this).data('id'));
-        
-       
+
+
         $.ajax({
 
             url: 'NavegadoraController',
@@ -71,14 +70,14 @@ $(document).ready(function () {
 
                 key: "obtener-paciente",
                 idPaciente: $('#hidden-idPaciente').val(),
-                
+
             },
             success: function (response) {
-                
+
                 var data = JSON.parse(response);
-                
+
                 console.log(data);
-                
+
                 $('#editarNombreNavegadoraAPaciente').val(data.nombre);
                 $('#editarCurpNavegadoraAPaciente').val(data.curp);
                 $('#editarCumpleNavegadoraAPaciente').val(data.fechaNacimiento);
@@ -86,27 +85,85 @@ $(document).ready(function () {
                 $('#editarSegundo-apellidoNavegadoraAPaciente').val(data.segundoApellido);
                 $('#editarSegundo-apellidoNavegadoraAPaciente').val(data.segundoApellido);
                 $('#editarUsuarioNavegadoraAPaciente').val(data.usuario);
-                
-                //estado civil
-                //
-                
-                
+                $('#editarEstado-civilNavegadora').val(data.idEstadoCivil);
                 $('#editarColNavegadoraAPaciente').val(data.colonia);
                 $('#editarCalleNavegadoraAPaciente').val(data.calle);
                 $('#editarNumIntNavegadoraAPaciente').val(data.noInt);
                 $('#editarNumExtNavegadoraAPaciente').val(data.noExt);
-                
-                //estado
-                
-                
-                //municipio
-                
+                $('#editarEstadoNavegadoraAPaciente').val(data.idEstado);
                 $('#editarTelNavegadoraAPaciente').val(data.telefono);
                 $('#editarCorreoNavegadoraAPaciente').val(data.correo);
+
+                $.ajax({
+
+                    url: 'ZonaController',
+                    cache: false,
+                    method: 'POST',
+                    data: {
+
+                        key: "getByEstado",
+                        idEstado: data.idEstado
+
+                    },
+                    success: function (response) {
+
+                        //Limpiar el select antes de que haga una consulta para que no se emapalmen los municipios
+                        $(".editarMunicipios select").each(function () {
+                            $(this).children().remove();
+                        });
+                        var json = JSON.parse(response);
+                        for (var i = 0; i < json.length; i++) {
+                            $('.editarMunicipios select').append("<option value=" + json[i].idMunicipio + ">" + json[i].nombre + "</option>");
+                        }
+                        $('.editarMunicipios select').prop('selectedIndex', 0);
+                        console.log(json);
+                        $('#editarMunicipioNavegadoraAPaciente').val(data.idMunicipio);
+                    }
+
+                });
             }
 
         });
 
+    });
+    
+    $('#btn-guardarCambios').on('click', function () {
+        console.log("Presionó Guardar Cambios");
+        
+        // FALTA OBTENER EL ID DEL PACIENTE 
+        /*
+        $.ajax({
+                url: 'NavegadoraController',
+                cache: false,
+                method: 'POST',
+                data: {
+                    key: "actualizar-paciente",
+                    nombre: $('#editarNombreNavegadoraAPaciente').val(),
+                    apellido1: $('#editarPrimer-apellidoNavegadoraAPaciente').val(),
+                    apellido2: $('#editarSegundo-apellidoNavegadoraAPaciente').val(),
+                    usuario: $("#editarUsuarioNavegadoraAPaciente").val(),
+                    correo: $('#editarCorreoNavegadoraAPaciente').val(),
+                    curp: $('#editarCurpNavegadoraAPaciente').val(),
+                    colonia: $('#editarColNavegadoraAPaciente').val(),
+                    calle: $('#editarCalleNavegadoraAPaciente').val(),
+                    noExterior: $("#editarNumExtNavegadoraAPaciente").val(),
+                    noInterior: $("#editarNumIntNavegadoraAPaciente").val(),
+                    telefono: $("#editarTelNavegadoraAPaciente").val(),
+                    estadoCivil: $("#editarEstado-civilNavegadora").val(),
+                    fechaNacimiento: $("#editarCumpleNavegadoraAPaciente").val(),
+                    estado: $("#editarEstadoNavegadoraAPaciente").val(),
+                    municipio: $("#editarMunicipioNavegadoraAPaciente").val()
+                },success: function (response) {
+                        swal({
+                            title: 'Buen Trabajo',
+                            text: "Cuenta registrada correctamente",
+                            type: 'success',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        })
+                    }
+
+            });*/
     });
 
     //Redirige a documentos
@@ -759,6 +816,55 @@ $(document).ready(function () {
                     }
 
                 });
+    });
+
+    //Cargar los municipios con base en el estado
+    $('#estadoNavegadora').on('change', function () {
+        $.ajax({
+            url: 'ZonaController',
+            data: {
+                key: "getByEstado",
+                idEstado: $('#estadoNavegadora').val()
+            },
+            method: 'POST',
+            success: function (response) {
+
+                //Limpiar el select antes de que haga una consulta para que no se emapalmen los municipios
+                $(".municipios select").each(function () {
+                    $(this).children().remove();
+                });
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+                    $('.municipios select').append("<option value=" + json[i].idMunicipio + ">" + json[i].nombre + "</option>");
+                }
+                $('.municipios select').prop('selectedIndex', 0);
+                console.log(json);
+            }
+        });
+    });
+
+    $('#editarEstadoNavegadoraAPaciente').on('change', function () {
+        $.ajax({
+            url: 'ZonaController',
+            data: {
+                key: "getByEstado",
+                idEstado: $('#editarEstadoNavegadoraAPaciente').val()
+            },
+            method: 'POST',
+            success: function (response) {
+
+                //Limpiar el select antes de que haga una consulta para que no se emapalmen los municipios
+                $(".editarMunicipios select").each(function () {
+                    $(this).children().remove();
+                });
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+                    $('.editarMunicipios select').append("<option value=" + json[i].idMunicipio + ">" + json[i].nombre + "</option>");
+                }
+                $('.editarMunicipios select').prop('selectedIndex', 0);
+                console.log(json);
+            }
+        });
     });
 
     function isValidEmail(input) {

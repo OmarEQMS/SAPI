@@ -417,7 +417,59 @@ public class PersonaServicioImpl implements PersonaServicio {
             informacion = null;
         }
 
-        return informacion;
+        return informacion;        
+    }
+    
+    @Override
+    public boolean actualizarInformacionGeneralPersona(int idPaciente, InformacionGeneralPersona persona){
         
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+        boolean exito = false;
+        
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL actualizarInformacionGeneral(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            
+            cstmt.setInt(1, idPaciente);
+            cstmt.setString(2, persona.getNombre());
+            cstmt.setString(3, persona.getPrimerApellido());
+            cstmt.setString(4, persona.getSegundoApellido());
+            cstmt.setString(5, persona.getCurp());
+            cstmt.setDate(6, persona.getFechaNacimiento());
+            cstmt.setString(7, persona.getUsuario());
+            cstmt.setInt(8, persona.getIdEstadoCivil());
+            cstmt.setString(9, persona.getCalle());
+            cstmt.setString(10, persona.getNoInt());
+            cstmt.setString(11, persona.getNoExt());
+            cstmt.setInt(12, persona.getIdEstado());
+            cstmt.setInt(13, persona.getIdMunicipio());
+            cstmt.setString(14, persona.getTelefono());
+            cstmt.setString(15, persona.getCorreo());
+            cstmt.setString(16, persona.getColonia());
+            
+            rs = cstmt.executeQuery();
+            
+            rs.next();
+                
+            int idPacienteReg = rs.getInt("idPaciente");
+            
+            if(idPacienteReg == idPaciente)
+                exito = true;
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+            
+            System.out.println("PersonaServicioImpl mostrarInformacionGeneral");
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+        }
+
+        return exito;        
     }
 }
