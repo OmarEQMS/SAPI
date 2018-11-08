@@ -21,12 +21,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.diagnostico.EtapaClinica;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
+import mx.itesm.sapi.bean.gestionPaciente.Alergia;
+import mx.itesm.sapi.bean.gestionPaciente.Biopsia;
+import mx.itesm.sapi.bean.gestionPaciente.Cita;
 import mx.itesm.sapi.bean.gestionPaciente.DatosPacienteDocumentoInicial;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoEstudio;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialTipoDocumento;
+import mx.itesm.sapi.bean.gestionPaciente.Escolaridad;
+import mx.itesm.sapi.bean.gestionPaciente.EstadoPaciente;
 import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteMedicoTitular;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteSeguro;
 import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
+import mx.itesm.sapi.bean.gestionTratamiento.PacienteTratamientoPrevio;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.Tratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.TratamientoPaciente;
@@ -45,10 +56,21 @@ import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.bean.persona.TipoSangre;
 import mx.itesm.sapi.service.diagnostico.EtapaClinicaServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.AlergiaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.BiopsiaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.DocumentoEstudioServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialTipoDocumentoServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.EscolaridadServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.EstadoPacienteServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteSeguroServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
+import mx.itesm.sapi.service.gestionTratamiento.PacienteTratamientoPrevioServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TratamientoPacienteServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TratamientoServiceImpl;
@@ -202,51 +224,6 @@ public class FrontController extends HttpServlet {
                             String keyRuta = request.getParameter("file");
                             switch (keyRuta) {
 
-                                case "navegadora/cuentaNavegadora.jsp": {
-
-                                    PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
-                                    Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
-
-                                    CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
-                                    Cuenta cuenta = cuentaServicioImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));
-
-                                    /*EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
-                                    Empleado empleado = empleadoServicioImpl.mostrarEmpleadoCuenta((int) sesion.getAttribute("idCuenta"));
-
-                                    MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
-                                    MedicoEspecialidad medicoEspecialidad = medicoEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(empleado.getIdEmpleado());
-
-                                    EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
-                                    Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());*/
- /*
-                                    System.out.println("holiiii");
-                                    sesion.setAttribute("nombre", persona.getNombre());
-                                    sesion.setAttribute("primerApellido", persona.getPrimerApellido());
-                                    sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
-                                    System.out.println("el correo es:" + persona.getCorreo());
-                                    sesion.setAttribute("correo", persona.getCorreo());
-                                    sesion.setAttribute("telefono", persona.getTelefono());
-                                    sesion.setAttribute("usuario", cuenta.getUsuario());
-                                    //sesion.setAttribute("noEmpleado", empleado.getNoEmpleado());
-                                    //sesion.setAttribute("especialidad", especialidad.getNombre());
-                                    //sesion.setAttribute("cedulaProfesional", medicoEspecialidad.getCedulaProfesional());
-
-                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
-                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
-
-                                    InputStream imagen = pic.getContenido();
-                                    byte[] bytes = IOUtils.toByteArray(imagen);
-                                    String base64String = Base64.getEncoder().encodeToString(bytes);
-
-                                    sesion.setAttribute("base64Img", base64String);*/
-                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
-
-                                    /*MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl=new MedicoEspecialidadServicioImpl();
-                                    MedicoEspecialidad medicoEspecialidad= medicoEspecialidadServicioImpl.mostrarMedicoEspecialidad(keyRol)
-                                     */
-                                    break;
-                                }
-
                                 case "navegadora/index.jsp": {
                                     System.out.println("Index Navegadora ");
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al dashboard navgeadora
@@ -381,6 +358,15 @@ public class FrontController extends HttpServlet {
 
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
                                     break;
+                                }
+
+                                case "navegadora/form.jsp": {
+                                    System.out.println("Form Navegadora ");
+
+                                    
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
+                                    break;
+
                                 }
 
                             }

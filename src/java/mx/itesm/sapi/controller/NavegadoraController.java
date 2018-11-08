@@ -18,17 +18,68 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import mx.itesm.sapi.bean.diagnostico.EstadiajeTNM;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
+import mx.itesm.sapi.bean.gestionPaciente.Alergia;
+import mx.itesm.sapi.bean.gestionPaciente.Biopsia;
+import mx.itesm.sapi.bean.gestionPaciente.BloqueParafina;
+import mx.itesm.sapi.bean.gestionPaciente.CategoriaEstudio;
+import mx.itesm.sapi.bean.gestionPaciente.Cita;
+import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoEstudio;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialTipoDocumento;
+import mx.itesm.sapi.bean.gestionPaciente.Escolaridad;
+import mx.itesm.sapi.bean.gestionPaciente.EstadoPaciente;
+import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
+import mx.itesm.sapi.bean.gestionPaciente.Estudio;
+import mx.itesm.sapi.bean.gestionPaciente.Laminilla;
+import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
+import mx.itesm.sapi.bean.gestionPaciente.LugarDelCuerpo;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteMedicoTitular;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteSeguro;
+import mx.itesm.sapi.bean.gestionPaciente.ProgramaPaciente;
+import mx.itesm.sapi.bean.gestionPaciente.Seguro;
+import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
+import mx.itesm.sapi.bean.gestionTratamiento.PacienteTratamientoPrevio;
+import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
+import mx.itesm.sapi.bean.gestionTratamiento.Tratamiento;
+import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
+import mx.itesm.sapi.service.diagnostico.EstadiajeTNMServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.AlergiaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.BiopsiaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.BloqueParafinaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.CategoriaEstudioServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.ComentarioCitaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.DocumentoEstudioServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialTipoDocumentoServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.EscolaridadServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.EstadoPacienteServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.EstudioServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.LaminillaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.LlamadaCitaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.LugarDelCuerpoServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteSeguroServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.ProgramaPacienteServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.ProgramaServicio;
+import mx.itesm.sapi.service.gestionPaciente.SeguroServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.TipoHistologicoServicioImpl;
+import mx.itesm.sapi.service.gestionTratamiento.PacienteTratamientoPrevioServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.TratamientoServiceImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
@@ -149,34 +200,291 @@ public class NavegadoraController extends HttpServlet {
                             break;
                         }
 
-
                         case "descargarArchivo": {
-                            
+
                             int idDocumento = Integer.parseInt(request.getParameter("idDocumento"));
-                            
-                            System.out.println("El documento del id es: "+idDocumento);
-                            
+
+                            System.out.println("El documento del id es: " + idDocumento);
+
                             DocumentoInicialServicioImpl documentoInicialServicioImpl = new DocumentoInicialServicioImpl();
                             DocumentoInicial documentoInicial = documentoInicialServicioImpl.mostrarDocumentoInicial(idDocumento);
                             OutputStream out = response.getOutputStream();
 
-                            if(documentoInicial.getArchivo()==null)
+                            if (documentoInicial.getArchivo() == null) {
                                 System.out.println("valio madre");
-                            else{
+                            } else {
                                 System.out.println("si hay algo");
                             }
-                            
+
                             response.setContentType(documentoInicial.getTipo());
-                            
+
                             System.out.println(documentoInicial.getTipo());
                             response.setHeader("Content-Disposition", "attachment;filename=".concat(documentoInicial.getNombre())); //Forzar descarga
 
                             out.write(IOUtils.toByteArray(documentoInicial.getArchivo()));
                             out.flush();
-                            
+
                             break;
                         }
+                        case "btn-save": {
 
+                            int idPaciente = (int) sesion.getAttribute("idPaciente");
+                            
+                            PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
+                            Paciente paciente = pacienteServicioImpl.mostrarPaciente(idPaciente);
+                            
+                            pacienteServicioImpl.agregarPaciente(paciente);
+                            
+                            System.out.println("PRZ->");
+                            System.out.println("NivelEducativo->");
+                            System.out.println("Estado Hormonal->");
+                            System.out.println("Nivel socioeconómico->");
+
+                            /*
+                            Aquí le vamos a meter lista de inputs:
+                            
+                                PRZ
+                                NivelEducativo
+                                Estado Hormonal
+                                Nivel socioeconómico
+
+                            
+                             */
+                            PacienteMedicoTitularServicioImpl pacienteMedicoTitularServicioImpl = new PacienteMedicoTitularServicioImpl();
+                            PacienteMedicoTitular pacienteMedicoTitular = new PacienteMedicoTitular();
+                            
+                            pacienteMedicoTitular.setIdPaciente(idPaciente);
+                            
+                            pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitular);
+                            
+                            System.out.println("Medico Adscrito-->");
+                            System.out.println("Medico Radiologo-->");
+                            System.out.println("Medico Residente-->");
+                            
+                            
+                            
+                            /*
+                            
+                                Medico Adscrito
+                                Medico Radiologo
+                                Medico Residente
+                            
+                            
+                             */
+                            
+                            EstadoPacientePacienteServiceImpl estadoPacientePacienteServicioImpl = new EstadoPacientePacienteServiceImpl();
+                            EstadoPacientePaciente estadoPacientePaciente = new EstadoPacientePaciente();
+                            
+                            estadoPacientePaciente.setIdPaciente(idPaciente);
+                            
+                            estadoPacientePacienteServicioImpl.agregarEstadoPacientePaciente(estadoPacientePaciente);
+                            
+                            System.out.println("Tipo de Paciente-->");
+                            System.out.println("Resultados (checkbox)-->");
+                            System.out.println("Decisión preconsulta-->");
+                            
+                            /*
+                                Tipo de Paciente
+                                Resultados (checkbox)
+                                Decisión preconsulta
+                            */
+
+                            CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
+                            Cita cita = new Cita();
+                            
+                            cita.setIdPaciente(idPaciente);
+                            citaServicioImpl.agregarCita(cita);
+                            
+                            System.out.println("Fecha de navegacion-->");
+                            System.out.println("Fecha de consulta-->");
+                            
+                            System.out.println("Biopsia-->");
+                            System.out.println("Rayos x-->");
+                            System.out.println("Ultrasonido-->");
+                            System.out.println("Medicina Nuclear-->");
+                            System.out.println("Laboratorio-->");
+                            System.out.println("Valoracion-->");
+                            System.out.println("Espirometria-->");
+                            System.out.println("Electrocardiograma-->");
+                            System.out.println("Ecocardiograma-->");
+                            System.out.println("TrabajoSocial-->");
+                            
+                            /*
+                                Fecha de navegacion
+                                Fecha de consulta
+                            
+                                ESTUDIOS PRECONSULTA-->
+                                Biopsia
+                                Rayos x
+                                Ultrasonido
+                                Medicina Nuclear
+                                Laboratorio
+                                Valoracion
+                                Espirometria
+                                Electrocardiograma
+                                Ecocardiograma
+                                TrabajoSocial
+                             */
+
+                            PacienteAlergiaServicioImpl pacienteAlergiaServicioImpl = new PacienteAlergiaServicioImpl();
+                            PacienteAlergia pacienteAlergia = new PacienteAlergia();
+                            
+                            pacienteAlergia.setIdPaciente(idPaciente);
+                            
+                            pacienteAlergiaServicioImpl.agregarPacienteAlergia(pacienteAlergia);
+                            
+                            System.out.println("Alergias-->");
+                            /*
+                                Alergias
+                             */
+
+                            PacienteSeguroServicioImpl pacienteSeguroServicioImpl = new PacienteSeguroServicioImpl();
+                            PacienteSeguro pacienteSeguro = new PacienteSeguro();
+                            
+                            pacienteSeguro.setIdPaciente(idPaciente);
+                            pacienteSeguroServicioImpl.agregarPacienteSeguro(pacienteSeguro);
+                            
+                            System.out.println("Cuentas con algún seguro?-->");
+                            /*
+                                Cuentas con algún seguro?
+                             */
+
+                            DocumentoEstudioServicioImpl documentoEstudioServicioImpl = new DocumentoEstudioServicioImpl();
+                            DocumentoEstudio documentoEstudio = new DocumentoEstudio();
+                            
+                            documentoEstudio.setIdPaciente(idPaciente);
+                            
+                            documentoEstudioServicioImpl.agregarDocumentoEstudio(documentoEstudio);
+                            
+                            System.out.println("Mastografia-->");
+                            System.out.println("Ultrasonido de mama-->");
+                            System.out.println("Resultados de mastografía-->");
+                            System.out.println("Resultados del ultrasonido-->");
+                            /*
+                                Mastografia
+                                Ultrasonido de mama
+                                Resultados de mastografía
+                                Resultados del ultrasonido
+                            */
+
+                            PacienteTratamientoPrevioServiceImpl pacienteTratamientoPrevioServiceImpl = new PacienteTratamientoPrevioServiceImpl();
+                            PacienteTratamientoPrevio pacienteTratamientoPrevio = new PacienteTratamientoPrevio();
+                            
+                            pacienteTratamientoPrevio.setIdPaciente(idPaciente);
+                            
+                            pacienteTratamientoPrevioServiceImpl.agregarPacienteTratamientoPrevio(pacienteTratamientoPrevio);
+                            
+                            System.out.println("Cirugía-->");
+                            System.out.println("Quimioterapia-->");
+                            System.out.println("Radioterapia-->");
+                            
+                            /*
+                            Cirugía
+                            Quimioterapia
+                            Radioterapia
+                             */
+
+                            BiopsiaServicioImpl biopsiaServicioImpl = new BiopsiaServicioImpl();
+                            Biopsia biopsia = new Biopsia();
+                            
+                            biopsia.setIdPaciente(idPaciente);
+                            
+                            biopsiaServicioImpl.agregarBiopsia(biopsia);
+                            
+                            System.out.println("Resultado o reporte de patologia-->");
+                            System.out.println("Laminillas-->");
+                            System.out.println("Bloques de parafina-->");
+                            System.out.println("Resultado Patologia-->");
+                            System.out.println("Grado Histológico-->");
+                            System.out.println("Her2-->");
+                            System.out.println("Fish-->");
+                            System.out.println("RE-->");
+                            System.out.println("RP-->");
+                            System.out.println("Ki67-->");
+                            
+                            
+                            /*
+                            Resultado o reporte de patologia
+                            Laminillas
+                            Bloques de parafina
+                            Resultado Patologia
+                            Grado Histológico
+                            Her2
+                            Fish
+                            RE
+                            RP
+                            Ki67
+
+                             */
+
+                            ProgramaPacienteServicioImpl programaPacienteServicioImpl = new ProgramaPacienteServicioImpl();
+                            ProgramaPaciente programaPaciente = new ProgramaPaciente();
+                            
+                            programaPaciente.setIdPaciente(idPaciente);
+                            programaPacienteServicioImpl.agregarProgramaPaciente(programaPaciente);
+                            
+                            System.out.println("Programa-->");
+                            /*
+                            ESTUDIOS PRECONSULTA-->Programa
+                             */
+
+                            LlamadaCitaServicioImpl LlamadaCitaServicioImpl = new LlamadaCitaServicioImpl();
+                            LlamadaCita llamadaCita =new LlamadaCita();
+                            
+                            llamadaCita.setIdCita(cita.getIdCita());
+                            
+                            LlamadaCitaServicioImpl.agregarLlamadaCita(llamadaCita);
+                            
+                            System.out.println("Llamada al paciente-->");
+                            /*
+                            
+                            Llamada al paciente
+
+                             */
+
+                            ComentarioCitaServicioImpl comentarioCitaServicioImpl = new ComentarioCitaServicioImpl();
+                            ComentarioCita comentarioCita = new ComentarioCita();
+                            
+                            comentarioCita.setIdCita(cita.getIdCita());
+                            
+                            comentarioCitaServicioImpl.agregarComentarioCita(comentarioCita);
+                            
+                            System.out.println("Comentarios y reporte de incidencias-->");
+                            System.out.println("Comentarios adicionales del médico-->");
+                            /*
+                            Comentarios y reporte de incidencias
+                            Comentarios adicionales del médico
+                             */
+
+                            RegistroDiagnosticoServiceImpl registroDiagnosticoServiceImpl = new RegistroDiagnosticoServiceImpl();
+                            RegistroDiagnostico registroDiagnostico = new RegistroDiagnostico();
+                            
+                            registroDiagnostico.setIdPaciente(idPaciente);
+                            registroDiagnosticoServiceImpl.agregarRegistroDiagnostico(registroDiagnostico);
+                            
+                            System.out.println("EtapaClinica-->");
+                            /*
+                            EtapaClinica
+                             */
+
+                            EstadiajeTNMServiceImpl estadiajeTNMServiceImpl = new EstadiajeTNMServiceImpl();
+                            EstadiajeTNM estadiajeTNM = new EstadiajeTNM();
+                            
+                            
+                            estadiajeTNMServiceImpl.agregarEstadiajeTNM(estadiajeTNM);
+                            
+                            System.out.println("T-->");
+                            System.out.println("N-->");
+                            System.out.println("M-->");
+                            /*
+                            T
+                            N
+                            M
+                             */
+
+
+                            break;
+                        }
 
                     }
 
