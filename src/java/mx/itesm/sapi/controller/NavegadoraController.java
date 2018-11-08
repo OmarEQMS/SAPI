@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.Date;
 import java.util.Base64;
+import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
@@ -250,11 +251,15 @@ public class NavegadoraController extends HttpServlet {
                             boolean rechazado = documentoInicialServicioImpl.agregarRechazoDocumento(idDocumentoInicial, comentario);
                             //ESto es para el correo
                          
-                            int idPersona =  request.getParameter("idpersona");
-                            PersonaServicioImpl personaServicio = PersonaServicioImpl();
-                            Persona persona = personaServicio.mostrarPersona(idPersona);
+                            int pacientePotencial = (int) sesion.getAttribute("idPacientePotencialAtendido");
+                            PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                            Persona persona = personaServicio.mostrarPersona(pacientePotencial);
                             
+                            Properties config = new Properties();
+                            String correo = request.getParameter("email");
+                
                             try {
+                                
                                 config.load(getClass().getResourceAsStream("/mail.properties"));
                                 Session session = Session.getInstance(config,
                                         new javax.mail.Authenticator() {

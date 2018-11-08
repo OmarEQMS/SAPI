@@ -794,9 +794,10 @@ public class PotencialController extends HttpServlet {
                         System.out.println("Biopsia ".concat(String.valueOf(idBiopsiaPreviaDB)));
                         System.out.println("Preconsulta ".concat(String.valueOf(idCitaPreconsulta)));
 
-                        if ("5".equals(motivoConsulta)) {
-                            System.out.println("Otro motivo");
+                        if ("5".equals(motivoConsulta)) {                            
+                            
                             String otroMotivo = request.getParameter("otroMotivo");
+                            System.out.println("Otro motivo: ".concat(otroMotivo));
 
                             OtroMotivo motivo = new OtroMotivo();
                             motivo.setIdCita(idCitaPreconsulta);
