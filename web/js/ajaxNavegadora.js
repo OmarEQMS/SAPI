@@ -1,5 +1,30 @@
 $(document).ready(function () {
 
+    $('#noEqualPasswordsErrorNavegadora').hide();
+    $('#errorNombreNavegadora').hide();
+    $('#errorApellidoPaternoNavegadora').hide();
+    $('#errorApellidoMaternoNavegadora').hide();
+    $('#errorNombreUsuarioNavegadora').hide();
+    $('#errorCorreoNavegadora').hide();
+    $('#errorPass1Navegadora').hide();
+    $('#errorPass2Navegadora').hide();
+    $('#errorCurpNavegadora').hide();
+    $('#errorColoniaNavegadora').hide();
+    $('#errorCalleNavegadora').hide();
+    $('#errorNoExteriorNavegadora').hide();
+    $('#errorNoInteriorNavegadora').hide();
+    $('#error-CPexisteNavegadora').hide();
+    
+    //A partir de aqui :(
+    $('#errorCurpRepetidoNavegadora').hide();
+    $('#errorCodigoPostalNavegadora').hide();
+    $('#errorTelefonoNavegadora').hide();
+    $('#errorECivilNavegadora').hide();
+    $('#errorFechaNavegadora').hide();
+    $('#errorEstadoNavegadora').hide();
+    $('#errorMunicipioNavegadora').hide();
+    $('#errorUsuarioRepetidoNavegadora').hide();
+        
 
     //Terminos y condiciones
     $('#acepto-terminos').change(function () {
@@ -230,9 +255,11 @@ $(document).ready(function () {
 
     //Redirige a documentos
     $('#irADocumentos').on('click', function () {
-        $.get("SAPI", {
-            file: "navegadora/documentos.jsp"
+        $.post("SAPI", {
+            file: "navegadora/documentos.jsp",
+            idPacientePotencialAtendido: "hola"
         },
+
                 function (response, status, xhr) {
                     //console.log(response);
                     if (status == "success") {

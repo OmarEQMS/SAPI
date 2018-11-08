@@ -17,7 +17,7 @@ import java.nio.file.Path;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Base64;
-
+import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
@@ -274,11 +274,63 @@ public class NavegadoraController extends HttpServlet {
 
                             DocumentoInicialServicioImpl documentoInicialServicioImpl = new DocumentoInicialServicioImpl();
                             boolean rechazado = documentoInicialServicioImpl.agregarRechazoDocumento(idDocumentoInicial, comentario);
+                            //ESto es para el correo
+                         
+                            int pacientePotencial = (int) sesion.getAttribute("idPacientePotencialAtendido");
+                            PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                            Persona persona = personaServicio.mostrarPersona(pacientePotencial);
+                            
+                            Properties config = new Properties();
+                            String correo = request.getParameter("email");
+                
+                            try {
+                                config.load(getClass().getResourceAsStream("/mail.properties"));
+                                Session session = Session.getInstance(config,
+                                        new javax.mail.Authenticator() {
+                                    protected PasswordAuthentication getPasswordAuthentication() {
+                                        return new PasswordAuthentication("sapi.prueba@gmail.com", "prueba.Sapi1");
 
-                            System.out.println("Se rechazo ".concat(String.valueOf(rechazado)));
-                            PrintWriter out = response.getWriter();
-                            out.print(rechazado);
-                            break;*/
+                                    }
+                                });
+
+                                //System.out.println("despues del try");
+                                Message message = new MimeMessage(session);
+                                message.setFrom(new InternetAddress("sapi.prueba@gmail.com"));
+                                message.setRecipients(Message.RecipientType.TO,
+                                        InternetAddress.parse(correo));
+                                message.setSubject("Recuperar Conraseña");
+                                //message.setText("Esto no es spam :)");
+
+                                //Estos deberían ir como parametros dentro de la función de enviar correo
+                                //String mail = "tucorreo@mail.com";
+                                //String contrasena = "tucontrasena";
+                                MimeBodyPart mimeBodyPart = new MimeBodyPart();
+                                mimeBodyPart.setContent("<b>Estimado usuario, usted ha solicitado Recuperar su Contraseña</b></br>".
+                                        concat("<b>Su token para iniciar sesion es:  ").
+                                        concat(token), "text/html");
+
+                                Multipart multipart = new MimeMultipart();
+                                multipart.addBodyPart(mimeBodyPart);
+
+                                Path path = Files.createTempFile(null, ".properties");
+                                File file = new File(path.toString());
+
+                                OutputStream outputStream = new FileOutputStream(file);
+                                IOUtils.copy(getClass().getResourceAsStream("/mail.properties"), outputStream);
+                                outputStream.close();
+
+                                //Comente este attach fail porque de lo contrario no se hace bien el set content de arriba (lo de los datos de usuario)
+                                // mimeBodyPart.attachFile(file);
+                                message.setContent(multipart);
+                                Transport.send(message);
+                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+
+                            } catch (Exception ex) {
+                                System.out.println("catch de envia correo");
+                                System.out.println(this.getClass().toString().concat(ex.getMessage()));
+                         }
+                            */
+                            break;
                         }
 
                         case "descargarArchivo": {

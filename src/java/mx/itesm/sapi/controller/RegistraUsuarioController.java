@@ -305,6 +305,7 @@ public class RegistraUsuarioController extends HttpServlet {
         Properties config = new Properties();
 
         try {
+            
             config.load(getClass().getResourceAsStream("/mail.properties"));
             Session session = Session.getInstance(config,
                     new javax.mail.Authenticator() {

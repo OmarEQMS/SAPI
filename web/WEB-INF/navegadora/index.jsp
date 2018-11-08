@@ -231,12 +231,12 @@
                                                             <c:choose>
                                                                 <c:when test="${paciente.estadoPaciente=='Potencial en proceso'}">
                                                                     <button class="btn btn-success btn-aceptar" data-id="${paciente.idPaciente}" data-toggle="modal" data-target="#modalAceptarUsuario">
-                                                                <i class="fas fa-check"></i>
-                                                            </button>
+                                                                        <i class="fas fa-check"></i>
+                                                                    </button>
                                                                 </c:when>    
-           
+
                                                             </c:choose>
-                                                            
+
                                                             <button class="btn btn-primary btn-editar" data-id="${paciente.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarUsuario">
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
@@ -407,6 +407,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="nombreNavegadora" name="nombreNavegadora" placeholder="Nombre">
+                                        <span class="text-danger" id="errorNombreNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 255 caracteres.</span>
                                     </div>
                                 </div>
 
@@ -418,6 +419,10 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="curpNavegadora" name="curpNavegadora" placeholder="CURP">
+                                        <span class="text-danger" id="errorCurpNavegadora">Formato incorrecto, las letras deben estar en mayúsculas y asegúrate de introducir un CURP válido y sin espacios. Puedes consultarlo 
+                                            <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí.</a>
+                                        </span>
+                                        <span class="text-warning" id="errorCurpRepetidoNavegadora">El curp ya existe.</span>
                                     </div>
                                 </div>
                             </div>
@@ -431,6 +436,7 @@
                                         </div>
                                         <input placeholder="Fecha de nacimiento" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                id="cumpleNavegadora" name="cumpleNavegadora">
+                                        <span class="text-danger" id="errorFechaNavegadora">Fecha incorrecta</span>
                                     </div>
                                 </div>
                             </div>
@@ -444,6 +450,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="primer-apellidoNavegadora" name="primer-apellidoNavegadora" placeholder="Primer Apellido">
+                                        <span class="text-danger" id="errorApellidoPaternoNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                     </div>
                                 </div>
 
@@ -455,6 +462,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="segundo-apellidoNavegadora" name="segundo-apellidoNavegadora" placeholder="Segundo Apellido">
+                                        <span class="text-danger" id="errorApellidoMaternoNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                     </div>
                                 </div>
                             </div>
@@ -468,6 +476,8 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="usuarioNavegadora" usuario="usuarioNavegadora" placeholder="Usuario">
+                                        <span class="text-danger" id="errorNombreUsuarioNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 4 y un máximo de 16 caracteres.</span>
+                                        <span class="text-warning" id="errorUsuarioRepetidoNavegadora">El usuario ya existe.</span>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -478,6 +488,7 @@
                                                 <option value='<c:out value="${estadoC.idEstadoCivil}"/>'><c:out value='${estadoC.nombre}'/> </option>
                                             </c:forEach>
                                         </select>
+                                        <span class="text-danger" id="errorECivilNavegadora">Selecciona una opcion</span>
                                     </div>
                                 </div>
                             </div>
@@ -491,6 +502,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="colNavegadora" placeholder="Colonia">
+                                        <span class="text-danger" id="errorColoniaNavegadora">Formato incorrecto, introducir caracteres alfanuméricos.</span>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -501,6 +513,8 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="codigo-postalNavegadora" placeholder="Codigo Postal">
+                                        <span class="text-danger" id="errorCodigoPostalNavegadora">Formato incorrecto, deben ser 5 dígitos.</span>
+                                        <span class="text-danger" id="error-CPexisteNavegadora" style="font-size:13px;">El codigo postal no existe.</span>
                                     </div>
                                 </div>
                             </div>
@@ -514,6 +528,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="calleNavegadora" calle="calleNavegadora" placeholder="Calle">
+                                        <span class="text-danger" id="errorCalleNavegadora">Formato incorrecto, introducir caracteres alfanuméricos.</span>
                                     </div>
                                 </div>
                                 <div class="col-3">
@@ -524,6 +539,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="numIntNavegadora" placeholder="No. int">
+                                        <span class="text-danger" id="errorNoInteriorNavegadora">Formato incorrecto, solo dígitos y/o letras.</span>
                                     </div>
                                 </div>
                                 <div class="col-3">
@@ -534,6 +550,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="numExtNavegadora" placeholder="No. ext">
+                                        <span class="text-danger" id="errorNoExteriorNavegadora">Formato incorrecto, solo dígitos.</span>
                                     </div>
                                 </div>
                             </div>
@@ -547,6 +564,7 @@
                                                 <option value='<c:out value="${estado.idEstado}"/>'><c:out value='${estado.nombre}'/> </option>
                                             </c:forEach>
                                         </select>
+                                        <span class="text-danger" id="errorEstadoNavegadora">Campo vacío</span>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -554,6 +572,7 @@
                                         <select class="form-control" id="municipioNavegadora">
                                             <option disabled selected>Seleccione Municipio</option>
                                         </select>
+                                        <span class="text-danger" id="errorMunicipioNavegadora">Campo vacío</span>
                                     </div>
                                 </div>
                             </div>
@@ -567,6 +586,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="telNavegadora" placeholder="Teléfono">
+                                        <span class="text-danger" id="errorTelefonoNavegadora">Formato incorrecto, deben ser 10 dígitos.</span>
                                     </div>
                                 </div>
 
@@ -578,6 +598,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="correoNavegadora" placeholder="Correo">
+                                        <span class="text-danger" id="errorCorreoNavegadora">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
                                     </div>
                                 </div>
 
@@ -595,6 +616,7 @@
                                             </div>
                                         </div>
                                         <input type="password" class="form-control" id="contraNavegadora" placeholder="Contraseña">
+                                        <span class="text-danger" id="errorPass1Navegadora">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -605,6 +627,8 @@
                                             </div>
                                         </div>
                                         <input type="password" class="form-control" id="confContraNavegadora" placeholder="Confirmar contraseña">
+                                        <span class="text-warning" id="noEqualPasswordsErrorNavegadora">Las contraseñas no son iguales.</span>
+                                        <span class="text-danger" id="errorPass2Navegadora">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                     </div>
                                 </div>
                             </div>
@@ -649,7 +673,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            
+
                             <div class="form-group row">
                                 <div class="col-6">
                                     <div class="input-group">
@@ -674,7 +698,7 @@
                                 </div>
 
                             </div>
-                            
+
                             <div class="form-group row">
                                 <div class="col-12">
                                     <div class="input-group">
@@ -688,8 +712,8 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                           
+
+
                             <div class="form-group row">
                                 <div class="col-6">
                                     <div class="input-group">
@@ -714,7 +738,7 @@
                                 </div>
                             </div>
 
-                            
+
 
                             <div class="form-group row">
                                 <div class="col-6">
@@ -738,7 +762,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group row">
                                 <div class="col-12">
                                     <div class="input-group">
@@ -750,8 +774,8 @@
                                         <input type="text" class="form-control" id="editarColNavegadoraAPaciente" placeholder="Colonia">
                                     </div>
                                 </div>
-                                
-                            
+
+
                             </div>
 
                             <div class="form-group row">
@@ -832,8 +856,8 @@
 
                             </div>
 
-                            
-                            
+
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal" style="border-radius:20px">Cancelar</button>
@@ -843,7 +867,7 @@
                 </div>
             </div>
 
-            
+
 
             <div class="modal fade" id="modalAceptarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
