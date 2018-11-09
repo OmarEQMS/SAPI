@@ -69,7 +69,7 @@ public class NCodificadoServiceImpl implements NCodificadoService{
         List<NCodificado> nCodificadoss = null;
         
         //Call del store procedure
-        String stProcedure="-----";
+        String stProcedure="CALL mostrarListaNCodificado(?)";
         
         try{
             
@@ -83,9 +83,9 @@ public class NCodificadoServiceImpl implements NCodificadoService{
             while(rs.next()){
                 
                 nCodificados = new NCodificado();
-                nCodificados.setIdNCodificado(rs.getInt(1));
-                nCodificados.setNombre(rs.getString(2));
-                nCodificados.setEstatus(rs.getInt(3));;
+                nCodificados.setIdNCodificado(rs.getInt("idNCodificado"));
+                nCodificados.setNombre(rs.getString("nombre"));
+                nCodificados.setEstatus(rs.getInt("estatus"));
                 
                 nCodificadoss.add(nCodificados);
             

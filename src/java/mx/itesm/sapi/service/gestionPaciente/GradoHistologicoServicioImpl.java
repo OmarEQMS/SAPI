@@ -57,7 +57,7 @@ public class GradoHistologicoServicioImpl implements GradoHistologicoServicio{
         Connection conn;
         List<GradoHistologico> listGradoHistologico = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure="";
+        String stProcedure="CALL mostrarListaGradoHistologico()";
         
         ResultSet rs;
         

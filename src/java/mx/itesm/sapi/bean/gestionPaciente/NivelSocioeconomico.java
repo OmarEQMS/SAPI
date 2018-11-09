@@ -7,7 +7,7 @@ package mx.itesm.sapi.bean.gestionPaciente;
 
 /**
  *
- * @author shannon
+ * @author shannonrosas
  */
 public class NivelSocioeconomico {
 

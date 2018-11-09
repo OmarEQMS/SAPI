@@ -24,6 +24,7 @@ public interface PersonaServicio {
     public Persona mostrarPersonaPorIdPaciente(int idPaciente);
     List<Persona> mostrarMedicos();
     List<Persona> mostrarMedicosRadiologos();
+    List<Persona> mostrarMedicosAdscritos();
     public InformacionGeneralPersona mostrarInformacionGeneralPersona(int idPaciente);
     public boolean actualizarInformacionGeneralPersona(int idPaciente, InformacionGeneralPersona persona);
 }

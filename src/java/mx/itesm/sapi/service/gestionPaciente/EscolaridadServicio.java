@@ -13,8 +13,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Escolaridad;
  * @author Oscar Miranda
  */
 public interface EscolaridadServicio {
-    public Escolaridad mostrarEscolaridad(int idEscolaridad);
-    public List<Escolaridad> mostrarEscolaridad();
+    public List<Escolaridad> mostrarEscolaridades();
     public int agregarEscolaridad(Escolaridad escolaridad);
     public boolean borradoLogicoEscolaridad(int idEscolaridad);
     public boolean actualizarEscolaridad(Escolaridad  escolaridad);

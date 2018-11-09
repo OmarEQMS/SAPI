@@ -222,4 +222,40 @@ public class TipoTratamientoServiceImpl implements TipoTratamientoService {
         }
         return exito;
     }    
+
+    @Override
+    public List<TipoTratamiento> mostrarTratamientoCirugia() {
+        Connection conn;
+        List<TipoTratamiento> tipoCirugia = new ArrayList<>();
+        CallableStatement cstmt;
+        String stProcedure="CALL mostrarListaIdTratamientoTres(?)";
+        
+        ResultSet rs;
+        
+        try{
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            rs = cstmt.executeQuery();
+            TipoTratamiento cirugia;
+            
+            while(rs.next()){
+                cirugia = new TipoTratamiento();
+                cirugia.setIdTipoTratamiento(rs.getInt("idTipoTratamiento"));
+                cirugia.setIdTratamiento(rs.getInt("idTratamiento"));
+                cirugia.setNombre(rs.getString("nombre"));
+                cirugia.setEstatus(rs.getInt("estatus"));
+                
+                tipoCirugia.add(cirugia);
+            }
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+        }catch(SQLException ex){
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            tipoCirugia = null;
+        }
+        return tipoCirugia;
+    }
 }

@@ -324,7 +324,7 @@ public class PersonaServicioImpl implements PersonaServicio {
         try {
             personas = new ArrayList<>();
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall("CALL mostrarListaMedicos()");
+            cstmt = conn.prepareCall("CALL mostrarListaMedicos(?)");
             rs = cstmt.executeQuery();
             Persona persona;
 
@@ -382,36 +382,21 @@ public class PersonaServicioImpl implements PersonaServicio {
         try {
             personas = new ArrayList<>();
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall("CALL ANGEL()");
+            cstmt = conn.prepareCall("CALL mostrarMedicoRadiologo(?)");
             rs = cstmt.executeQuery();
             Persona persona;
 
             while (rs.next()) {
 
                 persona = new Persona();
-                persona.setIdPersona(rs.getInt("idPersona"));
                 persona.setNombre(rs.getString("nombre"));
                 persona.setPrimerApellido(rs.getString("primerApellido"));
                 persona.setSegundoApellido(rs.getString("segundoApellido"));
-                persona.setCurp(rs.getString("curp"));
-                persona.setTelefono(rs.getString("telefono"));
-                persona.setCorreo(rs.getString("correo"));
-                persona.setFechaNacimiento(rs.getDate("fechaNacimiento"));
-                persona.setIdSexo(rs.getInt("idSexo"));
-                persona.setIdTipoSangre(rs.getInt("idTipoSangre"));
-                persona.setIdMunicipio(rs.getInt("idMunicipio"));
-                persona.setIdEstadoCivil(rs.getInt("idEstadoCivil"));
-                persona.setIdDireccion(rs.getInt("idDireccion"));
-                persona.setEdad(rs.getInt("edad"));
-                persona.setEstatus(rs.getInt("estatus"));
 
                 personas.add(persona);
 
-                System.out.println("personaId: " + persona.getIdPersona());
-
             }
         } catch (Exception ex) {
-            System.out.println("PersonaServicioImpl mostrarPersona");
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
         }
@@ -565,5 +550,38 @@ public class PersonaServicioImpl implements PersonaServicio {
         }
 
         return exito;
+    }
+
+    @Override
+    public List<Persona> mostrarMedicosAdscritos() {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        List<Persona> personas = null;
+
+        try {
+            personas = new ArrayList<>();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL mostrarMedicoAdscrito(?)");
+            rs = cstmt.executeQuery();
+            Persona persona;
+
+            while (rs.next()) {
+
+                persona = new Persona();
+                persona.setNombre(rs.getString("nombre"));
+                persona.setPrimerApellido(rs.getString("primerApellido"));
+                persona.setSegundoApellido(rs.getString("segundoApellido"));
+
+                personas.add(persona);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+
+        return personas;
     }
 }

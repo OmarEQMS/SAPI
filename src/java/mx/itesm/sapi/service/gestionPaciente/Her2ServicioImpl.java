@@ -55,7 +55,7 @@ public class Her2ServicioImpl implements Her2Servicio {
         Connection conn;
         List<Her2> listHer2 = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL mostrarListaHer2()";
 
         ResultSet rs;
 

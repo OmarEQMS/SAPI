@@ -1,125 +1,125 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>SAPI | Inicio</title>
+        <title>SAPI | Inicio</title>
 
-    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-    <link href="lib/fontawesome/css/all.css" rel="stylesheet"/>
-    <link href='lib/fullcalendar/fullcalendar.css' rel='stylesheet'/>
-    <link href="lib/tooltipster/dist/css/tooltipster.bundle.min.css" rel="stylesheet" />
-    <link href="lib/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css" rel="stylesheet" />
-    <link href="lib/datatables/datatables.min.css" rel="stylesheet" type="text/css"/> 
-    <script src="lib/jquery/jquery-3.3.1.js" type="application/javascript"></script>
-    <script src="lib/jquery/jqueryPostGo.js" type="application/javascript"></script>
-    <script src="lib/popper/popper.min.js" type="application/javascript"></script>
-    <script src="lib/bootstrap/js/bootstrap.js" type="application/javascript"></script> 
-    <script src='lib/moment/moment.min.js' type="application/javascript" ></script>
-    <script src='lib/fullcalendar/fullcalendar.js' type="application/javascript"></script>
-    <script src="lib/fullcalendar/locale-all.js"></script>
-    <script src="lib/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="lib/tooltipster/dist/js/tooltipster.bundle.min.js" type="text/javascript" ></script>
-    <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
+        <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+        <link href="lib/fontawesome/css/all.css" rel="stylesheet"/>
+        <link href='lib/fullcalendar/fullcalendar.css' rel='stylesheet'/>
+        <link href="lib/tooltipster/dist/css/tooltipster.bundle.min.css" rel="stylesheet" />
+        <link href="lib/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css" rel="stylesheet" />
+        <link href="lib/datatables/datatables.min.css" rel="stylesheet" type="text/css"/> 
+        <script src="lib/jquery/jquery-3.3.1.js" type="application/javascript"></script>
+        <script src="lib/jquery/jqueryPostGo.js" type="application/javascript"></script>
+        <script src="lib/popper/popper.min.js" type="application/javascript"></script>
+        <script src="lib/bootstrap/js/bootstrap.js" type="application/javascript"></script> 
+        <script src='lib/moment/moment.min.js' type="application/javascript" ></script>
+        <script src='lib/fullcalendar/fullcalendar.js' type="application/javascript"></script>
+        <script src="lib/fullcalendar/locale-all.js"></script>
+        <script src="lib/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="lib/tooltipster/dist/js/tooltipster.bundle.min.js" type="text/javascript" ></script>
+        <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
 
 
-    <link rel="stylesheet" href="css/styleNavegadora.css">
-    <link rel="stylesheet" href="css/styleNavegadoraImg.css">
-    <script src="js/appNavegadora.js"></script>
-    <script src="js/appNavegadora2.js"></script>
-    <script src="js/ajaxNavegadora.js"></script>
-    
+        <link rel="stylesheet" href="css/styleNavegadora.css">
+        <link rel="stylesheet" href="css/styleNavegadoraImg.css">
+        <script src="js/appNavegadora.js"></script>
+        <script src="js/appNavegadora2.js"></script>
+        <script src="js/ajaxNavegadora.js"></script>
 
-</head>
 
-<body>
+    </head>
 
-    <div class="wrapper">
+    <body>
 
-        <!-- SIDEBAR -->
-        <nav id="sidebar">
+        <div class="wrapper">
 
-            <div class="sidebar-header">
+            <!-- SIDEBAR -->
+            <nav id="sidebar">
 
-                <div class="row text-center justify-content-center mt-2">
-                    <div class="col-12">
-                        <img src="../img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
+                <div class="sidebar-header">
+
+                    <div class="row text-center justify-content-center mt-2">
+                        <div class="col-12">
+                            <img src="../img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
+
+                        </div>
 
                     </div>
 
-                </div>
+                    <div class="profile">
 
-                <div class="profile">
-
-                    <div class="row">
-                        <div class="col-12 mb-2 mt-4">
-                            <img src="../img/user.png" class="imagenPerfil" alt="">
+                        <div class="row">
+                            <div class="col-12 mb-2 mt-4">
+                                <img src="../img/user.png" class="imagenPerfil" alt="">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row justify-content-center mb-2">
-                        <div class="col-6 text-center">
-                            <span class="textoSidebar m-0">Shannon Rosas</span>
-                            <span class="textoSidebar userSidebar m-0">@shannonrosas</span>
+                        <div class="row justify-content-center mb-2">
+                            <div class="col-6 text-center">
+                                <span class="textoSidebar m-0">Shannon Rosas</span>
+                                <span class="textoSidebar userSidebar m-0">@shannonrosas</span>
+                            </div>
                         </div>
+
+                        <div class="row justify-content-center">
+
+                            <div class="col-2 text-center">
+                                <a class="iconoSidebar" href="" title="Mi Cuenta">
+                                    <i class="fas fa-cog"></i>
+                                </a>
+                            </div>
+
+                            <div class="col-2">
+                                <a class="iconoSidebar" href="" title="Cerrar Sesiï¿½n">
+                                    <i class="fas fa-power-off"></i>
+                                </a>
+                            </div>
+
+                        </div>
+
                     </div>
 
                     <div class="row justify-content-center">
-
-                        <div class="col-2 text-center">
-                            <a class="iconoSidebar" href="" title="Mi Cuenta">
-                                <i class="fas fa-cog"></i>
-                            </a>
+                        <div class="col-12 text-center">
+                            <hr style="background-color:white !important">
                         </div>
-
-                        <div class="col-2">
-                            <a class="iconoSidebar" href="" title="Cerrar Sesiï¿½n">
-                                <i class="fas fa-power-off"></i>
-                            </a>
-                        </div>
-
                     </div>
 
-                </div>
+                    <!-- MENU PRINCIPAL ENLACES -->
+                    <ul class="list-unstyled components">
 
-                <div class="row justify-content-center">
-                    <div class="col-12 text-center">
-                        <hr style="background-color:white !important">
-                    </div>
-                </div>
+                        <li>
+                            <a href="./index.html">
+                                <i class="fas fa-home"></i>Inicio</a>
+                        </li>
 
-                <!-- MENU PRINCIPAL ENLACES -->
-                <ul class="list-unstyled components">
+                        <li>
+                            <a href="./calendar.html">
+                                <i class="fas fa-calendar-alt"></i>Calendario</a>
+                        </li>
 
-                    <li>
-                        <a href="./index.html">
-                            <i class="fas fa-home"></i>Inicio</a>
-                    </li>
+                        <li>
+                            <a href="./rendimiento.html">
+                                <i class="fas fa-chart-line"></i>Mi Rendimiento</a>
+                        </li>
 
-                    <li>
-                        <a href="./calendar.html">
-                            <i class="fas fa-calendar-alt"></i>Calendario</a>
-                    </li>
+                        <li>
+                            <a href="./cuenta.html">
+                                <i class="far fa-user"></i>Mi Cuenta</a>
+                        </li>
 
-                    <li>
-                        <a href="./rendimiento.html">
-                            <i class="fas fa-chart-line"></i>Mi Rendimiento</a>
-                    </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-sign-out-alt"></i>Cerrar Sesiï¿½n</a>
+                        </li>
 
-                    <li>
-                        <a href="./cuenta.html">
-                            <i class="far fa-user"></i>Mi Cuenta</a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-sign-out-alt"></i>Cerrar Sesiï¿½n</a>
-                    </li>
-
-                </ul>
+                    </ul>
 
             </nav>
 
@@ -209,9 +209,9 @@
                                                         <option disabled selected>Seleccione un Mï¿½dico Adscrito</option>
 
                                                         <c:forEach items="${listaAdscritos}" var="adscrito">  
-                                                            
+
                                                             <option value='<c:out value="${adscrito.idPersona}"/>'><c:out value='${adscrito.nombre}'/> </option>
-                                                        
+
                                                         </c:forEach>
 
                                                     </select>
@@ -234,6 +234,12 @@
                                             <div class="col-6">
                                                 <label for="">Tipo de paciente</label>
                                                 <div class="input-group">
+                                                    <div class="input-group-append">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-street-view"></i>
+                                                        </div>
+                                                    </div>
+                                                    
                                                     <select name= "tipoPaciente" class="form-control" id="tipoPaciente">
                                                         <option disabled selected>Seleccione un tipo de paciente</option>
                                                         <option>Primera vez</option>
@@ -252,14 +258,14 @@
                                                     </div>
                                                     <select name="medico-radiologo" class="form-control" id="medico-radiologo">
                                                         <option disabled selected>Seleccione un Radiï¿½logo</option>
-                                                        
+
                                                         <c:forEach items="${listaRadiologos}" var="radiologo">  
-                                                            
+
                                                             <option value='<c:out value="${radiologo.idPersona}"/>'><c:out value='${radiologo.nombre}'/> </option>
-                                                        
+
                                                         </c:forEach>
-                                                            <option value="otro">Otro</option>
-                                                        
+                                                        <option value="otro">Otro</option>
+
                                                     </select>
 
                                                 </div>
@@ -354,9 +360,9 @@
                                                     <select name = "nivelEducativo" class="form-control" id="nivelEducativo">
                                                         <option disabled selected>Seleccione un nivel educativo</option>
                                                         <c:forEach items="${listaEscolaridad}" var="escolaridad"> 
-                                                            
+
                                                             <option value='<c:out value="${escolaridad.idEscolaridad}"/>'><c:out value='${escolaridad.nombre}'/> </option>
-                                                        
+
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -392,8 +398,8 @@
                                                     </div>
                                                     <select name="estadoHormonal" class="form-control" id="estadoHormonal">
                                                         <option disabled selected>Selecciona un estado hormonal</option>
-                                                        <option>Premenopï¿½usica</option>
-                                                        <option>Postmenopï¿½usica</option>
+                                                        <option>Premenopáusica</option>
+                                                        <option>Postmenopáusica</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -409,14 +415,20 @@
                                                     <label class="form-check-label" for="tieneSeguroP">ï¿½Cuentas con algï¿½n seguro?
                                                     </label>
                                                 </div>
-                                                <div class="input-group">
-                                                    <select name="tiene-seguro" class="form-control" id="tiene-seguro">
+
+                                                <div class="input-group" id="tiene-seguro">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-ambulance"></i>
+                                                        </div>
+                                                    </div>
+                                                    <select name="tiene-seguro" class="form-control tiene-seguro">
                                                         <option disabled selected>Seleccione un seguro</option>
 
                                                         <c:forEach items="${listaSeguro}" var="seguro">  
-                                                            
+
                                                             <option value='<c:out value="${seguro.idSeguro}"/>'><c:out value='${seguro.nombre}'/> </option>
-                                                        
+
                                                         </c:forEach>
 
                                                     </select>
@@ -481,9 +493,9 @@
                                                     <select name="cirugia" class="form-control" id="cirugia">
                                                         <option disabled selected>Introduce la cirugï¿½a</option>
                                                         <c:forEach items="${listaCirugia}" var="cirugia">  
-                                                            
+
                                                             <option value='<c:out value="${cirugia.idTratamiento}"/>'><c:out value='${cirugia.nombre}'/> </option>
-                                                        
+
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -596,9 +608,9 @@
                                                         <option disabled selected>Mastrografï¿½a BI-RADS</option>
 
                                                         <c:forEach items="${listaBirads}" var="birads">  
-                                                            
+
                                                             <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
-                                                        
+
                                                         </c:forEach>
 
                                                     </select>
@@ -629,9 +641,9 @@
                                                     <select name="tipoUltrasonidoMama" class="form-control" id="tipoUltrasonidoMama">
                                                         <option disabled selected>Ultrasonido Mama BI-RADS</option>
                                                         <c:forEach items="${listaBirads}" var="birads">  
-                                                            
+
                                                             <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
-                                                        
+
                                                         </c:forEach>
 
                                                     </select>
@@ -666,12 +678,12 @@
                                                 <option disabled selected>Seleccione Resultado Patologï¿½a:</option>
 
                                                 <c:forEach items="${listaTipoHistologico}" var="resultadoPatologia">  
-                                                    
+
                                                     <option value='<c:out value="${resultadoPatologia.idTipoHistologico}"/>'><c:out value='${resultadoPatologia.nombre}'/> </option>
-                                                        
+
                                                 </c:forEach>
-                                                    
-                                                    <option value="Otro">Otro</option>
+
+                                                <option value="Otro">Otro</option>
 
                                             </select>
 
@@ -1533,21 +1545,21 @@
                                         </div>
                                     </div>
 
-                                <div class="row justify-content-center mt-5">
-                                    <div class="col-4">
-                                        <button class="btn btn-outline-danger btn-block" id="btn-back4" style="border-radius:20px">
-                                            <i class="fas fa-undo mr-2"></i>Regresar</button>
+                                    <div class="row justify-content-center mt-5">
+                                        <div class="col-4">
+                                            <button class="btn btn-outline-danger btn-block" id="btn-back4" style="border-radius:20px">
+                                                <i class="fas fa-undo mr-2"></i>Regresar</button>
+                                        </div>
+                                        <div class="col-4">
+                                            <button id="btn-save4" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-outline-success btn-block" id="btn-continue4" style="border-radius:20px">
+                                                <i class="fas fa-arrow-circle-right mr-2"></i>Continuar</button>
+                                        </div>
+
                                     </div>
-                                    <div class="col-4">
-                                        <button id="btn-save4" class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                            <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn btn-outline-success btn-block" id="btn-continue4" style="border-radius:20px">
-                                            <i class="fas fa-arrow-circle-right mr-2"></i>Continuar</button>
-                                    </div>
-                                    
-                                </div>
                                 </div>
 
                                 <!-- PANTALLA 5 -->
@@ -1565,9 +1577,9 @@
                                                     <select name="etapaClinica" class="form-control" id="etapaClinica">
                                                         <option disabled selected>Seleccione etapa clï¿½nica</option>
                                                         <c:forEach items="${listaEtapaClinica}" var="etapa">  
-                                                            
+
                                                             <option value='<c:out value="${etapa.idEtapaClinica}"/>'><c:out value='${etapa.nombre}'/> </option>
-                                                        
+
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -1580,9 +1592,9 @@
                                                     <select name="tipoMastografia" class="form-control" id="tipoMastografia">
                                                         <option disabled selected>Mastrografï¿½a BI-RADS</option>
                                                         <c:forEach items="${listaBirads}" var="birads">  
-                                                            
+
                                                             <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
-                                                        
+
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -1594,9 +1606,9 @@
                                                     <select name="tipoUSG" class="form-control" id="tipoUSG">
                                                         <option disabled selected>Mastrografï¿½a BI-RADS</option>
                                                         <c:forEach items="${listaBirads}" var="birads">  
-                                                            
+
                                                             <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
-                                                        
+
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -1621,9 +1633,9 @@
                                                     <select name="tumorPrimarioT" class="form-control" id="tumorPrimarioT">
                                                         <option disabled selected>Seleccione T:</option>
                                                         <c:forEach items="${listaT}" var="t">  
-                                                            
+
                                                             <option value='<c:out value="${t.idTCodificado}"/>'><c:out value='${t.nombre}'/> </option>
-                                                        
+
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -1639,9 +1651,9 @@
                                                     <select name="gangliosN" class="form-control" id="gangliosN">
                                                         <option disabled selected>Seleccione N:</option>
                                                         <c:forEach items="${listaN}" var="n">  
-                                                            
+
                                                             <option value='<c:out value="${n.idNCodificado}"/>'><c:out value='${n.nombre}'/> </option>
-                                                        
+
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -1657,9 +1669,9 @@
                                                     <select name="metastasisM" class="form-control" id="metastasisM">
                                                         <option disabled selected>Seleccione M:</option>
                                                         <c:forEach items="${listaM}" var="m">  
-                                                            
+
                                                             <option value='<c:out value="${m.idMCodificado}"/>'><c:out value='${m.nombre}'/> </option>
-                                                        
+
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -1680,11 +1692,11 @@
                                                         <option disabled selected>Seleccione Resultado Patologï¿½a:</option>
 
                                                         <c:forEach items="${listaTipoHistologico}" var="resultadoPatologia">  
-                                                            
+
                                                             <option value='<c:out value="${resultadoPatologia.idTipoHistologico}"/>'><c:out value='${resultadoPatologia.nombre}'/> </option>
-                                                       
+
                                                         </c:forEach>
-                                                            <option value="Otro">Otro</option>
+                                                        <option value="Otro">Otro</option>
                                                     </select>
 
                                                 </div>
@@ -1699,9 +1711,9 @@
                                                     <select name="grado-histologico" class="form-control" id="grado-histologico">
                                                         <option disabled selected>Seleccione Grado Histolï¿½gico:</option>
                                                         <c:forEach items="${listaGradoHistologico}" var="gradoHistologico">  
-                                                            
+
                                                             <option value='<c:out value="${gradoHistologico.idGradoHistologico}"/>'><c:out value='${gradoHistologico.nombre}'/> </option>
-                                                       
+
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -1726,9 +1738,9 @@
                                                     <select name="receptor-her2" class="form-control" id="receptor-her2">
                                                         <option disabled selected>Seleccione Her2:</option>
                                                         <c:forEach items="${listaHer2}" var="her2">  
-                                                            
+
                                                             <option value='<c:out value="${her2.idHer2}"/>'><c:out value='${her2.nombre}'/> </option>
-                                                       
+
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -1744,9 +1756,9 @@
                                                     <select name="receptor-fish" class="form-control" id="receptor-fish">
                                                         <option disabled selected>Seleccione Fish:</option>
                                                         <c:forEach items="${listaFish}" var="fish">  
-                                                            
+
                                                             <option value='<c:out value="${fish.idFish}"/>'><c:out value='${fish.nombre}'/> </option>
-                                                       
+
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -1762,9 +1774,9 @@
                                                     <select name="receptor-re" class="form-control" id="receptor-re">
                                                         <option disabled selected>Seleccione RE:</option>
                                                         <c:forEach items="${listaRE}" var="re">  
-                                                            
+
                                                             <option value='<c:out value="${re.idReceptorEstrogeno}"/>'><c:out value='${re.nombre}'/> </option>
-                                                       
+
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -1780,9 +1792,9 @@
                                                     <select name="receptor-rp" class="form-control" id="receptor-rp">
                                                         <option disabled selected>Seleccione RP:</option>
                                                         <c:forEach items="${listaRP}" var="rp">  
-                                                            
+
                                                             <option value='<c:out value="${rp.idReceptorProgesterona}"/>'><c:out value='${rp.nombre}'/> </option>
-                                                       
+
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -1809,10 +1821,10 @@
                                                 <i class="fas fa-undo mr-2"></i>Regresar</button>
                                         </div>
                                         <div class="col-4">
-                                        <button id="btn-save5" class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                            <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
+                                            <button id="btn-save5" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
 
-                                    </div>
+                                        </div>
 
                                     </div>
 
@@ -1828,18 +1840,16 @@
                                             <button class="btn btn-outline-success btn-block" id="btn-sendAll" style="border-radius:20px">
                                                 <i class="fas fa-check-circle mr-2"></i>Enviar</button>
                                         </div>
+                                    </div>
+
                                 </div>
-
-
-
                             </div>
+
                         </div>
-
                     </div>
-                </div>
 
+                </div>
             </div>
-        </div>
 
     </body>
 

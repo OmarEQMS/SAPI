@@ -56,7 +56,7 @@ public class ReceptorProgesteronaServicioImpl implements ReceptorProgesteronaSer
         Connection conn;
         List<ReceptorProgesterona> listReceptorProgesterona = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure="";
+        String stProcedure="CALL mostrarListaReceptorProgesterona()";
         
         ResultSet rs;
         

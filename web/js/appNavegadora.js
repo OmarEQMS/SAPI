@@ -962,7 +962,7 @@ $(document).ready(function () {
 
     });
 
-    $('#tiene-seguro').on('change', function () {
+    $('.tiene-seguro').on('change', function () {
 
         var opcion = $(this).val();
 
