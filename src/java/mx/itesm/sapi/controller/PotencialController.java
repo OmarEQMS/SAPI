@@ -1175,31 +1175,37 @@ public class PotencialController extends HttpServlet {
 
                     if (solicitudPreconsulta.getIdentificacion() != null) {
                         sesion.setAttribute("identificacionOficial", 1);
+                        sesion.setAttribute("identificacionOficialName", solicitudPreconsulta.getIdentificacion());
                     } else {
                         sesion.setAttribute("identificacionOficial", 0);
                     }
                     if (solicitudPreconsulta.getCurp() != null) {
                         sesion.setAttribute("curp", 1);
+                        sesion.setAttribute("curpName", solicitudPreconsulta.getCurp());
                     } else {
                         sesion.setAttribute("curp", 0);
                     }
                     if (solicitudPreconsulta.getComprobante() != null) {
                         sesion.setAttribute("comprobante", 1);
+                        sesion.setAttribute("comprobanteName", solicitudPreconsulta.getComprobante());
                     } else {
                         sesion.setAttribute("comprobante", 0);
                     }
                     if (solicitudPreconsulta.getMastografia() != null) {
                         sesion.setAttribute("resultadoMastografia", 1);
+                        sesion.setAttribute("resultadoMastografiaName", solicitudPreconsulta.getMastografia());
                     } else {
                         sesion.setAttribute("resultadoMastografia", 0);
                     }
                     if (solicitudPreconsulta.getUltrasonido() != null) {
                         sesion.setAttribute("resultadoUltrasonido", 1);
+                        sesion.setAttribute("resultadoUltrasonidoName", solicitudPreconsulta.getUltrasonido());
                     } else {
                         sesion.setAttribute("resultadoUltrasonido", 0);
                     }
                     if (solicitudPreconsulta.getBiopsiaPrevia() != null) {
                         sesion.setAttribute("biopsiaPrevia", 1);
+                        sesion.setAttribute("biopsiaPreviaName", solicitudPreconsulta.getBiopsiaPrevia());
                     } else {
                         sesion.setAttribute("biopsiaPrevia", 0);
                     }
@@ -1840,9 +1846,8 @@ public class PotencialController extends HttpServlet {
                  *
                  * Los valores posibles son:
                  *
-                 * Potencial = 1 Consulta = 2 Tratamiento = 3 Paliativo = 4
-                 * Recurrente = 5 Segunda Opinión = 6 Finado = 7 Alta = 8 Alta
-                 * voluntaria = 9
+                 * Primera vez = 0
+                 * Segunda opinión = 1
                  *
                  * El formato de entrega es un int.
                  */

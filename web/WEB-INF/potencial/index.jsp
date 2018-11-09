@@ -317,7 +317,7 @@
                                                                     <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacionSubido" aria-describedby="fileHelp">
                                                                     <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
                                                                     <label class="custom-file-label">
-                                                                        Elegir archivo...
+                                                                        ${sessionScope.identificacionOficialName}
                                                                     </label>
                                                                 </div>
                                                             </c:otherwise>
@@ -377,7 +377,7 @@
                                                                     <input type="file" name="fileCURP" class="custom-file-input centraInput" id="fileCURPSubido" aria-describedby="fileHelp">
                                                                     <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
                                                                     <label class="custom-file-label">
-                                                                        Elegir archivo...
+                                                                        ${sessionScope.curpName}
                                                                     </label>
                                                                 </div>
                                                             </c:otherwise>
@@ -426,7 +426,7 @@
                                                                     <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilioSubido" aria-describedby="fileHelp">
                                                                     <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
                                                                     <label class="custom-file-label">
-                                                                        Elegir archivo...
+                                                                        ${sessionScope.comprobanteName}
                                                                     </label>
                                                                 </div>                                                                                                                                
 
@@ -516,7 +516,7 @@
                                                                     <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMastoSubido" aria-describedby="fileHelp">
                                                                     <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
                                                                     <label class="custom-file-label">
-                                                                        Elegir archivo...
+                                                                        ${sessionScope.resultadoMastografiaName}
                                                                     </label>
                                                                 </div>
                                                             </c:otherwise>
@@ -581,7 +581,7 @@
                                                                     <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsgSubido" aria-describedby="fileHelp">
                                                                     <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
                                                                     <label class="custom-file-label">
-                                                                        Elegir archivo...
+                                                                        ${sessionScope.resultadoUltrasonidoName}
                                                                     </label>
                                                                 </div>                                                                
                                                             </c:otherwise>
@@ -657,7 +657,7 @@
                                                                     <input type="file" class="custom-file-input" id="fileEstudioBiopsiaSubido" name="fileEstudioBiopsia" aria-describedby="fileHelp">
                                                                     <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
                                                                     <label class="custom-file-label">
-                                                                        Elegir archivo...
+                                                                        ${sessionScope.biopsiaPreviaName}
                                                                     </label>
                                                                 </div>
                                                             </c:otherwise>
@@ -720,7 +720,7 @@
                                             <div class="card-body">
 
                                                 <c:choose>
-                                                    <c:when test="${sessionScope.estadoPaciente>=1}">
+                                                    <c:when test="${sessionScope.estadoPaciente<=0}">
                                                         <div class="row">
                                                             <div class="col-12">
                                                                 <h5 class="card-title display-4 tituloAprobacion text-center">Tu solicitud
@@ -1006,8 +1006,8 @@
                                                                         te pude pedir diversos estudios, el costo de estos estudios está
                                                                         entre <strong>$350.00
                                                                             MXN
-                                                                        </strong>Â y
-                                                                        <strong>$3000.00 MNX</strong>Â te recomendamos vengas preparada con
+                                                                        </strong> y
+                                                                        <strong>$3000.00 MXN</strong> te recomendamos vengas preparada con
                                                                         esa cantidad de dinero para que los puedas agendar y agilizar
                                                                         el proceso de tu atención.
 
