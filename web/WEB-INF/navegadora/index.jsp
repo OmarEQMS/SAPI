@@ -231,12 +231,12 @@
                                                             <c:choose>
                                                                 <c:when test="${paciente.estadoPaciente=='Potencial en proceso'}">
                                                                     <button class="btn btn-success btn-aceptar" data-id="${paciente.idPaciente}" data-toggle="modal" data-target="#modalAceptarUsuario">
-                                                                <i class="fas fa-check"></i>
-                                                            </button>
+                                                                        <i class="fas fa-check"></i>
+                                                                    </button>
                                                                 </c:when>    
-           
+
                                                             </c:choose>
-                                                            
+
                                                             <button class="btn btn-primary btn-editar" data-id="${paciente.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarUsuario">
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
@@ -407,6 +407,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="nombreNavegadora" name="nombreNavegadora" placeholder="Nombre">
+                                        <span class="text-danger" id="errorNombreNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 255 caracteres.</span>
                                     </div>
                                 </div>
 
@@ -418,7 +419,15 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="curpNavegadora" name="curpNavegadora" placeholder="CURP">
+
+
                                     </div>
+
+                                    <span class="text-danger" id="errorCurpNavegadora">Formato incorrecto, las letras deben estar en mayúsculas y asegúrate de introducir un CURP válido y sin espacios. Puedes consultarlo 
+                                        <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí.</a>
+                                    </span><br>
+
+                                    <span class="text-warning" id="errorCurpRepetidoNavegadora">El curp ya existe.</span>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -431,7 +440,9 @@
                                         </div>
                                         <input placeholder="Fecha de nacimiento" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                id="cumpleNavegadora" name="cumpleNavegadora">
+
                                     </div>
+                                    <span class="text-danger" id="errorFechaNavegadora">Fecha incorrecta</span>
                                 </div>
                             </div>
 
@@ -445,6 +456,8 @@
                                         </div>
                                         <input type="text" class="form-control" id="primer-apellidoNavegadora" name="primer-apellidoNavegadora" placeholder="Primer Apellido">
                                     </div>
+                                    <span class="text-danger" id="errorApellidoPaternoNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
+
                                 </div>
 
                                 <div class="col-6">
@@ -455,6 +468,7 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="segundo-apellidoNavegadora" name="segundo-apellidoNavegadora" placeholder="Segundo Apellido">
+                                        <span class="text-danger" id="errorApellidoMaternoNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                     </div>
                                 </div>
                             </div>
@@ -468,7 +482,10 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="usuarioNavegadora" usuario="usuarioNavegadora" placeholder="Usuario">
+
                                     </div>
+                                    <span class="text-danger" id="errorNombreUsuarioNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 4 y un máximo de 16 caracteres.</span><br>
+                                    <span class="text-warning" id="errorUsuarioRepetidoNavegadora">El usuario ya existe.</span>
                                 </div>
                                 <div class="col-6">
                                     <div class="input-group">
@@ -478,7 +495,9 @@
                                                 <option value='<c:out value="${estadoC.idEstadoCivil}"/>'><c:out value='${estadoC.nombre}'/> </option>
                                             </c:forEach>
                                         </select>
+
                                     </div>
+                                    <span class="text-danger" id="errorECivilNavegadora">Selecciona una opcion</span>
                                 </div>
                             </div>
 
@@ -492,6 +511,8 @@
                                         </div>
                                         <input type="text" class="form-control" id="colNavegadora" placeholder="Colonia">
                                     </div>
+                                    <span class="text-danger" id="errorColoniaNavegadora">Formato incorrecto, introducir caracteres alfanuméricos.</span>
+
                                 </div>
                                 <div class="col-6">
                                     <div class="input-group">
@@ -501,7 +522,10 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="codigo-postalNavegadora" placeholder="Codigo Postal">
+
                                     </div>
+                                    <span class="text-danger" id="errorCodigoPostalNavegadora">Formato incorrecto, deben ser 5 dígitos.</span><br>
+                                    <span class="text-danger" id="error-CPexisteNavegadora" style="font-size:13px;">El codigo postal no existe.</span>
                                 </div>
                             </div>
 
@@ -515,6 +539,8 @@
                                         </div>
                                         <input type="text" class="form-control" id="calleNavegadora" calle="calleNavegadora" placeholder="Calle">
                                     </div>
+                                    <span class="text-danger" id="errorCalleNavegadora">Formato incorrecto, introducir caracteres alfanuméricos.</span>
+
                                 </div>
                                 <div class="col-3">
                                     <div class="input-group">
@@ -525,6 +551,8 @@
                                         </div>
                                         <input type="text" class="form-control" id="numIntNavegadora" placeholder="No. int">
                                     </div>
+                                    <span class="text-danger" id="errorNoInteriorNavegadora">Formato incorrecto, solo dígitos y/o letras.</span>
+
                                 </div>
                                 <div class="col-3">
                                     <div class="input-group">
@@ -534,7 +562,10 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="numExtNavegadora" placeholder="No. ext">
+
                                     </div>
+                                    <span class="text-danger" id="errorNoExteriorNavegadora">Formato incorrecto, solo dígitos.</span>
+
                                 </div>
                             </div>
 
@@ -547,14 +578,18 @@
                                                 <option value='<c:out value="${estado.idEstado}"/>'><c:out value='${estado.nombre}'/> </option>
                                             </c:forEach>
                                         </select>
+
                                     </div>
+                                    <span class="text-danger" id="errorEstadoNavegadora">Campo vacío</span>
                                 </div>
                                 <div class="col-6">
                                     <div class="input-group municipios">
                                         <select class="form-control" id="municipioNavegadora">
                                             <option disabled selected>Seleccione Municipio</option>
                                         </select>
+
                                     </div>
+                                    <span class="text-danger" id="errorMunicipioNavegadora">Campo vacío</span>
                                 </div>
                             </div>
 
@@ -567,7 +602,9 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" id="telNavegadora" placeholder="Teléfono">
+
                                     </div>
+                                    <span class="text-danger" id="errorTelefonoNavegadora">Formato incorrecto, deben ser 10 dígitos.</span>
                                 </div>
 
                                 <div class="col-6">
@@ -579,6 +616,8 @@
                                         </div>
                                         <input type="text" class="form-control" id="correoNavegadora" placeholder="Correo">
                                     </div>
+                                    <span class="text-danger" id="errorCorreoNavegadora">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
+
                                 </div>
 
                             </div>
@@ -595,6 +634,7 @@
                                             </div>
                                         </div>
                                         <input type="password" class="form-control" id="contraNavegadora" placeholder="Contraseña">
+                                        <span class="text-danger" id="errorPass1Navegadora">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -605,6 +645,8 @@
                                             </div>
                                         </div>
                                         <input type="password" class="form-control" id="confContraNavegadora" placeholder="Confirmar contraseña">
+                                        <span class="text-warning" id="noEqualPasswordsErrorNavegadora">Las contraseñas no son iguales.</span>
+                                        <span class="text-danger" id="errorPass2Navegadora">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                     </div>
                                 </div>
                             </div>
@@ -649,7 +691,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            
+
                             <div class="form-group row">
                                 <div class="col-6">
                                     <div class="input-group">
@@ -660,6 +702,8 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarNombreNavegadoraAPaciente" placeholder="Nombre">
                                     </div>
+                                    <span class="text-danger" id="error-editar-NombreNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 255 caracteres.</span>
+
                                 </div>
 
                                 <div class="col-6">
@@ -671,10 +715,15 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarCurpNavegadoraAPaciente" placeholder="CURP">
                                     </div>
+                                    <span class="text-danger" id="error-editar-CurpNavegadora">Formato incorrecto, las letras deben estar en mayúsculas y asegúrate de introducir un CURP válido y sin espacios. Puedes consultarlo 
+                                        <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí.</a>
+                                    </span><br>
+
+                                    <span class="text-warning" id="error-editar-CurpRepetidoNavegadora">El curp ya existe.</span>
                                 </div>
 
                             </div>
-                            
+
                             <div class="form-group row">
                                 <div class="col-12">
                                     <div class="input-group">
@@ -686,10 +735,11 @@
                                         <input placeholder="Fecha de nacimiento" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                id="editarCumpleNavegadoraAPaciente">
                                     </div>
+                                    <span class="text-danger" id="error-editar-FechaNavegadora">Fecha incorrecta</span>
                                 </div>
                             </div>
-                            
-                           
+
+
                             <div class="form-group row">
                                 <div class="col-6">
                                     <div class="input-group">
@@ -700,6 +750,8 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarPrimer-apellidoNavegadoraAPaciente" placeholder="Primer Apellido">
                                     </div>
+                                    <span class="text-danger" id="error-editar-ApellidoPaternoNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
+
                                 </div>
 
                                 <div class="col-6">
@@ -711,10 +763,12 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarSegundo-apellidoNavegadoraAPaciente" placeholder="Segundo Apellido">
                                     </div>
+                                    <span class="text-danger" id="error-editar-ApellidoMaternoNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
+
                                 </div>
                             </div>
 
-                            
+
 
                             <div class="form-group row">
                                 <div class="col-6">
@@ -726,6 +780,8 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarUsuarioNavegadoraAPaciente" placeholder="Usuario">
                                     </div>
+                                    <span class="text-danger" id="error-editar-NombreUsuarioNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 4 y un máximo de 16 caracteres.</span><br>
+                                    <span class="text-warning" id="error-editar-UsuarioRepetidoNavegadora">El usuario ya existe.</span>
                                 </div>
                                 <div class="col-6">
                                     <div class="input-group">
@@ -736,9 +792,10 @@
                                             </c:forEach>
                                         </select>
                                     </div>
+                                    <span class="text-danger" id="error-editar-ECivilNavegadora">Selecciona una opcion</span>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group row">
                                 <div class="col-12">
                                     <div class="input-group">
@@ -749,9 +806,11 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarColNavegadoraAPaciente" placeholder="Colonia">
                                     </div>
+                                    <span class="text-danger" id="error-editar-ColoniaNavegadora">Formato incorrecto, introducir caracteres alfanuméricos.</span>
+
                                 </div>
-                                
-                            
+
+
                             </div>
 
                             <div class="form-group row">
@@ -764,6 +823,9 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarCalleNavegadoraAPaciente" placeholder="Calle">
                                     </div>
+
+                                    <span class="text-danger" id="error-editar-CalleNavegadora">Formato incorrecto, introducir caracteres alfanuméricos.</span>
+
                                 </div>
                                 <div class="col-3">
                                     <div class="input-group">
@@ -774,6 +836,8 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarNumIntNavegadoraAPaciente" placeholder="No. int">
                                     </div>
+                                    <span class="text-danger" id="error-editar-NoInteriorNavegadora">Formato incorrecto, solo dígitos y/o letras.</span>
+
                                 </div>
                                 <div class="col-3">
                                     <div class="input-group">
@@ -784,6 +848,8 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarNumExtNavegadoraAPaciente" placeholder="No. ext">
                                     </div>
+                                    <span class="text-danger" id="error-editar-NoExteriorNavegadora">Formato incorrecto, solo dígitos y/o letras.</span>
+
                                 </div>
                             </div>
 
@@ -797,6 +863,9 @@
                                             </c:forEach>
                                         </select>
                                     </div>
+
+                                    <span class="text-danger" id="error-editar-EstadoNavegadora">Campo vacío</span>
+
                                 </div>
                                 <div class="col-6">
                                     <div class="input-group editarMunicipios">
@@ -804,6 +873,9 @@
                                             <option disabled selected>Municipio</option>
                                         </select>
                                     </div>
+
+                                    <span class="text-danger" id="error-editar-MunicipioNavegadora">Campo vacío</span>
+
                                 </div>
                             </div>
 
@@ -817,6 +889,7 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarTelNavegadoraAPaciente" placeholder="Teléfono">
                                     </div>
+                                    <span class="text-danger" id="error-editar-TelefonoNavegadora">Formato incorrecto, deben ser 10 dígitos.</span>
                                 </div>
 
                                 <div class="col-6">
@@ -828,12 +901,14 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarCorreoNavegadoraAPaciente" placeholder="Correo">
                                     </div>
+                                    <span class="text-danger" id="error-editar-CorreoNavegadora">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
+
                                 </div>
 
                             </div>
 
-                            
-                            
+
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal" style="border-radius:20px">Cancelar</button>
@@ -843,7 +918,7 @@
                 </div>
             </div>
 
-            
+
 
             <div class="modal fade" id="modalAceptarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">

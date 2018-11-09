@@ -3,6 +3,7 @@ $(document).ready(function () {
 
     //Esconder mensajes de error
     $('#msj-error').hide();
+    $('#error-terminos').hide();
     $('#noEqualPasswordsError').hide();
     $('#errorNombre').hide();
     $('#errorApellidoPaterno').hide();
@@ -14,6 +15,7 @@ $(document).ready(function () {
     $('#errorCurp').hide();
     $('#errorCurpRepetido').hide();
     $('#errorCodigoPostal').hide();
+    $('#error-CPexiste').hide();
     $('#errorTelefono').hide();
     $('#errorECivil').hide();
     $('#errorFecha').hide();
@@ -24,8 +26,6 @@ $(document).ready(function () {
     $('#errorNoExterior').hide();
     $('#errorNoInterior').hide();
     $('#errorUsuarioRepetido').hide();
-    $('#error-terminos').hide();
-    $('#error-CPexiste').hide();
     $("#error-campos").hide();
 
     $('#btn-registro').on('click', function () {

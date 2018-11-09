@@ -276,13 +276,8 @@ public class PotencialController extends HttpServlet {
                  *
                  * El presente case funciona cuando un paciente agrega ciertos
                  * atributos y documentos al proceso de solicitud de preconsulta
-                 * null null                 <<<<<<< HEAD
-                 * sin enviarla. * *
-                 * =======
                  * sin enviarla.
-                 *
-                 * * *
-                 * >>>>>>> origin/Develop
+                 *                 
                  */
                 //Obtener la sesion
                 HttpSession sesion = request.getSession(true);
@@ -448,7 +443,7 @@ public class PotencialController extends HttpServlet {
                                 System.out.println("Identificacion ".concat(strIdentificacion).concat(" ").concat(partIdentificacion.getContentType()));
                             }
 
-                        }
+                        }                        
 
                         Part partCURP = null;
                         boolean booleanCURP = true;
@@ -794,9 +789,10 @@ public class PotencialController extends HttpServlet {
                         System.out.println("Biopsia ".concat(String.valueOf(idBiopsiaPreviaDB)));
                         System.out.println("Preconsulta ".concat(String.valueOf(idCitaPreconsulta)));
 
-                        if ("5".equals(motivoConsulta)) {
-                            System.out.println("Otro motivo");
+                        if ("5".equals(motivoConsulta)) {                            
+                            
                             String otroMotivo = request.getParameter("otroMotivo");
+                            System.out.println("Otro motivo: ".concat(otroMotivo));
 
                             OtroMotivo motivo = new OtroMotivo();
                             motivo.setIdCita(idCitaPreconsulta);
@@ -1174,31 +1170,37 @@ public class PotencialController extends HttpServlet {
 
                     if (solicitudPreconsulta.getIdentificacion() != null) {
                         sesion.setAttribute("identificacionOficial", 1);
+                        sesion.setAttribute("identificacionOficialName", solicitudPreconsulta.getIdentificacion());
                     } else {
                         sesion.setAttribute("identificacionOficial", 0);
                     }
                     if (solicitudPreconsulta.getCurp() != null) {
                         sesion.setAttribute("curp", 1);
+                        sesion.setAttribute("curpName", solicitudPreconsulta.getCurp());
                     } else {
                         sesion.setAttribute("curp", 0);
                     }
                     if (solicitudPreconsulta.getComprobante() != null) {
                         sesion.setAttribute("comprobante", 1);
+                        sesion.setAttribute("comprobanteName", solicitudPreconsulta.getComprobante());
                     } else {
                         sesion.setAttribute("comprobante", 0);
                     }
                     if (solicitudPreconsulta.getMastografia() != null) {
                         sesion.setAttribute("resultadoMastografia", 1);
+                        sesion.setAttribute("resultadoMastografiaName", solicitudPreconsulta.getMastografia());
                     } else {
                         sesion.setAttribute("resultadoMastografia", 0);
                     }
                     if (solicitudPreconsulta.getUltrasonido() != null) {
                         sesion.setAttribute("resultadoUltrasonido", 1);
+                        sesion.setAttribute("resultadoUltrasonidoName", solicitudPreconsulta.getUltrasonido());
                     } else {
                         sesion.setAttribute("resultadoUltrasonido", 0);
                     }
                     if (solicitudPreconsulta.getBiopsiaPrevia() != null) {
                         sesion.setAttribute("biopsiaPrevia", 1);
+                        sesion.setAttribute("biopsiaPreviaName", solicitudPreconsulta.getBiopsiaPrevia());
                     } else {
                         sesion.setAttribute("biopsiaPrevia", 0);
                     }
@@ -1241,23 +1243,17 @@ public class PotencialController extends HttpServlet {
                 if (sesion.getId() == null) {
                     //TODO 
                 } else {
-                    response.setContentType("application/json");//Por default se envia un text/html, pero enviaremos un application/json para que se interprete en el ajax del front.
 
                     int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
 
                     CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
 
-                    String estadoCita = citaServicioImpl.mostrarPreconsultaAceptada(idPacientePotencial);
+                    String estatus = citaServicioImpl.mostrarPreconsultaAceptada(idPacientePotencial);
 
-                    if (estadoCita == null) {
+                    if (estatus == null) {
                         System.out.println("El paciente no tiene ninguna cita");
                         sesion.setAttribute("estatus", 0);
                     } else {
-                        String strJson = "{estado:\"".concat(estadoCita).concat("\"}");
-
-                        Gson json = new Gson();
-                        String estatus = json.toJson(estadoCita);
-                        estatus = estatus.substring(1, estatus.length() - 1);
 
                         System.out.println("El estatus es: " + estatus);
 
@@ -1268,52 +1264,32 @@ public class PotencialController extends HttpServlet {
                             sesion.setAttribute("estatus", 2);
                         }
                     }
-
                 }
+                System.out.println("hola");
                 break;
             }
             case "cancelarCita": {
+                /**
+                * Angel Gutiérrez 06/11/2018 Se cancelan las citas mediante
+                * una iteración donde se sacan todas las citas y se
+                * eliminan en orden despues de que se crea su objeto
+                */
                 HttpSession sesion = request.getSession(true);
-                if (sesion.getAttribute("idCuenta") == null) {
-                    /**
-                     * Angel Gutiérrez 06/11/2018 Se eliminan las citas mediante
-                     * una iteración donde se sacan todas las citas y se
-                     * eliminan en orden despues de que se crea su objeto
-                     */
+                if (sesion.getAttribute("idCuenta") == null) {                    
                     // request.setAttribute("status", "");
                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 
                     return;
                 } else {
 
-                    int idCuenta = (int) sesion.getAttribute("idCuenta");
                     int idPaciente = Integer.parseInt(sesion.getAttribute("idPaciente").toString());
-                    System.out.println(idPaciente);
-                    System.out.println(idCuenta);
+                    System.out.println("idPaciente: " + idPaciente);
 
                     CitaServicioImpl citaServicio = new CitaServicioImpl();
-                    if (citaServicio.mostrarCitaIdEspecifico(idPaciente) != null) {
-
-                        List<Cita> citas = new ArrayList<>();
-
-                        citas = citaServicio.mostrarCitaIdEspecifico(idPaciente);
-                        int citasTotales = citas.size() - 1;
-
-                        int idCita = 0;
-                        while (citasTotales > -1) {
-
-                            System.out.println(citasTotales);
-                            idCita = citas.get(citasTotales).getIdCita();
-
-                            System.out.println(idCita);
-
-                            citaServicio.borradoLogicoCita(idCita);
-
-                            citasTotales = citasTotales - 1;
-                            System.out.println(citasTotales);
-                        }
-                    }
-                    request.getRequestDispatcher("/WEB-INF/misCitas.jsp").forward(request, response);
+                    
+                    citaServicio.cancelarCitaPreconsulta(idPaciente);
+                    
+                    System.out.println("Ya la canceló");
 
                 }
                 break;
@@ -1839,9 +1815,8 @@ public class PotencialController extends HttpServlet {
                  *
                  * Los valores posibles son:
                  *
-                 * Potencial = 1 Consulta = 2 Tratamiento = 3 Paliativo = 4
-                 * Recurrente = 5 Segunda Opinión = 6 Finado = 7 Alta = 8 Alta
-                 * voluntaria = 9
+                 * Primera vez = 0
+                 * Segunda opinión = 1
                  *
                  * El formato de entrega es un int.
                  */

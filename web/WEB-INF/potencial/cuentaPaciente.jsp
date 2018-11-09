@@ -92,7 +92,7 @@
 
                     <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas
                             <c:choose>
-                                <c:when test="${sessionScope.estatus>=1}">
+                                <c:when test="${sessionScope.estatus==1}">
                                     <span class="notificacion">1</span>                        
                                 </c:when>
                             </c:choose>

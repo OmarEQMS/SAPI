@@ -372,6 +372,51 @@ public class PersonaServicioImpl implements PersonaServicio {
     }
 
     @Override
+    public Persona mostrarPersonaPorIdPaciente(int idPaciente) {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        Persona persona = null;
+
+        //Call del store procedure
+        String stProcedure = "CALL mostrarPersonaPorIdPaciente(?)";
+
+        try {
+            persona = new Persona();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+
+            rs.next();
+            persona.setNombre(rs.getString("nombre"));
+            persona.setIdPersona(rs.getInt("idPersona"));
+            persona.setPrimerApellido(rs.getString("primerApellido"));
+            persona.setSegundoApellido(rs.getString("segundoApellido"));
+            persona.setCurp(rs.getString("curp"));
+            persona.setTelefono(rs.getString("telefono"));
+            persona.setCorreo(rs.getString("correo"));
+            persona.setFechaNacimiento(rs.getDate("fechaNacimiento"));
+            persona.setIdSexo(rs.getInt("idSexo"));
+            persona.setIdTipoSangre(rs.getInt("idTipoSangre"));
+            persona.setIdMunicipio(rs.getInt("idMunicipio"));
+            persona.setIdEstadoCivil(rs.getInt("idEstadoCivil"));
+            persona.setIdDireccion(rs.getInt("idDireccion"));
+            persona.setEdad(rs.getInt("edad"));
+            persona.setEstatus(rs.getInt("estatus"));
+        } catch (Exception ex) {
+            System.out.println("PersonaServicioImpl mostrarPersona");
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+
+        return persona;
+
+    }
+    
+    @Override
     public InformacionGeneralPersona mostrarInformacionGeneralPersona(int idPaciente) {
         
         Connection conn;

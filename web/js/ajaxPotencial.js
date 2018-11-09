@@ -13,13 +13,7 @@ $(document).ready(function () {
         method: "POST",
         data: {key: "consultarEstadoPreconsulta"},
         success: function (response) {
-            if (response != null) {
-                var data = JSON.parse(response);
-                console.log(data);
-
-            } else {
-                console.log("Algo pasó" + response);
-            }
+            console.log("SUCCESS!")
         },
         error: function (xhr) {
             console.log("error" + xhr.statusText);
@@ -106,61 +100,82 @@ $(document).ready(function () {
 
     $('#btn-cancelarDefinitivo').on('click', () => {
 
-        //Modal borrar sintoma
-       /* swal({
-            title: "¿Estás segura(o) que deseas cancelar la cita?",
-            text: "Tendrás que reiniciar tu solicitud a preconsulta ya que se cancelaran ambas",
-            icon: "warning",
-            buttons: true,
-            buttons: ['Regresar', 'Cancelar cita'],
-            dangerMode: true,
-        })
-
-               .then((cancelar) => {
-                   if (cancelar) {
-*/
-                       
-                            $.ajax({
-                                url: "PotencialController",
-                                data: {
-                                    key: 'cancelarCita',
-                                    idPaciente: $('#idPaciente').val()
-                                },
-                                method: "POST",
-                                success: function (response) {
-                                    if (response == "error") {
-                                    console.log("Error al cargar");
-                                } else {
-                                    console.log("Intentando redireccionar");
-                                    document.open("text/html", "replace");
-                                    document.write(response);
-                                    document.close();
-
+        $.ajax({
+            url: "PotencialController",
+            data: {
+                key: 'cancelarCita',
+                idPaciente: $('#idPaciente').val()
+            },
+            method: "POST",
+            success: function (response) {
+                console.log("Solicitar ESTADO de Preconsulta");
+                $.ajax({
+                    url: "PotencialController",
+                    method: "POST",
+                    data: {key: "consultarEstadoPreconsulta"},
+                    success: function (response) {
+                        $.post("PotencialController", {
+                            key: 'obtenerEventos',
+                            idPaciente: $('#idPaciente').val()
+                        },
+                                function (response, status, xhr) {
+                                    console.log("El ajax fue exitoso!!-----------------------");
+                                    if (status == "success") {
+                                        if (response == "error") {
+                                            $("#msj-error").show();
+                                        } else {
+                                            document.open("text/html", "replace");
+                                            document.write(response);
+                                            document.close();
+                                        }
+                                    }
                                 }
-                                },
-                                error: function (xhr) {
+                        ).then(function () {
+                            $.post("SAPI", {
+                                file: "potencial/misCitas.jsp"
+                            },
+                                    function (response, status, xhr) {
+                                        console.log(response);
+                                        if (status == "success") {
+                                            if (response == "error") {
+                                                $("#msj-error").show();
+                                            } else {
+                                                document.open("text/html", "replace");
+                                                document.write(response);
+                                                document.close();
+                                            }
+                                        }
+                                    }
+                            );
+                        });
+                    },
+                    error: function (xhr) {
+                        console.log("error" + xhr.statusText);
+                        console.log("Error SolicitarEstadoPreconsulta");
+                        //alert(xhr);
+                    }
 
-                                }
-                           
-
-                    //    });
-
-
-          /*          } else {
-
-                  }
-           */
                 });
+            },
+            error: function (xhr) {
+
+            }
+        });
 
 
     });
+    
+    $('#cancelarCitaModal').on('click', function() {
+       console.log("hola");
+       $('#modalVerCitaPreConsulta').modal('toggle');
+    });
 
-    $('#mitadCancelar').on('click',  function () {
+    $('.mitadCancelar').on('click', function () {
 
         //Modal borrar sintoma
-       swal({
+        swal({
             title: "¿Estás segura(o) que deseas cancelar la cita?",
-            text: "Tendrás que reiniciar tu solicitud a preconsulta ya que se cancelaran ambas",
+            text: "Tendrás que reiniciar tu solicitud de preconsulta ya que se cancelaran ambas",
             icon: "warning",
             buttons: true,
             buttons: ['Regresar', 'Cancelar cita'],
@@ -171,7 +186,7 @@ $(document).ready(function () {
                     if (cancelar) {
 
                         $('#modalMotivoCancelacion').modal('toggle');
-       
+
 
                     } else {
 
@@ -212,7 +227,7 @@ $(document).ready(function () {
         data.forEach((value, key) => {
             console.log(key + " " + value);
         });
-swal({
+        swal({
             title: "Datos guardados correctamente",
             text: "Puedes regresar a editar/completar el resto de información en cualquier momento.",
             icon: "success",
@@ -220,25 +235,25 @@ swal({
             buttons: [, 'Aceptar']
 
         }).then(function () {
-           $.ajax({
-            url: "PotencialController",
-            method: "POST",
-            data: data,
-            enctype: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                if (response == "success") {
-                    console.log("ok");
-                } else {
-                    console.log("Algo pasó" + response);
-                }
-            },
-            error: function (request, status, error) {
-                console.log("Enviar solicitud Error request " + request.responseText);
-                console.log("Enviar solicitud Error status " + status);
-                console.log("Enviar solicitud Error error" + error);
-                //alert("No enontre el controlador" + status);                               
+            $.ajax({
+                url: "PotencialController",
+                method: "POST",
+                data: data,
+                enctype: "multipart/form-data",
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response == "success") {
+                        console.log("ok");
+                    } else {
+                        console.log("Algo pasó" + response);
+                    }
+                },
+                error: function (request, status, error) {
+                    console.log("Enviar solicitud Error request " + request.responseText);
+                    console.log("Enviar solicitud Error status " + status);
+                    console.log("Enviar solicitud Error error" + error);
+                    //alert("No enontre el controlador" + status);                               
                 }
             });
         })
@@ -259,6 +274,7 @@ swal({
         var oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
         var motivoConsulta = $('#motivoConsulta').val();
         var biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
+        var otroMotivo = $('#otro-motivo-consulta').val();
 
         data.append("key", "solicitarPreconsulta");
         data.append("femenino", femenino);
@@ -268,16 +284,17 @@ swal({
         data.append("baston", baston);
         data.append("oxigeno", oxigeno);
         data.append("motivoConsulta", motivoConsulta);
+        data.append("otroMotivo", otroMotivo);
         data.append("biopsia", biopsia);
 
         console.log(data);
-        
+
         //Al presionar enviar los campos quedan ineditables
 
         $('#masculino').attr('readonly', 'true');
         $('#femenino').attr('readonly', 'true');
         $('#fileIdentificacionSubido').prop('disabled', true);
-        
+
 
         // Imprimmir en consola los valores obtenidos del form para pruebas
         data.forEach((value, key) => {
@@ -474,43 +491,56 @@ swal({
     });
 
     $('#irAMisCitas').on('click', function () {
-        $.post("PotencialController", {
-            key: 'obtenerEventos',
-            idPaciente: $('#idPaciente').val()
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
-                }
-        ).then(function () {
-            $.post("SAPI", {
-                file: "potencial/misCitas.jsp"
-            },
-                    function (response, status, xhr) {
-                        console.log(response);
-                        if (status == "success") {
-                            if (response == "error") {
-                                $("#msj-error").show();
-                            } else {
-                                document.open("text/html", "replace");
-                                document.write(response);
-                                document.close();
+        console.log("Solicitar ESTADO de Preconsulta");
+        $.ajax({
+            url: "PotencialController",
+            method: "POST",
+            data: {key: "consultarEstadoPreconsulta"},
+            success: function (response) {
+                $.post("PotencialController", {
+                    key: 'obtenerEventos',
+                    idPaciente: $('#idPaciente').val()
+                },
+                        function (response, status, xhr) {
+                            console.log("El ajax fue exitoso!!-----------------------");
+                            if (status == "success") {
+                                if (response == "error") {
+                                    $("#msj-error").show();
+                                } else {
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
+                                }
                             }
                         }
-                    }
-            );
-        });
+                ).then(function () {
+                    $.post("SAPI", {
+                        file: "potencial/misCitas.jsp"
+                    },
+                            function (response, status, xhr) {
+                                console.log(response);
+                                if (status == "success") {
+                                    if (response == "error") {
+                                        $("#msj-error").show();
+                                    } else {
+                                        document.open("text/html", "replace");
+                                        document.write(response);
+                                        document.close();
+                                    }
+                                }
+                            }
+                    );
+                });
+            },
+            error: function (xhr) {
+                console.log("error" + xhr.statusText);
+                console.log("Error SolicitarEstadoPreconsulta");
+                //alert(xhr);
+            }
 
+        });
     });
-    
+
     $('#irAMisCitas2').on('click', function () {
         $.post("SAPI", {
             file: "potencial/misCitas.jsp"
@@ -548,7 +578,7 @@ swal({
                 }
         );
     });
-    
+
     $('#irAInicioPotencial').on('click', function () {
         $.post("SAPI", {
             file: "potencial/index.jsp"
@@ -567,7 +597,7 @@ swal({
                 }
         );
     });
-    
+
 
     $('#irACuenta1').on('click', function () {
         $.post("SAPI", {

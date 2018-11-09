@@ -11,6 +11,7 @@ $(document).ready(function () {
         locale: 'es',
         height: 630,
         themeSystem: 'bootstrap4',
+        timeFormat: "H:mm",
         header: {
             left: 'prev,next today',
             center: 'month,agendaWeek,agendaDay',
@@ -32,7 +33,9 @@ $(document).ready(function () {
             $('#titulo-cita').html(calEvent.title);
             $('#dia-cita').html(m.locale("es").format('LL'));
             
-            if(d.getMinutes()<10){
+            if(d.getMinutes()===0){
+                $('#hora-cita').html(d.getHours()+":00");
+            }else if(d.getMinutes()>0 && d.getMinutes()<10){
                 $('#hora-cita').html(d.getHours()+":0"+d.getMinutes());
             }else{
                 $('#hora-cita').html(d.getHours()+":"+d.getMinutes());
@@ -40,7 +43,7 @@ $(document).ready(function () {
             
             
             console.log($('#hora-cita').html());
-            console.log(d.getMinutes());
+            console.log('los minutos son: ' +  d.getMinutes());
             
             $('#edificio-cita').html(edificios[parseInt(calEvent.edificio)]);
             $('#piso-cita').html(pisos[parseInt(calEvent.piso)]);
@@ -77,8 +80,13 @@ $(document).ready(function () {
             }
 
         ],
+        
+      
+     
 
     });
+    
+    
 
     //Cambiar de color los botones del calendario y varios textos
     $('.fc-agendaWeek-button').removeClass('btn-primary').addClass('btn-outline-danger');
