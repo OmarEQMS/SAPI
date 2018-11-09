@@ -36,6 +36,10 @@
 .badge-danger{
     background: #FF53A9;
 }
+
+.badge-warning{
+    color: #ffffff;
+}
   
 .colorMorado{
     color: #1e1441;
