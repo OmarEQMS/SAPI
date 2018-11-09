@@ -1248,7 +1248,6 @@ public class PotencialController extends HttpServlet {
                 if (sesion.getId() == null) {
                     //TODO 
                 } else {
-                    response.setContentType("application/json");//Por default se envia un text/html, pero enviaremos un application/json para que se interprete en el ajax del front.
 
                     int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
 
@@ -1260,7 +1259,6 @@ public class PotencialController extends HttpServlet {
                         System.out.println("El paciente no tiene ninguna cita");
                         sesion.setAttribute("estatus", 0);
                     } else {
-                        String strJson = "{estado:\"".concat(estadoCita).concat("\"}");
 
                         Gson json = new Gson();
                         String estatus = json.toJson(estadoCita);
@@ -1275,52 +1273,32 @@ public class PotencialController extends HttpServlet {
                             sesion.setAttribute("estatus", 2);
                         }
                     }
-
                 }
+                System.out.println("hola");
                 break;
             }
             case "cancelarCita": {
+                /**
+                * Angel Gutiérrez 06/11/2018 Se cancelan las citas mediante
+                * una iteración donde se sacan todas las citas y se
+                * eliminan en orden despues de que se crea su objeto
+                */
                 HttpSession sesion = request.getSession(true);
-                if (sesion.getAttribute("idCuenta") == null) {
-                    /**
-                     * Angel Gutiérrez 06/11/2018 Se eliminan las citas mediante
-                     * una iteración donde se sacan todas las citas y se
-                     * eliminan en orden despues de que se crea su objeto
-                     */
+                if (sesion.getAttribute("idCuenta") == null) {                    
                     // request.setAttribute("status", "");
                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 
                     return;
                 } else {
 
-                    int idCuenta = (int) sesion.getAttribute("idCuenta");
                     int idPaciente = Integer.parseInt(sesion.getAttribute("idPaciente").toString());
-                    System.out.println(idPaciente);
-                    System.out.println(idCuenta);
+                    System.out.println("idPaciente: " + idPaciente);
 
                     CitaServicioImpl citaServicio = new CitaServicioImpl();
-                    if (citaServicio.mostrarCitaIdEspecifico(idPaciente) != null) {
-
-                        List<Cita> citas = new ArrayList<>();
-
-                        citas = citaServicio.mostrarCitaIdEspecifico(idPaciente);
-                        int citasTotales = citas.size() - 1;
-
-                        int idCita = 0;
-                        while (citasTotales > -1) {
-
-                            System.out.println(citasTotales);
-                            idCita = citas.get(citasTotales).getIdCita();
-
-                            System.out.println(idCita);
-
-                            citaServicio.borradoLogicoCita(idCita);
-
-                            citasTotales = citasTotales - 1;
-                            System.out.println(citasTotales);
-                        }
-                    }
-                    request.getRequestDispatcher("/WEB-INF/misCitas.jsp").forward(request, response);
+                    
+                    citaServicio.cancelarCitaPreconsulta(idPaciente);
+                    
+                    System.out.println("Ya la canceló");
 
                 }
                 break;
