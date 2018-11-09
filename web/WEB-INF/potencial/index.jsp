@@ -155,7 +155,7 @@
 
 
                                         <c:choose>
-                                            <c:when test="${sessionScope.estatus>=1}">
+                                            <c:when test="${sessionScope.estatus==1}">
 
                                                 <a class="nav-item nav-link active text-center colorMoradoLight texto-tab" id="nav-bienvenida-tab" data-toggle="tab" href="#nav-bienvenida"
                                                    role="tab" aria-controls="nav-bienvenida" aria-selected="false" style="width:33%">INFORMACIÓN</a>

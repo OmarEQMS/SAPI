@@ -276,13 +276,8 @@ public class PotencialController extends HttpServlet {
                  *
                  * El presente case funciona cuando un paciente agrega ciertos
                  * atributos y documentos al proceso de solicitud de preconsulta
-                 * null null                 <<<<<<< HEAD
-                 * sin enviarla. * *
-                 * =======
                  * sin enviarla.
-                 *
-                 * * *
-                 * >>>>>>> origin/Develop
+                 *                 
                  */
                 //Obtener la sesion
                 HttpSession sesion = request.getSession(true);
@@ -448,7 +443,7 @@ public class PotencialController extends HttpServlet {
                                 System.out.println("Identificacion ".concat(strIdentificacion).concat(" ").concat(partIdentificacion.getContentType()));
                             }
 
-                        }
+                        }                        
 
                         Part partCURP = null;
                         boolean booleanCURP = true;
@@ -1253,16 +1248,12 @@ public class PotencialController extends HttpServlet {
 
                     CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
 
-                    String estadoCita = citaServicioImpl.mostrarPreconsultaAceptada(idPacientePotencial);
+                    String estatus = citaServicioImpl.mostrarPreconsultaAceptada(idPacientePotencial);
 
-                    if (estadoCita == null) {
+                    if (estatus == null) {
                         System.out.println("El paciente no tiene ninguna cita");
                         sesion.setAttribute("estatus", 0);
                     } else {
-
-                        Gson json = new Gson();
-                        String estatus = json.toJson(estadoCita);
-                        estatus = estatus.substring(1, estatus.length() - 1);
 
                         System.out.println("El estatus es: " + estatus);
 
