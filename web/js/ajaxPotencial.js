@@ -2,6 +2,11 @@
 
 $(document).ready(function () {
 
+
+    //Ocultar mensajes de error
+    $('#error-contrasena').hide();
+    $('#error-contrasena2').hide();
+
     console.log("Se Actualizó!");
 
     var consultarEstadoPreconsulta = new FormData;
@@ -107,58 +112,58 @@ $(document).ready(function () {
     $('#btn-cancelarDefinitivo').on('click', () => {
 
         //Modal borrar sintoma
-       /* swal({
-            title: "¿Estás segura(o) que deseas cancelar la cita?",
-            text: "Tendrás que reiniciar tu solicitud a preconsulta ya que se cancelaran ambas",
-            icon: "warning",
-            buttons: true,
-            buttons: ['Regresar', 'Cancelar cita'],
-            dangerMode: true,
-        })
+        /* swal({
+         title: "¿Estás segura(o) que deseas cancelar la cita?",
+         text: "Tendrás que reiniciar tu solicitud a preconsulta ya que se cancelaran ambas",
+         icon: "warning",
+         buttons: true,
+         buttons: ['Regresar', 'Cancelar cita'],
+         dangerMode: true,
+         })
+         
+         .then((cancelar) => {
+         if (cancelar) {
+         */
 
-               .then((cancelar) => {
-                   if (cancelar) {
-*/
-                       
-                            $.ajax({
-                                url: "PotencialController",
-                                data: {
-                                    key: 'cancelarCita',
-                                    idPaciente: $('#idPaciente').val()
-                                },
-                                method: "POST",
-                                success: function (response) {
-                                    if (response == "error") {
-                                    console.log("Error al cargar");
-                                } else {
-                                    console.log("Intentando redireccionar");
-                                    document.open("text/html", "replace");
-                                    document.write(response);
-                                    document.close();
+        $.ajax({
+            url: "PotencialController",
+            data: {
+                key: 'cancelarCita',
+                idPaciente: $('#idPaciente').val()
+            },
+            method: "POST",
+            success: function (response) {
+                if (response == "error") {
+                    console.log("Error al cargar");
+                } else {
+                    console.log("Intentando redireccionar");
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
 
-                                }
-                                },
-                                error: function (xhr) {
+                }
+            },
+            error: function (xhr) {
 
-                                }
-                           
-
-                    //    });
+            }
 
 
-          /*          } else {
+            //    });
 
-                  }
-           */
-                });
+
+            /*          } else {
+             
+             }
+             */
+        });
 
 
     });
 
-    $('#mitadCancelar').on('click',  function () {
+    $('#mitadCancelar').on('click', function () {
 
         //Modal borrar sintoma
-       swal({
+        swal({
             title: "¿Estás segura(o) que deseas cancelar la cita?",
             text: "Tendrás que reiniciar tu solicitud a preconsulta ya que se cancelaran ambas",
             icon: "warning",
@@ -171,7 +176,7 @@ $(document).ready(function () {
                     if (cancelar) {
 
                         $('#modalMotivoCancelacion').modal('toggle');
-       
+
 
                     } else {
 
@@ -212,7 +217,7 @@ $(document).ready(function () {
         data.forEach((value, key) => {
             console.log(key + " " + value);
         });
-swal({
+        swal({
             title: "Datos guardados correctamente",
             text: "Puedes regresar a editar/completar el resto de información en cualquier momento.",
             icon: "success",
@@ -220,25 +225,25 @@ swal({
             buttons: [, 'Aceptar']
 
         }).then(function () {
-           $.ajax({
-            url: "PotencialController",
-            method: "POST",
-            data: data,
-            enctype: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                if (response == "success") {
-                    console.log("ok");
-                } else {
-                    console.log("Algo pasó" + response);
-                }
-            },
-            error: function (request, status, error) {
-                console.log("Enviar solicitud Error request " + request.responseText);
-                console.log("Enviar solicitud Error status " + status);
-                console.log("Enviar solicitud Error error" + error);
-                //alert("No enontre el controlador" + status);                               
+            $.ajax({
+                url: "PotencialController",
+                method: "POST",
+                data: data,
+                enctype: "multipart/form-data",
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response == "success") {
+                        console.log("ok");
+                    } else {
+                        console.log("Algo pasó" + response);
+                    }
+                },
+                error: function (request, status, error) {
+                    console.log("Enviar solicitud Error request " + request.responseText);
+                    console.log("Enviar solicitud Error status " + status);
+                    console.log("Enviar solicitud Error error" + error);
+                    //alert("No enontre el controlador" + status);                               
                 }
             });
         })
@@ -269,17 +274,17 @@ swal({
         data.append("baston", baston);
         data.append("oxigeno", oxigeno);
         data.append("motivoConsulta", motivoConsulta);
-        data.append("otroMotivo",otroMotivo);
+        data.append("otroMotivo", otroMotivo);
         data.append("biopsia", biopsia);
 
         console.log(data);
-        
+
         //Al presionar enviar los campos quedan ineditables
 
         $('#masculino').attr('readonly', 'true');
         $('#femenino').attr('readonly', 'true');
         $('#fileIdentificacionSubido').prop('disabled', true);
-        
+
 
         // Imprimmir en consola los valores obtenidos del form para pruebas
         data.forEach((value, key) => {
@@ -353,6 +358,7 @@ swal({
 
     $("#btn-cambiarContrasena").on('click', function () {
 
+
         //Modal cambiar contraseña 
         swal({
             title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
@@ -365,29 +371,48 @@ swal({
                 .then((cambiar) => {
                     if (cambiar) {
 
+                        if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
 
-                        $.ajax({
-                            url: "PotencialController",
-                            data: {
-                                key: "cambiarContrasena",
-                                idCuenta: $("#sesionPaciente").val(),
-                                password: $("#password").val(),
-                                password2: $("#password2").val()
-                            },
-                            method: "POST",
-                            success: function (response) {
-                                if (response == "success") {
+                            $('#error-contrasena').hide();
+                            $('#error-contrasena2').hide();
 
-                                } else {
-                                    //Aqui no se que hace
+                            $.ajax({
+                                url: "PotencialController",
+                                data: {
+                                    key: "cambiarContrasena",
+                                    idCuenta: $("#sesionPaciente").val(),
+                                    password: $("#password").val(),
+                                    password2: $("#password2").val()
+                                },
+                                method: "POST",
+                                success: function (response) {
+
+                                    $("#password").val('');
+                                    $("#password2").val('');
+
+                                    
+                                },
+                                error: function (xhr) {
+
                                 }
-                            },
-                            error: function (xhr) {
+                            });
+                            $('#modalCambiarContraseña').modal('toggle');
 
+
+                        } else {
+                            
+                            if(!isValidPassword($('#password'))){
+                               $("#error-contraseña").show(); 
+                            }else if(!isValidPassword($('#password2'))){
+                                $("#error-contraseña2").show();
+                            }else{
+                                $("#error-contraseña").hide(); 
+                                $("#error-contraseña2").hide();
                             }
-                        });
-                        $('#modalCambiarContraseña').modal('toggle');
-                    } else {
+                            
+                            
+                        }
+
 
                     }
                 });
@@ -512,7 +537,7 @@ swal({
         });
 
     });
-    
+
     $('#irAMisCitas2').on('click', function () {
         $.post("SAPI", {
             file: "potencial/misCitas.jsp"
@@ -550,7 +575,7 @@ swal({
                 }
         );
     });
-    
+
     $('#irAInicioPotencial').on('click', function () {
         $.post("SAPI", {
             file: "potencial/index.jsp"
@@ -569,7 +594,7 @@ swal({
                 }
         );
     });
-    
+
 
     $('#irACuenta1').on('click', function () {
         $.post("SAPI", {
@@ -718,6 +743,51 @@ swal({
         console.log("Llegó :)");
         readURL(this);
     });
+
+    //VALIDACIONES
+
+    function areEqualPasswords(pass1, pass2) {
+
+        if (pass1.val() != pass2.val()) {
+
+            pass2.css('border', '1px solid red');
+            pass1.css('border', '1px solid red');
+            $('#noEqualPasswordsError').show();
+
+            return false;
+
+        } else {
+
+            pass2.css('border', '');
+            pass1.css('border', '');
+            $('#noEqualPasswordsError').hide();
+
+        }
+
+        return true;
+    }
+
+    function isValidPassword(input) {
+
+        var m = input.val();
+
+        //var expreg = /^[a-zA-Z0-9]{8,14}$/;
+        var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    }
 
 
 
