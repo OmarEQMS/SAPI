@@ -164,8 +164,13 @@ $(document).ready(function () {
 
 
     });
+    
+    $('#cancelarCitaModal').on('click', function() {
+       console.log("hola");
+       $('#modalVerCitaPreConsulta').modal('toggle');
+    });
 
-    $('#mitadCancelar').on('click', function () {
+    $('.mitadCancelar').on('click', function () {
 
         //Modal borrar sintoma
         swal({
