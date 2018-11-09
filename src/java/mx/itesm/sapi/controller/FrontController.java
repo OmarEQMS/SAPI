@@ -108,32 +108,28 @@ public class FrontController extends HttpServlet {
         System.out.println("FrontController Method ".concat(request.getMethod()));
 
         String file = request.getParameter("file");
-        if (file == null) {
-            HttpSession sesion = request.getSession(true);
-            if (sesion.getAttribute("idCuenta") == null) {
-                request.setAttribute("status", "");
-                request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
-                return;
-            } else {
-                String strPath = sesion.getAttribute("path").toString();
-                System.out.println("FrontController No path ".concat(strPath));
-                request.getRequestDispatcher("WEB-INF/".concat(strPath)).forward(request, response);
-                //   System.out.println("FrontController Message ".concat(request.getParameter("message")));
-            }
-        } else {
-            if ("jsp".equals(file.substring(file.length() - 3))) {
-                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
-                if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
-                    // request.setAttribute("status", "");
-                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
-                    return;
-                } else { //Si tiene sesion iniciada
+        
+        HttpSession sesion = request.getSession(true);
+        if(file == null && sesion.getAttribute("idCuenta") == null)
+        {
+            request.setAttribute("status", "");
+            request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
+        }else if (file != null && sesion.getAttribute("idCuenta") == null){
+            request.setAttribute("status", "");
+            request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
+        }else if ((file == null || file != null) && sesion.getAttribute("idCuenta") != null)
+        {
+            if (file == null)
+                file = sesion.getAttribute("path").toString();
+            else
+                file = request.getParameter("file");
+            if ("jsp".equals(file.substring(file.length() - 3))) {                               
                     //Lo redireciono a su rol
-                    int keyRol = (int) sesion.getAttribute("idRol");
+                    int keyRol = (int) sesion.getAttribute("idRol");                                        
                     switch (keyRol) {
                         //PACIENTE POTENCIAL
                         case 1: {
-                            String keyRuta = request.getParameter("file");
+                            String keyRuta = file;
                             switch (keyRuta) {
 
                                 case "potencial/cuentaPaciente.jsp": {
@@ -214,7 +210,7 @@ public class FrontController extends HttpServlet {
 
                         /*NAVEGADORA*/
                         case 4: {
-                            String keyRuta = request.getParameter("file");
+                            String keyRuta = file;
                             sesion.setAttribute("path", keyRuta);
                             switch (keyRuta) {
 
@@ -523,7 +519,7 @@ public class FrontController extends HttpServlet {
                         /*PACIENTE EN TRATAMIENTO*/
                         case 5: {
 
-                            String keyRuta = request.getParameter("file");
+                            String keyRuta = file;
                             switch (keyRuta) {
 
                                 case "paciente/cuenta.jsp": {
@@ -637,7 +633,7 @@ public class FrontController extends HttpServlet {
                         }
 
                     }
-                }
+                
 
                 //System.out.println("filename if ".concat(file));
                 // request.getRequestDispatcher("WEB-INF/" + file).forward(request, response);
@@ -651,6 +647,7 @@ public class FrontController extends HttpServlet {
 
             }
         }
+               
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
