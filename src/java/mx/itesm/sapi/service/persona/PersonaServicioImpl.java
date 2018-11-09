@@ -199,6 +199,9 @@ public class PersonaServicioImpl implements PersonaServicio {
 
             //Aquí va el registerOutParameter
             //cstmt.registerOutParameter(12,Types.INTEGER);
+            
+            System.out.println("MENSAJE: ".concat(cstmt.toString()));
+            
             rs = cstmt.executeQuery();
             rs.next();
             id = rs.getInt(1);

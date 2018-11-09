@@ -164,10 +164,10 @@ $(document).ready(function () {
 
 
     });
-    
-    $('#cancelarCitaModal').on('click', function() {
-       console.log("hola");
-       $('#modalVerCitaPreConsulta').modal('toggle');
+
+    $('#cancelarCitaModal').on('click', function () {
+        console.log("hola");
+        $('#modalVerCitaPreConsulta').modal('toggle');
     });
 
     $('.mitadCancelar').on('click', function () {
@@ -329,36 +329,51 @@ $(document).ready(function () {
          +" estudioUsg: " + fileEstudioPrevioUsg.name + " biopsia: " + estudioBiopsia.name);*/
 
         swal({
-            title: "¡Buen Trabajo! se ha enviado tu solicitud",
-            text: "En un lapso no mayor a 36 horas recibirás una respuesta",
-            icon: "success",
+            title: "Estas seguro de enviar tu solicitud?",
+            text: "Ya no podras modificar tu solicitud mas adelante",
+
             showCancelButton: false,
             showConfirmButton: true,
-            buttons: [, 'Aceptar'],
+
+            buttons: {cancel: 'Cancelar', aceptar: 'Aceptar'},
             dangerMode: true
-        }).then(function () {
-            //AJAX PARA ENVIAR SOLICITUD
-            $.ajax({
-                url: "PotencialController",
-                method: "POST",
-                data: data,
-                enctype: "multipart/form-data",
-                processData: false,
-                contentType: false,
-                success: function (response) {
-                    console.log("Enviar solicitud " + response);
-                    document.open("text/html", "replace");
-                    document.write(response);
-                    document.close();
-                },
-                error: function (request, status, error) {
-                    console.log("Enviar solicitud Error request " + request.responseText);
-                    console.log("Enviar solicitud Error status " + status);
-                    console.log("Enviar solicitud Error error" + error);
-                    //alert("No enontre el controlador" + status);                               
-                }
-            });
-        })
+        }).then(function (value) {
+
+            if (value == "aceptar") {
+                //AJAX PARA ENVIAR SOLICITUD
+                $.ajax({
+                    url: "PotencialController",
+                    method: "POST",
+                    data: data,
+                    enctype: "multipart/form-data",
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+
+                        if (response == "documentosNoSubidos") {
+                            swal("Error", "Para enviar la solicitud debes de subir al menos la identificacion, el curp y el comprobante", "error");
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+
+                        //console.log("Response: " + response);
+
+                    },
+                    error: function (request, status, error) {
+                        console.log("Enviar solicitud Error request " + request.responseText);
+                        console.log("Enviar solicitud Error status " + status);
+                        console.log("Enviar solicitud Error error" + error);
+                        //alert("No enontre el controlador" + status);                               
+                    }
+                });
+            } else {
+
+            }
+
+
+        });
 
     });
 
