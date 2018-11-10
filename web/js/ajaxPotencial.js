@@ -101,6 +101,69 @@ $(document).ready(function () {
 
     $('#btn-cancelarDefinitivo').on('click', () => {
 
+        $.ajax({
+            url: "PotencialController",
+            data: {
+                key: 'cancelarCita',
+                idPaciente: $('#idPaciente').val()
+            },
+            method: "POST",
+            success: function (response) {
+                console.log("Solicitar ESTADO de Preconsulta");
+                $.ajax({
+                    url: "PotencialController",
+                    method: "POST",
+                    data: {key: "consultarEstadoPreconsulta"},
+                    success: function (response) {
+                        $.post("PotencialController", {
+                            key: 'obtenerEventos',
+                            idPaciente: $('#idPaciente').val()
+                        },
+                                function (response, status, xhr) {
+                                    console.log("El ajax fue exitoso!!-----------------------");
+                                    if (status == "success") {
+                                        if (response == "error") {
+                                            $("#msj-error").show();
+                                        } else {
+                                            document.open("text/html", "replace");
+                                            document.write(response);
+                                            document.close();
+                                        }
+                                    }
+                                }
+                        ).then(function () {
+                            $.post("SAPI", {
+                                file: "potencial/misCitas.jsp"
+                            },
+                                    function (response, status, xhr) {
+                                        console.log(response);
+                                        if (status == "success") {
+                                            if (response == "error") {
+                                                $("#msj-error").show();
+                                            } else {
+                                                document.open("text/html", "replace");
+                                                document.write(response);
+                                                document.close();
+                                            }
+                                        }
+                                    }
+                            );
+                        });
+                    },
+                    error: function (xhr) {
+                        console.log("error" + xhr.statusText);
+                        console.log("Error SolicitarEstadoPreconsulta");
+                        //alert(xhr);
+                    }
+
+                });
+            },
+            error: function (xhr) {
+
+            }
+        });
+
+
     });
 
     $('#cancelarCitaModal').on('click', function () {
