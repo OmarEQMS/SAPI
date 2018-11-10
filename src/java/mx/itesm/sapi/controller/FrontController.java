@@ -268,7 +268,7 @@ public class FrontController extends HttpServlet {
 
                                     sesion.setAttribute("base64Img", base64String);
                                     //DEBUG se cambiará cuando haya routing desde la lista de potenciales.
-                                    int idPacientePotencial = 68;
+                                    int idPacientePotencial = 80;
                                     
                                     try
                                     {
@@ -276,7 +276,7 @@ public class FrontController extends HttpServlet {
                                     }catch(Exception ex)
                                     {
                                         System.out.println("Catch parameter idPacientePotencial ".concat(ex.getMessage()));
-                                        idPacientePotencial = 68;
+                                        idPacientePotencial = 80;
                                     }         
                                     
 
@@ -394,7 +394,7 @@ public class FrontController extends HttpServlet {
                                     }catch(Exception ex)
                                     {
                                         System.out.println("Catch parameter idDocumentoInicial ".concat(ex.getMessage()));
-                                        idDocumentoInicial = 225;
+                                        idDocumentoInicial = 241;
                                     }
                                      
                                     try
@@ -536,10 +536,10 @@ public class FrontController extends HttpServlet {
                                     RegistroDiagnosticoServiceImpl registroDiagnosticoServicio = new RegistroDiagnosticoServiceImpl();
                                     RegistroDiagnostico registro = registroDiagnosticoServicio.mostrarRegistroDiagnosticoPaciente(paciente.getIdPaciente());
 
-                                    System.out.println("esto es lo que hay en registro");
+                                    //System.out.println("esto es lo que hay en registro");
 
-                                    System.out.println(registro.getIdEtapaClinica());
-                                    System.out.println(registro.getIdPaciente());
+                                    //System.out.println(registro.getIdEtapaClinica());
+                                    //System.out.println(registro.getIdPaciente());
                                     TipoSangreServicioImpl tipoSangreServicio = new TipoSangreServicioImpl();
 
                                     InputStream imagen = pic.getContenido();
@@ -560,7 +560,14 @@ public class FrontController extends HttpServlet {
                                     request.setAttribute("usuario", sesion.getAttribute("usuario"));
                                     request.setAttribute("prz", sesion.getAttribute("prz"));
                                     sesion.setAttribute("tipoSangre", persona.getIdTipoSangre());
-                                    sesion.setAttribute("etapaCli", registro.getIdEtapaClinica());
+                                    try
+                                    {
+                                        sesion.setAttribute("etapaCli", registro.getIdEtapaClinica());
+                                    } catch(Exception es)
+                                    {
+                                        System.out.println(es);
+                                    }
+                                    
 
                                     sesion.setAttribute("expediente", paciente.getExpediente());
 
