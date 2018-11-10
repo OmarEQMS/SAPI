@@ -1156,6 +1156,8 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" style="border-radius:20px" data-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-primary" style="border-radius:20px">Aceptar</button>
+                                  <!-- Prueba de codigo de autompletado -->
+     
                         </div>
                     </div>
                 </div>
@@ -1165,6 +1167,8 @@
         </div>
 
 
+                
+                
     </body>
 
 </html>

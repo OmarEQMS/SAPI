@@ -305,7 +305,7 @@ public class NavegadoraController extends HttpServlet {
                                 String medicoAdscrito = request.getParameter("medico-adscrito");
                                 //TODO
                                 //Ver si calcular fecha aqui o en SP
-                                pacienteMedicoTitular.setInicio(inicio);
+                               // pacienteMedicoTitular.setInicio(inicio);
                                 pacienteMedicoTitular.setIdPaciente(idPaciente);
                                 pacienteMedicoTitular.setIdEmpleado(Integer.parseInt(medicoAdscrito));
                                 pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitular);
@@ -383,7 +383,7 @@ public class NavegadoraController extends HttpServlet {
 
                                 //TODO
                                 //Poner fecha aqui en el back
-                                estadoPacientePaciente.setFecha(fecha);
+                                //estadoPacientePaciente.setFecha(fecha);
 
                                 System.out.println("Tipo de Paciente-->" + segundaOpinion);
                                 estadoPacientePacienteServicioImpl.agregarEstadoPacientePaciente(estadoPacientePaciente);
@@ -447,8 +447,8 @@ public class NavegadoraController extends HttpServlet {
                                     Timestamp fechaBiopsia = Timestamp.valueOf(fechasBiopsias[i]);
                                     cita.setFechaProgramada(fechaBiopsia);
                                     cita.setIdEstudio(Integer.parseInt(parteBiopsias[i]));
-                                    cita.se
-                                    citaServicioImpl.agregarCita(cita);
+                                   // cita.se
+                                    //citaServicioImpl.agregarCita(cita);
                                 }
                             }
                             //Timestamp  = Timestamp.valueOf();

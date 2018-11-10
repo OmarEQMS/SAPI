@@ -5,9 +5,11 @@
  */
 package mx.itesm.sapi.controller;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Base64;
@@ -71,6 +73,7 @@ import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteSeguroServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.TipoDocumentoServicioImpl;
 import mx.itesm.sapi.service.gestionTratamiento.PacienteTratamientoPrevioServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TratamientoPacienteServiceImpl;
@@ -226,7 +229,6 @@ public class FrontController extends HttpServlet {
                             String keyRuta = request.getParameter("file");
                             switch (keyRuta) {
 
-
                                 case "navegadora/cuentaNavegadora.jsp": {
 
                                     PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
@@ -235,47 +237,18 @@ public class FrontController extends HttpServlet {
                                     CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
                                     Cuenta cuenta = cuentaServicioImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));
 
-                                    /*EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
-                                    Empleado empleado = empleadoServicioImpl.mostrarEmpleadoCuenta((int) sesion.getAttribute("idCuenta"));
-
-                                    MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
-                                    MedicoEspecialidad medicoEspecialidad = medicoEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(empleado.getIdEmpleado());
-
-                                    EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
-                                    Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());*/
-
-                                    /*
-                                    System.out.println("holiiii");
-                                    sesion.setAttribute("nombre", persona.getNombre());
-                                    sesion.setAttribute("primerApellido", persona.getPrimerApellido());
-                                    sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
-                                    System.out.println("el correo es:" + persona.getCorreo());
-                                    sesion.setAttribute("correo", persona.getCorreo());
-                                    sesion.setAttribute("telefono", persona.getTelefono());
-                                    sesion.setAttribute("usuario", cuenta.getUsuario());
-                                    //sesion.setAttribute("noEmpleado", empleado.getNoEmpleado());
-                                    //sesion.setAttribute("especialidad", especialidad.getNombre());
-                                    //sesion.setAttribute("cedulaProfesional", medicoEspecialidad.getCedulaProfesional());
-
-                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
-                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
-
-                                    InputStream imagen = pic.getContenido();
-                                    byte[] bytes = IOUtils.toByteArray(imagen);
-                                    String base64String = Base64.getEncoder().encodeToString(bytes);
-
-                                    sesion.setAttribute("base64Img", base64String);*/
-
+                                    TipoDocumentoServicioImpl tipoDocumentoServicioImpl = new TipoDocumentoServicioImpl();
+                                    List<TipoDocumento> tiposDocumentos = tipoDocumentoServicioImpl.mostrarTipoDocumento();
+                                   
+                                    Gson json = new Gson();
+                                    out.print(json.toJson(tiposDocumentos));
+                                    
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
 
-                                    /*MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl=new MedicoEspecialidadServicioImpl();
-                                    MedicoEspecialidad medicoEspecialidad= medicoEspecialidadServicioImpl.mostrarMedicoEspecialidad(keyRol)
-                                     */
                                     break;
                                 }
 
-                                case "navegadora/index.jsp":
-                                {
+                                case "navegadora/index.jsp": {
 
                                     System.out.println("Index Navegadora ");
 
@@ -420,13 +393,10 @@ public class FrontController extends HttpServlet {
                                 case "navegadora/form.jsp": {
                                     System.out.println("Form Navegadora ");
 
-                                    
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
                                     break;
 
                                 }
-
-                                
 
                             }
                             break;

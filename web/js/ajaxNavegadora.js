@@ -607,9 +607,13 @@ $('.irAVerDocumento').on('click', function () {
     function salir() {
          alert();
        
+       
     };
     
-   
+    //Prueba del autocompletado
+          
+          
+        
 
 });
 
