@@ -2,6 +2,11 @@
 
 $(document).ready(function () {
 
+
+    //Ocultar mensajes de error
+    $('#error-contrasena').hide();
+    $('#error-contrasena2').hide();
+
     console.log("Se Actualizó!");
 
     var consultarEstadoPreconsulta = new FormData;
@@ -94,74 +99,7 @@ $(document).ready(function () {
 
     });
 
-
-
-
-
     $('#btn-cancelarDefinitivo').on('click', () => {
-
-        $.ajax({
-            url: "PotencialController",
-            data: {
-                key: 'cancelarCita',
-                idPaciente: $('#idPaciente').val()
-            },
-            method: "POST",
-            success: function (response) {
-                console.log("Solicitar ESTADO de Preconsulta");
-                $.ajax({
-                    url: "PotencialController",
-                    method: "POST",
-                    data: {key: "consultarEstadoPreconsulta"},
-                    success: function (response) {
-                        $.post("PotencialController", {
-                            key: 'obtenerEventos',
-                            idPaciente: $('#idPaciente').val()
-                        },
-                                function (response, status, xhr) {
-                                    console.log("El ajax fue exitoso!!-----------------------");
-                                    if (status == "success") {
-                                        if (response == "error") {
-                                            $("#msj-error").show();
-                                        } else {
-                                            document.open("text/html", "replace");
-                                            document.write(response);
-                                            document.close();
-                                        }
-                                    }
-                                }
-                        ).then(function () {
-                            $.post("SAPI", {
-                                file: "potencial/misCitas.jsp"
-                            },
-                                    function (response, status, xhr) {
-                                        console.log(response);
-                                        if (status == "success") {
-                                            if (response == "error") {
-                                                $("#msj-error").show();
-                                            } else {
-                                                document.open("text/html", "replace");
-                                                document.write(response);
-                                                document.close();
-                                            }
-                                        }
-                                    }
-                            );
-                        });
-                    },
-                    error: function (xhr) {
-                        console.log("error" + xhr.statusText);
-                        console.log("Error SolicitarEstadoPreconsulta");
-                        //alert(xhr);
-                    }
-
-                });
-            },
-            error: function (xhr) {
-
-            }
-        });
-
 
     });
 
@@ -170,7 +108,7 @@ $(document).ready(function () {
         $('#modalVerCitaPreConsulta').modal('toggle');
     });
 
-    $('.mitadCancelar').on('click', function () {
+    $('#mitadCancelar').on('click', function () {
 
         //Modal borrar sintoma
         swal({
@@ -383,6 +321,7 @@ $(document).ready(function () {
 
     $("#btn-cambiarContrasena").on('click', function () {
 
+
         //Modal cambiar contraseña 
         swal({
             title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
@@ -395,29 +334,48 @@ $(document).ready(function () {
                 .then((cambiar) => {
                     if (cambiar) {
 
+                        if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
 
-                        $.ajax({
-                            url: "PotencialController",
-                            data: {
-                                key: "cambiarContrasena",
-                                idCuenta: $("#sesionPaciente").val(),
-                                password: $("#password").val(),
-                                password2: $("#password2").val()
-                            },
-                            method: "POST",
-                            success: function (response) {
-                                if (response == "success") {
+                            $('#error-contrasena').hide();
+                            $('#error-contrasena2').hide();
 
-                                } else {
-                                    //Aqui no se que hace
+                            $.ajax({
+                                url: "PotencialController",
+                                data: {
+                                    key: "cambiarContrasena",
+                                    idCuenta: $("#sesionPaciente").val(),
+                                    password: $("#password").val(),
+                                    password2: $("#password2").val()
+                                },
+                                method: "POST",
+                                success: function (response) {
+
+                                    $("#password").val('');
+                                    $("#password2").val('');
+
+                                    
+                                },
+                                error: function (xhr) {
+
                                 }
-                            },
-                            error: function (xhr) {
+                            });
+                            $('#modalCambiarContraseña').modal('toggle');
 
+
+                        } else {
+                            
+                            if(!isValidPassword($('#password'))){
+                               $("#error-contraseña").show(); 
+                            }else if(!isValidPassword($('#password2'))){
+                                $("#error-contraseña2").show();
+                            }else{
+                                $("#error-contraseña").hide(); 
+                                $("#error-contraseña2").hide();
                             }
-                        });
-                        $('#modalCambiarContraseña').modal('toggle');
-                    } else {
+                            
+                            
+                        }
+
 
                     }
                 });
@@ -761,6 +719,51 @@ $(document).ready(function () {
         console.log("Llegó :)");
         readURL(this);
     });
+
+    //VALIDACIONES
+
+    function areEqualPasswords(pass1, pass2) {
+
+        if (pass1.val() != pass2.val()) {
+
+            pass2.css('border', '1px solid red');
+            pass1.css('border', '1px solid red');
+            $('#noEqualPasswordsError').show();
+
+            return false;
+
+        } else {
+
+            pass2.css('border', '');
+            pass1.css('border', '');
+            $('#noEqualPasswordsError').hide();
+
+        }
+
+        return true;
+    }
+
+    function isValidPassword(input) {
+
+        var m = input.val();
+
+        //var expreg = /^[a-zA-Z0-9]{8,14}$/;
+        var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    }
 
 
 
