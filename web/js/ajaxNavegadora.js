@@ -739,7 +739,7 @@ $(document).ready(function () {
         );
     });
 
-    $('#idACalendario').on('click', function () {
+    $('#irACalendario').on('click', function () {
         $.post("SAPI", {
             file: "navegadora/calendar.jsp"
         },

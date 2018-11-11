@@ -105,7 +105,7 @@
 
                         <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
 
-                        <li id="idACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+                        <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
                         <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
                         <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
