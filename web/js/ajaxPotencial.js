@@ -352,7 +352,7 @@ $(document).ready(function () {
                     success: function (response) {
 
                         if (response == "documentosNoSubidos") {
-                            swal("Error", "Para enviar la solicitud debes de subir al menos la identificacion, el curp y el comprobante", "error");
+                            swal("Error", "Para enviar la solicitud debes seleccionar sexo y al menos subir al menos la identificacion, el curp y el comprobante", "error");
                         } else {
                             document.open("text/html", "replace");
                             document.write(response);

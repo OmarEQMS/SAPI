@@ -351,18 +351,12 @@ public class PotencialController extends HttpServlet {
                         System.out.println("biopsia ".concat(String.valueOf(biopsia)));
 
                         boolean booleanMotivo = true;
+                        boolean booleanSexo = true;
 
-                        //Si no hay motivo se termina el case y no hace la solicitud de preconsulta
+                        //Verificar si se seleccionó un motivo
                         if (motivoConsulta.equals("0")) {
                             System.out.println("No motivo :(");
-                            //respuestaSolicitud.put("Respuesta", "No Motivo");
-                            //response.setContentType("application/json");
-                            //response.setCharacterEncoding("UTF-8");
-
-                            //out.print("No motivo");
                             booleanMotivo = false;
-                            //request.setAttribute("message", out);
-                            //request.getRequestDispatcher("/SAPI").forward(request, response);
                         }
 
                         //Agregar sexo al paciente
@@ -376,6 +370,9 @@ public class PotencialController extends HttpServlet {
                                 PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                                 System.out.println("Actualizar a mujer");
                                 personaServicioImpl.actualizarSexoPersona(idPacientePotencial, idSexoMujer);
+                            }
+                            else{
+                                booleanSexo = false;
                             }
                         }
 
@@ -497,7 +494,7 @@ public class PotencialController extends HttpServlet {
                         }
 
                         //Verficiar si se han subido todos
-                        if (!booleanIdentificacion || !booleanCURP || !booleanComprobante || !booleanMotivo) {
+                        if (!booleanIdentificacion || !booleanCURP || !booleanComprobante || !booleanMotivo || !booleanSexo) {
 
                             out.print("documentosNoSubidos");
 
