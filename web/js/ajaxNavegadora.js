@@ -1674,7 +1674,6 @@ $(document).ready(function () {
                 }
         );
     });
-
     
 });
 

@@ -563,11 +563,15 @@ public class FrontController extends HttpServlet {
                                     List<Escolaridad> escolaridad = escolaridadServicio.mostrarEscolaridades();
                                     request.setAttribute("listaEscolaridad", escolaridad);
                                     
+                                    System.out.println(escolaridad);
+                                    
                                     /**-------------------Mostrar Lista Seguros---------------------------------------*/
                                     
                                     SeguroServicioImpl seguroServicio = new SeguroServicioImpl();
                                     List<Seguro> seguro = seguroServicio.mostrarAllSeguro();
                                     request.setAttribute("listaSeguro", seguro);
+                                    
+                                    System.out.println(seguro);
                                     
                                     /**-------------------Mostrar ista Tipo Cirugia---------------------------------------*/
                                     
@@ -575,11 +579,15 @@ public class FrontController extends HttpServlet {
                                     List<TipoTratamiento> tipoCirugia = TipoTratamientoService.mostrarTratamientoCirugia();
                                     request.setAttribute("listaCirugia", tipoCirugia);
                                     
+                                    System.out.println(tipoCirugia);
+                                    
                                      /**-------------------Mostrar Lista BI-RADS---------------------------------------*/
                                     
                                     BIRADSServicioImpl BIRADSServicio = new BIRADSServicioImpl();
                                     List<BIRADS> birads = BIRADSServicio.mostrarBIRADS();
                                     request.setAttribute("listaBirads", birads);
+                                    
+                                    System.out.println(birads);
 
                                     
                                      /**-------------------Mostrar Lista Tipo Histológico---------------------------------------*/
@@ -588,11 +596,15 @@ public class FrontController extends HttpServlet {
                                     List<TipoHistologico> tipoHistologico = TipoHistologicoServicio.mostraTipoHistologico();
                                     request.setAttribute("listaTipoHistologico", tipoHistologico);
                                     
+                                    System.out.println(tipoHistologico);
+                                    
                                      /**-------------------Mostrar Lista Nivel Socioeconomico---------------------------------------*/
                                     
                                     NivelSocioeconomicoServicioImpl NivelSocioeconomicoServicio = new NivelSocioeconomicoServicioImpl();
                                     List<NivelSocioeconomico> nivelSocioeconomico = NivelSocioeconomicoServicio.mostrarNivelSocioeconomico();
                                     request.setAttribute("listaNivelSocioEconomico", nivelSocioeconomico);
+                                    
+                                    System.out.println(nivelSocioeconomico);
                                     
                                     /**-------------------Mostrar Lista Estapa Clínica---------------------------------------*/
                                     
@@ -600,11 +612,15 @@ public class FrontController extends HttpServlet {
                                     List<EtapaClinica> etapas = etapaServicio.mostrarEtapaClinica();
                                     request.setAttribute("listaEtapaClinica", etapas);
                                     
+                                    System.out.println(etapas);
+                                    
                                     /**-------------------Mostrar Lista T---------------------------------------*/
                                     
                                     TCodificadoServiceImpl TCodificadoService = new TCodificadoServiceImpl();
                                     List<TCodificado> TCodificado = TCodificadoService.mostrarTCodificado();
                                     request.setAttribute("listaT", TCodificado);
+                                    
+                                    System.out.println(TCodificado);
                                     
                                     /**-------------------Mostrar Lista N---------------------------------------*/
                                     
@@ -612,11 +628,15 @@ public class FrontController extends HttpServlet {
                                     List<NCodificado> NCodificado = NCodificadoService.mostrarNCodificado();
                                     request.setAttribute("listaN", NCodificado);
                                     
+                                    System.out.println(NCodificado);
+                                    
                                     /**-------------------Mostrar Lista M---------------------------------------*/
                                     
                                     MCodificadoServiceImpl MCodificadoService = new MCodificadoServiceImpl();
                                     List<MCodificado> MCodificado = MCodificadoService.mostrarMCodificado();
                                     request.setAttribute("listaM", MCodificado);
+                                    
+                                    System.out.println(MCodificado);
                                     
                                     /**-------------------Mostrar Lista Grados Histológico---------------------------------------*/
                                     
@@ -624,11 +644,15 @@ public class FrontController extends HttpServlet {
                                     List<GradoHistologico> gradoHistologico = GradoHistologicoServicio.mostrarGradoHistologico();
                                     request.setAttribute("listaGradoHistologico", gradoHistologico);
                                     
-                                    /**-------------------Mostrar Lista HER2---------------------------------------*/
+                                    System.out.println(gradoHistologico);
+                                    
+                                    /**-------------------Mostrar Lista HER2----------------------------------------*/
                                     
                                     Her2ServicioImpl Her2Servicio = new Her2ServicioImpl();
                                     List<Her2> her2 = Her2Servicio.mostrarHer2();
                                     request.setAttribute("listaHer2", her2);
+                                    
+                                    System.out.println(her2);
                                     
                                     /**-------------------Mostrar Lista Fish---------------------------------------*/
                                     
@@ -636,17 +660,23 @@ public class FrontController extends HttpServlet {
                                     List<Fish> fish = FishServicio.mostrarFish();
                                     request.setAttribute("listaFish", fish);
                                     
+                                    System.out.println(fish);
+                                    
                                     /**-------------------Mostrar Lista RE---------------------------------------*/
                                     
                                     ReceptorEstrogenoServicioImpl ReceptorEstrogenoServicio = new ReceptorEstrogenoServicioImpl();
                                     List<ReceptorEstrogeno> RE = ReceptorEstrogenoServicio.mostrarReceptorEstrogeno();
                                     request.setAttribute("listaRE", RE);
                                     
+                                    System.out.println(RE);
+                                    
                                     /**-------------------Mostrar Lista RP---------------------------------------*/
                                     
                                     ReceptorProgesteronaServicioImpl ReceptorProgesteronaServicio = new ReceptorProgesteronaServicioImpl();
                                     List<ReceptorProgesterona> RP = ReceptorProgesteronaServicio.mostrarAllReceptorProgesterona();
                                     request.setAttribute("listaRE", RP);
+                                    
+                                    System.out.println(RP);
 
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     

@@ -382,7 +382,7 @@ public class PersonaServicioImpl implements PersonaServicio {
         try {
             personas = new ArrayList<>();
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall("CALL mostrarMedicoRadiologo(?)");
+            cstmt = conn.prepareCall("CALL mostrarMedicoRadiologo()");
             rs = cstmt.executeQuery();
             Persona persona;
 
@@ -563,7 +563,7 @@ public class PersonaServicioImpl implements PersonaServicio {
         try {
             personas = new ArrayList<>();
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall("CALL mostrarMedicoAdscrito(?)");
+            cstmt = conn.prepareCall("CALL mostrarMedicoAdscrito()");
             rs = cstmt.executeQuery();
             Persona persona;
 

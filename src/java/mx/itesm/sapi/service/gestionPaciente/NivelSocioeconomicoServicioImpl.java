@@ -25,7 +25,7 @@ public class NivelSocioeconomicoServicioImpl implements NivelSocioeconomicoServi
         Connection conn;
         List<NivelSocioeconomico> listaNivelSocioEconomico = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure="CALL mostrarListaNivelSocioEconomico(?)";
+        String stProcedure="CALL mostrarListaNivelSocioEconomico()";
         
         ResultSet rs;
         

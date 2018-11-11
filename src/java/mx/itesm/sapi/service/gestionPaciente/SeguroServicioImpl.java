@@ -56,7 +56,7 @@ public class SeguroServicioImpl implements SeguroServicio{
         Connection conn;
         List<Seguro> seguros = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure="CALL mostrarListaSeguro(?)";
+        String stProcedure="CALL mostrarListaSeguro()";
         
         ResultSet rs;
         

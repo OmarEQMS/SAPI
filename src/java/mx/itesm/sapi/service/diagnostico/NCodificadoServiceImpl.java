@@ -69,7 +69,7 @@ public class NCodificadoServiceImpl implements NCodificadoService{
         List<NCodificado> nCodificadoss = null;
         
         //Call del store procedure
-        String stProcedure="CALL mostrarListaNCodificado(?)";
+        String stProcedure="CALL mostrarListaNCodificado()";
         
         try{
             

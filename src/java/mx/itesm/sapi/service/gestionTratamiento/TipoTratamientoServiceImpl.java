@@ -228,7 +228,7 @@ public class TipoTratamientoServiceImpl implements TipoTratamientoService {
         Connection conn;
         List<TipoTratamiento> tipoCirugia = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure="CALL mostrarListaIdTratamientoTres(?)";
+        String stProcedure="CALL mostrarListaIdTratamientoTres()";
         
         ResultSet rs;
         

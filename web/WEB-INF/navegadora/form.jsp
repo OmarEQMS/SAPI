@@ -56,14 +56,14 @@
 
                         <div class="row">
                             <div class="col-12 mb-2 mt-4">
-                                <img src="../img/user.png" class="imagenPerfil" alt="">
+                                <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="imagenPerfil edit-image" width="66px" height="66px" alt="">
                             </div>
                         </div>
 
                         <div class="row justify-content-center mb-2">
                             <div class="col-6 text-center">
-                                <span class="textoSidebar m-0">Shannon Rosas</span>
-                                <span class="textoSidebar userSidebar m-0">@shannonrosas</span>
+                                <span class="textoSidebar m-0">${sessionScope.nombre} ${sessionScope.primerApellido}</span>
+                                <span class="textoSidebar userSidebar m-0">@${sessionScope.usuario}</span>
                             </div>
                         </div>
 
@@ -138,10 +138,9 @@
 
                         <span class="pull-right d-block">
                             <span style="color:#6c6f80">Bienvenido, </span>
-                            <span style="font-weight:700; color:#6c6f80;">Shannon Rosas
+                            <span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
                             </span>
-                            <img src="../img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
-
+                        </span>
                     </div>
                 </nav>
 
@@ -239,7 +238,6 @@
                                                             <i class="fas fa-street-view"></i>
                                                         </div>
                                                     </div>
-                                                    
                                                     <select name= "tipoPaciente" class="form-control" id="tipoPaciente">
                                                         <option disabled selected>Seleccione un tipo de paciente</option>
                                                         <option>Primera vez</option>

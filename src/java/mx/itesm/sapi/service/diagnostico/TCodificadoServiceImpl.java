@@ -69,7 +69,7 @@ public class TCodificadoServiceImpl implements TCodificadoService {
         List<TCodificado> tCodificados = null;
         
         //Call del store procedure
-        String stProcedure="CALL mostrarListaTCodificado(?)";
+        String stProcedure="CALL mostrarListaTCodificado()";
         
         try{
             

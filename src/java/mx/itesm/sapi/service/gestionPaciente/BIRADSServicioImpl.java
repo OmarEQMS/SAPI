@@ -56,7 +56,7 @@ public class BIRADSServicioImpl implements BIRADSServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarListaBirads(?)";
+        String stProcedure = "CALL mostrarListaBirads()";
         List<BIRADS> listabirads = null;
         BIRADS birads;
 

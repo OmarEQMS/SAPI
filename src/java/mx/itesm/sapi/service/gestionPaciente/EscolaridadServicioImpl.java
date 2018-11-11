@@ -47,7 +47,7 @@ public class EscolaridadServicioImpl implements EscolaridadServicio {
         try {
             escolaridades = new ArrayList<>();
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall("CALL mostrarListaEscolaridad(?)");
+            cstmt = conn.prepareCall("CALL mostrarListaEscolaridad()");
             rs = cstmt.executeQuery();
             Escolaridad escolaridad;
 
