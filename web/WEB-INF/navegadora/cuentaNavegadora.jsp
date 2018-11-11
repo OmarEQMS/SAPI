@@ -36,7 +36,7 @@
         <link rel="stylesheet" href="css/styleNavegadora.css">
         <link rel="stylesheet" href="css/styleNavegadoraImg.css">
 
-      
+
 
 
         <script src="js/appNavegadora.js"></script>
@@ -272,13 +272,13 @@
                                 <div class="col-4">
                                     <button type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaNavegadora"><i class="fas fa-trash-alt mr-1"></i>
                                         Eliminar Cuenta</button>
-                                    <input type="text" name="country" id="autocomplete"/>
+                                    
                                 </div>
                             </div>
 
-                            
 
-                        </form>
+
+
 
                     </div>
                 </div>
@@ -308,14 +308,14 @@
                                     <input type="password" class="form-control" id="password-confirm" placeholder="Reingresa tu nueva contraseña" />
                                 </div>
                             </div>
-                            
-                            
-                            
+
+
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" style="border-radius: 20px"  data-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-primary" id="btn-updatePassword" style="border-radius: 20px" >Cambiar contraseña</button>
-                        
+
                         </div>
                     </div>
                 </div>

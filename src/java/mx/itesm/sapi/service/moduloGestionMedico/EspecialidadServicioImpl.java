@@ -43,12 +43,13 @@ public class EspecialidadServicioImpl implements EspecialidadServicio{
             
             rs.next();
             
-            especialidad.setNombre(rs.getString(1));
-            especialidad.setSubEspecialidad(rs.getInt(2));
-            especialidad.setEstatus(rs.getInt(3));
+            especialidad.setIdEspecialidad(rs.getInt("idEspecialidad"));
+            especialidad.setNombre(rs.getString("nombre"));
+            especialidad.setSubEspecialidad(rs.getInt("subEspecialidad"));
+            especialidad.setEstatus(rs.getInt("estatus"));
             
             
-           
+            
             return especialidad;
         }catch(SQLException ex){
             
