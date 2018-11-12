@@ -6,23 +6,14 @@
 package mx.itesm.sapi.controller;
 
 
-import java.awt.Image;
-import java.awt.image.RenderedImage;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Base64;
-import java.util.Base64;
 import java.util.List;
-import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,17 +26,10 @@ import mx.itesm.sapi.bean.diagnostico.NCodificado;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
 import mx.itesm.sapi.bean.diagnostico.TCodificado;
 import mx.itesm.sapi.bean.gestionPaciente.BIRADS;
-import mx.itesm.sapi.bean.gestionPaciente.Alergia;
-import mx.itesm.sapi.bean.gestionPaciente.Biopsia;
-import mx.itesm.sapi.bean.gestionPaciente.Cita;
 import mx.itesm.sapi.bean.gestionPaciente.DatosPacienteDocumentoInicial;
-import mx.itesm.sapi.bean.gestionPaciente.DocumentoEstudio;
-import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialTipoDocumento;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialVista;
 import mx.itesm.sapi.bean.gestionPaciente.Escolaridad;
-import mx.itesm.sapi.bean.gestionPaciente.Escolaridad;
-import mx.itesm.sapi.bean.gestionPaciente.EstadoPaciente;
 import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 import mx.itesm.sapi.bean.gestionPaciente.Fish;
 import mx.itesm.sapi.bean.gestionPaciente.GradoHistologico;
@@ -56,24 +40,10 @@ import mx.itesm.sapi.bean.gestionPaciente.PacientePotencial;
 import mx.itesm.sapi.bean.gestionPaciente.ReceptorEstrogeno;
 import mx.itesm.sapi.bean.gestionPaciente.ReceptorProgesterona;
 import mx.itesm.sapi.bean.gestionPaciente.Seguro;
-import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
 import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteMedicoTitular;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteSeguro;
-import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
-import mx.itesm.sapi.bean.gestionTratamiento.PacienteTratamientoPrevio;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
-import mx.itesm.sapi.bean.gestionTratamiento.Tratamiento;
-import mx.itesm.sapi.bean.gestionTratamiento.TratamientoPaciente;
 import mx.itesm.sapi.bean.gestionTratamiento.UnionTratamientoPaciente;
-import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
-import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
-import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
 import mx.itesm.sapi.bean.persona.Cuenta;
-import mx.itesm.sapi.bean.persona.Estado;
-import mx.itesm.sapi.bean.persona.EstadoCivil;
 import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.bean.persona.Estado;
 import mx.itesm.sapi.bean.persona.EstadoCivil;
@@ -88,10 +58,6 @@ import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.diagnostico.TCodificadoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.BIRADSServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
-import mx.itesm.sapi.service.gestionPaciente.AlergiaServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.BiopsiaServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.DocumentoEstudioServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialTipoDocumentoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.EscolaridadServicioImpl;
@@ -100,29 +66,14 @@ import mx.itesm.sapi.service.gestionPaciente.FishServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.GradoHistologicoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.Her2ServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.NivelSocioeconomicoServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.ReceptorEstrogenoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.ReceptorProgesteronaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.SeguroServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.TipoHistologicoServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.EstadoPacienteServiceImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteSeguroServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.TipoDocumentoServicioImpl;
-import mx.itesm.sapi.service.gestionTratamiento.PacienteTratamientoPrevioServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
-import mx.itesm.sapi.service.gestionTratamiento.TratamientoPacienteServiceImpl;
-import mx.itesm.sapi.service.gestionTratamiento.TratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.UnionTratamientoPacienteServiceImpl;
-import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
-import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
-import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
-import mx.itesm.sapi.service.persona.CodigoPostalServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
-import mx.itesm.sapi.service.persona.EstadoCivilServicioImpl;
 import mx.itesm.sapi.service.persona.EstadoServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
 import mx.itesm.sapi.service.persona.EstadoCivilServicioImpl;
@@ -161,21 +112,23 @@ public class FrontController extends HttpServlet {
         System.out.println("FrontController Method ".concat(request.getMethod()));
 
         String file = request.getParameter("file");
-        if (file == null) {
-            HttpSession sesion = request.getSession(true);
-            if (sesion.getAttribute("idCuenta") == null) {
-                request.setAttribute("status", "");
-                request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
-                return;
-            } else {
-                String strPath = sesion.getAttribute("path").toString();
-                System.out.println("FrontController No path ".concat(strPath));
-                request.getRequestDispatcher("WEB-INF/".concat(strPath)).forward(request, response);
-                //   System.out.println("FrontController Message ".concat(request.getParameter("message")));
-            }
-        } else {
+        
+         HttpSession sesion = request.getSession(true);
+        if(file == null && sesion.getAttribute("idCuenta") == null)
+        {
+            request.setAttribute("status", "");
+            request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
+        }else if (file != null && sesion.getAttribute("idCuenta") == null){
+            request.setAttribute("status", "");
+            request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
+        }else if ((file == null || file != null) && sesion.getAttribute("idCuenta") != null)
+        {
+            if (file == null)
+                file = sesion.getAttribute("path").toString();
+            else
+                file = request.getParameter("file");
             if ("jsp".equals(file.substring(file.length() - 3))) {
-                HttpSession sesion = request.getSession(true); //Veo si tiene sesion iniciada
+                
                 if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
                     // request.setAttribute("status", "");
                     request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
@@ -186,7 +139,7 @@ public class FrontController extends HttpServlet {
                     switch (keyRol) {
                         //PACIENTE POTENCIAL
                         case 1: {
-                            String keyRuta = request.getParameter("file");
+                            String keyRuta = file;
                             switch (keyRuta) {
 
                                 case "potencial/cuentaPaciente.jsp": {
@@ -267,7 +220,7 @@ public class FrontController extends HttpServlet {
 
                         /*NAVEGADORA*/
                         case 4: {
-                            String keyRuta = request.getParameter("file");
+                            String keyRuta = file;
                             sesion.setAttribute("path", keyRuta);
                             switch (keyRuta) {
 
@@ -761,7 +714,7 @@ public class FrontController extends HttpServlet {
                         /*PACIENTE EN TRATAMIENTO*/
                         case 5: {
 
-                            String keyRuta = request.getParameter("file");
+                            String keyRuta = file;
                             switch (keyRuta) {
 
                                 case "paciente/cuenta.jsp": {
