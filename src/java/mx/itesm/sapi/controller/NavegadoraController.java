@@ -215,6 +215,26 @@ public class NavegadoraController extends HttpServlet {
                             }
                             break;
                         }
+                        case "reporteRendimientoNavegadora": {
+                            /**
+                             * Author: Angel Gutiérrez Al inicio checa si tiene
+                             * sesion de no ser asi se redirecciona al loin.
+                             * Despues se tomra el id de la navegadora para
+                             * generar una lista de los pacientes que aprobo o
+                             * modifico su formulario
+                             *
+                             */
+                            if (sesion.getAttribute("idCuenta") == null) {
+
+                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+                                return;
+                            } else {
+                                int idNavegadora = (int) sesion.getAttribute("idEmpleado");
+
+                            }
+
+                            break;
+                        }
 
                         case "cambiarContrasena": {
 
@@ -329,7 +349,7 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("catch de envia correo");
                                 System.out.println(this.getClass().toString().concat(ex.getMessage()));
                          }
-                            */
+                             */
                             break;
                         }
 
@@ -563,11 +583,9 @@ public class NavegadoraController extends HttpServlet {
                             String telefono = request.getParameter("telefono");
                             String correo = request.getParameter("correo");
                             String colonia = request.getParameter("colonia");
-                            
-                            
-                            
+
                             Date fn = Date.valueOf(fechaNacimiento);
-                            
+
                             datos.setNombre(nombre);
                             datos.setPrimerApellido(apellido1);
                             datos.setSegundoApellido(apellido2);
@@ -583,7 +601,7 @@ public class NavegadoraController extends HttpServlet {
                             datos.setTelefono(telefono);
                             datos.setCorreo(correo);
                             datos.setColonia(colonia);
-                            
+
                             PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                             personaServicio.actualizarInformacionGeneralPersona(idPaciente, datos);
 

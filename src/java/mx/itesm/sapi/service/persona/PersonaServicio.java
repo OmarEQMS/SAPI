@@ -5,6 +5,8 @@
  */
 package mx.itesm.sapi.service.persona;
 
+
+import java.sql.Timestamp;
 import java.util.List;
 import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
 import mx.itesm.sapi.bean.persona.Persona;
@@ -15,14 +17,15 @@ import mx.itesm.sapi.bean.persona.Persona;
  */
 public interface PersonaServicio {
     public Persona mostrarPersona(int idPersona);
-    List<Persona> mostrarPersona();
+    public List<Persona> mostrarPersona();
     public int agregarPersona(Persona persona);
     public boolean actualizarPersona(Persona persona);
     public boolean borradoLogicoPersona(int idPersona);
     public boolean existsCurp(String curp);
     public boolean actualizarSexoPersona(int idPersona,int idSexo);
     public Persona mostrarPersonaPorIdPaciente(int idPaciente);
-    List<Persona> mostrarMedicos();
+    public List<Persona> mostrarMedicos();
     public InformacionGeneralPersona mostrarInformacionGeneralPersona(int idPaciente);
     public boolean actualizarInformacionGeneralPersona(int idPaciente, InformacionGeneralPersona persona);
+    public List<Persona> pacientesPorMes(int idEmpleado, Timestamp mes);
 }
