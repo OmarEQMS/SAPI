@@ -378,74 +378,6 @@ $(document).ready(function () {
 
     });
 
-
-    //Author: Angel Gtz
-    //este ajax hace que manda la nueva contraseña de la cuenta del paciente potencial
-
-    $("#btn-cambiarContrasena").on('click', function () {
-
-
-        //Modal cambiar contraseña 
-        swal({
-            title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
-            text: "No podras volver a usar tu contraseña anterior para ingresar",
-            icon: "warning",
-            buttons: true,
-            buttons: ['Regresar', 'Cambiar contraseña'],
-            dangerMode: true
-        })
-                .then((cambiar) => {
-                    if (cambiar) {
-
-                        if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
-
-                            $('#error-contrasena').hide();
-                            $('#error-contrasena2').hide();
-
-                            $.ajax({
-                                url: "PotencialController",
-                                data: {
-                                    key: "cambiarContrasena",
-                                    idCuenta: $("#sesionPaciente").val(),
-                                    password: $("#password").val(),
-                                    password2: $("#password2").val()
-                                },
-                                method: "POST",
-                                success: function (response) {
-
-                                    $("#password").val('');
-                                    $("#password2").val('');
-
-                                    
-                                },
-                                error: function (xhr) {
-
-                                }
-                            });
-                            $('#modalCambiarContraseña').modal('toggle');
-
-
-                        } else {
-                            
-                            if(!isValidPassword($('#password'))){
-                               $("#error-contraseña").show(); 
-                            }else if(!isValidPassword($('#password2'))){
-                                $("#error-contraseña2").show();
-                            }else{
-                                $("#error-contraseña").hide(); 
-                                $("#error-contraseña2").hide();
-                            }
-                            
-                            
-                        }
-
-
-                    }
-                });
-
-
-    });
-
     /* $("#irACuenta").on('click', function () {
      console.log("Presionó ir a cuenta");
      $.ajax({
@@ -634,7 +566,6 @@ $(document).ready(function () {
         );
     });
 
-
     $('#irACuenta1').on('click', function () {
         $.post("SAPI", {
             file: "potencial/cuentaPaciente.jsp"
@@ -716,8 +647,6 @@ $(document).ready(function () {
         });
     });
 
-
-
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
         console.log("Salir cuenta");
@@ -738,7 +667,6 @@ $(document).ready(function () {
                 }
         );
     });
-
 
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta1').on('click', function () {
@@ -761,7 +689,86 @@ $(document).ready(function () {
         );
     });
 
+        //Author: Angel Gtz
+    //este ajax hace que manda la nueva contraseña de la cuenta del paciente potencial
+    $("#btn-cambiarContrasena").on('click', function () {
 
+
+        //Modal cambiar contraseña 
+        swal({
+            title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
+            text: "No podras volver a usar tu contraseña anterior para ingresar",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Regresar', 'Cambiar contraseña'],
+            dangerMode: true
+        })
+                .then((cambiar) => {
+                    if (cambiar) {
+
+                        if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
+
+                            $('#error-contrasena').hide();
+                            $('#error-contrasena2').hide();
+
+                            $.ajax({
+                                url: "PotencialController",
+                                data: {
+                                    key: "cambiarContrasena",
+                                    idCuenta: $("#sesionPaciente").val(),
+                                    password: $("#password").val(),
+                                    password2: $("#password2").val()
+                                },
+                                method: "POST",
+                                success: function (response) {
+
+                                    $("#password").val('');
+                                    $("#password2").val('');
+
+                                    
+                                },
+                                error: function (xhr) {
+
+                                }
+                            });
+                            $('#modalCambiarContraseña').modal('toggle');
+
+
+                        } else {
+                            
+                            if(!isValidPassword($('#password'))){                               
+                               $('#error-contrasena').show();
+                            }
+                            if(!isValidPassword($('#password2'))){
+                                $("#error-contrasena2").show();
+                            }else{
+                                $("#error-contrasena").hide();
+                                $("#error-contrasena2").hide();
+                            }
+                            
+                            
+                        }
+
+
+                    }
+                });
+
+
+    });
+
+    $("#password").on('change', function () {
+        if(isValidPassword($(this)))
+            $("#error-contrasena").hide();
+        else
+            $("#error-contrasena").show();
+    });
+    
+    $("#password2").on('change', function () {
+        var pass1 = $('#password');
+        var pass2 = $(this);
+
+        areEqualPasswords(pass1, pass2);
+    });
 
 
 
