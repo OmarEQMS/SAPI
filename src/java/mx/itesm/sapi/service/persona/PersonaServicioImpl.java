@@ -189,8 +189,8 @@ public class PersonaServicioImpl implements PersonaServicio {
             cstmt.setString(6, persona.getCorreo());
 
             cstmt.setDate(7, persona.getFechaNacimiento());
-            cstmt.setInt(8, 1);
-            cstmt.setInt(9, 1);
+            cstmt.setInt(8, persona.getIdSexo());
+            cstmt.setInt(9, persona.getIdTipoSangre());
             cstmt.setInt(10, persona.getIdMunicipio());
             cstmt.setInt(11, persona.getIdEstadoCivil());
             cstmt.setInt(12, persona.getIdDireccion());
@@ -199,6 +199,9 @@ public class PersonaServicioImpl implements PersonaServicio {
 
             //Aquí va el registerOutParameter
             //cstmt.registerOutParameter(12,Types.INTEGER);
+            
+            System.out.println("MENSAJE: ".concat(cstmt.toString()));
+            
             rs = cstmt.executeQuery();
             rs.next();
             id = rs.getInt(1);

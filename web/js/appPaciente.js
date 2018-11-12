@@ -10,7 +10,7 @@ $(document).ready(function () {
     $('#error-noExpediente').hide();
     $('#error-tel').hide();
     $('#error-tipoSangre').hide();
-    $('#error-contraseña').hide();
+    //$('#error-contraseña').hide();
     $('#error-notEqualPasswords').hide();
 
     //Esconder mensajes de error en index
@@ -213,7 +213,7 @@ $(document).ready(function () {
 
     });
     
-    $("body").on("click",".myCleaner", function(){
+    /*$("body").on("click",".myCleaner", function(){
 		$(".hora").val("");
                 $(".tipo").prop('selectedIndex',0);
                 $(".medico").prop('selectedIndex',0);
@@ -222,7 +222,7 @@ $(document).ready(function () {
                 $('input[name=Pisos]').prop("checked", false);
                 $('#pisosDiv').hide();
                 
-	});
+	});*/
         
         $("body").on("click",".myCleanerAddTratamientos", function(){
 		$(".fechaInicio").attr("type","text").val('').attr("placeholder","Introduce la fecha de inicio");
