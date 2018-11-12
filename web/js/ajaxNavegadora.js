@@ -1547,10 +1547,16 @@ $(document).ready(function () {
          
         console.log("Comentarios del médico");
         var comentariosMedico = $("#comentariosAdicionales").val();
+        if(comentariosMedico == null)
+        {
+           comentariosMedico = "";
+        }
         console.log(comentariosMedico);
         console.log("Comentarios del médico");
         
         var tipoUltrasonidoMama = $('#tipoUltrasonidoMama').val();
+        if(tipoUltrasonidoMama == null)
+            tipoUltrasonidoMama = "";
         
         console.log("click on 'btn-save[i]'");
         
@@ -1583,7 +1589,7 @@ $(document).ready(function () {
         data.append("trabajosSociales",JSON.stringify(trabajosSociales));
         data.append("programas",JSON.stringify(programas));
         data.append("otrosEstudios",JSON.stringify(otrosEstudios));
-        data.append("comentariosMedico",JSON.stringify(comentariosMedico));
+        data.append("comentariosMedico",comentariosMedico);
         data.append("tipoUltrasonidoMama",tipoUltrasonidoMama);
         data.append("llamadasCita",JSON.stringify(llamadas));
         data.forEach((value, key) => {

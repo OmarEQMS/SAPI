@@ -614,10 +614,20 @@ public class NavegadoraController extends HttpServlet {
                                   
                             System.out.println("########### Formulario de la navegadora ###########");
                             
-                            String prz = request.getParameter("prz-expediente");   
+                            int idPacientePotencial = 4;
+                            int idCuenta = 19;
+                            //PANTALLA 1 DEL FORMULARIO
+                            
+                            String prz = null;
+                            prz = request.getParameter("prz-expediente");   
                             if(prz != null && prz.length() > 0)
                             {
                                 System.out.println("PRZ ".concat(prz));
+                                                                                                                                
+                                PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
+                                System.out.println("Se actualizó ".concat(
+                                String.valueOf(pacienteServicioImpl.actualizarPrz(idPacientePotencial, prz))));
+                                
                             }
                             else{
                                 System.out.println("Sin PRZ");
@@ -628,8 +638,9 @@ public class NavegadoraController extends HttpServlet {
                                 adscritoPresente = 0;
                             System.out.println("Adscrito Presente ".concat(String.valueOf(adscritoPresente)));
                                                         
-                            String tipoPaciente = request.getParameter("tipoPaciente");
-                            if(tipoPaciente != null)          
+                            String tipoPaciente = null;
+                                    tipoPaciente = request.getParameter("tipoPaciente");
+                            if(tipoPaciente != null && tipoPaciente.length() > 0)          
                             {
                                 System.out.println("Tipo Paciente ".concat(tipoPaciente));
                             }
@@ -637,8 +648,9 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Sin tipoPacinete");
                             }
                                                         
-                            String medicoRadiologo = request.getParameter("medico-radiologo");
-                            if(medicoRadiologo != null)
+                            String medicoRadiologo = null;
+                                    medicoRadiologo = request.getParameter("medico-radiologo");
+                            if(medicoRadiologo != null && medicoRadiologo.length() > 0)
                             {
                                 System.out.println("Medico Radiologo ".concat(medicoRadiologo));
                             }
@@ -652,8 +664,9 @@ public class NavegadoraController extends HttpServlet {
                             System.out.println("Radiologo Sustituto ".concat(String.valueOf(radiologoSustituto)));
                                 
                             
-                            String fechaNavegacion = request.getParameter("fechaNavegacion");
-                            if(fechaNavegacion != null)
+                            String fechaNavegacion = null;
+                            fechaNavegacion = request.getParameter("fechaNavegacion");
+                            if(fechaNavegacion != null && fechaNavegacion.length() > 0)
                             {
                                 System.out.println("Fecha Navegación ".concat(fechaNavegacion));
                             }
@@ -662,8 +675,9 @@ public class NavegadoraController extends HttpServlet {
                             }
                             
                             
-                            String medicoResidente = request.getParameter("medico-residente");
-                            if(medicoResidente != null)
+                            String medicoResidente = null;
+                                    medicoResidente = request.getParameter("medico-residente");
+                            if(medicoResidente != null && medicoResidente.length() > 0)
                             {
                                 System.out.println("Medico Residente ".concat(medicoResidente));
                             }
@@ -672,8 +686,9 @@ public class NavegadoraController extends HttpServlet {
                             }
                             
                             
-                            String fechaPreConsulta = request.getParameter("fechaConsulta");
-                            if(fechaPreConsulta != null)
+                            String fechaPreConsulta = null;
+                                    fechaPreConsulta = request.getParameter("fechaConsulta");
+                            if(fechaPreConsulta != null && fechaPreConsulta.length() > 0)
                             {
                                 System.out.println("Fecha Consulta ".concat(fechaPreConsulta));
                             }
@@ -682,8 +697,9 @@ public class NavegadoraController extends HttpServlet {
                             }
                             
                             
-                            String nivelEducativo = request.getParameter("nivelEducativo");
-                            if(nivelEducativo != null)
+                            String nivelEducativo = null;
+                                    nivelEducativo = request.getParameter("nivelEducativo");
+                            if(nivelEducativo != null && nivelEducativo.length() > 0)
                             {
                                 System.out.println("Nivel educativo ".concat(nivelEducativo));
                             }else
@@ -691,8 +707,9 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Sin nivel educativo");
                             }
                                                         
-                            String alergias = request.getParameter("alergias");
-                            if(alergias != null)
+                            String alergias = null;
+                                    alergias = request.getParameter("alergias");
+                            if(alergias != null && alergias.length() > 0)
                             {
                                 System.out.println("Alergias: ".concat(alergias));
                             }else
@@ -700,8 +717,9 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Sin alergias");
                             }
                             
-                            String estadoHormonal = request.getParameter("estadoHormonal");
-                            if(estadoHormonal != null)
+                            String estadoHormonal = null;
+                                    estadoHormonal = request.getParameter("estadoHormonal");
+                            if(estadoHormonal != null && estadoHormonal.length() > 0)
                             {
                                 System.out.println("EstadoHormonal ".concat(estadoHormonal));
                             }else
@@ -715,8 +733,9 @@ public class NavegadoraController extends HttpServlet {
                             System.out.println("Tiene seguroPopular ".concat(String.valueOf(tieneSeguroPopular)));
                             
                             
-                            String nombreSeguro = request.getParameter("tiene-seguro");
-                            if(nombreSeguro != null)
+                            String nombreSeguro = null;
+                                    nombreSeguro = request.getParameter("tiene-seguro");
+                            if(nombreSeguro != null && nombreSeguro.length() > 0)
                             {
                                 System.out.println("Nombre seguro ".concat(nombreSeguro));
                             }else
@@ -725,9 +744,10 @@ public class NavegadoraController extends HttpServlet {
                             }
                             
                             
-                            String numeroSeguro = request.getParameter("numSeguro");
+                            String numeroSeguro = null;
+                                    numeroSeguro = request.getParameter("numSeguro");
                             
-                            if(numeroSeguro != null)
+                            if(numeroSeguro != null && numeroSeguro.length() > 0)
                             {
                                 System.out.println("Número seguro ".concat(numeroSeguro));
                             }else
@@ -749,8 +769,9 @@ public class NavegadoraController extends HttpServlet {
                             
                             
                             
-                            String fechaCirugiaPrevia = request.getParameter("fecha-cirugia");
-                            if(fechaCirugiaPrevia != null)
+                            String fechaCirugiaPrevia = null;
+                                    fechaCirugiaPrevia = request.getParameter("fecha-cirugia");
+                            if(fechaCirugiaPrevia != null && fechaCirugiaPrevia.length() > 0)
                             {
                                 System.out.println("Fecha Cirugia ".concat(fechaCirugiaPrevia));
                             }else
@@ -759,8 +780,9 @@ public class NavegadoraController extends HttpServlet {
                             }
                             
                                                         
-                            String nombreCirugiaPrevia = request.getParameter("cirugia");
-                            if(nombreCirugiaPrevia != null)
+                            String nombreCirugiaPrevia = null;
+                                    nombreCirugiaPrevia = request.getParameter("cirugia");
+                            if(nombreCirugiaPrevia != null && nombreCirugiaPrevia.length() > 0)
                             {
                                 System.out.println("Nombre cirguia ".concat(nombreCirugiaPrevia));
                             }else
@@ -768,8 +790,9 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Sin nombre cirguia previa");
                             }
                             
-                            String detalleCirugiaPrevia = request.getParameter("detalle-cirugia");
-                            if(detalleCirugiaPrevia != null)
+                            String detalleCirugiaPrevia = null;
+                                    detalleCirugiaPrevia = request.getParameter("detalle-cirugia");
+                            if(detalleCirugiaPrevia != null && detalleCirugiaPrevia.length() > 0)
                             {
                                 System.out.println("Detalle Cirguia ".concat(detalleCirugiaPrevia));
                             }else
@@ -784,8 +807,9 @@ public class NavegadoraController extends HttpServlet {
                                 tieneQuimioterapiaPrevia = 1;
                             System.out.println("Quimioterapia Previa ".concat(String.valueOf(tieneQuimioterapiaPrevia)));
                             
-                            String fechaQuimioterapiaPrevia = request.getParameter("fecha-quimioterapia");
-                            if(fechaQuimioterapiaPrevia != null)
+                            String fechaQuimioterapiaPrevia = null;
+                                    fechaQuimioterapiaPrevia = request.getParameter("fecha-quimioterapia");
+                            if(fechaQuimioterapiaPrevia != null && fechaQuimioterapiaPrevia.length() > 0)
                             {
                             System.out.println("Fecha quimioterapia previa ".concat(fechaQuimioterapiaPrevia));
                             }else
@@ -793,8 +817,9 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Sin fecha  quimio previa");
                             }
                             
-                            String nombreQuimioterapiaPrevia = request.getParameter("quimioterapia");
-                            if(nombreQuimioterapiaPrevia != null)
+                            String nombreQuimioterapiaPrevia = null;
+                                    nombreQuimioterapiaPrevia = request.getParameter("quimioterapia");
+                            if(nombreQuimioterapiaPrevia != null && nombreQuimioterapiaPrevia.length() > 0)
                             {
                             System.out.println("Nombre de la quimioterapia previa".concat(nombreQuimioterapiaPrevia));
                             }else
@@ -803,8 +828,9 @@ public class NavegadoraController extends HttpServlet {
                             }
                                     
                             
-                            String detalleQuimioterapiaPrevia = request.getParameter("detalle-quimioterapia");
-                            if(detalleQuimioterapiaPrevia != null)
+                            String detalleQuimioterapiaPrevia = null;
+                                    detalleQuimioterapiaPrevia = request.getParameter("detalle-quimioterapia");
+                            if(detalleQuimioterapiaPrevia != null && detalleQuimioterapiaPrevia.length() > 0)
                             {
                             System.out.println("Detalle quimioterapia previa ".concat(detalleQuimioterapiaPrevia));
                             }else
@@ -819,8 +845,9 @@ public class NavegadoraController extends HttpServlet {
                                 tieneRadioterapiaPrevia = 1;
                             System.out.println("Radioterapia previa ".concat(String.valueOf(tieneRadioterapiaPrevia)));
                             
-                            String fechaRadioterapiaPrevia = request.getParameter("fecha-radioterapia");
-                            if(fechaRadioterapiaPrevia != null)
+                            String fechaRadioterapiaPrevia = null;
+                                    fechaRadioterapiaPrevia = request.getParameter("fecha-radioterapia");
+                            if(fechaRadioterapiaPrevia != null && fechaRadioterapiaPrevia.length() > 0)
                             {
                                 System.out.println("Fecha de radioterapia ".concat(fechaRadioterapiaPrevia));
                             }else
@@ -829,17 +856,19 @@ public class NavegadoraController extends HttpServlet {
                             }
                             
                             
-                            String nombreRadioterapiaPrevia = request.getParameter("radioterapia");
-                            if(nombreRadioterapiaPrevia != null)
+                            String nombreRadioterapiaPrevia = null;
+                                    nombreRadioterapiaPrevia = request.getParameter("radioterapia");
+                            if(nombreRadioterapiaPrevia != null && nombreRadioterapiaPrevia.length() > 0)
                             {
                                 System.out.println("Nombre radioterapia ".concat(nombreRadioterapiaPrevia));
                             }else
                             {
-                                System.out.println("Nombre d");
+                                System.out.println("sin nombreRadioterapiaPrevia");
                             }
                             
-                            String detalleRadioterapiaPrevia = request.getParameter("detalle-radioterapia");
-                            if(detalleRadioterapiaPrevia != null)
+                            String detalleRadioterapiaPrevia = null;
+                                    detalleRadioterapiaPrevia = request.getParameter("detalle-radioterapia");
+                            if(detalleRadioterapiaPrevia != null && detalleRadioterapiaPrevia.length() > 0)
                             {
                             System.out.println("Detalle radioterapia ".concat(detalleRadioterapiaPrevia));
                             }else{
@@ -853,8 +882,9 @@ public class NavegadoraController extends HttpServlet {
                                 tieneMastografiaPrevia = 1;
                             System.out.println("Mastografia previa ".concat(String.valueOf(tieneMastografiaPrevia)));
                             
-                            String tipoMastografiaPrevia = request.getParameter("tipoMastografia");
-                            if(tipoMastografiaPrevia != null)
+                            String tipoMastografiaPrevia = null;
+                                    tipoMastografiaPrevia = request.getParameter("tipoMastografia");
+                            if(tipoMastografiaPrevia != null && tipoMastografiaPrevia.length() > 0)
                             {
                                 System.out.println("Tipo Mastrografia previa ".concat(tipoMastografiaPrevia));
                             }else
@@ -862,8 +892,16 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Sin masto previa");
                             }
                             
-                            String fechaMastografiaPrevia = request.getParameter("fechaPreMasto");
+                            
+                            String fechaMastografiaPrevia = null;
+                            fechaMastografiaPrevia = request.getParameter("fechaPreMasto");
+                            if(fechaMastografiaPrevia != null && fechaMastografiaPrevia.length() > 0)
+                            {
                             System.out.println("Fecha mastografia previa ".concat(fechaMastografiaPrevia));
+                            }else
+                            {
+                                System.out.println(" SIN Fecha mastografia previa ");
+                            }
                             
                             
                             
@@ -872,8 +910,9 @@ public class NavegadoraController extends HttpServlet {
                                 tieneUltrasonidoPrevio = 1;
                             System.out.println("Ultrasonido previo ".concat(String.valueOf(tieneUltrasonidoPrevio)));
                             
-                            String tipoUltrasonidoPrevio = request.getParameter("tipoUltrasonidoMama");
-                            if(tipoUltrasonidoPrevio != null)
+                            String tipoUltrasonidoPrevio = null;
+                            tipoUltrasonidoPrevio = request.getParameter("tipoUltrasonidoMama");
+                            if(tipoUltrasonidoPrevio != null && tipoUltrasonidoPrevio.length() > 0)
                             {
                                System.out.println("Tipo ultrasonido ".concat(tipoUltrasonidoPrevio)); 
                             }else
@@ -881,8 +920,9 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Sin tipo ultrasonido");
                             }
                             
-                            String fechaUltrasonidoPrevio = request.getParameter("fechaPreUsg");
-                            if(fechaUltrasonidoPrevio != null)
+                            String fechaUltrasonidoPrevio = null;
+                                    fechaUltrasonidoPrevio = request.getParameter("fechaPreUsg");
+                            if(fechaUltrasonidoPrevio != null && fechaUltrasonidoPrevio.length() > 0)
                             {
                             System.out.println("Fecha ultrasonido previo ".concat(fechaUltrasonidoPrevio));
                             }else
@@ -893,8 +933,9 @@ public class NavegadoraController extends HttpServlet {
                             
                             
                             
-                            String resultadoPatologia = request.getParameter("resultadoAnterior-patologia");
-                            if(resultadoPatologia != null)
+                            String resultadoPatologia = null;
+                                    resultadoPatologia = request.getParameter("resultadoAnterior-patologia");
+                            if(resultadoPatologia != null && resultadoPatologia.length() > 0)
                             {
                                 System.out.println("Resultado de patología ".concat(resultadoPatologia));
                             }else
@@ -905,8 +946,9 @@ public class NavegadoraController extends HttpServlet {
                             
                             
                             
-                            String otroReportePatologia = request.getParameter("introducirOtroResultadoPatologia");
-                            if(otroReportePatologia != null)
+                            String otroReportePatologia = null;
+                                    otroReportePatologia = request.getParameter("introducirOtroResultadoPatologia");
+                            if(otroReportePatologia != null && otroReportePatologia.length() > 0)
                             {
                             System.out.println("Otro resultado de patlogía".concat(otroReportePatologia));
                             }else
@@ -935,8 +977,9 @@ public class NavegadoraController extends HttpServlet {
                             System.out.println("Numero de laminillas ".concat(String.valueOf(numeroLaminillas)));                            
                             
                             
-                            String serieLaminillas = request.getParameter("serieLaminillas");
-                            if(serieLaminillas != null)
+                            String serieLaminillas = null;
+                                    serieLaminillas = request.getParameter("serieLaminillas");
+                            if(serieLaminillas != null && serieLaminillas.length() > 0)
                             {
                                 System.out.println("Serie laminillas ".concat(serieLaminillas));
                             }else
@@ -962,8 +1005,9 @@ public class NavegadoraController extends HttpServlet {
                             }
                             System.out.println("Numero de bloques de parafina ".concat(String.valueOf(numeroBloquesParafina)));
                             
-                            String serieBloquesParagina = request.getParameter("serieBloques");
-                            if(serieBloquesParagina != null)
+                            String serieBloquesParagina = null;
+                                    serieBloquesParagina = request.getParameter("serieBloques");
+                            if(serieBloquesParagina != null && serieBloquesParagina.length() > 0)
                             {
                             System.out.println("Serie bloques parafina ".concat(serieBloquesParagina));
                             }else
@@ -1183,7 +1227,7 @@ public class NavegadoraController extends HttpServlet {
                             
                             String decisionPreconsulta = null;
                             decisionPreconsulta = request.getParameter("decisionPreconsulta");
-                            if(decisionPreconsulta != null)
+                            if(decisionPreconsulta != null && decisionPreconsulta.length() > 0)
                             {
                                 System.out.println("Decision Preconsulta ".concat(decisionPreconsulta));
                             }else
@@ -1195,7 +1239,7 @@ public class NavegadoraController extends HttpServlet {
                             
                             String fechaDecisionPreconsulta = null;
                             fechaDecisionPreconsulta = request.getParameter("fecha-decisionPreconsulta");
-                            if(fechaDecisionPreconsulta != null)
+                            if(fechaDecisionPreconsulta != null && fechaDecisionPreconsulta.length() > 0)
                             {
                                 System.out.println("fechaDecisionPreconsulta ".concat(fechaDecisionPreconsulta));
                             }else
@@ -1206,7 +1250,7 @@ public class NavegadoraController extends HttpServlet {
                             
                             String nivelSocioeconomico = null;
                             nivelSocioeconomico = request.getParameter("nivelSocioeconomico");
-                            if(nivelSocioeconomico != null)
+                            if(nivelSocioeconomico != null && nivelSocioeconomico.length() > 0)
                             {
                                 System.out.println("Nivel socioeconomico ".concat(nivelSocioeconomico));
                             }else
@@ -1225,7 +1269,14 @@ public class NavegadoraController extends HttpServlet {
                                                                                     
                             String llamadas = null;
                             llamadas = request.getParameter("llamadasCita");
-                            System.out.println("llamadas ".concat(llamadas));
+                            if(llamadas != null && llamadas.length() > 0)
+                            {
+                                System.out.println("llamadas ".concat(llamadas));
+                            }else
+                            {
+                                System.out.println("llamadas ");
+                            }             
+                            
                             
                                                         
                             JsonParser parserLlamadas = new JsonParser();
@@ -1242,67 +1293,170 @@ public class NavegadoraController extends HttpServlet {
                             //Comentarios de incidencias
                             String comentariosIncidencias = null;
                             comentariosIncidencias = request.getParameter("comentarios");
-                            System.out.println("Comentarios".concat(comentariosIncidencias));
+                             if(comentariosIncidencias != null && comentariosIncidencias.length() > 0)
+                            {
+                                System.out.println("Comentarios".concat(comentariosIncidencias));
+                            }else
+                            {
+                                System.out.println("sin comentariosIncidencias ");
+                            }                                      
+                            
                             
                             //Comentarios Médicos
                             String comentariosMedico = null;
                             comentariosMedico = request.getParameter("comentariosMedico");
-                            System.out.println("comentariosMedico ".concat(comentariosMedico));
+                             if(comentariosMedico != null && comentariosMedico.length() > 0)
+                            {
+                                System.out.println("comentariosMedico ".concat(comentariosMedico));
+                            }else
+                            {
+                                System.out.println("sin comentariosMedico ");
+                            }                                       
                             
                             
                             
                             //PANTALLA 5    
                             String etapaClinica = null;
                             etapaClinica = request.getParameter("etapaClinica");
-                            System.out.println("Estapa clinica ".concat(etapaClinica));
+                             if(etapaClinica != null && etapaClinica.length() > 0)
+                            {
+                                System.out.println("Estapa clinica ".concat(etapaClinica));
+                            }else
+                            {
+                                System.out.println("sin etapaClinica ");
+                            }        
+                                                         
                             
                             String resultadoMastrografia = null;
                             resultadoMastrografia = request.getParameter("tipoMastografia");
-                            System.out.println("resultadoMastrografia ".concat(resultadoMastrografia));
+                             if(resultadoMastrografia != null && resultadoMastrografia.length() > 0)
+                            {
+                                System.out.println("resultadoMastrografia ".concat(resultadoMastrografia));
+                            }else
+                            {
+                                System.out.println("sin resultadoMastrografia ");
+                            }      
+                            
                             
                             String resultadoUltrasonido = null;
                             resultadoUltrasonido = request.getParameter("tipoUSG");
-                            System.out.println("resultadoUltrasonido ".concat(resultadoUltrasonido));
+                             if(resultadoUltrasonido != null && resultadoUltrasonido.length() > 0)
+                            {
+                                System.out.println("resultadoUltrasonido ".concat(resultadoUltrasonido));
+                            }else
+                            {
+                                System.out.println("sin resultadoUltrasonido ");
+                            }      
+                            
                             
                             String tCodificado = null;
                             tCodificado = request.getParameter("tumorPrimarioT");
-                            System.out.println("T ".concat(tCodificado));
+                             if(tCodificado != null && tCodificado.length() > 0)
+                            {
+                                System.out.println("T ".concat(tCodificado));
+                            }else
+                            {
+                                System.out.println("sin tCodificado ");
+                            }      
+                            
                             
                             String nCodificado = null;
                             nCodificado = request.getParameter("gangliosN");
-                            System.out.println("N ".concat(nCodificado));
+                             if(nCodificado != null && nCodificado.length() > 0)
+                            {
+                                System.out.println("N ".concat(nCodificado));
+                            }else
+                            {
+                                System.out.println("sin nCodificado ");
+                            }      
+                            
                             
                             String mCodificado = null;
                             mCodificado = request.getParameter("metastasisM");
-                            System.out.println("M ".concat(mCodificado));
+                             if(mCodificado != null && mCodificado.length() > 0)
+                            {
+                                System.out.println("M ".concat(mCodificado));
+                            }else
+                            {
+                                System.out.println("sin mCodificado ");
+                            }      
+                             
                             
                             String resultadoPatologiaPantalla5 = null;
                             resultadoPatologiaPantalla5 = request.getParameter("resultado-patologia");
-                            System.out.println("Resultado patología ".concat(resultadoPatologiaPantalla5));
+                             if(resultadoPatologiaPantalla5 != null && resultadoPatologiaPantalla5.length() > 0)
+                            {
+                                System.out.println("Resultado resultadoPatologiaPantalla5 ".concat(resultadoPatologiaPantalla5));
+                            }else
+                            {
+                                System.out.println("sin resultadoPatologiaPantalla5 ");
+                            }      
+                            
                             
                             String gradoHistologico = null;
                             gradoHistologico = request.getParameter("grado-histologico");
-                            System.out.println("Grado Histologico ".concat(gradoHistologico));
+                             if(gradoHistologico != null && gradoHistologico.length() > 0)
+                            {
+                                System.out.println("Grado gradoHistologico ".concat(gradoHistologico));
+                            }else
+                            {
+                                System.out.println("sin gradoHistologico ");
+                            }      
+                            
                             
                             String receptorHer2 = null;
                             receptorHer2 = request.getParameter("receptor-her2");
-                            System.out.println("receptorHer2 ".concat(receptorHer2));
+                             if(receptorHer2 != null && receptorHer2.length() > 0)
+                            {
+                                System.out.println("receptorHer2 ".concat(receptorHer2));
+                            }else
+                            {
+                                System.out.println("sin receptorHer2 ");
+                            }      
+                            
                             
                             String receptorFish = null;
                             receptorFish = request.getParameter("receptor-fish");
-                            System.out.println("receptorFish ".concat(receptorFish));
+                             if(receptorFish != null && receptorFish.length() > 0)
+                            {
+                                System.out.println("receptorFish ".concat(receptorFish));
+                            }else
+                            {
+                                System.out.println("sin receptorFish ");
+                            }      
+                            
                             
                             String receptorRe = null;
                             receptorRe = request.getParameter("receptor-re");
-                            System.out.println("receptorRe ".concat(receptorRe));
+                             if(receptorRe != null && receptorRe.length() > 0)
+                            {
+                                System.out.println("receptorRe ".concat(receptorRe));
+                            }else
+                            {
+                                System.out.println("sin receptorRe ");
+                            }      
+                            
                             
                             String receptorRp = null;
                             receptorRp = request.getParameter("receptor-rp");
-                            System.out.println("receptorRp ".concat(receptorRp));
+                             if(receptorRp != null && receptorRp.length() > 0)
+                            {
+                                System.out.println("receptorRp ".concat(receptorRp));
+                            }else
+                            {
+                                System.out.println("sin etapaClinica ");
+                            }      
+                            
                             
                             String ki67 = null;
                             ki67 = request.getParameter("ki67");
-                            System.out.println("ki67 ".concat(ki67));
+                             if(ki67 != null && ki67.length() > 0)
+                            {
+                                System.out.println("ki67 ".concat(ki67));
+                            }else
+                            {
+                                System.out.println("sin ki67 ");
+                            }                                  
                                                         
                                                                                     
                             break;    
