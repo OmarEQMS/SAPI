@@ -674,7 +674,7 @@ public class FrontController extends HttpServlet {
                                     
                                     ReceptorProgesteronaServicioImpl ReceptorProgesteronaServicio = new ReceptorProgesteronaServicioImpl();
                                     List<ReceptorProgesterona> RP = ReceptorProgesteronaServicio.mostrarAllReceptorProgesterona();
-                                    request.setAttribute("listaRE", RP);
+                                    request.setAttribute("listaRP", RP);
                                     
                                     System.out.println(RP);
 

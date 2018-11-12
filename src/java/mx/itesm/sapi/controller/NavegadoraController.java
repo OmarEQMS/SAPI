@@ -770,14 +770,15 @@ public class NavegadoraController extends HttpServlet {
                             */
 
                          
-                            PacienteSeguroServicioImpl pacienteSeguroServicioImpl = new PacienteSeguroServicioImpl();
-                            PacienteSeguro pacienteSeguro = pacienteSeguroServicioImpl.mostrarPacienteSeguro(1);
+                            //PacienteSeguroServicioImpl pacienteSeguroServicioImpl = new PacienteSeguroServicioImpl();
+                            //PacienteSeguro pacienteSeguro = pacienteSeguroServicioImpl.mostrarPacienteSeguro(1);
                             /*
                             Cuentas con algún seguro?
                             */
 
-                            DocumentoEstudioServicioImpl documentoEstudioServicioImpl = new DocumentoEstudioServicioImpl();
-                            DocumentoEstudio documentoEstudio = documentoEstudioServicioImpl.mostrarDocumentoEstudio(1);
+                        
+//                            DocumentoEstudioServicioImpl documentoEstudioServicioImpl = new DocumentoEstudioServicioImpl();
+//                            DocumentoEstudio documentoEstudio = documentoEstudioServicioImpl.mostrarDocumentoEstudio(1);
                             /*
                             Mastografia
                             Ultrasonido de mama
@@ -788,16 +789,16 @@ public class NavegadoraController extends HttpServlet {
                             
                             */
 
-                            PacienteTratamientoPrevioServiceImpl pacienteTratamientoPrevioServiceImpl = new PacienteTratamientoPrevioServiceImpl();
-                            PacienteTratamientoPrevio pacienteTratamientoPrevio = pacienteTratamientoPrevioServiceImpl.mostrarPacienteTratamientoPrevio(1);
+                            //PacienteTratamientoPrevioServiceImpl pacienteTratamientoPrevioServiceImpl = new PacienteTratamientoPrevioServiceImpl();
+                            //PacienteTratamientoPrevio pacienteTratamientoPrevio = pacienteTratamientoPrevioServiceImpl.mostrarPacienteTratamientoPrevio(1);
                             /*
                             Cirugía
                             Quimioterapia
                             Radioterapia
                             */
                    
-                            BiopsiaServicioImpl biopsiaServicioImpl = new BiopsiaServicioImpl();
-                            Biopsia biopsia = biopsiaServicioImpl.mostrarBiopsia(1);
+                            //BiopsiaServicioImpl biopsiaServicioImpl = new BiopsiaServicioImpl();
+                            //Biopsia biopsia = biopsiaServicioImpl.mostrarBiopsia(1);
                             /*
                             Resultado o reporte de patologia
                             Laminillas
@@ -812,8 +813,8 @@ public class NavegadoraController extends HttpServlet {
 
                             */
                             
-                            ProgramaPacienteServicioImpl programaPacienteServicioImpl = new ProgramaPacienteServicioImpl();
-                            ProgramaPaciente programaPaciente = programaPacienteServicioImpl.mostrarProgramaPaciente(1);
+                            //ProgramaPacienteServicioImpl programaPacienteServicioImpl = new ProgramaPacienteServicioImpl();
+                            //ProgramaPaciente programaPaciente = programaPacienteServicioImpl.mostrarProgramaPaciente(1);
                             /*
                             ESTUDIOS PRECONSULTA-->Programa
                             */
@@ -840,13 +841,14 @@ public class NavegadoraController extends HttpServlet {
                             EtapaClinica
                             */
                                   
-                            EstadiajeTNMServiceImpl estadiajeTNMServiceImpl=new EstadiajeTNMServiceImpl();
-                            EstadiajeTNM estadiajeTNM=estadiajeTNMServiceImpl.mostrarEstadiajeTNM(1);
+                            //EstadiajeTNMServiceImpl estadiajeTNMServiceImpl=new EstadiajeTNMServiceImpl();
+                            //EstadiajeTNM estadiajeTNM=estadiajeTNMServiceImpl.mostrarEstadiajeTNM(1);
                             /*
                             T
                             N
                             M
                             */
+                            
                             
                             //EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
                             //Empleado empleado = empleadoServicioImpl.mostrarEmpleado(1);

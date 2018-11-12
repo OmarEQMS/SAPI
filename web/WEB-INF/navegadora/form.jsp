@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -76,7 +78,7 @@
                             </div>
 
                             <div class="col-2">
-                                <a class="iconoSidebar" href="" title="Cerrar Sesi�n">
+                                <a class="iconoSidebar" href="" title="Cerrar Sesiï¿½n">
                                     <i class="fas fa-power-off"></i>
                                 </a>
                             </div>
@@ -116,7 +118,7 @@
 
                         <li>
                             <a href="#">
-                                <i class="fas fa-sign-out-alt"></i>Cerrar Sesi�n</a>
+                                <i class="fas fa-sign-out-alt"></i>Cerrar Sesiï¿½n</a>
                         </li>
 
                     </ul>
@@ -197,7 +199,7 @@
                                             </div>
 
                                             <div class="col-6">
-                                                <label for="">M�dico Adscrito</label>
+                                                <label for="">Mï¿½dico Adscrito</label>
                                                 <div class="input-group">
                                                     <div class="input-group-append">
                                                         <div class="input-group-text">
@@ -205,7 +207,7 @@
                                                         </div>
                                                     </div>
                                                     <select name="medico-adscrito" class="form-control" id="medico-adscrito">
-                                                        <option disabled selected>Seleccione un M�dico Adscrito</option>
+                                                        <option disabled selected>Seleccione un Mï¿½dico Adscrito</option>
 
                                                         <c:forEach items="${listaAdscritos}" var="adscrito">  
 
@@ -218,7 +220,7 @@
                                                 <div class="form-check mt-2">
                                                     <input name="noAdscrito" class="form-check-input" type="checkbox" value="" id="noAdscrito">
                                                     <label class="form-check-label" for="defaultCheck1">
-                                                        No estuvo el M�dico adscrito
+                                                        No estuvo el Mï¿½dico adscrito
                                                     </label>
                                                 </div>
                                             </div>
@@ -241,13 +243,13 @@
                                                     <select name= "tipoPaciente" class="form-control" id="tipoPaciente">
                                                         <option disabled selected>Seleccione un tipo de paciente</option>
                                                         <option>Primera vez</option>
-                                                        <option>Segunda opini�n</option>
+                                                        <option>Segunda opiniï¿½n</option>
                                                     </select>
                                                 </div>
                                             </div>
 
                                             <div class="col-6">
-                                                <label for="">M�dico Radi�logo</label>
+                                                <label for="">Mï¿½dico Radiï¿½logo</label>
                                                 <div class="input-group">
                                                     <div class="input-group-append">
                                                         <div class="input-group-text">
@@ -255,7 +257,7 @@
                                                         </div>
                                                     </div>
                                                     <select name="medico-radiologo" class="form-control" id="medico-radiologo">
-                                                        <option disabled selected>Seleccione un Radi�logo</option>
+                                                        <option disabled selected>Seleccione un Radiï¿½logo</option>
 
                                                         <c:forEach items="${listaRadiologos}" var="radiologo">  
 
@@ -277,33 +279,33 @@
 
                                         </div>
 
-                                        <!-- Fecha Navegaci�n -->
+                                        <!-- Fecha Navegaciï¿½n -->
                                         <div class="form-group row mt-4">
 
                                             <div class="col-6">
-                                                <label for="">Fecha de navegaci�n</label>
+                                                <label for="">Fecha de navegaciï¿½n</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
                                                             <i class="fas fa-calendar-alt"></i>
                                                         </div>
                                                     </div>
-                                                    <input name= "fechaNavegacion" placeholder="Introduce la fecha de navegaci�n" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
+                                                    <input name= "fechaNavegacion" placeholder="Introduce la fecha de navegaciï¿½n" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                            id="fechaNavegacion">
                                                 </div>
                                             </div>
 
 
-                                            <!-- M�dico residente -->
+                                            <!-- Mï¿½dico residente -->
                                             <div class="col-6">
-                                                <label for="">M�dico Residente</label>
+                                                <label for="">Mï¿½dico Residente</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
                                                             <i class="fas fa-user-md"></i>
                                                         </div>
                                                     </div>
-                                                    <input name = "medico-residente" type="text" id="medico-residente" class="form-control" class="form-control" placeholder="Introduce M�dico Residente">
+                                                    <input name = "medico-residente" type="text" id="medico-residente" class="form-control" class="form-control" placeholder="Introduce Mï¿½dico Residente">
                                                 </div>
                                             </div>
 
@@ -331,7 +333,7 @@
                                     <div class="row justify-content-center mt-5">
                                         <div class="col-4">
                                             <button id="btn-save1" class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despu�s</button>
+                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
                                         </div>
                                         <div class="col-4">
                                             <button class="btn btn-outline-success btn-block" id="btn-continue1" style="border-radius:20px">
@@ -396,8 +398,8 @@
                                                     </div>
                                                     <select name="estadoHormonal" class="form-control" id="estadoHormonal">
                                                         <option disabled selected>Selecciona un estado hormonal</option>
-                                                        <option>Premenop�usica</option>
-                                                        <option>Postmenop�usica</option>
+                                                        <option>Premenopáusica</option>
+                                                        <option>Postmenopáusica</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -410,7 +412,7 @@
                                             <div class="col-12">
                                                 <div class="form-group form-check">
                                                     <input name="tieneSeguroPopular" type="checkbox" class="form-check-input" id="tieneSeguroPopular">
-                                                    <label class="form-check-label" for="tieneSeguroP">�Cuentas con alg�n seguro?
+                                                    <label class="form-check-label" for="tieneSeguroP">ï¿½Cuentas con algï¿½n seguro?
                                                     </label>
                                                 </div>
 
@@ -431,7 +433,7 @@
 
                                                     </select>
                                                 </div>
-                                                <input name="numSeguro" type="text" id="numSeguro" class="form-control mt-2" placeholder="Introduce el n�mero de tu seguro">
+                                                <input name="numSeguro" type="text" id="numSeguro" class="form-control mt-2" placeholder="Introduce el nï¿½mero de tu seguro">
                                             </div>
 
 
@@ -443,7 +445,7 @@
                                             <div class="col-12">
                                                 <div class="form-check form-check-inline">
                                                     <input name="primeraMasto" class="form-check-input" type="checkbox" id="primeraMasto" value="option1">
-                                                    <label class="form-check-label" for="inlineCheckbox1">Mastograf�a en el INCan
+                                                    <label class="form-check-label" for="inlineCheckbox1">Mastografï¿½a en el INCan
                                                         antes de su primera cita</label>
                                                 </div>
                                             </div>
@@ -467,7 +469,7 @@
                                             <div class="col-12">
                                                 <div class="form-group form-check">
                                                     <input name="tiene-cirugia" type="checkbox" class="form-check-input" id="tiene-cirugia">
-                                                    <label class="form-check-label" for="tiene-cirugia">Cirug�a</label>
+                                                    <label class="form-check-label" for="tiene-cirugia">Cirugï¿½a</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -481,7 +483,7 @@
                                                             <i class="fas fa-calendar-alt"></i>
                                                         </div>
                                                     </div>
-                                                    <input name="fecha-cirugia" placeholder="Introduce la fecha de cirug�a" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
+                                                    <input name="fecha-cirugia" placeholder="Introduce la fecha de cirugï¿½a" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                            id="fecha-cirugia">
                                                 </div>
                                             </div>
@@ -489,7 +491,7 @@
                                             <div class="row mt-3">
                                                 <div class="col-12 input-group">
                                                     <select name="cirugia" class="form-control" id="cirugia">
-                                                        <option disabled selected>Introduce la cirug�a</option>
+                                                        <option disabled selected>Introduce la cirugï¿½a</option>
                                                         <c:forEach items="${listaCirugia}" var="cirugia">  
 
                                                             <option value='<c:out value="${cirugia.idTratamiento}"/>'><c:out value='${cirugia.nombre}'/> </option>
@@ -534,7 +536,7 @@
 
                                             <div class="row mt-3">
                                                 <div class="col-12 input-group">
-                                                    <input name="quimioterapia" type="text" id="quimioterapia" class="form-control" class="form-control" placeholder="Introduce el n�mero de ciclos">
+                                                    <input name="quimioterapia" type="text" id="quimioterapia" class="form-control" class="form-control" placeholder="Introduce el nï¿½mero de ciclos">
                                                 </div>
                                             </div>
 
@@ -573,7 +575,7 @@
 
                                             <div class="row mt-3">
                                                 <div class="col-12 input-group">
-                                                    <input name="radioterapia" type="text" id="radioterapia" class="form-control" class="form-control" placeholder="Introduce el n�mero de ciclos">
+                                                    <input name="radioterapia" type="text" id="radioterapia" class="form-control" class="form-control" placeholder="Introduce el nï¿½mero de ciclos">
                                                 </div>
                                             </div>
 
@@ -599,11 +601,11 @@
                                             <div class="col-10 mt-2">
                                                 <div class="form-group form-check">
                                                     <input name="tiene-mastografia" type="checkbox" class="form-check-input" id="tiene-mastografia">
-                                                    <label class="form-check-label" for="tiene-mastografia">Mastrograf�a</label>
+                                                    <label class="form-check-label" for="tiene-mastografia">Mastrografï¿½a</label>
                                                 </div>
                                                 <div class="input-group">
                                                     <select name="tipoMastografia" class="form-control" id="tipoMastografia">
-                                                        <option disabled selected>Mastrograf�a BI-RADS</option>
+                                                        <option disabled selected>Mastrografï¿½a BI-RADS</option>
 
                                                         <c:forEach items="${listaBirads}" var="birads">  
 
@@ -619,7 +621,7 @@
                                                                 <i class="fas fa-calendar-alt"></i>
                                                             </div>
                                                         </div>
-                                                        <input name="fechaPreMasto" placeholder="Introduce la fecha de mastograf�a" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
+                                                        <input name="fechaPreMasto" placeholder="Introduce la fecha de mastografï¿½a" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                                id="fechaPreMasto">
                                                     </div>
                                                 </div>
@@ -668,20 +670,18 @@
                                         <div class="row mt-4 mb-3">
                                             <div class="col-12">
                                                 <h6 class="display-4 text-secondary" style="font-size:26px;">Resultado o reporte
-                                                    de patolog�a:</h6>
+                                                    de patologï¿½a:</h6>
                                             </div>
                                         </div>
                                         <div class="input-group">
                                             <select name="resultadoAnterior-patologia" class="form-control" id="resultadoAnterior-patologia">
-                                                <option disabled selected>Seleccione Resultado Patolog�a:</option>
+                                                <option disabled selected>Seleccione Resultado Patologï¿½a:</option>
 
                                                 <c:forEach items="${listaTipoHistologico}" var="resultadoPatologia">  
 
                                                     <option value='<c:out value="${resultadoPatologia.idTipoHistologico}"/>'><c:out value='${resultadoPatologia.nombre}'/> </option>
 
                                                 </c:forEach>
-
-                                                <option value="Otro">Otro</option>
 
                                             </select>
 
@@ -708,7 +708,7 @@
 
                                         <div class="row" id="contenedor-laminillas">
                                             <div class="col-4">
-                                                <input name="numLaminillas" type="text" id="numLaminillas" class="form-control" placeholder="Introduce el n�mero">
+                                                <input name="numLaminillas" type="text" id="numLaminillas" class="form-control" placeholder="Introduce el nï¿½mero">
                                             </div>
                                             <div class="col-6">
                                                 <input name="serieLaminillas" type="text" id="serieLaminillas" class="form-control" placeholder="Identificadores separados por ( , )">
@@ -726,7 +726,7 @@
 
                                         <div class="row" id="contenedor-bloques">
                                             <div class="col-4">
-                                                <input name="numBloques" type="text" id="numBloques" class="form-control" placeholder="Introduce el n�mero">
+                                                <input name="numBloques" type="text" id="numBloques" class="form-control" placeholder="Introduce el nï¿½mero">
                                             </div>
                                             <div class="col-6">
                                                 <input name="serieBloques" type="text" id="serieBloques" class="form-control" placeholder="Identificadores separados por ( , )">
@@ -740,7 +740,7 @@
                                         </div>
                                         <div class="col-4">
                                             <button id="btn-save2" class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despu�s</button>
+                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
                                         </div>
                                     </div>
                                     <div class="row justify-content-center mt-2">
@@ -1038,7 +1038,7 @@
                                             <div class="col-12">
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-valoracion" class="form-check-input" type="checkbox" id="tiene-valoracion">
-                                                    <label class="form-check-label" for="tiene-valoracion"> Valoraci�n</label>
+                                                    <label class="form-check-label" for="tiene-valoracion"> Valoraciï¿½n</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -1049,7 +1049,7 @@
 
                                                 <!-- valoracion -->
                                                 <div class="col-5">
-                                                    <input name="valoracionAdded" type="text" class="form-control valoracion" placeholder="Introduce valoraci�n">
+                                                    <input name="valoracionAdded" type="text" class="form-control valoracion" placeholder="Introduce valoraciï¿½n">
                                                 </div>
 
                                                 <!-- fecha medicina valoracion -->
@@ -1060,11 +1060,11 @@
                                                                 <i class="fas fa-calendar-alt"></i>
                                                             </div>
                                                         </div>
-                                                        <input name="fecha-valoracionAdded" placeholder="Fecha de valoraci�n" class="form-control fechaValoracion" type="text" onfocus="(this.type = 'date')">
+                                                        <input name="fecha-valoracionAdded" placeholder="Fecha de valoraciï¿½n" class="form-control fechaValoracion" type="text" onfocus="(this.type = 'date')">
                                                     </div>
                                                 </div>
 
-                                                <!-- boton agregar valoraci�n -->
+                                                <!-- boton agregar valoración -->
                                                 <div class="col-2">
                                                     <button type="button" class="btn btn-morado ml-2 add-valoracion" style="border-radius: 25px;">
                                                         <i class="fas fa-plus"></i>
@@ -1088,7 +1088,7 @@
                                             <div class="col-12">
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-espirometria" class="form-check-input" type="checkbox" id="tiene-espirometria">
-                                                    <label class="form-check-label" for="tiene-espirometria"> Espirometr�a/Inhaloterapia</label>
+                                                    <label class="form-check-label" for="tiene-espirometria"> Espirometrï¿½a/Inhaloterapia</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -1106,7 +1106,7 @@
                                                                 <i class="fas fa-calendar-alt"></i>
                                                             </div>
                                                         </div>
-                                                        <input name="fecha-espirometriaAdded" placeholder="Fecha de espirometr�a" class="form-control fechaEspirometria" type="text" onfocus="(this.type = 'date')">
+                                                        <input name="fecha-espirometriaAdded" placeholder="Fecha de espirometrï¿½a" class="form-control fechaEspirometria" type="text" onfocus="(this.type = 'date')">
                                                     </div>
                                                 </div>
 
@@ -1381,7 +1381,7 @@
                                         </div>
                                         <div class="col-4">
                                             <button id="btn-save3" class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despu�s</button>
+                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
                                         </div>
                                         <div class="col-4">
                                             <button class="btn btn-outline-success btn-block" id="btn-continue3" style="border-radius:20px">
@@ -1405,14 +1405,14 @@
                                         <div class="form-group row mt-4">
 
                                             <div class="col-3">
-                                                <span>Decisi�n preconsulta</span>
+                                                <span>Decisiï¿½n preconsulta</span>
                                             </div>
 
                                             <div class="col-4">
 
                                                 <div class="input-group">
                                                     <select name="decisionPreconsulta" class="form-control" id="decisionPreconsulta">
-                                                        <option disabled selected>Seleccione la decisi�n</option>              
+                                                        <option disabled selected>Seleccione la decisiï¿½n</option>              
                                                         <option>Unidad funcional</option>
                                                         <option>Alta</option>
                                                         <option>Alta voluntaria</option>
@@ -1429,7 +1429,7 @@
                                                             <i class="fas fa-calendar-alt"></i>
                                                         </div>
                                                     </div>
-                                                    <input name="fecha-decisionPreconsulta" placeholder="Fecha decisi�n" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')" id="fecha-decisionPreconsulta">
+                                                    <input name="fecha-decisionPreconsulta" placeholder="Fecha decisiï¿½n" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')" id="fecha-decisionPreconsulta">
                                                 </div>
                                             </div>
                                         </div>
@@ -1437,14 +1437,14 @@
                                         <div class="form-group row mt-4">
 
                                             <div class="col-3">
-                                                <span>Nivel socioecon�mico</span>
+                                                <span>Nivel socioeconï¿½mico</span>
                                             </div>
 
                                             <div class="col-4">
 
                                                 <div class="input-group">
                                                     <select name="nivelSocioeconomico" class="form-control" id="nivelSocioeconomico">
-                                                        <option disabled selected>Seleccione el nivel socioecon�mico</option>
+                                                        <option disabled selected>Seleccione el nivel socioeconï¿½mico</option>
                                                         <c:forEach items="${listaNivelSocioEconomico}" var="nivel">  
 
                                                             <option value='<c:out value="${nivel.idNivelSocioEconomico}"/>'><c:out value='${nivel.nombre}'/> </option>
@@ -1494,7 +1494,7 @@
                                         </div>
 
                                         <!-- <div id="datosLlamada">
-                            s                <div class="col-5" id="fechaLlamada">
+                                            <div class="col-5" id="fechaLlamada">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
@@ -1533,7 +1533,7 @@
                                         <div class="row mt-5 mb-3">
                                             <div class="col-12">
                                                 <h6 class="display-4 text-secondary" style="font-size:26px;">Comentarios adicionales
-                                                    del m�dico:</h6>
+                                                    del mï¿½dico:</h6>
                                             </div>
                                         </div>
                                     </form>
@@ -1550,7 +1550,7 @@
                                         </div>
                                         <div class="col-4">
                                             <button id="btn-save4" class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despu�s</button>
+                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
                                         </div>
                                         <div class="col-4">
                                             <button class="btn btn-outline-success btn-block" id="btn-continue4" style="border-radius:20px">
@@ -1569,11 +1569,11 @@
                                             <div class="col-12">
                                                 <div class="form-group">
 
-                                                    <label class="form-check-label" for="etapaClinica">Etapa Cl�nica</label>
+                                                    <label class="form-check-label" for="etapaClinica">Etapa Clï¿½nica</label>
                                                 </div>
                                                 <div class="input-group">
                                                     <select name="etapaClinica" class="form-control" id="etapaClinica">
-                                                        <option disabled selected>Seleccione etapa cl�nica</option>
+                                                        <option disabled selected>Seleccione etapa clï¿½nica</option>
                                                         <c:forEach items="${listaEtapaClinica}" var="etapa">  
 
                                                             <option value='<c:out value="${etapa.idEtapaClinica}"/>'><c:out value='${etapa.nombre}'/> </option>
@@ -1585,10 +1585,10 @@
                                             </div>
 
                                             <div class="col-6 mt-4">
-                                                <label for="">Resultados de mastograf�a</label>
+                                                <label for="">Resultados de mastografï¿½a</label>
                                                 <div class="input-group">
                                                     <select name="tipoMastografia" class="form-control" id="tipoMastografia">
-                                                        <option disabled selected>Mastrograf�a BI-RADS</option>
+                                                        <option disabled selected>Mastrografï¿½a BI-RADS</option>
                                                         <c:forEach items="${listaBirads}" var="birads">  
 
                                                             <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
@@ -1602,7 +1602,7 @@
                                                 <label for="">Resultados del ultrasonido</label>
                                                 <div class="input-group">
                                                     <select name="tipoUSG" class="form-control" id="tipoUSG">
-                                                        <option disabled selected>Mastrograf�a BI-RADS</option>
+                                                        <option disabled selected>Mastrografï¿½a BI-RADS</option>
                                                         <c:forEach items="${listaBirads}" var="birads">  
 
                                                             <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
@@ -1683,18 +1683,17 @@
                                             <div class="col-6">
                                                 <div class="form-group">
 
-                                                    <label class="form-check-label" for="etapaClinica">Resultado Patolog�a:</label>
+                                                    <label class="form-check-label" for="etapaClinica">Resultado Patologï¿½a:</label>
                                                 </div>
                                                 <div class="input-group">
                                                     <select name="resultado-patologia" class="form-control" id="resultado-patologia">
-                                                        <option disabled selected>Seleccione Resultado Patolog�a:</option>
+                                                        <option disabled selected>Seleccione Resultado Patologï¿½a:</option>
 
                                                         <c:forEach items="${listaTipoHistologico}" var="resultadoPatologia">  
 
                                                             <option value='<c:out value="${resultadoPatologia.idTipoHistologico}"/>'><c:out value='${resultadoPatologia.nombre}'/> </option>
 
                                                         </c:forEach>
-                                                        <option value="Otro">Otro</option>
                                                     </select>
 
                                                 </div>
@@ -1703,11 +1702,11 @@
                                             <div class="col-6">
                                                 <div class="form-group">
 
-                                                    <label class="form-check-label" for="etapaClinica">Grado Histol�gico:</label>
+                                                    <label class="form-check-label" for="etapaClinica">Grado Histolï¿½gico:</label>
                                                 </div>
                                                 <div class="input-group">
                                                     <select name="grado-histologico" class="form-control" id="grado-histologico">
-                                                        <option disabled selected>Seleccione Grado Histol�gico:</option>
+                                                        <option disabled selected>Seleccione Grado Histolï¿½gico:</option>
                                                         <c:forEach items="${listaGradoHistologico}" var="gradoHistologico">  
 
                                                             <option value='<c:out value="${gradoHistologico.idGradoHistologico}"/>'><c:out value='${gradoHistologico.nombre}'/> </option>
@@ -1717,8 +1716,8 @@
                                                 </div>
 
                                             </div>
-                                        </div>
 
+                                        </div>
                                         <div class="form-group row mt-4" id="introducirOtro">
                                             <div class="col-6">
                                                 <input name="otroResultPato" type="text" class="form-control" placeholder="Introduce otro resultado">
@@ -1810,7 +1809,6 @@
                                                 </div>
 
                                             </div>
-
                                         </div>
                                     </form>    
                                     <div class="row justify-content-center mt-5">
@@ -1820,7 +1818,7 @@
                                         </div>
                                         <div class="col-4">
                                             <button id="btn-save5" class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despu�s</button>
+                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
 
                                         </div>
 
@@ -1849,6 +1847,7 @@
                 </div>
             </div>
 
+        </div>
     </body>
 
 </html>
