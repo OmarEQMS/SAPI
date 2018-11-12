@@ -372,6 +372,39 @@ public class PersonaServicioImpl implements PersonaServicio {
         return personas;
 
     }
+    
+    @Override
+    public List<Persona> mostrarMedicosAdscritos() {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        List<Persona> personas = null;
+
+        try {
+            personas = new ArrayList<>();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL mostrarMedicoAdscrito()");
+            rs = cstmt.executeQuery();
+            Persona persona;
+
+            while (rs.next()) {
+
+                persona = new Persona();
+                persona.setNombre(rs.getString("nombre"));
+                persona.setPrimerApellido(rs.getString("primerApellido"));
+                persona.setSegundoApellido(rs.getString("segundoApellido"));
+
+                personas.add(persona);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+
+        return personas;
+    }
 
     @Override
     public List<Persona> mostrarMedicosRadiologos() {
@@ -553,39 +586,6 @@ public class PersonaServicioImpl implements PersonaServicio {
         }
 
         return exito;
-    }
-
-    @Override
-    public List<Persona> mostrarMedicosAdscritos() {
-        Connection conn;
-        ResultSet rs;
-        CallableStatement cstmt;
-
-        List<Persona> personas = null;
-
-        try {
-            personas = new ArrayList<>();
-            conn = Conexion.getConnection();
-            cstmt = conn.prepareCall("CALL mostrarMedicoAdscrito()");
-            rs = cstmt.executeQuery();
-            Persona persona;
-
-            while (rs.next()) {
-
-                persona = new Persona();
-                persona.setNombre(rs.getString("nombre"));
-                persona.setPrimerApellido(rs.getString("primerApellido"));
-                persona.setSegundoApellido(rs.getString("segundoApellido"));
-
-                personas.add(persona);
-
-            }
-        } catch (Exception ex) {
-            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
-                    .concat(ex.getMessage()));
-        }
-
-        return personas;
     }
 
     
