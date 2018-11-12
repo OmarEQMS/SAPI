@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     //Ocultar mensajes de error
     $('#error-contrasena').hide();
-    $('#error-contrasena2').hide();
+    $('#noEqualPasswordsError').hide();
 
     console.log("Se Actualizó!");
 

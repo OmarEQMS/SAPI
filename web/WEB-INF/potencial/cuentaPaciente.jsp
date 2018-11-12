@@ -288,7 +288,7 @@
                             </div>
                             <div class="row" id="noEqualPasswordsError">
                                 <div class="col-12">
-                                    <span class="text-danger" id="error-notEqualPasswords">Las contraseñas no son iguales.</span>
+                                    <span class="text-warning">Las contraseñas no son iguales.</span>
                                 </div>
                             </div>
                         </div>
