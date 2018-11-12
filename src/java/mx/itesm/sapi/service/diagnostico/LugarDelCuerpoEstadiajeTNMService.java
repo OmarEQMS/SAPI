@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.diagnostico.LugarDelCuerpoEstadiajeTNM;
 
 /**
  *
- * @author Diego
+ * @author Diego Montoya
  */
 public interface LugarDelCuerpoEstadiajeTNMService {
     public int agregarLugarDelCuerpoEstadiajeTNM(LugarDelCuerpoEstadiajeTNM lugarDelCuerpoEstadiajeTNM);    

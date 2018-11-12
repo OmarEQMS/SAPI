@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.LugarDelCuerpo;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public interface LugarDelCuerpoServicio {
     public LugarDelCuerpo mostrarLugarDelCuerpo(int idLugarDelCuerpo);

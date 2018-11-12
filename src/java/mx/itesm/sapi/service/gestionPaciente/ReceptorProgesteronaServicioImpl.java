@@ -16,7 +16,7 @@ import mx.itesm.sapi.bean.gestionPaciente.ReceptorProgesterona;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz & Alexis España
  */
 public class ReceptorProgesteronaServicioImpl implements ReceptorProgesteronaServicio{
 
@@ -56,7 +56,7 @@ public class ReceptorProgesteronaServicioImpl implements ReceptorProgesteronaSer
         Connection conn;
         List<ReceptorProgesterona> listReceptorProgesterona = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure="";
+        String stProcedure="CALL mostrarListaReceptorProgesterona()";
         
         ResultSet rs;
         

@@ -16,7 +16,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Programa;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public class ProgramaServicioImpl implements ProgramaServicio{
 

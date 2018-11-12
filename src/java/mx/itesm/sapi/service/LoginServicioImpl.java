@@ -17,7 +17,7 @@ import mx.itesm.sapi.util.Conexion;
 
 /**
  *
- * @author julioguzman
+ * @author Julio Badillo
  * 
  */
 public class LoginServicioImpl implements LoginServicio {

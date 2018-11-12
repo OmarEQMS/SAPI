@@ -11,7 +11,7 @@ import mx.itesm.sapi.bean.moduloGestionMedico.Departamento;
 
 /**
  *
- * @author feror
+ * @author Fernanda Orduña & Pablo Lugo
  */
 public interface DepartamentoServicio {
     public Departamento mostrarDepartamento(int idDepartamento);

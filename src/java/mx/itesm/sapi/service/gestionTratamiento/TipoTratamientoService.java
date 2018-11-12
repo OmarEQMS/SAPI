@@ -20,5 +20,6 @@ public interface TipoTratamientoService {
     public List<TipoTratamiento> mostrarTipoTratamiento();
     public boolean actualizarTipoTratamiento(TipoTratamiento tipoTratamiento);
     public boolean borradoLogicoTipoTratamiento(int idTipoTratamiento);
+    public List<TipoTratamiento> mostrarTratamientoCirugia();
     
 }

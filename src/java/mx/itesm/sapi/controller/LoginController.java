@@ -38,7 +38,7 @@ import org.apache.commons.io.IOUtils;
 
 /**
  *
- * @author julioguzman
+ * @author Julio Badillo 
  */
 @WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
@@ -242,7 +242,7 @@ public class LoginController extends HttpServlet {
                                 request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
 
                                 String keyRuta = "navegadora/cuentaNavegadora.jsp";
-
+                                    
                                 //Si la contraseña no tiene el token de recuperar contraseña se continua al dashboard correspondiente                                                                 
                                 try {
                                     System.out.println("Contraseña con token ".concat(cuenta.getToken()));

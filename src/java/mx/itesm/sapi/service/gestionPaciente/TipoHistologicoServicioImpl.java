@@ -17,7 +17,7 @@ import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz & Alexis España
  */
 public class TipoHistologicoServicioImpl implements TipoHistologicoServicio{
 
@@ -57,7 +57,7 @@ public class TipoHistologicoServicioImpl implements TipoHistologicoServicio{
         Connection conn;
         List<TipoHistologico> listTipoHistologico = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure="";
+        String stProcedure="CALL mostrarListaTipoHistologico()";
         
         ResultSet rs;
         

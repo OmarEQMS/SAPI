@@ -17,7 +17,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Laminilla;
 
 /**
  *
- * @author Alex
+ * @author Alexis España
  */
 public class LaminillaServicioImpl implements LaminillaServicio {
 

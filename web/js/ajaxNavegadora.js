@@ -1063,24 +1063,23 @@ $(document).ready(function () {
         },
                 function (response, status, xhr) {
                     console.log(response);
-                    if (status == "success") {
-                        if (response == "error") {
+                    if(status=="success"){
+                        if (response=="error"){
                             $("#msj-error").show();
-                        } else {
+                        }else{
                             document.open("text/html", "replace");
                             document.write(response);
                             document.close();
                         }
-                    }
+                     }
                 }
-        );
+         );
     });
 
     function salir() {
         alert();
 
-    }
-    ;
+    };
     
     //VALIDACIONES
     //NOMBRE EN EL REGISTRO
@@ -1139,7 +1138,7 @@ $(document).ready(function () {
             },
             success: function (response) {
 
-                if (response === 'UsuarioAlreadyExists') {
+                if (response == 'UsuarioAlreadyExists') {
                     $('#usuarioNavegadora').css('color', 'orange');
                     $('#errorUsuarioRepetidoNavegadora').show();
                 } else {
@@ -1233,166 +1232,114 @@ $(document).ready(function () {
 
     });
 
-    //CODIGO POSTAL EN EL REGISTRO
-    $('#codigo-PostalNavegadora').on('change', function () {
 
-        $.ajax({
+        //TELEFONO EN EL REGISTRO
+        $('#telNavegadora').on('change', function () {
 
-            url: 'ZonaController',
-            cache: false,
-            method: 'POST',
-            data: {
-
-                key: "getEstadoyMunicipio",
-                numeroCP: $('#codigo-PostalNavegadora').val()
-
-            },
-            success: function (response) {
-
-                if (response == 'postalCodeDoesntExist') {
-                    $('#error-CPexisteNavegadora').show();
-
-                } else {
-                    $('#error-CPexisteNavegadora').hide();
-                    var json = JSON.parse(response);
-
-                    if ($('#codigo-postalNavegadora').val().length === 5) {
-
-                        //Limpia los campos 
-                        $("#estadoNavegadora").each(function () {
-                            $(this).children().remove();
-                        });
-
-                        $("#municipioNavegadora").each(function () {
-                            $(this).children().remove();
-                        });
-
-                        //Carga estado
-                        $('#estadoNavegadora').append("<option value='" + json[0] + "'>" + json[1] + "</option>");
-
-                        //Carga Municipio
-                        $('#municipioNavegadora').append("<option value='" + json[2] + "'>" + json[3] + "</option>");
-
-                    } else {
-
-                        $('#estadoNavegadora').removeAttr('disabled');
-                        $('#estadoNavegadora').removeAttr('selected');
-
-                    }
-
-                    console.log(json);
-                }
-
+            if (isValidPhoneNumber($(this))) {
+                $('#errorTelefonoNavegadora').hide();
+            } else if ($(this).val() == '') {
+                $('#errorTelefonoNavegadora').hide();
+            } else {
+                $('#errorTelefonoNavegadora').show();
             }
 
         });
 
+        //ESTADO CIVIL EN EL REGISTRO
+        $('#estado-civilNavegadora').on('change', function () {
 
-    });
+            if (isValidSelect($(this))) {
+                $('#errorECivilNavegadora').hide();
+            } else {
+                $('#errorECivilNavegadora').show();
+            }
 
-    //TELEFONO EN EL REGISTRO
-    $('#telNavegadora').on('change', function () {
+        });
 
-        if (isValidPhoneNumber($(this))) {
-            $('#errorTelefonoNavegadora').hide();
-        } else if ($(this).val() == '') {
-            $('#errorTelefonoNavegadora').hide();
-        } else {
-            $('#errorTelefonoNavegadora').show();
-        }
+        //FECHA DE NACIMIENTO EN EL REGISTRO
+        $('#cumpleNavegadora').on('change', function () {
 
-    });
+            if (isValidDate($(this))) {
+                $('#errorFechaNavegadora').hide();
+            } else {
+                $('#errorFechaNavegadora').show();
+            }
 
-    //ESTADO CIVIL EN EL REGISTRO
-    $('#estado-civilNavegadora').on('change', function () {
+        });
 
-        if (isValidSelect($(this))) {
-            $('#errorECivilNavegadora').hide();
-        } else {
-            $('#errorECivilNavegadora').show();
-        }
+        //ESTADO EN EL REGISTRO
+        $('#estadoNavegadora').on('change', function () {
 
-    });
+            if (isValidSelect($(this))) {
+                $('#errorEstadoNavegadora').hide();
+            } else {
+                $('#errorEstadoNavegadora').show();
+            }
 
-    //FECHA DE NACIMIENTO EN EL REGISTRO
-    $('#cumpleNavegadora').on('change', function () {
+        });
 
-        if (isValidDate($(this))) {
-            $('#errorFechaNavegadora').hide();
-        } else {
-            $('#errorFechaNavegadora').show();
-        }
+        //MUNICIPIO EN EL REGISTRO
+        $('#municipioNavegadora').on('change', function () {
 
-    });
+            if (isValidSelect($(this))) {
+                $('#errorMunicipioNavegadora').hide();
+            } else {
+                $('#errorMunicipioNavegadora').show();
+            }
 
-    //ESTADO EN EL REGISTRO
-    $('#estadoNavegadora').on('change', function () {
+        });
 
-        if (isValidSelect($(this))) {
-            $('#errorEstadoNavegadora').hide();
-        } else {
-            $('#errorEstadoNavegadora').show();
-        }
+        //COLONIA EN EL REGISTRO
+        $('#colNavegadora').on('change', function () {
 
-    });
+            if (isValidColonia($(this))) {
+                $('#errorColoniaNavegadora').hide();
+            } else {
+                $('#errorColoniaNavegadora').show();
+            }
 
-    //MUNICIPIO EN EL REGISTRO
-    $('#municipioNavegadora').on('change', function () {
+        });
 
-        if (isValidSelect($(this))) {
-            $('#errorMunicipioNavegadora').hide();
-        } else {
-            $('#errorMunicipioNavegadora').show();
-        }
+        //CALLE EN EL REGISTRO
+        $('#calleNavegadora').on('change', function () {
 
-    });
+            if (isValidStreet($(this))) {
+                $('#errorCalleNavegadora').hide();
+            } else {
+                $('#errorCalleNavegadora').show();
+            }
 
-    //COLONIA EN EL REGISTRO
-    $('#colNavegadora').on('change', function () {
+        });
 
-        if (isValidColonia($(this))) {
-            $('#errorColoniaNavegadora').hide();
-        } else {
-            $('#errorColoniaNavegadora').show();
-        }
+        //NUMERO EXTERIOR EN EL REGISTRO
+         $('#numExtNavegadora').on('change', function () {
 
-    });
+            if (isValidExtNumber($(this))) {
+                $('#errorNoExteriorNavegadora').hide();
+            } else {
+                $('#errorNoExteriorNavegadora').show();
+            }
 
-    //CALLE EN EL REGISTRO
-    $('#calleNavegadora').on('change', function () {
+        });
 
-        if (isValidStreet($(this))) {
-            $('#errorCalleNavegadora').hide();
-        } else {
-            $('#errorCalleNavegadora').show();
-        }
+        //NUMERO INTERIOR EN EL REGISTRO
+        $('#numIntNavegadora').on('change', function () {
 
-    });
+            if (isValidIntNumber($(this))) {
+                $('#errorNoInteriorNavegadora').hide();
+            } else {
+                $('#errorNoInteriorNavegadora').show();
+            }
 
-    //NUMERO EXTERIOR EN EL REGISTRO
-    $('#numExtNavegadora').on('change', function () {
-
-        if (isValidExtNumber($(this))) {
-            $('#errorNoExteriorNavegadora').hide();
-        } else {
-            $('#errorNoExteriorNavegadora').show();
-        }
-
-    });
-
-    //NUMERO INTERIOR EN EL REGISTRO
-    $('#numIntNavegadora').on('change', function () {
-
-        if (isValidIntNumber($(this))) {
-            $('#errorNoInteriorNavegadora').hide();
-        } else {
-            $('#errorNoInteriorNavegadora').show();
-        }
 
     });
     
     //NOMBRE AL EDITAR
     $('#editarNombreNavegadoraAPaciente').on('change', function () {
+
+        
+
 
         if (isValidName($(this))) {
             $('#error-editar-NombreNavegadora').hide();
@@ -1480,6 +1427,7 @@ $(document).ready(function () {
         }
 
     });
+
 
 
     //CURP AL EDITAR
@@ -1619,19 +1567,22 @@ $(document).ready(function () {
 
 });
 
-function formatDate(date) {
-    var d = new Date(date),
+    //});
+
+
+    function formatDate(date) {
+        var d = new Date(date),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
         year = d.getFullYear();
 
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
 
-    return [year, month, day].join('-');
-}
+        return [year, month, day].join('-');
+    }
 
-function isValidName(input) {
+    function isValidName(input) {
 
         var m = input.val();
 
@@ -1906,4 +1857,72 @@ function isValidName(input) {
 
         return true;
     }
+
+    // Pantallas del formulario 
+     $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5').on('click', function () {
+        console.log("click on 'btn-save[i]'");
+        
+        var data = new FormData();
+        var form;
+        var dataTemp;
+        var formValues;
+
+        for (var i = 0; i < 5; i++) {
+            form = $("form")[i];
+            dataTemp = new FormData(form);
+            formValues = dataTemp.entries();
+            while (!(ent = formValues.next()).done) {
+                // ent.value[0] es la 'key' and ent.value[1] es el valor
+                data.append(ent.value[0], ent.value[1]);
+            }
+        }
+        data.append("key", "btn-save");
+        data.forEach((value, key) => {
+            console.log(key + " " + value);
+        });
+        $.ajax({
+            url: "NavegadoraController",
+            method: "POST",
+            data: data,
+            enctype: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response == "success") {
+                    console.log("ok");
+                } else {
+                    console.log("Algo pasó" + response);
+                }
+            },
+            error: function (request, status, error) {
+                console.log("Enviar datos Error " + request.responseText);
+                console.log("Enviar datos Error status " + status);
+                console.log("Enviar datos Error error" + error);
+                //alert("No enontre el controlador" + status);                               
+            }
+        });
+
+    });
+    $('#irAForm').on('click', function () {
+        $.post("SAPI", {
+            file: "navegadora/form.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            console.log(response);
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
+
+
 

@@ -18,7 +18,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Piso;
 
 /**
  *
- * @author Alex
+ * @author Alex España
  */
 public class PisoServicioImpl implements PisoServicio {
 

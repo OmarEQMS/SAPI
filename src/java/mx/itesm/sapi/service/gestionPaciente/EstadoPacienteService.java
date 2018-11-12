@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.moduloGestionPaciente.EstadoPaciente;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public interface EstadoPacienteService {
     public EstadoPaciente mostrarEstadoPaciente(int idEstadoPaciente);

@@ -16,7 +16,7 @@ import mx.itesm.sapi.bean.gestionPaciente.OtroMotivo;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public class OtroMotivoServicioImpl implements OtroMotivoServicio {
 

@@ -15,7 +15,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Ki67;
 import mx.itesm.sapi.util.Conexion;
 /**
  *
- * @author Alex
+ * @author Alexis España
  */
 public class Ki67ServicioImpl implements Ki67Servicio{
 

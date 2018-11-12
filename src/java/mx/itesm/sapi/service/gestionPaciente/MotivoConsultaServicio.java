@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.MotivoConsulta;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public interface MotivoConsultaServicio {
     public MotivoConsulta mostrarMotivoConsulta(int idMotivoConsulta);

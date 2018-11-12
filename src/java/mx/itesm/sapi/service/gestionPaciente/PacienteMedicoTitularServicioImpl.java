@@ -16,7 +16,7 @@ import mx.itesm.sapi.util.Conexion;
 
 /**
  *
- * @author Angel GTZ
+ * @author Angel Guitierrez
  */
 public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularServicio {
 

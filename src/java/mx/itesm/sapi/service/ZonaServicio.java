@@ -13,7 +13,7 @@ import mx.itesm.sapi.bean.persona.Municipio;
 
 /**
  *
- * @author feror
+ * @author Fernanda Orduña & Pablo Lugo
  */
 public interface ZonaServicio {
     

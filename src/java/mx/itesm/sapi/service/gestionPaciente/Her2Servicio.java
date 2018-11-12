@@ -9,7 +9,7 @@ import java.util.List;
 import mx.itesm.sapi.bean.gestionPaciente.Her2;
 /**
  *
- * @author Alex
+ * @author Alexis España
  */
 public interface Her2Servicio {
     public Her2 mostrarHer2(int idTipoHistologico);
