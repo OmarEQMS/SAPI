@@ -885,7 +885,7 @@ public class NavegadoraController extends HttpServlet {
 
                             if (request.getParameterValues("comentarios") != null && request.getParameterValues("comentariosAdicionales") != null) {
                                 String comentarios = request.getParameter("comentarios");
-                                String comentariosAdicionales = request.getParameter("comentariosAdicionales");
+                                String comentariosAdicionales = request.getParameter("comentacriosAdicionales");
 
                                 comentarioCita.setIdCita(cita.getIdCita());
                                 comentarioCita.setComentario(comentarios);
