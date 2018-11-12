@@ -459,7 +459,7 @@ $(document).ready(function () {
 
                 <!-- tipo rayos -->
                 <div class="col-5">
-                    <input type="text" class="form-control tipoBiopsia" placeholder="Tipo de rayos X">
+                    <input type="text" class="form-control tipoRayosX" placeholder="Tipo de rayos X">
                 </div>
 
                 <!-- fecha rayos -->
@@ -914,7 +914,7 @@ $(document).ready(function () {
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <textarea class="form-control" style="min-height:100px;" placeholder="Introduce el motivo de la llamada "></textarea>
+                        <textarea class="form-control comentario-llamada" style="min-height:100px;" placeholder="Introduce el motivo de la llamada "></textarea>
                     </div>
                 </div>
             </div>
@@ -1355,7 +1355,7 @@ $(document).ready(function () {
 
     <div class="form-group row">
         <div class="col-12 m-3">
-            <textarea class="form-control" id="motivoLlamada" style="min-height:100px;"
+            <textarea class="form-control comentario-llamada" id="motivoLlamada" style="min-height:100px;"
                 placeholder="Introduce el motivo de la llamada "></textarea>
         </div>
     </div>`;

@@ -1018,9 +1018,9 @@ $(document).ready(function () {
     }
     ;
 
-    $('#irVerDocumento').on('click', function () {
+    $('#irVerForm').on('click', function () {
         $.post("SAPI", {
-            file: "navegadora/verDocumento.jsp"
+            file: "navegadora/form.jsp"
         },
                 function (response, status, xhr) {
                     console.log("El ajax fue exitoso!!-----------------------");
@@ -1389,6 +1389,229 @@ $(document).ready(function () {
     });
 
 
+    // Pantallas del formulario 
+     $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5').on('click', function () {
+         
+        
+        var biopsias = [];
+        console.log("Biopsia 1");
+        $('.tuplaBiopsia').each(function () {
+            
+            var biopsia = {tipo:$(this).find('.tipoBiopsia').val(),
+                fecha:$(this).find('.fechaBiopsia').val(),
+                lugar:$(this).find('.parteCuerpoBiopsia').val()
+            };
+            
+            biopsias.push(biopsia);
+            console.log(biopsia);
+        });
+        console.log("Biopsia 2");
+         
+       var rayosxs = [];
+       console.log("Rayos x");
+        $('.tuplaRayosX').each(function () {
+            var rayosx = {tipo:$(this).find('.tipoRayosX').val(),
+                            fecha: $(this).find('.fechaRayos').val()
+                        };
+            rayosxs.push(rayosx);
+            console.log(rayosx);                                
+        });
+        console.log("Rayox x");        
+        
+        var ultrasonidos = [];
+        console.log("Ultrasonido");
+        $('.tuplaUltrasonido').each(function () {
+            var ultrasonido = {parte:$(this).find('.parteCuerpoUltrasonido').val(),
+                fecha: $(this).find('.fechaUltrasonido').val()
+            };
+            
+            ultrasonidos.push(ultrasonido);            
+            console.log(ultrasonido);                    
+        });
+        console.log("Ultrasonido");
+        
+                
+        var medicinasNucleares = []
+        console.log("Medicina Nuclear");
+        $('.tuplaMedicinaNuclear').each(function () {
+            var medicinaNuclear = {medicinaNuclear:$(this).find('.medicinaNuclear').val(),
+                fecha:$(this).find('.fechaMedicinaNuclear').val()
+            };            
+            console.log(medicinaNuclear);                    
+            medicinasNucleares.push(medicinaNuclear);
+        });
+        console.log("Medicina Nuclear");
+        
+                         
+        var laboratorios = [];
+        console.log("tuplaLaboratorio");
+        $('.tuplaLaboratorio').each(function () {
+            var laboratorio = {fecha:$(this).find('.fechaLaboratorio').val()};
+            laboratorios.push(laboratorio);
+            console.log(laboratorio);                    
+        });
+        console.log("tuplaLaboratorio");
+        
+        
+        var valoraciones = [];
+        console.log("tuplaValoracion");
+        $('.tuplaValoracion').each(function () {
+            
+            var valoracion = {valoracion:$(this).find('.valoracion').val(),
+                fecha:$(this).find('.fechaValoracion').val()
+            };
+            valoraciones.push(valoracion);
+            console.log(valoracion);                    
+        });
+        console.log("tuplaValoracion");
+        
+        
+        var espirometrias = [];
+        console.log("tuplaEspirometria");
+        $('.tuplaEspirometria').each(function () {
+            var espirometria = {fecha:$(this).find('.fechaEspirometria').val()};
+            espirometrias.push(espirometria);
+            console.log(espirometria);                    
+        });
+        console.log("tuplaEspirometria");
+        
+        
+        var electrocardiogramas = [];
+        console.log("tuplaElectrocardiograma");
+        $('.tuplaElectrocardiograma').each(function () {
+            var electrocardiograma = {fecha:$(this).find('.fechaElectrocardiograma').val()};
+            
+            electrocardiogramas.push(electrocardiograma);
+            console.log(electrocardiograma);                    
+        });
+        console.log("tuplaElectrocardiograma");
+        
+        
+        var ecocardiogramas = [];
+        console.log("tuplaEcocardiograma");
+        $('.tuplaEcocardiograma').each(function () {
+            var ecocardiograma = {fecha:$(this).find('.fechaEcocardiograma').val()};
+            
+            ecocardiogramas.push(ecocardiograma);
+            console.log(ecocardiograma);                    
+        });
+        console.log("tuplaEcocardiograma");
+        
+                 
+        var trabajosSociales = []
+        console.log("tuplaTrabajoSocial");
+        $('.tuplaTrabajoSocial').each(function () {
+            var trabajoSocial = {fecha: $(this).find('.fechaTrabajoSocial').val()};
+            trabajosSociales.push(trabajoSocial);
+            console.log(trabajoSocial);                    
+        });
+        console.log("tuplaTrabajoSocial");
+        
+        
+        var programas = [];
+        console.log("tuplaPrograma");
+        $('.tuplaPrograma').each(function () {
+            var programa = {programa:$(this).find('.programa').val(),
+            fecha: $(this).find('.fechaPrograma').val()};        
+            programas.push(programa);
+            console.log(programa);                        
+        });
+        console.log("tuplaPrograma");
+        
+                        
+        var otrosEstudios = [];
+        console.log("tuplaOtro");
+        $('.tuplaOtro').each(function () {
+            var otroEstudio = {fecha:$(this).find('.fechaOtro').val(),
+            otroEstudio: $(this).find('.otro-estudioPreconsulta').val()};
+        
+            otrosEstudios.push(otroEstudio);
+            console.log(otroEstudio);                                
+        });
+        console.log("tuplaOtro");
+                
+               
+        var llamadas = [];
+        $('.tuplaLlamada').each(function () {
+
+            var llamada = {
+                fecha: $(this).find('.fecha-llamada').val(),
+                motivo: $(this).find('.comentario-llamada').val()
+            };
+
+            llamadas.push(llamada);
+            console.log(llamada);
+        });
+        
+        
+         
+        console.log("Comentarios del médico");
+        var comentariosMedico = $("#comentariosAdicionales").val();
+        console.log(comentariosMedico);
+        console.log("Comentarios del médico");
+        
+        var tipoUltrasonidoMama = $('#tipoUltrasonidoMama').val();
+        
+        console.log("click on 'btn-save[i]'");
+        
+        var data = new FormData();
+        var form;
+        var dataTemp;
+        var formValues;
+
+        for (var i = 0; i < 5; i++) {
+            form = $("form")[i];
+            dataTemp = new FormData(form);
+            formValues = dataTemp.entries();
+            while (!(ent = formValues.next()).done) {
+                // ent.value[0] es la 'key' and ent.value[1] es el valor
+                data.append(ent.value[0], ent.value[1]);
+                console.log(ent.value[0] + " : " + ent.value[1]);
+            }
+        }
+        console.log("##########################################################################################");
+        data.append("key", "btn-save");      
+        data.append("biopsias",JSON.stringify(biopsias));
+        data.append("rayosxs",JSON.stringify(rayosxs));
+        data.append("ultrasonidos",JSON.stringify(ultrasonidos));
+        data.append("medicinasNucleares",JSON.stringify(medicinasNucleares));
+        data.append("laboratorios",JSON.stringify(laboratorios));
+        data.append("valoraciones",JSON.stringify(valoraciones));
+        data.append("espirometrias",JSON.stringify(espirometrias));
+        data.append("electrocardiogramas",JSON.stringify(electrocardiogramas));
+        data.append("ecocardiogramas",JSON.stringify(ecocardiogramas));
+        data.append("trabajosSociales",JSON.stringify(trabajosSociales));
+        data.append("programas",JSON.stringify(programas));
+        data.append("otrosEstudios",JSON.stringify(otrosEstudios));
+        data.append("comentariosMedico",JSON.stringify(comentariosMedico));
+        data.append("tipoUltrasonidoMama",tipoUltrasonidoMama);
+        data.append("llamadasCita",JSON.stringify(llamadas));
+        data.forEach((value, key) => {
+            console.log(key + " " + value);
+        });
+        $.ajax({
+            url: "NavegadoraController",
+            method: "POST",
+            data: data,
+            enctype: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response == "success") {
+                    console.log("ok");
+                } else {
+                    console.log("Algo pasó" + response);
+                }
+            },
+            error: function (request, status, error) {
+                console.log("Enviar datos Error " + request.responseText);
+                console.log("Enviar datos Error status " + status);
+                console.log("Enviar datos Error error" + error);
+                //alert("No enontre el controlador" + status);                               
+            }
+        });
+
+    });
 
 });
 
@@ -1679,4 +1902,5 @@ function isValidName(input) {
 
         return true;
     }
+
 
