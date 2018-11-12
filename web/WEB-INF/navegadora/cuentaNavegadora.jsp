@@ -139,11 +139,11 @@
                 <!-- ***** A PARTIR DE AQUI ESCRIBEN EL CODIGO QUE QUIERAN..... ***** -->
                 <!-- **************************************************************** -->
 
-
-            <div class="row mb-3 justify-content-end">
-                <div class="col-3 text-center">
-                    <span class="iconoHome mr-2" id="irVerForm"><i class="fas fa-home"></i></span><span><a href="index.html" class="colorMoradoLight">Inicio</a></span>
-                    - <span class="colorGlobal">Mi Cuenta</span>
+                <div class="row mb-3 justify-content-end">
+                    <div class="col-3 text-center">
+                        <span class="iconoHome mr-2" id="irVerDocumento"><i class="fas fa-home"></i></span><span><a href="index.html" class="colorMoradoLight">Inicio</a></span>
+                        - <span class="colorGlobal">Mi Cuenta</span>
+                    </div>
                 </div>
 
                 <!-- Jumbotron Titulo -->
