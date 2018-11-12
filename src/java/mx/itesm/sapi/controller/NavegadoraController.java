@@ -201,6 +201,8 @@ public class NavegadoraController extends HttpServlet {
                                     cuenta.setPassword(contrasena);
 
                                     cuentaServicio.actualizarCuenta(cuenta);
+                                    PrintWriter out=response.getWriter();
+                                    out.print("success");
                                 }
 
                             }

@@ -180,6 +180,25 @@ public class RegistraUsuarioController extends HttpServlet {
                 }
             }
             break;
+            
+             case "repiteCorreo": {
+                
+                
+                String correo = request.getParameter("correo");
+
+                //Checo si el usuario existe
+                if (_registroServicio.existsCorreo(correo)) {
+
+                    out.print("CorreoAlreadyExists");
+
+                } else {
+
+                    //Si no existe, lo inserto
+                    out.print("CorreoDoesntExist");
+
+                }
+            }
+            break;
 
             case "registraUsuario": {
 

@@ -21,13 +21,13 @@ $(document).ready(function () {
         );
     });
 
-$('.irAVerDocumento').on('click', function () {
+    $('.irAVerDocumento').on('click', function () {
         $.get("SAPI", {
-            
-        file: "navegadora/verDocumento.jsp",
-            idDocumentoInicial : $(this).data('id'),
-           idPaciente: $("#hiddenIdPaciente").val(),
-           siguiente: 0
+
+            file: "navegadora/verDocumento.jsp",
+            idDocumentoInicial: $(this).data('id'),
+            idPaciente: $("#hiddenIdPaciente").val(),
+            siguiente: 0
         },
                 function (response, status, xhr) {
                     //console.log(response);
@@ -46,30 +46,30 @@ $('.irAVerDocumento').on('click', function () {
 
 
     /*
-    $('.irAVerDocumento').on('click', function () {     
-        
-        $.get("SAPI", {
-           file: "navegadora/verDocumento.jsp",
-           idDocumentoInicial : $(this).data('id'),
-           idPaciente: $("#hiddenIdPaciente")
-           
-           
-        },
-                function (response, status, xhr) {
-                    //console.log(response);
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
-                }
-        );
-    });
-*/
+     $('.irAVerDocumento').on('click', function () {     
+     
+     $.get("SAPI", {
+     file: "navegadora/verDocumento.jsp",
+     idDocumentoInicial : $(this).data('id'),
+     idPaciente: $("#hiddenIdPaciente")
+     
+     
+     },
+     function (response, status, xhr) {
+     //console.log(response);
+     if (status == "success") {
+     if (response == "error") {
+     $("#msj-error").show();
+     } else {
+     document.open("text/html", "replace");
+     document.write(response);
+     document.close();
+     }
+     }
+     }
+     );
+     });
+     */
 
     //Eliminar cuenta
     $('#eliminarCuentaNavegadora').on('click', () => {
@@ -336,33 +336,19 @@ $('.irAVerDocumento').on('click', function () {
                     },
                             function (response, status, xhr) {
                                 console.log("El ajax fue exitoso!!-----------------------");
-
                                 if (status == "success") {
-
-
-
                                     if (response == "error") {
                                         $("#msj-error").show();
                                     } else {
-
-                                        swal({
-                                            title: 'Buen Trabajo',
-                                            text: "Cambios guardados correctamente",
-                                            type: 'success',
-                                            confirmButtonColor: '#3085d6',
-                                            confirmButtonText: 'Ok'
-                                        })
-
                                         document.open("text/html", "replace");
                                         document.write(response);
                                         document.close();
+
                                     }
                                 }
-
                             }
                     );
-                },
-                error: function (xhr) {
+                }, error: function (xhr) {
                     //alert(xhr.statusText);
                 }
 
@@ -423,7 +409,12 @@ $('.irAVerDocumento').on('click', function () {
                             method: "POST",
                             success: function (response) {
                                 if (response == "success") {
-
+                                    swal({
+                                        title: "Contraseña actualizada",
+                                        icon: "success",
+                                    });
+                                    $("#password").val('');
+                                    $("#password-confirm").val('');
                                 } else {
                                     //Aqui no se que hace
                                 }
@@ -504,18 +495,18 @@ $('.irAVerDocumento').on('click', function () {
     });
 
     $('.descargarDocumento').on('click', function () {
-        
-        
+
+
         $.post("NavegadoraController",
-        {
-                key: 'descargarArchivo',
-                idDocumento: $(this).data('id')
-        },
-    function(data, status){
-        
+                {
+                    key: 'descargarArchivo',
+                    idDocumento: $(this).data('id')
+                },
+                function (data, status) {
+
+                });
     });
-    });
-    
+
     $('#irAForm').on('click', function () {
         $.post("SAPI", {
             file: "navegadora/form.jsp"
@@ -536,9 +527,9 @@ $('.irAVerDocumento').on('click', function () {
         );
     });
     // Pantallas del formulario 
-     $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5').on('click', function () {
+    $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5').on('click', function () {
         console.log("click on 'btn-save[i]'");
-        
+
         var data = new FormData();
         var form;
         var dataTemp;
@@ -580,11 +571,11 @@ $('.irAVerDocumento').on('click', function () {
         });
 
     });
-    
-    
+
+
     //PARA SALIR DE LA CUENTA
-   $('#salirCuenta').on('click', function () {
-       
+    $('#salirCuenta').on('click', function () {
+
         console.log("Salir cuenta");
         $.get("LoginController", {
             key: "cerrar-sesion"
@@ -603,17 +594,18 @@ $('.irAVerDocumento').on('click', function () {
                 }
         );
     });
-    
+
     function salir() {
-         alert();
-       
-       
-    };
-    
+        alert();
+
+
+    }
+    ;
+
     //Prueba del autocompletado
-          
-          
-        
+
+
+
 
 });
 

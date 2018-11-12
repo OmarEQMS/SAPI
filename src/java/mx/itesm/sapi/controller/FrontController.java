@@ -236,12 +236,15 @@ public class FrontController extends HttpServlet {
 
                                     CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
                                     Cuenta cuenta = cuentaServicioImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));
+                                    
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
 
-                                    TipoDocumentoServicioImpl tipoDocumentoServicioImpl = new TipoDocumentoServicioImpl();
-                                    List<TipoDocumento> tiposDocumentos = tipoDocumentoServicioImpl.mostrarTipoDocumento();
-                                   
-                                    Gson json = new Gson();
-                                    out.print(json.toJson(tiposDocumentos));
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+                                    
+                                    sesion.setAttribute("base64Img", base64String);
                                     
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
 
@@ -255,17 +258,45 @@ public class FrontController extends HttpServlet {
                                     EstadoCivilServicioImpl estadoCivilServicio = new EstadoCivilServicioImpl();
                                     List<EstadoCivil> estados = estadoCivilServicio.mostrarEstadoCivil();
                                     request.setAttribute("estadoCivil", estados);
+                                    
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
 
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+                                    
+                                    sesion.setAttribute("base64Img", base64String);
+                                    
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al dashboard navgeadora
                                     break;
                                 }
                                 case "navegadora/calendar.jsp": {
                                     System.out.println("Index Navegadora ");
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+                                    
+                                    sesion.setAttribute("base64Img", base64String);
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al calendario de navgeadora
                                     break;
                                 }
                                 case "navegadora/rendimiento.jsp": {
+                                    
                                     System.out.println("Index Navegadora ");
+                                    
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+                                    
+                                    sesion.setAttribute("base64Img", base64String);
+                                    
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
                                     break;
 
@@ -326,6 +357,7 @@ public class FrontController extends HttpServlet {
                                     //String fecha = cuenta.getFecha().toString();
                                     //fecha = fecha.substring(0, 10);
 
+                                    
                                     Timestamp ts = cuenta.getFecha();
                                     Date fecha = new Date(ts.getTime());
                                     sesion.setAttribute("fechaRegistro", fecha);
@@ -335,7 +367,16 @@ public class FrontController extends HttpServlet {
                                     sesion.setAttribute("telefono", persona.getTelefono());
                                     sesion.setAttribute("correo", persona.getCorreo());
                                     sesion.setAttribute("segundaOpinion", estadoPacientePaciente.getSegundaOpinion());
+                                    
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
 
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+                                    
+                                    sesion.setAttribute("base64Img", base64String);
+                                    
                                     //sesion.setAttribute("idDocumento", file);
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
                                     break;
