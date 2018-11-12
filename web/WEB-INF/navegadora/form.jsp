@@ -30,8 +30,7 @@
 
         <link rel="stylesheet" href="css/styleNavegadora.css">
         <link rel="stylesheet" href="css/styleNavegadoraImg.css">
-        <script src="js/appNavegadora.js"></script>
-        <script src="js/appNavegadora2.js"></script>
+        <script src="js/appNavegadora.js"></script>        
         <script src="js/ajaxNavegadora.js"></script>
 
 
@@ -48,7 +47,7 @@
 
                     <div class="row text-center justify-content-center mt-2">
                         <div class="col-12">
-                            <img src="../img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
+                            <img src="img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
 
                         </div>
 
