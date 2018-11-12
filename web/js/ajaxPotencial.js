@@ -689,12 +689,9 @@ $(document).ready(function () {
         );
     });
 
-        //Author: Angel Gtz
-    //este ajax hace que manda la nueva contraseña de la cuenta del paciente potencial
-    $("#btn-cambiarContrasena").on('click', function () {
-
-
+        $("#btn-cambiarContrasena").on('click', function () {
         //Modal cambiar contraseña 
+        if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
         swal({
             title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
             text: "No podras volver a usar tu contraseña anterior para ingresar",
@@ -705,12 +702,6 @@ $(document).ready(function () {
         })
                 .then((cambiar) => {
                     if (cambiar) {
-
-                        if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
-
-                            $('#error-contrasena').hide();
-                            $('#error-contrasena2').hide();
-
                             $.ajax({
                                 url: "PotencialController",
                                 data: {
@@ -721,10 +712,6 @@ $(document).ready(function () {
                                 },
                                 method: "POST",
                                 success: function (response) {
-
-                                    $("#password").val('');
-                                    $("#password2").val('');
-
                                     
                                 },
                                 error: function (xhr) {
@@ -732,28 +719,10 @@ $(document).ready(function () {
                                 }
                             });
                             $('#modalCambiarContraseña').modal('toggle');
-
-
-                        } else {
-                            
-                            if(!isValidPassword($('#password'))){                               
-                               $('#error-contrasena').show();
-                            }
-                            if(!isValidPassword($('#password2'))){
-                                $("#error-contrasena2").show();
-                            }else{
-                                $("#error-contrasena").hide();
-                                $("#error-contrasena2").hide();
-                            }
-                            
-                            
-                        }
-
-
+                        
                     }
                 });
-
-
+            }
     });
 
     $("#password").on('change', function () {
@@ -803,7 +772,6 @@ $(document).ready(function () {
             return false;
 
         } else {
-
             pass2.css('border', '');
             pass1.css('border', '');
             $('#noEqualPasswordsError').hide();

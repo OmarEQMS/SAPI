@@ -282,14 +282,22 @@
                                     <input type="password" class="form-control" id="password" placeholder="Ingresa tu nueva contraseña" />
                                 </div>
                             </div>
+                            <div class="row" id="error-contrasena">
+                                <div class="col-12">
+                                    <span class="text-danger">La contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
+                                </div>
+                            </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="name">Confirma tu contraseña</label>
-                                    <input type="password" class="form-control" id="password-confirm" placeholder="Reingresa tu nueva contraseña" />
+                                    <input type="password" class="form-control" id="password2" placeholder="Reingresa tu nueva contraseña" />
                                 </div>
                             </div>
-
-
+                            <div class="row" id="noEqualPasswordsError">
+                                <div class="col-12">
+                                    <span class="text-warning">Las contraseñas no son iguales.</span>
+                                </div>
+                            </div>
 
                         </div>
                         <div class="modal-footer">
