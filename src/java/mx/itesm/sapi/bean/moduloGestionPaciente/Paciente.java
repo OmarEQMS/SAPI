@@ -19,6 +19,7 @@ public class Paciente {
     private double altura;
     private int posMenopausia;
     private int estatus;
+    private int idNivelSocioeconomico;
     
     public Paciente() {}
 
@@ -108,5 +109,14 @@ public class Paciente {
     public void setEstatus(int estatus) {
         this.estatus = estatus;
     }
+
+    public int getIdNivelSocioeconomico() {
+        return idNivelSocioeconomico;
+    }
+
+    public void setIdNivelSocioeconomico(int idNivelSocioeconomico) {
+        this.idNivelSocioeconomico = idNivelSocioeconomico;
+    }
+    
     
 }

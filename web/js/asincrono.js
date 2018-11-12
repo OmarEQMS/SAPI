@@ -26,6 +26,11 @@ $(document).ready(function () {
     $('#errorNoExterior').hide();
     $('#errorNoInterior').hide();
     $('#errorUsuarioRepetido').hide();
+
+    $('#errorCorreoRepetido').hide();
+    $('#error-terminos').hide();
+    $('#error-CPexiste').hide();
+
     $("#error-campos").hide();
 
     $('#btn-registro').on('click', function () {
@@ -310,6 +315,31 @@ $(document).ready(function () {
 
     //CORREO EN EL REGISTRO
     $('#correo').on('change', function () {
+         $.ajax({
+
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+
+                key: "repiteCorreo",
+                correo: $('#correo').val()
+
+
+            },
+            success: function (response) {
+
+                if (response === 'CorreoAlreadyExists') {
+                    console.log("correo repetidooo")
+                    $('#correo').css('color', 'orange');
+                    $('#errorCorreoRepetido').show();
+                } else {
+                    $('#errorCorreoRepetido').hide();
+                }
+
+            }
+
+        });
 
         if (isValidEmail($(this))) {
             $('#errorCorreo').hide();

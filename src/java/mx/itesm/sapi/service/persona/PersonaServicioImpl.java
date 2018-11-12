@@ -374,7 +374,6 @@ public class PersonaServicioImpl implements PersonaServicio {
     }
 
     @Override
-
     public List<Persona> mostrarMedicosRadiologos() {
 
         Connection conn;
@@ -589,5 +588,29 @@ public class PersonaServicioImpl implements PersonaServicio {
         return personas;
     }
 
-   
+    
+        @Override
+    public boolean existsCorreo(String usuario) {
+
+        Connection conn = Conexion.getConnection();
+
+        CallableStatement cstmt;
+
+        try {
+
+            cstmt = conn.prepareCall("CALL existeCorreo(?,?)");
+            cstmt.setString(1, usuario);
+            cstmt.registerOutParameter(2, Types.BOOLEAN);
+
+            cstmt.execute();
+            return cstmt.getBoolean(2);
+
+        } catch (SQLException ex) {
+
+            Logger.getLogger(CuentaServicioImpl.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+    }
+
 }

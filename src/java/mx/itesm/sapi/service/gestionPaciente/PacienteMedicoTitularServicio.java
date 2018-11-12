@@ -20,7 +20,7 @@ public interface PacienteMedicoTitularServicio {
 
     public List<PacienteMedicoTitular> mostrarPacienteMedicoTitular();
 
-    public int agregarPacienteAlergia(PacienteMedicoTitular pacienteMedicoTitular);
+    public int agregarPacienteMedicoTitular(PacienteMedicoTitular pacienteMedicoTitular);
 
     public boolean actualizarPacienteMedicoTitular(PacienteMedicoTitular pacienteMedicoTitular);
 

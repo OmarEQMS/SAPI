@@ -38,7 +38,7 @@ import org.apache.commons.io.IOUtils;
 
 /**
  *
- * @author Julio Badillo 
+ * @author Julio Badillo
  */
 @WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
@@ -161,7 +161,6 @@ public class LoginController extends HttpServlet {
 
                                 sesion.setAttribute("path", keyRuta);
 
-
                                 String rol = "potencial";
                                 //request.setAttribute("rol", rol);
 
@@ -218,7 +217,6 @@ public class LoginController extends HttpServlet {
 
                                 out.print(json.toJson(json.toJson(solicitudPreconsulta)));
 
-
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                                 //request.getRequestDispatcher("/FrontController").forward(request, response);                                                                             
 
@@ -242,7 +240,7 @@ public class LoginController extends HttpServlet {
                                 request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
 
                                 String keyRuta = "navegadora/cuentaNavegadora.jsp";
-                                    
+
                                 //Si la contraseña no tiene el token de recuperar contraseña se continua al dashboard correspondiente                                                                 
                                 try {
                                     System.out.println("Contraseña con token ".concat(cuenta.getToken()));
@@ -254,33 +252,30 @@ public class LoginController extends HttpServlet {
                                 sesion.setAttribute("path", keyRuta);
 
                                 /*Insert your code here*/
-                                
                                 PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
-                                    
-                                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
-                                    Empleado empleado = empleadoServicioImpl.mostrarEmpleadoCuenta((int) sesion.getAttribute("idCuenta"));
-                                    
-                                    MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
-                                    MedicoEspecialidad medicoEspecialidad = medicoEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(empleado.getIdEmpleado());
-                                    
-                                    EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
-                                    Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());
-                                    
-                                   
-                                    
-                                    
-                                    sesion.setAttribute("nombre", persona.getNombre());
-                                    sesion.setAttribute("primerApellido", persona.getPrimerApellido());
-                                    sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
-                                    sesion.setAttribute("correo", persona.getCorreo());
-                                    sesion.setAttribute("telefono", persona.getTelefono());
-                                    sesion.setAttribute("usuario", cuenta.getUsuario());
-                                    sesion.setAttribute("noEmpleado", empleado.getNoEmpleado());
-                                   sesion.setAttribute("especialidad",especialidad.getNombre());
-                                   sesion.setAttribute("cedulaProfesional",medicoEspecialidad.getCedulaProfesional());
-                                
-                                
-                                
+
+
+                                EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                                Empleado empleado = empleadoServicioImpl.mostrarEmpleadoCuenta((int) sesion.getAttribute("idCuenta"));
+
+                                MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
+                                MedicoEspecialidad medicoEspecialidad = medicoEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(empleado.getIdEmpleado());
+
+                                EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
+                                Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());
+
+                                sesion.setAttribute("nombre", persona.getNombre());
+                                sesion.setAttribute("primerApellido", persona.getPrimerApellido());
+                                sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
+                                sesion.setAttribute("correo", persona.getCorreo());
+                                sesion.setAttribute("telefono", persona.getTelefono());
+                                sesion.setAttribute("usuario", cuenta.getUsuario());
+                                sesion.setAttribute("noEmpleado", empleado.getNoEmpleado());
+                                sesion.setAttribute("especialidad", especialidad.getNombre());
+                                sesion.setAttribute("cedulaProfesional", medicoEspecialidad.getCedulaProfesional());
+
+                                /*Insert your code here*/
+
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                                 break;
                             }
@@ -325,7 +320,6 @@ public class LoginController extends HttpServlet {
 
                                 System.out.println("Se redirige el potencial. idPaciente " + String.valueOf(paciente.getIdPaciente()).concat(" idCuenta ").concat(String.valueOf(paciente.getIdCuenta())).concat(" Sesión idCuenta ").concat(String.valueOf(sesion.getAttribute("idCuenta"))));
 
-
                                 break;
                             }
                         }
@@ -359,7 +353,7 @@ public class LoginController extends HttpServlet {
             case "cerrar-sesion": {
 
                 HttpSession sesion = request.getSession(true);
-                
+
                 sesion.invalidate();
                 //System.out.println("Salir de la cuenta ".concat(sesion.getAttribute("nombre").toString()));
                 System.out.println("Salimos :)");

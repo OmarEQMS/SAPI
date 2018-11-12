@@ -297,12 +297,14 @@ $(document).ready(function () {
     });
 
     $('.irAVerDocumento').on('click', function () {
+
         console.log("Click");
         console.log($(this).data('id') + " " + $("#hiddenIdPaciente").val());
         $.post("SAPI", {
             file: "navegadora/verDocumento.jsp",
             idDocumentoInicialVista: $(this).data('id'),
             idPacientePotencialAtendido: $("#hiddenIdPaciente").val(),
+
             siguiente: 0
         },
                 function (response, status, xhr) {
@@ -435,6 +437,7 @@ $(document).ready(function () {
 
     });
 
+
     /*
      $('.irAVerDocumento').on('click', function () {     
      
@@ -460,7 +463,6 @@ $(document).ready(function () {
      );
      });
      */
-
 
     //Eliminar cuenta
     $('#eliminarCuentaNavegadora').on('click', () => {
@@ -715,11 +717,6 @@ $(document).ready(function () {
         );
     });
 
-
-
-
-
-
     $('#irADashboard').on('click', function () {
         $.post("SAPI", {
             file: "navegadora/index.jsp"
@@ -757,6 +754,7 @@ $(document).ready(function () {
                 }
         );
     });
+    
     $('#irARendimiento').on('click', function () {
         $.post("SAPI", {
             file: "navegadora/rendimiento.jsp"
@@ -776,7 +774,6 @@ $(document).ready(function () {
         );
     });
 
-
     $('#irACuenta').on('click', function () {
         $.post("SAPI", {
             file: "navegadora/cuentaNavegadora.jsp"
@@ -795,7 +792,6 @@ $(document).ready(function () {
                 }
         );
     });
-
 
     $('#guardarCambios').on('click', function () {
 
@@ -824,33 +820,19 @@ $(document).ready(function () {
                     },
                             function (response, status, xhr) {
                                 console.log("El ajax fue exitoso!!-----------------------");
-
                                 if (status == "success") {
-
-
-
                                     if (response == "error") {
                                         $("#msj-error").show();
                                     } else {
-
-                                        swal({
-                                            title: 'Buen Trabajo',
-                                            text: "Cambios guardados correctamente",
-                                            type: 'success',
-                                            confirmButtonColor: '#3085d6',
-                                            confirmButtonText: 'Ok'
-                                        })
-
                                         document.open("text/html", "replace");
                                         document.write(response);
                                         document.close();
+
                                     }
                                 }
-
                             }
                     );
-                },
-                error: function (xhr) {
+                }, error: function (xhr) {
                     //alert(xhr.statusText);
                 }
 
@@ -911,7 +893,12 @@ $(document).ready(function () {
                             method: "POST",
                             success: function (response) {
                                 if (response == "success") {
-
+                                    swal({
+                                        title: "Contraseña actualizada",
+                                        icon: "success",
+                                    });
+                                    $("#password").val('');
+                                    $("#password-confirm").val('');
                                 } else {
                                     //Aqui no se que hace
                                 }
@@ -977,50 +964,6 @@ $(document).ready(function () {
         });
     });
 
-    function isValidEmail(input) {
-
-        var m = input.val();
-
-        ////Expresion regular por el estandard: RFC 5322
-        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-
-    }
-    ;
-
-    function isValidPhoneNumber(input) {
-
-        var m = input.val();
-
-        var expreg = /^[0-9]{10,10}$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-    }
-    ;
-
     $('#irVerDocumento').on('click', function () {
         $.post("SAPI", {
             file: "navegadora/verDocumento.jsp"
@@ -1053,13 +996,10 @@ $(document).ready(function () {
                 });
     });
 
+    $('#irAForm').on('click', function () {
+        $.post("SAPI", {
+            file: "navegadora/form.jsp"
 
-    //PARA SALIR DE LA CUENTA
-    $('#salirCuenta').on('click', function () {
-
-        console.log("Salir cuenta");
-        $.get("LoginController", {
-            key: "cerrar-sesion"
         },
                 function (response, status, xhr) {
                     console.log(response);
@@ -1075,6 +1015,17 @@ $(document).ready(function () {
                 }
          );
     });
+
+    // Pantallas del formulario 
+    $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5').on('click', function () {
+        console.log("click on 'btn-save[i]'");
+
+        var data = new FormData();
+        var form;
+        var dataTemp;
+        var formValues;
+    });
+
 
     function salir() {
         alert();
@@ -1159,6 +1110,7 @@ $(document).ready(function () {
 
     });
 
+
     //CORREO EN EL REGISTRO
     $('#correoNavegadora').on('change', function () {
 
@@ -1216,12 +1168,10 @@ $(document).ready(function () {
                     $('#errorCurpRepetidoNavegadora').show();
                 } else {
                     $('#errorCurpRepetidoNavegadora').hide();
+                    }
                 }
-
-            }
-        });
-
-
+            });
+            
         if (isValidCURP($(this))) {
             $('#errorCurpNavegadora').hide();
         } else if ($(this).val() == '') {
@@ -1229,8 +1179,35 @@ $(document).ready(function () {
         } else {
             $('#errorCurpNavegadora').show();
         }
-
     });
+            
+            
+
+    //PARA SALIR DE LA CUENTA
+    $('#salirCuenta').on('click', function () {
+
+        console.log("Salir cuenta");
+        $.get("LoginController", {
+            key: "cerrar-sesion"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+
+            );
+        });
+
+
+    
 
 
         //TELEFONO EN EL REGISTRO
@@ -1334,6 +1311,7 @@ $(document).ready(function () {
 
 
     });
+
     
     //NOMBRE AL EDITAR
     $('#editarNombreNavegadoraAPaciente').on('change', function () {
@@ -1564,10 +1542,120 @@ $(document).ready(function () {
         }
 
     });
+    
+    // Pantallas del formulario 
+     $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5').on('click', function () {
+        console.log("click on 'btn-save[i]'");
+        
+        var data = new FormData();
+        var form;
+        var dataTemp;
+        var formValues;
+
+        for (var i = 0; i < 5; i++) {
+            form = $("form")[i];
+            dataTemp = new FormData(form);
+            formValues = dataTemp.entries();
+            while (!(ent = formValues.next()).done) {
+                // ent.value[0] es la 'key' and ent.value[1] es el valor
+                data.append(ent.value[0], ent.value[1]);
+            }
+        }
+        data.append("key", "btn-save");
+        data.forEach((value, key) => {
+            console.log(key + " " + value);
+        });
+        $.ajax({
+            url: "NavegadoraController",
+            method: "POST",
+            data: data,
+            enctype: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response == "success") {
+                    console.log("ok");
+                } else {
+                    console.log("Algo pasó" + response);
+                }
+            },
+            error: function (request, status, error) {
+                console.log("Enviar datos Error " + request.responseText);
+                console.log("Enviar datos Error status " + status);
+                console.log("Enviar datos Error error" + error);
+                //alert("No enontre el controlador" + status);                               
+            }
+        });
+
+    });
+    $('#irAForm').on('click', function () {
+        $.post("SAPI", {
+            file: "navegadora/form.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            console.log(response);
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+});
 
 
 
     //});
+    
+    function isValidEmail(input) {
+
+        var m = input.val();
+
+        ////Expresion regular por el estandard: RFC 5322
+        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    }
+    ;
+
+    function isValidPhoneNumber(input) {
+
+        var m = input.val();
+
+        var expreg = /^[0-9]{10,10}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+    ;
 
 
     function formatDate(date) {
@@ -1857,72 +1945,3 @@ $(document).ready(function () {
 
         return true;
     }
-
-    // Pantallas del formulario 
-     $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5').on('click', function () {
-        console.log("click on 'btn-save[i]'");
-        
-        var data = new FormData();
-        var form;
-        var dataTemp;
-        var formValues;
-
-        for (var i = 0; i < 5; i++) {
-            form = $("form")[i];
-            dataTemp = new FormData(form);
-            formValues = dataTemp.entries();
-            while (!(ent = formValues.next()).done) {
-                // ent.value[0] es la 'key' and ent.value[1] es el valor
-                data.append(ent.value[0], ent.value[1]);
-            }
-        }
-        data.append("key", "btn-save");
-        data.forEach((value, key) => {
-            console.log(key + " " + value);
-        });
-        $.ajax({
-            url: "NavegadoraController",
-            method: "POST",
-            data: data,
-            enctype: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                if (response == "success") {
-                    console.log("ok");
-                } else {
-                    console.log("Algo pasó" + response);
-                }
-            },
-            error: function (request, status, error) {
-                console.log("Enviar datos Error " + request.responseText);
-                console.log("Enviar datos Error status " + status);
-                console.log("Enviar datos Error error" + error);
-                //alert("No enontre el controlador" + status);                               
-            }
-        });
-
-    });
-    $('#irAForm').on('click', function () {
-        $.post("SAPI", {
-            file: "navegadora/form.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            console.log(response);
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
-                }
-        );
-    });
-    
-});
-
-

@@ -5,15 +5,18 @@
  */
 package mx.itesm.sapi.controller;
 
+
 import java.awt.Image;
 import java.awt.image.RenderedImage;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Base64;
@@ -32,11 +35,17 @@ import mx.itesm.sapi.bean.diagnostico.NCodificado;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
 import mx.itesm.sapi.bean.diagnostico.TCodificado;
 import mx.itesm.sapi.bean.gestionPaciente.BIRADS;
+import mx.itesm.sapi.bean.gestionPaciente.Alergia;
+import mx.itesm.sapi.bean.gestionPaciente.Biopsia;
+import mx.itesm.sapi.bean.gestionPaciente.Cita;
 import mx.itesm.sapi.bean.gestionPaciente.DatosPacienteDocumentoInicial;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoEstudio;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialTipoDocumento;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialVista;
 import mx.itesm.sapi.bean.gestionPaciente.Escolaridad;
+import mx.itesm.sapi.bean.gestionPaciente.Escolaridad;
+import mx.itesm.sapi.bean.gestionPaciente.EstadoPaciente;
 import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 import mx.itesm.sapi.bean.gestionPaciente.Fish;
 import mx.itesm.sapi.bean.gestionPaciente.GradoHistologico;
@@ -49,6 +58,12 @@ import mx.itesm.sapi.bean.gestionPaciente.ReceptorProgesterona;
 import mx.itesm.sapi.bean.gestionPaciente.Seguro;
 import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
 import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteMedicoTitular;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteSeguro;
+import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
+import mx.itesm.sapi.bean.gestionTratamiento.PacienteTratamientoPrevio;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.Tratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.TratamientoPaciente;
@@ -73,6 +88,10 @@ import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.diagnostico.TCodificadoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.BIRADSServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.AlergiaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.BiopsiaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.DocumentoEstudioServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialTipoDocumentoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.EscolaridadServicioImpl;
@@ -86,6 +105,14 @@ import mx.itesm.sapi.service.gestionPaciente.ReceptorEstrogenoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.ReceptorProgesteronaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.SeguroServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.TipoHistologicoServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.EstadoPacienteServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteSeguroServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.TipoDocumentoServicioImpl;
+import mx.itesm.sapi.service.gestionTratamiento.PacienteTratamientoPrevioServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TratamientoPacienteServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TratamientoServiceImpl;
@@ -244,6 +271,27 @@ public class FrontController extends HttpServlet {
                             sesion.setAttribute("path", keyRuta);
                             switch (keyRuta) {
 
+                                case "navegadora/cuentaNavegadora.jsp": {
+
+                                    PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
+                                    Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
+
+                                    CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
+                                    Cuenta cuenta = cuentaServicioImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));
+                                    
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+                                    
+                                    sesion.setAttribute("base64Img", base64String);
+                                    
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+
+                                    break;
+                                }
                                 
 
                                 case "navegadora/index.jsp": {
@@ -276,11 +324,30 @@ public class FrontController extends HttpServlet {
                                 }
                                 case "navegadora/calendar.jsp": {
                                     System.out.println("Index Navegadora ");
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+                                    
+                                    sesion.setAttribute("base64Img", base64String);
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al calendario de navgeadora
                                     break;
                                 }
                                 case "navegadora/rendimiento.jsp": {
+                                    
                                     System.out.println("Index Navegadora ");
+                                    
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+                                    
+                                    sesion.setAttribute("base64Img", base64String);
+                                    
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
                                     break;
 
@@ -371,6 +438,7 @@ public class FrontController extends HttpServlet {
                                     //String fecha = cuenta.getFecha().toString();
                                     //fecha = fecha.substring(0, 10);
 
+                                    
                                     Timestamp ts = cuenta.getFecha();
                                     Date fecha = new Date(ts.getTime());
                                     sesion.setAttribute("fechaRegistro", fecha);
@@ -541,6 +609,7 @@ public class FrontController extends HttpServlet {
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
                                     break;
                                 }
+
                                 case "navegadora/form.jsp":
                                 {
                                     System.out.println("Front Controller case:  Form Navegadora");
@@ -681,7 +750,9 @@ public class FrontController extends HttpServlet {
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     
                                     break;
+
                                 }
+
                             }
                             break;
 

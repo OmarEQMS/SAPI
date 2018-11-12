@@ -103,7 +103,7 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
     }
 
     @Override
-    public int agregarPacienteAlergia(PacienteMedicoTitular pacienteMedicoTitular) {
+    public int agregarPacienteMedicoTitular(PacienteMedicoTitular pacienteMedicoTitular) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;

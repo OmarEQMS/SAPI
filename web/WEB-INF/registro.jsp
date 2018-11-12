@@ -62,6 +62,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <input id="correo" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf0e0; CORREO ELECTRÓNICO">
                         <span class="text-danger" id="errorCorreo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
+                        <span class="text-warning" id="errorCorreoRepetido">El correo ya existe.</span>
                     </div>
                 </div>
 
@@ -87,8 +88,10 @@
                 <div class="form-group row">
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                         <input id="curp" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf2C2; CURP">
+
                         <span class="text-danger " id="errorCurp">Formato incorrecto, las letras deben estar en mayúsculas y asegúrate de introducir un CURP válido y sin espacios. Puedes consultarlo 
-                        <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí.</a>
+                            <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí.</a>
+
                         </span>
                         <span class="text-warning" id="errorCurpRepetido">El curp ya existe.</span>
                     </div>
@@ -174,7 +177,7 @@
                     <span class="text-danger">Completa todos los campos para registrar tu cuenta </span>
                 </div>
             </div>
-            
+
             <input type="button" id="btn-continuar" class="btn btn-lg btn-success btn-block btn-continuar" value="CONTINUAR">
 
             <div class="row">

@@ -22,6 +22,7 @@ public interface PersonaServicio {
     public boolean actualizarPersona(Persona persona);
     public boolean borradoLogicoPersona(int idPersona);
     public boolean existsCurp(String curp);
+    public boolean existsCorreo(String correo);
     public boolean actualizarSexoPersona(int idPersona,int idSexo);
     public Persona mostrarPersonaPorIdPaciente(int idPaciente);
 
