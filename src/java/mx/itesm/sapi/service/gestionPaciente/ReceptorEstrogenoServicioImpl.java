@@ -16,7 +16,7 @@ import mx.itesm.sapi.bean.gestionPaciente.ReceptorEstrogeno;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public class ReceptorEstrogenoServicioImpl implements ReceptorEstrogenoServicio{
 
@@ -58,7 +58,7 @@ public class ReceptorEstrogenoServicioImpl implements ReceptorEstrogenoServicio{
         Connection conn;
         List<ReceptorEstrogeno> listReceptorEstrogeno = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure="";
+        String stProcedure="CALL mostrarListaReceptorEstrogeno()";
         
         ResultSet rs;
         

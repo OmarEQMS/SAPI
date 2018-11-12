@@ -7,7 +7,6 @@ package mx.itesm.sapi.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.File;
@@ -16,12 +15,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.Multipart;
@@ -34,7 +30,9 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import java.util.List;
-import javax.json.Json;
+
+import java.sql.Date;
+import java.util.Base64;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -44,42 +42,44 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-import jdk.nashorn.internal.parser.JSONParser;
-import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
+import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
 import mx.itesm.sapi.bean.gestionPaciente.Cita;
 import mx.itesm.sapi.bean.gestionPaciente.CitaEmpleado;
 import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
-import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialTipoDocumento;
 import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
+
 import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
+
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteMedicoTitular;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
-import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
+
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
 import mx.itesm.sapi.bean.persona.Login;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
-import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
+
 import mx.itesm.sapi.service.gestionPaciente.CitaEmpleadoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.ComentarioCitaServicioImpl;
+
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialTipoDocumentoServicioImpl;
+
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.LlamadaCitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.TipoDocumentoServicioImpl;
+
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
 import mx.itesm.sapi.service.persona.LoginServicioImpl;
@@ -113,6 +113,7 @@ public class NavegadoraController extends HttpServlet {
         String key = request.getParameter("key");
 
         HttpSession sesion = request.getSession(true);
+        
 
         if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
             // request.setAttribute("status", "");
@@ -225,6 +226,28 @@ public class NavegadoraController extends HttpServlet {
                             break;
                         }
 
+                        case "reporteRendimientoNavegadora": {
+                            /**
+                             * Author: Angel Gutiérrez Al inicio checa si tiene
+                             * sesion de no ser asi se redirecciona al loin.
+                             * Despues se tomra el id de la navegadora para
+                             * generar una lista de los pacientes que aprobo o
+                             * modifico su formulario
+                             *
+                             */
+                            if (sesion.getAttribute("idCuenta") == null) {
+
+                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+                                return;
+                            } else {
+                                int idNavegadora = (int) sesion.getAttribute("idEmpleado");
+
+                            }
+
+                            break;
+                        }
+
+
                         case "cambiarContrasena": {
 
                             if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
@@ -245,11 +268,13 @@ public class NavegadoraController extends HttpServlet {
                                     cuenta.setPassword(contrasena);
 
                                     cuentaServicio.actualizarCuenta(cuenta);
+                                    PrintWriter out=response.getWriter();
+                                    out.print("success");
                                 }
 
                             }
                             break;
-                        }
+           }
 
                         case "agregar-paciente": {
 
@@ -348,9 +373,10 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("catch de envia correo");
                                 System.out.println(this.getClass().toString().concat(ex.getMessage()));
                          }
-                            
+
                             break;
                         }
+
 
                         case "descargarArchivo": {
 
@@ -582,11 +608,9 @@ public class NavegadoraController extends HttpServlet {
                             String telefono = request.getParameter("telefono");
                             String correo = request.getParameter("correo");
                             String colonia = request.getParameter("colonia");
-                            
-                            
-                            
+
                             Date fn = Date.valueOf(fechaNacimiento);
-                            
+
                             datos.setNombre(nombre);
                             datos.setPrimerApellido(apellido1);
                             datos.setSegundoApellido(apellido2);
@@ -602,11 +626,12 @@ public class NavegadoraController extends HttpServlet {
                             datos.setTelefono(telefono);
                             datos.setCorreo(correo);
                             datos.setColonia(colonia);
-                            
+
                             PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                             personaServicio.actualizarInformacionGeneralPersona(idPaciente, datos);
 
                             break;
+
                         }
                         
                         case "btn-save":

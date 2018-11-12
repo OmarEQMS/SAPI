@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.diagnostico.EtapaClinica;
 
 /**
  *
- * @author Diego
+ * @author Diego Montoya
  */
 public interface EtapaClinicaService {
     public EtapaClinica mostrarEtapaClinica(int idEtapaClinica);

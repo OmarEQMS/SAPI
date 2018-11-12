@@ -93,7 +93,7 @@
 
                     <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas
                             <c:choose>
-                                <c:when test="${sessionScope.estatus>=1}">
+                                <c:when test="${sessionScope.estatus==1}">
                                     <span class="notificacion">1</span>                        
                                 </c:when>
                             </c:choose>
@@ -185,7 +185,7 @@
 
                                                 <div class="row justify-content-center mt-2">
                                                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 text-center">
-                                                        <button class="btn btn-danger btn-block btnCancelarCita" id="mitadCancelar">Cancelar
+                                                        <button class="btn btn-danger btn-block btnCancelarCita mitadCancelar">Cancelar
                                                             Citas
                                                         </button>
                                                     </div>
@@ -268,7 +268,7 @@
 
                                                 <div class="row mt-1 justify-content-center">
                                                     <div class="col-6 text-center">
-                                                        <button class="btn btn-danger btn-block" id="mitadCancelar" style="border-radius: 20px;">Cancelar
+                                                        <button class="btn btn-danger btn-block mitadCancelar" id="cancelarCitaModal" style="border-radius: 20px;">Cancelar
                                                             Cita
                                                         </button>
                                                     </div>

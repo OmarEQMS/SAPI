@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionTratamiento.UnionTratamientoPaciente;
 
 /**
  *
- * @author feror
+ * @author Fernanda Orduña & Pablo Lugo
  */
 public interface UnionTratamientoPacienteService {
 

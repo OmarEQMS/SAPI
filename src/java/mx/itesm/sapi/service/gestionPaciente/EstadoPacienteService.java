@@ -6,11 +6,11 @@
 package mx.itesm.sapi.service.gestionPaciente;
 
 import java.util.List;
-import mx.itesm.sapi.bean.moduloGestionPaciente.EstadoPaciente;
+import mx.itesm.sapi.bean.gestionPaciente.EstadoPaciente;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public interface EstadoPacienteService {
     public EstadoPaciente mostrarEstadoPaciente(int idEstadoPaciente);

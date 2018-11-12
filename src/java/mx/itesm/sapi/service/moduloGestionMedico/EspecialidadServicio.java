@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
 
 /**
  *
- * @author feror
+ * @author Fernanda Orduña & Pablo Lugo
  */
 public interface EspecialidadServicio {
     public Especialidad mostrarEspecialidad(int idEspecialidad);

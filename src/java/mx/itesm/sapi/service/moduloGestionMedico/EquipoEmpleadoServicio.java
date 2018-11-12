@@ -11,7 +11,7 @@ import mx.itesm.sapi.bean.moduloGestionMedico.EquipoEmpleado;
 
 /**
  *
- * @author feror
+ * @author Fernanda Orduña & Pablo Lugo
  */
 public interface EquipoEmpleadoServicio {
     public int agregarEquipoEmpleado(EquipoEmpleado equipoEmpleado);

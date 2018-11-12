@@ -56,7 +56,7 @@ public class BIRADSServicioImpl implements BIRADSServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarBIRADS";
+        String stProcedure = "CALL mostrarListaBirads()";
         List<BIRADS> listabirads = null;
         BIRADS birads;
 
@@ -70,7 +70,8 @@ public class BIRADSServicioImpl implements BIRADSServicio {
                 birads = new BIRADS();
                 birads.setIdBirads(rs.getInt("idBirads"));
                 birads.setNombre(rs.getString("nombre"));
-
+                birads.setEstatus(rs.getInt("estatus"));
+                
                 listabirads.add(birads);
             }
 		

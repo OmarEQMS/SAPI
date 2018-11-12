@@ -5,8 +5,6 @@ $(document).ready(function () {
     //Esconder mensajes de error en cuenta
     $('#error-correo').hide();
     $('#error-tel').hide();
-    $('#error-contraseña').hide();
-    $('#error-notEqualPasswords').hide();
 
     //Esconder mensajes de error en index
     $('#error-identificacionOficial').hide();

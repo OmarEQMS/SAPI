@@ -15,7 +15,7 @@ import mx.itesm.sapi.bean.gestionPaciente.NecesidadEspecial;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public class NecesidadEspecialServicioImpl implements NecesidadEspecialServicio{
 

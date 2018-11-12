@@ -48,12 +48,9 @@ import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
-import mx.itesm.sapi.service.persona.PersonaServicioImpl;
-
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
-import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
@@ -69,7 +66,7 @@ import org.apache.commons.io.IOUtils;
 
 /**
  *
- * @author Admin
+ * @author Who is admin?
  */
 @WebServlet(name = "RegistraUsuarioController", urlPatterns = {"/RegistraUsuarioController"})
 public class RegistraUsuarioController extends HttpServlet {
@@ -176,6 +173,25 @@ public class RegistraUsuarioController extends HttpServlet {
 
                     //Si no existe, lo inserto
                     out.print("UsuarioDoesntExist");
+
+                }
+            }
+            break;
+            
+             case "repiteCorreo": {
+                
+                
+                String correo = request.getParameter("correo");
+
+                //Checo si el usuario existe
+                if (_registroServicio.existsCorreo(correo)) {
+
+                    out.print("CorreoAlreadyExists");
+
+                } else {
+
+                    //Si no existe, lo inserto
+                    out.print("CorreoDoesntExist");
 
                 }
             }

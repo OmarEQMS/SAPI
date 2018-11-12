@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.persona.Persona;
 
 /**
  *
- * @author julioguzman
+ * @author Julio Badillo
  */
 public interface LoginServicio {
     

@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 
 /**
  *
- * @author urieldiaz
+ * @author Pablo Lugo
  */
 public class EjemploProperties {
     

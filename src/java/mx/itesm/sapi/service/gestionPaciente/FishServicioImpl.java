@@ -17,7 +17,7 @@ import mx.itesm.sapi.util.Conexion;
 
 /**
  *
- * @author Alex
+ * @author Alexis España 
  */
 public class FishServicioImpl implements FishServicio {
 
@@ -56,7 +56,7 @@ public class FishServicioImpl implements FishServicio {
         Connection conn;
         List<Fish> fishes = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL mostrarListaFish()";
 
         ResultSet rs;
 

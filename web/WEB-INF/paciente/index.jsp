@@ -440,7 +440,7 @@
                                         <div><input class="modalRadio2" type="radio" name="Pisos" value="1" data-color="#ffc107" for="piso2"
                                                     />
                                             <span class="badge badge-warning">Primer piso</span></div>
-                                        <div><input class="modalRadio3" type="radio" name="Pisos" value="2" data-color="#FF53A9" for="piso2"
+                                        <div><input class="modalRadio3" type="radio" name="Pisos" value="2" data-color="#FF53A9" for="piso3"
                                                     />
                                             <span class="badge badge-danger">Segundo piso</span></div>
                                     </div>
