@@ -110,7 +110,7 @@
                 <div class="form-group row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                         <select class="form-control selectStyle" id="estadoCivil">
-                            <option selected disabled>ESTADO CIVIL (OPCIONAL)</option>
+                            <option selected disabled>ESTADO CIVIL</option>
                             <c:forEach items="${estadoCivil}" var="estadoC">  
                                 <option value="<c:out value='${estadoC.idEstadoCivil}'/>"><c:out value='${estadoC.nombre}'/></option>
                             </c:forEach>
