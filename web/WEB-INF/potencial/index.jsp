@@ -1753,6 +1753,10 @@
                                                                             class="fas fa-print"></i> Imprimir información
                                                                     </button>
                                                                 </div>
+                                                                <div class="col-4 text-center">
+                                                                    <button style="border-radius:20px" type="button" id="irAMisCitas2" class="btn btn-outline-info btn-block"><i class="fas fa-calendar-alt"></i> Ver citas 
+                                                                    </button>
+                                                                </div>
                                                             </div>
 
                                                         </div>

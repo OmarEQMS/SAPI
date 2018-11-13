@@ -6,15 +6,20 @@
 package mx.itesm.sapi.controller;
 
 import com.google.gson.Gson;
+import static com.sun.xml.bind.util.CalendarConv.formatter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.Base64;
 import java.util.ResourceBundle;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import javax.servlet.ServletException;
@@ -370,8 +375,7 @@ public class PotencialController extends HttpServlet {
                                 PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                                 System.out.println("Actualizar a mujer");
                                 personaServicioImpl.actualizarSexoPersona(idPacientePotencial, idSexoMujer);
-                            }
-                            else{
+                            } else {
                                 booleanSexo = false;
                             }
                         }

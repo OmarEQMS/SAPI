@@ -213,7 +213,7 @@ $(document).ready(function () {
 
     });
     
-    /*$("body").on("click",".myCleaner", function(){
+   $("body").on("click",".myCleaner", function(){
 		$(".hora").val("");
                 $(".tipo").prop('selectedIndex',0);
                 $(".medico").prop('selectedIndex',0);
@@ -222,7 +222,11 @@ $(document).ready(function () {
                 $('input[name=Pisos]').prop("checked", false);
                 $('#pisosDiv').hide();
                 
-	});*/
+                $('#error-campos').hide();
+                $('#RegistrarCita_hora').css('border', '');
+                $('#RegistrarCita_hora').css('color', '');
+                
+	});
         
         $("body").on("click",".myCleanerAddTratamientos", function(){
 		$(".fechaInicio").attr("type","text").val('').attr("placeholder","Introduce la fecha de inicio");
