@@ -297,7 +297,7 @@ $(document).ready(function () {
                 success: function (response) {
                     if (response == "success") {
                         console.log("ok");
-                    } else {
+                    } else { 
                         console.log("Algo pasó" + response);
                     }
                 },
@@ -510,25 +510,6 @@ $(document).ready(function () {
                         }
 
                     });
-
-                    //Post redireccionamiento
-                    /*$.post("SAPI", {
-                     file: "potencial/index.jsp"
-                     },
-                     function (response, status, xhr) {
-                     console.log(response);
-                     if (status == "success") {
-                     if (response == "error") {
-                     $("#msj-error").show();
-                     } else {
-                     document.open("text/html", "replace");
-                     document.write(response);
-                     document.close();
-                     }
-                     }
-                     }
-                     );*/
-
 
                 } else {
                     console.log("Algo pasó" + response);
