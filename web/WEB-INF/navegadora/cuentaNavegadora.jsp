@@ -1,7 +1,7 @@
 <%-- 
     Document   : cuentaNavegadora
     Created on : 31-oct-2018, 11:51:06
-    Author     : urieldiaz
+    Author     : urieldiaz, julioguzman, shannonrosas
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -35,17 +35,9 @@
 
         <link rel="stylesheet" href="css/styleNavegadora.css">
         <link rel="stylesheet" href="css/styleNavegadoraImg.css">
-
-
-
-
-        <script src="js/appNavegadora.js"></script>
-        <script src="js/appNavegadora2.js"></script>
+        <script src="js/appNavegadora.js"></script>    
         <script src="js/ajaxNavegadora.js"></script>
         <script src="js/validacionesNavegadora.js"></script>
-
-
-
 
     </head>
 
@@ -61,6 +53,7 @@
                     <div class="row text-center justify-content-center mt-2">
                         <div class="col-12">
                             <img src="img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
+
                         </div>
                     </div>
 
@@ -106,17 +99,17 @@
                 <!-- MENU PRINCIPAL ENLACES -->
                 <ul class="list-unstyled components">
 
-                    <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li> 
+                    <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
+                    
                     <li id="irAForm"><a><i class="fas fa-home"></i>Ir a Form</a></li>
+                    
                     <li id="idACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+
                     <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
                     <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
 
-                    <li id="irADocumentos"><a><i class="far fa-user"></i>Documentos</a></li>
-
                     <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
-
 
                 </ul>
 
@@ -267,19 +260,6 @@
                                     <hr>
                                 </div>
                             </div>
-
-                            <div class="form-group row justify-content-center mt-4">
-                                <div class="col-4">
-                                    <button type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaNavegadora"><i class="fas fa-trash-alt mr-1"></i>
-                                        Eliminar Cuenta</button>
-                                    
-                                </div>
-                            </div>
-
-
-
-
-
                     </div>
                 </div>
 

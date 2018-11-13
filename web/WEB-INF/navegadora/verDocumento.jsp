@@ -1,9 +1,10 @@
 <%-- 
     Document   : verDocumento
     Created on : 2/11/2018, 11:32:19 AM
-    Author     : feror
+    Author     : feror, julioguzman, shannonrosas
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -98,12 +99,11 @@
 
                <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
 
-                <li id="idACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+                <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+                
                 <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
                 <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
-                
-                <li id="irADocumentos"><a><i class="far fa-user"></i>Documentos</a></li>
                 
                 <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
                 
@@ -124,6 +124,10 @@
                         <i class="fas fa-align-justify"></i>
                     </button>
 
+                    <input type="hidden" id="idPacientePotencialAtendido" value="${sessionScope.idPacientePotencialAtendido}"/>
+                    <input type="hidden" id="idDocumentoInicialVista" value="${sessionScope.idDocumentoInicial}"/>
+                    
+                    
                     <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
                             ${sessionScope.nombre} ${sessionScope.primerApellido}</span>
                         </span> <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
@@ -146,7 +150,7 @@
 
             <div class="jumbotron jumbotron-fluid p-2">
                 <div class="container">
-                    <h1 class="display-4 tituloPacientes text-center m-0" id="pacienteSelec">Identificación Oficial de: </h1>
+                    <h1 class="display-4 tituloPacientes text-center m-0" id="pacienteSelec">${sessionScope.tipoDocumentoInicial} de: </h1>
                     <h6 class="display-4 text-center m-0 text-secondary" id="pacienteSelec" style="font-size:25px;">
                        ${sessionScope.nombrePacientePotencial} ${sessionScope.primerApellidoPacientePotencial} ${sessionScope.segundoApellidoPacientePotencial}</h6>
                 </div>
@@ -155,7 +159,18 @@
             <!-- Despligue de información -->
             <div class="card">
                 <div class="card-body text-center">
-                    <img class="mb-4" style="width: 500px" src="img/flor.jpeg" />
+                    <c:choose>
+                        <c:when test="${sessionScope.extensionArchivo == 1 }">
+                            <img class="mb-4" style="width: 500px" src="data:image/png;base64,${sessionScope.documentB64}" />
+                        </c:when>
+                        <c:when test="${sessionScope.extensionArchivo == 2 }">
+                            <img class="mb-4" style="width: 500px" src="data:image/jpeg;base64,${sessionScope.documentB64}" />
+                        </c:when>
+                        <c:when test="${sessionScope.extensionArchivo == 3 }">
+                            <embed type="application/pdf" class="mb-4" style="width:25cm;height:15cm;zoom: 100%" src="data:application/pdf;base64,${sessionScope.documentB64}"></embed>
+                        </c:when>
+                    </c:choose>
+                    
 
                     <div class="row justify-content-center mt-4">
                         <div class="col-4">
@@ -168,7 +183,7 @@
                                 <i class="fas fa-arrow-alt-circle-right mr-2"></i>Rechazar</button>
                         </div>
                         <div class="col-4">
-                            <button class="btn btn-outline-success btn-block" style="border-radius: 20px" onclick="location.href='documentos.html'"
+                            <button class="btn btn-outline-success btn-block" style="border-radius: 20px"
                                 id="btn-siguiente"><i class="fas fa-arrow-alt-circle-right mr-2"></i>Siguiente</button>
                         </div>
 
@@ -181,7 +196,7 @@
             <!-- ********** MODAL AGREGAR COMENTARÍO ********** -->
             <div class="modal fade" id="modalAgregarComentario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content" id="modal-rechazo">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Razón de rechazo</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -195,7 +210,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" style="border-radius: 20px" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary" style="border-radius: 20px">Guardar cambios</button>
+                            <button type="button" class="btn btn-primary" style="border-radius: 20px" data-dismiss="modal" id="btn-rechazarDocumento">Guardar cambios</button>
                         </div>
                     </div>
                 </div>

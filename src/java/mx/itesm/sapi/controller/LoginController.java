@@ -254,6 +254,7 @@ public class LoginController extends HttpServlet {
                                 /*Insert your code here*/
                                 PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
 
+
                                 EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
                                 Empleado empleado = empleadoServicioImpl.mostrarEmpleadoCuenta((int) sesion.getAttribute("idCuenta"));
 
@@ -274,6 +275,7 @@ public class LoginController extends HttpServlet {
                                 sesion.setAttribute("cedulaProfesional", medicoEspecialidad.getCedulaProfesional());
 
                                 /*Insert your code here*/
+
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                                 break;
                             }

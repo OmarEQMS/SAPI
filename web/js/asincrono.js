@@ -3,6 +3,7 @@ $(document).ready(function () {
 
     //Esconder mensajes de error
     $('#msj-error').hide();
+    $('#error-terminos').hide();
     $('#noEqualPasswordsError').hide();
     $('#errorNombre').hide();
     $('#errorApellidoPaterno').hide();
@@ -14,6 +15,7 @@ $(document).ready(function () {
     $('#errorCurp').hide();
     $('#errorCurpRepetido').hide();
     $('#errorCodigoPostal').hide();
+    $('#error-CPexiste').hide();
     $('#errorTelefono').hide();
     $('#errorECivil').hide();
     $('#errorFecha').hide();
@@ -24,9 +26,11 @@ $(document).ready(function () {
     $('#errorNoExterior').hide();
     $('#errorNoInterior').hide();
     $('#errorUsuarioRepetido').hide();
+
     $('#errorCorreoRepetido').hide();
     $('#error-terminos').hide();
     $('#error-CPexiste').hide();
+
     $("#error-campos").hide();
 
     $('#btn-registro').on('click', function () {
@@ -60,6 +64,8 @@ $(document).ready(function () {
             $("#error-campos").show();
         }
     });
+
+    $(document).ajaxStop($.unblockUI);
 
     $('#btnAceptar').on('click', function () {
 
@@ -116,15 +122,20 @@ $(document).ready(function () {
                         })
                                 .then(function () {
                                     console.log("Redirección a login");
+                                    $.blockUI({message: '<h1><img src="img/load.gif" /> Espere un momento...</h1>'});
                                     $.get("LoginController", {
                                         key: "ir-a-login"
                                     },
                                             function (response, status, xhr) {
                                                 console.log(response);
+
                                                 if (status == "success") {
                                                     if (response == "error") {
                                                         $("#msj-error").show();
                                                     } else {
+
+                                                        $.unblockUI
+
                                                         document.open("text/html", "replace");
                                                         document.write(response);
                                                         document.close();
@@ -137,11 +148,6 @@ $(document).ready(function () {
                     .fail(function (xhr, textStatus, errorThrown) {
                         console.log(xhr.responseText);
                     });
-
-
-
-
-
         }
 
     });
@@ -185,7 +191,7 @@ $(document).ready(function () {
     });
 
 
-    //Verificar que las contraseñas sean iguales
+    //CONTRASEÑAS IGUALES EN EL REGISTRO
     $('#pass2').on('change', function () {
 
         var pass1 = $('#pass1');
@@ -216,9 +222,21 @@ $(document).ready(function () {
         return true;
     }
 
+
+    //CONTRASEÑAS IGUALES DE RECUPERAR CONTRASEÑA
+    $('#cambio2').on('change', function () {
+
+        var pass1 = $('#cambio1');
+        var pass2 = $('#cambio2');
+
+        areEqualPasswords(pass1, pass2);
+
+    });
+
+
     //////////////////////////////////VALIDACIONES
 
-    //1.- NOMBRE
+    //NOMBRE EN EL REGISTRO
     $('#nombre').on('change', function () {
 
         if (isValidName($(this))) {
@@ -231,7 +249,7 @@ $(document).ready(function () {
 
     });
 
-    //2.- APELLIDO PATERNO
+    //PRIMER APELLIDO EN EL REGISTRO
     $('#apellido1').on('change', function () {
 
         if (isValidLastName($(this))) {
@@ -244,7 +262,7 @@ $(document).ready(function () {
 
     });
 
-    //3.- APELLIDO MATERNO
+    //SEGUNDO APELLIDO EN EL REGISTRO
     $('#apellido2').on('change', function () {
 
         if (isValidLastName($(this))) {
@@ -257,7 +275,7 @@ $(document).ready(function () {
 
     });
 
-    //4.- NOMBRE DE USUARIO
+    //NOMBRE DE USUARIO EN EL REGISTRO
     $('#usuario').on('change', function () {
 
         $.ajax({
@@ -295,7 +313,7 @@ $(document).ready(function () {
 
     });
 
-    //5.- CORREO
+    //CORREO EN EL REGISTRO
     $('#correo').on('change', function () {
          $.ajax({
 
@@ -333,7 +351,20 @@ $(document).ready(function () {
 
     });
 
-    //6.- CONTRASEÑA1
+    //CORREO EN RECUPERAR CONTRASEÑA
+    $('#email').on('change', function () {
+
+        if (isValidEmail($(this))) {
+            $('#errorCorreo').hide();
+        } else if ($(this).val() == '') {
+            $('#errorCorreo').hide();
+        } else {
+            $('#errorCorreo').show();
+        }
+
+    });
+
+    //CONTRASEÑA1 EN EL REGISTRO
     $('#pass1').on('change', function () {
 
         if (isValidPassword($(this))) {
@@ -346,7 +377,7 @@ $(document).ready(function () {
 
     });
 
-    //7.- CONTRASEÑA2
+    //CONTRASEÑA2 EN EL REGISTRO
     $('#pass2').on('change', function () {
 
         if (isValidPassword($(this))) {
@@ -359,7 +390,33 @@ $(document).ready(function () {
 
     });
 
-    //8.- CURP
+    //CONTRASEÑA1 RECUPERAR CONTRASEÑA
+    $('#cambio1').on('change', function () {
+
+        if (isValidPassword($(this))) {
+            $('#errorPass1').hide();
+        } else if ($(this).val() == '') {
+            $('#errorPass1').hide();
+        } else {
+            $('#errorPass1').show();
+        }
+
+    });
+
+    //CONTRASEÑA2 RECUPERAR CONTRASEÑA
+    $('#cambio2').on('change', function () {
+
+        if (isValidPassword($(this))) {
+            $('#errorPass2').hide();
+        } else if ($(this).val() == '') {
+            $('#errorPass2').hide();
+        } else {
+            $('#errorPass2').show();
+        }
+
+    });
+
+    //CURP EN EL REGISTRO
     $('#curp').on('change', function () {
 
         $.ajax({
@@ -393,7 +450,7 @@ $(document).ready(function () {
 
     });
 
-    //9.- CODIGO POSTAL
+    //CODIGO POSTAL EN EL REGISTRO
     $('#codigoPostal').on('change', function () {
 
         $.ajax({
@@ -450,7 +507,7 @@ $(document).ready(function () {
 
     });
 
-    //10.- TELEFONO
+    //TELEFONO EN EL REGISTRO
     $('#telefono').on('change', function () {
 
         if (isValidPhoneNumber($(this))) {
@@ -463,7 +520,7 @@ $(document).ready(function () {
 
     });
 
-    //11.- ESTADO CIVIL
+    //ESTADO CIVIL EN EL REGISTRO
     $('#estadoCivil').on('change', function () {
 
         if (isValidSelect($(this))) {
@@ -474,7 +531,7 @@ $(document).ready(function () {
 
     });
 
-    //12.- FECHA
+    //FECHA DE NACIMIENTO EN EL REGISTRO
     $('#fechaNacimiento').on('change', function () {
 
         if (isValidDate($(this))) {
@@ -485,7 +542,7 @@ $(document).ready(function () {
 
     });
 
-    //12.- ESTADO
+    //ESTADO EN EL REGISTRO
     $('#estado').on('change', function () {
 
         if (isValidSelect($(this))) {
@@ -496,7 +553,7 @@ $(document).ready(function () {
 
     });
 
-    //13.- MUNICIPIO
+    //MUNICIPIO EN EL REGISTRO
     $('#municipio').on('change', function () {
 
         if (isValidSelect($(this))) {
@@ -507,7 +564,7 @@ $(document).ready(function () {
 
     });
 
-    //13.- COLONIA
+    //COLONIA EN EL REGISTRO
     $('#colonia').on('change', function () {
 
         if (isValidColonia($(this))) {
@@ -518,7 +575,7 @@ $(document).ready(function () {
 
     });
 
-    //14.- CALLE
+    //CALLE EN EL REGISTRO
     $('#calle').on('change', function () {
 
         if (isValidStreet($(this))) {
@@ -529,7 +586,7 @@ $(document).ready(function () {
 
     });
 
-    //15.- NUMERO EXTERIOR
+    //NUMERO EXTERIOR EN EL REGISTRO
     $('#noExterior').on('change', function () {
 
         if (isValidExtNumber($(this))) {
@@ -540,7 +597,7 @@ $(document).ready(function () {
 
     });
 
-    //16.- NUMERO INTERIOR
+    //NUMERO INTERIOR EN EL REGISTRO
     $('#noInterior').on('change', function () {
 
         if (isValidIntNumber($(this))) {
@@ -830,7 +887,7 @@ $(document).ready(function () {
 
 
     }
-    
+
     function isValidExtNumber(input) {
 
         var m = input.val();

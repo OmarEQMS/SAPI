@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 18-oct-2018, 15:41:04
-    Author     : urieldiaz
+    Author     : urieldiaz, julioguzman, shannonrosas
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -133,7 +133,7 @@
                 <!-- RUTA -->
                 <div class="row mb-3">
                     <div class="col-12">
-                        <span class="pull-right d-block text-right"><span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index2.html" class="colorMoradoLight">Inicio</a></span>
+                        <span class="pull-right d-block text-right"><span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="irAInicioPaciente" class="colorMoradoLight">Inicio</a></span>
                             - <span class="colorGlobal">Mis Citas</span></span>
                     </div>
                 </div> 
@@ -440,7 +440,7 @@
                                         <div><input class="modalRadio2" type="radio" name="Pisos" value="1" data-color="#ffc107" for="piso2"
                                                     />
                                             <span class="badge badge-warning">Primer piso</span></div>
-                                        <div><input class="modalRadio3" type="radio" name="Pisos" value="2" data-color="#FF53A9" for="piso2"
+                                        <div><input class="modalRadio3" type="radio" name="Pisos" value="2" data-color="#FF53A9" for="piso3"
                                                     />
                                             <span class="badge badge-danger">Segundo piso</span></div>
                                     </div>

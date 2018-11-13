@@ -25,20 +25,22 @@ $('#telephoneNum').on('change', function () {
 });
 
 //3.- Contraseña
-$('#password').on('change', function () {
-    if (isValidBloodType($('#password'))) {
-        $('#error-contraseña').hide();
-    } else {
-        $('#error-contraseña').show();
-    }
-});
+/*$('#password').on('change', function () {
+    if (isValidPassword($(this))) {
+            $('#error-contraseña').hide();
+        } else if ($(this).val() == '') {
+            $('#error-contraseña').hide();
+        } else {
+            $('#error-contraseña').show();
+        }
+});*/
 
 //Verificar que las contraseñas son iguales
-$('#password2').on('change', function () {
+/*$('#password2').on('change', function () {
 
     areEqualPasswords($('#password'), $('#password2'));
 
-});
+});*/
 
 
 //Métodos de las validaciones

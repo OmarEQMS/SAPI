@@ -1,7 +1,7 @@
 <%-- 
     Document   : preguntasFrecuentes
     Created on : 25/10/2018, 10:48:05 PM
-    Author     : julioguzman
+    Author     : julioguzman, shannonrosas
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -92,7 +92,7 @@
 
                     <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas
                             <c:choose>
-                                <c:when test="${sessionScope.estatus>=1}">
+                                <c:when test="${sessionScope.estatus==1}">
                                     <span class="notificacion">1</span>                        
                                 </c:when>
                             </c:choose>
@@ -133,7 +133,7 @@
 
                                 <div class="row mb-3">
                                     <div class="col-12 text-right">
-                                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index2.html" class="colorMoradoLight">Inicio</a></span>
+                                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="irAInicioPotencial" class="colorMoradoLight">Inicio</a></span>
                                         - <span class="colorGlobal">Preguntas Frecuentes</span>
                                     </div>
                                 </div>

@@ -246,6 +246,94 @@ public class TratamientoPacienteServiceImpl implements TratamientoPacienteServic
         }
         return exito;
     }
+
+    @Override
+    public TratamientoPaciente mostrarTratamientoPacienteIdPaciente(int idPaciente) {
+    
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        
+        TratamientoPaciente tratamientoPaciente = null;
+        
+        //Call del stored procedure
+        String stProcedure="CALL mostrarTratamientoPacienteIdPaciente(?)";
+        
+        try{
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            tratamientoPaciente = new TratamientoPaciente();
+            
+            cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+            
+            rs.next();
+            tratamientoPaciente.setIdTratamientoPaciente(rs.getInt(1));
+            tratamientoPaciente.setIdTipoTratamiento(rs.getInt(2));
+            tratamientoPaciente.setIdPaciente(rs.getInt(3));
+            tratamientoPaciente.setFechaInicio(rs.getDate(4));
+            tratamientoPaciente.setFechaFin(rs.getDate(5));
+            tratamientoPaciente.setRecurrente(rs.getBoolean(6));
+            tratamientoPaciente.setPrevioCirugia(rs.getBoolean(7));
+            tratamientoPaciente.setEstatus(rs.getInt(8));
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+           
+        }catch(SQLException ex){
+            tratamientoPaciente = null;
+           
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+        return tratamientoPaciente; }
+
+    @Override
+    public List<TratamientoPaciente> mostrarTratamientoPacienteIdEspecifico(int idPaciente) {
+     
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        
+        List<TratamientoPaciente> tratamientosPaciente = null;
+        
+        //Call del stored procedure
+        String stProcedure="CALL mostrarTratamientoPacienteIdPaciente(?)";
+        
+        try{
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+              cstmt.setInt(1, idPaciente);
+            tratamientosPaciente = new ArrayList<>();
+            
+            rs = cstmt.executeQuery();
+            TratamientoPaciente tratamientoPaciente;
+            
+            while(rs.next()){
+                tratamientoPaciente = new TratamientoPaciente();
+            tratamientoPaciente.setIdTratamientoPaciente(rs.getInt(1));
+            tratamientoPaciente.setIdTipoTratamiento(rs.getInt(2));
+            tratamientoPaciente.setIdPaciente(rs.getInt(3));
+            tratamientoPaciente.setFechaInicio(rs.getDate(4));
+            tratamientoPaciente.setFechaFin(rs.getDate(5));
+            tratamientoPaciente.setRecurrente(rs.getBoolean(6));
+            tratamientoPaciente.setPrevioCirugia(rs.getBoolean(7));
+            tratamientoPaciente.setEstatus(rs.getInt(8));
+
+                tratamientosPaciente.add(tratamientoPaciente);
+            }
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+            
+        }catch(SQLException ex) {
+           tratamientosPaciente = null;
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+        return tratamientosPaciente;}
 }
 
     

@@ -1,7 +1,7 @@
 <%-- 
     Document   : cuenta
     Created on : 18-oct-2018, 15:41:30
-    Author     : urieldiaz
+    Author     : urieldiaz, julioguzman, shannonrosas
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -39,7 +39,6 @@
         <script src="js/calendarPaciente.js"></script>
         <script src="js/appPaciente.js"></script>
         <script src="js/ajaxPaciente.js"></script>         
-        <script  src="js/validacionesPaciente.js"></script> 
 
     </head>
 
@@ -136,7 +135,7 @@
                             <i class="fas fa-home"></i>
                         </span>
                         <span>
-                            <a href="./index.html" class="colorMoradoLight">Inicio</a>
+                            <a id="irAInicioPaciente" class="colorMoradoLight">Inicio</a>
                         </span>
                         -
                         <span class="colorGlobal">Mi Cuenta</span>
@@ -203,7 +202,7 @@
                                 </div>
                             </div>
                             <!-- 3 -->
-                          
+
                             <!-- 3 -->
                             <div class="form-group row justify-content-center">
                                 <div class="col-4">
@@ -237,7 +236,6 @@
                                             <c:forEach items="${etapas}" var="etapa">  
                                                 <option value="<c:out value='${etapa.idEtapaClinica}'/>" ><c:out value='${etapa.nombre}'/> </option>
                                             </c:forEach>
-
                                         </select>
                                     </div>
 
@@ -260,8 +258,6 @@
                                     <input type="text" class="form-control" id="myPRZ" value="${sessionScope.prz}" readonly/>
                                 </div>
                             </div>
-
-
 
 
                             <!-- 5 -->
@@ -290,13 +286,13 @@
                                 </div>
                             </div>
 
-                        <div class="form-group row justify-content-center mt-4">
-                            <div class="col-4">
-                                <button type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuenta" >
-                                    <i class="fas fa-trash-alt mr-1"></i>
-                                    Eliminar Cuenta</button>
+                            <div class="form-group row justify-content-center mt-4">
+                                <div class="col-4">
+                                    <button type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuenta" >
+                                        <i class="fas fa-trash-alt mr-1"></i>
+                                        Eliminar Cuenta</button>
 
-                            </div>
+                                </div>
 
                         </form>
 
@@ -320,17 +316,14 @@
                                 <div class="form-group col-12">
                                     <label for="name">Contraseña</label>
                                     <input type="password" class="form-control" id="password" placeholder="Ingresa tu nueva contraseña" />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <span class="text-danger" id="error-contraseña">La contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
+                                    <span class="text-danger" id="error-contraseña">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="name">Confirma tu contraseña</label>
                                     <input type="password" class="form-control" id="password-confirm" placeholder="Reingresa tu nueva contraseña" />
+                                    <span class="text-danger" id="error-contraseña2">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                 </div>
                             </div>
                             <div class="row">
@@ -349,7 +342,7 @@
             <!-- ******* FIN MODAL EDITAR CONTRASEÑA ********-->
 
         </div>
-
+        <script type="module" src="js/validacionesPaciente.js"></script> 
     </body>
 
 </html>

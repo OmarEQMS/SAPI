@@ -48,12 +48,9 @@ import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
-import mx.itesm.sapi.service.persona.PersonaServicioImpl;
-
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
-import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
@@ -324,6 +321,7 @@ public class RegistraUsuarioController extends HttpServlet {
         Properties config = new Properties();
 
         try {
+            
             config.load(getClass().getResourceAsStream("/mail.properties"));
             Session session = Session.getInstance(config,
                     new javax.mail.Authenticator() {

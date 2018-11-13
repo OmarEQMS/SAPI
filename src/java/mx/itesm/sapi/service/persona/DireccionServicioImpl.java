@@ -198,10 +198,12 @@ public class DireccionServicioImpl implements DireccionServicio {
             rs = cstmt.executeQuery();
 
             rs.next();
+            
+            exito = rs.getBoolean(1);
+            
             conn.close();
             rs.close();
             cstmt.close();
-            exito = rs.getBoolean(1);
 
         } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())

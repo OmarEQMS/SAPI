@@ -55,7 +55,7 @@ $(document).ready(function () {
 
     //5.- Contraseña
     $('#password').on('change', function(){
-        if(isValidBloodType($('#password'))){
+        if(isValidPassword($('#password'))){
             $('#error-contraseña').hide();
         }else{
             $('#error-contraseña').show();

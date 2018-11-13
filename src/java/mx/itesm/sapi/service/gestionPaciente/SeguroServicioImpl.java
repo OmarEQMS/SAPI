@@ -56,7 +56,7 @@ public class SeguroServicioImpl implements SeguroServicio{
         Connection conn;
         List<Seguro> seguros = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure="";
+        String stProcedure="CALL mostrarListaSeguro()";
         
         ResultSet rs;
         
@@ -70,7 +70,7 @@ public class SeguroServicioImpl implements SeguroServicio{
                 seguro = new Seguro();
                 seguro.setIdSeguro(rs.getInt("idSeguro"));
                 seguro.setNombre(rs.getString("nombre"));
-                seguro.setEstatus(rs.getInt("t"));
+                seguro.setEstatus(rs.getInt("estatus"));
                 
                 seguros.add(seguro);
             }

@@ -1,3 +1,7 @@
+<%-- 
+    Document   : misTratamientos
+    Author     : feror, julioguzman, shannonrosas
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="es">
@@ -121,7 +125,7 @@
                             <i class="fas fa-home"></i>
                         </span>
                         <span>
-                            <a href="./index.html" class="colorMoradoLight">Inicio</a>
+                            <a id="irAInicioPaciente" class="colorMoradoLight">Inicio</a>
                         </span>
                         -
                         <span class="colorGlobal">Mis Tratamientos</span>

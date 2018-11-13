@@ -235,4 +235,44 @@ public class AuditoriaRegistroDiagnosticoServiceImpl implements AuditoriaRegistr
         return exito;
     }
 
+    @Override
+    public AuditoriaRegistroDiagnostico mostrarAuditoriaRegistroDiagnosticoIdRegistro(int idRegistro) {
+     Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        
+        AuditoriaRegistroDiagnostico auditoriaRegistroDiagnostico = null;
+        
+        //Call del stored procedure
+        String stProcedure="CALL mostrarAuditoriaRegistroDiagnosticoIdRegistro(?)";
+        
+        try {    
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            auditoriaRegistroDiagnostico = new AuditoriaRegistroDiagnostico();
+                    
+            cstmt.setInt(1, idRegistro);
+            rs = cstmt.executeQuery();
+            
+            // Asignación de valores devuletos a auditoriaRegistroDiagnostico
+            rs.next();
+            auditoriaRegistroDiagnostico.setIdAuditoriaRegistroDiagnostico(rs.getInt("idAuditoriaRegistroDiagnostico"));
+            auditoriaRegistroDiagnostico.setIdRegistroDiagnostico(rs.getInt("idRegistroDiagnostico"));
+            auditoriaRegistroDiagnostico.setIdEmpleado(rs.getInt("idEmpleado"));
+            auditoriaRegistroDiagnostico.setFecha(rs.getDate("fecha"));
+            auditoriaRegistroDiagnostico.setEstatus(rs.getInt("estatus"));
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+            
+        } catch (SQLException ex) {
+            auditoriaRegistroDiagnostico = null;
+            System.out.println("ID: " + idRegistro);
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+        return auditoriaRegistroDiagnostico;
+    }
+
 }

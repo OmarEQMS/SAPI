@@ -69,7 +69,7 @@ public class TCodificadoServiceImpl implements TCodificadoService {
         List<TCodificado> tCodificados = null;
         
         //Call del store procedure
-        String stProcedure="-----";
+        String stProcedure="CALL mostrarListaTCodificado()";
         
         try{
             
@@ -83,9 +83,9 @@ public class TCodificadoServiceImpl implements TCodificadoService {
             while(rs.next()){
                 
                 tCodificado = new TCodificado();
-                tCodificado.setIdTCodificado(rs.getInt(1));
-                tCodificado.setNombre(rs.getString(2));
-                tCodificado.setEstatus(rs.getInt(3));;
+                tCodificado.setIdTCodificado(rs.getInt("idTCodificado"));
+                tCodificado.setNombre(rs.getString("nombre"));
+                tCodificado.setEstatus(rs.getInt("estatus"));
                 
                 tCodificados.add(tCodificado);
             

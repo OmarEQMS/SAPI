@@ -11,8 +11,8 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import mx.itesm.sapi.bean.gestionPaciente.PacientePotencial;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
-
 import mx.itesm.sapi.util.Conexion;
 
 /**
@@ -26,6 +26,7 @@ public class PacienteServiceImpl implements PacienteService {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
+
         String stProcedure = "CALL mostrarPaciente(?)";
         Paciente paciente = null;
 
@@ -34,9 +35,9 @@ public class PacienteServiceImpl implements PacienteService {
             paciente = new Paciente();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idPaciente);
-             
+
             rs = cstmt.executeQuery();
-            
+
             rs.next();
 
             paciente.setIdPaciente(rs.getInt("idPaciente"));
@@ -49,9 +50,9 @@ public class PacienteServiceImpl implements PacienteService {
             paciente.setPosMenopausia(rs.getInt("posMenopausia"));
             paciente.setEstatus(rs.getInt("estatus"));
 
-            conn.close();
-            cstmt.close();
             rs.close();
+            cstmt.close();
+            conn.close();
         } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
@@ -66,16 +67,26 @@ public class PacienteServiceImpl implements PacienteService {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        
+
         Paciente paciente = new Paciente();
+<<<<<<< HEAD
+
+        String stProcedure = "";
+        try {
+||||||| merged common ancestors
+        
+        String stProcedure ="";
+        try{
+=======
         
         String stProcedure ="CALL mostrarPaciente(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try{
+>>>>>>> origin/Develop
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             rs = cstmt.executeQuery();
             rs.next();
-            
+
             paciente.setIdPaciente(rs.getInt("idPaciente"));
             paciente.setIdCuenta(rs.getInt("idCuenta"));
             paciente.setIdEscolaridad(rs.getInt("idEscolaridad"));
@@ -85,14 +96,12 @@ public class PacienteServiceImpl implements PacienteService {
             paciente.setAltura(rs.getDouble("altura"));
             paciente.setPosMenopausia(rs.getInt("posMenopausia"));
             paciente.setEstatus(rs.getInt("estatus"));
-        
-            
+
             rs.close();
             cstmt.close();
             conn.close();
-            
-            
-        }catch(SQLException ex){
+
+        } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             paciente = null;
@@ -148,32 +157,19 @@ public class PacienteServiceImpl implements PacienteService {
         CallableStatement cstmt;
         int id = -1;
 
-        
-        String stPrcedure="CALL agregarPaciente(?,?,?,?,?,?,?)";
-        try{
+        String stPrcedure = "CALL agregarPaciente(?,?,?,?,?,?,?)";
+        try {
 
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stPrcedure);
 
             cstmt.setInt(1, paciente.getIdCuenta());
-
-            /* 
-            cstmt.setInt(2, paciente.getIdEscolaridad());
-            cstmt.setString(3, paciente.getPrz());
-            cstmt.setString(4, paciente.getExpediente());
-            cstmt.setDouble(5, paciente.getPeso() );
-            cstmt.setDouble(6, paciente.getAltura());
-            cstmt.setInt(7, paciente.getPosMenopausia());
-            
-             */
-
             cstmt.setInt(2, 1);
             cstmt.setString(3, paciente.getPrz());
             cstmt.setString(4, paciente.getExpediente());
-            cstmt.setDouble(5, paciente.getPeso() );
+            cstmt.setDouble(5, paciente.getPeso());
             cstmt.setDouble(6, paciente.getAltura());
             cstmt.setInt(7, paciente.getPosMenopausia());
-            
 
             rs = cstmt.executeQuery();
             rs.next();
@@ -194,7 +190,8 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public boolean actualizarPaciente(Paciente paciente) {
+    public boolean actualizarPaciente(Paciente paciente
+    ) {
         Connection conn;
         CallableStatement cstmt;
         String stProcedure = "CALL actualizarPaciente(?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -230,7 +227,8 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public boolean borradoLogicoPaciente(int idPaciente) {
+    public boolean borradoLogicoPaciente(int idPaciente
+    ) {
         Connection conn;
         CallableStatement cstmt;
         String stProcedure = "CALL borradoLogicoPaciente(?)";
@@ -259,7 +257,8 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public int agregarPacienteRegistro(int idCuenta) {
+    public int agregarPacienteRegistro(int idCuenta
+    ) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
@@ -285,8 +284,201 @@ public class PacienteServiceImpl implements PacienteService {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             id = -1;
+        }     
+               
+        return id;
+    }
+
+    @Override
+    public List<PacientePotencial> mostrarPacientesPotenciales() {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+
+        List<PacientePotencial> pacientes = null;
+
+        String stProcedure = "CALL mostrarPotenciales()";
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            rs = cstmt.executeQuery();
+
+            pacientes = new ArrayList<>();
+            PacientePotencial paciente;
+
+            while (rs.next()) {
+                paciente = new PacientePotencial();
+
+                paciente.setIdPaciente(rs.getInt("idPaciente"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setPrimerApellido(rs.getString("primerApellido"));
+                paciente.setSegundoApellido(rs.getString("segundoApellido"));
+                paciente.setEstadoPaciente(rs.getString("estado"));
+                paciente.setFechaRegistro(rs.getDate("fecha"));
+                paciente.setCurp(rs.getString("curp"));
+                paciente.setTelefono(rs.getString("telefono"));
+
+                pacientes.add(paciente);
+            }
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            pacientes = null;
+        }
+        return pacientes;
+    }
+
+    @Override
+    public List<PacientePotencial> mostrarPacientesPotencialesAprobados() {
+
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+
+        List<PacientePotencial> pacientes = null;
+
+        String stProcedure = "CALL mostrarPacientesAprobados()";
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            rs = cstmt.executeQuery();
+
+            pacientes = new ArrayList<>();
+            PacientePotencial paciente;
+
+            while (rs.next()) {
+                paciente = new PacientePotencial();
+
+                paciente.setIdPaciente(rs.getInt("idPaciente"));
+                paciente.setPrz(rs.getString("prz"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setPrimerApellido(rs.getString("primerApellido"));
+                paciente.setSegundoApellido(rs.getString("segundoApellido"));
+                paciente.setTipoPaciente(rs.getInt("segundaOpinion"));
+                paciente.setTieneResultados(rs.getInt("resultados"));
+                paciente.setFechaRegistro(rs.getDate("fechaProgramada"));
+                paciente.setTelefono(rs.getString("telefono"));
+
+                pacientes.add(paciente);
+            }
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            pacientes = null;
+        }
+        return pacientes;
+
+    }
+
+    @Override
+    public int mostrarColor(int idPaciente
+    ) {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+        int id = -1;
+
+        String stPrcedure = "CALL getColor(?)";
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stPrcedure);
+
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+            id = rs.getInt(1);
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
         }
 
         return id;
+    }
+
+    @Override
+    public int obtenerCuenta(int idPaciente) {
+        
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+        int id = -1;
+
+        String stPrcedure = "CALL obtenerCuenta(?)";
+        
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stPrcedure);
+
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+            id = rs.getInt(1);
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
+        }
+
+        return id;
+        
+    }
+
+    @Override
+    public int obtenerPersona(int idCuenta) {
+        
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+        int id = -1;
+
+        String stPrcedure = "CALL obtenerPersona(?)";
+        
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stPrcedure);
+
+            cstmt.setInt(1, idCuenta);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+            id = rs.getInt(1);
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
+        }
+
+        return id;
+        
     }
 }

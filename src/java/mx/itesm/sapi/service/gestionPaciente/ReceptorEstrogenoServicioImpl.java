@@ -58,7 +58,7 @@ public class ReceptorEstrogenoServicioImpl implements ReceptorEstrogenoServicio{
         Connection conn;
         List<ReceptorEstrogeno> listReceptorEstrogeno = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure="";
+        String stProcedure="CALL mostrarListaReceptorEstrogeno()";
         
         ResultSet rs;
         

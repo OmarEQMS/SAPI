@@ -28,10 +28,11 @@ public class ProgramaPacienteServicioImpl implements ProgramaPacienteServicio {
 
         ProgramaPaciente programaPaciente = new ProgramaPaciente();
 
-        String stProcedure = "";
+        String stProcedure = "CALL mostrarProgramaPaciente(?)";
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idProgramaPaciente);
             rs = cstmt.executeQuery();
             rs.next();
 
@@ -58,13 +59,14 @@ public class ProgramaPacienteServicioImpl implements ProgramaPacienteServicio {
         Connection conn;
         List<ProgramaPaciente> listProgramaPaciente = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL mostrarProgramaPaciente()";
 
         ResultSet rs;
 
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
+
             rs = cstmt.executeQuery();
             ProgramaPaciente programaPaciente;
 
@@ -93,47 +95,44 @@ public class ProgramaPacienteServicioImpl implements ProgramaPacienteServicio {
 
     @Override
     public int agregarProgramaPaciente(ProgramaPaciente programaPaciente) {
-        Connection conn; 
+        Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
         int id = -1;
-        String stPrcedure="";
-        try{
+        String stPrcedure = "CALL agregarProgramaPaciente(?, ?, ?, ?)";
+        try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stPrcedure);
-            
-            cstmt.setInt(1, programaPaciente.getIdProgramaPaciente());
-            cstmt.setInt(2, programaPaciente.getIdPrograma());
-            cstmt.setInt(3, programaPaciente.getIdPaciente());
-            cstmt.setTimestamp(4, programaPaciente.getInicio());
-            cstmt.setTimestamp(5, programaPaciente.getFin());
-            cstmt.setInt(6, programaPaciente.getEstatus() );
-          
-            
+
+            cstmt.setInt(1, programaPaciente.getIdPrograma());
+            cstmt.setInt(2, programaPaciente.getIdPaciente());
+            cstmt.setTimestamp(3, programaPaciente.getInicio());
+            cstmt.setTimestamp(4, programaPaciente.getFin());
+
             cstmt.executeUpdate();
             rs = cstmt.getGeneratedKeys();
             rs.next();
-            id=rs.getInt(1);
-            
+            id = rs.getInt(1);
+
             rs.close();
             cstmt.close();
             conn.close();
-            
-        }catch(SQLException ex){
-            
+
+        } catch (SQLException ex) {
+
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             id = -1;
         }
-        
-        return id; 
+
+        return id;
     }
 
     @Override
     public boolean borradoLogicoProgramaPaciente(int idProgramaAtencion) {
         Connection conn;
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL borradoLogicoProgramaPaciente(?)";
         boolean exito = false;
         ResultSet rs;
         try {
@@ -163,32 +162,104 @@ public class ProgramaPacienteServicioImpl implements ProgramaPacienteServicio {
     public boolean actualizarProgramaPaciente(ProgramaPaciente programaPaciente) {
         Connection conn;
         CallableStatement cstmt;
-        String stProcedure = "";
-        boolean exito= false;
+        String stProcedure = "CALL actualizarProgramaPaciente(?, ?, ?, ?)";
+        boolean exito = false;
         ResultSet rs;
-        try{
+        try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            cstmt.setInt(1, programaPaciente.getIdProgramaPaciente());
-            cstmt.setInt(2, programaPaciente.getIdPrograma());
-            cstmt.setInt(3, programaPaciente.getIdPaciente());
-            cstmt.setTimestamp(4, programaPaciente.getInicio());
-            cstmt.setTimestamp(5, programaPaciente.getFin());
-            cstmt.setInt(6, programaPaciente.getEstatus() );
-            
-            
+
+            cstmt.setInt(1, programaPaciente.getIdPrograma());
+            cstmt.setInt(2, programaPaciente.getIdPaciente());
+            cstmt.setTimestamp(3, programaPaciente.getInicio());
+            cstmt.setTimestamp(4, programaPaciente.getFin());
+
             rs = cstmt.executeQuery();
-            
+
             exito = rs.getBoolean(1);
-            
+
             rs.close();
             cstmt.close();
             conn.close();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
-            exito=false;
+            exito = false;
         }
         return exito;
+    }
+
+    @Override
+    public ProgramaPaciente mostrarProgramaPacienteIdPaciente(int idPaciente) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+
+        ProgramaPaciente programaPaciente = new ProgramaPaciente();
+
+        String stProcedure = "CALL mostrarProgramaPacienteIdPaciente(?)";
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            programaPaciente.setIdProgramaPaciente(rs.getInt("idProgramaPaciente"));
+            programaPaciente.setIdPrograma(rs.getInt("idPrograma"));
+            programaPaciente.setIdPaciente(rs.getInt("idPaciente"));
+            programaPaciente.setInicio(rs.getTimestamp("inicio"));
+            programaPaciente.setFin(rs.getTimestamp("fin"));
+            programaPaciente.setEstatus(rs.getInt("estatus"));
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            programaPaciente = null;
+        }
+        return programaPaciente;
+    }
+
+    @Override
+    public List<ProgramaPaciente> mostrarProgramaPacienteSeguroIdEspecifico(int idPaciente) {
+        Connection conn;
+        List<ProgramaPaciente> listProgramaPaciente = new ArrayList<>();
+        CallableStatement cstmt;
+        String stProcedure = "CALL mostrarProgramaPacienteIdPaciente(?)";
+
+        ResultSet rs;
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+            ProgramaPaciente programaPaciente;
+
+            while (rs.next()) {
+                programaPaciente = new ProgramaPaciente();
+                programaPaciente.setIdProgramaPaciente(rs.getInt("idProgramaPaciente"));
+                programaPaciente.setIdPrograma(rs.getInt("idPrograma"));
+                programaPaciente.setIdPaciente(rs.getInt("idPaciente"));
+                programaPaciente.setInicio(rs.getTimestamp("inicio"));
+                programaPaciente.setFin(rs.getTimestamp("fin"));
+                programaPaciente.setEstatus(rs.getInt("estatus"));
+
+                listProgramaPaciente.add(programaPaciente);
+            }
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            listProgramaPaciente = null;
+        }
+        return listProgramaPaciente;
     }
 }

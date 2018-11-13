@@ -13,11 +13,19 @@ import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
  * @author Diego Montoya
  */
 public interface RegistroDiagnosticoService {
+
     public int agregarRegistroDiagnostico(RegistroDiagnostico registroDiagnostico);
+
     public RegistroDiagnostico mostrarRegistroDiagnostico(int idRegistroDiagnostico);
+
     public RegistroDiagnostico mostrarRegistroDiagnosticoPaciente(int idPaciente);
+
     List<RegistroDiagnostico> mostrarRegistroDiagnostico();
+
+    List<RegistroDiagnostico> mostrarRegistroDiagnosticoIdEspecifico(int idPaciente);
+
     public boolean actualizarRegistroDiagnostico(RegistroDiagnostico registroDiagnostico);
+
     public boolean borradoLogicoRegistroDiagnostico(int idRegistroDiagnostico);
-    
+
 }

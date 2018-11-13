@@ -57,7 +57,7 @@ public class TipoHistologicoServicioImpl implements TipoHistologicoServicio{
         Connection conn;
         List<TipoHistologico> listTipoHistologico = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure="";
+        String stProcedure="CALL mostrarListaTipoHistologico()";
         
         ResultSet rs;
         

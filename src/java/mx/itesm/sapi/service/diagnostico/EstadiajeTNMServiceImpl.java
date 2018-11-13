@@ -18,45 +18,44 @@ import mx.itesm.sapi.util.Conexion;
  *
  * @author Diego Montoya
  */
-public class EstadiajeTNMServiceImpl implements EstadiajeTNMService{
+public class EstadiajeTNMServiceImpl implements EstadiajeTNMService {
 
     @Override
     public int agregarEstadiajeTNM(EstadiajeTNM estadiajeTNM) {
-                
+
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        
+
         int id = -1;
-        
+
         //Aquí va el call del procedure
-        String stProcedure="-------";
-        
+        String stProcedure = "CALL agregarEstadiajeTNM(?, ?, ?, ?, ? ,?)";
+
         try {
-            
+
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            
-            cstmt.setInt(1, estadiajeTNM.getIdRegistroTNM());
-            cstmt.setInt(2, estadiajeTNM.getIdTCodificado());
-            cstmt.setInt(3, estadiajeTNM.getIdNCodificado());
-            cstmt.setInt(4, estadiajeTNM.getIdMCodificado());
-            cstmt.setDouble(5, estadiajeTNM.gettClinico());
-            cstmt.setDouble(6, estadiajeTNM.gettImagen());
-            cstmt.setInt(7, estadiajeTNM.getMetastasis());
-            cstmt.setInt(8, estadiajeTNM.getEstatus());
-            
+
+            cstmt.setInt(1, estadiajeTNM.getIdTCodificado());
+            cstmt.setInt(2, estadiajeTNM.getIdNCodificado());
+            cstmt.setInt(3, estadiajeTNM.getIdMCodificado());
+            cstmt.setDouble(4, estadiajeTNM.gettClinico());
+            cstmt.setDouble(5, estadiajeTNM.gettImagen());
+            cstmt.setInt(6, estadiajeTNM.getMetastasis());
+            cstmt.setInt(7, estadiajeTNM.getIdTipoHistologico());
+
             cstmt.executeQuery();
-            
+
             rs = cstmt.getGeneratedKeys();
             rs.next();
-            
+
             id = rs.getInt(1);
-            
+
             rs.close();
             cstmt.close();
             conn.close();
-            
+
         } catch (SQLException ex) {
             id = -1;
             System.out.println("IdRegistroTNM: " + estadiajeTNM.getIdRegistroTNM());
@@ -75,40 +74,42 @@ public class EstadiajeTNMServiceImpl implements EstadiajeTNMService{
 
     @Override
     public EstadiajeTNM mostrarEstadiajeTNM(int idRegistroTNM) {
-                
+
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        
+
         EstadiajeTNM estadiajeTNM = null;
-        
+
         //Call del stored procedure
-        String stProcedure="-----";
-        
-        try {    
+        String stProcedure = "CALL mostrarEstadiajeTNM(?)";
+
+        try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            
+
             estadiajeTNM = new EstadiajeTNM();
-            
+
             cstmt.setInt(1, idRegistroTNM);
             rs = cstmt.executeQuery();
-            
+
             // Asignación de valores devuletos a estadiajeTNM
             rs.next();
             estadiajeTNM.setIdRegistroTNM(rs.getInt("idAuditoriaRegistroDiagnostico"));
             estadiajeTNM.setIdTCodificado(rs.getInt("idTCodificado"));
             estadiajeTNM.setIdNCodificado(rs.getInt("idNCodificado"));
             estadiajeTNM.setIdMCodificado(rs.getInt("idMCodificado"));
+            estadiajeTNM.setIdTipoHistologico(rs.getInt("idHistologico"));
             estadiajeTNM.settClinico(rs.getDouble("tClinico"));
             estadiajeTNM.settImagen(rs.getDouble("tImagen"));
             estadiajeTNM.setMetastasis(rs.getInt("Metastasis"));
             estadiajeTNM.setEstatus(rs.getInt("estatus"));
             
+
             rs.close();
             cstmt.close();
             conn.close();
-            
+
         } catch (SQLException ex) {
             estadiajeTNM = null;
             System.out.println("ID: " + idRegistroTNM);
@@ -120,52 +121,54 @@ public class EstadiajeTNMServiceImpl implements EstadiajeTNMService{
 
     @Override
     public List<EstadiajeTNM> mostrarEstadiajeTNM() {
-        
+
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        
+
         List<EstadiajeTNM> estadiajesTNM = null;
-        
+
         //Call del store procedure
-        String stProcedure="-----";
-        
-        try{
-            
+        String stProcedure = "CALL mostrarListaEstadiajeTNM()";
+
+        try {
+
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            
+
             estadiajesTNM = new ArrayList<>();
-            
+
             rs = cstmt.executeQuery();
             EstadiajeTNM estadiajeTNM;
-            
-            while(rs.next()){
-                
+
+            while (rs.next()) {
+
                 estadiajeTNM = new EstadiajeTNM();
-                estadiajeTNM.setIdRegistroTNM(rs.getInt(1));
-                estadiajeTNM.setIdTCodificado(rs.getInt(2));
-                estadiajeTNM.setIdNCodificado(rs.getInt(3));
-                estadiajeTNM.setIdMCodificado(rs.getInt(4));
-                estadiajeTNM.settClinico(rs.getDouble(5));
-                estadiajeTNM.settImagen(rs.getDouble(6));
-                estadiajeTNM.setMetastasis(rs.getInt(7));
-                estadiajeTNM.setEstatus(rs.getInt(8));;
-                
+                estadiajeTNM.setIdRegistroTNM(rs.getInt("idAuditoriaRegistroDiagnostico"));
+                estadiajeTNM.setIdTCodificado(rs.getInt("idTCodificado"));
+                estadiajeTNM.setIdNCodificado(rs.getInt("idNCodificado"));
+                estadiajeTNM.setIdMCodificado(rs.getInt("idMCodificado"));
+                estadiajeTNM.setIdTipoHistologico(rs.getInt("idHistologico"));
+                estadiajeTNM.settClinico(rs.getDouble("tClinico"));
+                estadiajeTNM.settImagen(rs.getDouble("tImagen"));
+                estadiajeTNM.setMetastasis(rs.getInt("Metastasis"));
+                estadiajeTNM.setEstatus(rs.getInt("estatus"));
+               
+
                 estadiajesTNM.add(estadiajeTNM);
-            
+
             }
-            
+
             rs.close();
             cstmt.close();
             conn.close();
-            
-        }catch(Exception ex){
+
+        } catch (Exception ex) {
             estadiajesTNM = null;
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
         }
-        
+
         return estadiajesTNM;
     }
 
@@ -175,36 +178,35 @@ public class EstadiajeTNMServiceImpl implements EstadiajeTNMService{
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-     
+
         boolean exito = false;
-        
+
         //Aquí va el call del procedure
-        String stProcedure="-------";
-        
+        String stProcedure = "CALL actualizarEstadiajeTNM(?, ?, ?, ?, ? ,?, ?)";
+
         try {
-            
+
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            
-            cstmt.setInt(1, estadiajeTNM.getIdRegistroTNM());
-            cstmt.setInt(2, estadiajeTNM.getIdTCodificado());
-            cstmt.setInt(3, estadiajeTNM.getIdNCodificado());
-            cstmt.setInt(4, estadiajeTNM.getIdMCodificado());
-            cstmt.setDouble(5, estadiajeTNM.gettClinico());
-            cstmt.setDouble(6, estadiajeTNM.gettImagen());
-            cstmt.setInt(7, estadiajeTNM.getMetastasis());
-            cstmt.setInt(8, estadiajeTNM.getEstatus());
-            
+
+            cstmt.setInt(1, estadiajeTNM.getIdTCodificado());
+            cstmt.setInt(2, estadiajeTNM.getIdNCodificado());
+            cstmt.setInt(3, estadiajeTNM.getIdMCodificado());
+            cstmt.setDouble(4, estadiajeTNM.gettClinico());
+            cstmt.setDouble(5, estadiajeTNM.gettImagen());
+            cstmt.setInt(6, estadiajeTNM.getMetastasis());
+            cstmt.setInt(7, estadiajeTNM.getIdTipoHistologico());
+
             rs = cstmt.executeQuery();
-            
+
             rs.next();
-            
+
             exito = rs.getBoolean(1);
-            
+
             rs.close();
             cstmt.close();
             conn.close();
-            
+
         } catch (SQLException ex) {
             exito = false;
             System.out.println("idRegistroTNM: " + estadiajeTNM.getIdRegistroTNM());
@@ -221,34 +223,34 @@ public class EstadiajeTNMServiceImpl implements EstadiajeTNMService{
 
     @Override
     public boolean borradoLogicoEstadiajeTNM(int idRegistroTNM) {
-        
+
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        
+
         boolean exito = false;
-        
+
         //Call del store procedure
-        String stProcedure="";
-        
-        try{
-            
+        String stProcedure = "CALL borradoLogicoEstadiajeTNM(?)";
+
+        try {
+
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            
-            cstmt.setInt(1,idRegistroTNM);
-            
+
+            cstmt.setInt(1, idRegistroTNM);
+
             rs = cstmt.executeQuery();
-            
+
             rs.next();
-            
+
             exito = rs.getBoolean(1);
-            
+
             rs.close();
             cstmt.close();
             conn.close();
-            
-        }catch(SQLException ex){
+
+        } catch (SQLException ex) {
             exito = false;
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));

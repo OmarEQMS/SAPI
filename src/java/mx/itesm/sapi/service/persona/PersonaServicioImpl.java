@@ -9,11 +9,13 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.util.Conexion;
 
@@ -100,7 +102,7 @@ public class PersonaServicioImpl implements PersonaServicio {
 
             System.out.println("PersonaServicioImpl mostrarPersona");
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
-                    .concat(ex.getMessage()));            
+                    .concat(ex.getMessage()));
         }
         return persona;
     }
@@ -148,7 +150,7 @@ public class PersonaServicioImpl implements PersonaServicio {
             conn.close();
 
         } catch (SQLException ex) {
-            
+
             System.out.println("PersonaServicioImpl mostrarPersona Lista");
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
@@ -179,7 +181,6 @@ public class PersonaServicioImpl implements PersonaServicio {
     IN in_imagen MEDIUMBLOB, IN in_edad INT*/
             //Aquí van los sets
             //cstmt.setInt(1,citaEmpleado.getIdCitaEmpleado());
-
             cstmt.setString(1, persona.getNombre());
             cstmt.setString(2, persona.getPrimerApellido());
             cstmt.setString(3, persona.getSegundoApellido());
@@ -188,8 +189,8 @@ public class PersonaServicioImpl implements PersonaServicio {
             cstmt.setString(6, persona.getCorreo());
 
             cstmt.setDate(7, persona.getFechaNacimiento());
-            cstmt.setInt(8, 1);
-            cstmt.setInt(9, 1);
+            cstmt.setInt(8, persona.getIdSexo());
+            cstmt.setInt(9, persona.getIdTipoSangre());
             cstmt.setInt(10, persona.getIdMunicipio());
             cstmt.setInt(11, persona.getIdEstadoCivil());
             cstmt.setInt(12, persona.getIdDireccion());
@@ -198,6 +199,9 @@ public class PersonaServicioImpl implements PersonaServicio {
 
             //Aquí va el registerOutParameter
             //cstmt.registerOutParameter(12,Types.INTEGER);
+            
+            System.out.println("MENSAJE: ".concat(cstmt.toString()));
+            
             rs = cstmt.executeQuery();
             rs.next();
             id = rs.getInt(1);
@@ -231,7 +235,7 @@ public class PersonaServicioImpl implements PersonaServicio {
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, persona.getIdPersona());
             cstmt.setString(2, persona.getNombre());
-            
+
             cstmt.setString(3, persona.getPrimerApellido());
             cstmt.setString(4, persona.getSegundoApellido());
             cstmt.setString(5, persona.getCurp());
@@ -244,7 +248,6 @@ public class PersonaServicioImpl implements PersonaServicio {
             cstmt.setInt(12, persona.getIdEstadoCivil());
             cstmt.setInt(13, persona.getIdDireccion());
             cstmt.setInt(14, persona.getEdad());
-
 
             rs = cstmt.executeQuery();
 
@@ -285,7 +288,7 @@ public class PersonaServicioImpl implements PersonaServicio {
 
     @Override
     public boolean actualizarSexoPersona(int idPersona, int idSexo) {
-         Connection conn;
+        Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
         boolean exito;
@@ -298,7 +301,7 @@ public class PersonaServicioImpl implements PersonaServicio {
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idPersona);
             cstmt.setInt(2, idSexo);
-                        
+
             rs = cstmt.executeQuery();
 
             rs.next();
@@ -325,7 +328,7 @@ public class PersonaServicioImpl implements PersonaServicio {
         try {
             personas = new ArrayList<>();
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall("CALL mostrarListaMedicos()");
+            cstmt = conn.prepareCall("CALL mostrarListaMedicos(?)");
             rs = cstmt.executeQuery();
             Persona persona;
 
@@ -349,7 +352,7 @@ public class PersonaServicioImpl implements PersonaServicio {
                 persona.setEstatus(rs.getInt("estatus"));
 
                 personas.add(persona);
-                
+
                 System.out.println("personaId: " + persona.getIdPersona());
 
             }
@@ -359,7 +362,7 @@ public class PersonaServicioImpl implements PersonaServicio {
             conn.close();
 
         } catch (SQLException ex) {
-            
+
             System.out.println("PersonaServicioImpl mostrarPersona Lista");
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
@@ -369,6 +372,222 @@ public class PersonaServicioImpl implements PersonaServicio {
         return personas;
 
     }
+
+    @Override
+    public List<Persona> mostrarMedicosRadiologos() {
+
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        List<Persona> personas = null;
+
+        try {
+            personas = new ArrayList<>();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL mostrarMedicoRadiologo()");
+            rs = cstmt.executeQuery();
+            Persona persona;
+
+            while (rs.next()) {
+
+                persona = new Persona();
+                persona.setNombre(rs.getString("nombre"));
+                persona.setPrimerApellido(rs.getString("primerApellido"));
+                persona.setSegundoApellido(rs.getString("segundoApellido"));
+
+                personas.add(persona);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+
+        return personas;
+    }
+
+    public Persona mostrarPersonaPorIdPaciente(int idPaciente) {
+
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        Persona persona = null;
+
+        //Call del store procedure
+        String stProcedure = "CALL mostrarPersonaPorIdPaciente(?)";
+
+        try {
+            persona = new Persona();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+
+            rs.next();
+            persona.setNombre(rs.getString("nombre"));
+            persona.setIdPersona(rs.getInt("idPersona"));
+            persona.setPrimerApellido(rs.getString("primerApellido"));
+            persona.setSegundoApellido(rs.getString("segundoApellido"));
+            persona.setCurp(rs.getString("curp"));
+            persona.setTelefono(rs.getString("telefono"));
+            persona.setCorreo(rs.getString("correo"));
+            persona.setFechaNacimiento(rs.getDate("fechaNacimiento"));
+            persona.setIdSexo(rs.getInt("idSexo"));
+            persona.setIdTipoSangre(rs.getInt("idTipoSangre"));
+            persona.setIdMunicipio(rs.getInt("idMunicipio"));
+            persona.setIdEstadoCivil(rs.getInt("idEstadoCivil"));
+            persona.setIdDireccion(rs.getInt("idDireccion"));
+            persona.setEdad(rs.getInt("edad"));
+            persona.setEstatus(rs.getInt("estatus"));
+        } catch (Exception ex) {
+            System.out.println("PersonaServicioImpl mostrarPersona");
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+
+        return persona;
+
+    }
+
+    @Override
+    public InformacionGeneralPersona mostrarInformacionGeneralPersona(int idPaciente) {
+
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        InformacionGeneralPersona informacion = null;
+
+        try {
+            informacion = new InformacionGeneralPersona();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL mostrarInformacionGeneral(?)");
+            cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+
+            rs.next();
+
+            informacion.setNombre(rs.getString("nombre"));
+            informacion.setCurp(rs.getString("curp"));
+            informacion.setFechaNacimiento(rs.getDate("fechaNacimiento"));
+            informacion.setPrimerApellido(rs.getString("primerApellido"));
+            informacion.setSegundoApellido(rs.getString("segundoApellido"));
+            informacion.setUsuario(rs.getString("usuario"));
+            informacion.setIdEstadoCivil(rs.getInt("idEstadoCivil"));
+            informacion.setColonia(rs.getString("colonia"));
+            informacion.setCalle(rs.getString("calle"));
+            informacion.setNoInt(rs.getString("noInterior"));
+            informacion.setNoExt(rs.getString("noExterior"));
+            informacion.setIdEstado(rs.getInt("idEstado"));
+            informacion.setIdMunicipio(rs.getInt("idMunicipio"));
+            informacion.setTelefono(rs.getString("telefono"));
+            informacion.setCorreo(rs.getString("correo"));
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println("PersonaServicioImpl mostrarInformacionGeneral");
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            informacion = null;
+        }
+
+        return informacion;
+    }
+
+    @Override
+    public boolean actualizarInformacionGeneralPersona(int idPaciente, InformacionGeneralPersona persona) {
+
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+        boolean exito = false;
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL actualizarInformacionGeneral(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+            cstmt.setInt(1, idPaciente);
+            cstmt.setString(2, persona.getNombre());
+            cstmt.setString(3, persona.getPrimerApellido());
+            cstmt.setString(4, persona.getSegundoApellido());
+            cstmt.setString(5, persona.getCurp());
+            cstmt.setDate(6, persona.getFechaNacimiento());
+            cstmt.setString(7, persona.getUsuario());
+            cstmt.setInt(8, persona.getIdEstadoCivil());
+            cstmt.setString(9, persona.getCalle());
+            cstmt.setString(10, persona.getNoInt());
+            cstmt.setString(11, persona.getNoExt());
+            cstmt.setInt(12, persona.getIdEstado());
+            cstmt.setInt(13, persona.getIdMunicipio());
+            cstmt.setString(14, persona.getTelefono());
+            cstmt.setString(15, persona.getCorreo());
+            cstmt.setString(16, persona.getColonia());
+
+            rs = cstmt.executeQuery();
+
+            rs.next();
+
+            int idPacienteReg = rs.getInt("idPaciente");
+
+            if (idPacienteReg == idPaciente) {
+                exito = true;
+            }
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println("PersonaServicioImpl mostrarInformacionGeneral");
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+        }
+
+        return exito;
+    }
+
+    @Override
+    public List<Persona> mostrarMedicosAdscritos() {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        List<Persona> personas = null;
+
+        try {
+            personas = new ArrayList<>();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL mostrarMedicoAdscrito()");
+            rs = cstmt.executeQuery();
+            Persona persona;
+
+            while (rs.next()) {
+
+                persona = new Persona();
+                persona.setNombre(rs.getString("nombre"));
+                persona.setPrimerApellido(rs.getString("primerApellido"));
+                persona.setSegundoApellido(rs.getString("segundoApellido"));
+
+                personas.add(persona);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+
+        return personas;
+    }
+
     
         @Override
     public boolean existsCorreo(String usuario) {
@@ -393,5 +612,5 @@ public class PersonaServicioImpl implements PersonaServicio {
         }
 
     }
-    
+
 }

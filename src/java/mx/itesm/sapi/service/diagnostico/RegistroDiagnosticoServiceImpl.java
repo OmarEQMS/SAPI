@@ -77,7 +77,7 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
         RegistroDiagnostico registroDiagnostico = null;
         
         //Call del stored procedure
-        String stProcedure="-----";
+        String stProcedure="CALL mostrarRegistroDiagnostico(?)";
         
         try {    
             
@@ -121,7 +121,7 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
         List<RegistroDiagnostico> registrosDiagnostico = null;
         
         //Call del store procedure
-        String stProcedure="-----";
+        String stProcedure="CALL mostrarRegistroDiagnostico()";
         
         try{
             
@@ -170,12 +170,12 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
         boolean exito = false;
         
         //Aquí va el call del procedure
-        //String stProcedure="-------";
+        String stProcedure="CALL actualizarRegistroDiagnostico(?,?,?,?,?,?)";
         
         try {
             
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall("CALL actualizarRegistroDiagnostico(?,?,?,?,?,?)");
+            cstmt = conn.prepareCall(stProcedure);
             
             cstmt.setInt(1, registroDiagnostico.getIdRegistroDiagnostico());
             cstmt.setDate(2, registroDiagnostico.getFecha());
@@ -221,7 +221,7 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
         boolean exito = false;
                 
         //Call del store procedure
-        String stProcedure="";
+        String stProcedure="CALL borradoLogicoRegistroDiagnostico(?)";
         
         try{
             
@@ -290,6 +290,55 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
                     .concat(ex.getMessage()));
         }
         return registroDiagnostico;
+    }
+
+   
+    @Override
+    public List<RegistroDiagnostico> mostrarRegistroDiagnosticoIdEspecifico(int idPaciente) {
+     Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        
+        List<RegistroDiagnostico> registrosDiagnostico = null;
+        
+        //Call del store procedure
+        String stProcedure="CALL mostrarRegistroDiagnosticoPaciente(?)";
+        
+        try{
+            
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            registrosDiagnostico = new ArrayList<>();
+            cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+            RegistroDiagnostico registroDiagnostico;
+            
+            while(rs.next()){
+                
+                registroDiagnostico = new RegistroDiagnostico();
+                registroDiagnostico.setIdRegistroDiagnostico(rs.getInt(1));
+                registroDiagnostico.setFecha(rs.getDate(2));
+                registroDiagnostico.setPrevioDiagnostico(rs.getInt(3));
+                registroDiagnostico.setIdPaciente(rs.getInt(4));
+                registroDiagnostico.setIdRegistroDiagnostico(rs.getInt(5));
+                registroDiagnostico.setIdRegistroTNM(rs.getInt(6));
+                registroDiagnostico.setEstatus(rs.getInt(7));
+                
+                registrosDiagnostico.add(registroDiagnostico);
+            
+            }
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+                                
+        }catch(Exception ex){
+            registrosDiagnostico = null;
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+        
+        return registrosDiagnostico;
     }
 
 }

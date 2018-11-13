@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialVista;
 import mx.itesm.sapi.util.Conexion;
 
 /**
@@ -267,6 +268,112 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
            documentoInicial = null;
         }   
         return documentoInicial;   
+    }
+
+    @Override
+    public DocumentoInicialVista mostrarDocumentoInicialVista(int idDocumentoInicialVista,int idPaciente, int siguiente) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarDocumentoInicialVerDocumento(?,?,?)";
+        DocumentoInicialVista documentoInicial = null;
+     
+        try {
+            conn = Conexion.getConnection();
+            documentoInicial = new DocumentoInicialVista();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idDocumentoInicialVista);
+            cstmt.setInt(2, idPaciente);
+            cstmt.setInt(3, siguiente);
+                  
+            rs = cstmt.executeQuery();
+            rs.next();
+            documentoInicial.setIdDocumentoInicial(rs.getInt("idDocumentoInicial"));
+            documentoInicial.setTipoDocumento(rs.getString("TipoDocumento"));
+            documentoInicial.setTipoArchivo(rs.getString("tipo"));  
+            documentoInicial.setNombreDocumento(rs.getString("nombre"));
+            documentoInicial.setArchivo(rs.getBinaryStream("archivo"));
+            documentoInicial.setAprobado(rs.getInt("aprobado"));
+            
+            conn.close();
+            cstmt.close();
+            rs.close();
+            
+        } catch (SQLException ex) {
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                   .concat(ex.getMessage()));
+           documentoInicial = null;
+        }   
+        return documentoInicial;   
+    }
+
+    @Override
+    public boolean agregarAprobacionDocumento(int idDocumentoInicial) {
+                               
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL agregarAprobacionDocumento(?)";
+        boolean respuesta = false;
+     
+        try {
+            conn = Conexion.getConnection();
+            
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idDocumentoInicial);
+            
+                  
+            rs = cstmt.executeQuery();
+            rs.next();
+            respuesta = (rs.getInt("CAMBIO") == 1);
+           
+            
+            conn.close();
+            cstmt.close();
+            rs.close();
+            
+        } catch (SQLException ex) {
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                   .concat(ex.getMessage()));
+           respuesta = false;
+        }   
+        return respuesta;   
+    }
+
+    @Override
+    public boolean agregarRechazoDocumento(int idDocumentoInicial,String comentario) {
+                                
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL agregarRechazoDocumento(?,?)";
+        boolean respuesta = false;
+     
+        try {
+            conn = Conexion.getConnection();
+            
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idDocumentoInicial);
+            cstmt.setString(2, comentario);
+            
+                  
+            rs = cstmt.executeQuery();
+            rs.next();
+            respuesta = (rs.getInt("CAMBIO") == 1);
+           
+            
+            conn.close();
+            cstmt.close();
+            rs.close();
+            
+        } catch (SQLException ex) {
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                   .concat(ex.getMessage()));
+           respuesta = false;
+        }   
+        return respuesta;   
+        
+        
     }
     
 }

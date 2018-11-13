@@ -228,7 +228,7 @@ public class PacienteSeguroServicioImpl implements PacienteSeguroServicio {
      Connection conn;
         CallableStatement cstmt;
         List<PacienteSeguro> listPacienteSeguro = null;
-        String stProcedure = "CALL mostrarPacienteSeguro()";
+        String stProcedure = "CALL mostrarPacienteSeguroIdEspecifico(?)";
         PacienteSeguro pacienteSeguro;
 
         ResultSet rs;

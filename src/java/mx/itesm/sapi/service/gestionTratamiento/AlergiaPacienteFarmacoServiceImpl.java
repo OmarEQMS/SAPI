@@ -223,4 +223,82 @@ public class AlergiaPacienteFarmacoServiceImpl implements AlergiaPacienteFarmaco
         }
         return exito;
     }
+
+    @Override
+    public AlergiaPacienteFarmaco mostrarAlergiaPacienteFarmacoIdPaciente(int idPaciente) {
+     
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        
+        AlergiaPacienteFarmaco alergiaPacienteFarmaco = null;
+        
+        //Call del stored procedure
+        String stProcedure="CALL mostrarAlergiaPacienteFarmacoIdPaciente(?)";
+        
+        try{
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            alergiaPacienteFarmaco = new AlergiaPacienteFarmaco();
+            
+            cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+            
+            rs.next();
+            alergiaPacienteFarmaco.setIdAlergiaPacienteFarmaco(rs.getInt(1));
+            alergiaPacienteFarmaco.setIdPaciente(rs.getInt(2));
+            alergiaPacienteFarmaco.setIdFarmaco(rs.getInt(3));
+            alergiaPacienteFarmaco.setEstatus(rs.getInt(4));
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+           
+        }catch(SQLException ex){
+            alergiaPacienteFarmaco = null;
+       
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+        return alergiaPacienteFarmaco;}
+
+    @Override
+    public List<AlergiaPacienteFarmaco> mostrarAlergiaPacienteFarmacoIdEspecifico(int idPaciente) {
+   Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        
+        List<AlergiaPacienteFarmaco> alergiasPacienteFarmaco = null;
+        
+        //Call del stored procedure
+        String stProcedure="CALL mostrarAlergiaPacienteFarmacoIdPaciente(?)";
+        
+        try{
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            alergiasPacienteFarmaco = new ArrayList<>();
+            cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+            AlergiaPacienteFarmaco alergiaPacienteFarmaco;
+            
+            while(rs.next()){
+                alergiaPacienteFarmaco = new AlergiaPacienteFarmaco();
+                alergiaPacienteFarmaco.setIdAlergiaPacienteFarmaco(rs.getInt(1));
+                alergiaPacienteFarmaco.setIdPaciente(rs.getInt(2));
+                alergiaPacienteFarmaco.setIdFarmaco(rs.getInt(3));
+                alergiaPacienteFarmaco.setEstatus(rs.getInt(4));
+
+                alergiasPacienteFarmaco.add(alergiaPacienteFarmaco);
+            }
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+            
+        }catch(SQLException ex) {
+           alergiasPacienteFarmaco = null;
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+        return alergiasPacienteFarmaco;}
 }

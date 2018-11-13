@@ -1,7 +1,7 @@
 <%-- 
     Document   : cuentaPaciente
     Created on : 15/10/2018, 01:59:33 PM
-    Author     : Angel GTZ
+    Author     : Angel GTZ, julioguzman, shannonrosas
 --%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
@@ -92,7 +92,7 @@
 
                     <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas
                             <c:choose>
-                                <c:when test="${sessionScope.estatus>=1}">
+                                <c:when test="${sessionScope.estatus==1}">
                                     <span class="notificacion">1</span>                        
                                 </c:when>
                             </c:choose>
@@ -137,7 +137,7 @@
 
                 <div class="row mb-3 justify-content-end">
                     <div class="col-3 text-center">
-                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index.html" class="colorMoradoLight">Inicio</a></span>
+                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="irAInicioPotencial" class="colorMoradoLight">Inicio</a></span>
                         - <span class="colorGlobal">Mi Cuenta</span>
                     </div>
                 </div>
@@ -244,7 +244,6 @@
                                 </div>
                             </div>
 
-<<<<<<< HEAD
                         <div class="form-group row justify-content-center mt-4">
                             <div class="col-4">
                                 <button type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaPotencial"><i
@@ -276,9 +275,9 @@
                                     <input type="password" class="form-control" id="password" placeholder="Ingresa tu nueva contraseña" />
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" id="error-contrasena">
                                 <div class="col-12">
-                                    <span class="text-danger" id="error-contraseña">La contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
+                                    <span class="text-danger">La contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -287,9 +286,9 @@
                                     <input type="password" class="form-control" id="password2" placeholder="Reingresa tu nueva contraseña" />
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" id="noEqualPasswordsError">
                                 <div class="col-12">
-                                    <span class="text-danger" id="error-notEqualPasswords">Las contraseñas no son iguales.</span>
+                                    <span class="text-warning">Las contraseñas no son iguales.</span>
                                 </div>
                             </div>
                         </div>

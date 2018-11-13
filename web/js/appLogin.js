@@ -22,7 +22,7 @@ $(document).ready(function () {
                     function (response, status, xhr) {
                         //console.log(response);
                         if (status == "success") {
-                            if (response == "error") {
+                            if (response == "LoginError") {
                                 $("#msj-error").show();
                             } else {
                                 $("#msj-cargando").show();
@@ -108,27 +108,27 @@ $(document).ready(function () {
     });
 
     $('#btn-login').on('click', function () {
-       var usu = $("#user");
-            var pass = $("#password");
-            $.post("LoginController", {
-                key: "verificar",
-                usuario: usu.val(),
-                password: pass.val()
-            },
-                    function (response, status, xhr) {
-                        //console.log(response);
-                        if (status == "success") {
-                            if (response == "LoginError") {
-                                $("#msj-error").show();
-                            } else {
-                                $("#msj-cargando").show();
-                                document.open("text/html", "replace");
-                                document.write(response);
-                                document.close();
-                            }
+        var usu = $("#user");
+        var pass = $("#password");
+        $.post("LoginController", {
+            key: "verificar",
+            usuario: usu.val(),
+            password: pass.val()
+        },
+                function (response, status, xhr) {
+                    //console.log(response);
+                    if (status == "success") {
+                        if (response == "LoginError") {
+                            $("#msj-error").show();
+                        } else {
+                            $("#msj-cargando").show();
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
                         }
                     }
-            ); 
+                }
+        );
     });
 
 
@@ -145,12 +145,12 @@ $(document).ready(function () {
                     if (response == "error") {
                         console.log("Error al cargar");
                     } else {
-                        
+
                         console.log("Intentando redireccionar");
                         document.open("text/html", "replace");
                         document.write(response);
                         document.close();
-                        
+
                     }
                 }
         );
