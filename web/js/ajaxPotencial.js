@@ -6,50 +6,9 @@ $(document).ready(function () {
     //Ocultar mensajes de error
     $('#error-contrasena').hide();
     $('#noEqualPasswordsError').hide();
+    $('#errorCorreoRepetido').hide();
 
     console.log("Se Actualizó!");
-
-    var consultarEstadoPreconsulta = new FormData;
-    consultarEstadoPreconsulta.append("key", "consultarEstadoPreconsulta");
-
-    console.log("Solicitar ESTADO de Preconsulta");
-    $.ajax({
-        url: "PotencialController",
-        method: "POST",
-        data: {key: "consultarEstadoPreconsulta"},
-        success: function (response) {
-            console.log("SUCCESS!")
-        },
-        error: function (xhr) {
-            console.log("error" + xhr.statusText);
-            console.log("Error SolicitarEstadoPreconsulta");
-            //alert(xhr);
-        }
-
-    });
-
-    var consultarEstadoPaciente = new FormData;
-    consultarEstadoPaciente.append("key", "consultarEstadoPaciente");
-    console.log("Solicitar EstadoPaciente");
-    $.ajax({
-        url: "PotencialController",
-        method: "POST",
-        data: {key: "consultarEstadoPaciente"},
-        success: function (response) {
-            if (response != null) {
-                console.log("ok" + response);
-
-            } else {
-                console.log("Algo pasó" + response);
-            }
-        },
-        error: function () {
-            console.log("error" + xhr.statusText);
-            alert("No enontre el controlador" + xhr.statusText);
-            console.log("Error SolicitarEstadoPaciente");
-        }
-
-    });
 
     $('#eliminarCuentaPotencial').on('click', function () {
         console.log("vaya vaya si llego");
@@ -97,6 +56,98 @@ $(document).ready(function () {
 
 
 
+    });
+    
+    $('#myEmail').on('change', function () {
+         $.ajax({
+
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+
+                key: "repiteCorreo",
+                correo: $('#myEmail').val()
+
+
+            },
+            success: function (response) {
+
+                if (response === 'CorreoAlreadyExists') {
+                    console.log("correo repetidooo")
+                    $('#myEmail').css('color', 'orange');
+                    $('#errorCorreoRepetido').show();
+                } else {
+                    $('#errorCorreoRepetido').hide();
+                }
+
+            }
+
+        });
+
+        if (isValidEmail($(this))) {
+            $('#errorCorreo').hide();
+        } else if ($(this).val() == '') {
+            $('#errorCorreo').hide();
+        } else {
+            $('#errorCorreo').show();
+        }
+
+    });
+    
+    $('#guardarCambios').on('click', function () {
+
+        if (isValidEmail($("#myEmail")) &&
+                isValidPhoneNumber($("#telephoneNum"))){
+
+
+            console.log("Presionó GuardarCambios")
+            var form = $("form")[0];
+            var data = new FormData(form);
+            data.append("key", "cambiarDatos");
+            data.forEach((value, key) => {
+                console.log(key + " " + value);
+            })
+
+            $.ajax({
+                url: "PacienteController",
+                data: data,
+                method: "POST",
+                encType: "multipart/form-data",
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (response) {
+                    $.post("SAPI", {
+                        file: "potencial/cuentaPaciente.jsp"
+                    },
+                            function (response, status, xhr) {
+                                console.log("El ajax fue exitoso!!-----------------------");
+                                if (status == "success") {
+                                    if (response == "error") {
+                                        $("#msj-error").show();
+                                    } else {
+                                        document.open("text/html", "replace");
+                                        document.write(response);
+                                        document.close();
+
+                                    }
+                                }
+                            }
+                    );
+                },
+                error: function (xhr) {
+                    //alert(xhr.statusText);
+                }
+            });
+
+        } else {
+            swal({
+                title: "Datos invalidos!",
+                text: "Revisa todos los campos antes de continuar",
+                icon: "error",
+            });
+        }
     });
 
     $('#btn-cancelarDefinitivo').on('click', () => {
@@ -414,22 +465,69 @@ $(document).ready(function () {
                     var data = JSON.parse(response);
                     console.log(data);
 
-                    $.post("SAPI", {
-                        file: "potencial/index.jsp"
-                    },
-                            function (response, status, xhr) {
-                                console.log(response);
-                                if (status == "success") {
-                                    if (response == "error") {
-                                        $("#msj-error").show();
-                                    } else {
-                                        document.open("text/html", "replace");
-                                        document.write(response);
-                                        document.close();
-                                    }
+                    console.log("Solicitar ESTADO de Preconsulta");
+                    $.ajax({
+                        url: "PotencialController",
+                        method: "POST",
+                        data: {key: "consultarEstadoPreconsulta"},
+                        success: function (response) {
+                            console.log("SUCCESS!")
+                            console.log("Solicitar EstadoPaciente");
+                            $.ajax({
+                                url: "PotencialController",
+                                method: "POST",
+                                data: {key: "consultarEstadoPaciente"},
+                                success: function (response) {
+                                    //Ajax redireccionamiento
+                                    $.ajax({
+                                        url: "SAPI",
+                                        method: "POST",
+                                        data: {file: "potencial/index.jsp"},
+                                        success: function (response) {
+                                            if (response == "error") {
+                                                console.log("Error al cargar");
+                                            } else {
+                                                console.log("Intentando redireccionar");
+                                                document.open("text/html", "replace");
+                                                document.write(response);
+                                                document.close();
+                                            }
+                                        }
+                                    });
+                                },
+                                error: function () {
+                                    console.log("error" + xhr.statusText);
+                                    alert("No enontre el controlador" + xhr.statusText);
+                                    console.log("Error SolicitarEstadoPaciente");
                                 }
-                            }
-                    );
+
+                            });
+                        },
+                        error: function (xhr) {
+                            console.log("error" + xhr.statusText);
+                            console.log("Error SolicitarEstadoPreconsulta");
+                            //alert(xhr);
+                        }
+
+                    });
+
+                    //Post redireccionamiento
+                    /*$.post("SAPI", {
+                     file: "potencial/index.jsp"
+                     },
+                     function (response, status, xhr) {
+                     console.log(response);
+                     if (status == "success") {
+                     if (response == "error") {
+                     $("#msj-error").show();
+                     } else {
+                     document.open("text/html", "replace");
+                     document.write(response);
+                     document.close();
+                     }
+                     }
+                     }
+                     );*/
 
 
                 } else {
@@ -604,7 +702,7 @@ $(document).ready(function () {
                 }
         );
     });
-
+/*
     $('#guardarCambios').on('click', function () {
 
         console.log("Presionó GuardarCambios")
@@ -645,7 +743,7 @@ $(document).ready(function () {
                 //alert(xhr.statusText);
             }
         });
-    });
+    });*/
 
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
@@ -689,28 +787,19 @@ $(document).ready(function () {
         );
     });
 
-        //Author: Angel Gtz
-    //este ajax hace que manda la nueva contraseña de la cuenta del paciente potencial
     $("#btn-cambiarContrasena").on('click', function () {
-
-
         //Modal cambiar contraseña 
-        swal({
-            title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
-            text: "No podras volver a usar tu contraseña anterior para ingresar",
-            icon: "warning",
-            buttons: true,
-            buttons: ['Regresar', 'Cambiar contraseña'],
-            dangerMode: true
-        })
-                .then((cambiar) => {
-                    if (cambiar) {
-
-                        if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
-
-                            $('#error-contrasena').hide();
-                            $('#error-contrasena2').hide();
-
+        if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
+            swal({
+                title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
+                text: "No podras volver a usar tu contraseña anterior para ingresar",
+                icon: "warning",
+                buttons: true,
+                buttons: ['Regresar', 'Cambiar contraseña'],
+                dangerMode: true
+            })
+                    .then((cambiar) => {
+                        if (cambiar) {
                             $.ajax({
                                 url: "PotencialController",
                                 data: {
@@ -722,47 +811,27 @@ $(document).ready(function () {
                                 method: "POST",
                                 success: function (response) {
 
-                                    $("#password").val('');
-                                    $("#password2").val('');
-
-                                    
                                 },
                                 error: function (xhr) {
 
                                 }
                             });
                             $('#modalCambiarContraseña').modal('toggle');
-
-
-                        } else {
-                            
-                            if(!isValidPassword($('#password'))){                               
-                               $('#error-contrasena').show();
-                            }
-                            if(!isValidPassword($('#password2'))){
-                                $("#error-contrasena2").show();
-                            }else{
-                                $("#error-contrasena").hide();
-                                $("#error-contrasena2").hide();
-                            }
-                            
-                            
                         }
-
-
-                    }
-                });
-
-
+                        else{
+                            console.log("Hola");
+                        }
+                    });
+        }
     });
 
     $("#password").on('change', function () {
-        if(isValidPassword($(this)))
+        if (isValidPassword($(this)))
             $("#error-contrasena").hide();
         else
             $("#error-contrasena").show();
     });
-    
+
     $("#password2").on('change', function () {
         var pass1 = $('#password');
         var pass2 = $(this);
@@ -803,7 +872,6 @@ $(document).ready(function () {
             return false;
 
         } else {
-
             pass2.css('border', '');
             pass1.css('border', '');
             $('#noEqualPasswordsError').hide();
@@ -834,6 +902,50 @@ $(document).ready(function () {
         return true;
 
     }
+    
+    function isValidEmail(input) {
+
+        var m = input.val();
+
+        ////Expresion regular por el estandard: RFC 5322
+        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    }
+    ;
+
+    function isValidPhoneNumber(input) {
+
+        var m = input.val();
+
+        var expreg = /^[0-9]{10,10}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+    ;
 
 
 

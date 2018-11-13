@@ -34,7 +34,7 @@
         <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
 
         <link rel="stylesheet" href="css/stylePotencial.css">
-        <script src="js/appPotencial.js" type="module"></script>
+        <script src="js/appPotencial.js"></script>
         <script src="js/calendarPotencial.js"></script>
         <script src="js/ajaxPotencial.js"></script>  
 

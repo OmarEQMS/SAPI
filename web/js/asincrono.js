@@ -118,11 +118,10 @@ $(document).ready(function () {
                             text: "Cuenta registrada correctamente",
                             type: 'success',
                             confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Ok'
+                            buttons: [, 'Aceptar']
                         })
                                 .then(function () {
                                     console.log("Redirección a login");
-                                    $.blockUI({message: '<h1><img src="img/load.gif" /> Espere un momento...</h1>'});
                                     $.get("LoginController", {
                                         key: "ir-a-login"
                                     },
@@ -133,9 +132,6 @@ $(document).ready(function () {
                                                     if (response == "error") {
                                                         $("#msj-error").show();
                                                     } else {
-
-                                                        $.unblockUI
-
                                                         document.open("text/html", "replace");
                                                         document.write(response);
                                                         document.close();
@@ -377,19 +373,6 @@ $(document).ready(function () {
 
     });
 
-    //CONTRASEÑA2 EN EL REGISTRO
-    $('#pass2').on('change', function () {
-
-        if (isValidPassword($(this))) {
-            $('#errorPass2').hide();
-        } else if ($(this).val() == '') {
-            $('#errorPass2').hide();
-        } else {
-            $('#errorPass2').show();
-        }
-
-    });
-
     //CONTRASEÑA1 RECUPERAR CONTRASEÑA
     $('#cambio1').on('change', function () {
 
@@ -405,14 +388,11 @@ $(document).ready(function () {
 
     //CONTRASEÑA2 RECUPERAR CONTRASEÑA
     $('#cambio2').on('change', function () {
+        
+        var pass1 = $('#cambio1');
+        var pass2 = $('#cambio2');
 
-        if (isValidPassword($(this))) {
-            $('#errorPass2').hide();
-        } else if ($(this).val() == '') {
-            $('#errorPass2').hide();
-        } else {
-            $('#errorPass2').show();
-        }
+        areEqualPasswords(pass1, pass2);
 
     });
 

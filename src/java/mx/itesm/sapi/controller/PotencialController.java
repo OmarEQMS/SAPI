@@ -6,15 +6,20 @@
 package mx.itesm.sapi.controller;
 
 import com.google.gson.Gson;
+import static com.sun.xml.bind.util.CalendarConv.formatter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.Base64;
 import java.util.ResourceBundle;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import javax.servlet.ServletException;
@@ -370,8 +375,7 @@ public class PotencialController extends HttpServlet {
                                 PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                                 System.out.println("Actualizar a mujer");
                                 personaServicioImpl.actualizarSexoPersona(idPacientePotencial, idSexoMujer);
-                            }
-                            else{
+                            } else {
                                 booleanSexo = false;
                             }
                         }
@@ -1176,6 +1180,30 @@ public class PotencialController extends HttpServlet {
                         sesion.setAttribute("idSexo", solicitudPreconsulta.getIdSexo());
                     }
 
+                    if (solicitudPreconsulta.getSilla() == 0) {
+                        sesion.setAttribute("silla", 0);
+                    } else {
+                        sesion.setAttribute("silla", solicitudPreconsulta.getSilla());
+                    }
+                    
+                    if (solicitudPreconsulta.getBaston() == 0) {
+                        sesion.setAttribute("baston", 0);
+                    } else {
+                        sesion.setAttribute("baston", solicitudPreconsulta.getBaston());
+                    }
+                    
+                    if (solicitudPreconsulta.getCamilla() == 0) {
+                        sesion.setAttribute("camilla", 0);
+                    } else {
+                        sesion.setAttribute("camilla", solicitudPreconsulta.getCamilla());
+                    }
+                    
+                    if (solicitudPreconsulta.getOxigeno() == 0) {
+                        sesion.setAttribute("oxigeno", 0);
+                    } else {
+                        sesion.setAttribute("oxigeno", solicitudPreconsulta.getOxigeno());
+                    }
+                    
                     if (solicitudPreconsulta.getIdentificacion() != null) {
                         sesion.setAttribute("identificacionOficial", 1);
                         sesion.setAttribute("identificacionOficialName", solicitudPreconsulta.getIdentificacion());
@@ -1278,7 +1306,6 @@ public class PotencialController extends HttpServlet {
 
                     }
                 }
-                System.out.println("hola");
                 break;
             }
             case "cancelarCita": {
