@@ -194,6 +194,19 @@ $(document).ready(function () {
             $('#masculino').prop('checked', false);
         }
     });
+    
+     $("body").on("click",".myCleaner", function(){
+		$("#password").val("");
+                $("#password2").val("");
+                
+                $('#error-contrasena').hide();
+                $('#noEqualPasswordsError').hide();
+                $('#password').css('border', '');
+                $('#password').css('color', '');
+                $('#password2').css('border', '');
+                $('#password2').css('color', '');
+                
+	});
 
     //Cambiar de pestañas al presionar continuar
 
