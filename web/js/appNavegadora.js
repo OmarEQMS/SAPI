@@ -461,7 +461,7 @@ $(document).ready(function () {
                 <!-- tipo rayos -->
                 <div class="col-5">
 
-                    <input name="tipo-RayosXAdded" type="text" class="form-control tipoBiopsia" placeholder="Tipo de rayos X">
+                    <input name="tipo-RayosXAdded" type="text" class="form-control tipoBiopsia rayosX" placeholder="Tipo de rayos X">
                 </div>
 
                 <!-- fecha rayos -->

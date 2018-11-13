@@ -32,6 +32,7 @@
         <link rel="stylesheet" href="css/styleNavegadoraImg.css">
         <script src="js/appNavegadora.js"></script>        
         <script src="js/ajaxNavegadora.js"></script>
+        <script src="js/autocomplete.js"></script>
 
 
     </head>
@@ -807,7 +808,8 @@
                                                 <!-- tipo biopsia -->
                                                 <div class="col-3">
 
-                                                    <input name="tipo-BiopsiaAdded" type="text" class="form-control tipoBiopsia" placeholder="Tipo de biopsia">
+                                                    <input id="tipo-BiopsiaAdded" type="text" class="form-control tipoBiopsia" placeholder="Tipo de biopsia">
+                                                    <input type="hidden" name="tipo-BiopsiaAdded">
                                                 </div>
 
                                                 <!-- fecha biopsia -->
@@ -871,7 +873,7 @@
 
                                                 <!-- tipo rayos -->
                                                 <div class="col-5">
-                                                    <input name="tipo-RayosXAdded" type="text" class="form-control tipoRayosX" placeholder="Tipo de rayos X">
+                                                    <input name="tipo-RayosXAdded" id="rayosX" class="rayosX" type="text" class="form-control tipoRayosX" placeholder="Tipo de rayos X">
                                                 </div>
 
                                                 <!-- fecha rayos -->
@@ -923,7 +925,7 @@
 
                                                 <!-- parte del cuerpo -->
                                                 <div class="col-5">
-                                                    <input name="parteCuerpo-USGAdded" type="text" class="form-control parteCuerpoUltrasonido" placeholder="Parte del cuerpo">
+                                                    <input name="parteCuerpo-USGAdded" id="ultraSonido" type="text" class="form-control parteCuerpoUltrasonido" placeholder="Parte del cuerpo">
                                                 </div>
 
                                                 <!-- fecha ultrasonido -->
@@ -974,7 +976,7 @@
 
                                                 <!-- medicina nuclear -->
                                                 <div class="col-5">
-                                                    <input name="mNuclearAdded" type="text" class="form-control medicinaNuclear" placeholder="Introduce medicina nuclear">
+                                                    <input name="mNuclearAdded" id="medicinaNuclear" type="text" class="form-control medicinaNuclear" placeholder="Introduce medicina nuclear">
                                                 </div>
 
                                                 <!-- fecha medicina nuclear -->
@@ -1070,7 +1072,7 @@
 
                                                 <!-- valoracion -->
                                                 <div class="col-5">
-                                                    <input name="valoracionAdded" type="text" class="form-control valoracion" placeholder="Introduce valoraciï¿½n">
+                                                    <input name="valoracionAdded" id="valoracion" type="text" class="form-control valoracion" placeholder="Introduce valoraciï¿½n">
                                                 </div>
 
                                                 <!-- fecha medicina valoracion -->
