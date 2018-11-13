@@ -871,7 +871,7 @@
                                                                         </div>
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
-                                                                            <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacionSubido" aria-describedby="fileHelp">
+                                                                            <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacion" aria-describedby="fileHelp">
                                                                             <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
                                                                             <label class="custom-file-label">
                                                                                 ${sessionScope.identificacionOficialName}
