@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-    console.log("WTF");
-
     //Esconder mensajes de error en cuenta
     $('#error-correo').hide();
     $('#error-tel').hide();
