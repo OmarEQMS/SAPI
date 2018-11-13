@@ -56,6 +56,61 @@ $(document).ready(function () {
 
 
     });
+    
+    $('#guardarCambios').on('click', function () {
+
+        if (isValidEmail($("#myEmail")) &&
+                isValidPhoneNumber($("#telephoneNum"))){
+
+
+            console.log("Presionó GuardarCambios")
+            var form = $("form")[0];
+            var data = new FormData(form);
+            data.append("key", "cambiarDatos");
+            data.forEach((value, key) => {
+                console.log(key + " " + value);
+            })
+
+            $.ajax({
+                url: "PacienteController",
+                data: data,
+                method: "POST",
+                encType: "multipart/form-data",
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (response) {
+                    $.post("SAPI", {
+                        file: "potencial/cuentaPaciente.jsp"
+                    },
+                            function (response, status, xhr) {
+                                console.log("El ajax fue exitoso!!-----------------------");
+                                if (status == "success") {
+                                    if (response == "error") {
+                                        $("#msj-error").show();
+                                    } else {
+                                        document.open("text/html", "replace");
+                                        document.write(response);
+                                        document.close();
+
+                                    }
+                                }
+                            }
+                    );
+                },
+                error: function (xhr) {
+                    //alert(xhr.statusText);
+                }
+            });
+
+        } else {
+            swal({
+                title: "Datos invalidos!",
+                text: "Revisa todos los campos antes de continuar",
+                icon: "error",
+            });
+        }
+    });
 
     $('#btn-cancelarDefinitivo').on('click', () => {
 
@@ -609,7 +664,7 @@ $(document).ready(function () {
                 }
         );
     });
-
+/*
     $('#guardarCambios').on('click', function () {
 
         console.log("Presionó GuardarCambios")
@@ -650,7 +705,7 @@ $(document).ready(function () {
                 //alert(xhr.statusText);
             }
         });
-    });
+    });*/
 
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
@@ -809,6 +864,50 @@ $(document).ready(function () {
         return true;
 
     }
+    
+    function isValidEmail(input) {
+
+        var m = input.val();
+
+        ////Expresion regular por el estandard: RFC 5322
+        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    }
+    ;
+
+    function isValidPhoneNumber(input) {
+
+        var m = input.val();
+
+        var expreg = /^[0-9]{10,10}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+    ;
 
 
 
