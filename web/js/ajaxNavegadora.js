@@ -68,13 +68,19 @@ $(document).ready(function () {
         });
     
     
-         
-$('.rayosX').autocomplete({
+ $("body").on("click", '.rayosX', function(){
+    
+   $('.rayosX').autocomplete({
     lookup: rayosX,
     onSelect: function (suggestion) {
+         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
         
     }
-});
+});  
+     
+ });
+    
+    
 
 //AutocompleteUltrasonido
 
@@ -102,12 +108,17 @@ $('.rayosX').autocomplete({
     
     
          
-$('#ultraSonido').autocomplete({
+ $("body").on("click", '.ultraSonido', function(){
+    
+   $('.ultraSonido').autocomplete({
     lookup: ultraSonido,
     onSelect: function (suggestion) {
+         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
         
     }
-});
+});  
+     
+ });
 
 
 
@@ -137,12 +148,17 @@ $('#ultraSonido').autocomplete({
     
     
          
-$('#tipoPrograma').autocomplete({
+ $("body").on("click", '.programa', function(){
+    
+   $('.programa').autocomplete({
     lookup: programa,
     onSelect: function (suggestion) {
+         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
         
     }
-});
+});  
+     
+ });
 
 
 //AutocompleteMedicinaNuclear
@@ -171,12 +187,17 @@ $('#tipoPrograma').autocomplete({
     
     
          
-$('#medicinaNuclear').autocomplete({
+ $("body").on("click", '.medicinaNuclear', function(){
+    
+   $('.medicinaNuclear').autocomplete({
     lookup: medicinaNuclear,
     onSelect: function (suggestion) {
+         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
         
     }
-});
+});  
+     
+ });
 
 
 //AutocompleteValoracion
@@ -205,12 +226,17 @@ $('#medicinaNuclear').autocomplete({
     
     
          
-$('#valoracion').autocomplete({
+ $("body").on("click", '.valoracion', function(){
+    
+   $('.valoracion').autocomplete({
     lookup: valoracion,
     onSelect: function (suggestion) {
+         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
         
     }
-});
+});  
+     
+ });
 
 
 

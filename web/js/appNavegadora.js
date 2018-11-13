@@ -461,7 +461,7 @@ $(document).ready(function () {
                 <!-- tipo rayos -->
                 <div class="col-5">
 
-                    <input name="tipo-RayosXAdded" type="text" class="form-control tipoBiopsia rayosX" placeholder="Tipo de rayos X">
+                    <input name="tipo-RayosXAdded" type="text" class="form-control rayosX" placeholder="Tipo de rayos X">
                 </div>
 
                 <!-- fecha rayos -->
@@ -504,7 +504,7 @@ $(document).ready(function () {
 
                
                 <div class="col-5">
-                    <input name ="parteCuperpo-USGAdded"type="text" class="form-control parteCuerpoUltrasonido" placeholder="Parte del cuerpo">
+                    <input name ="parteCuperpo-USGAdded"type="text" class="form-control parteCuerpoUltrasonido ultraSonido" placeholder="Parte del cuerpo">
                 </div>
 
             
@@ -818,7 +818,7 @@ $(document).ready(function () {
 
 
                     <div class="col-5">
-                        <input name="programaAdded" type="text" id="tipoPrograma" class="form-control" placeholder="Introduce programa">
+                        <input name="programaAdded" type="text" id="tipoPrograma" class="form-control programa" placeholder="Introduce programa">
                     </div>
 
                     <div class="col-5">

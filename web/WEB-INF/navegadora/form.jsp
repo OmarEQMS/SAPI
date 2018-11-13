@@ -245,7 +245,7 @@
                                                     </div>
                                                     <select name= "tipoPaciente" class="form-control" id="tipoPaciente">
                                                         <option disabled selected>Seleccione un tipo de paciente</option>
-                                                        <option>Primera vez</option>
+                                                        <option value="">Primera vez</option>
                                                         <option>Segunda opiniÃ¯Â¿Â½n</option>
                                                     </select>
                                                 </div>
@@ -873,7 +873,7 @@
 
                                                 <!-- tipo rayos -->
                                                 <div class="col-5">
-                                                    <input name="tipo-RayosXAdded" id="rayosX" class="rayosX" type="text" class="form-control tipoRayosX" placeholder="Tipo de rayos X">
+                                                    <input name="tipo-RayosXAdded" type="text" class="form-control rayosX" placeholder="Tipo de rayos X">
                                                 </div>
 
                                                 <!-- fecha rayos -->
@@ -925,7 +925,7 @@
 
                                                 <!-- parte del cuerpo -->
                                                 <div class="col-5">
-                                                    <input name="parteCuerpo-USGAdded" id="ultraSonido" type="text" class="form-control parteCuerpoUltrasonido" placeholder="Parte del cuerpo">
+                                                    <input name="parteCuerpo-USGAdded" id="ultraSonido" type="text" class="form-control parteCuerpoUltrasonido ultraSonido" placeholder="Parte del cuerpo">
                                                 </div>
 
                                                 <!-- fecha ultrasonido -->
