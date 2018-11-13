@@ -1108,6 +1108,7 @@ $('#valoracion').autocomplete({
     });
     
     $("#password").on('change', function () {
+        console.log("Cambio la ocntra");
         if(isValidPassword($(this)))
             $("#error-contrasena").hide();
         else

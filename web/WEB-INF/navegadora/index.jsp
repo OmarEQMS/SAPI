@@ -39,6 +39,7 @@
         <link rel="stylesheet" href="css/styleNavegadoraImg.css">
         <script src="js/appNavegadora.js"></script>
         <script src="js/ajaxNavegadora.js"></script>
+        <script src="js/autocomplete.js"></script>
 
 
     </head>
