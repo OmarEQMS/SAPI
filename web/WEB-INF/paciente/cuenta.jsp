@@ -209,6 +209,7 @@
                                     <label for="myEmail">Correo</label>
                                     <input type="text" class="form-control" id="correo" name="correo" value="${sessionScope.correo}" placeholder="Introduzca su correo" required />
                                     <span class="text-danger error-correo" id="error-correo">Formato incorrecto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
+                                    <span class="text-warning" id="errorCorreoRepetido">El correo ya existe.</span>
                                 </div>
                                 <div class="col-4">
                                     <label for="numExpediente">Número de Expediente</label>

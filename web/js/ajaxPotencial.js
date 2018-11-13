@@ -6,6 +6,7 @@ $(document).ready(function () {
     //Ocultar mensajes de error
     $('#error-contrasena').hide();
     $('#noEqualPasswordsError').hide();
+    $('#errorCorreoRepetido').hide();
 
     console.log("Se Actualizó!");
 
@@ -54,6 +55,43 @@ $(document).ready(function () {
                 });
 
 
+
+    });
+    
+    $('#myEmail').on('change', function () {
+         $.ajax({
+
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+
+                key: "repiteCorreo",
+                correo: $('#myEmail').val()
+
+
+            },
+            success: function (response) {
+
+                if (response === 'CorreoAlreadyExists') {
+                    console.log("correo repetidooo")
+                    $('#myEmail').css('color', 'orange');
+                    $('#errorCorreoRepetido').show();
+                } else {
+                    $('#errorCorreoRepetido').hide();
+                }
+
+            }
+
+        });
+
+        if (isValidEmail($(this))) {
+            $('#errorCorreo').hide();
+        } else if ($(this).val() == '') {
+            $('#errorCorreo').hide();
+        } else {
+            $('#errorCorreo').show();
+        }
 
     });
     

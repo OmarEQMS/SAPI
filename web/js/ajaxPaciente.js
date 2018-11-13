@@ -4,6 +4,7 @@ $(document).ready(function () {
     $("#error-campos").hide();
     $('#error-contrasena').hide();
     $('#noEqualPasswordsError').hide();
+    $('#errorCorreoRepetido').hide();
 
     //Recuperar edificio
     var edificio;
@@ -380,6 +381,44 @@ $(document).ready(function () {
         var els = document.querySelectorAll(selector);
         return [].map.call(els, el => el.value);
     }
+    
+    
+    $('#correo').on('change', function () {
+         $.ajax({
+
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+
+                key: "repiteCorreo",
+                correo: $('#correo').val()
+
+
+            },
+            success: function (response) {
+
+                if (response === 'CorreoAlreadyExists') {
+                    console.log("correo repetidooo")
+                    $('#correo').css('color', 'orange');
+                    $('#errorCorreoRepetido').show();
+                } else {
+                    $('#errorCorreoRepetido').hide();
+                }
+
+            }
+
+        });
+
+        if (isValidEmail($(this))) {
+            $('#errorCorreo').hide();
+        } else if ($(this).val() == '') {
+            $('#errorCorreo').hide();
+        } else {
+            $('#errorCorreo').show();
+        }
+
+    });
 
     /*
      //PARA GUARDAR CAMBIOS
