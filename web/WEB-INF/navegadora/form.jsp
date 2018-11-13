@@ -211,9 +211,9 @@
 
                                                         <option disabled selected>Seleccione un MÃ¯Â¿Â½dico Adscrito</option>
 
-                                                        <c:forEach items="${listaAdscritos}" var="adscrito">  
+                                                        <c:forEach items="${listaMedicos}" var="adscrito">  
 
-                                                            <option value='<c:out value="${adscrito.idPersona}"/>'><c:out value='${adscrito.nombre}'/> </option>
+                                                            <option value='<c:out value="${adscrito.idPersona}"/>'><c:out value='${adscrito.nombre} ${adscrito.primerApellido} ${adscrito.segundoApellido}'/> </option>
 
                                                         </c:forEach>
 
@@ -266,7 +266,7 @@
 
                                                         <c:forEach items="${listaRadiologos}" var="radiologo">  
 
-                                                            <option value='<c:out value="${radiologo.idPersona}"/>'><c:out value='${radiologo.nombre}'/> </option>
+                                                            <option value='<c:out value="${radiologo.idPersona}"/>'><c:out value='${radiologo.nombre} ${radiologo.primerApellido} ${radiologo.segundoApellido}'/> </option>
 
                                                         </c:forEach>
                                                         <option value="otro">Otro</option>

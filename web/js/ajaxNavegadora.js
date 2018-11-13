@@ -41,6 +41,9 @@ $(document).ready(function () {
     $('#error-editar-EstadoNavegadora').hide();
     $('#error-editar-MunicipioNavegadora').hide();
     $('#error-editar-UsuarioRepetidoNavegadora').hide();
+    
+    $('#error-contrasena').hide();
+    $('#noEqualPasswordsError').hide();
         
 
 //AutocompleteRayosX
@@ -1061,9 +1064,8 @@ $('#valoracion').autocomplete({
 
     $("#btn-updatePassword").on('click', function () {
 
-
-
         //Modal cambiar contraseña 
+        if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
         swal({
             title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
             text: "No podras volver a usar tu contraseña anterior para ingresar",
@@ -1074,8 +1076,6 @@ $('#valoracion').autocomplete({
         })
                 .then((cambiar) => {
                     if (cambiar) {
-
-
                         $.ajax({
                             url: "NavegadoraController",
                             data: {
@@ -1102,11 +1102,23 @@ $('#valoracion').autocomplete({
                             }
                         });
                         $('#modalCambiarContraseña').modal('toggle');
-                    } else {
-
                     }
-
                 });
+            }
+    });
+    
+    $("#password").on('change', function () {
+        if(isValidPassword($(this)))
+            $("#error-contrasena").hide();
+        else
+            $("#error-contrasena").show();
+    });
+    
+    $("#password2").on('change', function () {
+        var pass1 = $('#password');
+        var pass2 = $(this);
+
+        areEqualPasswords(pass1, pass2);
     });
 
     //Cargar los municipios con base en el estado
@@ -2360,4 +2372,24 @@ $('#valoracion').autocomplete({
         }
 
         return true;
-    }    
+    }
+    
+    function areEqualPasswords(pass1, pass2) {
+
+        if (pass1.val() != pass2.val()) {
+
+            pass2.css('border', '1px solid red');
+            pass1.css('border', '1px solid red');
+            $('#noEqualPasswordsError').show();
+
+            return false;
+
+        } else {
+            pass2.css('border', '');
+            pass1.css('border', '');
+            $('#noEqualPasswordsError').hide();
+
+        }
+
+        return true;
+    }

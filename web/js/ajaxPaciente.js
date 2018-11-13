@@ -2,8 +2,8 @@ $(document).ready(function () {
 
     //esconder mensajes de error
     $("#error-campos").hide();
-    $("#error-contraseña").hide();
-    $("#error-contraseña2").hide();
+    $('#error-contrasena').hide();
+    $('#noEqualPasswordsError').hide();
 
     //Recuperar edificio
     var edificio;
@@ -562,22 +562,20 @@ $(document).ready(function () {
     //Cambiar contraseña
 
     $("#btn-updatePassword").on('click', function () {
+        if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
+            //Modal cambiar contraseña 
+            swal({
+                title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
+                text: "No podras volver a usar tu contraseña anterior para ingresar",
+                icon: "warning",
+                buttons: true,
+                buttons: ['Regresar', 'Cambiar contraseña'],
+                dangerMode: true
+            })
+                    .then((cambiar) => {
+                        if (cambiar) {
 
 
-
-        //Modal cambiar contraseña 
-        swal({
-            title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
-            text: "No podras volver a usar tu contraseña anterior para ingresar",
-            icon: "warning",
-            buttons: true,
-            buttons: ['Regresar', 'Cambiar contraseña'],
-            dangerMode: true
-        })
-                .then((cambiar) => {
-                    if (cambiar) {
-
-                        if (isValidPassword($('#password')) && isValidPassword($('#password-confirm')) && areEqualPasswords($('#password'), $('#password-confirm'))) {
 
                             $.ajax({
                                 url: "PotencialController",
@@ -585,16 +583,13 @@ $(document).ready(function () {
                                     key: "cambiarContrasena",
                                     idCuenta: $("#sesionPaciente").val(),
                                     password: $("#password").val(),
-                                    password2: $("#password-confirm").val()
+                                    password2: $("#password2").val()
                                 },
                                 method: "POST",
                                 success: function (response) {
 
                                     $("#password").val('');
-                                    $("#password-confirm").val('');
-
-
-
+                                    $("#password2").val('');
                                 },
                                 error: function (xhr) {
 
@@ -602,28 +597,26 @@ $(document).ready(function () {
                             });
                             $('#modalCambiarContraseña').modal('toggle');
 
-
-                        } else {
-
-                            if (!isValidPassword($('#password'))) {
-                                $("#error-contraseña").show();
-                            } else if (!isValidPassword($('#password-confirm'))) {
-                                $("#error-contraseña2").show();
-                            } else {
-                                $("#error-contraseña").hide();
-                                $("#error-contraseña2").hide();
-                            }
-
-
-
                         }
 
-                    } else {
-
-                    }
-
-                });
+                    });
+        }
     });
+
+    $("#password").on('change', function () {
+        if (isValidPassword($(this)))
+            $("#error-contrasena").hide();
+        else
+            $("#error-contrasena").show();
+    });
+
+    $("#password2").on('change', function () {
+        var pass1 = $('#password');
+        var pass2 = $(this);
+
+        areEqualPasswords(pass1, pass2);
+    });
+
     //Terminar tratamiento
     $("#fechaTerminarTratamiento").on('click', function () {
 
@@ -690,9 +683,6 @@ $(document).ready(function () {
     //Conseguir contenido del select
 
     $("#tipoTratamiento").on('change', function () {
-
-
-
         $('#nombreTipoTratamiento').val($('#tipoTratamiento option:selected').text());
         console.log($('#nombreTipoTratamiento').val());
     });
@@ -700,18 +690,16 @@ $(document).ready(function () {
     function areEqualPasswords(pass1, pass2) {
 
         if (pass1.val() != pass2.val()) {
-
             pass2.css('border', '1px solid red');
             pass1.css('border', '1px solid red');
-            $('#error-notEqualPasswords').show();
+            $('#noEqualPasswordsError').show();
 
             return false;
 
         } else {
-
             pass2.css('border', '');
             pass1.css('border', '');
-            $('#error-notEqualPasswords').hide();
+            $('#noEqualPasswordsError').hide();
 
         }
 

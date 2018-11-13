@@ -328,11 +328,11 @@
                                 <div class="col-8">
                                     <select class="custom-select medico" id="RegistrarCita_medico" required>
                                         <option disabled selected>Seleccione médico</option>
-                                        <c:forEach items="${listaMedicos}" var="medico"> 
+                                        <c:forEach items="${listaMedicos}" var="adscrito">  
 
-                                            <option value='<c:out value="${medico.idPersona}"/>'><c:out value='${medico.nombre}'/> </option>
+                                            <option value='<c:out value="${adscrito.idPersona}"/>'><c:out value='${adscrito.nombre} ${adscrito.primerApellido} ${adscrito.segundoApellido}'/> </option>
 
-                                        </c:forEach> 
+                                        </c:forEach>
                                     </select>
                                     <!--<span class="text-danger mr-5" id="error-medico">No has seleccionado un médico.</span>-->
                                 </div>
@@ -458,7 +458,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger myCleaner" style="border-radius:20px;" data-dismiss="modal">Cerrar</button>
-                            <button id="btn-citaRegistrar" type="button" class="btn btn-primary myCleaner" style="border-radius:20px;">Registrar</button>
+                            <button id="btn-citaRegistrar" type="button" class="btn btn-primary" style="border-radius:20px;">Registrar</button>
                         </div>
                     </div>
                 </div>

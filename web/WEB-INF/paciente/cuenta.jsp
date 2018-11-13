@@ -316,25 +316,28 @@
                                 <div class="form-group col-12">
                                     <label for="name">Contraseña</label>
                                     <input type="password" class="form-control" id="password" placeholder="Ingresa tu nueva contraseña" />
-                                    <span class="text-danger" id="error-contraseña">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
+                                </div>
+                            </div>
+                            <div class="row" id="error-contrasena">
+                                <div class="col-12">
+                                    <span class="text-danger">La contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="name">Confirma tu contraseña</label>
-                                    <input type="password" class="form-control" id="password-confirm" placeholder="Reingresa tu nueva contraseña" />
-                                    <span class="text-danger" id="error-contraseña2">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
+                                    <input type="password" class="form-control" id="password2" placeholder="Reingresa tu nueva contraseña" />
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" id ="noEqualPasswordsError">
                                 <div class="col-12">
-                                    <span class="text-danger" id="error-notEqualPasswords">Las contraseñas no son iguales.</span>
+                                    <span class="text-warning">Las contraseñas no son iguales.</span>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" style="border-radius: 20px" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary" id="btn-updatePassword" style="border-radius: 20px">Cambiar contraseña</button>
+                            <button type="button" class="btn btn-danger passwordCleaner" style="border-radius: 20px" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary passwordCleaner" id="btn-updatePassword" style="border-radius: 20px">Cambiar contraseña</button>
                         </div>
                     </div>
                 </div>

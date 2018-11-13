@@ -1,5 +1,3 @@
-
-
 $(document).ready(function () {
 
     //Esconder mensajes de error en cuenta
@@ -194,6 +192,19 @@ $(document).ready(function () {
             $('#masculino').prop('checked', false);
         }
     });
+    
+     $("body").on("click",".myCleaner", function(){
+		$("#password").val("");
+                $("#password2").val("");
+                
+                $('#error-contrasena').hide();
+                $('#noEqualPasswordsError').hide();
+                $('#password').css('border', '');
+                $('#password').css('color', '');
+                $('#password2').css('border', '');
+                $('#password2').css('color', '');
+                
+	});
 
     //Cambiar de pestañas al presionar continuar
 
@@ -217,7 +228,9 @@ $(document).ready(function () {
 
     //Preconsulta
     var fechaPre = $('#fechaCitaPreConsulta').html();
-
+    console.log("----------------------");
+    console.log("Se parsearon las fechas");
+    console.log("----------------------");
     var m = moment(new Date(fechaPre)).locale('es').format('LL') + ' a las: ' + "<strong>" + moment(new Date(fechaPre)).locale('es').format('LT') + "</strong>";
 
     $('#fechaCitaPreConsulta').html(m);

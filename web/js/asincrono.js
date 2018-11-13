@@ -377,19 +377,6 @@ $(document).ready(function () {
 
     });
 
-    //CONTRASEÑA2 EN EL REGISTRO
-    $('#pass2').on('change', function () {
-
-        if (isValidPassword($(this))) {
-            $('#errorPass2').hide();
-        } else if ($(this).val() == '') {
-            $('#errorPass2').hide();
-        } else {
-            $('#errorPass2').show();
-        }
-
-    });
-
     //CONTRASEÑA1 RECUPERAR CONTRASEÑA
     $('#cambio1').on('change', function () {
 
@@ -405,14 +392,11 @@ $(document).ready(function () {
 
     //CONTRASEÑA2 RECUPERAR CONTRASEÑA
     $('#cambio2').on('change', function () {
+        
+        var pass1 = $('#cambio1');
+        var pass2 = $('#cambio2');
 
-        if (isValidPassword($(this))) {
-            $('#errorPass2').hide();
-        } else if ($(this).val() == '') {
-            $('#errorPass2').hide();
-        } else {
-            $('#errorPass2').show();
-        }
+        areEqualPasswords(pass1, pass2);
 
     });
 

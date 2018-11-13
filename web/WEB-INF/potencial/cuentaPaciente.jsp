@@ -277,7 +277,7 @@
                             </div>
                             <div class="row" id="error-contrasena">
                                 <div class="col-12">
-                                    <span class="text-danger">La contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
+                                    <span class="text-danger error1">La contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -288,13 +288,13 @@
                             </div>
                             <div class="row" id="noEqualPasswordsError">
                                 <div class="col-12">
-                                    <span class="text-warning">Las contraseñas no son iguales.</span>
+                                    <span class="text-warning error2">Las contraseñas no son iguales.</span>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" style="border-radius: 20px" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary" id="btn-cambiarContrasena" style="border-radius: 20px">Cambiar contraseña</button>
+                            <button type="button" class="btn btn-danger myCleaner" style="border-radius: 20px" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary myCleaner" id="btn-cambiarContrasena" style="border-radius: 20px">Cambiar contraseña</button>
                         </div>
                     </div>
                 </div>
