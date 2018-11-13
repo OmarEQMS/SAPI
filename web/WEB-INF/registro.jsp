@@ -76,7 +76,6 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                         <input id="pass2" type="password" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf023; CONFIRMAR CONTRASEÑA">
                         <span class="text-warning" id="noEqualPasswordsError">Las contraseñas no son iguales.</span>
-                        <span class="text-danger" id="errorPass2">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                     </div>
 
                 </div>
