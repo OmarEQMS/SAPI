@@ -641,6 +641,8 @@ public class NavegadoraController extends HttpServlet {
                             
                             int idPacientePotencial = 4;
                             int idCuenta = 19;
+                            
+                            
                             //PANTALLA 1 DEL FORMULARIO
                             
                             String prz = null;
@@ -656,7 +658,9 @@ public class NavegadoraController extends HttpServlet {
                             }
                             else{
                                 System.out.println("Sin PRZ");
-                            }                                
+                            }                    
+                            
+                            
                             
                             int adscritoPresente = 1;
                             if(request.getParameterMap().containsKey("noAdscrito") == true)
@@ -664,7 +668,7 @@ public class NavegadoraController extends HttpServlet {
                             System.out.println("Adscrito Presente ".concat(String.valueOf(adscritoPresente)));
                                                         
                             String tipoPaciente = null;
-                                    tipoPaciente = request.getParameter("tipoPaciente");
+                            tipoPaciente = request.getParameter("tipoPaciente");
                             if(tipoPaciente != null && tipoPaciente.length() > 0)          
                             {
                                 System.out.println("Tipo Paciente ".concat(tipoPaciente));
