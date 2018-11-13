@@ -43,6 +43,182 @@ $(document).ready(function () {
     $('#error-editar-UsuarioRepetidoNavegadora').hide();
         
 
+//AutocompleteRayosX
+
+    var rayosX=[];
+
+       $.ajax({
+        url: 'NavegadoraController',
+                cache: false,
+                method: 'POST',
+                data: {key: "autocompleteRayosX"}
+        })
+
+        .done(function (response) {
+       
+       var json = JSON.parse(response);
+        for (var i = 0; i < json.length; i++) {
+                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
+                   rayosX.push(newObjeto);
+            }
+    
+       
+        console.log(rayosX);
+       
+        });
+    
+    
+         
+$('.rayosX').autocomplete({
+    lookup: rayosX,
+    onSelect: function (suggestion) {
+        
+    }
+});
+
+//AutocompleteUltrasonido
+
+    var ultraSonido=[];
+
+       $.ajax({
+        url: 'NavegadoraController',
+                cache: false,
+                method: 'POST',
+                data: {key: "autocompleteUltraSonido"}
+        })
+
+        .done(function (response) {
+       
+       var json = JSON.parse(response);
+        for (var i = 0; i < json.length; i++) {
+                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
+                   ultraSonido.push(newObjeto);
+            }
+    
+       
+        console.log(ultraSonido);
+       
+        });
+    
+    
+         
+$('#ultraSonido').autocomplete({
+    lookup: ultraSonido,
+    onSelect: function (suggestion) {
+        
+    }
+});
+
+
+
+//AutocompletePrograma
+
+    var programa=[];
+
+       $.ajax({
+        url: 'NavegadoraController',
+                cache: false,
+                method: 'POST',
+                data: {key: "autocompletePrograma"}
+        })
+
+        .done(function (response) {
+       
+       var json = JSON.parse(response);
+        for (var i = 0; i < json.length; i++) {
+                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
+                   programa.push(newObjeto);
+            }
+    
+       
+        console.log(programa);
+       
+        });
+    
+    
+         
+$('#tipoPrograma').autocomplete({
+    lookup: programa,
+    onSelect: function (suggestion) {
+        
+    }
+});
+
+
+//AutocompleteMedicinaNuclear
+
+    var medicinaNuclear=[];
+
+       $.ajax({
+        url: 'NavegadoraController',
+                cache: false,
+                method: 'POST',
+                data: {key: "autocompleteMedicinaNuclear"}
+        })
+
+        .done(function (response) {
+       
+       var json = JSON.parse(response);
+        for (var i = 0; i < json.length; i++) {
+                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
+                   medicinaNuclear.push(newObjeto);
+            }
+    
+       
+        console.log(medicinaNuclear);
+       
+        });
+    
+    
+         
+$('#medicinaNuclear').autocomplete({
+    lookup: medicinaNuclear,
+    onSelect: function (suggestion) {
+        
+    }
+});
+
+
+//AutocompleteValoracion
+
+    var valoracion=[];
+
+       $.ajax({
+        url: 'NavegadoraController',
+                cache: false,
+                method: 'POST',
+                data: {key: "autocompleteValoracion"}
+        })
+
+        .done(function (response) {
+       
+       var json = JSON.parse(response);
+        for (var i = 0; i < json.length; i++) {
+                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
+                   valoracion.push(newObjeto);
+            }
+    
+       
+        console.log(valoracion);
+       
+        });
+    
+    
+         
+$('#valoracion').autocomplete({
+    lookup: valoracion,
+    onSelect: function (suggestion) {
+        
+    }
+});
+
+
+
+
+     
+     
+     
+     
     //Terminos y condiciones
     $('#acepto-terminos').change(function () {
 

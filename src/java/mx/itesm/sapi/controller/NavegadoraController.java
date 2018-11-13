@@ -42,6 +42,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import mx.itesm.sapi.autocomplete.AutocompletadoServicioImpl;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
 import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
@@ -50,6 +51,7 @@ import mx.itesm.sapi.bean.gestionPaciente.CitaEmpleado;
 import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
+import mx.itesm.sapi.bean.gestionPaciente.Estudio;
 
 import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
 
@@ -1486,6 +1488,91 @@ public class NavegadoraController extends HttpServlet {
                                                                                     
                             break;    
                         }
+                        
+                        case "autocompleteBiopsia":{
+                         
+                            AutocompletadoServicioImpl autocompletadoServicioImpl = new AutocompletadoServicioImpl();
+                            
+                          
+
+                            
+                            break;
+                        }
+                        
+                        case "autocompleteRayosX":{
+                            
+                            AutocompletadoServicioImpl autocompletadoServicioImpl = new AutocompletadoServicioImpl();
+                            
+                            List<Estudio> estudios = autocompletadoServicioImpl.mostrarEstudioRayosX();
+                            
+                            PrintWriter out = response.getWriter();
+
+                            Gson json = new Gson();
+                            out.print(json.toJson(estudios));
+                         
+                            break;
+                            
+                        }
+                        
+                        case "autocompleteUltraSonido":{
+                         
+                            AutocompletadoServicioImpl autocompletadoServicioImpl = new AutocompletadoServicioImpl();
+                            
+                            List<Estudio> estudios = autocompletadoServicioImpl.mostrarEstudioUltrasonido();  
+                            
+                            PrintWriter out = response.getWriter();
+
+                            Gson json = new Gson();
+                            out.print(json.toJson(estudios));
+                            
+                            break;
+                            
+                        }
+                        
+                        case "autocompleteMedicinaNuclear":{
+                            
+                            AutocompletadoServicioImpl autocompletadoServicioImpl = new AutocompletadoServicioImpl();
+                            
+                            List<Estudio> estudios = autocompletadoServicioImpl.mostrarEstudioMedicinaNuclear();
+                            
+                            PrintWriter out = response.getWriter();
+
+                            Gson json = new Gson();
+                            out.print(json.toJson(estudios));
+                            
+                         
+                            break;
+                            
+                        }
+                        case "autocompleteValoracion":{
+                            
+                            AutocompletadoServicioImpl autocompletadoServicioImpl = new AutocompletadoServicioImpl();
+                            
+                            List<Estudio> estudios = autocompletadoServicioImpl.mostrarEstudioValoracion();
+                            
+                            PrintWriter out = response.getWriter();
+
+                            Gson json = new Gson();
+                            out.print(json.toJson(estudios));
+                         
+                            break;
+                            
+                        }
+                        case "autocompletePrograma":{
+                            
+                            AutocompletadoServicioImpl autocompletadoServicioImpl = new AutocompletadoServicioImpl();
+                            
+                            List<Estudio> estudios = autocompletadoServicioImpl.mostrarEstudioProgramas();
+                            
+                            PrintWriter out = response.getWriter();
+
+                            Gson json = new Gson();
+                            out.print(json.toJson(estudios));
+                         
+                            break;
+                            
+                        }
+                        
 
                     }
 
