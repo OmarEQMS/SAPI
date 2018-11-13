@@ -277,7 +277,7 @@
                                                 <div class="form-check mt-2">
                                                     <input name="esSustituto" class=" form-check-input" type="checkbox" value="" id="esSustituto">
                                                     <label class="form-check-label" for="defaultCheck1">
-                                                        Sustituto
+                                                        No estuvo médico radiologo
                                                     </label>
                                                 </div>
                                             </div>

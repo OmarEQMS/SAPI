@@ -550,5 +550,95 @@ public class CitaServicioImpl implements CitaServicio {
         }
         return id;
     }
+    
+    @Override
+    public Cita mostrarCitaPreconsultaPacientePotencial(int idPaciente) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarCitaPreconsultaPacientePotencial(?)";
+        Cita cita = null;
+
+        try {
+            conn = Conexion.getConnection();
+            cita = new Cita();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            cita.setIdCita(rs.getInt("idCita"));
+            cita.setIdTipoCita(rs.getInt("idTipoCita"));
+            cita.setIdPaciente(rs.getInt("idPaciente"));
+            cita.setIdEstadoCita(rs.getInt("idEstadoCita"));
+            cita.setIdImportanciaCita(rs.getInt("idImportanciaCita"));
+            cita.setIdPiso(rs.getInt("idPiso"));
+            cita.setIdTipoTratamiento(rs.getInt("idTipoTratamiento"));
+            cita.setIdEstudio(rs.getInt("idEstudio"));
+            cita.setIdMotivoConsulta(rs.getInt("idMotivoConsulta"));
+            cita.setFechaProgramada((rs.getTimestamp("fechaProgramada")));
+            cita.setFechaReal((rs.getTimestamp("fechaReal")));
+            cita.setEstatus(rs.getInt("estatus"));
+            cita.setArchivo(rs.getBytes("archivo"));
+            cita.setHospitalProcedencia(rs.getString("hospitalProcedencia"));
+            cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")).toString());
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            cita = null;
+        }
+        return cita;
+    }
+    
+    @Override
+    public Cita mostrarCitaNavegacionPacientePotencial(int idPaciente) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarCitaNavegacionPacientePotencial(?)";
+        Cita cita = null;
+
+        try {
+            conn = Conexion.getConnection();
+            cita = new Cita();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            cita.setIdCita(rs.getInt("idCita"));
+            cita.setIdTipoCita(rs.getInt("idTipoCita"));
+            cita.setIdPaciente(rs.getInt("idPaciente"));
+            cita.setIdEstadoCita(rs.getInt("idEstadoCita"));
+            cita.setIdImportanciaCita(rs.getInt("idImportanciaCita"));
+            cita.setIdPiso(rs.getInt("idPiso"));
+            cita.setIdTipoTratamiento(rs.getInt("idTipoTratamiento"));
+            cita.setIdEstudio(rs.getInt("idEstudio"));
+            cita.setIdMotivoConsulta(rs.getInt("idMotivoConsulta"));
+            cita.setFechaProgramada((rs.getTimestamp("fechaProgramada")));
+            cita.setFechaReal((rs.getTimestamp("fechaReal")));
+            cita.setEstatus(rs.getInt("estatus"));
+            cita.setArchivo(rs.getBytes("archivo"));
+            cita.setHospitalProcedencia(rs.getString("hospitalProcedencia"));
+            cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")).toString());
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            cita = null;
+        }
+        return cita;
+    }
 
 }
