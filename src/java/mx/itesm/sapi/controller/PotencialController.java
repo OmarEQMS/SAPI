@@ -1556,7 +1556,7 @@ public class PotencialController extends HttpServlet {
                         String strMastoPrevia = null;
                         String tipoMastoPrevia = null;
                         int tamanoMastoPrevia = 0;
-
+                        
                         if (booleanMastoPrevia) {
 
                             if (partMastoPrevia.getSubmittedFileName().length() > 0 && (partMastoPrevia.getContentType().equals("image/jpeg") || partMastoPrevia.getContentType().equals("application/pdf") || partMastoPrevia.getContentType().equals("image/png") || partMastoPrevia.getContentType().equals(" application/msword") || partMastoPrevia.getContentType().equals(" application/msword") || partMastoPrevia.getContentType().equals(" application/vnd.ms-excel"))) {
@@ -1707,6 +1707,7 @@ public class PotencialController extends HttpServlet {
                             docBiopsia.setNombre(strBiopsia);
                             docBiopsia.setEstatus(1);
                         }
+                                                
 
                         //SERVICIOS
                         int idIdentificacionBD = -1;
@@ -1756,6 +1757,8 @@ public class PotencialController extends HttpServlet {
                         citaPreconsulta.setIdImportanciaCita(idImportante);
                         citaPreconsulta.setIdMotivoConsulta(Integer.parseInt(motivoConsulta));
                          */
+                        
+                        
                         switch (motivoConsulta) {
                             case "1": {
 
@@ -1839,7 +1842,14 @@ public class PotencialController extends HttpServlet {
                             otroMotivoServicioImpl.agregarOtroMotivo(motivo);
                         }
                          */
-                        request.getRequestDispatcher("WEB/INF/potencial/index.jsp").forward(request, response);
+                                                 
+                                                
+                        
+                        System.out.println("AYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAY");
+                        
+                        
+ 
+                        //request.getRequestDispatcher("WEB/INF/potencial/index.jsp").forward(request, response);
                     }
                 }
                 break;
