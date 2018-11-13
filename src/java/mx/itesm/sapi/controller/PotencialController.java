@@ -1278,7 +1278,6 @@ public class PotencialController extends HttpServlet {
 
                     }
                 }
-                System.out.println("hola");
                 break;
             }
             case "cancelarCita": {

@@ -26,6 +26,8 @@ import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.LoginServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.SolicitudPreconsultaServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
@@ -168,6 +170,7 @@ public class LoginController extends HttpServlet {
 
                                 int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
 
+                                //Solicitud Documentos Preconsulta
                                 SolicitudPreconsulta solicitudPreconsulta;
                                 SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
                                 solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
@@ -216,6 +219,37 @@ public class LoginController extends HttpServlet {
                                 PrintWriter out = response.getWriter();
 
                                 out.print(json.toJson(json.toJson(solicitudPreconsulta)));
+                                //Fin De Solicitud Documentos Preconsulta
+
+                                //Solicitud Estado Preconsulta
+                                CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
+                                String estatus = citaServicioImpl.mostrarPreconsultaAceptada(idPacientePotencial);
+
+                                if (estatus == null) {
+                                    System.out.println("El paciente no tiene ninguna cita");
+                                    sesion.setAttribute("estatus", 0);
+                                } else {
+                                    System.out.println("El estatus es: " + estatus);
+
+                                    if (estatus.equals("Aprobada")) {
+                                        sesion.setAttribute("estatus", 1);
+                                        sesion.setAttribute("envioEditable", 1);
+                                    }
+                                    if (estatus.equals("Cancelada")) {
+                                        sesion.setAttribute("estatus", 2);
+                                    }
+                                    if (estatus.equals("Pendiente")) {
+                                        sesion.setAttribute("envioEditable", 1);
+                                    }
+                                }
+                                //Fin DeSolicitud Estado Preconsulta
+
+                                //Solicitud Estado Paciente
+                                EstadoPacientePacienteServiceImpl estadoPaPa = new EstadoPacientePacienteServiceImpl();
+                                int estadoPaciente = estadoPaPa.estadoPrimeraSegundaVez(idPacientePotencial);
+                                System.out.println("EstadoPaciente: " + estadoPaciente);
+                                sesion.setAttribute("estadoPaciente", estadoPaciente);
+                                //Fin DeSolicitud Estado Paciente
 
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                                 //request.getRequestDispatcher("/FrontController").forward(request, response);                                                                             
@@ -254,7 +288,6 @@ public class LoginController extends HttpServlet {
                                 /*Insert your code here*/
                                 PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
 
-
                                 EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
                                 Empleado empleado = empleadoServicioImpl.mostrarEmpleadoCuenta((int) sesion.getAttribute("idCuenta"));
 
@@ -275,7 +308,6 @@ public class LoginController extends HttpServlet {
                                 sesion.setAttribute("cedulaProfesional", medicoEspecialidad.getCedulaProfesional());
 
                                 /*Insert your code here*/
-
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                                 break;
                             }
