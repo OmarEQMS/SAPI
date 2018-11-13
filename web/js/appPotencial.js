@@ -1,6 +1,6 @@
-
-
 $(document).ready(function () {
+
+    console.log("WTF");
 
     //Esconder mensajes de error en cuenta
     $('#error-correo').hide();
@@ -217,7 +217,9 @@ $(document).ready(function () {
 
     //Preconsulta
     var fechaPre = $('#fechaCitaPreConsulta').html();
-
+    console.log("----------------------");
+    console.log("Se parsearon las fechas");
+    console.log("----------------------");
     var m = moment(new Date(fechaPre)).locale('es').format('LL') + ' a las: ' + "<strong>" + moment(new Date(fechaPre)).locale('es').format('LT') + "</strong>";
 
     $('#fechaCitaPreConsulta').html(m);

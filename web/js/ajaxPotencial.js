@@ -724,7 +724,9 @@ $(document).ready(function () {
                                 }
                             });
                             $('#modalCambiarContraseña').modal('toggle');
-
+                        }
+                        else{
+                            console.log("Hola");
                         }
                     });
         }
