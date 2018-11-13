@@ -12,7 +12,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Cita;
  *
  * @author Oscar Miranda
  */
-public interface CitaServicio {
+public interface CitaServicio { 
     public Cita mostrarCita(int idCita);
     public Cita mostrarCitaIdPaciente(int idPaciente);
     public List<Cita> mostrarCita();
@@ -25,5 +25,7 @@ public interface CitaServicio {
     public String mostrarPreconsultaAceptada(int idPacientePotencaial);
     public boolean aprobarPaciente(int idPaciente, String fechaNav, String fechaCon, int segundaOpinion);
     public int citaPendiente(int idPaciente);
+    public Cita mostrarCitaPreconsultaPacientePotencial(int idPacientePotencial);
+    public Cita mostrarCitaNavegacionPacientePotencial(int idPacientePotencial);
 
 }
