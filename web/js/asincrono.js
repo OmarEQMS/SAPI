@@ -118,11 +118,10 @@ $(document).ready(function () {
                             text: "Cuenta registrada correctamente",
                             type: 'success',
                             confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Ok'
+                            buttons: [, 'Aceptar']
                         })
                                 .then(function () {
                                     console.log("Redirección a login");
-                                    $.blockUI({message: '<h1><img src="img/load.gif" /> Espere un momento...</h1>'});
                                     $.get("LoginController", {
                                         key: "ir-a-login"
                                     },
@@ -133,9 +132,6 @@ $(document).ready(function () {
                                                     if (response == "error") {
                                                         $("#msj-error").show();
                                                     } else {
-
-                                                        $.unblockUI
-
                                                         document.open("text/html", "replace");
                                                         document.write(response);
                                                         document.close();
