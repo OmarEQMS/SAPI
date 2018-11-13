@@ -342,7 +342,7 @@ public class LoginController extends HttpServlet {
                                 }
 
                                 sesion.setAttribute("path", keyRuta);
-                                
+
                                 PersonaServicioImpl personaServicioMedicos = new PersonaServicioImpl();
                                 List<Persona> medicos = personaServicioMedicos.mostrarMedicosAdscritos();
                                 request.setAttribute("listaMedicos", medicos);

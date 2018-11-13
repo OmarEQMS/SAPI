@@ -228,6 +228,19 @@ $(document).ready(function () {
                 
 	});
         
+        $("body").on("click",".passwordCleaner", function(){
+		$("#password").val("");
+                $("#password2").val("");
+                
+                $('#error-contrasena').hide();
+                $('#noEqualPasswordsError').hide();
+                $('#password').css('border', '');
+                $('#password').css('color', '');
+                $('#password2').css('border', '');
+                $('#password2').css('color', '');
+                
+	});
+        
         $("body").on("click",".myCleanerAddTratamientos", function(){
 		$(".fechaInicio").attr("type","text").val('').attr("placeholder","Introduce la fecha de inicio");
                 $('.error-fecha').hide();
