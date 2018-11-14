@@ -127,7 +127,7 @@
                         <input type="hidden" id="sesionPaciente" value="${sessionScope.idSesion}" />
                         <input type="hidden" id="idPaciente" value="${sessionScope.idPaciente}"/>
 
-                        <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
+                        <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">
                                 <!--Julio Badillo-->
                                 ${sessionScope.nombre} ${sessionScope.primerApellido}</span></span>
                     </div>
@@ -147,7 +147,7 @@
 
                             <div class="card-body justify-content-center">
 
-                                <!-- navbar -->
+                                <!-- navbar SHANNON -->
 
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -732,6 +732,12 @@
                                                             </div>
                                                         </div>
 
+                                                        <div class="row justify-content-center mt-3">
+                                                            <div class="col-4 text-center">
+                                                                <button style="border-radius:20px" type="button" class="btn btn-outline-primary btn-block" id="btn-continuarAResolucion">Continuar
+                                                                    <i class="ml-2 fas fa-arrow-right"></i></button>
+                                                            </div>
+                                                        </div>
 
                                                     </div>
                                                 </div>

@@ -121,7 +121,7 @@
                         <!-- aqui se inyecta la sesion de id-->
                         <input type="hidden" id="idPaciente" value="${sessionScope.idPaciente}" />
 
-                        <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
+                        <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">
                                 <!--Julio Badillo-->
                                 ${sessionScope.nombre} ${sessionScope.primerApellido}
                             </span>  </span>
@@ -144,6 +144,12 @@
                 <div class="jumbotron jumbotron-fluid p-2">
                     <div class="container">
                         <h1 class="display-4 tituloMisCitas text-center m-0">Mis Citas</h1>
+                    </div>
+                </div>
+                
+                <div class="row justify-content-end">
+                    <div class="col-12">
+                        <a class="float-left questionMarkRight" data-toggle="tooltip" data-placement="right" title="Da click en el día que quieres agendar tu cita."><button class="btn btn-morado" style="border-radius: 20px"><i class="far fa-calendar-plus" style="font-size:25px"></i>  Agregar Cita</button></a>
                     </div>
                 </div>
 
