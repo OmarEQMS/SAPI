@@ -474,8 +474,8 @@ $(document).ready(function () {
                         } else {
 
                             swal({
-                                title: "Listo",
-                                text: "Tu solicitud ya fue enviada! :D",
+                                title: "Solicitud enviada",
+                                text: "En 36 horas máximo, se te dará respuesta a tu solicitud",
                                 icon: "success",
                                 buttons: true,
                                 buttons: [, 'Aceptar']

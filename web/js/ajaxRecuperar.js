@@ -7,12 +7,12 @@
 
 $(document).ready(function () {
     $('#errorCambiar').hide();
-    
+
     $("#RestablcerContra").on('click', function () {
         if (isValidPassword($('#cambio1')) && isValidPassword($('#cambio2')) && areEqualPasswords($('#cambio1'), $('#cambio2'))) {
             console.log("Presionó cmabiar contrasena");
             $('#errorCambiar').hide();
-            
+
             $.ajax({
                 url: "RecuperarController",
                 data: {
@@ -36,8 +36,7 @@ $(document).ready(function () {
 
                 }
             });
-        }
-        else{
+        } else {
             $('#errorCambiar').show();
         }
 
@@ -45,29 +44,36 @@ $(document).ready(function () {
 
     $('#recuperarEnviarCorreo').on('click', function () {
         console.log("Click en Recuperar después de ingresar el correo");
-        var mail = $('#email');
-        $.post("RecuperarController", {
-            key: "recuperarEnviarCorreo",
-            email: mail.val()
 
-        },
-                function (response, status) {
-                    console.log(response);
+        swal({
+            title: "Correo enviado",
+            text: "Revisa el correo con el que creaste tu cuenta para poder cambiar tu contraseña",
+            icon: "success",
+            buttons: true,
+            buttons: [, 'Aceptar']
+        }).then(function () {
+            var mail = $('#email');
+            $.post("RecuperarController", {
+                key: "recuperarEnviarCorreo",
+                email: mail.val()
 
-                    if (response == "") {
-                        console.log("Error al cargar");
+            },
+                    function (response, status) {
+                        console.log("---------------------------------");
 
-                    } else {
-                        console.log("Intentando redireccionar");
-                        document.open("text/html", "replace");
-                        document.write(response);
-                        document.close();
+                        if (response == "") {
+                            console.log("Error al cargar");
 
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
                     }
-                }
-        );
-
+            );
+        })
     });
+
     $('#ir-a-loginR').on('click', function () {
         console.log("Entro a ajaxRecuperar.jps btn ir-a-LoginR");
         $.get("LoginController", {
@@ -88,7 +94,7 @@ $(document).ready(function () {
         );
 
     });
-    
+
     function areEqualPasswords(pass1, pass2) {
 
         if (pass1.val() != pass2.val()) {
@@ -109,7 +115,7 @@ $(document).ready(function () {
 
         return true;
     }
-    
+
     function isValidPassword(input) {
 
         var m = input.val();
