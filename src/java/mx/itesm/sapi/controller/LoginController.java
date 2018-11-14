@@ -175,33 +175,71 @@ public class LoginController extends HttpServlet {
                                 SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
                                 solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
 
+                                System.out.println("Consultar documentos");
+
+                                if (solicitudPreconsulta.getIdSexo() == 0) {
+                                    sesion.setAttribute("idSexo", 0);
+                                } else {
+                                    sesion.setAttribute("idSexo", solicitudPreconsulta.getIdSexo());
+                                }
+
+                                if (solicitudPreconsulta.getSilla() == 0) {
+                                    sesion.setAttribute("silla", 0);
+                                } else {
+                                    sesion.setAttribute("silla", solicitudPreconsulta.getSilla());
+                                }
+
+                                if (solicitudPreconsulta.getBaston() == 0) {
+                                    sesion.setAttribute("baston", 0);
+                                } else {
+                                    sesion.setAttribute("baston", solicitudPreconsulta.getBaston());
+                                }
+
+                                if (solicitudPreconsulta.getCamilla() == 0) {
+                                    sesion.setAttribute("camilla", 0);
+                                } else {
+                                    sesion.setAttribute("camilla", solicitudPreconsulta.getCamilla());
+                                }
+
+                                if (solicitudPreconsulta.getOxigeno() == 0) {
+                                    sesion.setAttribute("oxigeno", 0);
+                                } else {
+                                    sesion.setAttribute("oxigeno", solicitudPreconsulta.getOxigeno());
+                                }
+
                                 if (solicitudPreconsulta.getIdentificacion() != null) {
                                     sesion.setAttribute("identificacionOficial", 1);
+                                    sesion.setAttribute("identificacionOficialName", solicitudPreconsulta.getIdentificacion());
                                 } else {
                                     sesion.setAttribute("identificacionOficial", 0);
                                 }
                                 if (solicitudPreconsulta.getCurp() != null) {
                                     sesion.setAttribute("curp", 1);
+                                    sesion.setAttribute("curpName", solicitudPreconsulta.getCurp());
                                 } else {
                                     sesion.setAttribute("curp", 0);
                                 }
                                 if (solicitudPreconsulta.getComprobante() != null) {
                                     sesion.setAttribute("comprobante", 1);
+                                    sesion.setAttribute("comprobanteName", solicitudPreconsulta.getComprobante());
                                 } else {
                                     sesion.setAttribute("comprobante", 0);
                                 }
                                 if (solicitudPreconsulta.getMastografia() != null) {
                                     sesion.setAttribute("resultadoMastografia", 1);
+                                    sesion.setAttribute("resultadoMastografiaName", solicitudPreconsulta.getMastografia());
                                 } else {
                                     sesion.setAttribute("resultadoMastografia", 0);
                                 }
                                 if (solicitudPreconsulta.getUltrasonido() != null) {
                                     sesion.setAttribute("resultadoUltrasonido", 1);
+                                    sesion.setAttribute("resultadoUltrasonidoName", solicitudPreconsulta.getUltrasonido());
                                 } else {
                                     sesion.setAttribute("resultadoUltrasonido", 0);
                                 }
                                 if (solicitudPreconsulta.getBiopsiaPrevia() != null) {
                                     sesion.setAttribute("biopsiaPrevia", 1);
+                                    sesion.setAttribute("biopsiaPreviaName", solicitudPreconsulta.getBiopsiaPrevia());
                                 } else {
                                     sesion.setAttribute("biopsiaPrevia", 0);
                                 }
@@ -242,7 +280,7 @@ public class LoginController extends HttpServlet {
                                         sesion.setAttribute("envioEditable", 1);
                                     }
                                 }
-                                //Fin DeSolicitud Estado Preconsulta
+                                //Fin De Solicitud Estado Preconsulta
 
                                 //Solicitud Estado Paciente
                                 EstadoPacientePacienteServiceImpl estadoPaPa = new EstadoPacientePacienteServiceImpl();
