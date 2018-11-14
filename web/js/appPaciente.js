@@ -23,8 +23,17 @@ $(document).ready(function () {
     // Inicializar plug in tooltipster
     $('.questionMark').tooltipster({
         theme: 'tooltipster-shadow',
-        delay: '140'
+        delay: '140',
+       
     });
+    
+    $('.questionMarkRight').tooltipster({
+        theme: 'tooltipster-shadow',
+        delay: '140',
+        side: 'right'
+    });
+    
+    
 
     //Reemplazar el nombre del archivo en el input
     $('.custom-file-input').on('change', function () {

@@ -146,7 +146,12 @@
                         <h1 class="display-4 tituloMisCitas text-center m-0">Mis Citas</h1>
                     </div>
                 </div>
-
+                
+                <div class="row justify-content-end">
+                    <div class="col-12">
+                        <a class="float-left questionMarkRight" data-toggle="tooltip" data-placement="right" title="Da click en el día que quieres agendar tu cita."><button class="btn btn-morado" style="border-radius: 20px"><i class="far fa-calendar-plus" style="font-size:25px"></i>  Agregar Cita</button></a>
+                    </div>
+                </div>
 
                 <!-- Icono info -->
 
