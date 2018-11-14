@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
+import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.util.Conexion;
 
 /**
@@ -29,39 +30,32 @@ public class MedicoEspecialidadServicioImpl implements MedicoEspecialidadServici
 
         int id = 0;
         //Aquí va el call del procedure
-        String stProcedure = "-------";
-
+        String stProcedure = "CALL agregarMedicoEspecialidad(?,?,?)";       
+        ResultSet rs;
+                    
         try {
-
+                        
             cstmt = conn.prepareCall(stProcedure);
-
-            //Aquí van los sets
-            //cstmt.setInt(1,empleado.getIdEmpleado());
             cstmt.setInt(1, medicoEspecialidad.getIdEmpleado());
             cstmt.setInt(2, medicoEspecialidad.getIdEspecialidad());
-            cstmt.setString(3, medicoEspecialidad.getCedulaProfesional());
-            cstmt.setInt(4, medicoEspecialidad.getEstatus());
-            
+            cstmt.setInt(3, medicoEspecialidad.getIdEspecialidad());
 
-            //Aquí va el registerOutParameter
-            //cstmt.registerOutParameter(12,Types.INTEGER);
-            cstmt.executeUpdate();
-
-            ResultSet rs = cstmt.getGeneratedKeys();
+            rs = cstmt.executeQuery();
 
             rs.next();
-
+            rs.next();
             id = rs.getInt(1);
-
+            
+            rs.close();
             cstmt.close();
+            conn.close();
 
         } catch (SQLException ex) {
 
-            System.out.println("Estoy en el catch de agregarMedicoEspecialidad");
-            System.out.println(ex.getMessage());
-
+            System.out.println("PersonaServicioImpl mostrarPersona");
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));            
         }
-
         return id;
     }
 

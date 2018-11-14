@@ -13,7 +13,8 @@ import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
  * @author feror
  */
 public interface EspecialidadServicio {
-    public Especialidad mostrarEspecialidad(int idEspecialidad);
+    public Especialidad mostrarEspecialidad(int idEspecialidad);    
     public List<Especialidad> mostrarEspecialidad();
+    public Especialidad mostrarEspecialidadPorNombre(String especialidad);
     
 }

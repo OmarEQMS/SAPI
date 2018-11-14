@@ -517,4 +517,54 @@ public class PersonaServicioImpl implements PersonaServicio {
 
         return exito;        
     }
+
+    @Override
+    public int agregarMedico(Persona persona) {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        int id = -1;
+        //Aquí va el call del procedure
+        String stProcedure = "CALL agregarPersonaMedico(?, ?, ?, ?, ?)";
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+
+            /*IN in_nombre VARCHAR (255), IN in_estatus TINYINT, IN in_primerApellido VARCHAR (127), IN in_segundoApellido VARCHAR (127),
+    IN in_curp VARCHAR (18), IN in_telefono VARCHAR (15), IN in_correo VARCHAR (127),IN in_fechaNacimiento DATE,
+    IN in_idSexo INT, IN in_idTipoSangre INT, IN in_idMunicipio INT, IN in_idEstadoCivil INT, IN in_idDireccion INT,
+    IN in_imagen MEDIUMBLOB, IN in_edad INT*/
+            //Aquí van los sets
+            //cstmt.setInt(1,citaEmpleado.getIdCitaEmpleado());
+
+            cstmt.setString(1, persona.getNombre());
+            cstmt.setString(2, persona.getPrimerApellido());
+            cstmt.setString(3, persona.getSegundoApellido());            
+            cstmt.setString(4, persona.getTelefono());
+            cstmt.setString(5, persona.getCorreo());            
+                  
+
+            System.out.println("agregarPersonaMedico ".concat(cstmt.toString()));
+            //Aquí va el registerOutP  arameter 
+            
+            //cstmt.registerOutParameter(12,Types.INTEGER);
+            rs = cstmt.executeQuery();
+            rs.next();
+            id = rs.getInt(1);
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
+
+        }
+
+        return id;
+    }
 }

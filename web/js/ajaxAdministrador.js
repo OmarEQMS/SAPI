@@ -12,31 +12,31 @@ $(document).ready(function () {
         var correo = $('#agregar-correoMedico');
         var noEmpleado = $('#agregar-noEmpleadoMedico');
         var especialidad = $('#agregar-especialidadMedico');
-        var subEspecialidad = $('#agregar-subespecialidadMedico');
+        var posicion = $('#agregar-posiciondMedico');
         var cedula = $('#agregar-cedulaMedico');
         var password = $('#agregar-passwordMedico');;
 
         $.ajax({
 
-            url: 'AdminController',
+            url: 'RegistraUsuarioController',
             cache: false,
             method: 'POST',
             data: {
                 key: 'agregarMedico',
-                nombre: nombre.val(),
-                telefono: telefono.val(),
+                nombre: nombre.val(),                
                 primerApellido: primerApellido.val(),
                 segundoApellido: segundoApellido.val(),
+                telefono: telefono.val(),
                 correo: correo.val(),
                 noEmpleado: noEmpleado.val(),
                 especialidad: especialidad.val(),
-                subEspecialidad: subEspecialidad.val(),
+                posicion: posicion.val(),
                 cedula: cedula.val(),
                 password: password.val()
             }
         })
             .done(function (response) {
-
+                
 
             });
 
@@ -50,7 +50,7 @@ $(document).ready(function () {
 
         $.ajax({
 
-            url: 'AdminController',
+            url: 'RegistraUsuarioController',
             cache: false,
             dataType: 'JSON',
             method: "POST",
@@ -90,7 +90,7 @@ $(document).ready(function () {
 
         $.ajax({
 
-            url: 'AdminController',
+            url: 'RegistraUsuarioController',
             cache: false,
             method: 'POST',
             data: {
