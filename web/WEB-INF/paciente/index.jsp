@@ -147,6 +147,7 @@
                     </div>
                 </div>
 
+
                 <!-- Icono info -->
 
                 <div class="row justify-content-end mb-3">

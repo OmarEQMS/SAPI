@@ -223,6 +223,22 @@ $(document).ready(function () {
         }, 400);
 
     });
+    
+    $('#btn-continuarAResolucion').on('click', function () {
+
+        $('#nav-solicitud-tab').removeClass('active');
+        $('#nav-contact-tab').addClass('active');
+
+        $('#solicitud').removeClass('show').removeClass('active');
+        $('#nav-contact').addClass('show').addClass('active');
+
+        $('html, body').animate({
+            scrollTop: $("#solicitud").offset().top - 100
+        }, 400);
+
+    });
+    
+    
 
     //Parsear la fechas
 
