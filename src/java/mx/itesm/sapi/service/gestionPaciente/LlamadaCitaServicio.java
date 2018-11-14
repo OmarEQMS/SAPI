@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public interface LlamadaCitaServicio {
 

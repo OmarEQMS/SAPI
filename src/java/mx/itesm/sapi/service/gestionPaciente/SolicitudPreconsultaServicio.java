@@ -9,7 +9,7 @@ import mx.itesm.sapi.bean.gestionPaciente.SolicitudPreconsulta;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz & Alexis España
  */
 public interface SolicitudPreconsultaServicio {
     public SolicitudPreconsulta mostrarSolicitudPreconsulta(int idPaciente);

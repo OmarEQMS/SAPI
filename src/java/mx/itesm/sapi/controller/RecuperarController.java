@@ -39,7 +39,7 @@ import org.apache.commons.io.IOUtils;
 
 /**
  *
- * @author Angel GTZ
+ * @author Angel Guitierrez
  */
 @WebServlet(name = "RecuperarController", urlPatterns = {"/RecuperarController"})
 public class RecuperarController extends HttpServlet {
@@ -132,7 +132,7 @@ public class RecuperarController extends HttpServlet {
                     MimeBodyPart mimeBodyPart = new MimeBodyPart();
                     mimeBodyPart.setContent("<b>Estimada(o) usuario, usted ha solicitado Recuperar su Contraseña</b></br>".
                             concat("<b>Su token para iniciar sesion es:  ").
-                            concat(token), "text/html");
+                            concat(token).concat("<br>Por favor siga las instrucciones para poder cambiar su contraseña</br>"), "text/html");
 
                     Multipart multipart = new MimeMultipart();
                     multipart.addBodyPart(mimeBodyPart);

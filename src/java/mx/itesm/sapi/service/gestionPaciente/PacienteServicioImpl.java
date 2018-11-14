@@ -17,7 +17,7 @@ import mx.itesm.sapi.util.Conexion;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public class PacienteServicioImpl implements PacienteServicio{
 
@@ -191,13 +191,15 @@ public class PacienteServicioImpl implements PacienteServicio{
             
             cstmt.setInt(1, paciente.getIdPaciente());
             cstmt.setInt(2, paciente.getIdCuenta());
-            cstmt.setInt(3, 1);
+            cstmt.setInt(3, paciente.getIdEscolaridad());
             cstmt.setString(4, paciente.getPrz());
             cstmt.setString(5, paciente.getExpediente());
             cstmt.setDouble(6, paciente.getPeso() );
             cstmt.setDouble(7, paciente.getAltura());
             cstmt.setInt(8, paciente.getPosMenopausia());
             //cstmt.setInt(9, paciente.getEstatus());
+            
+            System.out.println("Actualizar paciente ".concat(cstmt.toString()));
             
             rs = cstmt.executeQuery();
             
@@ -319,5 +321,37 @@ public class PacienteServicioImpl implements PacienteServicio{
         }         
         return datosPacienteDocumentoInicial;
     }    
+
+    @Override
+    public boolean actualizarPrz(int idPaciente,String prz) {
+        Connection conn;
+        CallableStatement cstmt;
+        boolean exito= false;
+        ResultSet rs;
+        try{
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL actualizarPRZ(?,?)");
+            
+            cstmt.setInt(1, idPaciente);                                    
+            cstmt.setString(2, prz);
+            
+            System.out.println("Actualizar prz ".concat(cstmt.toString()));
+            
+            rs = cstmt.executeQuery();
+            
+            rs.next();
+            
+            exito = rs.getBoolean(1);
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+        }catch(SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito=false;
+        }
+        return exito;
+    }
     
 }

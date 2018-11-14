@@ -5,21 +5,15 @@
  */
 package mx.itesm.sapi.controller;
 
-import java.awt.Image;
-import java.awt.image.RenderedImage;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
+
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Base64;
-import java.util.Base64;
 import java.util.List;
-import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,25 +21,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.diagnostico.EtapaClinica;
+import mx.itesm.sapi.bean.diagnostico.MCodificado;
+import mx.itesm.sapi.bean.diagnostico.NCodificado;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
+import mx.itesm.sapi.bean.diagnostico.TCodificado;
+import mx.itesm.sapi.bean.gestionPaciente.BIRADS;
 import mx.itesm.sapi.bean.gestionPaciente.DatosPacienteDocumentoInicial;
-import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialTipoDocumento;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicialVista;
+import mx.itesm.sapi.bean.gestionPaciente.Escolaridad;
 import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
+import mx.itesm.sapi.bean.gestionPaciente.Fish;
+import mx.itesm.sapi.bean.gestionPaciente.GradoHistologico;
+import mx.itesm.sapi.bean.gestionPaciente.Her2;
+import mx.itesm.sapi.bean.gestionPaciente.NivelSocioeconomico;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.gestionPaciente.PacientePotencial;
-import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
+import mx.itesm.sapi.bean.gestionPaciente.ReceptorEstrogeno;
+import mx.itesm.sapi.bean.gestionPaciente.ReceptorProgesterona;
+import mx.itesm.sapi.bean.gestionPaciente.Seguro;
+import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
-import mx.itesm.sapi.bean.gestionTratamiento.Tratamiento;
-import mx.itesm.sapi.bean.gestionTratamiento.TratamientoPaciente;
 import mx.itesm.sapi.bean.gestionTratamiento.UnionTratamientoPaciente;
-import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
-import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
-import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
 import mx.itesm.sapi.bean.persona.Cuenta;
-import mx.itesm.sapi.bean.persona.Estado;
-import mx.itesm.sapi.bean.persona.EstadoCivil;
 import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.bean.persona.Estado;
 import mx.itesm.sapi.bean.persona.EstadoCivil;
@@ -54,22 +52,28 @@ import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.bean.persona.TipoSangre;
 import mx.itesm.sapi.service.diagnostico.EtapaClinicaServiceImpl;
+import mx.itesm.sapi.service.diagnostico.MCodificadoServiceImpl;
+import mx.itesm.sapi.service.diagnostico.NCodificadoServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
+import mx.itesm.sapi.service.diagnostico.TCodificadoServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.BIRADSServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialTipoDocumentoServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.EscolaridadServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.FishServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.GradoHistologicoServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.Her2ServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.NivelSocioeconomicoServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.ReceptorEstrogenoServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.ReceptorProgesteronaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.SeguroServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.TipoHistologicoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
-import mx.itesm.sapi.service.gestionTratamiento.TratamientoPacienteServiceImpl;
-import mx.itesm.sapi.service.gestionTratamiento.TratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.UnionTratamientoPacienteServiceImpl;
-import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
-import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
-import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
-import mx.itesm.sapi.service.persona.CodigoPostalServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
-import mx.itesm.sapi.service.persona.EstadoCivilServicioImpl;
 import mx.itesm.sapi.service.persona.EstadoServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
 import mx.itesm.sapi.service.persona.EstadoCivilServicioImpl;
@@ -86,7 +90,7 @@ import org.ghost4j.renderer.SimpleRenderer;*/
 
 /**
  *
- * @author quint
+ * @author Omar Quintero
  */
 @WebServlet(name = "FrontController", urlPatterns = {"/SAPI"})
 public class FrontController extends HttpServlet {
@@ -109,7 +113,7 @@ public class FrontController extends HttpServlet {
 
         String file = request.getParameter("file");
         
-        HttpSession sesion = request.getSession(true);
+         HttpSession sesion = request.getSession(true);
         if(file == null && sesion.getAttribute("idCuenta") == null)
         {
             request.setAttribute("status", "");
@@ -123,7 +127,9 @@ public class FrontController extends HttpServlet {
                 file = sesion.getAttribute("path").toString();
             else
                 file = request.getParameter("file");
+
             if ("jsp".equals(file.substring(file.length() - 3))) {                               
+
                     //Lo redireciono a su rol
                     int keyRol = (int) sesion.getAttribute("idRol");                                        
                     switch (keyRol) {
@@ -214,6 +220,27 @@ public class FrontController extends HttpServlet {
                             sesion.setAttribute("path", keyRuta);
                             switch (keyRuta) {
 
+                                case "navegadora/cuentaNavegadora.jsp": {
+
+                                    PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
+                                    Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
+
+                                    CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
+                                    Cuenta cuenta = cuentaServicioImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));
+                                    
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+                                    
+                                    sesion.setAttribute("base64Img", base64String);
+                                    
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+
+                                    break;
+                                }
                                 
 
                                 case "navegadora/index.jsp": {
@@ -246,11 +273,30 @@ public class FrontController extends HttpServlet {
                                 }
                                 case "navegadora/calendar.jsp": {
                                     System.out.println("Index Navegadora ");
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+                                    
+                                    sesion.setAttribute("base64Img", base64String);
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al calendario de navgeadora
                                     break;
                                 }
                                 case "navegadora/rendimiento.jsp": {
+                                    
                                     System.out.println("Index Navegadora ");
+                                    
+                                    PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                    Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
+
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+                                    
+                                    sesion.setAttribute("base64Img", base64String);
+                                    
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
                                     break;
 
@@ -341,6 +387,7 @@ public class FrontController extends HttpServlet {
                                     //String fecha = cuenta.getFecha().toString();
                                     //fecha = fecha.substring(0, 10);
 
+                                    
                                     Timestamp ts = cuenta.getFecha();
                                     Date fecha = new Date(ts.getTime());
                                     sesion.setAttribute("fechaRegistro", fecha);
@@ -511,6 +558,150 @@ public class FrontController extends HttpServlet {
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
                                     break;
                                 }
+
+                                case "navegadora/form.jsp":
+                                {
+                                    System.out.println("Front Controller case:  Form Navegadora");
+                                    
+                                    /**-------------------Mostrar Lista Médicos---------------------------------------*/
+                                    
+                                    PersonaServicioImpl personaServicioMedicos = new PersonaServicioImpl();
+                                    List<Persona> medicos = personaServicioMedicos.mostrarMedicosAdscritos();
+                                    request.setAttribute("listaMedicos", medicos);
+                                    
+                                    /**-------------------Mostrar Lista Radiologos---------------------------------------*/
+                                    
+                                    PersonaServicioImpl personaServicioRadiologos = new PersonaServicioImpl();
+                                    List<Persona> radiologos = personaServicioRadiologos.mostrarMedicosRadiologos();
+                                    request.setAttribute("listaRadiologos", radiologos);
+                                    
+                                    /**-------------------Mostrar Lista Escolaridad---------------------------------------*/
+                                    
+                                    EscolaridadServicioImpl escolaridadServicio = new EscolaridadServicioImpl();
+                                    List<Escolaridad> escolaridad = escolaridadServicio.mostrarEscolaridades();
+                                    request.setAttribute("listaEscolaridad", escolaridad);
+                                    
+                                    System.out.println(escolaridad);
+                                    
+                                    /**-------------------Mostrar Lista Seguros---------------------------------------*/
+                                    
+                                    SeguroServicioImpl seguroServicio = new SeguroServicioImpl();
+                                    List<Seguro> seguro = seguroServicio.mostrarAllSeguro();
+                                    request.setAttribute("listaSeguro", seguro);
+                                    
+                                    System.out.println(seguro);
+                                    
+                                    /**-------------------Mostrar ista Tipo Cirugia---------------------------------------*/
+                                    
+                                    TipoTratamientoServiceImpl TipoTratamientoService = new TipoTratamientoServiceImpl();
+                                    List<TipoTratamiento> tipoCirugia = TipoTratamientoService.mostrarTratamientoCirugia();
+                                    request.setAttribute("listaCirugia", tipoCirugia);
+                                    
+                                    System.out.println(tipoCirugia);
+                                    
+                                     /**-------------------Mostrar Lista BI-RADS---------------------------------------*/
+                                    
+                                    BIRADSServicioImpl BIRADSServicio = new BIRADSServicioImpl();
+                                    List<BIRADS> birads = BIRADSServicio.mostrarBIRADS();
+                                    request.setAttribute("listaBirads", birads);
+                                    
+                                    System.out.println(birads);
+
+                                    
+                                     /**-------------------Mostrar Lista Tipo Histológico---------------------------------------*/
+                                    
+                                    TipoHistologicoServicioImpl TipoHistologicoServicio = new TipoHistologicoServicioImpl();
+                                    List<TipoHistologico> tipoHistologico = TipoHistologicoServicio.mostraTipoHistologico();
+                                    request.setAttribute("listaTipoHistologico", tipoHistologico);
+                                    
+                                    System.out.println(tipoHistologico);
+                                    
+                                     /**-------------------Mostrar Lista Nivel Socioeconomico---------------------------------------*/
+                                    
+                                    NivelSocioeconomicoServicioImpl NivelSocioeconomicoServicio = new NivelSocioeconomicoServicioImpl();
+                                    List<NivelSocioeconomico> nivelSocioeconomico = NivelSocioeconomicoServicio.mostrarNivelSocioeconomico();
+                                    request.setAttribute("listaNivelSocioEconomico", nivelSocioeconomico);
+                                    
+                                    System.out.println(nivelSocioeconomico);
+                                    
+                                    /**-------------------Mostrar Lista Estapa Clínica---------------------------------------*/
+                                    
+                                    EtapaClinicaServiceImpl etapaServicio = new EtapaClinicaServiceImpl();
+                                    List<EtapaClinica> etapas = etapaServicio.mostrarEtapaClinica();
+                                    request.setAttribute("listaEtapaClinica", etapas);
+                                    
+                                    System.out.println(etapas);
+                                    
+                                    /**-------------------Mostrar Lista T---------------------------------------*/
+                                    
+                                    TCodificadoServiceImpl TCodificadoService = new TCodificadoServiceImpl();
+                                    List<TCodificado> TCodificado = TCodificadoService.mostrarTCodificado();
+                                    request.setAttribute("listaT", TCodificado);
+                                    
+                                    System.out.println(TCodificado);
+                                    
+                                    /**-------------------Mostrar Lista N---------------------------------------*/
+                                    
+                                    NCodificadoServiceImpl NCodificadoService = new NCodificadoServiceImpl();
+                                    List<NCodificado> NCodificado = NCodificadoService.mostrarNCodificado();
+                                    request.setAttribute("listaN", NCodificado);
+                                    
+                                    System.out.println(NCodificado);
+                                    
+                                    /**-------------------Mostrar Lista M---------------------------------------*/
+                                    
+                                    MCodificadoServiceImpl MCodificadoService = new MCodificadoServiceImpl();
+                                    List<MCodificado> MCodificado = MCodificadoService.mostrarMCodificado();
+                                    request.setAttribute("listaM", MCodificado);
+                                    
+                                    System.out.println(MCodificado);
+                                    
+                                    /**-------------------Mostrar Lista Grados Histológico---------------------------------------*/
+                                    
+                                    GradoHistologicoServicioImpl GradoHistologicoServicio = new GradoHistologicoServicioImpl();
+                                    List<GradoHistologico> gradoHistologico = GradoHistologicoServicio.mostrarGradoHistologico();
+                                    request.setAttribute("listaGradoHistologico", gradoHistologico);
+                                    
+                                    System.out.println(gradoHistologico);
+                                    
+                                    /**-------------------Mostrar Lista HER2----------------------------------------*/
+                                    
+                                    Her2ServicioImpl Her2Servicio = new Her2ServicioImpl();
+                                    List<Her2> her2 = Her2Servicio.mostrarHer2();
+                                    request.setAttribute("listaHer2", her2);
+                                    
+                                    System.out.println(her2);
+                                    
+                                    /**-------------------Mostrar Lista Fish---------------------------------------*/
+                                    
+                                    FishServicioImpl FishServicio = new FishServicioImpl();
+                                    List<Fish> fish = FishServicio.mostrarFish();
+                                    request.setAttribute("listaFish", fish);
+                                    
+                                    System.out.println(fish);
+                                    
+                                    /**-------------------Mostrar Lista RE---------------------------------------*/
+                                    
+                                    ReceptorEstrogenoServicioImpl ReceptorEstrogenoServicio = new ReceptorEstrogenoServicioImpl();
+                                    List<ReceptorEstrogeno> RE = ReceptorEstrogenoServicio.mostrarReceptorEstrogeno();
+                                    request.setAttribute("listaRE", RE);
+                                    
+                                    System.out.println(RE);
+                                    
+                                    /**-------------------Mostrar Lista RP---------------------------------------*/
+                                    
+                                    ReceptorProgesteronaServicioImpl ReceptorProgesteronaServicio = new ReceptorProgesteronaServicioImpl();
+                                    List<ReceptorProgesterona> RP = ReceptorProgesteronaServicio.mostrarAllReceptorProgesterona();
+                                    request.setAttribute("listaRP", RP);
+                                    
+                                    System.out.println(RP);
+
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    
+                                    break;
+
+                                }
+
                             }
                             break;
 

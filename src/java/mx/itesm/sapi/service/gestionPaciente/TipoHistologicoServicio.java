@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz & Alexis España
  */
 public interface TipoHistologicoServicio {
     public TipoHistologico mostrarTipoHistologico(int idTipoHistologico);

@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.ReceptorProgesterona;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz & Alexis España
  */
 public interface ReceptorProgesteronaServicio {
     public ReceptorProgesterona mostrarReceptorProgesterona(int idReceptorProgesterona);

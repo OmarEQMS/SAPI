@@ -16,7 +16,7 @@ import mx.itesm.sapi.util.Conexion;
 
 /**
  *
- * @author Diego
+ * @author Diego Montoya
  */
 public class MCodificadoServiceImpl implements MCodificadoService{
 
@@ -69,7 +69,7 @@ public class MCodificadoServiceImpl implements MCodificadoService{
         List<MCodificado> mCodificados = null;
         
         //Call del store procedure
-        String stProcedure="-----";
+        String stProcedure="CALL mostrarListaMCodificado()";
         
         try{
             
@@ -83,9 +83,9 @@ public class MCodificadoServiceImpl implements MCodificadoService{
             while(rs.next()){
                 
                 mCodificado = new MCodificado();
-                mCodificado.setIdMCodificado(rs.getInt(1));
-                mCodificado.setNombre(rs.getString(2));
-                mCodificado.setEstatus(rs.getInt(3));;
+                mCodificado.setIdMCodificado(rs.getInt("idMCodificado"));
+                mCodificado.setNombre(rs.getString("nombre"));
+                mCodificado.setEstatus(rs.getInt("estatus"));
                 
                 mCodificados.add(mCodificado);
             

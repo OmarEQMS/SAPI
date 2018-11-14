@@ -236,7 +236,6 @@
                                             <c:forEach items="${etapas}" var="etapa">  
                                                 <option value="<c:out value='${etapa.idEtapaClinica}'/>" ><c:out value='${etapa.nombre}'/> </option>
                                             </c:forEach>
-
                                         </select>
                                     </div>
 
@@ -259,8 +258,6 @@
                                     <input type="text" class="form-control" id="myPRZ" value="${sessionScope.prz}" readonly/>
                                 </div>
                             </div>
-
-
 
 
                             <!-- 5 -->

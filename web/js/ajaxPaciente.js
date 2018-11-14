@@ -2,6 +2,8 @@ $(document).ready(function () {
 
     //esconder mensajes de error
     $("#error-campos").hide();
+    $("#error-contraseña").hide();
+    $("#error-contraseña2").hide();
 
     //Recuperar edificio
     var edificio;
@@ -98,9 +100,9 @@ $(document).ready(function () {
                     $("#error-campos").show();
                 }
             }
-        
 
-                    if (esValid) {
+
+            if (esValid) {
 
                 $.ajax({
                     url: 'PacienteController',
@@ -123,6 +125,14 @@ $(document).ready(function () {
                             console.log(response);
 
                             if (response === "success") {
+
+                                $(".hora").val("");
+                                $(".tipo").prop('selectedIndex', 0);
+                                $(".medico").prop('selectedIndex', 0);
+                                $("#RegistrarCita_edificioAntiguo").prop("checked", false);
+                                $("#RegistrarCita_edificioNuevo").prop("checked", false);
+                                $('input[name=Pisos]').prop("checked", false);
+                                $('#pisosDiv').hide();
 
                                 var newEvent = {
 
@@ -212,7 +222,7 @@ $(document).ready(function () {
                 }
         );
     });
-    
+
     //PARA IR A INICIO PACIENTE
     $('#irAInicioPaciente').on('click', function () {
         $.post("SAPI", {
@@ -423,59 +433,59 @@ $(document).ready(function () {
 
 
     $('#guardarCambios').on('click', function () {
-        
-        if(isValidEmail($("#correo")) &&
+
+        if (isValidEmail($("#correo")) &&
                 isValidPhoneNumber($("#telefono")) &&
                 isValidNoExpediente($("#noExpediente"))
-                ){
+                ) {
 
 
-        console.log("Presionó GuardarCambios")
-        var form = $("form")[0];
-        var data = new FormData(form);
-        data.append("key", "cambiarDatos");
-        data.forEach((value, key) => {
-            console.log(key + " " + value);
-        })
+            console.log("Presionó GuardarCambios")
+            var form = $("form")[0];
+            var data = new FormData(form);
+            data.append("key", "cambiarDatos");
+            data.forEach((value, key) => {
+                console.log(key + " " + value);
+            })
 
-        $.ajax({
-            url: "PacienteController",
-            data: data,
-            method: "POST",
-            encType: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            cache: false,
-            success: function (response) {
-                $.post("SAPI", {
-                    file: "paciente/cuenta.jsp"
-                },
-                        function (response, status, xhr) {
-                            console.log("El ajax fue exitoso!!-----------------------");
-                            if (status == "success") {
-                                if (response == "error") {
-                                    $("#msj-error").show();
-                                } else {
-                                    document.open("text/html", "replace");
-                                    document.write(response);
-                                    document.close();
-                                    
+            $.ajax({
+                url: "PacienteController",
+                data: data,
+                method: "POST",
+                encType: "multipart/form-data",
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (response) {
+                    $.post("SAPI", {
+                        file: "paciente/cuenta.jsp"
+                    },
+                            function (response, status, xhr) {
+                                console.log("El ajax fue exitoso!!-----------------------");
+                                if (status == "success") {
+                                    if (response == "error") {
+                                        $("#msj-error").show();
+                                    } else {
+                                        document.open("text/html", "replace");
+                                        document.write(response);
+                                        document.close();
+
+                                    }
                                 }
                             }
-                        }
-                );
-            },
-            error: function (xhr) {
-                //alert(xhr.statusText);
-            }
-        });
-        
-        }else{
-              swal({
-  title: "Datos invalidos!",
-  text: "Revisa todos los campos antes de continuar",
-  icon: "error",
-});
+                    );
+                },
+                error: function (xhr) {
+                    //alert(xhr.statusText);
+                }
+            });
+
+        } else {
+            swal({
+                title: "Datos invalidos!",
+                text: "Revisa todos los campos antes de continuar",
+                icon: "error",
+            });
         }
     });
 //Cambiar imagen temporalmente en elfront
@@ -497,57 +507,57 @@ $(document).ready(function () {
     //Agregar tratamientos
     $("#btn-agregarTratamiento").on('click', function () {
 
-    if($("#tipoTratamiento").val()!="Elegir Tratamiento")
-        console.log($("#tipoTratamiento").val());
-            
-        if(isValidDate($('#fechaInicioTratamiento')) && $("#tipoTratamiento").val()!=null ){
-    
-        $.ajax({
-            url: 'PacienteController',
-            cache: false,
-            method: 'POST',
-            data: {
-                key: 'agregarTratamiento',
-                idTipoTratamiento: $('#tipoTratamiento').val(),
-                fechaInicio: $('#fechaInicioTratamiento').val(),
-            }
-        })
-                .done(function (response) {
+        if ($("#tipoTratamiento").val() != "Elegir Tratamiento")
+            console.log($("#tipoTratamiento").val());
 
-                    console.log(response);
+        if (isValidDate($('#fechaInicioTratamiento')) && $("#tipoTratamiento").val() != null) {
 
-                    $('#modalAgregarTratamiento').modal('toggle'); //cerrar modal
-                    swal({
-                        title: "Tratamiento registrado correctamente",
-                        icon: "success",
+            $.ajax({
+                url: 'PacienteController',
+                cache: false,
+                method: 'POST',
+                data: {
+                    key: 'agregarTratamiento',
+                    idTipoTratamiento: $('#tipoTratamiento').val(),
+                    fechaInicio: $('#fechaInicioTratamiento').val(),
+                }
+            })
+                    .done(function (response) {
+
+                        console.log(response);
+
+                        $('#modalAgregarTratamiento').modal('toggle'); //cerrar modal
+                        swal({
+                            title: "Tratamiento registrado correctamente",
+                            icon: "success",
+                        });
+                        var row = "<tr>" +
+                                "<input type='hidden' id='nombre-" + response + "' value='" + $("#nombreTipoTratamiento").val() + "'/>" +
+                                "<input type='hidden' id='fechaInicio-" + response + "' value='" + $("#fechaInicioTratamiento").val() + "'/>" +
+                                "<td id='nombre-" + response + "' value='" + $("#tipoTratamiento").val() + "' >" + $("#nombreTipoTratamiento").val() + "</td>" +
+                                "<td id='fechaInicio-" + response + "' value='" + $("#fechaInicioTratamiento").val() + "' >" + $("#fechaInicioTratamiento").val() + "</td>" +
+                                "<td  id='fecha-" + response + "'>" + "</td>" +
+                                "<td><button class='btn btn-primary terminarTratamiento' id='modal-" + response + "' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button></td > " +
+                                "</tr>";
+                        $("#tablaTratamientos").append(row);
+
+                        $('#tipoTratamiento').prop('selectedIndex', 0);
+
+                        $("#fechaInicioTratamiento").val('');
+
+                        $('#idTratamientoPaciente').val(response);
+
+                    })
+                    .fail(function (xhr, textStatus, errorThrown) {
+                        console.log(xhr.responseText);
                     });
-                    var row = "<tr>" +
-                            "<input type='hidden' id='nombre-" + response + "' value='" + $("#nombreTipoTratamiento").val() + "'/>" +
-                            "<input type='hidden' id='fechaInicio-" + response + "' value='" + $("#fechaInicioTratamiento").val() + "'/>" +
-                            "<td id='nombre-" + response + "' value='" + $("#tipoTratamiento").val() + "' >" + $("#nombreTipoTratamiento").val() + "</td>" +
-                            "<td id='fechaInicio-" + response + "' value='" + $("#fechaInicioTratamiento").val() + "' >" + $("#fechaInicioTratamiento").val() + "</td>" +
-                            "<td  id='fecha-" + response + "'>" + "</td>" +
-                            "<td><button class='btn btn-primary terminarTratamiento' id='modal-" + response + "' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button></td > " +
-                            "</tr>";
-                    $("#tablaTratamientos").append(row);
-
-                    $('#tipoTratamiento').prop('selectedIndex', 0);
-
-                    $("#fechaInicioTratamiento").val('');
-
-                    $('#idTratamientoPaciente').val(response);
-
-                })
-                .fail(function (xhr, textStatus, errorThrown) {
-                    console.log(xhr.responseText);
-                });
-            }else{
-                swal({
-  title: "Datos invalidos!",
-  text: "Revisa todos los campos antes de continuar",
-  icon: "error",
-});
-            }
+        } else {
+            swal({
+                title: "Datos invalidos!",
+                text: "Revisa todos los campos antes de continuar",
+                icon: "error",
+            });
+        }
     });
     //Cambiar contraseña
 
@@ -567,28 +577,47 @@ $(document).ready(function () {
                 .then((cambiar) => {
                     if (cambiar) {
 
+                        if (isValidPassword($('#password')) && isValidPassword($('#password-confirm')) && areEqualPasswords($('#password'), $('#password-confirm'))) {
 
-                        $.ajax({
-                            url: "PotencialController",
-                            data: {
-                                key: "cambiarContrasena",
-                                idCuenta: $("#sesionPaciente").val(),
-                                password: $("#password").val(),
-                                password2: $("#password-confirm").val()
-                            },
-                            method: "POST",
-                            success: function (response) {
-                                if (response == "success") {
+                            $.ajax({
+                                url: "PotencialController",
+                                data: {
+                                    key: "cambiarContrasena",
+                                    idCuenta: $("#sesionPaciente").val(),
+                                    password: $("#password").val(),
+                                    password2: $("#password-confirm").val()
+                                },
+                                method: "POST",
+                                success: function (response) {
 
-                                } else {
-                                    //Aqui no se que hace
+                                    $("#password").val('');
+                                    $("#password-confirm").val('');
+
+
+
+                                },
+                                error: function (xhr) {
+
                                 }
-                            },
-                            error: function (xhr) {
+                            });
+                            $('#modalCambiarContraseña').modal('toggle');
 
+
+                        } else {
+
+                            if (!isValidPassword($('#password'))) {
+                                $("#error-contraseña").show();
+                            } else if (!isValidPassword($('#password-confirm'))) {
+                                $("#error-contraseña2").show();
+                            } else {
+                                $("#error-contraseña").hide();
+                                $("#error-contraseña2").hide();
                             }
-                        });
-                        $('#modalCambiarContraseña').modal('toggle');
+
+
+
+                        }
+
                     } else {
 
                     }
@@ -598,45 +627,45 @@ $(document).ready(function () {
     //Terminar tratamiento
     $("#fechaTerminarTratamiento").on('click', function () {
 
-        if(isValidDate2($('#fechaFinTratamiento'), $("#fechaInicio-"+$("#botonHidden").val()).val())){
-    
-        $.ajax({
-            url: 'PacienteController',
-            cache: false,
-            method: 'POST',
-            data: {
-                key: 'terminarTratamiento',
-                idTratamientoPaciente: $('#idTratamientoPaciente').val(),
-                fechaFin: $('#fechaFinTratamiento').val()
-            }
-        })
+        if (isValidDate2($('#fechaFinTratamiento'), $("#fechaInicio-" + $("#botonHidden").val()).val())) {
 
-                .done(function (response) {
+            $.ajax({
+                url: 'PacienteController',
+                cache: false,
+                method: 'POST',
+                data: {
+                    key: 'terminarTratamiento',
+                    idTratamientoPaciente: $('#idTratamientoPaciente').val(),
+                    fechaFin: $('#fechaFinTratamiento').val()
+                }
+            })
 
-                    $('#modalEditarTerminado').modal('toggle'); //cerrar modal
-                    swal({
-                        title: "Tratamiento finalizado",
-                        icon: "success",
+                    .done(function (response) {
+
+                        $('#modalEditarTerminado').modal('toggle'); //cerrar modal
+                        swal({
+                            title: "Tratamiento finalizado",
+                            icon: "success",
+                        });
+                        //actualizar la tabla
+                        $('#fecha-' + $('#idTratamientoPaciente').val()).html($('#fechaFinTratamiento').val());
+                        $("#fechaFinTratamiento").val('');
+
+                        $("#modal-" + $("#botonHidden").val()).attr("disabled", "disabled").removeClass("btn-primary").addClass("btn-secondary");
+
+
+
+                    })
+                    .fail(function (xhr, textStatus, errorThrown) {
+                        console.log(xhr.responseText);
                     });
-                    //actualizar la tabla
-                    $('#fecha-' + $('#idTratamientoPaciente').val()).html($('#fechaFinTratamiento').val());
-                    $("#fechaFinTratamiento").val('');
 
-                    $("#modal-" + $("#botonHidden").val()).attr("disabled", "disabled").removeClass("btn-primary").addClass("btn-secondary");
-
-
-
-                })
-                .fail(function (xhr, textStatus, errorThrown) {
-                    console.log(xhr.responseText);
-                });
-                
-        }else{
+        } else {
             swal({
-  title: "Datos invalidos!",
-  text: "Revisa todos los campos antes de continuar",
-  icon: "error",
-});
+                title: "Datos invalidos!",
+                text: "Revisa todos los campos antes de continuar",
+                icon: "error",
+            });
         }
     });
     //Designar idTratamientoPaciente
@@ -667,8 +696,29 @@ $(document).ready(function () {
         $('#nombreTipoTratamiento').val($('#tipoTratamiento option:selected').text());
         console.log($('#nombreTipoTratamiento').val());
     });
-    
-    function isValidNoExpediente (input) {
+
+    function areEqualPasswords(pass1, pass2) {
+
+        if (pass1.val() != pass2.val()) {
+
+            pass2.css('border', '1px solid red');
+            pass1.css('border', '1px solid red');
+            $('#error-notEqualPasswords').show();
+
+            return false;
+
+        } else {
+
+            pass2.css('border', '');
+            pass1.css('border', '');
+            $('#error-notEqualPasswords').hide();
+
+        }
+
+        return true;
+    }
+
+    function isValidNoExpediente(input) {
 
         var m = input.val();
 
@@ -689,9 +739,10 @@ $(document).ready(function () {
         return true;
 
 
-    };
-    
-    function isValidEmail (input)  {
+    }
+    ;
+
+    function isValidEmail(input) {
 
         var m = input.val();
 
@@ -711,9 +762,10 @@ $(document).ready(function () {
 
         return true;
 
-    };
-    
-    function isValidPhoneNumber (input) {
+    }
+    ;
+
+    function isValidPhoneNumber(input) {
 
         var m = input.val();
 
@@ -731,7 +783,8 @@ $(document).ready(function () {
         }
 
         return true;
-    };
+    }
+    ;
 
     function isValidHour(input) {
 
@@ -749,7 +802,8 @@ $(document).ready(function () {
         return true;
 
 
-    };
+    }
+    ;
 
     function isValidSelect(input) {
 
@@ -767,7 +821,8 @@ $(document).ready(function () {
         return true;
 
 
-    };
+    }
+    ;
 
     function isValidRadioChecked(input) {
 
@@ -777,9 +832,10 @@ $(document).ready(function () {
         }
 
         return true;
-    };
-    
-    function isValidDate (input) {
+    }
+    ;
+
+    function isValidDate(input) {
 
         //Obtener fecha
         let today = new Date();
@@ -787,22 +843,17 @@ $(document).ready(function () {
         //Valor seleccionado del input
         let date_from = input.val();
         date_from = new Date(date_from);
-        var todayYear= today.getFullYear();
+        var todayYear = today.getFullYear();
         var inicioYear = date_from.getFullYear();
         var event = false;
-        
-        if(today > date_from && inicioYear >= todayYear-5){
-            event=false;
+
+        if (today > date_from && inicioYear >= todayYear - 5) {
+            event = false;
             console.log("Valido");
-        }
-        else{
-            event=true;
+        } else {
+            event = true;
             console.log("Invalido");
         }
-        
-
-       
-
 
         if (!input.val() || event) {
 
@@ -818,9 +869,10 @@ $(document).ready(function () {
         return true;
 
 
-    };
+    }
+    ;
 
-    function isValidDate2 (input, fechaInicio) {
+    function isValidDate2(input, fechaInicio) {
 
         //var mydate = new Date('2014-04-03');
         //Obtener fecha
@@ -828,35 +880,34 @@ $(document).ready(function () {
 
         //Valor seleccionado del input
         let date_from = input.val();
-       
+
         console.log(fechaInicio);
         date_from = new Date(date_from);
         var date_Inicio = new Date(fechaInicio);
 
         var event = false;
-        
+
         console.log(input.val());
-        
-        console.log("Date inicio"+date_Inicio);
-        console.log("El años es: "+date_Inicio.getFullYear());
-        console.log("Date from" +date_from);
-        console.log("El años es: "+date_from.getFullYear());
-         
+
+        console.log("Date inicio" + date_Inicio);
+        console.log("El años es: " + date_Inicio.getFullYear());
+        console.log("Date from" + date_from);
+        console.log("El años es: " + date_from.getFullYear());
+
         var inicioYear = date_Inicio.getFullYear();
         var inputYear = date_from.getFullYear();
-        
-        if(inputYear < inicioYear+5 &&  date_Inicio <= date_from ){
+
+        if (inputYear < inicioYear + 5 && date_Inicio <= date_from) {
             event = false;
             console.log(event);
             console.log("fechaValida");
-        }
-        else{
-            event= true;
+        } else {
+            event = true;
             console.log(event);
             console.log("fechaInValida");
         }
-        
-       // date_Inicio > date_from ? event = true : event = false;
+
+        // date_Inicio > date_from ? event = true : event = false;
 
         if (!input.val() || event) {
 
@@ -872,7 +923,30 @@ $(document).ready(function () {
         return true;
 
 
-    };
+    }
+
+    function isValidPassword(input) {
+
+        var m = input.val();
+
+        //var expreg = /^[a-zA-Z0-9]{8,14}$/;
+        var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    }
+
 
 
 

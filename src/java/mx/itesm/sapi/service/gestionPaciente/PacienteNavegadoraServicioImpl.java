@@ -17,7 +17,7 @@ import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public class PacienteNavegadoraServicioImpl implements PacienteNavegadoraServicio {
 

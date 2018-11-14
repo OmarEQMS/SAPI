@@ -11,7 +11,7 @@ import mx.itesm.sapi.bean.moduloGestionMedico.Posicion;
 
 /**
  *
- * @author feror
+ * @author Fernanda Orduña & Pablo Lugo
  */
 public interface PosicionServicio {
     public Posicion mostrarPosicion(int idPosicion);

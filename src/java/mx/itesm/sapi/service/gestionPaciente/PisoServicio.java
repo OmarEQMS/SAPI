@@ -9,7 +9,7 @@ import java.util.List;
 import mx.itesm.sapi.bean.gestionPaciente.Piso;
 /**
  *
- * @author Alex
+ * @author Alex España
  */
 public interface PisoServicio {
     public Piso mostrarPiso(int idPiso);

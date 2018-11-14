@@ -6,13 +6,13 @@
 package mx.itesm.sapi.service.gestionPaciente;
 
 import java.util.List;
-import mx.itesm.sapi.bean.gestionPaciente.Ki67;
+import mx.itesm.sapi.bean.gestionPaciente.NivelSocioeconomico;
+
 /**
  *
- * @author Alexis España
+ * @author shannonrosas
  */
-public interface Ki67Servicio {
-    public Ki67 mostrarKi67(int idKi67);
-    public List<Ki67> mostrarKi67();
+public interface NivelSocioeconomicoServicio {
+    public List<NivelSocioeconomico> mostrarNivelSocioeconomico();
     
 }

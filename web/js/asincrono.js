@@ -26,6 +26,11 @@ $(document).ready(function () {
     $('#errorNoExterior').hide();
     $('#errorNoInterior').hide();
     $('#errorUsuarioRepetido').hide();
+
+    $('#errorCorreoRepetido').hide();
+    $('#error-terminos').hide();
+    $('#error-CPexiste').hide();
+
     $("#error-campos").hide();
 
     $('#btn-registro').on('click', function () {
@@ -59,6 +64,8 @@ $(document).ready(function () {
             $("#error-campos").show();
         }
     });
+
+    $(document).ajaxStop($.unblockUI);
 
     $('#btnAceptar').on('click', function () {
 
@@ -115,15 +122,20 @@ $(document).ready(function () {
                         })
                                 .then(function () {
                                     console.log("Redirección a login");
+                                    $.blockUI({message: '<h1><img src="img/load.gif" /> Espere un momento...</h1>'});
                                     $.get("LoginController", {
                                         key: "ir-a-login"
                                     },
                                             function (response, status, xhr) {
                                                 console.log(response);
+
                                                 if (status == "success") {
                                                     if (response == "error") {
                                                         $("#msj-error").show();
                                                     } else {
+
+                                                        $.unblockUI
+
                                                         document.open("text/html", "replace");
                                                         document.write(response);
                                                         document.close();
@@ -303,6 +315,31 @@ $(document).ready(function () {
 
     //CORREO EN EL REGISTRO
     $('#correo').on('change', function () {
+         $.ajax({
+
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+
+                key: "repiteCorreo",
+                correo: $('#correo').val()
+
+
+            },
+            success: function (response) {
+
+                if (response === 'CorreoAlreadyExists') {
+                    console.log("correo repetidooo")
+                    $('#correo').css('color', 'orange');
+                    $('#errorCorreoRepetido').show();
+                } else {
+                    $('#errorCorreoRepetido').hide();
+                }
+
+            }
+
+        });
 
         if (isValidEmail($(this))) {
             $('#errorCorreo').hide();

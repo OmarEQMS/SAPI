@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.ImportanciaCita;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz
  */
 public interface ImportanciaCitaServicio {
     public ImportanciaCita mostrarImportanciaCita(int idImportanciaCita);

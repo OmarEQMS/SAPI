@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
 
 /**
  *
- * @author feror
+ * @author Fernanda Orduña & Pablo Lugo
  */
 public interface EmpleadoServicio {
     public int agregarEmpleado(Empleado empleado);

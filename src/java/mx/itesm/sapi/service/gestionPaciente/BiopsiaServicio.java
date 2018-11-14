@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Biopsia;
 
 /**
  *
- * @author urieldiaz
+ * @author Uriel Díaz & Oscar Miranda
  */
 public interface BiopsiaServicio {
     public Biopsia mostrarBiopsia(int idBiopsia);

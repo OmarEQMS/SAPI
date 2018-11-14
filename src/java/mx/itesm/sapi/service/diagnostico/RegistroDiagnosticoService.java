@@ -10,7 +10,7 @@ import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
 
 /**
  *
- * @author Diego
+ * @author Diego Montoya
  */
 public interface RegistroDiagnosticoService {
 
