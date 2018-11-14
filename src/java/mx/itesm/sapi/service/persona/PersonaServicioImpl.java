@@ -552,8 +552,7 @@ public class PersonaServicioImpl implements PersonaServicio {
             //cstmt.registerOutParameter(12,Types.INTEGER);
             rs = cstmt.executeQuery();
             rs.next();
-            id = rs.getInt(1);
-
+            id = rs.getInt(1);            
             rs.close();
             cstmt.close();
             conn.close();

@@ -343,7 +343,7 @@ public class RegistraUsuarioController extends HttpServlet {
                 int idCuenta;
                 int idEmpleado;                
                 
-                
+                System.out.println("idPersona: ".concat(String.valueOf(idPersona)));
                 if(idPersona > 0)
                 {
                     cuenta.setIdPersona(idPersona);                    
@@ -354,9 +354,11 @@ public class RegistraUsuarioController extends HttpServlet {
                         empleado.setIdCuenta(idCuenta);
                         idEmpleado = empleadoServicioImpl.agregarEmpleado(empleado);
                         
-                        
+                        System.out.println("idCuenta: ".concat(String.valueOf(idCuenta)));
                         if(idEmpleado > 0)
                         {
+                            System.out.println("idEmpleado: ".concat(String.valueOf(idEmpleado)));
+                            
                             posicion = posicionServicioImpl.mostrarPosicion(posicionMedico);
                             especialidad = especialidadServicioImpl.mostrarEspecialidadPorNombre(especialidadAgregar);
                                                                                    
@@ -364,7 +366,7 @@ public class RegistraUsuarioController extends HttpServlet {
                             
                             empleadoPosicion.setIdEmpleado(idEmpleado);
                             empleadoPosicion.setIdPosicion(posicion.getIdPosicion());
-                            empleadoPosicion.setInicio(timestamp);
+                            empleadoPosicion.setInicio(timestamp);                            
                             
                             medicoEspecialidad.setIdEspecialidad(especialidad.getIdEspecialidad());
                             medicoEspecialidad.setIdEmpleado(idEmpleado);
@@ -373,6 +375,7 @@ public class RegistraUsuarioController extends HttpServlet {
                             int idEmpleadoPosicionServicio  = empleadoPosicionServicioImpl.agregarEmpleadoPosicion(empleadoPosicion);
                             int idMedicoEspecialidad = medicoEspecialidadServicioImpl.agregarMedicoEspecialidad(medicoEspecialidad);
                             
+                            System.out.println("Final :D");
                             System.out.println("idPersona: ".concat(String.valueOf(idPersona)));
                             System.out.println("idCuenta: ".concat(String.valueOf(idCuenta)));
                             System.out.println("idEmpleado: ".concat(String.valueOf(idEmpleado)));

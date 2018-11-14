@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
-import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.util.Conexion;
 
 /**
@@ -38,11 +37,10 @@ public class MedicoEspecialidadServicioImpl implements MedicoEspecialidadServici
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, medicoEspecialidad.getIdEmpleado());
             cstmt.setInt(2, medicoEspecialidad.getIdEspecialidad());
-            cstmt.setInt(3, medicoEspecialidad.getIdEspecialidad());
+            cstmt.setString(3, medicoEspecialidad.getCedulaProfesional());
 
             rs = cstmt.executeQuery();
-
-            rs.next();
+            System.out.println("agregarMedicoEspecialidad ".concat(cstmt.toString()));           
             rs.next();
             id = rs.getInt(1);
             
@@ -52,7 +50,7 @@ public class MedicoEspecialidadServicioImpl implements MedicoEspecialidadServici
 
         } catch (SQLException ex) {
 
-            System.out.println("PersonaServicioImpl mostrarPersona");
+            System.out.println("Catch agregarMedicoEspecialidad");
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));            
         }

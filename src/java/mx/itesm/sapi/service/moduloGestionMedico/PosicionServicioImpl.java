@@ -112,7 +112,7 @@ public class PosicionServicioImpl implements PosicionServicio {
             rs.next();
             posicion.setIdPosicion(rs.getInt("idPosicion"));
             posicion.setNombre(rs.getString("nombre"));
-            posicion.setEstatus(rs.getInt("status"));
+            posicion.setEstatus(rs.getInt("estatus"));
 
             rs.close();
             cstmt.close();
@@ -120,7 +120,7 @@ public class PosicionServicioImpl implements PosicionServicio {
 
         } catch (SQLException ex) {
 
-            System.out.println("PosicionServicio mostrarPosicion por nombre");
+            System.out.println("Catch PosicionServicio mostrarPosicion por nombre");
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));            
         }
