@@ -268,7 +268,7 @@ public class FrontController extends HttpServlet {
 
                                     sesion.setAttribute("base64Img", base64String);
                                     //DEBUG se cambiará cuando haya routing desde la lista de potenciales.
-                                    int idPacientePotencial = 80;
+                                    int idPacientePotencial = 68;
                                     
                                     try
                                     {
@@ -276,7 +276,7 @@ public class FrontController extends HttpServlet {
                                     }catch(Exception ex)
                                     {
                                         System.out.println("Catch parameter idPacientePotencial ".concat(ex.getMessage()));
-                                        idPacientePotencial = 80;
+                                        idPacientePotencial = 68;
                                     }         
                                     
 
