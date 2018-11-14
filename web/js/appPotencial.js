@@ -226,6 +226,7 @@ $(document).ready(function () {
     
     $('#btn-continuarAResolucion').on('click', function () {
 
+        console.log("VE A RESOLUCIÓN PRRO");
         $('#nav-solicitud-tab').removeClass('active');
         $('#nav-contact-tab').addClass('active');
 

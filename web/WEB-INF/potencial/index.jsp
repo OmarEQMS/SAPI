@@ -728,7 +728,14 @@
 
                                                         <div class="row justify-content-center">
                                                             <div class="col-12 text-center">
-                                                                <h4 class="display-4 text-success" style="font-size:30px">Tu solicitud ha sido enviada correctamente y esta siendo procesada</h4>
+                                                                <c:choose>
+                                                                    <c:when test="${sessionScope.estatus==1}">
+                                                                        <h4 class="display-4 text-success" style="font-size:30px">Tu solicitud ha aprobada</h4>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <h4 class="display-4 text-success" style="font-size:30px">Tu solicitud ha sido enviada correctamente y esta siendo procesada</h4>
+                                                                    </c:otherwise>
+                                                                </c:choose>
                                                             </div>
                                                         </div>
 
