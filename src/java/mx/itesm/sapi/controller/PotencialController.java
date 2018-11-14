@@ -822,10 +822,9 @@ public class PotencialController extends HttpServlet {
                             System.out.println("Res solictud preconsulta".concat(res));
                             out.print(res);
 
-                            request.getRequestDispatcher("WEB-INF/potencial/index.jsp").forward(request, response);
+//                            request.getRequestDispatcher("WEB-INF/potencial/index.jsp").forward(request, response);
 
                         }
-
                     }
                 }
                 break;
