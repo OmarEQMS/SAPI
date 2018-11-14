@@ -225,23 +225,23 @@
                                                         <td>${paciente.curp}</td>
                                                         <td>${paciente.telefono}</td>
                                                         <td>
-                                                            <button class="btn btn-info btn-ver" data-id="${paciente.idPaciente}" id="btn-ver">
+                                                            <button class="btn btn-info btn-ver m-1" data-id="${paciente.idPaciente}" id="btn-ver">
                                                                 <i class="far fa-eye"></i>
                                                             </button>
 
                                                             <c:choose>
                                                                 <c:when test="${paciente.estadoPaciente=='Potencial en proceso'}">
-                                                                    <button class="btn btn-success btn-aceptar" data-id="${paciente.idPaciente}" data-toggle="modal" data-target="#modalAceptarUsuario">
+                                                                    <button class="btn btn-success btn-aceptar m-1" data-id="${paciente.idPaciente}" data-toggle="modal" data-target="#modalAceptarUsuario">
                                                                         <i class="fas fa-check"></i>
                                                                     </button>
                                                                 </c:when>    
 
                                                             </c:choose>
 
-                                                            <button class="btn btn-primary btn-editar" data-id="${paciente.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarUsuario">
+                                                            <button class="btn btn-primary btn-editar m-1" data-id="${paciente.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarUsuario">
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
-                                                            <button class="btn btn-danger mt-1 btn-eliminar" data-id="${paciente.idPaciente}" id="btn-eliminar" data-toggle="modal" data-target="#modalEliminarUsuario">
+                                                            <button class="btn btn-danger btn-eliminar m-1" data-id="${paciente.idPaciente}" id="btn-eliminar" data-toggle="modal" data-target="#modalEliminarUsuario">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
                                                         </td>
