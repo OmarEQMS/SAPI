@@ -166,7 +166,7 @@ $(document).ready(function () {
                 $('#tratamientos').append(plantilla);
 
 
-                /*       var plantilla = `<div class="form-group row justify-content-center contenedor-tratamientos">
+                       var plantilla = `<div class="form-group row justify-content-center contenedor-tratamientos">
                  <div class="col-7">
                  <select id="tratamiento" class="form-control">
                  <option disabled selected>Elegir Tratamiento</option>
@@ -182,7 +182,7 @@ $(document).ready(function () {
                  
                  $('#tratamientos').append(plantilla);
                  
-                 */
+                 
 
             }
 

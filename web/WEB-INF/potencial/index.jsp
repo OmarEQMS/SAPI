@@ -1280,6 +1280,15 @@
                                                             </div>
                                                         </div>
 
+                                                        <!-- ***** Nota ***** -->
+                                                        <div class="row mt-3 justify-content-center">
+                                                            <div class="col-5 text-center bg-primary" style="border-radius:20px;">
+                                                                <span style="font-size: 14px;" class="text-white">Nota: Asegúrate de que tu motivo de consulta sea lo último
+                                                                    que subas, puesto que no es información que puedas guardar y completar después. Debes estar segura(o) que
+                                                                    cuando lo subas es porque darás click al botón de envíar para guardar la información.</span>
+                                                            </div>
+                                                        </div>
+
 
                                                     </div>
                                                 </div>

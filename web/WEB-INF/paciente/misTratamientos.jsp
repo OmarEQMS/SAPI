@@ -49,7 +49,7 @@
 
                     <div class="row text-center justify-content-center mt-2">
                         <div class="col-12">
-                            <img src="img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">                        </div>
+                            <img src="img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt=""></div>
                     </div>
 
                 </div>
