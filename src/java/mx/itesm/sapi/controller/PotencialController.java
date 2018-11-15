@@ -1277,6 +1277,7 @@ public class PotencialController extends HttpServlet {
                     if (estatus == null) {
                         System.out.println("El paciente no tiene ninguna cita");
                         sesion.setAttribute("estatus", 0);
+                        sesion.setAttribute("envioEditable", 1);
                     } else {
 
                         System.out.println("El estatus es: " + estatus);
@@ -1287,6 +1288,7 @@ public class PotencialController extends HttpServlet {
                         }
                         if (estatus.equals("Cancelada")) {
                             sesion.setAttribute("estatus", 2);
+                            sesion.setAttribute("envioEditable", 0);
                         }
                         if (estatus.equals("Pendiente")) {
                             sesion.setAttribute("envioEditable", 1);
