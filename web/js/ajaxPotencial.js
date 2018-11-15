@@ -104,13 +104,15 @@ $(document).ready(function () {
             console.log("Presionó GuardarCambios")
             var form = $("form")[0];
             var data = new FormData(form);
-            data.append("key", "cambiarDatos");
+            data.append("key", "guardarCambios");
             data.forEach((value, key) => {
                 console.log(key + " " + value);
             })
+            
+            
 
             $.ajax({
-                url: "PacienteController",
+                url: "PotencialController",
                 data: data,
                 method: "POST",
                 encType: "multipart/form-data",
@@ -118,6 +120,7 @@ $(document).ready(function () {
                 contentType: false,
                 cache: false,
                 success: function (response) {
+                    console.log("Debió haber guardado");
                     $.post("SAPI", {
                         file: "potencial/cuentaPaciente.jsp"
                     },
@@ -1076,8 +1079,6 @@ $(document).ready(function () {
 
         areEqualPasswords(pass1, pass2);
     });
-
-
 
 
     function readURL(input) {

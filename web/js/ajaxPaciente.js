@@ -573,8 +573,8 @@ $(document).ready(function () {
                         var row = "<tr>" +
                                 "<input type='hidden' id='nombre-" + response + "' value='" + $("#nombreTipoTratamiento").val() + "'/>" +
                                 "<input type='hidden' id='fechaInicio-" + response + "' value='" + $("#fechaInicioTratamiento").val() + "'/>" +
-                                "<td id='nombre-" + response + "' value='" + $("#tipoTratamiento").val() + "' >" + $("#nombreTipoTratamiento").val() + "</td>" +
-                                "<td id='fechaInicio-" + response + "' value='" + $("#fechaInicioTratamiento").val() + "' >" + $("#fechaInicioTratamiento").val() + "</td>" +
+                                "<td id='nombre-" + response + "' >" + $("#nombreTipoTratamiento").val() + "</td>" +
+                                "<td id='fechaInicio-" + response + "' >" + $("#fechaInicioTratamiento").val() + "</td>" +
                                 "<td  id='fecha-" + response + "'>" + "</td>" +
                                 "<td><button class='btn btn-primary terminarTratamiento' id='modal-" + response + "' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button></td > " +
                                 "</tr>";
