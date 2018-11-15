@@ -726,26 +726,28 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="row justify-content-center">
-                                                            <div class="col-12 text-center">
-                                                                <c:choose>
-                                                                    <c:when test="${sessionScope.estatus==1}">
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.estatus==1}">
+                                                                <div class="row justify-content-center">
+                                                                    <div class="col-12 text-center">
                                                                         <h4 class="display-4 text-success" style="font-size:30px">Tu solicitud ha aprobada</h4>
-                                                                    </c:when>
-                                                                    <c:otherwise>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row justify-content-center mt-3">
+                                                                    <div class="col-4 text-center">
+                                                                        <button style="border-radius:20px" type="button" class="btn btn-outline-primary btn-block" id="btn-continuarAResolucion">Continuar
+                                                                            <i class="ml-2 fas fa-arrow-right"></i></button>
+                                                                    </div>
+                                                                </div>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <div class="row justify-content-center">
+                                                                    <div class="col-12 text-center">
                                                                         <h4 class="display-4 text-success" style="font-size:30px">Tu solicitud ha sido enviada correctamente y esta siendo procesada</h4>
-                                                                    </c:otherwise>
-                                                                </c:choose>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row justify-content-center mt-3">
-                                                            <div class="col-4 text-center">
-                                                                <button style="border-radius:20px" type="button" class="btn btn-outline-primary btn-block" id="btn-continuarAResolucion">Continuar
-                                                                    <i class="ml-2 fas fa-arrow-right"></i></button>
-                                                            </div>
-                                                        </div>
-
+                                                                    </div>
+                                                                </div>
+                                                            </c:otherwise>
+                                                        </c:choose>                                                        
                                                     </div>
                                                 </div>
                                             </c:when>
