@@ -116,6 +116,20 @@ public class ZonaController extends HttpServlet {
                 }
                 break;
             }
+            
+            case "getEstados": {
+                
+                ZonaServicioImpl zonaServicio = new ZonaServicioImpl();
+                List<Estado> estados = zonaServicio.getEstados();
+                
+                Gson json = new Gson();      
+                
+                PrintWriter out = response.getWriter();
+                out.print(json.toJson(estados));
+            
+                break;
+                
+            }
         }
 
     }

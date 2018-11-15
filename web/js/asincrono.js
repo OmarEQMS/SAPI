@@ -118,11 +118,10 @@ $(document).ready(function () {
                             text: "Cuenta registrada correctamente",
                             type: 'success',
                             confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Ok'
+                            buttons: [, 'Aceptar']
                         })
                                 .then(function () {
                                     console.log("Redirección a login");
-                                    $.blockUI({message: '<h1><img src="img/load.gif" /> Espere un momento...</h1>'});
                                     $.get("LoginController", {
                                         key: "ir-a-login"
                                     },
@@ -133,9 +132,6 @@ $(document).ready(function () {
                                                     if (response == "error") {
                                                         $("#msj-error").show();
                                                     } else {
-
-                                                        $.unblockUI
-
                                                         document.open("text/html", "replace");
                                                         document.write(response);
                                                         document.close();
@@ -315,7 +311,7 @@ $(document).ready(function () {
 
     //CORREO EN EL REGISTRO
     $('#correo').on('change', function () {
-         $.ajax({
+        $.ajax({
 
             url: 'RegistraUsuarioController',
             cache: false,
@@ -377,19 +373,6 @@ $(document).ready(function () {
 
     });
 
-    //CONTRASEÑA2 EN EL REGISTRO
-    $('#pass2').on('change', function () {
-
-        if (isValidPassword($(this))) {
-            $('#errorPass2').hide();
-        } else if ($(this).val() == '') {
-            $('#errorPass2').hide();
-        } else {
-            $('#errorPass2').show();
-        }
-
-    });
-
     //CONTRASEÑA1 RECUPERAR CONTRASEÑA
     $('#cambio1').on('change', function () {
 
@@ -406,13 +389,10 @@ $(document).ready(function () {
     //CONTRASEÑA2 RECUPERAR CONTRASEÑA
     $('#cambio2').on('change', function () {
 
-        if (isValidPassword($(this))) {
-            $('#errorPass2').hide();
-        } else if ($(this).val() == '') {
-            $('#errorPass2').hide();
-        } else {
-            $('#errorPass2').show();
-        }
+        var pass1 = $('#cambio1');
+        var pass2 = $('#cambio2');
+
+        areEqualPasswords(pass1, pass2);
 
     });
 
@@ -453,57 +433,113 @@ $(document).ready(function () {
     //CODIGO POSTAL EN EL REGISTRO
     $('#codigoPostal').on('change', function () {
 
-        $.ajax({
+        if ($(this).val().length === 0) {
 
-            url: 'ZonaController',
-            cache: false,
-            method: 'POST',
-            data: {
+            //Obtener estados
 
-                key: "getEstadoyMunicipio",
-                numeroCP: $('#codigoPostal').val()
+            $.ajax({
 
-            },
-            success: function (response) {
+                url: 'ZonaController',
+                cache: false,
+                method: 'POST',
+                data: {
 
-                if (response == 'postalCodeDoesntExist') {
-                    $('#error-CPexiste').show();
+                    key: "getEstados"
 
-                } else {
-                    $('#error-CPexiste').hide();
-                    var json = JSON.parse(response);
 
-                    if ($('#codigoPostal').val().length === 5) {
+                },
+                success: function (response) {
 
-                        //Limpia los campos 
-                        $("#estado").each(function () {
-                            $(this).children().remove();
-                        });
+                    var data = JSON.parse(response);
 
-                        $("#municipio").each(function () {
-                            $(this).children().remove();
-                        });
+                    //Limpia los campos de estado 
+                    $("#estado").each(function () {
+                        $(this).children().remove();
+                    });
 
+                    //Limpia los campos de municipio 
+                    $("#municipio").each(function () {
+                        $(this).children().remove();
+                    });
+
+                    //Primera opcion de estado
+                    $('#estado').append("<option disabled selected>" + "Seleccione un estado" + "</option>");
+
+                    //Primera opcion de municipio
+                    $('#municipio').append("<option disabled selected>" + "Seleccione un municipio" + "</option>");
+
+                    for (var i = 0; i < data.length; i++) {
                         //Carga estado
-                        $('#estado').append("<option value='" + json[0] + "'>" + json[1] + "</option>");
-
-                        //Carga Municipio
-                        $('#municipio').append("<option value='" + json[2] + "'>" + json[3] + "</option>");
-
-                    } else {
-
-                        $('#estado').removeAttr('disabled');
-                        $('#estado').removeAttr('selected');
-
+                        $('#estado').append("<option value='" + data[i].idEstado + "'>" + data[i].nombre + "</option>");
                     }
 
-                    console.log(json);
+                    $('#estado').prop('selectedIndex', 0);
+                    $('#municipio').prop('selectedIndex', 0);
+
+                    console.log(data);
+
                 }
 
-            }
+            });
 
-        });
 
+        } else if ($(this).val().length === 5) {
+
+
+            $.ajax({
+
+                url: 'ZonaController',
+                cache: false,
+                method: 'POST',
+                data: {
+
+                    key: "getEstadoyMunicipio",
+                    numeroCP: $('#codigoPostal').val()
+
+                },
+                success: function (response) {
+
+                    if (response == 'postalCodeDoesntExist') {
+                        $('#error-CPexiste').show();
+
+                    } else {
+                        $('#error-CPexiste').hide();
+                        var json = JSON.parse(response);
+
+                        if ($('#codigoPostal').val().length === 5) {
+
+                            //Limpia los campos 
+                            $("#estado").each(function () {
+                                $(this).children().remove();
+                            });
+
+                            $("#municipio").each(function () {
+                                $(this).children().remove();
+                            });
+
+                            //Carga estado
+                            $('#estado').append("<option value='" + json[0] + "'>" + json[1] + "</option>");
+
+                            //Carga Municipio
+                            $('#municipio').append("<option value='" + json[2] + "'>" + json[3] + "</option>");
+
+                        } else {
+
+                            $('#estado').removeAttr('disabled');
+                            $('#estado').removeAttr('selected');
+
+                        }
+
+                        console.log(json);
+                    }
+
+                }
+
+            });
+
+        }
+
+        
 
     });
 

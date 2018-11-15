@@ -26,6 +26,8 @@ import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.LoginServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.SolicitudPreconsultaServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
@@ -168,37 +170,76 @@ public class LoginController extends HttpServlet {
 
                                 int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
 
+                                //Solicitud Documentos Preconsulta
                                 SolicitudPreconsulta solicitudPreconsulta;
                                 SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
                                 solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
 
+                                System.out.println("Consultar documentos");
+
+                                if (solicitudPreconsulta.getIdSexo() == 0) {
+                                    sesion.setAttribute("idSexo", 0);
+                                } else {
+                                    sesion.setAttribute("idSexo", solicitudPreconsulta.getIdSexo());
+                                }
+
+                                if (solicitudPreconsulta.getSilla() == 0) {
+                                    sesion.setAttribute("silla", 0);
+                                } else {
+                                    sesion.setAttribute("silla", solicitudPreconsulta.getSilla());
+                                }
+
+                                if (solicitudPreconsulta.getBaston() == 0) {
+                                    sesion.setAttribute("baston", 0);
+                                } else {
+                                    sesion.setAttribute("baston", solicitudPreconsulta.getBaston());
+                                }
+
+                                if (solicitudPreconsulta.getCamilla() == 0) {
+                                    sesion.setAttribute("camilla", 0);
+                                } else {
+                                    sesion.setAttribute("camilla", solicitudPreconsulta.getCamilla());
+                                }
+
+                                if (solicitudPreconsulta.getOxigeno() == 0) {
+                                    sesion.setAttribute("oxigeno", 0);
+                                } else {
+                                    sesion.setAttribute("oxigeno", solicitudPreconsulta.getOxigeno());
+                                }
+
                                 if (solicitudPreconsulta.getIdentificacion() != null) {
                                     sesion.setAttribute("identificacionOficial", 1);
+                                    sesion.setAttribute("identificacionOficialName", solicitudPreconsulta.getIdentificacion());
                                 } else {
                                     sesion.setAttribute("identificacionOficial", 0);
                                 }
                                 if (solicitudPreconsulta.getCurp() != null) {
                                     sesion.setAttribute("curp", 1);
+                                    sesion.setAttribute("curpName", solicitudPreconsulta.getCurp());
                                 } else {
                                     sesion.setAttribute("curp", 0);
                                 }
                                 if (solicitudPreconsulta.getComprobante() != null) {
                                     sesion.setAttribute("comprobante", 1);
+                                    sesion.setAttribute("comprobanteName", solicitudPreconsulta.getComprobante());
                                 } else {
                                     sesion.setAttribute("comprobante", 0);
                                 }
                                 if (solicitudPreconsulta.getMastografia() != null) {
                                     sesion.setAttribute("resultadoMastografia", 1);
+                                    sesion.setAttribute("resultadoMastografiaName", solicitudPreconsulta.getMastografia());
                                 } else {
                                     sesion.setAttribute("resultadoMastografia", 0);
                                 }
                                 if (solicitudPreconsulta.getUltrasonido() != null) {
                                     sesion.setAttribute("resultadoUltrasonido", 1);
+                                    sesion.setAttribute("resultadoUltrasonidoName", solicitudPreconsulta.getUltrasonido());
                                 } else {
                                     sesion.setAttribute("resultadoUltrasonido", 0);
                                 }
                                 if (solicitudPreconsulta.getBiopsiaPrevia() != null) {
                                     sesion.setAttribute("biopsiaPrevia", 1);
+                                    sesion.setAttribute("biopsiaPreviaName", solicitudPreconsulta.getBiopsiaPrevia());
                                 } else {
                                     sesion.setAttribute("biopsiaPrevia", 0);
                                 }
@@ -216,6 +257,37 @@ public class LoginController extends HttpServlet {
                                 PrintWriter out = response.getWriter();
 
                                 out.print(json.toJson(json.toJson(solicitudPreconsulta)));
+                                //Fin De Solicitud Documentos Preconsulta
+
+                                //Solicitud Estado Preconsulta
+                                CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
+                                String estatus = citaServicioImpl.mostrarPreconsultaAceptada(idPacientePotencial);
+
+                                if (estatus == null) {
+                                    System.out.println("El paciente no tiene ninguna cita");
+                                    sesion.setAttribute("estatus", 0);
+                                } else {
+                                    System.out.println("El estatus es: " + estatus);
+
+                                    if (estatus.equals("Aprobada")) {
+                                        sesion.setAttribute("estatus", 1);
+                                        sesion.setAttribute("envioEditable", 1);
+                                    }
+                                    if (estatus.equals("Cancelada")) {
+                                        sesion.setAttribute("estatus", 2);
+                                    }
+                                    if (estatus.equals("Pendiente")) {
+                                        sesion.setAttribute("envioEditable", 1);
+                                    }
+                                }
+                                //Fin De Solicitud Estado Preconsulta
+
+                                //Solicitud Estado Paciente
+                                EstadoPacientePacienteServiceImpl estadoPaPa = new EstadoPacientePacienteServiceImpl();
+                                int estadoPaciente = estadoPaPa.estadoPrimeraSegundaVez(idPacientePotencial);
+                                System.out.println("EstadoPaciente: " + estadoPaciente);
+                                sesion.setAttribute("estadoPaciente", estadoPaciente);
+                                //Fin DeSolicitud Estado Paciente
 
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                                 //request.getRequestDispatcher("/FrontController").forward(request, response);                                                                             
@@ -254,7 +326,6 @@ public class LoginController extends HttpServlet {
                                 /*Insert your code here*/
                                 PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
 
-
                                 EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
                                 Empleado empleado = empleadoServicioImpl.mostrarEmpleadoCuenta((int) sesion.getAttribute("idCuenta"));
 
@@ -275,7 +346,6 @@ public class LoginController extends HttpServlet {
                                 sesion.setAttribute("cedulaProfesional", medicoEspecialidad.getCedulaProfesional());
 
                                 /*Insert your code here*/
-
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
                                 break;
                             }
@@ -311,9 +381,8 @@ public class LoginController extends HttpServlet {
 
                                 sesion.setAttribute("path", keyRuta);
 
-                                PersonaServicioImpl personaServicio = new PersonaServicioImpl();
-                                List<Persona> medicos = personaServicio.mostrarMedicos();
-
+                                PersonaServicioImpl personaServicioMedicos = new PersonaServicioImpl();
+                                List<Persona> medicos = personaServicioMedicos.mostrarMedicosAdscritos();
                                 request.setAttribute("listaMedicos", medicos);
 
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);

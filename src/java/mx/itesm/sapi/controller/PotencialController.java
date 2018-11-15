@@ -6,15 +6,20 @@
 package mx.itesm.sapi.controller;
 
 import com.google.gson.Gson;
+import static com.sun.xml.bind.util.CalendarConv.formatter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.Base64;
 import java.util.ResourceBundle;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import javax.servlet.ServletException;
@@ -370,8 +375,7 @@ public class PotencialController extends HttpServlet {
                                 PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                                 System.out.println("Actualizar a mujer");
                                 personaServicioImpl.actualizarSexoPersona(idPacientePotencial, idSexoMujer);
-                            }
-                            else{
+                            } else {
                                 booleanSexo = false;
                             }
                         }
@@ -818,10 +822,9 @@ public class PotencialController extends HttpServlet {
                             System.out.println("Res solictud preconsulta".concat(res));
                             out.print(res);
 
-                            request.getRequestDispatcher("WEB-INF/potencial/index.jsp").forward(request, response);
+//                            request.getRequestDispatcher("WEB-INF/potencial/index.jsp").forward(request, response);
 
                         }
-
                     }
                 }
                 break;
@@ -1157,18 +1160,7 @@ public class PotencialController extends HttpServlet {
                     SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
                     solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
 
-
-                    /*HEAD
-                    sesion.setAttribute("identificacionOficial", solicitudPreconsulta.getIdentificacion());
-                    sesion.setAttribute("curp", solicitudPreconsulta.getCurp());
-                    sesion.setAttribute("comprobante", solicitudPreconsulta.getComprobante());
-                    sesion.setAttribute("resultadoMastografia", solicitudPreconsulta.getMastografia());
-                    sesion.setAttribute("resultadosUltrasonidos", solicitudPreconsulta.getUltrasonido());
-                    sesion.setAttribute("biopsiaPrevia", solicitudPreconsulta.getBiopsiaPrevia());
-
-                     */
-                    System.out.println("Consultar documentos");
-                    //System.out.println("Documentos ".concat(solicitudPreconsulta.toString()));
+                    System.out.println("Consultar documentos");                    
 
                     if (solicitudPreconsulta.getIdSexo() == 0) {
                         sesion.setAttribute("idSexo", 0);
@@ -1176,6 +1168,30 @@ public class PotencialController extends HttpServlet {
                         sesion.setAttribute("idSexo", solicitudPreconsulta.getIdSexo());
                     }
 
+                    if (solicitudPreconsulta.getSilla() == 0) {
+                        sesion.setAttribute("silla", 0);
+                    } else {
+                        sesion.setAttribute("silla", solicitudPreconsulta.getSilla());
+                    }
+                    
+                    if (solicitudPreconsulta.getBaston() == 0) {
+                        sesion.setAttribute("baston", 0);
+                    } else {
+                        sesion.setAttribute("baston", solicitudPreconsulta.getBaston());
+                    }
+                    
+                    if (solicitudPreconsulta.getCamilla() == 0) {
+                        sesion.setAttribute("camilla", 0);
+                    } else {
+                        sesion.setAttribute("camilla", solicitudPreconsulta.getCamilla());
+                    }
+                    
+                    if (solicitudPreconsulta.getOxigeno() == 0) {
+                        sesion.setAttribute("oxigeno", 0);
+                    } else {
+                        sesion.setAttribute("oxigeno", solicitudPreconsulta.getOxigeno());
+                    }
+                    
                     if (solicitudPreconsulta.getIdentificacion() != null) {
                         sesion.setAttribute("identificacionOficial", 1);
                         sesion.setAttribute("identificacionOficialName", solicitudPreconsulta.getIdentificacion());
@@ -1261,6 +1277,7 @@ public class PotencialController extends HttpServlet {
                     if (estatus == null) {
                         System.out.println("El paciente no tiene ninguna cita");
                         sesion.setAttribute("estatus", 0);
+                        sesion.setAttribute("envioEditable", 1);
                     } else {
 
                         System.out.println("El estatus es: " + estatus);
@@ -1271,6 +1288,7 @@ public class PotencialController extends HttpServlet {
                         }
                         if (estatus.equals("Cancelada")) {
                             sesion.setAttribute("estatus", 2);
+                            sesion.setAttribute("envioEditable", 0);
                         }
                         if (estatus.equals("Pendiente")) {
                             sesion.setAttribute("envioEditable", 1);
@@ -1278,7 +1296,6 @@ public class PotencialController extends HttpServlet {
 
                     }
                 }
-                System.out.println("hola");
                 break;
             }
             case "cancelarCita": {
@@ -1529,7 +1546,7 @@ public class PotencialController extends HttpServlet {
                         String strMastoPrevia = null;
                         String tipoMastoPrevia = null;
                         int tamanoMastoPrevia = 0;
-
+                        
                         if (booleanMastoPrevia) {
 
                             if (partMastoPrevia.getSubmittedFileName().length() > 0 && (partMastoPrevia.getContentType().equals("image/jpeg") || partMastoPrevia.getContentType().equals("application/pdf") || partMastoPrevia.getContentType().equals("image/png") || partMastoPrevia.getContentType().equals(" application/msword") || partMastoPrevia.getContentType().equals(" application/msword") || partMastoPrevia.getContentType().equals(" application/vnd.ms-excel"))) {
@@ -1680,6 +1697,7 @@ public class PotencialController extends HttpServlet {
                             docBiopsia.setNombre(strBiopsia);
                             docBiopsia.setEstatus(1);
                         }
+                                                
 
                         //SERVICIOS
                         int idIdentificacionBD = -1;
@@ -1729,6 +1747,8 @@ public class PotencialController extends HttpServlet {
                         citaPreconsulta.setIdImportanciaCita(idImportante);
                         citaPreconsulta.setIdMotivoConsulta(Integer.parseInt(motivoConsulta));
                          */
+                        
+                        
                         switch (motivoConsulta) {
                             case "1": {
 
@@ -1812,7 +1832,14 @@ public class PotencialController extends HttpServlet {
                             otroMotivoServicioImpl.agregarOtroMotivo(motivo);
                         }
                          */
-                        request.getRequestDispatcher("WEB/INF/potencial/index.jsp").forward(request, response);
+                                                 
+                                                
+                        
+                        System.out.println("AYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAY");
+                        
+                        
+ 
+                        //request.getRequestDispatcher("WEB/INF/potencial/index.jsp").forward(request, response);
                     }
                 }
                 break;

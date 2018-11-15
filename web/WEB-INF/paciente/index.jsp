@@ -121,7 +121,7 @@
                         <!-- aqui se inyecta la sesion de id-->
                         <input type="hidden" id="idPaciente" value="${sessionScope.idPaciente}" />
 
-                        <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
+                        <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">
                                 <!--Julio Badillo-->
                                 ${sessionScope.nombre} ${sessionScope.primerApellido}
                             </span>  </span>
@@ -144,6 +144,12 @@
                 <div class="jumbotron jumbotron-fluid p-2">
                     <div class="container">
                         <h1 class="display-4 tituloMisCitas text-center m-0">Mis Citas</h1>
+                    </div>
+                </div>
+                
+                <div class="row justify-content-end">
+                    <div class="col-12">
+                        <a class="float-left questionMarkRight" data-toggle="tooltip" data-placement="right" title="Da click en el día que quieres agendar tu cita."><button class="btn btn-morado" style="border-radius: 20px"><i class="far fa-calendar-plus" style="font-size:25px"></i>  Agregar Cita</button></a>
                     </div>
                 </div>
 
@@ -328,11 +334,11 @@
                                 <div class="col-8">
                                     <select class="custom-select medico" id="RegistrarCita_medico" required>
                                         <option disabled selected>Seleccione médico</option>
-                                        <c:forEach items="${listaMedicos}" var="medico"> 
+                                        <c:forEach items="${listaMedicos}" var="adscrito">  
 
-                                            <option value='<c:out value="${medico.idPersona}"/>'><c:out value='${medico.nombre}'/> </option>
+                                            <option value='<c:out value="${adscrito.idPersona}"/>'><c:out value='${adscrito.nombre} ${adscrito.primerApellido} ${adscrito.segundoApellido}'/> </option>
 
-                                        </c:forEach> 
+                                        </c:forEach>
                                     </select>
                                     <!--<span class="text-danger mr-5" id="error-medico">No has seleccionado un médico.</span>-->
                                 </div>
@@ -458,7 +464,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger myCleaner" style="border-radius:20px;" data-dismiss="modal">Cerrar</button>
-                            <button id="btn-citaRegistrar" type="button" class="btn btn-primary myCleaner" style="border-radius:20px;">Registrar</button>
+                            <button id="btn-citaRegistrar" type="button" class="btn btn-primary" style="border-radius:20px;">Registrar</button>
                         </div>
                     </div>
                 </div>

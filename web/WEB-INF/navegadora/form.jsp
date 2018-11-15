@@ -30,9 +30,9 @@
 
         <link rel="stylesheet" href="css/styleNavegadora.css">
         <link rel="stylesheet" href="css/styleNavegadoraImg.css">
-        <script src="js/appNavegadora.js"></script>
-        <script src="js/appNavegadora2.js"></script>
+        <script src="js/appNavegadora.js"></script>        
         <script src="js/ajaxNavegadora.js"></script>
+        <script src="js/autocomplete.js"></script>
 
 
     </head>
@@ -48,7 +48,7 @@
 
                     <div class="row text-center justify-content-center mt-2">
                         <div class="col-12">
-                            <img src="../img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
+                            <img src="img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
 
                         </div>
 
@@ -78,7 +78,7 @@
                             </div>
 
                             <div class="col-2">
-                                <a class="iconoSidebar" href="" title="Cerrar Sesiï¿½n">
+                                <a class="iconoSidebar" href="" title="Cerrar SesiÃ¯Â¿Â½n">
                                     <i class="fas fa-power-off"></i>
                                 </a>
                             </div>
@@ -86,7 +86,7 @@
                         </div>
 
                     </div>
-
+                            
                     <div class="row justify-content-center">
                         <div class="col-12 text-center">
                             <hr style="background-color:white !important">
@@ -96,32 +96,21 @@
                     <!-- MENU PRINCIPAL ENLACES -->
                     <ul class="list-unstyled components">
 
-                        <li>
-                            <a href="./index.html">
-                                <i class="fas fa-home"></i>Inicio</a>
-                        </li>
+                    <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
+                    
+                    <li id="irAForm"><a><i class="fas fa-home"></i>Ir a Form</a></li>
+                    
+                    <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
-                        <li>
-                            <a href="./calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Calendario</a>
-                        </li>
+                    <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
-                        <li>
-                            <a href="./rendimiento.html">
-                                <i class="fas fa-chart-line"></i>Mi Rendimiento</a>
-                        </li>
+                    <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
 
-                        <li>
-                            <a href="./cuenta.html">
-                                <i class="far fa-user"></i>Mi Cuenta</a>
-                        </li>
+                    <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-sign-out-alt"></i>Cerrar Sesiï¿½n</a>
-                        </li>
+                </ul>
 
-                    </ul>
+                </ul>
 
             </nav>
 
@@ -139,7 +128,7 @@
                         </button>
 
                         <span class="pull-right d-block">
-                            <span style="color:#6c6f80">Bienvenido, </span>
+                            <span style="color:#6c6f80">Hola, </span>
                             <span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
                             </span>
                         </span>
@@ -199,7 +188,8 @@
                                             </div>
 
                                             <div class="col-6">
-                                                <label for="">Mï¿½dico Adscrito</label>
+
+                                                <label for="">MÃ¯Â¿Â½dico Adscrito</label>
                                                 <div class="input-group">
                                                     <div class="input-group-append">
                                                         <div class="input-group-text">
@@ -207,11 +197,12 @@
                                                         </div>
                                                     </div>
                                                     <select name="medico-adscrito" class="form-control" id="medico-adscrito">
-                                                        <option disabled selected>Seleccione un Mï¿½dico Adscrito</option>
 
-                                                        <c:forEach items="${listaAdscritos}" var="adscrito">  
+                                                        <option disabled selected>Seleccione un MÃ¯Â¿Â½dico Adscrito</option>
 
-                                                            <option value='<c:out value="${adscrito.idPersona}"/>'><c:out value='${adscrito.nombre}'/> </option>
+                                                        <c:forEach items="${listaMedicos}" var="adscrito">  
+
+                                                            <option value='<c:out value="${adscrito.idPersona}"/>'><c:out value='${adscrito.nombre} ${adscrito.primerApellido} ${adscrito.segundoApellido}'/> </option>
 
                                                         </c:forEach>
 
@@ -220,7 +211,7 @@
                                                 <div class="form-check mt-2">
                                                     <input name="noAdscrito" class="form-check-input" type="checkbox" value="" id="noAdscrito">
                                                     <label class="form-check-label" for="defaultCheck1">
-                                                        No estuvo el Mï¿½dico adscrito
+                                                        No estuvo el MÃ¯Â¿Â½dico adscrito
                                                     </label>
                                                 </div>
                                             </div>
@@ -235,6 +226,7 @@
                                             <div class="col-6">
                                                 <label for="">Tipo de paciente</label>
                                                 <div class="input-group">
+
                                                     <div class="input-group-append">
                                                         <div class="input-group-text">
                                                             <i class="fas fa-street-view"></i>
@@ -243,13 +235,14 @@
                                                     <select name= "tipoPaciente" class="form-control" id="tipoPaciente">
                                                         <option disabled selected>Seleccione un tipo de paciente</option>
                                                         <option>Primera vez</option>
-                                                        <option>Segunda opiniï¿½n</option>
+                                                        <option>Segunda opiniÃ¯Â¿Â½n</option>
                                                     </select>
                                                 </div>
                                             </div>
 
                                             <div class="col-6">
-                                                <label for="">Mï¿½dico Radiï¿½logo</label>
+
+                                                <label for="">MÃ¯Â¿Â½dico RadiÃ¯Â¿Â½logo</label>
                                                 <div class="input-group">
                                                     <div class="input-group-append">
                                                         <div class="input-group-text">
@@ -257,11 +250,12 @@
                                                         </div>
                                                     </div>
                                                     <select name="medico-radiologo" class="form-control" id="medico-radiologo">
-                                                        <option disabled selected>Seleccione un Radiï¿½logo</option>
+
+                                                        <option disabled selected>Seleccione un RadiÃ¯Â¿Â½logo</option>
 
                                                         <c:forEach items="${listaRadiologos}" var="radiologo">  
 
-                                                            <option value='<c:out value="${radiologo.idPersona}"/>'><c:out value='${radiologo.nombre}'/> </option>
+                                                            <option value='<c:out value="${radiologo.idPersona}"/>'><c:out value='${radiologo.nombre} ${radiologo.primerApellido} ${radiologo.segundoApellido}'/> </option>
 
                                                         </c:forEach>
                                                         <option value="otro">Otro</option>
@@ -279,33 +273,37 @@
 
                                         </div>
 
-                                        <!-- Fecha Navegaciï¿½n -->
+
+                                        <!-- Fecha NavegaciÃ¯Â¿Â½n -->
                                         <div class="form-group row mt-4">
 
                                             <div class="col-6">
-                                                <label for="">Fecha de navegaciï¿½n</label>
+                                                <label for="">Fecha de navegaciÃ¯Â¿Â½n</label>
+
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
                                                             <i class="fas fa-calendar-alt"></i>
                                                         </div>
                                                     </div>
-                                                    <input name= "fechaNavegacion" placeholder="Introduce la fecha de navegaciï¿½n" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
+
+                                                    <input name= "fechaNavegacion" placeholder="Introduce la fecha de navegaciÃ¯Â¿Â½n" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                            id="fechaNavegacion">
                                                 </div>
                                             </div>
 
 
-                                            <!-- Mï¿½dico residente -->
+                                            <!-- MÃ¯Â¿Â½dico residente -->
                                             <div class="col-6">
-                                                <label for="">Mï¿½dico Residente</label>
+                                                <label for="">MÃ¯Â¿Â½dico Residente</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
                                                             <i class="fas fa-user-md"></i>
                                                         </div>
                                                     </div>
-                                                    <input name = "medico-residente" type="text" id="medico-residente" class="form-control" class="form-control" placeholder="Introduce Mï¿½dico Residente">
+
+                                                    <input name = "medico-residente" type="text" id="medico-residente" class="form-control" class="form-control" placeholder="Introduce MÃ¯Â¿Â½dico Residente">
                                                 </div>
                                             </div>
 
@@ -333,7 +331,8 @@
                                     <div class="row justify-content-center mt-5">
                                         <div class="col-4">
                                             <button id="btn-save1" class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
+
+                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar DespuÃ¯Â¿Â½s</button>
                                         </div>
                                         <div class="col-4">
                                             <button class="btn btn-outline-success btn-block" id="btn-continue1" style="border-radius:20px">
@@ -359,6 +358,7 @@
                                                     </div>
                                                     <select name = "nivelEducativo" class="form-control" id="nivelEducativo">
                                                         <option disabled selected>Seleccione un nivel educativo</option>
+
                                                         <c:forEach items="${listaEscolaridad}" var="escolaridad"> 
 
                                                             <option value='<c:out value="${escolaridad.idEscolaridad}"/>'><c:out value='${escolaridad.nombre}'/> </option>
@@ -398,8 +398,8 @@
                                                     </div>
                                                     <select name="estadoHormonal" class="form-control" id="estadoHormonal">
                                                         <option disabled selected>Selecciona un estado hormonal</option>
-                                                        <option>Premenopáusica</option>
-                                                        <option>Postmenopáusica</option>
+                                                        <option value="1">Premenopï¿½usica</option>
+                                                        <option value="2">Postmenopï¿½usica</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -412,7 +412,8 @@
                                             <div class="col-12">
                                                 <div class="form-group form-check">
                                                     <input name="tieneSeguroPopular" type="checkbox" class="form-check-input" id="tieneSeguroPopular">
-                                                    <label class="form-check-label" for="tieneSeguroP">ï¿½Cuentas con algï¿½n seguro?
+
+                                                    <label class="form-check-label" for="tieneSeguroP">Ã¯Â¿Â½Cuentas con algÃ¯Â¿Â½n seguro?
                                                     </label>
                                                 </div>
 
@@ -433,7 +434,8 @@
 
                                                     </select>
                                                 </div>
-                                                <input name="numSeguro" type="text" id="numSeguro" class="form-control mt-2" placeholder="Introduce el nï¿½mero de tu seguro">
+
+                                                <input name="numSeguro" type="text" id="numSeguro" class="form-control mt-2" placeholder="Introduce el nÃ¯Â¿Â½mero de tu seguro">
                                             </div>
 
 
@@ -445,7 +447,8 @@
                                             <div class="col-12">
                                                 <div class="form-check form-check-inline">
                                                     <input name="primeraMasto" class="form-check-input" type="checkbox" id="primeraMasto" value="option1">
-                                                    <label class="form-check-label" for="inlineCheckbox1">Mastografï¿½a en el INCan
+
+                                                    <label class="form-check-label" for="inlineCheckbox1">MastografÃ¯Â¿Â½a en el INCan
                                                         antes de su primera cita</label>
                                                 </div>
                                             </div>
@@ -469,7 +472,7 @@
                                             <div class="col-12">
                                                 <div class="form-group form-check">
                                                     <input name="tiene-cirugia" type="checkbox" class="form-check-input" id="tiene-cirugia">
-                                                    <label class="form-check-label" for="tiene-cirugia">Cirugï¿½a</label>
+                                                    <label class="form-check-label" for="tiene-cirugia">CirugÃ¯Â¿Â½a</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -483,7 +486,8 @@
                                                             <i class="fas fa-calendar-alt"></i>
                                                         </div>
                                                     </div>
-                                                    <input name="fecha-cirugia" placeholder="Introduce la fecha de cirugï¿½a" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
+
+                                                    <input name="fecha-cirugia" placeholder="Introduce la fecha de cirugÃ¯Â¿Â½a" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                            id="fecha-cirugia">
                                                 </div>
                                             </div>
@@ -491,7 +495,8 @@
                                             <div class="row mt-3">
                                                 <div class="col-12 input-group">
                                                     <select name="cirugia" class="form-control" id="cirugia">
-                                                        <option disabled selected>Introduce la cirugï¿½a</option>
+
+                                                        <option disabled selected>Introduce la cirugÃ¯Â¿Â½a</option>
                                                         <c:forEach items="${listaCirugia}" var="cirugia">  
 
                                                             <option value='<c:out value="${cirugia.idTratamiento}"/>'><c:out value='${cirugia.nombre}'/> </option>
@@ -536,7 +541,7 @@
 
                                             <div class="row mt-3">
                                                 <div class="col-12 input-group">
-                                                    <input name="quimioterapia" type="text" id="quimioterapia" class="form-control" class="form-control" placeholder="Introduce el nï¿½mero de ciclos">
+                                                    <input name="quimioterapia" type="text" id="quimioterapia" class="form-control" class="form-control" placeholder="Introduce el nÃ¯Â¿Â½mero de ciclos">
                                                 </div>
                                             </div>
 
@@ -575,7 +580,7 @@
 
                                             <div class="row mt-3">
                                                 <div class="col-12 input-group">
-                                                    <input name="radioterapia" type="text" id="radioterapia" class="form-control" class="form-control" placeholder="Introduce el nï¿½mero de ciclos">
+                                                    <input name="radioterapia" type="text" id="radioterapia" class="form-control" class="form-control" placeholder="Introduce el nÃ¯Â¿Â½mero de ciclos">
                                                 </div>
                                             </div>
 
@@ -601,16 +606,15 @@
                                             <div class="col-10 mt-2">
                                                 <div class="form-group form-check">
                                                     <input name="tiene-mastografia" type="checkbox" class="form-check-input" id="tiene-mastografia">
-                                                    <label class="form-check-label" for="tiene-mastografia">Mastrografï¿½a</label>
+
+                                                    <label class="form-check-label" for="tiene-mastografia">MastrografÃ¯Â¿Â½a</label>
                                                 </div>
                                                 <div class="input-group">
                                                     <select name="tipoMastografia" class="form-control" id="tipoMastografia">
-                                                        <option disabled selected>Mastrografï¿½a BI-RADS</option>
+                                                        <option disabled selected>MastrografÃ¯Â¿Â½a BI-RADS</option>
 
                                                         <c:forEach items="${listaBirads}" var="birads">  
-
                                                             <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
-
                                                         </c:forEach>
 
                                                     </select>
@@ -621,7 +625,8 @@
                                                                 <i class="fas fa-calendar-alt"></i>
                                                             </div>
                                                         </div>
-                                                        <input name="fechaPreMasto" placeholder="Introduce la fecha de mastografï¿½a" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
+
+                                                        <input name="fechaPreMasto" placeholder="Introduce la fecha de mastografÃ¯Â¿Â½a" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                                id="fechaPreMasto">
                                                     </div>
                                                 </div>
@@ -670,12 +675,12 @@
                                         <div class="row mt-4 mb-3">
                                             <div class="col-12">
                                                 <h6 class="display-4 text-secondary" style="font-size:26px;">Resultado o reporte
-                                                    de patologï¿½a:</h6>
+                                                    de patologÃ¯Â¿Â½a:</h6>
                                             </div>
                                         </div>
                                         <div class="input-group">
                                             <select name="resultadoAnterior-patologia" class="form-control" id="resultadoAnterior-patologia">
-                                                <option disabled selected>Seleccione Resultado Patologï¿½a:</option>
+                                                <option disabled selected>Seleccione Resultado PatologÃ¯Â¿Â½a:</option>
 
                                                 <c:forEach items="${listaTipoHistologico}" var="resultadoPatologia">  
 
@@ -708,7 +713,8 @@
 
                                         <div class="row" id="contenedor-laminillas">
                                             <div class="col-4">
-                                                <input name="numLaminillas" type="text" id="numLaminillas" class="form-control" placeholder="Introduce el nï¿½mero">
+
+                                                <input name="numLaminillas" type="text" id="numLaminillas" class="form-control" placeholder="Introduce el nÃ¯Â¿Â½mero">
                                             </div>
                                             <div class="col-6">
                                                 <input name="serieLaminillas" type="text" id="serieLaminillas" class="form-control" placeholder="Identificadores separados por ( , )">
@@ -726,7 +732,8 @@
 
                                         <div class="row" id="contenedor-bloques">
                                             <div class="col-4">
-                                                <input name="numBloques" type="text" id="numBloques" class="form-control" placeholder="Introduce el nï¿½mero">
+
+                                                <input name="numBloques" type="text" id="numBloques" class="form-control" placeholder="Introduce el nÃ¯Â¿Â½mero">
                                             </div>
                                             <div class="col-6">
                                                 <input name="serieBloques" type="text" id="serieBloques" class="form-control" placeholder="Identificadores separados por ( , )">
@@ -740,7 +747,7 @@
                                         </div>
                                         <div class="col-4">
                                             <button id="btn-save2" class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
+                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar DespuÃ¯Â¿Â½s</button>
                                         </div>
                                     </div>
                                     <div class="row justify-content-center mt-2">
@@ -783,12 +790,15 @@
 
                                         <div id="biopsia-contenedor">
 
-                                            <div class="form-group row mt-2" id="biopsiaInit">
+
+                                            <div class="form-group row mt-2 tuplaBiopsia" id="biopsiaInit">
+
 
                                                 <!-- tipo biopsia -->
                                                 <div class="col-3">
 
-                                                    <input name="tipo-BiopsiaAdded" type="text" class="form-control tipoBiopsia" placeholder="Tipo de biopsia">
+                                                    <input id="tipo-BiopsiaAdded" type="text" class="form-control tipoBiopsia" placeholder="Tipo de biopsia">
+                                                    <input type="hidden" name="tipo-BiopsiaAdded">
                                                 </div>
 
                                                 <!-- fecha biopsia -->
@@ -847,11 +857,12 @@
 
                                         <div id="rayos-contenedor">
 
-                                            <div class="form-group row mt-2" id="rayosInit">
+
+                                            <div class="form-group row mt-2 tuplaRayosX" id="rayosInit">
 
                                                 <!-- tipo rayos -->
                                                 <div class="col-5">
-                                                    <input name="tipo-RayosXAdded" type="text" class="form-control tipoBiopsia" placeholder="Tipo de rayos X">
+                                                    <input name="tipo-RayosXAdded" id="rayosX" class="rayosX" type="text" class="form-control tipoRayosX" placeholder="Tipo de rayos X">
                                                 </div>
 
                                                 <!-- fecha rayos -->
@@ -898,11 +909,12 @@
 
                                         <div id="ultrasonido-contenedor">
 
-                                            <div class="form-group row mt-2" id="ultrasonidoInit">
+
+                                            <div class="form-group row mt-2 tuplaUltrasonido" id="ultrasonidoInit">
 
                                                 <!-- parte del cuerpo -->
                                                 <div class="col-5">
-                                                    <input name="parteCuerpo-USGAdded" type="text" class="form-control parteCuerpoUltrasonido" placeholder="Parte del cuerpo">
+                                                    <input name="parteCuerpo-USGAdded" id="ultraSonido" type="text" class="form-control parteCuerpoUltrasonido" placeholder="Parte del cuerpo">
                                                 </div>
 
                                                 <!-- fecha ultrasonido -->
@@ -949,11 +961,11 @@
 
                                         <div id="medicinaNuclear-contenedor">
 
-                                            <div class="form-group row mt-2" id="medicinaNuclearInit">
+                                            <div class="form-group row mt-2 tuplaMedicinaNuclear" id="medicinaNuclearInit">
 
                                                 <!-- medicina nuclear -->
                                                 <div class="col-5">
-                                                    <input name="mNuclearAdded" type="text" class="form-control medicinaNuclear" placeholder="Introduce medicina nuclear">
+                                                    <input name="mNuclearAdded" id="medicinaNuclear" type="text" class="form-control medicinaNuclear" placeholder="Introduce medicina nuclear">
                                                 </div>
 
                                                 <!-- fecha medicina nuclear -->
@@ -999,7 +1011,7 @@
 
                                         <div id="laboratorio-contenedor">
 
-                                            <div class="form-group row mt-2" id="laboratorioInit">
+                                            <div class="form-group row mt-2 tuplaLaboratorio" id="laboratorioInit">
 
                                                 <!-- fecha laboratorio-->
                                                 <div class="col-10">
@@ -1038,18 +1050,18 @@
                                             <div class="col-12">
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-valoracion" class="form-check-input" type="checkbox" id="tiene-valoracion">
-                                                    <label class="form-check-label" for="tiene-valoracion"> Valoraciï¿½n</label>
+                                                    <label class="form-check-label" for="tiene-valoracion"> ValoraciÃ¯Â¿Â½n</label>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div id="valoracion-contenedor">
 
-                                            <div class="form-group row mt-2" id="valoracionInit">
+                                            <div class="form-group row mt-2 tuplaValoracion" id="valoracionInit">
 
                                                 <!-- valoracion -->
                                                 <div class="col-5">
-                                                    <input name="valoracionAdded" type="text" class="form-control valoracion" placeholder="Introduce valoraciï¿½n">
+                                                    <input name="valoracionAdded" id="valoracion" type="text" class="form-control valoracion" placeholder="Introduce valoraciï¿½n">
                                                 </div>
 
                                                 <!-- fecha medicina valoracion -->
@@ -1088,14 +1100,16 @@
                                             <div class="col-12">
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-espirometria" class="form-check-input" type="checkbox" id="tiene-espirometria">
-                                                    <label class="form-check-label" for="tiene-espirometria"> Espirometrï¿½a/Inhaloterapia</label>
+                                                    <label class="form-check-label" for="tiene-espirometria"> EspirometrÃ¯Â¿Â½a/Inhaloterapia</label>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div id="espirometria-contenedor">
 
-                                            <div class="form-group row mt-2" id="espirometriaInit">
+
+                                            <div class="form-group row mt-2 tuplaEspirometria" id="espirometriaInit">
+
 
                                                 <!-- fecha espirometria-->
 
@@ -1106,6 +1120,7 @@
                                                                 <i class="fas fa-calendar-alt"></i>
                                                             </div>
                                                         </div>
+
                                                         <input name="fecha-espirometriaAdded" placeholder="Fecha de espirometrï¿½a" class="form-control fechaEspirometria" type="text" onfocus="(this.type = 'date')">
                                                     </div>
                                                 </div>
@@ -1144,7 +1159,7 @@
 
                                         <div id="electrocardiograma-contenedor">
 
-                                            <div class="form-group row mt-2" id="electrocardiogramaInit">
+                                            <div class="form-group row mt-2 tuplaElectrocardiograma" id="electrocardiogramaInit">
 
                                                 <!-- fecha electrocardiograma-->
 
@@ -1192,7 +1207,9 @@
 
                                         <div id="ecocardiograma-contenedor">
 
-                                            <div class="form-group row mt-2" id="ecocardiogramaInit">
+
+                                            <div class="form-group row mt-2 tuplaEcocardiograma" id="ecocardiogramaInit">
+
 
                                                 <!-- fecha ecocardiograma-->
 
@@ -1240,7 +1257,7 @@
 
                                         <div id="trabajoSocial-contenedor">
 
-                                            <div class="form-group row mt-2" id="trabajoSocialInit">
+                                            <div class="form-group row mt-2 tuplaTrabajoSocial" id="trabajoSocialInit">
 
                                                 <!-- fecha trabajo social-->
 
@@ -1287,12 +1304,14 @@
 
                                         <div id="programa-contenedor">
 
-                                            <div class="form-group row mt-2" id="programaInit">
+
+                                            <div class="form-group row mt-2 tuplaPrograma" id="programaInit">
+
 
                                                 <!-- programas -->
 
                                                 <div class="col-5">
-                                                    <input name="programaAdded" type="text" id="tipoPrograma" class="form-control" placeholder="Introduce programa">
+                                                    <input name="programaAdded" type="text" id="tipoPrograma" class="form-control programa" placeholder="Introduce programa">
                                                 </div>
 
                                                 <!-- fecha programa -->
@@ -1341,7 +1360,7 @@
 
                                         <div id="otro-contenedor">
 
-                                            <div class="form-group row mt-2" id="otroInit">
+                                            <div class="form-group row mt-2 tuplaOtro" id="otroInit">
 
                                                 <!-- fecha otro -->
 
@@ -1381,6 +1400,7 @@
                                         </div>
                                         <div class="col-4">
                                             <button id="btn-save3" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+
                                                 <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
                                         </div>
                                         <div class="col-4">
@@ -1405,14 +1425,18 @@
                                         <div class="form-group row mt-4">
 
                                             <div class="col-3">
+
                                                 <span>Decisiï¿½n preconsulta</span>
+
                                             </div>
 
                                             <div class="col-4">
 
                                                 <div class="input-group">
                                                     <select name="decisionPreconsulta" class="form-control" id="decisionPreconsulta">
+
                                                         <option disabled selected>Seleccione la decisiï¿½n</option>              
+
                                                         <option>Unidad funcional</option>
                                                         <option>Alta</option>
                                                         <option>Alta voluntaria</option>
@@ -1444,7 +1468,8 @@
 
                                                 <div class="input-group">
                                                     <select name="nivelSocioeconomico" class="form-control" id="nivelSocioeconomico">
-                                                        <option disabled selected>Seleccione el nivel socioeconï¿½mico</option>
+
+                                                        <option disabled selected>Seleccione el nivel socioeconÃ¯Â¿Â½mico</option>
                                                         <c:forEach items="${listaNivelSocioEconomico}" var="nivel">  
 
                                                             <option value='<c:out value="${nivel.idNivelSocioEconomico}"/>'><c:out value='${nivel.nombre}'/> </option>
@@ -1467,7 +1492,7 @@
 
                                         <div class="llamadaInit">
 
-                                            <div>
+                                            <div class="tuplaLlamada">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="input-group">
@@ -1486,7 +1511,9 @@
 
                                                 <div class="row mt-3">
                                                     <div class="col-12">
-                                                        <textarea name="motivoLlamada" class="form-control" style="min-height:100px;" placeholder="Introduce el motivo de la llamada "></textarea>
+
+                                                        <textarea name="motivoLlamada" class="form-control  comentario-llamada" style="min-height:100px;" placeholder="Introduce el motivo de la llamada "></textarea>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1494,7 +1521,11 @@
                                         </div>
 
                                         <!-- <div id="datosLlamada">
+<<<<<<< HEAD
+                            s                <div class="col-5" id="fechaLlamada">
+=======
                                             <div class="col-5" id="fechaLlamada">
+>>>>>>> origin/Develop
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
@@ -1543,21 +1574,22 @@
                                         </div>
                                     </div>
 
-                                    <div class="row justify-content-center mt-5">
-                                        <div class="col-4">
-                                            <button class="btn btn-outline-danger btn-block" id="btn-back4" style="border-radius:20px">
-                                                <i class="fas fa-undo mr-2"></i>Regresar</button>
-                                        </div>
-                                        <div class="col-4">
-                                            <button id="btn-save4" class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
-                                        </div>
-                                        <div class="col-4">
-                                            <button class="btn btn-outline-success btn-block" id="btn-continue4" style="border-radius:20px">
-                                                <i class="fas fa-arrow-circle-right mr-2"></i>Continuar</button>
-                                        </div>
-
+                                <div class="row justify-content-center mt-5">
+                                    <div class="col-4">
+                                        <button class="btn btn-outline-danger btn-block" id="btn-back4" style="border-radius:20px">
+                                            <i class="fas fa-undo mr-2"></i>Regresar</button>
                                     </div>
+                                    <div class="col-4">
+                                        <button id="btn-save4" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                            <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
+                                    </div>
+                                    <div class="col-4">
+                                        <button class="btn btn-outline-success btn-block" id="btn-continue4" style="border-radius:20px">
+                                            <i class="fas fa-arrow-circle-right mr-2"></i>Continuar</button>
+                                    </div>
+                                    
+                                </div>
+
                                 </div>
 
                                 <!-- PANTALLA 5 -->
@@ -1569,11 +1601,11 @@
                                             <div class="col-12">
                                                 <div class="form-group">
 
-                                                    <label class="form-check-label" for="etapaClinica">Etapa Clï¿½nica</label>
+                                                    <label class="form-check-label" for="etapaClinica">Etapa ClÃ¯Â¿Â½nica</label>
                                                 </div>
                                                 <div class="input-group">
                                                     <select name="etapaClinica" class="form-control" id="etapaClinica">
-                                                        <option disabled selected>Seleccione etapa clï¿½nica</option>
+                                                        <option disabled selected>Seleccione etapa clÃ¯Â¿Â½nica</option>
                                                         <c:forEach items="${listaEtapaClinica}" var="etapa">  
 
                                                             <option value='<c:out value="${etapa.idEtapaClinica}"/>'><c:out value='${etapa.nombre}'/> </option>
@@ -1585,14 +1617,13 @@
                                             </div>
 
                                             <div class="col-6 mt-4">
-                                                <label for="">Resultados de mastografï¿½a</label>
+
+                                                <label for="">Resultados de mastografÃ¯Â¿Â½a</label>
                                                 <div class="input-group">
                                                     <select name="tipoMastografia" class="form-control" id="tipoMastografia">
-                                                        <option disabled selected>Mastrografï¿½a BI-RADS</option>
+                                                        <option disabled selected>MastrografÃ¯Â¿Â½a BI-RADS</option>
                                                         <c:forEach items="${listaBirads}" var="birads">  
-
                                                             <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
-
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -1602,7 +1633,8 @@
                                                 <label for="">Resultados del ultrasonido</label>
                                                 <div class="input-group">
                                                     <select name="tipoUSG" class="form-control" id="tipoUSG">
-                                                        <option disabled selected>Mastrografï¿½a BI-RADS</option>
+
+                                                        <option disabled selected>MastrografÃ¯Â¿Â½a BI-RADS</option>
                                                         <c:forEach items="${listaBirads}" var="birads">  
 
                                                             <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
@@ -1630,6 +1662,7 @@
                                                 <div class="input-group">
                                                     <select name="tumorPrimarioT" class="form-control" id="tumorPrimarioT">
                                                         <option disabled selected>Seleccione T:</option>
+
                                                         <c:forEach items="${listaT}" var="t">  
 
                                                             <option value='<c:out value="${t.idTCodificado}"/>'><c:out value='${t.nombre}'/> </option>
@@ -1665,6 +1698,7 @@
                                                 </div>
                                                 <div class="input-group">
                                                     <select name="metastasisM" class="form-control" id="metastasisM">
+
                                                         <option disabled selected>Seleccione M:</option>
                                                         <c:forEach items="${listaM}" var="m">  
 
@@ -1683,11 +1717,11 @@
                                             <div class="col-6">
                                                 <div class="form-group">
 
-                                                    <label class="form-check-label" for="etapaClinica">Resultado Patologï¿½a:</label>
+                                                    <label class="form-check-label" for="etapaClinica">Resultado PatologÃ¯Â¿Â½a:</label>
                                                 </div>
                                                 <div class="input-group">
                                                     <select name="resultado-patologia" class="form-control" id="resultado-patologia">
-                                                        <option disabled selected>Seleccione Resultado Patologï¿½a:</option>
+                                                        <option disabled selected>Seleccione Resultado PatologÃ¯Â¿Â½a:</option>
 
                                                         <c:forEach items="${listaTipoHistologico}" var="resultadoPatologia">  
 
@@ -1702,11 +1736,11 @@
                                             <div class="col-6">
                                                 <div class="form-group">
 
-                                                    <label class="form-check-label" for="etapaClinica">Grado Histolï¿½gico:</label>
+                                                    <label class="form-check-label" for="etapaClinica">Grado HistolÃ¯Â¿Â½gico:</label>
                                                 </div>
                                                 <div class="input-group">
                                                     <select name="grado-histologico" class="form-control" id="grado-histologico">
-                                                        <option disabled selected>Seleccione Grado Histolï¿½gico:</option>
+                                                        <option disabled selected>Seleccione Grado HistolÃ¯Â¿Â½gico:</option>
                                                         <c:forEach items="${listaGradoHistologico}" var="gradoHistologico">  
 
                                                             <option value='<c:out value="${gradoHistologico.idGradoHistologico}"/>'><c:out value='${gradoHistologico.nombre}'/> </option>
@@ -1716,7 +1750,6 @@
                                                 </div>
 
                                             </div>
-
                                         </div>
                                         <div class="form-group row mt-4" id="introducirOtro">
                                             <div class="col-6">
@@ -1734,6 +1767,7 @@
                                                 <div class="input-group">
                                                     <select name="receptor-her2" class="form-control" id="receptor-her2">
                                                         <option disabled selected>Seleccione Her2:</option>
+
                                                         <c:forEach items="${listaHer2}" var="her2">  
 
                                                             <option value='<c:out value="${her2.idHer2}"/>'><c:out value='${her2.nombre}'/> </option>
@@ -1753,9 +1787,7 @@
                                                     <select name="receptor-fish" class="form-control" id="receptor-fish">
                                                         <option disabled selected>Seleccione Fish:</option>
                                                         <c:forEach items="${listaFish}" var="fish">  
-
                                                             <option value='<c:out value="${fish.idFish}"/>'><c:out value='${fish.nombre}'/> </option>
-
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -1771,9 +1803,7 @@
                                                     <select name="receptor-re" class="form-control" id="receptor-re">
                                                         <option disabled selected>Seleccione RE:</option>
                                                         <c:forEach items="${listaRE}" var="re">  
-
                                                             <option value='<c:out value="${re.idReceptorEstrogeno}"/>'><c:out value='${re.nombre}'/> </option>
-
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -1817,10 +1847,10 @@
                                                 <i class="fas fa-undo mr-2"></i>Regresar</button>
                                         </div>
                                         <div class="col-4">
-                                            <button id="btn-save5" class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
+                                        <button id="btn-save5" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                            <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuï¿½s</button>
 
-                                        </div>
+                                    </div>
 
                                     </div>
 
@@ -1836,7 +1866,7 @@
                                             <button class="btn btn-outline-success btn-block" id="btn-sendAll" style="border-radius:20px">
                                                 <i class="fas fa-check-circle mr-2"></i>Enviar</button>
                                         </div>
-                                    </div>
+                             </div>
 
                                 </div>
                             </div>
