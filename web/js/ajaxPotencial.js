@@ -447,7 +447,7 @@ $(document).ready(function () {
         } else {
             swal({
                 title: "Error",
-                text: "Estás tratando de subir un documento no válido",
+                text: "¿Estás tratando de subir un documento no válido?",
                 icon: "error",
                 buttons: true,
                 buttons: [, 'Aceptar']
