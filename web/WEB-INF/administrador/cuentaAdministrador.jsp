@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 13-nov-2018, 21:19:41
+    Document   : cuentaAdministrador
+    Created on : 15-nov-2018, 2:38:27
     Author     : urieldiaz
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
@@ -15,7 +15,7 @@
 
     <title>SAPI | Inicio</title>
 
-    
+
         <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link href="lib/fontawesome/css/all.css" rel="stylesheet" />
         <link href='lib/fullcalendar/fullcalendar.css' rel='stylesheet' />
@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="css/styleAdministrador.css">
     <script src="js/appAdministrador.js"></script>
     <script src="js/ajaxAdministrador.js"></script>
+
 
 </head>
 
@@ -112,7 +113,8 @@
                 <li id="IrARendimiento"><a><i class="fas fa-sync"></i>Desempeño navegadora</a></li>
                 
                 <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
-                   
+                
+                
             </ul>
 
         </nav>
@@ -147,6 +149,8 @@
 
         </div>
     </div>
+
+    
 
 </body>
 

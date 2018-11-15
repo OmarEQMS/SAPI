@@ -208,6 +208,52 @@ public class FrontController extends HttpServlet {
                             break;
                         }
                         case 2: {
+                            /* ADMINISTRADOR */
+                            String keyRuta = file;
+                            
+                            switch(keyRuta){
+                                case "administrador/cuentaAdministrador.jsp":
+                                {
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    break;
+                                }
+                                case "administrador/gestionMedicos.jsp":
+                                {
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    break;
+                                }
+                                case "administrador/gestionNavegadora.jsp":
+                                {
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    break;
+                                }
+                                case "administrador/gestionPacientes.jsp":
+                                {
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    break;
+                                }
+                                case "administrador/gestionarAdministradores.jsp":
+                                {
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    break;
+                                }
+                                case "administrador/index.jsp":
+                                {
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    break;
+                                }
+                                case "administrador/reAsignarMedico.jsp":
+                                {
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    break;
+                                }
+                                case "administrador/rendimientoNavegadora.jsp":
+                                {
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    break;
+                                }
+                            }
+                            
                             break;
                         }
                         case 3: {

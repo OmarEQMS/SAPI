@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 13-nov-2018, 21:19:41
+    Document   : reAsignarMedico
+    Created on : 15-nov-2018, 2:31:17
     Author     : urieldiaz
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
@@ -13,9 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>SAPI | Inicio</title>
+    <title>SAPI | Reasignar Medico</title>
 
-    
+   
         <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link href="lib/fontawesome/css/all.css" rel="stylesheet" />
         <link href='lib/fullcalendar/fullcalendar.css' rel='stylesheet' />
@@ -95,7 +95,9 @@
             <!-- MENU PRINCIPAL ENLACES -->
             <ul class="list-unstyled components">
 
-                <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
+          
+
+               <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
                                 
                 <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Gestion médicos</a></li>
 
@@ -112,12 +114,10 @@
                 <li id="IrARendimiento"><a><i class="fas fa-sync"></i>Desempeño navegadora</a></li>
                 
                 <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
-                   
+                
             </ul>
 
         </nav>
-
-        
 
         <!-- CONTENIDO PRINCIPAL  -->
 
@@ -139,9 +139,88 @@
                 </div>
             </nav>
 
+            <!-- **************************************************************** -->
+            <!-- ***** A PARTIR DE AQUI ESCRIBEN EL CODIGO QUE QUIERAN..... ***** -->
+            <!-- **************************************************************** -->
+
+            <!-- Navegacion -->
+
             <div class="row mb-3 justify-content-end">
                 <div class="col-3 text-center">
-                    <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index.html" class="colorMoradoLight">Inicio</a></span></span>
+                    <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index2.html" class="colorMoradoLight">Inicio</a></span>
+                    - <span class="colorGlobal">Reasignación</span>
+                </div>
+            </div>
+
+            <!-- Jumbotron Titulo -->
+
+            <div class="jumbotron jumbotron-fluid p-2">
+                <div class="container">
+                    <h1 class="display-4 tituloMisCitas text-center m-0">Reasignacion de médicos</h1>
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <div class="card-body p-4">
+
+                    <div class="row justify-content-center">
+                        <div class="col-10">
+
+                            <!-- FORMULARIO -->
+                            <!-- <form> -->
+
+                            <!-- PANTALLA 1 -->
+
+                            <div id="pantalla1">
+                                <!-- ***** PRZ y Medico residente ***** -->
+
+                                <div class="form-group row mt-4">
+
+                                    <div class="col-6">
+                                        <label for="">Médico que se va</label>
+                                        <div class="input-group">
+                                            <select class="form-control" id="docotor1">
+                                                <option disabled selected>Seleccione al médico</option>
+                                                <option>Tamara Quezada</option>
+                                                <option>María Dominguez</option>
+                                                <option>Lourdes Gómez</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-6">
+                                        <label for="">Médico al que se transferiran</label>
+                                        <div class="input-group">
+                                            <select class="form-control" id="doctor2">
+                                                <option disabled selected>Seleccione al nuevo medico</option>
+                                                <option>Isabel Quezada</option>
+                                                <option>María Dominguez</option>
+                                                <option>Jorge Morales</option>
+                                                <option>Diego Marmol</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Boton guardar y continuar -->
+                                <div class="row justify-content-center mt-5">
+                                    <div class="col-6">
+                                        <button class="btn btn-morado btn-block" id="btn-continue1" style="border-radius:20px"><i
+                                                class="fas fa-arrow-circle-right mr-2"></i>Reasignar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- </form> -->
+
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
 
