@@ -363,6 +363,9 @@ $(document).ready(function () {
                     processData: false,
                     contentType: false,
                     success: function (response) {
+                        console.log("dsafdsafdsafsdafsdafjsalkjflsadjfkjsañlfjkasjfklsjaflsñjfklsjdfkljaslkfjla");
+                        
+                        
                         var consultarDocumentosPreconsulta = new FormData;
                         consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
 
