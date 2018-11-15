@@ -7,11 +7,19 @@ package mx.itesm.sapi.service;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import mx.itesm.sapi.bean.Rendimiento;
+import mx.itesm.sapi.rendimiento.Rendimiento;
 
 /**
  *
  * @author Raul Orihuela
+ */
+/**
+ * Field summary private String decripcion: Contiene la descripcion del grupo de
+ * datos private int cantidad: Contiene el total de datos dentro del grupo
+ */
+/**
+ * public interface RendimientoServicio Interfaz que define los metodos para
+ * RendimientoServicioImpl
  */
 public interface RendimientoServicio {
     public Rendimiento mostrarVisitaMes(int idEmpleado, Timestamp fecha);
