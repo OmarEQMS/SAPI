@@ -382,6 +382,7 @@ $(document).ready(function () {
     
     //TABLA TRATAMIENTOS
     $('#tablaTratamientos').DataTable({
+        order: [],
         responsive: true,
         dom: 'lBfrtip',
         buttons: [

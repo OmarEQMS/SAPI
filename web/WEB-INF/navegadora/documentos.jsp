@@ -199,8 +199,8 @@
                         <li class="list-group-item">Teléfono:
                             <strong>${sessionScope.telefono}</strong>
                         </li>
-                        <li class="list-group-item">Edad:
-                            <strong>29</strong>
+                        <li class="list-group-item">Motivo:
+                            <strong>Me sentí una bolita en el seno</strong>
                         </li>
                         <li class="list-group-item">Correo:
                             <strong>${sessionScope.correo}</strong>
