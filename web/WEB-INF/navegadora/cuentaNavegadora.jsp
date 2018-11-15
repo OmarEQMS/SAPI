@@ -104,7 +104,7 @@
                     
                     <li id="irAForm"><a><i class="fas fa-home"></i>Ir a Form</a></li>
                     
-                    <li id="idACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+                    <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
                     <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
