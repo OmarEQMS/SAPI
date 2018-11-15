@@ -277,7 +277,7 @@
                                                                             </c:otherwise>
                                                                         </c:choose>
                                                                         <label class="form-check-label" for="camilla">
-                                                                            <i class="fas fa-wheelchair"></i>
+                                                                            <i class="fas fa-bed"></i>
                                                                             Camilla
                                                                         </label>
                                                                     </div>
@@ -304,7 +304,7 @@
                                                                                 <input class="form-check-input" name="oxigeno" type="checkbox" id="oxigeno" value="oxigeno" disabled checked>
                                                                             </c:otherwise>
                                                                         </c:choose>
-                                                                        <label class="form-check-label" for="oxigeno"> <i class="fas fa-wheelchair"></i>
+                                                                        <label class="form-check-label" for="oxigeno"> <i class="fas fa-fire-extinguisher"></i>
                                                                             Oxígeno
                                                                         </label>
                                                                     </div>
@@ -825,7 +825,7 @@
                                                                             </c:otherwise>
                                                                         </c:choose>
                                                                         <label class="form-check-label" for="camilla">
-                                                                            <i class="fas fa-wheelchair"></i>
+                                                                            <i class="fas fa-bed"></i>
                                                                             Camilla
                                                                         </label>
                                                                     </div>
@@ -852,7 +852,7 @@
                                                                                 <input class="form-check-input" name="oxigeno" type="checkbox" id="oxigeno" value="oxigeno" checked>
                                                                             </c:otherwise>
                                                                         </c:choose>
-                                                                        <label class="form-check-label" for="oxigeno"> <i class="fas fa-wheelchair"></i>
+                                                                        <label class="form-check-label" for="oxigeno"> <i class="fas fa-fire-extinguisher"></i>
                                                                             Oxígeno
                                                                         </label>
                                                                     </div>
