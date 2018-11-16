@@ -159,7 +159,7 @@
 
                         <!-- Table -->
 
-                        <table class="table table-striped mt-3" id="tablaTratamientos">
+                        <table class="table table-striped tablaTratamientos mt-3" id="tablaTratamientos">
                             <thead>
                                 <tr>
                                     <th scope="col">Tratamiento</th>

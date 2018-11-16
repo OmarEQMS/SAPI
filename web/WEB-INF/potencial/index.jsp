@@ -497,7 +497,7 @@
                                                                     <select class="form-control" id="motivoConsulta" disabled>
                                                                         <option value="0">Seleccione el motivo de la consulta</option>
                                                                         <option value="1">Me envió un médico</option>
-                                                                        <option value="3">Me sentí una bolita en el seno</option>
+                                                                        <option value="3">Me sentí una bolita en el seno y no he visto a ningún médico</option>
                                                                         <option value="4">Me envían de otro hospital</option>
                                                                         <option value="5">Otro</option>
                                                                     </select>

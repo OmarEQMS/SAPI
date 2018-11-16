@@ -119,8 +119,10 @@ $(document).ready(function () {
     }); 
     
         //1.- Fecha fin
-    $('#fechaFinTratamiento').on('change', function(){
-        if(isValidDate2($('#fechaFinTratamiento'), $("#fechaInicio-"+$("#botonHidden").val()).val())){
+    $('#fechaFinTratamiento').on('click', function(){
+        console.log("entro");
+        console.log($("#fechaInicioTratamiento"+$("#botonHidden").val()).val());
+        if(isValidDate2($('#fechaFinTratamiento'), $("#fechaInicioTratamiento"+$("#botonHidden").val()).val())){
             $('#error-fechaFin').hide();
         }else{
             $('#error-fechaFin').show();
@@ -290,7 +292,7 @@ $(document).ready(function () {
         var inicioYear = date_Inicio.getFullYear();
         var inputYear = date_from.getFullYear();
         
-        if(inputYear < inicioYear+5 &&  date_Inicio <= date_from ){
+        if(inputYear > inicioYear &&  date_Inicio >= date_from ){
             event = false;
             console.log(event);
             console.log("fechaValida");

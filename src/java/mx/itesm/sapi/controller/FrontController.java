@@ -780,6 +780,8 @@ public class FrontController extends HttpServlet {
 
                                     PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                                     Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
+                                    
+                                    sesion.setAttribute("path", keyRuta);
 
                                     TipoTratamientoServiceImpl tratamientoServicioImpl = new TipoTratamientoServiceImpl();
 
