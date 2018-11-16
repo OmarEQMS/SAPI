@@ -18,7 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mx.itesm.sapi.bean.Rendimiento;
+import mx.itesm.sapi.bean.rendimiento.Rendimiento;
 import mx.itesm.sapi.service.RendimientoServicioImpl;
 
 /**

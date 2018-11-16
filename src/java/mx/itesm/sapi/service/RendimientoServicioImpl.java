@@ -11,7 +11,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import mx.itesm.sapi.bean.Rendimiento;
+import mx.itesm.sapi.bean.rendimiento.Rendimiento;
 import mx.itesm.sapi.util.Conexion;
 
 /**
