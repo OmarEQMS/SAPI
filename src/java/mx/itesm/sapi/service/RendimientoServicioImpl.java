@@ -7,9 +7,9 @@ package mx.itesm.sapi.service;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import mx.itesm.sapi.bean.Rendimiento;
 import mx.itesm.sapi.util.Conexion;
@@ -19,82 +19,89 @@ import mx.itesm.sapi.util.Conexion;
  * @author Raul Orihuela
  */
 /**
- * public Rendimiento mostrarVisitaMes(int idEmpleado, Timestamp fecha) Regresa
- * la cantidad de visitas que atiende un empleado por mes
+ * public Rendimiento mostrarVisitaMes(int idEmpleado,
+ *                                      Date fecha)
+ * Regresa la cantidad de visitas que atiende un empleado por mes
  *
  * Parametros: int idEmpleado - id del empleado cuya informacion seque se desea
- * filtrar Timestamp fecha - Timestamp que debe contener mes y ano
+ * filtrar Date fecha - Date que debe contener mes y ano
  *
  * Regresa: Objeto de tipo Rendimiento el cual contiene descripcion y cantidad
  */
 /**
- * public ArrayList<Rendimiento> mostrarVisitaEdad(int idEmpleado, Timestamp
- * fecha) Regresa un arreglo que contiene un objeto de tipo Rendimiento para
+ * public ArrayList<Rendimiento> mostrarVisitaEdad(int idEmpleado,
+ *                                                  Date fecha)
+ * Regresa un arreglo que contiene un objeto de tipo Rendimiento para
  * cada grupo de 'Edad' Cada objeto Rendimiento contiene la cantidad de visitas
  * y la descripcion del grupo
  *
  * Parametros: int idEmpleado - id del empleado cuya informacion seque se desea
- * filtrar Timestamp fecha - Timestamp que debe contener mes y ano
+ * filtrar Date fecha - Date que debe contener mes y ano
  *
  * Regresa: Arreglo que contiene un objeto de tipo Rendimiento para cada grupo
  * de 'Edad'
  */
 /**
  * public ArrayList<Rendimiento> mostrarVisitaEscolaridad(int idEmpleado,
- * Timestamp fecha) Regresa un arreglo que contiene un objeto de tipo
+ *                                                          Date fecha)
+ * Regresa un arreglo que contiene un objeto de tipo
  * Rendimiento para cada grupo de 'Escolaridad' Cada objeto Rendimiento contiene
  * la cantidad de visitas y la descripcion del grupo
  *
  * Parametros: int idEmpleado - id del empleado cuya informacion seque se desea
- * filtrar Timestamp fecha - Timestamp que debe contener mes y ano
+ * filtrar Date fecha - Date que debe contener mes y ano
  *
  * Regresa: Arreglo que contiene un objeto de tipo Rendimiento para cada grupo
  * de 'Escolaridad'
  */
 /**
  * public ArrayList<Rendimiento> mostrarVisitaLugarResidencia(int idEmpleado,
- * Timestamp fecha) Regresa un arreglo que contiene un objeto de tipo
+ *                                                             Date fecha)
+ * Regresa un arreglo que contiene un objeto de tipo
  * Rendimiento para cada grupo de 'LugarResidencia' Cada objeto Rendimiento
  * contiene la cantidad de visitas y la descripcion del grupo
  *
  * Parametros: int idEmpleado - id del empleado cuya informacion seque se desea
- * filtrar Timestamp fecha - Timestamp que debe contener mes y ano
+ * filtrar Date fecha - Date que debe contener mes y ano
  *
  * Regresa: Arreglo que contiene un objeto de tipo Rendimiento para cada grupo
  * de 'LugarResidencia'
  */
 /**
- * public ArrayList<Rendimiento> mostrarVisitaNivelSocioEconomico(int
- * idEmpleado, Timestamp fecha) Regresa un arreglo que contiene un objeto de
+ * public ArrayList<Rendimiento> mostrarVisitaNivelSocioEconomico(int idEmpleado,
+ *                                                                  Date fecha)
+ * Regresa un arreglo que contiene un objeto de
  * tipo Rendimiento para cada grupo de 'NivelSocioEconomico' Cada objeto
  * Rendimiento contiene la cantidad de visitas y la descripcion del grupo
  *
  * Parametros: int idEmpleado - id del empleado cuya informacion seque se desea
- * filtrar Timestamp fecha - Timestamp que debe contener mes y ano
+ * filtrar Date fecha - Date que debe contener mes y ano
  *
  * Regresa: Arreglo que contiene un objeto de tipo Rendimiento para cada grupo
  * de 'NivelSocioEconomico'
  */
 /**
- * public ArrayList<Rendimiento> mostrarVisitaDecisionPreconsulta(int
- * idEmpleado, Timestamp fecha) Regresa un arreglo que contiene un objeto de
+ * public ArrayList<Rendimiento> mostrarVisitaDecisionPreconsulta(int idEmpleado,
+ *                                                                  Date fecha) 
+ * Regresa un arreglo que contiene un objeto de
  * tipo Rendimiento para cada grupo de 'DecisionPreconsulta' Cada objeto
  * Rendimiento contiene la cantidad de visitas y la descripcion del grupo
  *
  * Parametros: int idEmpleado - id del empleado cuya informacion seque se desea
- * filtrar Timestamp fecha - Timestamp que debe contener mes y ano
+ * filtrar Date fecha - Date que debe contener mes y ano
  *
  * Regresa: Arreglo que contiene un objeto de tipo Rendimiento para cada grupo
  * de 'DecisionPreconsulta'
  */
 /**
  * public ArrayList<Rendimiento> mostrarVisitaResultadoPatologia(int idEmpleado,
- * Timestamp fecha) Regresa un arreglo que contiene un objeto de tipo
+ *                                                                  Date fecha)
+ * Regresa un arreglo que contiene un objeto de tipo
  * Rendimiento para cada grupo de 'ResultadoPatologia' Cada objeto Rendimiento
  * contiene la cantidad de visitas y la descripcion del grupo
  *
  * Parametros: int idEmpleado - id del empleado cuya informacion seque se desea
- * filtrar Timestamp fecha - Timestamp que debe contener mes y ano
+ * filtrar Date fecha - Date que debe contener mes y ano
  *
  * Regresa: Arreglo que contiene un objeto de tipo Rendimiento para cada grupo
  * de 'ResultadoPatologia'
@@ -102,7 +109,7 @@ import mx.itesm.sapi.util.Conexion;
 public class RendimientoServicioImpl implements RendimientoServicio {
     
     @Override
-    public Rendimiento mostrarVisitaMes(int idEmpleado, Timestamp fecha) {
+    public Rendimiento mostrarVisitaMes(int idEmpleado, Date fecha) {
 
         Connection conn;
         ResultSet rs;
@@ -117,13 +124,13 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEmpleado);
-            cstmt.setTimestamp(2, fecha);
+            cstmt.setDate(2, fecha);
 
             rs = cstmt.executeQuery();
 
             rs.next();
 
-            rendimientoPorMes.setDecripcion(String.valueOf(fecha.getMonth()));
+            rendimientoPorMes.setDecripcion(rs.getString("mes"));
             rendimientoPorMes.setCantidad(rs.getInt("cuenta"));
 
             rs.close();
@@ -140,7 +147,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
     }
 
     @Override
-    public ArrayList<Rendimiento> mostrarVisitaEdad(int idEmpleado, Timestamp fecha) {
+    public ArrayList<Rendimiento> mostrarVisitaEdad(int idEmpleado, Date fecha) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
@@ -164,7 +171,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEmpleado);
-            cstmt.setTimestamp(2, fecha);
+            cstmt.setDate(2, fecha);
 
             rs = cstmt.executeQuery();
 
@@ -212,7 +219,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
     }
 
     @Override
-    public ArrayList<Rendimiento> mostrarVisitaEscolaridad(int idEmpleado, Timestamp fecha) {
+    public ArrayList<Rendimiento> mostrarVisitaEscolaridad(int idEmpleado, Date fecha) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
@@ -233,7 +240,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEmpleado);
-            cstmt.setTimestamp(2, fecha);
+            cstmt.setDate(2, fecha);
 
             rs = cstmt.executeQuery();
 
@@ -280,7 +287,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
     }
 
     @Override
-    public ArrayList<Rendimiento> mostrarVisitaLugarResidencia(int idEmpleado, Timestamp fecha) {
+    public ArrayList<Rendimiento> mostrarVisitaLugarResidencia(int idEmpleado, Date fecha) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
@@ -327,7 +334,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEmpleado);
-            cstmt.setTimestamp(2, fecha);
+            cstmt.setDate(2, fecha);
 
             rs = cstmt.executeQuery();
 
@@ -473,7 +480,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
     }
 
     @Override
-    public ArrayList<Rendimiento> mostrarVisitaNivelSocioEconomico(int idEmpleado, Timestamp fecha) {
+    public ArrayList<Rendimiento> mostrarVisitaNivelSocioEconomico(int idEmpleado, Date fecha) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
@@ -494,7 +501,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEmpleado);
-            cstmt.setTimestamp(2, fecha);
+            cstmt.setDate(2, fecha);
 
             rs = cstmt.executeQuery();
 
@@ -531,7 +538,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
     }
 
     @Override
-    public ArrayList<Rendimiento> mostrarVisitaDecisionPreconsulta(int idEmpleado, Timestamp fecha) {
+    public ArrayList<Rendimiento> mostrarVisitaDecisionPreconsulta(int idEmpleado, Date fecha) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
@@ -551,7 +558,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEmpleado);
-            cstmt.setTimestamp(2, fecha);
+            cstmt.setDate(2, fecha);
 
             rs = cstmt.executeQuery();
 
@@ -585,7 +592,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
     }
 
     @Override
-    public ArrayList<Rendimiento> mostrarVisitaResultadoPatologia(int idEmpleado, Timestamp fecha) {
+    public ArrayList<Rendimiento> mostrarVisitaResultadoPatologia(int idEmpleado, Date fecha) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
@@ -614,7 +621,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEmpleado);
-            cstmt.setTimestamp(2, fecha);
+            cstmt.setDate(2, fecha);
 
             rs = cstmt.executeQuery();
 
@@ -664,10 +671,6 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             rendimiento11.setCantidad(rs.getInt("P11"));
             rendimientoPorResultadoPatologia.add(rendimiento11);
 
-            rendimiento12.setDecripcion("Otro");
-            rendimiento12.setCantidad(rs.getInt("P12"));
-            rendimientoPorResultadoPatologia.add(rendimiento12);
-
             rendimiento13.setDecripcion("Quiste no proliferativo");
             rendimiento13.setCantidad(rs.getInt("P13"));
             rendimientoPorResultadoPatologia.add(rendimiento13);
@@ -679,7 +682,11 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             rendimiento15.setDecripcion("Hiperplasia");
             rendimiento15.setCantidad(rs.getInt("P15"));
             rendimientoPorResultadoPatologia.add(rendimiento15);
-
+            
+            rendimiento12.setDecripcion("Otro");
+            rendimiento12.setCantidad(rs.getInt("P12"));
+            rendimientoPorResultadoPatologia.add(rendimiento12);
+            
             rs.close();
             cstmt.close();
             conn.close();
