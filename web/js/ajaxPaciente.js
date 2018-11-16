@@ -885,11 +885,17 @@ $(document).ready(function () {
         //Valor seleccionado del input
         let date_from = input.val();
         date_from = new Date(date_from);
+        
+        console.log("Hoy: " + today);
+        console.log("FechaReg: " + date_from);
+        console.log("---------------------------------------------------")
+        
+        /*
         var todayYear = today.getFullYear();
-        var inicioYear = date_from.getFullYear();
+        var inicioYear = date_from.getFullYear();*/
         var event = false;
 
-        if (today > date_from && inicioYear >= todayYear - 5) {
+        if (today >= date_from) {
             event = false;
             console.log("Valido");
         } else {
