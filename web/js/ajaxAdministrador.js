@@ -12,31 +12,31 @@ $(document).ready(function () {
         var correo = $('#agregar-correoMedico');
         var noEmpleado = $('#agregar-noEmpleadoMedico');
         var especialidad = $('#agregar-especialidadMedico');
-        var subEspecialidad = $('#agregar-subespecialidadMedico');
+        var posicion = $('#agregar-posiciondMedico');
         var cedula = $('#agregar-cedulaMedico');
         var password = $('#agregar-passwordMedico');;
 
         $.ajax({
 
-            url: 'AdminController',
+            url: 'RegistraUsuarioController',
             cache: false,
             method: 'POST',
             data: {
                 key: 'agregarMedico',
-                nombre: nombre.val(),
-                telefono: telefono.val(),
+                nombre: nombre.val(),                
                 primerApellido: primerApellido.val(),
                 segundoApellido: segundoApellido.val(),
+                telefono: telefono.val(),
                 correo: correo.val(),
                 noEmpleado: noEmpleado.val(),
                 especialidad: especialidad.val(),
-                subEspecialidad: subEspecialidad.val(),
+                posicion: posicion.val(),
                 cedula: cedula.val(),
                 password: password.val()
             }
         })
             .done(function (response) {
-
+                
 
             });
 
@@ -50,7 +50,7 @@ $(document).ready(function () {
 
         $.ajax({
 
-            url: 'AdminController',
+            url: 'RegistraUsuarioController',
             cache: false,
             dataType: 'JSON',
             method: "POST",
@@ -69,9 +69,180 @@ $(document).ready(function () {
         });
 
     });
-
-
-
+    
+     $('#irAInicioAdministrador').on('click', function () {
+        $.post("SAPI", {
+            file: "administrador/index.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
+    
+     $('#IrAGestionMedicos').on('click', function () {
+        $.post("SAPI", {
+            file: "administrador/gestionMedicos.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
+    $('#IrAGestionNavegadora').on('click', function () {
+        $.post("SAPI", {
+            file: "administrador/gestionNavegadora.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    $('#IrAGestionPaciente').on('click', function () {
+        $.post("SAPI", {
+            file: "administrador/gestionPacientes.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    $('#IrAGestionAdministrador').on('click', function () {
+        $.post("SAPI", {
+            file: "administrador/gestionarAdministradores.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    $('#IrAReasignarMedico').on('click', function () {
+        $.post("SAPI", {
+            file: "administrador/reAsignarMedico.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    $('#IrARendimiento').on('click', function () {
+        $.post("SAPI", {
+            file: "administrador/rendimientoNavegadora.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
+    
+     $('#IrAMiCuenta').on('click', function () {
+        $.post("SAPI", {
+            file: "administrador/cuentaAdministrador.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
+    
+         
+       $('#salirCuenta').on('click', function () {
+        console.log("Salir cuenta");
+        $.post("LoginController", {
+            key: "cerrar-sesion"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
+    
     //GUARDA EL MEDICO DESDE EL MODAL
     $('#btn-guardarMedico').on('click', function () {
 
@@ -90,7 +261,7 @@ $(document).ready(function () {
 
         $.ajax({
 
-            url: 'AdminController',
+            url: 'RegistraUsuarioController',
             cache: false,
             method: 'POST',
             data: {
@@ -170,9 +341,19 @@ $(document).ready(function () {
         var cedula = $('#agregar-cedulaNavegadora');
         var password = $('#agregar-passwordNavegadora');
 
+        console.log(nombre);
+        console.log(telefono);
+        console.log(primerApellido);
+        console.log(segundoApellido);
+        console.log(correo);
+        console.log(noEmpleado);
+        console.log(especialidad);
+        console.log(cedula);
+        console.log(password);
+        
         $.ajax({
 
-            url: 'AdminController',
+            url: 'RegistraUsuarioController',
             cache: false,
             method: 'POST',
             data: {
@@ -252,8 +433,7 @@ $(document).ready(function () {
                 segundoApellido: segundoApellido.val(),
                 correo: correo.val(),
                 noEmpleado: noEmpleado.val(),
-                especialidad: especialidad.val(),
-                subEspecialidad: subEspecialidad.val(),
+                especialidad: especialidad.val(),                
                 cedula: cedula.val(),
                 password: password.val()
             }

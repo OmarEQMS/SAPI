@@ -157,15 +157,15 @@
                                         <c:choose>
                                             <c:when test="${sessionScope.estatus==1}">
 
-                                                <a class="nav-item nav-link active text-center colorMoradoLight texto-tab" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-                                                   aria-controls="nav-contact" aria-selected="false" style="width:33%">RESOLUCIÓN</a>
-
                                                 <a class="nav-item nav-link text-center colorMoradoLight texto-tab" id="nav-bienvenida-tab" data-toggle="tab" href="#nav-bienvenida"
                                                    role="tab" aria-controls="nav-bienvenida" aria-selected="false" style="width:33%">INFORMACIÓN</a>
 
                                                 <a class="nav-item nav-link text-center colorMoradoLight texto-tab" id="nav-solicitud-tab" data-toggle="tab" href="#solicitud" role="tab"
                                                    aria-controls="nav-solicitud" aria-selected="true" style="width:33%"><!--<i
                                                         class="fas fa-check-circle text-success mr-2"></i>-->SOLICITUD</a>
+                                                
+                                                <a class="nav-item nav-link active text-center colorMoradoLight texto-tab" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                                                   aria-controls="nav-contact" aria-selected="false" style="width:33%">RESOLUCIÓN</a>
 
                                             </c:when>
 
@@ -1281,13 +1281,12 @@
 
                                                         <!-- ***** Nota ***** -->
                                                         <div class="row mt-3 justify-content-center">
-                                                            <div class="col-5 text-center bg-primary" style="border-radius:20px;">
+                                                            <div class="col-7 text-center bg-primary" style="border-radius:20px;">
                                                                 <span style="font-size: 14px;" class="text-white">Nota: Asegúrate de que tu motivo de consulta sea lo último
                                                                     que subas, puesto que no es información que puedas guardar y completar después. Debes estar segura(o) que
                                                                     cuando lo subas es porque darás click al botón de envíar para guardar la información.</span>
                                                             </div>
                                                         </div>
-
 
                                                     </div>
                                                 </div>

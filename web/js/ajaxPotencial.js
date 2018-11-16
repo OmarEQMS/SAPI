@@ -104,13 +104,15 @@ $(document).ready(function () {
             console.log("Presionó GuardarCambios")
             var form = $("form")[0];
             var data = new FormData(form);
-            data.append("key", "cambiarDatos");
+            data.append("key", "guardarCambios");
             data.forEach((value, key) => {
                 console.log(key + " " + value);
             })
+            
+            
 
             $.ajax({
-                url: "PacienteController",
+                url: "PotencialController",
                 data: data,
                 method: "POST",
                 encType: "multipart/form-data",
@@ -118,6 +120,7 @@ $(document).ready(function () {
                 contentType: false,
                 cache: false,
                 success: function (response) {
+                    console.log("Debió haber guardado");
                     $.post("SAPI", {
                         file: "potencial/cuentaPaciente.jsp"
                     },
@@ -363,6 +366,9 @@ $(document).ready(function () {
                     processData: false,
                     contentType: false,
                     success: function (response) {
+                        console.log("dsafdsafdsafsdafsdafjsalkjflsadjfkjsañlfjkasjfklsjaflsñjfklsjdfkljaslkfjla");
+                        
+                        
                         var consultarDocumentosPreconsulta = new FormData;
                         consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
 
@@ -462,196 +468,360 @@ $(document).ready(function () {
 
     $("#btn-enviarSolicitud").on('click', function () {
 
-        console.log("Enviar solicitud");
+        //probar si existe la referencia
+        var existe = document.body.contains(document.getElementById('referenciaArchivo'));
+        console.log('EXISTE: ' + existe);
 
-        var form = $("form")[0];
-        var data = new FormData(form);
+        //si selecciono me envio un medico o me enviaron de otro hospital
+        if (parseInt($('#motivoConsulta option:selected').val()) == 1 || parseInt($('#motivoConsulta option:selected').val()) == 4) {
 
-        var masculino = $('#masculino').is(':checked') ? 1 : 0;
-        var femenino = $('#femenino').is(':checked') ? 1 : 0;
-        var sillaDeRuedas = $('#sillaRuedas').is(':checked') ? 1 : 0;
-        var camilla = $('#camilla').is(':checked') ? 1 : 0;
-        var baston = $('#baston').is(':checked') ? 1 : 0;
-        var oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
-        var motivoConsulta = $('#motivoConsulta').val();
-        var biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
-        var otroMotivo = $('#otro-motivo-consulta').val();
+            //verifica si ha seleccionado un archivo en la referencia
+            var tieneReferencia = $('#referenciaArchivo').get(0).files.length === 0 ? false : true;
 
-        data.append("key", "solicitarPreconsulta");
-        data.append("femenino", femenino);
-        data.append("masculino", masculino);
-        data.append("sillaDeRuedas", sillaDeRuedas);
-        data.append("camilla", camilla);
-        data.append("baston", baston);
-        data.append("oxigeno", oxigeno);
-        data.append("motivoConsulta", motivoConsulta);
-        data.append("otroMotivo", otroMotivo);
-        data.append("biopsia", biopsia);
+            if (!tieneReferencia) {
+                swal("Error", "Adjunta la referencia para poder enviar tu solicitud", "error");
+            } else {
+                console.log("Enviar solicitud");
 
-        console.log(data);
+                var form = $("form")[0];
+                var data = new FormData(form);
 
-        //Al presionar enviar los campos quedan ineditables
+                var masculino = $('#masculino').is(':checked') ? 1 : 0;
+                var femenino = $('#femenino').is(':checked') ? 1 : 0;
+                var sillaDeRuedas = $('#sillaRuedas').is(':checked') ? 1 : 0;
+                var camilla = $('#camilla').is(':checked') ? 1 : 0;
+                var baston = $('#baston').is(':checked') ? 1 : 0;
+                var oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
+                var motivoConsulta = $('#motivoConsulta').val();
+                var biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
+                var otroMotivo = $('#otro-motivo-consulta').val();
 
-        $('#masculino').attr('readonly', 'true');
-        $('#femenino').attr('readonly', 'true');
-        $('#fileIdentificacionSubido').prop('disabled', true);
+                data.append("key", "solicitarPreconsulta");
+                data.append("femenino", femenino);
+                data.append("masculino", masculino);
+                data.append("sillaDeRuedas", sillaDeRuedas);
+                data.append("camilla", camilla);
+                data.append("baston", baston);
+                data.append("oxigeno", oxigeno);
+                data.append("motivoConsulta", motivoConsulta);
+                data.append("otroMotivo", otroMotivo);
+                data.append("biopsia", biopsia);
+
+                console.log(data);
+
+                //Al presionar enviar los campos quedan ineditables
+
+                $('#masculino').attr('readonly', 'true');
+                $('#femenino').attr('readonly', 'true');
+                $('#fileIdentificacionSubido').prop('disabled', true);
 
 
-        // Imprimmir en consola los valores obtenidos del form para pruebas
-        data.forEach((value, key) => {
-            console.log(key + " " + value);
-        });
+                // Imprimmir en consola los valores obtenidos del form para pruebas
+                data.forEach((value, key) => {
+                    console.log(key + " " + value);
+                });
 
 
-        //console.log("after getting the form" + form.length);
 
 
-        /*
-         ¿Obtener los valores de entrada?   
-         var masculino, femenino, camilla, sillaDeRuedas, baston, oxigeno, biopsia, motivoConsulta,
-         identificacionOficial, comprobanteDomicilio, fileEstudioPrevioUsg, estudioBiopsia,
-         fileEstudioPrevioMasto;
-         
-         
-         masculino = $('#masculino').is(':checked') ? 1 : 0;
-         femenino = $('#femenino').is(':checked') ? 1 : 0;
-         
-         sillaDeRuedas = $('#sillaRuedas').is(':checked') ? 1 : 0;
-         camilla = $('#camilla').is(':checked') ? 1 : 0;
-         baston = $('#baston').is(':checked') ? 1 : 0;
-         oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
-         motivoConsulta = $('#motivoConsulta').val();
-         biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
-         
-         //Imprimir los valores de entrada
-         /*console.log("masculino: " + masculino + " femenino: " + femenino + " silla:  " + sillaDeRuedas + " camilla: " + camilla + " bastón: " +
-         baston + " oxigeno " + oxigeno + " biopsia " + biopsia + " motivo " + motivoConsulta
-         + " identificacion: " + identificacionOficial.name + " comprobante: " + comprobanteDomicilio.name + " estudioMasto: " + fileEstudioPrevioMasto.name
-         +" estudioUsg: " + fileEstudioPrevioUsg.name + " biopsia: " + estudioBiopsia.name);*/
+                swal({
+                    title: "Estas seguro de enviar tu solicitud?",
+                    text: "Ya no podras modificar tu solicitud mas adelante",
 
-        swal({
-            title: "Estas seguro de enviar tu solicitud?",
-            text: "Ya no podras modificar tu solicitud mas adelante",
+                    showCancelButton: false,
+                    showConfirmButton: true,
 
-            showCancelButton: false,
-            showConfirmButton: true,
+                    buttons: {cancel: 'Cancelar', aceptar: 'Aceptar'},
+                    dangerMode: true
+                }).then(function (value) {
 
-            buttons: {cancel: 'Cancelar', aceptar: 'Aceptar'},
-            dangerMode: true
-        }).then(function (value) {
+                    if (value == "aceptar") {
+                        //AJAX PARA ENVIAR SOLICITUD
+                        $.ajax({
+                            url: "PotencialController",
+                            method: "POST",
+                            data: data,
+                            enctype: "multipart/form-data",
+                            processData: false,
+                            contentType: false,
+                            success: function (response) {
 
-            if (value == "aceptar") {
-                //AJAX PARA ENVIAR SOLICITUD
-                $.ajax({
-                    url: "PotencialController",
-                    method: "POST",
-                    data: data,
-                    enctype: "multipart/form-data",
-                    processData: false,
-                    contentType: false,
-                    success: function (response) {
+                                if (response == "documentosNoSubidos") {
+                                    swal("Error", "Para enviar la solicitud debes seleccionar sexo y al menos subir al menos la identificacion, el curp, el comprobante y el motivo de consulta", "error");
+                                } else {
 
-                        if (response == "documentosNoSubidos") {
-                            swal("Error", "Para enviar la solicitud debes seleccionar sexo y al menos subir al menos la identificacion, el curp y el comprobante", "error");
-                        } else {
+                                    swal({
+                                        title: "Solicitud enviada",
+                                        text: "En 36 horas máximo, se te dará respuesta a tu solicitud",
+                                        icon: "success",
+                                        buttons: true,
+                                        buttons: [, 'Aceptar']
 
-                            swal({
-                                title: "Solicitud enviada",
-                                text: "En 36 horas máximo, se te dará respuesta a tu solicitud",
-                                icon: "success",
-                                buttons: true,
-                                buttons: [, 'Aceptar']
+                                    }).then(function () {
+                                        var consultarDocumentosPreconsulta = new FormData;
+                                        consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
 
-                            }).then(function () {
-                                var consultarDocumentosPreconsulta = new FormData;
-                                consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
+                                        console.log("Solicitar DOCUMENTOS de Preconsulta");
+                                        $.ajax({
+                                            url: "PotencialController",
+                                            method: "POST",
+                                            data: consultarDocumentosPreconsulta,
+                                            enctype: "multipart/form-data",
+                                            processData: false,
+                                            contentType: false,
+                                            success: function (response) {
 
-                                console.log("Solicitar DOCUMENTOS de Preconsulta");
-                                $.ajax({
-                                    url: "PotencialController",
-                                    method: "POST",
-                                    data: consultarDocumentosPreconsulta,
-                                    enctype: "multipart/form-data",
-                                    processData: false,
-                                    contentType: false,
-                                    success: function (response) {
+                                                if (response != null) {
+                                                    var data = JSON.parse(response);
+                                                    console.log(data);
 
-                                        if (response != null) {
-                                            var data = JSON.parse(response);
-                                            console.log(data);
-
-                                            console.log("Solicitar ESTADO de Preconsulta");
-                                            $.ajax({
-                                                url: "PotencialController",
-                                                method: "POST",
-                                                data: {key: "consultarEstadoPreconsulta"},
-                                                success: function (response) {
-                                                    console.log("SUCCESS!")
-                                                    console.log("Solicitar EstadoPaciente");
+                                                    console.log("Solicitar ESTADO de Preconsulta");
                                                     $.ajax({
                                                         url: "PotencialController",
                                                         method: "POST",
-                                                        data: {key: "consultarEstadoPaciente"},
+                                                        data: {key: "consultarEstadoPreconsulta"},
                                                         success: function (response) {
-                                                            //Ajax redireccionamiento
+                                                            console.log("SUCCESS!")
+                                                            console.log("Solicitar EstadoPaciente");
                                                             $.ajax({
-                                                                url: "SAPI",
+                                                                url: "PotencialController",
                                                                 method: "POST",
-                                                                data: {file: "potencial/index.jsp"},
+                                                                data: {key: "consultarEstadoPaciente"},
                                                                 success: function (response) {
-                                                                    if (response == "error") {
-                                                                        console.log("Error al cargar");
-                                                                    } else {
-                                                                        console.log("Intentando redireccionar");
-                                                                        document.open("text/html", "replace");
-                                                                        document.write(response);
-                                                                        document.close();
-                                                                    }
+                                                                    //Ajax redireccionamiento
+                                                                    $.ajax({
+                                                                        url: "SAPI",
+                                                                        method: "POST",
+                                                                        data: {file: "potencial/index.jsp"},
+                                                                        success: function (response) {
+                                                                            if (response == "error") {
+                                                                                console.log("Error al cargar");
+                                                                            } else {
+                                                                                console.log("Intentando redireccionar");
+                                                                                document.open("text/html", "replace");
+                                                                                document.write(response);
+                                                                                document.close();
+                                                                            }
+                                                                        }
+                                                                    });
+                                                                },
+                                                                error: function () {
+                                                                    console.log("error" + xhr.statusText);
+                                                                    alert("No enontre el controlador" + xhr.statusText);
+                                                                    console.log("Error SolicitarEstadoPaciente");
                                                                 }
+
                                                             });
                                                         },
-                                                        error: function () {
+                                                        error: function (xhr) {
                                                             console.log("error" + xhr.statusText);
-                                                            alert("No enontre el controlador" + xhr.statusText);
-                                                            console.log("Error SolicitarEstadoPaciente");
+                                                            console.log("Error SolicitarEstadoPreconsulta");
+                                                            //alert(xhr);
                                                         }
 
                                                     });
-                                                },
-                                                error: function (xhr) {
-                                                    console.log("error" + xhr.statusText);
-                                                    console.log("Error SolicitarEstadoPreconsulta");
-                                                    //alert(xhr);
+
+                                                } else {
+                                                    console.log("Algo pasó" + response);
                                                 }
+                                            },
+                                            error: function () {
+                                                alert("No enontre el controlador");
+                                            }
 
-                                            });
+                                        });
+                                    })
+                                }
 
-                                        } else {
-                                            console.log("Algo pasó" + response);
-                                        }
-                                    },
-                                    error: function () {
-                                        alert("No enontre el controlador");
-                                    }
+                            },
+                            error: function (request, status, error) {
+                                console.log("Enviar solicitud Error request " + request.responseText);
+                                console.log("Enviar solicitud Error status " + status);
+                                console.log("Enviar solicitud Error error" + error);
+                                //alert("No enontre el controlador" + status);                               
+                            }
+                        });
+                    } else {
 
-                                });
-                            })
-                        }
-
-                    },
-                    error: function (request, status, error) {
-                        console.log("Enviar solicitud Error request " + request.responseText);
-                        console.log("Enviar solicitud Error status " + status);
-                        console.log("Enviar solicitud Error error" + error);
-                        //alert("No enontre el controlador" + status);                               
                     }
-                });
-            } else {
 
+
+                });
             }
 
+        } else {
+            console.log("Enviar solicitud");
 
-        });
+            var form = $("form")[0];
+            var data = new FormData(form);
+
+            var masculino = $('#masculino').is(':checked') ? 1 : 0;
+            var femenino = $('#femenino').is(':checked') ? 1 : 0;
+            var sillaDeRuedas = $('#sillaRuedas').is(':checked') ? 1 : 0;
+            var camilla = $('#camilla').is(':checked') ? 1 : 0;
+            var baston = $('#baston').is(':checked') ? 1 : 0;
+            var oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
+            var motivoConsulta = $('#motivoConsulta').val();
+            var biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
+            var otroMotivo = $('#otro-motivo-consulta').val();
+
+            data.append("key", "solicitarPreconsulta");
+            data.append("femenino", femenino);
+            data.append("masculino", masculino);
+            data.append("sillaDeRuedas", sillaDeRuedas);
+            data.append("camilla", camilla);
+            data.append("baston", baston);
+            data.append("oxigeno", oxigeno);
+            data.append("motivoConsulta", motivoConsulta);
+            data.append("otroMotivo", otroMotivo);
+            data.append("biopsia", biopsia);
+
+            console.log(data);
+
+            //Al presionar enviar los campos quedan ineditables
+
+            $('#masculino').attr('readonly', 'true');
+            $('#femenino').attr('readonly', 'true');
+            $('#fileIdentificacionSubido').prop('disabled', true);
+
+
+            // Imprimmir en consola los valores obtenidos del form para pruebas
+            data.forEach((value, key) => {
+                console.log(key + " " + value);
+            });
+
+
+
+
+            swal({
+                title: "Estas seguro de enviar tu solicitud?",
+                text: "Ya no podras modificar tu solicitud mas adelante",
+
+                showCancelButton: false,
+                showConfirmButton: true,
+
+                buttons: {cancel: 'Cancelar', aceptar: 'Aceptar'},
+                dangerMode: true
+            }).then(function (value) {
+
+                if (value == "aceptar") {
+                    //AJAX PARA ENVIAR SOLICITUD
+                    $.ajax({
+                        url: "PotencialController",
+                        method: "POST",
+                        data: data,
+                        enctype: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+
+                            if (response == "documentosNoSubidos") {
+                                swal("Error", "Para enviar la solicitud debes seleccionar sexo y al menos subir al menos la identificacion, el curp, el comprobante y el motivo de consulta", "error");
+                            } else {
+
+                                swal({
+                                    title: "Solicitud enviada",
+                                    text: "En 36 horas máximo, se te dará respuesta a tu solicitud",
+                                    icon: "success",
+                                    buttons: true,
+                                    buttons: [, 'Aceptar']
+
+                                }).then(function () {
+                                    var consultarDocumentosPreconsulta = new FormData;
+                                    consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
+
+                                    console.log("Solicitar DOCUMENTOS de Preconsulta");
+                                    $.ajax({
+                                        url: "PotencialController",
+                                        method: "POST",
+                                        data: consultarDocumentosPreconsulta,
+                                        enctype: "multipart/form-data",
+                                        processData: false,
+                                        contentType: false,
+                                        success: function (response) {
+
+                                            if (response != null) {
+                                                var data = JSON.parse(response);
+                                                console.log(data);
+
+                                                console.log("Solicitar ESTADO de Preconsulta");
+                                                $.ajax({
+                                                    url: "PotencialController",
+                                                    method: "POST",
+                                                    data: {key: "consultarEstadoPreconsulta"},
+                                                    success: function (response) {
+                                                        console.log("SUCCESS!")
+                                                        console.log("Solicitar EstadoPaciente");
+                                                        $.ajax({
+                                                            url: "PotencialController",
+                                                            method: "POST",
+                                                            data: {key: "consultarEstadoPaciente"},
+                                                            success: function (response) {
+                                                                //Ajax redireccionamiento
+                                                                $.ajax({
+                                                                    url: "SAPI",
+                                                                    method: "POST",
+                                                                    data: {file: "potencial/index.jsp"},
+                                                                    success: function (response) {
+                                                                        if (response == "error") {
+                                                                            console.log("Error al cargar");
+                                                                        } else {
+                                                                            console.log("Intentando redireccionar");
+                                                                            document.open("text/html", "replace");
+                                                                            document.write(response);
+                                                                            document.close();
+                                                                        }
+                                                                    }
+                                                                });
+                                                            },
+                                                            error: function () {
+                                                                console.log("error" + xhr.statusText);
+                                                                alert("No enontre el controlador" + xhr.statusText);
+                                                                console.log("Error SolicitarEstadoPaciente");
+                                                            }
+
+                                                        });
+                                                    },
+                                                    error: function (xhr) {
+                                                        console.log("error" + xhr.statusText);
+                                                        console.log("Error SolicitarEstadoPreconsulta");
+                                                        //alert(xhr);
+                                                    }
+
+                                                });
+
+                                            } else {
+                                                console.log("Algo pasó" + response);
+                                            }
+                                        },
+                                        error: function () {
+                                            alert("No enontre el controlador");
+                                        }
+
+                                    });
+                                })
+                            }
+
+                        },
+                        error: function (request, status, error) {
+                            console.log("Enviar solicitud Error request " + request.responseText);
+                            console.log("Enviar solicitud Error status " + status);
+                            console.log("Enviar solicitud Error error" + error);
+                            //alert("No enontre el controlador" + status);                               
+                        }
+                    });
+                } else {
+
+                }
+
+
+            });
+        }
+
+
+
+
+        /**/
 
     });
 
@@ -1076,8 +1246,6 @@ $(document).ready(function () {
 
         areEqualPasswords(pass1, pass2);
     });
-
-
 
 
     function readURL(input) {

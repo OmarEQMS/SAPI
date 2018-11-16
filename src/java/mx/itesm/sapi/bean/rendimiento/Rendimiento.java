@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.itesm.sapi.rendimiento;
+package mx.itesm.sapi.bean.rendimiento;
 
 /**
  *
@@ -13,7 +13,10 @@ package mx.itesm.sapi.rendimiento;
 /**
  * public class Rendimiento Clase para almacenar la cuenta de datos agrupados
  */
-
+/**
+ * Field summary private String decripcion: Contiene la descripcion del grupo de
+ * datos private int cantidad: Contiene el total de datos dentro del grupo
+ */
 public class Rendimiento {
 
     private String decripcion;
