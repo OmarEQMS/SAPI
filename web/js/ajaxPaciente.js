@@ -565,7 +565,7 @@ $(document).ready(function () {
 
                         $("#fechaInicioTratamiento").val('');
 
-                        $('#idTratamientoPaciente').val(response);
+                        //$('#idTratamientoPaciente').val(response);
 
                     })
                     .fail(function (xhr, textStatus, errorThrown) {
@@ -638,6 +638,7 @@ $(document).ready(function () {
     });
 
     //Terminar tratamiento
+        //Terminar tratamiento
     $("#fechaTerminarTratamiento").on('click', function () {
 
 
@@ -645,7 +646,7 @@ $(document).ready(function () {
         var date_by = $('#fechaInicioTratamiento2').val();
         console.log("#fechaFin: " + date_from);
         console.log("#fechaInicio: " + date_by);
-                
+        console.log("idTratamientoPaciente: " + $('.idTratamientoPaciente').val());
 
         if (isValidDate2($('#fechaFinTratamiento'), $('#fechaInicioTratamiento2'))) { 
 
@@ -655,11 +656,10 @@ $(document).ready(function () {
                 method: 'POST',
                 data: {
                     key: 'terminarTratamiento',
-                    idTratamientoPaciente: $('#idTratamientoPaciente').val(),
+                    idTratamientoPaciente: $('.idTratamientoPaciente').val(),
                     fechaFin: $('#fechaFinTratamiento').val()
                 }
             })
-
                     .done(function (response) {
 
                         $('#modalEditarTerminado').modal('toggle'); //cerrar modal
@@ -668,7 +668,7 @@ $(document).ready(function () {
                             icon: "success",
                         });
                         //actualizar la tabla
-                        $('#fecha-' + $('#idTratamientoPaciente').val()).html($('#fechaFinTratamiento').val());
+                        $('#fecha-' + $('.idTratamientoPaciente').val()).html($('#fechaFinTratamiento').val());
                         $("#fechaFinTratamiento").val('');
 
                         $("#modal-" + $("#botonHidden").val()).attr("disabled", "disabled").removeClass("btn-primary").addClass("btn-secondary");
@@ -688,9 +688,17 @@ $(document).ready(function () {
             });
         }
     });
+
     //Designar idTratamientoPaciente
-    $('body').on('click', '.terminarTratamiento', function () {
-        $('#idTratamientoPaciente').val($(this).data('id'));
+    //$('body').on('click', '.terminarTratamiento', function () {
+        
+    $(".terminarTratamiento").on('click', function () {
+        
+        $(".idTratamientoPaciente").val(
+                $("#boton-" + $(this).data('id')).val()
+                );
+        
+        console.log("idTratamientoPacienteUnico: " + $(".idTratamientoPaciente").val());
 
         $("#botonHidden").val($(this).data('id'));
 
@@ -698,7 +706,6 @@ $(document).ready(function () {
 
         $("#tipoTratamiento2").val(
                 $("#nombre-" + $(this).data('id')).val()
-
                 );
         $("#fechaInicioTratamiento2").val(
                 $("#fechaInicio-" + $(this).data('id')).val()

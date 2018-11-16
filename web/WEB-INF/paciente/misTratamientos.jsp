@@ -39,6 +39,8 @@
     </head>
 
     <body>
+        
+        <input type="hidden" value="5" class="idTratamientoPaciente">
 
         <div class="wrapper">
 
@@ -178,14 +180,14 @@
                                                   data-target="#modalEditarTerminado"><i class="fas fa-edit"></i></button></td>
                                   </tr>
                                 -->
-                            <input type="hidden" value="" id="idTratamientoPaciente">
+                            
 
 
                             <c:forEach  items="${UnionTratamientosPaciente}" var="unionTratamientoPaciente">
                                 <tr>
                                 <input type="hidden" value="${unionTratamientoPaciente.nombre}" id="nombre-${unionTratamientoPaciente.idTratamientoPaciente}">
                                 <input type="hidden" value="${unionTratamientoPaciente.fechaInicio}" id="fechaInicio-${unionTratamientoPaciente.idTratamientoPaciente}">
-                                <input type="hidden" value="${unionTratamiento.idTratamientoPaciente}" id="boton-${unionTratamiento.idTratamientoPaciente}">
+                                <input type="hidden" value="${unionTratamientoPaciente.idTratamientoPaciente}" id="boton-${unionTratamientoPaciente.idTratamientoPaciente}">
                                 <td id="nombre-${unionTratamientoPaciente.idTratamientoPaciente}" value="${unionTratamientoPaciente.nombre}" > <c:out value="${unionTratamientoPaciente.nombre}"/> </td>
                                 <td id="fechaInicio-${unionTratamientoPaciente.idTratamientoPaciente}" > <c:out value="${unionTratamientoPaciente.fechaInicio}"/> </td>
                                 <td id="fecha-${unionTratamientoPaciente.idTratamientoPaciente}"> <c:out value="${unionTratamientoPaciente.fechaFin}"/> </td>

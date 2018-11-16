@@ -804,6 +804,11 @@ public class FrontController extends HttpServlet {
                                     byte[] bytes = IOUtils.toByteArray(imagen);
                                     String base64String = Base64.getEncoder().encodeToString(bytes);
 
+                                    for (int i = 0; i < unionTratamientosPaciente.size(); i++) {
+                                        System.out.println(unionTratamientosPaciente.get(i).getIdTratamientoPaciente());
+                                    }
+
+                                    
                                     sesion.setAttribute("base64Img", base64String);
                                     System.out.println("en front controller esss" + paciente.getIdPaciente());
                                     sesion.setAttribute("idPaciente", paciente.getIdPaciente());
