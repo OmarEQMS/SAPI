@@ -31,7 +31,7 @@
         <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
 
         <link rel="stylesheet" href="css/stylePaciente.css">
-        <script src="js/appPaciente.js" type="module"></script>
+        <script src="js/appPaciente.js"></script>
         <script src="js/calendarPaciente.js"></script>
         <script src="js/ajaxPaciente.js"></script>
         <script src="js/validacionesPaciente.js"></script>

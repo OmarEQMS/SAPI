@@ -98,7 +98,7 @@ $(document).ready(function () {
     $('#guardarCambios').on('click', function () {
 
         if (isValidEmail($("#myEmail")) &&
-                isValidPhoneNumber($("#telephoneNum"))) {
+                isValidPhoneNumber($("#telephoneNum")) && !$("#errorCorreoRepetido")) {
 
 
             console.log("Presionó GuardarCambios")
@@ -1375,6 +1375,44 @@ $(document).ready(function () {
 
         return false;
     }
+    
+    //CORREO REPETIDO
+    $('#myEmail').on('change', function () {
+        $.ajax({
+
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+
+                key: "repiteCorreo",
+                correo: $('#myEmail').val()
+
+
+            },
+            success: function (response) {
+
+                if (response === 'CorreoAlreadyExists') {
+                    console.log("correo repetidooo")
+                    $('#myEmail').css('color', 'orange');
+                    $('#errorCorreoRepetido').show();
+                } else {
+                    $('#errorCorreoRepetido').hide();
+                }
+
+            }
+
+        });
+
+        if (isValidEmail($(this))) {
+            $('#error-correo').hide();
+        } else if ($(this).val() == '') {
+            $('#error-correo').hide();
+        } else {
+            $('#error-correo').show();
+        }
+
+    });
 
 
 

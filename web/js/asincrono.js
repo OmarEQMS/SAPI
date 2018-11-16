@@ -287,9 +287,9 @@ $(document).ready(function () {
 
             },
             success: function (response) {
-
                 if (response === 'UsuarioAlreadyExists') {
                     $('#usuario').css('color', 'orange');
+                    alert("entré");
                     $('#errorUsuarioRepetido').show();
                 } else {
                     $('#errorUsuarioRepetido').hide();
