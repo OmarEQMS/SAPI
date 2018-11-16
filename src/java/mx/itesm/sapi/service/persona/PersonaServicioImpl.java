@@ -589,14 +589,14 @@ public class PersonaServicioImpl implements PersonaServicio {
     }
 
     @Override
-    public int agregarMedico(Persona persona) {
+    public int agregarMedico(Persona persona,int idRol) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
 
         int id = -1;
         //Aquí va el call del procedure
-        String stProcedure = "CALL agregarPersonaMedico(?, ?, ?, ?, ?)";
+        String stProcedure = "CALL agregarPersonaMedico(?, ?, ?, ?, ?,?)";
 
         try {
             conn = Conexion.getConnection();
@@ -613,7 +613,8 @@ public class PersonaServicioImpl implements PersonaServicio {
             cstmt.setString(2, persona.getPrimerApellido());
             cstmt.setString(3, persona.getSegundoApellido());            
             cstmt.setString(4, persona.getTelefono());
-            cstmt.setString(5, persona.getCorreo());            
+            cstmt.setString(5, persona.getCorreo());     
+            cstmt.setInt(6, idRol);
                   
 
             System.out.println("agregarPersonaMedico ".concat(cstmt.toString()));

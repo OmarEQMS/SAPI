@@ -263,6 +263,7 @@ public class RegistraUsuarioController extends HttpServlet {
                 cuenta.setPassword(contraseña1);
                 cuenta.setUsuario(usuario);
                 cuenta.setToken(String.valueOf(unixTimestamp));
+                cuenta.setIdRol(1);//Rol 1 corresponde a paciente potencial.
 
                 //DIRECCION
                 dir.setCalle(calle);
@@ -318,7 +319,7 @@ public class RegistraUsuarioController extends HttpServlet {
             }
             case "agregarMedico":
             {
-                 ResourceBundle sapiProperties = ResourceBundle.getBundle("mx.itesm.sapi.properties.catalogos");
+                ResourceBundle sapiProperties = ResourceBundle.getBundle("mx.itesm.sapi.properties.catalogos");
                 
                 int idRolMedico = Integer.parseInt(sapiProperties.getString("Medico"));
                 int idTumoresMamarios = Integer.parseInt(sapiProperties.getString("TumoresMamarios"));
@@ -350,6 +351,9 @@ public class RegistraUsuarioController extends HttpServlet {
                 per.setTelefono(telefono);
                 per.setCorreo(correo);
                 
+                long unixTimestamp = Instant.now().getEpochSecond();
+
+                cuenta.setToken(String.valueOf(unixTimestamp));
                 cuenta.setUsuario(noEmpleado);
                 cuenta.setIdRol(idRolMedico);
                 cuenta.setPassword(contraseña);
@@ -362,9 +366,18 @@ public class RegistraUsuarioController extends HttpServlet {
                 int idCuenta;
                 int idEmpleado;                
                 
+                
+                
                 System.out.println("idPersona: ".concat(String.valueOf(idPersona)));
                 if(idPersona > 0)
                 {
+                    PicServicioImpl picServiceImpl = new PicServicioImpl();
+                    
+                    Pic pic = picServiceImpl.mostrarPicDefault();
+                    pic.setIdPersona(idPersona);
+                    picServiceImpl.agregarPic(pic);
+                
+                
                     cuenta.setIdPersona(idPersona);                    
                     idCuenta = _rSC.agregarCuenta(cuenta);
                     
@@ -407,6 +420,115 @@ public class RegistraUsuarioController extends HttpServlet {
                     
                 }    
                                                                                    
+                
+                break;
+            }
+            case "agregarNavegadora":
+            {
+                ResourceBundle sapiProperties = ResourceBundle.getBundle("mx.itesm.sapi.properties.catalogos");
+                
+                int idRolNavegadora = Integer.parseInt(sapiProperties.getString("Navegadora"));
+                int idTumoresMamarios = Integer.parseInt(sapiProperties.getString("TumoresMamarios"));
+                 
+                String nombre = request.getParameter("nombre");
+                String apellido1 = request.getParameter("primerApellido");
+                String apellido2 = request.getParameter("segundoApellido");
+                String telefono = request.getParameter("telefono");
+                String correo = request.getParameter("correo");                
+                String noEmpleado = request.getParameter("noEmpleado");
+                String especialidadAgregar = request.getParameter("especialidad");
+                String posicionNavegadora = "Navegadora";
+                String cedula = request.getParameter("cedula");
+                String contraseña = request.getParameter("password");
+                
+                
+                System.out.println(nombre);
+                System.out.println(apellido1);
+                System.out.println(apellido2);
+                System.out.println(telefono);
+                System.out.println(correo);
+                System.out.println(noEmpleado);
+                System.out.println(especialidadAgregar);
+                System.out.println(cedula);
+                System.out.println(contraseña);
+                
+                per.setNombre(nombre);
+                per.setPrimerApellido(apellido1);
+                per.setSegundoApellido(apellido2);
+                per.setTelefono(telefono);
+                per.setCorreo(correo);
+                
+                long unixTimestamp = Instant.now().getEpochSecond();
+
+                cuenta.setToken(String.valueOf(unixTimestamp));
+                cuenta.setUsuario(noEmpleado);
+                cuenta.setIdRol(idRolNavegadora);
+                cuenta.setPassword(contraseña);
+                cuenta.setIdEmpleado((int)sesion.getAttribute("idEmpleado"));
+                
+                System.out.println("Rol ".concat(String.valueOf(idRolNavegadora)));
+                if(idRolNavegadora == 2)
+                    break;
+                
+                empleado.setNoEmpleado(noEmpleado);
+                empleado.setIdDepartamentoDepartamentoInterno(idTumoresMamarios);
+                
+                int idPersona = _registroServicio.agregarMedico(per);
+                int idCuenta;
+                int idEmpleado;                
+                
+                System.out.println("idPersona: ".concat(String.valueOf(idPersona)));
+                if(idPersona > 0)
+                {
+                    PicServicioImpl picServiceImpl = new PicServicioImpl();
+                    
+                    Pic pic = picServiceImpl.mostrarPicDefault();
+                    pic.setIdPersona(idPersona);
+                    picServiceImpl.agregarPic(pic);
+                                        
+                    cuenta.setIdPersona(idPersona);                    
+                    idCuenta = _rSC.agregarCuenta(cuenta);
+                    
+                    if(idCuenta > 0)
+                    {
+                        empleado.setIdCuenta(idCuenta);
+                        idEmpleado = empleadoServicioImpl.agregarEmpleado(empleado);
+                        
+                        System.out.println("idCuenta: ".concat(String.valueOf(idCuenta)));
+                        if(idEmpleado > 0)
+                        {
+                            System.out.println("idEmpleado: ".concat(String.valueOf(idEmpleado)));
+                            
+                            posicion = posicionServicioImpl.mostrarPosicion(posicionNavegadora);
+                            especialidad = especialidadServicioImpl.mostrarEspecialidadPorNombre(especialidadAgregar);
+                                                                                   
+                            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                             
+                            empleadoPosicion.setIdEmpleado(idEmpleado);
+                            empleadoPosicion.setIdPosicion(posicion.getIdPosicion());
+                            empleadoPosicion.setInicio(timestamp);                            
+                            
+                            medicoEspecialidad.setIdEspecialidad(especialidad.getIdEspecialidad());
+                            medicoEspecialidad.setIdEmpleado(idEmpleado);
+                            medicoEspecialidad.setCedulaProfesional(cedula);
+                                                                                    
+                            int idEmpleadoPosicionServicio  = empleadoPosicionServicioImpl.agregarEmpleadoPosicion(empleadoPosicion);
+                            int idMedicoEspecialidad = medicoEspecialidadServicioImpl.agregarMedicoEspecialidad(medicoEspecialidad);
+                            
+                            System.out.println("Final :D");
+                            System.out.println("idPersona: ".concat(String.valueOf(idPersona)));
+                            System.out.println("idCuenta: ".concat(String.valueOf(idCuenta)));
+                            System.out.println("idEmpleado: ".concat(String.valueOf(idEmpleado)));
+                            System.out.println("idEmpleadoPosicion: ".concat(String.valueOf(idEmpleadoPosicionServicio)));
+                            System.out.println("idMedicoEspecialidad: ".concat(String.valueOf(idMedicoEspecialidad)));
+                            
+                        }
+                        
+                    }
+                    
+                }    
+                                                                          
+                
                 
                 break;
             }

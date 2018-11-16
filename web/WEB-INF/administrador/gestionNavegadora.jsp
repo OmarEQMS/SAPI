@@ -477,7 +477,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" style="border-radius:20px;" data-dismiss="modal">Cancelar</button>
-                            <button id="btn-agregarMedico" type="button" class="btn btn-primary" style="border-radius:20px;">Agregar Navegadora</button>
+                            <button id="btn-agregarNavegadora" type="button" class="btn btn-primary" style="border-radius:20px;">Agregar Navegadora</button>
                         </div>
                     </div>
                 </div>

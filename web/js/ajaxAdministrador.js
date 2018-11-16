@@ -341,9 +341,19 @@ $(document).ready(function () {
         var cedula = $('#agregar-cedulaNavegadora');
         var password = $('#agregar-passwordNavegadora');
 
+        console.log(nombre);
+        console.log(telefono);
+        console.log(primerApellido);
+        console.log(segundoApellido);
+        console.log(correo);
+        console.log(noEmpleado);
+        console.log(especialidad);
+        console.log(cedula);
+        console.log(password);
+        
         $.ajax({
 
-            url: 'AdminController',
+            url: 'RegistraUsuarioController',
             cache: false,
             method: 'POST',
             data: {
@@ -423,8 +433,7 @@ $(document).ready(function () {
                 segundoApellido: segundoApellido.val(),
                 correo: correo.val(),
                 noEmpleado: noEmpleado.val(),
-                especialidad: especialidad.val(),
-                subEspecialidad: subEspecialidad.val(),
+                especialidad: especialidad.val(),                
                 cedula: cedula.val(),
                 password: password.val()
             }
