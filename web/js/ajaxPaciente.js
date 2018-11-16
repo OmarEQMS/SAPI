@@ -1,66 +1,52 @@
 $(document).ready(function () {
 
-    //esconder mensajes de error
+//esconder mensajes de error
     $("#error-campos").hide();
     $('#error-contrasena').hide();
     $('#noEqualPasswordsError').hide();
     $('#errorCorreoRepetido').hide();
-
+    
+    $("#error-datosRepetidos").hide();
+    
+    var repiteCorreo;
     //Recuperar edificio
     var edificio;
-
     $("input:radio[name=Edificios]").click(function () {
         edificio = $(this).val();
-
     });
-
     //Recupera ColoR
 
     $('input[type=radio][name=Edificios]').on('change', function () {
 
         console.log('Valor seleccionado de EDIFICIOS: ' + parseInt($(this).val()));
-
         if (parseInt($(this).val()) === 1) {
             $('#colorCita').val($('input:radio[name=Edificios]:checked').attr("data-color"));
             console.log($('#colorCita').val());
         }
 
     });
-
     $('input[type=radio][name=Pisos]').on('change', function () {
 
         console.log('Valor seleccionado de PISOS: ' + parseInt($(this).val()));
-
         $('#colorCita').val($('input:radio[name=Pisos]:checked').attr("data-color"));
-
         console.log($('#colorCita').val());
-
     });
-
     //Recuperar piso
     var piso = 0;
-
     $("input:radio[name=Pisos]").click(function () {
         piso = $(this).val();
     });
-
     $('#RegistrarCita_hora').on('change', function () {
 
         $('#fechaProgramada').val($('#fechaTemp').val() + ' ' + $(this).val() + ":00");
-
         console.log($('#fechaProgramada').val());
     });
-
     //Recupera Titulo
     $('#RegistrarCita_tipo').on('change', function () {
 
         $('#tituloCita').val($(this).find(':selected').data('nombre'));
-
         console.log($('#tituloCita').val());
-
     });
-
-
 //Agregar contenido dinamico de etapaClinica
 
 
@@ -74,7 +60,7 @@ $(document).ready(function () {
             if (parseInt($('input[name=Edificios]:checked').val()) == 1) {
                 esValid = true;
             } else {
-                //Validamos los pisos
+//Validamos los pisos
                 if (isValidRadioChecked($('input[name=Pisos]'))) {
                     esValid = true;
                     $("#error-campos").hide();
@@ -105,7 +91,6 @@ $(document).ready(function () {
                         .done(function (response) {
 
                             console.log(response);
-
                             if (response === "success") {
 
                                 $(".hora").val("");
@@ -115,7 +100,6 @@ $(document).ready(function () {
                                 $("#RegistrarCita_edificioNuevo").prop("checked", false);
                                 $('input[name=Pisos]').prop("checked", false);
                                 $('#pisosDiv').hide();
-
                                 var newEvent = {
 
                                     title: $('#tituloCita').val(),
@@ -124,18 +108,13 @@ $(document).ready(function () {
                                     textColor: 'white'
 
                                 };
-
                                 $('#calendarCitasPaciente').fullCalendar('renderEvent', newEvent);
-
                                 swal({
                                     title: "Buen Trabajo!",
                                     text: "La cita se ha registrado correctamente!",
                                     icon: "success",
                                 });
-
-
                                 $('#modalAgregarCita').modal('toggle');
-
                             } else {
                                 swal({
                                     title: "Algo salió mal!",
@@ -152,17 +131,14 @@ $(document).ready(function () {
 
         } else {
             $("#error-campos").show();
-            //alert("SELECCIONA TODO -.-");
         }
 
-        //CERRAR MODAL
+//CERRAR MODAL
 
     });
-
     $('#feedbackEdAntiguo').hide();
     $('#feedbackEdTorre').hide();
     $('#pisosDiv').hide();
-
     $('#EdAntiguo').on('mouseover', function () {
         $('#feedbackEdAntiguo').show();
         $('#feedbackEdAntiguo').disabled = true;
@@ -184,7 +160,6 @@ $(document).ready(function () {
             $('#pisosDiv').show();
         }
     });
-
     //PARA IR A LA CUENTA
     $('.irACuenta').on('click', function () {
         $.get("SAPI", {
@@ -204,7 +179,6 @@ $(document).ready(function () {
                 }
         );
     });
-
     //PARA IR A INICIO PACIENTE
     $('#irAInicioPaciente').on('click', function () {
         $.post("SAPI", {
@@ -222,9 +196,8 @@ $(document).ready(function () {
                         }
                     }
                 }
-        );
+        ); 
     });
-
     //PARA IR A mis Tratamientos
     $('#irATratamientos').on('click', function () {
         $.get("SAPI", {
@@ -244,7 +217,6 @@ $(document).ready(function () {
                 }
         );
     });
-
     //PARA IR A mis Citas
     $('#irMisCitas').on('click', function () {
         $.get("SAPI", {
@@ -264,7 +236,6 @@ $(document).ready(function () {
                 }
         );
     });
-
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
         console.log("Salir cuenta");
@@ -285,8 +256,6 @@ $(document).ready(function () {
                 }
         );
     });
-
-
     //Eliminar Cuenta
     $('#eliminarCuenta').on('click', function () {
 
@@ -296,7 +265,6 @@ $(document).ready(function () {
             icon: "warning",
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
-
         })
                 .then((eliminar) => {
                     if (eliminar) {
@@ -316,7 +284,6 @@ $(document).ready(function () {
                                     document.open("text/html", "replace");
                                     document.write(response);
                                     document.close();
-
                                 }
                             },
                             error: function (xhr) {
@@ -324,17 +291,11 @@ $(document).ready(function () {
                             }
 
                         });
-
-
                     } else {
 
                     }
                 });
-
-
-
     });
-
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta1').on('click', function () {
         console.log("Salir cuenta");
@@ -355,8 +316,6 @@ $(document).ready(function () {
                 }
         );
     });
-
-
     //
     function getValues(selector) {
         var els = document.querySelectorAll(selector);
@@ -390,7 +349,6 @@ $(document).ready(function () {
             }
 
         });
-
         if (isValidEmail($(this))) {
             $('#errorCorreo').hide();
         } else if ($(this).val() == '') {
@@ -400,7 +358,6 @@ $(document).ready(function () {
         }
 
     });
-
     /*
      //PARA GUARDAR CAMBIOS
      $('#guardarCambios').on('click', function () {
@@ -446,66 +403,65 @@ $(document).ready(function () {
      console.log(xhr.responseText);
      });
      
-     
-     
      });
      */
 
-
     $('#guardarCambios').on('click', function () {
+        //SHANNON
+        if (!repiteCorreo) {
+            $("#error-datosRepetidos").hide();
+            if (isValidEmail($("#correo")) &&
+                    isValidPhoneNumber($("#telefono")) &&
+                    isValidNoExpediente($("#noExpediente"))) {
 
-        if (isValidEmail($("#correo")) &&
-                isValidPhoneNumber($("#telefono")) &&
-                isValidNoExpediente($("#noExpediente"))
-                ) {
 
+                console.log("Presionó GuardarCambios")
+                var form = $("form")[0];
+                var data = new FormData(form);
+                data.append("key", "cambiarDatos");
+                data.forEach((value, key) => {
+                    console.log(key + " " + value);
+                })
 
-            console.log("Presionó GuardarCambios")
-            var form = $("form")[0];
-            var data = new FormData(form);
-            data.append("key", "cambiarDatos");
-            data.forEach((value, key) => {
-                console.log(key + " " + value);
-            })
-
-            $.ajax({
-                url: "PacienteController",
-                data: data,
-                method: "POST",
-                encType: "multipart/form-data",
-                processData: false,
-                contentType: false,
-                cache: false,
-                success: function (response) {
-                    $.post("SAPI", {
-                        file: "paciente/cuenta.jsp"
-                    },
-                            function (response, status, xhr) {
-                                console.log("El ajax fue exitoso!!-----------------------");
-                                if (status == "success") {
-                                    if (response == "error") {
-                                        $("#msj-error").show();
-                                    } else {
-                                        document.open("text/html", "replace");
-                                        document.write(response);
-                                        document.close();
-
+                $.ajax({
+                    url: "PacienteController",
+                    data: data,
+                    method: "POST",
+                    encType: "multipart/form-data",
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    success: function (response) {
+                        $.post("SAPI", {
+                            file: "paciente/cuenta.jsp"
+                        },
+                                function (response, status, xhr) {
+                                    console.log("El ajax fue exitoso!!-----------------------");
+                                    if (status == "success") {
+                                        if (response == "error") {
+                                            $("#msj-error").show();
+                                        } else {
+                                            document.open("text/html", "replace");
+                                            document.write(response);
+                                            document.close();
+                                        }
                                     }
                                 }
-                            }
-                    );
-                },
-                error: function (xhr) {
-                    //alert(xhr.statusText);
-                }
-            });
-
+                        );
+                    },
+                    error: function (xhr) {
+                        //alert(xhr.statusText);
+                    }
+                });
+            } else {
+                swal({
+                    title: "¡Datos inválidos!",
+                    text: "Revisa todos los campos antes de continuar",
+                    icon: "error",
+                });
+            }
         } else {
-            swal({
-                title: "Datos invalidos!",
-                text: "Revisa todos los campos antes de continuar",
-                icon: "error",
-            });
+            $("#error-datosRepetidos").show(); //ya existe un campo
         }
     });
 //Cambiar imagen temporalmente en elfront
@@ -529,10 +485,17 @@ $(document).ready(function () {
 
         if ($("#tipoTratamiento").val() != "Elegir Tratamiento")
             console.log($("#tipoTratamiento").val());
+<<<<<<< HEAD
 
         if (isValidDate($('#fechaInicioTratamiento'), $('.fechaNacimientoPaciente')) && $("#tipoTratamiento").val() != null) {
 
             var fechaInicioTratamiento = $("#fechaInicioTratamiento").val();
+||||||| merged common ancestors
+
+        if (isValidDate($('#fechaInicioTratamiento')) && $("#tipoTratamiento").val() != null) {
+=======
+        if (isValidDate($('#fechaInicioTratamiento')) && $("#tipoTratamiento").val() != null) {
+>>>>>>> origin/MontoyaRosas
 
             $.ajax({
                 url: 'PacienteController',
@@ -547,7 +510,6 @@ $(document).ready(function () {
                     .done(function (response) {
 
                         console.log(response);
-
                         $('#modalAgregarTratamiento').modal('toggle'); //cerrar modal
 
                         swal({
@@ -569,12 +531,17 @@ $(document).ready(function () {
                                 "<td><button class='btn btn-primary terminarTratamiento' id='modal-" + response + "' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button></td > " +
                                 "</tr>";
                         $("#tablaTratamientos").append(row);
-
                         $('#tipoTratamiento').prop('selectedIndex', 0);
-
                         $("#fechaInicioTratamiento").val('');
+<<<<<<< HEAD
 
                         //$('#idTratamientoPaciente').val(response);*/
+||||||| merged common ancestors
+
+                        //$('#idTratamientoPaciente').val(response);
+=======
+                        //$('#idTratamientoPaciente').val(response);
+>>>>>>> origin/MontoyaRosas
 
                     })
                     .fail(function (xhr, textStatus, errorThrown) {
@@ -625,27 +592,22 @@ $(document).ready(function () {
                                 }
                             });
                             $('#modalCambiarContraseña').modal('toggle');
-
                         }
 
                     });
         }
     });
-
     $("#password").on('change', function () {
         if (isValidPassword($(this)))
             $("#error-contrasena").hide();
         else
             $("#error-contrasena").show();
     });
-
     $("#password2").on('change', function () {
         var pass1 = $('#password');
         var pass2 = $(this);
-
         areEqualPasswords(pass1, pass2);
     });
-
     //Terminar tratamiento
     //Terminar tratamiento
     $("#fechaTerminarTratamiento").on('click', function () {
@@ -656,11 +618,17 @@ $(document).ready(function () {
         console.log("#fechaFin: " + date_from);
         console.log("#fechaInicio: " + date_by);
         console.log("idTratamientoPaciente: " + $('.idTratamientoPaciente').val());
+<<<<<<< HEAD
 
         if (isValidDate2($('#fechaFinTratamiento'), $('#fechaInicioTratamiento2'))) {
+||||||| merged common ancestors
+
+        if (isValidDate2($('#fechaFinTratamiento'), $('#fechaInicioTratamiento2'))) { 
+=======
+        if (isValidDate2($('#fechaFinTratamiento'), $('#fechaInicioTratamiento2'))) {
+>>>>>>> origin/MontoyaRosas
 
             var fechaFinTratamiento = $('#fechaFinTratamiento').val();
-
             $.ajax({
                 url: 'PacienteController',
                 cache: false,
@@ -680,25 +648,36 @@ $(document).ready(function () {
                             buttons: true,
                             buttons: [, 'Aceptar']
                         });
+<<<<<<< HEAD
                         
                         
                         //actualizar la tabla
 
                         console.log("fechaFinTratamiento: " + $('#fechaFinTratamiento').val());
 
+||||||| merged common ancestors
+                        //actualizar la tabla
+                        
+                        console.log("fechaFinTratamiento: " + $('#fechaFinTratamiento').val());
+                        
+=======
+                        //actualizar la tabla
+
+                        console.log("fechaFinTratamiento: " + $('#fechaFinTratamiento').val());
+>>>>>>> origin/MontoyaRosas
                         $('#fecha-' + $('.idTratamientoPaciente').val()).html(fechaFinTratamiento);
+<<<<<<< HEAD
 
+||||||| merged common ancestors
+                        
+=======
+>>>>>>> origin/MontoyaRosas
                         $("#fechaFinTratamiento").val('');
-
                         $("#modal-" + $('.idTratamientoPaciente').val()).attr("disabled", "disabled").removeClass("btn-primary").addClass("btn-secondary");
-
-
-
                     })
                     .fail(function (xhr, textStatus, errorThrown) {
                         console.log(xhr.responseText);
                     });
-
         } else {
             swal({
                 title: "Datos invalidos!",
@@ -709,7 +688,6 @@ $(document).ready(function () {
             });
         }
     });
-
     //Designar idTratamientoPaciente
     //$('body').on('click', '.terminarTratamiento', function () {
 
@@ -718,11 +696,14 @@ $(document).ready(function () {
         $(".idTratamientoPaciente").val(
                 $("#boton-" + $(this).data('id')).val()
                 );
+<<<<<<< HEAD
 
+||||||| merged common ancestors
+        
+=======
+>>>>>>> origin/MontoyaRosas
         console.log("idTratamientoPacienteUnico: " + $(".idTratamientoPaciente").val());
-
         $("#botonHidden").val($(this).data('id'));
-
         //alert($('#idTratamientoPaciente').val());
 
         $("#tipoTratamiento2").val(
@@ -731,30 +712,24 @@ $(document).ready(function () {
         $("#fechaInicioTratamiento2").val(
                 $("#fechaInicio-" + $(this).data('id')).val()
                 );
-
     });
-
     //Conseguir contenido del select
 
     $("#tipoTratamiento").on('change', function () {
         $('#nombreTipoTratamiento').val($('#tipoTratamiento option:selected').text());
         console.log($('#nombreTipoTratamiento').val());
     });
-
     function areEqualPasswords(pass1, pass2) {
 
         if (pass1.val() != pass2.val()) {
             pass2.css('border', '1px solid red');
             pass1.css('border', '1px solid red');
             $('#noEqualPasswordsError').show();
-
             return false;
-
         } else {
             pass2.css('border', '');
             pass1.css('border', '');
             $('#noEqualPasswordsError').hide();
-
         }
 
         return true;
@@ -763,62 +738,47 @@ $(document).ready(function () {
     function isValidNoExpediente(input) {
 
         var m = input.val();
-
         var expreg = /^[a-zA-Z0-9]{9,9}$/;
-
-
         if (!expreg.test(m)) {
 
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
             input.css('border', '');
             input.css('color', '');
         }
 
         return true;
-
-
     }
     ;
-
     function isValidEmail(input) {
 
         var m = input.val();
-
         ////Expresion regular por el estandard: RFC 5322
         var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-
         if (!expreg.test(m)) {
 
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
             input.css('border', '');
             input.css('color', '');
         }
 
         return true;
-
     }
     ;
-
     function isValidPhoneNumber(input) {
 
         var m = input.val();
-
         var expreg = /^[0-9]{10,10}$/;
-
         if (!expreg.test(m)) {
 
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
             input.css('border', '');
             input.css('color', '');
@@ -827,7 +787,6 @@ $(document).ready(function () {
         return true;
     }
     ;
-
     function isValidHour(input) {
 
         if (!input.val()) {
@@ -835,18 +794,14 @@ $(document).ready(function () {
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
             input.css('border', '');
             input.css('color', '');
         }
 
         return true;
-
-
     }
     ;
-
     function isValidSelect(input) {
 
         if (!input.val()) {
@@ -854,18 +809,14 @@ $(document).ready(function () {
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
             input.css('border', '');
             input.css('color', '');
         }
 
         return true;
-
-
     }
     ;
-
     function isValidRadioChecked(input) {
 
         if (!input.is(':checked')) {
@@ -876,12 +827,18 @@ $(document).ready(function () {
         return true;
     }
     ;
+<<<<<<< HEAD
 
     function isValidDate(input, fechaNac) {
+||||||| merged common ancestors
+
+    function isValidDate(input) {
+=======
+    function isValidDate(input) {
+>>>>>>> origin/MontoyaRosas
 
         //Obtener fecha
         let today = new Date();
-
         //Valor seleccionado del input
         let date_from = input.val();
         date_from = new Date(date_from);
@@ -904,8 +861,15 @@ $(document).ready(function () {
         var todayYear = today.getFullYear();
         var inicioYear = date_from.getFullYear();*/
         var event = false;
+<<<<<<< HEAD
 
         if (futureDate >= date_from && date_from >= date_born) {
+||||||| merged common ancestors
+
+        if (today > date_from && inicioYear >= todayYear - 5) {
+=======
+        if (today > date_from && inicioYear >= todayYear - 5) {
+>>>>>>> origin/MontoyaRosas
             event = false;
             console.log("Valido");
         } else {
@@ -918,7 +882,6 @@ $(document).ready(function () {
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
             input.css('border', '');
             input.css('color', '');
@@ -927,19 +890,29 @@ $(document).ready(function () {
         return true;
     }
     ;
-
     function isValidDate2(input, fechaInicio) {
 
         //Valor seleccionado del input
         let date_from = input.val();
         date_from = new Date(date_from);
+<<<<<<< HEAD
 
+||||||| merged common ancestors
+        
+=======
+>>>>>>> origin/MontoyaRosas
         let date_start = fechaInicio.val();
         date_start = new Date(date_start);
-
         var event = false;
+<<<<<<< HEAD
 
         if (date_from > date_start) {
+||||||| merged common ancestors
+
+        if(date_from > date_start){
+=======
+        if (date_from > date_start) {
+>>>>>>> origin/MontoyaRosas
             event = false;
             console.log("Válido");
         } else {
@@ -958,13 +931,11 @@ $(document).ready(function () {
         }
 
         return true;
-
     }
 
     function isValidPassword(input) {
 
         var m = input.val();
-
         //var expreg = /^[a-zA-Z0-9]{8,14}$/;
         var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
         if (!expreg.test(m)) {
@@ -972,7 +943,6 @@ $(document).ready(function () {
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
 
             input.css('border', '');
@@ -980,7 +950,6 @@ $(document).ready(function () {
         }
 
         return true;
-
     }
 
     //CORREO REPETIDO
@@ -1003,14 +972,15 @@ $(document).ready(function () {
                     console.log("correo repetidooo")
                     $('#correo').css('color', 'orange');
                     $('#errorCorreoRepetido').show();
+                    repiteCorreo = true;
                 } else {
                     $('#errorCorreoRepetido').hide();
+                    repiteCorreo = false;
                 }
 
             }
 
         });
-
         if (isValidEmail($(this))) {
             $('#error-correo').hide();
         } else if ($(this).val() == '') {
@@ -1020,8 +990,4 @@ $(document).ready(function () {
         }
 
     });
-
-
-
-
 });

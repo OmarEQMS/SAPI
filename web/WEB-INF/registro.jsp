@@ -90,7 +90,6 @@
 
                         <span class="text-danger " id="errorCurp">Formato incorrecto, las letras deben estar en mayúsculas y asegúrate de introducir un CURP válido y sin espacios. Puedes consultarlo 
                             <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí.</a>
-
                         </span>
                         <span class="text-warning" id="errorCurpRepetido">El curp ya existe.</span>
                     </div>
@@ -173,7 +172,13 @@
             <!-- Input submit -->
             <div class="row mb-3" id="error-campos">
                 <div class="col-12 text-center">
-                    <span class="text-danger">Completa todos los campos para registrar tu cuenta </span>
+                    <span class="text-danger">Completa todos los campos para registrar tu cuenta. </span>
+                </div>
+            </div>
+            
+            <div class="row mb-3" id="error-datosRepetidos">
+                <div class="col-12 text-center">
+                    <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>
                 </div>
             </div>
 
@@ -227,7 +232,7 @@
         <!--script type="application/javascript" src="js/appRegistro.js"></script--> 
         <!--script type="application/javascript" src="js/validaciones.js"></script--> 
         <script type="application/javascript" src="js/app.js"></script> 
-        <script type="module" src="js/asincrono.js"></script> 
+        <script src="js/asincrono.js"></script> 
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 

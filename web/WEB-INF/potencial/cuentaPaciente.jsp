@@ -91,8 +91,8 @@
                     <li id ="irACitaPreconsulta"><a><i class="fas fa-home"></i>Cita a Preconsulta </a></li>
 
                     <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas
-                            <c:choose>
-                                <c:when test="${sessionScope.estatus==1}">
+                                <c:choose>
+                                    <c:when test="${sessionScope.estatus==1}">
                                     <span class="notificacion">1</span>                        
                                 </c:when>
                             </c:choose>
@@ -220,10 +220,16 @@
                                 </div>
                             </div>
 
+                            <div class="row mb-3" id="error-datosRepetidos">
+                                <div class="col-12 text-center">
+                                    <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>
+                                </div>
+                            </div>
+
                             <!-- 5 -->
                             <div class="form-group row justify-content-center mt-4">
                                 <div class="col-4">
-                                    <button type="button" id = "guardarCambios"  class="btn btn-outline-success btn-block" style="border-radius:20px"><i
+                                    <button type="button" id = "guardarCambios" class="btn btn-outline-success btn-block" style="border-radius:20px"><i
                                             class="fas fa-save mr-1"></i>
                                         Guardar Cambios</button>
                                 </div>
@@ -245,13 +251,13 @@
                                 </div>
                             </div>
 
-                        <div class="form-group row justify-content-center mt-4">
-                            <div class="col-4">
-                                <button type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaPotencial"><i
-                                        class="fas fa-trash-alt mr-1"></i>
-                                    Eliminar Cuenta</button>
+                            <div class="form-group row justify-content-center mt-4">
+                                <div class="col-4">
+                                    <button type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaPotencial"><i
+                                            class="fas fa-trash-alt mr-1"></i>
+                                        Eliminar Cuenta</button>
 
-                            </div>
+                                </div>
                         </form>
 
                     </div>
