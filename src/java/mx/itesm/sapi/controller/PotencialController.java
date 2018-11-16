@@ -389,6 +389,9 @@ public class PotencialController extends HttpServlet {
 
                             PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }else{
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(idPacientePotencial, idSillaDeRuedas);
                         }
                         if (!camilla.equals("0")) {
                             PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
@@ -397,6 +400,9 @@ public class PotencialController extends HttpServlet {
 
                             PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }else{
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(idPacientePotencial, idCamilla);
                         }
                         if (!baston.equals("0")) {
                             PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
@@ -405,6 +411,9 @@ public class PotencialController extends HttpServlet {
 
                             PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }else{
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(idPacientePotencial, idBaston);
                         }
                         if (!oxigeno.equals("0")) {
                             PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
@@ -413,6 +422,9 @@ public class PotencialController extends HttpServlet {
 
                             PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }else{
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(idPacientePotencial, idOxigeno);
                         }
 
                         Part partIdentificacion = null;
@@ -1425,6 +1437,9 @@ public class PotencialController extends HttpServlet {
 
                             PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }else{
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(idPacientePotencial, idSillaDeRuedas);
                         }
                         if (!camilla.equals("0")) {
                             PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
@@ -1433,6 +1448,9 @@ public class PotencialController extends HttpServlet {
 
                             PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }else{
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(idPacientePotencial, idCamilla);
                         }
                         if (!baston.equals("0")) {
                             PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
@@ -1441,6 +1459,9 @@ public class PotencialController extends HttpServlet {
 
                             PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }else{
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(idPacientePotencial, idBaston);
                         }
                         if (!oxigeno.equals("0")) {
                             PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
@@ -1449,6 +1470,9 @@ public class PotencialController extends HttpServlet {
 
                             PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }else{
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(idPacientePotencial, idOxigeno);
                         }
 
                         Part partIdentificacion = null;

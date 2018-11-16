@@ -18,4 +18,5 @@ public interface PacienteNecesidadEspecialServicio {
     public int agregarPacienteNecesidadEspecial(PacienteNecesidadEspecial pacienteNecesidadEspecial);
     public boolean borradoLogicoPacienteNecesidadEspecial(int idPacienteNecesidadEspecial);
     public boolean actualizarPacienteNecesidadEspecial(PacienteNecesidadEspecial pacienteNecesidadEspecial);
+    public boolean borradoLogicoPacienteNecesidadEspecial(int idPacientePotencial, int idNecesidadEspecial);
 }

@@ -41,6 +41,7 @@
     <body>
         
         <input type="hidden" value="5" class="idTratamientoPaciente">
+        <input type="hidden" value="${sessionScope.fechaNacimiento}" class="fechaNacimientoPaciente">
 
         <div class="wrapper">
 
@@ -249,7 +250,7 @@
                                                type="text" onfocus="(this.type = 'date')" id="fechaInicioTratamiento">
 
                                     </div>
-                                    <span class="text-danger error-fecha" id="error-fechaInicio"> Fecha incorrecta.</span>
+                                    <span class="text-danger error-fecha" id="error-fechaInicio"> Fecha incorrecta. Introduce una fecha posterior a tu fecha de nacimiento y no mayor a 2 meses a partir de hoy.</span>
                                 </div>
 
                             </div>
@@ -356,6 +357,12 @@
 
                             </div>
 
+                        </div>
+                        <div class="row mt-3 justify-content-center">
+                            <div class="col-9 text-center bg-danger" style="border-radius:20px;">
+                                <span style="font-size: 14px;" class="text-white"> <strong>Nota:</strong> Ten en cuenta que una vez registrada la fecha de fin de tu tratamiento
+                                    no podrás modificarla posteriormente.</span>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger myCleanerAddFinTratamientos" style="border-radius:20px;" data-dismiss="modal">Cancelar</button>

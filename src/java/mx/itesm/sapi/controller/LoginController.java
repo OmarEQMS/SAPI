@@ -359,6 +359,7 @@ public class LoginController extends HttpServlet {
                                 String idPacienteStr = String.valueOf(paciente.getIdPaciente());
 
                                 sesion.setAttribute("idPaciente", idPacienteStr);
+                                sesion.setAttribute("fechaNacimiento", persona.getFechaNacimiento());
 
                                 //Redirigir al paciente potencial a su dashboard correspondiente                               
                                 System.out.println("idPaciente ".concat(idPacienteStr));

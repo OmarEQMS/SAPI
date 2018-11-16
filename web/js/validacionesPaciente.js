@@ -109,9 +109,9 @@ $(document).ready(function () {
 
     //1.- Fecha inicio
     $('#fechaInicioTratamiento').on('change', function () {
-
-
-        if (isValidDate($('#fechaInicioTratamiento'))) {
+                
+        
+        if (isValidDate($('#fechaInicioTratamiento'), $('.fechaNacimientoPaciente'))) {
             $('#error-fechaInicio').hide();
         } else {
             $('#error-fechaInicio').show();
@@ -198,7 +198,7 @@ $(document).ready(function () {
     }
     ;
 
-    function isValidDate(input) {
+    function isValidDate(input, fechaNac) {
 
         //Obtener fecha
         let today = new Date();
@@ -207,8 +207,18 @@ $(document).ready(function () {
         let date_from = input.val();
         date_from = new Date(date_from);
         
+        //Valor de la fecha de nacimiento
+        let date_born = fechaNac.val();
+        date_born = new Date(date_born);
+        
+        var year = today.getFullYear();
+        var month = today.getMonth();
+        var day = today.getDate();
+        var futureDate = new Date(year, month + 2, day)
+        
         console.log("Hoy: " + today);
         console.log("FechaReg: " + date_from);
+        console.log("FechaFutura: " + futureDate);
         console.log("---------------------------------------------------")
         
         /*
@@ -216,7 +226,7 @@ $(document).ready(function () {
         var inicioYear = date_from.getFullYear();*/
         var event = false;
 
-        if (today > date_from) {
+        if (futureDate >= date_from && date_from >= date_born) {
             event = false;
             console.log("Valido");
         } else {
@@ -236,8 +246,6 @@ $(document).ready(function () {
         }
 
         return true;
-
-
     }
     ;
 
