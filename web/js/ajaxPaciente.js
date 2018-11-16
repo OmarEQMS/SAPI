@@ -549,14 +549,17 @@ $(document).ready(function () {
                         console.log(response);
 
                         $('#modalAgregarTratamiento').modal('toggle'); //cerrar modal
+
                         swal({
                             title: "Tratamiento registrado correctamente",
                             icon: "success",
+                            buttons: true,
+                            buttons: [, 'Aceptar']
                         });
-                        
+
                         console.log("FechaInicioTratamiento: " + $("#fechaInicioTratamiento").val());
-                        
-                        
+
+
                         var row = "<tr>" +
                                 "<input type='hidden' id='nombre-" + response + "' value='" + $("#nombreTipoTratamiento").val() + "'/>" +
                                 "<input type='hidden' id='fechaInicio-" + response + "' value='" + $("#fechaInicioTratamiento").val() + "'/>" +
@@ -585,7 +588,7 @@ $(document).ready(function () {
             });
         }
     });
-        
+
     //Cambiar contraseña
     $("#btn-updatePassword").on('click', function () {
         if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
@@ -644,7 +647,7 @@ $(document).ready(function () {
     });
 
     //Terminar tratamiento
-        //Terminar tratamiento
+    //Terminar tratamiento
     $("#fechaTerminarTratamiento").on('click', function () {
 
 
@@ -654,7 +657,7 @@ $(document).ready(function () {
         console.log("#fechaInicio: " + date_by);
         console.log("idTratamientoPaciente: " + $('.idTratamientoPaciente').val());
 
-        if (isValidDate2($('#fechaFinTratamiento'), $('#fechaInicioTratamiento2'))) { 
+        if (isValidDate2($('#fechaFinTratamiento'), $('#fechaInicioTratamiento2'))) {
 
             var fechaFinTratamiento = $('#fechaFinTratamiento').val();
 
@@ -674,13 +677,17 @@ $(document).ready(function () {
                         swal({
                             title: "Tratamiento finalizado",
                             icon: "success",
+                            buttons: true,
+                            buttons: [, 'Aceptar']
                         });
+                        
+                        
                         //actualizar la tabla
-                        
+
                         console.log("fechaFinTratamiento: " + $('#fechaFinTratamiento').val());
-                        
+
                         $('#fecha-' + $('.idTratamientoPaciente').val()).html(fechaFinTratamiento);
-                        
+
                         $("#fechaFinTratamiento").val('');
 
                         $("#modal-" + $('.idTratamientoPaciente').val()).attr("disabled", "disabled").removeClass("btn-primary").addClass("btn-secondary");
@@ -697,19 +704,21 @@ $(document).ready(function () {
                 title: "Datos invalidos!",
                 text: "Revisa todos los campos antes de continuar",
                 icon: "error",
+                buttons: true,
+                buttons: [, 'Aceptar']
             });
         }
     });
 
     //Designar idTratamientoPaciente
     //$('body').on('click', '.terminarTratamiento', function () {
-        
+
     $(".terminarTratamiento").on('click', function () {
-        
+
         $(".idTratamientoPaciente").val(
                 $("#boton-" + $(this).data('id')).val()
                 );
-        
+
         console.log("idTratamientoPacienteUnico: " + $(".idTratamientoPaciente").val());
 
         $("#botonHidden").val($(this).data('id'));
@@ -910,16 +919,16 @@ $(document).ready(function () {
         //Valor seleccionado del input
         let date_from = input.val();
         date_from = new Date(date_from);
-        
+
         let date_start = fechaInicio.val();
         date_start = new Date(date_start);
 
         var event = false;
 
-        if(date_from > date_start){
+        if (date_from > date_start) {
             event = false;
             console.log("Válido");
-        }else{
+        } else {
             event = true;
             console.log("Inválido");
         }
@@ -959,7 +968,7 @@ $(document).ready(function () {
         return true;
 
     }
-    
+
     //CORREO REPETIDO
     $('#correo').on('change', function () {
         $.ajax({
