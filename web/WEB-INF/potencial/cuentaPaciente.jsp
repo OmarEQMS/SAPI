@@ -126,7 +126,7 @@
                         <input type="hidden" id="sesionPaciente" value="${sessionScope.idSesion}" />
                         <input type="hidden" id="idPaciente" value="${sessionScope.idPaciente}"/>
 
-                        <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
+                        <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">
                                 ${sessionScope.nombre} ${sessionScope.primerApellido}</span></span>
                     </div>
                 </nav>
@@ -201,7 +201,8 @@
                                     <label for="myEmail">Correo</label>
 
                                     <input type="email" class="form-control" id="myEmail" name="myEmail" value="${sessionScope.correo}"  required/>
-                                    <span class="text-danger" id="error-correo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
+                                    <span class="text-danger" id="error-correo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
+                                    <span class="text-warning" id="errorCorreoRepetido">El correo ya existe.</span>
                                 </div>
                                 <div class="col-4">
                                     <label for="telephoneNum">Teléfono</label>
@@ -277,7 +278,7 @@
                             </div>
                             <div class="row" id="error-contrasena">
                                 <div class="col-12">
-                                    <span class="text-danger">La contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
+                                    <span class="text-danger error1">La contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -288,12 +289,12 @@
                             </div>
                             <div class="row" id="noEqualPasswordsError">
                                 <div class="col-12">
-                                    <span class="text-warning">Las contraseñas no son iguales.</span>
+                                    <span class="text-warning error2">Las contraseñas no son iguales.</span>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" style="border-radius: 20px" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger myCleaner" style="border-radius: 20px" data-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-primary" id="btn-cambiarContrasena" style="border-radius: 20px">Cambiar contraseña</button>
                         </div>
                     </div>

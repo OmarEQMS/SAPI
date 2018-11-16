@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="css/styleNavegadoraImg.css">
     <script src="js/appNavegadora.js"></script>    
     <script src="js/ajaxNavegadora.js"></script>
+    <script src="js/autocomplete.js"></script>
 
 </head>
 
@@ -100,15 +101,17 @@
             <!-- MENU PRINCIPAL ENLACES -->
             <ul class="list-unstyled components">
 
-              <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
+                    <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
+                    
+                    <li id="irAForm"><a><i class="fas fa-home"></i>Ir a Form</a></li>
+                    
+                    <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
-                <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
-                
-                <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
+                    <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
-                <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>                
-                
-                <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+                    <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+
+                    <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
             </ul>
 
@@ -128,7 +131,7 @@
                     </button>
 
                     <span class="pull-right d-block">
-                        <span style="color:#6c6f80">Bienvenido, </span>
+                        <span style="color:#6c6f80">Hola, </span>
                         <span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
                         </span>
                         <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
@@ -196,8 +199,8 @@
                         <li class="list-group-item">Teléfono:
                             <strong>${sessionScope.telefono}</strong>
                         </li>
-                        <li class="list-group-item">Edad:
-                            <strong>29</strong>
+                        <li class="list-group-item">Motivo:
+                            <strong>Me sentí una bolita en el seno</strong>
                         </li>
                         <li class="list-group-item">Correo:
                             <strong>${sessionScope.correo}</strong>

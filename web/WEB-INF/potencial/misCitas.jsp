@@ -34,7 +34,7 @@
         <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
 
         <link rel="stylesheet" href="css/stylePotencial.css">
-        <script src="js/appPotencial.js" type="module"></script>
+        <script src="js/appPotencial.js"></script>
         <script src="js/calendarPotencial.js"></script>
         <script src="js/ajaxPotencial.js"></script>  
 
@@ -126,7 +126,7 @@
                         <input type="hidden" id="sesionPaciente" value="${sessionScope.idSesion}"/>
                         <input type="hidden" id="idPaciente" value="${sessionScope.idPaciente}"/>
 
-                        <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
+                        <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">
                                 ${sessionScope.nombre} ${sessionScope.primerApellido}
 
                                 </div>

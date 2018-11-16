@@ -99,8 +99,6 @@ $(document).ready(function () {
      );
      });*/
 
-
-
     $('#registrate').click(function () {
         $.postGo("ZonaController", {
             key: "getRegistro"
@@ -121,7 +119,6 @@ $(document).ready(function () {
                         if (response == "LoginError") {
                             $("#msj-error").show();
                         } else {
-                            $("#msj-cargando").show();
                             document.open("text/html", "replace");
                             document.write(response);
                             document.close();

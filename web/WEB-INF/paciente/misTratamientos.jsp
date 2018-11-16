@@ -49,7 +49,7 @@
 
                     <div class="row text-center justify-content-center mt-2">
                         <div class="col-12">
-                            <img src="img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">                        </div>
+                            <img src="img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt=""></div>
                     </div>
 
                 </div>
@@ -111,7 +111,7 @@
                         </button>
 
                         <span class="pull-right d-block">
-                            <span style="color:#6c6f80">Bienvenido, </span>
+                            <span style="color:#6c6f80">Hola, </span>
                             <span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
                             </span>
                         </span>

@@ -48,7 +48,6 @@
                     <div class="col-12">
                         <input id="cambio2"type="password" class="form-control mt-3" placeholder="Confirma tu nueva contraseña" >
                         <span class="text-warning" id="noEqualPasswordsError">Las contraseñas no son iguales.</span>
-                        <span class="text-danger" id="errorPass2">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                     </div>
                 </div>
             </form>

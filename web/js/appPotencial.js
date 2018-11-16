@@ -1,5 +1,3 @@
-
-
 $(document).ready(function () {
 
     //Esconder mensajes de error en cuenta
@@ -74,7 +72,7 @@ $(document).ready(function () {
                         + '<div class="custom-file col-8" id="customFile">'
                         + '<input type="file" class="custom-file-input" id="referenciaArchivo" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp">'
                         + '<span class="text-danger" id="error-referencia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>'
-                        + '<label class="custom-file-label">'
+                        + '<label class="custom-file-label" id="labelReferencia">'
                         + 'Adjunta la hoja de referencia de médico.'
                         + '</label>'
                         + '</div>';
@@ -194,6 +192,19 @@ $(document).ready(function () {
             $('#masculino').prop('checked', false);
         }
     });
+    
+     $("body").on("click",".myCleaner", function(){
+		$("#password").val("");
+                $("#password2").val("");
+                
+                $('#error-contrasena').hide();
+                $('#noEqualPasswordsError').hide();
+                $('#password').css('border', '');
+                $('#password').css('color', '');
+                $('#password2').css('border', '');
+                $('#password2').css('color', '');
+                
+	});
 
     //Cambiar de pestañas al presionar continuar
 
@@ -212,12 +223,31 @@ $(document).ready(function () {
         }, 400);
 
     });
+    
+    $('#btn-continuarAResolucion').on('click', function () {
+
+        console.log("VE A RESOLUCIÓN PRRO");
+        $('#nav-solicitud-tab').removeClass('active');
+        $('#nav-contact-tab').addClass('active');
+
+        $('#solicitud').removeClass('show').removeClass('active');
+        $('#nav-contact').addClass('show').addClass('active');
+
+        $('html, body').animate({
+            scrollTop: $("#solicitud").offset().top - 100
+        }, 400);
+
+    });
+    
+    
 
     //Parsear la fechas
 
     //Preconsulta
     var fechaPre = $('#fechaCitaPreConsulta').html();
-
+    console.log("----------------------");
+    console.log("Se parsearon las fechas");
+    console.log("----------------------");
     var m = moment(new Date(fechaPre)).locale('es').format('LL') + ' a las: ' + "<strong>" + moment(new Date(fechaPre)).locale('es').format('LT') + "</strong>";
 
     $('#fechaCitaPreConsulta').html(m);

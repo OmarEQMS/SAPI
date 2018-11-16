@@ -38,6 +38,7 @@
         <script src="js/appNavegadora.js"></script>    
         <script src="js/ajaxNavegadora.js"></script>
         <script src="js/validacionesNavegadora.js"></script>
+        <script src="js/autocomplete.js"></script>
 
     </head>
 
@@ -103,7 +104,7 @@
                     
                     <li id="irAForm"><a><i class="fas fa-home"></i>Ir a Form</a></li>
                     
-                    <li id="idACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+                    <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
                     <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
@@ -128,7 +129,7 @@
                             <i class="fas fa-align-justify"></i>
                         </button>
 
-                        <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
+                        <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
 
                             </span> <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
 
@@ -282,14 +283,22 @@
                                     <input type="password" class="form-control" id="password" placeholder="Ingresa tu nueva contraseña" />
                                 </div>
                             </div>
+                            <div class="row" id="error-contrasena">
+                                <div class="col-12">
+                                    <span class="text-danger">La contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
+                                </div>
+                            </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="name">Confirma tu contraseña</label>
-                                    <input type="password" class="form-control" id="password-confirm" placeholder="Reingresa tu nueva contraseña" />
+                                    <input type="password" class="form-control" id="password2" placeholder="Reingresa tu nueva contraseña" />
                                 </div>
                             </div>
-
-
+                            <div class="row" id="noEqualPasswordsError">
+                                <div class="col-12">
+                                    <span class="text-warning">Las contraseñas no son iguales.</span>
+                                </div>
+                            </div>
 
                         </div>
                         <div class="modal-footer">
