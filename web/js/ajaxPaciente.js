@@ -953,6 +953,44 @@ $(document).ready(function () {
         return true;
 
     }
+    
+    //CORREO REPETIDO
+    $('#correo').on('change', function () {
+        $.ajax({
+
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+
+                key: "repiteCorreo",
+                correo: $('#correo').val()
+
+
+            },
+            success: function (response) {
+
+                if (response === 'CorreoAlreadyExists') {
+                    console.log("correo repetidooo")
+                    $('#correo').css('color', 'orange');
+                    $('#errorCorreoRepetido').show();
+                } else {
+                    $('#errorCorreoRepetido').hide();
+                }
+
+            }
+
+        });
+
+        if (isValidEmail($(this))) {
+            $('#error-correo').hide();
+        } else if ($(this).val() == '') {
+            $('#error-correo').hide();
+        } else {
+            $('#error-correo').show();
+        }
+
+    });
 
 
 
