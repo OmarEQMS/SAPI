@@ -650,6 +650,8 @@ $(document).ready(function () {
 
         if (isValidDate2($('#fechaFinTratamiento'), $('#fechaInicioTratamiento2'))) { 
 
+            var fechaFinTratamiento = $('#fechaFinTratamiento').val();
+
             $.ajax({
                 url: 'PacienteController',
                 cache: false,
@@ -668,10 +670,14 @@ $(document).ready(function () {
                             icon: "success",
                         });
                         //actualizar la tabla
-                        $('#fecha-' + $('.idTratamientoPaciente').val()).html($('#fechaFinTratamiento').val());
+                        
+                        console.log("fechaFinTratamiento: " + $('#fechaFinTratamiento').val());
+                        
+                        $('#fecha-' + $('.idTratamientoPaciente').val()).html(fechaFinTratamiento);
+                        
                         $("#fechaFinTratamiento").val('');
 
-                        $("#modal-" + $("#botonHidden").val()).attr("disabled", "disabled").removeClass("btn-primary").addClass("btn-secondary");
+                        $("#modal-" + $('.idTratamientoPaciente').val()).attr("disabled", "disabled").removeClass("btn-primary").addClass("btn-secondary");
 
 
 
