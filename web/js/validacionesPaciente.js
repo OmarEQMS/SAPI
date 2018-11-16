@@ -119,10 +119,9 @@ $(document).ready(function () {
     }); 
     
         //1.- Fecha fin
-    $('#fechaFinTratamiento').on('click', function(){
+    $('#fechaFinTratamiento').on('change', function(){
         console.log("entro");
-        console.log($("#fechaInicioTratamiento"+$("#botonHidden").val()).val());
-        if(isValidDate2($('#fechaFinTratamiento'), $("#fechaInicioTratamiento"+$("#botonHidden").val()).val())){
+        if (isValidDate2($('#fechaFinTratamiento'), $('#fechaInicioTratamiento2'))) {
             $('#error-fechaFin').hide();
         }else{
             $('#error-fechaFin').show();
@@ -246,11 +245,7 @@ $(document).ready(function () {
             event=true;
             console.log("Invalido");
         }
-        
-
-       
-
-
+ 
         if (!input.val() || event) {
 
             input.css('border', '1px solid red');
@@ -268,57 +263,36 @@ $(document).ready(function () {
     };
 
     function isValidDate2 (input, fechaInicio) {
-
-        //var mydate = new Date('2014-04-03');
-        //Obtener fecha
-        let today = new Date();
-
+        
         //Valor seleccionado del input
         let date_from = input.val();
-       
-        console.log(fechaInicio);
         date_from = new Date(date_from);
-        var date_Inicio = new Date(fechaInicio);
+        
+        let date_start = fechaInicio.val();
+        date_start = new Date(date_start);
 
         var event = false;
-        
-        console.log(input.val());
-        
-        console.log("Date inicio"+date_Inicio);
-        console.log("El años es: "+date_Inicio.getFullYear());
-        console.log("Date from" +date_from);
-        console.log("El años es: "+date_from.getFullYear());
-         
-        var inicioYear = date_Inicio.getFullYear();
-        var inputYear = date_from.getFullYear();
-        
-        if(inputYear > inicioYear &&  date_Inicio >= date_from ){
+
+        if(date_from > date_start){
             event = false;
-            console.log(event);
-            console.log("fechaValida");
+            console.log("Válido");
+        }else{
+            event = true;
+            console.log("Inválido");
         }
-        else{
-            event= true;
-            console.log(event);
-            console.log("fechaInValida");
-        }
-        
-       // date_Inicio > date_from ? event = true : event = false;
 
         if (!input.val() || event) {
-
+            console.log("CAMBIAR COLOR");
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
             input.css('border', '');
             input.css('color', '');
         }
 
         return true;
-
-
+ 
     };
 
    function isValidExpediente(input){

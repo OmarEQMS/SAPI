@@ -63,25 +63,6 @@ $(document).ready(function () {
 
 //Agregar contenido dinamico de etapaClinica
 
-//Valor a inputs modal
-    $(".terminarTratamiento").on('click', function () {
-
-        if (response === "success") {
-
-            var newEvent = {
-
-            };
-
-            $('#calendarCitasPaciente').fullCalendar('renderEvent', newEvent);
-
-            swal({
-                title: "Buen Trabajo!",
-                text: "La cita se ha registrado correctamente!",
-                icon: "success",
-            });
-        }
-
-    });
 
 //REGISTRAR CITA
     $('#btn-citaRegistrar').on('click', () => {
@@ -381,10 +362,10 @@ $(document).ready(function () {
         var els = document.querySelectorAll(selector);
         return [].map.call(els, el => el.value);
     }
-    
-    
+
+
     $('#correo').on('change', function () {
-         $.ajax({
+        $.ajax({
 
             url: 'RegistraUsuarioController',
             cache: false,
@@ -659,7 +640,14 @@ $(document).ready(function () {
     //Terminar tratamiento
     $("#fechaTerminarTratamiento").on('click', function () {
 
-        if (isValidDate2($('#fechaFinTratamiento'), $("#fechaInicio-" + $("#botonHidden").val()).val())) {
+
+        var date_from = $('#fechaFinTratamiento').val();
+        var date_by = $('#fechaInicioTratamiento2').val();
+        console.log("#fechaFin: " + date_from);
+        console.log("#fechaInicio: " + date_by);
+                
+
+        if (isValidDate2($('#fechaFinTratamiento'), $('#fechaInicioTratamiento2'))) { 
 
             $.ajax({
                 url: 'PacienteController',
@@ -702,7 +690,6 @@ $(document).ready(function () {
     });
     //Designar idTratamientoPaciente
     $('body').on('click', '.terminarTratamiento', function () {
-
         $('#idTratamientoPaciente').val($(this).data('id'));
 
         $("#botonHidden").val($(this).data('id'));
@@ -901,54 +888,34 @@ $(document).ready(function () {
 
     function isValidDate2(input, fechaInicio) {
 
-        //var mydate = new Date('2014-04-03');
-        //Obtener fecha
-        let today = new Date();
-
         //Valor seleccionado del input
         let date_from = input.val();
-
-        console.log(fechaInicio);
         date_from = new Date(date_from);
-        var date_Inicio = new Date(fechaInicio);
+        
+        let date_start = fechaInicio.val();
+        date_start = new Date(date_start);
 
         var event = false;
 
-        console.log(input.val());
-
-        console.log("Date inicio" + date_Inicio);
-        console.log("El años es: " + date_Inicio.getFullYear());
-        console.log("Date from" + date_from);
-        console.log("El años es: " + date_from.getFullYear());
-
-        var inicioYear = date_Inicio.getFullYear();
-        var inputYear = date_from.getFullYear();
-
-        if (inputYear < inicioYear + 5 && date_Inicio <= date_from) {
+        if(date_from > date_start){
             event = false;
-            console.log(event);
-            console.log("fechaValida");
-        } else {
+            console.log("Válido");
+        }else{
             event = true;
-            console.log(event);
-            console.log("fechaInValida");
+            console.log("Inválido");
         }
 
-        // date_Inicio > date_from ? event = true : event = false;
-
         if (!input.val() || event) {
-
+            console.log("CAMBIAR COLOR");
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
             input.css('border', '');
             input.css('color', '');
         }
 
         return true;
-
 
     }
 
