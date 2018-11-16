@@ -260,6 +260,11 @@
                                 </div>
                             </div>
 
+                            <div class="row mb-3" id="error-datosRepetidos">
+                                <div class="col-12 text-center">
+                                    <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>
+                                </div>
+                            </div>
 
                             <!-- 5 -->
                             <div class="form-group row justify-content-center mt-4">

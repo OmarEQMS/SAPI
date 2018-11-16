@@ -32,40 +32,49 @@ $(document).ready(function () {
     $('#error-CPexiste').hide();
 
     $("#error-campos").hide();
+    $("#error-datosRepetidos").hide();
+
+    var repiteUsuario;
+    var repiteCURP;
+    var repiteCorreo;
 
     $('#btn-registro').on('click', function () {
 
-        //Verificar que todos los campos que han marcado
-        if (isValidName($('#nombre')) && isValidLastName($('#apellido1')) && isValidUserName($('#usuario')) && isValidEmail($('#correo')) && isValidPassword($('#pass1')) && isValidCURP($('#curp')) && isValidPhoneNumber($('#telefono')) && isValidDate($('#fechaNacimiento')) && isValidSelect($('#estado')) && isValidSelect($('#municipio'))) {
-            $("#error-campos").hide();
+        if (!repiteUsuario && !repiteCURP && !repiteCorreo) {
+            $("#error-datosRepetidos").hide();
+            //Verificar que todos los campos que han marcado
+            if (isValidName($('#nombre')) && isValidLastName($('#apellido1')) && isValidUserName($('#usuario')) && isValidEmail($('#correo')) && isValidPassword($('#pass1')) && isValidCURP($('#curp')) && isValidPhoneNumber($('#telefono')) && isValidDate($('#fechaNacimiento')) && isValidSelect($('#estado')) && isValidSelect($('#municipio')) && $('#errorCorreoRepetido').hide()) {
+                $("#error-campos").hide();
 
-            swal(
-                    "¿Te han tratado por cáncer de mama previamente?", {
-                        buttons: {
-                            primeraVez: "No",
-                            segundaOpinion: "Sí",
-                        }
-                    })
-                    .then((value) => {
-                        switch (value) {
-                            case "primeraVez":
-                                $('#tipoPaciente').val(0);
-                                break;
-                            case "segundaOpinion":
-                                $('#tipoPaciente').val(1);
-                                break;
-                        }
+                swal(
+                        "¿Te han tratado por cáncer de mama previamente?", {
+                            buttons: {
+                                primeraVez: "No",
+                                segundaOpinion: "Sí",
+                            }
+                        })
+                        .then((value) => {
+                            switch (value) {
+                                case "primeraVez":
+                                    $('#tipoPaciente').val(0);
+                                    break;
+                                case "segundaOpinion":
+                                    $('#tipoPaciente').val(1);
+                                    break;
+                            }
 
-                        console.log($('#tipoPaciente').val());
-                        $('#modalTerminos').modal('toggle');
-                    });
+                            console.log($('#tipoPaciente').val());
+                            $('#modalTerminos').modal('toggle');
+                        });
+            } else {
+                console.log("Entro al segundo else");
+                $("#error-campos").show(); //No se llenaron los campos obligatorios
+            }
         } else {
             console.log("Entro al segundo else");
-            $("#error-campos").show();
+            $("#error-datosRepetidos").show(); //ya existe un campo
         }
     });
-
-    $(document).ajaxStop($.unblockUI);
 
     $('#btnAceptar').on('click', function () {
 
@@ -131,6 +140,8 @@ $(document).ready(function () {
                                                 if (status == "success") {
                                                     if (response == "error") {
                                                         $("#msj-error").show();
+
+
                                                     } else {
                                                         document.open("text/html", "replace");
                                                         document.write(response);
@@ -289,10 +300,11 @@ $(document).ready(function () {
             success: function (response) {
                 if (response === 'UsuarioAlreadyExists') {
                     $('#usuario').css('color', 'orange');
-                    alert("entré");
                     $('#errorUsuarioRepetido').show();
+                    repiteUsuario = true;
                 } else {
                     $('#errorUsuarioRepetido').hide();
+                    repiteUsuario = false;
                 }
 
             }
@@ -329,8 +341,10 @@ $(document).ready(function () {
                     console.log("correo repetidooo")
                     $('#correo').css('color', 'orange');
                     $('#errorCorreoRepetido').show();
+                    repiteCorreo = true;
                 } else {
                     $('#errorCorreoRepetido').hide();
+                    repiteCorreo = false;
                 }
 
             }
@@ -501,9 +515,11 @@ $(document).ready(function () {
 
                     if (response == 'postalCodeDoesntExist') {
                         $('#error-CPexiste').show();
+                        repiteCURP = true;
 
                     } else {
                         $('#error-CPexiste').hide();
+                        repiteCURP = false;
                         var json = JSON.parse(response);
 
                         if ($('#codigoPostal').val().length === 5) {
@@ -539,7 +555,7 @@ $(document).ready(function () {
 
         }
 
-        
+
 
     });
 

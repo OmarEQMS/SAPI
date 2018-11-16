@@ -112,7 +112,8 @@ public class RegistraUsuarioController extends HttpServlet {
         EstadoPacientePacienteServiceImpl estadoPaPaServicio = new EstadoPacientePacienteServiceImpl();
 
         /** 
-        * Declaración de objetos para la manipulación en el back.
+        * Declaración de objetos para la manipulación en el b
+        * ack.
         * Los bean son Persona, Cuenta, Dirección, Paciente, EstadoPacientePaciente
         */
         Persona per = new Persona();
@@ -165,7 +166,6 @@ public class RegistraUsuarioController extends HttpServlet {
                 String usuario = request.getParameter("usuario");
                 
                 System.out.println("entré al case repiteUsuario"); 
-                System.out.println(_rSC.existsUsuario(usuario));
                 
                 //Checo si el usuario existe
                 if (_rSC.existsUsuario(usuario)) {

@@ -8,6 +8,10 @@ $(document).ready(function () {
     $('#noEqualPasswordsError').hide();
     $('#errorCorreoRepetido').hide();
 
+    $("#error-datosRepetidos").hide();
+
+    var repiteCorreo;
+
     console.log("Se Actualizó!");
 
     $('#eliminarCuentaPotencial').on('click', function () {
@@ -77,8 +81,10 @@ $(document).ready(function () {
                     console.log("correo repetidooo")
                     $('#myEmail').css('color', 'orange');
                     $('#errorCorreoRepetido').show();
+                    repiteCorreo = true;
                 } else {
                     $('#errorCorreoRepetido').hide();
+                    repiteCorreo = false;
                 }
 
             }
@@ -97,59 +103,64 @@ $(document).ready(function () {
 
     $('#guardarCambios').on('click', function () {
 
-        if (isValidEmail($("#myEmail")) &&
-                isValidPhoneNumber($("#telephoneNum")) && !$("#errorCorreoRepetido")) {
+        if (!repiteCorreo) {
+            $("#error-datosRepetidos").hide();
+            if (isValidEmail($("#myEmail")) &&
+                    isValidPhoneNumber($("#telephoneNum"))) {
 
 
-            console.log("Presionó GuardarCambios")
-            var form = $("form")[0];
-            var data = new FormData(form);
-            data.append("key", "guardarCambios");
-            data.forEach((value, key) => {
-                console.log(key + " " + value);
-            })
-            
-            
+                console.log("Presionó GuardarCambios")
+                var form = $("form")[0];
+                var data = new FormData(form);
+                data.append("key", "guardarCambios");
+                data.forEach((value, key) => {
+                    console.log(key + " " + value);
+                })
 
-            $.ajax({
-                url: "PotencialController",
-                data: data,
-                method: "POST",
-                encType: "multipart/form-data",
-                processData: false,
-                contentType: false,
-                cache: false,
-                success: function (response) {
-                    console.log("Debió haber guardado");
-                    $.post("SAPI", {
-                        file: "potencial/cuentaPaciente.jsp"
-                    },
-                            function (response, status, xhr) {
-                                console.log("El ajax fue exitoso!!-----------------------");
-                                if (status == "success") {
-                                    if (response == "error") {
-                                        $("#msj-error").show();
-                                    } else {
-                                        document.open("text/html", "replace");
-                                        document.write(response);
-                                        document.close();
 
+
+                $.ajax({
+                    url: "PotencialController",
+                    data: data,
+                    method: "POST",
+                    encType: "multipart/form-data",
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    success: function (response) {
+                        console.log("Debió haber guardado");
+                        $.post("SAPI", {
+                            file: "potencial/cuentaPaciente.jsp"
+                        },
+                                function (response, status, xhr) {
+                                    console.log("El ajax fue exitoso!!-----------------------");
+                                    if (status == "success") {
+                                        if (response == "error") {
+                                            $("#msj-error").show();
+                                        } else {
+                                            document.open("text/html", "replace");
+                                            document.write(response);
+                                            document.close();
+
+                                        }
                                     }
                                 }
-                            }
-                    );
-                },
-                error: function (xhr) {
-                    //alert(xhr.statusText);
-                }
-            });
+                        );
+                    },
+                    error: function (xhr) {
+                        //alert(xhr.statusText);
+                    }
+                });
 
+            } else {
+                swal({
+                    title: "Datos invalidos!",
+                    text: "Revisa todos los campos antes de continuar",
+                    icon: "error",
+                });
+            }
         } else {
-            swal({
-                title: "Datos invalidos!",
-                text: "Revisa todos los campos antes de continuar",
-                icon: "error",
-            });
+            $("#error-datosRepetidos").show(); //ya existe un campo
         }
     });
 
@@ -367,8 +378,8 @@ $(document).ready(function () {
                     contentType: false,
                     success: function (response) {
                         console.log("dsafdsafdsafsdafsdafjsalkjflsadjfkjsañlfjkasjfklsjaflsñjfklsjdfkljaslkfjla");
-                        
-                        
+
+
                         var consultarDocumentosPreconsulta = new FormData;
                         consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
 
@@ -1375,7 +1386,7 @@ $(document).ready(function () {
 
         return false;
     }
-    
+
     //CORREO REPETIDO
     $('#myEmail').on('change', function () {
         $.ajax({
