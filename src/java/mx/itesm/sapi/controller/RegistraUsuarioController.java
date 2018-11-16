@@ -362,7 +362,7 @@ public class RegistraUsuarioController extends HttpServlet {
                 empleado.setNoEmpleado(noEmpleado);
                 empleado.setIdDepartamentoDepartamentoInterno(idTumoresMamarios);
                 
-                int idPersona = _registroServicio.agregarMedico(per);
+                int idPersona = _registroServicio.agregarMedico(per,idRolMedico);
                 int idCuenta;
                 int idEmpleado;                
                 
@@ -473,7 +473,7 @@ public class RegistraUsuarioController extends HttpServlet {
                 empleado.setNoEmpleado(noEmpleado);
                 empleado.setIdDepartamentoDepartamentoInterno(idTumoresMamarios);
                 
-                int idPersona = _registroServicio.agregarMedico(per);
+                int idPersona = _registroServicio.agregarMedico(per,idRolNavegadora);
                 int idCuenta;
                 int idEmpleado;                
                 
