@@ -41,7 +41,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
             //Aquí van los sets
             cstmt.setInt(1, pacienteTratamientoPrevio.getIdPaciente());
             cstmt.setInt(2, pacienteTratamientoPrevio.getIdTipoTratamiento());
-            cstmt.setTimestamp(3, pacienteTratamientoPrevio.getFecha());
+            cstmt.setDate(3, pacienteTratamientoPrevio.getFecha());
             cstmt.setString(4, pacienteTratamientoPrevio.getComentarios());
             cstmt.setInt(5, pacienteTratamientoPrevio.getEstatus());
 
@@ -93,7 +93,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
             pacienteTratamientoPrevio.setIdPacienteTratamientoPrevio(rs.getInt(1));
             pacienteTratamientoPrevio.setIdPaciente(rs.getInt(2));
             pacienteTratamientoPrevio.setIdTipoTratamiento(rs.getInt(3));
-            pacienteTratamientoPrevio.setFecha(rs.getTimestamp(4));
+            pacienteTratamientoPrevio.setFecha(rs.getDate(4));
             pacienteTratamientoPrevio.setComentarios(rs.getString(5));
             pacienteTratamientoPrevio.setEstatus(rs.getInt(6));
 
@@ -135,7 +135,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
                 pacienteTratamientoPrevio.setIdPacienteTratamientoPrevio(rs.getInt(1));
                 pacienteTratamientoPrevio.setIdPaciente(rs.getInt(2));
                 pacienteTratamientoPrevio.setIdTipoTratamiento(rs.getInt(3));
-                pacienteTratamientoPrevio.setFecha(rs.getTimestamp(4));
+                pacienteTratamientoPrevio.setFecha(rs.getDate(4));
                 pacienteTratamientoPrevio.setComentarios(rs.getString(5));
                 pacienteTratamientoPrevio.setEstatus(rs.getInt(6));
 
@@ -173,7 +173,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
             cstmt.setInt(1, pacienteTratamientoPrevio.getIdPacienteTratamientoPrevio());
             cstmt.setInt(2, pacienteTratamientoPrevio.getIdPaciente());
             cstmt.setInt(3, pacienteTratamientoPrevio.getIdTipoTratamiento());
-            cstmt.setTimestamp(4, pacienteTratamientoPrevio.getFecha());
+            cstmt.setDate(4, pacienteTratamientoPrevio.getFecha());
             cstmt.setString(5, pacienteTratamientoPrevio.getComentarios());
             cstmt.setInt(6, pacienteTratamientoPrevio.getEstatus());
 
@@ -256,7 +256,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
             pacienteTratamientoPrevio.setIdPacienteTratamientoPrevio(rs.getInt(1));
             pacienteTratamientoPrevio.setIdPaciente(rs.getInt(2));
             pacienteTratamientoPrevio.setIdTipoTratamiento(rs.getInt(3));
-            pacienteTratamientoPrevio.setFecha(rs.getTimestamp(4));
+            pacienteTratamientoPrevio.setFecha(rs.getDate(4));
             pacienteTratamientoPrevio.setComentarios(rs.getString(5));
             pacienteTratamientoPrevio.setEstatus(rs.getInt(6));
 
@@ -298,7 +298,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
                 pacienteTratamientoPrevio.setIdPacienteTratamientoPrevio(rs.getInt(1));
                 pacienteTratamientoPrevio.setIdPaciente(rs.getInt(2));
                 pacienteTratamientoPrevio.setIdTipoTratamiento(rs.getInt(3));
-                pacienteTratamientoPrevio.setFecha(rs.getTimestamp(4));
+                pacienteTratamientoPrevio.setFecha(rs.getDate(4));
                 pacienteTratamientoPrevio.setComentarios(rs.getString(5));
                 pacienteTratamientoPrevio.setEstatus(rs.getInt(6));
 

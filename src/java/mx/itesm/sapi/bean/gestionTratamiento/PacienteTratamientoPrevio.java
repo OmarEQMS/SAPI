@@ -6,6 +6,7 @@
 package mx.itesm.sapi.bean.gestionTratamiento;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -17,19 +18,26 @@ public class PacienteTratamientoPrevio implements Serializable {
     private int idPacienteTratamientoPrevio;
     private int idPaciente;
     private int idTipoTratamiento;
-    private Timestamp fecha;
+    private Date fecha;
     private String comentarios;
     private int estatus;
-
+    private int ciclos;
+    
     public PacienteTratamientoPrevio() {
+    }
+
+    @Override 
+    public String toString(){
+        return "pacienteTratamiento ID: ".concat(Integer.toString(idPacienteTratamientoPrevio)).concat(", idPaciente: ").concat(Integer.toString(idPaciente)).concat(", idTratamiento: ")
+                .concat(Integer.toString(idTipoTratamiento)).concat(", fecha: ").concat(fecha.toString()).concat(", comentarios: ").concat(comentarios).concat(", estatus: ").concat(Integer.toString(estatus));
     }
 
     public int getIdPacienteTratamientoPrevio() {
         return idPacienteTratamientoPrevio;
     }
 
-    public void setIdPacienteTratamientoPrevio(int id) {
-        this. idPacienteTratamientoPrevio = id;
+    public void setIdPacienteTratamientoPrevio(int idPacienteTratamientoPrevio) {
+        this.idPacienteTratamientoPrevio = idPacienteTratamientoPrevio;
     }
 
     public int getIdPaciente() {
@@ -48,19 +56,19 @@ public class PacienteTratamientoPrevio implements Serializable {
         this.idTipoTratamiento = idTipoTratamiento;
     }
 
-    public Timestamp getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(Timestamp fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
-    public String getComentarios(){
+
+    public String getComentarios() {
         return comentarios;
     }
-    
-    public void setComentarios(String comentarios){
+
+    public void setComentarios(String comentarios) {
         this.comentarios = comentarios;
     }
 
@@ -72,12 +80,12 @@ public class PacienteTratamientoPrevio implements Serializable {
         this.estatus = estatus;
     }
 
-    
-    
-    @Override 
-    public String toString(){
-        return "pacienteTratamiento ID: ".concat(Integer.toString(idPacienteTratamientoPrevio)).concat(", idPaciente: ").concat(Integer.toString(idPaciente)).concat(", idTratamiento: ")
-                .concat(Integer.toString(idTipoTratamiento)).concat(", fecha: ").concat(fecha.toString()).concat(", comentarios: ").concat(comentarios).concat(", estatus: ").concat(Integer.toString(estatus));
+    public int getCiclos() {
+        return ciclos;
+    }
+
+    public void setCiclos(int ciclos) {
+        this.ciclos = ciclos;
     }
     
 }

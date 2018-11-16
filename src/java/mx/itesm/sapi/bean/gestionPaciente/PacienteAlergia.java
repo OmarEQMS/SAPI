@@ -15,6 +15,7 @@ public class PacienteAlergia {
     private int idPaciente;
     private int idAlergia;
     private int estatus;
+    private String alergia;
     
     public PacienteAlergia() {}
 
@@ -27,7 +28,7 @@ public class PacienteAlergia {
                 .concat("]");
         return str;
     } 
-    
+
     public int getIdPacienteAlergia() {
         return idPacienteAlergia;
     }
@@ -58,6 +59,14 @@ public class PacienteAlergia {
 
     public void setEstatus(int estatus) {
         this.estatus = estatus;
+    }
+
+    public String getAlergia() {
+        return alergia;
+    }
+
+    public void setAlergia(String alergia) {
+        this.alergia = alergia;
     }
     
     

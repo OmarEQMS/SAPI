@@ -40,6 +40,7 @@ public class LaminillaServicioImpl implements LaminillaServicio {
             laminilla.setIdBiopsia(rs.getInt("idBiopsia"));
             laminilla.setNombre(rs.getString("nombre"));
             laminilla.setEstatus(rs.getInt("estatus"));
+            laminilla.setCantidad(rs.getInt("cantidad"));
 
             rs.close();
             cstmt.close();
@@ -74,6 +75,7 @@ public class LaminillaServicioImpl implements LaminillaServicio {
                 laminilla.setIdBiopsia(rs.getInt("idBiopsia"));
                 laminilla.setNombre(rs.getString("nombre"));
                 laminilla.setEstatus(rs.getInt("estatus"));
+                laminilla.setCantidad(rs.getInt("cantidad"));
 
                 laminillas.add(laminilla);
             }
@@ -104,7 +106,7 @@ public class LaminillaServicioImpl implements LaminillaServicio {
             cstmt.setInt(2, laminilla.getIdBiopsia());
             cstmt.setString(3, laminilla.getNombre());
             cstmt.setInt(4, laminilla.getEstatus());
-            
+            cstmt.setInt(5, laminilla.getCantidad());
 
             cstmt.executeUpdate();
             rs = cstmt.getGeneratedKeys();
@@ -139,6 +141,7 @@ public class LaminillaServicioImpl implements LaminillaServicio {
             cstmt.setInt(2, laminilla.getIdBiopsia());
             cstmt.setString(3, laminilla.getNombre());
             cstmt.setInt(4, laminilla.getEstatus());
+            cstmt.setInt(5, laminilla.getCantidad());
 
             rs = cstmt.executeQuery();
 

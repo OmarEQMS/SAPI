@@ -269,6 +269,51 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
         }
         return biopsia;
     }
+    
+    @Override
+    public Biopsia mostrarBiopsiaPreviaPaciente(int idPaciente) {
+
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarBiopsiaPreviaPaciente(?)";
+        Biopsia biopsia = null;
+
+        try {
+            conn = Conexion.getConnection();
+            biopsia = new Biopsia();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+            biopsia.setIdBiopsia(rs.getInt("idBiopsia"));
+            biopsia.setIdPaciente(rs.getInt("idPaciente"));
+            biopsia.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
+            biopsia.setIdHer2(rs.getInt("idHer2"));
+            biopsia.setIdReceptorProgesterona(rs.getInt("idReceptorProgesterona"));
+            biopsia.setIdReceptorEstrogeno(rs.getInt("idReceptorEstrogeno"));
+            biopsia.setIdFish(rs.getInt("idFish"));
+            biopsia.setIdKi67(rs.getInt("idKi67"));
+            biopsia.setIdTipoHistologico(rs.getInt("idTipoHistologico"));
+            biopsia.setIdGradoHistologico(rs.getInt("idGradoHistologico"));
+            biopsia.setLaminillas(rs.getInt("laminillas"));
+            biopsia.setBloques(rs.getInt("bloques"));
+            biopsia.setPrevia(rs.getInt("previa"));
+            biopsia.setEstatus(rs.getInt("estatus"));
+            biopsia.setIdTipoBiopsia(rs.getInt("idTipoBiopsia"));
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            biopsia = null;
+        }
+        return biopsia;
+    }
 
     @Override
     public List<Biopsia> mostrarAllBiopsiaIdEspecifico(int idPaciente) {
