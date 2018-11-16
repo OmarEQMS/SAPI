@@ -12,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import mx.itesm.sapi.bean.persona.Persona;
+import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 
 /**
  *
@@ -32,6 +34,37 @@ public class AdministradorController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+         String key = request.getParameter("key");
+        System.out.println("Key: ".concat(key));
+        switch (key) {
+
+            case "ReportePoblacion": {
+                /** Author Angel Gtz 
+                 * 
+                 * Toma datos de todos los pacientes para crear un estudio de la poblacion del INCAN
+                 * Mostrando:
+                 *  Nombre
+Primer Apellido
+Segundo apellido CURP Codigo postal Estado Municipio
+Fecha de nacimiento Estado civil Sexo
+Nivel educativo
+Motivo de consulta
+Medico adscrito
+Adscrito presente
+Medico radiologo
+Radiologo presente
+Compañia seguro
+
+                 * 
+                 */
+                
+                 PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                 Persona persona = personaServicio.mostrarPersona(2);
+                
+                
+            }
+        }
         
     }
 
