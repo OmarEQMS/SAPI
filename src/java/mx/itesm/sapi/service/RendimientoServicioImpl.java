@@ -100,7 +100,7 @@ import mx.itesm.sapi.util.Conexion;
  * de 'ResultadoPatologia'
  */
 public class RendimientoServicioImpl implements RendimientoServicio {
-
+    
     @Override
     public Rendimiento mostrarVisitaMes(int idEmpleado, Timestamp fecha) {
 
@@ -691,4 +691,5 @@ public class RendimientoServicioImpl implements RendimientoServicio {
         }
         return rendimientoPorResultadoPatologia;
     }
+    
 }
