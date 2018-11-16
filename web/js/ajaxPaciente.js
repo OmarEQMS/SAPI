@@ -485,17 +485,10 @@ $(document).ready(function () {
 
         if ($("#tipoTratamiento").val() != "Elegir Tratamiento")
             console.log($("#tipoTratamiento").val());
-<<<<<<< HEAD
 
         if (isValidDate($('#fechaInicioTratamiento'), $('.fechaNacimientoPaciente')) && $("#tipoTratamiento").val() != null) {
 
             var fechaInicioTratamiento = $("#fechaInicioTratamiento").val();
-||||||| merged common ancestors
-
-        if (isValidDate($('#fechaInicioTratamiento')) && $("#tipoTratamiento").val() != null) {
-=======
-        if (isValidDate($('#fechaInicioTratamiento')) && $("#tipoTratamiento").val() != null) {
->>>>>>> origin/MontoyaRosas
 
             $.ajax({
                 url: 'PacienteController',
@@ -510,6 +503,7 @@ $(document).ready(function () {
                     .done(function (response) {
 
                         console.log(response);
+
                         $('#modalAgregarTratamiento').modal('toggle'); //cerrar modal
 
                         swal({
@@ -531,17 +525,12 @@ $(document).ready(function () {
                                 "<td><button class='btn btn-primary terminarTratamiento' id='modal-" + response + "' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button></td > " +
                                 "</tr>";
                         $("#tablaTratamientos").append(row);
+
                         $('#tipoTratamiento').prop('selectedIndex', 0);
+
                         $("#fechaInicioTratamiento").val('');
-<<<<<<< HEAD
 
                         //$('#idTratamientoPaciente').val(response);*/
-||||||| merged common ancestors
-
-                        //$('#idTratamientoPaciente').val(response);
-=======
-                        //$('#idTratamientoPaciente').val(response);
->>>>>>> origin/MontoyaRosas
 
                     })
                     .fail(function (xhr, textStatus, errorThrown) {
@@ -608,85 +597,11 @@ $(document).ready(function () {
         var pass2 = $(this);
         areEqualPasswords(pass1, pass2);
     });
-    //Terminar tratamiento
+    
     //Terminar tratamiento
     $("#fechaTerminarTratamiento").on('click', function () {
 
-
-        var date_from = $('#fechaFinTratamiento').val();
-        var date_by = $('#fechaInicioTratamiento2').val();
-        console.log("#fechaFin: " + date_from);
-        console.log("#fechaInicio: " + date_by);
-        console.log("idTratamientoPaciente: " + $('.idTratamientoPaciente').val());
-<<<<<<< HEAD
-
-        if (isValidDate2($('#fechaFinTratamiento'), $('#fechaInicioTratamiento2'))) {
-||||||| merged common ancestors
-
-        if (isValidDate2($('#fechaFinTratamiento'), $('#fechaInicioTratamiento2'))) { 
-=======
-        if (isValidDate2($('#fechaFinTratamiento'), $('#fechaInicioTratamiento2'))) {
->>>>>>> origin/MontoyaRosas
-
-            var fechaFinTratamiento = $('#fechaFinTratamiento').val();
-            $.ajax({
-                url: 'PacienteController',
-                cache: false,
-                method: 'POST',
-                data: {
-                    key: 'terminarTratamiento',
-                    idTratamientoPaciente: $('.idTratamientoPaciente').val(),
-                    fechaFin: $('#fechaFinTratamiento').val()
-                }
-            })
-                    .done(function (response) {
-
-                        $('#modalEditarTerminado').modal('toggle'); //cerrar modal
-                        swal({
-                            title: "Tratamiento finalizado",
-                            icon: "success",
-                            buttons: true,
-                            buttons: [, 'Aceptar']
-                        });
-<<<<<<< HEAD
-                        
-                        
-                        //actualizar la tabla
-
-                        console.log("fechaFinTratamiento: " + $('#fechaFinTratamiento').val());
-
-||||||| merged common ancestors
-                        //actualizar la tabla
-                        
-                        console.log("fechaFinTratamiento: " + $('#fechaFinTratamiento').val());
-                        
-=======
-                        //actualizar la tabla
-
-                        console.log("fechaFinTratamiento: " + $('#fechaFinTratamiento').val());
->>>>>>> origin/MontoyaRosas
-                        $('#fecha-' + $('.idTratamientoPaciente').val()).html(fechaFinTratamiento);
-<<<<<<< HEAD
-
-||||||| merged common ancestors
-                        
-=======
->>>>>>> origin/MontoyaRosas
-                        $("#fechaFinTratamiento").val('');
-                        $("#modal-" + $('.idTratamientoPaciente').val()).attr("disabled", "disabled").removeClass("btn-primary").addClass("btn-secondary");
-                    })
-                    .fail(function (xhr, textStatus, errorThrown) {
-                        console.log(xhr.responseText);
-                    });
-        } else {
-            swal({
-                title: "Datos invalidos!",
-                text: "Revisa todos los campos antes de continuar",
-                icon: "error",
-                buttons: true,
-                buttons: [, 'Aceptar']
-            });
-        }
+        
     });
     //Designar idTratamientoPaciente
     //$('body').on('click', '.terminarTratamiento', function () {
@@ -696,14 +611,11 @@ $(document).ready(function () {
         $(".idTratamientoPaciente").val(
                 $("#boton-" + $(this).data('id')).val()
                 );
-<<<<<<< HEAD
 
-||||||| merged common ancestors
-        
-=======
->>>>>>> origin/MontoyaRosas
         console.log("idTratamientoPacienteUnico: " + $(".idTratamientoPaciente").val());
+
         $("#botonHidden").val($(this).data('id'));
+
         //alert($('#idTratamientoPaciente').val());
 
         $("#tipoTratamiento2").val(
@@ -712,7 +624,10 @@ $(document).ready(function () {
         $("#fechaInicioTratamiento2").val(
                 $("#fechaInicio-" + $(this).data('id')).val()
                 );
+
     });
+    
+    
     //Conseguir contenido del select
 
     $("#tipoTratamiento").on('change', function () {
@@ -827,18 +742,12 @@ $(document).ready(function () {
         return true;
     }
     ;
-<<<<<<< HEAD
 
-    function isValidDate(input, fechaNac) {
-||||||| merged common ancestors
-
-    function isValidDate(input) {
-=======
-    function isValidDate(input) {
->>>>>>> origin/MontoyaRosas
+function isValidDate(input, fechaNac) {
 
         //Obtener fecha
         let today = new Date();
+
         //Valor seleccionado del input
         let date_from = input.val();
         date_from = new Date(date_from);
@@ -861,15 +770,8 @@ $(document).ready(function () {
         var todayYear = today.getFullYear();
         var inicioYear = date_from.getFullYear();*/
         var event = false;
-<<<<<<< HEAD
 
         if (futureDate >= date_from && date_from >= date_born) {
-||||||| merged common ancestors
-
-        if (today > date_from && inicioYear >= todayYear - 5) {
-=======
-        if (today > date_from && inicioYear >= todayYear - 5) {
->>>>>>> origin/MontoyaRosas
             event = false;
             console.log("Valido");
         } else {
@@ -882,6 +784,7 @@ $(document).ready(function () {
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
+
         } else {
             input.css('border', '');
             input.css('color', '');
@@ -890,29 +793,19 @@ $(document).ready(function () {
         return true;
     }
     ;
+    
     function isValidDate2(input, fechaInicio) {
 
         //Valor seleccionado del input
         let date_from = input.val();
         date_from = new Date(date_from);
-<<<<<<< HEAD
 
-||||||| merged common ancestors
-        
-=======
->>>>>>> origin/MontoyaRosas
         let date_start = fechaInicio.val();
         date_start = new Date(date_start);
+
         var event = false;
-<<<<<<< HEAD
 
         if (date_from > date_start) {
-||||||| merged common ancestors
-
-        if(date_from > date_start){
-=======
-        if (date_from > date_start) {
->>>>>>> origin/MontoyaRosas
             event = false;
             console.log("Válido");
         } else {
@@ -931,6 +824,7 @@ $(document).ready(function () {
         }
 
         return true;
+
     }
 
     function isValidPassword(input) {
