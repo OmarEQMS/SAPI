@@ -271,7 +271,7 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
     }
     
     @Override
-    public Biopsia mostrarBiopsiaPreviaPaciente(int idPaciente) {
+    public Biopsia mostrarBiopsiaPreviaPaciente(int idPaciente, int previo) {
 
         Connection conn;
         CallableStatement cstmt;

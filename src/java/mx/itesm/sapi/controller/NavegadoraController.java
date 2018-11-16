@@ -665,6 +665,7 @@ public class NavegadoraController extends HttpServlet {
                              */
                             int idPacientePotencial = 4;
                             int idCuenta = 19;
+                            int idNavegadora = 1;//Navegadora
 
                             /**
                              * INICIO DECLARACION DE SERVICIOS
@@ -673,13 +674,11 @@ public class NavegadoraController extends HttpServlet {
                             Paciente paciente = pacienteServicioImpl.mostrarPaciente(idPacientePotencial);
 
                             PacienteMedicoTitularServicioImpl pacienteMedicoTitularServicioImpl = new PacienteMedicoTitularServicioImpl();
-                            PacienteMedicoTitular pacienteMedicoTitular = pacienteMedicoTitularServicioImpl.mostrarPacienteMedicoTitular(1);
 
                             EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
                             Empleado empleado = new Empleado();
 
                             CitaEmpleadoServicioImpl citaEmpleadoServicioImpl = new CitaEmpleadoServicioImpl();
-                            CitaEmpleado citaEmpleado = new CitaEmpleado();
 
                             EstadoPacientePacienteServiceImpl estadoPacientePacienteServicioImpl = new EstadoPacientePacienteServiceImpl();
                             EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServicioImpl.mostrarEstadoPacientePacienteIdPaciente(idPacientePotencial);
@@ -690,11 +689,10 @@ public class NavegadoraController extends HttpServlet {
                             LaminillaServicioImpl laminillaServicioImpl = new LaminillaServicioImpl();
                             Laminilla laminilla = new Laminilla();
 
-                            BloqueParafinaServicioImpl bloqueParafinaServicioImpl=new BloqueParafinaServicioImpl();
+                            BloqueParafinaServicioImpl bloqueParafinaServicioImpl = new BloqueParafinaServicioImpl();
                             BloqueParafina bloqueParafina = new BloqueParafina();
-                            
+
                             PacienteAlergiaServicioImpl pacienteAlergiaServicioImpl = new PacienteAlergiaServicioImpl();
-                            PacienteAlergia pacienteAlergia = new PacienteAlergia();
 
                             PacienteSeguroServicioImpl pacienteSeguroServicioImpl = new PacienteSeguroServicioImpl();
                             PacienteSeguro pacienteSeguro = new PacienteSeguro();
@@ -733,18 +731,17 @@ public class NavegadoraController extends HttpServlet {
                             //PRZ
                             String prz = null;
                             prz = request.getParameter("prz-expediente");
-                            if (prz != null && prz.length() > 0) {
+                            if (prz != null) {
                                 System.out.println("PRZ ".concat(prz));
 
-                                //System.out.println("Se actualizó ".concat(
-                                //String.valueOf(pacienteServicioImpl.actualizarPrz(idPacientePotencial, prz))));
                                 paciente.setPrz(prz);
-                                //pacienteServicioImpl.actualizarPaciente(paciente);
+                                pacienteServicioImpl.actualizarPaciente(paciente);
 
                             } else {
                                 System.out.println("Sin PRZ");
                             }
 
+                            //Tabla pacienteMedicoTitular
                             //MEDICO ADSCRITO
                             int medicoAdscrito = 0;
                             medicoAdscrito = Integer.parseInt(request.getParameter("medico-adscrito"));
@@ -757,11 +754,23 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println(dateFormat.format(cal.getTime()));
                                 Date inicio = Date.valueOf(dateFormat.format(cal.getTime()));
 
-                                pacienteMedicoTitular.setIdPaciente(idPacientePotencial);
-                                pacienteMedicoTitular.setIdEmpleado(idEmpleado);
-                                pacienteMedicoTitular.setInicio(inicio);
-                                //pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitular);
+                                PacienteMedicoTitular pacienteMedicoTitular = pacienteMedicoTitularServicioImpl.mostrarPacienteMedicoTitularIdPacientePosicion(idPacientePotencial, 2);
 
+                                if (pacienteMedicoTitular != null) {
+
+                                    pacienteMedicoTitular.setIdPaciente(idPacientePotencial);
+                                    pacienteMedicoTitular.setIdEmpleado(idEmpleado);
+                                    pacienteMedicoTitular.setInicio(inicio);
+                                    //Si ya existe un registro, lo borro lógicamente y luego agrego el nuevo
+                                    pacienteMedicoTitularServicioImpl.borradoLogicoPacienteMedicoTitular(pacienteMedicoTitular.getIdPacienteMedicoTitular());
+                                    pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitular);
+
+                                } else {
+                                    pacienteMedicoTitular.setIdPaciente(idPacientePotencial);
+                                    pacienteMedicoTitular.setIdEmpleado(idEmpleado);
+                                    pacienteMedicoTitular.setInicio(inicio);
+                                    pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitular);
+                                }
                                 //checkbox adscritoPresente
                                 int adscritoPresente = 1;
                                 if (request.getParameterMap().containsKey("noAdscrito") == true) {
@@ -772,9 +781,20 @@ public class NavegadoraController extends HttpServlet {
                                  * Asignación de adscrito presente en tabla
                                  * CitaEmpleado
                                  */
-                                citaEmpleado.setAdscritoPresente(adscritoPresente);
-                                citaEmpleado.setIdEmpleado(idEmpleado);
-                                citaEmpleado.setIdCita(idCita);
+                                CitaEmpleado citaEmpleado = citaEmpleadoServicioImpl.mostrarCitaEmpleadoIdEmpleado(idEmpleado);
+
+                                if (citaEmpleado != null) {
+                                    citaEmpleado.setAdscritoPresente(adscritoPresente);
+                                    citaEmpleado.setIdEmpleado(idEmpleado);
+                                    citaEmpleado.setIdCita(idCita);
+                                    citaEmpleadoServicioImpl.borradoLogicoCitaEmpleado(citaEmpleado.getIdCitaEmpleado());
+                                    citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleado);
+                                } else {
+                                    citaEmpleado.setAdscritoPresente(adscritoPresente);
+                                    citaEmpleado.setIdEmpleado(idEmpleado);
+                                    citaEmpleado.setIdCita(idCita);
+                                    citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleado);
+                                }
                                 //citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleado);
 
                                 System.out.println("Adscrito Presente ".concat(String.valueOf(adscritoPresente)));
@@ -786,6 +806,7 @@ public class NavegadoraController extends HttpServlet {
                             //MEDICO RADIOLOGO
                             int medicoRadiologo;
                             medicoRadiologo = Integer.parseInt(request.getParameter("medico-radiologo"));
+
                             if (medicoRadiologo != 0) {
                                 System.out.println("Medico radiologo " + (medicoRadiologo));
                                 int idEmpleado = empleadoServicioImpl.mostrarEmpleadoPersona(medicoRadiologo).getIdEmpleado();
@@ -795,10 +816,23 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println(dateFormat.format(cal.getTime()));
                                 Date inicio = Date.valueOf(dateFormat.format(cal.getTime()));
 
-                                pacienteMedicoTitular.setIdPaciente(idPacientePotencial);
-                                pacienteMedicoTitular.setIdEmpleado(idEmpleado);
-                                pacienteMedicoTitular.setInicio(inicio);
-                                //pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitular);
+                                PacienteMedicoTitular pacienteMedicoTitular = pacienteMedicoTitularServicioImpl.mostrarPacienteMedicoTitularIdPacientePosicion(idPacientePotencial, 11);
+
+                                if (pacienteMedicoTitular != null) {
+                                    pacienteMedicoTitular.setIdPaciente(idPacientePotencial);
+                                    pacienteMedicoTitular.setIdEmpleado(idEmpleado);
+                                    pacienteMedicoTitular.setInicio(inicio);
+                                    pacienteMedicoTitularServicioImpl.borradoLogicoPacienteMedicoTitular(pacienteMedicoTitular.getIdPacienteMedicoTitular());
+                                    pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitular);
+
+                                } else {
+
+                                    pacienteMedicoTitular.setIdPaciente(idPacientePotencial);
+                                    pacienteMedicoTitular.setIdEmpleado(idEmpleado);
+                                    pacienteMedicoTitular.setInicio(inicio);
+                                    pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitular);
+
+                                }
 
                                 //checkbox adscritoPresente
                                 int adscritoPresente = 1;
@@ -811,12 +845,23 @@ public class NavegadoraController extends HttpServlet {
                                  * CitaEmpleado (para fines practicos es el
                                  * mismo atributo que el del medico adscrito)
                                  */
-                                citaEmpleado.setAdscritoPresente(adscritoPresente);
-                                citaEmpleado.setIdEmpleado(idEmpleado);
-                                citaEmpleado.setIdCita(idCita);
+                                CitaEmpleado citaEmpleado = citaEmpleadoServicioImpl.mostrarCitaEmpleadoIdEmpleado(idEmpleado);
+
+                                if (citaEmpleado != null) {
+                                    citaEmpleado.setAdscritoPresente(adscritoPresente);
+                                    citaEmpleado.setIdEmpleado(idEmpleado);
+                                    citaEmpleado.setIdCita(idCita);
+                                    citaEmpleadoServicioImpl.borradoLogicoCitaEmpleado(citaEmpleado.getIdCitaEmpleado());
+                                    citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleado);
+                                } else {
+                                    citaEmpleado.setAdscritoPresente(adscritoPresente);
+                                    citaEmpleado.setIdEmpleado(idEmpleado);
+                                    citaEmpleado.setIdCita(idCita);
+                                    citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleado);
+                                }
                                 //citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleado);
 
-                                System.out.println("Radiologo Presente ".concat(String.valueOf(adscritoPresente)));
+                                System.out.println("Adscrito Presente ".concat(String.valueOf(adscritoPresente)));
 
                             } else {
                                 System.out.println("Sin médico adscrito");
@@ -835,29 +880,41 @@ public class NavegadoraController extends HttpServlet {
                             int tipoPaciente = -1;
                             tipoPaciente = Integer.parseInt(request.getParameter("tipoPaciente"));
                             if (tipoPaciente != -1) {
-                                estadoPacientePaciente.setSegundaOpinion(idCuenta);
+                                estadoPacientePaciente.setSegundaOpinion(tipoPaciente);
+                                estadoPacientePaciente.setIdEmpleado(idNavegadora);
+                                estadoPacientePacienteServicioImpl.actualizarEstadoPacientePaciente(estadoPacientePaciente);
                                 System.out.println("Tipo Paciente " + (tipoPaciente));
                             } else {
                                 System.out.println("Sin tipoPaciente");
                             }
 
                             //FECHA DE NAVEGACION
+                            //Tipo de navegacion
                             Timestamp fechaNavegacion = null;
                             fechaNavegacion = Timestamp.valueOf(request.getParameter("fechaNavegacion"));
                             if (fechaNavegacion != null) {
+
                                 Cita citaNavegacionPacientePotencial = citaServicioImpl.mostrarCitaNavegacionPacientePotencial(idPacientePotencial);
+
                                 citaNavegacionPacientePotencial.setFechaReal(fechaNavegacion);
+
+                                citaServicioImpl.actualizarCita(citaNavegacionPacientePotencial);
                                 System.out.println("Fecha Navegacion " + (fechaNavegacion));
                             } else {
                                 System.out.println("Sin fecha Navegacion");
                             }
 
                             //FECHA DE PRECONSULTA
+                            //
                             Timestamp fechaPreConsulta = null;
                             fechaPreConsulta = Timestamp.valueOf(request.getParameter("fechaConsulta"));
                             if (fechaPreConsulta != null) {
+
                                 Cita citaPreConsultaPacientePotencial = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial);
                                 citaPreConsultaPacientePotencial.setFechaReal(fechaPreConsulta);
+
+                                citaServicioImpl.actualizarCita(citaPreConsultaPacientePotencial);
+
                                 System.out.println("Fecha Consulta " + (fechaPreConsulta));
                             } else {
                                 System.out.println("Sin fecha preconsulta");
@@ -879,10 +936,23 @@ public class NavegadoraController extends HttpServlet {
                             String alergias = null;
                             alergias = request.getParameter("alergias");
                             if (alergias != null) {
+
+                                PacienteAlergia pacienteAlergia = pacienteAlergiaServicioImpl.mostrarPacienteAlergiaIdPaciente(idPacientePotencial);
                                 System.out.println("Alergias: ".concat(alergias));
-                                pacienteAlergia.setIdPaciente(idPacientePotencial);
-                                pacienteAlergia.setIdAlergia(1);
-                                pacienteAlergia.setAlergia(alergias);
+
+                                if (pacienteAlergia != null) {
+                                    pacienteAlergia.setIdPaciente(idPacientePotencial);
+                                    pacienteAlergia.setIdAlergia(1);
+                                    pacienteAlergia.setAlergia(alergias);
+                                    pacienteAlergiaServicioImpl.borradoLogicoPacienteAlergia(pacienteAlergia.getIdPacienteAlergia());
+                                    pacienteAlergiaServicioImpl.agregarPacienteAlergia(pacienteAlergia);
+
+                                } else {
+                                    pacienteAlergia.setIdPaciente(idPacientePotencial);
+                                    pacienteAlergia.setIdAlergia(1);
+                                    pacienteAlergia.setAlergia(alergias);
+                                    pacienteAlergiaServicioImpl.agregarPacienteAlergia(pacienteAlergia);
+                                }
 
                             } else {
 
@@ -903,7 +973,6 @@ public class NavegadoraController extends HttpServlet {
 
                             //SEGURO POPULAR
                             //PacienteSeguro
-                            //Hay que quitar esta madre, makes no sense
                             int tieneSeguroPopular = 0;
                             if (request.getParameterMap().containsKey("tieneSeguroPopular")) {
                                 tieneSeguroPopular = 1;
@@ -912,35 +981,72 @@ public class NavegadoraController extends HttpServlet {
 
                             if (tieneSeguroPopular == 1) {
 
+                                pacienteSeguro = pacienteSeguroServicioImpl.mostrarPacienteSeguroIdPaciente(idPacientePotencial);
                                 int nombreSeguro = -1;
-                                nombreSeguro = Integer.parseInt(request.getParameter("tiene-seguro"));
-                                if (nombreSeguro != -1) {
-                                    pacienteSeguro.setIdSeguro(nombreSeguro);
-                                    pacienteSeguro.setIdPaciente(idPacientePotencial);
-                                    System.out.println("Nombre seguro " + (nombreSeguro));
-                                } else {
-                                    System.out.println("Sin seguro");
-                                }
-
                                 String numeroSeguro = null;
                                 numeroSeguro = request.getParameter("numSeguro");
+                                nombreSeguro = Integer.parseInt(request.getParameter("tiene-seguro"));
 
-                                if (numeroSeguro != null) {
-                                    pacienteSeguro.setNoSeguro(numeroSeguro);
-                                    System.out.println("Número seguro ".concat(numeroSeguro));
+                                if (pacienteSeguro != null) {
+                                    //Actualizar
+                                    if (nombreSeguro != -1) {
+                                        pacienteSeguro.setIdSeguro(nombreSeguro);
+                                        if (numeroSeguro != null) {
+                                            pacienteSeguro.setNoSeguro(numeroSeguro);
+                                            System.out.println("Número seguro ".concat(numeroSeguro));
+                                        } else {
+                                            System.out.println("Sin número de seguro");
+                                        }
+                                        pacienteSeguroServicioImpl.actualizarPacienteSeguro(pacienteSeguro);
+                                        System.out.println("Nombre seguro " + (nombreSeguro));
+                                    } else {
+                                        System.out.println("Sin seguro");
+                                    }
+
                                 } else {
-                                    System.out.println("Sin número de seguro");
+                                    //Agregar
+                                    if (nombreSeguro != -1) {
+                                        pacienteSeguro.setIdSeguro(nombreSeguro);
+                                        pacienteSeguro.setIdPaciente(idPacientePotencial);
+                                        if (numeroSeguro != null) {
+                                            pacienteSeguro.setNoSeguro(numeroSeguro);
+                                            System.out.println("Número seguro ".concat(numeroSeguro));
+                                        } else {
+                                            System.out.println("Sin número de seguro");
+                                        }
+                                        pacienteSeguroServicioImpl.agregarPacienteSeguro(pacienteSeguro);
+                                        System.out.println("Nombre seguro " + (nombreSeguro));
+                                    } else {
+                                        System.out.println("Sin seguro");
+                                    }
+
                                 }
+
                             }
 
                             //MASTOGRAFIA PREVIA
                             //Se agrega en documentoEstudio
                             int primeraMasto = 0;
+                            //29 es el idEstudio
+                            //
+                            DocumentoEstudio documentoEstudioPrimeraMasto = documentoEstudioServicioImpl.mostrarDocumentoEstudioIdPacienteIdEstudio(idPacientePotencial, 29);
+
                             if (request.getParameterMap().containsKey("primeraMasto")) {
                                 primeraMasto = 1;
-                                documentoEstudio.setIdEstudio(29);
-                                documentoEstudio.setIdPaciente(idPacientePotencial);
-                                documentoEstudio.setIdEstadoEstudio(1);
+
+                                if (documentoEstudioPrimeraMasto != null) {
+                                    System.out.println("No hay que hacer nada");
+                                } else {
+                                    documentoEstudioPrimeraMasto.setIdEstudio(29);
+                                    documentoEstudioPrimeraMasto.setIdPaciente(idPacientePotencial);
+                                    documentoEstudioPrimeraMasto.setIdEstadoEstudio(1);
+
+                                    documentoEstudioServicioImpl.agregarDocumentoEstudio(documentoEstudioPrimeraMasto);
+                                }
+                            } else {
+
+                                documentoEstudioServicioImpl.borradoLogicoDocumentoEstudio(documentoEstudioPrimeraMasto.getIdDocumentoEstudio());
+
                             }
                             System.out.println("Masto antes del INCan ".concat(String.valueOf(primeraMasto)));
 
@@ -950,6 +1056,46 @@ public class NavegadoraController extends HttpServlet {
                             //Verifica si hay cirugía previa
                             if (request.getParameterMap().containsKey("tiene-cirugia")) {
 
+                                PacienteTratamientoPrevio cirugiaPrevia = pacienteTratamientoPrevioServiceImpl.mostrarPacienteTratamientoPrevioTratamiento(idPacientePotencial, idTratamiento);
+                                 
+
+                                if (cirugiaPrevia != null) {
+                                    //Actualiza
+                                    pacienteTratamientoPrevio.setIdPaciente(idPacientePotencial);
+                                    //Setea la fecha 
+                                    Date fechaCirugiaPrevia = null;
+                                    fechaCirugiaPrevia = Date.valueOf(request.getParameter("fecha-cirugia"));
+                                    if (fechaCirugiaPrevia != null) {
+
+                                        pacienteTratamientoPrevio.setFecha(fechaCirugiaPrevia);
+                                        System.out.println("Fecha Cirugia " + (fechaCirugiaPrevia));
+                                    } else {
+                                        System.out.println("Sin fecha de cirguía");
+                                    }
+                                    //Setea el id del tipoTratamiento de cirugias
+                                    int nombreCirugiaPrevia = 0;
+                                    nombreCirugiaPrevia = Integer.parseInt(request.getParameter("cirugia"));
+                                    if (nombreCirugiaPrevia != 0) {
+                                        pacienteTratamientoPrevio.setIdTipoTratamiento(nombreCirugiaPrevia);
+                                        System.out.println("Nombre cirguia " + (nombreCirugiaPrevia));
+                                    } else {
+                                        System.out.println("Sin nombre cirguia previa");
+                                    }
+                                    //Setea el comentario de la cirugia
+                                    String detalleCirugiaPrevia = null;
+                                    detalleCirugiaPrevia = request.getParameter("detalle-cirugia");
+                                    if (detalleCirugiaPrevia != null) {
+                                        pacienteTratamientoPrevio.setComentarios(detalleCirugiaPrevia);
+                                        System.out.println("Detalle Cirguia ".concat(detalleCirugiaPrevia));
+                                    } else {
+                                        System.out.println("Sin detalles de cirguía");
+                                    }
+                                    System.out.println("Tiene cirugía previa ".concat(String.valueOf(tieneCirugiaPrevia)));
+                                
+                                
+                                pacienteTratamientoPrevioServiceImpl.actualizarPacienteTratamientoPrevio(cirugiaPrevia);
+
+                            } else {
                                 pacienteTratamientoPrevio.setIdPaciente(idPacientePotencial);
                                 //Setea la fecha 
                                 Date fechaCirugiaPrevia = null;
@@ -980,609 +1126,613 @@ public class NavegadoraController extends HttpServlet {
                                     System.out.println("Sin detalles de cirguía");
                                 }
                                 System.out.println("Tiene cirugía previa ".concat(String.valueOf(tieneCirugiaPrevia)));
-                            }
 
-                            //QUIMIOTERAPIA
-                            int tieneQuimioterapiaPrevia = 0;
-                            if (request.getParameterMap().containsKey("tiene-quimioterapia")) {
-                                tieneQuimioterapiaPrevia = 1;
-                            }
-                            System.out.println("Quimioterapia Previa ".concat(String.valueOf(tieneQuimioterapiaPrevia)));
-
-                            if (tieneQuimioterapiaPrevia == 1) {
-
-                                pacienteTratamientoPrevio.setIdPaciente(idPacientePotencial);
-                                String fechaQuimioterapiaPrevia = null;
-                                fechaQuimioterapiaPrevia = request.getParameter("fecha-quimioterapia");
-                                Date fechaQuimioterapiaPreviaDate = Date.valueOf(fechaQuimioterapiaPrevia);
-
-                                if (fechaQuimioterapiaPreviaDate != null) {
-
-                                    pacienteTratamientoPrevio.setFecha(fechaQuimioterapiaPreviaDate);
-                                    System.out.println("Fecha quimioterapia previa ".concat(fechaQuimioterapiaPrevia));
-                                } else {
-                                    System.out.println("Sin fecha  quimio previa");
-                                }
-
-                                int numeroCiclos = 0;
-                                numeroCiclos = Integer.parseInt(request.getParameter("quimioterapia"));
-
-                                if (numeroCiclos != 0) {
-
-                                    System.out.println("Numero de ciclos quimioterapia" + numeroCiclos);
-                                    pacienteTratamientoPrevio.setCiclos(numeroCiclos);
-
-                                } else {
-                                    System.out.println("Sin Numero de ciclos quimioterapia");
-                                }
-
-                                String detalleQuimioterapiaPrevia = null;
-                                detalleQuimioterapiaPrevia = request.getParameter("detalle-quimioterapia");
-
-                                if (detalleQuimioterapiaPrevia != null) {
-                                    System.out.println("Detalle quimioterapia ".concat(detalleQuimioterapiaPrevia));
-                                    pacienteTratamientoPrevio.setComentarios(detalleQuimioterapiaPrevia);
-                                } else {
-                                    System.out.println("Sin detalle quimioterapia previa");
-                                }
-                            }
-                            //RADIOTERAPIA
-
-                            int tieneRadioterapiaPrevia = 0;
-                            if (request.getParameterMap().containsKey("tiene-radioterapia")) {
-                                tieneRadioterapiaPrevia = 1;
-                            }
-                            System.out.println("Radioterapia previa ".concat(String.valueOf(tieneRadioterapiaPrevia)));
-
-                            if (tieneRadioterapiaPrevia == 1) {
-                                pacienteTratamientoPrevio.setIdPaciente(idPacientePotencial);
-
-                                String fechaRadioterapiaPrevia = null;
-                                fechaRadioterapiaPrevia = request.getParameter("fecha-radioterapia");
-                                Date fechaRadioterapiaPreviaDate = Date.valueOf(fechaRadioterapiaPrevia);
-                                if (fechaRadioterapiaPrevia != null && fechaRadioterapiaPrevia.length() > 0) {
-                                    System.out.println("Fecha de radioterapia ".concat(fechaRadioterapiaPrevia));
-                                    pacienteTratamientoPrevio.setFecha(fechaRadioterapiaPreviaDate);
-                                } else {
-                                    System.out.println("Sin fecha radio previa");
-                                }
-
-                                int numeroCiclos = 0;
-                                numeroCiclos = Integer.parseInt(request.getParameter("radioterapia"));
-                                if (numeroCiclos != 0) {
-                                    System.out.println("Numero ciclos radioterapia " + (numeroCiclos));
-                                    pacienteTratamientoPrevio.setCiclos(numeroCiclos);
-                                } else {
-                                    System.out.println("sin Numero ciclos radioterapia");
-                                }
-
-                                String detalleRadioterapiaPrevia = null;
-                                detalleRadioterapiaPrevia = request.getParameter("detalle-radioterapia");
-                                if (detalleRadioterapiaPrevia != null && detalleRadioterapiaPrevia.length() > 0) {
-                                    System.out.println("Detalle radioterapia ".concat(detalleRadioterapiaPrevia));
-                                    pacienteTratamientoPrevio.setComentarios(detalleRadioterapiaPrevia);
-                                } else {
-                                    System.out.println("Sin detalle radio previa");
-                                }
-                            }
-
-                            //MASTOGRAFIA Previa
-                            //DocumentoPrevio
-                            int tieneMastografiaPrevia = 0;
-                            if (request.getParameterMap().containsKey("tiene-mastografia")) {
-
-                                DocumentoEstudio documentoEstudioPrevioMastografia = new DocumentoEstudio();
-                                documentoEstudioPrevioMastografia.setIdPaciente(idPacientePotencial);
-                                documentoEstudioPrevioMastografia.setPrevio(1);
-                                //Se harcodea para poner que es mastografia
-                                documentoEstudioPrevioMastografia.setIdEstudio(29);
-
-                                int tipoMastografiaPrevia = 0;
-                                tipoMastografiaPrevia = Integer.parseInt(request.getParameter("tipoMastografia"));
-                                if (tipoMastografiaPrevia != 0) {
-
-                                    documentoEstudioPrevioMastografia.setIdBirads(tipoMastografiaPrevia);
-                                    System.out.println("Tipo Mastrografia previa " + (tipoMastografiaPrevia));
-                                } else {
-                                    System.out.println("Sin masto previa");
-                                }
-
-                                Date fechaMastografiaPrevia = null;
-                                fechaMastografiaPrevia = Date.valueOf(request.getParameter("fechaPreMasto"));
-                                if (fechaMastografiaPrevia != null) {
-                                    documentoEstudioPrevioMastografia.setFechaEstudioPrevio(fechaMastografiaPrevia);
-                                    System.out.println("Fecha mastografia previa " + (fechaMastografiaPrevia));
-                                } else {
-                                    System.out.println(" SIN Fecha mastografia previa ");
-                                }
-
-                                System.out.println("Mastografia previa ".concat(String.valueOf(tieneMastografiaPrevia)));
-
-                            }
-
-                            //ULTRASONIDO Previo
-                            //DocumentoEstudio
-                            int tieneUltrasonidoPrevio = 0;
-                            if (request.getParameterMap().containsKey("tiene-ultrasonido-mama")) {
-
-                                DocumentoEstudio documentoEstudioPrevioUltrasonido = new DocumentoEstudio();
-                                documentoEstudioPrevioUltrasonido.setIdPaciente(idPacientePotencial);
-                                documentoEstudioPrevioUltrasonido.setPrevio(1);
-                                //Se harcodea para poner que es mastografia
-                                documentoEstudioPrevioUltrasonido.setIdEstudio(28);
-
-                                int tipoUltrasonidoPrevio = 0;
-                                tipoUltrasonidoPrevio = Integer.parseInt(request.getParameter("tipoUltrasonidoMama"));
-                                if (tipoUltrasonidoPrevio != 0) {
-                                    documentoEstudioPrevioUltrasonido.setIdBirads(tipoUltrasonidoPrevio);
-                                    System.out.println("Tipo ultrasonido " + (tipoUltrasonidoPrevio));
-                                } else {
-                                    System.out.println("Sin tipo ultrasonido");
-                                }
-
-                                Date fechaUltrasonidoPrevio = null;
-                                fechaUltrasonidoPrevio = Date.valueOf(request.getParameter("fechaPreUsg"));
-                                if (fechaUltrasonidoPrevio != null) {
-                                    documentoEstudioPrevioUltrasonido.setFechaEstudioPrevio(fechaUltrasonidoPrevio);
-                                    System.out.println("Fecha ultrasonido previo " + (fechaUltrasonidoPrevio));
-                                } else {
-                                    System.out.println("Sin fecha ultrasonido previo");
-                                }
-
-                                System.out.println("Ultrasonido previo ".concat(String.valueOf(tieneUltrasonidoPrevio)));
-
-                            }
-
-                            //Resultado de patologia
-                            //Biopsia y OtrosResultados
-                            int resultadoPatologia = 0;
-                            resultadoPatologia = Integer.parseInt(request.getParameter("resultadoAnterior-patologia"));
-                            String otroReportePatologia = null;
-                            otroReportePatologia = request.getParameter("introducirOtroResultadoPatologia");
-                            if (resultadoPatologia != 0 ) {
                                 
-                                Biopsia biopsiaResultado = new Biopsia();
-                                //Busca la bipsia
-                                biopsiaResultado = biopsiaServicioImpl.mostrarBiopsiaIdPaciente(idPacientePotencial);
-                                
-                                 if(biopsiaResultado!=null){
-                                    //Si hay biopasia se actualiza
-                                    biopsiaResultado.setIdTipoHistologico(resultadoPatologia);
-                                    biopsiaServicioImpl.actualizarBiopsia(biopsiaResultado);
-                                    otroResultado.setIdBiopsia(biopsiaResultado.getIdPaciente());
-                                   
-                                    if(resultadoPatologia==16 && otroReportePatologia!=null){
-                                       otroResultado.setNombre(otroReportePatologia);
-                                    }
-                                    otroResultadoServicio.agregarOtroResultadoPatologia(otroResultado);
-                                    
-                                }else{
-                                    //Si no hay se inserta
-                                    biopsiaResultado.setIdPaciente(idPacientePotencial);
-                                    biopsiaResultado.setIdTipoHistologico(resultadoPatologia);
-                                    
-                                    int idBiopsiaResultado=biopsiaServicioImpl.agregarBiopsia(biopsiaResultado);
-                                    otroResultado.setIdBiopsia(idBiopsiaResultado);
-                                    if(resultadoPatologia==16 && otroReportePatologia!=null){
-                                       otroResultado.setNombre(otroReportePatologia);
-                                    }
-                                    otroResultadoServicio.agregarOtroResultadoPatologia(otroResultado);
-                                    
-                                    
-                                }
-                                
-                                System.out.println("Resultado de patología "+(resultadoPatologia));
-                            } else {
-                                System.out.println("Sin resultados de patología");
+                                pacienteTratamientoPrevioServiceImpl.agregarPacienteTratamientoPrevio(cirugiaPrevia);
                             }
-                            //LAMINILLAS
-                            int entregaLaminillas = 0;
-                            if (request.getParameterMap().containsKey("entregaLaminillas")) {
-                                entregaLaminillas = 1;
-                            }
-                            System.out.println("Laminillas ".concat(String.valueOf(entregaLaminillas)));
-
-                            if (entregaLaminillas == 1) {
-                                int numeroLaminillas = 0;
-                                try {
-                                    numeroLaminillas = Integer.parseInt(request.getParameter("numLaminillas"));
-                                    int idBiopsia = biopsiaServicioImpl.mostrarBiopsiaPreviaPaciente(idPacientePotencial).getIdBiopsia();
-                                    laminilla.setIdBiopsia(idBiopsia);
-                                    laminilla.setCantidad(numeroLaminillas);
-
-                                } catch (Exception ex) {
-                                    System.out.println("Exception Número laminillas ".concat(ex.getMessage()));
-                                }
-                                System.out.println("Numero de laminillas ".concat(String.valueOf(numeroLaminillas)));
-
-                                String serieLaminillas = null;
-                                serieLaminillas = request.getParameter("serieLaminillas");
-                                if (serieLaminillas != null && serieLaminillas.length() > 0) {
-                                    //AQUI ES .setSerie, no??????????
-                                    laminilla.setNombre(serieLaminillas);
-                                    System.out.println("Serie laminillas ".concat(serieLaminillas));
-                                } else {
-                                    System.out.println("Sin serie laminillas");
-                                }
-                            }
-                            //-----------------------------------hasta aqui 
-                            //BLOQUES PARAFINA
-                            int entregaBloquesParafina = 0;
-                            if (request.getParameterMap().containsKey("entregaBloques")) {
-                                entregaBloquesParafina = 1;
-                            }
-                            System.out.println("Bloques parafina ".concat(String.valueOf(entregaBloquesParafina)));
-
-                            if (entregaBloquesParafina == 1) {
-                                int numeroBloquesParafina = 0;
-                                try {
-                                    numeroBloquesParafina = Integer.parseInt(request.getParameter("numBloques"));
-                                     int idBiopsia = biopsiaServicioImpl.mostrarBiopsiaPreviaPaciente(idPacientePotencial).getIdBiopsia();
-                                    bloqueParafina.setIdBiopsia(idBiopsia);
-                                    bloqueParafina.setCantidad(numeroBloquesParafina);
-                                } catch (Exception ex) {
-                                    System.out.println("Exception Bloques de parafina ".concat(ex.getMessage()));
-                                }
-                                System.out.println("Numero de bloques de parafina ".concat(String.valueOf(numeroBloquesParafina)));
-
-                                String serieBloquesParagina = null;
-                                serieBloquesParagina = request.getParameter("serieBloques");
-                                if (serieBloquesParagina != null) {
-                                    
-                                    System.out.println("Serie bloques parafina ".concat(serieBloquesParagina));
-                                    bloqueParafina.setSerie(serieBloquesParagina);
-                                } else {
-                                    System.out.println("Sin bloques parafina");
-                                }
-                            }
-                            //BIOPSIAS                            
-                            String biopsias = request.getParameter("biopsias");
-                            System.out.println("Biopsias ".concat(biopsias));
-
-                            JsonParser parser = new JsonParser();
-                            Object obj = parser.parse(biopsias);
-                            JsonArray array = (JsonArray) obj;
-                            for (int i = 0; i < array.size(); i++) {
-                                System.out.println("JSON " + i);
-                                JsonObject json = (JsonObject) array.get(i);
-                                System.out.println("json ".concat(json.toString()));
-                            }
-
-                            //RAYOS X
-                            String rayosxs = request.getParameter("rayosxs");
-                            System.out.println("rayosxs ".concat(rayosxs));
-
-                            JsonParser parserRayosxs = new JsonParser();
-                            Object objRayosx = parserRayosxs.parse(biopsias);
-                            JsonArray arrayRayosx = (JsonArray) objRayosx;
-                            for (int i = 0; i < arrayRayosx.size(); i++) {
-                                System.out.println("JSON " + i);
-                                JsonObject json = (JsonObject) arrayRayosx.get(i);
-                                System.out.println("json ".concat(json.toString()));
-                            }
-
-                            //Ultrasonidos
-                            String ultrasonidos = null;
-                            ultrasonidos = request.getParameter("ultrasonidos");
-                            System.out.println("ultrasonidos ".concat(ultrasonidos));
-
-                            JsonParser parserUltrasonidos = new JsonParser();
-                            Object objUltrasonidos = parserUltrasonidos.parse(ultrasonidos);
-                            JsonArray arrayUltrasonidos = (JsonArray) objUltrasonidos;
-                            for (int i = 0; i < arrayUltrasonidos.size(); i++) {
-                                System.out.println("JSON " + i);
-                                JsonObject json = (JsonObject) arrayUltrasonidos.get(i);
-                                System.out.println("json ".concat(json.toString()));
-                            }
-
-                            //Medicina Nuclear
-                            String medicinasNucleares = null;
-                            medicinasNucleares = request.getParameter("medicinasNucleares");
-                            System.out.println("medicinasNucleares ".concat(medicinasNucleares));
-
-                            JsonParser parserMedicinasNucleares = new JsonParser();
-                            Object objMedicinasNucleares = parserMedicinasNucleares.parse(medicinasNucleares);
-                            JsonArray arrayMedicinasNucleares = (JsonArray) objMedicinasNucleares;
-                            for (int i = 0; i < arrayMedicinasNucleares.size(); i++) {
-                                System.out.println("JSON " + i);
-                                JsonObject json = (JsonObject) arrayMedicinasNucleares.get(i);
-                                System.out.println("json ".concat(json.toString()));
-                            }
-
-                            //Laboratorios
-                            String laboratorios = null;
-                            laboratorios = request.getParameter("laboratorios");
-                            System.out.println("laboratorios ".concat(laboratorios));
-
-                            JsonParser parserLaboratorios = new JsonParser();
-                            Object objLaboratorios = parserLaboratorios.parse(medicinasNucleares);
-                            JsonArray arrayLaboratorios = (JsonArray) objLaboratorios;
-                            for (int i = 0; i < arrayLaboratorios.size(); i++) {
-                                System.out.println("JSON " + i);
-                                JsonObject json = (JsonObject) arrayLaboratorios.get(i);
-                                System.out.println("json ".concat(json.toString()));
-                            }
-
-                            //Valoraciones
-                            String valoraciones = null;
-                            valoraciones = request.getParameter("valoraciones");
-                            System.out.println("valoraciones ".concat(valoraciones));
-
-                            JsonParser parserValoraciones = new JsonParser();
-                            Object objValoraciones = parserValoraciones.parse(valoraciones);
-                            JsonArray arrayValoraciones = (JsonArray) objValoraciones;
-                            for (int i = 0; i < arrayValoraciones.size(); i++) {
-                                System.out.println("JSON " + i);
-                                JsonObject json = (JsonObject) arrayValoraciones.get(i);
-                                System.out.println("json ".concat(json.toString()));
-                            }
-
-                            //Espirometrias
-                            String espirometrias = null;
-                            espirometrias = request.getParameter("espirometrias");
-                            System.out.println("espirometrias ".concat(espirometrias));
-
-                            JsonParser parserEspirometrias = new JsonParser();
-                            Object objEspirometrias = parserEspirometrias.parse(espirometrias);
-                            JsonArray arrayEspirometrias = (JsonArray) objEspirometrias;
-                            for (int i = 0; i < arrayEspirometrias.size(); i++) {
-                                System.out.println("JSON " + i);
-                                JsonObject json = (JsonObject) arrayEspirometrias.get(i);
-                                System.out.println("json ".concat(json.toString()));
-                            }
-
-                            //Electrocardiogramas
-                            String electrocardiogramas = null;
-                            electrocardiogramas = request.getParameter("electrocardiogramas");
-                            System.out.println("electrocardiogramas ".concat(electrocardiogramas));
-
-                            JsonParser parserElectrocardiogramas = new JsonParser();
-                            Object objElectrocardiogramas = parserElectrocardiogramas.parse(electrocardiogramas);
-                            JsonArray arrayElectrocardiogramas = (JsonArray) objElectrocardiogramas;
-                            for (int i = 0; i < arrayElectrocardiogramas.size(); i++) {
-                                System.out.println("JSON " + i);
-                                JsonObject json = (JsonObject) arrayElectrocardiogramas.get(i);
-                                System.out.println("json ".concat(json.toString()));
-                            }
-
-                            //Ecocardiogramas
-                            String ecocardiogramas = null;
-                            ecocardiogramas = request.getParameter("ecocardiogramas");
-                            System.out.println("ecocardiogramas ".concat(ecocardiogramas));
-
-                            JsonParser parserEcocardiogramas = new JsonParser();
-                            Object objEcocardiogramas = parserEcocardiogramas.parse(ecocardiogramas);
-                            JsonArray arrayEcocardiogramas = (JsonArray) objEcocardiogramas;
-                            for (int i = 0; i < arrayEcocardiogramas.size(); i++) {
-                                System.out.println("JSON " + i);
-                                JsonObject json = (JsonObject) arrayEcocardiogramas.get(i);
-                                System.out.println("json ".concat(json.toString()));
-                            }
-
-                            //Trabajos sociales
-                            String trabajosSociales = null;
-                            trabajosSociales = request.getParameter("trabajosSociales");
-                            System.out.println("trabajosSociales ".concat(trabajosSociales));
-
-                            JsonParser parserTrabajosSociales = new JsonParser();
-                            Object objTrabajosSociales = parserTrabajosSociales.parse(trabajosSociales);
-                            JsonArray arrayTrabajosSociales = (JsonArray) objTrabajosSociales;
-                            for (int i = 0; i < arrayTrabajosSociales.size(); i++) {
-                                System.out.println("JSON " + i);
-                                JsonObject json = (JsonObject) arrayTrabajosSociales.get(i);
-                                System.out.println("json ".concat(json.toString()));
-                            }
-
-                            //Programas
-                            String programas = null;
-                            programas = request.getParameter("programas");
-                            System.out.println("programas ".concat(programas));
-
-                            JsonParser parserProgramas = new JsonParser();
-                            Object objProgramas = parserProgramas.parse(programas);
-                            JsonArray arrayProgramas = (JsonArray) objProgramas;
-                            for (int i = 0; i < arrayProgramas.size(); i++) {
-                                System.out.println("JSON " + i);
-                                JsonObject json = (JsonObject) arrayProgramas.get(i);
-                                System.out.println("json ".concat(json.toString()));
-                            }
-
-                            //Otros Estudios
-                            String otrosEstudios = null;
-                            otrosEstudios = request.getParameter("otrosEstudios");
-                            System.out.println("otrosEstudios ".concat(otrosEstudios));
-
-                            JsonParser parserOtrosEstudios = new JsonParser();
-                            Object objOtrosEstudios = parserOtrosEstudios.parse(otrosEstudios);
-                            JsonArray arrayOtrosEstudios = (JsonArray) objOtrosEstudios;
-                            for (int i = 0; i < arrayOtrosEstudios.size(); i++) {
-                                System.out.println("JSON " + i);
-                                JsonObject json = (JsonObject) arrayOtrosEstudios.get(i);
-                                System.out.println("json ".concat(json.toString()));
-                            }
-
-                            //Pantalla 4
-                            int pacienteResultados = 0;
-                            if (request.getParameterMap().containsKey("resultadosCheckbox")) {
-                                pacienteResultados = 1;
-                            }
-                            System.out.println("pacienteResultados ".concat(String.valueOf(pacienteResultados)));
-
-                            String decisionPreconsulta = null;
-                            decisionPreconsulta = request.getParameter("decisionPreconsulta");
-                            if (decisionPreconsulta != null && decisionPreconsulta.length() > 0) {
-                                System.out.println("Decision Preconsulta ".concat(decisionPreconsulta));
-                            } else {
-                                System.out.println("Sin decision preconsulta ");
-                            }
-
-                            String fechaDecisionPreconsulta = null;
-                            fechaDecisionPreconsulta = request.getParameter("fecha-decisionPreconsulta");
-                            if (fechaDecisionPreconsulta != null && fechaDecisionPreconsulta.length() > 0) {
-                                System.out.println("fechaDecisionPreconsulta ".concat(fechaDecisionPreconsulta));
-                            } else {
-                                System.out.println("Sin fecha decisión preconsulta");
-                            }
-
-                            String nivelSocioeconomico = null;
-                            nivelSocioeconomico = request.getParameter("nivelSocioeconomico");
-                            if (nivelSocioeconomico != null && nivelSocioeconomico.length() > 0) {
-                                System.out.println("Nivel socioeconomico ".concat(nivelSocioeconomico));
-                            } else {
-                                System.out.println("Sin nivel socioeconomico ");
-                            }
-
-                            //Llamadas de la preconsulta
-                            int llamadaPaciente = 0;
-                            if (request.getParameterMap().containsKey("seLlamo")) {
-                                llamadaPaciente = 1;
-                            }
-                            System.out.println("se Llamo ".concat(String.valueOf(llamadaPaciente)));
-
-                            String llamadas = null;
-                            llamadas = request.getParameter("llamadasCita");
-                            if (llamadas != null && llamadas.length() > 0) {
-                                System.out.println("llamadas ".concat(llamadas));
-                            } else {
-                                System.out.println("llamadas ");
-                            }
-
-                            JsonParser parserLlamadas = new JsonParser();
-                            Object objLlamadas = parserLlamadas.parse(llamadas);
-                            JsonArray arrayLlamadas = (JsonArray) objLlamadas;
-                            for (int i = 0; i < arrayLlamadas.size(); i++) {
-                                System.out.println("JSON " + i);
-                                JsonObject json = (JsonObject) arrayLlamadas.get(i);
-                                System.out.println("json ".concat(json.toString()));
-                            }
-
-                            //Comentarios de incidencias
-                            String comentariosIncidencias = null;
-                            comentariosIncidencias = request.getParameter("comentarios");
-                            if (comentariosIncidencias != null && comentariosIncidencias.length() > 0) {
-                                System.out.println("Comentarios".concat(comentariosIncidencias));
-                            } else {
-                                System.out.println("sin comentariosIncidencias ");
-                            }
-
-                            //Comentarios Médicos
-                            String comentariosMedico = null;
-                            comentariosMedico = request.getParameter("comentariosMedico");
-                            if (comentariosMedico != null && comentariosMedico.length() > 0) {
-                                System.out.println("comentariosMedico ".concat(comentariosMedico));
-                            } else {
-                                System.out.println("sin comentariosMedico ");
-                            }
-
-                            //PANTALLA 5    
-                            String etapaClinica = null;
-                            etapaClinica = request.getParameter("etapaClinica");
-                            if (etapaClinica != null && etapaClinica.length() > 0) {
-                                System.out.println("Estapa clinica ".concat(etapaClinica));
-                            } else {
-                                System.out.println("sin etapaClinica ");
-                            }
-
-                            String resultadoMastrografia = null;
-                            resultadoMastrografia = request.getParameter("tipoMastografia");
-                            if (resultadoMastrografia != null && resultadoMastrografia.length() > 0) {
-                                System.out.println("resultadoMastrografia ".concat(resultadoMastrografia));
-                            } else {
-                                System.out.println("sin resultadoMastrografia ");
-                            }
-
-                            String resultadoUltrasonido = null;
-                            resultadoUltrasonido = request.getParameter("tipoUSG");
-                            if (resultadoUltrasonido != null && resultadoUltrasonido.length() > 0) {
-                                System.out.println("resultadoUltrasonido ".concat(resultadoUltrasonido));
-                            } else {
-                                System.out.println("sin resultadoUltrasonido ");
-                            }
-
-                            String tCodificado = null;
-                            tCodificado = request.getParameter("tumorPrimarioT");
-                            if (tCodificado != null && tCodificado.length() > 0) {
-                                System.out.println("T ".concat(tCodificado));
-                            } else {
-                                System.out.println("sin tCodificado ");
-                            }
-
-                            String nCodificado = null;
-                            nCodificado = request.getParameter("gangliosN");
-                            if (nCodificado != null && nCodificado.length() > 0) {
-                                System.out.println("N ".concat(nCodificado));
-                            } else {
-                                System.out.println("sin nCodificado ");
-                            }
-
-                            String mCodificado = null;
-                            mCodificado = request.getParameter("metastasisM");
-                            if (mCodificado != null && mCodificado.length() > 0) {
-                                System.out.println("M ".concat(mCodificado));
-                            } else {
-                                System.out.println("sin mCodificado ");
-                            }
-
-                            String resultadoPatologiaPantalla5 = null;
-                            resultadoPatologiaPantalla5 = request.getParameter("resultado-patologia");
-                            if (resultadoPatologiaPantalla5 != null && resultadoPatologiaPantalla5.length() > 0) {
-                                System.out.println("Resultado resultadoPatologiaPantalla5 ".concat(resultadoPatologiaPantalla5));
-                            } else {
-                                System.out.println("sin resultadoPatologiaPantalla5 ");
-                            }
-
-                            String gradoHistologico = null;
-                            gradoHistologico = request.getParameter("grado-histologico");
-                            if (gradoHistologico != null && gradoHistologico.length() > 0) {
-                                System.out.println("Grado gradoHistologico ".concat(gradoHistologico));
-                            } else {
-                                System.out.println("sin gradoHistologico ");
-                            }
-
-                            String receptorHer2 = null;
-                            receptorHer2 = request.getParameter("receptor-her2");
-                            if (receptorHer2 != null && receptorHer2.length() > 0) {
-                                System.out.println("receptorHer2 ".concat(receptorHer2));
-                            } else {
-                                System.out.println("sin receptorHer2 ");
-                            }
-
-                            String receptorFish = null;
-                            receptorFish = request.getParameter("receptor-fish");
-                            if (receptorFish != null && receptorFish.length() > 0) {
-                                System.out.println("receptorFish ".concat(receptorFish));
-                            } else {
-                                System.out.println("sin receptorFish ");
-                            }
-
-                            String receptorRe = null;
-                            receptorRe = request.getParameter("receptor-re");
-                            if (receptorRe != null && receptorRe.length() > 0) {
-                                System.out.println("receptorRe ".concat(receptorRe));
-                            } else {
-                                System.out.println("sin receptorRe ");
-                            }
-
-                            String receptorRp = null;
-                            receptorRp = request.getParameter("receptor-rp");
-                            if (receptorRp != null && receptorRp.length() > 0) {
-                                System.out.println("receptorRp ".concat(receptorRp));
-                            } else {
-                                System.out.println("sin etapaClinica ");
-                            }
-
-                            String ki67 = null;
-                            ki67 = request.getParameter("ki67");
-                            if (ki67 != null && ki67.length() > 0) {
-                                System.out.println("ki67 ".concat(ki67));
-                            } else {
-                                System.out.println("sin ki67 ");
-                            }
-
-                            break;
                         }
 
-                        case "autocompleteBiopsia": {
+                        //QUIMIOTERAPIA
+                        int tieneQuimioterapiaPrevia = 0;
+                        if (request.getParameterMap().containsKey("tiene-quimioterapia")) {
+                            tieneQuimioterapiaPrevia = 1;
+                        }
+                        System.out.println("Quimioterapia Previa ".concat(String.valueOf(tieneQuimioterapiaPrevia)));
+
+                        if (tieneQuimioterapiaPrevia == 1) {
+
+                            pacienteTratamientoPrevio.setIdPaciente(idPacientePotencial);
+                            String fechaQuimioterapiaPrevia = null;
+                            fechaQuimioterapiaPrevia = request.getParameter("fecha-quimioterapia");
+                            Date fechaQuimioterapiaPreviaDate = Date.valueOf(fechaQuimioterapiaPrevia);
+
+                            if (fechaQuimioterapiaPreviaDate != null) {
+
+                                pacienteTratamientoPrevio.setFecha(fechaQuimioterapiaPreviaDate);
+                                System.out.println("Fecha quimioterapia previa ".concat(fechaQuimioterapiaPrevia));
+                            } else {
+                                System.out.println("Sin fecha  quimio previa");
+                            }
+
+                            int numeroCiclos = 0;
+                            numeroCiclos = Integer.parseInt(request.getParameter("quimioterapia"));
+
+                            if (numeroCiclos != 0) {
+
+                                System.out.println("Numero de ciclos quimioterapia" + numeroCiclos);
+                                pacienteTratamientoPrevio.setCiclos(numeroCiclos);
+
+                            } else {
+                                System.out.println("Sin Numero de ciclos quimioterapia");
+                            }
+
+                            String detalleQuimioterapiaPrevia = null;
+                            detalleQuimioterapiaPrevia = request.getParameter("detalle-quimioterapia");
+
+                            if (detalleQuimioterapiaPrevia != null) {
+                                System.out.println("Detalle quimioterapia ".concat(detalleQuimioterapiaPrevia));
+                                pacienteTratamientoPrevio.setComentarios(detalleQuimioterapiaPrevia);
+                            } else {
+                                System.out.println("Sin detalle quimioterapia previa");
+                            }
+                        }
+                        //RADIOTERAPIA
+
+                        int tieneRadioterapiaPrevia = 0;
+                        if (request.getParameterMap().containsKey("tiene-radioterapia")) {
+                            tieneRadioterapiaPrevia = 1;
+                        }
+                        System.out.println("Radioterapia previa ".concat(String.valueOf(tieneRadioterapiaPrevia)));
+
+                        if (tieneRadioterapiaPrevia == 1) {
+                            pacienteTratamientoPrevio.setIdPaciente(idPacientePotencial);
+
+                            String fechaRadioterapiaPrevia = null;
+                            fechaRadioterapiaPrevia = request.getParameter("fecha-radioterapia");
+                            Date fechaRadioterapiaPreviaDate = Date.valueOf(fechaRadioterapiaPrevia);
+                            if (fechaRadioterapiaPrevia != null && fechaRadioterapiaPrevia.length() > 0) {
+                                System.out.println("Fecha de radioterapia ".concat(fechaRadioterapiaPrevia));
+                                pacienteTratamientoPrevio.setFecha(fechaRadioterapiaPreviaDate);
+                            } else {
+                                System.out.println("Sin fecha radio previa");
+                            }
+
+                            int numeroCiclos = 0;
+                            numeroCiclos = Integer.parseInt(request.getParameter("radioterapia"));
+                            if (numeroCiclos != 0) {
+                                System.out.println("Numero ciclos radioterapia " + (numeroCiclos));
+                                pacienteTratamientoPrevio.setCiclos(numeroCiclos);
+                            } else {
+                                System.out.println("sin Numero ciclos radioterapia");
+                            }
+
+                            String detalleRadioterapiaPrevia = null;
+                            detalleRadioterapiaPrevia = request.getParameter("detalle-radioterapia");
+                            if (detalleRadioterapiaPrevia != null && detalleRadioterapiaPrevia.length() > 0) {
+                                System.out.println("Detalle radioterapia ".concat(detalleRadioterapiaPrevia));
+                                pacienteTratamientoPrevio.setComentarios(detalleRadioterapiaPrevia);
+                            } else {
+                                System.out.println("Sin detalle radio previa");
+                            }
+                        }
+
+                        //MASTOGRAFIA Previa
+                        //DocumentoPrevio
+                        int tieneMastografiaPrevia = 0;
+                        if (request.getParameterMap().containsKey("tiene-mastografia")) {
+
+                            DocumentoEstudio documentoEstudioPrevioMastografia = new DocumentoEstudio();
+                            documentoEstudioPrevioMastografia.setIdPaciente(idPacientePotencial);
+                            documentoEstudioPrevioMastografia.setPrevio(1);
+                            //Se harcodea para poner que es mastografia
+                            documentoEstudioPrevioMastografia.setIdEstudio(29);
+
+                            int tipoMastografiaPrevia = 0;
+                            tipoMastografiaPrevia = Integer.parseInt(request.getParameter("tipoMastografia"));
+                            if (tipoMastografiaPrevia != 0) {
+
+                                documentoEstudioPrevioMastografia.setIdBirads(tipoMastografiaPrevia);
+                                System.out.println("Tipo Mastrografia previa " + (tipoMastografiaPrevia));
+                            } else {
+                                System.out.println("Sin masto previa");
+                            }
+
+                            Date fechaMastografiaPrevia = null;
+                            fechaMastografiaPrevia = Date.valueOf(request.getParameter("fechaPreMasto"));
+                            if (fechaMastografiaPrevia != null) {
+                                documentoEstudioPrevioMastografia.setFechaEstudioPrevio(fechaMastografiaPrevia);
+                                System.out.println("Fecha mastografia previa " + (fechaMastografiaPrevia));
+                            } else {
+                                System.out.println(" SIN Fecha mastografia previa ");
+                            }
+
+                            System.out.println("Mastografia previa ".concat(String.valueOf(tieneMastografiaPrevia)));
+
+                        }
+
+                        //ULTRASONIDO Previo
+                        //DocumentoEstudio
+                        int tieneUltrasonidoPrevio = 0;
+                        if (request.getParameterMap().containsKey("tiene-ultrasonido-mama")) {
+
+                            DocumentoEstudio documentoEstudioPrevioUltrasonido = new DocumentoEstudio();
+                            documentoEstudioPrevioUltrasonido.setIdPaciente(idPacientePotencial);
+                            documentoEstudioPrevioUltrasonido.setPrevio(1);
+                            //Se harcodea para poner que es mastografia
+                            documentoEstudioPrevioUltrasonido.setIdEstudio(28);
+
+                            int tipoUltrasonidoPrevio = 0;
+                            tipoUltrasonidoPrevio = Integer.parseInt(request.getParameter("tipoUltrasonidoMama"));
+                            if (tipoUltrasonidoPrevio != 0) {
+                                documentoEstudioPrevioUltrasonido.setIdBirads(tipoUltrasonidoPrevio);
+                                System.out.println("Tipo ultrasonido " + (tipoUltrasonidoPrevio));
+                            } else {
+                                System.out.println("Sin tipo ultrasonido");
+                            }
+
+                            Date fechaUltrasonidoPrevio = null;
+                            fechaUltrasonidoPrevio = Date.valueOf(request.getParameter("fechaPreUsg"));
+                            if (fechaUltrasonidoPrevio != null) {
+                                documentoEstudioPrevioUltrasonido.setFechaEstudioPrevio(fechaUltrasonidoPrevio);
+                                System.out.println("Fecha ultrasonido previo " + (fechaUltrasonidoPrevio));
+                            } else {
+                                System.out.println("Sin fecha ultrasonido previo");
+                            }
+
+                            System.out.println("Ultrasonido previo ".concat(String.valueOf(tieneUltrasonidoPrevio)));
+
+                        }
+
+                        //Resultado de patologia
+                        //Biopsia y OtrosResultados
+                        int resultadoPatologia = 0;
+                        resultadoPatologia = Integer.parseInt(request.getParameter("resultadoAnterior-patologia"));
+                        String otroReportePatologia = null;
+                        otroReportePatologia = request.getParameter("introducirOtroResultadoPatologia");
+                        if (resultadoPatologia != 0) {
+
+                            Biopsia biopsiaResultado = new Biopsia();
+                            //Busca la bipsia
+                            biopsiaResultado = biopsiaServicioImpl.mostrarBiopsiaIdPaciente(idPacientePotencial);
+
+                            if (biopsiaResultado != null) {
+                                //Si hay biopasia se actualiza
+                                biopsiaResultado.setIdTipoHistologico(resultadoPatologia);
+                                biopsiaServicioImpl.actualizarBiopsia(biopsiaResultado);
+                                otroResultado.setIdBiopsia(biopsiaResultado.getIdPaciente());
+
+                                if (resultadoPatologia == 16 && otroReportePatologia != null) {
+                                    otroResultado.setNombre(otroReportePatologia);
+                                }
+                                otroResultadoServicio.agregarOtroResultadoPatologia(otroResultado);
+
+                            } else {
+                                //Si no hay se inserta
+                                biopsiaResultado.setIdPaciente(idPacientePotencial);
+                                biopsiaResultado.setIdTipoHistologico(resultadoPatologia);
+
+                                int idBiopsiaResultado = biopsiaServicioImpl.agregarBiopsia(biopsiaResultado);
+                                otroResultado.setIdBiopsia(idBiopsiaResultado);
+                                if (resultadoPatologia == 16 && otroReportePatologia != null) {
+                                    otroResultado.setNombre(otroReportePatologia);
+                                }
+                                otroResultadoServicio.agregarOtroResultadoPatologia(otroResultado);
+
+                            }
+
+                            System.out.println("Resultado de patología " + (resultadoPatologia));
+                        } else {
+                            System.out.println("Sin resultados de patología");
+                        }
+                        //LAMINILLAS
+                        int entregaLaminillas = 0;
+                        if (request.getParameterMap().containsKey("entregaLaminillas")) {
+                            entregaLaminillas = 1;
+                        }
+                        System.out.println("Laminillas ".concat(String.valueOf(entregaLaminillas)));
+
+                        if (entregaLaminillas == 1) {
+                            int numeroLaminillas = 0;
+                            try {
+                                numeroLaminillas = Integer.parseInt(request.getParameter("numLaminillas"));
+                                int idBiopsia = biopsiaServicioImpl.mostrarBiopsiaPreviaPaciente(idPacientePotencial, 1).getIdBiopsia();
+                                laminilla.setIdBiopsia(idBiopsia);
+                                laminilla.setCantidad(numeroLaminillas);
+
+                            } catch (Exception ex) {
+                                System.out.println("Exception Número laminillas ".concat(ex.getMessage()));
+                            }
+                            System.out.println("Numero de laminillas ".concat(String.valueOf(numeroLaminillas)));
+
+                            String serieLaminillas = null;
+                            serieLaminillas = request.getParameter("serieLaminillas");
+                            if (serieLaminillas != null && serieLaminillas.length() > 0) {
+                                //AQUI ES .setSerie, no??????????
+                                laminilla.setNombre(serieLaminillas);
+                                System.out.println("Serie laminillas ".concat(serieLaminillas));
+                            } else {
+                                System.out.println("Sin serie laminillas");
+                            }
+                        }
+                        //-----------------------------------hasta aqui 
+                        //BLOQUES PARAFINA
+                        int entregaBloquesParafina = 0;
+                        if (request.getParameterMap().containsKey("entregaBloques")) {
+                            entregaBloquesParafina = 1;
+                        }
+                        System.out.println("Bloques parafina ".concat(String.valueOf(entregaBloquesParafina)));
+
+                        if (entregaBloquesParafina == 1) {
+                            int numeroBloquesParafina = 0;
+                            try {
+                                numeroBloquesParafina = Integer.parseInt(request.getParameter("numBloques"));
+                                int idBiopsia = biopsiaServicioImpl.mostrarBiopsiaPreviaPaciente(idPacientePotencial).getIdBiopsia();
+                                bloqueParafina.setIdBiopsia(idBiopsia);
+                                bloqueParafina.setCantidad(numeroBloquesParafina);
+                            } catch (Exception ex) {
+                                System.out.println("Exception Bloques de parafina ".concat(ex.getMessage()));
+                            }
+                            System.out.println("Numero de bloques de parafina ".concat(String.valueOf(numeroBloquesParafina)));
+
+                            String serieBloquesParagina = null;
+                            serieBloquesParagina = request.getParameter("serieBloques");
+                            if (serieBloquesParagina != null) {
+
+                                System.out.println("Serie bloques parafina ".concat(serieBloquesParagina));
+                                bloqueParafina.setSerie(serieBloquesParagina);
+                            } else {
+                                System.out.println("Sin bloques parafina");
+                            }
+                        }
+                        //BIOPSIAS                            
+                        String biopsias = request.getParameter("biopsias");
+                        System.out.println("Biopsias ".concat(biopsias));
+
+                        JsonParser parser = new JsonParser();
+                        Object obj = parser.parse(biopsias);
+                        JsonArray array = (JsonArray) obj;
+                        for (int i = 0; i < array.size(); i++) {
+                            System.out.println("JSON " + i);
+                            JsonObject json = (JsonObject) array.get(i);
+                            System.out.println("json ".concat(json.toString()));
+                        }
+
+                        //RAYOS X
+                        String rayosxs = request.getParameter("rayosxs");
+                        System.out.println("rayosxs ".concat(rayosxs));
+
+                        JsonParser parserRayosxs = new JsonParser();
+                        Object objRayosx = parserRayosxs.parse(biopsias);
+                        JsonArray arrayRayosx = (JsonArray) objRayosx;
+                        for (int i = 0; i < arrayRayosx.size(); i++) {
+                            System.out.println("JSON " + i);
+                            JsonObject json = (JsonObject) arrayRayosx.get(i);
+                            System.out.println("json ".concat(json.toString()));
+                        }
+
+                        //Ultrasonidos
+                        String ultrasonidos = null;
+                        ultrasonidos = request.getParameter("ultrasonidos");
+                        System.out.println("ultrasonidos ".concat(ultrasonidos));
+
+                        JsonParser parserUltrasonidos = new JsonParser();
+                        Object objUltrasonidos = parserUltrasonidos.parse(ultrasonidos);
+                        JsonArray arrayUltrasonidos = (JsonArray) objUltrasonidos;
+                        for (int i = 0; i < arrayUltrasonidos.size(); i++) {
+                            System.out.println("JSON " + i);
+                            JsonObject json = (JsonObject) arrayUltrasonidos.get(i);
+                            System.out.println("json ".concat(json.toString()));
+                        }
+
+                        //Medicina Nuclear
+                        String medicinasNucleares = null;
+                        medicinasNucleares = request.getParameter("medicinasNucleares");
+                        System.out.println("medicinasNucleares ".concat(medicinasNucleares));
+
+                        JsonParser parserMedicinasNucleares = new JsonParser();
+                        Object objMedicinasNucleares = parserMedicinasNucleares.parse(medicinasNucleares);
+                        JsonArray arrayMedicinasNucleares = (JsonArray) objMedicinasNucleares;
+                        for (int i = 0; i < arrayMedicinasNucleares.size(); i++) {
+                            System.out.println("JSON " + i);
+                            JsonObject json = (JsonObject) arrayMedicinasNucleares.get(i);
+                            System.out.println("json ".concat(json.toString()));
+                        }
+
+                        //Laboratorios
+                        String laboratorios = null;
+                        laboratorios = request.getParameter("laboratorios");
+                        System.out.println("laboratorios ".concat(laboratorios));
+
+                        JsonParser parserLaboratorios = new JsonParser();
+                        Object objLaboratorios = parserLaboratorios.parse(medicinasNucleares);
+                        JsonArray arrayLaboratorios = (JsonArray) objLaboratorios;
+                        for (int i = 0; i < arrayLaboratorios.size(); i++) {
+                            System.out.println("JSON " + i);
+                            JsonObject json = (JsonObject) arrayLaboratorios.get(i);
+                            System.out.println("json ".concat(json.toString()));
+                        }
+
+                        //Valoraciones
+                        String valoraciones = null;
+                        valoraciones = request.getParameter("valoraciones");
+                        System.out.println("valoraciones ".concat(valoraciones));
+
+                        JsonParser parserValoraciones = new JsonParser();
+                        Object objValoraciones = parserValoraciones.parse(valoraciones);
+                        JsonArray arrayValoraciones = (JsonArray) objValoraciones;
+                        for (int i = 0; i < arrayValoraciones.size(); i++) {
+                            System.out.println("JSON " + i);
+                            JsonObject json = (JsonObject) arrayValoraciones.get(i);
+                            System.out.println("json ".concat(json.toString()));
+                        }
+
+                        //Espirometrias
+                        String espirometrias = null;
+                        espirometrias = request.getParameter("espirometrias");
+                        System.out.println("espirometrias ".concat(espirometrias));
+
+                        JsonParser parserEspirometrias = new JsonParser();
+                        Object objEspirometrias = parserEspirometrias.parse(espirometrias);
+                        JsonArray arrayEspirometrias = (JsonArray) objEspirometrias;
+                        for (int i = 0; i < arrayEspirometrias.size(); i++) {
+                            System.out.println("JSON " + i);
+                            JsonObject json = (JsonObject) arrayEspirometrias.get(i);
+                            System.out.println("json ".concat(json.toString()));
+                        }
+
+                        //Electrocardiogramas
+                        String electrocardiogramas = null;
+                        electrocardiogramas = request.getParameter("electrocardiogramas");
+                        System.out.println("electrocardiogramas ".concat(electrocardiogramas));
+
+                        JsonParser parserElectrocardiogramas = new JsonParser();
+                        Object objElectrocardiogramas = parserElectrocardiogramas.parse(electrocardiogramas);
+                        JsonArray arrayElectrocardiogramas = (JsonArray) objElectrocardiogramas;
+                        for (int i = 0; i < arrayElectrocardiogramas.size(); i++) {
+                            System.out.println("JSON " + i);
+                            JsonObject json = (JsonObject) arrayElectrocardiogramas.get(i);
+                            System.out.println("json ".concat(json.toString()));
+                        }
+
+                        //Ecocardiogramas
+                        String ecocardiogramas = null;
+                        ecocardiogramas = request.getParameter("ecocardiogramas");
+                        System.out.println("ecocardiogramas ".concat(ecocardiogramas));
+
+                        JsonParser parserEcocardiogramas = new JsonParser();
+                        Object objEcocardiogramas = parserEcocardiogramas.parse(ecocardiogramas);
+                        JsonArray arrayEcocardiogramas = (JsonArray) objEcocardiogramas;
+                        for (int i = 0; i < arrayEcocardiogramas.size(); i++) {
+                            System.out.println("JSON " + i);
+                            JsonObject json = (JsonObject) arrayEcocardiogramas.get(i);
+                            System.out.println("json ".concat(json.toString()));
+                        }
+
+                        //Trabajos sociales
+                        String trabajosSociales = null;
+                        trabajosSociales = request.getParameter("trabajosSociales");
+                        System.out.println("trabajosSociales ".concat(trabajosSociales));
+
+                        JsonParser parserTrabajosSociales = new JsonParser();
+                        Object objTrabajosSociales = parserTrabajosSociales.parse(trabajosSociales);
+                        JsonArray arrayTrabajosSociales = (JsonArray) objTrabajosSociales;
+                        for (int i = 0; i < arrayTrabajosSociales.size(); i++) {
+                            System.out.println("JSON " + i);
+                            JsonObject json = (JsonObject) arrayTrabajosSociales.get(i);
+                            System.out.println("json ".concat(json.toString()));
+                        }
+
+                        //Programas
+                        String programas = null;
+                        programas = request.getParameter("programas");
+                        System.out.println("programas ".concat(programas));
+
+                        JsonParser parserProgramas = new JsonParser();
+                        Object objProgramas = parserProgramas.parse(programas);
+                        JsonArray arrayProgramas = (JsonArray) objProgramas;
+                        for (int i = 0; i < arrayProgramas.size(); i++) {
+                            System.out.println("JSON " + i);
+                            JsonObject json = (JsonObject) arrayProgramas.get(i);
+                            System.out.println("json ".concat(json.toString()));
+                        }
+
+                        //Otros Estudios
+                        String otrosEstudios = null;
+                        otrosEstudios = request.getParameter("otrosEstudios");
+                        System.out.println("otrosEstudios ".concat(otrosEstudios));
+
+                        JsonParser parserOtrosEstudios = new JsonParser();
+                        Object objOtrosEstudios = parserOtrosEstudios.parse(otrosEstudios);
+                        JsonArray arrayOtrosEstudios = (JsonArray) objOtrosEstudios;
+                        for (int i = 0; i < arrayOtrosEstudios.size(); i++) {
+                            System.out.println("JSON " + i);
+                            JsonObject json = (JsonObject) arrayOtrosEstudios.get(i);
+                            System.out.println("json ".concat(json.toString()));
+                        }
+
+                        //Pantalla 4
+                        int pacienteResultados = 0;
+                        if (request.getParameterMap().containsKey("resultadosCheckbox")) {
+                            pacienteResultados = 1;
+                        }
+                        System.out.println("pacienteResultados ".concat(String.valueOf(pacienteResultados)));
+
+                        String decisionPreconsulta = null;
+                        decisionPreconsulta = request.getParameter("decisionPreconsulta");
+                        if (decisionPreconsulta != null && decisionPreconsulta.length() > 0) {
+                            System.out.println("Decision Preconsulta ".concat(decisionPreconsulta));
+                        } else {
+                            System.out.println("Sin decision preconsulta ");
+                        }
+
+                        String fechaDecisionPreconsulta = null;
+                        fechaDecisionPreconsulta = request.getParameter("fecha-decisionPreconsulta");
+                        if (fechaDecisionPreconsulta != null && fechaDecisionPreconsulta.length() > 0) {
+                            System.out.println("fechaDecisionPreconsulta ".concat(fechaDecisionPreconsulta));
+                        } else {
+                            System.out.println("Sin fecha decisión preconsulta");
+                        }
+
+                        String nivelSocioeconomico = null;
+                        nivelSocioeconomico = request.getParameter("nivelSocioeconomico");
+                        if (nivelSocioeconomico != null && nivelSocioeconomico.length() > 0) {
+                            System.out.println("Nivel socioeconomico ".concat(nivelSocioeconomico));
+                        } else {
+                            System.out.println("Sin nivel socioeconomico ");
+                        }
+
+                        //Llamadas de la preconsulta
+                        int llamadaPaciente = 0;
+                        if (request.getParameterMap().containsKey("seLlamo")) {
+                            llamadaPaciente = 1;
+                        }
+                        System.out.println("se Llamo ".concat(String.valueOf(llamadaPaciente)));
+
+                        String llamadas = null;
+                        llamadas = request.getParameter("llamadasCita");
+                        if (llamadas != null && llamadas.length() > 0) {
+                            System.out.println("llamadas ".concat(llamadas));
+                        } else {
+                            System.out.println("llamadas ");
+                        }
+
+                        JsonParser parserLlamadas = new JsonParser();
+                        Object objLlamadas = parserLlamadas.parse(llamadas);
+                        JsonArray arrayLlamadas = (JsonArray) objLlamadas;
+                        for (int i = 0; i < arrayLlamadas.size(); i++) {
+                            System.out.println("JSON " + i);
+                            JsonObject json = (JsonObject) arrayLlamadas.get(i);
+                            System.out.println("json ".concat(json.toString()));
+                        }
+
+                        //Comentarios de incidencias
+                        String comentariosIncidencias = null;
+                        comentariosIncidencias = request.getParameter("comentarios");
+                        if (comentariosIncidencias != null && comentariosIncidencias.length() > 0) {
+                            System.out.println("Comentarios".concat(comentariosIncidencias));
+                        } else {
+                            System.out.println("sin comentariosIncidencias ");
+                        }
+
+                        //Comentarios Médicos
+                        String comentariosMedico = null;
+                        comentariosMedico = request.getParameter("comentariosMedico");
+                        if (comentariosMedico != null && comentariosMedico.length() > 0) {
+                            System.out.println("comentariosMedico ".concat(comentariosMedico));
+                        } else {
+                            System.out.println("sin comentariosMedico ");
+                        }
+
+                        //PANTALLA 5    
+                        String etapaClinica = null;
+                        etapaClinica = request.getParameter("etapaClinica");
+                        if (etapaClinica != null && etapaClinica.length() > 0) {
+                            System.out.println("Estapa clinica ".concat(etapaClinica));
+                        } else {
+                            System.out.println("sin etapaClinica ");
+                        }
+
+                        String resultadoMastrografia = null;
+                        resultadoMastrografia = request.getParameter("tipoMastografia");
+                        if (resultadoMastrografia != null && resultadoMastrografia.length() > 0) {
+                            System.out.println("resultadoMastrografia ".concat(resultadoMastrografia));
+                        } else {
+                            System.out.println("sin resultadoMastrografia ");
+                        }
+
+                        String resultadoUltrasonido = null;
+                        resultadoUltrasonido = request.getParameter("tipoUSG");
+                        if (resultadoUltrasonido != null && resultadoUltrasonido.length() > 0) {
+                            System.out.println("resultadoUltrasonido ".concat(resultadoUltrasonido));
+                        } else {
+                            System.out.println("sin resultadoUltrasonido ");
+                        }
+
+                        String tCodificado = null;
+                        tCodificado = request.getParameter("tumorPrimarioT");
+                        if (tCodificado != null && tCodificado.length() > 0) {
+                            System.out.println("T ".concat(tCodificado));
+                        } else {
+                            System.out.println("sin tCodificado ");
+                        }
+
+                        String nCodificado = null;
+                        nCodificado = request.getParameter("gangliosN");
+                        if (nCodificado != null && nCodificado.length() > 0) {
+                            System.out.println("N ".concat(nCodificado));
+                        } else {
+                            System.out.println("sin nCodificado ");
+                        }
+
+                        String mCodificado = null;
+                        mCodificado = request.getParameter("metastasisM");
+                        if (mCodificado != null && mCodificado.length() > 0) {
+                            System.out.println("M ".concat(mCodificado));
+                        } else {
+                            System.out.println("sin mCodificado ");
+                        }
+
+                        String resultadoPatologiaPantalla5 = null;
+                        resultadoPatologiaPantalla5 = request.getParameter("resultado-patologia");
+                        if (resultadoPatologiaPantalla5 != null && resultadoPatologiaPantalla5.length() > 0) {
+                            System.out.println("Resultado resultadoPatologiaPantalla5 ".concat(resultadoPatologiaPantalla5));
+                        } else {
+                            System.out.println("sin resultadoPatologiaPantalla5 ");
+                        }
+
+                        String gradoHistologico = null;
+                        gradoHistologico = request.getParameter("grado-histologico");
+                        if (gradoHistologico != null && gradoHistologico.length() > 0) {
+                            System.out.println("Grado gradoHistologico ".concat(gradoHistologico));
+                        } else {
+                            System.out.println("sin gradoHistologico ");
+                        }
+
+                        String receptorHer2 = null;
+                        receptorHer2 = request.getParameter("receptor-her2");
+                        if (receptorHer2 != null && receptorHer2.length() > 0) {
+                            System.out.println("receptorHer2 ".concat(receptorHer2));
+                        } else {
+                            System.out.println("sin receptorHer2 ");
+                        }
+
+                        String receptorFish = null;
+                        receptorFish = request.getParameter("receptor-fish");
+                        if (receptorFish != null && receptorFish.length() > 0) {
+                            System.out.println("receptorFish ".concat(receptorFish));
+                        } else {
+                            System.out.println("sin receptorFish ");
+                        }
+
+                        String receptorRe = null;
+                        receptorRe = request.getParameter("receptor-re");
+                        if (receptorRe != null && receptorRe.length() > 0) {
+                            System.out.println("receptorRe ".concat(receptorRe));
+                        } else {
+                            System.out.println("sin receptorRe ");
+                        }
+
+                        String receptorRp = null;
+                        receptorRp = request.getParameter("receptor-rp");
+                        if (receptorRp != null && receptorRp.length() > 0) {
+                            System.out.println("receptorRp ".concat(receptorRp));
+                        } else {
+                            System.out.println("sin etapaClinica ");
+                        }
+
+                        String ki67 = null;
+                        ki67 = request.getParameter("ki67");
+                        if (ki67 != null && ki67.length() > 0) {
+                            System.out.println("ki67 ".concat(ki67));
+                        } else {
+                            System.out.println("sin ki67 ");
+                        }
+
+                        break;
+                    }
+
+                
+                case "autocompleteBiopsia": {
 
                             AutocompletadoServicioImpl autocompletadoServicioImpl = new AutocompletadoServicioImpl();
 
@@ -1665,24 +1815,24 @@ public class NavegadoraController extends HttpServlet {
                     }
 
                     break;
-                }
-
             }
 
         }
-    }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    }
+}
+
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+/**
+ * Handles the HTTP <code>GET</code> method.
+ *
+ * @param request servlet request
+ * @param response servlet response
+ * @throws ServletException if a servlet-specific error occurs
+ * @throws IOException if an I/O error occurs
+ */
+@Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -1696,7 +1846,7 @@ public class NavegadoraController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -1707,7 +1857,7 @@ public class NavegadoraController extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

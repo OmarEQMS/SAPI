@@ -20,4 +20,5 @@ public interface EmpleadoServicio {
     public List<Empleado> mostrarEmpleado();
     public boolean borradoLogicoEmpleado(int idEmpleado);
     public boolean actualizarEmpleado(Empleado empleado);
+    
 }

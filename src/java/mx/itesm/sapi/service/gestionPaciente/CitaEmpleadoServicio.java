@@ -19,4 +19,5 @@ public interface CitaEmpleadoServicio {
     public int agregarCitaEmpleado(CitaEmpleado citaEmpleado);
     public boolean borradoLogicoCitaEmpleado(int idCitaEmpleado);
     public boolean actualizarCitaEmpleado(CitaEmpleado  citaEmpleado);
+    public CitaEmpleado mostrarCitaEmpleadoIdEmpleado(int idEmpleado);
 }
