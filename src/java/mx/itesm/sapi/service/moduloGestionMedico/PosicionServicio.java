@@ -16,5 +16,5 @@ import mx.itesm.sapi.bean.moduloGestionMedico.Posicion;
 public interface PosicionServicio {
     public Posicion mostrarPosicion(int idPosicion);
     public List<Posicion> mostrarPosicion();
-    
+    public Posicion mostrarPosicion(String nombrePosicion);
 }

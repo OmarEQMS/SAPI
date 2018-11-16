@@ -177,31 +177,31 @@ public class RendimientoServicioImpl implements RendimientoServicio {
 
             rs.next();
 
-            rendimiento1.setDecripcion("edad_15_19");
+            rendimiento1.setDecripcion("Edad: 15 a 19");
             rendimiento1.setCantidad(rs.getInt("edad_15_19"));
             rendimientoPorEdad.add(rendimiento1);
-            rendimiento2.setDecripcion("edad_20_29");
+            rendimiento2.setDecripcion("Edad: 20 a 29");
             rendimiento2.setCantidad(rs.getInt("edad_20_29"));
             rendimientoPorEdad.add(rendimiento2);
-            rendimiento3.setDecripcion("edad_30_39");
+            rendimiento3.setDecripcion("Edad: 30 a 39");
             rendimiento3.setCantidad(rs.getInt("edad_30_39"));
             rendimientoPorEdad.add(rendimiento3);
-            rendimiento4.setDecripcion("edad_40_49");
+            rendimiento4.setDecripcion("Edad: 40 a 49");
             rendimiento4.setCantidad(rs.getInt("edad_40_49"));
             rendimientoPorEdad.add(rendimiento4);
-            rendimiento5.setDecripcion("edad_50_59");
+            rendimiento5.setDecripcion("Edad: 50 a 59");
             rendimiento5.setCantidad(rs.getInt("edad_50_59"));
             rendimientoPorEdad.add(rendimiento5);
-            rendimiento6.setDecripcion("edad_60_69");
+            rendimiento6.setDecripcion("Edad: 60 a 69");
             rendimiento6.setCantidad(rs.getInt("edad_60_69"));
             rendimientoPorEdad.add(rendimiento6);
-            rendimiento7.setDecripcion("edad_70_79");
+            rendimiento7.setDecripcion("Edad: 70 a 79");
             rendimiento7.setCantidad(rs.getInt("edad_70_79"));
             rendimientoPorEdad.add(rendimiento7);
-            rendimiento8.setDecripcion("edad_80_89");
+            rendimiento8.setDecripcion("Edad: 80 a 89");
             rendimiento8.setCantidad(rs.getInt("edad_80_89"));
             rendimientoPorEdad.add(rendimiento8);
-            rendimiento9.setDecripcion("edad_90_99");
+            rendimiento9.setDecripcion("Edad: 90 a 99");
             rendimiento9.setCantidad(rs.getInt("edad_90_99"));
             rendimientoPorEdad.add(rendimiento9);
 
@@ -246,31 +246,31 @@ public class RendimientoServicioImpl implements RendimientoServicio {
 
             rs.next();
 
-            rendimiento1.setDecripcion("analfabeta");
+            rendimiento1.setDecripcion("Escolaridad: Analfabeta");
             rendimiento1.setCantidad(rs.getInt("analfabeta"));
             rendimientoPorEscolaridad.add(rendimiento1);
 
-            rendimiento2.setDecripcion("primaria_incompleta");
+            rendimiento2.setDecripcion("Escolaridad: Primaria incompleta");
             rendimiento2.setCantidad(rs.getInt("primaria_incompleta"));
             rendimientoPorEscolaridad.add(rendimiento2);
 
-            rendimiento3.setDecripcion("primaria");
+            rendimiento3.setDecripcion("Escolaridad: Primaria");
             rendimiento3.setCantidad(rs.getInt("primaria"));
             rendimientoPorEscolaridad.add(rendimiento3);
 
-            rendimiento4.setDecripcion("secundaria");
+            rendimiento4.setDecripcion("Escolaridad: Secundaria");
             rendimiento4.setCantidad(rs.getInt("secundaria"));
             rendimientoPorEscolaridad.add(rendimiento4);
 
-            rendimiento5.setDecripcion("preparatoria");
+            rendimiento5.setDecripcion("Escolaridad: Preparatoria");
             rendimiento5.setCantidad(rs.getInt("preparatoria"));
             rendimientoPorEscolaridad.add(rendimiento5);
 
-            rendimiento6.setDecripcion("licenciatura");
+            rendimiento6.setDecripcion("Escolaridad: Licenciatura");
             rendimiento6.setCantidad(rs.getInt("licenciatura"));
             rendimientoPorEscolaridad.add(rendimiento6);
 
-            rendimiento7.setDecripcion("posgrado");
+            rendimiento7.setDecripcion("Escolaridad: Posgrado");
             rendimiento7.setCantidad(rs.getInt("posgrado"));
             rendimientoPorEscolaridad.add(rendimiento7);
 
@@ -506,22 +506,22 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             rs = cstmt.executeQuery();
 
             rs.next();
-            rendimiento1.setDecripcion("uno");
+            rendimiento1.setDecripcion("Nivel Socioeconomico: Uno");
             rendimiento1.setCantidad(rs.getInt("uno"));
             rendimientoPorNivelSocioEconomico.add(rendimiento1);
-            rendimiento2.setDecripcion("dos");
+            rendimiento2.setDecripcion("Nivel Socioeconomico: Dos");
             rendimiento2.setCantidad(rs.getInt("dos"));
             rendimientoPorNivelSocioEconomico.add(rendimiento2);
-            rendimiento3.setDecripcion("tres");
+            rendimiento3.setDecripcion("Nivel Socioeconomico: Tres");
             rendimiento3.setCantidad(rs.getInt("tres"));
             rendimientoPorNivelSocioEconomico.add(rendimiento3);
-            rendimiento4.setDecripcion("cuatro");
+            rendimiento4.setDecripcion("Nivel Socioeconomico: Cuatro");
             rendimiento4.setCantidad(rs.getInt("cuatro"));
             rendimientoPorNivelSocioEconomico.add(rendimiento4);
-            rendimiento5.setDecripcion("cinco");
+            rendimiento5.setDecripcion("Nivel Socioeconomico: Cinco");
             rendimiento5.setCantidad(rs.getInt("cinco"));
             rendimientoPorNivelSocioEconomico.add(rendimiento5);
-            rendimiento6.setDecripcion("seis");
+            rendimiento6.setDecripcion("Nivel Socioeconomico: Seis");
             rendimiento6.setCantidad(rs.getInt("seis"));
             rendimientoPorNivelSocioEconomico.add(rendimiento6);
 

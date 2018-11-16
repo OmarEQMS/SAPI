@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
+import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.util.Conexion;
 
 /**
@@ -97,6 +98,44 @@ public class EspecialidadServicioImpl implements EspecialidadServicio{
         }
         
         return especialidades;
+    }
+
+    @Override
+    public Especialidad mostrarEspecialidadPorNombre(String especialidad) {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        Especialidad especialiadInterna = null;
+
+        //Call del store procedure
+        String stProcedure = "CALL motrarEspecialidadPorNombre(?)";
+
+        try {
+            especialiadInterna = new Especialidad();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setString(1, especialidad);
+
+            rs = cstmt.executeQuery();
+
+            rs.next();
+            especialiadInterna.setIdEspecialidad(rs.getInt(1));
+            especialiadInterna.setNombre(rs.getString(2));
+            especialiadInterna.setSubEspecialidad(rs.getInt(3));
+            especialiadInterna.setEstatus(rs.getInt(4));
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println("PersonaServicioImpl mostrarPersona");
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));            
+        }
+        return especialiadInterna;
     }
     
 }
