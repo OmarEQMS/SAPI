@@ -118,7 +118,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
         Rendimiento rendimientoPorMes = new Rendimiento();
 
         //Call del store procedure
-        String stProcedure = "CALL pacientePorMes(?,?)";
+        String stProcedure = "CALL pacientesPorMes(?,?)";
 
         try {
             conn = Conexion.getConnection();
