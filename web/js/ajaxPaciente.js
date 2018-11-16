@@ -532,6 +532,8 @@ $(document).ready(function () {
 
         if (isValidDate($('#fechaInicioTratamiento')) && $("#tipoTratamiento").val() != null) {
 
+            var fechaInicioTratamiento = $("#fechaInicioTratamiento").val();
+
             $.ajax({
                 url: 'PacienteController',
                 cache: false,
@@ -551,11 +553,15 @@ $(document).ready(function () {
                             title: "Tratamiento registrado correctamente",
                             icon: "success",
                         });
+                        
+                        console.log("FechaInicioTratamiento: " + $("#fechaInicioTratamiento").val());
+                        
+                        
                         var row = "<tr>" +
                                 "<input type='hidden' id='nombre-" + response + "' value='" + $("#nombreTipoTratamiento").val() + "'/>" +
                                 "<input type='hidden' id='fechaInicio-" + response + "' value='" + $("#fechaInicioTratamiento").val() + "'/>" +
                                 "<td id='nombre-" + response + "' >" + $("#nombreTipoTratamiento").val() + "</td>" +
-                                "<td id='fechaInicio-" + response + "' >" + $("#fechaInicioTratamiento").val() + "</td>" +
+                                "<td id='fechaInicio-" + response + "' >" + fechaInicioTratamiento + "</td>" +
                                 "<td  id='fecha-" + response + "'>" + "</td>" +
                                 "<td><button class='btn btn-primary terminarTratamiento' id='modal-" + response + "' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button></td > " +
                                 "</tr>";
@@ -565,7 +571,7 @@ $(document).ready(function () {
 
                         $("#fechaInicioTratamiento").val('');
 
-                        //$('#idTratamientoPaciente').val(response);
+                        //$('#idTratamientoPaciente').val(response);*/
 
                     })
                     .fail(function (xhr, textStatus, errorThrown) {
@@ -579,8 +585,8 @@ $(document).ready(function () {
             });
         }
     });
+        
     //Cambiar contraseña
-
     $("#btn-updatePassword").on('click', function () {
         if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
             //Modal cambiar contraseña 
