@@ -34,7 +34,7 @@ public class LoginServicioImpl implements LoginServicio {
             cstmt.setString (2, cuenta.getPassword());
             
             ResultSet rs = cstmt.executeQuery();
-          
+            System.out.println(cstmt.toString());
             rs.next();
                                     
             int resultado = rs.getInt("AUTH");

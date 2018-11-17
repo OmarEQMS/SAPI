@@ -163,7 +163,7 @@
                                                 <a class="nav-item nav-link text-center colorMoradoLight texto-tab" id="nav-solicitud-tab" data-toggle="tab" href="#solicitud" role="tab"
                                                    aria-controls="nav-solicitud" aria-selected="true" style="width:33%"><!--<i
                                                         class="fas fa-check-circle text-success mr-2"></i>-->SOLICITUD</a>
-                                                
+
                                                 <a class="nav-item nav-link active text-center colorMoradoLight texto-tab" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
                                                    aria-controls="nav-contact" aria-selected="false" style="width:33%">RESOLUCIÓN</a>
 
@@ -497,7 +497,7 @@
                                                                     <select class="form-control" id="motivoConsulta" disabled>
                                                                         <option value="0">Seleccione el motivo de la consulta</option>
                                                                         <option value="1">Me envió un médico</option>
-                                                                        <option value="3">Me sentí una bolita en el seno y no he visto a ningún médico</option>
+                                                                        <option value="3">No he consultado a ningun medico (punto y coma) pero me senti una bolita en el seno</option>
                                                                         <option value="4">Me envían de otro hospital</option>
                                                                         <option value="5">Otro</option>
                                                                     </select>
@@ -1044,7 +1044,7 @@
                                                                     <select class="form-control" id="motivoConsulta">
                                                                         <option value="0">Seleccione el motivo de la consulta</option>
                                                                         <option value="1">Me envió un médico</option>
-                                                                        <option value="3">Me sentí una bolita en el seno</option>
+                                                                        <option value="3">No he consultado a ningún médico; pero me sentí una bolita en el seno</option>
                                                                         <option value="4">Me envían de otro hospital</option>
                                                                         <option value="5">Otro</option>
                                                                     </select>

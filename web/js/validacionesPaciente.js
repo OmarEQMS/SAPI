@@ -214,7 +214,7 @@ $(document).ready(function () {
         var year = today.getFullYear();
         var month = today.getMonth();
         var day = today.getDate();
-        var futureDate = new Date(year, month + 2, day)
+        var futureDate = new Date(year, month + 2, day);
         
         console.log("Hoy: " + today);
         console.log("FechaReg: " + date_from);
