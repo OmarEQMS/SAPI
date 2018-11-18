@@ -600,8 +600,63 @@ $(document).ready(function () {
     
     //Terminar tratamiento
     $("#fechaTerminarTratamiento").on('click', function () {
+                var date_from = $('#fechaFinTratamiento').val();
+        var date_by = $('#fechaInicioTratamiento2').val();
+        console.log("#fechaFin: " + date_from);
+        console.log("#fechaInicio: " + date_by);
+        console.log("idTratamientoPaciente: " + $('.idTratamientoPaciente').val());
 
-        
+        if (isValidDate2($('#fechaFinTratamiento'), $('#fechaInicioTratamiento2'))) {
+
+            var fechaFinTratamiento = $('#fechaFinTratamiento').val();
+
+            $.ajax({
+                url: 'PacienteController',
+                cache: false,
+                method: 'POST',
+                data: {
+                    key: 'terminarTratamiento',
+                    idTratamientoPaciente: $('.idTratamientoPaciente').val(),
+                    fechaFin: $('#fechaFinTratamiento').val()
+                }
+            })
+                    .done(function (response) {
+
+                        $('#modalEditarTerminado').modal('toggle'); //cerrar modal
+                        swal({
+                            title: "Tratamiento finalizado",
+                            icon: "success",
+                            buttons: true,
+                            buttons: [, 'Aceptar']
+                        });
+                        
+                        
+                        //actualizar la tabla
+
+                        console.log("fechaFinTratamiento: " + $('#fechaFinTratamiento').val());
+
+                        $('#fecha-' + $('.idTratamientoPaciente').val()).html(fechaFinTratamiento);
+
+                        $("#fechaFinTratamiento").val('');
+
+                        $("#modal-" + $('.idTratamientoPaciente').val()).attr("disabled", "disabled").removeClass("btn-primary").addClass("btn-secondary");
+
+
+
+                    })
+                    .fail(function (xhr, textStatus, errorThrown) {
+                        console.log(xhr.responseText);
+                    });
+
+        } else {
+            swal({
+                title: "Datos invalidos!",
+                text: "Revisa todos los campos antes de continuar",
+                icon: "error",
+                buttons: true,
+                buttons: [, 'Aceptar']
+            });
+        }
     });
     //Designar idTratamientoPaciente
     //$('body').on('click', '.terminarTratamiento', function () {
