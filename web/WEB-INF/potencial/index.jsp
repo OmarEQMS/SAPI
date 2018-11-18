@@ -214,7 +214,9 @@
                                                             <!-- Genero -->
                                                             <div class="row">
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-center">
-                                                                    <span class="textoDocumento">Sexo</span>
+                                                                    <span class="textoDocumento">Sexo<br>
+                                                                        <small><strong>Obligatorio</strong></small>
+                                                                    </span>
                                                                 </div>
 
                                                                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 text-center">
@@ -330,7 +332,7 @@
                                                                             <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacion" aria-describedby="fileHelp" disabled>
                                                                             <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label">
-                                                                                Elegir archivo...
+                                                                                Elegir archivo (obligatorio)...
                                                                             </label>
                                                                         </div>
                                                                     </c:when>    
@@ -389,7 +391,7 @@
                                                                             <input type="file" name="fileCURP" class="custom-file-input centraInput" id="fileCURP" aria-describedby="fileHelp" disabled>
                                                                             <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label">
-                                                                                Elegir archivo...
+                                                                                Elegir archivo (obligatorio)...
                                                                             </label>
                                                                         </div>
 
@@ -436,7 +438,7 @@
                                                                             <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilio" aria-describedby="fileHelp" disabled>
                                                                             <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label">
-                                                                                Elegir archivo...
+                                                                                Elegir archivo (obligatorio)...
                                                                             </label>
                                                                         </div>
 
@@ -692,7 +694,9 @@
                                                             <div class="row mt-4" id="formMotivoConsulta">
 
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center">
-                                                                    <span class="textoDocumento">Motivo de la consulta</span>
+                                                                    <span class="textoDocumento">Motivo de la consulta <br>
+                                                                        <small><strong>Obligatorio</strong></small>
+                                                                    </span>
                                                                 </div>
 
                                                                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 removePadding">
@@ -759,7 +763,9 @@
                                                             <!-- Genero -->
                                                             <div class="row">
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-center">
-                                                                    <span class="textoDocumento">Sexo</span>
+                                                                    <span class="textoDocumento">Sexo<br>
+                                                                        <small><strong>Obligatorio</strong></small>
+                                                                    </span>
                                                                 </div>
 
                                                                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 text-center">
@@ -875,7 +881,7 @@
                                                                             <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacion" aria-describedby="fileHelp">
                                                                             <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label" id="labelIdentificacion">
-                                                                                Elegir archivo...
+                                                                                Elegir archivo (obligatorio)...
                                                                             </label>
                                                                         </div>
                                                                     </c:when>    
@@ -934,7 +940,7 @@
                                                                             <input type="file" name="fileCURP" class="custom-file-input centraInput" id="fileCURP" aria-describedby="fileHelp">
                                                                             <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label" id="labelCurp">
-                                                                                Elegir archivo...
+                                                                                Elegir archivo (obligatorio)...
                                                                             </label>
                                                                         </div>
 
@@ -981,7 +987,7 @@
                                                                             <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilio" aria-describedby="fileHelp">
                                                                             <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label" id="labelComprobante">
-                                                                                Elegir archivo...
+                                                                                Elegir archivo (obligatorio)...
                                                                             </label>
                                                                         </div>
 
@@ -1238,7 +1244,9 @@
                                                             <div class="row mt-4" id="formMotivoConsulta">
 
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center">
-                                                                    <span class="textoDocumento">Motivo de la consulta</span>
+                                                                    <span class="textoDocumento">Motivo de la consulta<br>
+                                                                        <small><strong>Obligatorio</strong></small>
+                                                                    </span>
                                                                 </div>
 
                                                                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 removePadding">
