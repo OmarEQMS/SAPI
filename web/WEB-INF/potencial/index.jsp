@@ -147,7 +147,7 @@
 
                             <div class="card-body justify-content-center">
 
-                                <!-- navbar SHANNON -->
+                                <!-- navbar -->
 
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -485,33 +485,6 @@
 
                                                             </div>
 
-                                                            <!-- Motivo de la consulta -->
-
-                                                            <div class="row mt-4" id="formMotivoConsulta">
-
-                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center">
-                                                                    <span class="textoDocumento">Motivo de la consulta</span>
-                                                                </div>
-
-                                                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 removePadding">
-                                                                    <select class="form-control" id="motivoConsulta" disabled>
-                                                                        <option value="0">Seleccione el motivo de la consulta</option>
-                                                                        <option value="1">Me envió un médico</option>
-                                                                        <option value="3">No he consultado a ningun medico (punto y coma) pero me senti una bolita en el seno</option>
-                                                                        <option value="4">Me envían de otro hospital</option>
-                                                                        <option value="5">Otro</option>
-                                                                    </select>
-                                                                    <span class="text-danger ml-3" id="error-motivoConsulta">No seleccionaste un motivo de consulta</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row mt-4" id="documentoAdjuntoMotivo">
-                                                            </div>
-
-                                                            <div class="row mt-4 mb-4" id="otroHospital">
-                                                            </div>
-
-
                                                             <!-- Estudios previos Mastografí­a-->
                                                             <div class="row mt-1">
 
@@ -712,7 +685,32 @@
                                                                         </div>
                                                                     </span>
                                                                 </div>
+                                                            </div>
 
+                                                            <!-- Motivo de la consulta -->
+
+                                                            <div class="row mt-4" id="formMotivoConsulta">
+
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center">
+                                                                    <span class="textoDocumento">Motivo de la consulta</span>
+                                                                </div>
+
+                                                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 removePadding">
+                                                                    <select class="form-control" id="motivoConsulta" disabled>
+                                                                        <option value="0">Seleccione el motivo de la consulta</option>
+                                                                        <option value="1">Me envió un médico</option>
+                                                                        <option value="3">No he consultado a ningun medico (punto y coma) pero me senti una bolita en el seno</option>
+                                                                        <option value="4">Me envían de otro hospital</option>
+                                                                        <option value="5">Otro</option>
+                                                                    </select>
+                                                                    <span class="text-danger ml-3" id="error-motivoConsulta">No seleccionaste un motivo de consulta</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mt-4" id="documentoAdjuntoMotivo">
+                                                            </div>
+
+                                                            <div class="row mt-4 mb-4" id="otroHospital">
                                                             </div>
 
                                                         </form>
@@ -1032,32 +1030,6 @@
 
                                                             </div>
 
-                                                            <!-- Motivo de la consulta -->
-
-                                                            <div class="row mt-4" id="formMotivoConsulta">
-
-                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center">
-                                                                    <span class="textoDocumento">Motivo de la consulta</span>
-                                                                </div>
-
-                                                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 removePadding">
-                                                                    <select class="form-control" id="motivoConsulta">
-                                                                        <option value="0">Seleccione el motivo de la consulta</option>
-                                                                        <option value="1">Me envió un médico</option>
-                                                                        <option value="3">No he consultado a ningún médico; pero me sentí una bolita en el seno</option>
-                                                                        <option value="4">Me envían de otro hospital</option>
-                                                                        <option value="5">Otro</option>
-                                                                    </select>
-                                                                    <span class="text-danger ml-3" id="error-motivoConsulta">No seleccionaste un motivo de consulta</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row mt-4" id="documentoAdjuntoMotivo">
-                                                            </div>
-
-                                                            <div class="row mt-4 mb-4" id="otroHospital">
-                                                            </div>
-
 
                                                             <!-- Estudios previos Mastografí­a-->
                                                             <div class="row mt-1">
@@ -1259,7 +1231,32 @@
                                                                         </div>
                                                                     </span>
                                                                 </div>
+                                                            </div>
 
+                                                            <!-- Motivo de la consulta -->
+
+                                                            <div class="row mt-4" id="formMotivoConsulta">
+
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center">
+                                                                    <span class="textoDocumento">Motivo de la consulta</span>
+                                                                </div>
+
+                                                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 removePadding">
+                                                                    <select class="form-control" id="motivoConsulta">
+                                                                        <option value="0">Seleccione el motivo de la consulta</option>
+                                                                        <option value="1">Me envió un médico</option>
+                                                                        <option value="3">No he consultado a ningún médico; pero me sentí una bolita en el seno</option>
+                                                                        <option value="4">Me envían de otro hospital</option>
+                                                                        <option value="5">Otro</option>
+                                                                    </select>
+                                                                    <span class="text-danger ml-3" id="error-motivoConsulta">No seleccionaste un motivo de consulta</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mt-4" id="documentoAdjuntoMotivo">
+                                                            </div>
+
+                                                            <div class="row mt-4 mb-4" id="otroHospital">
                                                             </div>
 
                                                         </form>
@@ -1274,14 +1271,14 @@
                                                                         class="fas fa-check-circle mr-2"></i>Enviar</button>
                                                             </div>
                                                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-2">
-                                                                <button class="btn btn-guardar-continuar btn-block" id="btn-GuardarContinuar" style="border-radius:20px"><i
+                                                                <button class="btn btn-guardar-continuar btn-outline-primary btn-block" id="btn-GuardarContinuar" style="border-radius:20px"><i
                                                                         class="fas fa-save mr-2"></i>Guardar y Continuar Después</button>
                                                             </div>
                                                         </div>
 
                                                         <!-- ***** Nota ***** -->
                                                         <div class="row mt-3 justify-content-center">
-                                                            <div class="col-7 text-center bg-primary" style="border-radius:20px;">
+                                                            <div class="col-7 text-center bg-danger" style="border-radius:20px;">
                                                                 <span style="font-size: 14px;" class="text-white">Nota: Asegúrate de que tu motivo de consulta sea lo último
                                                                     que subas, puesto que no es información que puedas guardar y completar después. Debes estar segura(o) que
                                                                     cuando lo subas es porque darás click al botón de envíar para guardar la información.</span>

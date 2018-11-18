@@ -381,22 +381,6 @@ a.article:hover {
     
 }
 
-.btn-guardar-continuar{
-    
-    
-    background-color: #fff;
-    border-color: #eb5865;
-    color:#eb5865;
-}
-
-
-
-.btn.btn-guardar-continuar:hover{
-    background-color: #eb5865;
-    border-color: #fff;
-    color:#fff;
-}
-
 .iconoQuestion{
     font-size: 20px;
     cursor: pointer;
