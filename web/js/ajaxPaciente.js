@@ -795,22 +795,29 @@ function isValidDate(input, fechaNac) {
     ;
     
     function isValidDate2(input, fechaInicio) {
-
+        
         //Valor seleccionado del input
         let date_from = input.val();
         date_from = new Date(date_from);
-
+        
+        //Valor de la fecha de inicio
         let date_start = fechaInicio.val();
         date_start = new Date(date_start);
+        
+        //Fecha de hoy
+        let date_today = new Date();
 
         var event = false;
 
-        if (date_from > date_start) {
+        if(date_start < date_from && date_from <= date_today){
             event = false;
-            console.log("Válido");
-        } else {
-            event = true;
-            console.log("Inválido");
+            console.log(event);
+            console.log("fechaValida");
+        }
+        else{
+            event= true;
+            console.log(event);
+            console.log("fechaInValida");
         }
 
         if (!input.val() || event) {
@@ -824,8 +831,7 @@ function isValidDate(input, fechaNac) {
         }
 
         return true;
-
-    }
+    };
 
     function isValidPassword(input) {
 

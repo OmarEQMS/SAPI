@@ -250,19 +250,26 @@ $(document).ready(function () {
     ;
 
 
-    function isValidDate2 (input, fechaInicio) {
+    function isValidDate2(input, fechaInicio) {
         
         //Valor seleccionado del input
         let date_from = input.val();
-
         date_from = new Date(date_from);
         
+        //Valor de la fecha de inicio
         let date_start = fechaInicio.val();
         date_start = new Date(date_start);
+        
+        //Fecha de hoy
+        let date_today = new Date();
 
         var event = false;
+        
+        console.log("Hoy: " + date_today);
+        console.log("FechaFin: " + date_from);
+        console.log("FechaInicio: " + date_start);
 
-        if(date_from >= date_start){
+        if(date_start < date_from && date_from <= date_today){
             event = false;
             console.log(event);
             console.log("fechaValida");
@@ -284,7 +291,6 @@ $(document).ready(function () {
         }
 
         return true;
- 
     };
 
     function isValidExpediente(input) {
