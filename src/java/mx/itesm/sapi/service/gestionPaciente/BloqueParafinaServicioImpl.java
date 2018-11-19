@@ -21,11 +21,47 @@ import mx.itesm.sapi.util.Conexion;
 public class BloqueParafinaServicioImpl implements BloqueParafinaServicio {
 
     @Override
+    public BloqueParafina mostrarBloqueParafinaPaciente(int idPaciente) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarBloqueParafinaPaciente(?)";
+        BloqueParafina bloqueParafina = null;
+
+        try {
+            conn = Conexion.getConnection();
+            bloqueParafina = new BloqueParafina();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            bloqueParafina.setIdBloqueParafina(rs.getInt("idBloqueParafina"));
+            bloqueParafina.setIdBiopsia(rs.getInt("idBiopsia"));
+            bloqueParafina.setSerie(rs.getString("serie"));
+            bloqueParafina.setEstatus(rs.getInt("estatus"));
+            bloqueParafina.setCantidad(rs.getInt("cantidad"));
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            bloqueParafina = null;
+        }
+        return bloqueParafina;
+    }
+
+    
+    @Override
     public BloqueParafina mostrarBloqueParafina(int idBloqueParafina) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarBloqueParafina";
+        String stProcedure = "CALL mostrarBloqueParafina(?)";
         BloqueParafina bloqueParafina = null;
 
         try {

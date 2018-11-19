@@ -663,9 +663,9 @@ public class NavegadoraController extends HttpServlet {
                             /**
                              * DECLARACION DE ATRIBUTOS
                              */
-                            int idPacientePotencial = 4;
-                            int idCuenta = 19;
-                            int idNavegadora = 1;//Navegadora
+                            int idPacientePotencial = 30;
+                            int idCuenta = 63;
+                            int idNavegadora = 2;//Navegadora
 
                             /**
                              * INICIO DECLARACION DE SERVICIOS
@@ -738,6 +738,7 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Sin PRZ");
                             }
 
+                            System.out.println("Ya pase PRZA");
                             //Tabla pacienteMedicoTitular
                             //MEDICO ADSCRITO
                             int medicoAdscrito = 0;
@@ -750,6 +751,9 @@ public class NavegadoraController extends HttpServlet {
                                 Calendar cal = Calendar.getInstance();
                                 System.out.println(dateFormat.format(cal.getTime()));
                                 Date inicio = Date.valueOf(dateFormat.format(cal.getTime()));
+                                
+                                System.out.println("Esta es la fecha: " +inicio);
+                                
 
                                 PacienteMedicoTitular pacienteMedicoTitular = pacienteMedicoTitularServicioImpl.mostrarPacienteMedicoTitularIdPacientePosicion(idPacientePotencial, 2);
 
@@ -799,6 +803,8 @@ public class NavegadoraController extends HttpServlet {
                             } else {
                                 System.out.println("Sin médico adscrito");
                             }
+                            
+                            System.out.println("Ya pase Medico Adscrito");
 
                             //MEDICO RADIOLOGO
                             int medicoRadiologo;
@@ -1566,6 +1572,9 @@ public class NavegadoraController extends HttpServlet {
                                     bloqueParafinaServicioImpl.agregarBloqueParafina(bloqueParafina);
                                 }
                             }
+                            /*
+                            //EMPIEZA PANTALLA 3
+                            
                             //BIOPSIAS                            
                             String biopsias = request.getParameter("biopsias");
                             System.out.println("Biopsias ".concat(biopsias));
@@ -1909,6 +1918,8 @@ public class NavegadoraController extends HttpServlet {
                             } else {
                                 System.out.println("sin ki67 ");
                             }
+                            
+                            */
 
                             break;
                         }

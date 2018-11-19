@@ -22,6 +22,47 @@ import mx.itesm.sapi.service.gestionTratamiento.PacienteTratamientoPrevioService
 public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamientoPrevioService {
 
     @Override
+    public PacienteTratamientoPrevio mostrarPacienteTratamientoPrevioTratamiento(int idPaciente, int idTratamiento){
+       Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+
+        PacienteTratamientoPrevio pacienteTratamientoPrevio = null;
+
+        //Call del stored procedure
+        String stProcedure = "CALL mostrarPacienteTratamientoPrevioTratamiento(?, ?)";
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            pacienteTratamientoPrevio = new PacienteTratamientoPrevio();
+
+            cstmt.setInt(1, idPaciente);
+            cstmt.setInt(1, idTratamiento);
+            rs = cstmt.executeQuery();
+
+            rs.next();
+            pacienteTratamientoPrevio.setIdPacienteTratamientoPrevio(rs.getInt(1));
+            pacienteTratamientoPrevio.setIdPaciente(rs.getInt(2));
+            pacienteTratamientoPrevio.setIdTipoTratamiento(rs.getInt(3));
+            pacienteTratamientoPrevio.setFecha(rs.getDate(4));
+            pacienteTratamientoPrevio.setComentarios(rs.getString(5));
+            pacienteTratamientoPrevio.setEstatus(rs.getInt(6));
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+            pacienteTratamientoPrevio = null;
+            System.out.println("ID: " + pacienteTratamientoPrevio.getIdPacienteTratamientoPrevio());
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+        return pacienteTratamientoPrevio; 
+    }
+    
+    @Override
     public int agregarPacienteTratamientoPrevio(PacienteTratamientoPrevio pacienteTratamientoPrevio) {
 
         Connection conn;
