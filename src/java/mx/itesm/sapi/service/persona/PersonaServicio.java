@@ -34,5 +34,5 @@ public interface PersonaServicio {
 
     public InformacionGeneralPersona mostrarInformacionGeneralPersona(int idPaciente);
     public boolean actualizarInformacionGeneralPersona(int idPaciente, InformacionGeneralPersona persona);
-   
+    public boolean actualizarPersonaMedico(Persona persona);
 }

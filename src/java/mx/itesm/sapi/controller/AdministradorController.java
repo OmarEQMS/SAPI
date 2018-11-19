@@ -121,7 +121,7 @@ public class AdministradorController extends HttpServlet {
                         persona.setSegundoApellido(segundoApellido);
                         persona.setCorreo(correo);
                         persona.setTelefono(telefono);
-                        boolean personaBoolean = personaServicioImpl.actualizarPersona(persona);
+                        boolean personaBoolean = personaServicioImpl.actualizarPersonaMedico(persona);
                         
                         CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
                         Cuenta cuenta = cuentaServicioImpl.mostrarCuenta(medico.getIdCuenta());

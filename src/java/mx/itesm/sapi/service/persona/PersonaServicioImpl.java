@@ -665,4 +665,50 @@ public class PersonaServicioImpl implements PersonaServicio {
 
     }
 
+    @Override
+    public boolean actualizarPersonaMedico(Persona persona) {
+        
+        
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+        boolean exito = false;
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL actualizarPersonaMedico(?,?,?,?,?,?)");
+
+            cstmt.setInt(1, persona.getIdPersona());
+            cstmt.setString(2, persona.getNombre());
+            cstmt.setString(3, persona.getPrimerApellido());
+            cstmt.setString(4, persona.getSegundoApellido());
+            cstmt.setString(5, persona.getTelefono());
+            cstmt.setString(6, persona.getCorreo());
+            
+
+            rs = cstmt.executeQuery();
+
+            rs.next();
+
+            int idPacienteReg = rs.getInt(1);
+
+            if (idPacienteReg == 1) {
+                exito = true;
+            }
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println("PersonaServicioImpl actualirzar persona médico");
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+        }
+
+        return exito;
+    }
+
 }
