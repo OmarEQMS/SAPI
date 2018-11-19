@@ -43,6 +43,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Seguro;
 import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.UnionTratamientoPaciente;
+import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.bean.persona.Estado;
@@ -73,6 +74,7 @@ import mx.itesm.sapi.service.gestionPaciente.TipoHistologicoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.UnionTratamientoPacienteServiceImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.EstadoServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
@@ -124,8 +126,8 @@ public class FrontController extends HttpServlet {
         }else if ((file == null || file != null) && sesion.getAttribute("idCuenta") != null)
         {
             if (file == null)
-                file = sesion.getAttribute("path").toString();
-            else
+                file = sesion.getAttribute("path").toString();                        
+            else 
                 file = request.getParameter("file");
 
             if ("jsp".equals(file.substring(file.length() - 3))) {                               
@@ -219,7 +221,11 @@ public class FrontController extends HttpServlet {
                                 }
                                 case "administrador/gestionMedicos.jsp":
                                 {
-                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                                    List<TablaMedicoAdministrador> medicosAdministrador = empleadoServicioImpl.mostrarListaMedicos();
+                                    request.setAttribute("ListaMedicosAdmistrador", medicosAdministrador);
+                                    
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);                                    
                                     break;
                                 }
                                 case "administrador/gestionNavegadora.jsp":
@@ -239,7 +245,7 @@ public class FrontController extends HttpServlet {
                                 }
                                 case "administrador/index.jsp":
                                 {
-                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    
                                     break;
                                 }
                                 case "administrador/reAsignarMedico.jsp":

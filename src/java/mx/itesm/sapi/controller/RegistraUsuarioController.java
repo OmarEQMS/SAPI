@@ -36,8 +36,10 @@ import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
 import mx.itesm.sapi.bean.moduloGestionMedico.EmpleadoPosicion;
 import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
+import mx.itesm.sapi.bean.moduloGestionMedico.Identificadores;
 import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
 import mx.itesm.sapi.bean.moduloGestionMedico.Posicion;
+import mx.itesm.sapi.bean.moduloGestionMedico.RestringirEmpleado;
 import mx.itesm.sapi.bean.moduloGestionPaciente.Paciente;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Direccion;
@@ -334,6 +336,30 @@ public class RegistraUsuarioController extends HttpServlet {
                 String posicionMedico = request.getParameter("posicion");
                 String cedula = request.getParameter("cedula");
                 String contraseña = request.getParameter("password");
+                
+                RestringirEmpleado restringirEmpleado = new RestringirEmpleado();
+                
+                restringirEmpleado.setNombre(nombre);
+                restringirEmpleado.setPrimerApellido(apellido1);
+                restringirEmpleado.setSegundoApellido(apellido2);
+                restringirEmpleado.setTelefono(telefono);
+                restringirEmpleado.setCorreo(correo);
+                restringirEmpleado.setRol(idRolMedico);
+                restringirEmpleado.setUsuario(noEmpleado);
+                
+                
+                Identificadores identificadores = empleadoServicioImpl.restringirEmpleado(restringirEmpleado);
+                    
+                //Si la misma cuenta ya existe no se permitirá registrar
+                PrintWriter permitir = response.getWriter();
+                
+                if(identificadores.getIdCuenta() > 0)
+                {                    
+                    permitir.print("Existe");
+                    System.out.println("Ya existe la cuenta de médico");
+                    break;
+                }
+                                                
                                 
                 System.out.println(nombre);
                 System.out.println(apellido1);
@@ -362,11 +388,13 @@ public class RegistraUsuarioController extends HttpServlet {
                 empleado.setNoEmpleado(noEmpleado);
                 empleado.setIdDepartamentoDepartamentoInterno(idTumoresMamarios);
                 
-                int idPersona = _registroServicio.agregarMedico(per,idRolMedico);
-                int idCuenta;
-                int idEmpleado;                
+                 int idPersona = identificadores.getIdPersona();
                 
-                
+                if (idPersona == 0)
+                    idPersona = _registroServicio.agregarMedico(per,idRolMedico);                
+                    
+                int idCuenta = identificadores.getIdCuenta();
+                int idEmpleado = identificadores.getEmpleado();          
                 
                 System.out.println("idPersona: ".concat(String.valueOf(idPersona)));
                 if(idPersona > 0)
@@ -379,12 +407,14 @@ public class RegistraUsuarioController extends HttpServlet {
                 
                 
                     cuenta.setIdPersona(idPersona);                    
-                    idCuenta = _rSC.agregarCuenta(cuenta);
+                    if(idCuenta == 0)
+                        idCuenta = _rSC.agregarCuenta(cuenta);
                     
                     if(idCuenta > 0)
                     {
                         empleado.setIdCuenta(idCuenta);
-                        idEmpleado = empleadoServicioImpl.agregarEmpleado(empleado);
+                        if(idEmpleado == 0)
+                            idEmpleado = empleadoServicioImpl.agregarEmpleado(empleado);
                         
                         System.out.println("idCuenta: ".concat(String.valueOf(idCuenta)));
                         if(idEmpleado > 0)
@@ -414,6 +444,11 @@ public class RegistraUsuarioController extends HttpServlet {
                             System.out.println("idEmpleadoPosicion: ".concat(String.valueOf(idEmpleadoPosicionServicio)));
                             System.out.println("idMedicoEspecialidad: ".concat(String.valueOf(idMedicoEspecialidad)));
                             
+                            if(idEmpleado > 0 && idEmpleadoPosicionServicio > 0)
+                                permitir.print("1");
+                            else
+                                permitir.print("0");
+                            
                         }
                         
                     }
@@ -440,7 +475,30 @@ public class RegistraUsuarioController extends HttpServlet {
                 String posicionNavegadora = "Navegadora";
                 String cedula = request.getParameter("cedula");
                 String contraseña = request.getParameter("password");
+                 
+                RestringirEmpleado restringirEmpleado = new RestringirEmpleado();
                 
+                restringirEmpleado.setNombre(nombre);
+                restringirEmpleado.setPrimerApellido(apellido1);
+                restringirEmpleado.setSegundoApellido(apellido2);
+                restringirEmpleado.setTelefono(telefono);
+                restringirEmpleado.setCorreo(correo);
+                restringirEmpleado.setRol(idRolNavegadora);
+                restringirEmpleado.setUsuario(noEmpleado);
+                
+                
+                Identificadores identificadores = empleadoServicioImpl.restringirEmpleado(restringirEmpleado);
+                    
+                //Si la misma cuenta ya existe no se permitirá registrar
+                PrintWriter permitir = response.getWriter();
+                
+                if(identificadores.getIdCuenta() > 0)
+                {                    
+                    permitir.print("Existe");
+                    System.out.println("Ya existe la cuenta de navegadora");
+                    break;
+                }
+                                
                 
                 System.out.println(nombre);
                 System.out.println(apellido1);
@@ -473,9 +531,13 @@ public class RegistraUsuarioController extends HttpServlet {
                 empleado.setNoEmpleado(noEmpleado);
                 empleado.setIdDepartamentoDepartamentoInterno(idTumoresMamarios);
                 
-                int idPersona = _registroServicio.agregarMedico(per,idRolNavegadora);
-                int idCuenta;
-                int idEmpleado;                
+                int idPersona = identificadores.getIdPersona();
+                
+                if (idPersona == 0)
+                    idPersona = _registroServicio.agregarMedico(per,idRolNavegadora);                
+                    
+                int idCuenta = identificadores.getIdCuenta();
+                int idEmpleado = identificadores.getEmpleado();                
                 
                 System.out.println("idPersona: ".concat(String.valueOf(idPersona)));
                 if(idPersona > 0)
@@ -486,13 +548,17 @@ public class RegistraUsuarioController extends HttpServlet {
                     pic.setIdPersona(idPersona);
                     picServiceImpl.agregarPic(pic);
                                         
-                    cuenta.setIdPersona(idPersona);                    
-                    idCuenta = _rSC.agregarCuenta(cuenta);
+                    cuenta.setIdPersona(idPersona);    
+                    
+                    if(idCuenta == 0)
+                        idCuenta = _rSC.agregarCuenta(cuenta);
                     
                     if(idCuenta > 0)
                     {
                         empleado.setIdCuenta(idCuenta);
-                        idEmpleado = empleadoServicioImpl.agregarEmpleado(empleado);
+                        
+                        if(idEmpleado == 0)
+                            idEmpleado = empleadoServicioImpl.agregarEmpleado(empleado);
                         
                         System.out.println("idCuenta: ".concat(String.valueOf(idCuenta)));
                         if(idEmpleado > 0)
@@ -522,19 +588,20 @@ public class RegistraUsuarioController extends HttpServlet {
                             System.out.println("idEmpleadoPosicion: ".concat(String.valueOf(idEmpleadoPosicionServicio)));
                             System.out.println("idMedicoEspecialidad: ".concat(String.valueOf(idMedicoEspecialidad)));
                             
+                            if(idEmpleado > 0 && idEmpleadoPosicionServicio > 0)
+                                permitir.print("1");
+                            else
+                                permitir.print("0");
                         }
                         
                     }
                     
                 }    
-                                                                          
-                
-                
+                                                     
                 break;
             }
-
+                       
         }
-
     }
 
     protected void enviaCorreo(String usuario,String correo) {

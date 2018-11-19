@@ -249,6 +249,8 @@ public class PersonaServicioImpl implements PersonaServicio {
             cstmt.setInt(13, persona.getIdDireccion());
             cstmt.setInt(14, persona.getEdad());
 
+            System.out.println("Actualizar persona ".concat(cstmt.toString()));
+            
             rs = cstmt.executeQuery();
 
             rs.next();

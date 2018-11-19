@@ -326,11 +326,13 @@ public class LoginController extends HttpServlet {
                                 } catch (Exception ex) {
 
                                 }
-
+                                
+                                
+                                
                                 sesion.setAttribute("path", keyRuta);
-                                
-                                
-                                request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
+                                //request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);                                                                                                
+                                request.getRequestDispatcher("/SAPI").forward(request, response);                                                                                                
+                                //response.sendRedirect("/SAPI");
                                 break;
                             }
                             case 3: {

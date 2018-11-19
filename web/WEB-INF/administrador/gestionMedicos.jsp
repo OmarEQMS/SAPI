@@ -173,48 +173,36 @@
                     <table class="table table-striped mt-3" id="tablaMedicos">
                         <thead>
                             <tr>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellido</th>
+                                <th scope="col">Nombre</th>                                
                                 <th scope="col">Correo</th>
                                 <th scope="col">Teléfono</th>
                                 <th scope="col">No. Empledo</th>
                                 <th scope="col">Especialidad</th>
-                                <th scope="col">Sub-especialidad</th>
                                 <th scope="col">Cédula Profesional</th>
+                                <th scope="col">Usuario</th>                                
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
+                            
+                            <c:forEach items="${ListaMedicosAdmistrador}" var="medico">
                             <tr>
-                                <td>Julio</td>
-                                <td>Badillo</td>
-                                <td>juliobadillo@gmail.com</td>
-                                <td>77489939</td>
-                                <td>HU89K</td>
-                                <td>Especialidad</td>
-                                <td>Subespecialidad</td>
-                                <td>UDU88DJ</td>
+                                <td>${medico.nombre} ${medico.primerApellido} ${medico.segundoApellido}</td>                                
+                                <td>${medico.correo}</td>
+                                <td>${medico.telefono}</td>                                
+                                <td>${medico.noEmpleado}</td>
+                                <td>${medico.nombreEspecialidad}</td>                                
+                                <td>${medico.cedulaProfesional }</td>
+                                <td>${medico.usuario}</td>                                
                                 <td>
-                                    <button class="btn btn-primary btn-editarMedico" data-toggle="modal" data-target="#modalEditarMedico"><i
+                                    <button class="btn btn-primary btn-editarMedico" data-toggle="modal" data-id="${medico.idEmpleado}" data-target="#modalEditarMedico"><i
                                             class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger" id="btn-eliminarMedico" data-id="1"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-danger" id="btn-eliminarMedico" data-id="${medico.idEmpleado}"><i 
+                                            class="fas fa-trash-alt"></i></button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Shannon</td>
-                                <td>Rosas</td>
-                                <td>shannon@shannon.com</td>
-                                <td>8S88S8J</td>
-                                <td>JJJSJ9</td>
-                                <td>Especialidad</td>
-                                <td>Subespecialidad</td>
-                                <td>999999</td>
-                                <td>
-                                    <button class="btn btn-primary" id="btn-editarMedico" data-toggle="modal"
-                                        data-target="#modalEditarMedico"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger" id="btn-eliminarMedico"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
+                            </c:forEach>                            
+                        
                         </tbody>
                     </table>
                 </div>
@@ -232,7 +220,7 @@
                         </div>
                         <div class="modal-body">
 
-                            <input type="hidden" id="idMedico">
+                            <input type="hidden" id="idMedico" value="">
 
                             <!-- FORMULARIO EDITAR MEDICO -->
                             <div class="form-group row">
@@ -243,7 +231,7 @@
                                                 <i class="fas fa-user"></i>
                                             </div>
                                         </div>
-                                        <input type="text" id="editar-nombrePaciente" class="form-control" value="Julio">
+                                        <input type="text" id="editar-nombreMedico" class="form-control" value="Julio">
                                     </div>
                                 </div>
                             </div>

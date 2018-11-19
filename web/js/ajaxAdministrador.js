@@ -33,6 +33,10 @@ $(document).ready(function () {
                 posicion: posicion.val(),
                 cedula: cedula.val(),
                 password: password.val()
+            },
+             success: function (response) {
+
+                console.log(response);
             }
         })
             .done(function (response) {
@@ -47,23 +51,38 @@ $(document).ready(function () {
     $('body').on('click', '.btn-editarMedico', function () {
 
         var idMedico = $(this).data('id');
-
+        console.log("idMédico " + idMedico);
+        
+        
         $.ajax({
 
-            url: 'RegistraUsuarioController',
+            url: 'AdministradorController',
             cache: false,
             dataType: 'JSON',
             method: "POST",
             data: {
-                key: 'recuperaMedico',
-                id: idMedico,
+                key: 'obtener-medico',
+                idMedicoAdministrador: idMedico
             },
             beforeSend: function () {
 
             },
             success: function (response) {
 
-                $("#idMedico").val(response.id);
+                //$("#idMedico").val(response.id);
+                console.log(response);
+                var json  =  response;
+                $('#idMedico').val(json.idEmpleado);                
+                $('#editar-nombreMedico').val(json.nombre);                                
+                $('#editar-primerApellidoMedico').val(json.primerApellido);                                
+                $('#editar-segundoApellidoMedico').val(json.segundoApellido);                                
+                $('#editar-correoMedico').val(json.correo);                
+                $('#editar-telefonoMedico').val(json.telefono);                
+                $('#editar-noEmpleadoMedico').val(json.noEmpleado);                
+                $('#editar-especialidadMedico').val(json.nombreEspecialidad);                
+                $('#editar-subEspecialidadMedico').val(json.cedulaProfesional);                
+                $('#editar-cedulaProfesionalMedico').val(json.usuario);                
+                
             }
 
         });
@@ -246,37 +265,48 @@ $(document).ready(function () {
     //GUARDA EL MEDICO DESDE EL MODAL
     $('#btn-guardarMedico').on('click', function () {
 
-        var idMedico = $('#idMedico');
-
-        var nombre = $('#editar-nombreMedico');
-        var telefono = $('#editar-telefonoMedico');
-        var primerApellido = $('#editar-primerApellidoMedico');
-        var segundoApellido = $('#editar-segundoApellidoMedico');
-        var correo = $('#editar-correoMedico');
-        var noEmpleado = $('#editar-noEmpleadoMedico');
-        var especialidad = $('#editar-especialidadMedico');
-        var subEspecialidad = $('#editar-subespecialidadMedico');
-        var cedula = $('#editar-cedulaMedico');
-        var password = $('#editar-passwordMedico');
+        var idMedico = $('#idMedico').val();        
+        var nombre = $('#editar-nombreMedico').val();
+        var telefono = $('#editar-telefonoMedico').val();
+        var primerApellido = $('#editar-primerApellidoMedico').val();
+        var segundoApellido = $('#editar-segundoApellidoMedico').val();
+        var correo = $('#editar-correoMedico').val();
+        var noEmpleado = $('#editar-noEmpleadoMedico').val();
+        var especialidad = $('#editar-especialidadMedico').val();
+        var subEspecialidad = $('#editar-subEspecialidadMedico').val();
+        var cedula = $('#editar-cedulaProfesionalMedico').val();
+        
+        
+        console.log("idMédicoooo " + idMedico);
+        console.log("nombre " + nombre);
+        console.log("phone " + telefono);
+        console.log("ape 1 " + primerApellido);
+        console.log("ape 2 " + segundoApellido);
+        console.log("mail " + correo);
+        console.log("empleado no " + noEmpleado);
+        console.log("especiliad  " + especialidad);
+        console.log("cedula " + subEspecialidad);
+        console.log("usuario " + cedula);
+        
+                
 
         $.ajax({
 
-            url: 'RegistraUsuarioController',
+            url: 'AdministradorController',
             cache: false,
             method: 'POST',
             data: {
-                key: 'recuperaMedico',
-                idMedico: idMedico.val(),
-                nombre: nombre.val(),
-                telefono: telefono.val(),
-                primerApellido: primerApellido.val(),
-                segundoApellido: segundoApellido.val(),
-                correo: correo.val(),
-                noEmpleado: noEmpleado.val(),
-                especialidad: especialidad.val(),
-                subEspecialidad: subEspecialidad.val(),
-                cedula: cedula.val(),
-                password: password.val()
+                key: 'actualizar-medico',
+                idMedico: idMedico,
+                nombre: nombre,
+                telefono: telefono,
+                primerApellido: primerApellido,
+                segundoApellido: segundoApellido,
+                correo: correo,
+                noEmpleado: noEmpleado,
+                especialidad: especialidad,
+                subEspecialidad: subEspecialidad,
+                cedula: cedula                
             }
         })
             .done(function (response) {
@@ -367,6 +397,10 @@ $(document).ready(function () {
                 especialidad: especialidad.val(),
                 cedula: cedula.val(),
                 password: password.val()
+            },
+             success: function (response) {
+
+                console.log(response);
             }
         })
             .done(function (response) {
@@ -540,33 +574,7 @@ $(document).ready(function () {
 
     });
 
-    /**EDITAR PACIENTE */
-    //RECUPERA EL MEDICO PARA PONERLO EN EL MODAL
-    $('body').on('click', '.btn-editarMedico', function () {
-
-        var idPaciente = $(this).data('id');
-
-        $.ajax({
-
-            url: 'AdminController',
-            cache: false,
-            dataType: 'JSON',
-            method: "POST",
-            data: {
-                key: 'recuperaPaciente',
-                id: idPaciente,
-            },
-            beforeSend: function () {
-
-            },
-            success: function (response) {
-
-                $("#idPaciente").val(response.id);
-            }
-
-        });
-
-    });
+   
 
     //GUARDA EL PACIENTE DESDE EL MODAL
     $('#btn-guardarPaciente').on('click', function () {
