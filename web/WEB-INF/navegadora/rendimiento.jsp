@@ -134,186 +134,311 @@
 
                         <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
 
-                    </div>
-                </nav>
+                                </div>
+                                </nav>
 
-                <!-- **************************************************************** -->
-                <!-- ***** A PARTIR DE AQUI ESCRIBEN EL CODIGO QUE QUIERAN..... ***** -->
-                <!-- **************************************************************** -->
+                                <!-- **************************************************************** -->
+                                <!-- ***** A PARTIR DE AQUI ESCRIBEN EL CODIGO QUE QUIERAN..... ***** -->
+                                <!-- **************************************************************** -->
 
-                <!-- 1.- TOTAL DE VISITAS POR MES -->
-                <div class="jumbotron jumbotron-fluid p-2">
-                    <div class="container">
-                        <h1 class="display-4 tituloPacientes text-center m-0">Total de visitas por mes</h1>
-                    </div>
-                </div>
+                                <!-- 1.- TOTAL DE VISITAS POR MES -->
+                                <div class="jumbotron jumbotron-fluid p-2">
+                                    <div class="container">
+                                        <h1 class="display-4 tituloPacientes text-center m-0">Total de visitas por mes</h1>
+                                    </div>
+                                </div>
 
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <table class="table" id="totalVisitasMes">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Mes</th>
-                                    <th scope="col">Total de visitas</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                <div class="row form-group">
+                                    <div class="col-6">
+                                        <label for="fecha1">Fecha 1</label>
+                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha1Mes">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="fecha 2">Fecha 2</label>
+                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha2Mes">
+                                    </div>
+                                </div>
 
-                            </tbody>
-                        </table>
-                        
-                    </div>
-                </div>
+                                <div class="row errorFechasMes">
+                                    <div class="col-12">
+                                        <h6 class="text-danger">Elija un rango de fechas válido</h6>
+                                    </div>
+                                </div>
 
-                <!-- 2.- CANTIDAD DE VISITAS POR EDADDES -->
-                <div class="jumbotron jumbotron-fluid p-2 mt-4">
-                    <div class="container">
-                        <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por Edades</h1>
-                    </div>
-                </div>
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <table class="table totalVisitasMes">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Rango</th>
+                                                    <th scope="col">Total de visitas</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <table class="table table-striped" id="cantidadVisitasEdades">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Edad</th>
-                                    <th scope="col">Cantidad</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                            </tbody>
+                                        </table>
 
-                            </tbody>
-                        </table>
+                                    </div>
+                                </div>
 
-                    </div>
-                </div>
-                
-                <!-- 3.- CANTIDAD DE VISITAS POR ESCOLARIDAD -->
-                <div class="jumbotron jumbotron-fluid p-2 mt-4">
-                    <div class="container">
-                        <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por Escolaridad</h1>
-                    </div>
-                </div>
+                                <!-- 2.- CANTIDAD DE VISITAS POR EDADDES -->
+                                <div class="jumbotron jumbotron-fluid p-2 mt-4">
+                                    <div class="container">
+                                        <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por Edades</h1>
+                                    </div>
+                                </div>
 
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <table class="table table-striped" id="cantidadVisitasEscolaridad">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Escolaridad</th>
-                                    <th scope="col">Cantidad</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                <div class="row form-group">
+                                    <div class="col-6">
+                                        <label for="fecha1Edad">Fecha 1</label>
+                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha1Edad">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="fecha2Edad">Fecha 2</label>
+                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha2Edad">
+                                    </div>
 
-                            </tbody>
-                        </table>
+                                </div>
+                                
+                                <div class="row errorFechasEdad">
+                                    <div class="col-12">
+                                        <h6 class="text-danger">Elija un rango de fechas válido</h6>
+                                    </div>
+                                </div>
 
-                    </div>
-                </div>
-                
-                <!-- 4.- CANTIDAD DE VISITAS POR LUGAR DE RESIDENCIA -->
-                <div class="jumbotron jumbotron-fluid p-2 mt-4">
-                    <div class="container">
-                        <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por lugar de residencia</h1>
-                    </div>
-                </div>
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <table class="table table-striped cantidadVisitasEdades">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Edad</th>
+                                                    <th scope="col">Cantidad</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <table class="table table-striped" id="cantidadVisitasLugar">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Lugar</th>
-                                    <th scope="col">Cantidad</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                            </tbody>
+                                        </table>
 
-                            </tbody>
-                        </table>
+                                    </div>
+                                </div>
 
-                    </div>
-                </div>
-                
-                <!-- 5.- CANTIDAD DE VISITAS POR NIVEL SOCIOECONOMICO -->
-                <div class="jumbotron jumbotron-fluid p-2 mt-4">
-                    <div class="container">
-                        <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por nivel socioeconómico</h1>
-                    </div>
-                </div>
+                                <!-- 3.- CANTIDAD DE VISITAS POR ESCOLARIDAD -->
+                                <div class="jumbotron jumbotron-fluid p-2 mt-4">
+                                    <div class="container">
+                                        <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por Escolaridad</h1>
+                                    </div>
+                                </div>
+                                
+                                <div class="row form-group">
+                                    <div class="col-6">
+                                        <label for="fecha1Escolaridad">Fecha 1</label>
+                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha1Escolaridad">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="fecha2Escolaridad">Fecha 2</label>
+                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha2Escolaridad">
+                                    </div>
 
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <table class="table table-striped" id="cantidadVisitasNivel">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nivel Socioeconómico</th>
-                                    <th scope="col">Cantidad</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                </div>
+                                
+                                <div class="row errorFechasEscolaridad">
+                                    <div class="col-12">
+                                        <h6 class="text-danger">Elija un rango de fechas válido</h6>
+                                    </div>
+                                </div>
 
-                            </tbody>
-                        </table>
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <table class="table table-striped cantidadVisitasEscolaridad">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Escolaridad</th>
+                                                    <th scope="col">Cantidad</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                    </div>
-                </div>
-                
-                <!-- 6.- CANTIDAD DE VISITAS POR DECISION PRE-CONSULTA -->
-                <div class="jumbotron jumbotron-fluid p-2 mt-4">
-                    <div class="container">
-                        <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por decision pre-consulta</h1>
-                    </div>
-                </div>
+                                            </tbody>
+                                        </table>
 
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <table class="table table-striped" id="cantidadVisitasDecision">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Decisión</th>
-                                    <th scope="col">Cantidad</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                    </div>
+                                </div>
 
-                            </tbody>
-                        </table>
+                                <!-- 4.- CANTIDAD DE VISITAS POR LUGAR DE RESIDENCIA -->
+                                <div class="jumbotron jumbotron-fluid p-2 mt-4">
+                                    <div class="container">
+                                        <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por lugar de residencia</h1>
+                                    </div>
+                                </div>
+                                
+                                <div class="row form-group">
+                                    <div class="col-6">
+                                        <label for="fecha1Residencia">Fecha 1</label>
+                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha1Residencia">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="fecha2Residencia">Fecha 2</label>
+                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha2Residencia">
+                                    </div>
 
-                    </div>
-                </div>
-                
-                <!-- 7.- CANTIDAD DE VISITAS POR RESULTADO PATOLOGIA -->
-                <div class="jumbotron jumbotron-fluid p-2 mt-4">
-                    <div class="container">
-                        <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por resultado de patología</h1>
-                    </div>
-                </div>
+                                </div>
+                                
+                                <div class="row errorFechasResidencia">
+                                    <div class="col-12">
+                                        <h6 class="text-danger">Elija un rango de fechas válido</h6>
+                                    </div>
+                                </div>
 
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <table class="table table-striped" id="cantidadVisitasResultado">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Resultado</th>
-                                    <th scope="col">Cantidad</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <table class="table table-striped cantidadVisitasResidencia">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Lugar</th>
+                                                    <th scope="col">Cantidad</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                            </tbody>
-                        </table>
+                                            </tbody>
+                                        </table>
 
-                    </div>
-                </div>
+                                    </div>
+                                </div>
+
+                                <!-- 5.- CANTIDAD DE VISITAS POR NIVEL SOCIOECONOMICO -->
+                                <div class="jumbotron jumbotron-fluid p-2 mt-4">
+                                    <div class="container">
+                                        <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por nivel socioeconómico</h1>
+                                    </div>
+                                </div>
+                                
+                                <div class="row form-group">
+                                    <div class="col-6">
+                                        <label for="fecha1Economico">Fecha 1</label>
+                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha1Economico">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="fecha2Economico">Fecha 2</label>
+                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha2Economico">
+                                    </div>
+
+                                </div>
+                                
+                                <div class="row errorFechasEconomico">
+                                    <div class="col-12">
+                                        <h6 class="text-danger">Elija un rango de fechas válido</h6>
+                                    </div>
+                                </div>
+
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <table class="table table-striped cantidadVisitasNivel">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Nivel Socioeconómico</th>
+                                                    <th scope="col">Cantidad</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+
+                                <!-- 6.- CANTIDAD DE VISITAS POR DECISION PRE-CONSULTA -->
+                                <div class="jumbotron jumbotron-fluid p-2 mt-4">
+                                    <div class="container">
+                                        <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por decision pre-consulta</h1>
+                                    </div>
+                                </div>
+                                
+                                <div class="row form-group">
+                                    <div class="col-6">
+                                        <label for="fecha1Pre">Fecha 1</label>
+                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha1Pre">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="fecha2Pre">Fecha 2</label>
+                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha2Pre">
+                                    </div>
+
+                                </div>
+                                
+                                <div class="row errorFechasPre">
+                                    <div class="col-12">
+                                        <h6 class="text-danger">Elija un rango de fechas válido</h6>
+                                    </div>
+                                </div>
+
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <table class="table table-striped cantidadVisitasPre">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Decisión</th>
+                                                    <th scope="col">Cantidad</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+
+                                <!-- 7.- CANTIDAD DE VISITAS POR RESULTADO PATOLOGIA -->
+                                <div class="jumbotron jumbotron-fluid p-2 mt-4">
+                                    <div class="container">
+                                        <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por resultado de patología</h1>
+                                    </div>
+                                </div>
+                                
+                                <div class="row form-group">
+                                    <div class="col-6">
+                                        <label for="fecha1Patologia">Fecha 1</label>
+                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha1Patologia">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="fecha2Patologia">Fecha 2</label>
+                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha2Patologia">
+                                    </div>
+
+                                </div>
+                                
+                                <div class="row errorFechasPatologia">
+                                    <div class="col-12">
+                                        <h6 class="text-danger">Elija un rango de fechas válido</h6>
+                                    </div>
+                                </div>
+
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <table class="table table-striped cantidadVisitasPatologia">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Resultado</th>
+                                                    <th scope="col">Cantidad</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
 
 
-            </div>
-            
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+                                </div>
 
-    </body>
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
-</html>
+                                </body>
+
+                                </html>
