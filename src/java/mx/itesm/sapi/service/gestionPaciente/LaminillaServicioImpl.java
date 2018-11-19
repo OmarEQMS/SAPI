@@ -187,5 +187,40 @@ public class LaminillaServicioImpl implements LaminillaServicio {
         return exito;
 
     }
+    
+    @Override
+    public Laminilla mostrarLaminillaPaciente(int idPaciente){
+    
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+
+        Laminilla laminilla = new Laminilla();
+
+        String stProcedure = "mostrarLaminillaPaciente(?)";
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            laminilla.setIdLaminilla(rs.getInt("idLaminilla"));
+            laminilla.setIdBiopsia(rs.getInt("idBiopsia"));
+            laminilla.setNombre(rs.getString("serie"));
+            laminilla.setEstatus(rs.getInt("estatus"));
+            laminilla.setCantidad(rs.getInt("cantidad"));
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            laminilla = null;
+        }
+        return laminilla;
+   
+    }
 
 }
