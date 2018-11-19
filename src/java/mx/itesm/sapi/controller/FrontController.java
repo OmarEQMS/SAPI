@@ -12,8 +12,12 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Base64;
+import java.util.Calendar;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -571,12 +575,23 @@ public class FrontController extends HttpServlet {
                                     
                                     PersonaServicioImpl personaServicioMedicos = new PersonaServicioImpl();
                                     List<Persona> medicos = personaServicioMedicos.mostrarMedicosAdscritos();
+                                    
+                                        for(int i=0; i<medicos.size(); i++){
+                                            System.out.println("El id de este radiologo es "+medicos.get(i).getIdPersona());
+                                        }
+                                    
                                     request.setAttribute("listaMedicos", medicos);
                                     
                                     /**-------------------Mostrar Lista Radiologos---------------------------------------*/
                                     
                                     PersonaServicioImpl personaServicioRadiologos = new PersonaServicioImpl();
                                     List<Persona> radiologos = personaServicioRadiologos.mostrarMedicosRadiologos();
+                                    
+                                    
+                                        for(int i=0; i<radiologos.size(); i++){
+                                            System.out.println("El id de este radiologo es "+radiologos.get(i).getIdPersona());
+                                        }
+                                    
                                     request.setAttribute("listaRadiologos", radiologos);
                                     
                                     /**-------------------Mostrar Lista Escolaridad---------------------------------------*/
@@ -701,6 +716,14 @@ public class FrontController extends HttpServlet {
                                     System.out.println(RP);
 
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    
+                                    System.out.println("La fecha de hoy es");
+                                    
+                                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                                    Calendar cal = Calendar.getInstance();
+                                    System.out.println(dateFormat.format(cal.getTime()));
+                                    
+                                    Date fecha = Date.valueOf(dateFormat.format(cal.getTime()));
                                     
                                     break;
 

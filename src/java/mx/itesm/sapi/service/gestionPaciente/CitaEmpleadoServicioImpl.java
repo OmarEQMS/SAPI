@@ -226,4 +226,39 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
         return citaEmpleado;
     }
     
+    @Override
+    public CitaEmpleado mostrarCitaEmpleadoIdEmpleado(int idEmpleado) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarCitaEmpleado(?)";
+        CitaEmpleado citaEmpleado = null;
+     
+        try {
+            conn = Conexion.getConnection();
+            citaEmpleado = new CitaEmpleado();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idEmpleado);
+                  
+            rs = cstmt.executeQuery();
+            rs.next();
+            citaEmpleado.setIdCitaEmpleado(rs.getInt("idCitaEmpleado"));
+            citaEmpleado.setIdCita(rs.getInt("idCita"));
+            citaEmpleado.setIdEmpleado(rs.getInt("idEmpleado"));
+            citaEmpleado.setMedicoSustituto(rs.getInt("medicoSustituto"));
+            citaEmpleado.setAdscritoPresente(rs.getInt("adscridoPresente"));
+            citaEmpleado.setIdEmpleadoSustituto(rs.getInt("idEmpleadoSustitutos"));
+            
+            conn.close();
+            cstmt.close();
+            rs.close();
+            
+        } catch (SQLException ex) {
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                   .concat(ex.getMessage()));
+           citaEmpleado = null;
+        }   
+        return citaEmpleado;
+    }
+    
 }

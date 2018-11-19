@@ -18,6 +18,9 @@ public interface PacienteMedicoTitularServicio {
 
     public PacienteMedicoTitular mostrarPacienteMedicoTitularIdPaciente(int idPaciente);
 
+    public PacienteMedicoTitular mostrarPacienteMedicoTitularIdPacientePosicion(int idPaciente, int idPosicion);
+
+
     public List<PacienteMedicoTitular> mostrarPacienteMedicoTitular();
 
     public int agregarPacienteMedicoTitular(PacienteMedicoTitular pacienteMedicoTitular);
