@@ -1381,7 +1381,7 @@
                                                                         <ul style="list-style:none">
                                                                             <li>-IFE/INE</li>
                                                                             <li>-Comprobante de domicilio</li>
-                                                                            <li>-Poliza de seguro popular (si tienes)</li>
+                                                                            <li>-Póliza de seguro popular (si tienes)</li>
                                                                             <li>-Estudios previos por los que te mandan al INCan, pueden ser:
                                                                                 <ul style="list-style:none" class="justificar">
                                                                                     <li>
@@ -1571,15 +1571,13 @@
                                                                             <div class="card-body m-3 justificar">
                                                                                 El segundo día pasarás a <strong>consulta</strong> con el médico,
                                                                                 revisará todos tus estudios, te explicará si necesitas otros
-                                                                                y te dirá que sigue. Al igual que el primer día ,nuestro servicio
-                                                                                de navegación te recibirá en el área de preconsulta,  nuevamente
+                                                                                y te dirá que sigue. Al igual que el primer día, nuestro servicio
+                                                                                de navegación te recibirá en el área de preconsulta, nuevamente
                                                                                 te pedirán los documentos que entregaste el día anterior. Si
-                                                                                te realizaron una biopsia fuera del INCan debes traer dos copias
-                                                                                del reporte de patología que contiene los resultados. Al terminar,
+                                                                                te realizaron una biopsia fuera del INCan debes traer <strong>dos copias</strong> del 
+                                                                                reporte de patología que contiene los resultados. Al terminar,
                                                                                 ellas te solicitarán pasar a la sala de espera mientras el médico
                                                                                 te recibe.
-
-
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -1599,7 +1597,7 @@
                                                                                 te pude pedir diversos estudios, el costo de estos estudios está
                                                                                 entre <strong>$350.00
                                                                                     MXN
-                                                                                </strong> y
+                                                                                </strong>y
                                                                                 <strong>$3000.00 MXN</strong> te recomendamos vengas preparada con
                                                                                 esa cantidad de dinero para que los puedas agendar y agilizar
                                                                                 el proceso de tu atención.
@@ -1696,7 +1694,7 @@
                                                                         <ul style="list-style:none">
                                                                             <li>-IFE/INE</li>
                                                                             <li>-Comprobante de domicilio</li>
-                                                                            <li>-Poliza de seguro popular (si tienes)</li>
+                                                                            <li>-Póliza de seguro popular (si tienes)</li>
                                                                             <li>-Estudios previos por los que te mandan al INCan, pueden ser:
                                                                                 <ul style="list-style:none" class="justificar">
                                                                                     <li>
@@ -1817,7 +1815,7 @@
                                                                                 debes venir con disponibilidad de tiempo, desayunada y te
                                                                                 recomendamos traer un libro o revista.Al finalizar tu
                                                                                 consulta el médico te pude pedir diversos estudios, el
-                                                                                costo de estos estudios está entre <strong>$350.00 MXN</strong> y <strong>$3000.00
+                                                                                costo de estos estudios está entre <strong>$350.00 MXN</strong>y <strong>$3000.00
                                                                                     MXN</strong> te
                                                                                 recomendamos vengas preparada con esa cantidad de dinero
                                                                                 para que los puedas agendar y agilizar el proceso de tu
@@ -2093,7 +2091,7 @@
                                                                         <ul style="list-style:none">
                                                                             <li>-IFE/INE</li>
                                                                             <li>-Comprobante de domicilio</li>
-                                                                            <li>-Poliza de seguro popular (si tienes)</li>
+                                                                            <li>-Póliza de seguro popular (si tienes)</li>
                                                                             <li>-Estudios previos por los que te mandan al INCan, pueden ser:
                                                                                 <ul style="list-style:none" class="justificar">
                                                                                     <li>
@@ -2283,11 +2281,11 @@
                                                                             <div class="card-body m-3 justificar">
                                                                                 El segundo día pasarás a <strong>consulta</strong> con el médico,
                                                                                 revisará todos tus estudios, te explicará si necesitas otros
-                                                                                y te dirá que sigue. Al igual que el primer día ,nuestro servicio
-                                                                                de navegación te recibirá en el área de preconsulta,  nuevamente
+                                                                                y te dirá que sigue. Al igual que el primer día, nuestro servicio
+                                                                                de navegación te recibirá en el área de preconsulta, nuevamente
                                                                                 te pedirán los documentos que entregaste el día anterior. Si
-                                                                                te realizaron una biopsia fuera del INCan debes traer dos copias
-                                                                                del reporte de patología que contiene los resultados. Al terminar,
+                                                                                te realizaron una biopsia fuera del INCan debes traer <strong>dos copias</strong> del 
+                                                                                reporte de patología que contiene los resultados. Al terminar,
                                                                                 ellas te solicitarán pasar a la sala de espera mientras el médico
                                                                                 te recibe.
 
@@ -2311,7 +2309,7 @@
                                                                                 te pude pedir diversos estudios, el costo de estos estudios está
                                                                                 entre <strong>$350.00
                                                                                     MXN
-                                                                                </strong> y
+                                                                                </strong>y
                                                                                 <strong>$3000.00 MXN</strong> te recomendamos vengas preparada con
                                                                                 esa cantidad de dinero para que los puedas agendar y agilizar
                                                                                 el proceso de tu atención.
@@ -2408,7 +2406,7 @@
                                                                         <ul style="list-style:none">
                                                                             <li>-IFE/INE</li>
                                                                             <li>-Comprobante de domicilio</li>
-                                                                            <li>-Poliza de seguro popular (si tienes)</li>
+                                                                            <li>-Póliza de seguro popular (si tienes)</li>
                                                                             <li>-Estudios previos por los que te mandan al INCan, pueden ser:
                                                                                 <ul style="list-style:none" class="justificar">
                                                                                     <li>
@@ -2529,7 +2527,7 @@
                                                                                 debes venir con disponibilidad de tiempo, desayunada y te
                                                                                 recomendamos traer un libro o revista.Al finalizar tu
                                                                                 consulta el médico te pude pedir diversos estudios, el
-                                                                                costo de estos estudios está entre <strong>$350.00 MXN</strong> y <strong>$3000.00
+                                                                                costo de estos estudios está entre <strong>$350.00 MXN</strong>y <strong>$3000.00
                                                                                     MXN</strong> te
                                                                                 recomendamos vengas preparada con esa cantidad de dinero
                                                                                 para que los puedas agendar y agilizar el proceso de tu
