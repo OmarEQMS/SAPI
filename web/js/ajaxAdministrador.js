@@ -80,8 +80,8 @@ $(document).ready(function () {
                 $('#editar-telefonoMedico').val(json.telefono);                
                 $('#editar-noEmpleadoMedico').val(json.noEmpleado);                
                 $('#editar-especialidadMedico').val(json.nombreEspecialidad);                
-                $('#editar-subEspecialidadMedico').val(json.cedulaProfesional);                
-                $('#editar-cedulaProfesionalMedico').val(json.usuario);                
+                $('#editar-usuarioMedico').val(json.usuario);                
+                $('#editar-cedulaProfesionalMedico').val(json.cedulaProfesional);                
                 
             }
 
@@ -273,8 +273,9 @@ $(document).ready(function () {
         var correo = $('#editar-correoMedico').val();
         var noEmpleado = $('#editar-noEmpleadoMedico').val();
         var especialidad = $('#editar-especialidadMedico').val();
-        var subEspecialidad = $('#editar-subEspecialidadMedico').val();
         var cedula = $('#editar-cedulaProfesionalMedico').val();
+        var usuario = $('#editar-usuarioMedico').val();
+        
         
         
         console.log("idMédicoooo " + idMedico);
@@ -285,8 +286,8 @@ $(document).ready(function () {
         console.log("mail " + correo);
         console.log("empleado no " + noEmpleado);
         console.log("especiliad  " + especialidad);
-        console.log("cedula " + subEspecialidad);
-        console.log("usuario " + cedula);
+        console.log("usuario " + usuario);
+        console.log("cedula " + cedula);
         
                 
 
@@ -305,7 +306,7 @@ $(document).ready(function () {
                 correo: correo,
                 noEmpleado: noEmpleado,
                 especialidad: especialidad,
-                subEspecialidad: subEspecialidad,
+                usuario: usuario,
                 cedula: cedula                
             }
         })
@@ -415,23 +416,34 @@ $(document).ready(function () {
     $('body').on('click', '.btn-editarNavegadora', function () {
 
         var idNavegadora = $(this).data('id');
-
+        console.log(idNavegadora);
+        
         $.ajax({
 
-            url: 'AdminController',
+            url: 'AdministradorController',
             cache: false,
             dataType: 'JSON',
             method: "POST",
             data: {
-                key: 'recuperaNavegadora',
-                id: idNavegadora,
+                key: 'obtener-navegadora',
+                idNavegadora: idNavegadora,
             },
             beforeSend: function () {
 
             },
             success: function (response) {
 
-                $("#idNavegadora").val(response.id);
+                console.log(response);
+                $('#idNavegadora').val(response.idEmpleado);
+                $('#editar-nombreNavegadora').val(response.nombre);
+                $('#editar-telefonoNavegadora').val(response.telefono);
+                $('#editar-primerApellidoNavegadora').val(response.primerApellido);
+                $('#editar-segundoApellidoNavegadora').val(response.segundoApellido);
+                $('#editar-correoNavegadora').val(response.correo);
+                $('#editar-no-empleadoNavegadora').val(response.noEmpleado);
+                $('#editar-especialidad').val(response.nombreEspecialidad);                
+                $('#editar-usuario').val(response.usuario);
+                
             }
 
         });
@@ -448,18 +460,28 @@ $(document).ready(function () {
         var primerApellido = $('#editar-primerApellidoNavegadora');
         var segundoApellido = $('#editar-segundoApellidoNavegadora');
         var correo = $('#editar-correoNavegadora');
-        var noEmpleado = $('#editar-noEmpleadoNavegadora');
-        var especialidad = $('#editar-especialidadNavegadora');
-        var cedula = $('#editar-cedulaNavegadora');
-        var password = $('#editar-passwordNavegadora');
+        var noEmpleado = $('#editar-no-empleadoNavegadora');
+        var especialidad = $('#editar-especialidad');
+        var usuario = $('#editar-usuario');
+        
+        console.log(idNavegadora.val());
+        console.log(nombre.val());
+        console.log(telefono.val());
+        console.log(primerApellido.val());
+        console.log(segundoApellido.val());
+        console.log(correo.val());
+        console.log(noEmpleado.val());
+        console.log(especialidad.val());
+        console.log(usuario.val());
+        
 
         $.ajax({
 
-            url: 'AdminController',
+            url: 'AdministradorController',
             cache: false,
             method: 'POST',
             data: {
-                key: 'recuperaNavegadora',
+                key: 'actualiza-navegadora',
                 idNavegadora: idNavegadora.val(),
                 nombre: nombre.val(),
                 telefono: telefono.val(),
@@ -468,8 +490,7 @@ $(document).ready(function () {
                 correo: correo.val(),
                 noEmpleado: noEmpleado.val(),
                 especialidad: especialidad.val(),                
-                cedula: cedula.val(),
-                password: password.val()
+                usuario: usuario.val(),                
             }
         })
             .done(function (response) {

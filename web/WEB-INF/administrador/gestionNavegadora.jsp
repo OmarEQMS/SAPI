@@ -183,42 +183,30 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
+                            <c:forEach items="${ListaNavegadorasAdministrador}" var="navegadora">
                             <tr>
-                                <td>Shannon</td>
-                                <td>Rosas</td>
-                                <td>shannon@sha.com</td>
-                                <td>8sJ88J</td>
-                                <td>JSJU9</td>
-                                <td>Especialidad</td>
-                                <td>Cedula989A</td>
+                                <td>${navegadora.nombre} ${navegadora.primerApellido} ${navegadora.segundoApellido}</td>                                
+                                <td>${navegadora.correo}</td>
+                                <td>${navegadora.telefono}</td>                                
+                                <td>${navegadora.noEmpleado}</td>
+                                <td>${navegadora.nombreEspecialidad}</td>                                
+                                <td>${navegadora.cedulaProfesional }</td>
+                                <td>${navegadora.usuario}</td>                                
                                 <td>
-                                    <button onclick="location.href=' ./rendimientoNavegadoras.html'" class="btn btn-success"
-                                        id="btn-verNavegadora">
+                                    <button class="btn btn-success"
+                                        id="btn-verNavegadora" data-id="${navegadora.idEmpleado}">                                        
                                         <i class="fas fa-chart-line"></i>
                                     </button>
                                     <button class="btn btn-primary btn-editarNavegadora" data-toggle="modal"
-                                        data-target="#modalEditarNavegadora"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger mt-1" id="btn-eliminarNavegadora"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Fernanda</td>
-                                <td>Orduña</td>
-                                <td>fer@gmail.com</td>
-                                <td>88A88J</td>
-                                <td>9009AJ</td>
-                                <td>Especialidad2</td>
-                                <td>Cedula0099</td>
-                                <td>
-                                    <button onclick="location.href=' ./rendimientoNavegadoras.html'" class="btn btn-success"
-                                        id="btn-verNavegadora">
-                                        <i class="fas fa-chart-line"></i>
+                                        data-target="#modalEditarNavegadora" data-id="${navegadora.idEmpleado}" ><i class="fas fa-edit"></i>
                                     </button>
-                                    <button class="btn btn-primary btn-editarNavegadora" data-toggle="modal"
-                                        data-target="#modalEditarNavegadora"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger mt-1" id="btn-eliminarNavegadora"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-danger mt-1" id="btn-eliminarNavegadora" data-id="${navegadora.idEmpleado}"><i class="fas fa-trash-alt">
+                                        
+                                    </i></button>
                                 </td>
                             </tr>
+                            </c:forEach>                           
                         </tbody>
                     </table>
                 </div>
@@ -236,7 +224,7 @@
                         </div>
                         <div class="modal-body">
 
-                            <input type="hidden" id="idNavegadora">
+                            <input type="hidden" id="idNavegadora" value="">
 
                             <!-- FORMULARIO EDITAR NAVEGADORA -->
                             <div class="form-group row">
@@ -287,7 +275,7 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-phone"></i></div>
                                         </div>
-                                        <input type="text" class="form-control" id="editar-correoNavegadora"
+                                        <input type="text" class="form-control" id="editar-telefonoNavegadora"
                                             placeholder="Teléfono">
                                     </div>
                                 </div>
@@ -319,7 +307,7 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-id-card"></i></div>
                                         </div>
-                                        <input type="text" class="form-control" id="editar-celduala" placeholder="Cédula Profesional">
+                                        <input type="text" class="form-control" id="editar-usuario" placeholder="usuario">
                                     </div>
                                 </div>
                             </div>

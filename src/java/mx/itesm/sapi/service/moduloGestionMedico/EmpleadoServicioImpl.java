@@ -278,7 +278,7 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
     }
 
     @Override
-    public List<TablaMedicoAdministrador> mostrarListaMedicos() {
+    public List<TablaMedicoAdministrador> mostrarListaEmpleadosAdministrador(int idRol) {
         Connection conn = Conexion.getConnection();
 
         List<TablaMedicoAdministrador> medicos = new ArrayList<>();
@@ -286,7 +286,8 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
 
         try {
 
-            cstmt = conn.prepareCall("CALL mostrarMedicosAdministrador()");
+            cstmt = conn.prepareCall("CALL mostrarEmpleadosAdministrador(?)");
+            cstmt.setInt(1, idRol);
             ResultSet rs = cstmt.executeQuery();
             TablaMedicoAdministrador medico;
 
@@ -323,7 +324,7 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
     }
 
     @Override
-    public TablaMedicoAdministrador mostrarMedicoAdministrador(int idMedico) {
+    public TablaMedicoAdministrador mostrarMedicoAdministrador(int idMedico, int idRol) {
         Connection conn = Conexion.getConnection();
 
         TablaMedicoAdministrador medico = new TablaMedicoAdministrador();
@@ -331,10 +332,10 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
 
         try {
 
-            cstmt = conn.prepareCall("CALL mostrarMedicoAdministrador(?)");
+            cstmt = conn.prepareCall("CALL mostrarMedicoAdministrador(?,?)");            
             
             cstmt.setInt(1, idMedico);
-            
+            cstmt.setInt(2, idRol);
             
             ResultSet rs = cstmt.executeQuery();
             rs.next();

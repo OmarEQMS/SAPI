@@ -332,7 +332,7 @@
                                                 <i class="fas fa-user-graduate"></i>
                                             </div>
                                         </div>
-                                        <input type="text" id="editar-subEspecialidadMedico" class="form-control" value="Subespecialidad">
+                                        <input type="text" id="editar-cedulaProfesionalMedico" class="form-control" value="Cédula profesional">
                                     </div>
 
 
@@ -346,8 +346,8 @@
                                                 <i class="far fa-id-card"></i>
                                             </div>
                                         </div>
-                                        <input type="text" id="editar-cedulaProfesionalMedico" class="form-control"
-                                            value="UDU88DJ">
+                                        <input type="text" id="editar-usuarioMedico" class="form-control"
+                                            value="Usuario">
                                     </div>
 
 
@@ -357,7 +357,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" style="border-radius:20px" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                            <button id="btn-guardarMedico" type="button" style="border-radius:20px" class="btn btn-primary">Guardar
+                            <button id="btn-guardarMedico" type="button" style="border-radius:20px" class="btn btn-primary" data-dismiss="modal">Guardar
                                 Cambios
                             </button>
                         </div>

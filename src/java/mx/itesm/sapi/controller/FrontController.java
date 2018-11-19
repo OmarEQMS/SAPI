@@ -222,7 +222,7 @@ public class FrontController extends HttpServlet {
                                 case "administrador/gestionMedicos.jsp":
                                 {
                                     EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
-                                    List<TablaMedicoAdministrador> medicosAdministrador = empleadoServicioImpl.mostrarListaMedicos();
+                                    List<TablaMedicoAdministrador> medicosAdministrador = empleadoServicioImpl.mostrarListaEmpleadosAdministrador(3);
                                     request.setAttribute("ListaMedicosAdmistrador", medicosAdministrador);
                                     
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);                                    
@@ -230,6 +230,10 @@ public class FrontController extends HttpServlet {
                                 }
                                 case "administrador/gestionNavegadora.jsp":
                                 {
+                                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                                    List<TablaMedicoAdministrador> navegadorasAdministrador = empleadoServicioImpl.mostrarListaEmpleadosAdministrador(4);
+                                    request.setAttribute("ListaNavegadorasAdministrador", navegadorasAdministrador);
+                                                                                                            
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     break;
                                 }

@@ -23,6 +23,6 @@ public interface EmpleadoServicio {
     public boolean borradoLogicoEmpleado(int idEmpleado);
     public boolean actualizarEmpleado(Empleado empleado);
     public Identificadores restringirEmpleado(RestringirEmpleado restringirEmpleado);
-    public List<TablaMedicoAdministrador> mostrarListaMedicos();
-    public TablaMedicoAdministrador mostrarMedicoAdministrador(int idMedico);
+    public List<TablaMedicoAdministrador> mostrarListaEmpleadosAdministrador(int idRol);
+    public TablaMedicoAdministrador mostrarMedicoAdministrador(int idMedico,int idRol);
 }
