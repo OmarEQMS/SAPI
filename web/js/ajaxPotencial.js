@@ -960,10 +960,6 @@ $(document).ready(function () {
                             if (status == "success") {
                                 if (response == "error") {
                                     $("#msj-error").show();
-                                } else {
-                                    document.open("text/html", "replace");
-                                    document.write(response);
-                                    document.close();
                                 }
                             }
                         }
