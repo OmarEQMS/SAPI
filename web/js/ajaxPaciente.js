@@ -855,6 +855,13 @@ function isValidDate(input, fechaNac) {
         let date_from = input.val();
         date_from = new Date(date_from);
         
+        //Setear la hora en 0 y sumarle uno al día registrado (porque se le resta 1)
+        var year = date_from.getFullYear();
+        var month = date_from.getMonth();
+        var day = date_from.getDate();
+        date_from = new Date(year, month, day + 1);
+        date_from.setHours(0);
+        
         //Valor de la fecha de inicio
         let date_start = fechaInicio.val();
         date_start = new Date(date_start);
@@ -863,6 +870,10 @@ function isValidDate(input, fechaNac) {
         let date_today = new Date();
 
         var event = false;
+        
+        console.log("Hoy: " + date_today);
+        console.log("FechaFin: " + date_from);
+        console.log("FechaInicio: " + date_start);
 
         if(date_start < date_from && date_from <= date_today){
             event = false;
