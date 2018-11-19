@@ -29,4 +29,5 @@ public interface PacienteMedicoTitularServicio {
 
     public boolean borradoLogicoPacienteMedicoTitular(int idPacienteMedicoTitular);
 
+
 }
