@@ -173,12 +173,12 @@
                         <thead>
                             <tr>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Primer Apellido</th>
                                 <th scope="col">Correo</th>
                                 <th scope="col">Teléfono</th>
-                                <th scope="col">No. Empledo</th>
+                                <th scope="col">No. empleado</th>                                
                                 <th scope="col">Especialidad</th>
                                 <th scope="col">Cédula Profesional</th>
+                                <th scope="col">Usuario</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
@@ -315,7 +315,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal" style="border-radius: 20px;">Cancelar</button>
-                            <button id="btn-guardarNavegadora" type="button" class="btn btn-primary" style="border-radius: 20px;">Guardar
+                            <button id="btn-guardarNavegadora" type="button"   data-dismiss="modal" class="btn btn-primary" style="border-radius: 20px;">Guardar
                                 Cambios</button>
                         </div>
                     </div>
