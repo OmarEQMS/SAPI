@@ -88,7 +88,7 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
                 if (temp.getPrz() == null)temp.setPrz("NA");
                 if (temp.getNoExpediente() == null)temp.setNoExpediente("NA");
                 if (temp.getSeguro() == null)temp.setSeguro("NA");
-                if (temp.getNoSeguroPopular() == null || temp.getSeguro().equals("Seguro Popular"))temp.setNoSeguroPopular("NA");
+                if (temp.getNoSeguroPopular() == null || !temp.getSeguro().equals("Seguro Popular"))temp.setNoSeguroPopular("NA");
                 if (temp.getAlergias() == null)temp.setAlergias("NA");
                 if (temp.getSillaRuedas() == null)temp.setSillaRuedas("NA");
                 if (temp.getBastón() == null)temp.setBastón("NA");
