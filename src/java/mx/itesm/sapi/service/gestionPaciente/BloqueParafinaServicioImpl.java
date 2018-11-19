@@ -225,5 +225,7 @@ public class BloqueParafinaServicioImpl implements BloqueParafinaServicio {
         }
         return exito;
     }
+    
+     
 
 }

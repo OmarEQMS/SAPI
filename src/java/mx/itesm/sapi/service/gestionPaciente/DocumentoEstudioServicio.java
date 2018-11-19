@@ -28,7 +28,9 @@ public interface DocumentoEstudioServicio {
 
     public boolean actualizarDocumentoEstudio(DocumentoEstudio documentoEstudio);
     
+
     public DocumentoEstudio mostrarDocumentoEstudioPacienteEstudio(int idpaciente,int idEstudio); 
+
 
 
 }

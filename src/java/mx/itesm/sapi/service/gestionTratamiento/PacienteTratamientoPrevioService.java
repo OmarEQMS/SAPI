@@ -23,6 +23,6 @@ public interface PacienteTratamientoPrevioService {
     public List<PacienteTratamientoPrevio> mostrarPacienteTratamientoPrevioIdEspecifico(int idPaciente);
     public boolean actualizarPacienteTratamientoPrevio(PacienteTratamientoPrevio pacienteTratamientoPrevio);
     public boolean borradoLogicoPacienteTratamientoPrevio(int idPacienteTratamientoPrevio);
-
+    
     
 }

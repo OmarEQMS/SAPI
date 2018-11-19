@@ -665,9 +665,11 @@ public class NavegadoraController extends HttpServlet {
                              */
                             int idPacientePotencial = 30;
                             int idCuenta = 63;
+ 
                             int idNavegadora = 2;//Navegadora
-
+ 
                             /**
+                             * 
                              * INICIO DECLARACION DE SERVICIOS
                              */
                             PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
@@ -1032,7 +1034,7 @@ public class NavegadoraController extends HttpServlet {
                             int primeraMasto = 0;
                             //29 es el idEstudio
                             //
-                            DocumentoEstudio documentoEstudioPrimeraMasto = documentoEstudioServicioImpl.mostrarDocumentoEstudioIdPacienteIdEstudio(idPacientePotencial, 29);
+                            DocumentoEstudio documentoEstudioPrimeraMasto = documentoEstudioServicioImpl.mostrarDocumentoEstudioPacienteEstudio(idPacientePotencial, 29);
 
                             if (request.getParameterMap().containsKey("primeraMasto")) {
                                 primeraMasto = 1;
@@ -1059,7 +1061,7 @@ public class NavegadoraController extends HttpServlet {
                             //Verifica si hay cirugía previa
                             if (request.getParameterMap().containsKey("tiene-cirugia")) {
 
-                                PacienteTratamientoPrevio cirugiaPrevia = pacienteTratamientoPrevioServiceImpl.mostrarPacienteTratamientoPrevioTratamiento(idPacientePotencial, idTratamiento);
+                                PacienteTratamientoPrevio cirugiaPrevia = pacienteTratamientoPrevioServiceImpl.mostrarPacienteTratamientoPrevioTratamiento(idPacientePotencial, 3);
 
                                 if (cirugiaPrevia != null) {
                                     //Actualiza
@@ -1137,7 +1139,7 @@ public class NavegadoraController extends HttpServlet {
                             if (request.getParameterMap().containsKey("tiene-quimioterapia")) {
 
                                 // System.out.println("Quimioterapia Previa ".concat(String.valueOf(tieneQuimioterapiaPrevia)));
-                                PacienteTratamientoPrevio quimioterapiaPrevia = pacienteTratamientoPrevioServiceImpl.mostrarPacienteTratamientoPrevioTratamiento(idPacientePotencial, idTratamiento);
+                                PacienteTratamientoPrevio quimioterapiaPrevia = pacienteTratamientoPrevioServiceImpl.mostrarPacienteTratamientoPrevioTratamiento(idPacientePotencial, 1);
 
                                 if (quimioterapiaPrevia != null) {
                                     pacienteTratamientoPrevio.setIdPaciente(idPacientePotencial);
@@ -1223,7 +1225,7 @@ public class NavegadoraController extends HttpServlet {
                             if (request.getParameterMap().containsKey("tiene-radioterapia")) {
 
                                 // System.out.println("Radioterapia previa ".concat(String.valueOf(tieneRadioterapiaPrevia)));
-                                PacienteTratamientoPrevio radioterapiaPrevia = pacienteTratamientoPrevioServiceImpl.mostrarPacienteTratamientoPrevioTratamiento(idPacientePotencial, idTratamiento);
+                                PacienteTratamientoPrevio radioterapiaPrevia = pacienteTratamientoPrevioServiceImpl.mostrarPacienteTratamientoPrevioTratamiento(idPacientePotencial, 4);
 
                                 if (radioterapiaPrevia != null) {
                                     pacienteTratamientoPrevio.setIdPaciente(idPacientePotencial);
@@ -1523,7 +1525,7 @@ public class NavegadoraController extends HttpServlet {
                             if (request.getParameterMap().containsKey("entregaBloques")) {
 
                                 //RAUL- SP falta decirle!!!!!!!
-                                BloqueParafina bloqueParafina = bloqueParafinaServicioImpl.mostrarBloqueParafinaPaciente(entregaBloquesParafina)
+                                BloqueParafina bloqueParafina = bloqueParafinaServicioImpl.mostrarBloqueParafinaPaciente(idPacientePotencial);
 
                                 if (bloqueParafina != null) {
                                     int numeroBloquesParafina = 0;

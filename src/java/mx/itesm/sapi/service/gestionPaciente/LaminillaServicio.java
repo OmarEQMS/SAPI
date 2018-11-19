@@ -21,4 +21,5 @@ public interface LaminillaServicio {
     public int agregarLaminilla(Laminilla laminilla);
     public boolean actualizarLaminilla(Laminilla laminilla);
     public boolean borradoLogicoLaminilla(int idLaminilla);
+    
 }
