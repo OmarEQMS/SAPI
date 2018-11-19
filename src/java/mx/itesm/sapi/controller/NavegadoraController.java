@@ -35,6 +35,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Base64;
 import java.util.Calendar;
 
@@ -665,9 +666,8 @@ public class NavegadoraController extends HttpServlet {
                              */
                             int idPacientePotencial = 30;
                             int idCuenta = 63;
- 
                             int idNavegadora = 2;//Navegadora
- 
+
                             /**
                              * 
                              * INICIO DECLARACION DE SERVICIOS
@@ -740,38 +740,42 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Sin PRZ");
                             }
 
-                            System.out.println("Ya pase PRZA");
                             //Tabla pacienteMedicoTitular
                             //MEDICO ADSCRITO
+                            String medicoAdscritoRequest;
                             int medicoAdscrito = 0;
-                            medicoAdscrito = Integer.parseInt(request.getParameter("medico-adscrito"));
-                            if (medicoAdscrito != 0) {
+                            medicoAdscritoRequest = request.getParameter("medico-adscrito");
+                            if (medicoAdscritoRequest != null) {
+                                medicoAdscrito=Integer.parseInt(medicoAdscritoRequest);
                                 System.out.println("Medico adscrito " + (medicoAdscrito));
                                 int idEmpleado = empleadoServicioImpl.mostrarEmpleadoPersona(medicoAdscrito).getIdEmpleado();
                                 int idCita = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
-                                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                                /*DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                                 Calendar cal = Calendar.getInstance();
                                 System.out.println(dateFormat.format(cal.getTime()));
                                 Date inicio = Date.valueOf(dateFormat.format(cal.getTime()));
+                                */
                                 
-                                System.out.println("Esta es la fecha: " +inicio);
-                                
-
-                                PacienteMedicoTitular pacienteMedicoTitular = pacienteMedicoTitularServicioImpl.mostrarPacienteMedicoTitularIdPacientePosicion(idPacientePotencial, 2);
+                                LocalDate inicio=java.time.LocalDate.now();
+                                Date inicioDate=Date.valueOf(inicio);
+                                System.out.println(inicioDate);
+                                PacienteMedicoTitular pacienteMedicoTitular;
+                                pacienteMedicoTitular = pacienteMedicoTitularServicioImpl.mostrarPacienteMedicoTitularIdPacientePosicion(idPacientePotencial, 2);
 
                                 if (pacienteMedicoTitular != null) {
 
                                     pacienteMedicoTitular.setIdPaciente(idPacientePotencial);
                                     pacienteMedicoTitular.setIdEmpleado(idEmpleado);
-                                    pacienteMedicoTitular.setInicio(inicio);
+                                    pacienteMedicoTitular.setInicio(inicioDate);
                                     //Si ya existe un registro, lo borro lógicamente y luego agrego el nuevo
                                     pacienteMedicoTitularServicioImpl.borradoLogicoPacienteMedicoTitular(pacienteMedicoTitular.getIdPacienteMedicoTitular());
                                     pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitular);
 
                                 } else {
+                                    pacienteMedicoTitular =  new PacienteMedicoTitular();
                                     pacienteMedicoTitular.setIdPaciente(idPacientePotencial);
                                     pacienteMedicoTitular.setIdEmpleado(idEmpleado);
-                                    pacienteMedicoTitular.setInicio(inicio);
+                                    pacienteMedicoTitular.setInicio(inicioDate);
                                     pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitular);
                                 }
                                 //checkbox adscritoPresente
@@ -793,6 +797,7 @@ public class NavegadoraController extends HttpServlet {
                                     citaEmpleadoServicioImpl.borradoLogicoCitaEmpleado(citaEmpleado.getIdCitaEmpleado());
                                     citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleado);
                                 } else {
+                                    citaEmpleado = new CitaEmpleado();
                                     citaEmpleado.setAdscritoPresente(adscritoPresente);
                                     citaEmpleado.setIdEmpleado(idEmpleado);
                                     citaEmpleado.setIdCita(idCita);
@@ -805,8 +810,6 @@ public class NavegadoraController extends HttpServlet {
                             } else {
                                 System.out.println("Sin médico adscrito");
                             }
-                            
-                            System.out.println("Ya pase Medico Adscrito");
 
                             //MEDICO RADIOLOGO
                             int medicoRadiologo;
@@ -1574,9 +1577,6 @@ public class NavegadoraController extends HttpServlet {
                                     bloqueParafinaServicioImpl.agregarBloqueParafina(bloqueParafina);
                                 }
                             }
-                            /*
-                            //EMPIEZA PANTALLA 3
-                            
                             //BIOPSIAS                            
                             String biopsias = request.getParameter("biopsias");
                             System.out.println("Biopsias ".concat(biopsias));
@@ -1920,8 +1920,6 @@ public class NavegadoraController extends HttpServlet {
                             } else {
                                 System.out.println("sin ki67 ");
                             }
-                            
-                            */
 
                             break;
                         }

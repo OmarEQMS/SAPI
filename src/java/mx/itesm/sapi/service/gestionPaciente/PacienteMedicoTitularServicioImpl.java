@@ -110,7 +110,7 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
 
         int id = -1;
         //Aquí va el call del procedure
-        String stProcedure = "CALL agregarPersona(?, ?, ?, ?)";
+        String stProcedure = "CALL agregarPacienteMedicoTitular(?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
