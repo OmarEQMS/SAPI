@@ -738,7 +738,7 @@
                                                                 </div>
                                                                 <div class="row justify-content-center mt-3">
                                                                     <div class="col-4 text-center">
-                                                                        <button style="border-radius:20px" type="button" class="btn btn-outline-primary btn-block" id="btn-continuarAResolucion">Continuar
+                                                                        <button style="border-radius:20px" type="button" class="btn btn-outline-primary btn-block" id="btn-continuarAResolucion">Ir a resolución
                                                                             <i class="ml-2 fas fa-arrow-right"></i></button>
                                                                     </div>
                                                                 </div>
