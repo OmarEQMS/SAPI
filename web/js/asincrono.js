@@ -42,8 +42,9 @@ $(document).ready(function () {
 
         if (!repiteUsuario && !repiteCURP && !repiteCorreo) {
             $("#error-datosRepetidos").hide();
+            
             //Verificar que todos los campos que han marcado
-            if (isValidName($('#nombre')) && isValidLastName($('#apellido1')) && isValidUserName($('#usuario')) && isValidEmail($('#correo')) && isValidPassword($('#pass1')) && isValidCURP($('#curp')) && isValidPhoneNumber($('#telefono')) && isValidDate($('#fechaNacimiento')) && isValidSelect($('#estado')) && isValidSelect($('#municipio')) && $('#errorCorreoRepetido').hide()) {
+            if (isValidName($('#nombre')) && isValidLastName($('#apellido1')) && isValidUserName($('#usuario')) && isValidEmail($('#correo')) && isValidPassword($('#pass1')) && isValidCURP($('#curp')) && isValidPhoneNumber($('#telefono')) && isValidSelect($('#estadoCivil')) && isValidDate($('#fechaNacimiento')) && isValidSelect($('#estado')) && isValidSelect($('#municipio')) && $('#errorCorreoRepetido').hide()) {
                 $("#error-campos").hide();
 
                 swal(
@@ -855,10 +856,18 @@ $(document).ready(function () {
         //Valor seleccionado del input
         let date_from = input.val();
         date_from = new Date(date_from);
+        
+        //Hoy hace 16 años
+        var year = today.getFullYear();
+        var month = today.getMonth();
+        var day = today.getDate();
+        var pastDate = new Date(year - 16, month, day);
+        
 
         let event = false;
 
-        today < date_from ? event = true : event = false;
+        if(pastDate < date_from)
+            event = true;
 
 
         if (!input.val() || event) {
