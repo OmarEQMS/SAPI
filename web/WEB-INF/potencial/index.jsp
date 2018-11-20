@@ -714,9 +714,9 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="row mt-4" id="documentoAdjuntoMotivo">
-                                                                <c:choose>
-                                                                    <c:when test="${sessionScope.idMotivoConsulta==1 || sessionScope.idMotivoConsulta==4}">
+                                                            <c:choose>
+                                                                <c:when test="${sessionScope.idMotivoConsulta==1}">
+                                                                    <div class="row mt-4" id="documentoAdjuntoMotivo">
                                                                         <div class="col-3 text-center">
                                                                             <span class="textoDocumento">Referencia</span>
                                                                         </div>
@@ -726,22 +726,46 @@
                                                                                 Adjunta la hoja de referencia de médico.
                                                                             </label>
                                                                         </div>
-                                                                    </c:when>
-                                                                </c:choose>                                                                
-                                                            </div>
+                                                                    </div>
+                                                                </c:when>
+                                                            </c:choose>
 
-                                                            <div class="row mt-4 mb-4" id="otroHospital">
-                                                                <c:choose>
-                                                                    <c:when test="${sessionScope.idMotivoConsulta==4 || sessionScope.idMotivoConsulta==5}">
+                                                            <c:choose>
+                                                                <c:when test="${sessionScope.idMotivoConsulta==4}">
+                                                                    <div class="row mt-4" id="documentoAdjuntoMotivo">
+                                                                        <div class="col-3 text-center">
+                                                                            <span class="textoDocumento">Referencia</span>
+                                                                        </div>
+                                                                        <div class="custom-file col-8" id="customFile">
+                                                                            <input type="file" class="custom-file-input" id="referenciaArchivo" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp" disabled>
+                                                                            <label class="custom-file-label">
+                                                                                Adjunta la hoja de referencia de médico del hospital.
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mt-4 mb-4" id="otroHospital">
                                                                         <div class="col-3 text-center">
                                                                             <span class="textoDocumento">Hospital</span>
                                                                         </div>
                                                                         <div class="custom-file col-8 p-0 m-0" id="customFile">
-                                                                            <input type="text" class="form-control" id="otroHospital" name="otroHospital" placeholder="Introduce tu hospital de procedencia" disabled>
+                                                                            <input type="text" class="form-control" id="otroHospital" name="otroHospital" placeholder="Introduce tu hospital de procedencia"  disabled>
                                                                         </div>
-                                                                    </c:when>
-                                                                </c:choose>
-                                                            </div>
+                                                                    </div>
+                                                                </c:when>
+                                                            </c:choose>  
+
+                                                            <c:choose>
+                                                                <c:when test="${sessionScope.idMotivoConsulta==5}">
+                                                                    <div class="row mt-4 mb-4" id="otroHospital">
+                                                                        <div class="col-3 text-center">
+                                                                            <span class="textoDocumento">Otro motivo</span>
+                                                                        </div>
+                                                                        <div class="custom-file col-8 p-0 m-0" id="customFile">
+                                                                            <input type="text" class="form-control" id="otro-motivo-consulta" placeholder="Introduce otro motivo" disabled>
+                                                                        </div>
+                                                                    </div>
+                                                                </c:when>
+                                                            </c:choose>  
 
                                                         </form>
 

@@ -1203,6 +1203,9 @@ public class PotencialController extends HttpServlet {
                     System.out.println("Motivo SolicitudPreconsulta: " + solicitudPreconsulta.getMotivoCosulta());
                     
                     sesion.setAttribute("idMotivoConsulta", solicitudPreconsulta.getMotivoCosulta());
+                    if(solicitudPreconsulta.getMotivoCosulta() == 1){
+                        
+                    }
 
                     if (solicitudPreconsulta.getIdSexo() == 0) {
                         sesion.setAttribute("idSexo", 0);
