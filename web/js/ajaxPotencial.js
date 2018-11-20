@@ -3,17 +3,13 @@
 $(document).ready(function () {
 
 
-    //Ocultar mensajes de error
+//Ocultar mensajes de error
     $('#error-contrasena').hide();
     $('#noEqualPasswordsError').hide();
     $('#errorCorreoRepetido').hide();
-
     $("#error-datosRepetidos").hide();
-
     var repiteCorreo;
-
     console.log("Se Actualizó!");
-
     $('#eliminarCuentaPotencial').on('click', function () {
         console.log("vaya vaya si llego");
         swal({
@@ -22,7 +18,6 @@ $(document).ready(function () {
             icon: "warning",
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
-
         })
                 .then((eliminar) => {
                     if (eliminar) {
@@ -30,9 +25,7 @@ $(document).ready(function () {
                             url: "PotencialController",
                             data: {
                                 key: "eliminarCuentaPacientePotencial",
-
                                 idCuenta: $("#sesionPaciente").val(),
-
                             },
                             method: "POST",
                             success: function (response) {
@@ -43,7 +36,6 @@ $(document).ready(function () {
                                     document.open("text/html", "replace");
                                     document.write(response);
                                     document.close();
-
                                 }
                             },
                             error: function (xhr) {
@@ -51,17 +43,11 @@ $(document).ready(function () {
                             }
 
                         });
-
-
                     } else {
 
                     }
                 });
-
-
-
     });
-
     $('#myEmail').on('change', function () {
         $.ajax({
 
@@ -90,7 +76,6 @@ $(document).ready(function () {
             }
 
         });
-
         if (isValidEmail($(this))) {
             $('#errorCorreo').hide();
         } else if ($(this).val() == '') {
@@ -100,7 +85,6 @@ $(document).ready(function () {
         }
 
     });
-
     $('#guardarCambios').on('click', function () {
 
         if (!repiteCorreo) {
@@ -141,7 +125,6 @@ $(document).ready(function () {
                                             document.open("text/html", "replace");
                                             document.write(response);
                                             document.close();
-
                                         }
                                     }
                                 }
@@ -151,7 +134,6 @@ $(document).ready(function () {
                         //alert(xhr.statusText);
                     }
                 });
-
             } else {
                 swal({
                     title: "Datos invalidos!",
@@ -163,7 +145,6 @@ $(document).ready(function () {
             $("#error-datosRepetidos").show(); //ya existe un campo
         }
     });
-
     $('#btn-cancelarDefinitivo').on('click', () => {
 
         $.ajax({
@@ -227,24 +208,20 @@ $(document).ready(function () {
 
             }
         });
-
-
     });
-
     $('#cancelarCitaModal').on('click', function () {
         console.log("hola");
         $('#modalVerCitaPreConsulta').modal('toggle');
     });
-
     $('.mitadCancelar').on('click', function () {
 
-        //Modal borrar sintoma
+//Modal borrar sintoma
         swal({
             title: "¿Estás segura(o) que deseas cancelar la cita?",
-            text: "Tendrás que reiniciar tu solicitud de preconsulta ya que se cancelaran ambas",
+            text: "Tendrás que reiniciar tu solicitud de preconsulta ya que se cancelarán ambas citas.",
             icon: "warning",
             buttons: true,
-            buttons: ['Regresar', 'Cancelar cita'],
+            buttons: ['Regresar', 'Cancelar Cita'],
             dangerMode: true,
         })
 
@@ -252,40 +229,28 @@ $(document).ready(function () {
                     if (cancelar) {
 
                         $('#modalMotivoCancelacion').modal('toggle');
-
-
                     } else {
 
                     }
                 });
-
-
     });
-
     $("#btn-GuardarContinuar").on('click', function ()
     {
 
         var funcionaIdentificacion = $('#labelIdentificacion').text().search("Elegir archivo...") >= 0 ? true : false;
         var tieneIdentificacion = ($('#fileIdentificacion').get(0).files.length === 0 || funcionaIdentificacion) ? false : true;
-
         var funcionaCurp = $('#labelCurp').text().search("Elegir archivo...") >= 0 ? true : false;
         var tieneCurp = ($('#fileCURP').get(0).files.length === 0 || funcionaCurp) ? false : true;
-
         var funcionaComprobante = $('#labelComprobante').text().search("Elegir archivo...") >= 0 ? true : false;
         var tieneComprobante = ($('#fileComprobanteDomicilio').get(0).files.length === 0 || funcionaComprobante) ? false : true;
-
         var funcionaEstudioMasto = $('#labelEstudioMasto').text().search("Elegir archivo...") >= 0 ? true : false;
         var tieneEstudioMasto = ($('#fileEstudioPrevioMasto').get(0).files.length === 0 || funcionaEstudioMasto) ? false : true;
-
         var funcionaEstudioUsg = $('#labelEstudioUsg').text().search("Elegir archivo...") >= 0 ? true : false;
         var tieneEstudioUsg = ($('#fileEstudioPrevioUsg').get(0).files.length === 0 || funcionaEstudioUsg) ? false : true;
-
         var funcionaEstudioBiopsia = $('#labelEstudioBio').text().search("Elegir archivo...") >= 0 ? true : false;
         var tieneEstudioBiopsia = ($('#fileEstudioBiopsia').get(0).files.length === 0 || funcionaEstudioBiopsia) ? false : true;
-
         var existe = document.body.contains(document.getElementById('referenciaArchivo'));
         var tieneReferencia = false;
-
         if (existe) {
             var funcionaReferencia = $('#labelReferencia').text().search("Elegir archivo...") >= 0 ? true : false;
             tieneReferencia = ($('#referenciaArchivo').get(0).files.length === 0 || funcionaReferencia) ? false : true;
@@ -298,9 +263,7 @@ $(document).ready(function () {
         console.log('Estudio Masto: ' + tieneEstudioMasto);
         console.log('Estudio Usg: ' + tieneEstudioUsg);
         console.log('Estudio Biopsia: ' + tieneEstudioBiopsia);
-
         var continuar = true;
-
         if (tieneIdentificacion && continuar) {
             if (!validDocument($('#fileIdentificacion'), document.querySelector('#fileIdentificacion').files))
                 continuar = false;
@@ -335,7 +298,6 @@ $(document).ready(function () {
             console.log("Guardar-Continuar");
             var form = $("form")[0];
             var data = new FormData(form);
-
             var masculino = $('#masculino').is(':checked') ? 1 : 0;
             var femenino = $('#femenino').is(':checked') ? 1 : 0;
             var sillaDeRuedas = $('#sillaRuedas').is(':checked') ? 1 : 0;
@@ -344,7 +306,6 @@ $(document).ready(function () {
             var oxigeno = $('#oxigeno').is(':checked') ? 1 : 0;
             var motivoConsulta = $('#motivoConsulta').val();
             var biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
-
             data.append("key", "GuardarContinuar");
             data.append("femenino", femenino);
             data.append("masculino", masculino);
@@ -354,9 +315,7 @@ $(document).ready(function () {
             data.append("oxigeno", oxigeno);
             data.append("motivoConsulta", motivoConsulta);
             data.append("biopsia", biopsia);
-
             console.log(data);
-
             // Imprimmir en consola los valores obtenidos del form para pruebas
             data.forEach((value, key) => {
                 console.log(key + " " + value);
@@ -378,11 +337,8 @@ $(document).ready(function () {
                     contentType: false,
                     success: function (response) {
                         console.log("dsafdsafdsafsdafsdafjsalkjflsadjfkjsañlfjkasjfklsjaflsñjfklsjdfkljaslkfjla");
-
-
                         var consultarDocumentosPreconsulta = new FormData;
                         consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
-
                         console.log("Solicitar DOCUMENTOS de Preconsulta");
                         $.ajax({
                             url: "PotencialController",
@@ -396,7 +352,6 @@ $(document).ready(function () {
                                 if (response != null) {
                                     var data = JSON.parse(response);
                                     console.log(data);
-
                                     console.log("Solicitar ESTADO de Preconsulta");
                                     $.ajax({
                                         url: "PotencialController",
@@ -442,7 +397,6 @@ $(document).ready(function () {
                                         }
 
                                     });
-
                                 } else {
                                     console.log("Algo pasó" + response);
                                 }
@@ -470,33 +424,32 @@ $(document).ready(function () {
                 buttons: [, 'Aceptar']
 
             });
-
         }
 
 
 
     });
-
     $("#btn-enviarSolicitud").on('click', function () {
 
-        //probar si existe la referencia
+//probar si existe la referencia
         var existe = document.body.contains(document.getElementById('referenciaArchivo'));
         console.log('EXISTE: ' + existe);
-
         //si selecciono me envio un medico o me enviaron de otro hospital
         if (parseInt($('#motivoConsulta option:selected').val()) == 1 || parseInt($('#motivoConsulta option:selected').val()) == 4) {
 
-            //verifica si ha seleccionado un archivo en la referencia
+//verifica si ha seleccionado un archivo en la referencia
             var tieneReferencia = $('#referenciaArchivo').get(0).files.length === 0 ? false : true;
-
             if (!tieneReferencia) {
-                swal("Error", "Adjunta la referencia para poder enviar tu solicitud", "error");
+                swal({title: "Error",
+                    text: "Adjunta la referencia para poder enviar tu solicitud.",
+                    icon: "error",
+                    buttons: true,
+                    buttons: [, 'Aceptar']
+                });
             } else {
                 console.log("Enviar solicitud");
-
                 var form = $("form")[0];
                 var data = new FormData(form);
-
                 var masculino = $('#masculino').is(':checked') ? 1 : 0;
                 var femenino = $('#femenino').is(':checked') ? 1 : 0;
                 var sillaDeRuedas = $('#sillaRuedas').is(':checked') ? 1 : 0;
@@ -506,7 +459,6 @@ $(document).ready(function () {
                 var motivoConsulta = $('#motivoConsulta').val();
                 var biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
                 var otroMotivo = $('#otro-motivo-consulta').val();
-
                 data.append("key", "solicitarPreconsulta");
                 data.append("femenino", femenino);
                 data.append("masculino", masculino);
@@ -517,37 +469,27 @@ $(document).ready(function () {
                 data.append("motivoConsulta", motivoConsulta);
                 data.append("otroMotivo", otroMotivo);
                 data.append("biopsia", biopsia);
-
                 console.log(data);
-
                 //Al presionar enviar los campos quedan ineditables
 
                 $('#masculino').attr('readonly', 'true');
                 $('#femenino').attr('readonly', 'true');
                 $('#fileIdentificacionSubido').prop('disabled', true);
-
-
                 // Imprimmir en consola los valores obtenidos del form para pruebas
                 data.forEach((value, key) => {
                     console.log(key + " " + value);
                 });
-
-
-
-
                 swal({
                     title: "¿Estás seguro de enviar tu solicitud?",
-                    text: "Ya no podras modificar tu solicitud mas adelante",
-
+                    text: "Ya no podrás modificar tu solicitud mas adelante.",
                     showCancelButton: false,
                     showConfirmButton: true,
-
                     buttons: {cancel: 'Cancelar', aceptar: 'Aceptar'},
                     dangerMode: true
                 }).then(function (value) {
 
                     if (value == "aceptar") {
-                        //AJAX PARA ENVIAR SOLICITUD
+//AJAX PARA ENVIAR SOLICITUD
                         $.ajax({
                             url: "PotencialController",
                             method: "POST",
@@ -569,7 +511,7 @@ $(document).ready(function () {
 
                                     swal({
                                         title: "Solicitud enviada",
-                                        text: "En 36 horas máximo, se te dará respuesta a tu solicitud",
+                                        text: "En 36 horas máximo, se te dará respuesta a tu solicitud.",
                                         icon: "success",
                                         buttons: true,
                                         buttons: [, 'Aceptar']
@@ -577,7 +519,6 @@ $(document).ready(function () {
                                     }).then(function () {
                                         var consultarDocumentosPreconsulta = new FormData;
                                         consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
-
                                         console.log("Solicitar DOCUMENTOS de Preconsulta");
                                         $.ajax({
                                             url: "PotencialController",
@@ -591,7 +532,6 @@ $(document).ready(function () {
                                                 if (response != null) {
                                                     var data = JSON.parse(response);
                                                     console.log(data);
-
                                                     console.log("Solicitar ESTADO de Preconsulta");
                                                     $.ajax({
                                                         url: "PotencialController",
@@ -637,7 +577,6 @@ $(document).ready(function () {
                                                         }
 
                                                     });
-
                                                 } else {
                                                     console.log("Algo pasó" + response);
                                                 }
@@ -668,10 +607,8 @@ $(document).ready(function () {
 
         } else {
             console.log("Enviar solicitud");
-
             var form = $("form")[0];
             var data = new FormData(form);
-
             var masculino = $('#masculino').is(':checked') ? 1 : 0;
             var femenino = $('#femenino').is(':checked') ? 1 : 0;
             var sillaDeRuedas = $('#sillaRuedas').is(':checked') ? 1 : 0;
@@ -681,7 +618,6 @@ $(document).ready(function () {
             var motivoConsulta = $('#motivoConsulta').val();
             var biopsia = $('#biopsiaInput').is(':checked') ? 1 : 0;
             var otroMotivo = $('#otro-motivo-consulta').val();
-
             data.append("key", "solicitarPreconsulta");
             data.append("femenino", femenino);
             data.append("masculino", masculino);
@@ -692,37 +628,27 @@ $(document).ready(function () {
             data.append("motivoConsulta", motivoConsulta);
             data.append("otroMotivo", otroMotivo);
             data.append("biopsia", biopsia);
-
             console.log(data);
-
             //Al presionar enviar los campos quedan ineditables
 
             $('#masculino').attr('readonly', 'true');
             $('#femenino').attr('readonly', 'true');
             $('#fileIdentificacionSubido').prop('disabled', true);
-
-
             // Imprimmir en consola los valores obtenidos del form para pruebas
             data.forEach((value, key) => {
                 console.log(key + " " + value);
             });
-
-
-
-
             swal({
                 title: "¿Estás seguro de enviar tu solicitud?",
-                text: "Ya no podras modificar tu solicitud mas adelante.",
-
+                text: "Ya no podrás modificar tu solicitud mas adelante.",
                 showCancelButton: false,
                 showConfirmButton: true,
-
                 buttons: {cancel: 'Cancelar', aceptar: 'Aceptar'},
                 dangerMode: true
             }).then(function (value) {
 
                 if (value == "aceptar") {
-                    //AJAX PARA ENVIAR SOLICITUD
+//AJAX PARA ENVIAR SOLICITUD
                     $.ajax({
                         url: "PotencialController",
                         method: "POST",
@@ -744,7 +670,7 @@ $(document).ready(function () {
 
                                 swal({
                                     title: "Solicitud enviada",
-                                    text: "En 36 horas máximo, se te dará respuesta a tu solicitud",
+                                    text: "En 36 horas máximo, se te dará respuesta a tu solicitud.",
                                     icon: "success",
                                     buttons: true,
                                     buttons: [, 'Aceptar']
@@ -752,7 +678,6 @@ $(document).ready(function () {
                                 }).then(function () {
                                     var consultarDocumentosPreconsulta = new FormData;
                                     consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
-
                                     console.log("Solicitar DOCUMENTOS de Preconsulta");
                                     $.ajax({
                                         url: "PotencialController",
@@ -766,7 +691,6 @@ $(document).ready(function () {
                                             if (response != null) {
                                                 var data = JSON.parse(response);
                                                 console.log(data);
-
                                                 console.log("Solicitar ESTADO de Preconsulta");
                                                 $.ajax({
                                                     url: "PotencialController",
@@ -812,7 +736,6 @@ $(document).ready(function () {
                                                     }
 
                                                 });
-
                                             } else {
                                                 console.log("Algo pasó" + response);
                                             }
@@ -847,7 +770,6 @@ $(document).ready(function () {
         /**/
 
     });
-
     /* $("#irACuenta").on('click', function () {
      console.log("Presionó ir a cuenta");
      $.ajax({
@@ -869,7 +791,6 @@ $(document).ready(function () {
         console.log("Presionó CitaPreConsulta")
         var consultarDocumentosPreconsulta = new FormData;
         consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
-
         console.log("Solicitar DOCUMENTOS de Preconsulta");
         $.ajax({
             url: "PotencialController",
@@ -883,7 +804,6 @@ $(document).ready(function () {
                 if (response != null) {
                     var data = JSON.parse(response);
                     console.log(data);
-
                     console.log("Solicitar ESTADO de Preconsulta");
                     $.ajax({
                         url: "PotencialController",
@@ -929,7 +849,6 @@ $(document).ready(function () {
                         }
 
                     });
-
                 } else {
                     console.log("Algo pasó" + response);
                 }
@@ -940,7 +859,6 @@ $(document).ready(function () {
 
         });
     });
-
     $('#enviar').on('click', function () {
         $.ajax({
             url: "PotencialController",
@@ -955,7 +873,6 @@ $(document).ready(function () {
             }
         });
     });
-
     $('#irAMisCitas').on('click', function () {
         console.log("Solicitar ESTADO de Preconsulta");
         $.ajax({
@@ -1002,7 +919,6 @@ $(document).ready(function () {
 
         });
     });
-
     $('#irAMisCitas2').on('click', function () {
         console.log("Solicitar ESTADO de Preconsulta");
         $.ajax({
@@ -1053,7 +969,6 @@ $(document).ready(function () {
 
         });
     });
-
     $('#irACuenta').on('click', function () {
         $.post("SAPI", {
             file: "potencial/cuentaPaciente.jsp"
@@ -1072,7 +987,6 @@ $(document).ready(function () {
                 }
         );
     });
-
     $('#irAInicioPotencial').on('click', function () {
         $.post("SAPI", {
             file: "potencial/index.jsp"
@@ -1091,7 +1005,6 @@ $(document).ready(function () {
                 }
         );
     });
-
     $('#irACuenta1').on('click', function () {
         $.post("SAPI", {
             file: "potencial/cuentaPaciente.jsp"
@@ -1110,10 +1023,9 @@ $(document).ready(function () {
                 }
         );
     });
-
     $('#irAPreguntasFrecuentes').on('click', function () {
         $.post("SAPI", {
-            //CAMBIAR ESTE NOMBRE
+//CAMBIAR ESTE NOMBRE
             file: "potencial/preguntasFrecuentes.jsp"
         },
                 function (response, status, xhr) {
@@ -1130,48 +1042,6 @@ $(document).ready(function () {
                 }
         );
     });
-    /*
-     $('#guardarCambios').on('click', function () {
-     
-     console.log("Presionó GuardarCambios")
-     var form = $("form")[0];
-     var data = new FormData(form);
-     
-     data.append("key", "guardarCambios");
-     data.forEach((value, key) => {
-     console.log(key + " " + value);
-     })
-     
-     $.ajax({
-     url: "PotencialController",
-     data: data,
-     method: "POST",
-     encType: "multipart/form-data",
-     processData: false,
-     contentType: false,
-     success: function (response) {
-     $.post("SAPI", {
-     file: "potencial/cuentaPaciente.jsp"
-     },
-     function (response, status, xhr) {
-     console.log("El ajax fue exitoso!!-----------------------");
-     if (status == "success") {
-     if (response == "error") {
-     $("#msj-error").show();
-     } else {
-     document.open("text/html", "replace");
-     document.write(response);
-     document.close();
-     }
-     }
-     }
-     );
-     },
-     error: function (xhr) {
-     //alert(xhr.statusText);
-     }
-     });
-     });*/
 
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
@@ -1193,7 +1063,6 @@ $(document).ready(function () {
                 }
         );
     });
-
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta1').on('click', function () {
         console.log("Salir cuenta");
@@ -1214,13 +1083,12 @@ $(document).ready(function () {
                 }
         );
     });
-
     $("#btn-cambiarContrasena").on('click', function () {
-        //Modal cambiar contraseña 
+//Modal cambiar contraseña 
         if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
             swal({
                 title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
-                text: "No podras volver a usar tu contraseña anterior para ingresar",
+                text: "No podrás volver a usar tu contraseña anterior para ingresar.",
                 icon: "warning",
                 buttons: true,
                 buttons: ['Regresar', 'Cambiar contraseña'],
@@ -1251,26 +1119,20 @@ $(document).ready(function () {
                     });
         }
     });
-
     $("#password").on('change', function () {
         if (isValidPassword($(this)))
             $("#error-contrasena").hide();
         else
             $("#error-contrasena").show();
     });
-
     $("#password2").on('change', function () {
         var pass1 = $('#password');
         var pass2 = $(this);
-
         areEqualPasswords(pass1, pass2);
     });
-
-
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-
             reader.onload = function (e) {
                 $('#ImagenPerfil').attr('src', e.target.result);
             }
@@ -1283,7 +1145,6 @@ $(document).ready(function () {
         console.log("Llegó :)");
         readURL(this);
     });
-
     //VALIDACIONES
 
     function areEqualPasswords(pass1, pass2) {
@@ -1293,14 +1154,11 @@ $(document).ready(function () {
             pass2.css('border', '1px solid red');
             pass1.css('border', '1px solid red');
             $('#noEqualPasswordsError').show();
-
             return false;
-
         } else {
             pass2.css('border', '');
             pass1.css('border', '');
             $('#noEqualPasswordsError').hide();
-
         }
 
         return true;
@@ -1309,7 +1167,6 @@ $(document).ready(function () {
     function isValidPassword(input) {
 
         var m = input.val();
-
         //var expreg = /^[a-zA-Z0-9]{8,14}$/;
         var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
         if (!expreg.test(m)) {
@@ -1317,7 +1174,6 @@ $(document).ready(function () {
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
 
             input.css('border', '');
@@ -1325,44 +1181,35 @@ $(document).ready(function () {
         }
 
         return true;
-
     }
 
     function isValidEmail(input) {
 
         var m = input.val();
-
         ////Expresion regular por el estandard: RFC 5322
         var expreg = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-
         if (!expreg.test(m)) {
 
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
             input.css('border', '');
             input.css('color', '');
         }
 
         return true;
-
     }
     ;
-
     function isValidPhoneNumber(input) {
 
         var m = input.val();
-
         var expreg = /^[0-9]{10,10}$/;
-
         if (!expreg.test(m)) {
 
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
             input.css('border', '');
             input.css('color', '');
@@ -1383,8 +1230,6 @@ $(document).ready(function () {
                 console.log('si se puede' + archivos[index]["type"]);
                 input.css('border', '');
                 return true;
-
-
             } else {
                 console.log('no se puede' + archivos[index]["type"]);
                 input.css('border', '1px solid red');
@@ -1422,7 +1267,6 @@ $(document).ready(function () {
             }
 
         });
-
         if (isValidEmail($(this))) {
             $('#error-correo').hide();
         } else if ($(this).val() == '') {
@@ -1432,7 +1276,4 @@ $(document).ready(function () {
         }
 
     });
-
-
-
 });
