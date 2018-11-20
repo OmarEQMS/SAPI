@@ -5,6 +5,7 @@ $(document).ready(function () {
     $('#error-contrasena').hide();
     $('#noEqualPasswordsError').hide();
     $('#errorCorreoRepetido').hide();
+    $('#error-imgPerfil').hide();
     
     $("#error-datosRepetidos").hide();
     
@@ -326,7 +327,7 @@ $(document).ready(function () {
     $('#correo').on('change', function () {
         $.ajax({
 
-            url: 'RegistraUsuarioController',
+            url: 'PacienteController',
             cache: false,
             method: 'POST',
             data: {
@@ -342,19 +343,23 @@ $(document).ready(function () {
                     console.log("correo repetidooo")
                     $('#correo').css('color', 'orange');
                     $('#errorCorreoRepetido').show();
+                    repiteCorreo = true;
                 } else {
+                    $('#correo').css('color', '');
                     $('#errorCorreoRepetido').hide();
+                    repiteCorreo = false;
                 }
 
             }
 
         });
+
         if (isValidEmail($(this))) {
-            $('#errorCorreo').hide();
+            $('#error-correo').hide();
         } else if ($(this).val() == '') {
-            $('#errorCorreo').hide();
+            $('#error-correo').hide();
         } else {
-            $('#errorCorreo').show();
+            $('#error-correo').show();
         }
 
     });
@@ -478,8 +483,15 @@ $(document).ready(function () {
 
     $("#file-input").on('change', function () {
         console.log("Llegó :)");
-        readURL(this);
+        if(validProfilePhoto($('#file-input'), document.querySelector('#file-input').files)){
+            $('#error-imgPerfil').hide();
+            readURL(this);
+        }
+        else{
+            $('#error-imgPerfil').show();
+        }
     });
+    
     //Agregar tratamientos
     $("#btn-agregarTratamiento").on('click', function () {
 
@@ -704,6 +716,28 @@ $(document).ready(function () {
 
         return true;
     }
+    
+    function validProfilePhoto(input, archivos) {
+
+        for (let index = 0; index < archivos.length; index++) {
+
+            if (archivos[index]["type"] == "image/jpg" || archivos[index]["type"] == "image/png"
+                ) {
+
+                console.log('si se puede' + archivos[index]["type"]);
+                input.css('border', '');
+                return true;
+
+
+            } else {
+                console.log('no se puede' + archivos[index]["type"]);
+                input.css('border', '1px solid red');
+            }
+
+        }
+
+        return false;
+    }
 
     function isValidNoExpediente(input) {
 
@@ -918,42 +952,4 @@ function isValidDate(input, fechaNac) {
         return true;
     }
 
-    //CORREO REPETIDO
-    $('#correo').on('change', function () {
-        $.ajax({
-
-            url: 'RegistraUsuarioController',
-            cache: false,
-            method: 'POST',
-            data: {
-
-                key: "repiteCorreo",
-                correo: $('#correo').val()
-
-
-            },
-            success: function (response) {
-
-                if (response === 'CorreoAlreadyExists') {
-                    console.log("correo repetidooo")
-                    $('#correo').css('color', 'orange');
-                    $('#errorCorreoRepetido').show();
-                    repiteCorreo = true;
-                } else {
-                    $('#errorCorreoRepetido').hide();
-                    repiteCorreo = false;
-                }
-
-            }
-
-        });
-        if (isValidEmail($(this))) {
-            $('#error-correo').hide();
-        } else if ($(this).val() == '') {
-            $('#error-correo').hide();
-        } else {
-            $('#error-correo').show();
-        }
-
-    });
 });

@@ -589,7 +589,7 @@ public class PersonaServicioImpl implements PersonaServicio {
     }
 
     
-        @Override
+    @Override
     public boolean existsCorreo(String usuario) {
 
         Connection conn = Conexion.getConnection();
@@ -613,4 +613,28 @@ public class PersonaServicioImpl implements PersonaServicio {
 
     }
 
+    @Override
+    public boolean existsCorreo(String usuario, int idPersona) {
+
+        Connection conn = Conexion.getConnection();
+
+        CallableStatement cstmt;
+
+        try {
+
+            cstmt = conn.prepareCall("CALL existeCorreoIdPersona(?, ?, ?)");
+            cstmt.setString(1, usuario);
+            cstmt.setInt(2, idPersona);
+            cstmt.registerOutParameter(3, Types.BOOLEAN);
+
+            cstmt.execute();
+            return cstmt.getBoolean(3);
+
+        } catch (SQLException ex) {
+
+            Logger.getLogger(CuentaServicioImpl.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+    }
 }

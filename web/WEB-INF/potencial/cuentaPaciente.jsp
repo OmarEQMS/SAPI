@@ -160,7 +160,7 @@
                             <div class="form-group row justify-content-center">
                                 <div class="col-12 text-center">
                                     <input type="file" class="editar-imagen" id="file-input" name="file-image"/>
-                                    <label for="file-input">
+                                    <label for="file-input" id="fileLabel">
                                         <img src="data:image/jpeg;base64,${sessionScope.base64Img}" id="ImagenPerfil" class="edit-image" alt="Click aquí" title="Click aquí" width="200px" height="200px">
                                     </label>
                                 </div>

@@ -173,6 +173,7 @@
                             <div class="row mb-4">
                                 <div class="col-12 text-center">
                                     <h4 class="FotoPerfil text-secondary" style="font-size:17px;">Edita tu foto de perfil</h4>
+                                    <span class="text-danger" id="error-imgPerfil">No es una extensión válida. Puedes subir un archivo .jpg o .png</span>
                                 </div>
                             </div>
 

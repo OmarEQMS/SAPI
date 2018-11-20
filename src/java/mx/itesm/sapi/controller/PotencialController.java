@@ -274,6 +274,32 @@ public class PotencialController extends HttpServlet {
                 }
                 break;
             }
+            
+            case "repiteCorreo": {
+                HttpSession sesion = request.getSession(true);
+                
+                String correo = request.getParameter("correo");
+                int idPersona = (int) sesion.getAttribute("idPersona");
+                
+                PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
+                
+                PrintWriter out = response.getWriter();
+                
+                System.out.println("ENTRA AQUÍ");
+                
+                //Checo si el usuario existe
+                if (_registroServicio.existsCorreo(correo, idPersona)) {
+                    System.out.println("EXISTE");
+                    out.print("CorreoAlreadyExists");
+
+                } else {
+                    System.out.println("NO EXISTE");
+                    //Si no existe, lo inserto
+                    out.print("CorreoDoesntExist");
+
+                }
+            }
+            break;
 
             case "solicitarPreconsulta": {
                 /**

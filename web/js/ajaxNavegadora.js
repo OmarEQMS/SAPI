@@ -41,6 +41,8 @@ $(document).ready(function () {
     $('#error-editar-EstadoNavegadora').hide();
     $('#error-editar-MunicipioNavegadora').hide();
     $('#error-editar-UsuarioRepetidoNavegadora').hide();
+    
+    $('#error-imgPerfil').hide();
 
     $('#error-contrasena').hide();
     $('#noEqualPasswordsError').hide();
@@ -1114,7 +1116,13 @@ $(document).ready(function () {
 
     $("#file-input").on('change', function () {
         console.log("Llegó :)");
-        readURL(this);
+        if(validProfilePhoto($('#file-input'), document.querySelector('#file-input').files)){
+            $('#error-imgPerfil').hide();
+            readURL(this);
+        }
+        else{
+            $('#error-imgPerfil').show();
+        }
     });
 
     //Cambiar contraseña
@@ -1230,6 +1238,28 @@ $(document).ready(function () {
             }
         });
     });
+    
+    function validProfilePhoto(input, archivos) {
+
+        for (let index = 0; index < archivos.length; index++) {
+
+            if (archivos[index]["type"] == "image/jpg" || archivos[index]["type"] == "image/png"
+                ) {
+
+                console.log('si se puede' + archivos[index]["type"]);
+                input.css('border', '');
+                return true;
+
+
+            } else {
+                console.log('no se puede' + archivos[index]["type"]);
+                input.css('border', '1px solid red');
+            }
+
+        }
+
+        return false;
+    }
 
     function isValidEmail(input) {
 

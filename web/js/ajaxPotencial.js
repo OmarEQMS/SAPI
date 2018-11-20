@@ -12,6 +12,8 @@ $(document).ready(function () {
     $("#error-datosRepetidos").hide();
 
     var repiteCorreo;
+    var cambioImagen = false;
+    var imagenValida = false;
 
     console.log("Se Actualizó!");
 
@@ -66,7 +68,7 @@ $(document).ready(function () {
     $('#myEmail').on('change', function () {
         $.ajax({
 
-            url: 'RegistraUsuarioController',
+            url: 'PotencialController',
             cache: false,
             method: 'POST',
             data: {
@@ -84,6 +86,7 @@ $(document).ready(function () {
                     $('#errorCorreoRepetido').show();
                     repiteCorreo = true;
                 } else {
+                    $('#myEmail').css('color', '');
                     $('#errorCorreoRepetido').hide();
                     repiteCorreo = false;
                 }
@@ -93,76 +96,98 @@ $(document).ready(function () {
         });
 
         if (isValidEmail($(this))) {
-            $('#errorCorreo').hide();
+            $('#error-correo').hide();
         } else if ($(this).val() == '') {
-            $('#errorCorreo').hide();
+            $('#error-correo').hide();
         } else {
-            $('#errorCorreo').show();
+            $('#error-correo').show();
         }
 
     });
 
     $('#guardarCambios').on('click', function () {
 
-        if (!repiteCorreo) {
-            $("#error-datosRepetidos").hide();
-            if (isValidEmail($("#myEmail")) &&
-                    isValidPhoneNumber($("#telephoneNum"))) {
+        var continuar = false;
+
+        if (cambioImagen) {
+            if (imagenValida)
+                continuar = true;
+            else
+                continuar = false;
+        } else {
+            continuar = true;
+        }
+        
+        console.log("CambioImagen: " + cambioImagen);
+        console.log("imagenValida: " + imagenValida);
+        
+        if(continuar)
+            console.log("Se actualizan cambios");
+        else
+            console.log("No se puede (imagenInVálida");
+
+        /*if (continuar) {
+            if (!repiteCorreo) {
+                $("#error-datosRepetidos").hide();
+                if (isValidEmail($("#myEmail")) &&
+                        isValidPhoneNumber($("#telephoneNum"))) {
 
 
-                console.log("Presionó GuardarCambios")
-                var form = $("form")[0];
-                var data = new FormData(form);
-                data.append("key", "guardarCambios");
-                data.forEach((value, key) => {
-                    console.log(key + " " + value);
-                })
+                    console.log("Presionó GuardarCambios")
+                    var form = $("form")[0];
+                    var data = new FormData(form);
+                    data.append("key", "guardarCambios");
+                    data.forEach((value, key) => {
+                        console.log(key + " " + value);
+                    })
 
 
 
-                $.ajax({
-                    url: "PotencialController",
-                    data: data,
-                    method: "POST",
-                    encType: "multipart/form-data",
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    success: function (response) {
-                        console.log("Debió haber guardado");
-                        $.post("SAPI", {
-                            file: "potencial/cuentaPaciente.jsp"
-                        },
-                                function (response, status, xhr) {
-                                    console.log("El ajax fue exitoso!!-----------------------");
-                                    if (status == "success") {
-                                        if (response == "error") {
-                                            $("#msj-error").show();
-                                        } else {
-                                            document.open("text/html", "replace");
-                                            document.write(response);
-                                            document.close();
+                    $.ajax({
+                        url: "PotencialController",
+                        data: data,
+                        method: "POST",
+                        encType: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        success: function (response) {
+                            console.log("Debió haber guardado");
+                            $.post("SAPI", {
+                                file: "potencial/cuentaPaciente.jsp"
+                            },
+                                    function (response, status, xhr) {
+                                        console.log("El ajax fue exitoso!!-----------------------");
+                                        if (status == "success") {
+                                            if (response == "error") {
+                                                $("#msj-error").show();
+                                            } else {
+                                                document.open("text/html", "replace");
+                                                document.write(response);
+                                                document.close();
 
+                                            }
                                         }
                                     }
-                                }
-                        );
-                    },
-                    error: function (xhr) {
-                        //alert(xhr.statusText);
-                    }
-                });
+                            );
+                        },
+                        error: function (xhr) {
+                            //alert(xhr.statusText);
+                        }
+                    });
 
+                } else {
+                    swal({
+                        title: "Datos invalidos!",
+                        text: "Revisa todos los campos antes de continuar",
+                        icon: "error",
+                    });
+                }
             } else {
-                swal({
-                    title: "Datos invalidos!",
-                    text: "Revisa todos los campos antes de continuar",
-                    icon: "error",
-                });
+                $("#error-datosRepetidos").show(); //ya existe un campo
             }
-        } else {
-            $("#error-datosRepetidos").show(); //ya existe un campo
-        }
+        }*/
+
     });
 
     $('#btn-cancelarDefinitivo').on('click', () => {
@@ -266,29 +291,29 @@ $(document).ready(function () {
     $("#btn-GuardarContinuar").on('click', function ()
     {
 
-        var funcionaIdentificacion = $('#labelIdentificacion').text().search("Elegir archivo...") >= 0 ? true : false;
+        var funcionaIdentificacion = $('#labelIdentificacion').text().search("Elegir archivo") >= 0 ? true : false;
         var tieneIdentificacion = ($('#fileIdentificacion').get(0).files.length === 0 || funcionaIdentificacion) ? false : true;
 
-        var funcionaCurp = $('#labelCurp').text().search("Elegir archivo...") >= 0 ? true : false;
+        var funcionaCurp = $('#labelCurp').text().search("Elegir archivo") >= 0 ? true : false;
         var tieneCurp = ($('#fileCURP').get(0).files.length === 0 || funcionaCurp) ? false : true;
 
-        var funcionaComprobante = $('#labelComprobante').text().search("Elegir archivo...") >= 0 ? true : false;
+        var funcionaComprobante = $('#labelComprobante').text().search("Elegir archivo") >= 0 ? true : false;
         var tieneComprobante = ($('#fileComprobanteDomicilio').get(0).files.length === 0 || funcionaComprobante) ? false : true;
 
-        var funcionaEstudioMasto = $('#labelEstudioMasto').text().search("Elegir archivo...") >= 0 ? true : false;
+        var funcionaEstudioMasto = $('#labelEstudioMasto').text().search("Elegir archivo") >= 0 ? true : false;
         var tieneEstudioMasto = ($('#fileEstudioPrevioMasto').get(0).files.length === 0 || funcionaEstudioMasto) ? false : true;
 
-        var funcionaEstudioUsg = $('#labelEstudioUsg').text().search("Elegir archivo...") >= 0 ? true : false;
+        var funcionaEstudioUsg = $('#labelEstudioUsg').text().search("Elegir archivo") >= 0 ? true : false;
         var tieneEstudioUsg = ($('#fileEstudioPrevioUsg').get(0).files.length === 0 || funcionaEstudioUsg) ? false : true;
 
-        var funcionaEstudioBiopsia = $('#labelEstudioBio').text().search("Elegir archivo...") >= 0 ? true : false;
+        var funcionaEstudioBiopsia = $('#labelEstudioBio').text().search("Elegir archivo") >= 0 ? true : false;
         var tieneEstudioBiopsia = ($('#fileEstudioBiopsia').get(0).files.length === 0 || funcionaEstudioBiopsia) ? false : true;
 
         var existe = document.body.contains(document.getElementById('referenciaArchivo'));
         var tieneReferencia = false;
 
         if (existe) {
-            var funcionaReferencia = $('#labelReferencia').text().search("Elegir archivo...") >= 0 ? true : false;
+            var funcionaReferencia = $('#labelReferencia').text().search("Elegir archivo") >= 0 ? true : false;
             tieneReferencia = ($('#referenciaArchivo').get(0).files.length === 0 || funcionaReferencia) ? false : true;
         }
 
@@ -1270,11 +1295,13 @@ $(document).ready(function () {
 
     $("#file-input").on('change', function () {
         console.log("Llegó :)");
-        if(validProfilePhoto($('#file-input'), document.querySelector('#file-input').files)){
+        cambioImagen = true;
+        if (validProfilePhoto($('#file-input'), document.querySelector('#file-input').files)) {
+            imagenValida = true;
             $('#error-imgPerfil').hide();
             readURL(this);
-        }
-        else{
+        } else {
+            imagenValida = false;
             $('#error-imgPerfil').show();
         }
     });
@@ -1285,7 +1312,7 @@ $(document).ready(function () {
         for (let index = 0; index < archivos.length; index++) {
 
             if (archivos[index]["type"] == "image/jpg" || archivos[index]["type"] == "image/png"
-                ) {
+                    ) {
 
                 console.log('si se puede' + archivos[index]["type"]);
                 input.css('border', '');
@@ -1410,45 +1437,6 @@ $(document).ready(function () {
 
         return false;
     }
-
-    //CORREO REPETIDO
-    $('#myEmail').on('change', function () {
-        $.ajax({
-
-            url: 'RegistraUsuarioController',
-            cache: false,
-            method: 'POST',
-            data: {
-
-                key: "repiteCorreo",
-                correo: $('#myEmail').val()
-
-
-            },
-            success: function (response) {
-
-                if (response === 'CorreoAlreadyExists') {
-                    console.log("correo repetidooo")
-                    $('#myEmail').css('color', 'orange');
-                    $('#errorCorreoRepetido').show();
-                } else {
-                    $('#errorCorreoRepetido').hide();
-                }
-
-            }
-
-        });
-
-        if (isValidEmail($(this))) {
-            $('#error-correo').hide();
-        } else if ($(this).val() == '') {
-            $('#error-correo').hide();
-        } else {
-            $('#error-correo').show();
-        }
-
-    });
-
 
 
 });

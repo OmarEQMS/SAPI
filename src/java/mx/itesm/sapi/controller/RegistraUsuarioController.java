@@ -181,7 +181,7 @@ public class RegistraUsuarioController extends HttpServlet {
             }
             break;
             
-             case "repiteCorreo": {
+            case "repiteCorreo": {
                 
                 
                 String correo = request.getParameter("correo");
