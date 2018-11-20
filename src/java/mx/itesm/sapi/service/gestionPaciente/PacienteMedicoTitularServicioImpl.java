@@ -110,7 +110,7 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
 
         int id = -1;
         //Aquí va el call del procedure
-        String stProcedure = "CALL agregarPersona(?, ?, ?, ?)";
+        String stProcedure = "CALL agregarPacienteMedicoTitular(?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
@@ -180,7 +180,7 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL borradoLogicoCita(?)";
+        String stProcedure = "CALL borradoLogicoPacienteMedicoTitular(?)";
         boolean exito = false;
 
         try {

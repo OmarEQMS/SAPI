@@ -107,7 +107,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        
+
         String stProcedure = "CALL agregarEstadoPacientePaciente(?,?, ?, ?, ?)";
 
         int id = -1;
@@ -124,14 +124,13 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
             cstmt.setInt(6, estadoPacientePaciente.getIdEmpleado());
 
 
-       /* preguntarle a Diego     
+            /* preguntarle a Diego     
             cstmt.setInt(1, 1);                        
             cstmt.setInt(2, estadoPacientePaciente.getIdPaciente());
             cstmt.setInt(3, estadoPacientePaciente.getSegundaOpinion());
             cstmt.setInt(4, estadoPacientePaciente.getResultados());
             cstmt.setInt(5, 1);
-          */  
-
+             */
             rs = cstmt.executeQuery();
             rs.next();
 
@@ -189,7 +188,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         ResultSet rs;
 
         String stProcedure = "CALL borradoLogicoEstadoPacientePaciente(?)";
-        
+
         boolean exito = false;
 
         try {
@@ -218,18 +217,19 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarEstadoPacientePaciente(?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL actualizarEstadoPacientePaciente(?, ?, ?, ?, ?, ?,?)";
         boolean exito = false;
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
-            cstmt.setInt(1, estadoPacientePaciente.getIdEstadoPaciente());
-            cstmt.setInt(2, estadoPacientePaciente.getIdPaciente());
-            cstmt.setTimestamp(3, estadoPacientePaciente.getFecha());
-            cstmt.setInt(4, estadoPacientePaciente.getSegundaOpinion());
-            cstmt.setInt(5, estadoPacientePaciente.getResultados());
-            cstmt.setInt(6, estadoPacientePaciente.getIdEmpleado());
+            cstmt.setInt(1, estadoPacientePaciente.getIdEstadoPacientePaciente());
+            cstmt.setInt(2, estadoPacientePaciente.getIdEstadoPaciente());
+            cstmt.setInt(3, estadoPacientePaciente.getIdPaciente());
+            cstmt.setTimestamp(4, estadoPacientePaciente.getFecha());
+            cstmt.setInt(5, estadoPacientePaciente.getSegundaOpinion());
+            cstmt.setInt(6, estadoPacientePaciente.getResultados());
+            cstmt.setInt(7, estadoPacientePaciente.getIdEmpleado());
 
             rs = cstmt.executeQuery();
             rs.next();
@@ -291,7 +291,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
             estadoPacientePaciente = new EstadoPacientePaciente();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idPaciente);
-/*<<<<<<< HEAD
+            /*<<<<<<< HEAD
 
             rs = cstmt.executeQuery();
             rs.next();
@@ -318,28 +318,28 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
 
 }
 =======*/
-                  
+
             rs = cstmt.executeQuery();
             rs.next();
             estadoPacientePaciente.setIdEstadoPacientePaciente(rs.getInt("idEstadoPacientePaciente"));
             estadoPacientePaciente.setIdEstadoPaciente(rs.getInt("idEstadoPaciente"));
-            estadoPacientePaciente.setIdPaciente(rs.getInt("idEstadoPaciente"));
+            estadoPacientePaciente.setIdPaciente(rs.getInt("idPaciente"));
             estadoPacientePaciente.setFecha(rs.getTimestamp("fecha"));
             estadoPacientePaciente.setSegundaOpinion(rs.getInt("segundaOpinion"));
             estadoPacientePaciente.setResultados(rs.getInt("resultados"));
             estadoPacientePaciente.setIdEmpleado(rs.getInt("idEmpleado"));
-            
+
             conn.close();
             cstmt.close();
             rs.close();
-            
+
         } catch (SQLException ex) {
-           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
-                   .concat(ex.getMessage()));
-           estadoPacientePaciente = null;
-        }   
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            estadoPacientePaciente = null;
+        }
         return estadoPacientePaciente;
     }
-    
+
 }
 //>>>>>> Lugos
