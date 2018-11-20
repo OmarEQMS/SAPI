@@ -6,10 +6,13 @@ $(document).ready(function () {
     $('#noEqualPasswordsError').hide();
     $('#errorCorreoRepetido').hide();
     $('#error-imgPerfil').hide();
-    
+
     $("#error-datosRepetidos").hide();
-    
+
     var repiteCorreo;
+    var cambioImagen = false;
+    var imagenValida = false;
+
     //Recuperar edificio
     var edificio;
     $("input:radio[name=Edificios]").click(function () {
@@ -197,7 +200,7 @@ $(document).ready(function () {
                         }
                     }
                 }
-        ); 
+        );
     });
     //PARA IR A mis Tratamientos
     $('#irATratamientos').on('click', function () {
@@ -363,112 +366,91 @@ $(document).ready(function () {
         }
 
     });
-    /*
-     //PARA GUARDAR CAMBIOS
-     $('#guardarCambios').on('click', function () {
-     
-     var data = [] = getValues('.dataTratamiento');
-     
-     // JSON.
-     // console.log(data);
-     
-     $.ajax({
-     url:'PacienteController',
-     cache:false,
-     method: 'POST',
-     data:{
-     key:"cambiarDatos",
-     correo : $("#correo").val(),
-     telefono : $("#telefono").val(),
-     noExpediente : $("#noExpediente").val(),
-     etapaClinica: $("#etapaClinica").val(),
-     tipoSangre: $("#tipoSangre").val(),
-     tratamientos : data
-     }
-     
-     })
-     
-     .done(function (response) {
-     console.log(response);
-     
-     
-     swal({
-     title: 'Buen Trabajo',
-     text: "Cambios guardados correctamente",
-     type: 'success',
-     confirmButtonColor: '#3085d6',
-     confirmButtonText: 'Ok'
-     }).then((result) => {
-     if (result.value) {
-     window.location.reload();
-     };
-     });
-     })
-     .fail(function (xhr, textStatus, errorThrown) {
-     console.log(xhr.responseText);
-     });
-     
-     });
-     */
 
     $('#guardarCambios').on('click', function () {
-        //SHANNON
-        if (!repiteCorreo) {
-            $("#error-datosRepetidos").hide();
-            if (isValidEmail($("#correo")) &&
-                    isValidPhoneNumber($("#telefono")) &&
-                    isValidNoExpediente($("#noExpediente"))) {
 
+        var continuar = false;
 
-                console.log("Presionó GuardarCambios")
-                var form = $("form")[0];
-                var data = new FormData(form);
-                data.append("key", "cambiarDatos");
-                data.forEach((value, key) => {
-                    console.log(key + " " + value);
-                })
+        if (cambioImagen) {
+            if (imagenValida)
+                continuar = true;
+            else
+                continuar = false;
+        } else {
+            continuar = true;
+        }
 
-                $.ajax({
-                    url: "PacienteController",
-                    data: data,
-                    method: "POST",
-                    encType: "multipart/form-data",
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    success: function (response) {
-                        $.post("SAPI", {
-                            file: "paciente/cuenta.jsp"
-                        },
-                                function (response, status, xhr) {
-                                    console.log("El ajax fue exitoso!!-----------------------");
-                                    if (status == "success") {
-                                        if (response == "error") {
-                                            $("#msj-error").show();
-                                        } else {
-                                            document.open("text/html", "replace");
-                                            document.write(response);
-                                            document.close();
+        console.log("CambioImagen: " + cambioImagen);
+        console.log("imagenValida: " + imagenValida);
+
+        if (continuar)
+            console.log("Se actualizan cambios");
+        else
+            console.log("No se puede (imagenInVálida");
+        if (continuar) {
+            if (!repiteCorreo) {
+                $("#error-datosRepetidos").hide();
+                if (isValidEmail($("#correo")) &&
+                        isValidPhoneNumber($("#telefono")) &&
+                        isValidNoExpediente($("#noExpediente"))) {
+
+                    console.log("Presionó GuardarCambios")
+                    var form = $("form")[0];
+                    var data = new FormData(form);
+                    data.append("key", "cambiarDatos");
+                    data.forEach((value, key) => {
+                        console.log(key + " " + value);
+                    })
+
+                    $.ajax({
+                        url: "PacienteController",
+                        data: data,
+                        method: "POST",
+                        encType: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        success: function (response) {
+                            $.post("SAPI", {
+                                file: "paciente/cuenta.jsp"
+                            },
+                                    function (response, status, xhr) {
+                                        console.log("El ajax fue exitoso!!-----------------------");
+                                        if (status == "success") {
+                                            if (response == "error") {
+                                                $("#msj-error").show();
+                                            } else {
+                                                document.open("text/html", "replace");
+                                                document.write(response);
+                                                document.close();
+                                            }
                                         }
                                     }
-                                }
-                        );
-                    },
-                    error: function (xhr) {
-                        //alert(xhr.statusText);
-                    }
-                });
+                            );
+                        },
+                        error: function (xhr) {
+                            //alert(xhr.statusText);
+                        }
+                    });
+                } else {
+                    swal({
+                        title: "¡Datos inválidos!",
+                        text: "Revisa todos los campos antes de continuar",
+                        icon: "error",
+                    });
+                }
             } else {
-                swal({
-                    title: "¡Datos inválidos!",
-                    text: "Revisa todos los campos antes de continuar",
-                    icon: "error",
-                });
+                $("#error-datosRepetidos").show(); //ya existe un campo
             }
         } else {
-            $("#error-datosRepetidos").show(); //ya existe un campo
+            swal({
+                title: "¡Datos inválidos!",
+                text: "Revisa todos los campos antes de continuar",
+                icon: "error",
+            });
         }
     });
+
 //Cambiar imagen temporalmente en elfront
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -483,15 +465,19 @@ $(document).ready(function () {
 
     $("#file-input").on('change', function () {
         console.log("Llegó :)");
-        if(validProfilePhoto($('#file-input'), document.querySelector('#file-input').files)){
+        cambioImagen = true;
+        var tieneFoto = ($('#file-input').get(0).files.length === 0) ? false : true;
+        console.log("Tiene algo? " + tieneFoto)
+        if (validProfilePhoto($('#file-input'), document.querySelector('#file-input').files) || !tieneFoto) {
+            imagenValida = true;
             $('#error-imgPerfil').hide();
             readURL(this);
-        }
-        else{
+        } else {
+            imagenValida = false;
             $('#error-imgPerfil').show();
         }
     });
-    
+
     //Agregar tratamientos
     $("#btn-agregarTratamiento").on('click', function () {
 
@@ -609,10 +595,10 @@ $(document).ready(function () {
         var pass2 = $(this);
         areEqualPasswords(pass1, pass2);
     });
-    
+
     //Terminar tratamiento
     $("#fechaTerminarTratamiento").on('click', function () {
-                var date_from = $('#fechaFinTratamiento').val();
+        var date_from = $('#fechaFinTratamiento').val();
         var date_by = $('#fechaInicioTratamiento2').val();
         console.log("#fechaFin: " + date_from);
         console.log("#fechaInicio: " + date_by);
@@ -641,8 +627,8 @@ $(document).ready(function () {
                             buttons: true,
                             buttons: [, 'Aceptar']
                         });
-                        
-                        
+
+
                         //actualizar la tabla
 
                         console.log("fechaFinTratamiento: " + $('#fechaFinTratamiento').val());
@@ -693,8 +679,8 @@ $(document).ready(function () {
                 );
 
     });
-    
-    
+
+
     //Conseguir contenido del select
 
     $("#tipoTratamiento").on('change', function () {
@@ -716,13 +702,13 @@ $(document).ready(function () {
 
         return true;
     }
-    
+
     function validProfilePhoto(input, archivos) {
 
         for (let index = 0; index < archivos.length; index++) {
 
             if (archivos[index]["type"] == "image/jpg" || archivos[index]["type"] == "image/png"
-                ) {
+                    ) {
 
                 console.log('si se puede' + archivos[index]["type"]);
                 input.css('border', '');
@@ -832,7 +818,7 @@ $(document).ready(function () {
     }
     ;
 
-function isValidDate(input, fechaNac) {
+    function isValidDate(input, fechaNac) {
 
         //Obtener fecha
         let today = new Date();
@@ -840,24 +826,24 @@ function isValidDate(input, fechaNac) {
         //Valor seleccionado del input
         let date_from = input.val();
         date_from = new Date(date_from);
-        
+
         //Valor de la fecha de nacimiento
         let date_born = fechaNac.val();
         date_born = new Date(date_born);
-        
+
         var year = today.getFullYear();
         var month = today.getMonth();
         var day = today.getDate();
         var futureDate = new Date(year, month + 2, day)
-        
+
         console.log("Hoy: " + today);
         console.log("FechaReg: " + date_from);
         console.log("FechaFutura: " + futureDate);
         console.log("---------------------------------------------------")
-        
+
         /*
-        var todayYear = today.getFullYear();
-        var inicioYear = date_from.getFullYear();*/
+         var todayYear = today.getFullYear();
+         var inicioYear = date_from.getFullYear();*/
         var event = false;
 
         if (futureDate >= date_from && date_from >= date_born) {
@@ -882,40 +868,39 @@ function isValidDate(input, fechaNac) {
         return true;
     }
     ;
-    
+
     function isValidDate2(input, fechaInicio) {
-        
+
         //Valor seleccionado del input
         let date_from = input.val();
         date_from = new Date(date_from);
-        
+
         //Setear la hora en 0 y sumarle uno al día registrado (porque se le resta 1)
         var year = date_from.getFullYear();
         var month = date_from.getMonth();
         var day = date_from.getDate();
         date_from = new Date(year, month, day + 1);
         date_from.setHours(0);
-        
+
         //Valor de la fecha de inicio
         let date_start = fechaInicio.val();
         date_start = new Date(date_start);
-        
+
         //Fecha de hoy
         let date_today = new Date();
 
         var event = false;
-        
+
         console.log("Hoy: " + date_today);
         console.log("FechaFin: " + date_from);
         console.log("FechaInicio: " + date_start);
 
-        if(date_start < date_from && date_from <= date_today){
+        if (date_start < date_from && date_from <= date_today) {
             event = false;
             console.log(event);
             console.log("fechaValida");
-        }
-        else{
-            event= true;
+        } else {
+            event = true;
             console.log(event);
             console.log("fechaInValida");
         }
@@ -931,7 +916,8 @@ function isValidDate(input, fechaNac) {
         }
 
         return true;
-    };
+    }
+    ;
 
     function isValidPassword(input) {
 

@@ -117,16 +117,16 @@ $(document).ready(function () {
         } else {
             continuar = true;
         }
-        
+
         console.log("CambioImagen: " + cambioImagen);
         console.log("imagenValida: " + imagenValida);
-        
-        if(continuar)
+
+        if (continuar)
             console.log("Se actualizan cambios");
         else
             console.log("No se puede (imagenInVálida");
 
-        /*if (continuar) {
+        if (continuar) {
             if (!repiteCorreo) {
                 $("#error-datosRepetidos").hide();
                 if (isValidEmail($("#myEmail")) &&
@@ -186,7 +186,13 @@ $(document).ready(function () {
             } else {
                 $("#error-datosRepetidos").show(); //ya existe un campo
             }
-        }*/
+        } else {
+            swal({
+                title: "¡Datos inválidos!",
+                text: "Revisa todos los campos antes de continuar",
+                icon: "error",
+            });
+        }
 
     });
 
@@ -1144,48 +1150,6 @@ $(document).ready(function () {
                 }
         );
     });
-    /*
-     $('#guardarCambios').on('click', function () {
-     
-     console.log("Presionó GuardarCambios")
-     var form = $("form")[0];
-     var data = new FormData(form);
-     
-     data.append("key", "guardarCambios");
-     data.forEach((value, key) => {
-     console.log(key + " " + value);
-     })
-     
-     $.ajax({
-     url: "PotencialController",
-     data: data,
-     method: "POST",
-     encType: "multipart/form-data",
-     processData: false,
-     contentType: false,
-     success: function (response) {
-     $.post("SAPI", {
-     file: "potencial/cuentaPaciente.jsp"
-     },
-     function (response, status, xhr) {
-     console.log("El ajax fue exitoso!!-----------------------");
-     if (status == "success") {
-     if (response == "error") {
-     $("#msj-error").show();
-     } else {
-     document.open("text/html", "replace");
-     document.write(response);
-     document.close();
-     }
-     }
-     }
-     );
-     },
-     error: function (xhr) {
-     //alert(xhr.statusText);
-     }
-     });
-     });*/
 
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
@@ -1296,7 +1260,9 @@ $(document).ready(function () {
     $("#file-input").on('change', function () {
         console.log("Llegó :)");
         cambioImagen = true;
-        if (validProfilePhoto($('#file-input'), document.querySelector('#file-input').files)) {
+        var tieneFoto = ($('#file-input').get(0).files.length === 0) ? false : true;
+        console.log("Tiene algo? " + tieneFoto)
+        if (validProfilePhoto($('#file-input'), document.querySelector('#file-input').files) || !tieneFoto) {
             imagenValida = true;
             $('#error-imgPerfil').hide();
             readURL(this);
