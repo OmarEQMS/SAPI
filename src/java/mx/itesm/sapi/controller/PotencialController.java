@@ -1198,7 +1198,11 @@ public class PotencialController extends HttpServlet {
                     SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
                     solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
 
-                    System.out.println("Consultar documentos");                    
+                    System.out.println("Consultar documentos");  
+                    
+                    System.out.println("Motivo SolicitudPreconsulta: " + solicitudPreconsulta.getMotivoCosulta());
+                    
+                    sesion.setAttribute("idMotivoConsulta", solicitudPreconsulta.getMotivoCosulta());
 
                     if (solicitudPreconsulta.getIdSexo() == 0) {
                         sesion.setAttribute("idSexo", 0);

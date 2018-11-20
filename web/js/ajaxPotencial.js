@@ -14,6 +14,11 @@ $(document).ready(function () {
     var repiteCorreo;
     var cambioImagen = false;
     var imagenValida = false;
+    
+    console.log("MotivoConsulta: " + $("#idMotivoConsulta").val());
+//    $('#motivoConsulta').prop('selectedIndex',$("#idMotivoConsulta").val());
+    //$('#motivoConsulta option[value="3"]')
+    $("#motivoConsulta").val($("#idMotivoConsulta").val());
 
     console.log("Se Actualizó!");
 

@@ -126,6 +126,7 @@
                         <!-- aqui se inyecta la sesion de id-->
                         <input type="hidden" id="sesionPaciente" value="${sessionScope.idSesion}" />
                         <input type="hidden" id="idPaciente" value="${sessionScope.idPaciente}"/>
+                        <input type="hidden" id="idMotivoConsulta" value="${sessionScope.idMotivoConsulta}" />
 
                         <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">
                                 <!--Julio Badillo-->
@@ -699,6 +700,8 @@
                                                                     </span>
                                                                 </div>
 
+
+
                                                                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 removePadding">
                                                                     <select class="form-control" id="motivoConsulta" disabled>
                                                                         <option value="0">Seleccione el motivo de la consulta</option>
@@ -712,9 +715,32 @@
                                                             </div>
 
                                                             <div class="row mt-4" id="documentoAdjuntoMotivo">
+                                                                <c:choose>
+                                                                    <c:when test="${sessionScope.idMotivoConsulta==1 || sessionScope.idMotivoConsulta==4}">
+                                                                        <div class="col-3 text-center">
+                                                                            <span class="textoDocumento">Referencia</span>
+                                                                        </div>
+                                                                        <div class="custom-file col-8" id="customFile">
+                                                                            <input type="file" class="custom-file-input" id="referenciaArchivo" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp" disabled>
+                                                                            <label class="custom-file-label" id="labelReferencia">
+                                                                                Adjunta la hoja de referencia de médico.
+                                                                            </label>
+                                                                        </div>
+                                                                    </c:when>
+                                                                </c:choose>                                                                
                                                             </div>
 
                                                             <div class="row mt-4 mb-4" id="otroHospital">
+                                                                <c:choose>
+                                                                    <c:when test="${sessionScope.idMotivoConsulta==4 || sessionScope.idMotivoConsulta==5}">
+                                                                        <div class="col-3 text-center">
+                                                                            <span class="textoDocumento">Hospital</span>
+                                                                        </div>
+                                                                        <div class="custom-file col-8 p-0 m-0" id="customFile">
+                                                                            <input type="text" class="form-control" id="otroHospital" name="otroHospital" placeholder="Introduce tu hospital de procedencia" disabled>
+                                                                        </div>
+                                                                    </c:when>
+                                                                </c:choose>
                                                             </div>
 
                                                         </form>
