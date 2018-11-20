@@ -18,11 +18,11 @@ import mx.itesm.sapi.bean.rendimiento.Rendimiento;
  * RendimientoServicioImpl
  */
 public interface RendimientoServicio {
-    public Rendimiento mostrarVisitaMes(int idEmpleado, Date fecha);
-    public ArrayList<Rendimiento> mostrarVisitaEdad(int idEmpleado, Date fecha);
-    public ArrayList<Rendimiento> mostrarVisitaEscolaridad(int idEmpleado, Date fecha);
-    public ArrayList<Rendimiento> mostrarVisitaLugarResidencia(int idEmpleado, Date fecha);
-    public ArrayList<Rendimiento> mostrarVisitaNivelSocioEconomico(int idEmpleado, Date fecha);
-    public ArrayList<Rendimiento> mostrarVisitaDecisionPreconsulta(int idEmpleado, Date fecha);
-    public ArrayList<Rendimiento> mostrarVisitaResultadoPatologia(int idEmpleado, Date fecha);
+    public Rendimiento mostrarVisitaRango(int idEmpleado, Date fechaInicio, Date fechaFin);
+    public ArrayList<Rendimiento> mostrarVisitaEdad(int idEmpleado, Date fechaInicio, Date fechaFin);
+    public ArrayList<Rendimiento> mostrarVisitaEscolaridad(int idEmpleado, Date fechaInicio, Date fechaFin);
+    public ArrayList<Rendimiento> mostrarVisitaLugarResidencia(int idEmpleado, Date fechaInicio, Date fechaFin);
+    public ArrayList<Rendimiento> mostrarVisitaNivelSocioEconomico(int idEmpleado, Date fechaInicio, Date fechaFin);
+    public ArrayList<Rendimiento> mostrarVisitaDecisionPreconsulta(int idEmpleado, Date fechaInicio, Date fechaFin);
+    public ArrayList<Rendimiento> mostrarVisitaResultadoPatologia(int idEmpleado, Date fechaInicio, Date fechaFin);
 }

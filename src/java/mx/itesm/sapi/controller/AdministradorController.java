@@ -6,7 +6,6 @@
 package mx.itesm.sapi.controller;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,11 +19,11 @@ import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
 import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
 import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 import mx.itesm.sapi.bean.persona.Cuenta;
-import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 
 /**
@@ -46,8 +45,7 @@ public class AdministradorController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        
+               
         String key = request.getParameter("key");
         
         HttpSession sesion = request.getSession(true);
@@ -220,7 +218,36 @@ public class AdministradorController extends HttpServlet {
                         }                        
                         break;
                     }
+                    
+                     case "ReportePoblacion": {
+                /** Author Angel Gtz 
+                 * 
+                 * Toma datos de todos los pacientes para crear un estudio de la poblacion del INCAN
+                 * Mostrando:
+                 *  Nombre
+Primer Apellido
+Segundo apellido CURP Codigo postal Estado Municipio
+Fecha de nacimiento Estado civil Sexo
+Nivel educativo
+Motivo de consulta
+Medico adscrito
+Adscrito presente
+Medico radiologo
+Radiologo presente
+Compañia seguro
+
+                 * 
+                 */
+                
+                 PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                 Persona persona = personaServicio.mostrarPersona(2);
+                
+                
                 }
+                    
+                    
+            }
+
         }
         
     }

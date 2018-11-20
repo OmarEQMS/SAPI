@@ -19,9 +19,8 @@ import mx.itesm.sapi.util.Conexion;
  * @author Raul Orihuela
  */
 /**
- * public Rendimiento mostrarVisitaMes(int idEmpleado,
- *                                      Date fecha)
- * Regresa la cantidad de visitas que atiende un empleado por mes
+ * public Rendimiento mostrarVisitaMes(int idEmpleado, Date fecha) Regresa la
+ * cantidad de visitas que atiende un empleado por mes
  *
  * Parametros: int idEmpleado - id del empleado cuya informacion seque se desea
  * filtrar Date fecha - Date que debe contener mes y ano
@@ -29,11 +28,10 @@ import mx.itesm.sapi.util.Conexion;
  * Regresa: Objeto de tipo Rendimiento el cual contiene descripcion y cantidad
  */
 /**
- * public ArrayList<Rendimiento> mostrarVisitaEdad(int idEmpleado,
- *                                                  Date fecha)
- * Regresa un arreglo que contiene un objeto de tipo Rendimiento para
- * cada grupo de 'Edad' Cada objeto Rendimiento contiene la cantidad de visitas
- * y la descripcion del grupo
+ * public ArrayList<Rendimiento> mostrarVisitaEdad(int idEmpleado, Date fecha)
+ * Regresa un arreglo que contiene un objeto de tipo Rendimiento para cada grupo
+ * de 'Edad' Cada objeto Rendimiento contiene la cantidad de visitas y la
+ * descripcion del grupo
  *
  * Parametros: int idEmpleado - id del empleado cuya informacion seque se desea
  * filtrar Date fecha - Date que debe contener mes y ano
@@ -42,11 +40,10 @@ import mx.itesm.sapi.util.Conexion;
  * de 'Edad'
  */
 /**
- * public ArrayList<Rendimiento> mostrarVisitaEscolaridad(int idEmpleado,
- *                                                          Date fecha)
- * Regresa un arreglo que contiene un objeto de tipo
- * Rendimiento para cada grupo de 'Escolaridad' Cada objeto Rendimiento contiene
- * la cantidad de visitas y la descripcion del grupo
+ * public ArrayList<Rendimiento> mostrarVisitaEscolaridad(int idEmpleado, Date
+ * fecha) Regresa un arreglo que contiene un objeto de tipo Rendimiento para
+ * cada grupo de 'Escolaridad' Cada objeto Rendimiento contiene la cantidad de
+ * visitas y la descripcion del grupo
  *
  * Parametros: int idEmpleado - id del empleado cuya informacion seque se desea
  * filtrar Date fecha - Date que debe contener mes y ano
@@ -56,10 +53,9 @@ import mx.itesm.sapi.util.Conexion;
  */
 /**
  * public ArrayList<Rendimiento> mostrarVisitaLugarResidencia(int idEmpleado,
- *                                                             Date fecha)
- * Regresa un arreglo que contiene un objeto de tipo
- * Rendimiento para cada grupo de 'LugarResidencia' Cada objeto Rendimiento
- * contiene la cantidad de visitas y la descripcion del grupo
+ * Date fecha) Regresa un arreglo que contiene un objeto de tipo Rendimiento
+ * para cada grupo de 'LugarResidencia' Cada objeto Rendimiento contiene la
+ * cantidad de visitas y la descripcion del grupo
  *
  * Parametros: int idEmpleado - id del empleado cuya informacion seque se desea
  * filtrar Date fecha - Date que debe contener mes y ano
@@ -68,11 +64,10 @@ import mx.itesm.sapi.util.Conexion;
  * de 'LugarResidencia'
  */
 /**
- * public ArrayList<Rendimiento> mostrarVisitaNivelSocioEconomico(int idEmpleado,
- *                                                                  Date fecha)
- * Regresa un arreglo que contiene un objeto de
- * tipo Rendimiento para cada grupo de 'NivelSocioEconomico' Cada objeto
- * Rendimiento contiene la cantidad de visitas y la descripcion del grupo
+ * public ArrayList<Rendimiento> mostrarVisitaNivelSocioEconomico(int
+ * idEmpleado, Date fecha) Regresa un arreglo que contiene un objeto de tipo
+ * Rendimiento para cada grupo de 'NivelSocioEconomico' Cada objeto Rendimiento
+ * contiene la cantidad de visitas y la descripcion del grupo
  *
  * Parametros: int idEmpleado - id del empleado cuya informacion seque se desea
  * filtrar Date fecha - Date que debe contener mes y ano
@@ -81,11 +76,10 @@ import mx.itesm.sapi.util.Conexion;
  * de 'NivelSocioEconomico'
  */
 /**
- * public ArrayList<Rendimiento> mostrarVisitaDecisionPreconsulta(int idEmpleado,
- *                                                                  Date fecha) 
- * Regresa un arreglo que contiene un objeto de
- * tipo Rendimiento para cada grupo de 'DecisionPreconsulta' Cada objeto
- * Rendimiento contiene la cantidad de visitas y la descripcion del grupo
+ * public ArrayList<Rendimiento> mostrarVisitaDecisionPreconsulta(int
+ * idEmpleado, Date fecha) Regresa un arreglo que contiene un objeto de tipo
+ * Rendimiento para cada grupo de 'DecisionPreconsulta' Cada objeto Rendimiento
+ * contiene la cantidad de visitas y la descripcion del grupo
  *
  * Parametros: int idEmpleado - id del empleado cuya informacion seque se desea
  * filtrar Date fecha - Date que debe contener mes y ano
@@ -95,10 +89,9 @@ import mx.itesm.sapi.util.Conexion;
  */
 /**
  * public ArrayList<Rendimiento> mostrarVisitaResultadoPatologia(int idEmpleado,
- *                                                                  Date fecha)
- * Regresa un arreglo que contiene un objeto de tipo
- * Rendimiento para cada grupo de 'ResultadoPatologia' Cada objeto Rendimiento
- * contiene la cantidad de visitas y la descripcion del grupo
+ * Date fecha) Regresa un arreglo que contiene un objeto de tipo Rendimiento
+ * para cada grupo de 'ResultadoPatologia' Cada objeto Rendimiento contiene la
+ * cantidad de visitas y la descripcion del grupo
  *
  * Parametros: int idEmpleado - id del empleado cuya informacion seque se desea
  * filtrar Date fecha - Date que debe contener mes y ano
@@ -107,9 +100,9 @@ import mx.itesm.sapi.util.Conexion;
  * de 'ResultadoPatologia'
  */
 public class RendimientoServicioImpl implements RendimientoServicio {
-    
+
     @Override
-    public Rendimiento mostrarVisitaMes(int idEmpleado, Date fecha) {
+    public Rendimiento mostrarVisitaRango(int idEmpleado, Date fechaInicio, Date fechaFin) {
 
         Connection conn;
         ResultSet rs;
@@ -118,19 +111,20 @@ public class RendimientoServicioImpl implements RendimientoServicio {
         Rendimiento rendimientoPorMes = new Rendimiento();
 
         //Call del store procedure
-        String stProcedure = "CALL pacientesPorMes(?,?)";
+        String stProcedure = "CALL mostrarGrupoPaciente(?,?,?)";
 
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEmpleado);
-            cstmt.setDate(2, fecha);
+            cstmt.setDate(2, fechaInicio);
+            cstmt.setDate(3, fechaFin);
 
             rs = cstmt.executeQuery();
 
             rs.next();
 
-            rendimientoPorMes.setDecripcion(rs.getString("mes"));
+            rendimientoPorMes.setDecripcion(rs.getString("rango"));
             rendimientoPorMes.setCantidad(rs.getInt("cuenta"));
 
             rs.close();
@@ -147,7 +141,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
     }
 
     @Override
-    public ArrayList<Rendimiento> mostrarVisitaEdad(int idEmpleado, Date fecha) {
+    public ArrayList<Rendimiento> mostrarVisitaEdad(int idEmpleado, Date fechaInicio, Date fechaFin) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
@@ -155,7 +149,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
         ArrayList<Rendimiento> rendimientoPorEdad = new ArrayList<>();
 
         //Call del store procedure
-        String stProcedure = "CALL EdadPacienteMes(?,?)";
+        String stProcedure = "CALL mostrarGrupoPacienteEdad(?,?,?)";
 
         try {
             Rendimiento rendimiento1 = new Rendimiento();
@@ -171,7 +165,8 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEmpleado);
-            cstmt.setDate(2, fecha);
+            cstmt.setDate(2, fechaInicio);
+            cstmt.setDate(3, fechaFin);
 
             rs = cstmt.executeQuery();
 
@@ -219,7 +214,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
     }
 
     @Override
-    public ArrayList<Rendimiento> mostrarVisitaEscolaridad(int idEmpleado, Date fecha) {
+    public ArrayList<Rendimiento> mostrarVisitaEscolaridad(int idEmpleado, Date fechaInicio, Date fechaFin) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
@@ -227,7 +222,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
         ArrayList<Rendimiento> rendimientoPorEscolaridad = new ArrayList<>();
 
         //Call del store procedure
-        String stProcedure = "CALL EscolaridadPacienteMes(?,?)";
+        String stProcedure = "CALL mostrarGrupoPacienteEscolaridad(?,?,?)";
 
         try {
             Rendimiento rendimiento1 = new Rendimiento();
@@ -240,7 +235,8 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEmpleado);
-            cstmt.setDate(2, fecha);
+            cstmt.setDate(2, fechaInicio);
+            cstmt.setDate(3, fechaFin);
 
             rs = cstmt.executeQuery();
 
@@ -287,7 +283,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
     }
 
     @Override
-    public ArrayList<Rendimiento> mostrarVisitaLugarResidencia(int idEmpleado, Date fecha) {
+    public ArrayList<Rendimiento> mostrarVisitaLugarResidencia(int idEmpleado, Date fechaInicio, Date fechaFin) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
@@ -295,7 +291,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
         ArrayList<Rendimiento> rendimientoPorLugarResidencia = new ArrayList<>();
 
         //Call del store procedure
-        String stProcedure = "CALL ResidenciaPacienteMes(?,?)";
+        String stProcedure = "CALL mostrarGrupoPacienteEstado(?,?,?)";
 
         try {
             Rendimiento rendimiento1 = new Rendimiento();
@@ -334,7 +330,8 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEmpleado);
-            cstmt.setDate(2, fecha);
+            cstmt.setDate(2, fechaInicio);
+            cstmt.setDate(3, fechaFin);
 
             rs = cstmt.executeQuery();
 
@@ -480,7 +477,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
     }
 
     @Override
-    public ArrayList<Rendimiento> mostrarVisitaNivelSocioEconomico(int idEmpleado, Date fecha) {
+    public ArrayList<Rendimiento> mostrarVisitaNivelSocioEconomico(int idEmpleado, Date fechaInicio, Date fechaFin) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
@@ -488,7 +485,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
         ArrayList<Rendimiento> rendimientoPorNivelSocioEconomico = new ArrayList<>();
 
         //Call del store procedure
-        String stProcedure = "CALL SocioeconomicoPacienteMes(?,?)";
+        String stProcedure = "CALL mostrarGrupoPacienteSocioEconomico(?,?,?)";
 
         try {
             Rendimiento rendimiento1 = new Rendimiento();
@@ -501,7 +498,8 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEmpleado);
-            cstmt.setDate(2, fecha);
+            cstmt.setDate(2, fechaInicio);
+            cstmt.setDate(3, fechaFin);
 
             rs = cstmt.executeQuery();
 
@@ -538,7 +536,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
     }
 
     @Override
-    public ArrayList<Rendimiento> mostrarVisitaDecisionPreconsulta(int idEmpleado, Date fecha) {
+    public ArrayList<Rendimiento> mostrarVisitaDecisionPreconsulta(int idEmpleado, Date fechaInicio, Date fechaFin) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
@@ -546,7 +544,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
         ArrayList<Rendimiento> rendimientoPorDecisionPreconsulta = new ArrayList<>();
 
         //Call del store procedure
-        String stProcedure = "CALL DecisionPreconsultaPacienteMes(?,?)";
+        String stProcedure = "CALL mostrarGrupoPacientePreconsulta(?,?,?)";
 
         try {
             Rendimiento rendimiento1 = new Rendimiento();
@@ -558,7 +556,8 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEmpleado);
-            cstmt.setDate(2, fecha);
+            cstmt.setDate(2, fechaInicio);
+            cstmt.setDate(3, fechaFin);
 
             rs = cstmt.executeQuery();
 
@@ -592,7 +591,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
     }
 
     @Override
-    public ArrayList<Rendimiento> mostrarVisitaResultadoPatologia(int idEmpleado, Date fecha) {
+    public ArrayList<Rendimiento> mostrarVisitaResultadoPatologia(int idEmpleado, Date fechaInicio, Date fechaFin) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
@@ -600,7 +599,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
         ArrayList<Rendimiento> rendimientoPorResultadoPatologia = new ArrayList<>();
 
         //Call del store procedure
-        String stProcedure = "CALL DiagnosticoPatologiaPacienteMes(?,?)";
+        String stProcedure = "CALL mostrarGrupoPacienteDiagnostico(?,?,?)";
 
         try {
             Rendimiento rendimiento1 = new Rendimiento();
@@ -621,7 +620,8 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEmpleado);
-            cstmt.setDate(2, fecha);
+            cstmt.setDate(2, fechaInicio);
+            cstmt.setDate(3, fechaFin);
 
             rs = cstmt.executeQuery();
 
@@ -682,11 +682,11 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             rendimiento15.setDecripcion("Hiperplasia");
             rendimiento15.setCantidad(rs.getInt("P15"));
             rendimientoPorResultadoPatologia.add(rendimiento15);
-            
+
             rendimiento12.setDecripcion("Otro");
             rendimiento12.setCantidad(rs.getInt("P12"));
             rendimientoPorResultadoPatologia.add(rendimiento12);
-            
+
             rs.close();
             cstmt.close();
             conn.close();
@@ -698,5 +698,5 @@ public class RendimientoServicioImpl implements RendimientoServicio {
         }
         return rendimientoPorResultadoPatologia;
     }
-    
+
 }
