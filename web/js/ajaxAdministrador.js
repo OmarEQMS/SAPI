@@ -200,9 +200,14 @@ $(document).ready(function () {
                 }
         );
     });
-    $('#IrARendimiento').on('click', function () {
+    $('.btn-success').on('click', function () {
+        
+        console.log("VerNavegadora");
+        var idNavegadora = $(this).data('id');
+        
         $.post("SAPI", {
-            file: "administrador/rendimientoNavegadora.jsp"
+            file: "administrador/rendimientoNavegadora.jsp",
+            idNavegadora:idNavegadora
         },
                 function (response, status, xhr) {
                     console.log("El ajax fue exitoso!!-----------------------");

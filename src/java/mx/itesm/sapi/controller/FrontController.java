@@ -257,10 +257,21 @@ public class FrontController extends HttpServlet {
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     break;
                                 }
-                                case "administrador/rendimientoNavegadora.jsp":
-                                {
-                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                 case "administrador/rendimientoNavegadora.jsp": {
+                                    
+                                     
+                                    int idEmpleadoNavegadora = Integer.parseInt(request.getParameter("idNavegadora"));
+                                    
+                                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                                    TablaMedicoAdministrador navegadora = empleadoServicioImpl.mostrarMedicoAdministrador(idEmpleadoNavegadora, 4);
+                                    
+                                    sesion.setAttribute("nombreNavegadora", navegadora.getNombre());
+                                    sesion.setAttribute("primerApellidoNavegadora", navegadora.getPrimerApellido());
+                                    sesion.setAttribute("idEmpleadoNavegadora", idEmpleadoNavegadora);
+                                                                                                                                                                                                                                                            
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
                                     break;
+
                                 }
                             }
                             
