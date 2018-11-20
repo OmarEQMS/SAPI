@@ -34,7 +34,7 @@ public class GeneralPoblacion  implements Serializable{
     private String sexo;
     private String escolaridad;
     private String seguro;
-    private String noSegurooPopular;
+    private String noSeguroPopular;
     private String prz;
     private String noExpediente;
     private String Alergias;
@@ -45,18 +45,79 @@ public class GeneralPoblacion  implements Serializable{
 
     @Override
     public String toString() {
-        return "GeneralPoblacion [ nombre de persona: ".concat(nombrePersona).concat(", primer apellido: ").concat(primerApellido).
-                concat(", segundo apellido: ").concat(segundoApellido).concat(", curp: ").concat(curp).concat(", telefono: ").concat(telefono).
-                concat(", correo: ").concat(correo).concat(", tipo de sangre: ").concat(tipoSangre).concat(", estado: ").concat(estado).
-                concat(", municipio: ").concat(municipio).concat(", fecha de nacimiento").concat(fechaNacimiento.toString()).
-                concat(", estadoCivil: ").concat(estadoCivil).concat(", sexo: ").concat(sexo).concat(", escolaridad: ").concat(escolaridad).
-                concat(", seguro: ").concat(seguro).concat(", noSegurooPopular: ").concat(noSegurooPopular).concat(", prz: ").concat(prz).
-                concat(", noExpediente: ").concat(noExpediente).concat(", Alergias: ").concat(Alergias).concat(", silla de ruedas: ").concat(sillaRuedas).
-                concat(", oxigeno: ").concat(oxigeno).concat(", camilla: ").concat(camilla).concat(", bastón: ").concat(bastón).
+        return "GeneralPoblacion [ Nombre: ".concat(nombrePersona).
+                concat("\t").concat(primerApellido).
+                concat("\t").concat(segundoApellido).
+                concat("\tCurp: ").concat(curp).
+                concat("\tTelefono: ").concat(telefono).
+                concat("\tCorreo: ").concat(correo).
+                concat("\tSangre: ").concat(tipoSangre).
+                concat("\tEstado: ").concat(estado).
+                concat("\tMunicipio: ").concat(municipio).
+                concat("\tNacimiento: ").concat(fechaNacimiento.toString()).
+                concat("\tEstado Civil: ").concat(estadoCivil).
+                concat("\tSexo: ").concat(sexo).
+                concat("\tEscolaridad: ").concat(escolaridad).
+                concat("\tSeguro: ").concat(seguro).
+                concat("\tNoSeguroPopular: ").concat(noSeguroPopular).
+                concat("\tPrz: ").concat(prz).
+                concat("\tNoExpediente: ").concat(noExpediente).
+                concat("\tAlergias: ").concat(Alergias).
+                concat("\tSilla de ruedas: ").concat(sillaRuedas).
+                concat("\tOxigeno: ").concat(oxigeno).
+                concat("\tCamilla: ").concat(camilla).
+                concat("\tBastón: ").concat(bastón).
                 concat(" ]");
 
     }
+    
+    public String toStringRStudio() {
+        return nombrePersona.
+                concat(" ").concat(primerApellido).
+                concat(" ").concat(segundoApellido).
+                concat("\t").concat(curp).
+                concat("\t").concat(telefono).
+                concat("\t").concat(correo).
+                concat("\t").concat(tipoSangre).
+                concat("\t").concat(estado).
+                concat("\t").concat(municipio).
+                concat("\t").concat(fechaNacimiento.toString()).
+                concat("\t").concat(estadoCivil).
+                concat("\t").concat(sexo).
+                concat("\t").concat(escolaridad).
+                concat("\t").concat(seguro).
+                concat("\t").concat(noSeguroPopular).
+                concat("\t").concat(prz).
+                concat("\t").concat(noExpediente).
+                concat("\t").concat(Alergias).
+                concat("\t").concat(sillaRuedas).
+                concat("\t").concat(oxigeno).
+                concat("\t").concat(camilla).
+                concat("\t").concat(bastón);
 
+    }
+    public static String tableHeaderRStudio(){
+        return "Nombre\t".
+                concat("Curp\t").
+                concat("Telefono\t").
+                concat("Correo\t").
+                concat("Tipo de sangre\t").
+                concat("Estado\t").
+                concat("Municipio\t").
+                concat("Fecha de nacimiento\t").
+                concat("Estado civil\t").
+                concat("Sexo\t").
+                concat("Nivel educativo\t").
+                concat("Seguro\t").
+                concat("Número de Seguro popular\t").
+                concat("PRZ\t").
+                concat("Número de expediente\t").
+                concat("Alergias\t").
+                concat("Silla de ruedas\t").
+                concat("Oxígeno\t").
+                concat("Camilla\t").
+                concat("Bastón\t");
+    }
     public void setNombrePersona(String nombrePersona) {
         this.nombrePersona = nombrePersona;
     }
@@ -113,8 +174,8 @@ public class GeneralPoblacion  implements Serializable{
         this.seguro = seguro;
     }
 
-    public void setNoSegurooPopular(String noSegurooPopular) {
-        this.noSegurooPopular = noSegurooPopular;
+    public void setNoSeguroPopular(String noSeguroPopular) {
+        this.noSeguroPopular = noSeguroPopular;
     }
 
     public void setPrz(String prz) {
@@ -201,8 +262,8 @@ public class GeneralPoblacion  implements Serializable{
         return seguro;
     }
 
-    public String getNoSegurooPopular() {
-        return noSegurooPopular;
+    public String getNoSeguroPopular() {
+        return noSeguroPopular;
     }
 
     public String getPrz() {
