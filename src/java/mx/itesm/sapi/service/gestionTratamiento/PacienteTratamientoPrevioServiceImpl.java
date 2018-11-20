@@ -38,7 +38,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
             pacienteTratamientoPrevio = new PacienteTratamientoPrevio();
 
             cstmt.setInt(1, idPaciente);
-            cstmt.setInt(1, idTratamiento);
+            cstmt.setInt(2, idTratamiento);
             rs = cstmt.executeQuery();
 
             rs.next();
@@ -55,7 +55,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
 
         } catch (SQLException ex) {
             pacienteTratamientoPrevio = null;
-            System.out.println("ID: " + pacienteTratamientoPrevio.getIdPacienteTratamientoPrevio());
+            //System.out.println("ID: " + pacienteTratamientoPrevio.getIdPacienteTratamientoPrevio());
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
         }
@@ -73,7 +73,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
         int id = -1;
 
         //Aquí va el call del procedure
-        String stProcedure = "CALL agregarPacienteTratamientoPrevio(?,?,?,?,?)";
+        String stProcedure = "CALL agregarPacienteTratamientoPrevio(?,?,?,?)";
 
         try {
             conn = Conexion.getConnection();
@@ -84,14 +84,14 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
             cstmt.setInt(2, pacienteTratamientoPrevio.getIdTipoTratamiento());
             cstmt.setDate(3, pacienteTratamientoPrevio.getFecha());
             cstmt.setString(4, pacienteTratamientoPrevio.getComentarios());
-            cstmt.setInt(5, pacienteTratamientoPrevio.getEstatus());
+            
 
-            cstmt.executeUpdate();
+            rs = cstmt.executeQuery();
 
-            rs = cstmt.getGeneratedKeys();
+            
             rs.next();
 
-            id = cstmt.getInt(1);
+            id = rs.getInt(1);
 
             rs.close();
             cstmt.close();

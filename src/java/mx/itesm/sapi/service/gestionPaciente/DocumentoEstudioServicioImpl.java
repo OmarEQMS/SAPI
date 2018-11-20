@@ -164,8 +164,8 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
-            cstmt.setInt(1, documentoEstudio.getIdEstudio());
-            cstmt.setInt(2, documentoEstudio.getIdEstadoEstudio());
+            cstmt.setInt(1, documentoEstudio.getIdEstadoEstudio());
+            cstmt.setInt(2, documentoEstudio.getIdEstudio());
             cstmt.setInt(3, documentoEstudio.getIdPaciente());
             cstmt.setInt(4, documentoEstudio.getIdBirads());
             cstmt.setBytes(5, documentoEstudio.getArchivo());

@@ -20,8 +20,8 @@ public class Cita {
     private int idImportanciaCita;
     private int idPiso;
     private int idTipoTratamiento;
-    private Integer idEstudio;
-    private Integer idMotivoConsulta;
+    private int idEstudio;
+    private int idMotivoConsulta;
     private Timestamp fechaProgramada;
     private Timestamp fechaReal;
     private int estatus;

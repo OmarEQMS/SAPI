@@ -24,6 +24,15 @@ public class DocumentoEstudio {
     private int estatus;
     private Date fechaEstudioPrevio;
     private int idLugarDelCuerpo;
+    private int idTipoEstudio;
+
+    public int getIdTipoEstudio() {
+        return idTipoEstudio;
+    }
+
+    public void setIdTipoEstudio(int idTipoEstudio) {
+        this.idTipoEstudio = idTipoEstudio;
+    }
 
     public DocumentoEstudio() {
     }
