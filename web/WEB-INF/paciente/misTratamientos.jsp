@@ -352,7 +352,7 @@
                                         <input placeholder="Introduce la fecha de fin" class="selectStyle form-control textbox-n fechaFin"
                                                type="text" onfocus="(this.type = 'date')" id="fechaFinTratamiento">
                                     </div>
-                                    <span class="text-danger error-fechaFin" id="error-fechaFin"> Fecha incorrecta. Introduce una fecha posterior a la fecha de inicio de tu tratamiento y no mayor a hoy.</span>
+                                    <span class="text-danger error-fechaFin" id="error-fechaFin"> Fecha incorrecta. Introduce una fecha posterior a la fecha de inicio de tu tratamiento y no mayor a la fecha de hoy.</span>
                                 </div>
 
                             </div>

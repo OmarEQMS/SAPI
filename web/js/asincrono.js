@@ -124,8 +124,8 @@ $(document).ready(function () {
 
                         swal({
                             title: 'Buen Trabajo',
-                            text: "Cuenta registrada correctamente",
-                            type: 'success',
+                            text: "Cuenta registrada correctamente.",
+                            icon: "success",
                             confirmButtonColor: '#3085d6',
                             buttons: [, 'Aceptar']
                         })
@@ -207,6 +207,16 @@ $(document).ready(function () {
         areEqualPasswords(pass1, pass2);
 
     });
+    
+    $('#codigoPostal').on('change',function(){
+        
+        if (isValidFormatCP($(this))) {
+            $('#errorCodigoPostal').hide();
+        }  else {
+            $('#errorCodigoPostal').show();
+        }
+        
+    })
 
     function areEqualPasswords(pass1, pass2) {
 
@@ -789,6 +799,26 @@ $(document).ready(function () {
 
         return true;
 
+    }
+    
+    function isValidFormatCP (input){
+        
+         var m = input.val();
+
+        var expreg = /^\d{5}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
     }
 
     function isValidCURP(input) {

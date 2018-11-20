@@ -536,7 +536,7 @@ $(document).ready(function () {
 
 
                 swal({
-                    title: "Estas seguro de enviar tu solicitud?",
+                    title: "¿Estás seguro de enviar tu solicitud?",
                     text: "Ya no podras modificar tu solicitud mas adelante",
 
                     showCancelButton: false,
@@ -558,7 +558,13 @@ $(document).ready(function () {
                             success: function (response) {
 
                                 if (response == "documentosNoSubidos") {
-                                    swal("Error", "Para enviar la solicitud debes seleccionar sexo y al menos subir al menos la identificacion, el curp, el comprobante y el motivo de consulta", "error");
+                                    swal({
+                                        title: "Error",
+                                        text: "Para enviar la solicitud debes seleccionar tu Sexo y al menos subir: Identificación Oficial, CURP, Comprobante de Domicilio y Motivo de Consulta.",
+                                        icon: "error",
+                                        buttons: true,
+                                        buttons: [, 'Aceptar']
+                                    })
                                 } else {
 
                                     swal({
@@ -705,8 +711,8 @@ $(document).ready(function () {
 
 
             swal({
-                title: "Estas seguro de enviar tu solicitud?",
-                text: "Ya no podras modificar tu solicitud mas adelante",
+                title: "¿Estás seguro de enviar tu solicitud?",
+                text: "Ya no podras modificar tu solicitud mas adelante.",
 
                 showCancelButton: false,
                 showConfirmButton: true,
@@ -727,7 +733,13 @@ $(document).ready(function () {
                         success: function (response) {
 
                             if (response == "documentosNoSubidos") {
-                                swal("Error", "Para enviar la solicitud debes seleccionar sexo y al menos subir al menos la identificacion, el curp, el comprobante y el motivo de consulta", "error");
+                                swal({
+                                    title: "Error",
+                                    text: "Para enviar la solicitud debes seleccionar tu Sexo y al menos subir: Identificación Oficial, CURP, Comprobante de Domicilio y Motivo de Consulta.",
+                                    icon: "error",
+                                    buttons: true,
+                                    buttons: [, 'Aceptar']
+                                })
                             } else {
 
                                 swal({
@@ -1321,7 +1333,7 @@ $(document).ready(function () {
         var m = input.val();
 
         ////Expresion regular por el estandard: RFC 5322
-        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+        var expreg = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
         if (!expreg.test(m)) {
 

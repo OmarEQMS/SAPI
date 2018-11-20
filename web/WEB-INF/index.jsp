@@ -55,6 +55,10 @@
         <h6 class="text-center mt-2 texto-cuenta mb-0"><span>¿No tienes cuenta?</span> <a href="#" id="registrate">Regístrate aquí­</a></h6>
     
     </form>
+    
+    <div id="loading-screen" style="display:none">
+        <img src="img/loading.svg">
+    </div>
   
     <script src="lib/jquery/jquery-3.3.1.js"></script>
     <script src="js/appLogin.js"></script>
