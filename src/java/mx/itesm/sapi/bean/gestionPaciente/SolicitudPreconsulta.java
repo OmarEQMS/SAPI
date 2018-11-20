@@ -23,6 +23,7 @@ public class SolicitudPreconsulta {
     private String referencia;
     private String mastografia;
     private String ultrasonido;
+    private int motivoCosulta;
 
     public SolicitudPreconsulta()
     {
@@ -52,6 +53,15 @@ public class SolicitudPreconsulta {
         return "SolicitudPreconsulta{" + "idSexo=" + idSexo + ", silla=" + silla + ", camilla=" + camilla + ", baston=" + baston + ", oxigeno=" + oxigeno + ", estudioPrevio=" + estudioPrevio + ", biopsiaPrevia=" + biopsiaPrevia + ", identificacion=" + identificacion + ", comprobante=" + comprobante + ", curp=" + curp + ", referencia=" + referencia + ", mastografia=" + mastografia + ", ultrasonido=" + ultrasonido + '}';
     }
  */   
+
+    public int getMotivoCosulta() {
+        return motivoCosulta;
+    }
+
+    public void setMotivoCosulta(int motivoCosulta) {
+        this.motivoCosulta = motivoCosulta;
+    }
+    
     public int getIdSexo() {
         return idSexo;
     }

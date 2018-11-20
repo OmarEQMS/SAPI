@@ -179,8 +179,9 @@ $(document).ready(function () {
                 } else {
                     swal({
                         title: "Datos invalidos!",
-                        text: "Revisa todos los campos antes de continuar",
+                        text: "Revisa todos los campos antes de continuar.",
                         icon: "error",
+                        buttons: [, 'Aceptar'],
                     });
                 }
             } else {
@@ -189,8 +190,9 @@ $(document).ready(function () {
         } else {
             swal({
                 title: "¡Datos inválidos!",
-                text: "Revisa todos los campos antes de continuar",
+                text: "Revisa todos los campos antes de continuar.",
                 icon: "error",
+                buttons: [, 'Aceptar'],
             });
         }
 
