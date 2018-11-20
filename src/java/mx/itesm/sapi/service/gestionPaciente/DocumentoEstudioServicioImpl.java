@@ -18,16 +18,10 @@ import mx.itesm.sapi.util.Conexion;
  *
  * @author Oscar Miranda
  */
-
-
-
 public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
 
-    
-   
-    
     @Override
-    public DocumentoEstudio mostrarDocumentoEstudioPacienteEstudio(int idpaciente,int idEstudio){
+    public DocumentoEstudio mostrarDocumentoEstudioPacienteEstudio(int idpaciente, int idEstudio) {
 
         Connection conn;
         CallableStatement cstmt;
@@ -50,10 +44,12 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             documentoEstudio.setIdEstadoEstudio(rs.getInt("idEstadoEstudio"));
             documentoEstudio.setIdPaciente(rs.getInt("idPaciente"));
             documentoEstudio.setIdBirads(rs.getInt("idBirads"));
+            documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
             documentoEstudio.setArchivo(rs.getBytes("archivo"));
             documentoEstudio.setPrevio(rs.getInt("previo"));
-            documentoEstudio.setFechaEstudioPrevio(rs.getDate("fechEstudioPrevio"));
-            documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
+            documentoEstudio.setEstatus(rs.getInt("estatus"));
+            documentoEstudio.setFechaEstudioResultado(rs.getDate("fechaEstudioResultado"));
+            documentoEstudio.setIdCita(rs.getInt("idCita"));
 
             conn.close();
             cstmt.close();
@@ -65,11 +61,9 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             documentoEstudio = null;
         }
         return documentoEstudio;
-    
-        
-}
-    
-    
+
+    }
+
     @Override
     public DocumentoEstudio mostrarDocumentoEstudio(int idDocumentoEstudio) {
         Connection conn;
@@ -92,10 +86,12 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             documentoEstudio.setIdEstadoEstudio(rs.getInt("idEstadoEstudio"));
             documentoEstudio.setIdPaciente(rs.getInt("idPaciente"));
             documentoEstudio.setIdBirads(rs.getInt("idBirads"));
+            documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
             documentoEstudio.setArchivo(rs.getBytes("archivo"));
             documentoEstudio.setPrevio(rs.getInt("previo"));
-            documentoEstudio.setFechaEstudioPrevio(rs.getDate("fechEstudioPrevio"));
-            documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
+            documentoEstudio.setEstatus(rs.getInt("estatus"));
+            documentoEstudio.setFechaEstudioResultado(rs.getDate("fechaEstudioResultado"));
+            documentoEstudio.setIdCita(rs.getInt("idCita"));
 
             conn.close();
             cstmt.close();
@@ -132,10 +128,12 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
                 documentoEstudio.setIdEstadoEstudio(rs.getInt("idEstadoEstudio"));
                 documentoEstudio.setIdPaciente(rs.getInt("idPaciente"));
                 documentoEstudio.setIdBirads(rs.getInt("idBirads"));
+                documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
                 documentoEstudio.setArchivo(rs.getBytes("archivo"));
                 documentoEstudio.setPrevio(rs.getInt("previo"));
-                documentoEstudio.setFechaEstudioPrevio(rs.getDate("fechEstudioPrevio"));
-                documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
+                documentoEstudio.setEstatus(rs.getInt("estatus"));
+                documentoEstudio.setFechaEstudioResultado(rs.getDate("fechaEstudioResultado"));
+                documentoEstudio.setIdCita(rs.getInt("idCita"));
 
                 documentoEstudios.add(documentoEstudio);
             }
@@ -157,21 +155,23 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarDocumentoEstudio(?,?,?,?,?,?,?,?)";
+        String stProcedure = "CALL agregarDocumentoEstudio(?,?,?,?,?,?,?,?,?,?)";
         int id = -1;
 
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
-            cstmt.setInt(1, documentoEstudio.getIdEstadoEstudio());
-            cstmt.setInt(2, documentoEstudio.getIdEstudio());
+            cstmt.setInt(1, documentoEstudio.getIdEstudio());
+            cstmt.setInt(2, documentoEstudio.getIdEstadoEstudio());
             cstmt.setInt(3, documentoEstudio.getIdPaciente());
             cstmt.setInt(4, documentoEstudio.getIdBirads());
-            cstmt.setBytes(5, documentoEstudio.getArchivo());
-            cstmt.setInt(6, documentoEstudio.getPrevio());
-            cstmt.setDate(7, documentoEstudio.getFechaEstudioPrevio());
-            cstmt.setInt(8, documentoEstudio.getIdLugarDelCuerpo());
+            cstmt.setInt(5, documentoEstudio.getIdLugarDelCuerpo());
+            cstmt.setBytes(6, documentoEstudio.getArchivo());
+            cstmt.setInt(7, documentoEstudio.getPrevio());
+            cstmt.setInt(8, documentoEstudio.getEstatus());
+            cstmt.setDate(9, documentoEstudio.getFechaEstudioResultado());
+            cstmt.setInt(10, documentoEstudio.getIdCita());
 
             rs = cstmt.executeQuery();
             rs.next();
@@ -224,21 +224,23 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarDocumentoEstudio(?,?,?,?,?,?,?,?)";
+        String stProcedure = "CALL actualizarDocumentoEstudio(?,?,?,?,?,?,?,?,?,?,?)";
         boolean exito = false;
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
-            cstmt.setInt(1, documentoEstudio.getIdEstudio());
-            cstmt.setInt(2, documentoEstudio.getIdEstadoEstudio());
-            cstmt.setInt(3, documentoEstudio.getIdPaciente());
-            cstmt.setInt(4, documentoEstudio.getIdBirads());
-            cstmt.setBytes(5, documentoEstudio.getArchivo());
-            cstmt.setInt(6, documentoEstudio.getPrevio());
-            cstmt.setDate(7, documentoEstudio.getFechaEstudioPrevio());
-            cstmt.setInt(8, documentoEstudio.getIdLugarDelCuerpo());
-
+            cstmt.setInt(1, documentoEstudio.getIdDocumentoEstudio());
+            cstmt.setInt(2, documentoEstudio.getIdEstudio());
+            cstmt.setInt(3, documentoEstudio.getIdEstadoEstudio());
+            cstmt.setInt(4, documentoEstudio.getIdPaciente());
+            cstmt.setInt(5, documentoEstudio.getIdBirads());
+            cstmt.setInt(6, documentoEstudio.getIdLugarDelCuerpo());
+            cstmt.setBytes(7, documentoEstudio.getArchivo());
+            cstmt.setInt(8, documentoEstudio.getPrevio());
+            cstmt.setInt(9, documentoEstudio.getEstatus());
+            cstmt.setDate(10, documentoEstudio.getFechaEstudioResultado());
+            cstmt.setInt(11, documentoEstudio.getIdCita());
             rs = cstmt.executeQuery();
             rs.next();
             exito = rs.getBoolean(1);
@@ -276,10 +278,12 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             documentoEstudio.setIdEstadoEstudio(rs.getInt("idEstadoEstudio"));
             documentoEstudio.setIdPaciente(rs.getInt("idPaciente"));
             documentoEstudio.setIdBirads(rs.getInt("idBirads"));
+            documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
             documentoEstudio.setArchivo(rs.getBytes("archivo"));
             documentoEstudio.setPrevio(rs.getInt("previo"));
-            documentoEstudio.setFechaEstudioPrevio(rs.getDate("fechEstudioPrevio"));
-            documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
+            documentoEstudio.setEstatus(rs.getInt("estatus"));
+            documentoEstudio.setFechaEstudioResultado(rs.getDate("fechaEstudioResultado"));
+            documentoEstudio.setIdCita(rs.getInt("idCita"));
 
             conn.close();
             cstmt.close();
@@ -317,10 +321,12 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
                 documentoEstudio.setIdEstadoEstudio(rs.getInt("idEstadoEstudio"));
                 documentoEstudio.setIdPaciente(rs.getInt("idPaciente"));
                 documentoEstudio.setIdBirads(rs.getInt("idBirads"));
+                documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
                 documentoEstudio.setArchivo(rs.getBytes("archivo"));
                 documentoEstudio.setPrevio(rs.getInt("previo"));
-                documentoEstudio.setFechaEstudioPrevio(rs.getDate("fechEstudioPrevio"));
-                documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
+                documentoEstudio.setEstatus(rs.getInt("estatus"));
+                documentoEstudio.setFechaEstudioResultado(rs.getDate("fechaEstudioResultado"));
+                documentoEstudio.setIdCita(rs.getInt("idCita"));
 
                 documentoEstudios.add(documentoEstudio);
             }
@@ -336,6 +342,5 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
         }
         return documentoEstudios;
     }
-    
 
 }

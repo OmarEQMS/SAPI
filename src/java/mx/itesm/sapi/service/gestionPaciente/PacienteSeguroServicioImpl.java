@@ -133,7 +133,7 @@ public class PacienteSeguroServicioImpl implements PacienteSeguroServicio {
     public boolean actualizarPacienteSeguro(PacienteSeguro pacienteSeguro) {
         Connection conn;
         CallableStatement cstmt;
-        String stProcedure = "CALL actualizarPacienteSeguro(?,?,?)";
+        String stProcedure = "CALL actualizarPacienteSeguro(?,?,?,?)";
         boolean exito = false;
         ResultSet rs;
         try {
@@ -143,7 +143,6 @@ public class PacienteSeguroServicioImpl implements PacienteSeguroServicio {
             cstmt.setInt(2, pacienteSeguro.getIdPaciente());
             cstmt.setInt(3, pacienteSeguro.getIdSeguro());
             cstmt.setString(4, pacienteSeguro.getNoSeguro());
-            cstmt.setInt(5, pacienteSeguro.getEstatus());
 
             rs = cstmt.executeQuery();
 

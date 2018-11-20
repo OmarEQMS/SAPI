@@ -434,7 +434,7 @@
                                                             <i class="fas fa-ambulance"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="tiene-seguro" class="form-control tiene-seguro">
+                                                    <select id="seguro" name="tiene-seguro" class="form-control tiene-seguro">
                                                         <option disabled selected>Seleccione un seguro</option>
 
                                                         <c:forEach items="${listaSeguro}" var="seguro">  

@@ -76,7 +76,7 @@ $(document).ready(function () {
    $('.rayosX').autocomplete({
     lookup: rayosX,
     onSelect: function (suggestion) {
-         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+         console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
         
     }
 });  

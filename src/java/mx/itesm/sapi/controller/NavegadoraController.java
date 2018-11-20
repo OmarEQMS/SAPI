@@ -985,7 +985,7 @@ public class NavegadoraController extends HttpServlet {
                             //ALERGIAS
                             String alergias = null;
                             alergias = request.getParameter("alergias");
-                            if (alergias != null) {
+                            if (alergias.length()>0 && alergias!=null) {
 
                                 PacienteAlergia pacienteAlergia = pacienteAlergiaServicioImpl.mostrarPacienteAlergiaIdPaciente(idPacientePotencial);
                                 System.out.println("Alergias: ".concat(alergias));
@@ -1049,6 +1049,7 @@ public class NavegadoraController extends HttpServlet {
                                             pacienteSeguro.setNoSeguro(numeroSeguro);
                                             System.out.println("Número seguro ".concat(numeroSeguro));
                                         } else {
+                                            pacienteSeguro.setNoSeguro(null);
                                             System.out.println("Sin número de seguro");
                                         }
                                         pacienteSeguroServicioImpl.actualizarPacienteSeguro(pacienteSeguro);
@@ -1095,11 +1096,13 @@ public class NavegadoraController extends HttpServlet {
                                 if (documentoEstudioPrimeraMasto != null) {
                                     System.out.println("No hay que hacer nada");
                                 } else {
+                                    //HARCODEO
                                     documentoEstudioPrimeraMasto = new DocumentoEstudio(); 
                                     documentoEstudioPrimeraMasto.setIdEstudio(29);
                                     documentoEstudioPrimeraMasto.setIdPaciente(idPacientePotencial);
                                     documentoEstudioPrimeraMasto.setIdEstadoEstudio(1);
                                     
+                                    //ESTOS DOS ESTAN HARCODEADOS!!!!! SE NECESITA CHECAR QUÉ ONDA
                                     documentoEstudioPrimeraMasto.setIdBirads(8);
                                     documentoEstudioPrimeraMasto.setIdLugarDelCuerpo(2);
                                     
