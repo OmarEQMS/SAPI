@@ -23,6 +23,16 @@ body {
   background-size: cover;
 }
 
+p.clear {
+    clear: both;
+    color: #fff;
+    text-align: center;
+    margin: auto;
+    padding: 520px 0;
+    font-size: 20px;
+    text-shadow: 2px 2px #848484;
+}
+
 #loading-screen {
   background-color: rgba(25,25,25,0.7);
   height: 100%;
@@ -36,10 +46,11 @@ body {
 #loading-screen img {
   width: 100px;
   height: 100px;
-  position: relative;
+  position: fixed;
   margin-top: -50px;
   margin-left: -50px;
   top: 50%;
+  text-align: center;
 }
 
 .btn-recuperar{
