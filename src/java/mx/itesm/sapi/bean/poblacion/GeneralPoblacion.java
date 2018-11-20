@@ -5,6 +5,7 @@
  */
 package mx.itesm.sapi.bean.poblacion;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
@@ -17,7 +18,7 @@ import java.sql.Date;
 /**
  * Aqui se guardan los datos que son unicos por persona para el despliegue de reporte de poblacion
  */
-public class GeneralPoblacion {
+public class GeneralPoblacion  implements Serializable{
 
     private String nombrePersona;
     private String primerApellido;

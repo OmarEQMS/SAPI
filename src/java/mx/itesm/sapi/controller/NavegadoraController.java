@@ -249,6 +249,14 @@ public class NavegadoraController extends HttpServlet {
 
                             break;
                         }
+                        
+                        case "mostrarForumalario":{
+                            
+                            
+                            
+                            
+                            break;
+                        }
 
 
                         case "cambiarContrasena": {
