@@ -8,6 +8,8 @@ package mx.itesm.sapi.controller;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javafx.print.Printer;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -239,12 +241,23 @@ Compañia seguro
                  * 
                  */
                 
-                 PersonaServicioImpl personaServicio = new PersonaServicioImpl();
-                 Persona persona = personaServicio.mostrarPersona(2);
+                        PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                        Persona persona = personaServicio.mostrarPersona(2);
                 
-                
-                }
-                    
+                        break;
+                    }
+                     
+                     case "autocompletarEspecialidades":
+                     {
+                         EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
+                         List<Especialidad> especialidades = especialidadServicioImpl.mostrarEspecialidad();
+                         
+                         PrintWriter out = response.getWriter();
+                         
+                         Gson json = new Gson();
+                         out.print(json.toJson(especialidades));                         
+                         break;
+                     }                   
                     
             }
 

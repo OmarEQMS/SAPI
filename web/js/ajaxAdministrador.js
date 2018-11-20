@@ -692,8 +692,49 @@ $(document).ready(function () {
 
                 }
             });
+            
+            
+            
 
     });
+    
+    
+    var especialidades = $('#listEspecialidades');
+    
+    $.ajax({
+        url: 'AdministradorController',
+                cache: false,
+                method: 'POST',
+                data: {key: "autocompletarEspecialidades"}
+        })
 
+        .done(function (response) {
+       
+            var json = JSON.parse(response);
+            for (var i = 0; i < json.length; i++) {
+                                      
+                   var newObjeto = $('<option value="'+json[i].nombre+'"></option>');                                      
+                   especialidades.append(newObjeto);
+            }
+    
+       
+        console.log(JSON.stringify(especialidades));
+       
+        });
+    
+    /*
+ $("body").on("click", '.especialidad', function(){
+    
+   $('.especialidad').autocomplete({
+    classes: {
+        "ui-autocomplete": "highlight"
+    },
+    lookup: especialidades,
+    onSelect: function (suggestion) {
+         console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);        
+    }
+});  
+     
+ });*/
 
 });

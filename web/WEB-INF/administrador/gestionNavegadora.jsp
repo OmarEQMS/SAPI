@@ -297,7 +297,8 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-user-graduate"></i></div>
                                         </div>
-                                        <input type="text" class="form-control" id="editar-especialidad" placeholder="Especialidad">
+                                        <input type="text" class="form-control" id="editar-especialidad" placeholder="Especialidad" list="listEspecialidades">
+                                        <datalist id="listEspecialidades"></datalist>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -408,7 +409,7 @@
                                             <div class="input-group-text"><i class="fas fa-user-graduate"></i></div>
                                         </div>
                                         <input type="text" class="form-control" id="agregar-especialidadNavegadora"
-                                            placeholder="Especialidad">
+                                            placeholder="Especialidad" list="listEspecialidades">
                                     </div>
                                 </div>
                                 <div class="col-6">
