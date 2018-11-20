@@ -369,7 +369,8 @@ public class LoginController extends HttpServlet {
 
                                 EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
                                 Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());
-
+                                
+                                sesion.setAttribute("idEmpleadoNavegadora",empleado.getIdEmpleado());
                                 sesion.setAttribute("nombre", persona.getNombre());
                                 sesion.setAttribute("primerApellido", persona.getPrimerApellido());
                                 sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
