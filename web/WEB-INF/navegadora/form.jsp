@@ -245,8 +245,8 @@
                                                     </div>
                                                     <select name= "tipoPaciente" class="form-control" id="tipoPaciente">
                                                         <option disabled selected>Seleccione un tipo de paciente</option>
-                                                        <option>Primera vez</option>
-                                                        <option>Segunda opiniÃ¯Â¿Â½n</option>
+                                                        <option value="0">Primera vez</option>
+                                                        <option value="1">Segunda opiniÃ¯Â¿Â½n</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -434,7 +434,7 @@
                                                             <i class="fas fa-ambulance"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="tiene-seguro" class="form-control tiene-seguro">
+                                                    <select id="seguro" name="tiene-seguro" class="form-control tiene-seguro">
                                                         <option disabled selected>Seleccione un seguro</option>
 
                                                         <c:forEach items="${listaSeguro}" var="seguro">  
@@ -873,7 +873,7 @@
 
                                                 <!-- tipo rayos -->
                                                 <div class="col-5">
-                                                    <input name="tipo-RayosXAdded" id="rayosX" class="rayosX" type="text" class="form-control tipoRayosX" placeholder="Tipo de rayos X">
+                                                    <input name="tipo-RayosXAdded" type="text" class="form-control rayosX" placeholder="Tipo de rayos X">
                                                 </div>
 
                                                 <!-- fecha rayos -->
@@ -925,7 +925,7 @@
 
                                                 <!-- parte del cuerpo -->
                                                 <div class="col-5">
-                                                    <input name="parteCuerpo-USGAdded" id="ultraSonido" type="text" class="form-control parteCuerpoUltrasonido" placeholder="Parte del cuerpo">
+                                                    <input name="parteCuerpo-USGAdded" id="ultraSonido" type="text" class="form-control parteCuerpoUltrasonido ultraSonido" placeholder="Parte del cuerpo">
                                                 </div>
 
                                                 <!-- fecha ultrasonido -->

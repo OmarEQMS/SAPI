@@ -100,7 +100,7 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarCitaEmpleado(?, ?, ?, ?, ?)";
+        String stProcedure = "CALL agregarCitaEmpleado(?, ?, ?, ?)";
         int id = -1;
 
         try{
@@ -111,7 +111,7 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
             cstmt.setInt(2,citaEmpleado.getIdEmpleado());
             cstmt.setInt(3,citaEmpleado.getMedicoSustituto());
             cstmt.setInt(4,citaEmpleado.getAdscritoPresente());
-            cstmt.setInt(5,citaEmpleado.getIdEmpleadoSustituto());
+
             
             rs = cstmt.executeQuery();
             rs.next();
@@ -213,6 +213,41 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
             citaEmpleado.setMedicoSustituto(rs.getInt("medicoSustituto"));
             citaEmpleado.setAdscritoPresente(rs.getInt("adscridoPresente"));
             citaEmpleado.setIdEmpleadoSustituto(rs.getInt("idEmpleadoSustitutos"));
+            
+            conn.close();
+            cstmt.close();
+            rs.close();
+            
+        } catch (SQLException ex) {
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                   .concat(ex.getMessage()));
+           citaEmpleado = null;
+        }   
+        return citaEmpleado;
+    }
+    
+    @Override
+    public CitaEmpleado mostrarCitaEmpleadoIdEmpleado(int idEmpleado) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarCitaEmpleadoIdEmpleado(?)";
+        CitaEmpleado citaEmpleado = null;
+     
+        try {
+            conn = Conexion.getConnection();
+            citaEmpleado = new CitaEmpleado();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idEmpleado);
+                  
+            rs = cstmt.executeQuery();
+            rs.next();
+            citaEmpleado.setIdCitaEmpleado(rs.getInt("idCitaEmpleado"));
+            citaEmpleado.setIdCita(rs.getInt("idCita"));
+            citaEmpleado.setIdEmpleado(rs.getInt("idEmpleado"));
+            citaEmpleado.setMedicoSustituto(rs.getInt("medicoSustituto"));
+            citaEmpleado.setAdscritoPresente(rs.getInt("adscridoPresente"));
+            
             
             conn.close();
             cstmt.close();

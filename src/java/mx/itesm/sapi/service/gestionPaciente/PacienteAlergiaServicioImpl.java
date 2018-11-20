@@ -42,6 +42,7 @@ public class PacienteAlergiaServicioImpl implements PacienteAlergiaServicio{
             pacienteAlergia.setIdPaciente(rs.getInt("idPaciente"));
             pacienteAlergia.setIdAlergia(rs.getInt("idAlergia"));
             pacienteAlergia.setEstatus(rs.getInt("estatus"));
+            pacienteAlergia.setAlergia(rs.getString("alergia"));
             
         
             rs.close();
@@ -77,6 +78,7 @@ public class PacienteAlergiaServicioImpl implements PacienteAlergiaServicio{
                 pacienteAlergia.setIdPaciente(rs.getInt("idPaciente"));
                 pacienteAlergia.setIdAlergia(rs.getInt("idAlergia"));
                 pacienteAlergia.setEstatus(rs.getInt("estatus"));
+                pacienteAlergia.setAlergia(rs.getString("alergia"));
                 
                 
                 listPacienteAlergia.add(pacienteAlergia);
@@ -99,15 +101,14 @@ public class PacienteAlergiaServicioImpl implements PacienteAlergiaServicio{
         ResultSet rs;
         CallableStatement cstmt;
         int id = -1;
-        String stPrcedure="CALL agregarPacienteAlergia(?, ?)";
+        String stPrcedure="CALL agregarPacienteAlergia(?, ?, ?)";
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stPrcedure);
             
-            cstmt.setInt(1, pacienteAlergia.getIdPacienteAlergia());
-            cstmt.setInt(2, pacienteAlergia.getIdPaciente());
-            cstmt.setInt(3, pacienteAlergia.getIdAlergia());
-            cstmt.setInt(4, pacienteAlergia.getEstatus() );
+            cstmt.setInt(1, pacienteAlergia.getIdPaciente());
+            cstmt.setInt(2, pacienteAlergia.getIdAlergia());
+            cstmt.setString(3, pacienteAlergia.getAlergia());
             
             
             cstmt.executeUpdate();
@@ -143,6 +144,7 @@ public class PacienteAlergiaServicioImpl implements PacienteAlergiaServicio{
             cstmt.setInt(2, pacienteAlergia.getIdPaciente());
             cstmt.setInt(3, pacienteAlergia.getIdAlergia());
             cstmt.setInt(4, pacienteAlergia.getEstatus() );
+            cstmt.setString(5, pacienteAlergia.getAlergia());
            
             
             rs = cstmt.executeQuery();
@@ -210,6 +212,7 @@ public class PacienteAlergiaServicioImpl implements PacienteAlergiaServicio{
             pacienteAlergia.setIdPaciente(rs.getInt("idPaciente"));
             pacienteAlergia.setIdAlergia(rs.getInt("idAlergia"));
             pacienteAlergia.setEstatus(rs.getInt("estatus"));
+            pacienteAlergia.setAlergia(rs.getString("alergia"));
             
         
             rs.close();

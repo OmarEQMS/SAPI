@@ -27,5 +27,10 @@ public interface DocumentoEstudioServicio {
     public boolean borradoLogicoDocumentoEstudio(int idDocumentoEstudio);
 
     public boolean actualizarDocumentoEstudio(DocumentoEstudio documentoEstudio);
+    
+
+    public DocumentoEstudio mostrarDocumentoEstudioPacienteEstudio(int idpaciente,int idEstudio); 
+
+
 
 }

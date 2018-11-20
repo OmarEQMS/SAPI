@@ -21,6 +21,42 @@ import mx.itesm.sapi.bean.gestionPaciente.Laminilla;
  */
 public class LaminillaServicioImpl implements LaminillaServicio {
 
+    
+    @Override
+    public Laminilla mostrarLaminillaPaciente(int idPaciente){
+    
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+
+        Laminilla laminilla = new Laminilla();
+
+        String stProcedure = "mostrarLaminillaPaciente(?)";
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            laminilla.setIdLaminilla(rs.getInt("idLaminilla"));
+            laminilla.setIdBiopsia(rs.getInt("idBiopsia"));
+            laminilla.setNombre(rs.getString("serie"));
+            laminilla.setEstatus(rs.getInt("estatus"));
+            laminilla.setCantidad(rs.getInt("cantidad"));
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            laminilla = null;
+        }
+        return laminilla;
+   
+    }
+    
     @Override
     public Laminilla mostrarLaminilla(int idLaminilla) {
         Connection conn;
@@ -38,8 +74,9 @@ public class LaminillaServicioImpl implements LaminillaServicio {
 
             laminilla.setIdLaminilla(rs.getInt("idLaminilla"));
             laminilla.setIdBiopsia(rs.getInt("idBiopsia"));
-            laminilla.setNombre(rs.getString("nombre"));
+            laminilla.setNombre(rs.getString("serie"));
             laminilla.setEstatus(rs.getInt("estatus"));
+            laminilla.setCantidad(rs.getInt("cantidad"));
 
             rs.close();
             cstmt.close();
@@ -74,6 +111,7 @@ public class LaminillaServicioImpl implements LaminillaServicio {
                 laminilla.setIdBiopsia(rs.getInt("idBiopsia"));
                 laminilla.setNombre(rs.getString("nombre"));
                 laminilla.setEstatus(rs.getInt("estatus"));
+                laminilla.setCantidad(rs.getInt("cantidad"));
 
                 laminillas.add(laminilla);
             }
@@ -104,7 +142,7 @@ public class LaminillaServicioImpl implements LaminillaServicio {
             cstmt.setInt(2, laminilla.getIdBiopsia());
             cstmt.setString(3, laminilla.getNombre());
             cstmt.setInt(4, laminilla.getEstatus());
-            
+            cstmt.setInt(5, laminilla.getCantidad());
 
             cstmt.executeUpdate();
             rs = cstmt.getGeneratedKeys();
@@ -139,6 +177,7 @@ public class LaminillaServicioImpl implements LaminillaServicio {
             cstmt.setInt(2, laminilla.getIdBiopsia());
             cstmt.setString(3, laminilla.getNombre());
             cstmt.setInt(4, laminilla.getEstatus());
+            cstmt.setInt(5, laminilla.getCantidad());
 
             rs = cstmt.executeQuery();
 
@@ -184,5 +223,6 @@ public class LaminillaServicioImpl implements LaminillaServicio {
         return exito;
 
     }
-
+    
+    
 }

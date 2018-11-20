@@ -22,6 +22,47 @@ import mx.itesm.sapi.service.gestionTratamiento.PacienteTratamientoPrevioService
 public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamientoPrevioService {
 
     @Override
+    public PacienteTratamientoPrevio mostrarPacienteTratamientoPrevioTratamiento(int idPaciente, int idTratamiento){
+       Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+
+        PacienteTratamientoPrevio pacienteTratamientoPrevio = null;
+
+        //Call del stored procedure
+        String stProcedure = "CALL mostrarPacienteTratamientoPrevioTratamiento(?, ?)";
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            pacienteTratamientoPrevio = new PacienteTratamientoPrevio();
+
+            cstmt.setInt(1, idPaciente);
+            cstmt.setInt(2, idTratamiento);
+            rs = cstmt.executeQuery();
+
+            rs.next();
+            pacienteTratamientoPrevio.setIdPacienteTratamientoPrevio(rs.getInt(1));
+            pacienteTratamientoPrevio.setIdPaciente(rs.getInt(2));
+            pacienteTratamientoPrevio.setIdTipoTratamiento(rs.getInt(3));
+            pacienteTratamientoPrevio.setFecha(rs.getDate(4));
+            pacienteTratamientoPrevio.setComentarios(rs.getString(5));
+            pacienteTratamientoPrevio.setEstatus(rs.getInt(6));
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+            pacienteTratamientoPrevio = null;
+            //System.out.println("ID: " + pacienteTratamientoPrevio.getIdPacienteTratamientoPrevio());
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+        return pacienteTratamientoPrevio; 
+    }
+    
+    @Override
     public int agregarPacienteTratamientoPrevio(PacienteTratamientoPrevio pacienteTratamientoPrevio) {
 
         Connection conn;
@@ -32,7 +73,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
         int id = -1;
 
         //Aquí va el call del procedure
-        String stProcedure = "CALL agregarPacienteTratamientoPrevio(?,?,?,?,?)";
+        String stProcedure = "CALL agregarPacienteTratamientoPrevio(?,?,?,?)";
 
         try {
             conn = Conexion.getConnection();
@@ -41,16 +82,16 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
             //Aquí van los sets
             cstmt.setInt(1, pacienteTratamientoPrevio.getIdPaciente());
             cstmt.setInt(2, pacienteTratamientoPrevio.getIdTipoTratamiento());
-            cstmt.setTimestamp(3, pacienteTratamientoPrevio.getFecha());
+            cstmt.setDate(3, pacienteTratamientoPrevio.getFecha());
             cstmt.setString(4, pacienteTratamientoPrevio.getComentarios());
-            cstmt.setInt(5, pacienteTratamientoPrevio.getEstatus());
+            
 
-            cstmt.executeUpdate();
+            rs = cstmt.executeQuery();
 
-            rs = cstmt.getGeneratedKeys();
+            
             rs.next();
 
-            id = cstmt.getInt(1);
+            id = rs.getInt(1);
 
             rs.close();
             cstmt.close();
@@ -93,7 +134,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
             pacienteTratamientoPrevio.setIdPacienteTratamientoPrevio(rs.getInt(1));
             pacienteTratamientoPrevio.setIdPaciente(rs.getInt(2));
             pacienteTratamientoPrevio.setIdTipoTratamiento(rs.getInt(3));
-            pacienteTratamientoPrevio.setFecha(rs.getTimestamp(4));
+            pacienteTratamientoPrevio.setFecha(rs.getDate(4));
             pacienteTratamientoPrevio.setComentarios(rs.getString(5));
             pacienteTratamientoPrevio.setEstatus(rs.getInt(6));
 
@@ -135,7 +176,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
                 pacienteTratamientoPrevio.setIdPacienteTratamientoPrevio(rs.getInt(1));
                 pacienteTratamientoPrevio.setIdPaciente(rs.getInt(2));
                 pacienteTratamientoPrevio.setIdTipoTratamiento(rs.getInt(3));
-                pacienteTratamientoPrevio.setFecha(rs.getTimestamp(4));
+                pacienteTratamientoPrevio.setFecha(rs.getDate(4));
                 pacienteTratamientoPrevio.setComentarios(rs.getString(5));
                 pacienteTratamientoPrevio.setEstatus(rs.getInt(6));
 
@@ -173,7 +214,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
             cstmt.setInt(1, pacienteTratamientoPrevio.getIdPacienteTratamientoPrevio());
             cstmt.setInt(2, pacienteTratamientoPrevio.getIdPaciente());
             cstmt.setInt(3, pacienteTratamientoPrevio.getIdTipoTratamiento());
-            cstmt.setTimestamp(4, pacienteTratamientoPrevio.getFecha());
+            cstmt.setDate(4, pacienteTratamientoPrevio.getFecha());
             cstmt.setString(5, pacienteTratamientoPrevio.getComentarios());
             cstmt.setInt(6, pacienteTratamientoPrevio.getEstatus());
 
@@ -256,7 +297,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
             pacienteTratamientoPrevio.setIdPacienteTratamientoPrevio(rs.getInt(1));
             pacienteTratamientoPrevio.setIdPaciente(rs.getInt(2));
             pacienteTratamientoPrevio.setIdTipoTratamiento(rs.getInt(3));
-            pacienteTratamientoPrevio.setFecha(rs.getTimestamp(4));
+            pacienteTratamientoPrevio.setFecha(rs.getDate(4));
             pacienteTratamientoPrevio.setComentarios(rs.getString(5));
             pacienteTratamientoPrevio.setEstatus(rs.getInt(6));
 
@@ -298,7 +339,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
                 pacienteTratamientoPrevio.setIdPacienteTratamientoPrevio(rs.getInt(1));
                 pacienteTratamientoPrevio.setIdPaciente(rs.getInt(2));
                 pacienteTratamientoPrevio.setIdTipoTratamiento(rs.getInt(3));
-                pacienteTratamientoPrevio.setFecha(rs.getTimestamp(4));
+                pacienteTratamientoPrevio.setFecha(rs.getDate(4));
                 pacienteTratamientoPrevio.setComentarios(rs.getString(5));
                 pacienteTratamientoPrevio.setEstatus(rs.getInt(6));
 
@@ -316,4 +357,5 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
         }
         return pacientesTratamientoPrevio;
     }
-}
+    
+   }
