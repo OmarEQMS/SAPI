@@ -396,6 +396,7 @@ public class PersonaServicioImpl implements PersonaServicio {
                 persona.setSegundoApellido(rs.getString("segundoApellido"));
                 persona.setIdPersona(rs.getInt("idPersona"));
 
+
                 personas.add(persona);
 
             }
@@ -429,6 +430,7 @@ public class PersonaServicioImpl implements PersonaServicio {
                 persona.setNombre(rs.getString("nombre"));
                 persona.setPrimerApellido(rs.getString("primerApellido"));
                 persona.setSegundoApellido(rs.getString("segundoApellido"));
+                persona.setIdPersona(rs.getInt("idPersona"));
 
                 personas.add(persona);
 

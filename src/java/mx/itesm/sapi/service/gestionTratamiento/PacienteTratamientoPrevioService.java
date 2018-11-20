@@ -16,12 +16,13 @@ public interface PacienteTratamientoPrevioService {
     
     public int agregarPacienteTratamientoPrevio(PacienteTratamientoPrevio pacienteTratamientoPrevio);
     public PacienteTratamientoPrevio mostrarPacienteTratamientoPrevio(int idPacienteTratamientoPrevio);
+    
+    public PacienteTratamientoPrevio mostrarPacienteTratamientoPrevioTratamiento(int idPaciente, int idTratamiento);
     public List<PacienteTratamientoPrevio> mostrarPacienteTratamientoPrevio();
     public PacienteTratamientoPrevio mostrarPacienteTratamientoPrevioIdPaciente(int idPaciente);
     public List<PacienteTratamientoPrevio> mostrarPacienteTratamientoPrevioIdEspecifico(int idPaciente);
     public boolean actualizarPacienteTratamientoPrevio(PacienteTratamientoPrevio pacienteTratamientoPrevio);
     public boolean borradoLogicoPacienteTratamientoPrevio(int idPacienteTratamientoPrevio);
-    public PacienteTratamientoPrevio mostrarPacienteTratamientoPrevioTratamiento(int idPaciente, int idTratamiento);
-
+    
     
 }

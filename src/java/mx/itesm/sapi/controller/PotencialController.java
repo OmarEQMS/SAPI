@@ -1180,6 +1180,30 @@ public class PotencialController extends HttpServlet {
                         sesion.setAttribute("idSexo", solicitudPreconsulta.getIdSexo());
                     }
 
+                    if (solicitudPreconsulta.getSilla() == 0) {
+                        sesion.setAttribute("silla", 0);
+                    } else {
+                        sesion.setAttribute("silla", solicitudPreconsulta.getSilla());
+                    }
+                    
+                    if (solicitudPreconsulta.getBaston() == 0) {
+                        sesion.setAttribute("baston", 0);
+                    } else {
+                        sesion.setAttribute("baston", solicitudPreconsulta.getBaston());
+                    }
+                    
+                    if (solicitudPreconsulta.getCamilla() == 0) {
+                        sesion.setAttribute("camilla", 0);
+                    } else {
+                        sesion.setAttribute("camilla", solicitudPreconsulta.getCamilla());
+                    }
+                    
+                    if (solicitudPreconsulta.getOxigeno() == 0) {
+                        sesion.setAttribute("oxigeno", 0);
+                    } else {
+                        sesion.setAttribute("oxigeno", solicitudPreconsulta.getOxigeno());
+                    }
+                    
                     if (solicitudPreconsulta.getIdentificacion() != null) {
                         sesion.setAttribute("identificacionOficial", 1);
                         sesion.setAttribute("identificacionOficialName", solicitudPreconsulta.getIdentificacion());

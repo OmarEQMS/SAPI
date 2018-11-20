@@ -253,6 +253,8 @@
                                                                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 text-center">
 
                                                                     <div class="form-check form-check-inline">
+                                                                        
+                                                                        
 
                                                                         <input class="form-check-input" name="sillaRuedas" type="checkbox" id="sillaRuedas" value="sillaRuedas" disabled>
 
@@ -303,7 +305,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
                                                                             <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacion" aria-describedby="fileHelp" disabled>
-                                                                            <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 Elegir archivo...
                                                                             </label>
@@ -317,7 +319,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
                                                                             <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacionSubido" aria-describedby="fileHelp" disabled>
-                                                                            <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 ${sessionScope.identificacionOficialName}
                                                                             </label>
@@ -362,7 +364,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="customFile">
                                                                             <input type="file" name="fileCURP" class="custom-file-input centraInput" id="fileCURP" aria-describedby="fileHelp" disabled>
-                                                                            <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 Elegir archivo...
                                                                             </label>
@@ -377,7 +379,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="customFile">
                                                                             <input type="file" name="fileCURP" class="custom-file-input centraInput" id="fileCURPSubido" aria-describedby="fileHelp" disabled>
-                                                                            <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 ${sessionScope.curpName}
                                                                             </label>
@@ -409,7 +411,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFile">
                                                                             <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilio" aria-describedby="fileHelp" disabled>
-                                                                            <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 Elegir archivo...
                                                                             </label>
@@ -426,7 +428,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFile">
                                                                             <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilioSubido" aria-describedby="fileHelp" disabled>
-                                                                            <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 ${sessionScope.comprobanteName}
                                                                             </label>
@@ -500,7 +502,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
                                                                             <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMasto" aria-describedby="fileHelp" disabled>
-                                                                            <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 Elegir archivo...
                                                                             </label>
@@ -516,7 +518,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
                                                                             <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMastoSubido" aria-describedby="fileHelp" disabled>
-                                                                            <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 ${sessionScope.resultadoMastografiaName}
                                                                             </label>
@@ -567,7 +569,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
                                                                             <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsg" aria-describedby="fileHelp" disabled>
-                                                                            <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 Elegir archivo...
                                                                             </label>
@@ -581,7 +583,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
                                                                             <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsgSubido" aria-describedby="fileHelp" disabled>
-                                                                            <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 ${sessionScope.resultadoUltrasonidoName}
                                                                             </label>
@@ -637,7 +639,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="biopsiaContenedor">
                                                                             <input type="file" class="custom-file-input" id="fileEstudioBiopsia" name="fileEstudioBiopsia" aria-describedby="fileHelp" disabled>
-                                                                            <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 Elegir archivo...
                                                                             </label>
@@ -657,7 +659,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
                                                                             <input type="file" class="custom-file-input" id="fileEstudioBiopsiaSubido" name="fileEstudioBiopsia" aria-describedby="fileHelp" disabled>
-                                                                            <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 ${sessionScope.biopsiaPreviaName}
                                                                             </label>
@@ -809,7 +811,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
                                                                             <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacion" aria-describedby="fileHelp">
-                                                                            <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 Elegir archivo...
                                                                             </label>
@@ -823,7 +825,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
                                                                             <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacionSubido" aria-describedby="fileHelp">
-                                                                            <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 ${sessionScope.identificacionOficialName}
                                                                             </label>
@@ -868,7 +870,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="customFile">
                                                                             <input type="file" name="fileCURP" class="custom-file-input centraInput" id="fileCURP" aria-describedby="fileHelp">
-                                                                            <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 Elegir archivo...
                                                                             </label>
@@ -883,7 +885,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="customFile">
                                                                             <input type="file" name="fileCURP" class="custom-file-input centraInput" id="fileCURPSubido" aria-describedby="fileHelp">
-                                                                            <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 ${sessionScope.curpName}
                                                                             </label>
@@ -915,7 +917,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFile">
                                                                             <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilio" aria-describedby="fileHelp">
-                                                                            <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 Elegir archivo...
                                                                             </label>
@@ -932,7 +934,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFile">
                                                                             <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilioSubido" aria-describedby="fileHelp">
-                                                                            <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 ${sessionScope.comprobanteName}
                                                                             </label>
@@ -1006,7 +1008,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
                                                                             <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMasto" aria-describedby="fileHelp">
-                                                                            <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 Elegir archivo...
                                                                             </label>
@@ -1022,7 +1024,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
                                                                             <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMastoSubido" aria-describedby="fileHelp">
-                                                                            <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 ${sessionScope.resultadoMastografiaName}
                                                                             </label>
@@ -1073,7 +1075,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
                                                                             <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsg" aria-describedby="fileHelp">
-                                                                            <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 Elegir archivo...
                                                                             </label>
@@ -1087,7 +1089,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
                                                                             <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsgSubido" aria-describedby="fileHelp">
-                                                                            <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 ${sessionScope.resultadoUltrasonidoName}
                                                                             </label>
@@ -1143,7 +1145,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="biopsiaContenedor">
                                                                             <input type="file" class="custom-file-input" id="fileEstudioBiopsia" name="fileEstudioBiopsia" aria-describedby="fileHelp">
-                                                                            <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 Elegir archivo...
                                                                             </label>
@@ -1163,7 +1165,7 @@
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
                                                                             <input type="file" class="custom-file-input" id="fileEstudioBiopsiaSubido" name="fileEstudioBiopsia" aria-describedby="fileHelp">
-                                                                            <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>
+                                                                            <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png y .pdf</span>
                                                                             <label class="custom-file-label">
                                                                                 ${sessionScope.biopsiaPreviaName}
                                                                             </label>
@@ -1554,7 +1556,7 @@
                                                         <div class="row">
                                                             <div class="col-12">
                                                                 <h5 class="card-title display-4 tituloAprobacion text-center">Tu solicitud
-                                                                    ha sido aprobada <br> como paciente de <strong><span class="colorMoradoLight">segunda opinion
+                                                                    ha sido aprobada <br> como paciente de <strong><span class="colorMoradoLight">segunda opinión
                                                                         </span></strong></h5>
                                                                 <p class="card-text text-center subTituloAprobacion">Los mejores resultados para tratar el cáncer de mama se obtienen si recibes atención continua en un solo lugar.</p>
                                                                 <p class="card-text text-center subTituloAprobacion">Te recomendamos que si ya estás siendo atendida continúes ahí mismo tu proceso de tratamiento.</p>

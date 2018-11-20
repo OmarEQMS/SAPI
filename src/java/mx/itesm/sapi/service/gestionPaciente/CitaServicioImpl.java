@@ -233,11 +233,14 @@ public class CitaServicioImpl implements CitaServicio {
             cstmt.setTimestamp(10, cita.getFechaProgramada());
             cstmt.setTimestamp(11, cita.getFechaReal());
 
-            /*try {
+
+            /*
+            
+            try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
                 Date parsedDate = dateFormat.parse(cita.getFechaProgramada().toString());
                 Timestamp fechaProgramada = new java.sql.Timestamp(parsedDate.getTime());
-                //cstmt.setTimestamp(8, fechaProgramada);
+                cstmt.setTimestamp(12, fechaProgramada);
             } catch (Exception e) { //this generic but you can control nother types of exception
                 // look the origin of excption 
             }
@@ -245,8 +248,9 @@ public class CitaServicioImpl implements CitaServicio {
             try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
                 Date parsedDate = dateFormat.parse(cita.getFechaReal().toString());
-                    Timestamp fechaReal = new java.sql.Timestamp(parsedDate.getTime());
-                cstmt.setTimestamp(9, fechaReal);
+
+                Timestamp fechaReal = new java.sql.Timestamp(parsedDate.getTime());
+                cstmt.setTimestamp(13, fechaReal);
             } catch (Exception e) { //this generic but you can control nother types of exception
                 // look the origin of excption 
             }
@@ -277,7 +281,6 @@ public class CitaServicioImpl implements CitaServicio {
         }
         return exito;
     }
-
     @Override
     public int agregarPreconsulta(Cita cita) {
         Connection conn;
@@ -644,5 +647,6 @@ public class CitaServicioImpl implements CitaServicio {
         }
         return cita;
     }
+
 
 }

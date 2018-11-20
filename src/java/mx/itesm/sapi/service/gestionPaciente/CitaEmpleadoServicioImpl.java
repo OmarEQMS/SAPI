@@ -111,7 +111,7 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
             cstmt.setInt(2,citaEmpleado.getIdEmpleado());
             cstmt.setInt(3,citaEmpleado.getMedicoSustituto());
             cstmt.setInt(4,citaEmpleado.getAdscritoPresente());
-           
+
             
             rs = cstmt.executeQuery();
             rs.next();
@@ -247,7 +247,7 @@ public class CitaEmpleadoServicioImpl implements CitaEmpleadoServicio {
             citaEmpleado.setIdEmpleado(rs.getInt("idEmpleado"));
             citaEmpleado.setMedicoSustituto(rs.getInt("medicoSustituto"));
             citaEmpleado.setAdscritoPresente(rs.getInt("adscridoPresente"));
-            citaEmpleado.setIdEmpleadoSustituto(rs.getInt("idEmpleadoSustitutos"));
+            
             
             conn.close();
             cstmt.close();

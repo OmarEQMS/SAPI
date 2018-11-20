@@ -208,7 +208,8 @@
                                 <div class="col-4">
                                     <label for="myEmail">Correo</label>
                                     <input type="text" class="form-control" id="correo" name="correo" value="${sessionScope.correo}" placeholder="Introduzca su correo" required />
-                                    <span class="text-danger error-correo" id="error-correo">Formato incorrecto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
+                                    <span class="text-danger error-correo" id="error-correo">Formato incorrecto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
+                                    <span class="text-warning" id="errorCorreoRepetido">El correo ya existe.</span>
                                 </div>
                                 <div class="col-4">
                                     <label for="numExpediente">Número de Expediente</label>
@@ -337,7 +338,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger passwordCleaner" style="border-radius: 20px" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary passwordCleaner" id="btn-updatePassword" style="border-radius: 20px">Cambiar contraseña</button>
+                            <button type="button" class="btn btn-primary" id="btn-updatePassword" style="border-radius: 20px">Cambiar contraseña</button>
                         </div>
                     </div>
                 </div>

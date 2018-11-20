@@ -15,6 +15,8 @@ import mx.itesm.sapi.bean.gestionPaciente.Cita;
 public interface CitaServicio { 
     public Cita mostrarCita(int idCita);
     public Cita mostrarCitaIdPaciente(int idPaciente);
+    public Cita mostrarCitaPreconsultaPacientePotencial(int idPaciente);
+    public Cita mostrarCitaNavegacionPacientePotencial(int idPaciente);
     public List<Cita> mostrarCita();
     public List<Cita> mostrarCitaIdEspecifico(int idPaciente);
     public int agregarCita(Cita cita);    
@@ -25,7 +27,6 @@ public interface CitaServicio {
     public String mostrarPreconsultaAceptada(int idPacientePotencaial);
     public boolean aprobarPaciente(int idPaciente, String fechaNav, String fechaCon, int segundaOpinion);
     public int citaPendiente(int idPaciente);
-    public Cita mostrarCitaPreconsultaPacientePotencial(int idPacientePotencial);
-    public Cita mostrarCitaNavegacionPacientePotencial(int idPacientePotencial);
+
 
 }

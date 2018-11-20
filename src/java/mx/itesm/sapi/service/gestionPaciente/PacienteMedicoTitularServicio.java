@@ -18,6 +18,9 @@ public interface PacienteMedicoTitularServicio {
 
     public PacienteMedicoTitular mostrarPacienteMedicoTitularIdPaciente(int idPaciente);
 
+    public PacienteMedicoTitular mostrarPacienteMedicoTitularIdPacientePosicion(int idPaciente, int idPosicion);
+
+
     public List<PacienteMedicoTitular> mostrarPacienteMedicoTitular();
 
     public int agregarPacienteMedicoTitular(PacienteMedicoTitular pacienteMedicoTitular);
@@ -26,6 +29,5 @@ public interface PacienteMedicoTitularServicio {
 
     public boolean borradoLogicoPacienteMedicoTitular(int idPacienteMedicoTitular);
 
-    public PacienteMedicoTitular mostrarPacienteMedicoTitularIdPacientePosicion(int idPaciente, int idPosicion);
 
 }

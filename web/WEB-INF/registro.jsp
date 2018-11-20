@@ -61,7 +61,7 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <input id="correo" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf0e0; CORREO ELECTRÓNICO">
-                        <span class="text-danger" id="errorCorreo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
+                        <span class="text-danger" id="errorCorreo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
                         <span class="text-warning" id="errorCorreoRepetido">El correo ya existe.</span>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                 <div class="form-group row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                         <select class="form-control selectStyle" id="estadoCivil">
-                            <option selected disabled>ESTADO CIVIL (OPCIONAL)</option>
+                            <option selected disabled>ESTADO CIVIL</option>
                             <c:forEach items="${estadoCivil}" var="estadoC">  
                                 <option value="<c:out value='${estadoC.idEstadoCivil}'/>"><c:out value='${estadoC.nombre}'/></option>
                             </c:forEach>
