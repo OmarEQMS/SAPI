@@ -109,9 +109,7 @@
                 <li id="IrAMiCuenta"><a><i class="fas fa-users"></i>Mi cuenta</a></li>
 
                 <li id="IrAReasignarMedico"><a><i class="fas fa-sync"></i>Reasignar médico</a></li>
-                
-                <li id="IrARendimiento"><a><i class="fas fa-sync"></i>Desempeño navegadora</a></li>
-                
+                                                
                 <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
                 
                 

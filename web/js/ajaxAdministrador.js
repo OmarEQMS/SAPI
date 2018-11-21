@@ -200,9 +200,14 @@ $(document).ready(function () {
                 }
         );
     });
-    $('#IrARendimiento').on('click', function () {
+    $('.btn-success').on('click', function () {
+        
+        console.log("VerNavegadora");
+        var idNavegadora = $(this).data('id');
+        
         $.post("SAPI", {
-            file: "administrador/rendimientoNavegadora.jsp"
+            file: "administrador/rendimientoNavegadora.jsp",
+            idNavegadora:idNavegadora
         },
                 function (response, status, xhr) {
                     console.log("El ajax fue exitoso!!-----------------------");
@@ -687,8 +692,60 @@ $(document).ready(function () {
 
                 }
             });
+            
+            
+            
 
     });
+    
+    //AUTOCOMPLETAR Especialidades
+    var especialidades = $('#listEspecialidades');
+    
+    $.ajax({
+        url: 'AdministradorController',
+                cache: false,
+                method: 'POST',
+                data: {key: "autocompletarEspecialidades"}
+        })
+
+        .done(function (response) {
+       
+            var json = JSON.parse(response);
+            for (var i = 0; i < json.length; i++) {
+                                      
+                   var newObjeto = $('<option value="'+json[i].nombre+'"></option>');                                      
+                   especialidades.append(newObjeto);
+            }
+    
+       
+        console.log(JSON.stringify(especialidades));
+       
+        });
+        
+        
+    // AUTOCOMPLETAR POSICIONES
+    
+    var posiciones = $('#listPosiciones');
 
 
+     $.ajax({
+        url: 'AdministradorController',
+                cache: false,
+                method: 'POST',
+                data: {key: "autocompletarPosiciones"}
+        })
+
+        .done(function (response) {
+       
+            var json = JSON.parse(response);
+            for (var i = 0; i < json.length; i++) {
+                                      
+                   var newObjeto = $('<option value="'+json[i].nombre+'"></option>');                                      
+                   posiciones.append(newObjeto);
+            }
+    
+       
+        console.log(JSON.stringify(posiciones));
+       
+        });
 });

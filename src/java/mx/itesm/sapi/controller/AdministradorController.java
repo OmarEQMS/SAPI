@@ -8,6 +8,8 @@ package mx.itesm.sapi.controller;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javafx.print.Printer;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
 import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
 import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
+import mx.itesm.sapi.bean.moduloGestionMedico.Posicion;
 import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
@@ -24,6 +27,7 @@ import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.bean.persona.Persona;
+import mx.itesm.sapi.service.moduloGestionMedico.PosicionServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 
 /**
@@ -239,12 +243,35 @@ Compañia seguro
                  * 
                  */
                 
-                 PersonaServicioImpl personaServicio = new PersonaServicioImpl();
-                 Persona persona = personaServicio.mostrarPersona(2);
+                        PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                        Persona persona = personaServicio.mostrarPersona(2);
                 
-                
-                }
-                    
+                        break;
+                    }
+                     
+                     case "autocompletarEspecialidades":
+                     {
+                         EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
+                         List<Especialidad> especialidades = especialidadServicioImpl.mostrarEspecialidad();
+                         
+                         PrintWriter out = response.getWriter();
+                         
+                         Gson json = new Gson();
+                         out.print(json.toJson(especialidades));                         
+                         break;
+                     }
+                     case "autocompletarPosiciones":
+                     {
+                         
+                         PosicionServicioImpl posiciones = new PosicionServicioImpl();
+                         List<Posicion> posicion = posiciones.mostrarPosicion();
+                         
+                         PrintWriter out = response.getWriter();
+                         Gson json = new Gson();
+                         out.print(json.toJson(posicion));
+                                                  
+                         break;
+                     }
                     
             }
 

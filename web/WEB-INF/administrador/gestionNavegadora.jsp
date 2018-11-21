@@ -106,9 +106,7 @@
                 <li id="IrAMiCuenta"><a><i class="fas fa-users"></i>Mi cuenta</a></li>
 
                 <li id="IrAReasignarMedico"><a><i class="fas fa-sync"></i>Reasignar médico</a></li>
-                
-                <li id="IrARendimiento"><a><i class="fas fa-sync"></i>Desempeño navegadora</a></li>
-                
+                                                
                 <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
                 
                 
@@ -299,7 +297,8 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-user-graduate"></i></div>
                                         </div>
-                                        <input type="text" class="form-control" id="editar-especialidad" placeholder="Especialidad">
+                                        <input type="text" class="form-control" id="editar-especialidad" placeholder="Especialidad" list="listEspecialidades">
+                                        <datalist id="listEspecialidades"></datalist>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -410,7 +409,7 @@
                                             <div class="input-group-text"><i class="fas fa-user-graduate"></i></div>
                                         </div>
                                         <input type="text" class="form-control" id="agregar-especialidadNavegadora"
-                                            placeholder="Especialidad">
+                                            placeholder="Especialidad" list="listEspecialidades">
                                     </div>
                                 </div>
                                 <div class="col-6">

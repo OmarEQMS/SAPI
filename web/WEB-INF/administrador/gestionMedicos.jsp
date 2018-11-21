@@ -34,9 +34,13 @@
         <script src="lib/tooltipster/dist/js/tooltipster.bundle.min.js" type="text/javascript"></script>
         <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
 
-    <link rel="stylesheet" href="css/styleAdministrador.css">
+    <link rel="stylesheet" href="css/styleAdministrador.css">    
+    <script rel="stylesheet" href="lib/jquery/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="lib/jquery/jquery-ui.css">
+    <link rel="stylesheet" href="lib/jquery/jquery-ui.min.css">
     <script src="js/appAdministrador.js"></script>
     <script src="js/ajaxAdministrador.js"></script>
+    <script src="js/autocomplete.js"></script>
 
 </head>
 
@@ -108,9 +112,7 @@
                 <li id="IrAMiCuenta"><a><i class="fas fa-users"></i>Mi cuenta</a></li>
 
                 <li id="IrAReasignarMedico"><a><i class="fas fa-sync"></i>Reasignar médico</a></li>
-                
-                <li id="IrARendimiento"><a><i class="fas fa-sync"></i>Desempeño navegadora</a></li>
-                
+                                                
                 <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
                 
             </ul>
@@ -311,12 +313,14 @@
                                 <div class="col-6">
 
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
+                                        <div class="input-group-prepend ui-widget">
                                             <div class="input-group-text">
                                                 <i class="fas fa-user-graduate"></i>
                                             </div>
                                         </div>
-                                        <input type="text" id="editar-especialidadMedico" class="form-control" value="Especialidad">
+                                        <input type="text" id="editar-especialidadMedico" class="form-control especialidad" value="Especialidad" list="listEspecialidades">  
+                                        <datalist id="listEspecialidades">                                            
+                                        </datalist>
                                     </div>
 
 
@@ -447,7 +451,7 @@
                                             <div class="input-group-text"><i class="fas fa-user-graduate"></i></div>
                                         </div>
                                         <input type="text" class="form-control" id="agregar-especialidadMedico"
-                                            placeholder="Especialidad">
+                                            placeholder="Especialidad" list="listEspecialidades">
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -455,8 +459,10 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-user-graduate"></i></div>
                                         </div>
-                                        <input type="text" class="form-control" id="agregar-posiciondMedico"
+                                        <input type="text" class="form-control" id="agregar-posiciondMedico" list="listPosiciones"
                                             placeholder="Posicion">
+                                        <datalist id="listPosiciones">                                            
+                                        </datalist>
                                     </div>
                                 </div>
                             </div>
