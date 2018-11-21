@@ -857,19 +857,21 @@ $(document).ready(function () {
         let date_from = input.val();
         date_from = new Date(date_from);
         
-        //Hoy hace 16 años
+        //Tomar los valores de hoy
         var year = today.getFullYear();
         var month = today.getMonth();
         var day = today.getDate();
-        var pastDate = new Date(year - 16, month, day);
         
+        //Hoy hace 16 años y hoy hace 115 años
+        var maxDate = new Date(year - 16, month, day);
+        var minDate = new Date(year - 115, month, day);        
 
-        let event = false;
+        let event = true;
 
-        if(pastDate < date_from)
-            event = true;
-
-
+        if(maxDate > date_from && date_from > minDate){
+            event = false;            
+        }
+        
         if (!input.val() || event) {
 
             input.css('border', '1px solid red');
