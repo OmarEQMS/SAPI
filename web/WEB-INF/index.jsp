@@ -66,7 +66,7 @@
         <script src="lib/jquery/jqueryPostGo.js"></script>
         <script src="lib/bootstrap/js/bootstrap.js"></script>
         <script src="lib/popper/popper.min.js"></script>
-        <!-- <script src="js/ajaxRecuperar.js"></script> -->
+        <!--<script src="js/ajaxRecuperar.js"></script> -->
         <!--<script type="module" src="js/asincrono.js"></script>-->
 
     </body>

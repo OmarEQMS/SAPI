@@ -110,15 +110,15 @@ $(document).ready(function () {
                                 };
                                 $('#calendarCitasPaciente').fullCalendar('renderEvent', newEvent);
                                 swal({
-                                    title: "Buen Trabajo!",
-                                    text: "La cita se ha registrado correctamente!",
+                                    title: "¡Buen Trabajo!",
+                                    text: "La cita se ha registrado correctamente.",
                                     icon: "success",
                                 });
                                 $('#modalAgregarCita').modal('toggle');
                             } else {
                                 swal({
-                                    title: "Algo salió mal!",
-                                    text: "No se pudo registrar la cita, intentalo de nuevo!",
+                                    title: "Algo salió mal",
+                                    text: "No se pudo registrar la cita, intentalo de nuevo.",
                                     icon: "error",
                                 });
                             }
@@ -455,8 +455,8 @@ $(document).ready(function () {
                 });
             } else {
                 swal({
-                    title: "¡Datos inválidos!",
-                    text: "Revisa todos los campos antes de continuar",
+                    title: "Datos inválidos",
+                    text: "Revisa todos los campos antes de continuar.",
                     icon: "error",
                 });
             }
@@ -538,8 +538,8 @@ $(document).ready(function () {
                     });
         } else {
             swal({
-                title: "Datos invalidos!",
-                text: "Revisa todos los campos antes de continuar",
+                title: "Datos invalidos",
+                text: "Revisa todos los campos antes de continuar.",
                 icon: "error",
             });
         }
@@ -551,7 +551,7 @@ $(document).ready(function () {
             //Modal cambiar contraseña 
             swal({
                 title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
-                text: "No podras volver a usar tu contraseña anterior para ingresar",
+                text: "No podrás volver a usar tu contraseña anterior para ingresar.",
                 icon: "warning",
                 buttons: true,
                 buttons: ['Regresar', 'Cambiar contraseña'],
@@ -650,8 +650,8 @@ $(document).ready(function () {
 
         } else {
             swal({
-                title: "Datos invalidos!",
-                text: "Revisa todos los campos antes de continuar",
+                title: "Datos inválidos",
+                text: "Revisa todos los campos antes de continuar.",
                 icon: "error",
                 buttons: true,
                 buttons: [, 'Aceptar']
