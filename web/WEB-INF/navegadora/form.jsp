@@ -1448,11 +1448,11 @@
 
                                                         <option disabled selected>Seleccione la decisiï¿½n</option>              
 
-                                                        <option>Unidad funcional</option>
-                                                        <option>Alta</option>
-                                                        <option>Alta voluntaria</option>
-                                                        <option>Finada</option>
-                                                        <option>Perdida</option>
+                                                        <option value="1" >Unidad funcional</option>
+                                                        <option value="2">Alta</option>
+                                                        <option value="3">Alta voluntaria</option>
+                                                        <option value="4">Finada</option>
+                                                        <option value="5">Perdida</option>
                                                     </select>
                                                 </div>
                                             </div>

@@ -342,5 +342,45 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
         }
         return documentoEstudios;
     }
-
+    
+    @Override
+    public DocumentoEstudio mostrarDocumentoEstudioPacienteEstudioPrevio(int idPaciente, int idEstudio, int previo) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarDocuemntoEstudioPacienteEstudio(?,?,?)";
+        
+        DocumentoEstudio documentoEstudio = null;
+        
+        try{
+            conn = Conexion.getConnection();
+            documentoEstudio = new DocumentoEstudio();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+            cstmt.setInt(2,idEstudio);
+            cstmt.setInt(3,previo);
+            
+            rs = cstmt.executeQuery();
+            rs.next();
+            
+            documentoEstudio.setIdDocumentoEstudio(rs.getInt("idDocumentoEstudio"));
+            documentoEstudio.setIdEstudio(rs.getInt("idEstudio"));
+            documentoEstudio.setIdEstadoEstudio(rs.getInt("idEstadoEstudio"));
+            documentoEstudio.setIdPaciente(rs.getInt("idPaciente"));
+            documentoEstudio.setIdBirads(rs.getInt("idBirads"));
+            documentoEstudio.setArchivo(rs.getBytes("archivo"));
+            documentoEstudio.setPrevio(rs.getInt("previo"));
+            documentoEstudio.setFechaEstudioResultado(rs.getDate("fechEstudioPrevio"));
+            documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
+            
+            conn.close();
+            cstmt.close();
+            rs.close();
+        }catch(SQLException ex){
+             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            documentoEstudio = null;
+        }
+        return documentoEstudio;
+    }
 }
