@@ -664,14 +664,12 @@ public class NavegadoraController extends HttpServlet {
 
                         case "btn-save": {
                             System.out.println("########### Formulario de la navegadora ###########");
-
                             /**
                              * DECLARACION DE ATRIBUTOS
                              */
                             int idPaciente = 96;
                             int idCuenta = 63;
                             int idNavegadora = 2;//Navegadora
-
                             /**
                              *
                              * INICIO DECLARACION DE SERVICIOS
@@ -869,7 +867,6 @@ public class NavegadoraController extends HttpServlet {
                                  * mismo atributo que el del medico adscrito)
                                  */
                                 CitaEmpleado citaEmpleado = citaEmpleadoServicioImpl.mostrarCitaEmpleadoIdEmpleado(idEmpleado);
-
                                 if (citaEmpleado != null) {
                                     citaEmpleado.setAdscritoPresente(adscritoPresente);
                                     citaEmpleado.setIdEmpleado(idEmpleado);
@@ -1952,6 +1949,8 @@ public class NavegadoraController extends HttpServlet {
                             System.out.println("se Llamo ".concat(String.valueOf(llamadaPaciente)));
                             */
                             //***************** ComentarioCita************************
+                            
+                            /*
                             int idCita = 0;
                             idCita = (citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPaciente)).getIdCita();
                             comentarioCita = null;
@@ -1992,7 +1991,10 @@ public class NavegadoraController extends HttpServlet {
                                     comentarioCitaServicioImpl.agregarComentarioCita(comentarioCita);
                                 }
                                 
+                                
                             }
+                            
+                            */
                             //************************PANTALLA 5*************************************
                             
                             
@@ -2014,11 +2016,14 @@ public class NavegadoraController extends HttpServlet {
                                 Date fecha = Date.valueOf(registro);
                                 
                                 estadiajeTNM = null;
-                                estadiajeTNM = (estadiajeTNMServiceImpl.mostrarEstadiajeTNMPaciente(idPaciente));
+                                estadiajeTNM = estadiajeTNMServiceImpl.mostrarEstadiajeTNMPaciente(idPaciente);
+                                
+                                System.out.println("Estadiaje ".concat(estadiajeTNM.toString()));
                                 
                                 RegistroDiagnostico registroDiagnostico = new RegistroDiagnostico();
                                 registroDiagnostico = registroDiagnosticoServiceImpl.mostrarRegistroDiagnosticoPaciente(idPaciente);
                                 
+                                System.out.println("Registro Diagnostico ".concat(registroDiagnostico.toString()));
                                 if(registroDiagnostico != null)
                                 {
                                     if(estadiajeTNM != null)
@@ -2042,7 +2047,8 @@ public class NavegadoraController extends HttpServlet {
                                     registroDiagnostico.setFecha(fecha);
                                     registroDiagnosticoServiceImpl.agregarRegistroDiagnostico(registroDiagnostico);
                                 }
-                                System.out.println("Estapa clinica "+(etapaClinica));
+                                System.out.println("Estapa clinica ".concat(String.valueOf(etapaClinica)
+                                ));
                             } else {
                                 System.out.println("sin etapaClinica ");
                             }

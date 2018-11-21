@@ -91,8 +91,9 @@ public class EstadiajeTNMServiceImpl implements EstadiajeTNMService {
             estadiajeTNM = new EstadiajeTNM();
 
             cstmt.setInt(1, idRegistroTNM);
+            System.out.println("Estadiaje TNM ".concat(cstmt.toString()));
             rs = cstmt.executeQuery();
-
+            
             // Asignación de valores devuletos a estadiajeTNM
             rs.next();
             estadiajeTNM.setIdRegistroTNM(rs.getInt("idAuditoriaRegistroDiagnostico"));
