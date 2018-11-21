@@ -63,7 +63,7 @@ public class PosicionServicioImpl implements PosicionServicio {
         try {
 
             CallableStatement cstmt;
-            cstmt = conn.prepareCall("");
+            cstmt = conn.prepareCall("CALL mostrarListaPosicion()");
             ResultSet rs = cstmt.executeQuery();
             Posicion posicion;
 

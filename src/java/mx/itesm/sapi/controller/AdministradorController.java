@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
 import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
 import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
+import mx.itesm.sapi.bean.moduloGestionMedico.Posicion;
 import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
@@ -26,6 +27,7 @@ import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.bean.persona.Persona;
+import mx.itesm.sapi.service.moduloGestionMedico.PosicionServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 
 /**
@@ -257,7 +259,19 @@ Compañia seguro
                          Gson json = new Gson();
                          out.print(json.toJson(especialidades));                         
                          break;
-                     }                   
+                     }
+                     case "autocompletarPosiciones":
+                     {
+                         
+                         PosicionServicioImpl posiciones = new PosicionServicioImpl();
+                         List<Posicion> posicion = posiciones.mostrarPosicion();
+                         
+                         PrintWriter out = response.getWriter();
+                         Gson json = new Gson();
+                         out.print(json.toJson(posicion));
+                                                  
+                         break;
+                     }
                     
             }
 

@@ -459,8 +459,10 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-user-graduate"></i></div>
                                         </div>
-                                        <input type="text" class="form-control" id="agregar-posiciondMedico"
+                                        <input type="text" class="form-control" id="agregar-posiciondMedico" list="listPosiciones"
                                             placeholder="Posicion">
+                                        <datalist id="listPosiciones">                                            
+                                        </datalist>
                                     </div>
                                 </div>
                             </div>

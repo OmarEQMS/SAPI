@@ -698,7 +698,7 @@ $(document).ready(function () {
 
     });
     
-    
+    //AUTOCOMPLETAR Especialidades
     var especialidades = $('#listEspecialidades');
     
     $.ajax({
@@ -721,20 +721,31 @@ $(document).ready(function () {
         console.log(JSON.stringify(especialidades));
        
         });
+        
+        
+    // AUTOCOMPLETAR POSICIONES
     
-    /*
- $("body").on("click", '.especialidad', function(){
-    
-   $('.especialidad').autocomplete({
-    classes: {
-        "ui-autocomplete": "highlight"
-    },
-    lookup: especialidades,
-    onSelect: function (suggestion) {
-         console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);        
-    }
-});  
-     
- });*/
+    var posiciones = $('#listPosiciones');
 
+
+     $.ajax({
+        url: 'AdministradorController',
+                cache: false,
+                method: 'POST',
+                data: {key: "autocompletarPosiciones"}
+        })
+
+        .done(function (response) {
+       
+            var json = JSON.parse(response);
+            for (var i = 0; i < json.length; i++) {
+                                      
+                   var newObjeto = $('<option value="'+json[i].nombre+'"></option>');                                      
+                   posiciones.append(newObjeto);
+            }
+    
+       
+        console.log(JSON.stringify(posiciones));
+       
+        });
 });
