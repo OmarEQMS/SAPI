@@ -666,7 +666,7 @@ public class PotencialController extends HttpServlet {
                                 docComprobanteDomicilio.setIdTipoDocumento(idComprobanteDomicilio);
                                 docComprobanteDomicilio.setTipo(tipoComprobanteDomicilio);
                                 docComprobanteDomicilio.setTamano(tamanoComprobanteDomicilio);
-                                docComprobanteDomicilio.setNombre(tipoCurp);
+                                docComprobanteDomicilio.setNombre(strComprobante);
                                 docComprobanteDomicilio.setEstatus(1);
                             }
 
