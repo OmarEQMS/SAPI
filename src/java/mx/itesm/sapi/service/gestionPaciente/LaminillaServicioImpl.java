@@ -31,7 +31,7 @@ public class LaminillaServicioImpl implements LaminillaServicio {
 
         Laminilla laminilla = new Laminilla();
 
-        String stProcedure = "mostrarLaminillaPaciente(?)";
+        String stProcedure = "CALL mostrarLaminillaPaciente(?)";
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
@@ -133,19 +133,18 @@ public class LaminillaServicioImpl implements LaminillaServicio {
         ResultSet rs;
         CallableStatement cstmt;
         int id = -1;
-        String stPrcedure = "";
+        String stPrcedure = "CALL agregarLaminilla(?, ?, ?)";
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stPrcedure);
 
-            cstmt.setInt(1, laminilla.getIdLaminilla());
-            cstmt.setInt(2, laminilla.getIdBiopsia());
-            cstmt.setString(3, laminilla.getNombre());
-            cstmt.setInt(4, laminilla.getEstatus());
-            cstmt.setInt(5, laminilla.getCantidad());
+            
+            cstmt.setInt(1, laminilla.getIdBiopsia());
+            cstmt.setString(2, laminilla.getNombre());
+            
+            cstmt.setInt(3, laminilla.getCantidad());
 
-            cstmt.executeUpdate();
-            rs = cstmt.getGeneratedKeys();
+            rs=cstmt.executeQuery();
             rs.next();
             id = rs.getInt(1);
 
@@ -167,7 +166,7 @@ public class LaminillaServicioImpl implements LaminillaServicio {
     public boolean actualizarLaminilla(Laminilla laminilla) {
         Connection conn;
         CallableStatement cstmt;
-        String stProcedure = "";
+        String stProcedure = "CALL actualizarLaminilla(?, ?, ?, ?, ?) ";
         boolean exito = false;
         ResultSet rs;
         try {
@@ -180,8 +179,9 @@ public class LaminillaServicioImpl implements LaminillaServicio {
             cstmt.setInt(5, laminilla.getCantidad());
 
             rs = cstmt.executeQuery();
-
+            rs.next();
             exito = rs.getBoolean(1);
+
 
             rs.close();
             cstmt.close();

@@ -135,18 +135,18 @@ public class BloqueParafinaServicioImpl implements BloqueParafinaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CaLL agregarBloqueParafina";
+        String stProcedure = "CaLL agregarBloqueParafina(?, ?, ? )";
         int id = -1;
 
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
-            cstmt.setInt(1, bloqueParafina.getIdBloqueParafina());
-            cstmt.setInt(2, bloqueParafina.getIdBiopsia());
-            cstmt.setString(3, bloqueParafina.getSerie());
-            cstmt.setInt(4, bloqueParafina.getEstatus());
-            cstmt.setInt(5, bloqueParafina.getCantidad());
+           
+            cstmt.setInt(1, bloqueParafina.getIdBiopsia());
+            cstmt.setString(2, bloqueParafina.getSerie());
+            
+            cstmt.setInt(3, bloqueParafina.getCantidad());
 
             rs = cstmt.executeQuery();
             rs.next();
@@ -199,7 +199,7 @@ public class BloqueParafinaServicioImpl implements BloqueParafinaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarBloqueParafina";
+        String stProcedure = "CALL actualizarBloqueParafina(?, ?, ?, ?, ?)";
         boolean exito = false;
         try {
             conn = Conexion.getConnection();

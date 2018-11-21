@@ -7,6 +7,7 @@ package mx.itesm.sapi.service.gestionPaciente;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -341,5 +342,39 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
         }
         return documentoEstudios;
     }
+        @Override
+        public int agregarDocumentoEstudioMastoAntesPreconsulta(DocumentoEstudio documentoEstudio){
+            
+            Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL agregarDocumentoEstudioMastoAntesPreconsulta(?,?)";
+        int id = -1;
+
+          try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+
+            cstmt.setInt(1, documentoEstudio.getIdPaciente());
+            cstmt.setDate(2, documentoEstudio.getFechaEstudioResultado());
+
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            id = rs.getInt(1);
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
+        }
+        return id;
+        
+        }
+
 
 }

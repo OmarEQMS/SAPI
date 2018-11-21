@@ -277,7 +277,7 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarBiopsiaPreviaPaciente(?)";
+        String stProcedure = "CALL mostrarBiopsiaPreviaPaciente(?,?)";
         Biopsia biopsia = null;
 
         try {
@@ -285,6 +285,7 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
             biopsia = new Biopsia();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idPaciente);
+            cstmt.setInt(2, previo);
 
             rs = cstmt.executeQuery();
             rs.next();

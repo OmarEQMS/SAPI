@@ -1068,12 +1068,12 @@ public class NavegadoraController extends HttpServlet {
                                     } else {
                                         System.out.println("Sin seguro");
                                     }
- 
+
                                 }
 
                             }
 //AUXILIOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-                            /*
+
                             //MASTOGRAFIA PREVIA
                             //Se agrega en documentoEstudio
                             int primeraMasto = 0;
@@ -1085,24 +1085,22 @@ public class NavegadoraController extends HttpServlet {
                                 primeraMasto = 1;
                                 int idCitaPre = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
                                 DocumentoEstudio documentoEstudioPrimeraMasto = documentoEstudioServicioImpl.mostrarDocumentoEstudioPacienteEstudio(idPacientePotencial, 29);
-
+                                LocalDate inicio = java.time.LocalDate.now();
+                                Date inicioDate = Date.valueOf(inicio);
                                 if (documentoEstudioPrimeraMasto != null) {
-                                    System.out.println("No hay que hacer nada");
+                                    
+                                    System.out.println("borrado logico de Mastografia previa");
+                                    documentoEstudioServicioImpl.borradoLogicoDocumentoEstudio(documentoEstudioPrimeraMasto.getIdDocumentoEstudio());
                                 } else {
                                     //HARCODEO
                                     documentoEstudioPrimeraMasto = new DocumentoEstudio();
-                                    documentoEstudioPrimeraMasto.setIdEstudio(29);
                                     documentoEstudioPrimeraMasto.setIdPaciente(idPacientePotencial);
-                                    documentoEstudioPrimeraMasto.setIdEstadoEstudio(1);
-                                    documentoEstudioPrimeraMasto.setIdCita(idCitaPre);
-                                    //HARCODEO
-                                    //ESTOS DOS ESTAN HARCODEADOS!!!!! SE NECESITA CHECAR QUÉ ONDA
-                                    documentoEstudioPrimeraMasto.setIdBirads(8);
-                                    documentoEstudioPrimeraMasto.setIdLugarDelCuerpo(2);
+                                    documentoEstudioPrimeraMasto.setFechaEstudioResultado(inicioDate);
+                                  
 
                                     System.out.println(documentoEstudioPrimeraMasto);
 
-                                    documentoEstudioServicioImpl.agregarDocumentoEstudio(documentoEstudioPrimeraMasto);
+                                    documentoEstudioServicioImpl.agregarDocumentoEstudioMastoAntesPreconsulta(documentoEstudioPrimeraMasto);
                                 }
                             } else {
                                 DocumentoEstudio documentoEstudioPrimeraMasto = documentoEstudioServicioImpl.mostrarDocumentoEstudioPacienteEstudio(idPacientePotencial, 29);
@@ -1112,7 +1110,7 @@ public class NavegadoraController extends HttpServlet {
 
                             }
                             System.out.println("Masto antes del INCan ".concat(String.valueOf(primeraMasto)));
-*/
+
                             //PacienteTratamientoPrevio
                             //Cirugia previa
                             int tieneCirugiaPrevia = 0;
@@ -1373,14 +1371,14 @@ public class NavegadoraController extends HttpServlet {
 
                                 //RAUL-SP FALTA PEDIRSELO!!!!!!!!!
                                 //HARCODEO
-                                DocumentoEstudio documentoEstudioPrevioMastografia = documentoEstudioServicioImpl.mostrarDocumentoEstudioPacienteEstudio(idPacientePotencial, 29);
+                                DocumentoEstudio documentoEstudioPrevioMastografia = documentoEstudioServicioImpl.mostrarDocumentoEstudioPacienteEstudio(idPacientePotencial, 4);
                                 int idCitaPreconsulta = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
                                 if (documentoEstudioPrevioMastografia != null) {
                                     documentoEstudioPrevioMastografia.setIdPaciente(idPacientePotencial);
                                     documentoEstudioPrevioMastografia.setPrevio(1);
                                     documentoEstudioPrevioMastografia.setIdEstadoEstudio(1);
                                     //aqui no se harcodea pq ya está el registro con ese id
-                                    documentoEstudioPrevioMastografia.setIdEstudio(29);
+                                    documentoEstudioPrevioMastografia.setIdEstudio(4);
                                     documentoEstudioPrevioMastografia.setIdBirads(8);
                                     documentoEstudioPrevioMastografia.setIdLugarDelCuerpo(2);
                                     documentoEstudioPrevioMastografia.setIdCita(idCitaPreconsulta);
@@ -1546,7 +1544,7 @@ public class NavegadoraController extends HttpServlet {
                                 if (biopsiaResultado != null) {
                                     //Si hay biopasia se actualiza
                                     biopsiaResultado.setIdTipoHistologico(resultadoPatologia);
-                                    
+
                                     biopsiaResultado.setIdLugarDelCuerpo(1);
                                     biopsiaResultado.setIdTipoBiopsia(1);
                                     biopsiaResultado.setIdHer2(1);
@@ -1554,9 +1552,9 @@ public class NavegadoraController extends HttpServlet {
                                     biopsiaResultado.setIdReceptorEstrogeno(1);
                                     biopsiaResultado.setIdFish(1);
                                     biopsiaResultado.setIdKi67(1);
-                                   // biopsiaResultado.setIdTipoHistologico(5);
+                                    // biopsiaResultado.setIdTipoHistologico(5);
                                     biopsiaResultado.setIdGradoHistologico(1);
-                                    
+
                                     biopsiaServicioImpl.actualizarBiopsia(biopsiaResultado);
                                     otroResultado.setIdBiopsia(biopsiaResultado.getIdPaciente());
 
@@ -1572,7 +1570,7 @@ public class NavegadoraController extends HttpServlet {
 
                                     biopsiaResultado.setIdPaciente(idPacientePotencial);
                                     biopsiaResultado.setIdTipoHistologico(resultadoPatologia);
-                                    
+
                                     biopsiaResultado.setIdLugarDelCuerpo(1);
                                     biopsiaResultado.setIdTipoBiopsia(1);
                                     biopsiaResultado.setIdHer2(1);
@@ -1582,7 +1580,6 @@ public class NavegadoraController extends HttpServlet {
                                     biopsiaResultado.setIdKi67(1);
                                     //biopsiaResultado.setIdTipoHistologico(5);
                                     biopsiaResultado.setIdGradoHistologico(1);
-                                    
 
                                     int idBiopsiaResultado = biopsiaServicioImpl.agregarBiopsia(biopsiaResultado);
                                     otroResultado.setIdBiopsia(idBiopsiaResultado);
@@ -1600,20 +1597,23 @@ public class NavegadoraController extends HttpServlet {
                             //LAMINILLAS
                             int entregaLaminillas = 0;
                             if (request.getParameterMap().containsKey("entregaLaminillas")) {
-
+                                System.out.println("entré a entrega laminillas");
                                 //RAUL- SP falta decirle!!!!!!!!!1
                                 Laminilla laminilla = laminillaServicioImpl.mostrarLaminillaPaciente(idPacientePotencial);
 
                                 if (laminilla != null) {
+                                    System.out.println("estoy en el if de laminillas");
+
                                     int numeroLaminillas = 0;
-                                    try {
-                                        numeroLaminillas = Integer.parseInt(request.getParameter("numLaminillas"));
+                                    String numeroLaminillasRequest = request.getParameter("numLaminillas");
+                                    if (numeroLaminillasRequest.length() > 0 && numeroLaminillasRequest != null) {
+                                        numeroLaminillas = Integer.parseInt(numeroLaminillasRequest);
                                         int idBiopsia = biopsiaServicioImpl.mostrarBiopsiaPreviaPaciente(idPacientePotencial, 1).getIdBiopsia();
                                         laminilla.setIdBiopsia(idBiopsia);
                                         laminilla.setCantidad(numeroLaminillas);
 
-                                    } catch (Exception ex) {
-                                        System.out.println("Exception Número laminillas ".concat(ex.getMessage()));
+                                    } else {
+                                        System.out.println("Sin Número laminillas ");
                                     }
                                     System.out.println("Numero de laminillas ".concat(String.valueOf(numeroLaminillas)));
 
@@ -1626,18 +1626,24 @@ public class NavegadoraController extends HttpServlet {
                                     } else {
                                         System.out.println("Sin serie laminillas");
                                     }
+                                    System.out.println(laminilla);
 
                                     laminillaServicioImpl.actualizarLaminilla(laminilla);
                                 } else {
+                                    laminilla = new Laminilla();
+                                    System.out.println("estoy en el else de laminillas");
                                     int numeroLaminillas = 0;
-                                    try {
-                                        numeroLaminillas = Integer.parseInt(request.getParameter("numLaminillas"));
+                                    String numeroLaminillasRequest = request.getParameter("numLaminillas");
+                                    System.out.println("El numero de laminillas es:" + numeroLaminillasRequest);
+                                    if (numeroLaminillasRequest.length() > 0 && numeroLaminillasRequest != null) {
+                                        numeroLaminillas = Integer.parseInt(numeroLaminillasRequest);
                                         int idBiopsia = biopsiaServicioImpl.mostrarBiopsiaPreviaPaciente(idPacientePotencial, 1).getIdBiopsia();
                                         laminilla.setIdBiopsia(idBiopsia);
+
                                         laminilla.setCantidad(numeroLaminillas);
 
-                                    } catch (Exception ex) {
-                                        System.out.println("Exception Número laminillas ".concat(ex.getMessage()));
+                                    } else {
+                                        System.out.println("Sin Número laminillas ");
                                     }
                                     System.out.println("Numero de laminillas ".concat(String.valueOf(numeroLaminillas)));
 
@@ -1651,6 +1657,7 @@ public class NavegadoraController extends HttpServlet {
                                         System.out.println("Sin serie laminillas");
                                     }
 
+                                    System.out.println(laminilla);
                                     laminillaServicioImpl.agregarLaminilla(laminilla);
                                 }
                             }
@@ -1664,13 +1671,13 @@ public class NavegadoraController extends HttpServlet {
 
                                 if (bloqueParafina != null) {
                                     int numeroBloquesParafina = 0;
-                                    try {
-                                        numeroBloquesParafina = Integer.parseInt(request.getParameter("numBloques"));
+                                    String numeroBloquesParafinaRequest = request.getParameter("numBloques");
+
+                                    if (numeroBloquesParafinaRequest != null && numeroBloquesParafinaRequest.length() > 0) {
+                                        numeroBloquesParafina = Integer.parseInt(numeroBloquesParafinaRequest);
                                         int idBiopsia = biopsiaServicioImpl.mostrarBiopsiaPreviaPaciente(idPacientePotencial, 1).getIdBiopsia();
                                         bloqueParafina.setIdBiopsia(idBiopsia);
                                         bloqueParafina.setCantidad(numeroBloquesParafina);
-                                    } catch (Exception ex) {
-                                        System.out.println("Exception Bloques de parafina ".concat(ex.getMessage()));
                                     }
                                     System.out.println("Numero de bloques de parafina ".concat(String.valueOf(numeroBloquesParafina)));
 
@@ -1686,13 +1693,14 @@ public class NavegadoraController extends HttpServlet {
                                     bloqueParafinaServicioImpl.actualizarBloqueParafina(bloqueParafina);
                                 } else {
                                     int numeroBloquesParafina = 0;
-                                    try {
-                                        numeroBloquesParafina = Integer.parseInt(request.getParameter("numBloques"));
+                                    String numeroBloquesParafinaRequest = request.getParameter("numBloques");
+                                    bloqueParafina = new BloqueParafina();
+
+                                    if (numeroBloquesParafinaRequest != null && numeroBloquesParafinaRequest.length() > 0) {
+                                        numeroBloquesParafina = Integer.parseInt(numeroBloquesParafinaRequest);
                                         int idBiopsia = biopsiaServicioImpl.mostrarBiopsiaPreviaPaciente(idPacientePotencial, 1).getIdBiopsia();
                                         bloqueParafina.setIdBiopsia(idBiopsia);
                                         bloqueParafina.setCantidad(numeroBloquesParafina);
-                                    } catch (Exception ex) {
-                                        System.out.println("Exception Bloques de parafina ".concat(ex.getMessage()));
                                     }
                                     System.out.println("Numero de bloques de parafina ".concat(String.valueOf(numeroBloquesParafina)));
 
