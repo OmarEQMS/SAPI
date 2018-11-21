@@ -708,7 +708,7 @@ $(document).ready(function () {
         for (let index = 0; index < archivos.length; index++) {
 
             if (archivos[index]["type"] == "image/jpg" || archivos[index]["type"] == "image/png"
-                    ) {
+                    || archivos[index]["type"] == "image/jpeg") {
 
                 console.log('si se puede' + archivos[index]["type"]);
                 input.css('border', '');
