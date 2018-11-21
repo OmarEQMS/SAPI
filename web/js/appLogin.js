@@ -105,6 +105,8 @@ $(document).ready(function () {
         });
     });
 
+    configureLoadingScreen($('#loading-screen'));
+
     $('#btn-login').on('click', function () {
         var usu = $("#user");
         var pass = $("#password");
@@ -127,8 +129,6 @@ $(document).ready(function () {
                 }
         );
     });
-
-
 
 
     $('#recuperarContra').on('click', function () {
@@ -155,5 +155,15 @@ $(document).ready(function () {
     });
 
 });
+
+function configureLoadingScreen(screen) {
+    $(document)
+            .ajaxStart(function () {
+                screen.fadeIn();
+            })
+            .ajaxStop(function () {
+                screen.fadeOut();
+            })
+}
 
 
