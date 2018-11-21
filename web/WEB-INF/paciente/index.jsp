@@ -354,7 +354,7 @@
                                 <div class="col-8">
                                     <div>
                                         <div>
-                                            <input class="modalRadio1" id="RegistrarCita_edificioAntiguo" type="radio" name="Edificios"
+                                            <input class="modalRadio1" id="RegistrarCita_edificioAntiguo" data-color="#6c757d" type="radio" name="Edificios"
                                                    value="1" />
                                             <span class="badge">Edificio antiguo</span>
                                             <a href="#" class="questionMark" data-tooltip-content="#tooltip_contentInfoTorreAntigua"><i
