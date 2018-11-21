@@ -24,6 +24,8 @@ public class SolicitudPreconsulta {
     private String mastografia;
     private String ultrasonido;
     private int motivoCosulta;
+    private String otro;
+    private String hospital;
 
     public SolicitudPreconsulta()
     {
@@ -54,6 +56,23 @@ public class SolicitudPreconsulta {
     }
  */   
 
+    public String getOtro() {
+        return otro;
+    }
+
+    public void setOtro(String otro) {
+        this.otro = otro;
+    }
+
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
+
+    
     public int getMotivoCosulta() {
         return motivoCosulta;
     }

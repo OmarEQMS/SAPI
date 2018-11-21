@@ -56,6 +56,8 @@ public class SolicitudPreconsultaServicioImpl implements SolicitudPreconsultaSer
             solicitudPreconsulta.setMastografia(rs.getNString(12));                                    
             solicitudPreconsulta.setUltrasonido(rs.getNString(13));   
             solicitudPreconsulta.setMotivoCosulta(rs.getInt(14));
+            solicitudPreconsulta.setOtro(rs.getNString(15));
+            solicitudPreconsulta.setHospital(rs.getNString(16));
                                     
             conn.close();
             rs.close();

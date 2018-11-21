@@ -706,7 +706,7 @@
                                                                     <select class="form-control" id="motivoConsulta" disabled>
                                                                         <option value="0">Seleccione el motivo de la consulta</option>
                                                                         <option value="1">Me envió un médico</option>
-                                                                        <option value="3">No he consultado a ningun medico (punto y coma) pero me senti una bolita en el seno</option>
+                                                                        <option value="3">No he consultado a ningun médico; pero me senti una bolita en el seno</option>
                                                                         <option value="4">Me envían de otro hospital</option>
                                                                         <option value="5">Otro</option>
                                                                     </select>
@@ -723,7 +723,7 @@
                                                                         <div class="custom-file col-8" id="customFile">
                                                                             <input type="file" class="custom-file-input" id="referenciaArchivo" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp" disabled>
                                                                             <label class="custom-file-label" id="labelReferencia">
-                                                                                Adjunta la hoja de referencia de médico.
+                                                                                ${sessionScope.referenciaName}
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -739,7 +739,7 @@
                                                                         <div class="custom-file col-8" id="customFile">
                                                                             <input type="file" class="custom-file-input" id="referenciaArchivo" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp" disabled>
                                                                             <label class="custom-file-label">
-                                                                                Adjunta la hoja de referencia de médico del hospital.
+                                                                                ${sessionScope.referenciaName}
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -748,7 +748,7 @@
                                                                             <span class="textoDocumento">Hospital</span>
                                                                         </div>
                                                                         <div class="custom-file col-8 p-0 m-0" id="customFile">
-                                                                            <input type="text" class="form-control" id="otroHospital" name="otroHospital" placeholder="Introduce tu hospital de procedencia"  disabled>
+                                                                            <input type="text" class="form-control" id="otroHospital" name="otroHospital" placeholder="Introduce tu hospital de procedencia" value="${sessionScope.hospital}" disabled>
                                                                         </div>
                                                                     </div>
                                                                 </c:when>
@@ -761,7 +761,7 @@
                                                                             <span class="textoDocumento">Otro motivo</span>
                                                                         </div>
                                                                         <div class="custom-file col-8 p-0 m-0" id="customFile">
-                                                                            <input type="text" class="form-control" id="otro-motivo-consulta" placeholder="Introduce otro motivo" disabled>
+                                                                            <input type="text" class="form-control" id="otro-motivo-consulta" placeholder="Introduce otro motivo" value="${sessionScope.otroMotivo}" disabled>
                                                                         </div>
                                                                     </div>
                                                                 </c:when>
