@@ -177,6 +177,28 @@ public class LoginController extends HttpServlet {
 
                                 System.out.println("Consultar documentos");
 
+                                System.out.println("Motivo SolicitudPreconsulta: " + solicitudPreconsulta.getMotivoCosulta());
+
+                                sesion.setAttribute("idMotivoConsulta", solicitudPreconsulta.getMotivoCosulta());
+                                if (solicitudPreconsulta.getMotivoCosulta() == 1 || solicitudPreconsulta.getMotivoCosulta() == 4) {
+                                    System.out.println("Referencia Motivo: ".concat(solicitudPreconsulta.getReferencia()));
+                                    sesion.setAttribute("referenciaName", solicitudPreconsulta.getReferencia());
+                                }
+
+                                if (solicitudPreconsulta.getMotivoCosulta() == 4) {
+                                    System.out.println("---------------------------------------------------------------------------------------------------------");
+                                    System.out.println("hospital: ".concat(solicitudPreconsulta.getHospital()));
+                                    sesion.setAttribute("hospital", solicitudPreconsulta.getHospital());
+                                    System.out.println("---------------------------------------------------------------------------------------------------------");
+                                }
+
+                                if (solicitudPreconsulta.getMotivoCosulta() == 5) {
+                                    System.out.println("---------------------------------------------------------------------------------------------------------");
+                                    System.out.println("OtroMotivo: ".concat(solicitudPreconsulta.getOtro()));
+                                    sesion.setAttribute("otroMotivo", solicitudPreconsulta.getOtro());
+                                    System.out.println("---------------------------------------------------------------------------------------------------------");
+                                }
+
                                 if (solicitudPreconsulta.getIdSexo() == 0) {
                                     sesion.setAttribute("idSexo", 0);
                                 } else {
