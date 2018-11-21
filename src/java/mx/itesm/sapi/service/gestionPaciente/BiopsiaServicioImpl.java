@@ -117,7 +117,7 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarBiopsia(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL agregarBiopsia(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         int id = -1;
 
         try {
@@ -136,8 +136,7 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
             cstmt.setInt(10, biopsia.getLaminillas());
             cstmt.setInt(11, biopsia.getBloques());
             cstmt.setInt(12, biopsia.getPrevia());
-            cstmt.setInt(13, biopsia.getEstatus());
-            cstmt.setInt(14, biopsia.getIdTipoBiopsia());
+            cstmt.setInt(13, biopsia.getIdTipoBiopsia());
 
             rs = cstmt.executeQuery();
             rs.next();
@@ -188,27 +187,29 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarBiopsia(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL actualizarBiopsia(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         boolean exito = false;
 
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
+            
+            cstmt.setInt(1, biopsia.getIdBiopsia());
+            cstmt.setInt(2, biopsia.getIdPaciente());
+            cstmt.setInt(3, biopsia.getIdLugarDelCuerpo());
+            cstmt.setInt(4, biopsia.getIdHer2());
+            cstmt.setInt(5, biopsia.getIdReceptorProgesterona());
+            cstmt.setInt(6, biopsia.getIdReceptorEstrogeno());
+            cstmt.setInt(7, biopsia.getIdFish());
+            cstmt.setInt(8, biopsia.getIdKi67());
+            cstmt.setInt(9, biopsia.getIdTipoHistologico());
+            cstmt.setInt(10, biopsia.getIdGradoHistologico());
+            cstmt.setInt(11, biopsia.getLaminillas());
+            cstmt.setInt(12, biopsia.getBloques());
+            cstmt.setInt(13, biopsia.getPrevia());
+            cstmt.setInt(14, biopsia.getEstatus());
+            cstmt.setInt(15, biopsia.getIdTipoBiopsia());
 
-            cstmt.setInt(1, biopsia.getIdPaciente());
-            cstmt.setInt(2, biopsia.getIdLugarDelCuerpo());
-            cstmt.setInt(3, biopsia.getIdHer2());
-            cstmt.setInt(4, biopsia.getIdReceptorProgesterona());
-            cstmt.setInt(5, biopsia.getIdReceptorEstrogeno());
-            cstmt.setInt(6, biopsia.getIdFish());
-            cstmt.setInt(7, biopsia.getIdKi67());
-            cstmt.setInt(8, biopsia.getIdTipoHistologico());
-            cstmt.setInt(9, biopsia.getIdGradoHistologico());
-            cstmt.setInt(10, biopsia.getLaminillas());
-            cstmt.setInt(11, biopsia.getBloques());
-            cstmt.setInt(12, biopsia.getPrevia());
-            cstmt.setInt(13, biopsia.getEstatus());
-            cstmt.setInt(14, biopsia.getIdTipoBiopsia());
 
             rs = cstmt.executeQuery();
             rs.next();

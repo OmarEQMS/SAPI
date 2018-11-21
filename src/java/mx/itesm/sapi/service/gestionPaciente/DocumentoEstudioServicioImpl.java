@@ -334,7 +334,6 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             conn.close();
             cstmt.close();
             rs.close();
-
         } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
