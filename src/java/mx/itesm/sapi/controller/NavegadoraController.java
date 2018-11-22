@@ -2016,8 +2016,7 @@ public class NavegadoraController extends HttpServlet {
                                 estadiajeTNM = null;
                                 estadiajeTNM = (estadiajeTNMServiceImpl.mostrarEstadiajeTNMPaciente(idPaciente));
                                 
-                                RegistroDiagnostico registroDiagnostico = new RegistroDiagnostico();
-                                registroDiagnostico = registroDiagnosticoServiceImpl.mostrarRegistroDiagnosticoPaciente(idPaciente);
+                                RegistroDiagnostico registroDiagnostico =  registroDiagnosticoServiceImpl.mostrarRegistroDiagnosticoPaciente(idPaciente);
                                 
                                 if(registroDiagnostico != null)
                                 {
