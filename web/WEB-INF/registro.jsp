@@ -118,7 +118,7 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                         <input placeholder="FECHA DE NACIMIENTO" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"  id="fechaNacimiento">
-                        <span class="text-danger" id="errorFecha">Fecha incorrecta</span>
+                        <span class="text-danger" id="errorFecha">Fecha incorrecta debes tener entre 16 y 115 años para poder registrarte</span>
                     </div>
                 </div>
 
