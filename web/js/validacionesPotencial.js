@@ -18,7 +18,7 @@ $('#fileIdentificacion').on('change', function () {
     
     cambiaNombre($(this));
     
-    if (validDocument($('#fileIdentificacion'), document.querySelector('#fileIdentificacion').files)) {
+    if (validDocument($('#fileIdentificacion'), document.querySelector('#fileIdentificacion').files) || $('#fileIdentificacion').get(0).files.length === 0) {
         $(this).next('.custom-file-label').addClass("selected").html($(this).val());
         $('#error-identificacionOficial').hide();
     } else {
@@ -32,8 +32,7 @@ $('#fileCURP').on('change', function () {
     
    cambiaNombre($(this));
     
-    if (validDocument($('#fileCURP'), document.querySelector('#fileCURP').files)) {
-        
+    if (validDocument($('#fileCURP'), document.querySelector('#fileCURP').files) || $('#fileCURP').get(0).files.length === 0) {
         $('#error-CURP').hide();
         console.log('si se puede ' + document.querySelector('#fileCURP').files);
     } else {
@@ -47,7 +46,7 @@ $('#fileComprobanteDomicilio').on('change', function () {
     
     cambiaNombre($(this));
     
-    if (validDocument($('#fileComprobanteDomicilio'), document.querySelector('#fileComprobanteDomicilio').files)) {
+    if (validDocument($('#fileComprobanteDomicilio'), document.querySelector('#fileComprobanteDomicilio').files) || $('#fileComprobanteDomicilio').get(0).files.length === 0) {
         $('#error-comprobanteDomicilio').hide();
     } else {
         $('#error-comprobanteDomicilio').show();
@@ -71,7 +70,7 @@ $('#fileEstudioPrevioMasto').on('change', function () {
     
     cambiaNombre($(this));
     
-    if (validDocument($('#fileEstudioPrevioMasto'), document.querySelector('#fileEstudioPrevioMasto').files)) {
+    if (validDocument($('#fileEstudioPrevioMasto'), document.querySelector('#fileEstudioPrevioMasto').files) || $('#fileEstudioPrevioMasto').get(0).files.length === 0) {
         $('#error-previoMasto').hide();
     } else {
         $('#error-previoMasto').show();
@@ -83,7 +82,7 @@ $('#fileEstudioPrevioUsg').on('change', function () {
     
     cambiaNombre($(this));
     
-    if (validDocument($('#fileEstudioPrevioUsg'), document.querySelector('#fileEstudioPrevioUsg').files)) {
+    if (validDocument($('#fileEstudioPrevioUsg'), document.querySelector('#fileEstudioPrevioUsg').files) || $('#fileEstudioPrevioUsg').get(0).files.length === 0) {
         $('#error-previoUsg').hide();
     } else {
         $('#error-previoUsg').show();
@@ -95,7 +94,7 @@ $('#fileEstudioBiopsia').on('change', function () {
     
     cambiaNombre($(this));
     
-    if (validDocument($('#fileEstudioBiopsia'), document.querySelector('#fileEstudioBiopsia').files)) {
+    if (validDocument($('#fileEstudioBiopsia'), document.querySelector('#fileEstudioBiopsia').files) || $('#fileEstudioBiopsia').get(0).files.length === 0) {
         $('#error-biopsia').hide();
     } else {
         $('#error-biopsia').show();
