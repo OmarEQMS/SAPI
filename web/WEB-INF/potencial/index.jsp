@@ -111,14 +111,9 @@
             </nav>
                         
             <!-- PANTALLAS DE CARGA -->
-            <div id="loading-screen" style="display: none">
+            <div class="loading-screen" id="loading-screen" style="display: none">
                 <img src="img/loading.svg">
-                <p class="clear">Enviando datos, por favor espere...</p>
-            </div>
-
-            <div class="loading-screenActualizar" id="loading-screen" style="display: none">
-                <img src="img/loading.svg">
-                <p class="clear">Actualizando tu información, por favor espere...</p>
+                <p class="clear">Cargando, por favor espere...</p>
             </div>
                         
             <div class="loading-screenGuardar" id="loading-screen" style="display: none">
