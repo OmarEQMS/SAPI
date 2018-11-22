@@ -412,8 +412,8 @@ public class NavegadoraController extends HttpServlet {
                         case "aprobar-paciente": {
 
                             int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
-                            String fechaNav = request.getParameter("fechaNavegacion").concat(" 07:30:00");
-                            String fechaCon = request.getParameter("fechaConsulta").concat(" 07:30:00");
+                            String fechaNav = request.getParameter("fechaNavegacion").concat(" 07:50:00");
+                            String fechaCon = request.getParameter("fechaConsulta").concat(" 07:50:00");
                             int segundaOpinion = Integer.parseInt(request.getParameter("tipoPaciente"));
 
                             System.out.println(idPaciente);

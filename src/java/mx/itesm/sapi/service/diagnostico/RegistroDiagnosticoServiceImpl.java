@@ -182,7 +182,7 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
             cstmt.setInt(3, registroDiagnostico.getPrevioDiagnostico());
             cstmt.setInt(4, registroDiagnostico.getIdPaciente());
             cstmt.setInt(5, registroDiagnostico.getIdEtapaClinica());
-            cstmt.setInt(6, 0);
+            cstmt.setInt(6, registroDiagnostico.getIdRegistroTNM());
            // cstmt.setInt(7, registroDiagnostico.getEstatus());
            
         
