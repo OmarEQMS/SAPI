@@ -7,7 +7,7 @@ package mx.itesm.sapi.service;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import mx.itesm.sapi.bean.Rendimiento;
+import mx.itesm.sapi.bean.rendimiento.Rendimiento;
 
 /**
  *

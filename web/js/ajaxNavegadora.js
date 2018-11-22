@@ -57,6 +57,7 @@ $(document).ready(function () {
         data: {key: "autocompleteRayosX"}
     })
 
+<<<<<<< HEAD
             .done(function (response) {
 
                 var json = JSON.parse(response);
@@ -78,6 +79,35 @@ $(document).ready(function () {
 
         }
     });
+=======
+        .done(function (response) {
+       
+       var json = JSON.parse(response);
+        for (var i = 0; i < json.length; i++) {
+                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
+                   rayosX.push(newObjeto);
+            }
+    
+       
+        console.log(rayosX);
+       
+        });
+    
+    
+ $("body").on("click", '.rayosX', function(){
+    
+   $('.rayosX').autocomplete({
+    lookup: rayosX,
+    onSelect: function (suggestion) {
+         console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+        
+    }
+});  
+     
+ });
+    
+    
+>>>>>>> pantalla5
 
 //AutocompleteUltrasonido
 
@@ -103,6 +133,7 @@ $(document).ready(function () {
 
             });
 
+<<<<<<< HEAD
 
 
     $('#ultraSonido').autocomplete({
@@ -111,6 +142,34 @@ $(document).ready(function () {
 
         }
     });
+=======
+        .done(function (response) {
+       
+       var json = JSON.parse(response);
+        for (var i = 0; i < json.length; i++) {
+                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
+                   ultraSonido.push(newObjeto);
+            }
+    
+       
+        console.log(ultraSonido);
+       
+        });
+    
+    
+         
+ $("body").on("click", '.ultraSonido', function(){
+    
+   $('.ultraSonido').autocomplete({
+    lookup: ultraSonido,
+    onSelect: function (suggestion) {
+         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+        
+    }
+});  
+     
+ });
+>>>>>>> pantalla5
 
 
 
@@ -125,6 +184,7 @@ $(document).ready(function () {
         data: {key: "autocompletePrograma"}
     })
 
+<<<<<<< HEAD
             .done(function (response) {
 
                 var json = JSON.parse(response);
@@ -146,6 +206,34 @@ $(document).ready(function () {
 
         }
     });
+=======
+        .done(function (response) {
+       
+       var json = JSON.parse(response);
+        for (var i = 0; i < json.length; i++) {
+                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
+                   programa.push(newObjeto);
+            }
+    
+       
+        console.log(programa);
+       
+        });
+    
+    
+         
+ $("body").on("click", '.programa', function(){
+    
+   $('.programa').autocomplete({
+    lookup: programa,
+    onSelect: function (suggestion) {
+         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+        
+    }
+});  
+     
+ });
+>>>>>>> pantalla5
 
 
 //AutocompleteMedicinaNuclear
@@ -159,6 +247,7 @@ $(document).ready(function () {
         data: {key: "autocompleteMedicinaNuclear"}
     })
 
+<<<<<<< HEAD
             .done(function (response) {
 
                 var json = JSON.parse(response);
@@ -180,6 +269,34 @@ $(document).ready(function () {
 
         }
     });
+=======
+        .done(function (response) {
+       
+       var json = JSON.parse(response);
+        for (var i = 0; i < json.length; i++) {
+                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
+                   medicinaNuclear.push(newObjeto);
+            }
+    
+       
+        console.log(medicinaNuclear);
+       
+        });
+    
+    
+         
+ $("body").on("click", '.medicinaNuclear', function(){
+    
+   $('.medicinaNuclear').autocomplete({
+    lookup: medicinaNuclear,
+    onSelect: function (suggestion) {
+         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+        
+    }
+});  
+     
+ });
+>>>>>>> pantalla5
 
 
 //AutocompleteValoracion
@@ -218,6 +335,35 @@ $(document).ready(function () {
 
 
 
+<<<<<<< HEAD
+=======
+        .done(function (response) {
+       
+       var json = JSON.parse(response);
+        for (var i = 0; i < json.length; i++) {
+                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
+                   valoracion.push(newObjeto);
+            }
+    
+       
+        console.log(valoracion);
+       
+        });
+    
+    
+         
+ $("body").on("click", '.valoracion', function(){
+    
+   $('.valoracion').autocomplete({
+    lookup: valoracion,
+    onSelect: function (suggestion) {
+         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+        
+    }
+});  
+     
+ });
+>>>>>>> pantalla5
 
 
 

@@ -16,8 +16,10 @@ import mx.itesm.sapi.bean.gestionPaciente.Laminilla;
  */
 public interface LaminillaServicio {
     public Laminilla mostrarLaminilla(int idLaminilla);
+    public Laminilla mostrarLaminillaPaciente(int idPaciente);
     public List<Laminilla> mostrarLaminilla();
     public int agregarLaminilla(Laminilla laminilla);
     public boolean actualizarLaminilla(Laminilla laminilla);
     public boolean borradoLogicoLaminilla(int idLaminilla);
+    
 }

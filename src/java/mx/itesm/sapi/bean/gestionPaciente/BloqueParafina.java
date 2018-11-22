@@ -14,6 +14,7 @@ public class BloqueParafina {
     private int idBiopsia;
     private String serie;
     private int estatus;
+    private int cantidad;
     
     public BloqueParafina() {}
  	@Override
@@ -56,6 +57,14 @@ public class BloqueParafina {
 
     public void setEstatus(int estatus) {
         this.estatus = estatus;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
         
 }

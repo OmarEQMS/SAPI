@@ -19,11 +19,14 @@ public class DocumentoEstudio {
     private int idEstadoEstudio;
     private int idPaciente;
     private int idBirads;
+    private int idLugarDelCuerpo;
     private byte[] archivo;
     private int previo;
     private int estatus;
-    private Date fechaEstudioPrevio;
-    private int idLugarDelCuerpo;
+    private Date fechaEstudioResultado;
+    private int idCita;
+
+
 
     public DocumentoEstudio() {
     }
@@ -38,7 +41,7 @@ public class DocumentoEstudio {
                 .concat("archivo:").concat(String.valueOf(archivo))
                 .concat("previo:").concat(String.valueOf(previo))
                 .concat("estatus:").concat(String.valueOf(estatus))
-                .concat(",fechaEstudioPrecio:").concat(String.valueOf(fechaEstudioPrevio))
+                .concat(",fechaEstudioResultado:").concat(String.valueOf(fechaEstudioResultado))
                 .concat("idLugarDelCuerpo:").concat(String.valueOf(idLugarDelCuerpo))
                 .concat("]");
 
@@ -46,13 +49,7 @@ public class DocumentoEstudio {
 
     }
 
-    public Date getFechaEstudioPrevio() {
-        return fechaEstudioPrevio;
-    }
-
-    public void setFechaEstudioPrevio(Date fechaEstudioPrevio) {
-        this.fechaEstudioPrevio = fechaEstudioPrevio;
-    }
+   
 
     public int getIdDocumentoEstudio() {
         return idDocumentoEstudio;
@@ -124,6 +121,22 @@ public class DocumentoEstudio {
 
     public int getIdLugarDelCuerpo() {
         return idLugarDelCuerpo;
+    }
+
+    public Date getFechaEstudioResultado() {
+        return fechaEstudioResultado;
+    }
+
+    public void setFechaEstudioResultado(Date fechaEstudioResultado) {
+        this.fechaEstudioResultado = fechaEstudioResultado;
+    }
+
+    public int getIdCita() {
+        return idCita;
+    }
+
+    public void setIdCita(int idCita) {
+        this.idCita = idCita;
     }
 
 }
