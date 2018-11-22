@@ -595,7 +595,7 @@ $(document).ready(function () {
                     buttons: {cancel: 'Cancelar', aceptar: 'Aceptar'},
                     dangerMode: true
                 }).then(function (value) {
-                    configureLoadingScreen($('#loading-screen'));
+                    configureLoadingScreen($('.loading-screenGuardar'));
                     if (value == "aceptar") {
                         //AJAX PARA ENVIAR SOLICITUD
                         $.ajax({
@@ -625,7 +625,7 @@ $(document).ready(function () {
                                         buttons: [, 'Aceptar']
 
                                     }).then(function () {
-                                        configureLoadingScreen($('.screenActualizar'));
+                                        configureLoadingScreen($('.loading-screenActualizar'));
                                         var consultarDocumentosPreconsulta = new FormData;
                                         consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
                                         console.log("Solicitar DOCUMENTOS de Preconsulta");
@@ -773,7 +773,7 @@ $(document).ready(function () {
                                         buttons: [, 'Aceptar']
 
                                     }).then(function () {
-                                        configureLoadingScreen($('.screenActualizar'));
+                                        configureLoadingScreen($('.loading-screenActualizar'));
                                         var consultarDocumentosPreconsulta = new FormData;
                                         consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
                                         console.log("Solicitar DOCUMENTOS de Preconsulta");
