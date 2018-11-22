@@ -409,6 +409,7 @@ public class CitaServicioImpl implements CitaServicio {
             cstmt.setTimestamp(3, fechaConsulta);
             cstmt.setInt(4, segundaOpinion);
 
+            System.out.println(cstmt.toString());
             rs = cstmt.executeQuery();
             rs.next();
             idCitaNav = rs.getInt(1);
