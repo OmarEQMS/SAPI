@@ -54,6 +54,42 @@ public class ComentarioCitaServicioImpl implements ComentarioCitaServicio {
         }
         return comentarioCita;
     }
+    
+    @Override
+    public ComentarioCita mostrarComentarioCitaIdCita(int idComentarioCita) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarComentarioCitaIdCita(?)";
+        ComentarioCita comentarioCita = null;
+
+        try {
+            conn = Conexion.getConnection();
+            comentarioCita = new ComentarioCita();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idComentarioCita);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+            comentarioCita.setIdComentarioCita(rs.getInt("idComentarioCita"));
+            comentarioCita.setComentarioIncidencia(rs.getString("comentarioIncidencia"));
+            comentarioCita.setIdCita(rs.getInt("idCita"));
+            comentarioCita.setNavegadora(rs.getInt("navegadora"));
+            comentarioCita.setEstatus(rs.getInt("estatus"));
+            comentarioCita.setComentarioMedico("comentarioMedico");
+            
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            comentarioCita = null;
+        }
+        return comentarioCita;
+    }
 
     @Override
     public List<ComentarioCita> mostrarComentarioCita() {
@@ -163,16 +199,18 @@ public class ComentarioCitaServicioImpl implements ComentarioCitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarComentarioCita(?,?,?, ?)";
+        String stProcedure = "CALL actualizarComentarioCita(?,?,?, ?,?)";
         boolean exito = false;
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
-           cstmt.setString(1, comentarioCita.getComentarioIncidencia());
-            cstmt.setInt(2, comentarioCita.getIdCita());
-            cstmt.setInt(3, comentarioCita.getNavegadora());
-            cstmt.setString(4, comentarioCita.getComentarioMedico());
+           cstmt.setInt(1, comentarioCita.getIdComentarioCita());
+
+           cstmt.setString(2, comentarioCita.getComentarioIncidencia());
+            cstmt.setInt(3, comentarioCita.getIdCita());
+            cstmt.setInt(4, comentarioCita.getNavegadora());
+            cstmt.setString(5, comentarioCita.getComentarioMedico());
 
             rs = cstmt.executeQuery();
             rs.next();
@@ -189,39 +227,6 @@ public class ComentarioCitaServicioImpl implements ComentarioCitaServicio {
         return exito;
     }
 
-    @Override
-    public ComentarioCita mostrarComentarioCitaIdCita(int idCita) {
-        Connection conn;
-        CallableStatement cstmt;
-        ResultSet rs;
-        String stProcedure = "CALL mostrarComentarioCitaIdCita(?)";
-        ComentarioCita comentarioCita = null;
-
-        try {
-            conn = Conexion.getConnection();
-            comentarioCita = new ComentarioCita();
-            cstmt = conn.prepareCall(stProcedure);
-            cstmt.setInt(1, idCita);
-
-            rs = cstmt.executeQuery();
-            rs.next();
-           comentarioCita.setIdComentarioCita(rs.getInt("idComentarioCita"));
-            comentarioCita.setComentarioIncidencia(rs.getString("comentarioIncidencia"));
-            comentarioCita.setIdCita(rs.getInt("idCita"));
-            comentarioCita.setNavegadora(rs.getInt("navegadora"));
-            comentarioCita.setEstatus(rs.getInt("estatus"));
-            comentarioCita.setComentarioMedico("comentarioMedico");
-
-            conn.close();
-            cstmt.close();
-            rs.close();
-
-        } catch (SQLException ex) {
-            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
-                    .concat(ex.getMessage()));
-            comentarioCita = null;
-        }
-        return comentarioCita;
-    }
+    
 
 }

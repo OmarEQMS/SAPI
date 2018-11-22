@@ -648,5 +648,36 @@ public class CitaServicioImpl implements CitaServicio {
         return cita;
     }
 
+    @Override
+    public boolean actualizarCitaFecha(Cita cita) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL actualizarCitaFecha(?,?)";
+        boolean exito = false;
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+
+            cstmt.setInt(1, cita.getIdCita());
+            cstmt.setTimestamp(2, cita.getFechaReal());
+
+
+
+            rs = cstmt.executeQuery();
+            rs.next();
+            exito = rs.getBoolean(1);
+
+            rs.close();
+            conn.close();
+            cstmt.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+        }
+        return exito;
+    }
+
 
 }

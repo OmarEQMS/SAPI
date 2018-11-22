@@ -22,9 +22,9 @@ public class EstadoPacientePaciente {
     private int resultados;
     private int idEmpleado;
     private Timestamp fechaFin;
-    
-    
-    
+
+        
+   
     @Override 
     public String toString(){
         String str="EstadoPacientePaciente [idEstadoPacientePaciente:".concat(String.valueOf(idEstadoPacientePaciente))

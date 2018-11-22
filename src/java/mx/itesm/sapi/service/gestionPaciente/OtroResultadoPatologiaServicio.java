@@ -25,4 +25,5 @@ public interface OtroResultadoPatologiaServicio {
 
     public boolean actualizarOtroResultadoPatologia(OtroResultadoPatologia otroResultadoPatologia);
 
+    
 }
