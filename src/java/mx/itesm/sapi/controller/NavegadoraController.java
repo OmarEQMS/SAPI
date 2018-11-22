@@ -1997,10 +1997,23 @@ public class NavegadoraController extends HttpServlet {
                             */
                             //************************PANTALLA 5*************************************
                             
+                            //REGISTRO DIAGNOSTICO 
+                            RegistroDiagnosticoServiceImpl registroDiagnosticoServiceImpl = new RegistroDiagnosticoServiceImpl();
+                            RegistroDiagnostico registroDiagnostico;
+                            
+                            try
+                            {                                     
+                               registroDiagnostico = registroDiagnosticoServiceImpl.mostrarRegistroDiagnosticoPaciente(idPaciente);
+                               System.out.println("Registro Diagnostico ".concat(registroDiagnostico.toString()));
+                            }catch(Exception ex)
+                            {
+                               registroDiagnostico = new RegistroDiagnostico();
+                               System.out.println("Tratar de obtejer registro diagnostico ".concat(ex.getMessage()));
+                            }
+                               
                             
                             //**************************************************RegistroDiagnostico*************************
-                            //Etapa Clinica                            
-                            RegistroDiagnosticoServiceImpl registroDiagnosticoServiceImpl = new RegistroDiagnosticoServiceImpl();
+                            //Etapa Clinica                                                        
                             int etapaClinica = 0;
                             String etapaClinicaRequest = (request.getParameter("etapaClinica"));
                             if (etapaClinicaRequest != null && etapaClinicaRequest.length() > 0) {
@@ -2014,44 +2027,99 @@ public class NavegadoraController extends HttpServlet {
                                 */
                                 LocalDate registro = java.time.LocalDate.now();
                                 Date fecha = Date.valueOf(registro);
-                                
-                                estadiajeTNM = null;
-                                estadiajeTNM = estadiajeTNMServiceImpl.mostrarEstadiajeTNMPaciente(idPaciente);
-                                
-                                System.out.println("Estadiaje ".concat(estadiajeTNM.toString()));
-                                
-                                RegistroDiagnostico registroDiagnostico = new RegistroDiagnostico();
-                                registroDiagnostico = registroDiagnosticoServiceImpl.mostrarRegistroDiagnosticoPaciente(idPaciente);
-                                
-                                System.out.println("Registro Diagnostico ".concat(registroDiagnostico.toString()));
-                                if(registroDiagnostico != null)
+                                                                                                                                                                                                                                                                                                                                                                                            
+                                if(registroDiagnostico.getIdRegistroDiagnostico() > 0)
                                 {
-                                    if(estadiajeTNM != null)
-                                        registroDiagnostico.setIdRegistroTNM(estadiajeTNM.getIdRegistroTNM());
+                                    //if(estadiajeTNM.getIdRegistroTNM() > 0)
+                                      //  registroDiagnostico.setIdRegistroTNM(estadiajeTNM.getIdRegistroTNM());
                                         
                                     registroDiagnostico.setFecha(fecha);
                                     registroDiagnostico.setPrevioDiagnostico(previoDiagnostico);
                                     registroDiagnostico.setIdPaciente(idPaciente);
                                     registroDiagnostico.setIdEtapaClinica(etapaClinica);
-                                    registroDiagnosticoServiceImpl.actualizarRegistroDiagnostico(registroDiagnostico);
+                                    //registroDiagnosticoServiceImpl.actualizarRegistroDiagnostico(registroDiagnostico);
                                 }else
                                 {
-                                     if(estadiajeTNM != null)
-                                     {
-                                         registroDiagnostico.setIdRegistroTNM(estadiajeTNM.getIdRegistroTNM());
-                                     }
-                                     
+                                    
                                     registroDiagnostico.setPrevioDiagnostico(previoDiagnostico);
                                     registroDiagnostico.setIdPaciente(idPaciente);
                                     registroDiagnostico.setIdEtapaClinica(etapaClinica);
                                     registroDiagnostico.setFecha(fecha);
-                                    registroDiagnosticoServiceImpl.agregarRegistroDiagnostico(registroDiagnostico);
+                                    //registroDiagnosticoServiceImpl.agregarRegistroDiagnostico(registroDiagnostico);
                                 }
                                 System.out.println("Estapa clinica ".concat(String.valueOf(etapaClinica)
                                 ));
                             } else {
                                 System.out.println("sin etapaClinica ");
                             }
+                            
+                               
+                            //*******************************EstadiageTNM*****************************
+                            //T codificado N Codificado M codificado
+                            int tCodificado = 0, nCodificado = 0, mCodificado = 0;
+                            String tCodificadoRequest = (request.getParameter("tumorPrimarioT"));
+                            String nCodificadoRequest = (request.getParameter("gangliosN"));
+                            String mCodificadoRequest = (request.getParameter("metastasisM"));
+                            if ((tCodificadoRequest != null && tCodificadoRequest.length() >0) && (nCodificadoRequest != null && 
+                                    nCodificadoRequest.length() > 0) && (mCodificadoRequest != null && mCodificadoRequest.length() > 0)) {
+                                tCodificado = Integer.parseInt(tCodificadoRequest);
+                                nCodificado = Integer.parseInt(nCodificadoRequest);
+                                mCodificado = Integer.parseInt(mCodificadoRequest);
+                                System.out.println("T "+(tCodificado));
+                                System.out.println("N "+(nCodificado));
+                                System.out.println("M "+(mCodificado));
+                                
+                                 try{
+                                        estadiajeTNM = estadiajeTNMServiceImpl.mostrarEstadiajeTNMPaciente(idPaciente);
+                                        System.out.println("Estadiaje ".concat(estadiajeTNM.toString()));
+                                 } catch(Exception ex)
+                                 {
+                                        estadiajeTNM = new EstadiajeTNM();
+                                        System.out.println("Tratar de obtejer estadiaje ".concat(ex.getMessage()));
+                                 }
+                                                                
+                                int idRegistroTNM = 0;
+                                if(estadiajeTNM.getIdRegistroTNM() > 0)
+                                {
+                                    
+                                    idRegistroTNM = (estadiajeTNMServiceImpl.mostrarEstadiajeTNMPaciente(idPaciente)).getIdRegistroTNM();                                    
+                                    estadiajeTNM.setIdRegistroTNM(idRegistroTNM);
+                                    estadiajeTNM.setIdTCodificado(tCodificado);
+                                    estadiajeTNM.setIdNCodificado(nCodificado);
+                                    estadiajeTNM.setIdMCodificado(mCodificado);
+                                    estadiajeTNMServiceImpl.actualizarEstadiajeTNM(estadiajeTNM);
+                                    
+                                    
+                                    
+                                }else
+                                {
+                                    estadiajeTNM.setIdTCodificado(tCodificado);
+                                    estadiajeTNM.setIdNCodificado(nCodificado);
+                                    estadiajeTNM.setIdMCodificado(mCodificado);
+                                    idRegistroTNM = estadiajeTNMServiceImpl.agregarEstadiajeTNM(estadiajeTNM);
+                                                                                                                                                 
+                                }
+                                
+                                System.out.println("Regristo TNM ".concat(String.valueOf(idRegistroTNM)));
+                                    System.out.println("REgistro diagnostico ".concat(registroDiagnostico.toString()));
+                                    if(registroDiagnostico.getIdRegistroDiagnostico() > 0)
+                                    {
+                                        registroDiagnostico.setIdRegistroTNM(idRegistroTNM);
+                                        registroDiagnosticoServiceImpl.actualizarRegistroDiagnostico(registroDiagnostico);
+                                    }else
+                                    {
+                                        registroDiagnostico.setIdRegistroTNM(idRegistroTNM);
+                                        registroDiagnosticoServiceImpl.agregarRegistroDiagnostico(registroDiagnostico);
+                                    }
+                                    
+                            } else
+                            {
+                                System.out.println("sin tCodificado o nCodificado o mCodificado ");
+                            }                                
+                            
+                            
+                            
+                         
                             
                             //*************************************************Documento Estudio*********************************
                             //Resultado de Mastografia
@@ -2134,54 +2202,7 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("sin resultadoUltrasonido ");
                             }
                             
-                            //*******************************EstadiageTNM*****************************
-                            //T codificado N Codificado M codificado
-                            int tCodificado = 0, nCodificado = 0, mCodificado = 0;
-                            String tCodificadoRequest = (request.getParameter("tumorPrimarioT"));
-                            String nCodificadoRequest = (request.getParameter("gangliosN"));
-                            String mCodificadoRequest = (request.getParameter("metastasisM"));
-                            if ((tCodificadoRequest != null && tCodificadoRequest.length() >0) && (nCodificadoRequest != null && 
-                                    nCodificadoRequest.length() > 0) && (mCodificadoRequest != null && mCodificadoRequest.length() > 0)) {
-                                tCodificado = Integer.parseInt(tCodificadoRequest);
-                                nCodificado = Integer.parseInt(nCodificadoRequest);
-                                mCodificado = Integer.parseInt(mCodificadoRequest);
-                                System.out.println("T "+(tCodificado));
-                                System.out.println("N "+(nCodificado));
-                                System.out.println("M "+(mCodificado));
-                                
-                                estadiajeTNM = null;
-                                estadiajeTNM = estadiajeTNMServiceImpl.mostrarEstadiajeTNMPaciente(idPaciente);
-                                
-                                if(estadiajeTNM != null)
-                                {
-                                    estadiajeTNM.setIdTCodificado(tCodificado);
-                                    estadiajeTNM.setIdNCodificado(nCodificado);
-                                    estadiajeTNM.setIdMCodificado(mCodificado);
-                                    estadiajeTNMServiceImpl.actualizarEstadiajeTNM(estadiajeTNM);
-                                }else
-                                {
-                                    estadiajeTNM.setIdTCodificado(tCodificado);
-                                    estadiajeTNM.setIdNCodificado(nCodificado);
-                                    estadiajeTNM.setIdMCodificado(mCodificado);
-                                    estadiajeTNMServiceImpl.agregarEstadiajeTNM(estadiajeTNM);
-                                    
-                                    int idRegistroTNM = 0;
-                                    idRegistroTNM = (estadiajeTNMServiceImpl.mostrarEstadiajeTNMPaciente(idPaciente)).getIdRegistroTNM();
-                                    RegistroDiagnostico registroDiagnostico = null;
-                                    registroDiagnostico = registroDiagnosticoServiceImpl.mostrarRegistroDiagnosticoPaciente(idPaciente);
-                                    
-                                    if(registroDiagnostico != null)
-                                    {
-                                        registroDiagnostico.setIdRegistroTNM(idRegistroTNM);
-                                        registroDiagnosticoServiceImpl.actualizarRegistroDiagnostico(registroDiagnostico);
-                                    }else
-                                    {
-                                        registroDiagnostico.setIdRegistroTNM(idRegistroTNM);
-                                        registroDiagnosticoServiceImpl.agregarRegistroDiagnostico(registroDiagnostico);
-                                    }
-                                }
-                            } else
-                                System.out.println("sin tCodificado o nCodificado o mCodificado ");
+                            
                             
                             //*************************************************************Biopsia*************************
                             //Tipo Histologico

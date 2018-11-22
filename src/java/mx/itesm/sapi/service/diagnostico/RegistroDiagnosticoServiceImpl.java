@@ -186,7 +186,7 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
             cstmt.setInt(6, 0);
            // cstmt.setInt(7, registroDiagnostico.getEstatus());
            
-        
+            System.out.println("Actualizar diagnostico ".concat(cstmt.toString()));
             rs = cstmt.executeQuery();
             
             rs.next();
@@ -271,14 +271,16 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
             rs = cstmt.executeQuery();
             
             // Asignación de valores devuletos a registroDiagnostico
-            rs.next();
-            registroDiagnostico.setIdRegistroDiagnostico(rs.getInt("idRegistroDiagnostico"));
-            registroDiagnostico.setFecha(rs.getDate("fecha"));
-            registroDiagnostico.setPrevioDiagnostico(rs.getInt("previoDiagnostico"));
-            registroDiagnostico.setIdPaciente(rs.getInt("idPaciente"));
-            registroDiagnostico.setIdEtapaClinica(rs.getInt("idEtapaClinica"));
-            registroDiagnostico.setIdRegistroTNM(rs.getInt("idRegistroTNM"));
-            registroDiagnostico.setEstatus(rs.getInt("estatus"));
+            while(rs.next())
+            {
+                registroDiagnostico.setIdRegistroDiagnostico(rs.getInt("idRegistroDiagnostico"));
+                registroDiagnostico.setFecha(rs.getDate("fecha"));
+                registroDiagnostico.setPrevioDiagnostico(rs.getInt("previoDiagnostico"));
+                registroDiagnostico.setIdPaciente(rs.getInt("idPaciente"));
+                registroDiagnostico.setIdEtapaClinica(rs.getInt("idEtapaClinica"));
+                registroDiagnostico.setIdRegistroTNM(rs.getInt("idRegistroTNM"));
+                registroDiagnostico.setEstatus(rs.getInt("estatus"));
+            }
             
             rs.close();
             cstmt.close();
@@ -286,7 +288,7 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
             
         } catch (SQLException ex) {
             registroDiagnostico = null;
-            System.out.println("ID: " + idPaciente);
+            System.out.println("registro diadgnostico ID: " + idPaciente);
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
         }

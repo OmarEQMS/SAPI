@@ -30,7 +30,7 @@ public class EstadiajeTNMServiceImpl implements EstadiajeTNMService {
         int id = -1;
 
         //Aquí va el call del procedure
-        String stProcedure = "CALL agregarEstadiajeTNM(?, ?, ?, ?, ? ,?)";
+        String stProcedure = "CALL agregarEstadiajeTNM(?, ?, ?)";
 
         try {
 
@@ -40,18 +40,16 @@ public class EstadiajeTNMServiceImpl implements EstadiajeTNMService {
             cstmt.setInt(1, estadiajeTNM.getIdTCodificado());
             cstmt.setInt(2, estadiajeTNM.getIdNCodificado());
             cstmt.setInt(3, estadiajeTNM.getIdMCodificado());
-            cstmt.setDouble(4, estadiajeTNM.gettClinico());
-            cstmt.setDouble(5, estadiajeTNM.gettImagen());
-            cstmt.setInt(6, estadiajeTNM.getMetastasis());
-            cstmt.setInt(7, estadiajeTNM.getIdTipoHistologico());
+                                               
+            
+            System.out.println("Agregar estadiaje ".concat(cstmt.toString()));
+            
 
-            cstmt.executeQuery();
-
-            rs = cstmt.getGeneratedKeys();
+            rs = cstmt.executeQuery();
             rs.next();
 
             id = rs.getInt(1);
-
+            System.out.println("Id generado estadiaje TNM ".concat(String.valueOf(id)));
             rs.close();
             cstmt.close();
             conn.close();
@@ -183,21 +181,22 @@ public class EstadiajeTNMServiceImpl implements EstadiajeTNMService {
         boolean exito = false;
 
         //Aquí va el call del procedure
-        String stProcedure = "CALL actualizarEstadiajeTNM(?, ?, ?, ?, ? ,?, ?)";
+        String stProcedure = "CALL actualizarEstadiajeTNM(?, ?, ?, ?, ?, ? ,?)";
 
         try {
 
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
-            cstmt.setInt(1, estadiajeTNM.getIdTCodificado());
-            cstmt.setInt(2, estadiajeTNM.getIdNCodificado());
-            cstmt.setInt(3, estadiajeTNM.getIdMCodificado());
-            cstmt.setDouble(4, estadiajeTNM.gettClinico());
-            cstmt.setDouble(5, estadiajeTNM.gettImagen());
-            cstmt.setInt(6, estadiajeTNM.getMetastasis());
-            cstmt.setInt(7, estadiajeTNM.getIdTipoHistologico());
-
+            cstmt.setInt(1, estadiajeTNM.getIdRegistroTNM());
+            cstmt.setInt(2, estadiajeTNM.getIdTCodificado());
+            cstmt.setInt(3, estadiajeTNM.getIdNCodificado());
+            cstmt.setInt(4, estadiajeTNM.getIdMCodificado());             
+            cstmt.setDouble(5, estadiajeTNM.gettClinico());
+            cstmt.setDouble(6, estadiajeTNM.gettImagen());
+            cstmt.setInt(7, estadiajeTNM.getMetastasis());
+           
+            System.out.println("Actualizar Estadiaje TNM ".concat(cstmt.toString()));
             rs = cstmt.executeQuery();
 
             rs.next();
@@ -273,17 +272,22 @@ public class EstadiajeTNMServiceImpl implements EstadiajeTNMService {
             estadiajeTNM = new EstadiajeTNM();
             
             cstmt.setInt(1, idPaciente);
+            System.out.println("Mostrar estadiaje TNM ".concat(cstmt.toString()));
             rs = cstmt.executeQuery();
             
-            rs.next();
-            estadiajeTNM.setIdRegistroTNM(rs.getInt("idRegistroTNM"));
-            estadiajeTNM.setIdTCodificado(rs.getInt("IdTCodificado"));
-            estadiajeTNM.setIdNCodificado(rs.getInt("idNCodificado"));
-            estadiajeTNM.setIdMCodificado(rs.getInt("idMCodificado"));
-            estadiajeTNM.settClinico(rs.getDouble("tClinico"));
-            estadiajeTNM.settImagen(rs.getDouble("tImagen"));
-            estadiajeTNM.setMetastasis(rs.getInt("metastasis"));
-            estadiajeTNM.setEstatus(rs.getInt("estatus"));
+            
+            while(rs.next())
+            {
+                estadiajeTNM.setIdRegistroTNM(rs.getInt("idRegistroTNM"));
+                estadiajeTNM.setIdTCodificado(rs.getInt("IdTCodificado"));
+                estadiajeTNM.setIdNCodificado(rs.getInt("idNCodificado"));
+                estadiajeTNM.setIdMCodificado(rs.getInt("idMCodificado"));
+                estadiajeTNM.settClinico(rs.getDouble("tClinico"));
+                estadiajeTNM.settImagen(rs.getDouble("tImagen"));
+                estadiajeTNM.setMetastasis(rs.getInt("metastasis"));
+                estadiajeTNM.setEstatus(rs.getInt("estatus"));
+            }
+            
             
             rs.close();
             cstmt.close();
