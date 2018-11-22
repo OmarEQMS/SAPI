@@ -2147,8 +2147,8 @@ public class NavegadoraController extends HttpServlet {
                                 
                                 System.out.println("Tipo Estudio ".concat(String.valueOf(idEstudio)));
                                 
-                                documentoEstudioMastografia = documentoEstudioServicioImpl.mostrarDocumentoEstudioMasRecientePaciente(idPaciente,idEstudio);
-                                
+                                documentoEstudioMastografia = documentoEstudioServicioImpl.mostrarDocumentoEstudioMasRecientePaciente(idEstudio,idPaciente);
+                                System.out.println("Docu Masto ".concat(documentoEstudioMastografia.toString()));
                                 if(documentoEstudioMastografia.getIdDocumentoEstudio() > 0)
                                 {
                                     documentoEstudioMastografia.setIdEstudio(idEstudio);
@@ -2197,7 +2197,7 @@ public class NavegadoraController extends HttpServlet {
                                 Cita citaPreconsulta = citaServicioImpl.mostrarCitaNavegacionPacientePotencial(idPaciente);
                                 
                                 documentoEstudioUSG = documentoEstudioServicioImpl.mostrarDocumentoEstudioMasRecientePaciente(idEstudio,idPaciente);
-                                
+                                System.out.println("Docu USG ".concat(documentoEstudioUSG.toString()));
                                  if(documentoEstudioUSG.getIdDocumentoEstudio() > 0)
                                  {
                                     documentoEstudioUSG.setIdEstudio(idEstudio);
@@ -2230,13 +2230,13 @@ public class NavegadoraController extends HttpServlet {
                             //*************************************************************Biopsia*************************
                             //Tipo Histologico
                             
-                            biopsia = null;
+                            biopsia = biopsiaServicioImpl.mostrarUltimaBiopsiaPaciente(idPaciente);
                             int tipoHistologico = 0;
                             String tipoHistologicoRequest = (request.getParameter("resultado-patologia"));
                             if (tipoHistologicoRequest != null && tipoHistologicoRequest.length() > 0) {
                                 tipoHistologico = Integer.parseInt(tipoHistologicoRequest);
                                 System.out.println("Resultado resultadoPatologiaPantalla5 "+(tipoHistologico));
-                                biopsia.setIdTipoHistologico(tipoHistologico);
+                                biopsia.setIdTipoHistologico(tipoHistologico);                                
                             } else {
                                 System.out.println("sin resultadoPatologiaPantalla5 ");
                             }
@@ -2310,17 +2310,27 @@ public class NavegadoraController extends HttpServlet {
                             if(tipoHistologico != 0 || gradoHistologico !=0 || receptorHer2 !=0 || receptorFish!= 0 || 
                                 receptorRe != 0 || receptorRp != 0 || ki67 != 0)
                             {
-                                int biopsiaPrevia = 0;
                                 
+                                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                                Calendar cal = Calendar.getInstance();
+                                Date dateBiopsia = Date.valueOf(dateFormat.format(cal.getTime()));
+                                
+                                
+                                int biopsiaPrevia = 0;
+                                int idTipoBiopsia = Integer.parseInt(sapiProperties.getString("BiopsiaBAAF"));
+                                
+                                biopsia.setIdTipoBiopsia(idTipoBiopsia);
                                 biopsia.setIdPaciente(idPaciente);
                                 biopsia.setPrevia(biopsiaPrevia);
+                                biopsia.setFechaResultado(dateBiopsia);
                                 
-                                if(biopsiaServicioImpl.mostrarBiopsiaPreviaPaciente(idPaciente, biopsiaPrevia) != null)
+                                System.out.println("BIOPSIA ".concat(biopsia.toString()));
+                                if(biopsia.getIdBiopsia() > 0)
                                 {
-                                    biopsiaServicioImpl.actualizarBiopsia(biopsia);
+                                    biopsiaServicioImpl.actualizarBiopsiaFormulario(biopsia);
                                 }else
                                 {
-                                    biopsiaServicioImpl.agregarBiopsia(biopsia);
+                                    biopsiaServicioImpl.agregarBiopsiaFormulario(biopsia);
                                 }
                             }
                             break;

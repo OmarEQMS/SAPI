@@ -20,5 +20,8 @@ public interface BiopsiaServicio {
     public List<Biopsia> mostrarAllBiopsia();
     public int agregarBiopsia(Biopsia biopsia);
     public boolean borradoLogicoBiopsia (int idBiopsia);
-    public boolean actualizarBiopsia(Biopsia biopsia);        
+    public boolean actualizarBiopsia(Biopsia biopsia);       
+    public Biopsia mostrarUltimaBiopsiaPaciente(int idPaciente);
+    public int agregarBiopsiaFormulario(Biopsia biopsia);
+    public boolean actualizarBiopsiaFormulario(Biopsia biopsia);
 }
