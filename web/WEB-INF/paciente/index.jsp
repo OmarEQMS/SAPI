@@ -146,10 +146,10 @@
                         <h1 class="display-4 tituloMisCitas text-center m-0">Mis Citas</h1>
                     </div>
                 </div>
-                
+
                 <div class="row justify-content-end">
                     <div class="col-12">
-                        <a class="float-left questionMarkRight" data-toggle="tooltip" data-placement="right" title="Da click en el día que quieres agendar tu cita."><button class="btn btn-morado" style="border-radius: 20px"><i class="far fa-calendar-plus" style="font-size:25px"></i>  Agregar Cita</button></a>
+                        <a class="float-left questionMarkRight" data-toggle="tooltip" data-placement="right" title="Da click en el día que quieres agendar tu cita."><button class="btn btn-morado" data-toggle="modal" data-target="#myAgregarCitaModal" style="border-radius: 20px"><i class="far fa-calendar-plus" style="font-size:25px"></i>  Agregar Cita</button></a>
                     </div>
                 </div>
 
@@ -201,6 +201,36 @@
 
             </div>
         </div>
+
+        <!-- Modal Agregar Cita SHANNON-->
+        <div class="modal fade" id="myAgregarCitaModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Para agregar una cita:</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-center display-4 tituloCitaModal text-primary" id="titulo-cita"></h6>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <p>Da click en el día que quieres agendar tu cita.</p>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" style="border-radius:20px;" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>       
 
         <!-- Modal VER CITA-->
         <div class="modal fade" id="modalVerCita" tabindex="-1" role="dialog" aria-hidden="true">

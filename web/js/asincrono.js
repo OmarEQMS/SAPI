@@ -42,7 +42,7 @@ $(document).ready(function () {
 
         if (!repiteUsuario && !repiteCURP && !repiteCorreo) {
             $("#error-datosRepetidos").hide();
-            
+
             //Verificar que todos los campos que han marcado
             if (isValidName($('#nombre')) && isValidLastName($('#apellido1')) && isValidUserName($('#usuario')) && isValidEmail($('#correo')) && isValidPassword($('#pass1')) && isValidCURP($('#curp')) && isValidPhoneNumber($('#telefono')) && isValidSelect($('#estadoCivil')) && isValidDate($('#fechaNacimiento')) && isValidSelect($('#estado')) && isValidSelect($('#municipio')) && $('#errorCorreoRepetido').hide()) {
                 $("#error-campos").hide();
@@ -208,15 +208,17 @@ $(document).ready(function () {
         areEqualPasswords(pass1, pass2);
 
     });
-    
-    $('#codigoPostal').on('change',function(){
-        
+
+    $('#codigoPostal').on('change', function () {
+
         if (isValidFormatCP($(this))) {
             $('#errorCodigoPostal').hide();
-        }  else {
+        } else if ($(this).val() == '') {
+            $('#errorCodigoPostal').hide();
+        } else {
             $('#errorCodigoPostal').show();
         }
-        
+
     })
 
     function areEqualPasswords(pass1, pass2) {
@@ -801,10 +803,10 @@ $(document).ready(function () {
         return true;
 
     }
-    
-    function isValidFormatCP (input){
-        
-         var m = input.val();
+
+    function isValidFormatCP(input) {
+
+        var m = input.val();
 
         var expreg = /^\d{5}$/;
 
@@ -886,22 +888,22 @@ $(document).ready(function () {
         //Valor seleccionado del input
         let date_from = input.val();
         date_from = new Date(date_from);
-        
+
         //Tomar los valores de hoy
         var year = today.getFullYear();
         var month = today.getMonth();
         var day = today.getDate();
-        
+
         //Hoy hace 16 años y hoy hace 115 años
         var maxDate = new Date(year - 16, month, day);
-        var minDate = new Date(year - 115, month, day);        
+        var minDate = new Date(year - 115, month, day);
 
         let event = true;
 
-        if(maxDate > date_from && date_from > minDate){
-            event = false;            
+        if (maxDate > date_from && date_from > minDate) {
+            event = false;
         }
-        
+
         if (!input.val() || event) {
 
             input.css('border', '1px solid red');

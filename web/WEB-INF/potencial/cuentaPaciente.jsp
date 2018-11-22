@@ -109,6 +109,13 @@
 
             </nav>
 
+            <!-- PANTALLAS DE CARGA -->
+
+            <div class="loading-screenGuardar" id="loading-screen" style="display: none">
+                <img src="img/loading.svg">
+                <p class="clear">Guardando tu información, por favor espere...</p>
+            </div>
+
             <!-- CONTENIDO PRINCIPAL  -->
 
             <div id="content">

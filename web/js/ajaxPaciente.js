@@ -117,6 +117,7 @@ $(document).ready(function () {
                                     title: "¡Buen Trabajo!",
                                     text: "La cita se ha registrado correctamente.",
                                     icon: "success",
+                                    buttons:[,'Aceptar'],
                                 });
                                 $('#modalAgregarCita').modal('toggle');
                             } else {
@@ -124,6 +125,7 @@ $(document).ready(function () {
                                     title: "Algo salió mal",
                                     text: "No se pudo registrar la cita, intentalo de nuevo.",
                                     icon: "error",
+                                    buttons:[,'Aceptar'],
                                 });
                             }
 
@@ -401,7 +403,7 @@ $(document).ready(function () {
                     data.forEach((value, key) => {
                         console.log(key + " " + value);
                     })
-
+                    configureLoadingScreen($('.loading-screenGuardar'));
                     $.ajax({
                         url: "PacienteController",
                         data: data,
@@ -556,10 +558,9 @@ $(document).ready(function () {
                 dangerMode: true
             })
                     .then((cambiar) => {
+                        $("#password").val("");
+                        $("#password2").val("");
                         if (cambiar) {
-
-
-
                             $.ajax({
                                 url: "PotencialController",
                                 data: {
