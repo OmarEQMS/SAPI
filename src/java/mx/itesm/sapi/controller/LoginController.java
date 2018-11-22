@@ -127,12 +127,17 @@ public class LoginController extends HttpServlet {
 
                         PicServicioImpl picServicioImpl = new PicServicioImpl();
                         Pic pic = picServicioImpl.mostrarPic(idPersona);
+                        try
+                        {
+                            InputStream imagen = pic.getContenido();
+                            byte[] bytes = IOUtils.toByteArray(imagen);
+                            String base64String = Base64.getEncoder().encodeToString(bytes);
 
-                        InputStream imagen = pic.getContenido();
-                        byte[] bytes = IOUtils.toByteArray(imagen);
-                        String base64String = Base64.getEncoder().encodeToString(bytes);
-
-                        sesion.setAttribute("base64Img", base64String);
+                            sesion.setAttribute("base64Img", base64String);
+                        }catch(Exception es)
+                        {
+                            System.out.println("Sin foto de perfil");
+                        }
 
                         //sesion.setAttribute("imagen", persona.getImagen());
                         System.out.println("Rol cuenta:".concat(String.valueOf(rolCuenta)).concat(" ").concat(String.valueOf(cuenta.getIdRol())));
@@ -319,7 +324,37 @@ public class LoginController extends HttpServlet {
                                 break;
                             }
                             case 2: {
+                                //CASSE ADMINISTRADOR
+                                
+                                System.out.println("Cuenta de administrador");
+                                
+                                
+                                request.setAttribute("nombre", sesion.getAttribute("nombre"));
+                                request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));
+                                request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
+                                
+                                EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                                Empleado empleado =  empleadoServicioImpl.mostrarEmpleadoCuenta(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
+                                
+                                sesion.setAttribute("idEmpleado", empleado.getIdEmpleado());
+                                sesion.setAttribute("noEmpleado", empleado.getNoEmpleado());
+                                
+                                 String keyRuta = "administrador/gestionMedicos.jsp";
 
+                                //Si la contraseña no tiene el token de recuperar contraseña se continua al dashboard correspondiente                                                                 
+                                try {
+                                    System.out.println("Contraseña con token ".concat(cuenta.getToken()));
+                                    keyRuta = "recuperar.jsp";
+                                } catch (Exception ex) {
+
+                                }
+                                
+                                
+                                
+                                sesion.setAttribute("path", keyRuta);
+                                //request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);                                                                                                
+                                request.getRequestDispatcher("/SAPI").forward(request, response);                                                                                                
+                                //response.sendRedirect("/SAPI");
                                 break;
                             }
                             case 3: {
@@ -356,7 +391,8 @@ public class LoginController extends HttpServlet {
 
                                 EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
                                 Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());
-
+                                
+                                sesion.setAttribute("idEmpleadoNavegadora",empleado.getIdEmpleado());
                                 sesion.setAttribute("nombre", persona.getNombre());
                                 sesion.setAttribute("primerApellido", persona.getPrimerApellido());
                                 sesion.setAttribute("segundoApellido", persona.getSegundoApellido());

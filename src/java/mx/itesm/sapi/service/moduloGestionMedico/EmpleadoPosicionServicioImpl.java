@@ -99,7 +99,7 @@ public class EmpleadoPosicionServicioImpl implements EmpleadoPosicionServicio {
         
         int id=0;
         //Aquí va el call del procedure
-        String stProcedure="-------";
+        String stProcedure="CALL agregarEmpleadoPosicion(?,?,?)";
         
         try{
             
@@ -110,20 +110,17 @@ public class EmpleadoPosicionServicioImpl implements EmpleadoPosicionServicio {
             //cstmt.setInt(1,empleadoPosicion.getIdEmpleadoPosicion());
             cstmt.setInt(1,empleadoPosicion.getIdEmpleado());
             cstmt.setInt(2,empleadoPosicion.getIdPosicion());
-            cstmt.setTimestamp(3,empleadoPosicion.getInicio());
-            cstmt.setInt(4,empleadoPosicion.getEstatus());
+            cstmt.setTimestamp(3,empleadoPosicion.getInicio());            
             
             
             //Aquí va el registerOutParameter
             //cstmt.registerOutParameter(12,Types.INTEGER);
-            
-            cstmt.executeUpdate();
-            
-            ResultSet rs = cstmt.getGeneratedKeys();
+                                    
+            ResultSet rs = cstmt.executeQuery();
             
             rs.next();
             
-           id=rs.getInt(1);
+            id=rs.getInt(1); 
            
            cstmt.close();
             

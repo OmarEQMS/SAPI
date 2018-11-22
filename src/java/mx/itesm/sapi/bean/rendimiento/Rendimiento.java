@@ -13,7 +13,10 @@ package mx.itesm.sapi.bean.rendimiento;
 /**
  * public class Rendimiento Clase para almacenar la cuenta de datos agrupados
  */
-
+/**
+ * Field summary private String decripcion: Contiene la descripcion del grupo de
+ * datos private int cantidad: Contiene el total de datos dentro del grupo
+ */
 public class Rendimiento {
 
     private String decripcion;

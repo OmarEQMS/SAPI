@@ -1,19 +1,20 @@
 <%-- 
-    Document   : rendimiento
-    Created on : 01-nov-2018, 15:19:59
-    Author     : urieldiaz, julioguzman, shannonrosas
+    Document   : rendimientoNavegadora
+    Created on : 15-nov-2018, 2:31:35
+    Author     : urieldiaz
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%-- Hace rereferencia al conjunto de reglas --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>SAPI | Inicio</title>
+    <title>SAPI | Inicio</title>
+
 
         <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link href="lib/fontawesome/css/all.css" rel="stylesheet" />
@@ -33,93 +34,94 @@
         <script src="lib/tooltipster/dist/js/tooltipster.bundle.min.js" type="text/javascript"></script>
         <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
 
+    <link rel="stylesheet" href="css/styleAdministrador.css">
+    <script src="js/appAdministrador.js"></script>
+    <script src="js/ajaxAdministrador.js"></script>
+    <script src="js/rendimiento.js"></script>
 
-        <link rel="stylesheet" href="css/styleNavegadora.css">
-        <link rel="stylesheet" href="css/styleNavegadoraImg.css">
-        <script src="js/appNavegadora.js"></script>
-        <script src="js/appNavegadora2.js"></script>
-        <script src="js/ajaxNavegadora.js"></script>
-        <script src="js/autocomplete.js"></script>
-        <script src="js/rendimiento.js"></script>
 
-    </head>
+</head>
 
-    <body>
+<body>
 
-        <div class="wrapper">
+    <div class="wrapper">
 
-            <!-- SIDEBAR -->
-            <nav id="sidebar">
+        <!-- SIDEBAR -->
+        <nav id="sidebar">
 
-                <div class="sidebar-header">
+            <div class="sidebar-header">
 
-                    <div class="row text-center justify-content-center mt-2">
-                        <div class="col-12">
-                            <img src="img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
-                        </div>
+                <div class="row text-center justify-content-center mt-2">
+                    <div class="col-12">
+                        <img src="../img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
                     </div>
-
                 </div>
 
-                <div class="profile">
+            </div>
 
-                    <div class="row">
-                        <div class="col-12 mb-2 mt-4">
-                            <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="imagenPerfil edit-image" width="66px" height="66px" alt="">
-                        </div>
+            <div class="profile">
+
+                <div class="row">
+                    <div class="col-12 mb-2 mt-4">
+                        <img src="../img/user.png" class="imagenPerfil" alt="">
                     </div>
+                </div>
 
-                    <div class="row justify-content-center mb-2">
-                        <div class="col-6 text-center">
-                            <span class="textoSidebar m-0">${sessionScope.nombre} ${sessionScope.primerApellido}</span>
-                            <span class="textoSidebar userSidebar m-0">@${sessionScope.usuario}</span>
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-center">
-
-                        <div class="col-2 text-center">
-                            <a class="iconoSidebar" href="" title="Mi Cuenta">
-                                <i class="fas fa-cog"></i>
-                            </a>
-                        </div>
-
-
-                        <div class="col-2">
-                            <a class="iconoSidebar" href="" title="Cerrar Sesión" id="salirCuenta2">
-                                <i class="fas fa-power-off"></i>
-                            </a>
-                        </div>
+                <div class="row justify-content-center mb-2">
+                    <div class="col-6 text-center">
+                        <span class="textoSidebar m-0">Julio Badillo</span>
+                        <span class="textoSidebar userSidebar m-0">@juliobadillo</span>
                     </div>
                 </div>
 
                 <div class="row justify-content-center">
-                    <div class="col-12 text-center">
-                        <hr style="background-color:white !important">
+
+                    <div class="col-2 text-center">
+                        <a class="iconoSidebar" href="" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
                     </div>
+
+                    <div class="col-2">
+                        <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
+                    </div>
+
                 </div>
 
-                <!-- MENU PRINCIPAL ENLACES -->
-                <ul class="list-unstyled components">
+            </div>
 
-                    <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    <hr style="background-color:white !important">
+                </div>
+            </div>
 
-                    <li id="irAForm"><a><i class="fas fa-home"></i>Ir a Form</a></li>
+            <!-- MENU PRINCIPAL ENLACES -->
+            <ul class="list-unstyled components">
 
-                    <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+            <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
+                                
+                <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Gestion médicos</a></li>
 
-                    <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
+                <li id="IrAGestionNavegadora"><a><i class="fas fa-calendar-alt"></i>Gestion navegadoras</a></li>
 
-                    <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+                <li id="IrAGestionPaciente"><a><i class="fas fa-users"></i>Gestion pacientes</a></li>
+                
+                <li id="IrAGestionAdministrador"><a><i class="fas fa-users"></i>Gestion administradores</a></li>
+                
+                <li id="IrAMiCuenta"><a><i class="fas fa-users"></i>Mi cuenta</a></li>
 
-                    <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+                <li id="IrAReasignarMedico"><a><i class="fas fa-sync"></i>Reasignar médico</a></li>
+                                                
+                <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
+                
+            </ul>
 
-                </ul>
+        </nav>
 
-            </nav>
+        
 
-            <!-- CONTENIDO PRINCIPAL  -->
+        <!-- CONTENIDO PRINCIPAL  -->
 
+        
             <div id="content">
 
                 <!-- MENU -->
@@ -132,7 +134,7 @@
                             <i class="fas fa-align-justify"></i>
                         </button>
 
-                        <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
+                        <span class="pull-right d-block"><span style="color:#6c6f80">Rendimiento de:</span>  ${sessionScope.nombreNavegadora} ${sessionScope.primerApellidoNavegadora}  <span style="font-weight:700; color:#6c6f80;">
 
                                 </div>
                                 </nav>
@@ -438,7 +440,10 @@
                                 </div>
 
                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    </div>
 
-                                </body>
+    
 
-                                </html>
+</body>
+
+</html>

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import mx.itesm.sapi.bean.moduloGestionMedico.Posicion;
+import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.util.Conexion;
 
 /**
@@ -62,7 +63,7 @@ public class PosicionServicioImpl implements PosicionServicio {
         try {
 
             CallableStatement cstmt;
-            cstmt = conn.prepareCall("");
+            cstmt = conn.prepareCall("CALL mostrarListaPosicion()");
             ResultSet rs = cstmt.executeQuery();
             Posicion posicion;
 
@@ -87,6 +88,43 @@ public class PosicionServicioImpl implements PosicionServicio {
         }
 
         return posiciones;
+    }
+
+    @Override
+    public Posicion mostrarPosicion(String nombrePosicion) {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        Posicion posicion = null;
+
+        //Call del store procedure
+        String stProcedure = "CALL motrarPosicionPorNombre(?)";
+
+        try {
+            posicion = new Posicion();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setString(1, nombrePosicion);
+
+            rs = cstmt.executeQuery();
+
+            rs.next();
+            posicion.setIdPosicion(rs.getInt("idPosicion"));
+            posicion.setNombre(rs.getString("nombre"));
+            posicion.setEstatus(rs.getInt("estatus"));
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println("Catch PosicionServicio mostrarPosicion por nombre");
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));            
+        }
+        return posicion;
     }
 
 }

@@ -160,7 +160,7 @@ public class CuentaServicioImpl implements CuentaServicio {
                                IN in_password VARCHAR(128), IN in_token VARCHAR(200), IN in_estatus TINYINT*/
             //Aquí van los sets 
             cstmt.setInt(1, cuenta.getIdPersona());
-            cstmt.setInt(2, 1);
+            cstmt.setInt(2, cuenta.getIdRol());
             cstmt.setInt(3, 1);
             cstmt.setString(4, cuenta.getUsuario());
             cstmt.setString(5, cuenta.getPassword());

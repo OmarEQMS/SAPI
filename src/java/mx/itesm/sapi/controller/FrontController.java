@@ -43,6 +43,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Seguro;
 import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.UnionTratamientoPaciente;
+import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.bean.persona.Estado;
@@ -73,6 +74,7 @@ import mx.itesm.sapi.service.gestionPaciente.TipoHistologicoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.UnionTratamientoPacienteServiceImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.EstadoServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
@@ -124,18 +126,14 @@ public class FrontController extends HttpServlet {
         }else if ((file == null || file != null) && sesion.getAttribute("idCuenta") != null)
         {
             if (file == null)
-                file = sesion.getAttribute("path").toString();
-            else
+                file = sesion.getAttribute("path").toString();                        
+            else 
                 file = request.getParameter("file");
-            if ("jsp".equals(file.substring(file.length() - 3))) {
-                
-                if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
-                    // request.setAttribute("status", "");
-                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
-                    return;
-                } else { //Si tiene sesion iniciada
+
+            if ("jsp".equals(file.substring(file.length() - 3))) {                               
+
                     //Lo redireciono a su rol
-                    int keyRol = (int) sesion.getAttribute("idRol");
+                    int keyRol = (int) sesion.getAttribute("idRol");                                        
                     switch (keyRol) {
                         //PACIENTE POTENCIAL
                         case 1: {
@@ -212,6 +210,71 @@ public class FrontController extends HttpServlet {
                             break;
                         }
                         case 2: {
+                            /* ADMINISTRADOR */
+                            String keyRuta = file;
+                            
+                            switch(keyRuta){
+                                case "administrador/cuentaAdministrador.jsp":
+                                {
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    break;
+                                }
+                                case "administrador/gestionMedicos.jsp":
+                                {
+                                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                                    List<TablaMedicoAdministrador> medicosAdministrador = empleadoServicioImpl.mostrarListaEmpleadosAdministrador(3);
+                                    request.setAttribute("ListaMedicosAdmistrador", medicosAdministrador);
+                                    
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);                                    
+                                    break;
+                                }
+                                case "administrador/gestionNavegadora.jsp":
+                                {
+                                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                                    List<TablaMedicoAdministrador> navegadorasAdministrador = empleadoServicioImpl.mostrarListaEmpleadosAdministrador(4);
+                                    request.setAttribute("ListaNavegadorasAdministrador", navegadorasAdministrador);
+                                                                                                            
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    break;
+                                }
+                                case "administrador/gestionPacientes.jsp":
+                                {
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    break;
+                                }
+                                case "administrador/gestionarAdministradores.jsp":
+                                {
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    break;
+                                }
+                                case "administrador/index.jsp":
+                                {
+                                    
+                                    break;
+                                }
+                                case "administrador/reAsignarMedico.jsp":
+                                {
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    break;
+                                }
+                                 case "administrador/rendimientoNavegadora.jsp": {
+                                    
+                                     
+                                    int idEmpleadoNavegadora = Integer.parseInt(request.getParameter("idNavegadora"));
+                                    
+                                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                                    TablaMedicoAdministrador navegadora = empleadoServicioImpl.mostrarMedicoAdministrador(idEmpleadoNavegadora, 4);
+                                    
+                                    sesion.setAttribute("nombreNavegadora", navegadora.getNombre());
+                                    sesion.setAttribute("primerApellidoNavegadora", navegadora.getPrimerApellido());
+                                    sesion.setAttribute("idEmpleadoNavegadora", idEmpleadoNavegadora);
+                                                                                                                                                                                                                                                            
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
+                                    break;
+
+                                }
+                            }
+                            
                             break;
                         }
                         case 3: {
@@ -445,7 +508,7 @@ public class FrontController extends HttpServlet {
                                     }catch(Exception ex)
                                     {
                                         System.out.println("Catch parameter idDocumentoInicial ".concat(ex.getMessage()));
-                                        idDocumentoInicial = 225;
+                                        idDocumentoInicial = 241;
                                     }
                                      
                                     try
@@ -731,10 +794,10 @@ public class FrontController extends HttpServlet {
                                     RegistroDiagnosticoServiceImpl registroDiagnosticoServicio = new RegistroDiagnosticoServiceImpl();
                                     RegistroDiagnostico registro = registroDiagnosticoServicio.mostrarRegistroDiagnosticoPaciente(paciente.getIdPaciente());
 
-                                    System.out.println("esto es lo que hay en registro");
+                                    //System.out.println("esto es lo que hay en registro");
 
-                                    System.out.println(registro.getIdEtapaClinica());
-                                    System.out.println(registro.getIdPaciente());
+                                    //System.out.println(registro.getIdEtapaClinica());
+                                    //System.out.println(registro.getIdPaciente());
                                     TipoSangreServicioImpl tipoSangreServicio = new TipoSangreServicioImpl();
 
                                     InputStream imagen = pic.getContenido();
@@ -755,7 +818,14 @@ public class FrontController extends HttpServlet {
                                     request.setAttribute("usuario", sesion.getAttribute("usuario"));
                                     request.setAttribute("prz", sesion.getAttribute("prz"));
                                     sesion.setAttribute("tipoSangre", persona.getIdTipoSangre());
-                                    sesion.setAttribute("etapaCli", registro.getIdEtapaClinica());
+                                    try
+                                    {
+                                        sesion.setAttribute("etapaCli", registro.getIdEtapaClinica());
+                                    } catch(Exception es)
+                                    {
+                                        System.out.println(es);
+                                    }
+                                    
 
                                     sesion.setAttribute("expediente", paciente.getExpediente());
 
@@ -835,7 +905,7 @@ public class FrontController extends HttpServlet {
                         }
 
                     }
-                }
+                
 
                 //System.out.println("filename if ".concat(file));
                 // request.getRequestDispatcher("WEB-INF/" + file).forward(request, response);
@@ -849,6 +919,7 @@ public class FrontController extends HttpServlet {
 
             }
         }
+               
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
