@@ -224,6 +224,10 @@ $(document).ready(function () {
 
     });
     
+    $("body").on("click",".clearMotivo", function(){
+                $(".motivoCancelacion").attr("type","text").val('').attr("placeholder","¿Por qué desea cancelar su cita?");
+	});
+    
     $('#btn-continuarAResolucion').on('click', function () {
 
         console.log("VE A RESOLUCIÓN PRRO");
