@@ -409,7 +409,7 @@
                                                     • Electrocardiograma <br>
                                                     • Psicología <br>
                                                     • Clínica del dolor <br>
-                                                    • Cuidados Paliativos <br>
+                                                    • Cuidados paliativos <br>
                                                     • Genética </p>
                                             </span>
                                         </div>
@@ -422,7 +422,7 @@
                                                     • Mastografía <br>
                                                     • Ultrasonido <br>
                                                     • Tomografía <br>
-                                                    • Resonancia Magnética <br>
+                                                    • Resonancia magnética <br>
                                                     • PET-CT <br>
                                                     • MUGA <br>
                                                     • Gammagrafía ósea <br>
@@ -435,19 +435,19 @@
                                                     • Farmacia </p>
 
                                                 <span class="badge badge-danger mb-2 d-block" style="font-size:15px">2do Piso:</span>
-                                                <p> • Clínica de Mama <br>
+                                                <p> • Clínica de mama <br>
                                                     • Oncología médica <br>
-                                                    • Unidad Funcional Mama <br>
+                                                    • Unidad funcional mama <br>
                                                     • Cirugía oncológica <br>
                                                     • Cirugía plástica <br>
                                                     • Ecocardiograma <br>
-                                                    • Trabajo Social <br>
+                                                    • Trabajo social <br>
                                                     • Quimioterapia <br>
                                                     • Protocolos <br>
                                                     • Nutrición <br>
                                                     • Odontología <br>
                                                     • M-8 <br>
-                                                    • Programa Mujer Jóven <br>
+                                                    • Programa mujer jóven <br>
                                                     • Donaciones <br>
                                                     • Valoración cardiovascular <br>
                                                     • Colocación de catéteres </p>
