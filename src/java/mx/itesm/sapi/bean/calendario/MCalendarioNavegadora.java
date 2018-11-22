@@ -21,6 +21,8 @@ public class MCalendarioNavegadora implements Serializable {
 
     private int idPaciente;
     private String nombre;
+    private String title;
+    private String start;
     private String primerApellido;
     private String segundoApellido;
     private Date fechaCita;
@@ -76,6 +78,24 @@ public class MCalendarioNavegadora implements Serializable {
     public Date getFechaCita() {
         return fechaCita;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getStart() {
+        return start;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+    
+    
     
 
 }
