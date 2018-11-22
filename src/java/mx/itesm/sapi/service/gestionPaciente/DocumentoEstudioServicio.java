@@ -32,5 +32,7 @@ public interface DocumentoEstudioServicio {
     public DocumentoEstudio mostrarDocumentoEstudioPacienteEstudio(int idpaciente,int idEstudio); 
     
     public DocumentoEstudio mostrarDocumentoEstudioPacienteEstudioPrevio(int idPaciente, int idEstudio, int previo);
+    
+    public DocumentoEstudio mostrarDocumentoEstudioMasRecientePaciente(int idTipoEstudio, int idPaciente);
 
 }

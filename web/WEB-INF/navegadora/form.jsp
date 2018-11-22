@@ -1631,7 +1631,7 @@
 
                                                 <label for="">Resultados de mastografÃ¯Â¿Â½a</label>
                                                 <div class="input-group">
-                                                    <select name="tipoMastografia" class="form-control" id="tipoMastografia">
+                                                    <select name="ResultadoTipoMastografia" class="form-control" id="ResultadoTipoMastografia">
                                                         <option disabled selected>MastrografÃ¯Â¿Â½a BI-RADS</option>
                                                         <c:forEach items="${listaBirads}" var="birads">  
                                                             <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>

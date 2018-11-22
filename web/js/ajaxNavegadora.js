@@ -2001,6 +2001,14 @@ $(document).ready(function () {
         if(tipoUltrasonidoMama == null)
             tipoUltrasonidoMama = "";
         
+        var biradsMasto = $('#ResultadoTipoMastografia').val();
+        if(biradsMasto === null)
+            biradsMasto = "";
+        
+        var biradUSG = $('#tipoUSG').val();
+        if(biradUSG === null)
+            biradUSG = "";
+        
         console.log("click on 'btn-save[i]'");
         
         var data = new FormData();
@@ -2035,6 +2043,9 @@ $(document).ready(function () {
         data.append("comentariosMedico",comentariosMedico);
         data.append("tipoUltrasonidoMama",tipoUltrasonidoMama);
         data.append("llamadasCita",JSON.stringify(llamadas));
+        data.append("biradsMasto",biradsMasto);
+        data.append("biradUSG",biradUSG);
+        
         data.forEach((value, key) => {
             console.log(key + " " + value);
         });

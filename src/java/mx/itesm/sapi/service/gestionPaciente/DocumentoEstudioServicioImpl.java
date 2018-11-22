@@ -161,9 +161,9 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-
+            int estadoEstudioAprobado = 1;
             cstmt.setInt(1, documentoEstudio.getIdEstudio());
-            cstmt.setInt(2, documentoEstudio.getIdEstadoEstudio());
+            cstmt.setInt(2, estadoEstudioAprobado);
             cstmt.setInt(3, documentoEstudio.getIdPaciente());
             cstmt.setInt(4, documentoEstudio.getIdBirads());
             cstmt.setInt(5, documentoEstudio.getIdLugarDelCuerpo());
@@ -172,7 +172,7 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             cstmt.setInt(8, documentoEstudio.getEstatus());
             cstmt.setDate(9, documentoEstudio.getFechaEstudioResultado());
             cstmt.setInt(10, documentoEstudio.getIdCita());
-
+            System.out.println(cstmt.toString());
             rs = cstmt.executeQuery();
             rs.next();
 
@@ -241,6 +241,9 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             cstmt.setInt(9, documentoEstudio.getEstatus());
             cstmt.setDate(10, documentoEstudio.getFechaEstudioResultado());
             cstmt.setInt(11, documentoEstudio.getIdCita());
+            
+            System.out.println(cstmt.toString());
+            
             rs = cstmt.executeQuery();
             rs.next();
             exito = rs.getBoolean(1);
@@ -373,6 +376,62 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             documentoEstudio.setFechaEstudioResultado(rs.getDate("fechEstudioPrevio"));
             documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
             
+            conn.close();
+            cstmt.close();
+            rs.close();
+        }catch(SQLException ex){
+             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            documentoEstudio = null;
+        }
+        return documentoEstudio;
+    }
+
+    /**
+     * 
+     * @param idTipoEstudio
+     * @param idPaciente
+     * @return DocumentoEstudio
+     * 
+     * @author Uriel Díaz Villamil
+     * @date Noviembre 21 2018
+     * 
+     * Obtiene el documento más reciente de un paciente por su tipo.
+     * Se limita solo a un documento.
+     * Está pensado para ser usado en la página cinco del formulario de la navegadora para la
+     * mastografía y el ultrasonido.
+     */
+    @Override
+    public DocumentoEstudio mostrarDocumentoEstudioMasRecientePaciente(int idTipoEstudio, int idPaciente) {
+         Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarDocumentoEstudioMasRecientePaciente(?,?)";
+        
+        DocumentoEstudio documentoEstudio = null;
+        
+        try{
+            conn = Conexion.getConnection();
+            
+            documentoEstudio = new DocumentoEstudio();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idTipoEstudio);
+            cstmt.setInt(2,idPaciente);            
+            
+            rs = cstmt.executeQuery();
+            
+            while(rs.next())
+            {
+                documentoEstudio.setIdDocumentoEstudio(rs.getInt("idDocumentoEstudio"));
+                documentoEstudio.setIdEstudio(rs.getInt("idEstudio"));
+                documentoEstudio.setIdEstadoEstudio(rs.getInt("idEstadoEstudio"));
+                documentoEstudio.setIdPaciente(rs.getInt("idPaciente"));
+                documentoEstudio.setIdBirads(rs.getInt("idBirads"));
+                documentoEstudio.setArchivo(rs.getBytes("archivo"));
+                documentoEstudio.setPrevio(rs.getInt("previo"));
+                documentoEstudio.setFechaEstudioResultado(rs.getDate("fechEstudioPrevio"));
+                documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
+            }
             conn.close();
             cstmt.close();
             rs.close();

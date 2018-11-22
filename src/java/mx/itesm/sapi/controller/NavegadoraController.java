@@ -126,7 +126,7 @@ import org.apache.commons.io.IOUtils;
 
 @WebServlet(name = "NavegadoraController", urlPatterns = {"/NavegadoraController"})
 public class NavegadoraController extends HttpServlet {
-    private static ResourceBundle sapiProperties;
+    private static final ResourceBundle sapiProperties = ResourceBundle.getBundle("mx.itesm.sapi.properties.catalogos");;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -2100,7 +2100,7 @@ public class NavegadoraController extends HttpServlet {
                                                                                                                                                  
                                 }
                                 
-                                System.out.println("Regristo TNM ".concat(String.valueOf(idRegistroTNM)));
+                                    System.out.println("Regristo TNM ".concat(String.valueOf(idRegistroTNM)));
                                     System.out.println("REgistro diagnostico ".concat(registroDiagnostico.toString()));
                                     if(registroDiagnostico.getIdRegistroDiagnostico() > 0)
                                     {
@@ -2123,79 +2123,102 @@ public class NavegadoraController extends HttpServlet {
                             
                             //*************************************************Documento Estudio*********************************
                             //Resultado de Mastografia
-                            DocumentoEstudio documentoEstudio=null;
+                            DocumentoEstudio documentoEstudioMastografia = null;
                             
                             int resultadoMastografia = 0;
-                            String resultadoMastografiaRequest = (request.getParameter("Mastografia"));
+                            String resultadoMastografiaRequest = (request.getParameter("biradsMasto"));
                             if (resultadoMastografiaRequest !=null && resultadoMastografiaRequest.length() > 0) {
                                 resultadoMastografia = Integer.parseInt(resultadoMastografiaRequest);
-                                int idEstudio;
-                                int previo = 0;
-                                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                                Calendar cal = Calendar.getInstance();
-                                System.out.println(dateFormat.format(cal.getTime()));
-                                Date fechaEstudioResultados = Date.valueOf(dateFormat.format(cal.getTime()));
-
-                                idEstudio = Integer.parseInt(sapiProperties.getString("pacientePotencial"));
-                                DocumentoEstudio documentoEstudioMastografia = null;
-                                documentoEstudioMastografia = documentoEstudioServicioImpl.mostrarDocumentoEstudioPacienteEstudioPrevio(idPaciente,idEstudio, previo);
                                 
-                                if(documentoEstudioMastografia != null)
+                                
+                                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                                Calendar cal = Calendar.getInstance();
+                                Date dateMasto = Date.valueOf(dateFormat.format(cal.getTime()));
+                                
+                                System.out.println(cal.getTime());
+
+                                System.out.println(dateFormat.format(cal.getTime()) .concat(" value from  ").concat(resultadoMastografiaRequest));
+                                
+                                int idEstudio = Integer.parseInt(sapiProperties.getString("EstudioMastografia"));
+                                int idLugarDelCuerpo = Integer.parseInt(sapiProperties.getString("mama"));
+                                
+                                
+                                Cita citaPreconsulta = citaServicioImpl.mostrarCitaNavegacionPacientePotencial(idPaciente);
+                                
+                                System.out.println("Tipo Estudio ".concat(String.valueOf(idEstudio)));
+                                
+                                documentoEstudioMastografia = documentoEstudioServicioImpl.mostrarDocumentoEstudioMasRecientePaciente(idPaciente,idEstudio);
+                                
+                                if(documentoEstudioMastografia.getIdDocumentoEstudio() > 0)
                                 {
-                                    documentoEstudio.setIdEstudio(idEstudio);
-                                    documentoEstudio.setIdPaciente(idPaciente);
-                                    documentoEstudio.setIdBirads(resultadoMastografia);
-                                    documentoEstudio.setPrevio(previo);
-                                    documentoEstudio.setFechaEstudioResultado(fechaEstudioResultados);
-                                    documentoEstudioServicioImpl.actualizarDocumentoEstudio(documentoEstudio);
+                                    documentoEstudioMastografia.setIdEstudio(idEstudio);
+                                    documentoEstudioMastografia.setIdPaciente(idPaciente);
+                                    documentoEstudioMastografia.setIdBirads(resultadoMastografia);
+                                    documentoEstudioMastografia.setPrevio(0);                                    
+                                    documentoEstudioMastografia.setFechaEstudioResultado(dateMasto);
+                                    documentoEstudioMastografia.setIdLugarDelCuerpo(idLugarDelCuerpo); 
+                                    documentoEstudioMastografia.setIdCita(citaPreconsulta.getIdCita());                                     
+                                    documentoEstudioServicioImpl.actualizarDocumentoEstudio(documentoEstudioMastografia);
                                 }
                                 else
                                 {
-                                    documentoEstudio.setIdEstudio(idEstudio);
-                                    documentoEstudio.setIdPaciente(idPaciente);
-                                    documentoEstudio.setIdBirads(resultadoMastografia);
-                                    documentoEstudio.setPrevio(previo);
-                                    documentoEstudio.setFechaEstudioResultado(fechaEstudioResultados);
-                                    documentoEstudioServicioImpl.agregarDocumentoEstudio(documentoEstudio);
+                                    documentoEstudioMastografia.setIdEstudio(idEstudio);
+                                    documentoEstudioMastografia.setIdPaciente(idPaciente);
+                                    documentoEstudioMastografia.setIdBirads(resultadoMastografia);
+                                    documentoEstudioMastografia.setPrevio(0);
+                                    documentoEstudioMastografia.setFechaEstudioResultado(dateMasto);
+                                    documentoEstudioMastografia.setIdLugarDelCuerpo(idLugarDelCuerpo);
+                                    documentoEstudioMastografia.setIdCita(citaPreconsulta.getIdCita());                                                                         
+                                    documentoEstudioServicioImpl.agregarDocumentoEstudio(documentoEstudioMastografia);
                                 }
-                                System.out.println("resultadoMastografia " + (resultadoMastografia));
+                                System.out.println("resultadoMastografia ".concat(String.valueOf(resultadoMastografia)));
+                                System.out.println("Identificador de documentoEstudio ".concat(String.valueOf(documentoEstudioMastografia.getIdDocumentoEstudio())));
                             } else {
                                 System.out.println("sin resultadoMastrografia ");
                             }
                             
                             //Resltado Ultrasonido
+                            DocumentoEstudio documentoEstudioUSG = null;
                             int resultadoUltrasonido = 0;
-                            String resultadoUltrasonidoRequest = (request.getParameter("tipoUSG"));
+                            String resultadoUltrasonidoRequest = (request.getParameter("biradUSG"));
                             if (resultadoUltrasonidoRequest != null && resultadoUltrasonidoRequest.length() > 0) {
                                 resultadoUltrasonido = Integer.parseInt(resultadoUltrasonidoRequest);
+
                                 int idEstudio;
                                 int previo = 0;
-                                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+                                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                                 Calendar cal = Calendar.getInstance();
-                                System.out.println(dateFormat.format(cal.getTime()));
-                                Date fechaEstudioResultados = Date.valueOf(dateFormat.format(cal.getTime()));
+                                Date dateUsg = Date.valueOf(dateFormat.format(cal.getTime()));
                                 
-                                idEstudio = Integer.parseInt(sapiProperties.getString("pacientePotencial"));
-                                DocumentoEstudio documentoEstudioUltrasonido = null;
-                                documentoEstudioUltrasonido = documentoEstudioServicioImpl.mostrarDocumentoEstudioPacienteEstudioPrevio(idPaciente,idEstudio, previo);
+                                idEstudio = Integer.parseInt(sapiProperties.getString("EstudioUltrasonido"));
+                                int idLugarDelCuerpo = Integer.parseInt(sapiProperties.getString("mama"));
                                 
-                                 if(documentoEstudioUltrasonido != null)
+                                Cita citaPreconsulta = citaServicioImpl.mostrarCitaNavegacionPacientePotencial(idPaciente);
+                                
+                                documentoEstudioUSG = documentoEstudioServicioImpl.mostrarDocumentoEstudioMasRecientePaciente(idEstudio,idPaciente);
+                                
+                                 if(documentoEstudioUSG.getIdDocumentoEstudio() > 0)
                                  {
-                                    documentoEstudio.setIdEstudio(idEstudio);
-                                    documentoEstudio.setIdPaciente(idPaciente);
-                                    documentoEstudio.setIdBirads(resultadoUltrasonido);
-                                    documentoEstudio.setPrevio(previo);
-                                    documentoEstudio.setFechaEstudioResultado(fechaEstudioResultados);
-                                    documentoEstudioServicioImpl.actualizarDocumentoEstudio(documentoEstudio);
+                                    documentoEstudioUSG.setIdEstudio(idEstudio);
+                                    documentoEstudioUSG.setIdPaciente(idPaciente);
+                                    documentoEstudioUSG.setIdBirads(resultadoUltrasonido);
+                                    documentoEstudioUSG.setPrevio(previo);
+                                    documentoEstudioUSG.setIdLugarDelCuerpo(idLugarDelCuerpo);
+                                    documentoEstudioUSG.setFechaEstudioResultado(dateUsg);
+                                    documentoEstudioUSG.setIdCita(citaPreconsulta.getIdCita());
+                                    documentoEstudioServicioImpl.actualizarDocumentoEstudio(documentoEstudioUSG);
                                  }
                                 else
                                  {
-                                    documentoEstudio.setIdEstudio(idEstudio);
-                                    documentoEstudio.setIdPaciente(idPaciente);
-                                    documentoEstudio.setIdBirads(resultadoUltrasonido);
-                                    documentoEstudio.setPrevio(previo);
-                                    documentoEstudio.setFechaEstudioResultado(fechaEstudioResultados);
-                                    documentoEstudioServicioImpl.agregarDocumentoEstudio(documentoEstudio);
+                                    documentoEstudioUSG.setIdEstudio(idEstudio);
+                                    documentoEstudioUSG.setIdPaciente(idPaciente);
+                                    documentoEstudioUSG.setIdBirads(resultadoUltrasonido);
+                                    documentoEstudioUSG.setPrevio(previo);
+                                    documentoEstudioUSG.setIdLugarDelCuerpo(idLugarDelCuerpo);
+                                    documentoEstudioUSG.setFechaEstudioResultado(dateUsg);
+                                    documentoEstudioUSG.setIdCita(citaPreconsulta.getIdCita());
+                                    documentoEstudioServicioImpl.agregarDocumentoEstudio(documentoEstudioUSG);
                                  }
                                 System.out.println("resultadoUltrasonido "+(resultadoUltrasonido));
                             } else {
