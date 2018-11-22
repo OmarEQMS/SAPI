@@ -152,6 +152,37 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
         }
         return id;
     }
+    
+    @Override
+    public int agregarBiopsiaResultado(Biopsia biopsia) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL agregarBiopsiaResultado(?,?)";
+        int id = -1;
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+
+            cstmt.setInt(1, biopsia.getIdPaciente());       
+            cstmt.setInt(2, biopsia.getIdTipoHistologico());
+           
+
+            rs = cstmt.executeQuery();
+            rs.next();
+            id = rs.getInt(1);
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
+        }
+        return id;
+    }
 
     @Override
     public boolean borradoLogicoBiopsia(int idBiopsia) {
@@ -209,6 +240,39 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
             cstmt.setInt(13, biopsia.getPrevia());
             cstmt.setInt(14, biopsia.getEstatus());
             cstmt.setInt(15, biopsia.getIdTipoBiopsia());
+
+
+            rs = cstmt.executeQuery();
+            rs.next();
+            exito = rs.getBoolean(1);
+
+            rs.close();
+            conn.close();
+            cstmt.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+        }
+        return exito;
+    }
+    
+    @Override
+    public boolean actualizarBiopsiaResultado(Biopsia biopsia) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL actualizarBiopsiaResultado(?, ?)";
+        boolean exito = false;
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            
+           
+            cstmt.setInt(1, biopsia.getIdBiopsia());
+            cstmt.setInt(2, biopsia.getIdTipoHistologico());
+           
 
 
             rs = cstmt.executeQuery();

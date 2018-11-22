@@ -33,4 +33,8 @@ public interface DocumentoEstudioServicio {
 
     public int agregarDocumentoEstudioMastoAntesPreconsulta(DocumentoEstudio documentoEstudio);
 
+    public int agregarDocumentoEstudioEstudioPrevio(DocumentoEstudio documentoEstudio);
+
+    public boolean actualizarDocumentoEstudioEstudioPrevio(DocumentoEstudio documentoEstudio);
+
 }

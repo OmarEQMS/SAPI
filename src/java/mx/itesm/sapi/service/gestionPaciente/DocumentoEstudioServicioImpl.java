@@ -377,4 +377,69 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
         }
 
 
+         @Override
+    public int agregarDocumentoEstudioEstudioPrevio(DocumentoEstudio documentoEstudio) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL agregarDocumentoEstudioEstudioPrevio(?,?,?,?)";
+        int id = -1;
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+
+            cstmt.setInt(1, documentoEstudio.getIdEstudio());
+            cstmt.setInt(2, documentoEstudio.getIdPaciente());
+            cstmt.setInt(3, documentoEstudio.getIdBirads());
+            cstmt.setDate(4, documentoEstudio.getFechaEstudioResultado());
+
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            id = rs.getInt(1);
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
+        }
+        return id;
+    }
+
+
+    
+    @Override
+    public boolean actualizarDocumentoEstudioEstudioPrevio(DocumentoEstudio documentoEstudio) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL actualizarDocumentoEstudioEstudioPrevio(?,?,?)";
+        boolean exito = false;
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+
+            cstmt.setInt(1, documentoEstudio.getIdDocumentoEstudio());
+            cstmt.setInt(2, documentoEstudio.getIdBirads());
+            cstmt.setDate(3, documentoEstudio.getFechaEstudioResultado());
+            rs = cstmt.executeQuery();
+            rs.next();
+            exito = rs.getBoolean(1);
+
+            rs.close();
+            conn.close();
+            cstmt.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+        }
+        return exito;
+    }
+
 }
