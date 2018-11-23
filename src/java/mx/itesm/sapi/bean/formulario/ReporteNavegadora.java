@@ -15,8 +15,10 @@ public class ReporteNavegadora {
     private String edad;
     private String fechaNacimiento;
     private String genero;
+    private String escolaridad;
     private String ciudad;
     private String estado;
+    private String alergias;
     private String telefono;
     private String Seguro;
     private String serieLaminillas;
@@ -26,6 +28,7 @@ public class ReporteNavegadora {
     private String mastografiaBiradsNombre;
     private String cantidadLaminillas;
     private String tipoPaciente;
+    private String cirugiaFecha;
     private String quimioterapiaFecha;
     private String navegadora;
     private String radioterapiaFecha;
@@ -54,6 +57,7 @@ public class ReporteNavegadora {
     private String medicoRadiologo;
     private String medicoResidente;
     private String noAdscrito;
+    private String noRadiologo;
     private String noSeguro;
     private String fechaFin;
     private String etapaClinica;
@@ -565,5 +569,37 @@ public class ReporteNavegadora {
 
     public void setUltrasonidoBiradsNombrePost(String ultrasonidoBiradsNombrePost) {
         this.ultrasonidoBiradsNombrePost = ultrasonidoBiradsNombrePost;
+    }
+
+    public String getEscolaridad() {
+        return escolaridad;
+    }
+
+    public void setEscolaridad(String escolaridad) {
+        this.escolaridad = escolaridad;
+    }
+
+    public String getCirugiaFecha() {
+        return cirugiaFecha;
+    }
+
+    public void setCirugiaFecha(String cirugiaFecha) {
+        this.cirugiaFecha = cirugiaFecha;
+    }
+
+    public String getAlergias() {
+        return alergias;
+    }
+
+    public void setAlergias(String alergias) {
+        this.alergias = alergias;
+    }
+
+    public String getNoRadiologo() {
+        return noRadiologo;
+    }
+
+    public void setNoRadiologo(String noRadiologo) {
+        this.noRadiologo = noRadiologo;
     }
 }
