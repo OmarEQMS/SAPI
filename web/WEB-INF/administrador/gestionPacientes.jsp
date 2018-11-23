@@ -49,10 +49,20 @@
 
                 <div class="sidebar-header">
 
+<<<<<<< HEAD
                     <div class="row text-center justify-content-center mt-2">
                         <div class="col-12">
                             <img src="../img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
                         </div>
+||||||| merged common ancestors
+                <div class="row text-center justify-content-center mt-2">
+                    <div class="col-12">
+                        <img src="../img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
+=======
+                <div class="row text-center justify-content-center mt-2">
+                    <div class="col-12">
+                        <img src="img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
+>>>>>>> origin/MontoyaRosas
                     </div>
 
                 </div>
@@ -65,13 +75,24 @@
                         </div>
                     </div>
 
+<<<<<<< HEAD
                     <div class="row justify-content-center mb-2">
                         <div class="col-6 text-center">
                             <span class="textoSidebar m-0">Julio Badillo</span>
                             <span class="textoSidebar userSidebar m-0">@juliobadillo</span>
                         </div>
+||||||| merged common ancestors
+                <div class="row">
+                    <div class="col-12 mb-2 mt-4">
+                        <img src="../img/user.png" class="imagenPerfil" alt="">
+=======
+                <div class="row">
+                    <div class="col-12 mb-2 mt-4">
+                        <img src="img/user.png" class="imagenPerfil" alt="">
+>>>>>>> origin/MontoyaRosas
                     </div>
 
+<<<<<<< HEAD
                     <div class="row justify-content-center">
 
                         <div class="col-2 text-center">
@@ -82,6 +103,17 @@
                             <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
                         </div>
 
+||||||| merged common ancestors
+                <div class="row justify-content-center mb-2">
+                    <div class="col-6 text-center">
+                        <span class="textoSidebar m-0">Julio Badillo</span>
+                        <span class="textoSidebar userSidebar m-0">@juliobadillo</span>
+=======
+                <div class="row justify-content-center mb-2">
+                    <div class="col-6 text-center">
+                        <span class="textoSidebar m-0">${sessionScope.nombre} ${sessionScope.primerApellido}</span>
+                        <span class="textoSidebar userSidebar m-0">@${sessionScope.usuario}</span>
+>>>>>>> origin/MontoyaRosas
                     </div>
 
                 </div>
@@ -103,13 +135,45 @@
 
                     <li id="IrAGestionNavegadora"><a><i class="fas fa-calendar-alt"></i>Gestion navegadoras</a></li>
 
+<<<<<<< HEAD
                     <li id="IrAGestionPaciente"><a><i class="fas fa-users"></i>Gestion pacientes</a></li>
 
                     <li id="IrAGestionAdministrador"><a><i class="fas fa-users"></i>Gestion administradores</a></li>
+||||||| merged common ancestors
+             <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Gestion médicos</a></li>
 
+               <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
+                                
+                <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Gestion médicos</a></li>
+=======
+               <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
+                                
+                <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
+>>>>>>> origin/MontoyaRosas
+
+<<<<<<< HEAD
                     <li id="IrAMiCuenta"><a><i class="fas fa-users"></i>Mi cuenta</a></li>
+||||||| merged common ancestors
+                <li id="IrAGestionNavegadora"><a><i class="fas fa-calendar-alt"></i>Gestion navegadoras</a></li>
+=======
+                <li id="IrAGestionNavegadora"><a><i class="fas fa-calendar-alt"></i>Navegadoras</a></li>
+>>>>>>> origin/MontoyaRosas
 
+<<<<<<< HEAD
                     <li id="IrAReasignarMedico"><a><i class="fas fa-sync"></i>Reasignar médico</a></li>
+||||||| merged common ancestors
+                <li id="IrAGestionPaciente"><a><i class="fas fa-users"></i>Gestion pacientes</a></li>
+                
+                <li id="IrAGestionAdministrador"><a><i class="fas fa-users"></i>Gestion administradores</a></li>
+                
+                <li id="IrAMiCuenta"><a><i class="fas fa-users"></i>Mi cuenta</a></li>
+=======
+                <li id="IrAGestionPaciente"><a><i class="fas fa-users"></i>Pacientes</a></li>
+                
+                <li id="IrAGestionAdministrador"><a><i class="fas fa-shield-alt"></i>Administradores</a></li>
+                
+                <li id="IrAMiCuenta"><a><i class="far fa-user"></i>Mi cuenta</a></li>
+>>>>>>> origin/MontoyaRosas
 
                     <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
 
@@ -125,9 +189,18 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="container-fluid">
 
+<<<<<<< HEAD
                         <button id="sidebarCollapse" class="btn boton-collapse">
                             <i class="fas fa-align-justify"></i>
                         </button>
+||||||| merged common ancestors
+                    <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">Julio
+                            Badillo
+                        </span> <img src="../img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
+=======
+                    <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
+                        </span></span>
+>>>>>>> origin/MontoyaRosas
 
                         <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">Julio
                                 Badillo
@@ -138,11 +211,23 @@
 
                 <!-- Navegacion -->
 
+<<<<<<< HEAD
                 <div class="row mb-3 justify-content-end">
                     <div class="col-3 text-center">
                         <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index2.html" class="colorMoradoLight">Inicio</a></span>
                         - <span class="colorGlobal">Gestion de Pacientes</span>
                     </div>
+||||||| merged common ancestors
+            <div class="row mb-3 justify-content-end">
+                <div class="col-3 text-center">
+                    <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index2.html" class="colorMoradoLight">Inicio</a></span>
+                    - <span class="colorGlobal">Gestion de Pacientes</span>
+=======
+            <div class="row mb-3 justify-content-end">
+                <div class="col-3 text-center">
+                    <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="IrAInicio" class="colorMoradoLight">Inicio</a></span>
+                    - <span class="colorGlobal">Gestion de Pacientes</span>
+>>>>>>> origin/MontoyaRosas
                 </div>
 
                 <!-- Jumbotron Titulo -->
@@ -168,6 +253,7 @@
                             </div>
                         </div>
 
+<<<<<<< HEAD
                         <!-- Table -->
 
                         <table class="table table-striped mt-3" id="tablaPacientes">
@@ -218,6 +304,111 @@
                             </tbody>
                         </table>
                     </div>
+||||||| merged common ancestors
+                    <!-- Table -->
+
+                    <table class="table table-striped mt-3" id="tablaPacientes">
+                        <thead>
+                            <tr>
+                                <th scope="col">PRZ</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Tratamiento</th>
+                                <th scope="col">Estadio</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Médico</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>00999299</td>
+                                <td>Julio</td>
+                                <td>Badillo</td>
+                                <td>Tratamiento 1</td>
+                                <td>1</td>
+                                <td>777898378</td>
+                                <td>Morelos</td>
+                                <td>Dr. Suarez</td>
+                                <td>
+                                    <button class="btn btn-primary btn-editarPaciente" data-id="" data-toggle="modal" data-target="#modalEditarPaciente"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger" data-id="" id="btn-eliminarPaciente"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>00999299</td>
+                                <td>Raul</td>
+                                <td>Orihuela</td>
+                                <td>Tratamiento 3</td>
+                                <td>1</td>
+                                <td>777338292</td>
+                                <td>Morelos</td>
+                                <td>Dr. Fernandez</td>
+                                <td>
+                                    <button class="btn btn-primary" id="btn-editarPaciente" data-toggle="modal" data-target="#modalEditarPaciente"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger" id="btn-eliminarPaciente"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+=======
+                    <!-- Table -->
+
+                    <table class="table table-striped mt-3" id="tablaPacientes">
+                        <thead>
+                            <tr>
+                                <th scope="col">PRZ</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Tratamiento</th>
+                                <th scope="col">Estadio</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Médico</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>00999299</td>
+                                <td>Julio</td>
+                                <td>Badillo</td>
+                                <td>Tratamiento 1</td>
+                                <td>1</td>
+                                <td>777898378</td>
+                                <td>Morelos</td>
+                                <td>Dr. Suarez</td>
+                                <td>
+                                    <button class="btn btn-primary btn-editarPaciente" data-id="" data-toggle="modal" data-target="#modalEditarPaciente"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger" data-id="" id="btn-eliminarPaciente"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-primary descargarFormulario"><i class="fas fa-cloud-download-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>00999299</td>
+                                <td>Raul</td>
+                                <td>Orihuela</td>
+                                <td>Tratamiento 3</td>
+                                <td>1</td>
+                                <td>777338292</td>
+                                <td>Morelos</td>
+                                <td>Dr. Fernandez</td>
+                                <td>
+                                    <button class="btn btn-primary" id="btn-editarPaciente" data-toggle="modal" data-target="#modalEditarPaciente"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger" id="btn-eliminarPaciente"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-primary descargarFormulario"><i class="fas fa-cloud-download-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+>>>>>>> origin/MontoyaRosas
                 </div>
 
                 <!-- ********** MODAL EDITAR PACIENTE ********** -->
