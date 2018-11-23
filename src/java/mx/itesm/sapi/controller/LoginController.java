@@ -124,6 +124,7 @@ public class LoginController extends HttpServlet {
                         sesion.setAttribute("nombre", nombre);
                         sesion.setAttribute("primerApellido", primerApellido);
                         sesion.setAttribute("segundoApellido", segundoApellido);
+                        sesion.setAttribute("correo", persona.getCorreo());
 
                         PicServicioImpl picServicioImpl = new PicServicioImpl();
                         Pic pic = picServicioImpl.mostrarPic(idPersona);
@@ -332,6 +333,7 @@ public class LoginController extends HttpServlet {
                                 request.setAttribute("nombre", sesion.getAttribute("nombre"));
                                 request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));
                                 request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
+                                
                                 
                                 EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
                                 Empleado empleado =  empleadoServicioImpl.mostrarEmpleadoCuenta(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));

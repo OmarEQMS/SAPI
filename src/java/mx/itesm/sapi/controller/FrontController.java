@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import mx.itesm.sapi.bean.calendario.MCalendarioNavegadora;
 import mx.itesm.sapi.bean.diagnostico.EtapaClinica;
 import mx.itesm.sapi.bean.diagnostico.MCodificado;
 import mx.itesm.sapi.bean.diagnostico.NCodificado;
@@ -52,6 +53,7 @@ import mx.itesm.sapi.bean.persona.Municipio;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.bean.persona.TipoSangre;
+import mx.itesm.sapi.service.MCalendarioNavegadoraServicioImpl;
 import mx.itesm.sapi.service.diagnostico.EtapaClinicaServiceImpl;
 import mx.itesm.sapi.service.diagnostico.MCodificadoServiceImpl;
 import mx.itesm.sapi.service.diagnostico.NCodificadoServiceImpl;
@@ -352,6 +354,12 @@ public class FrontController extends HttpServlet {
                                     InputStream imagen = pic.getContenido();
                                     byte[] bytes = IOUtils.toByteArray(imagen);
                                     String base64String = Base64.getEncoder().encodeToString(bytes);
+                                    
+                                    //Pacientes Resultados                      
+                                    MCalendarioNavegadoraServicioImpl navegadoraServicio = new MCalendarioNavegadoraServicioImpl();
+                                    List<MCalendarioNavegadora> pacientesResultados = navegadoraServicio.mostrarPcientesParaCita();
+                                    request.setAttribute("pacientesResultados", pacientesResultados);
+                                    
                                     
                                     sesion.setAttribute("base64Img", base64String);
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono al calendario de navgeadora

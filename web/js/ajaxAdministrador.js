@@ -1,5 +1,186 @@
 $(document).ready(function () {
 
+    /////////////////////////////// MI CUENTA ////////
+
+    $('#error-correo').hide();
+    $('#error-usuario').hide();
+    $('#error-contrasena').hide();
+    $('#noEqualPasswordsError').hide();
+
+    $("#guardarCambios").on('click', function () {
+
+        if (isValidUserName($('#username')) && isValidEmail($('#correo'))) {
+
+            console.log("Presionó GuardarCambios");
+            var form = $("form")[0];
+            console.log(form);
+            var data = new FormData(form);
+            data.append("key", "cambiarDatos");
+            data.forEach((value, key) => {
+                console.log(key + " " + value);
+            });
+
+            $.ajax({
+                url: "AdministradorController",
+                data: data,
+                method: "POST",
+                enctype: 'multipart/form-data',
+                processData: false, // Important!
+                contentType: false,
+                cache: false,
+                success: function (response) {
+
+                    swal({
+                        title: "Buen trabajo!",
+                        text: "Cuenta actualizada correctamente",
+                        icon: "success",
+                        button: "Ok",
+                    })
+                            .then((value) => {
+                                $.post("SAPI", {
+                                    file: "administrador/cuentaAdministrador.jsp"
+                                },
+                                        function (response, status, xhr) {
+                                            console.log("El ajax fue exitoso!!-----------------------");
+                                            if (status == "success") {
+                                                if (response == "error") {
+                                                    swal("Error", "Hubo un error actualizando tus datos", "error");
+                                                } else {
+                                                    document.open("text/html", "replace");
+                                                    document.write(response);
+                                                    document.close();
+
+                                                }
+                                            }
+                                        }
+                                );
+                            });
+
+
+                },
+                error: function (xhr) {
+                    //alert(xhr.statusText);
+                }
+            });
+
+
+        } else {
+            swal({
+                title: "Error",
+                text: "Verifica que todos los datos sean validos",
+                icon: "error",
+                button: "Entendido!",
+            });
+
+        }
+
+    });
+
+    //Cambiar imagen temporalmente en elfront
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#ImagenPerfil').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#file-input").on('change', function () {
+        console.log("Llegó :)");
+        readURL(this);
+    });
+
+    ////*****CAMBIAR CONTRASEÑA
+    $("#btn-updatePassword").on('click', function () {
+
+
+        //Modal cambiar contraseña 
+        if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
+            swal({
+                title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
+                text: "No podras volver a usar tu contraseña anterior para ingresar",
+                icon: "warning",
+                buttons: true,
+                buttons: ['Regresar', 'Cambiar contraseña'],
+                dangerMode: true
+            })
+                    .then((cambiar) => {
+                        if (cambiar) {
+                            $.ajax({
+                                url: "AdministradorController",
+                                data: {
+                                    key: "cambiarContrasena",
+                                    idCuenta: $("#sesionPaciente").val(),
+                                    password: $("#password").val(),
+                                    password2: $("#password2").val()
+                                },
+                                method: "POST",
+                                success: function (response) {
+                                    if (response == "success") {
+                                        swal({
+                                            title: "Buen trabajo!",
+                                            text: "Contraseña actualizada correctamente!",
+                                            icon: "success",
+                                            button: "Entendido!",
+                                        });
+                                        $("#password").val('');
+                                        $("#password2").val('');
+                                    } else {
+                                        //Aqui no se que hace
+                                    }
+                                },
+                                error: function (xhr) {
+
+                                }
+                            });
+                            $('#modalCambiarContraseña').modal('toggle');
+                        }
+                    });
+        }
+
+    });
+
+    //1.- Usuario
+    $('#username').on('change', function () {
+        if (isValidUserName($('#username'))) {
+            $('#error-usuario').hide();
+
+        } else {
+            $('#error-usuario').show();
+
+        }
+    });
+
+    //2.- Correo
+    $('#correo').on('change', function () {
+        if (isValidEmail($('#correo'))) {
+            $('#error-correo').hide();
+
+        } else {
+            $('#error-correo').show();
+
+        }
+    });
+
+    $("#password").on('change', function () {
+        if (isValidPassword($(this)))
+            $("#error-contrasena").hide();
+        else
+            $("#error-contrasena").show();
+    });
+
+    $("#password2").on('change', function () {
+        var pass1 = $('#password');
+        var pass2 = $(this);
+
+        areEqualPasswords(pass1, pass2);
+    });
+
+
+    /////////////////////////////// GESTION MEDICOS //////
 
     //Errores al agregar a un médico
     $('#errorNombreMedico').hide();
@@ -697,11 +878,8 @@ $(document).ready(function () {
             cache: false,
             method: 'POST',
             data: {
-
                 key: "repiteCorreo",
                 correo: $('#editar-correoMedico').val()
-
-
             },
             success: function (response) {
 
@@ -714,9 +892,7 @@ $(document).ready(function () {
                     $('#errorEditarCorreoRepetido').hide();
                     repiteCorreo = false;
                 }
-
             }
-
         });
 
         if (isValidEmail($(this))) {
@@ -726,7 +902,6 @@ $(document).ready(function () {
         } else {
             $('#errorEditarCorreoMedico').show();
         }
-
     });
 
     /**EDITAR MEDICO */
@@ -754,6 +929,7 @@ $(document).ready(function () {
 
                 //$("#idMedico").val(response.id);
                 console.log(response);
+<<<<<<< HEAD
 
                 var json = response;
                 $('#idMedico').val(json.idEmpleado);
@@ -767,6 +943,33 @@ $(document).ready(function () {
                 //$('#editar-posicionMedico').val(json.nombrePosicion); SHANNON
                 $('#editar-cedulaProfesionalMedico').val(json.cedulaProfesional);
 
+||||||| merged common ancestors
+                var json  =  response;
+                $('#idMedico').val(json.idEmpleado);                
+                $('#editar-nombreMedico').val(json.nombre);                                
+                $('#editar-primerApellidoMedico').val(json.primerApellido);                                
+                $('#editar-segundoApellidoMedico').val(json.segundoApellido);                                
+                $('#editar-correoMedico').val(json.correo);                
+                $('#editar-telefonoMedico').val(json.telefono);                
+                $('#editar-noEmpleadoMedico').val(json.noEmpleado);                
+                $('#editar-especialidadMedico').val(json.nombreEspecialidad);                
+                $('#editar-usuarioMedico').val(json.usuario);                
+                $('#editar-cedulaProfesionalMedico').val(json.cedulaProfesional);                
+                
+=======
+                var json = response;
+                $('#idMedico').val(json.idEmpleado);
+                $('#editar-nombreMedico').val(json.nombre);
+                $('#editar-primerApellidoMedico').val(json.primerApellido);
+                $('#editar-segundoApellidoMedico').val(json.segundoApellido);
+                $('#editar-correoMedico').val(json.correo);
+                $('#editar-telefonoMedico').val(json.telefono);
+                $('#editar-noEmpleadoMedico').val(json.noEmpleado);
+                $('#editar-especialidadMedico').val(json.nombreEspecialidad);
+                $('#editar-usuarioMedico').val(json.usuario);
+                $('#editar-cedulaProfesionalMedico').val(json.cedulaProfesional);
+
+>>>>>>> origin/Julion
             }
 
         });
@@ -969,9 +1172,118 @@ $(document).ready(function () {
                     }
                 }
         );
+<<<<<<< HEAD
+    });
+||||||| merged common ancestors
+    });
+    
+    
+    //GUARDA EL MEDICO DESDE EL MODAL
+    $('#btn-guardarMedico').on('click', function () {
+
+        var idMedico = $('#idMedico').val();        
+        var nombre = $('#editar-nombreMedico').val();
+        var telefono = $('#editar-telefonoMedico').val();
+        var primerApellido = $('#editar-primerApellidoMedico').val();
+        var segundoApellido = $('#editar-segundoApellidoMedico').val();
+        var correo = $('#editar-correoMedico').val();
+        var noEmpleado = $('#editar-noEmpleadoMedico').val();
+        var especialidad = $('#editar-especialidadMedico').val();
+        var cedula = $('#editar-cedulaProfesionalMedico').val();
+        var usuario = $('#editar-usuarioMedico').val();
+        
+        
+        
+        console.log("idMédicoooo " + idMedico);
+        console.log("nombre " + nombre);
+        console.log("phone " + telefono);
+        console.log("ape 1 " + primerApellido);
+        console.log("ape 2 " + segundoApellido);
+        console.log("mail " + correo);
+        console.log("empleado no " + noEmpleado);
+        console.log("especiliad  " + especialidad);
+        console.log("usuario " + usuario);
+        console.log("cedula " + cedula);
+        
+                
+
+        $.ajax({
+
+            url: 'AdministradorController',
+            cache: false,
+            method: 'POST',
+            data: {
+                key: 'actualizar-medico',
+                idMedico: idMedico,
+                nombre: nombre,
+                telefono: telefono,
+                primerApellido: primerApellido,
+                segundoApellido: segundoApellido,
+                correo: correo,
+                noEmpleado: noEmpleado,
+                especialidad: especialidad,
+                usuario: usuario,
+                cedula: cedula                
+            }
+        })
+            .done(function (response) {
+=======
     });
 
 
+    //GUARDA EL MEDICO DESDE EL MODAL
+    $('#btn-guardarMedico').on('click', function () {
+
+        var idMedico = $('#idMedico').val();
+        var nombre = $('#editar-nombreMedico').val();
+        var telefono = $('#editar-telefonoMedico').val();
+        var primerApellido = $('#editar-primerApellidoMedico').val();
+        var segundoApellido = $('#editar-segundoApellidoMedico').val();
+        var correo = $('#editar-correoMedico').val();
+        var noEmpleado = $('#editar-noEmpleadoMedico').val();
+        var especialidad = $('#editar-especialidadMedico').val();
+        var cedula = $('#editar-cedulaProfesionalMedico').val();
+        var usuario = $('#editar-usuarioMedico').val();
+
+
+
+        console.log("idMédicoooo " + idMedico);
+        console.log("nombre " + nombre);
+        console.log("phone " + telefono);
+        console.log("ape 1 " + primerApellido);
+        console.log("ape 2 " + segundoApellido);
+        console.log("mail " + correo);
+        console.log("empleado no " + noEmpleado);
+        console.log("especiliad  " + especialidad);
+        console.log("usuario " + usuario);
+        console.log("cedula " + cedula);
+
+
+
+        $.ajax({
+
+            url: 'AdministradorController',
+            cache: false,
+            method: 'POST',
+            data: {
+                key: 'actualizar-medico',
+                idMedico: idMedico,
+                nombre: nombre,
+                telefono: telefono,
+                primerApellido: primerApellido,
+                segundoApellido: segundoApellido,
+                correo: correo,
+                noEmpleado: noEmpleado,
+                especialidad: especialidad,
+                usuario: usuario,
+                cedula: cedula
+            }
+        })
+                .done(function (response) {
+>>>>>>> origin/Julion
+
+
+<<<<<<< HEAD
     //GUARDA EL MEDICO DESDE EL MODAL
     $('#btn-guardarMedico').on('click', function () {
 
@@ -1048,6 +1360,11 @@ $(document).ready(function () {
             console.log("Entro al segundo else");
             $("#error-datosRepetidos").show(); //ya existe un campo
         }
+||||||| merged common ancestors
+            });
+=======
+                });
+>>>>>>> origin/Julion
 
     });
 
@@ -1133,6 +1450,7 @@ $(document).ready(function () {
                 cedula: cedula.val(),
                 password: password.val()
             },
+<<<<<<< HEAD
             success: function (response) {
                 $('#modalAgregarNavegadora').modal('toggle'); //cerrar modal
                 swal({
@@ -1141,8 +1459,33 @@ $(document).ready(function () {
                     buttons: true,
                     buttons: [, 'Aceptar']
                 });
+||||||| merged common ancestors
+             success: function (response) {
+
+                console.log(response);
+=======
+            success: function (response) {
+
+                console.log(response);
+>>>>>>> origin/Julion
             }
+<<<<<<< HEAD
         });
+||||||| merged common ancestors
+        })
+            .done(function (response) {
+
+
+            });
+
+=======
+        })
+                .done(function (response) {
+
+
+                });
+
+>>>>>>> origin/Julion
     });
 
     /**EDITAR NAVEGADORA */
@@ -1175,8 +1518,18 @@ $(document).ready(function () {
                 $('#editar-segundoApellidoNavegadora').val(response.segundoApellido);
                 $('#editar-correoNavegadora').val(response.correo);
                 $('#editar-no-empleadoNavegadora').val(response.noEmpleado);
+<<<<<<< HEAD
                 $('#editar-especialidad').val(response.nombreEspecialidad);
                 $('#editar-cedulaNavegadora').val(response.cedulaProfesional);
+||||||| merged common ancestors
+                $('#editar-especialidad').val(response.nombreEspecialidad);                
+                $('#editar-usuario').val(response.usuario);
+                
+=======
+                $('#editar-especialidad').val(response.nombreEspecialidad);
+                $('#editar-usuario').val(response.usuario);
+
+>>>>>>> origin/Julion
             }
 
         });
@@ -1186,6 +1539,7 @@ $(document).ready(function () {
     //GUARDA LA NAVEGADORA DESDE EL MODAL
     $('#btn-guardarNavegadora').on('click', function () {
 
+<<<<<<< HEAD
         var idNavegadora = $('#idNavegadora').val();
 
         var nombre = $('#editar-nombreNavegadora').val();
@@ -1208,6 +1562,51 @@ $(document).ready(function () {
         console.log("cedula " + cedula);
 
         console.log("Holi, hará el ajax");
+||||||| merged common ancestors
+        var idNavegadora = $('#idNavegadora');
+
+        var nombre = $('#editar-nombreNavegadora');
+        var telefono = $('#editar-telefonoNavegadora');
+        var primerApellido = $('#editar-primerApellidoNavegadora');
+        var segundoApellido = $('#editar-segundoApellidoNavegadora');
+        var correo = $('#editar-correoNavegadora');
+        var noEmpleado = $('#editar-no-empleadoNavegadora');
+        var especialidad = $('#editar-especialidad');
+        var usuario = $('#editar-usuario');
+        
+        console.log(idNavegadora.val());
+        console.log(nombre.val());
+        console.log(telefono.val());
+        console.log(primerApellido.val());
+        console.log(segundoApellido.val());
+        console.log(correo.val());
+        console.log(noEmpleado.val());
+        console.log(especialidad.val());
+        console.log(usuario.val());
+        
+=======
+        var idNavegadora = $('#idNavegadora');
+
+        var nombre = $('#editar-nombreNavegadora');
+        var telefono = $('#editar-telefonoNavegadora');
+        var primerApellido = $('#editar-primerApellidoNavegadora');
+        var segundoApellido = $('#editar-segundoApellidoNavegadora');
+        var correo = $('#editar-correoNavegadora');
+        var noEmpleado = $('#editar-no-empleadoNavegadora');
+        var especialidad = $('#editar-especialidad');
+        var usuario = $('#editar-usuario');
+
+        console.log(idNavegadora.val());
+        console.log(nombre.val());
+        console.log(telefono.val());
+        console.log(primerApellido.val());
+        console.log(segundoApellido.val());
+        console.log(correo.val());
+        console.log(noEmpleado.val());
+        console.log(especialidad.val());
+        console.log(usuario.val());
+
+>>>>>>> origin/Julion
 
         $.ajax({
 
@@ -1216,6 +1615,7 @@ $(document).ready(function () {
             method: 'POST',
             data: {
                 key: 'actualiza-navegadora',
+<<<<<<< HEAD
                 idNavegadora: idNavegadora,
                 nombre: nombre,
                 telefono: telefono,
@@ -1242,8 +1642,43 @@ $(document).ready(function () {
                 $('#noEmpleado-' + idNavegadora).html(noEmpleado);
                 $('#nombreEspecialidad-' + idNavegadora).html(especialidad);
                 $('#cedulaProfesional-' + idNavegadora).html(cedula);
+||||||| merged common ancestors
+                idNavegadora: idNavegadora.val(),
+                nombre: nombre.val(),
+                telefono: telefono.val(),
+                primerApellido: primerApellido.val(),
+                segundoApellido: segundoApellido.val(),
+                correo: correo.val(),
+                noEmpleado: noEmpleado.val(),
+                especialidad: especialidad.val(),                
+                usuario: usuario.val(),                
+=======
+                idNavegadora: idNavegadora.val(),
+                nombre: nombre.val(),
+                telefono: telefono.val(),
+                primerApellido: primerApellido.val(),
+                segundoApellido: segundoApellido.val(),
+                correo: correo.val(),
+                noEmpleado: noEmpleado.val(),
+                especialidad: especialidad.val(),
+                usuario: usuario.val(),
+>>>>>>> origin/Julion
             }
+<<<<<<< HEAD
         });
+||||||| merged common ancestors
+        })
+            .done(function (response) {
+
+
+            });
+=======
+        })
+                .done(function (response) {
+
+
+                });
+>>>>>>> origin/Julion
 
     });
 
@@ -1412,11 +1847,35 @@ $(document).ready(function () {
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
+<<<<<<< HEAD
+                .then((eliminar) => {
+                    if (eliminar) {
+||||||| merged common ancestors
+            .then((eliminar) => {
+                if (eliminar) {
+
+                    $.ajax({
+=======
                 .then((eliminar) => {
                     if (eliminar) {
 
                         $.ajax({
+>>>>>>> origin/Julion
 
+<<<<<<< HEAD
+                        $.ajax({
+||||||| merged common ancestors
+                        url: 'AdminController',
+                        cache: false,
+                        method: 'POST',
+                        data: {
+                            key: 'eliminarPaciente',
+                            idPaciente: idPaciente
+                        },
+                        success: function (response) {
+
+                        }
+=======
                             url: 'AdminController',
                             cache: false,
                             method: 'POST',
@@ -1427,9 +1886,45 @@ $(document).ready(function () {
                             success: function (response) {
 
                             }
+>>>>>>> origin/Julion
+
+                            url: 'AdminController',
+                            cache: false,
+                            method: 'POST',
+                            data: {
+                                key: 'eliminarPaciente',
+                                idPaciente: idPaciente
+                            },
+                            success: function (response) {
+
+<<<<<<< HEAD
+                            }
+                        });
+||||||| merged common ancestors
+                    });
+
+                } else {
+=======
                         });
 
                     } else {
+
+                    }
+                });
+
+
+>>>>>>> origin/Julion
+
+<<<<<<< HEAD
+                    } else {
+||||||| merged common ancestors
+                }
+            });
+            
+            
+            
+=======
+>>>>>>> origin/Julion
 
                     }
                 });
@@ -1467,12 +1962,25 @@ $(document).ready(function () {
 
     $.ajax({
         url: 'AdministradorController',
+<<<<<<< HEAD
         cache: false,
         method: 'POST',
         data: {key: "autocompletarPosiciones"}
     })
             .done(function (response) {
+||||||| merged common ancestors
+                cache: false,
+                method: 'POST',
+                data: {key: "autocompletarPosiciones"}
+        })
+=======
+        cache: false,
+        method: 'POST',
+        data: {key: "autocompletarPosiciones"}
+    })
+>>>>>>> origin/Julion
 
+<<<<<<< HEAD
                 var json = JSON.parse(response);
                 for (var i = 0; i < json.length; i++) {
 
@@ -1888,3 +2396,34 @@ function configureLoadingScreen(screen) {
                 screen.fadeOut();
             })
 }
+||||||| merged common ancestors
+        .done(function (response) {
+       
+            var json = JSON.parse(response);
+            for (var i = 0; i < json.length; i++) {
+                                      
+                   var newObjeto = $('<option value="'+json[i].nombre+'"></option>');                                      
+                   posiciones.append(newObjeto);
+            }
+    
+       
+        console.log(JSON.stringify(posiciones));
+       
+        });
+});
+=======
+            .done(function (response) {
+
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+
+                    var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
+                    posiciones.append(newObjeto);
+                }
+
+
+                console.log(JSON.stringify(posiciones));
+
+            });
+});
+>>>>>>> origin/Julion
