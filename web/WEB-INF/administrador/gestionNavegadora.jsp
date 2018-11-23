@@ -192,14 +192,14 @@
                                 <td>${navegadora.cedulaProfesional }</td>
                                 <td>${navegadora.usuario}</td>                                
                                 <td>
-                                    <button class="btn btn-success"
+                                    <button class="btn btn-success m-1"
                                         id="btn-verNavegadora" data-id="${navegadora.idEmpleado}">                                        
                                         <i class="fas fa-chart-line"></i>
                                     </button>
-                                    <button class="btn btn-primary btn-editarNavegadora" data-toggle="modal"
+                                    <button class="btn btn-primary btn-editarNavegadora m-1" data-toggle="modal"
                                         data-target="#modalEditarNavegadora" data-id="${navegadora.idEmpleado}" ><i class="fas fa-edit"></i>
                                     </button>
-                                    <button class="btn btn-danger mt-1" id="btn-eliminarNavegadora" data-id="${navegadora.idEmpleado}"><i class="fas fa-trash-alt">
+                                    <button class="btn btn-danger m-1" id="btn-eliminarNavegadora" data-id="${navegadora.idEmpleado}"><i class="fas fa-trash-alt">
                                         
                                     </i></button>
                                 </td>

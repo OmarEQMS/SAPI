@@ -81,7 +81,6 @@ $(document).ready(function () {
                 $('#editar-telefonoMedico').val(json.telefono);
                 $('#editar-noEmpleadoMedico').val(json.noEmpleado);
                 $('#editar-especialidadMedico').val(json.nombreEspecialidad);
-                $('#editar-usuarioMedico').val(json.usuario);
                 $('#editar-cedulaProfesionalMedico').val(json.cedulaProfesional);
 
             }
@@ -280,9 +279,6 @@ $(document).ready(function () {
         var noEmpleado = $('#editar-noEmpleadoMedico').val();
         var especialidad = $('#editar-especialidadMedico').val();
         var cedula = $('#editar-cedulaProfesionalMedico').val();
-        var usuario = $('#editar-usuarioMedico').val();
-
-
 
         console.log("idMédicoooo " + idMedico);
         console.log("nombre " + nombre);
@@ -292,7 +288,6 @@ $(document).ready(function () {
         console.log("mail " + correo);
         console.log("empleado no " + noEmpleado);
         console.log("especiliad  " + especialidad);
-        console.log("usuario " + usuario);
         console.log("cedula " + cedula);
 
         console.log("Holi, hará el ajax");
@@ -313,7 +308,6 @@ $(document).ready(function () {
                 correo: correo,
                 noEmpleado: noEmpleado,
                 especialidad: especialidad,
-                usuario: usuario,
                 cedula: cedula
             },
             success: function (response) {
@@ -332,7 +326,6 @@ $(document).ready(function () {
                 $('#noEmpleado-' + idMedico).html(noEmpleado);
                 $('#nombreEspecialidad-' + idMedico).html(especialidad);
                 $('#cedulaProfesional-' + idMedico).html(cedula);
-                $('#usuario-' + idMedico).html(usuario);
             }
         });
     });
@@ -470,7 +463,7 @@ $(document).ready(function () {
 
     });
 
-    //GUARDA EL MEDICO DESDE EL MODAL
+    //GUARDA LA NAVEGADORA DESDE EL MODAL
     $('#btn-guardarNavegadora').on('click', function () {
 
         var idNavegadora = $('#idNavegadora');
