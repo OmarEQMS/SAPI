@@ -344,15 +344,17 @@
                                                 <div class="input-group-text"><i class="fas fa-user"></i></div>
                                             </div>
                                             <input type="text" class="form-control" id="agregar-nombreMedico" placeholder="Nombre">
+                                            <span class="text-danger" id="errorNombreMedico">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 255 caracteres.</span>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text"><i class="fas fa-phone"></i></div>
-                                            </div>
+                                            </div> 
                                             <input type="text" class="form-control" id="agregar-telefonoMedico" placeholder="Teléfono">
                                         </div>
+                                        <span class="text-danger" id="errorTelefonoMedico">Formato incorrecto, deben ser 10 dígitos.</span>
                                     </div>
                                 </div>
 
@@ -364,6 +366,7 @@
                                             </div>
                                             <input type="text" class="form-control" id="agregar-primerApellidoMedico"
                                                    placeholder="Primer Apellido">
+                                            <span class="text-danger" id="errorApellidoPaternoMedico">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                         </div>
                                     </div>
 
@@ -374,6 +377,7 @@
                                             </div>
                                             <input type="text" class="form-control" id="agregar-segundoApellidoMedico"
                                                    placeholder="Segundo Apellido">
+                                            <span class="text-danger" id="errorApellidoMaternoMedico">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                         </div>
                                     </div>
                                 </div>
@@ -386,6 +390,8 @@
                                             </div>
                                             <input type="text" class="form-control" id="agregar-correoMedico" placeholder="Correo">
                                         </div>
+                                        <span class="text-danger" id="errorCorreoMedico">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
+                                        <span class="text-warning" id="errorCorreoRepetido">El correo ya existe.</span>
                                     </div>
 
                                     <div class="col-6">
@@ -393,9 +399,9 @@
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text"><i class="fab fa-slack-hash"></i></div>
                                             </div>
-                                            <input type="text" class="form-control" id="agregar-noEmpleadoMedico"
-                                                   placeholder="No. empleado">
+                                            <input type="text" class="form-control" id="agregar-noEmpleadoMedico" placeholder="No. empleado">
                                         </div>
+                                        <span class="text-danger" id="errorNumEmpleado">Formato incorrecto, deben ser 6 dígitos.</span>
                                     </div>
                                 </div>
 
@@ -430,6 +436,7 @@
                                             </div>
                                             <input type="text" class="form-control" id="agregar-cedulaMedico" placeholder="Cédula Profesional">
                                         </div>
+                                        <span class="text-danger" id="errorCedulaMedicos">Formato incorrecto, deben ser 7 dígitos.</span>
                                     </div>
                                 </div>
 
@@ -439,7 +446,8 @@
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text"><i class="fas fa-lock"></i></div>
                                             </div>
-                                            <input type="text" class="form-control" id="agregar-passwordMedico" placeholder="Contraseña">
+                                            <input type="password" class="form-control" id="agregar-passwordMedico" placeholder="Contraseña">
+                                            <span class="text-danger" id="errorPass1Medico">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -447,9 +455,10 @@
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text"><i class="fas fa-lock"></i></div>
                                             </div>
-                                            <input type="text" class="form-control" id="agregar-password2Medico"
+                                            <input type="password" class="form-control" id="agregar-password2Medico"
                                                    placeholder="Confirmar contraseña">
                                         </div>
+                                        <span class="text-warning" id="noEqualPasswordsError">Las contraseñas no son iguales.</span>
                                     </div>
                                 </div>
 
@@ -462,17 +471,28 @@
                                 <div class="form-group row justify-content-center">
                                     <div class="col-12 text-center">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="autoSizingCheck2">
+                                            <input class="form-check-input" type="checkbox" id="terminosMedico">
                                             <label class="form-check-label" for="autoSizingCheck2">
                                                 El médico está informado y aceptó los términos y condiciones
                                             </label>
                                         </div>
+                                        <span class="text-danger" id="errorTerminos">Se deben aceptar términos y condiciones.</span>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3" id="error-campos">
+                                    <div class="col-12 text-center">
+                                        <span class="text-danger">Completa todos los campos para registrar tu cuenta. </span>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3" id="error-datosRepetidos">
+                                    <div class="col-12 text-center">
+                                        <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>
                                     </div>
                                 </div>
 
                             </div>
-
-
                             <div class="modal-footer">
                                 <button type="button" style="border-radius:20px" class="btn btn-danger clearAddMedicosModal" data-dismiss="modal">Cancelar</button>
                                 <button id="btn-agregarMedico" type="button" style="border-radius:20px" class="btn btn-primary">Agregar médico</button>
