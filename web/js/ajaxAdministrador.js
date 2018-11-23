@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
 
+    //Errores al agregar a un médico
     $('#errorNombreMedico').hide();
     $('#errorTelefonoMedico').hide();
     $('#errorApellidoPaternoMedico').hide();
@@ -14,6 +15,24 @@ $(document).ready(function () {
     $('#error-campos').hide();
     $('#error-datosRepetidos').hide();
     $('#errorTerminos').hide();
+
+    $('#errorAgregarEspecialidad').hide();
+    $('#errorAgregarPosicion').hide();
+
+    //Errores al editar a un médico
+    $('#errorEditarNombreMedico').hide();
+    $('#errorEditarTelefonoMedico').hide();
+    $('#errorEditarApellidoPaternoMedico').hide();
+    $('#errorEditarApellidoMaternoMedico').hide();
+    $('#errorEditarCorreoMedico').hide();
+    $('#errorEditarCorreoRepetido').hide();
+    $('#errorEditarNumEmpleado').hide();
+    $('#errorEditarCedulaMedicos').hide();
+    $('#error-editarDatosRepetidos').hide();
+    $('#errorEditarEspecialidad').hide();
+    //$('#errorEditarPosicion').hide(); SHANNON
+    
+
 
     //Errores al agregar a un paciente
     $('#errorNombrePaciente').hide();
@@ -38,6 +57,8 @@ $(document).ready(function () {
     $('#error-CPexistePaciente').hide();
     $('#errorCodigoPostalPaciente').hide();
     $('#noEqualPasswordsErrorPaciente').hide();
+
+
 
     var repiteCorreo;
 
@@ -82,6 +103,60 @@ $(document).ready(function () {
         }
 
     });
+
+    //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
+    $('#agregar-especialidadMedico').on('change', function () {
+
+        if (isValidEspecialidad($(this))) {
+            $('#errorAgregarEspecialidad').hide();
+        } else if ($(this).val() == '') {
+            $('#errorAgregarEspecialidad').hide();
+        } else {
+            $('#errorAgregarEspecialidad').show();
+        }
+
+    });
+    
+    //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
+    $('#editar-especialidadMedico').on('change', function () {
+
+        if (isValidEspecialidad($(this))) {
+            $('#errorEditarEspecialidad').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarEspecialidad').hide();
+        } else {
+            $('#errorEditarEspecialidad').show();
+        }
+
+    });
+
+    //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
+    $('#agregar-posiciondMedico').on('change', function () {
+
+        if (isValidPosicion($(this))) {
+            $('#errorAgregarPosicion').hide();
+        } else if ($(this).val() == '') {
+            $('#errorAgregarPosicion').hide();
+        } else {
+            $('#errorAgregarPosicion').show();
+        }
+
+    });
+    
+    /* SHANNON
+    
+    //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
+    $('#editar-posiciondMedico').on('change', function () {
+
+        if (isValidPosicion($(this))) {
+            $('#errorEditarPosicion').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarPosicion').hide();
+        } else {
+            $('#errorEditarPosicion').show();
+        }
+
+    }); */
 
     //NOMBRE EN AGREGAR MÉDICO
     $('#agregar-nombreMedico').on('change', function () {
@@ -153,17 +228,6 @@ $(document).ready(function () {
             $('#errorTerminos').show();
         }
     });
-
-    /*ESTADO CIVIL EN EL REGISTRO
-     $('#estadoCivil').on('change', function () {
-     
-     if (isValidSelect($(this))) {
-     $('#errorECivil').hide();
-     } else {
-     $('#errorECivil').show();
-     }
-     
-     });*/
 
     $('#agregar-correoMedico').on('change', function () {
         $.ajax({
@@ -463,68 +527,205 @@ $(document).ready(function () {
     //////////////////////////////////////////////////////
     /**AGREGAR MEDICO */
     $('#btn-agregarMedico').on('click', function () {
+        configureLoadingScreen($('.cargandoAgregarMedico'));
+        if (!repiteCorreo) {
 
-        var nombre = $('#agregar-nombreMedico');
-        var telefono = $('#agregar-telefonoMedico');
-        var primerApellido = $('#agregar-primerApellidoMedico');
-        var segundoApellido = $('#agregar-segundoApellidoMedico');
-        var correo = $('#agregar-correoMedico');
-        var noEmpleado = $('#agregar-noEmpleadoMedico');
-        var especialidad = $('#agregar-especialidadMedico');
-        var posicion = $('#agregar-posiciondMedico');
-        var cedula = $('#agregar-cedulaMedico');
-        var password = $('#agregar-passwordMedico');
+            $("#error-datosRepetidos").hide();
 
+            if (isValidName($('#agregar-nombreMedico')) && isValidLastName($('#agregar-primerApellidoMedico')) && isValidLastName($('#agregar-segundoApellidoMedico'))
+                    && isValidNumEmpleado($('#agregar-noEmpleadoMedico')) && isValidEmail($('#agregar-correoMedico')) && isValidPassword($('#agregar-passwordMedico')) && isValidCedula($('#agregar-cedulaMedico'))
+                    && isValidPhoneNumber($('#agregar-telefonoMedico')) && isValidCheckbox($('#terminosMedico')) && isValidEspecialidad($('#agregar-especialidadMedico')) && isValidPosicion($('#agregar-posiciondMedico'))
+                    && areEqualPasswords($('#agregar-passwordMedico'), $('#agregar-password2Medico'))
+                    && $('#errorCorreoRepetido').hide()) {
+
+                $("#error-campos").hide();
+
+                var nombre = $('#agregar-nombreMedico');
+                var telefono = $('#agregar-telefonoMedico');
+                var primerApellido = $('#agregar-primerApellidoMedico');
+                var segundoApellido = $('#agregar-segundoApellidoMedico');
+                var correo = $('#agregar-correoMedico');
+                var noEmpleado = $('#agregar-noEmpleadoMedico');
+                var especialidad = $('#agregar-especialidadMedico');
+                var posicion = $('#agregar-posiciondMedico');
+                var cedula = $('#agregar-cedulaMedico');
+                var password = $('#agregar-passwordMedico');
+
+                $.ajax({
+
+                    url: 'RegistraUsuarioController',
+                    cache: false,
+                    method: 'POST',
+                    data: {
+                        key: 'agregarMedico',
+                        nombre: nombre.val(),
+                        primerApellido: primerApellido.val(),
+                        segundoApellido: segundoApellido.val(),
+                        telefono: telefono.val(),
+                        correo: correo.val(),
+                        noEmpleado: noEmpleado.val(),
+                        especialidad: especialidad.val(),
+                        posicion: posicion.val(),
+                        cedula: cedula.val(),
+                        password: password.val()
+                    },
+                    success: function (response) {
+
+                        console.log(response);
+                        swal({
+                            title: "¡Buen trabajo!",
+                            text: "Se ha agregado correctamente al médico.",
+                            icon: "success",
+                            buttons: [, 'Aceptar'],
+                        });
+
+                        //Limpiar los campos después de registrarse 
+
+                        $("#agregar-nombreMedico").val("");
+                        $("#agregar-telefonoMedico").val("");
+                        $("#agregar-primerApellidoMedico").val("");
+                        $("#agregar-segundoApellidoMedico").val("");
+                        $("#agregar-correoMedico").val("");
+                        $("#agregar-noEmpleadoMedico").val("");
+                        $("#agregar-especialidadMedico").val("");
+                        $("#agregar-posiciondMedico").val("");
+                        $("#agregar-cedulaMedico").val("");
+                        $("#agregar-passwordMedico").val("");
+                        $("#agregar-password2Medico").val("");
+
+                        //Cerrar el modal
+                        $('#modalAgregarMedico').modal('toggle');
+                    }
+                })
+                        .done(function (response) {
+
+
+                        });
+            } else {
+                console.log("Entro al segundo else");
+                $("#error-campos").show(); //No se llenaron los campos obligatorios
+            }
+        } else {
+            console.log("Entro al segundo else");
+            $("#error-datosRepetidos").show(); //ya existe un campo
+        }
+    });
+
+    ////////////////////////////////////////////////////////////// VALIDACIONES EDITAR UN MÉDICO
+
+    //TELEFONO EN EDITAR MÉDICO
+    $('#editar-telefonoMedico').on('change', function () {
+
+        if (isValidPhoneNumber($(this))) {
+            $('#errorEditarTelefonoMedico').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarTelefonoMedico').hide();
+        } else {
+            $('#errorEditarTelefonoMedico').show();
+        }
+
+    });
+
+    //CÉDULA PROFESIONAL EN EDITAR MÉDICO
+    $('#editar-cedulaProfesionalMedico').on('change', function () {
+
+        if (isValidCedula($(this))) {
+            $('#errorEditarCedulaMedicos').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarCedulaMedicos').hide();
+        } else {
+            $('#errorEditarCedulaMedicos').show();
+        }
+
+    });
+
+    //NÚMERO DE EMPLEADO EN EDITAR MÉDICO
+    $('#editar-noEmpleadoMedico').on('change', function () {
+
+        if (isValidNumEmpleado($(this))) {
+            $('#errorEditarNumEmpleado').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarNumEmpleado').hide();
+        } else {
+            $('#errorEditarNumEmpleado').show();
+        }
+
+    });
+
+    //NOMBRE EN EDITAR MÉDICO
+    $('#editar-nombreMedico').on('change', function () {
+
+        if (isValidName($(this))) {
+            $('#errorEditarNombreMedico').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarNombreMedico').hide();
+        } else {
+            $('#errorEditarNombreMedico').show();
+        }
+    });
+
+    //PRIMER APELLIDO EN EDITAR MÉDICO
+    $('#editar-primerApellidoMedico').on('change', function () {
+
+        if (isValidLastName($(this))) {
+            $('#errorEditarApellidoPaternoMedico').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarApellidoPaternoMedico').hide();
+        } else {
+            $('#errorEditarApellidoPaternoMedico').show();
+        }
+
+    });
+
+    //SEGUNDO APELLIDO EN EDITAR MÉDICO
+    $('#editar-segundoApellidoMedico').on('change', function () {
+
+        if (isValidLastName($(this))) {
+            $('#errorEditarApellidoMaternoMedico').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarApellidoMaternoMedico').hide();
+        } else {
+            $('#errorEditarApellidoMaternoMedico').show();
+        }
+
+    });
+
+    $('#editar-correoMedico').on('change', function () {
         $.ajax({
 
             url: 'RegistraUsuarioController',
             cache: false,
             method: 'POST',
             data: {
-                key: 'agregarMedico',
-                nombre: nombre.val(),
-                primerApellido: primerApellido.val(),
-                segundoApellido: segundoApellido.val(),
-                telefono: telefono.val(),
-                correo: correo.val(),
-                noEmpleado: noEmpleado.val(),
-                especialidad: especialidad.val(),
-                posicion: posicion.val(),
-                cedula: cedula.val(),
-                password: password.val()
+
+                key: "repiteCorreo",
+                correo: $('#editar-correoMedico').val()
+
+
             },
             success: function (response) {
 
-                console.log(response);
-                swal({
-                    title: "¡Buen trabajo!",
-                    text: "Se ha agregado correctamente al médico.",
-                    icon: "success",
-                    buttons: [, 'Aceptar'],
-                });
+                if (response === 'CorreoAlreadyExists') {
+                    console.log("correo repetidooo")
+                    $('#editar-correoMedico').css('color', 'orange');
+                    $('#errorEditarCorreoRepetido').show();
+                    repiteCorreo = true;
+                } else {
+                    $('#errorEditarCorreoRepetido').hide();
+                    repiteCorreo = false;
+                }
 
-                //Limpiar los campos después de registrarse 
-
-                $("#agregar-nombreMedico").val("");
-                $("#agregar-telefonoMedico").val("");
-                $("#agregar-primerApellidoMedico").val("");
-                $("#agregar-segundoApellidoMedico").val("");
-                $("#agregar-correoMedico").val("");
-                $("#agregar-noEmpleadoMedico").val("");
-                $("#agregar-especialidadMedico").val("");
-                $("#agregar-posiciondMedico").val("");
-                $("#agregar-cedulaMedico").val("");
-                $("#agregar-passwordMedico").val("");
-                $("#agregar-password2Medico").val("");
-
-                //Cerrar el modal
-                $('#modalAgregarMedico').modal('toggle');
             }
-        })
-                .done(function (response) {
 
+        });
 
-                });
+        if (isValidEmail($(this))) {
+            $('#errorEditarCorreoMedico').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarCorreoMedico').hide();
+        } else {
+            $('#errorEditarCorreoMedico').show();
+        }
 
     });
 
@@ -563,12 +764,12 @@ $(document).ready(function () {
                 $('#editar-telefonoMedico').val(json.telefono);
                 $('#editar-noEmpleadoMedico').val(json.noEmpleado);
                 $('#editar-especialidadMedico').val(json.nombreEspecialidad);
+                //$('#editar-posicionMedico').val(json.nombrePosicion); SHANNON
                 $('#editar-cedulaProfesionalMedico').val(json.cedulaProfesional);
 
             }
 
         });
-
     });
 
     $('#irAInicioAdministrador').on('click', function () {
@@ -774,65 +975,80 @@ $(document).ready(function () {
     //GUARDA EL MEDICO DESDE EL MODAL
     $('#btn-guardarMedico').on('click', function () {
 
-        var idMedico = $('#idMedico').val();
-        var nombre = $('#editar-nombreMedico').val();
-        var telefono = $('#editar-telefonoMedico').val();
-        var primerApellido = $('#editar-primerApellidoMedico').val();
-        var segundoApellido = $('#editar-segundoApellidoMedico').val();
-        var correo = $('#editar-correoMedico').val();
-        var noEmpleado = $('#editar-noEmpleadoMedico').val();
-        var especialidad = $('#editar-especialidadMedico').val();
-        var cedula = $('#editar-cedulaProfesionalMedico').val();
+        if (!repiteCorreo) {
+            $("#error-editarDatosRepetidos").hide();
 
-        console.log("idMédicoooo " + idMedico);
-        console.log("nombre " + nombre);
-        console.log("phone " + telefono);
-        console.log("ape 1 " + primerApellido);
-        console.log("ape 2 " + segundoApellido);
-        console.log("mail " + correo);
-        console.log("empleado no " + noEmpleado);
-        console.log("especiliad  " + especialidad);
-        console.log("cedula " + cedula);
+            if (isValidName($('#editar-nombreMedico')) && isValidLastName($('#editar-primerApellidoMedico')) && isValidLastName($('#editar-segundoApellidoMedico'))
+                    && isValidNumEmpleado($('#editar-noEmpleadoMedico')) && isValidEmail($('#editar-correoMedico')) && isValidCedula($('#editar-cedulaProfesionalMedico'))
+                    && isValidPhoneNumber($('#editar-telefonoMedico')) && isValidEspecialidad($('#editar-especialidadMedico')) /*&& isValidPosicion($('#editar-posicionMedico'))*/
+                    && $('#errorCorreoRepetido').hide()) {
+                
+                var idMedico = $('#idMedico').val();
+                var nombre = $('#editar-nombreMedico').val();
+                var telefono = $('#editar-telefonoMedico').val();
+                var primerApellido = $('#editar-primerApellidoMedico').val();
+                var segundoApellido = $('#editar-segundoApellidoMedico').val();
+                var correo = $('#editar-correoMedico').val();
+                var noEmpleado = $('#editar-noEmpleadoMedico').val();
+                var especialidad = $('#editar-especialidadMedico').val();
+                var cedula = $('#editar-cedulaProfesionalMedico').val();
+
+                console.log("idMédicoooo " + idMedico);
+                console.log("nombre " + nombre);
+                console.log("phone " + telefono);
+                console.log("ape 1 " + primerApellido);
+                console.log("ape 2 " + segundoApellido);
+                console.log("mail " + correo);
+                console.log("empleado no " + noEmpleado);
+                console.log("especiliad  " + especialidad);
+                console.log("cedula " + cedula);
 
 
-        console.log("Holi, hará el ajax");
+                console.log("Holi, hará el ajax");
 
-        $.ajax({
+                $.ajax({
 
-            url: 'AdministradorController',
-            cache: false,
-            method: 'POST',
-            data: {
-                key: 'actualizar-medico',
-                idMedico: idMedico,
-                nombre: nombre,
-                telefono: telefono,
-                primerApellido: primerApellido,
-                segundoApellido: segundoApellido,
-                correo: correo,
-                noEmpleado: noEmpleado,
-                especialidad: especialidad,
-                cedula: cedula
-            },
-            success: function (response) {
-                $('#modalEditarMedico').modal('toggle'); //cerrar modal
-                console.log("Cierra el modal");
-                swal({
-                    title: "Cambios guardados correctamente",
-                    icon: "success",
-                    buttons: true,
-                    buttons: [, 'Aceptar']
+                    url: 'AdministradorController',
+                    cache: false,
+                    method: 'POST',
+                    data: {
+                        key: 'actualizar-medico',
+                        idMedico: idMedico,
+                        nombre: nombre,
+                        telefono: telefono,
+                        primerApellido: primerApellido,
+                        segundoApellido: segundoApellido,
+                        correo: correo,
+                        noEmpleado: noEmpleado,
+                        especialidad: especialidad,
+                        cedula: cedula
+                    },
+                    success: function (response) {
+                        $('#modalEditarMedico').modal('toggle'); //cerrar modal
+                        console.log("Cierra el modal");
+                        swal({
+                            title: "Cambios guardados correctamente",
+                            icon: "success",
+                            buttons: true,
+                            buttons: [, 'Aceptar']
+                        });
+                        console.log("ESTOY EN EL SUCCESS!! :o");
+                        $('#nombre-' + idMedico).html(nombre + " " + primerApellido + " " + segundoApellido);
+                        $('#correo-' + idMedico).html(correo);
+                        $('#telefono-' + idMedico).html(telefono);
+                        $('#noEmpleado-' + idMedico).html(noEmpleado);
+                        $('#nombreEspecialidad-' + idMedico).html(especialidad);
+                        $('#cedulaProfesional-' + idMedico).html(cedula);
+                    }
+
                 });
-                console.log("ESTOY EN EL SUCCESS!! :o");
-                $('#nombre-' + idMedico).html(nombre + " " + primerApellido + " " + segundoApellido);
-                $('#correo-' + idMedico).html(correo);
-                $('#telefono-' + idMedico).html(telefono);
-                $('#noEmpleado-' + idMedico).html(noEmpleado);
-                $('#nombreEspecialidad-' + idMedico).html(especialidad);
-                $('#cedulaProfesional-' + idMedico).html(cedula);
-            }
 
-        });
+            }
+        } else {
+            console.log("Entro al segundo else");
+            $("#error-datosRepetidos").show(); //ya existe un campo
+        }
+
     });
 
     /** ELIMINAR MEDICO */
@@ -1211,18 +1427,12 @@ $(document).ready(function () {
                             success: function (response) {
 
                             }
-
-
                         });
 
                     } else {
 
                     }
                 });
-
-
-
-
     });
 
     //AUTOCOMPLETAR Especialidades
@@ -1295,7 +1505,7 @@ $(document).ready(function () {
 
         return true;
     }
-    
+
     function isValidIntNumber(input) {
 
         var m = input.val();
@@ -1337,7 +1547,6 @@ $(document).ready(function () {
 
         return true;
 
-
     }
 
     function areEqualPasswords(pass1, pass2) {
@@ -1362,6 +1571,46 @@ $(document).ready(function () {
     }
 
     function isValidName(input) {
+
+        var m = input.val();
+
+        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+
+    function isValidPosicion(input) {
+
+        var m = input.val();
+
+        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+
+    function isValidEspecialidad(input) {
 
         var m = input.val();
 
@@ -1460,7 +1709,7 @@ $(document).ready(function () {
 
         return true;
     }
-    
+
     function isValidDate(input) {
 
         //Obtener fecha
@@ -1535,7 +1784,7 @@ $(document).ready(function () {
 
         return true;
     }
-    
+
     function isValidStreet(input) {
 
         var m = input.val();
@@ -1557,7 +1806,7 @@ $(document).ready(function () {
 
 
     }
-    
+
     function isValidColonia(input) {
 
         var m = input.val();
@@ -1629,3 +1878,13 @@ $(document).ready(function () {
         return false;
     }
 });
+
+function configureLoadingScreen(screen) {
+    $(document)
+            .ajaxStart(function () {
+                screen.fadeIn();
+            })
+            .ajaxStop(function () {
+                screen.fadeOut();
+            })
+}

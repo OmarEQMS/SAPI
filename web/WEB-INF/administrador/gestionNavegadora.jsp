@@ -39,6 +39,11 @@
     </head>
 
     <body>
+        
+        <div class="cargandoAgregarNavegadora" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Agregando la navegadora, por favor espere...</p>
+        </div>
 
         <div class="wrapper">
 
@@ -441,7 +446,9 @@
 
                                 <div class="form-group row justify-content-center">
                                     <div class="col-12 text-center">
-                                        <button type="button" class="btn btn-morado-solid mt-2" data-dismiss="modal">Imprimir los términos y condiciones</button>
+                                        <a href="documentos/Terminos-y-Condiciones-de-Venta.pdf" download>
+                                            <button type="button" class="btn btn-morado-solid mt-2" >Descargar los términos y condiciones</button>
+                                        </a>
                                     </div>
                                 </div>
 
