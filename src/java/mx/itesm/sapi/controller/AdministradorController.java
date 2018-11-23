@@ -135,16 +135,20 @@ public class AdministradorController extends HttpServlet {
                         boolean empleadoBoolean = empleadoServicioImpl.actualizarEmpleado(empleado);
                                                                         
                         
-                        if(medicoEspecialidadBoolean && personaBoolean && cuentaBoolean && empleadoBoolean)
+                        if(medicoEspecialidadBoolean || personaBoolean || cuentaBoolean || empleadoBoolean)
                         {
-                            out.print("1");
+                            System.out.println("Actualizado exitoso");
                         }
                         else
                         {
-                            out.print("0");
+                            System.out.println("MedicoEspecialidad: " + medicoEspecialidadBoolean);
+                            System.out.println("Persona: " + personaBoolean);
+                            System.out.println("Cuenta: " + cuentaBoolean);
+                            System.out.println("Empleado: " + empleadoBoolean);
+                            System.out.println("Actualizado no exitoso o, no se cambió nada");
                         }                        
-                        break;
                     }
+                    break;
                     case "obtener-navegadora":
                     {
                         int idNavegadora = Integer.valueOf(request.getParameter("idNavegadora"));

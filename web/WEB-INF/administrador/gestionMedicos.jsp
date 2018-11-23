@@ -189,13 +189,14 @@
                             
                             <c:forEach items="${ListaMedicosAdmistrador}" var="medico">
                             <tr>
-                                <td>${medico.nombre} ${medico.primerApellido} ${medico.segundoApellido}</td>                                
-                                <td>${medico.correo}</td>
-                                <td>${medico.telefono}</td>                                
-                                <td>${medico.noEmpleado}</td>
-                                <td>${medico.nombreEspecialidad}</td>                                
-                                <td>${medico.cedulaProfesional }</td>
-                                <td>${medico.usuario}</td>                                
+                                <td id="nombre-${medico.idEmpleado}" value="${medico.nombre}" > <c:out value="${medico.nombre} ${medico.primerApellido} ${medico.segundoApellido}"/> </td>
+                                <td id="correo-${medico.idEmpleado}" value="${medico.correo}" > <c:out value="${medico.correo}"/> </td>
+                                <td id="telefono-${medico.idEmpleado}" value="${medico.telefono}" > <c:out value="${medico.telefono}"/> </td>                                
+                                <td id="noEmpleado-${medico.idEmpleado}" value="${medico.noEmpleado}" > <c:out value="${medico.noEmpleado}"/> </td>                                                        
+                                <td id="nombreEspecialidad-${medico.idEmpleado}" value="${medico.nombreEspecialidad}" > <c:out value="${medico.nombreEspecialidad}"/> </td>                                
+                                <td id="cedulaProfesional-${medico.idEmpleado}" value="${medico.cedulaProfesional}" > <c:out value="${medico.cedulaProfesional}"/> </td>
+                                <td id="usuario-${medico.idEmpleado}" value="${medico.usuario}" > <c:out value="${medico.usuario}"/> </td>
+                                
                                 <td>
                                     <button class="btn btn-primary btn-editarMedico" data-toggle="modal" data-id="${medico.idEmpleado}" data-target="#modalEditarMedico"><i
                                             class="fas fa-edit"></i></button>
@@ -361,7 +362,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" style="border-radius:20px" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                            <button id="btn-guardarMedico" type="button" style="border-radius:20px" class="btn btn-primary" data-dismiss="modal">Guardar
+                            <button id="btn-guardarMedico" type="button" style="border-radius:20px" class="btn btn-primary">Guardar
                                 Cambios
                             </button>
                         </div>
