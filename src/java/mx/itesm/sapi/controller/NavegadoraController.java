@@ -54,6 +54,7 @@ import mx.itesm.sapi.bean.diagnostico.EstadiajeTNM;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
 import mx.itesm.sapi.bean.gestionPaciente.Biopsia;
 import mx.itesm.sapi.bean.gestionPaciente.BloqueParafina;
+import mx.itesm.sapi.bean.formulario.MFormularioGeneral;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
 import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
@@ -87,6 +88,7 @@ import mx.itesm.sapi.service.diagnostico.EstadiajeTNMServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.BiopsiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.BloqueParafinaServicioImpl;
+import mx.itesm.sapi.service.MFormularioGeneralServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
@@ -411,6 +413,18 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println(this.getClass().toString().concat(ex.getMessage()));
                             }
 
+                            break;
+                        }
+                        case "mostrarFormularioNavegadora":{
+                            int idPaciente = (int) sesion.getAttribute("idPaciente");
+                            MFormularioGeneralServicioImpl mFormularioGeneralServicioImpl = new MFormularioGeneralServicioImpl();
+                            List<MFormularioGeneral> formLTF = mFormularioGeneralServicioImpl.mostrarFormularioLugarTipoFecha(4, "Biopsia");                      
+                            List<MFormularioGeneral> formaFechaTipo = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(4, "");
+                            
+                            PrintWriter out = response.getWriter();
+
+                            Gson json = new Gson();
+                            out.print(json.toJson(formLTF));
                             break;
                         }
 

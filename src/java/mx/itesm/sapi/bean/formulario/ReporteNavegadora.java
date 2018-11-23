@@ -58,9 +58,6 @@ public class ReporteNavegadora {
     private int cantidadParafina;
     private String serieLaminillas;
     private int cantidadLaminillas ;
-    private String T;
-    private String N;
-    private String M;
     private Date fechaFin;
     private String decisionCosulta;
     private String socioeconomico;
@@ -68,16 +65,6 @@ public class ReporteNavegadora {
     private Date fechaLlamada;
     private String comentarioIncidencia;
     private String comentarioMedico;
-    private String etapaClinica;
-    private String masto;
-    private String ultra;
-    private String rp;
-    private String re;
-    private String her2;
-    private String fish;
-    private String ki67;
-    private String gradoH;
-    private String resultadoPatologiaPost;
     
     
     private String nombreEstudio;
@@ -90,7 +77,27 @@ public class ReporteNavegadora {
 
     @Override
     public String toString() {
-        return "MFormularioGeneral{" + "prz=" + prz + ", fechaNavegacion=" + fechaNavegacion + ", fechaConsulta=" + fechaConsulta + ", tipoPaciente=" + tipoPaciente + ", medicoAdscrito=" + medicoAdscrito + ", medicoRadiologo=" + medicoRadiologo + ", medicoResidente=" + medicoResidente + ", noAdscrito=" + noAdscrito + ", noRadiologo=" + noRadiologo + ", escolaridad=" + escolaridad + ", alergias=" + alergias + ", estadoHormonal=" + estadoHormonal + ", Seguro=" + Seguro + ", noSeguro=" + noSeguro + ", mastografiaPreINCAN=" + mastografiaPreINCAN + ", cirugiaFecha=" + cirugiaFecha + ", cirugiaTipo=" + cirugiaTipo + ", cirugiaComentario=" + cirugiaComentario + ", quimioterapiaFecha=" + quimioterapiaFecha + ", quimioterapiaCiclo=" + quimioterapiaCiclo + ", quimioterapiaComentario=" + quimioterapiaComentario + ", radioterapiaFecha=" + radioterapiaFecha + ", radioterapiaCiclo=" + radioterapiaCiclo + ", radioterapiaComentario=" + radioterapiaComentario + ", mastografiaBiradsNombre=" + mastografiaBiradsNombre + ", mastografiaBiradsFecha=" + mastografiaBiradsFecha + ", ultrasonidoBiradsNombre=" + ultrasonidoBiradsNombre + ", ultrasonidoBiradsFecha=" + ultrasonidoBiradsFecha + ", resultadoPatologia=" + resultadoPatologia + ", otroResultado=" + otroResultado + ", serieParafina=" + serieParafina + ", cantidadParafina=" + cantidadParafina + ", serieLaminillas=" + serieLaminillas + ", cantidadLaminillas=" + cantidadLaminillas + ", T=" + T + ", N=" + N + ", M=" + M + ", fechaFin=" + fechaFin + ", decisionCosulta=" + decisionCosulta + ", socioeconomico=" + socioeconomico + ", comentarioLLamada=" + comentarioLLamada + ", fechaLlamada=" + fechaLlamada + ", comentarioIncidencia=" + comentarioIncidencia + ", comentarioMedico=" + comentarioMedico + ", etapaClinica=" + etapaClinica + ", masto=" + masto + ", ultra=" + ultra + ", rp=" + rp + ", re=" + re + ", her2=" + her2 + ", fish=" + fish + ", ki67=" + ki67 + ", gradoH=" + gradoH + ", resultadoPatologiaPost=" + resultadoPatologiaPost + ", nombreEstudio=" + nombreEstudio + ", CitaProgramada=" + CitaProgramada + ", lugarCuerpo=" + lugarCuerpo + '}';
+        return "MFormularioGeneral{" + "prz=" + prz + ", fechaNavegacion=" + fechaNavegacion 
+                + ", fechaConsulta=" + fechaConsulta + ", tipoPaciente=" + tipoPaciente 
+                + ", medicoAdscrito=" + medicoAdscrito + ", medicoRadiologo=" + medicoRadiologo 
+                + ", medicoResidente=" + medicoResidente + ", noAdscrito=" + noAdscrito 
+                + ", noRadiologo=" + noRadiologo + ", escolaridad=" + escolaridad 
+                + ", alergias=" + alergias + ", estadoHormonal=" + estadoHormonal + ", Seguro=" + Seguro 
+                + ", noSeguro=" + noSeguro + ", mastografiaPreINCAN=" + mastografiaPreINCAN 
+                + ", cirugiaFecha=" + cirugiaFecha + ", cirugiaTipo=" + cirugiaTipo 
+                + ", cirugiaComentario=" + cirugiaComentario + ", quimioterapiaFecha=" + quimioterapiaFecha 
+                + ", quimioterapiaCiclo=" + quimioterapiaCiclo + ", quimioterapiaComentario=" + quimioterapiaComentario 
+                + ", radioterapiaFecha=" + radioterapiaFecha + ", radioterapiaCiclo=" + radioterapiaCiclo 
+                + ", radioterapiaComentario=" + radioterapiaComentario + ", mastografiaBiradsNombre=" + mastografiaBiradsNombre 
+                + ", mastografiaBiradsFecha=" + mastografiaBiradsFecha + ", ultrasonidoBiradsNombre=" + ultrasonidoBiradsNombre 
+                + ", ultrasonidoBiradsFecha=" + ultrasonidoBiradsFecha + ", resultadoPatologia=" + resultadoPatologia 
+                + ", otroResultado=" + otroResultado + ", serieParafina=" + serieParafina + ", cantidadParafina=" + cantidadParafina 
+                + ", serieLaminillas=" + serieLaminillas + ", cantidadLaminillas=" + cantidadLaminillas 
+                + ", fechaFin=" + fechaFin + ", decisionCosulta=" + decisionCosulta + ", socioeconomico=" + socioeconomico 
+                + ", comentarioLLamada=" + comentarioLLamada + ", fechaLlamada=" + fechaLlamada 
+                + ", comentarioIncidencia=" + comentarioIncidencia + ", comentarioMedico=" + comentarioMedico 
+                + ", nombreEstudio=" + nombreEstudio + ", CitaProgramada=" + CitaProgramada + ", lugarCuerpo=" + lugarCuerpo 
+                + '}';
     }
 
     public String getPrz() {
@@ -364,31 +371,6 @@ public class ReporteNavegadora {
     public void setCantidadLaminillas(int cantidadLaminillas) {
         this.cantidadLaminillas = cantidadLaminillas;
     }
-
-    public String getT() {
-        return T;
-    }
-
-    public void setT(String T) {
-        this.T = T;
-    }
-
-    public String getN() {
-        return N;
-    }
-
-    public void setN(String N) {
-        this.N = N;
-    }
-
-    public String getM() {
-        return M;
-    }
-
-    public void setM(String M) {
-        this.M = M;
-    }
-
     public Date getFechaFin() {
         return fechaFin;
     }
@@ -444,87 +426,7 @@ public class ReporteNavegadora {
     public void setComentarioMedico(String comentarioMedico) {
         this.comentarioMedico = comentarioMedico;
     }
-
-    public String getEtapaClinica() {
-        return etapaClinica;
-    }
-
-    public void setEtapaClinica(String etapaClinica) {
-        this.etapaClinica = etapaClinica;
-    }
-
-    public String getMasto() {
-        return masto;
-    }
-
-    public void setMasto(String masto) {
-        this.masto = masto;
-    }
-
-    public String getUltra() {
-        return ultra;
-    }
-
-    public void setUltra(String ultra) {
-        this.ultra = ultra;
-    }
-
-    public String getRp() {
-        return rp;
-    }
-
-    public void setRp(String rp) {
-        this.rp = rp;
-    }
-
-    public String getRe() {
-        return re;
-    }
-
-    public void setRe(String re) {
-        this.re = re;
-    }
-
-    public String getHer2() {
-        return her2;
-    }
-
-    public void setHer2(String her2) {
-        this.her2 = her2;
-    }
-
-    public String getFish() {
-        return fish;
-    }
-
-    public void setFish(String fish) {
-        this.fish = fish;
-    }
-
-    public String getKi67() {
-        return ki67;
-    }
-
-    public void setKi67(String ki67) {
-        this.ki67 = ki67;
-    }
-
-    public String getGradoH() {
-        return gradoH;
-    }
-
-    public void setGradoH(String gradoH) {
-        this.gradoH = gradoH;
-    }
-
-    public String getResultadoPatologiaPost() {
-        return resultadoPatologiaPost;
-    }
-
-    public void setResultadoPatologiaPost(String resultadoPatologiaPost) {
-        this.resultadoPatologiaPost = resultadoPatologiaPost;
-    }
-
+    
     public String getNombreEstudio() {
         return nombreEstudio;
     }

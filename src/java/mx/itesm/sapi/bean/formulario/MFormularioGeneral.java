@@ -13,12 +13,14 @@ import java.sql.Date;
  * @author Angel GTZ
  */
 /**
- * public class MFormularioGeneral Clase para mostrar los datos de formulario que ya fueron llenados
+ * public class MFormularioGeneral Clase para mostrar los datos de formulario
+ * que ya fueron llenados
  */
 /**
  * Cada dato es una parte del Formulario dividida por el input
  */
-public class MFormularioGeneral  implements Serializable{
+public class MFormularioGeneral implements Serializable {
+
     private String prz;
     private Date fechaNavegacion;
     private Date fechaConsulta;
@@ -52,7 +54,7 @@ public class MFormularioGeneral  implements Serializable{
     private String serieParafina;
     private int cantidadParafina;
     private String serieLaminillas;
-    private int cantidadLaminillas ;
+    private int cantidadLaminillas;
     private String T;
     private String N;
     private String M;
@@ -73,22 +75,43 @@ public class MFormularioGeneral  implements Serializable{
     private String ki67;
     private String gradoH;
     private String resultadoPatologiaPost;
-    
-    
+
+
+    private int idCita;
     private String nombreEstudio;
     private Date CitaProgramada;
     private String lugarCuerpo;
-    
-    
-    public MFormularioGeneral(){
-        
+
+    public MFormularioGeneral() {
+
     }
 
     @Override
     public String toString() {
-        return "MFormularioGeneral{" + "prz=" + prz + ", fechaNavegacion=" + fechaNavegacion + ", fechaConsulta=" + fechaConsulta + ", tipoPaciente=" + tipoPaciente + ", medicoAdscrito=" + medicoAdscrito + ", medicoRadiologo=" + medicoRadiologo + ", medicoResidente=" + medicoResidente + ", noAdscrito=" + noAdscrito + ", noRadiologo=" + noRadiologo + ", escolaridad=" + escolaridad + ", alergias=" + alergias + ", estadoHormonal=" + estadoHormonal + ", Seguro=" + Seguro + ", noSeguro=" + noSeguro + ", mastografiaPreINCAN=" + mastografiaPreINCAN + ", cirugiaFecha=" + cirugiaFecha + ", cirugiaTipo=" + cirugiaTipo + ", cirugiaComentario=" + cirugiaComentario + ", quimioterapiaFecha=" + quimioterapiaFecha + ", quimioterapiaCiclo=" + quimioterapiaCiclo + ", quimioterapiaComentario=" + quimioterapiaComentario + ", radioterapiaFecha=" + radioterapiaFecha + ", radioterapiaCiclo=" + radioterapiaCiclo + ", radioterapiaComentario=" + radioterapiaComentario + ", mastografiaBiradsNombre=" + mastografiaBiradsNombre + ", mastografiaBiradsFecha=" + mastografiaBiradsFecha + ", ultrasonidoBiradsNombre=" + ultrasonidoBiradsNombre + ", ultrasonidoBiradsFecha=" + ultrasonidoBiradsFecha + ", resultadoPatologia=" + resultadoPatologia + ", otroResultado=" + otroResultado + ", serieParafina=" + serieParafina + ", cantidadParafina=" + cantidadParafina + ", serieLaminillas=" + serieLaminillas + ", cantidadLaminillas=" + cantidadLaminillas + ", T=" + T + ", N=" + N + ", M=" + M + ", fechaFin=" + fechaFin + ", decisionCosulta=" + decisionCosulta + ", socioeconomico=" + socioeconomico + ", comentarioLLamada=" + comentarioLLamada + ", fechaLlamada=" + fechaLlamada + ", comentarioIncidencia=" + comentarioIncidencia + ", comentarioMedico=" + comentarioMedico + ", etapaClinica=" + etapaClinica + ", masto=" + masto + ", ultra=" + ultra + ", rp=" + rp + ", re=" + re + ", her2=" + her2 + ", fish=" + fish + ", ki67=" + ki67 + ", gradoH=" + gradoH + ", resultadoPatologiaPost=" + resultadoPatologiaPost + ", nombreEstudio=" + nombreEstudio + ", CitaProgramada=" + CitaProgramada + ", lugarCuerpo=" + lugarCuerpo + '}';
+        return "MFormularioGeneral{" + "prz=" + prz + ", fechaNavegacion=" + fechaNavegacion + ", fechaConsulta=" + fechaConsulta + ", tipoPaciente=" + 
+                tipoPaciente + ", medicoAdscrito=" + medicoAdscrito + ", medicoRadiologo=" + medicoRadiologo + ", medicoResidente=" + medicoResidente + ", noAdscrito=" +
+                noAdscrito + ", noRadiologo=" + noRadiologo + ", escolaridad=" + escolaridad + ", alergias=" + alergias + ", estadoHormonal=" + estadoHormonal + ", Seguro=" + 
+                Seguro + ", noSeguro=" + noSeguro + ", mastografiaPreINCAN=" + mastografiaPreINCAN + ", cirugiaFecha=" + cirugiaFecha + ", cirugiaTipo=" + 
+                cirugiaTipo + ", cirugiaComentario=" + cirugiaComentario + ", quimioterapiaFecha=" + quimioterapiaFecha + ", quimioterapiaCiclo=" + 
+                quimioterapiaCiclo + ", quimioterapiaComentario=" + quimioterapiaComentario + ", radioterapiaFecha=" + radioterapiaFecha + ", radioterapiaCiclo=" + 
+                radioterapiaCiclo + ", radioterapiaComentario=" + radioterapiaComentario + ", mastografiaBiradsNombre=" + mastografiaBiradsNombre + ", mastografiaBiradsFecha=" + 
+                mastografiaBiradsFecha + ", ultrasonidoBiradsNombre=" + ultrasonidoBiradsNombre + ", ultrasonidoBiradsFecha=" + ultrasonidoBiradsFecha + ", resultadoPatologia=" + 
+                resultadoPatologia + ", otroResultado=" + otroResultado + ", serieParafina=" + serieParafina + ", cantidadParafina=" + cantidadParafina + ", serieLaminillas=" + 
+                serieLaminillas + ", cantidadLaminillas=" + cantidadLaminillas + ", T=" + T + ", N=" + N + ", M=" + M + ", fechaFin=" + fechaFin + ", decisionCosulta=" + 
+                decisionCosulta + ", socioeconomico=" + socioeconomico + ", comentarioLLamada=" + comentarioLLamada + ", fechaLlamada=" + fechaLlamada + ", comentarioIncidencia=" + 
+                comentarioIncidencia + ", comentarioMedico=" + comentarioMedico + ", etapaClinica=" + etapaClinica + ", masto=" + masto + ", ultra=" + ultra + ", rp=" + rp + ", re=" + 
+                re + ", her2=" + her2 + ", fish=" + fish + ", ki67=" + ki67 + ", gradoH=" + gradoH + ", resultadoPatologiaPost=" + resultadoPatologiaPost + idCita + ", idCita " +
+                ", nombreEstudio=" + nombreEstudio + ", CitaProgramada=" + CitaProgramada + ", lugarCuerpo=" + lugarCuerpo + '}';
     }
 
+    
+    public int getIdCita() {
+        return idCita;
+    }
+
+    public void setIdCita(int idCita) {
+        this.idCita = idCita;
+    }
     public String getPrz() {
         return prz;
     }
@@ -544,8 +567,5 @@ public class MFormularioGeneral  implements Serializable{
     public void setLugarCuerpo(String lugarCuerpo) {
         this.lugarCuerpo = lugarCuerpo;
     }
-    
-    
-    
-}
 
+}

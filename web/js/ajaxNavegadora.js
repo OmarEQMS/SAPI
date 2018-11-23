@@ -2244,6 +2244,33 @@ $(document).ready(function () {
         });
 
     });
+    
+    var data =new FormData();
+    data.append("key","mostrarFormularioNavegadora");
+    
+     $.ajax({
+            url: "NavegadoraController",
+            method: "POST",
+            data: data,
+            enctype: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response == "success") {
+                    console.log("si lelegamos");
+                                        console.log(response);
+
+                } else {
+                    console.log("Algo pasó no llegamos" + response);
+                }
+            },
+            error: function (request, status, error) {
+                console.log("Enviar datos Error " + request.responseText);
+                console.log("Enviar datos Error status " + status);
+                console.log("Enviar datos Error error" + error);
+                //alert("No enontre el controlador" + status);                               
+            }
+        });
 
 });
 
