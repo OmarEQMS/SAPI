@@ -130,9 +130,14 @@ public class RecuperarController extends HttpServlet {
                     //String mail = "tucorreo@mail.com";
                     //String contrasena = "tucontrasena";
                     MimeBodyPart mimeBodyPart = new MimeBodyPart();
-                    mimeBodyPart.setContent("<b>Estimada(o) usuario, usted ha solicitado Recuperar su Contraseña</b></br>".
-                            concat("<b>Su token para iniciar sesion es:  ").
-                            concat(token).concat("<br>Por favor siga las instrucciones para poder cambiar su contraseña</br>"), "text/html");
+                    mimeBodyPart.setContent("<b>Estimada(o) usuario, usted ha solicitado Recuperar su cuenta.</b></br>".
+                            concat("<b>Su código de recuperación (token) para recuperar su cuenta es:  ").
+                            concat(token)
+                            .concat("<br>. Por favor siga estas instrucciones para poder cambiar su contraseña:</br>")
+                            .concat("1) Ingresé con su usuario normal en la pantalla de iniciar sesión.")
+                            .concat("2) Coloqué en el sitio de contraseña el token que se ha adjuntado en este correo.")
+                            .concat("3) Será redirigido a una pantalla para cambiar su contraseña anterior por una nueva.")
+                            .concat("4) Inicie sesión con su usuario normal y su nueva contraseña."), "text/html");
 
                     Multipart multipart = new MimeMultipart();
                     multipart.addBodyPart(mimeBodyPart);

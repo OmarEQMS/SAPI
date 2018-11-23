@@ -1,87 +1,58 @@
 $(document).ready(function () {
 
-    //esconder mensajes de error
+//esconder mensajes de error
     $("#error-campos").hide();
     $('#error-contrasena').hide();
     $('#noEqualPasswordsError').hide();
     $('#errorCorreoRepetido').hide();
+    $('#error-imgPerfil').hide();
+
+    $("#error-datosRepetidos").hide();
+
+    var repiteCorreo;
+    var cambioImagen = false;
+    var imagenValida = false;
 
     //Recuperar edificio
     var edificio;
-
     $("input:radio[name=Edificios]").click(function () {
         edificio = $(this).val();
-
     });
-
     //Recupera ColoR
 
     $('input[type=radio][name=Edificios]').on('change', function () {
 
         console.log('Valor seleccionado de EDIFICIOS: ' + parseInt($(this).val()));
-
         if (parseInt($(this).val()) === 1) {
             $('#colorCita').val($('input:radio[name=Edificios]:checked').attr("data-color"));
             console.log($('#colorCita').val());
         }
 
     });
-
     $('input[type=radio][name=Pisos]').on('change', function () {
 
         console.log('Valor seleccionado de PISOS: ' + parseInt($(this).val()));
-
         $('#colorCita').val($('input:radio[name=Pisos]:checked').attr("data-color"));
-
         console.log($('#colorCita').val());
-
     });
-
     //Recuperar piso
     var piso = 0;
-
     $("input:radio[name=Pisos]").click(function () {
         piso = $(this).val();
     });
-
     $('#RegistrarCita_hora').on('change', function () {
 
         $('#fechaProgramada').val($('#fechaTemp').val() + ' ' + $(this).val() + ":00");
-
         console.log($('#fechaProgramada').val());
     });
-
     //Recupera Titulo
     $('#RegistrarCita_tipo').on('change', function () {
 
         $('#tituloCita').val($(this).find(':selected').data('nombre'));
-
         console.log($('#tituloCita').val());
-
     });
-
-
 //Agregar contenido dinamico de etapaClinica
 
-//Valor a inputs modal
-    $(".terminarTratamiento").on('click', function () {
-
-        if (response === "success") {
-
-            var newEvent = {
-
-            };
-
-            $('#calendarCitasPaciente').fullCalendar('renderEvent', newEvent);
-
-            swal({
-                title: "Buen Trabajo!",
-                text: "La cita se ha registrado correctamente!",
-                icon: "success",
-            });
-        }
-
-    });
 
 //REGISTRAR CITA
     $('#btn-citaRegistrar').on('click', () => {
@@ -93,7 +64,7 @@ $(document).ready(function () {
             if (parseInt($('input[name=Edificios]:checked').val()) == 1) {
                 esValid = true;
             } else {
-                //Validamos los pisos
+//Validamos los pisos
                 if (isValidRadioChecked($('input[name=Pisos]'))) {
                     esValid = true;
                     $("#error-campos").hide();
@@ -124,7 +95,6 @@ $(document).ready(function () {
                         .done(function (response) {
 
                             console.log(response);
-
                             if (response === "success") {
 
                                 $(".hora").val("");
@@ -134,7 +104,6 @@ $(document).ready(function () {
                                 $("#RegistrarCita_edificioNuevo").prop("checked", false);
                                 $('input[name=Pisos]').prop("checked", false);
                                 $('#pisosDiv').hide();
-
                                 var newEvent = {
 
                                     title: $('#tituloCita').val(),
@@ -143,23 +112,20 @@ $(document).ready(function () {
                                     textColor: 'white'
 
                                 };
-
                                 $('#calendarCitasPaciente').fullCalendar('renderEvent', newEvent);
-
                                 swal({
-                                    title: "Buen Trabajo!",
-                                    text: "La cita se ha registrado correctamente!",
+                                    title: "¡Buen Trabajo!",
+                                    text: "La cita se ha registrado correctamente.",
                                     icon: "success",
+                                    buttons:[,'Aceptar'],
                                 });
-
-
                                 $('#modalAgregarCita').modal('toggle');
-
                             } else {
                                 swal({
-                                    title: "Algo salió mal!",
-                                    text: "No se pudo registrar la cita, intentalo de nuevo!",
+                                    title: "Algo salió mal",
+                                    text: "No se pudo registrar la cita, intentalo de nuevo.",
                                     icon: "error",
+                                    buttons:[,'Aceptar'],
                                 });
                             }
 
@@ -171,17 +137,14 @@ $(document).ready(function () {
 
         } else {
             $("#error-campos").show();
-            //alert("SELECCIONA TODO -.-");
         }
 
-        //CERRAR MODAL
+//CERRAR MODAL
 
     });
-
     $('#feedbackEdAntiguo').hide();
     $('#feedbackEdTorre').hide();
     $('#pisosDiv').hide();
-
     $('#EdAntiguo').on('mouseover', function () {
         $('#feedbackEdAntiguo').show();
         $('#feedbackEdAntiguo').disabled = true;
@@ -203,7 +166,6 @@ $(document).ready(function () {
             $('#pisosDiv').show();
         }
     });
-
     //PARA IR A LA CUENTA
     $('.irACuenta').on('click', function () {
         $.get("SAPI", {
@@ -223,7 +185,6 @@ $(document).ready(function () {
                 }
         );
     });
-
     //PARA IR A INICIO PACIENTE
     $('#irAInicioPaciente').on('click', function () {
         $.post("SAPI", {
@@ -243,7 +204,6 @@ $(document).ready(function () {
                 }
         );
     });
-
     //PARA IR A mis Tratamientos
     $('#irATratamientos').on('click', function () {
         $.get("SAPI", {
@@ -263,7 +223,6 @@ $(document).ready(function () {
                 }
         );
     });
-
     //PARA IR A mis Citas
     $('#irMisCitas').on('click', function () {
         $.get("SAPI", {
@@ -283,7 +242,6 @@ $(document).ready(function () {
                 }
         );
     });
-
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
         console.log("Salir cuenta");
@@ -304,8 +262,6 @@ $(document).ready(function () {
                 }
         );
     });
-
-
     //Eliminar Cuenta
     $('#eliminarCuenta').on('click', function () {
 
@@ -315,7 +271,6 @@ $(document).ready(function () {
             icon: "warning",
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
-
         })
                 .then((eliminar) => {
                     if (eliminar) {
@@ -335,7 +290,6 @@ $(document).ready(function () {
                                     document.open("text/html", "replace");
                                     document.write(response);
                                     document.close();
-
                                 }
                             },
                             error: function (xhr) {
@@ -343,17 +297,11 @@ $(document).ready(function () {
                             }
 
                         });
-
-
                     } else {
 
                     }
                 });
-
-
-
     });
-
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta1').on('click', function () {
         console.log("Salir cuenta");
@@ -374,19 +322,17 @@ $(document).ready(function () {
                 }
         );
     });
-
-
     //
     function getValues(selector) {
         var els = document.querySelectorAll(selector);
         return [].map.call(els, el => el.value);
     }
-    
-    
-    $('#correo').on('change', function () {
-         $.ajax({
 
-            url: 'RegistraUsuarioController',
+
+    $('#correo').on('change', function () {
+        $.ajax({
+
+            url: 'PacienteController',
             cache: false,
             method: 'POST',
             data: {
@@ -402,8 +348,11 @@ $(document).ready(function () {
                     console.log("correo repetidooo")
                     $('#correo').css('color', 'orange');
                     $('#errorCorreoRepetido').show();
+                    repiteCorreo = true;
                 } else {
+                    $('#correo').css('color', '');
                     $('#errorCorreoRepetido').hide();
+                    repiteCorreo = false;
                 }
 
             }
@@ -411,122 +360,99 @@ $(document).ready(function () {
         });
 
         if (isValidEmail($(this))) {
-            $('#errorCorreo').hide();
+            $('#error-correo').hide();
         } else if ($(this).val() == '') {
-            $('#errorCorreo').hide();
+            $('#error-correo').hide();
         } else {
-            $('#errorCorreo').show();
+            $('#error-correo').show();
         }
 
     });
 
-    /*
-     //PARA GUARDAR CAMBIOS
-     $('#guardarCambios').on('click', function () {
-     
-     var data = [] = getValues('.dataTratamiento');
-     
-     // JSON.
-     // console.log(data);
-     
-     $.ajax({
-     url:'PacienteController',
-     cache:false,
-     method: 'POST',
-     data:{
-     key:"cambiarDatos",
-     correo : $("#correo").val(),
-     telefono : $("#telefono").val(),
-     noExpediente : $("#noExpediente").val(),
-     etapaClinica: $("#etapaClinica").val(),
-     tipoSangre: $("#tipoSangre").val(),
-     tratamientos : data
-     }
-     
-     })
-     
-     .done(function (response) {
-     console.log(response);
-     
-     
-     swal({
-     title: 'Buen Trabajo',
-     text: "Cambios guardados correctamente",
-     type: 'success',
-     confirmButtonColor: '#3085d6',
-     confirmButtonText: 'Ok'
-     }).then((result) => {
-     if (result.value) {
-     window.location.reload();
-     };
-     });
-     })
-     .fail(function (xhr, textStatus, errorThrown) {
-     console.log(xhr.responseText);
-     });
-     
-     
-     
-     });
-     */
-
-
     $('#guardarCambios').on('click', function () {
 
-        if (isValidEmail($("#correo")) &&
-                isValidPhoneNumber($("#telefono")) &&
-                isValidNoExpediente($("#noExpediente"))
-                ) {
+        var continuar = false;
 
+        if (cambioImagen) {
+            if (imagenValida)
+                continuar = true;
+            else
+                continuar = false;
+        } else {
+            continuar = true;
+        }
 
-            console.log("Presionó GuardarCambios")
-            var form = $("form")[0];
-            var data = new FormData(form);
-            data.append("key", "cambiarDatos");
-            data.forEach((value, key) => {
-                console.log(key + " " + value);
-            })
+        console.log("CambioImagen: " + cambioImagen);
+        console.log("imagenValida: " + imagenValida);
 
-            $.ajax({
-                url: "PacienteController",
-                data: data,
-                method: "POST",
-                encType: "multipart/form-data",
-                processData: false,
-                contentType: false,
-                cache: false,
-                success: function (response) {
-                    $.post("SAPI", {
-                        file: "paciente/cuenta.jsp"
-                    },
-                            function (response, status, xhr) {
-                                console.log("El ajax fue exitoso!!-----------------------");
-                                if (status == "success") {
-                                    if (response == "error") {
-                                        $("#msj-error").show();
-                                    } else {
-                                        document.open("text/html", "replace");
-                                        document.write(response);
-                                        document.close();
+        if (continuar)
+            console.log("Se actualizan cambios");
+        else
+            console.log("No se puede (imagenInVálida");
+        if (continuar) {
+            if (!repiteCorreo) {
+                $("#error-datosRepetidos").hide();
+                if (isValidEmail($("#correo")) &&
+                        isValidPhoneNumber($("#telefono")) &&
+                        isValidNoExpediente($("#noExpediente"))) {
 
+                    console.log("Presionó GuardarCambios")
+                    var form = $("form")[0];
+                    var data = new FormData(form);
+                    data.append("key", "cambiarDatos");
+                    data.forEach((value, key) => {
+                        console.log(key + " " + value);
+                    })
+                    configureLoadingScreen($('.loading-screenGuardar'));
+                    $.ajax({
+                        url: "PacienteController",
+                        data: data,
+                        method: "POST",
+                        encType: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        success: function (response) {
+                            $.post("SAPI", {
+                                file: "paciente/cuenta.jsp"
+                            },
+                                    function (response, status, xhr) {
+                                        console.log("El ajax fue exitoso!!-----------------------");
+                                        if (status == "success") {
+                                            if (response == "error") {
+                                                $("#msj-error").show();
+                                            } else {
+                                                document.open("text/html", "replace");
+                                                document.write(response);
+                                                document.close();
+                                            }
+                                        }
                                     }
-                                }
-                            }
-                    );
-                },
-                error: function (xhr) {
-                    //alert(xhr.statusText);
+                            );
+                        },
+                        error: function (xhr) {
+                            //alert(xhr.statusText);
+                        }
+                    });
+                } else {
+                    swal({
+                        title: "¡Datos inválidos!",
+                        text: "Revisa todos los campos antes de continuar",
+                        icon: "error",
+                    });
                 }
-            });
-
+            } else {
+                $("#error-datosRepetidos").show(); //ya existe un campo
+            }
         } else {
             swal({
-                title: "Datos invalidos!",
+                title: "¡Datos inválidos!",
                 text: "Revisa todos los campos antes de continuar",
                 icon: "error",
             });
         }
     });
+
 //Cambiar imagen temporalmente en elfront
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -541,15 +467,28 @@ $(document).ready(function () {
 
     $("#file-input").on('change', function () {
         console.log("Llegó :)");
-        readURL(this);
+        cambioImagen = true;
+        var tieneFoto = ($('#file-input').get(0).files.length === 0) ? false : true;
+        console.log("Tiene algo? " + tieneFoto)
+        if (validProfilePhoto($('#file-input'), document.querySelector('#file-input').files) || !tieneFoto) {
+            imagenValida = true;
+            $('#error-imgPerfil').hide();
+            readURL(this);
+        } else {
+            imagenValida = false;
+            $('#error-imgPerfil').show();
+        }
     });
+
     //Agregar tratamientos
     $("#btn-agregarTratamiento").on('click', function () {
 
         if ($("#tipoTratamiento").val() != "Elegir Tratamiento")
             console.log($("#tipoTratamiento").val());
 
-        if (isValidDate($('#fechaInicioTratamiento')) && $("#tipoTratamiento").val() != null) {
+        if (isValidDate($('#fechaInicioTratamiento'), $('.fechaNacimientoPaciente')) && $("#tipoTratamiento").val() != null) {
+
+            var fechaInicioTratamiento = $("#fechaInicioTratamiento").val();
 
             $.ajax({
                 url: 'PacienteController',
@@ -566,15 +505,22 @@ $(document).ready(function () {
                         console.log(response);
 
                         $('#modalAgregarTratamiento').modal('toggle'); //cerrar modal
+
                         swal({
                             title: "Tratamiento registrado correctamente",
                             icon: "success",
+                            buttons: true,
+                            buttons: [, 'Aceptar']
                         });
+
+                        console.log("FechaInicioTratamiento: " + $("#fechaInicioTratamiento").val());
+
+
                         var row = "<tr>" +
                                 "<input type='hidden' id='nombre-" + response + "' value='" + $("#nombreTipoTratamiento").val() + "'/>" +
                                 "<input type='hidden' id='fechaInicio-" + response + "' value='" + $("#fechaInicioTratamiento").val() + "'/>" +
-                                "<td id='nombre-" + response + "' value='" + $("#tipoTratamiento").val() + "' >" + $("#nombreTipoTratamiento").val() + "</td>" +
-                                "<td id='fechaInicio-" + response + "' value='" + $("#fechaInicioTratamiento").val() + "' >" + $("#fechaInicioTratamiento").val() + "</td>" +
+                                "<td id='nombre-" + response + "' >" + $("#nombreTipoTratamiento").val() + "</td>" +
+                                "<td id='fechaInicio-" + response + "' >" + fechaInicioTratamiento + "</td>" +
                                 "<td  id='fecha-" + response + "'>" + "</td>" +
                                 "<td><button class='btn btn-primary terminarTratamiento' id='modal-" + response + "' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button></td > " +
                                 "</tr>";
@@ -584,7 +530,7 @@ $(document).ready(function () {
 
                         $("#fechaInicioTratamiento").val('');
 
-                        $('#idTratamientoPaciente').val(response);
+                        //$('#idTratamientoPaciente').val(response);*/
 
                     })
                     .fail(function (xhr, textStatus, errorThrown) {
@@ -592,30 +538,29 @@ $(document).ready(function () {
                     });
         } else {
             swal({
-                title: "Datos invalidos!",
-                text: "Revisa todos los campos antes de continuar",
+                title: "Datos invalidos",
+                text: "Revisa todos los campos antes de continuar.",
                 icon: "error",
             });
         }
     });
-    //Cambiar contraseña
 
+    //Cambiar contraseña
     $("#btn-updatePassword").on('click', function () {
         if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
             //Modal cambiar contraseña 
             swal({
                 title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
-                text: "No podras volver a usar tu contraseña anterior para ingresar",
+                text: "No podrás volver a usar tu contraseña anterior para ingresar.",
                 icon: "warning",
                 buttons: true,
                 buttons: ['Regresar', 'Cambiar contraseña'],
                 dangerMode: true
             })
                     .then((cambiar) => {
+                        $("#password").val("");
+                        $("#password2").val("");
                         if (cambiar) {
-
-
-
                             $.ajax({
                                 url: "PotencialController",
                                 data: {
@@ -635,31 +580,34 @@ $(document).ready(function () {
                                 }
                             });
                             $('#modalCambiarContraseña').modal('toggle');
-
                         }
 
                     });
         }
     });
-
     $("#password").on('change', function () {
         if (isValidPassword($(this)))
             $("#error-contrasena").hide();
         else
             $("#error-contrasena").show();
     });
-
     $("#password2").on('change', function () {
         var pass1 = $('#password');
         var pass2 = $(this);
-
         areEqualPasswords(pass1, pass2);
     });
 
     //Terminar tratamiento
     $("#fechaTerminarTratamiento").on('click', function () {
+        var date_from = $('#fechaFinTratamiento').val();
+        var date_by = $('#fechaInicioTratamiento2').val();
+        console.log("#fechaFin: " + date_from);
+        console.log("#fechaInicio: " + date_by);
+        console.log("idTratamientoPaciente: " + $('.idTratamientoPaciente').val());
 
-        if (isValidDate2($('#fechaFinTratamiento'), $("#fechaInicio-" + $("#botonHidden").val()).val())) {
+        if (isValidDate2($('#fechaFinTratamiento'), $('#fechaInicioTratamiento2'))) {
+
+            var fechaFinTratamiento = $('#fechaFinTratamiento').val();
 
             $.ajax({
                 url: 'PacienteController',
@@ -667,23 +615,30 @@ $(document).ready(function () {
                 method: 'POST',
                 data: {
                     key: 'terminarTratamiento',
-                    idTratamientoPaciente: $('#idTratamientoPaciente').val(),
+                    idTratamientoPaciente: $('.idTratamientoPaciente').val(),
                     fechaFin: $('#fechaFinTratamiento').val()
                 }
             })
-
                     .done(function (response) {
 
                         $('#modalEditarTerminado').modal('toggle'); //cerrar modal
                         swal({
                             title: "Tratamiento finalizado",
                             icon: "success",
+                            buttons: true,
+                            buttons: [, 'Aceptar']
                         });
+
+
                         //actualizar la tabla
-                        $('#fecha-' + $('#idTratamientoPaciente').val()).html($('#fechaFinTratamiento').val());
+
+                        console.log("fechaFinTratamiento: " + $('#fechaFinTratamiento').val());
+
+                        $('#fecha-' + $('.idTratamientoPaciente').val()).html(fechaFinTratamiento);
+
                         $("#fechaFinTratamiento").val('');
 
-                        $("#modal-" + $("#botonHidden").val()).attr("disabled", "disabled").removeClass("btn-primary").addClass("btn-secondary");
+                        $("#modal-" + $('.idTratamientoPaciente').val()).attr("disabled", "disabled").removeClass("btn-primary").addClass("btn-secondary");
 
 
 
@@ -694,16 +649,24 @@ $(document).ready(function () {
 
         } else {
             swal({
-                title: "Datos invalidos!",
-                text: "Revisa todos los campos antes de continuar",
+                title: "Datos inválidos",
+                text: "Revisa todos los campos antes de continuar.",
                 icon: "error",
+                buttons: true,
+                buttons: [, 'Aceptar']
             });
         }
     });
     //Designar idTratamientoPaciente
-    $('body').on('click', '.terminarTratamiento', function () {
+    //$('body').on('click', '.terminarTratamiento', function () {
 
-        $('#idTratamientoPaciente').val($(this).data('id'));
+    $(".terminarTratamiento").on('click', function () {
+
+        $(".idTratamientoPaciente").val(
+                $("#boton-" + $(this).data('id')).val()
+                );
+
+        console.log("idTratamientoPacienteUnico: " + $(".idTratamientoPaciente").val());
 
         $("#botonHidden").val($(this).data('id'));
 
@@ -711,7 +674,6 @@ $(document).ready(function () {
 
         $("#tipoTratamiento2").val(
                 $("#nombre-" + $(this).data('id')).val()
-
                 );
         $("#fechaInicioTratamiento2").val(
                 $("#fechaInicio-" + $(this).data('id')).val()
@@ -719,91 +681,95 @@ $(document).ready(function () {
 
     });
 
+
     //Conseguir contenido del select
 
     $("#tipoTratamiento").on('change', function () {
         $('#nombreTipoTratamiento').val($('#tipoTratamiento option:selected').text());
         console.log($('#nombreTipoTratamiento').val());
     });
-
     function areEqualPasswords(pass1, pass2) {
 
         if (pass1.val() != pass2.val()) {
             pass2.css('border', '1px solid red');
             pass1.css('border', '1px solid red');
             $('#noEqualPasswordsError').show();
-
             return false;
-
         } else {
             pass2.css('border', '');
             pass1.css('border', '');
             $('#noEqualPasswordsError').hide();
-
         }
 
         return true;
+    }
+
+    function validProfilePhoto(input, archivos) {
+
+        for (let index = 0; index < archivos.length; index++) {
+
+            if (archivos[index]["type"] == "image/jpg" || archivos[index]["type"] == "image/png"
+                    || archivos[index]["type"] == "image/jpeg") {
+
+                console.log('si se puede' + archivos[index]["type"]);
+                input.css('border', '');
+                return true;
+
+
+            } else {
+                console.log('no se puede' + archivos[index]["type"]);
+                input.css('border', '1px solid red');
+            }
+
+        }
+
+        return false;
     }
 
     function isValidNoExpediente(input) {
 
         var m = input.val();
-
         var expreg = /^[a-zA-Z0-9]{9,9}$/;
-
-
         if (!expreg.test(m)) {
 
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
             input.css('border', '');
             input.css('color', '');
         }
 
         return true;
-
-
     }
     ;
-
     function isValidEmail(input) {
 
         var m = input.val();
-
         ////Expresion regular por el estandard: RFC 5322
-        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-
+        var expreg = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
         if (!expreg.test(m)) {
 
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
             input.css('border', '');
             input.css('color', '');
         }
 
         return true;
-
     }
     ;
-
     function isValidPhoneNumber(input) {
 
         var m = input.val();
-
         var expreg = /^[0-9]{10,10}$/;
-
         if (!expreg.test(m)) {
 
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
             input.css('border', '');
             input.css('color', '');
@@ -812,7 +778,6 @@ $(document).ready(function () {
         return true;
     }
     ;
-
     function isValidHour(input) {
 
         if (!input.val()) {
@@ -820,18 +785,14 @@ $(document).ready(function () {
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
             input.css('border', '');
             input.css('color', '');
         }
 
         return true;
-
-
     }
     ;
-
     function isValidSelect(input) {
 
         if (!input.val()) {
@@ -839,18 +800,14 @@ $(document).ready(function () {
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
             input.css('border', '');
             input.css('color', '');
         }
 
         return true;
-
-
     }
     ;
-
     function isValidRadioChecked(input) {
 
         if (!input.is(':checked')) {
@@ -862,7 +819,7 @@ $(document).ready(function () {
     }
     ;
 
-    function isValidDate(input) {
+    function isValidDate(input, fechaNac) {
 
         //Obtener fecha
         let today = new Date();
@@ -870,11 +827,27 @@ $(document).ready(function () {
         //Valor seleccionado del input
         let date_from = input.val();
         date_from = new Date(date_from);
-        var todayYear = today.getFullYear();
-        var inicioYear = date_from.getFullYear();
+
+        //Valor de la fecha de nacimiento
+        let date_born = fechaNac.val();
+        date_born = new Date(date_born);
+
+        var year = today.getFullYear();
+        var month = today.getMonth();
+        var day = today.getDate();
+        var futureDate = new Date(year, month + 2, day)
+
+        console.log("Hoy: " + today);
+        console.log("FechaReg: " + date_from);
+        console.log("FechaFutura: " + futureDate);
+        console.log("---------------------------------------------------")
+
+        /*
+         var todayYear = today.getFullYear();
+         var inicioYear = date_from.getFullYear();*/
         var event = false;
 
-        if (today > date_from && inicioYear >= todayYear - 5) {
+        if (futureDate >= date_from && date_from >= date_born) {
             event = false;
             console.log("Valido");
         } else {
@@ -894,37 +867,36 @@ $(document).ready(function () {
         }
 
         return true;
-
-
     }
     ;
 
     function isValidDate2(input, fechaInicio) {
 
-        //var mydate = new Date('2014-04-03');
-        //Obtener fecha
-        let today = new Date();
-
         //Valor seleccionado del input
         let date_from = input.val();
-
-        console.log(fechaInicio);
         date_from = new Date(date_from);
-        var date_Inicio = new Date(fechaInicio);
+
+        //Setear la hora en 0 y sumarle uno al día registrado (porque se le resta 1)
+        var year = date_from.getFullYear();
+        var month = date_from.getMonth();
+        var day = date_from.getDate();
+        date_from = new Date(year, month, day + 1);
+        date_from.setHours(0);
+
+        //Valor de la fecha de inicio
+        let date_start = fechaInicio.val();
+        date_start = new Date(date_start);
+
+        //Fecha de hoy
+        let date_today = new Date();
 
         var event = false;
 
-        console.log(input.val());
+        console.log("Hoy: " + date_today);
+        console.log("FechaFin: " + date_from);
+        console.log("FechaInicio: " + date_start);
 
-        console.log("Date inicio" + date_Inicio);
-        console.log("El años es: " + date_Inicio.getFullYear());
-        console.log("Date from" + date_from);
-        console.log("El años es: " + date_from.getFullYear());
-
-        var inicioYear = date_Inicio.getFullYear();
-        var inputYear = date_from.getFullYear();
-
-        if (inputYear < inicioYear + 5 && date_Inicio <= date_from) {
+        if (date_start < date_from && date_from <= date_today) {
             event = false;
             console.log(event);
             console.log("fechaValida");
@@ -934,28 +906,23 @@ $(document).ready(function () {
             console.log("fechaInValida");
         }
 
-        // date_Inicio > date_from ? event = true : event = false;
-
         if (!input.val() || event) {
-
+            console.log("CAMBIAR COLOR");
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
             input.css('border', '');
             input.css('color', '');
         }
 
         return true;
-
-
     }
+    ;
 
     function isValidPassword(input) {
 
         var m = input.val();
-
         //var expreg = /^[a-zA-Z0-9]{8,14}$/;
         var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
         if (!expreg.test(m)) {
@@ -963,7 +930,6 @@ $(document).ready(function () {
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;
-
         } else {
 
             input.css('border', '');
@@ -971,10 +937,6 @@ $(document).ready(function () {
         }
 
         return true;
-
     }
-
-
-
 
 });

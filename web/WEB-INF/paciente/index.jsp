@@ -121,7 +121,7 @@
                         <!-- aqui se inyecta la sesion de id-->
                         <input type="hidden" id="idPaciente" value="${sessionScope.idPaciente}" />
 
-                        <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">
+                        <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">
                                 <!--Julio Badillo-->
                                 ${sessionScope.nombre} ${sessionScope.primerApellido}
                             </span>  </span>
@@ -144,6 +144,12 @@
                 <div class="jumbotron jumbotron-fluid p-2">
                     <div class="container">
                         <h1 class="display-4 tituloMisCitas text-center m-0">Mis Citas</h1>
+                    </div>
+                </div>
+
+                <div class="row justify-content-end">
+                    <div class="col-12">
+                        <a class="float-left questionMarkRight" data-toggle="tooltip" data-placement="right" title="Da click en el día que quieres agendar tu cita."><button class="btn btn-morado" data-toggle="modal" data-target="#myAgregarCitaModal" style="border-radius: 20px"><i class="far fa-calendar-plus" style="font-size:25px"></i>  Agregar Cita</button></a>
                     </div>
                 </div>
 
@@ -195,6 +201,36 @@
 
             </div>
         </div>
+
+        <!-- Modal Agregar Cita SHANNON-->
+        <div class="modal fade" id="myAgregarCitaModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Para agregar una cita:</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-center display-4 tituloCitaModal text-primary" id="titulo-cita"></h6>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <p>Da click en el día que quieres agendar tu cita.</p>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" style="border-radius:20px;" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>       
 
         <!-- Modal VER CITA-->
         <div class="modal fade" id="modalVerCita" tabindex="-1" role="dialog" aria-hidden="true">
@@ -348,7 +384,7 @@
                                 <div class="col-8">
                                     <div>
                                         <div>
-                                            <input class="modalRadio1" id="RegistrarCita_edificioAntiguo" type="radio" name="Edificios"
+                                            <input class="modalRadio1" id="RegistrarCita_edificioAntiguo" data-color="#6c757d" type="radio" name="Edificios"
                                                    value="1" />
                                             <span class="badge">Edificio antiguo</span>
                                             <a href="#" class="questionMark" data-tooltip-content="#tooltip_contentInfoTorreAntigua"><i
@@ -373,7 +409,7 @@
                                                     • Electrocardiograma <br>
                                                     • Psicología <br>
                                                     • Clínica del dolor <br>
-                                                    • Cuidados Paliativos <br>
+                                                    • Cuidados paliativos <br>
                                                     • Genética </p>
                                             </span>
                                         </div>
@@ -386,7 +422,7 @@
                                                     • Mastografía <br>
                                                     • Ultrasonido <br>
                                                     • Tomografía <br>
-                                                    • Resonancia Magnética <br>
+                                                    • Resonancia magnética <br>
                                                     • PET-CT <br>
                                                     • MUGA <br>
                                                     • Gammagrafía ósea <br>
@@ -399,19 +435,19 @@
                                                     • Farmacia </p>
 
                                                 <span class="badge badge-danger mb-2 d-block" style="font-size:15px">2do Piso:</span>
-                                                <p> • Clínica de Mama <br>
+                                                <p> • Clínica de mama <br>
                                                     • Oncología médica <br>
-                                                    • Unidad Funcional Mama <br>
+                                                    • Unidad funcional mama <br>
                                                     • Cirugía oncológica <br>
                                                     • Cirugía plástica <br>
                                                     • Ecocardiograma <br>
-                                                    • Trabajo Social <br>
+                                                    • Trabajo social <br>
                                                     • Quimioterapia <br>
                                                     • Protocolos <br>
                                                     • Nutrición <br>
                                                     • Odontología <br>
                                                     • M-8 <br>
-                                                    • Programa Mujer Jóven <br>
+                                                    • Programa mujer jóven <br>
                                                     • Donaciones <br>
                                                     • Valoración cardiovascular <br>
                                                     • Colocación de catéteres </p>

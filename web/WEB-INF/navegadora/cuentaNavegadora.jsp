@@ -104,7 +104,7 @@
                     
                     <li id="irAForm"><a><i class="fas fa-home"></i>Ir a Form</a></li>
                     
-                    <li id="idACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+                    <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
                     <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
@@ -129,7 +129,7 @@
                             <i class="fas fa-align-justify"></i>
                         </button>
 
-                        <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
+                        <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
 
                             </span> <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
 
@@ -173,6 +173,7 @@
                             <div class="row mb-4">
                                 <div class="col-12 text-center">
                                     <h4 class="FotoPerfil text-secondary" style="font-size:17px;">Edita tu foto de perfil</h4>
+                                    <span class="text-danger" id="error-imgPerfil">No es una extensión válida. Puedes subir un archivo .jpg o .png</span>
                                 </div>
                             </div>
 

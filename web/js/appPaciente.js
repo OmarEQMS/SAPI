@@ -23,8 +23,17 @@ $(document).ready(function () {
     // Inicializar plug in tooltipster
     $('.questionMark').tooltipster({
         theme: 'tooltipster-shadow',
-        delay: '140'
+        delay: '140',
+       
     });
+    
+    $('.questionMarkRight').tooltipster({
+        theme: 'tooltipster-shadow',
+        delay: '140',
+        side: 'right'
+    });
+    
+    
 
     //Reemplazar el nombre del archivo en el input
     $('.custom-file-input').on('change', function () {
@@ -157,7 +166,7 @@ $(document).ready(function () {
                 $('#tratamientos').append(plantilla);
 
 
-                /*       var plantilla = `<div class="form-group row justify-content-center contenedor-tratamientos">
+                       var plantilla = `<div class="form-group row justify-content-center contenedor-tratamientos">
                  <div class="col-7">
                  <select id="tratamiento" class="form-control">
                  <option disabled selected>Elegir Tratamiento</option>
@@ -173,7 +182,7 @@ $(document).ready(function () {
                  
                  $('#tratamientos').append(plantilla);
                  
-                 */
+                 
 
             }
 
@@ -372,11 +381,11 @@ $(document).ready(function () {
      });*/
     
     //TABLA TRATAMIENTOS
-    $('#tablaTratamientos').DataTable({
+    $('.tablaTratamientos').DataTable({
         responsive: true,
+        searching: true,
         dom: 'lBfrtip',
-        buttons: [
-        ],
+        buttons: [,],
 
         "language": {
 
@@ -406,6 +415,8 @@ $(document).ready(function () {
         }
 
     });
+    
+    
 
 
 });

@@ -96,32 +96,21 @@
                     <!-- MENU PRINCIPAL ENLACES -->
                     <ul class="list-unstyled components">
 
-                        <li>
-                            <a href="./index.html">
-                                <i class="fas fa-home"></i>Inicio</a>
-                        </li>
+                    <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
+                    
+                    <li id="irAForm"><a><i class="fas fa-home"></i>Ir a Form</a></li>
+                    
+                    <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
-                        <li>
-                            <a href="./calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Calendario</a>
-                        </li>
+                    <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
-                        <li>
-                            <a href="./rendimiento.html">
-                                <i class="fas fa-chart-line"></i>Mi Rendimiento</a>
-                        </li>
+                    <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
 
-                        <li>
-                            <a href="./cuenta.html">
-                                <i class="far fa-user"></i>Mi Cuenta</a>
-                        </li>
+                    <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-sign-out-alt"></i>Cerrar SesiÃ¯Â¿Â½n</a>
-                        </li>
+                </ul>
 
-                    </ul>
+                </ul>
 
             </nav>
 
@@ -139,7 +128,7 @@
                         </button>
 
                         <span class="pull-right d-block">
-                            <span style="color:#6c6f80">Bienvenido, </span>
+                            <span style="color:#6c6f80">Hola, </span>
                             <span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
                             </span>
                         </span>

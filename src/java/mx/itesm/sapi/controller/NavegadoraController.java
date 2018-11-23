@@ -437,8 +437,8 @@ public class NavegadoraController extends HttpServlet {
                         case "aprobar-paciente": {
 
                             int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
-                            String fechaNav = request.getParameter("fechaNavegacion").concat(" 07:30:00");
-                            String fechaCon = request.getParameter("fechaConsulta").concat(" 07:30:00");
+                            String fechaNav = request.getParameter("fechaNavegacion").concat(" 07:50:00");
+                            String fechaCon = request.getParameter("fechaConsulta").concat(" 07:50:00");
                             int segundaOpinion = Integer.parseInt(request.getParameter("tipoPaciente"));
 
                             System.out.println(idPaciente);
@@ -715,7 +715,6 @@ public class NavegadoraController extends HttpServlet {
 
                             ComentarioCitaServicioImpl comentarioCitaServicioImpl = new ComentarioCitaServicioImpl();
                             
-
                             EstadiajeTNMServiceImpl estadiajeTNMServiceImpl = new EstadiajeTNMServiceImpl();
                             EstadiajeTNM estadiajeTNM = new EstadiajeTNM();
 
@@ -727,6 +726,7 @@ public class NavegadoraController extends HttpServlet {
                             /**
                              * FIN DECLARACION DE SERVICIOS
                              */
+
                             //PANTALLA 1 DEL FORMULARIO
                             //PRZ
                             //LISTO
@@ -742,6 +742,7 @@ public class NavegadoraController extends HttpServlet {
 
                             } else {
                                 System.out.println("Sin PRZ");
+
                             }
 
                             //LISTO

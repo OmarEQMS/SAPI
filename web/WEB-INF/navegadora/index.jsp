@@ -104,9 +104,10 @@
                 <!-- MENU PRINCIPAL ENLACES -->
                 <ul class="list-unstyled components">
 
-
                     <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
-
+                    
+                    <li id="irAForm"><a><i class="fas fa-home"></i>Ir a Form</a></li>
+                    
                     <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
                     <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
@@ -131,7 +132,7 @@
                             <i class="fas fa-align-justify"></i>
                         </button>
 
-                        <span class="pull-right d-block"><span style="color:#6c6f80">Bienvenido, </span><span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
+                        <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
 
                             </span> <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
 
@@ -225,23 +226,23 @@
                                                         <td>${paciente.curp}</td>
                                                         <td>${paciente.telefono}</td>
                                                         <td>
-                                                            <button class="btn btn-info btn-ver" data-id="${paciente.idPaciente}" id="btn-ver">
+                                                            <button class="btn btn-info btn-ver m-1" data-id="${paciente.idPaciente}" id="btn-ver">
                                                                 <i class="far fa-eye"></i>
                                                             </button>
 
                                                             <c:choose>
                                                                 <c:when test="${paciente.estadoPaciente=='Potencial en proceso'}">
-                                                                    <button class="btn btn-success btn-aceptar" data-id="${paciente.idPaciente}" data-toggle="modal" data-target="#modalAceptarUsuario">
+                                                                    <button class="btn btn-success btn-aceptar m-1" data-id="${paciente.idPaciente}" data-toggle="modal" data-target="#modalAceptarUsuario">
                                                                         <i class="fas fa-check"></i>
                                                                     </button>
                                                                 </c:when>    
 
                                                             </c:choose>
 
-                                                            <button class="btn btn-primary btn-editar" data-id="${paciente.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarUsuario">
+                                                            <button class="btn btn-primary btn-editar m-1" data-id="${paciente.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarUsuario">
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
-                                                            <button class="btn btn-danger mt-1 btn-eliminar" data-id="${paciente.idPaciente}" id="btn-eliminar" data-toggle="modal" data-target="#modalEliminarUsuario">
+                                                            <button class="btn btn-danger btn-eliminar m-1" data-id="${paciente.idPaciente}" id="btn-eliminar" data-toggle="modal" data-target="#modalEliminarUsuario">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
                                                         </td>

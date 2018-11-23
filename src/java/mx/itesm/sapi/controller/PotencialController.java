@@ -274,6 +274,32 @@ public class PotencialController extends HttpServlet {
                 }
                 break;
             }
+            
+            case "repiteCorreo": {
+                HttpSession sesion = request.getSession(true);
+                
+                String correo = request.getParameter("correo");
+                int idPersona = (int) sesion.getAttribute("idPersona");
+                
+                PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
+                
+                PrintWriter out = response.getWriter();
+                
+                System.out.println("ENTRA AQUÍ");
+                
+                //Checo si el usuario existe
+                if (_registroServicio.existsCorreo(correo, idPersona)) {
+                    System.out.println("EXISTE");
+                    out.print("CorreoAlreadyExists");
+
+                } else {
+                    System.out.println("NO EXISTE");
+                    //Si no existe, lo inserto
+                    out.print("CorreoDoesntExist");
+
+                }
+            }
+            break;
 
             case "solicitarPreconsulta": {
                 /**
@@ -389,6 +415,9 @@ public class PotencialController extends HttpServlet {
 
                             PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }else{
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(idPacientePotencial, idSillaDeRuedas);
                         }
                         if (!camilla.equals("0")) {
                             PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
@@ -397,6 +426,9 @@ public class PotencialController extends HttpServlet {
 
                             PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }else{
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(idPacientePotencial, idCamilla);
                         }
                         if (!baston.equals("0")) {
                             PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
@@ -405,6 +437,9 @@ public class PotencialController extends HttpServlet {
 
                             PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }else{
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(idPacientePotencial, idBaston);
                         }
                         if (!oxigeno.equals("0")) {
                             PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
@@ -413,6 +448,9 @@ public class PotencialController extends HttpServlet {
 
                             PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }else{
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(idPacientePotencial, idOxigeno);
                         }
 
                         Part partIdentificacion = null;
@@ -628,7 +666,7 @@ public class PotencialController extends HttpServlet {
                                 docComprobanteDomicilio.setIdTipoDocumento(idComprobanteDomicilio);
                                 docComprobanteDomicilio.setTipo(tipoComprobanteDomicilio);
                                 docComprobanteDomicilio.setTamano(tamanoComprobanteDomicilio);
-                                docComprobanteDomicilio.setNombre(tipoCurp);
+                                docComprobanteDomicilio.setNombre(strComprobante);
                                 docComprobanteDomicilio.setEstatus(1);
                             }
 
@@ -822,10 +860,9 @@ public class PotencialController extends HttpServlet {
                             System.out.println("Res solictud preconsulta".concat(res));
                             out.print(res);
 
-                            request.getRequestDispatcher("WEB-INF/potencial/index.jsp").forward(request, response);
+//                            request.getRequestDispatcher("WEB-INF/potencial/index.jsp").forward(request, response);
 
                         }
-
                     }
                 }
                 break;
@@ -1161,18 +1198,30 @@ public class PotencialController extends HttpServlet {
                     SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
                     solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
 
-
-                    /*HEAD
-                    sesion.setAttribute("identificacionOficial", solicitudPreconsulta.getIdentificacion());
-                    sesion.setAttribute("curp", solicitudPreconsulta.getCurp());
-                    sesion.setAttribute("comprobante", solicitudPreconsulta.getComprobante());
-                    sesion.setAttribute("resultadoMastografia", solicitudPreconsulta.getMastografia());
-                    sesion.setAttribute("resultadosUltrasonidos", solicitudPreconsulta.getUltrasonido());
-                    sesion.setAttribute("biopsiaPrevia", solicitudPreconsulta.getBiopsiaPrevia());
-
-                     */
-                    System.out.println("Consultar documentos");
-                    //System.out.println("Documentos ".concat(solicitudPreconsulta.toString()));
+                    System.out.println("Consultar documentos");  
+                    
+                    System.out.println("Motivo SolicitudPreconsulta: " + solicitudPreconsulta.getMotivoCosulta());
+                    
+                    sesion.setAttribute("idMotivoConsulta", solicitudPreconsulta.getMotivoCosulta());
+                    if(solicitudPreconsulta.getMotivoCosulta() == 1 || solicitudPreconsulta.getMotivoCosulta() == 4){
+                        System.out.println("Referencia Motivo: ".concat(solicitudPreconsulta.getReferencia()));
+                        sesion.setAttribute("referenciaName", solicitudPreconsulta.getReferencia());
+                    }
+                    
+                    if(solicitudPreconsulta.getMotivoCosulta() == 4){
+                        System.out.println("---------------------------------------------------------------------------------------------------------");
+                        System.out.println("hospital: ".concat(solicitudPreconsulta.getHospital()));
+                        sesion.setAttribute("hospital", solicitudPreconsulta.getHospital());
+                        System.out.println("---------------------------------------------------------------------------------------------------------");
+                    }
+                    
+                    if(solicitudPreconsulta.getMotivoCosulta() == 5){
+                        System.out.println("---------------------------------------------------------------------------------------------------------");
+                        System.out.println("OtroMotivo: ".concat(solicitudPreconsulta.getOtro()));
+                        sesion.setAttribute("otroMotivo", solicitudPreconsulta.getOtro());
+                        System.out.println("---------------------------------------------------------------------------------------------------------");
+                    }
+                
 
                     if (solicitudPreconsulta.getIdSexo() == 0) {
                         sesion.setAttribute("idSexo", 0);
@@ -1289,6 +1338,7 @@ public class PotencialController extends HttpServlet {
                     if (estatus == null) {
                         System.out.println("El paciente no tiene ninguna cita");
                         sesion.setAttribute("estatus", 0);
+                        sesion.setAttribute("envioEditable", 0);
                     } else {
 
                         System.out.println("El estatus es: " + estatus);
@@ -1299,12 +1349,13 @@ public class PotencialController extends HttpServlet {
                         }
                         if (estatus.equals("Cancelada")) {
                             sesion.setAttribute("estatus", 2);
+                            sesion.setAttribute("envioEditable", 0);
                         }
                         if (estatus.equals("Pendiente")) {
                             sesion.setAttribute("envioEditable", 1);
                         }
-
                     }
+                    System.out.println("Sesion estatus: (debe ser 0): " + sesion.getAttribute("estatus"));
                 }
                 break;
             }
@@ -1435,6 +1486,9 @@ public class PotencialController extends HttpServlet {
 
                             PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }else{
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(idPacientePotencial, idSillaDeRuedas);
                         }
                         if (!camilla.equals("0")) {
                             PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
@@ -1443,6 +1497,9 @@ public class PotencialController extends HttpServlet {
 
                             PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }else{
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(idPacientePotencial, idCamilla);
                         }
                         if (!baston.equals("0")) {
                             PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
@@ -1451,6 +1508,9 @@ public class PotencialController extends HttpServlet {
 
                             PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }else{
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(idPacientePotencial, idBaston);
                         }
                         if (!oxigeno.equals("0")) {
                             PacienteNecesidadEspecial pacienteNecesidadEspecial = new PacienteNecesidadEspecial();
@@ -1459,6 +1519,9 @@ public class PotencialController extends HttpServlet {
 
                             PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
                             pacienteNecesidadEspecialServicio.agregarPacienteNecesidadEspecial(pacienteNecesidadEspecial);
+                        }else{
+                            PacienteNecesidadEspecialServicioImpl pacienteNecesidadEspecialServicio = new PacienteNecesidadEspecialServicioImpl();
+                            pacienteNecesidadEspecialServicio.borradoLogicoPacienteNecesidadEspecial(idPacientePotencial, idOxigeno);
                         }
 
                         Part partIdentificacion = null;

@@ -127,12 +127,17 @@ public class LoginController extends HttpServlet {
 
                         PicServicioImpl picServicioImpl = new PicServicioImpl();
                         Pic pic = picServicioImpl.mostrarPic(idPersona);
+                        try
+                        {
+                            InputStream imagen = pic.getContenido();
+                            byte[] bytes = IOUtils.toByteArray(imagen);
+                            String base64String = Base64.getEncoder().encodeToString(bytes);
 
-                        InputStream imagen = pic.getContenido();
-                        byte[] bytes = IOUtils.toByteArray(imagen);
-                        String base64String = Base64.getEncoder().encodeToString(bytes);
-
-                        sesion.setAttribute("base64Img", base64String);
+                            sesion.setAttribute("base64Img", base64String);
+                        }catch(Exception es)
+                        {
+                            System.out.println("Sin foto de perfil");
+                        }
 
                         //sesion.setAttribute("imagen", persona.getImagen());
                         System.out.println("Rol cuenta:".concat(String.valueOf(rolCuenta)).concat(" ").concat(String.valueOf(cuenta.getIdRol())));
@@ -175,33 +180,93 @@ public class LoginController extends HttpServlet {
                                 SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
                                 solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
 
+                                System.out.println("Consultar documentos");
+
+                                System.out.println("Motivo SolicitudPreconsulta: " + solicitudPreconsulta.getMotivoCosulta());
+
+                                sesion.setAttribute("idMotivoConsulta", solicitudPreconsulta.getMotivoCosulta());
+                                if (solicitudPreconsulta.getMotivoCosulta() == 1 || solicitudPreconsulta.getMotivoCosulta() == 4) {
+                                    System.out.println("Referencia Motivo: ".concat(solicitudPreconsulta.getReferencia()));
+                                    sesion.setAttribute("referenciaName", solicitudPreconsulta.getReferencia());
+                                }
+
+                                if (solicitudPreconsulta.getMotivoCosulta() == 4) {
+                                    System.out.println("---------------------------------------------------------------------------------------------------------");
+                                    System.out.println("hospital: ".concat(solicitudPreconsulta.getHospital()));
+                                    sesion.setAttribute("hospital", solicitudPreconsulta.getHospital());
+                                    System.out.println("---------------------------------------------------------------------------------------------------------");
+                                }
+
+                                if (solicitudPreconsulta.getMotivoCosulta() == 5) {
+                                    System.out.println("---------------------------------------------------------------------------------------------------------");
+                                    System.out.println("OtroMotivo: ".concat(solicitudPreconsulta.getOtro()));
+                                    sesion.setAttribute("otroMotivo", solicitudPreconsulta.getOtro());
+                                    System.out.println("---------------------------------------------------------------------------------------------------------");
+                                }
+
+                                if (solicitudPreconsulta.getIdSexo() == 0) {
+                                    sesion.setAttribute("idSexo", 0);
+                                } else {
+                                    sesion.setAttribute("idSexo", solicitudPreconsulta.getIdSexo());
+                                }
+
+                                if (solicitudPreconsulta.getSilla() == 0) {
+                                    sesion.setAttribute("silla", 0);
+                                } else {
+                                    sesion.setAttribute("silla", solicitudPreconsulta.getSilla());
+                                }
+
+                                if (solicitudPreconsulta.getBaston() == 0) {
+                                    sesion.setAttribute("baston", 0);
+                                } else {
+                                    sesion.setAttribute("baston", solicitudPreconsulta.getBaston());
+                                }
+
+                                if (solicitudPreconsulta.getCamilla() == 0) {
+                                    sesion.setAttribute("camilla", 0);
+                                } else {
+                                    sesion.setAttribute("camilla", solicitudPreconsulta.getCamilla());
+                                }
+
+                                if (solicitudPreconsulta.getOxigeno() == 0) {
+                                    sesion.setAttribute("oxigeno", 0);
+                                } else {
+                                    sesion.setAttribute("oxigeno", solicitudPreconsulta.getOxigeno());
+                                }
+
                                 if (solicitudPreconsulta.getIdentificacion() != null) {
                                     sesion.setAttribute("identificacionOficial", 1);
+                                    sesion.setAttribute("identificacionOficialName", solicitudPreconsulta.getIdentificacion());
                                 } else {
                                     sesion.setAttribute("identificacionOficial", 0);
                                 }
                                 if (solicitudPreconsulta.getCurp() != null) {
                                     sesion.setAttribute("curp", 1);
+                                    sesion.setAttribute("curpName", solicitudPreconsulta.getCurp());
                                 } else {
                                     sesion.setAttribute("curp", 0);
                                 }
                                 if (solicitudPreconsulta.getComprobante() != null) {
                                     sesion.setAttribute("comprobante", 1);
+                                    sesion.setAttribute("comprobanteName", solicitudPreconsulta.getComprobante());
                                 } else {
                                     sesion.setAttribute("comprobante", 0);
                                 }
                                 if (solicitudPreconsulta.getMastografia() != null) {
                                     sesion.setAttribute("resultadoMastografia", 1);
+                                    sesion.setAttribute("resultadoMastografiaName", solicitudPreconsulta.getMastografia());
                                 } else {
                                     sesion.setAttribute("resultadoMastografia", 0);
                                 }
                                 if (solicitudPreconsulta.getUltrasonido() != null) {
                                     sesion.setAttribute("resultadoUltrasonido", 1);
+                                    sesion.setAttribute("resultadoUltrasonidoName", solicitudPreconsulta.getUltrasonido());
                                 } else {
                                     sesion.setAttribute("resultadoUltrasonido", 0);
                                 }
                                 if (solicitudPreconsulta.getBiopsiaPrevia() != null) {
                                     sesion.setAttribute("biopsiaPrevia", 1);
+                                    sesion.setAttribute("biopsiaPreviaName", solicitudPreconsulta.getBiopsiaPrevia());
                                 } else {
                                     sesion.setAttribute("biopsiaPrevia", 0);
                                 }
@@ -242,7 +307,7 @@ public class LoginController extends HttpServlet {
                                         sesion.setAttribute("envioEditable", 1);
                                     }
                                 }
-                                //Fin DeSolicitud Estado Preconsulta
+                                //Fin De Solicitud Estado Preconsulta
 
                                 //Solicitud Estado Paciente
                                 EstadoPacientePacienteServiceImpl estadoPaPa = new EstadoPacientePacienteServiceImpl();
@@ -259,7 +324,37 @@ public class LoginController extends HttpServlet {
                                 break;
                             }
                             case 2: {
+                                //CASSE ADMINISTRADOR
+                                
+                                System.out.println("Cuenta de administrador");
+                                
+                                
+                                request.setAttribute("nombre", sesion.getAttribute("nombre"));
+                                request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));
+                                request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
+                                
+                                EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                                Empleado empleado =  empleadoServicioImpl.mostrarEmpleadoCuenta(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
+                                
+                                sesion.setAttribute("idEmpleado", empleado.getIdEmpleado());
+                                sesion.setAttribute("noEmpleado", empleado.getNoEmpleado());
+                                
+                                 String keyRuta = "administrador/gestionMedicos.jsp";
 
+                                //Si la contraseña no tiene el token de recuperar contraseña se continua al dashboard correspondiente                                                                 
+                                try {
+                                    System.out.println("Contraseña con token ".concat(cuenta.getToken()));
+                                    keyRuta = "recuperar.jsp";
+                                } catch (Exception ex) {
+
+                                }
+                                
+                                
+                                
+                                sesion.setAttribute("path", keyRuta);
+                                //request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);                                                                                                
+                                request.getRequestDispatcher("/SAPI").forward(request, response);                                                                                                
+                                //response.sendRedirect("/SAPI");
                                 break;
                             }
                             case 3: {
@@ -296,7 +391,8 @@ public class LoginController extends HttpServlet {
 
                                 EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
                                 Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());
-
+                                
+                                sesion.setAttribute("idEmpleadoNavegadora",empleado.getIdEmpleado());
                                 sesion.setAttribute("nombre", persona.getNombre());
                                 sesion.setAttribute("primerApellido", persona.getPrimerApellido());
                                 sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
@@ -321,6 +417,7 @@ public class LoginController extends HttpServlet {
                                 String idPacienteStr = String.valueOf(paciente.getIdPaciente());
 
                                 sesion.setAttribute("idPaciente", idPacienteStr);
+                                sesion.setAttribute("fechaNacimiento", persona.getFechaNacimiento());
 
                                 //Redirigir al paciente potencial a su dashboard correspondiente                               
                                 System.out.println("idPaciente ".concat(idPacienteStr));

@@ -7,6 +7,9 @@ package mx.itesm.sapi.service.moduloGestionMedico;
 
 import java.util.List;
 import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
+import mx.itesm.sapi.bean.moduloGestionMedico.Identificadores;
+import mx.itesm.sapi.bean.moduloGestionMedico.RestringirEmpleado;
+import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 
 /**
  *
@@ -20,5 +23,11 @@ public interface EmpleadoServicio {
     public List<Empleado> mostrarEmpleado();
     public boolean borradoLogicoEmpleado(int idEmpleado);
     public boolean actualizarEmpleado(Empleado empleado);
+<<<<<<< HEAD
     
+=======
+    public Identificadores restringirEmpleado(RestringirEmpleado restringirEmpleado);
+    public List<TablaMedicoAdministrador> mostrarListaEmpleadosAdministrador(int idRol);
+    public TablaMedicoAdministrador mostrarMedicoAdministrador(int idMedico,int idRol);
+>>>>>>> origin/MontoyaRosas
 }

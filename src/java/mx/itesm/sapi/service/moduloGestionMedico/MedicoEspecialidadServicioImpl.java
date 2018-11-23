@@ -16,8 +16,8 @@ import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
 import mx.itesm.sapi.util.Conexion;
 
 /**
- *
- * @author Fernanda Orduña & Pablo Lugo
+ * 16-Noviembre-2018
+ * @author Fernanda Orduña & Pablo Lugo </3 
  */
 public class MedicoEspecialidadServicioImpl implements MedicoEspecialidadServicio{
 
@@ -29,39 +29,31 @@ public class MedicoEspecialidadServicioImpl implements MedicoEspecialidadServici
 
         int id = 0;
         //Aquí va el call del procedure
-        String stProcedure = "-------";
-
+        String stProcedure = "CALL agregarMedicoEspecialidad(?,?,?)";       
+        ResultSet rs;
+                    
         try {
-
+                        
             cstmt = conn.prepareCall(stProcedure);
-
-            //Aquí van los sets
-            //cstmt.setInt(1,empleado.getIdEmpleado());
             cstmt.setInt(1, medicoEspecialidad.getIdEmpleado());
             cstmt.setInt(2, medicoEspecialidad.getIdEspecialidad());
             cstmt.setString(3, medicoEspecialidad.getCedulaProfesional());
-            cstmt.setInt(4, medicoEspecialidad.getEstatus());
-            
 
-            //Aquí va el registerOutParameter
-            //cstmt.registerOutParameter(12,Types.INTEGER);
-            cstmt.executeUpdate();
-
-            ResultSet rs = cstmt.getGeneratedKeys();
-
+            rs = cstmt.executeQuery();
+            System.out.println("agregarMedicoEspecialidad ".concat(cstmt.toString()));           
             rs.next();
-
             id = rs.getInt(1);
-
+            
+            rs.close();
             cstmt.close();
+            conn.close();
 
         } catch (SQLException ex) {
 
-            System.out.println("Estoy en el catch de agregarMedicoEspecialidad");
-            System.out.println(ex.getMessage());
-
+            System.out.println("Catch agregarMedicoEspecialidad");
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));            
         }
-
         return id;
     }
 
@@ -115,21 +107,28 @@ public class MedicoEspecialidadServicioImpl implements MedicoEspecialidadServici
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idEmpleado);
             ResultSet rs = cstmt.executeQuery();
-
+            System.out.println("Medico especialidad empleado ".concat(cstmt.toString()));
             rs.next();
+            
             medicoEspecialidad.setIdMedicoEspecialidad(rs.getInt("idMedicoEspecialidad"));
             medicoEspecialidad.setIdEmpleado(rs.getInt("idEmpleado"));
             medicoEspecialidad.setIdEspecialidad(rs.getInt("idEspecialidad"));
             medicoEspecialidad.setCedulaProfesional(rs.getString("cedulaProfesional"));
-            medicoEspecialidad.setIdEmpleado(rs.getInt("estatus"));
+            medicoEspecialidad.setIdEmpleado(rs.getInt("estatus"));                        
 
-            return medicoEspecialidad;
+            //En un merge no borrar esto. No se porque cuando se hace la asignación directa se putea.
+            int idEmpleado2 = rs.getInt("idEmpleado");            
+            medicoEspecialidad.setIdEmpleado(idEmpleado2);
+           
+            
+                        
         } catch (SQLException ex) {
 
             System.out.println("Estoy en el catch de mostrarMedicoEspecialidadEmpleado");
             System.out.println(ex.getMessage());
-            return medicoEspecialidad;
+            medicoEspecialidad = null;            
         }
+        return medicoEspecialidad;
     }
 
     
@@ -208,20 +207,19 @@ public class MedicoEspecialidadServicioImpl implements MedicoEspecialidadServici
         CallableStatement cstmt;
 
         //Call del store procedure
-        String stProcedure = "";
+        String stProcedure = "CALL actualizarMedicoEspecialidad(?,?,?,?)";
 
         try {
 
             cstmt = conn.prepareCall(stProcedure);
 
             cstmt.setInt(1,medicoEspecialidad.getIdMedicoEspecialidad());
-            cstmt.setInt(1, medicoEspecialidad.getIdEmpleado());
-            cstmt.setInt(2, medicoEspecialidad.getIdEspecialidad());
-            cstmt.setString(3, medicoEspecialidad.getCedulaProfesional());
-            cstmt.setInt(4, medicoEspecialidad.getEstatus());
-            
+            cstmt.setInt(2, medicoEspecialidad.getIdEmpleado());
+            cstmt.setInt(3, medicoEspecialidad.getIdEspecialidad());
+            cstmt.setString(4, medicoEspecialidad.getCedulaProfesional());
+            System.out.println("Actualizar medico especialiad ".concat(cstmt.toString()));            
             ResultSet rs = cstmt.executeQuery();
-
+            
             rs.next();
 
             return rs.getBoolean(1);
