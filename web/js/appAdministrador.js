@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    
+    $('##errorNombreMedico').hide();
 
     //Esconder menu lateral a presionar click en el menu hamburguesa
     $('#sidebarCollapse').on('click', () => {
@@ -159,6 +161,37 @@ $(document).ready(function () {
     //Pone iconos en los botones de exportar
     $('.btnExcel').prepend("<i class='fas fa-file-excel mr-2'></i>");
     $('.btnPdf').prepend("<i class='far fa-file-pdf mr-2'></i>");
+    
+    //Limpiar campos
+    
+    $("body").on("click",".clearAddMedicosModal", function(){
+		$("#agregar-nombreMedico").val("");
+                $("#agregar-telefonoMedico").val("");
+                $("#agregar-primerApellidoMedico").val("");
+                $("#agregar-segundoApellidoMedico").val("");
+                $("#agregar-correoMedico").val("");
+                $("#agregar-noEmpleadoMedico").val("");
+                $("#agregar-especialidadMedico").val("");
+                $("#agregar-posiciondMedico").val("");
+                $("#agregar-cedulaMedico").val("");
+                $("#agregar-passwordMedico").val("");
+                $("#agregar-password2Medico").val("");
+                
+	});
+        
+        $("body").on("click",".clearAddNavegadoraModal", function(){
+		$("#agregar-nombreNavegadora"           ).val("");
+                $("#agregar-telefonoNavegadora"         ).val("");
+                $("#agregar-primerApellidoNavegadora"   ).val("");
+                $("#agregar-segundoApellidoNavegadora"  ).val("");
+                $("#agregar-correoNavegadora"           ).val("");
+                $("#agregar-noEmpleadoNavegadora"       ).val("");
+                $("#agregar-especialidadNavegadora"     ).val("");
+                $("#agregar-cedulaNavegadora"           ).val("");
+                $("#agregar-passwordNavegadora"         ).val("");
+                $("#agregar-password2Navegadora"        ).val("");
+                
+	});
 
 
 });

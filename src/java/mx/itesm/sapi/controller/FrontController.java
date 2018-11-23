@@ -254,6 +254,12 @@ public class FrontController extends HttpServlet {
                                 }
                                 case "administrador/reAsignarMedico.jsp":
                                 {
+                                    /**-------------------Mostrar Lista Médicos---------------------------------------*/
+                                    
+                                    PersonaServicioImpl personaServicioMedicos = new PersonaServicioImpl();
+                                    List<Persona> medicos = personaServicioMedicos.mostrarMedicosAdscritos();
+                                    request.setAttribute("listaMedicos", medicos);
+                                    
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     break;
                                 }
