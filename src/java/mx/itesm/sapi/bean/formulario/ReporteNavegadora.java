@@ -5,8 +5,6 @@
  */
 package mx.itesm.sapi.bean.formulario;
 
-import java.sql.Date;
-
 /**
  *
  * @author Alex
@@ -17,24 +15,27 @@ public class ReporteNavegadora {
     private String edad;
     private String fechaNacimiento;
     private String genero;
+    private String escolaridad;
     private String ciudad;
     private String estado;
+    private String alergias;
     private String telefono;
     private String Seguro;
     private String serieLaminillas;
-    private Date ultrasonidoBiradsFecha;
-    private int ultrasonidoBiradsNombre;
-    private Date mastografiaBiradsFecha;
-    private int mastografiaBiradsNombre;
-    private int cantidadLaminillas;
+    private String ultrasonidoBiradsFecha;
+    private String ultrasonidoBiradsNombre;
+    private String mastografiaBiradsFecha;
+    private String mastografiaBiradsNombre;
+    private String cantidadLaminillas;
     private String tipoPaciente;
-    private Date quimioterapiaFecha;
+    private String cirugiaFecha;
+    private String quimioterapiaFecha;
     private String navegadora;
-    private Date radioterapiaFecha;
+    private String radioterapiaFecha;
     private String cirugiaTipo;
     private String resultadoPatologia;
     private String otroResultado;
-    private boolean estadoHormonal; 
+    private String estadoHormonal; 
     private String resultado;
     private String fechaDecision;
     private String socioeconomico;
@@ -43,19 +44,20 @@ public class ReporteNavegadora {
     private String comentarioIncidencia;
     private String comentarioMedico;
     private String serieParafina;
-    private int cantidadParafina;
+    private String cantidadParafina;
     private String cirugiaComentario;
     private String quimioterapiaComentario;
     private String radioterapiaComentario;
-    private int quimioterapiaCiclo;
-    private int radioterapiaCiclo;
-    private boolean mastografiaPreINCAN;
-    private Date fechaNavegacion;
-    private Date fechaConsulta;
+    private String quimioterapiaCiclo;
+    private String radioterapiaCiclo;
+    private String mastografiaPreINCAN;
+    private String fechaNavegacion;
+    private String fechaConsulta;
     private String medicoAdscrito;
     private String medicoRadiologo;
     private String medicoResidente;
-    private boolean noAdscrito;
+    private String noAdscrito;
+    private String noRadiologo;
     private String noSeguro;
     private String fechaFin;
     private String etapaClinica;
@@ -105,19 +107,19 @@ public class ReporteNavegadora {
         this.prz = prz;
     }
 
-    public Date getFechaNavegacion() {
+    public String getFechaNavegacion() {
         return fechaNavegacion;
     }
 
-    public void setFechaNavegacion(Date fechaNavegacion) {
+    public void setFechaNavegacion(String fechaNavegacion) {
         this.fechaNavegacion = fechaNavegacion;
     }
 
-    public Date getFechaConsulta() {
+    public String getFechaConsulta() {
         return fechaConsulta;
     }
 
-    public void setFechaConsulta(Date fechaConsulta) {
+    public void setFechaConsulta(String fechaConsulta) {
         this.fechaConsulta = fechaConsulta;
     }
 
@@ -153,19 +155,19 @@ public class ReporteNavegadora {
         this.medicoResidente = medicoResidente;
     }
 
-    public boolean isNoAdscrito() {
+    public String isNoAdscrito() {
         return noAdscrito;
     }
 
-    public void setNoAdscrito(boolean noAdscrito) {
+    public void setNoAdscrito(String noAdscrito) {
         this.noAdscrito = noAdscrito;
     }
 
-    public boolean isEstadoHormonal() {
+    public String isEstadoHormonal() {
         return estadoHormonal;
     }
 
-    public void setEstadoHormonal(boolean estadoHormonal) {
+    public void setEstadoHormonal(String estadoHormonal) {
         this.estadoHormonal = estadoHormonal;
     }
 
@@ -185,11 +187,11 @@ public class ReporteNavegadora {
         this.noSeguro = noSeguro;
     }
 
-    public boolean isMastografiaPreINCAN() {
+    public String isMastografiaPreINCAN() {
         return mastografiaPreINCAN;
     }
 
-    public void setMastografiaPreINCAN(boolean mastografiaPreINCAN) {
+    public void setMastografiaPreINCAN(String mastografiaPreINCAN) {
         this.mastografiaPreINCAN = mastografiaPreINCAN;
     }
 
@@ -209,19 +211,19 @@ public class ReporteNavegadora {
         this.cirugiaComentario = cirugiaComentario;
     }
 
-    public Date getQuimioterapiaFecha() {
+    public String getQuimioterapiaFecha() {
         return quimioterapiaFecha;
     }
 
-    public void setQuimioterapiaFecha(Date quimioterapiaFecha) {
+    public void setQuimioterapiaFecha(String quimioterapiaFecha) {
         this.quimioterapiaFecha = quimioterapiaFecha;
     }
 
-    public int getQuimioterapiaCiclo() {
+    public String getQuimioterapiaCiclo() {
         return quimioterapiaCiclo;
     }
 
-    public void setQuimioterapiaCiclo(int quimioterapiaCiclo) {
+    public void setQuimioterapiaCiclo(String quimioterapiaCiclo) {
         this.quimioterapiaCiclo = quimioterapiaCiclo;
     }
 
@@ -233,19 +235,19 @@ public class ReporteNavegadora {
         this.quimioterapiaComentario = quimioterapiaComentario;
     }
 
-    public Date getRadioterapiaFecha() {
+    public String getRadioterapiaFecha() {
         return radioterapiaFecha;
     }
 
-    public void setRadioterapiaFecha(Date radioterapiaFecha) {
+    public void setRadioterapiaFecha(String radioterapiaFecha) {
         this.radioterapiaFecha = radioterapiaFecha;
     }
 
-    public int getRadioterapiaCiclo() {
+    public String getRadioterapiaCiclo() {
         return radioterapiaCiclo;
     }
 
-    public void setRadioterapiaCiclo(int radioterapiaCiclo) {
+    public void setRadioterapiaCiclo(String radioterapiaCiclo) {
         this.radioterapiaCiclo = radioterapiaCiclo;
     }
 
@@ -257,35 +259,35 @@ public class ReporteNavegadora {
         this.radioterapiaComentario = radioterapiaComentario;
     }
 
-    public int getMastografiaBiradsNombre() {
+    public String getMastografiaBiradsNombre() {
         return mastografiaBiradsNombre;
     }
 
-    public void setMastografiaBiradsNombre(int mastografiaBiradsNombre) {
+    public void setMastografiaBiradsNombre(String mastografiaBiradsNombre) {
         this.mastografiaBiradsNombre = mastografiaBiradsNombre;
     }
 
-    public Date getMastografiaBiradsFecha() {
+    public String getMastografiaBiradsFecha() {
         return mastografiaBiradsFecha;
     }
 
-    public void setMastografiaBiradsFecha(Date mastografiaBiradsFecha) {
+    public void setMastografiaBiradsFecha(String mastografiaBiradsFecha) {
         this.mastografiaBiradsFecha = mastografiaBiradsFecha;
     }
 
-    public int getUltrasonidoBiradsNombre() {
+    public String getUltrasonidoBiradsNombre() {
         return ultrasonidoBiradsNombre;
     }
 
-    public void setUltrasonidoBiradsNombre(int ultrasonidoBiradsNombre) {
+    public void setUltrasonidoBiradsNombre(String ultrasonidoBiradsNombre) {
         this.ultrasonidoBiradsNombre = ultrasonidoBiradsNombre;
     }
 
-    public Date getUltrasonidoBiradsFecha() {
+    public String getUltrasonidoBiradsFecha() {
         return ultrasonidoBiradsFecha;
     }
 
-    public void setUltrasonidoBiradsFecha(Date ultrasonidoBiradsFecha) {
+    public void setUltrasonidoBiradsFecha(String ultrasonidoBiradsFecha) {
         this.ultrasonidoBiradsFecha = ultrasonidoBiradsFecha;
     }
 
@@ -313,11 +315,11 @@ public class ReporteNavegadora {
         this.serieParafina = serieParafina;
     }
 
-    public int getCantidadParafina() {
+    public String getCantidadParafina() {
         return cantidadParafina;
     }
 
-    public void setCantidadParafina(int cantidadParafina) {
+    public void setCantidadParafina(String cantidadParafina) {
         this.cantidadParafina = cantidadParafina;
     }
 
@@ -329,11 +331,11 @@ public class ReporteNavegadora {
         this.serieLaminillas = serieLaminillas;
     }
 
-    public int getCantidadLaminillas() {
+    public String getCantidadLaminillas() {
         return cantidadLaminillas;
     }
 
-    public void setCantidadLaminillas(int cantidadLaminillas) {
+    public void setCantidadLaminillas(String cantidadLaminillas) {
         this.cantidadLaminillas = cantidadLaminillas;
     }
 
@@ -567,5 +569,37 @@ public class ReporteNavegadora {
 
     public void setUltrasonidoBiradsNombrePost(String ultrasonidoBiradsNombrePost) {
         this.ultrasonidoBiradsNombrePost = ultrasonidoBiradsNombrePost;
+    }
+
+    public String getEscolaridad() {
+        return escolaridad;
+    }
+
+    public void setEscolaridad(String escolaridad) {
+        this.escolaridad = escolaridad;
+    }
+
+    public String getCirugiaFecha() {
+        return cirugiaFecha;
+    }
+
+    public void setCirugiaFecha(String cirugiaFecha) {
+        this.cirugiaFecha = cirugiaFecha;
+    }
+
+    public String getAlergias() {
+        return alergias;
+    }
+
+    public void setAlergias(String alergias) {
+        this.alergias = alergias;
+    }
+
+    public String getNoRadiologo() {
+        return noRadiologo;
+    }
+
+    public void setNoRadiologo(String noRadiologo) {
+        this.noRadiologo = noRadiologo;
     }
 }
