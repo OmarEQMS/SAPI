@@ -12,6 +12,7 @@ import java.sql.Date;
  * @author Alex
  */
 public class ReporteNavegadora {
+    private String prz;
     private String nombre;
     private String edad;
     private String fechaNacimiento;
@@ -19,59 +20,57 @@ public class ReporteNavegadora {
     private String ciudad;
     private String estado;
     private String telefono;
-    private String telCelular;
+    private String Seguro;
+    private String serieLaminillas;
+    private Date ultrasonidoBiradsFecha;
+    private int ultrasonidoBiradsNombre;
+    private Date mastografiaBiradsFecha;
+    private int mastografiaBiradsNombre;
+    private int cantidadLaminillas;
     private String tipoPaciente;
-
+    private Date quimioterapiaFecha;
+    private String navegadora;
+    private Date radioterapiaFecha;
+    private String cirugiaTipo;
+    private String resultadoPatologia;
+    private String otroResultado;
+    private boolean estadoHormonal; 
     private String resultado;
     private String fechaDecision;
+    private String socioeconomico;
+    private String decisionCosulta;
     private String llamada;
-    private String navegadora;
-    private String prz;
+    private String comentarioIncidencia;
+    private String comentarioMedico;
+    private String serieParafina;
+    private int cantidadParafina;
+    private String cirugiaComentario;
+    private String quimioterapiaComentario;
+    private String radioterapiaComentario;
+    private int quimioterapiaCiclo;
+    private int radioterapiaCiclo;
+    private boolean mastografiaPreINCAN;
     private Date fechaNavegacion;
     private Date fechaConsulta;
     private String medicoAdscrito;
     private String medicoRadiologo;
     private String medicoResidente;
     private boolean noAdscrito;
-    private boolean noRadiologo;
-    private String escolaridad;
-    private String alergias;
-    private boolean estadoHormonal;
-    private String Seguro;
     private String noSeguro;
-    private boolean mastografiaPreINCAN;
-    private Date cirugiaFecha;
-    private String cirugiaTipo;
-    private String cirugiaComentario;
-    private Date quimioterapiaFecha;
-    private int quimioterapiaCiclo;
-    private String quimioterapiaComentario;
-    private Date radioterapiaFecha;
-    private int radioterapiaCiclo;
-    private String radioterapiaComentario;
-    private int mastografiaBiradsNombre;
-    private Date mastografiaBiradsFecha;
-    private int ultrasonidoBiradsNombre;
-    private Date ultrasonidoBiradsFecha;
-    private String resultadoPatologia;
-    private String otroResultado;
-    private String serieParafina;
-    private int cantidadParafina;
-    private String serieLaminillas;
-    private int cantidadLaminillas ;
-    private Date fechaFin;
-    private String decisionCosulta;
-    private String socioeconomico;
-    private String comentarioLLamada;
-    private Date fechaLlamada;
-    private String comentarioIncidencia;
-    private String comentarioMedico;
-    
-    
-    private String nombreEstudio;
-    private Date CitaProgramada;
-    private String lugarCuerpo;
-
+    private String fechaFin;
+    private String etapaClinica;
+    private String T;
+    private String N;
+    private String M;
+    private String resultadoPatologiaPost;
+    private String gradoH;
+    private String her2;
+    private String fish;
+    private String re;
+    private String rp;
+    private String ki67;
+    private String mastografiaBiradsNombrePost;
+    private String ultrasonidoBiradsNombrePost;
     public ReporteNavegadora() {
     }
   
@@ -82,10 +81,9 @@ public class ReporteNavegadora {
                 + ", fechaConsulta=" + fechaConsulta + ", tipoPaciente=" + tipoPaciente 
                 + ", medicoAdscrito=" + medicoAdscrito + ", medicoRadiologo=" + medicoRadiologo 
                 + ", medicoResidente=" + medicoResidente + ", noAdscrito=" + noAdscrito 
-                + ", noRadiologo=" + noRadiologo + ", escolaridad=" + escolaridad 
-                + ", alergias=" + alergias + ", estadoHormonal=" + estadoHormonal + ", Seguro=" + Seguro 
+                + ", estadoHormonal=" + estadoHormonal + ", Seguro=" + Seguro 
                 + ", noSeguro=" + noSeguro + ", mastografiaPreINCAN=" + mastografiaPreINCAN 
-                + ", cirugiaFecha=" + cirugiaFecha + ", cirugiaTipo=" + cirugiaTipo 
+                + ", cirugiaTipo=" + cirugiaTipo 
                 + ", cirugiaComentario=" + cirugiaComentario + ", quimioterapiaFecha=" + quimioterapiaFecha 
                 + ", quimioterapiaCiclo=" + quimioterapiaCiclo + ", quimioterapiaComentario=" + quimioterapiaComentario 
                 + ", radioterapiaFecha=" + radioterapiaFecha + ", radioterapiaCiclo=" + radioterapiaCiclo 
@@ -94,10 +92,8 @@ public class ReporteNavegadora {
                 + ", ultrasonidoBiradsFecha=" + ultrasonidoBiradsFecha + ", resultadoPatologia=" + resultadoPatologia 
                 + ", otroResultado=" + otroResultado + ", serieParafina=" + serieParafina + ", cantidadParafina=" + cantidadParafina 
                 + ", serieLaminillas=" + serieLaminillas + ", cantidadLaminillas=" + cantidadLaminillas 
-                + ", fechaFin=" + fechaFin + ", decisionCosulta=" + decisionCosulta + ", socioeconomico=" + socioeconomico 
-                + ", comentarioLLamada=" + comentarioLLamada + ", fechaLlamada=" + fechaLlamada 
-                + ", comentarioIncidencia=" + comentarioIncidencia + ", comentarioMedico=" + comentarioMedico 
-                + ", nombreEstudio=" + nombreEstudio + ", CitaProgramada=" + CitaProgramada + ", lugarCuerpo=" + lugarCuerpo 
+                + ", fechaFin=" + fechaFin + ", decisionCosulta=" + decisionCosulta + ", socioeconomico=" + socioeconomico  
+                + ", comentarioIncidencia=" + comentarioIncidencia + ", comentarioMedico=" + comentarioMedico  
                 + '}';
     }
 
@@ -165,30 +161,6 @@ public class ReporteNavegadora {
         this.noAdscrito = noAdscrito;
     }
 
-    public boolean isNoRadiologo() {
-        return noRadiologo;
-    }
-
-    public void setNoRadiologo(boolean noRadiologo) {
-        this.noRadiologo = noRadiologo;
-    }
-
-    public String getEscolaridad() {
-        return escolaridad;
-    }
-
-    public void setEscolaridad(String escolaridad) {
-        this.escolaridad = escolaridad;
-    }
-
-    public String getAlergias() {
-        return alergias;
-    }
-
-    public void setAlergias(String alergias) {
-        this.alergias = alergias;
-    }
-
     public boolean isEstadoHormonal() {
         return estadoHormonal;
     }
@@ -219,14 +191,6 @@ public class ReporteNavegadora {
 
     public void setMastografiaPreINCAN(boolean mastografiaPreINCAN) {
         this.mastografiaPreINCAN = mastografiaPreINCAN;
-    }
-
-    public Date getCirugiaFecha() {
-        return cirugiaFecha;
-    }
-
-    public void setCirugiaFecha(Date cirugiaFecha) {
-        this.cirugiaFecha = cirugiaFecha;
     }
 
     public String getCirugiaTipo() {
@@ -372,13 +336,6 @@ public class ReporteNavegadora {
     public void setCantidadLaminillas(int cantidadLaminillas) {
         this.cantidadLaminillas = cantidadLaminillas;
     }
-    public Date getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
-    }
 
     public String getDecisionCosulta() {
         return decisionCosulta;
@@ -396,22 +353,6 @@ public class ReporteNavegadora {
         this.socioeconomico = socioeconomico;
     }
 
-    public String getComentarioLLamada() {
-        return comentarioLLamada;
-    }
-
-    public void setComentarioLLamada(String comentarioLLamada) {
-        this.comentarioLLamada = comentarioLLamada;
-    }
-
-    public Date getFechaLlamada() {
-        return fechaLlamada;
-    }
-
-    public void setFechaLlamada(Date fechaLlamada) {
-        this.fechaLlamada = fechaLlamada;
-    }
-
     public String getComentarioIncidencia() {
         return comentarioIncidencia;
     }
@@ -427,30 +368,6 @@ public class ReporteNavegadora {
     public void setComentarioMedico(String comentarioMedico) {
         this.comentarioMedico = comentarioMedico;
     }
-    
-    public String getNombreEstudio() {
-        return nombreEstudio;
-    }
-
-    public void setNombreEstudio(String nombreEstudio) {
-        this.nombreEstudio = nombreEstudio;
-    }
-
-    public Date getCitaProgramada() {
-        return CitaProgramada;
-    }
-
-    public void setCitaProgramada(Date CitaProgramada) {
-        this.CitaProgramada = CitaProgramada;
-    }
-
-    public String getLugarCuerpo() {
-        return lugarCuerpo;
-    }
-
-    public void setLugarCuerpo(String lugarCuerpo) {
-        this.lugarCuerpo = lugarCuerpo;
-    } 
 
     public String getNombre() {
         return nombre;
@@ -508,14 +425,6 @@ public class ReporteNavegadora {
         this.telefono = telefono;
     }
 
-    public String getTelCelular() {
-        return telCelular;
-    }
-
-    public void setTelCelular(String telCelular) {
-        this.telCelular = telCelular;
-    }
-
     public String getResultado() {
         return resultado;
     }
@@ -546,5 +455,117 @@ public class ReporteNavegadora {
 
     public void setNavegadora(String navegadora) {
         this.navegadora = navegadora;
+    }
+
+    public String getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(String fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public String getEtapaClinica() {
+        return etapaClinica;
+    }
+
+    public void setEtapaClinica(String etapaClinica) {
+        this.etapaClinica = etapaClinica;
+    }
+
+    public String getT() {
+        return T;
+    }
+
+    public void setT(String T) {
+        this.T = T;
+    }
+
+    public String getN() {
+        return N;
+    }
+
+    public void setN(String N) {
+        this.N = N;
+    }
+
+    public String getM() {
+        return M;
+    }
+
+    public void setM(String M) {
+        this.M = M;
+    }
+
+    public String getResultadoPatologiaPost() {
+        return resultadoPatologiaPost;
+    }
+
+    public void setResultadoPatologiaPost(String resultadoPatologiaPost) {
+        this.resultadoPatologiaPost = resultadoPatologiaPost;
+    }
+
+    public String getGradoH() {
+        return gradoH;
+    }
+
+    public void setGradoH(String gradoH) {
+        this.gradoH = gradoH;
+    }
+
+    public String getHer2() {
+        return her2;
+    }
+
+    public void setHer2(String her2) {
+        this.her2 = her2;
+    }
+
+    public String getFish() {
+        return fish;
+    }
+
+    public void setFish(String fish) {
+        this.fish = fish;
+    }
+
+    public String getRe() {
+        return re;
+    }
+
+    public void setRe(String re) {
+        this.re = re;
+    }
+
+    public String getRp() {
+        return rp;
+    }
+
+    public void setRp(String rp) {
+        this.rp = rp;
+    }
+
+    public String getKi67() {
+        return ki67;
+    }
+
+    public void setKi67(String ki67) {
+        this.ki67 = ki67;
+    }
+
+    public String getMastografiaBiradsNombrePost() {
+        return mastografiaBiradsNombrePost;
+    }
+
+    public void setMastografiaBiradsNombrePost(String mastografiaBiradsNombrePost) {
+        this.mastografiaBiradsNombrePost = mastografiaBiradsNombrePost;
+    }
+
+    public String getUltrasonidoBiradsNombrePost() {
+        return ultrasonidoBiradsNombrePost;
+    }
+
+    public void setUltrasonidoBiradsNombrePost(String ultrasonidoBiradsNombrePost) {
+        this.ultrasonidoBiradsNombrePost = ultrasonidoBiradsNombrePost;
     }
 }
