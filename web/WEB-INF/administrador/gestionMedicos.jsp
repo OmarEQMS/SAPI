@@ -308,6 +308,7 @@
                                             <datalist id="listEspecialidades">                                            
                                             </datalist>
                                         </div>
+                                        <span class="text-danger" id="errorEditarEspecialidad">Selecciona una especialidad válida.</span>
                                     </div>
                                     <div class="col-6">
 
@@ -430,6 +431,7 @@
                                             <input type="text" class="form-control" id="agregar-especialidadMedico"
                                                    placeholder="Especialidad" list="listEspecialidades">
                                         </div>
+                                        <span class="text-danger" id="errorAgregarEspecialidad">Selecciona una especialidad válida.</span>
                                     </div>
                                     <div class="col-6">
                                         <div class="input-group">
@@ -441,6 +443,7 @@
                                             <datalist id="listPosiciones">                                            
                                             </datalist>
                                         </div>
+                                        <span class="text-danger" id="errorAgregarPosicion">Selecciona una posición válida.</span>
                                     </div>
                                 </div>
 
@@ -500,7 +503,7 @@
 
                                 <div class="row mb-3" id="error-campos">
                                     <div class="col-12 text-center">
-                                        <span class="text-danger">Completa todos los campos para registrar tu cuenta. </span>
+                                        <span class="text-danger">Completa todos los campos y asegúrate de aceptar los términos para registrar la cuenta.</span>
                                     </div>
                                 </div>
 
