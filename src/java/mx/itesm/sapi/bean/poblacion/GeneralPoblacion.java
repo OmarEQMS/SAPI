@@ -33,6 +33,7 @@ public class GeneralPoblacion  implements Serializable{
     private String estadoCivil;
     private String sexo;
     private String escolaridad;
+    private String nivelSocioeconomico;
     private String seguro;
     private String noSeguroPopular;
     private String prz;
@@ -42,6 +43,17 @@ public class GeneralPoblacion  implements Serializable{
     private String oxigeno;
     private String camilla;
     private String bastón;
+    private String biopsiaPreviaLaminillas;
+    private String biopsiaPreviaBloques;
+    private String biopsiaPreviaTipo;
+    private Date biopsiaPreviaFecha;
+    private String biopsiaPreviaLugarCuerpo;
+    private String biopsiaINCanGradoHistologico;
+    private String biopsiaINCanHer2;
+    private String biopsiaINCanFish;
+    private String biopsiaINCanKi67;
+    private String biopsiaINCanRe;
+    private String biopsiaINCanRp;
 
     @Override
     public String toString() {
@@ -58,6 +70,7 @@ public class GeneralPoblacion  implements Serializable{
                 concat("\tEstado Civil: ").concat(estadoCivil).
                 concat("\tSexo: ").concat(sexo).
                 concat("\tEscolaridad: ").concat(escolaridad).
+                concat("\tNivel Socioeconomico: ").concat(nivelSocioeconomico).
                 concat("\tSeguro: ").concat(seguro).
                 concat("\tNoSeguroPopular: ").concat(noSeguroPopular).
                 concat("\tPrz: ").concat(prz).
@@ -67,6 +80,17 @@ public class GeneralPoblacion  implements Serializable{
                 concat("\tOxigeno: ").concat(oxigeno).
                 concat("\tCamilla: ").concat(camilla).
                 concat("\tBastón: ").concat(bastón).
+                concat("\tBiopsia Previa - Laminillas: ").concat(biopsiaPreviaLaminillas).
+                concat("\tBiopsia Previa - Bloques: ").concat(biopsiaPreviaBloques).
+                concat("\tBiopsia Previa - Tipo: ").concat(biopsiaPreviaTipo).
+                concat("\tBiopsia Previa - Fecha: ").concat(biopsiaPreviaFecha.toString()).
+                concat("\tBiopsia Previa - Lugar Cuerpo: ").concat(biopsiaPreviaLugarCuerpo).
+                concat("\tBiopsia INCan - Grado Histologico: ").concat(biopsiaINCanGradoHistologico).
+                concat("\tBiopsia INCan - Her2: ").concat(biopsiaINCanHer2).
+                concat("\tBiopsia INCan - Fish: ").concat(biopsiaINCanFish).
+                concat("\tBiopsia INCan - Ki67: ").concat(biopsiaINCanKi67).
+                concat("\tBiopsia INCan - Re: ").concat(biopsiaINCanRe).
+                concat("\tBiopsia INCan - Rp: ").concat(biopsiaINCanRp).
                 concat(" ]");
 
     }
@@ -85,6 +109,7 @@ public class GeneralPoblacion  implements Serializable{
                 concat("\t").concat(estadoCivil).
                 concat("\t").concat(sexo).
                 concat("\t").concat(escolaridad).
+                concat("\t").concat(nivelSocioeconomico).
                 concat("\t").concat(seguro).
                 concat("\t").concat(noSeguroPopular).
                 concat("\t").concat(prz).
@@ -93,7 +118,18 @@ public class GeneralPoblacion  implements Serializable{
                 concat("\t").concat(sillaRuedas).
                 concat("\t").concat(oxigeno).
                 concat("\t").concat(camilla).
-                concat("\t").concat(bastón);
+                concat("\t").concat(bastón).
+                concat("\t").concat(biopsiaPreviaLaminillas).
+                concat("\t").concat(biopsiaPreviaBloques).
+                concat("\t").concat(biopsiaPreviaTipo).
+                concat("\t").concat(biopsiaPreviaFecha.toString()).
+                concat("\t").concat(biopsiaPreviaLugarCuerpo).
+                concat("\t").concat(biopsiaINCanGradoHistologico).
+                concat("\t").concat(biopsiaINCanHer2).
+                concat("\t").concat(biopsiaINCanFish).
+                concat("\t").concat(biopsiaINCanKi67).
+                concat("\t").concat(biopsiaINCanRe).
+                concat("\t").concat(biopsiaINCanRp);
 
     }
     public static String tableHeaderRStudio(){
@@ -108,6 +144,7 @@ public class GeneralPoblacion  implements Serializable{
                 concat("Estado civil\t").
                 concat("Sexo\t").
                 concat("Nivel educativo\t").
+                concat("Nivel Socioeconomico\t").
                 concat("Seguro\t").
                 concat("Número de Seguro popular\t").
                 concat("PRZ\t").
@@ -116,7 +153,18 @@ public class GeneralPoblacion  implements Serializable{
                 concat("Silla de ruedas\t").
                 concat("Oxígeno\t").
                 concat("Camilla\t").
-                concat("Bastón\t");
+                concat("Bastón\t").
+                concat("Biopsia Previa - Laminillas\t").
+                concat("Biopsia Previa - Bloques\t").
+                concat("Biopsia Previa - Tipo\t").
+                concat("Biopsia Previa - Fecha\t").
+                concat("Biopsia Previa - Lugar Cuerpo\t").
+                concat("Biopsia INCan - Grado Histologico\t").
+                concat("Biopsia INCan - Her2\t").
+                concat("Biopsia INCan - Fish\t").
+                concat("Biopsia INCan - Ki67\t").
+                concat("Biopsia INCan - Re\t").
+                concat("Biopsia INCan - Rp\t");
     }
     public void setNombrePersona(String nombrePersona) {
         this.nombrePersona = nombrePersona;
@@ -294,5 +342,101 @@ public class GeneralPoblacion  implements Serializable{
         return bastón;
     }
 
+    public String getNivelSocioeconomico() {
+        return nivelSocioeconomico;
+    }
+
+    public void setNivelSocioeconomico(String nivelSocioeconomico) {
+        this.nivelSocioeconomico = nivelSocioeconomico;
+    }
+
+    public String getBiopsiaINCanGradoHistologico() {
+        return biopsiaINCanGradoHistologico;
+    }
+
+    public void setBiopsiaINCanGradoHistologico(String biopsiaINCanGradoHistologico) {
+        this.biopsiaINCanGradoHistologico = biopsiaINCanGradoHistologico;
+    }
+
+    public String getBiopsiaINCanHer2() {
+        return biopsiaINCanHer2;
+    }
+
+    public void setBiopsiaINCanHer2(String biopsiaINCanHer2) {
+        this.biopsiaINCanHer2 = biopsiaINCanHer2;
+    }
+
+    public String getBiopsiaINCanFish() {
+        return biopsiaINCanFish;
+    }
+
+    public void setBiopsiaINCanFish(String biopsiaINCanFish) {
+        this.biopsiaINCanFish = biopsiaINCanFish;
+    }
+
+    public String getBiopsiaINCanKi67() {
+        return biopsiaINCanKi67;
+    }
+
+    public void setBiopsiaINCanKi67(String biopsiaINCanKi67) {
+        this.biopsiaINCanKi67 = biopsiaINCanKi67;
+    }
+
+    public String getBiopsiaINCanRe() {
+        return biopsiaINCanRe;
+    }
+
+    public void setBiopsiaINCanRe(String biopsiaINCanRe) {
+        this.biopsiaINCanRe = biopsiaINCanRe;
+    }
+
+    public String getBiopsiaINCanRp() {
+        return biopsiaINCanRp;
+    }
+
+    public void setBiopsiaINCanRp(String biopsiaINCanRp) {
+        this.biopsiaINCanRp = biopsiaINCanRp;
+    }
+
+    public String getBiopsiaPreviaLaminillas() {
+        return biopsiaPreviaLaminillas;
+    }
+
+    public void setBiopsiaPreviaLaminillas(String biopsiaPreviaLaminillas) {
+        this.biopsiaPreviaLaminillas = biopsiaPreviaLaminillas;
+    }
+
+    public String getBiopsiaPreviaBloques() {
+        return biopsiaPreviaBloques;
+    }
+
+    public void setBiopsiaPreviaBloques(String biopsiaPreviaBloques) {
+        this.biopsiaPreviaBloques = biopsiaPreviaBloques;
+    }
+
+    public String getBiopsiaPreviaTipo() {
+        return biopsiaPreviaTipo;
+    }
+
+    public void setBiopsiaPreviaTipo(String biopsiaPreviaTipo) {
+        this.biopsiaPreviaTipo = biopsiaPreviaTipo;
+    }
+
+    public Date getBiopsiaPreviaFecha() {
+        return biopsiaPreviaFecha;
+    }
+
+    public void setBiopsiaPreviaFecha(Date biopsiaPreviaFecha) {
+        this.biopsiaPreviaFecha = biopsiaPreviaFecha;
+    }
+
+    public String getBiopsiaPreviaLugarCuerpo() {
+        return biopsiaPreviaLugarCuerpo;
+    }
+
+    public void setBiopsiaPreviaLugarCuerpo(String biopsiaPreviaLugarCuerpo) {
+        this.biopsiaPreviaLugarCuerpo = biopsiaPreviaLugarCuerpo;
+    }
+    
     
 }
