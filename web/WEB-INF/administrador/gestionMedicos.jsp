@@ -433,9 +433,9 @@
                                                 <div class="input-group-text"><i class="fas fa-at"></i></div>
                                             </div>
                                             <input type="text" class="form-control" id="agregar-correoMedico" placeholder="Correo">
-                                            <span class="text-danger" id="errorCorreo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
-                                            <span class="text-warning" id="errorCorreoRepetido">El correo ya existe.</span>
                                         </div>
+                                        <span class="text-danger" id="errorCorreoMedico">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
+                                        <span class="text-warning" id="errorCorreoRepetido">El correo ya existe.</span>
                                     </div>
 
                                     <div class="col-6">
@@ -515,11 +515,12 @@
                                 <div class="form-group row justify-content-center">
                                     <div class="col-12 text-center">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="autoSizingCheck2">
+                                            <input class="form-check-input" type="checkbox" id="terminosMedico">
                                             <label class="form-check-label" for="autoSizingCheck2">
                                                 El médico está informado y aceptó los términos y condiciones
                                             </label>
                                         </div>
+                                        <span class="text-danger" id="errorTerminos">Se deben aceptar términos y condiciones.</span>
                                     </div>
                                 </div>
 

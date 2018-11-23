@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    
-    $('##errorNombreMedico').hide();
 
     //Esconder menu lateral a presionar click en el menu hamburguesa
     $('#sidebarCollapse').on('click', () => {
@@ -161,37 +159,78 @@ $(document).ready(function () {
     //Pone iconos en los botones de exportar
     $('.btnExcel').prepend("<i class='fas fa-file-excel mr-2'></i>");
     $('.btnPdf').prepend("<i class='far fa-file-pdf mr-2'></i>");
-    
+
     //Limpiar campos
-    
-    $("body").on("click",".clearAddMedicosModal", function(){
-		$("#agregar-nombreMedico").val("");
-                $("#agregar-telefonoMedico").val("");
-                $("#agregar-primerApellidoMedico").val("");
-                $("#agregar-segundoApellidoMedico").val("");
-                $("#agregar-correoMedico").val("");
-                $("#agregar-noEmpleadoMedico").val("");
-                $("#agregar-especialidadMedico").val("");
-                $("#agregar-posiciondMedico").val("");
-                $("#agregar-cedulaMedico").val("");
-                $("#agregar-passwordMedico").val("");
-                $("#agregar-password2Medico").val("");
-                
-	});
+
+    $("body").on("click", ".clearAddMedicosModal", function () {
+        $("#agregar-nombreMedico").val("");
+        $("#agregar-telefonoMedico").val("");
+        $("#agregar-primerApellidoMedico").val("");
+        $("#agregar-segundoApellidoMedico").val("");
+        $("#agregar-correoMedico").val("");
+        $("#agregar-noEmpleadoMedico").val("");
+        $("#agregar-especialidadMedico").val("");
+        $("#agregar-posiciondMedico").val("");
+        $("#agregar-cedulaMedico").val("");
+        $("#agregar-passwordMedico").val("");
+        $("#agregar-password2Medico").val("");
+
+        $('#errorNombreMedico').hide();
+        $('#errorTelefonoMedico').hide();
+        $('#errorApellidoPaternoMedico').hide();
+        $('#errorApellidoMaternoMedico').hide();
+        $('#errorCorreoMedico').hide();
+        $('#errorCorreoRepetido').hide();
+        $('#errorNumEmpleado').hide();
+        $('#errorCedulaMedicos').hide();
+        $('#errorPass1Medico').hide();
+        $('#noEqualPasswordsError').hide();
+        $('#error-campos').hide();
+        $('#error-datosRepetidos').hide();
+        $('#errorTerminos').hide();
         
-        $("body").on("click",".clearAddNavegadoraModal", function(){
-		$("#agregar-nombreNavegadora"           ).val("");
-                $("#agregar-telefonoNavegadora"         ).val("");
-                $("#agregar-primerApellidoNavegadora"   ).val("");
-                $("#agregar-segundoApellidoNavegadora"  ).val("");
-                $("#agregar-correoNavegadora"           ).val("");
-                $("#agregar-noEmpleadoNavegadora"       ).val("");
-                $("#agregar-especialidadNavegadora"     ).val("");
-                $("#agregar-cedulaNavegadora"           ).val("");
-                $("#agregar-passwordNavegadora"         ).val("");
-                $("#agregar-password2Navegadora"        ).val("");
-                
-	});
+        $('#agregar-nombreMedico').css('border', '');
+        $('#agregar-nombreMedico').css('color', '');
+        
+        $('#agregar-telefonoMedico').css('border', '');
+        $('#agregar-telefonoMedico').css('color', '');
+        
+        $('#agregar-primerApellidoMedico').css('border', '');
+        $('#agregar-primerApellidoMedico').css('color', '');
+        
+        $('#agregar-segundoApellidoMedico').css('border', '');
+        $('#agregar-segundoApellidoMedico').css('color', '');
+        
+        $('#agregar-correoMedico').css('border', '');
+        $('#agregar-correoMedico').css('color', '');
+        
+        $('#agregar-noEmpleadoMedico').css('border', '');
+        $('#agregar-noEmpleadoMedico').css('color', '');
+        
+        $('#agregar-cedulaMedico').css('border', '');
+        $('#agregar-cedulaMedico').css('color', '');
+        
+        $('#agregar-passwordMedico').css('border', '');
+        $('#agregar-passwordMedico').css('color', '');
+        
+        $('#agregar-password2Medico').css('border', '');
+        $('#agregar-password2Medico').css('color', '');
+
+    });
+
+    $("body").on("click", ".clearAddNavegadoraModal", function () {
+        $("#agregar-nombreNavegadora").val("");
+        $("#agregar-telefonoNavegadora").val("");
+        $("#agregar-primerApellidoNavegadora").val("");
+        $("#agregar-segundoApellidoNavegadora").val("");
+        $("#agregar-correoNavegadora").val("");
+        $("#agregar-noEmpleadoNavegadora").val("");
+        $("#agregar-especialidadNavegadora").val("");
+        $("#agregar-cedulaNavegadora").val("");
+        $("#agregar-passwordNavegadora").val("");
+        $("#agregar-password2Navegadora").val("");
+
+    });
 
 
 });
