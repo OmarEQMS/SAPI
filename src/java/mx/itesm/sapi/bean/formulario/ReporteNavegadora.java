@@ -612,4 +612,36 @@ public class ReporteNavegadora {
     public void setTelCelular(String telCelular) {
         this.telCelular = telCelular;
     }
+
+    public String getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(String resultado) {
+        this.resultado = resultado;
+    }
+
+    public String getFechaDecision() {
+        return fechaDecision;
+    }
+
+    public void setFechaDecision(String fechaDecision) {
+        this.fechaDecision = fechaDecision;
+    }
+
+    public String getLlamada() {
+        return llamada;
+    }
+
+    public void setLlamada(String llamada) {
+        this.llamada = llamada;
+    }
+
+    public String getNavegadora() {
+        return navegadora;
+    }
+
+    public void setNavegadora(String navegadora) {
+        this.navegadora = navegadora;
+    }
 }
