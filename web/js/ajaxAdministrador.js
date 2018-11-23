@@ -455,8 +455,7 @@ $(document).ready(function () {
                 $('#editar-correoNavegadora').val(response.correo);
                 $('#editar-no-empleadoNavegadora').val(response.noEmpleado);
                 $('#editar-especialidad').val(response.nombreEspecialidad);
-                $('#editar-usuario').val(response.usuario);
-
+                $('#editar-cedulaNavegadora').val(response.cedulaProfesional);
             }
 
         });
@@ -466,26 +465,28 @@ $(document).ready(function () {
     //GUARDA LA NAVEGADORA DESDE EL MODAL
     $('#btn-guardarNavegadora').on('click', function () {
 
-        var idNavegadora = $('#idNavegadora');
+        var idNavegadora = $('#idNavegadora').val();
 
-        var nombre = $('#editar-nombreNavegadora');
-        var telefono = $('#editar-telefonoNavegadora');
-        var primerApellido = $('#editar-primerApellidoNavegadora');
-        var segundoApellido = $('#editar-segundoApellidoNavegadora');
-        var correo = $('#editar-correoNavegadora');
-        var noEmpleado = $('#editar-no-empleadoNavegadora');
-        var especialidad = $('#editar-especialidad');
-        var usuario = $('#editar-usuario');
+        var nombre = $('#editar-nombreNavegadora').val();
+        var telefono = $('#editar-telefonoNavegadora').val();
+        var primerApellido = $('#editar-primerApellidoNavegadora').val();
+        var segundoApellido = $('#editar-segundoApellidoNavegadora').val();
+        var correo = $('#editar-correoNavegadora').val();
+        var noEmpleado = $('#editar-no-empleadoNavegadora').val();
+        var especialidad = $('#editar-especialidad').val();
+        var cedula = $('#editar-cedulaNavegadora').val();
 
-        console.log(idNavegadora.val());
-        console.log(nombre.val());
-        console.log(telefono.val());
-        console.log(primerApellido.val());
-        console.log(segundoApellido.val());
-        console.log(correo.val());
-        console.log(noEmpleado.val());
-        console.log(especialidad.val());
-        console.log(usuario.val());
+        console.log("idNavegadoraaaaa " + idNavegadora);
+        console.log("nombre " + nombre);
+        console.log("phone " + telefono);
+        console.log("ape 1 " + primerApellido);
+        console.log("ape 2 " + segundoApellido);
+        console.log("mail " + correo);
+        console.log("empleado no " + noEmpleado);
+        console.log("especiliad  " + especialidad);
+        console.log("cedula " + cedula);
+
+        console.log("Holi, hará el ajax");
 
 
         $.ajax({
@@ -495,21 +496,34 @@ $(document).ready(function () {
             method: 'POST',
             data: {
                 key: 'actualiza-navegadora',
-                idNavegadora: idNavegadora.val(),
-                nombre: nombre.val(),
-                telefono: telefono.val(),
-                primerApellido: primerApellido.val(),
-                segundoApellido: segundoApellido.val(),
-                correo: correo.val(),
-                noEmpleado: noEmpleado.val(),
-                especialidad: especialidad.val(),
-                usuario: usuario.val(),
-            }
-        })
-                .done(function (response) {
-
-
+                idNavegadora: idNavegadora,
+                nombre: nombre,
+                telefono: telefono,
+                primerApellido: primerApellido,
+                segundoApellido: segundoApellido,
+                correo: correo,
+                noEmpleado: noEmpleado,
+                especialidad: especialidad,
+                cedula: cedula,
+            },
+            success: function (response) {
+                $('#modalEditarNavegadora').modal('toggle'); //cerrar modal
+                console.log("Cierra el modal");
+                swal({
+                    title: "Cambios guardados correctamente",
+                    icon: "success",
+                    buttons: true,
+                    buttons: [, 'Aceptar']
                 });
+                console.log("ESTOY EN EL SUCCESS!! :o");
+                $('#nombre-' + idNavegadora).html(nombre + " " + primerApellido + " " + segundoApellido);
+                $('#correo-' + idNavegadora).html(correo);
+                $('#telefono-' + idNavegadora).html(telefono);
+                $('#noEmpleado-' + idNavegadora).html(noEmpleado);
+                $('#nombreEspecialidad-' + idNavegadora).html(especialidad);
+                $('#cedulaProfesional-' + idNavegadora).html(cedula);
+            }
+        });
 
     });
 

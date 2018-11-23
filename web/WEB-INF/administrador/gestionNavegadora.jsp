@@ -313,7 +313,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal" style="border-radius: 20px;">Cancelar</button>
-                                <button id="btn-guardarNavegadora" type="button"   data-dismiss="modal" class="btn btn-primary" style="border-radius: 20px;">Guardar
+                                <button id="btn-guardarNavegadora" type="button" class="btn btn-primary" style="border-radius: 20px;">Guardar
                                     Cambios</button>
                             </div>
                         </div>
