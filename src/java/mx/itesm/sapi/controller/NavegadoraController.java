@@ -2392,6 +2392,10 @@ public class NavegadoraController extends HttpServlet {
                             break;
 
                         }
+                        case "generar-reporte":{
+                            
+                            break;
+                        }
 
                     }
 
