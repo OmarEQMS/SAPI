@@ -15,7 +15,6 @@ $(document).ready(function () {
         var posicion = $('#agregar-posiciondMedico');
         var cedula = $('#agregar-cedulaMedico');
         var password = $('#agregar-passwordMedico');
-        ;
 
         $.ajax({
 
@@ -394,7 +393,7 @@ $(document).ready(function () {
         console.log(especialidad);
         console.log(cedula);
         console.log(password);
-
+        
         $.ajax({
 
             url: 'RegistraUsuarioController',
@@ -413,14 +412,15 @@ $(document).ready(function () {
                 password: password.val()
             },
             success: function (response) {
-
-                console.log(response);
-            }
-        })
-                .done(function (response) {
-
-
+                $('#modalAgregarNavegadora').modal('toggle'); //cerrar modal
+                swal({
+                    title: "Cambios guardados correctamente",
+                    icon: "success",
+                    buttons: true,
+                    buttons: [, 'Aceptar']
                 });
+            }
+        });
 
     });
 
