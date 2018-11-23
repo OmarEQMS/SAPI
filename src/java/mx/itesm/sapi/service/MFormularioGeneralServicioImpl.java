@@ -29,7 +29,7 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
         MFormularioGeneral mFormularioGeneral = null;
 
         //Call del store procedure
-        String stProcedure = "CALL mostrarPersona(?)";
+        String stProcedure = "CALL mostrarFormularioNavegadora(?)";
 
         try {
             mFormularioGeneral = new MFormularioGeneral();
