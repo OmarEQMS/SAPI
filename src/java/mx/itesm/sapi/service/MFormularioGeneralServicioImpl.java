@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+
 import mx.itesm.sapi.bean.formulario.MFormularioGeneral;
 import mx.itesm.sapi.util.Conexion;
 
@@ -86,7 +86,7 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
             mFormularioGeneral.setComentarioIncidencia(rs.getString("v_comentarioIncidencia"));
             mFormularioGeneral.setComentarioMedico(rs.getString("v_comentarioMedico"));
             mFormularioGeneral.setEtapaClinica(rs.getString("v_etapaClinica"));
-            mFormularioGeneral.setUltra(rs.getString("v_ultra"));         
+            mFormularioGeneral.setUltra(rs.getString("v_ultra"));
             mFormularioGeneral.setMasto(rs.getString("v_masto"));
             mFormularioGeneral.setHer2(rs.getString("v_her2"));
             mFormularioGeneral.setRp(rs.getString("v_rp"));
@@ -108,15 +108,15 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
     }
 
     @Override
-    public List<MFormularioGeneral> mostrarFormularioLugarTipoFecha(int idPaciente, String nombreEstudio) {
+    public ArrayList<MFormularioGeneral> mostrarFormularioLugarTipoFecha(int idPaciente, String nombreEstudio) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
 
-        List<MFormularioGeneral> citas = null;
+        ArrayList<MFormularioGeneral> citas = new ArrayList<>();
 
         try {
-            citas = new ArrayList<>();
+
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall("CALL mostrarFormularioDinamicoLTF(?, ?)");
             cstmt.setInt(1, idPaciente);
@@ -152,15 +152,14 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
     }
 
     @Override
-    public List<MFormularioGeneral> mostrarFormularioFechaTipo(int idPaciente, String nombreEstudio) {
+    public ArrayList<MFormularioGeneral> mostrarFormularioFechaTipo(int idPaciente, String nombreEstudio) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
 
-        List<MFormularioGeneral> citas = null;
-
+        ArrayList<MFormularioGeneral> citas = new ArrayList<>();
         try {
-            citas = new ArrayList<>();
+
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall("CALL mostrarFormularioDinamicoFechaTipo(?, ?)");
             cstmt.setInt(1, idPaciente);
@@ -194,15 +193,15 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
     }
 
     @Override
-    public List<MFormularioGeneral> mostrarFormularioFecha(int idPaciente, String nombreEstudio) {
+    public ArrayList<MFormularioGeneral> mostrarFormularioFecha(int idPaciente, String nombreEstudio) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
 
-        List<MFormularioGeneral> citas = null;
+        ArrayList<MFormularioGeneral> citas = new ArrayList<>();
 
         try {
-            citas = new ArrayList<>();
+
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall("CALL mostrarFormularioDinamicoFecha(?, ?)");
             cstmt.setInt(1, idPaciente);
@@ -235,15 +234,14 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
     }
 
     @Override
-    public List<MFormularioGeneral> mostrarFormularioLugarFecha(int idPaciente, String nombreEstudio) {
+    public ArrayList<MFormularioGeneral> mostrarFormularioLugarFecha(int idPaciente, String nombreEstudio) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
 
-        List<MFormularioGeneral> citas = null;
+        ArrayList<MFormularioGeneral> citas = new ArrayList<>();
 
         try {
-            citas = new ArrayList<>();
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall("CALL mostrarFormularioDinamicoLTF(?, ?)");
             cstmt.setInt(1, idPaciente);

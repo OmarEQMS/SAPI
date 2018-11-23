@@ -5,6 +5,7 @@
  */
 package mx.itesm.sapi.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import mx.itesm.sapi.bean.formulario.MFormularioGeneral;
 
@@ -18,12 +19,12 @@ public interface MFormularioGeneralServicio {
 
     public MFormularioGeneral mostrarFormularioGeneralNavegadora(int idPaciente);
 
-    public List<MFormularioGeneral> mostrarFormularioLugarTipoFecha(int idPaciente, String nombreEstudio);
+    public ArrayList<MFormularioGeneral> mostrarFormularioLugarTipoFecha(int idPaciente, String nombreEstudio);
 
-    public List<MFormularioGeneral> mostrarFormularioLugarFecha(int idPaciente, String nombreEstudio);
+    public ArrayList<MFormularioGeneral> mostrarFormularioLugarFecha(int idPaciente, String nombreEstudio);
 
-    public List<MFormularioGeneral> mostrarFormularioFechaTipo(int idPaciente, String nombreEstudio);
+    public ArrayList<MFormularioGeneral> mostrarFormularioFechaTipo(int idPaciente, String nombreEstudio);
 
-    public List<MFormularioGeneral> mostrarFormularioFecha(int idPaciente, String nombreEstudio);
+    public ArrayList<MFormularioGeneral> mostrarFormularioFecha(int idPaciente, String nombreEstudio);
 
 }
