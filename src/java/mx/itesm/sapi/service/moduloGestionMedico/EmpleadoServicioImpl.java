@@ -230,7 +230,6 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
     }
 
     @Override
-<<<<<<< HEAD
     public Empleado mostrarEmpleadoPersona(int idPersona) {
         Connection conn = Conexion.getConnection();
 
@@ -264,7 +263,7 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
     }
     
     
-=======
+    @Override
     public Identificadores restringirEmpleado(RestringirEmpleado restringirEmpleado) {
         Connection conn = Conexion.getConnection();
 
@@ -399,6 +398,5 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
 
         return medico;                
     }
->>>>>>> origin/MontoyaRosas
 
 }

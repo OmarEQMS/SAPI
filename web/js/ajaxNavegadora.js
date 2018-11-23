@@ -72,20 +72,6 @@ $(document).ready(function () {
 
             });
 
-
-<<<<<<< HEAD
-        .done(function (response) {
-       
-       var json = JSON.parse(response);
-        for (var i = 0; i < json.length; i++) {
-                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
-                   rayosX.push(newObjeto);
-            }
-    
-       
-        console.log(rayosX);
-       
-        });
     
     
  $("body").on("click", '.rayosX', function(){
@@ -101,15 +87,6 @@ $(document).ready(function () {
  });
     
     
-=======
-
-    $('.rayosX').autocomplete({
-        lookup: rayosX,
-        onSelect: function (suggestion) {
-
-        }
-    });
->>>>>>> origin/MontoyaRosas
 
 //AutocompleteUltrasonido
 
@@ -134,21 +111,7 @@ $(document).ready(function () {
                 console.log(ultraSonido);
 
             });
-
-
-<<<<<<< HEAD
-        .done(function (response) {
-       
-       var json = JSON.parse(response);
-        for (var i = 0; i < json.length; i++) {
-                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
-                   ultraSonido.push(newObjeto);
-            }
-    
-       
-        console.log(ultraSonido);
-       
-        });
+        
     
     
          
@@ -163,15 +126,7 @@ $(document).ready(function () {
 });  
      
  });
-=======
 
-    $('#ultraSonido').autocomplete({
-        lookup: ultraSonido,
-        onSelect: function (suggestion) {
-
-        }
-    });
->>>>>>> origin/MontoyaRosas
 
 
 
@@ -198,21 +153,7 @@ $(document).ready(function () {
                 console.log(programa);
 
             });
-
-
-<<<<<<< HEAD
-        .done(function (response) {
-       
-       var json = JSON.parse(response);
-        for (var i = 0; i < json.length; i++) {
-                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
-                   programa.push(newObjeto);
-            }
-    
-       
-        console.log(programa);
-       
-        });
+        
     
     
          
@@ -227,15 +168,7 @@ $(document).ready(function () {
 });  
      
  });
-=======
 
-    $('#tipoPrograma').autocomplete({
-        lookup: programa,
-        onSelect: function (suggestion) {
-
-        }
-    });
->>>>>>> origin/MontoyaRosas
 
 
 //AutocompleteMedicinaNuclear
@@ -262,23 +195,8 @@ $(document).ready(function () {
 
             });
 
-
-<<<<<<< HEAD
-        .done(function (response) {
+        
        
-       var json = JSON.parse(response);
-        for (var i = 0; i < json.length; i++) {
-                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
-                   medicinaNuclear.push(newObjeto);
-            }
-    
-       
-        console.log(medicinaNuclear);
-       
-        });
-    
-    
-         
  $("body").on("click", '.medicinaNuclear', function(){
     
    $('.medicinaNuclear').autocomplete({
@@ -290,15 +208,6 @@ $(document).ready(function () {
 });  
      
  });
-=======
-
-    $('#medicinaNuclear').autocomplete({
-        lookup: medicinaNuclear,
-        onSelect: function (suggestion) {
-
-        }
-    });
->>>>>>> origin/MontoyaRosas
 
 
 //AutocompleteValoracion
@@ -335,22 +244,7 @@ $(document).ready(function () {
     });
 
 
-
-
-<<<<<<< HEAD
-        .done(function (response) {
-       
-       var json = JSON.parse(response);
-        for (var i = 0; i < json.length; i++) {
-                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
-                   valoracion.push(newObjeto);
-            }
-    
-       
-        console.log(valoracion);
-       
-        });
-    
+     
     
          
  $("body").on("click", '.valoracion', function(){
@@ -364,8 +258,6 @@ $(document).ready(function () {
 });  
      
  });
-=======
->>>>>>> origin/MontoyaRosas
 
 
 
@@ -2213,7 +2105,7 @@ $(document).ready(function () {
         var tipoUltrasonidoMama = $('#tipoUltrasonidoMama').val();
         if (tipoUltrasonidoMama == null)
             tipoUltrasonidoMama = "";
-<<<<<<< HEAD
+
         
         var biradsMasto = $('#ResultadoTipoMastografia').val();
         if(biradsMasto === null)
@@ -2223,9 +2115,6 @@ $(document).ready(function () {
         if(biradUSG === null)
             biradUSG = "";
         
-=======
-
->>>>>>> origin/MontoyaRosas
         console.log("click on 'btn-save[i]'");
 
         var data = new FormData();
@@ -2244,7 +2133,6 @@ $(document).ready(function () {
             }
         }
         console.log("##########################################################################################");
-<<<<<<< HEAD
         data.append("key", "btn-save");      
         data.append("biopsias",JSON.stringify(biopsias));
         data.append("rayosxs",JSON.stringify(rayosxs));
@@ -2263,25 +2151,7 @@ $(document).ready(function () {
         data.append("llamadasCita",JSON.stringify(llamadas));
         data.append("biradsMasto",biradsMasto);
         data.append("biradUSG",biradUSG);
-        
-=======
-        data.append("key", "btn-save");
-        data.append("biopsias", JSON.stringify(biopsias));
-        data.append("rayosxs", JSON.stringify(rayosxs));
-        data.append("ultrasonidos", JSON.stringify(ultrasonidos));
-        data.append("medicinasNucleares", JSON.stringify(medicinasNucleares));
-        data.append("laboratorios", JSON.stringify(laboratorios));
-        data.append("valoraciones", JSON.stringify(valoraciones));
-        data.append("espirometrias", JSON.stringify(espirometrias));
-        data.append("electrocardiogramas", JSON.stringify(electrocardiogramas));
-        data.append("ecocardiogramas", JSON.stringify(ecocardiogramas));
-        data.append("trabajosSociales", JSON.stringify(trabajosSociales));
-        data.append("programas", JSON.stringify(programas));
-        data.append("otrosEstudios", JSON.stringify(otrosEstudios));
-        data.append("comentariosMedico", comentariosMedico);
-        data.append("tipoUltrasonidoMama", tipoUltrasonidoMama);
-        data.append("llamadasCita", JSON.stringify(llamadas));
->>>>>>> origin/MontoyaRosas
+
         data.forEach((value, key) => {
             console.log(key + " " + value);
         });

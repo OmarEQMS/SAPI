@@ -23,11 +23,7 @@ public interface EmpleadoServicio {
     public List<Empleado> mostrarEmpleado();
     public boolean borradoLogicoEmpleado(int idEmpleado);
     public boolean actualizarEmpleado(Empleado empleado);
-<<<<<<< HEAD
-    
-=======
     public Identificadores restringirEmpleado(RestringirEmpleado restringirEmpleado);
     public List<TablaMedicoAdministrador> mostrarListaEmpleadosAdministrador(int idRol);
     public TablaMedicoAdministrador mostrarMedicoAdministrador(int idMedico,int idRol);
->>>>>>> origin/MontoyaRosas
 }
