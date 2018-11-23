@@ -7,15 +7,19 @@ package mx.itesm.sapi.controller;
 
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.Base64;
 import java.util.List;
 import javafx.print.Printer;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
 import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
 import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
@@ -27,13 +31,18 @@ import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.bean.persona.Persona;
+import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.moduloGestionMedico.PosicionServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
+import mx.itesm.sapi.service.persona.PicServicioImpl;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
  * @author urieldiaz
  */
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 50)
+
 @WebServlet(name = "AdministradorController", urlPatterns = {"/AdministradorController"})
 public class AdministradorController extends HttpServlet {
 
@@ -51,6 +60,8 @@ public class AdministradorController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String key = request.getParameter("key");
+
+        System.out.println("LLAVE:" + key);
 
         HttpSession sesion = request.getSession(true);
 
@@ -251,15 +262,90 @@ public class AdministradorController extends HttpServlet {
 
                 case "cambiarDatos": {
 
-                    
-                    
+                    String usuario = request.getParameter("username");
+                    String correo = request.getParameter("correo");
 
-                    PrintWriter out = response.getWriter();
+                    System.out.println("Usuario: " + usuario);
+                    System.out.println("Correo: " + correo);
 
-                    out.print("Hola");
+                    Part part = request.getPart("file-image");
+
+                    PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
+                    Persona persona = personaServicioImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
+
+                    CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
+                    Cuenta cuenta = cuentaServicioImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));
+
+                    System.out.println((int) sesion.getAttribute("idPersona"));
+                    System.out.println((int) sesion.getAttribute("idCuenta"));
+
+                    if ((int) part.getSize() > 0) {
+                        PicServicioImpl picServiceImpl = new PicServicioImpl();
+                        Pic pic = new Pic();
+
+                        pic.setIdPersona((int) sesion.getAttribute("idPersona"));
+                        pic.setContenido(part.getInputStream());
+                        pic.setTamano((int) part.getSize());
+                        pic.setTipo(part.getContentType());
+
+                        picServiceImpl.agregarPic(pic);
+
+                        InputStream imagen = pic.getContenido();
+                        byte[] bytes = IOUtils.toByteArray(imagen);
+                        String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                        sesion.setAttribute("base64Img", base64String);
+                        System.out.println("Debió actualizar la imagen en la sesión");
+                    }
+
+                    persona.setCorreo(correo);
+                    cuenta.setUsuario(usuario);
+
+                    personaServicioImpl.actualizarPersona(persona);
+                    cuentaServicioImpl.actualizarCuenta(cuenta);
+
+                    sesion.setAttribute("correo", persona.getCorreo());
+                    request.setAttribute("correo", sesion.getAttribute("correo"));
+
+                    sesion.setAttribute("usuario", cuenta.getUsuario());
+                    request.setAttribute("usuario", sesion.getAttribute("usuario"));
+
+                    request.getRequestDispatcher("/WEB-INF/administrador/cuentaAdministrador.jsp").forward(request, response);
 
                     break;
 
+                }
+
+                case "cambiarContrasena": {
+
+                    if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
+                        // request.setAttribute("status", "");
+                        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
+                        return;
+                    } else {
+                        int idCuenta = (int) sesion.getAttribute("idCuenta");
+                        String contrasena = request.getParameter("password");
+                        String contrasena2 = request.getParameter("password2");
+                        
+                        System.out.println("pass1: " +  contrasena);
+                        System.out.println("pass2: " + contrasena2);
+
+                        if (contrasena.equals(contrasena2)) {
+
+                            CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+
+                            Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+
+                            cuenta.setPassword(contrasena);
+
+                            cuentaServicio.actualizarCuenta(cuenta);
+                            PrintWriter out = response.getWriter();
+                            out.print("success");
+                        }
+
+                    }
+
+                    break;
                 }
 
             }

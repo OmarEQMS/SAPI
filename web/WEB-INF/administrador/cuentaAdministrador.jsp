@@ -181,6 +181,7 @@
                                 <div class="col-8">
                                     <label for="username">Usuario</label>
                                     <input type="text" class="form-control" id="username" name="username" value="${sessionScope.usuario}"/>
+                                    <span class="text-danger error-correo" id="error-usuario">Formato incorrecto</span>
                                 </div>
 
                             </div>
@@ -190,6 +191,7 @@
                                 <div class="col-8">
                                     <label for="correo">Correo</label>
                                     <input type="text" class="form-control" id="correo" name="correo" value="${sessionScope.correo}"/>
+                                    <span class="text-danger error-correo" id="error-correo">Formato incorrecto</span>
                                 </div>
 
                             </div>

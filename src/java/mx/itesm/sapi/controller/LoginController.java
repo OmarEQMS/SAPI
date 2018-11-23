@@ -124,6 +124,7 @@ public class LoginController extends HttpServlet {
                         sesion.setAttribute("nombre", nombre);
                         sesion.setAttribute("primerApellido", primerApellido);
                         sesion.setAttribute("segundoApellido", segundoApellido);
+                        sesion.setAttribute("correo", persona.getCorreo());
 
                         PicServicioImpl picServicioImpl = new PicServicioImpl();
                         Pic pic = picServicioImpl.mostrarPic(idPersona);

@@ -1,36 +1,78 @@
 $(document).ready(function () {
 
     /////////////////////////////// MI CUENTA ////////
-    $('#guardarCambios').on('click', function () {
 
-        //if (isValidUserName($('#username'))) {
+    $('#error-correo').hide();
+    $('#error-usuario').hide();
+    $('#error-contrasena').hide();
+    $('#noEqualPasswordsError').hide();
 
-        console.log("Presionó GuardarCambios");
-        var form = $("form")[0];
-        var data = new FormData(form);
-        data.append("key", "cambiarDatos");
-        data.forEach((value, key) => {
-            console.log(key + " " + value);
-        });
+    $("#guardarCambios").on('click', function () {
 
-        $.ajax({
-            url: "AdministradorController",
-            data: data,
-            method: "POST",
-            encType: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            cache: false,
-            success: function (response) {
+        if (isValidUserName($('#username')) && isValidEmail($('#correo'))) {
 
-            },
-            error: function (xhr) {
-                //alert(xhr.statusText);
-            }
-        });
+            console.log("Presionó GuardarCambios");
+            var form = $("form")[0];
+            console.log(form);
+            var data = new FormData(form);
+            data.append("key", "cambiarDatos");
+            data.forEach((value, key) => {
+                console.log(key + " " + value);
+            });
+
+            $.ajax({
+                url: "AdministradorController",
+                data: data,
+                method: "POST",
+                enctype: 'multipart/form-data',
+                processData: false, // Important!
+                contentType: false,
+                cache: false,
+                success: function (response) {
+
+                    swal({
+                        title: "Buen trabajo!",
+                        text: "Cuenta actualizada correctamente",
+                        icon: "success",
+                        button: "Ok",
+                    })
+                            .then((value) => {
+                                $.post("SAPI", {
+                                    file: "administrador/cuentaAdministrador.jsp"
+                                },
+                                        function (response, status, xhr) {
+                                            console.log("El ajax fue exitoso!!-----------------------");
+                                            if (status == "success") {
+                                                if (response == "error") {
+                                                    swal("Error", "Hubo un error actualizando tus datos", "error");
+                                                } else {
+                                                    document.open("text/html", "replace");
+                                                    document.write(response);
+                                                    document.close();
+
+                                                }
+                                            }
+                                        }
+                                );
+                            });
 
 
-        //}
+                },
+                error: function (xhr) {
+                    //alert(xhr.statusText);
+                }
+            });
+
+
+        } else {
+            swal({
+                title: "Error",
+                text: "Verifica que todos los datos sean validos",
+                icon: "error",
+                button: "Entendido!",
+            });
+
+        }
 
     });
 
@@ -51,6 +93,78 @@ $(document).ready(function () {
         readURL(this);
     });
 
+    ////*****CAMBIAR CONTRASEÑA
+    $("#btn-updatePassword").on('click', function () {
+
+
+        //Modal cambiar contraseña 
+        if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
+            swal({
+                title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
+                text: "No podras volver a usar tu contraseña anterior para ingresar",
+                icon: "warning",
+                buttons: true,
+                buttons: ['Regresar', 'Cambiar contraseña'],
+                dangerMode: true
+            })
+                    .then((cambiar) => {
+                        if (cambiar) {
+                            $.ajax({
+                                url: "AdministradorController",
+                                data: {
+                                    key: "cambiarContrasena",
+                                    idCuenta: $("#sesionPaciente").val(),
+                                    password: $("#password").val(),
+                                    password2: $("#password2").val()
+                                },
+                                method: "POST",
+                                success: function (response) {
+                                    if (response == "success") {
+                                        swal({
+                                            title: "Buen trabajo!",
+                                            text: "Contraseña actualizada correctamente!",
+                                            icon: "success",
+                                            button: "Entendido!",
+                                        });
+                                        $("#password").val('');
+                                        $("#password2").val('');
+                                    } else {
+                                        //Aqui no se que hace
+                                    }
+                                },
+                                error: function (xhr) {
+
+                                }
+                            });
+                            $('#modalCambiarContraseña').modal('toggle');
+                        }
+                    });
+        }
+
+    });
+
+    function isValidEmail(input) {
+
+        var m = input.val();
+
+        ////Expresion regular por el estandard: RFC 5322
+        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    }
+
     function isValidUserName(input) {
 
         var m = input.val();
@@ -70,6 +184,84 @@ $(document).ready(function () {
 
         return true;
     }
+
+    function isValidPassword(input) {
+
+        var m = input.val();
+
+        //var expreg = /^[a-zA-Z0-9]{8,14}$/;
+        var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    }
+
+    function areEqualPasswords(pass1, pass2) {
+
+        if (pass1.val() != pass2.val()) {
+
+            pass2.css('border', '1px solid red');
+            pass1.css('border', '1px solid red');
+            $('#noEqualPasswordsError').show();
+
+            return false;
+
+        } else {
+            pass2.css('border', '');
+            pass1.css('border', '');
+            $('#noEqualPasswordsError').hide();
+
+        }
+
+        return true;
+    }
+
+    //1.- Usuario
+    $('#username').on('change', function () {
+        if (isValidUserName($('#username'))) {
+            $('#error-usuario').hide();
+
+        } else {
+            $('#error-usuario').show();
+
+        }
+    });
+
+    //2.- Correo
+    $('#correo').on('change', function () {
+        if (isValidEmail($('#correo'))) {
+            $('#error-correo').hide();
+
+        } else {
+            $('#error-correo').show();
+
+        }
+    });
+
+    $("#password").on('change', function () {
+        if (isValidPassword($(this)))
+            $("#error-contrasena").hide();
+        else
+            $("#error-contrasena").show();
+    });
+
+    $("#password2").on('change', function () {
+        var pass1 = $('#password');
+        var pass2 = $(this);
+
+        areEqualPasswords(pass1, pass2);
+    });
 
 
     /////////////////////////////// GESTION MEDICOS //////
