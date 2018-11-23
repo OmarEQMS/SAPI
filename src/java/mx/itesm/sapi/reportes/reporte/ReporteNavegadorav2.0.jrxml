@@ -131,83 +131,46 @@
 	<field name="edad" class="java.lang.String"/>
 	<field name="fechaNacimiento" class="java.lang.String"/>
 	<field name="genero" class="java.lang.String"/>
-	<field name="nivelEducativo" class="java.lang.String"/>
+	<field name="escolaridad" class="java.lang.String"/>
 	<field name="ciudad" class="java.lang.String"/>
 	<field name="estado" class="java.lang.String"/>
 	<field name="alergias" class="java.lang.String"/>
 	<field name="telCasa" class="java.lang.String"/>
 	<field name="telCelular" class="java.lang.String"/>
 	<field name="seguro" class="java.lang.String"/>
-	<field name="entregaLaminillas" class="java.lang.String"/>
-	<field name="informeUSG" class="java.lang.String"/>
-	<field name="BIRADSUSG" class="java.lang.String"/>
+	<field name="serieLaminillas" class="java.lang.String"/>
+	<field name="ultrsonidoBiradsFecha" class="java.lang.String"/>
+	<field name="ultrasonidoBiradsNombre" class="java.lang.String"/>
 	<field name="biopsiaConfirmado" class="java.lang.String"/>
-	<field name="informeMasto" class="java.lang.String"/>
-	<field name="BIRADSMasto" class="java.lang.String"/>
-	<field name="laminillasConfirmado" class="java.lang.String"/>
-	<field name="imagenMasto" class="java.lang.String"/>
-	<field name="imagenUSG" class="java.lang.String"/>
-	<field name="imagenBiopsia" class="java.lang.String"/>
-	<field name="imagenMama" class="java.lang.String"/>
-	<field name="imagenAxila" class="java.lang.String"/>
-	<field name="imagenCuello" class="java.lang.String"/>
-	<field name="imagenFechaMasto" class="java.lang.String"/>
-	<field name="imagenFechaUSG" class="java.lang.String"/>
-	<field name="imagenFechaBiopsia" class="java.lang.String"/>
-	<field name="aspiracion" class="java.lang.String"/>
-	<field name="corte" class="java.lang.String"/>
-	<field name="decisionPreconsultaR1Fecha" class="java.lang.String"/>
-	<field name="decisionPreconsultaR2Fecha" class="java.lang.String"/>
-	<field name="decisionPreconsultaR3Fecha" class="java.lang.String"/>
-	<field name="unidadFFecha" class="java.lang.String"/>
-	<field name="altaF" class="java.lang.String"/>
-	<field name="comentariosReporteIncidencias" class="java.lang.String"/>
+	<field name="mastografiaBiradsFecha" class="java.lang.String"/>
+	<field name="mastografiaBiradsNombre" class="java.lang.String"/>
+	<field name="cantidadLaminillas" class="java.lang.Integer"/>
 	<field name="tipoPaciente" class="java.lang.String"/>
-	<field name="fechaCirugia" class="java.lang.String"/>
-	<field name="fechaQuimio" class="java.lang.String"/>
+	<field name="cirugiaFecha" class="java.lang.String"/>
+	<field name="quimioterapiaFecha" class="java.lang.String"/>
 	<field name="navegadora" class="java.lang.String"/>
-	<field name="fechaRadio" class="java.lang.String"/>
-	<field name="txCirugia" class="java.lang.String"/>
-	<field name="txQuimio" class="java.lang.String"/>
-	<field name="txRadio" class="java.lang.String"/>
+	<field name="radioterapiaFecha" class="java.lang.String"/>
+	<field name="cirugiaTipo" class="java.lang.String"/>
 	<field name="USGConfirmado" class="java.lang.String"/>
-	<field name="informeOtros" class="java.lang.String"/>
-	<field name="BIRADSOtros" class="java.lang.String"/>
-	<field name="otrosConfirmado" class="java.lang.String"/>
-	<field name="eeDiagnostico" class="java.lang.String"/>
+	<field name="resultadoPatologia" class="java.lang.String"/>
 	<field name="resultadosFecha1" class="java.lang.String"/>
-	<field name="decisionPreconsultaR4Fecha" class="java.lang.String"/>
-	<field name="decisionPreconsultaR5Fecha" class="java.lang.String"/>
-	<field name="decisionPreconsultaR6Fecha" class="java.lang.String"/>
-	<field name="LABFecha" class="java.lang.String"/>
-	<field name="GAMMAFecha" class="java.lang.String"/>
-	<field name="MUGAFecha" class="java.lang.String"/>
-	<field name="ULTRAFecha" class="java.lang.String"/>
-	<field name="PEMFecha" class="java.lang.String"/>
-	<field name="PETFecha" class="java.lang.String"/>
-	<field name="TORAXFecha" class="java.lang.String"/>
-	<field name="ECGFecha" class="java.lang.String"/>
-	<field name="VCVFecha" class="java.lang.String"/>
-	<field name="TOMOFecha" class="java.lang.String"/>
-	<field name="RESOFecha" class="java.lang.String"/>
-	<field name="GENETICAFecha" class="java.lang.String"/>
-	<field name="NUTRICIONFecha" class="java.lang.String"/>
-	<field name="MUJERJOVFecha" class="java.lang.String"/>
-	<field name="TSOCIALFecha" class="java.lang.String"/>
-	<field name="otroFecha" class="java.lang.String"/>
-	<field name="otroFecha2" class="java.lang.String"/>
-	<field name="otroFecha3" class="java.lang.String"/>
-	<field name="otroFecha4" class="java.lang.String"/>
-	<field name="otroFecha5" class="java.lang.String"/>
+	<field name="otroResultado" class="java.lang.String"/>
 	<field name="estadoHormonal" class="java.lang.String"/>
-	<field name="campoDePrueba" class="java.lang.String"/>
 	<field name="resultados" class="java.lang.String"/>
 	<field name="fechaDecision" class="java.lang.String"/>
-	<field name="nivelSocioeconomico" class="java.lang.String"/>
+	<field name="socioeconomico" class="java.lang.String"/>
 	<field name="decision" class="java.lang.String"/>
 	<field name="llamada" class="java.lang.String"/>
-	<field name="comentarioIncidencias" class="java.lang.String"/>
+	<field name="comentarioIncidencia" class="java.lang.String"/>
 	<field name="comentarioMedico" class="java.lang.String"/>
+	<field name="serieParafina" class="java.lang.String"/>
+	<field name="cantidadParafina" class="java.lang.String"/>
+	<field name="cirugiaComentario" class="java.lang.String"/>
+	<field name="quimioterapiaComentario" class="java.lang.String"/>
+	<field name="radioterapiaComentario" class="java.lang.String"/>
+	<field name="quimioterapiaCiclo" class="java.lang.String"/>
+	<field name="radioterapiaCiclo" class="java.lang.String"/>
+	<field name="mastoPreviaINCan" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -243,46 +206,6 @@
 				<textFieldExpression><![CDATA["TIPO DE PACIENTE: ".concat($F{tipoPaciente})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="392" y="28" width="55" height="15" uuid="dee8ef95-3acf-4476-ab23-b675862cd2f2"/>
-				<textFieldExpression><![CDATA[$F{txCirugia}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="442" y="13" width="52" height="15" uuid="7b632c47-7d32-4431-8b64-fde784ef200b"/>
-				<text><![CDATA[TIPO TX:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="392" y="43" width="55" height="15" uuid="9081e470-2822-48a7-a1cd-c1c06303b298"/>
-				<textFieldExpression><![CDATA[$F{txQuimio}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="392" y="58" width="55" height="15" uuid="e966f894-a9fe-41a8-aa55-8dd3d98b378d"/>
-				<textFieldExpression><![CDATA[$F{txRadio}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="447" y="28" width="42" height="15" uuid="435a5934-99ba-466b-896b-1743d97662e3"/>
-				<text><![CDATA[FECHA:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="447" y="43" width="42" height="15" uuid="0e71a4b1-6013-401a-b893-3dc3ce751de2"/>
-				<text><![CDATA[FECHA:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="447" y="58" width="42" height="15" uuid="2283dff7-6b0c-418e-8fa8-d7a55dfaac2e"/>
-				<text><![CDATA[FECHA:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="489" y="28" width="72" height="15" uuid="a43f0615-40ce-4a35-b5db-f691f8b1d3b2"/>
-				<textFieldExpression><![CDATA[$F{fechaCirugia}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="489" y="43" width="72" height="15" uuid="7da6144f-4279-4b65-81b5-69f9c46ac91b"/>
-				<textFieldExpression><![CDATA[$F{fechaQuimio}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="489" y="58" width="72" height="15" uuid="c4f7e048-42cd-4d09-b168-69c4493ddb41"/>
-				<textFieldExpression><![CDATA[$F{fechaRadio}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement stretchType="RelativeToBandHeight" x="256" y="10" width="119" height="15" uuid="6b72ce8b-a65f-4387-b15f-fe6d04f92448"/>
 				<textElement>
 					<font size="11"/>
@@ -311,66 +234,59 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="562" splitType="Stretch">
+		<band height="440" splitType="Stretch">
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="385" y="41" width="181" height="15" uuid="b9c590ab-6e4e-4ba4-9fb3-8a92cfd6c7bb"/>
+				<reportElement stretchType="RelativeToBandHeight" x="387" y="33" width="181" height="15" uuid="b9c590ab-6e4e-4ba4-9fb3-8a92cfd6c7bb"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA["TEL. CELULAR : ".concat($F{telCelular})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="220" y="26" width="346" height="15" uuid="ff60768f-1515-414f-912c-43c2b4c48e50"/>
+				<reportElement stretchType="RelativeToBandHeight" x="222" y="18" width="346" height="15" uuid="ff60768f-1515-414f-912c-43c2b4c48e50"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA["ESTADO: ".concat($F{estado})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="220" y="11" width="346" height="15" uuid="62449921-ebdd-4e2b-97d8-9529412cf285"/>
+				<reportElement stretchType="RelativeToBandHeight" x="222" y="3" width="346" height="15" uuid="62449921-ebdd-4e2b-97d8-9529412cf285"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA["CIUDAD: ".concat($F{ciudad})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="220" y="41" width="130" height="15" uuid="b12318ef-4b25-46ba-af12-27ba4af2598d"/>
+				<reportElement stretchType="RelativeToBandHeight" x="222" y="33" width="130" height="15" uuid="b12318ef-4b25-46ba-af12-27ba4af2598d"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA["TEL. CASA : ".concat($F{telCasa})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="ContainerBottom" x="11" y="26" width="200" height="15" uuid="6d1acfb1-55a3-428c-8948-bde7e1581fe2"/>
+				<reportElement stretchType="ContainerBottom" x="8" y="18" width="200" height="15" uuid="6d1acfb1-55a3-428c-8948-bde7e1581fe2"/>
 				<textFieldExpression><![CDATA[$F{alergias}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="11" y="11" width="200" height="15" uuid="e98ad8f9-e4ee-4ec7-82b3-9fd0c1f9677c"/>
-				<textFieldExpression><![CDATA["NIVEL EDUCATIVO: ".concat($F{nivelEducativo})]]></textFieldExpression>
+				<reportElement stretchType="RelativeToBandHeight" x="8" y="3" width="200" height="15" uuid="e98ad8f9-e4ee-4ec7-82b3-9fd0c1f9677c"/>
+				<textFieldExpression><![CDATA["NIVEL EDUCATIVO: ".concat($F{escolaridad})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="11" y="41" width="200" height="15" uuid="5793b4e1-c71e-4f10-98f2-35a0163ef222"/>
+				<reportElement stretchType="RelativeToBandHeight" x="8" y="33" width="200" height="15" uuid="5793b4e1-c71e-4f10-98f2-35a0163ef222"/>
 				<textElement>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
 				<textFieldExpression><![CDATA["SEGURO: ".concat($F{seguro})]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="11" y="56" width="200" height="15" uuid="c7fd744d-ccca-457b-837d-be815bed1ef4"/>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["ENTREGA LAMINILLAS: ".concat($F{entregaLaminillas})]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="196" y="83" width="179" height="20" uuid="6775568a-1909-4462-960f-5aec6b275d6f"/>
+				<reportElement stretchType="RelativeToBandHeight" x="196" y="307" width="179" height="20" uuid="6775568a-1909-4462-960f-5aec6b275d6f"/>
 				<textElement>
 					<font size="13"/>
 				</textElement>
 				<text><![CDATA[ESTUDIOS EXTERNOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="0" y="104" width="150" height="20" uuid="dca3b047-fc42-43d4-b561-c246e149f6f8"/>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="328" width="150" height="20" uuid="dca3b047-fc42-43d4-b561-c246e149f6f8"/>
 				<box topPadding="0" leftPadding="2" bottomPadding="0" rightPadding="0">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -383,7 +299,7 @@
 				<text><![CDATA[ESTUDIO DE IMAGEN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="150" y="104" width="80" height="20" uuid="203b9c3c-2cad-4a65-b122-6890e24a364d"/>
+				<reportElement stretchType="RelativeToBandHeight" x="150" y="328" width="80" height="20" uuid="203b9c3c-2cad-4a65-b122-6890e24a364d"/>
 				<box topPadding="0" leftPadding="2" bottomPadding="0" rightPadding="0">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -396,7 +312,7 @@
 				<text><![CDATA[INFORME]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="230" y="104" width="134" height="20" uuid="91bb7495-58ee-4be0-9fc4-f8741dd7264c"/>
+				<reportElement stretchType="RelativeToBandHeight" x="230" y="328" width="134" height="20" uuid="91bb7495-58ee-4be0-9fc4-f8741dd7264c"/>
 				<box topPadding="0" leftPadding="2" bottomPadding="0" rightPadding="0">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -409,7 +325,7 @@
 				<text><![CDATA[BI-RADS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="364" y="104" width="201" height="20" uuid="207c0867-861c-4c3d-ab95-37715d8c12c8"/>
+				<reportElement stretchType="RelativeToBandHeight" x="364" y="328" width="201" height="20" uuid="207c0867-861c-4c3d-ab95-37715d8c12c8"/>
 				<box topPadding="0" leftPadding="2" bottomPadding="0" rightPadding="0">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -422,7 +338,7 @@
 				<text><![CDATA[DIAGNÓSTICO CONFIRMADO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="0" y="124" width="150" height="20" uuid="aa84153f-0ecd-43e3-990a-317db83c30ed"/>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="348" width="150" height="20" uuid="aa84153f-0ecd-43e3-990a-317db83c30ed"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -435,7 +351,7 @@
 				<text><![CDATA[ULTRASONIDO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="150" y="124" width="80" height="20" uuid="278786ff-2f5f-4e5f-b644-5125eac64bf1"/>
+				<reportElement stretchType="RelativeToBandHeight" x="150" y="348" width="80" height="20" uuid="278786ff-2f5f-4e5f-b644-5125eac64bf1"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -445,10 +361,10 @@
 				<textElement>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{informeUSG}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ultrsonidoBiradsFecha}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="230" y="124" width="134" height="20" uuid="edefe4f1-e04f-4f73-a044-352570bee557"/>
+				<reportElement stretchType="RelativeToBandHeight" x="230" y="348" width="134" height="20" uuid="edefe4f1-e04f-4f73-a044-352570bee557"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -458,10 +374,10 @@
 				<textElement>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{BIRADSUSG}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ultrasonidoBiradsNombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="483" y="124" width="82" height="20" uuid="7ceb1ee1-7562-4c20-a33d-eb3bb4e7e036"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="483" y="348" width="82" height="20" uuid="7ceb1ee1-7562-4c20-a33d-eb3bb4e7e036"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -475,7 +391,7 @@
 				<textFieldExpression><![CDATA[$F{USGConfirmado}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="364" y="124" width="119" height="20" uuid="502fe030-7290-452c-a365-d717f368a113"/>
+				<reportElement stretchType="RelativeToBandHeight" x="364" y="348" width="119" height="20" uuid="502fe030-7290-452c-a365-d717f368a113"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -485,7 +401,7 @@
 				<text><![CDATA[BIOPSIA:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="0" y="144" width="150" height="20" uuid="14793b67-fbf2-429e-8f29-77ec795112a2"/>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="368" width="150" height="20" uuid="14793b67-fbf2-429e-8f29-77ec795112a2"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -498,7 +414,7 @@
 				<text><![CDATA[MASTOGRAFIA]]></text>
 			</staticText>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="150" y="144" width="80" height="20" uuid="8f4fd2c2-2600-4270-a1da-e9d2ba7cc557"/>
+				<reportElement stretchType="RelativeToBandHeight" x="150" y="368" width="80" height="20" uuid="8f4fd2c2-2600-4270-a1da-e9d2ba7cc557"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -508,10 +424,10 @@
 				<textElement>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{informeMasto}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{mastografiaBiradsFecha}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="230" y="144" width="134" height="20" uuid="562f559b-995f-4355-bf53-c4f9d0527217"/>
+				<reportElement stretchType="RelativeToBandHeight" x="230" y="368" width="134" height="20" uuid="562f559b-995f-4355-bf53-c4f9d0527217"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -521,10 +437,10 @@
 				<textElement>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{BIRADSMasto}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{mastografiaBiradsNombre}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="364" y="144" width="119" height="20" uuid="ab0538e0-ba53-4dc6-bab6-b1e6c007dce4"/>
+				<reportElement stretchType="RelativeToBandHeight" x="364" y="368" width="119" height="20" uuid="ab0538e0-ba53-4dc6-bab6-b1e6c007dce4"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -534,7 +450,7 @@
 				<text><![CDATA[LAMINILLAS:]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="483" y="144" width="82" height="20" uuid="61b7c119-c395-4fbf-8473-ad35a5c8a96b"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="483" y="368" width="82" height="20" uuid="61b7c119-c395-4fbf-8473-ad35a5c8a96b"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -545,10 +461,10 @@
 					<font isBold="true"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{laminillasConfirmado}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cantidadLaminillas}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="483" y="164" width="82" height="20" uuid="bd14da7a-be17-4a51-8a52-5b7d88a27abf"/>
+				<reportElement positionType="Float" x="483" y="388" width="82" height="20" uuid="bd14da7a-be17-4a51-8a52-5b7d88a27abf"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -559,10 +475,10 @@
 					<font isBold="true"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{otrosConfirmado}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cantidadParafina}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="364" y="164" width="119" height="20" uuid="2ae709cf-55c4-4d2b-bdf8-36d38e01cba3"/>
+				<reportElement x="364" y="388" width="119" height="20" uuid="2ae709cf-55c4-4d2b-bdf8-36d38e01cba3"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -571,47 +487,8 @@
 				</box>
 				<text><![CDATA[BLOQUES:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="230" y="164" width="134" height="20" uuid="e20266f2-3309-42fd-9af8-499e0850ead7"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{BIRADSOtros}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="150" y="164" width="80" height="20" uuid="8b8a7592-c990-44c7-9d94-a7dc2a7c0285"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{informeOtros}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="0" y="164" width="150" height="20" uuid="e501b179-4200-49e8-b000-b4a3e2a1b7ab"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<text><![CDATA[OTROS:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="184" width="150" height="20" uuid="aba71d29-fda8-498c-9388-768aec1f1b07"/>
+				<reportElement x="0" y="408" width="150" height="20" uuid="aba71d29-fda8-498c-9388-768aec1f1b07"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -624,7 +501,7 @@
 				<text><![CDATA[DIAGNÓSTICO]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="150" y="184" width="415" height="20" uuid="19b0f762-2100-4552-a991-69d4bb46dd58"/>
+				<reportElement x="150" y="408" width="415" height="20" uuid="19b0f762-2100-4552-a991-69d4bb46dd58"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -634,469 +511,107 @@
 				<textElement>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{eeDiagnostico}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="166" y="222" width="239" height="25" uuid="6ce37866-bf68-41d0-ba1f-0ba9d81041da"/>
-				<textElement>
-					<font size="13"/>
-				</textElement>
-				<text><![CDATA[ESTUDIOS DE IMAGENOLOGÍA	]]></text>
-			</staticText>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="4" y="247" width="116" height="15" uuid="29d5bc91-db31-4ee9-a4bd-68f060241fe1"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["MASTOGRAFÍA: ".concat($F{imagenMasto})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{resultadoPatologia}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="120" y="247" width="114" height="15" uuid="ba4be761-18a6-450d-b057-8bbc422f31b3"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["ULTRASONIDO: ".concat($F{imagenFechaUSG})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="234" y="247" width="134" height="15" uuid="00da6dbf-2410-46f2-9ceb-f619a33fa664"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["BIOPSIA: ".concat($F{imagenBiopsia})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="368" y="247" width="196" height="32" uuid="db4a4f40-a76d-4cf0-bc62-c1de15bed7ef"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<font isBold="true"/>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{imagenBiopsia}.concat(" ").concat($F{imagenMama}).concat(" ").concat($F{imagenAxila}).concat("\n").concat($F{imagenCuello}).concat(" ").concat($F{aspiracion}).concat(" ").concat($F{corte})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="4" y="262" width="116" height="15" uuid="67a341a3-4465-4058-9d33-951b35c788e1"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["FECHA: ".concat($F{imagenFechaMasto})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="120" y="262" width="114" height="15" uuid="88c6ac25-1364-4419-8fca-77912fe4ee37"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{informeMasto}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="234" y="262" width="134" height="15" uuid="8637cbc5-19ec-46b5-a64a-3af6ecbfd310"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["FECHA: ".concat($F{imagenFechaBiopsia})]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="166" y="293" width="209" height="20" uuid="d53cb465-4cd1-4827-8d4c-e90a89e868f3"/>
-				<textElement>
-					<font size="13"/>
-				</textElement>
-				<text><![CDATA[DESICIÓN PRECONSULTA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="4" y="314" width="240" height="15" uuid="5e79e8c3-1517-490b-b04d-fd198083db51"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<text><![CDATA[RESULTADOS:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="244" y="314" width="198" height="15" uuid="2e090ad7-faa4-453f-9a30-2b35a89d9424"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<text><![CDATA[UNIDAD FUNCIONAL:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="442" y="314" width="124" height="15" uuid="958ca7fa-579d-40ee-bf5e-a85146f2a265"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<text><![CDATA[ALTA:]]></text>
-			</staticText>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="442" y="329" width="124" height="15" uuid="09a83894-fe03-4cdf-a483-d2eaf1b8ef7c"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["FECHA: ".concat($F{altaF})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="244" y="329" width="198" height="15" uuid="9cfe67ff-c201-4c97-af53-0a6fe141d781"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["FECHA:".concat($F{unidadFFecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="4" y="329" width="240" height="15" uuid="1c562399-ce71-4462-93ac-9c81a2269360"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["FECHA: ".concat($F{decisionPreconsultaR1Fecha}).concat(" FECHA:").concat($F{decisionPreconsultaR2Fecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="4" y="344" width="240" height="15" uuid="87ae7423-1480-4e89-9850-90f3acc96cd2"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["FECHA: ".concat($F{decisionPreconsultaR3Fecha}).concat(" FECHA: ").concat($F{decisionPreconsultaR4Fecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="4" y="359" width="240" height="15" uuid="00594564-e56c-4ca2-a00e-4c50430b9a85"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["FECHA: ".concat($F{decisionPreconsultaR5Fecha}).concat(" FECHA: ").concat($F{decisionPreconsultaR6Fecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="2" y="488" width="566" height="36" uuid="8094ebc1-bb8f-4508-b4c4-06945b353110"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["COMENTARIOS Y/O REPORTE E INCIDENCIAS: \n".concat($F{comentariosReporteIncidencias})]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="158" y="387" width="254" height="20" uuid="c5a2b637-f8bb-4f19-b218-1cc30460e393"/>
-				<textElement>
-					<font size="13"/>
-				</textElement>
-				<text><![CDATA[ESTUDIOS COMPLEMENTARIOS]]></text>
-			</staticText>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="9" y="408" width="140" height="15" uuid="7670c457-4026-4f55-b4fc-26ddd69c06ce"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA["LAB: ".concat($F{LABFecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="149" y="408" width="140" height="15" uuid="790980d2-3ad3-405d-8150-da6e084ebb86"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["GAMMA: ".concat($F{GAMMAFecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="289" y="408" width="140" height="15" uuid="6db9ac50-b548-4fd4-92c0-0f9c3c552865"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["MUGA:".concat($F{MUGAFecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="9" y="423" width="140" height="15" uuid="7d7ab33c-a426-49f2-ac83-00b9a1c824c3"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["PET: ".concat($F{PETFecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="9" y="438" width="140" height="15" uuid="7e07d46c-8e0c-41a7-8f61-d81c852e112c"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["RESO: ".concat($F{RESOFecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="9" y="453" width="140" height="15" uuid="4497557c-1ea6-4c7e-9f28-d00c734b1a19"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["FECHA".concat($F{otroFecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="429" y="408" width="140" height="15" uuid="0ac3fdcb-0b25-4d7c-ba38-72dd0c88d326"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["PEM:".concat($F{PEMFecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="149" y="423" width="140" height="15" uuid="fd3fc2a1-14ea-47a3-a2a7-335cf287c6bb"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["TORAX: ".concat($F{TORAXFecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="149" y="438" width="140" height="15" uuid="1ff25fb5-4cb9-4435-9405-f7d1f70e08dd"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["GENETICA: ".concat($F{GENETICAFecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="149" y="453" width="140" height="15" uuid="78ca9e5b-bb18-45b4-a4cd-d72e84253d6b"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["FECHA: ".concat($F{otroFecha2})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="289" y="423" width="140" height="15" uuid="bacbd380-66c9-4455-94f1-f4dcb832ea46"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["ECG: ".concat($F{ECGFecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="289" y="438" width="140" height="15" uuid="395cda5f-7488-4097-a366-c1c2c4b66f4d"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["NUTRICION: ".concat($F{NUTRICIONFecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="289" y="453" width="140" height="15" uuid="b9e11b13-fee3-40dc-8399-f3450c68c602"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["FECHA: ".concat($F{otroFecha4})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="429" y="423" width="140" height="15" uuid="bad0c96d-6259-4119-a5f0-4d2b6a9b9d04"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["TOTO: ".concat($F{TOMOFecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="429" y="438" width="140" height="15" uuid="05d05df4-13e8-4297-812b-897f133c78ff"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["T.SOCIAL: ".concat($F{TSOCIALFecha})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="429" y="453" width="140" height="15" uuid="62d1c817-288f-4cf0-9320-535278ef3353"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA["FECHA: ".concat($F{otroFecha5})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="220" y="56" width="260" height="15" uuid="fea1ea10-bbe7-4988-b0d6-556a2631e25d"/>
+				<reportElement stretchType="RelativeToBandHeight" x="222" y="48" width="260" height="15" uuid="fea1ea10-bbe7-4988-b0d6-556a2631e25d"/>
 				<textElement>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
 				<textFieldExpression><![CDATA["ESTADO HORMONAL: ".concat($F{estadoHormonal})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="247" y="536" width="68" height="20" uuid="7cb079b4-d983-46af-b4ff-d1cef9453f43"/>
-				<textElement>
-					<font size="13"/>
-				</textElement>
-				<text><![CDATA[ESTUDIOS]]></text>
+				<reportElement x="11" y="82" width="52" height="15" uuid="0374d719-f18f-4ad1-8ae0-73d83570fe4e"/>
+				<text><![CDATA[TIPO TX:]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="11" y="101" width="55" height="15" uuid="6933138d-d293-43d4-9462-0d5adb870aaa"/>
+				<text><![CDATA[CIRUGÍA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="66" y="101" width="42" height="15" uuid="7dfd14c0-cc8f-43f7-a5da-f7d9e08f6678"/>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="108" y="101" width="72" height="15" uuid="5c785e5b-ef6c-4995-becd-56a5ec4ebbc7"/>
+				<textFieldExpression><![CDATA[$F{cirugiaFecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="108" y="167" width="72" height="15" uuid="3e2972af-3c34-4f0c-a3af-0b7aab22dcc9"/>
+				<textFieldExpression><![CDATA[$F{quimioterapiaFecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="66" y="167" width="42" height="15" uuid="e68bc9a3-b0a4-429c-90d0-2a510b8f9cc0"/>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="167" width="55" height="15" uuid="ae16e8cb-b5c8-419c-8991-dd41553a7192"/>
+				<text><![CDATA[QUIMIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="232" width="55" height="15" uuid="54e64100-3c42-404f-947d-64829ce4e4fd"/>
+				<text><![CDATA[RADIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="66" y="232" width="42" height="15" uuid="d2fe073a-8f89-4bb4-a566-8fc522375294"/>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="108" y="232" width="72" height="15" uuid="a0926823-2684-4104-88b1-ac43966da542"/>
+				<textFieldExpression><![CDATA[$F{radioterapiaFecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="180" y="101" width="42" height="15" uuid="7665b8ff-d1a5-44e3-85a7-6a6851976b7a"/>
+				<text><![CDATA[TIPO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="101" width="72" height="15" uuid="14b8abbd-c095-4d93-aff7-b9f434208617"/>
+				<textFieldExpression><![CDATA[$F{cirugiaTipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="167" width="72" height="15" uuid="7f821218-da0a-4472-a635-39367565466a"/>
+				<textFieldExpression><![CDATA[$F{quimioterapiaCiclo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="180" y="167" width="42" height="15" uuid="21f934b9-93ca-409c-8361-328b86c7bb44"/>
+				<text><![CDATA[CICLOS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="232" width="42" height="15" uuid="86c90387-bd01-4b22-a1dc-b76c451a973f"/>
+				<text><![CDATA[CICLOS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="232" width="72" height="15" uuid="3dd7864f-7ce3-45d7-810c-4166da5f8e75"/>
+				<textFieldExpression><![CDATA[$F{radioterapiaCiclo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="182" width="558" height="49" uuid="007feb7c-c124-453e-b6eb-7bfee82d90c9"/>
+				<textFieldExpression><![CDATA[$F{quimioterapiaComentario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="247" width="558" height="49" uuid="3027298a-b15f-4add-95da-b288242b3b64"/>
+				<textFieldExpression><![CDATA[$F{radioterapiaComentario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="9" y="49" width="212" height="15" uuid="fcc71093-96ad-4863-9423-c14fe503b5da"/>
+				<textElement>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["MASTOGRAFIA PREVIA EN EL INCAN: ".concat($F{mastoPreviaINCan})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="116" width="558" height="49" uuid="0addd4b2-6ca0-4ea6-9148-de90a95b75b2"/>
+				<textFieldExpression><![CDATA[$F{cirugiaComentario}]]></textFieldExpression>
+			</textField>
 		</band>
-		<band height="90">
+		<band height="112">
 			<componentElement>
-				<reportElement x="0" y="0" width="285" height="15" uuid="57b5c242-c8b4-4fe8-a50d-9f3f372cb0fa"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<reportElement x="0" y="23" width="289" height="15" uuid="57b5c242-c8b4-4fe8-a50d-9f3f372cb0fa"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="datasetBiopsia" uuid="44d00d66-0bcf-4254-b538-6df9e1af6844">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:listContents height="15" width="285">
+					<jr:listContents height="15" width="289">
 						<textField>
 							<reportElement x="71" y="0" width="70" height="15" uuid="63ebecfe-12f6-43ae-ad7a-44f13453adfd"/>
 							<box>
@@ -1135,14 +650,14 @@
 								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
-							<textFieldExpression><![CDATA[Biopsia]]></textFieldExpression>
+							<textFieldExpression><![CDATA["Biopsia"]]></textFieldExpression>
 						</textField>
 					</jr:listContents>
 				</jr:list>
 			</componentElement>
 			<componentElement>
-				<reportElement x="285" y="0" width="285" height="15" uuid="13a59433-8f8c-4b3d-ac41-172d88e55edb"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<reportElement x="285" y="23" width="285" height="15" uuid="13a59433-8f8c-4b3d-ac41-172d88e55edb"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="datasetRayosX" uuid="ae6cfbd6-0a18-4a1e-ab50-ff63a4102bb6">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
@@ -1181,8 +696,8 @@
 				</jr:list>
 			</componentElement>
 			<componentElement>
-				<reportElement x="285" y="15" width="285" height="15" uuid="b5b22b9f-5efa-41b6-9cbb-6ef38b21e4e7"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<reportElement x="285" y="38" width="285" height="15" uuid="b5b22b9f-5efa-41b6-9cbb-6ef38b21e4e7"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="datasetMedicinaNuclear" uuid="5a26c623-711f-4134-a201-ba5ee0d2fdde">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
@@ -1221,8 +736,8 @@
 				</jr:list>
 			</componentElement>
 			<componentElement>
-				<reportElement x="0" y="15" width="285" height="15" uuid="67a4fd7d-6736-4de7-9e04-b8059332d1eb"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<reportElement x="0" y="38" width="285" height="15" uuid="67a4fd7d-6736-4de7-9e04-b8059332d1eb"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="datasetUltrasonido" uuid="d444e837-7101-4eb9-9a37-b270b4ea046b">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
@@ -1255,15 +770,14 @@
 								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
-							<textFieldExpression><![CDATA["Ultrasonido
-"]]></textFieldExpression>
+							<textFieldExpression><![CDATA["Ultrasonido"]]></textFieldExpression>
 						</textField>
 					</jr:listContents>
 				</jr:list>
 			</componentElement>
 			<componentElement>
-				<reportElement x="0" y="45" width="190" height="15" uuid="f43457c2-6d19-4de1-ab35-be8208d6fb49"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<reportElement x="0" y="68" width="190" height="15" uuid="f43457c2-6d19-4de1-ab35-be8208d6fb49"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="datasetLaboratorio" uuid="25c57e92-8af8-4395-911e-76aef7a901a2">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
@@ -1292,8 +806,8 @@
 				</jr:list>
 			</componentElement>
 			<componentElement>
-				<reportElement x="0" y="30" width="285" height="15" uuid="ce4e7cec-5732-428b-8745-4bbb9650b446"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<reportElement x="0" y="53" width="285" height="15" uuid="ce4e7cec-5732-428b-8745-4bbb9650b446"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="datasetValoracion" uuid="6b672813-71af-4439-888c-62907d5aa725">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
@@ -1332,8 +846,8 @@
 				</jr:list>
 			</componentElement>
 			<componentElement>
-				<reportElement x="285" y="30" width="285" height="15" uuid="aeef40ce-4a0e-4562-a346-8d6099d336ca"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<reportElement x="285" y="53" width="285" height="15" uuid="aeef40ce-4a0e-4562-a346-8d6099d336ca"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="datasetPrograma" uuid="d8983f7b-53d0-4221-a58e-3adf34e4eafb">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
@@ -1372,8 +886,8 @@
 				</jr:list>
 			</componentElement>
 			<componentElement>
-				<reportElement positionType="FixRelativeToBottom" x="190" y="45" width="190" height="15" uuid="342e356e-4b9f-43da-9463-7a27f4db8465"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<reportElement x="190" y="68" width="190" height="15" uuid="342e356e-4b9f-43da-9463-7a27f4db8465"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="datasetElectrocardiograma" uuid="b3be979c-2c96-47e0-ae3b-66e8b4ccbf1d">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
@@ -1402,8 +916,8 @@
 				</jr:list>
 			</componentElement>
 			<componentElement>
-				<reportElement x="380" y="45" width="190" height="15" uuid="95ed4daf-b91e-43de-af76-7edd437ee55a"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<reportElement x="380" y="68" width="190" height="15" uuid="95ed4daf-b91e-43de-af76-7edd437ee55a"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="datasetEcocardiograma" uuid="9920c77d-07bb-4c74-a80a-2dfecefcc153">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
@@ -1432,8 +946,8 @@
 				</jr:list>
 			</componentElement>
 			<componentElement>
-				<reportElement x="0" y="60" width="190" height="15" uuid="2034f64f-8721-4b04-8482-6a7dee67004d"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<reportElement x="0" y="83" width="190" height="15" uuid="2034f64f-8721-4b04-8482-6a7dee67004d"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="datasetTrabajoSocial" uuid="b030669f-3912-4231-b452-809b9aa01152">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
@@ -1462,8 +976,8 @@
 				</jr:list>
 			</componentElement>
 			<componentElement>
-				<reportElement x="190" y="60" width="380" height="15" uuid="97708254-d8ad-425a-a18f-6d4aa47e2ea1"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<reportElement x="190" y="83" width="380" height="15" uuid="97708254-d8ad-425a-a18f-6d4aa47e2ea1"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="datasetOtro" uuid="80cda01e-6dad-421d-a5fd-b9b0b5614bb8">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
@@ -1501,8 +1015,15 @@
 					</jr:listContents>
 				</jr:list>
 			</componentElement>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="251" y="3" width="68" height="20" uuid="5bdd2609-aa85-4c3c-b133-4f1427321523"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[ESTUDIOS]]></text>
+			</staticText>
 		</band>
-		<band height="189">
+		<band height="261">
 			<staticText>
 				<reportElement stretchType="RelativeToBandHeight" x="233" y="0" width="94" height="20" uuid="ae7e177b-ae1b-453d-9962-0ab0697e4071"/>
 				<textElement>
@@ -1548,7 +1069,7 @@
 					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textFieldExpression><![CDATA["Nivel Socioeconomico: ".concat($F{nivelSocioeconomico})]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Nivel Socioeconomico: ".concat($F{socioeconomico})]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="142" y="35" width="100" height="15" uuid="c5ef3e58-7be7-423a-8c72-33179d3c5dda"/>
@@ -1562,7 +1083,7 @@
 			</textField>
 			<componentElement>
 				<reportElement x="242" y="35" width="328" height="45" uuid="edcafbcf-ad2c-4e65-b539-d8bb2a3bef9c"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="datasetLlamada" uuid="22ec97b9-8d4f-4def-a0e8-228ed51735a5">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
@@ -1601,7 +1122,7 @@
 				</jr:list>
 			</componentElement>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="2" y="111" width="566" height="36" uuid="9633e772-1534-4aaa-951f-419ddc605769"/>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="2" y="111" width="566" height="36" uuid="9633e772-1534-4aaa-951f-419ddc605769"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -1611,10 +1132,10 @@
 				<textElement>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA["COMENTARIOS Y/O REPORTE E INCIDENCIAS: \n".concat($F{comentarioIncidencias})]]></textFieldExpression>
+				<textFieldExpression><![CDATA["COMENTARIOS Y/O REPORTE E INCIDENCIAS: \n".concat($F{comentarioIncidencia})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="2" y="152" width="566" height="36" uuid="071ebb43-99f0-404b-ad20-8f4f5de283c9"/>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="2" y="152" width="566" height="36" uuid="071ebb43-99f0-404b-ad20-8f4f5de283c9"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -1627,18 +1148,14 @@
 				<textFieldExpression><![CDATA["COMENTARIOS ADICIONALES DEL MEDICO: \n".concat($F{comentarioMedico})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="230" y="84" width="100" height="20" uuid="005a665c-c09d-4c01-ab00-9a54ea35a4db"/>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="230" y="84" width="100" height="20" uuid="005a665c-c09d-4c01-ab00-9a54ea35a4db"/>
 				<textElement>
 					<font size="13"/>
 				</textElement>
 				<text><![CDATA[COMENTARIOS]]></text>
 			</staticText>
-		</band>
-	</detail>
-	<pageFooter>
-		<band height="45" splitType="Stretch">
 			<staticText>
-				<reportElement x="38" y="2" width="116" height="40" uuid="6dbfe341-03f8-4c6b-a031-af5ce515368b"/>
+				<reportElement positionType="FixRelativeToBottom" x="43" y="209" width="116" height="40" uuid="db339194-55cc-4e98-bcf1-13327e18a2ac"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
@@ -1647,7 +1164,7 @@
 CIRUGÍA        DR(A).]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="334" y="3" width="50" height="40" uuid="5b36d935-566c-4675-829b-dfcfac0f6cf3"/>
+				<reportElement positionType="FixRelativeToBottom" x="339" y="210" width="50" height="40" uuid="f33bfebe-15c8-49f3-9ee3-1aecf00a4765"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
@@ -1656,17 +1173,17 @@ CIRUGÍA        DR(A).]]></text>
 FIRMA:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="161" y="15" width="159" height="1" uuid="4e4035c4-d9bf-4d38-a86b-8b354ec31c33"/>
+				<reportElement positionType="FixRelativeToBottom" x="166" y="222" width="159" height="1" uuid="d682c3b5-ac00-4372-9172-23d3c61d7dcf"/>
 			</line>
 			<line>
-				<reportElement x="161" y="41" width="159" height="1" uuid="9fada89d-b7bd-4658-bfe5-e5bbba07e3f5"/>
+				<reportElement positionType="FixRelativeToBottom" x="166" y="248" width="159" height="1" uuid="2c9f9425-7921-429c-882e-68844278a961"/>
 			</line>
 			<line>
-				<reportElement x="385" y="41" width="145" height="1" uuid="daa9ad17-c85d-42c2-8972-643cb72038db"/>
+				<reportElement positionType="FixRelativeToBottom" x="390" y="248" width="145" height="1" uuid="8799a503-9792-4d4d-b38c-b6a83cc5d390"/>
 			</line>
 			<line>
-				<reportElement x="385" y="15" width="145" height="1" uuid="5aa2e188-bc45-4a22-97d2-a94e1e841e3c"/>
+				<reportElement positionType="FixRelativeToBottom" x="390" y="222" width="145" height="1" uuid="52c056de-ee73-46e9-a2d9-1fede71e971e"/>
 			</line>
 		</band>
-	</pageFooter>
+	</detail>
 </jasperReport>
