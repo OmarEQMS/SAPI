@@ -224,13 +224,22 @@
 
                                 <!-- FORMULARIO EDITAR NAVEGADORA -->
                                 <div class="form-group row">
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text"><i class="fas fa-user"></i></div>
                                             </div>
                                             <input type="text" class="form-control" id="editar-nombreNavegadora"
                                                    placeholder="Nombre">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="fas fa-at"></i></div>
+                                            </div>
+                                            <input type="text" class="form-control" id="editar-correoNavegadora"
+                                                   placeholder="Correo">
                                         </div>
                                     </div>
                                 </div>
@@ -277,14 +286,17 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+
                                 <div class="form-group row">
                                     <div class="col-6">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text"><i class="fas fa-at"></i></div>
+                                                <div class="input-group-text"><i class="fas fa-user-graduate"></i></div>
                                             </div>
-                                            <input type="text" class="form-control" id="editar-correoNavegadora"
-                                                   placeholder="Correo">
+                                            <input type="text" class="form-control" id="editar-cedulaNavegadora"
+                                                   placeholder="Cedula profesional">
                                         </div>
                                     </div>
                                     <div class="col-6">
