@@ -100,8 +100,6 @@
 
                         <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
 
-                        <li id="IrAGestionNavegadora"><a><i class="fas fa-calendar-alt"></i>Gestion navegadoras</a></li>
-
                         <li id="IrAGestionNavegadora"><a><i class="fas fa-calendar-alt"></i>Navegadoras</a></li>
 
                         <li id="IrAGestionPaciente"><a><i class="fas fa-users"></i>Pacientes</a></li>
@@ -109,6 +107,8 @@
                         <li id="IrAGestionAdministrador"><a><i class="fas fa-shield-alt"></i>Administradores</a></li>
 
                         <li id="IrAMiCuenta"><a><i class="far fa-user"></i>Mi cuenta</a></li>
+                        
+                        <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
 
                     </ul>
 
