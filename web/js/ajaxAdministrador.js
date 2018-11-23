@@ -712,57 +712,13 @@ $(document).ready(function () {
 
         console.log("Holi, hará el ajax");
 
-<<<<<<< HEAD
-||||||| merged common ancestors
-        var nombre = $('#editar-nombreNavegadora');
-        var telefono = $('#editar-telefonoNavegadora');
-        var primerApellido = $('#editar-primerApellidoNavegadora');
-        var segundoApellido = $('#editar-segundoApellidoNavegadora');
-        var correo = $('#editar-correoNavegadora');
-        var noEmpleado = $('#editar-no-empleadoNavegadora');
-        var especialidad = $('#editar-especialidad');
-        var usuario = $('#editar-usuario');
-        
-        console.log(idNavegadora.val());
-        console.log(nombre.val());
-        console.log(telefono.val());
-        console.log(primerApellido.val());
-        console.log(segundoApellido.val());
-        console.log(correo.val());
-        console.log(noEmpleado.val());
-        console.log(especialidad.val());
-        console.log(usuario.val());
-        
-=======
-        var nombre = $('#editar-nombreNavegadora');
-        var telefono = $('#editar-telefonoNavegadora');
-        var primerApellido = $('#editar-primerApellidoNavegadora');
-        var segundoApellido = $('#editar-segundoApellidoNavegadora');
-        var correo = $('#editar-correoNavegadora');
-        var noEmpleado = $('#editar-no-empleadoNavegadora');
-        var especialidad = $('#editar-especialidad');
-        var usuario = $('#editar-usuario');
-
-        console.log(idNavegadora.val());
-        console.log(nombre.val());
-        console.log(telefono.val());
-        console.log(primerApellido.val());
-        console.log(segundoApellido.val());
-        console.log(correo.val());
-        console.log(noEmpleado.val());
-        console.log(especialidad.val());
-        console.log(usuario.val());
-
->>>>>>> origin/MontoyaRosas
-
-        $.ajax({
+$.ajax({
 
             url: 'AdministradorController',
             cache: false,
             method: 'POST',
             data: {
                 key: 'actualiza-navegadora',
-<<<<<<< HEAD
                 idNavegadora: idNavegadora,
                 nombre: nombre,
                 telefono: telefono,
@@ -789,43 +745,8 @@ $(document).ready(function () {
                 $('#noEmpleado-' + idNavegadora).html(noEmpleado);
                 $('#nombreEspecialidad-' + idNavegadora).html(especialidad);
                 $('#cedulaProfesional-' + idNavegadora).html(cedula);
-||||||| merged common ancestors
-                idNavegadora: idNavegadora.val(),
-                nombre: nombre.val(),
-                telefono: telefono.val(),
-                primerApellido: primerApellido.val(),
-                segundoApellido: segundoApellido.val(),
-                correo: correo.val(),
-                noEmpleado: noEmpleado.val(),
-                especialidad: especialidad.val(),                
-                usuario: usuario.val(),                
-=======
-                idNavegadora: idNavegadora.val(),
-                nombre: nombre.val(),
-                telefono: telefono.val(),
-                primerApellido: primerApellido.val(),
-                segundoApellido: segundoApellido.val(),
-                correo: correo.val(),
-                noEmpleado: noEmpleado.val(),
-                especialidad: especialidad.val(),
-                usuario: usuario.val(),
->>>>>>> origin/MontoyaRosas
             }
-<<<<<<< HEAD
         });
-||||||| merged common ancestors
-        })
-            .done(function (response) {
-
-
-            });
-=======
-        })
-                .done(function (response) {
-
-
-                });
->>>>>>> origin/MontoyaRosas
 
     });
 
@@ -1055,22 +976,10 @@ $(document).ready(function () {
 
     $.ajax({
         url: 'AdministradorController',
-<<<<<<< HEAD
         cache: false,
         method: 'POST',
         data: {key: "autocompletarPosiciones"}
     })
-||||||| merged common ancestors
-                cache: false,
-                method: 'POST',
-                data: {key: "autocompletarPosiciones"}
-        })
-=======
-        cache: false,
-        method: 'POST',
-        data: {key: "autocompletarPosiciones"}
-    })
-
             .done(function (response) {
 
                 var json = JSON.parse(response);
@@ -1079,7 +988,6 @@ $(document).ready(function () {
                     var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
                     posiciones.append(newObjeto);
                 }
-
 
                 console.log(JSON.stringify(posiciones));
 
@@ -1274,36 +1182,4 @@ $(document).ready(function () {
 
         return false;
     }
->>>>>>> origin/MontoyaRosas
-
-<<<<<<< HEAD
-            .done(function (response) {
-
-                var json = JSON.parse(response);
-                for (var i = 0; i < json.length; i++) {
-
-                    var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
-                    posiciones.append(newObjeto);
-                }
-
-
-                console.log(JSON.stringify(posiciones));
-
-            });
-||||||| merged common ancestors
-        .done(function (response) {
-       
-            var json = JSON.parse(response);
-            for (var i = 0; i < json.length; i++) {
-                                      
-                   var newObjeto = $('<option value="'+json[i].nombre+'"></option>');                                      
-                   posiciones.append(newObjeto);
-            }
-    
-       
-        console.log(JSON.stringify(posiciones));
-       
-        });
-=======
->>>>>>> origin/MontoyaRosas
 });
