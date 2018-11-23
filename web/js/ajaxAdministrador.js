@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    
+
     $('#errorNombreMedico').hide();
     $('#errorTelefonoMedico').hide();
     $('#errorApellidoPaternoMedico').hide();
@@ -14,7 +14,7 @@ $(document).ready(function () {
     $('#error-campos').hide();
     $('#error-datosRepetidos').hide();
     $('#errorTerminos').hide();
-    
+
     //Errores al agregar a un paciente
     $('#errorNombrePaciente').hide();
     $('#errorCurpPaciente').hide();
@@ -737,7 +737,7 @@ $(document).ready(function () {
 
         console.log("Holi, hará el ajax");
 
-$.ajax({
+        $.ajax({
 
             url: 'AdministradorController',
             cache: false,
@@ -1039,6 +1039,50 @@ $.ajax({
 
         return true;
     }
+    
+    function isValidIntNumber(input) {
+
+        var m = input.val();
+
+        var expreg = /^[#a-zA-Z0-9]{1,100000}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    }
+
+    function isValidExtNumber(input) {
+
+        var m = input.val();
+
+        var expreg = /^[#0-9]{1,100000}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    }
 
     function areEqualPasswords(pass1, pass2) {
 
@@ -1101,6 +1145,26 @@ $.ajax({
         return true;
     }
 
+    function isValidUserName(input) {
+
+        var m = input.val();
+
+        var expreg = /^[a-zA-Z0-9]{4,16}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+
     function isValidEmail(input) {
 
         var m = input.val();
@@ -1140,6 +1204,44 @@ $.ajax({
 
         return true;
     }
+    
+    function isValidDate(input) {
+
+        //Obtener fecha
+        let today = new Date();
+
+        //Valor seleccionado del input
+        let date_from = input.val();
+        date_from = new Date(date_from);
+
+        //Tomar los valores de hoy
+        var year = today.getFullYear();
+        var month = today.getMonth();
+        var day = today.getDate();
+
+        //Hoy hace 16 años y hoy hace 115 años
+        var maxDate = new Date(year - 16, month, day);
+        var minDate = new Date(year - 115, month, day);
+
+        let event = true;
+
+        if (maxDate > date_from && date_from > minDate) {
+            event = false;
+        }
+
+        if (!input.val() || event) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
 
     function isValidSelect(input) {
 
@@ -1163,6 +1265,69 @@ $.ajax({
 
         var expreg = /^[0-9]{6,6}$/;
 
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+    
+    function isValidStreet(input) {
+
+        var m = input.val();
+
+        var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,255}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    }
+    
+    function isValidColonia(input) {
+
+        var m = input.val();
+
+        var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,500}$/;
+
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+
+    function isValidCURP(input) {
+
+        var m = input.val();
+
+        var expreg = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/;
 
         if (!expreg.test(m)) {
 
