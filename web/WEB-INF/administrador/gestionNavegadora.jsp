@@ -39,6 +39,11 @@
     </head>
 
     <body>
+        
+        <div class="cargandoAgregarNavegadora" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Agregando la navegadora, por favor espere...</p>
+        </div>
 
         <div class="wrapper">
 

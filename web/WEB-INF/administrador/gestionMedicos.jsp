@@ -46,6 +46,11 @@
 
     <body>
 
+        <div class="cargandoAgregarMedico" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Agregando al médico, por favor espere...</p>
+        </div>
+
         <div class="wrapper">
 
             <!-- SIDEBAR -->
@@ -211,7 +216,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Editar Médico</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close clearCancelEditMedicosModal" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -295,7 +300,7 @@
                                         <span class="text-danger" id="errorEditarNumEmpleado">Formato incorrecto, deben ser 6 dígitos.</span>
                                     </div>
                                 </div>
-
+                                
                                 <div class="form-group row">
                                     <div class="col-6">
                                         <div class="input-group">
@@ -311,8 +316,22 @@
                                         <span class="text-danger" id="errorEditarEspecialidad">Selecciona una especialidad válida.</span>
                                     </div>
                                     <div class="col-6">
-
                                         <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="fas fa-user-graduate"></i></div>
+                                            </div>
+                                            <input type="text" class="form-control" id="editar-posiciondMedico" list="listPosiciones"
+                                                   placeholder="Posicion">
+                                            <datalist id="listPosiciones">                                            
+                                            </datalist>
+                                        </div>
+                                       <!-- <span class="text-danger" id="errorEditarPosicion">Selecciona una posición válida.</span> -->
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     <i class="fas fa-user-graduate"></i>
@@ -323,13 +342,13 @@
                                         <span class="text-danger" id="errorEditarCedulaMedicos">Formato incorrecto, deben ser 7 dígitos.</span>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row mb-3" id="error-editarDatosRepetidos">
                                     <div class="col-12 text-center">
                                         <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>
                                     </div>
                                 </div>
-                                
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" style="border-radius:20px" class="btn btn-danger clearCancelEditMedicosModal" data-dismiss="modal">Cancelar</button>
@@ -347,7 +366,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Agregar Médico</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close clearAddMedicosModal" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -480,7 +499,7 @@
                                         <span class="text-warning" id="noEqualPasswordsError">Las contraseñas no son iguales.</span>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group row justify-content-center">
                                     <div class="col-12 text-center">
                                         <a href="documentos/Terminos-y-Condiciones-de-Venta.pdf" download>

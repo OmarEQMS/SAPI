@@ -30,7 +30,7 @@ $(document).ready(function () {
     $('#errorEditarCedulaMedicos').hide();
     $('#error-editarDatosRepetidos').hide();
     $('#errorEditarEspecialidad').hide();
-    //$('#errorEditarPosicion').hide();
+    //$('#errorEditarPosicion').hide(); SHANNON
     
 
 
@@ -141,8 +141,8 @@ $(document).ready(function () {
 
     });
     
-    /*
-     * 
+    /* SHANNON
+    
     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
     $('#editar-posiciondMedico').on('change', function () {
 
@@ -154,9 +154,7 @@ $(document).ready(function () {
             $('#errorEditarPosicion').show();
         }
 
-    });
-     * 
-     */
+    }); */
 
     //NOMBRE EN AGREGAR MÉDICO
     $('#agregar-nombreMedico').on('change', function () {
@@ -273,7 +271,7 @@ $(document).ready(function () {
 
     /**AGREGAR MEDICO */
     $('#btn-agregarMedico').on('click', function () {
-
+        configureLoadingScreen($('.cargandoAgregarMedico'));
         if (!repiteCorreo) {
 
             $("#error-datosRepetidos").hide();
@@ -510,6 +508,7 @@ $(document).ready(function () {
                 $('#editar-telefonoMedico').val(json.telefono);
                 $('#editar-noEmpleadoMedico').val(json.noEmpleado);
                 $('#editar-especialidadMedico').val(json.nombreEspecialidad);
+                //$('#editar-posicionMedico').val(json.nombrePosicion); SHANNON
                 $('#editar-cedulaProfesionalMedico').val(json.cedulaProfesional);
 
             }
@@ -1623,3 +1622,13 @@ $(document).ready(function () {
         return false;
     }
 });
+
+function configureLoadingScreen(screen) {
+    $(document)
+            .ajaxStart(function () {
+                screen.fadeIn();
+            })
+            .ajaxStop(function () {
+                screen.fadeOut();
+            })
+}
