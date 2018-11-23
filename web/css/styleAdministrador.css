@@ -61,6 +61,27 @@ body {
     margin: auto;
 }
 
+.tituloPacientes{
+  font-size: 40px;
+  color: #696f71
+}
+
+.editar-imagen{
+    display: none;
+}
+
+.edit-image{
+    border-radius: 99px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.edit-image:hover{
+    -webkit-box-shadow: -1px -2px 38px -6px rgba(0,0,0,0.73);
+    -moz-box-shadow: -1px -2px 38px -6px rgba(0,0,0,0.73);
+    box-shadow: -1px -2px 38px -6px rgba(0,0,0,0.73);
+}
+
 a,
 a:hover,
 a:focus {

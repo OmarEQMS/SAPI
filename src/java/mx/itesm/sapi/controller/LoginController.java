@@ -311,6 +311,7 @@ public class LoginController extends HttpServlet {
                                 request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));
                                 request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
                                 
+                                
                                 EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
                                 Empleado empleado =  empleadoServicioImpl.mostrarEmpleadoCuenta(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
                                 
