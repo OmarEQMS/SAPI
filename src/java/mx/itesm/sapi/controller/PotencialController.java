@@ -780,12 +780,12 @@ public class PotencialController extends HttpServlet {
                             }
 
                             /*DEBUG*/
-                            citaPreconsulta.setFechaSolicitud((timestamp).toString());
+                            //citaPreconsulta.setFechaSolicitud((timestamp).toString());
 
                             System.out.println("Cita ".concat(String.valueOf(citaPreconsulta.getIdPaciente())));
                             System.out.println("Cita ".concat(String.valueOf(citaPreconsulta.getIdMotivoConsulta())));
                             System.out.println("Cita ".concat(citaPreconsulta.getHospitalProcedencia()));
-                            System.out.println("Cita ".concat(citaPreconsulta.getFechaSolicitud()));
+                           // System.out.println("Cita ".concat(citaPreconsulta.getFechaSolicitud()));
 
                             CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
                             int idCitaPreconsulta = citaServicioImpl.agregarPreconsulta(citaPreconsulta);

@@ -48,7 +48,6 @@ public class Biopsia {
  			.concat(",previa:").concat(String.valueOf(previa))
  			.concat(",estatus:").concat(String.valueOf(estatus))
                         .concat(",idTipoBiopsia:").concat(String.valueOf(idTipoBiopsia))
-                        .concat(",fechaResultado: ".concat(fechaResultado.toString()))
  			.concat("]");
  		return str;
 

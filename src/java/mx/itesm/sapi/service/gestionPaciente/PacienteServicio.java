@@ -23,4 +23,5 @@ public interface PacienteServicio {
     public boolean borradoLogicoPaciente(int idPaciente);
     public boolean actualizarPrz(Paciente paciente);
     public DatosPacienteDocumentoInicial mostrarDatosPacienteDocumentoInicial(int idPaciente);
+     public boolean actualizarPacienteMenopausia(Paciente paciente);
 }
