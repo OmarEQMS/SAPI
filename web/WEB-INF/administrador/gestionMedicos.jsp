@@ -227,7 +227,7 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" id="editar-nombreMedico" class="form-control" value="Julio">
+                                            <input type="text" id="editar-nombreMedico" class="form-control" placeholder="Nombre">
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -237,7 +237,7 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" id="editar-primerApellidoMedico" class="form-control" value="Badillo">
+                                            <input type="text" id="editar-primerApellidoMedico" class="form-control" placeholder="Primer Apellido">
                                         </div>
                                     </div>
                                 </div>
@@ -250,7 +250,7 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" id="editar-segundoApellidoMedico" class="form-control" value="Guzman">
+                                            <input type="text" id="editar-segundoApellidoMedico" class="form-control" placeholder="Segundo Apellido">
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -260,7 +260,7 @@
                                                     <i class="fas fa-at"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" id="editar-correoMedico" class="form-control" value="juliobadillo@gmail.com">
+                                            <input type="text" id="editar-correoMedico" class="form-control" placeholder="Correo">
                                         </div>
                                     </div>
                                 </div>
@@ -273,7 +273,7 @@
                                                     <i class="fas fa-phone"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" id="editar-telefonoMedico" class="form-control" value="7778998">
+                                            <input type="text" id="editar-telefonoMedico" class="form-control" placeholder="Teléfono">
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -283,7 +283,7 @@
                                                     <i class="fab fa-slack-hash"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" id="editar-noEmpleadoMedico" class="form-control" value="HU89K">
+                                            <input type="text" id="editar-noEmpleadoMedico" class="form-control" placeholder="No. Empleado">
                                         </div>
                                     </div>
                                 </div>
@@ -296,7 +296,7 @@
                                                     <i class="fas fa-user-graduate"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" id="editar-especialidadMedico" class="form-control especialidad" value="Especialidad" list="listEspecialidades">  
+                                            <input type="text" id="editar-especialidadMedico" class="form-control especialidad" placeholder="Especialidad" list="listEspecialidades">  
                                             <datalist id="listEspecialidades">                                            
                                             </datalist>
                                         </div>
@@ -309,7 +309,7 @@
                                                     <i class="fas fa-user-graduate"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" id="editar-cedulaProfesionalMedico" class="form-control" value="Cédula profesional">
+                                            <input type="text" id="editar-cedulaProfesionalMedico" class="form-control" placeholder="Cédula Profesional">
                                         </div>
                                     </div>
                                 </div>

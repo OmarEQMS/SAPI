@@ -290,7 +290,7 @@
                                                 <div class="input-group-text"><i class="fas fa-user-graduate"></i></div>
                                             </div>
                                             <input type="text" class="form-control" id="editar-cedulaNavegadora"
-                                                   placeholder="Cedula profesional">
+                                                   placeholder="Cédula Profesional">
                                         </div>
                                     </div>
                                     <div class="col-6">
