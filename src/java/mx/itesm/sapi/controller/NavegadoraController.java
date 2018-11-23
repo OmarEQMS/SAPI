@@ -668,9 +668,9 @@ public class NavegadoraController extends HttpServlet {
                             /**
                              * DECLARACION DE ATRIBUTOS
                              */
-                            int idPacientePotencial = 30;
-                            int idCuenta = 63;
-                            int idNavegadora = 2;//Navegadora
+                            int idPacientePotencial = 62;
+                            int idCuenta = 121;
+                            int idNavegadora = 5;//Navegadora
 
                             /**
                              *
@@ -738,7 +738,7 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("PRZ ".concat(prz));
 
                                 paciente.setPrz(prz);
-                                pacienteServicioImpl.actualizarPaciente(paciente);
+                                pacienteServicioImpl.actualizarPrz(paciente);
 
                             } else {
                                 System.out.println("Sin PRZ");

@@ -21,6 +21,6 @@ public interface PacienteServicio {
     public int agregarPaciente(Paciente paciente);
     public boolean actualizarPaciente(Paciente paciente);
     public boolean borradoLogicoPaciente(int idPaciente);
-    public boolean actualizarPrz(int idPaciente,String prz);
+    public boolean actualizarPrz(Paciente paciente);
     public DatosPacienteDocumentoInicial mostrarDatosPacienteDocumentoInicial(int idPaciente);
 }

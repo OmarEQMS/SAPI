@@ -323,7 +323,7 @@ public class PacienteServicioImpl implements PacienteServicio{
     }    
 
     @Override
-    public boolean actualizarPrz(int idPaciente,String prz) {
+    public boolean actualizarPrz(Paciente paciente) {
         Connection conn;
         CallableStatement cstmt;
         boolean exito= false;
@@ -332,9 +332,8 @@ public class PacienteServicioImpl implements PacienteServicio{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall("CALL actualizarPRZ(?,?)");
             
-            cstmt.setInt(1, idPaciente);                                    
-            cstmt.setString(2, prz);
-            
+            cstmt.setInt(1, paciente.getIdPaciente());
+            cstmt.setString(2, paciente.getPrz());
             System.out.println("Actualizar prz ".concat(cstmt.toString()));
             
             rs = cstmt.executeQuery();
