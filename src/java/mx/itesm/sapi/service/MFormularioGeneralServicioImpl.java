@@ -128,10 +128,10 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
                 //cit.idCita, est.nombre, cit.fechaProgramada, lug.nombre
 
                 mFormularioGeneral = new MFormularioGeneral();
-                mFormularioGeneral.setIdCita(rs.getInt("idCita"));
-                mFormularioGeneral.setNombreEstudio(rs.getString("nombre"));
-                mFormularioGeneral.setCitaProgramada(rs.getDate("fechaProgramada"));
-                mFormularioGeneral.setLugarCuerpo(rs.getString("nombre"));
+                mFormularioGeneral.setIdCita(rs.getInt("IdCita"));
+                mFormularioGeneral.setNombreEstudio(rs.getString("EstudioNombre"));
+                mFormularioGeneral.setCitaProgramada(rs.getDate("FechaProgramada"));
+                mFormularioGeneral.setLugarCuerpo(rs.getString("LugarCuerpo"));
 
                 citas.add(mFormularioGeneral);
 
@@ -171,9 +171,9 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
             while (rs.next()) {
                 //cit.idCita, est.nombre, cit.fechaProgramada 
                 mFormularioGeneral = new MFormularioGeneral();
-                mFormularioGeneral.setIdCita(rs.getInt("idCita"));
-                mFormularioGeneral.setNombreEstudio(rs.getString("nombre"));
-                mFormularioGeneral.setCitaProgramada(rs.getDate("fechaProgramada"));
+                mFormularioGeneral.setIdCita(rs.getInt("IdCita"));
+                mFormularioGeneral.setNombreEstudio(rs.getString("EstudioNombre"));
+                mFormularioGeneral.setCitaProgramada(rs.getDate("FechaProgramada"));
 
                 citas.add(mFormularioGeneral);
 
@@ -213,8 +213,8 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
             while (rs.next()) {
                 //cit.idCita, cit.fechaProgramada
                 mFormularioGeneral = new MFormularioGeneral();
-                mFormularioGeneral.setIdCita(rs.getInt("idCita"));
-                mFormularioGeneral.setCitaProgramada(rs.getDate("fechaProgramada"));
+                mFormularioGeneral.setIdCita(rs.getInt("IdCita"));
+                mFormularioGeneral.setCitaProgramada(rs.getDate("FechaProgramada"));
 
                 citas.add(mFormularioGeneral);
 
@@ -255,9 +255,9 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
 
                 // cit.idCita, lug.nombre, cit.fechaProgramada
                 mFormularioGeneral = new MFormularioGeneral();
-                mFormularioGeneral.setIdCita(rs.getInt("idCita"));
-                mFormularioGeneral.setLugarCuerpo(rs.getString("nombre"));
-                mFormularioGeneral.setCitaProgramada(rs.getDate("fechaProgramada"));
+                mFormularioGeneral.setIdCita(rs.getInt("IdCita"));
+                mFormularioGeneral.setLugarCuerpo(rs.getString("LugarCuerpo"));
+                mFormularioGeneral.setCitaProgramada(rs.getDate("FechaProgramada"));
 
                 citas.add(mFormularioGeneral);
 

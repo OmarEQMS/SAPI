@@ -43,6 +43,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import mx.itesm.sapi.autocomplete.AutocompletadoServicioImpl;
+import mx.itesm.sapi.bean.formulario.MFormularioGeneral;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
 import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
@@ -65,6 +66,7 @@ import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
 import mx.itesm.sapi.bean.persona.Login;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
+import mx.itesm.sapi.service.MFormularioGeneralServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
@@ -385,6 +387,18 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println(this.getClass().toString().concat(ex.getMessage()));
                          }
 
+                            break;
+                        }
+                        case "mostrarFormularioNavegadora":{
+                            int idPaciente = (int) sesion.getAttribute("idPaciente");
+                            MFormularioGeneralServicioImpl mFormularioGeneralServicioImpl = new MFormularioGeneralServicioImpl();
+                            List<MFormularioGeneral> formLTF = mFormularioGeneralServicioImpl.mostrarFormularioLugarTipoFecha(4, "Biopsia");                      
+                            List<MFormularioGeneral> formaFechaTipo = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(4, "");
+                            
+                            PrintWriter out = response.getWriter();
+
+                            Gson json = new Gson();
+                            out.print(json.toJson(formLTF));
                             break;
                         }
 
