@@ -105,4 +105,33 @@ public class EstudioServicioImpl implements EstudioServicio {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    // OMAR
+    public Estudio mostrarEstudio(String nombre){
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarEstudioPorNombre(?)";
+        Estudio estudio = null;
+
+        try {
+            conn = Conexion.getConnection();
+            estudio = new Estudio();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setString(1, nombre);                  
+            rs = cstmt.executeQuery();
+            rs.next();
+            estudio.setIdEstudio(rs.getInt("idEstudio"));
+            estudio.setIdCategoriaEstudio(rs.getInt("idCategoriaEstudio"));
+            estudio.setNombre(rs.getString("nombre"));
+            
+            conn.close();
+            cstmt.close();
+            rs.close();            
+        } catch (SQLException ex) {
+           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                   .concat(ex.getMessage()));
+           estudio = null;
+        }   
+        return estudio;
+    }
 }

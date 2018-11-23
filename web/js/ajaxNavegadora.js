@@ -1808,41 +1808,54 @@ $('#valoracion').autocomplete({
     // Pantallas del formulario 
      $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5').on('click', function () {
          
-        
+        // OMAR
         var biopsias = [];
         console.log("Biopsia 1");
         $('.tuplaBiopsia').each(function () {
-            
-            var biopsia = {tipo:$(this).find('.tipoBiopsia').val(),
-                fecha:$(this).find('.fechaBiopsia').val(),
-                lugar:$(this).find('.parteCuerpoBiopsia').val()
-            };
-            
-            biopsias.push(biopsia);
-            console.log(biopsia);
+            if($(this).find('.tipoBiopsia').val()!="" || $(this).find('.fechaBiopsia').val()!="" || $(this).find('.parteCuerpoBiopsia').val()!=""){
+                var biopsia = {
+                    id:$(this).data("id"),
+                    accion:$(this).data("accion"),
+                    tipo:$(this).find('.tipoBiopsia').val(),
+                    fecha:$(this).find('.fechaBiopsia').val(),
+                    lugar:$(this).find('.parteCuerpoBiopsia').val()                    
+                };            
+                biopsias.push(biopsia);
+                console.log(biopsia);
+            }
         });
         console.log("Biopsia 2");
          
        var rayosxs = [];
        console.log("Rayos x");
         $('.tuplaRayosX').each(function () {
-            var rayosx = {tipo:$(this).find('.tipoRayosX').val(),
-                            fecha: $(this).find('.fechaRayos').val()
-                        };
-            rayosxs.push(rayosx);
-            console.log(rayosx);                                
+            if($(this).find('.rayosX').val()!="" || $(this).find('.fechaRayos').val()!=""){
+                var rayosx = {
+                    id:$(this).data("id"),
+                    accion:$(this).data("accion"),
+                    tipo:$(this).find('.rayosX').val(),
+                    fecha: $(this).find('.fechaRayos').val()
+                };
+                rayosxs.push(rayosx);
+                console.log(rayosx); 
+            }
         });
         console.log("Rayox x");        
         
         var ultrasonidos = [];
         console.log("Ultrasonido");
         $('.tuplaUltrasonido').each(function () {
-            var ultrasonido = {parte:$(this).find('.parteCuerpoUltrasonido').val(),
-                fecha: $(this).find('.fechaUltrasonido').val()
-            };
-            
-            ultrasonidos.push(ultrasonido);            
-            console.log(ultrasonido);                    
+            if($(this).find('.parteCuerpoUltrasonido').val()!="" || $(this).find('.fechaUltrasonido').val()!=""){
+                var ultrasonido = {
+                    id:$(this).data("id"),
+                    accion:$(this).data("accion"),
+                    parte:$(this).find('.parteCuerpoUltrasonido').val(),
+                    fecha: $(this).find('.fechaUltrasonido').val()
+                };
+
+                ultrasonidos.push(ultrasonido);            
+                console.log(ultrasonido);       
+            }
         });
         console.log("Ultrasonido");
         
@@ -1850,11 +1863,16 @@ $('#valoracion').autocomplete({
         var medicinasNucleares = []
         console.log("Medicina Nuclear");
         $('.tuplaMedicinaNuclear').each(function () {
-            var medicinaNuclear = {medicinaNuclear:$(this).find('.medicinaNuclear').val(),
-                fecha:$(this).find('.fechaMedicinaNuclear').val()
-            };            
-            console.log(medicinaNuclear);                    
-            medicinasNucleares.push(medicinaNuclear);
+            if($(this).find('.medicinaNuclear').val()!="" || $(this).find('.fechaMedicinaNuclear').val()!=""){
+                var medicinaNuclear = {
+                    id:$(this).data("id"),
+                    accion:$(this).data("accion"),
+                    medicinaNuclear:$(this).find('.medicinaNuclear').val(),
+                    fecha:$(this).find('.fechaMedicinaNuclear').val()
+                };            
+                console.log(medicinaNuclear);                    
+                medicinasNucleares.push(medicinaNuclear);
+            }
         });
         console.log("Medicina Nuclear");
         
@@ -1862,9 +1880,15 @@ $('#valoracion').autocomplete({
         var laboratorios = [];
         console.log("tuplaLaboratorio");
         $('.tuplaLaboratorio').each(function () {
-            var laboratorio = {fecha:$(this).find('.fechaLaboratorio').val()};
-            laboratorios.push(laboratorio);
-            console.log(laboratorio);                    
+            if($(this).find('.fechaLaboratorio').val()!=""){
+                var laboratorio = {
+                    id:$(this).data("id"),
+                    accion:$(this).data("accion"),
+                    fecha:$(this).find('.fechaLaboratorio').val()
+                };
+                laboratorios.push(laboratorio);
+                console.log(laboratorio);     
+            }
         });
         console.log("tuplaLaboratorio");
         
@@ -1872,12 +1896,16 @@ $('#valoracion').autocomplete({
         var valoraciones = [];
         console.log("tuplaValoracion");
         $('.tuplaValoracion').each(function () {
-            
-            var valoracion = {valoracion:$(this).find('.valoracion').val(),
-                fecha:$(this).find('.fechaValoracion').val()
-            };
-            valoraciones.push(valoracion);
-            console.log(valoracion);                    
+            if($(this).find('.valoracion').val()!="" || $(this).find('.fechaValoracion').val()!=""){
+                var valoracion = {
+                    id:$(this).data("id"),
+                    accion:$(this).data("accion"),
+                    valoracion:$(this).find('.valoracion').val(),
+                    fecha:$(this).find('.fechaValoracion').val()
+                };
+                valoraciones.push(valoracion);
+                console.log(valoracion);    
+            }
         });
         console.log("tuplaValoracion");
         
@@ -1885,9 +1913,15 @@ $('#valoracion').autocomplete({
         var espirometrias = [];
         console.log("tuplaEspirometria");
         $('.tuplaEspirometria').each(function () {
-            var espirometria = {fecha:$(this).find('.fechaEspirometria').val()};
-            espirometrias.push(espirometria);
-            console.log(espirometria);                    
+            if($(this).find('.fechaEspirometria').val()!=""){
+                var espirometria = {
+                    id:$(this).data("id"),
+                    accion:$(this).data("accion"),
+                    fecha:$(this).find('.fechaEspirometria').val()
+                };
+                espirometrias.push(espirometria);
+                console.log(espirometria);
+            }              
         });
         console.log("tuplaEspirometria");
         
@@ -1895,10 +1929,15 @@ $('#valoracion').autocomplete({
         var electrocardiogramas = [];
         console.log("tuplaElectrocardiograma");
         $('.tuplaElectrocardiograma').each(function () {
-            var electrocardiograma = {fecha:$(this).find('.fechaElectrocardiograma').val()};
-            
-            electrocardiogramas.push(electrocardiograma);
-            console.log(electrocardiograma);                    
+            if($(this).find('.fechaElectrocardiograma').val()!=""){
+                var electrocardiograma = {
+                    id:$(this).data("id"),
+                    accion:$(this).data("accion"),
+                    fecha:$(this).find('.fechaElectrocardiograma').val()
+                };
+                electrocardiogramas.push(electrocardiograma);
+                console.log(electrocardiograma);      
+            }
         });
         console.log("tuplaElectrocardiograma");
         
@@ -1906,10 +1945,15 @@ $('#valoracion').autocomplete({
         var ecocardiogramas = [];
         console.log("tuplaEcocardiograma");
         $('.tuplaEcocardiograma').each(function () {
-            var ecocardiograma = {fecha:$(this).find('.fechaEcocardiograma').val()};
-            
-            ecocardiogramas.push(ecocardiograma);
-            console.log(ecocardiograma);                    
+            if($(this).find('.fechaEcocardiograma').val()!=""){
+                var ecocardiograma = {
+                    id:$(this).data("id"),
+                    accion:$(this).data("accion"),
+                    fecha:$(this).find('.fechaEcocardiograma').val()
+                };
+                ecocardiogramas.push(ecocardiograma);
+                console.log(ecocardiograma);    
+            }
         });
         console.log("tuplaEcocardiograma");
         
@@ -1917,9 +1961,15 @@ $('#valoracion').autocomplete({
         var trabajosSociales = []
         console.log("tuplaTrabajoSocial");
         $('.tuplaTrabajoSocial').each(function () {
-            var trabajoSocial = {fecha: $(this).find('.fechaTrabajoSocial').val()};
-            trabajosSociales.push(trabajoSocial);
-            console.log(trabajoSocial);                    
+            if($(this).find('.fechaTrabajoSocial').val()!=""){
+                var trabajoSocial = {
+                    id:$(this).data("id"),
+                    accion:$(this).data("accion"),
+                    fecha: $(this).find('.fechaTrabajoSocial').val()
+                };
+                trabajosSociales.push(trabajoSocial);
+                console.log(trabajoSocial);      
+            }
         });
         console.log("tuplaTrabajoSocial");
         
@@ -1927,10 +1977,16 @@ $('#valoracion').autocomplete({
         var programas = [];
         console.log("tuplaPrograma");
         $('.tuplaPrograma').each(function () {
-            var programa = {programa:$(this).find('.programa').val(),
-            fecha: $(this).find('.fechaPrograma').val()};        
-            programas.push(programa);
-            console.log(programa);                        
+            if($(this).find('.programa').val()!="" || $(this).find('.fechaPrograma').val()!=""){
+                var programa = {
+                    id:$(this).data("id"),
+                    accion:$(this).data("accion"),
+                    programa:$(this).find('.programa').val(),
+                    fecha: $(this).find('.fechaPrograma').val()
+                };        
+                programas.push(programa);
+                console.log(programa);      
+            }
         });
         console.log("tuplaPrograma");
         
@@ -1938,23 +1994,26 @@ $('#valoracion').autocomplete({
         var otrosEstudios = [];
         console.log("tuplaOtro");
         $('.tuplaOtro').each(function () {
-            var otroEstudio = {fecha:$(this).find('.fechaOtro').val(),
-            otroEstudio: $(this).find('.otro-estudioPreconsulta').val()};
-        
-            otrosEstudios.push(otroEstudio);
-            console.log(otroEstudio);                                
+            if($(this).find('.fechaOtro').val()!="" || $(this).find('.otro-estudioPreconsulta').val()!=""){
+                var otroEstudio = {
+                    id:$(this).data("id"),
+                    accion:$(this).data("accion"),
+                    fecha:$(this).find('.fechaOtro').val(),
+                    otroEstudio: $(this).find('.otro-estudioPreconsulta').val()
+                };
+                otrosEstudios.push(otroEstudio);
+                console.log(otroEstudio);  
+            }
         });
         console.log("tuplaOtro");
-                
+        // OMAR        
                
         var llamadas = [];
         $('.tuplaLlamada').each(function () {
-
             var llamada = {
                 fecha: $(this).find('.fecha-llamada').val(),
                 motivo: $(this).find('.comentario-llamada').val()
             };
-
             llamadas.push(llamada);
             console.log(llamada);
         });

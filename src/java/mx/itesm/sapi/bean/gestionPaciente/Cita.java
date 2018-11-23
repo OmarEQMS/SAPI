@@ -20,8 +20,8 @@ public class Cita {
     private int idImportanciaCita;
     private int idPiso;
     private int idTipoTratamiento;
-    private Integer idEstudio;
-    private Integer idMotivoConsulta;
+    private int idEstudio; // OMAR
+    private int idMotivoConsulta; // OMAR
     private Timestamp fechaProgramada;
     private Timestamp fechaReal;
     private int estatus;
@@ -94,11 +94,11 @@ public class Cita {
         this.idTipoTratamiento = idTipoTratamiento;
     }
 
-    public Integer getIdEstudio() {
+    public int getIdEstudio() {
         return idEstudio;
     }
 
-    public void setIdEstudio(Integer idEstudio) {
+    public void setIdEstudio(int idEstudio) {
         this.idEstudio = idEstudio;
     }
 
@@ -134,11 +134,11 @@ public class Cita {
         this.idEstadoCita = idEstadoCita;
     }
 
-    public Integer getIdMotivoConsulta() {
+    public int getIdMotivoConsulta() {
         return idMotivoConsulta;
     }
 
-    public void setIdMotivoConsulta(Integer idMotivoConsulta) {
+    public void setIdMotivoConsulta(int idMotivoConsulta) {
         this.idMotivoConsulta = idMotivoConsulta;
     }
 
