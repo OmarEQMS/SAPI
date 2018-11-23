@@ -1369,8 +1369,6 @@ $(document).ready(function () {
     });
 
 
-
-
     //Ver Comentario navegadora
 
 
@@ -1390,9 +1388,5 @@ $(document).ready(function () {
     $("#aceptarModal").on("click", function () {
         $("#modalComentario").empty();
     });
-
-
-
-
 
 });
