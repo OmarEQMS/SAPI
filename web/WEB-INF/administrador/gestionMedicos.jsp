@@ -230,6 +230,7 @@
                                             </div>
                                             <input type="text" id="editar-nombreMedico" class="form-control" placeholder="Nombre">
                                         </div>
+                                        <span class="text-danger" id="errorEditarNombreMedico">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 255 caracteres.</span>
                                     </div>
                                     <div class="col-6">
                                         <div class="input-group">
@@ -238,8 +239,9 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" id="editar-primerApellidoMedico" class="form-control" placeholder="Primer Apellido">
+                                            <input type="text" id="editar-primerApellidoMedico" class="form-control" placeholder="Primer Apellido"> 
                                         </div>
+                                        <span class="text-danger" id="errorEditarApellidoPaternoMedico">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                     </div>
                                 </div>
 
@@ -251,8 +253,9 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" id="editar-segundoApellidoMedico" class="form-control" placeholder="Segundo Apellido">
+                                            <input type="text" id="editar-segundoApellidoMedico" class="form-control" placeholder="Segundo Apellido"> 
                                         </div>
+                                        <span class="text-danger" id="errorEditarApellidoMaternoMedico">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                     </div>
                                     <div class="col-6">
                                         <div class="input-group">
@@ -263,6 +266,8 @@
                                             </div>
                                             <input type="text" id="editar-correoMedico" class="form-control" placeholder="Correo">
                                         </div>
+                                        <span class="text-danger" id="errorEditarCorreoMedico">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
+                                        <span class="text-warning" id="errorEditarCorreoRepetido">El correo ya existe.</span>
                                     </div>
                                 </div>
 
@@ -276,6 +281,7 @@
                                             </div>
                                             <input type="text" id="editar-telefonoMedico" class="form-control" placeholder="Teléfono">
                                         </div>
+                                        <span class="text-danger" id="errorEditarTelefonoMedico">Formato incorrecto, deben ser 10 dígitos.</span>
                                     </div>
                                     <div class="col-6">
                                         <div class="input-group">
@@ -286,6 +292,7 @@
                                             </div>
                                             <input type="text" id="editar-noEmpleadoMedico" class="form-control" placeholder="No. Empleado">
                                         </div>
+                                        <span class="text-danger" id="errorEditarNumEmpleado">Formato incorrecto, deben ser 6 dígitos.</span>
                                     </div>
                                 </div>
 
@@ -312,11 +319,19 @@
                                             </div>
                                             <input type="text" id="editar-cedulaProfesionalMedico" class="form-control" placeholder="Cédula Profesional">
                                         </div>
+                                        <span class="text-danger" id="errorEditarCedulaMedicos">Formato incorrecto, deben ser 7 dígitos.</span>
                                     </div>
                                 </div>
+                                
+                                <div class="row mb-3" id="error-editarDatosRepetidos">
+                                    <div class="col-12 text-center">
+                                        <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>
+                                    </div>
+                                </div>
+                                
                             </div>
                             <div class="modal-footer">
-                                <button type="button" style="border-radius:20px" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                <button type="button" style="border-radius:20px" class="btn btn-danger clearCancelEditMedicosModal" data-dismiss="modal">Cancelar</button>
                                 <button id="btn-guardarMedico" type="button" style="border-radius:20px" class="btn btn-primary">Guardar
                                     Cambios
                                 </button>
@@ -462,10 +477,12 @@
                                         <span class="text-warning" id="noEqualPasswordsError">Las contraseñas no son iguales.</span>
                                     </div>
                                 </div>
-
+                                
                                 <div class="form-group row justify-content-center">
                                     <div class="col-12 text-center">
-                                        <button type="button" class="btn btn-morado-solid mt-2" data-dismiss="modal">Imprimir los términos y condiciones</button>
+                                        <a href="documentos/Terminos-y-Condiciones-de-Venta.pdf" download>
+                                            <button type="button" class="btn btn-morado-solid mt-2">Descargar los términos y condiciones</button>
+                                        </a>
                                     </div>
                                 </div>
 

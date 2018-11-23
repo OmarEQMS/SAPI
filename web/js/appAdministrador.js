@@ -188,33 +188,71 @@ $(document).ready(function () {
         $('#error-campos').hide();
         $('#error-datosRepetidos').hide();
         $('#errorTerminos').hide();
-        
+
         $('#agregar-nombreMedico').css('border', '');
         $('#agregar-nombreMedico').css('color', '');
-        
+
         $('#agregar-telefonoMedico').css('border', '');
         $('#agregar-telefonoMedico').css('color', '');
-        
+
         $('#agregar-primerApellidoMedico').css('border', '');
         $('#agregar-primerApellidoMedico').css('color', '');
-        
+
         $('#agregar-segundoApellidoMedico').css('border', '');
         $('#agregar-segundoApellidoMedico').css('color', '');
-        
+
         $('#agregar-correoMedico').css('border', '');
         $('#agregar-correoMedico').css('color', '');
-        
+
         $('#agregar-noEmpleadoMedico').css('border', '');
         $('#agregar-noEmpleadoMedico').css('color', '');
-        
+
         $('#agregar-cedulaMedico').css('border', '');
         $('#agregar-cedulaMedico').css('color', '');
-        
+
         $('#agregar-passwordMedico').css('border', '');
         $('#agregar-passwordMedico').css('color', '');
-        
+
         $('#agregar-password2Medico').css('border', '');
         $('#agregar-password2Medico').css('color', '');
+
+    });
+
+    $("body").on("click", ".clearCancelEditMedicosModal", function () {
+
+        $('#errorEditarNombreMedico').hide();
+        $('#errorEditarTelefonoMedico').hide();
+        $('#errorEditarApellidoPaternoMedico').hide();
+        $('#errorEditarApellidoMaternoMedico').hide();
+        $('#errorEditarCorreoMedico').hide();
+        $('#errorEditarCorreoRepetido').hide();
+        $('#errorEditarNumEmpleado').hide();
+        $('#errorEditarCedulaMedicos').hide();
+        $('#error-editarDatosRepetidos').hide();
+
+        $('#editar-nombreMedico').css('border', '');
+        $('#editar-nombreMedico').css('color', '');
+
+        $('#editar-primerApellidoMedico').css('border', '');
+        $('#editar-primerApellidoMedico').css('color', '');
+
+        $('#editar-segundoApellidoMedico').css('border', '');
+        $('#editar-segundoApellidoMedico').css('color', '');
+
+        $('#editar-correoMedico').css('border', '');
+        $('#editar-correoMedico').css('color', '');
+
+        $('#agregar-correoMedico').css('border', '');
+        $('#agregar-correoMedico').css('color', '');
+
+        $('#editar-telefonoMedico').css('border', '');
+        $('#editar-telefonoMedico').css('color', '');
+
+        $('#editar-noEmpleadoMedico').css('border', '');
+        $('#editar-noEmpleadoMedico').css('color', '');
+
+        $('#editar-cedulaProfesionalMedico').css('border', '');
+        $('#editar-cedulaProfesionalMedico').css('color', '');
 
     });
 

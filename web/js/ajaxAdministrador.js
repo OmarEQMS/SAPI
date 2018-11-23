@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
 
+    //Errores al agregar a un médico
     $('#errorNombreMedico').hide();
     $('#errorTelefonoMedico').hide();
     $('#errorApellidoPaternoMedico').hide();
@@ -14,6 +15,18 @@ $(document).ready(function () {
     $('#error-campos').hide();
     $('#error-datosRepetidos').hide();
     $('#errorTerminos').hide();
+
+    //Errores al editar a un médico
+    $('#errorEditarNombreMedico').hide();
+    $('#errorEditarTelefonoMedico').hide();
+    $('#errorEditarApellidoPaternoMedico').hide();
+    $('#errorEditarApellidoMaternoMedico').hide();
+    $('#errorEditarCorreoMedico').hide();
+    $('#errorEditarCorreoRepetido').hide();
+    $('#errorEditarNumEmpleado').hide();
+    $('#errorEditarCedulaMedicos').hide();
+    $('#error-editarDatosRepetidos').hide();
+
 
     //Errores al agregar a un paciente
     $('#errorNombrePaciente').hide();
@@ -38,6 +51,8 @@ $(document).ready(function () {
     $('#error-CPexistePaciente').hide();
     $('#errorCodigoPostalPaciente').hide();
     $('#noEqualPasswordsErrorPaciente').hide();
+
+
 
     var repiteCorreo;
 
@@ -269,6 +284,124 @@ $(document).ready(function () {
 
 
                 });
+
+    });
+    
+    ////////////////////////////////////////////////////////////// VALIDACIONES EDITAR UN MÉDICO
+
+    //TELEFONO EN EDITAR MÉDICO
+    $('#editar-telefonoMedico').on('change', function () {
+
+        if (isValidPhoneNumber($(this))) {
+            $('#errorEditarTelefonoMedico').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarTelefonoMedico').hide();
+        } else {
+            $('#errorEditarTelefonoMedico').show();
+        }
+
+    });
+
+    //CÉDULA PROFESIONAL EN EDITAR MÉDICO
+    $('#editar-cedulaProfesionalMedico').on('change', function () {
+
+        if (isValidCedula($(this))) {
+            $('#errorEditarCedulaMedicos').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarCedulaMedicos').hide();
+        } else {
+            $('#errorEditarCedulaMedicos').show();
+        }
+
+    });
+
+    //NÚMERO DE EMPLEADO EN EDITAR MÉDICO
+    $('#editar-noEmpleadoMedico').on('change', function () {
+
+        if (isValidNumEmpleado($(this))) {
+            $('#errorEditarNumEmpleado').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarNumEmpleado').hide();
+        } else {
+            $('#errorEditarNumEmpleado').show();
+        }
+
+    });
+
+    //NOMBRE EN EDITAR MÉDICO
+    $('#editar-nombreMedico').on('change', function () {
+
+        if (isValidName($(this))) {
+            $('#errorEditarNombreMedico').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarNombreMedico').hide();
+        } else {
+            $('#errorEditarNombreMedico').show();
+        }
+    });
+
+    //PRIMER APELLIDO EN EDITAR MÉDICO
+    $('#editar-primerApellidoMedico').on('change', function () {
+
+        if (isValidLastName($(this))) {
+            $('#errorEditarApellidoPaternoMedico').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarApellidoPaternoMedico').hide();
+        } else {
+            $('#errorEditarApellidoPaternoMedico').show();
+        }
+
+    });
+
+    //SEGUNDO APELLIDO EN EDITAR MÉDICO
+    $('#editar-segundoApellidoMedico').on('change', function () {
+
+        if (isValidLastName($(this))) {
+            $('#errorEditarApellidoMaternoMedico').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarApellidoMaternoMedico').hide();
+        } else {
+            $('#errorEditarApellidoMaternoMedico').show();
+        }
+
+    });
+
+    $('#editar-correoMedico').on('change', function () { 
+        $.ajax({
+
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+
+                key: "repiteCorreo",
+                correo: $('#editar-correoMedico').val()
+
+
+            },
+            success: function (response) {
+
+                if (response === 'CorreoAlreadyExists') {
+                    console.log("correo repetidooo")
+                    $('#editar-correoMedico').css('color', 'orange');
+                    $('#errorEditarCorreoRepetido').show();
+                    repiteCorreo = true;
+                } else {
+                    $('#errorEditarCorreoRepetido').hide();
+                    repiteCorreo = false;
+                }
+
+            }
+
+        });
+
+        if (isValidEmail($(this))) {
+            $('#errorEditarCorreoMedico').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarCorreoMedico').hide();
+        } else {
+            $('#errorEditarCorreoMedico').show();
+        }
 
     });
 
@@ -1039,7 +1172,7 @@ $(document).ready(function () {
 
         return true;
     }
-    
+
     function isValidIntNumber(input) {
 
         var m = input.val();
@@ -1204,7 +1337,7 @@ $(document).ready(function () {
 
         return true;
     }
-    
+
     function isValidDate(input) {
 
         //Obtener fecha
@@ -1279,7 +1412,7 @@ $(document).ready(function () {
 
         return true;
     }
-    
+
     function isValidStreet(input) {
 
         var m = input.val();
@@ -1301,7 +1434,7 @@ $(document).ready(function () {
 
 
     }
-    
+
     function isValidColonia(input) {
 
         var m = input.val();

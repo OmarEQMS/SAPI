@@ -1674,7 +1674,7 @@
                                                                         <div class="col-4 text-center">
                                                                             <a href="documentos/reportePrimeraVez.pdf" download>
                                                                                 <button style="border-radius:20px" type="button" class="btn btn-morado btn-block"><i
-                                                                                        class="fas fa-print"></i> Imprimir información
+                                                                                        class="fas fa-print"></i> Descargar información
                                                                                 </button>
                                                                             </a>
                                                                         </div>
