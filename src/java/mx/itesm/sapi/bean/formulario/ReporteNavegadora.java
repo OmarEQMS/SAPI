@@ -12,22 +12,23 @@ import java.sql.Date;
  * @author Alex
  */
 public class ReporteNavegadora {
-    private String resultado;
-    private String fechaDecision;
-    private String llamada;
-    private String navegadora;
     private String nombre;
     private String edad;
     private String fechaNacimiento;
     private String genero;
     private String ciudad;
     private String estado;
-    private String telCasa;
+    private String telefono;
     private String telCelular;
+    private String tipoPaciente;
+
+    private String resultado;
+    private String fechaDecision;
+    private String llamada;
+    private String navegadora;
     private String prz;
     private Date fechaNavegacion;
     private Date fechaConsulta;
-    private boolean tipoPaciente;
     private String medicoAdscrito;
     private String medicoRadiologo;
     private String medicoResidente;
@@ -124,11 +125,11 @@ public class ReporteNavegadora {
         this.fechaConsulta = fechaConsulta;
     }
 
-    public boolean isTipoPaciente() {
+    public String isTipoPaciente() {
         return tipoPaciente;
     }
 
-    public void setTipoPaciente(boolean tipoPaciente) {
+    public void setTipoPaciente(String tipoPaciente) {
         this.tipoPaciente = tipoPaciente;
     }
 
@@ -499,12 +500,12 @@ public class ReporteNavegadora {
         this.estado = estado;
     }
 
-    public String getTelCasa() {
-        return telCasa;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setTelCasa(String telCasa) {
-        this.telCasa = telCasa;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getTelCelular() {

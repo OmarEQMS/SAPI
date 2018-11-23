@@ -12,5 +12,5 @@ import mx.itesm.sapi.bean.formulario.ReporteNavegadora;
  * @author Oscar Miranda
  */
 public interface ReporteNavegadoraServicio {
-    public ReporteNavegadora mostrarReporteNavegadora(int idPaciente);
+    public ReporteNavegadora mostrarReporteNavegadora(int idPaciente, int idEmpleado, int idRol);
 }
