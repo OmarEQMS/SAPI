@@ -41,7 +41,9 @@ $(document).ready(function () {
 
     var repiteCorreo;
 
-
+    //////////////////////////////////////////////////////
+    /////////////////// VALIDACIONES AGREGAR MEDICO //////
+    //////////////////////////////////////////////////////
     //TELEFONO EN AGREGAR MÉDICO
     $('#agregar-telefonoMedico').on('change', function () {
 
@@ -202,9 +204,263 @@ $(document).ready(function () {
 
     });
 
+    
+    //////////////////////////////////////////////////////
+    ///////////////// VALIDACIONES AGREGAR PACIENTE //////
+    //////////////////////////////////////////////////////
+    //NOMBRE EN AGREGAR PACIENTE
+    $('#nombrePaciente').on('change', function () {
 
+        if (isValidName($(this))) {
+            $('#errorNombrePaciente').hide();
+        } else if ($(this).val() == '') {
+            $('#errorNombrePaciente').hide();
+        } else {
+            $('#errorNombrePaciente').show();
+        }
+
+    });
+
+    //PRIMER APELLIDO EN AGREGAR PACIENTE
+    $('#primer-apellidoPaciente').on('change', function () {
+
+        if (isValidLastName($(this))) {
+            $('#errorApellidoPaternoPaciente').hide();
+        } else if ($(this).val() == '') {
+            $('#errorApellidoPaternoPaciente').hide();
+        } else {
+            $('#errorApellidoPaternoPaciente').show();
+        }
+
+    });
+
+    //SEGUNDO APELLIDO EN AGREGAR PACIENTE
+    $('#segundo-apellidoPaciente').on('change', function () {
+
+        if (isValidLastName($(this))) {
+            $('#errorApellidoMaternoPaciente').hide();
+        } else if ($(this).val() == '') {
+            $('#errorApellidoMaternoPaciente').hide();
+        } else {
+            $('#errorApellidoMaternoPaciente').show();
+        }
+
+    });
+
+    //NOMBRE DE USUARIO EN AGREGAR PACIENTE
+    $('#usuarioPaciente').on('change', function () {
+
+        $.ajax({
+
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+
+                key: "repiteUsuario",
+                usuario: $('#usuarioPaciente').val()
+
+
+            },
+            success: function (response) {
+
+                if (response == 'UsuarioAlreadyExists') {
+                    $('#usuarioPaciente').css('color', 'orange');
+                    $('#errorUsuarioRepetidoPaciente').show();
+                } else {
+                    $('#errorUsuarioRepetidoPaciente').hide();
+                }
+
+            }
+
+        });
+
+        if (isValidUserName($(this))) {
+            $('#errorNombreUsuarioPaciente').hide();
+        } else if ($(this).val() == '') {
+            $('#errorNombreUsuarioPaciente').hide();
+        } else {
+            $('#errorNombreUsuarioPaciente').show();
+        }
+
+    });
+
+
+    //CORREO EN AGREGAR PACIENTE
+    $('#correoPaciente').on('change', function () {
+
+        if (isValidEmail($(this))) {
+            $('#errorCorreoPaciente').hide();
+        } else if ($(this).val() == '') {
+            $('#errorCorreoPaciente').hide();
+        } else {
+            $('#errorCorreoPaciente').show();
+        }
+
+    });
+
+    //CONTRASEÑA1 EN AGREGAR PACIENTE
+    $('#contraPaciente').on('change', function () {
+
+        if (isValidPassword($(this))) {
+            $('#errorPass1Paciente').hide();
+        } else if ($(this).val() == '') {
+            $('#errorPass1Paciente').hide();
+        } else {
+            $('#errorPass1Paciente').show();
+        }
+
+    });
+
+    //CONTRASEÑA2 EN AGREGAR PACIENTE
+    $('#confContraPaciente').on('change', function () {
+
+        if (isValidPassword($(this))) {
+            $('#errorPass2Paciente').hide();
+        } else if ($(this).val() == '') {
+            $('#errorPass2Paciente').hide();
+        } else {
+            $('#errorPass2Paciente').show();
+        }
+
+    });
+
+    //CURP EN AGREGAR PACIENTE
+    $('#curpPaciente').on('change', function () {
+
+        $.ajax({
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+                key: "repiteCurp",
+                curp: $('#curpPaciente').val()
+            },
+            success: function (response) {
+
+                if (response === 'CurpAlreadyExists') {
+                    $('#curpPaciente').css('color', 'orange');
+                    $('#errorCurpRepetidoPaciente').show();
+                } else {
+                    $('#errorCurpRepetidoPaciente').hide();
+                }
+            }
+        });
+
+        if (isValidCURP($(this))) {
+            $('#errorCurpPaciente').hide();
+        } else if ($(this).val() == '') {
+            $('#errorCurpPaciente').hide();
+        } else {
+            $('#errorCurpPaciente').show();
+        }
+    });
+
+    //TELEFONO EN AGREGAR PACIENTE
+    $('#telPaciente').on('change', function () {
+
+        if (isValidPhoneNumber($(this))) {
+            $('#errorTelefonoPaciente').hide();
+        } else if ($(this).val() == '') {
+            $('#errorTelefonoPaciente').hide();
+        } else {
+            $('#errorTelefonoPaciente').show();
+        }
+
+    });
+
+    //ESTADO CIVIL EN AGREGAR PACIENTE
+    $('#estado-civilPaciente').on('change', function () {
+
+        if (isValidSelect($(this))) {
+            $('#errorECivilPaciente').hide();
+        } else {
+            $('#errorECivilPaciente').show();
+        }
+
+    });
+
+    //FECHA DE NACIMIENTO EN AGREGAR PACIENTE
+    $('#cumplePaciente').on('change', function () {
+
+        if (isValidDate($(this))) {
+            $('#errorFechaPaciente').hide();
+        } else {
+            $('#errorFechaPaciente').show();
+        }
+
+    });
+
+    //ESTADO EN AGREGAR PACIENTE
+    $('#estadoPaciente').on('change', function () {
+
+        if (isValidSelect($(this))) {
+            $('#errorEstadoPaciente').hide();
+        } else {
+            $('#errorEstadoPaciente').show();
+        }
+
+    });
+
+    //MUNICIPIO EN AGREGAR PACIENTE
+    $('#municipioPaciente').on('change', function () {
+
+        if (isValidSelect($(this))) {
+            $('#errorMunicipioPaciente').hide();
+        } else {
+            $('#errorMunicipioPaciente').show();
+        }
+
+    });
+
+    //COLONIA EN AGREGAR PACIENTE
+    $('#colPaciente').on('change', function () {
+
+        if (isValidColonia($(this))) {
+            $('#errorColoniaPaciente').hide();
+        } else {
+            $('#errorColoniaPaciente').show();
+        }
+
+    });
+
+    //CALLE EN AGREGAR PACIENTE
+    $('#callePaciente').on('change', function () {
+
+        if (isValidStreet($(this))) {
+            $('#errorCallePaciente').hide();
+        } else {
+            $('#errorCallePaciente').show();
+        }
+
+    });
+
+    //NUMERO EXTERIOR EN AGREGAR PACIENTE
+    $('#numExtPaciente').on('change', function () {
+
+        if (isValidExtNumber($(this))) {
+            $('#errorNoExteriorPaciente').hide();
+        } else {
+            $('#errorNoExteriorPaciente').show();
+        }
+
+    });
+
+    //NUMERO INTERIOR EN AGREGAR PACIENTE
+    $('#numIntPaciente').on('change', function () {
+
+        if (isValidIntNumber($(this))) {
+            $('#errorNoInteriorPaciente').hide();
+        } else {
+            $('#errorNoInteriorPaciente').show();
+        }
+
+
+    });
+    
+    //////////////////////////////////////////////////////
     /////////////////////////////// GESTION MEDICOS //////
-
+    //////////////////////////////////////////////////////
     /**AGREGAR MEDICO */
     $('#btn-agregarMedico').on('click', function () {
 
@@ -815,9 +1071,9 @@ $(document).ready(function () {
 
     });
 
-
-    /////////////////////////////// GESTION PACIENTES
-
+    //////////////////////////////////////////////////////
+    ///////////////////////////// GESTION PACIENTES //////
+    //////////////////////////////////////////////////////
     /**AGREGAR PACIENTES */
     $('#btn-agregarPaciente').on('click', function () {
 
