@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    
     $('#errorNombreMedico').hide();
     $('#errorTelefonoMedico').hide();
     $('#errorApellidoPaternoMedico').hide();
@@ -13,6 +14,30 @@ $(document).ready(function () {
     $('#error-campos').hide();
     $('#error-datosRepetidos').hide();
     $('#errorTerminos').hide();
+    
+    //Errores al agregar a un paciente
+    $('#errorNombrePaciente').hide();
+    $('#errorCurpPaciente').hide();
+    $('#errorCurpRepetidoPaciente').hide();
+    $('#errorFechaPaciente').hide();
+    $('#errorApellidoPaternoPaciente').hide();
+    $('#errorApellidoMaternoPaciente').hide();
+    $('#errorNombreUsuarioPaciente').hide();
+    $('#errorUsuarioRepetidoPaciente').hide();
+    $('#errorECivilPaciente').hide();
+    $('#errorColoniaPaciente').hide();
+    $('#errorCallePaciente').hide();
+    $('#errorNoInteriorPaciente').hide();
+    $('#errorNoExteriorPaciente').hide();
+    $('#errorEstadoPaciente').hide();
+    $('#errorMunicipioPaciente').hide();
+    $('#errorTelefonoPaciente').hide();
+    $('#errorCorreoPaciente').hide();
+    $('#errorPass1Paciente').hide();
+    $('#errorPass2Paciente').hide();
+    $('#error-CPexistePaciente').hide();
+    $('#errorCodigoPostalPaciente').hide();
+    $('#noEqualPasswordsErrorPaciente').hide();
 
     var repiteCorreo;
 
