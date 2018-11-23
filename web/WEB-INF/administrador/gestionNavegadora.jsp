@@ -53,58 +53,59 @@
                             <img src="img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
                         </div>
                     </div>
+                </div>
 
-                    <div class="profile">
+                <div class="profile">
 
-                        <div class="row">
-                            <div class="col-12 mb-2 mt-4">
-                                <img src="img/user.png" class="imagenPerfil" alt="">
-                            </div>
+                    <div class="row">
+                        <div class="col-12 mb-2 mt-4">
+                            <img src="img/user.png" class="imagenPerfil" alt="">
                         </div>
+                    </div>
 
-                        <div class="row justify-content-center mb-2">
-                            <div class="col-6 text-center">
-                                <span class="textoSidebar m-0">${sessionScope.nombre} ${sessionScope.primerApellido}</span>
-                                <span class="textoSidebar userSidebar m-0">@${sessionScope.usuario}</span>
-                            </div>
-                        </div>
-
-                        <div class="row justify-content-center">
-
-                            <div class="col-2 text-center">
-                                <a class="iconoSidebar" href="" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
-                            </div>
-
-                            <div class="col-2">
-                                <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
-                            </div>
+                    <div class="row justify-content-center mb-2">
+                        <div class="col-6 text-center">
+                            <span class="textoSidebar m-0">${sessionScope.nombre} ${sessionScope.primerApellido}</span>
+                            <span class="textoSidebar userSidebar m-0">@${sessionScope.usuario}</span>
                         </div>
                     </div>
 
                     <div class="row justify-content-center">
-                        <div class="col-12 text-center">
-                            <hr style="background-color:white !important">
+
+                        <div class="col-2 text-center">
+                            <a class="iconoSidebar" href="" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
+                        </div>
+
+                        <div class="col-2">
+                            <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
                         </div>
                     </div>
+                </div>
 
-                    <!-- MENU PRINCIPAL ENLACES -->
-                    <ul class="list-unstyled components">
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center">
+                        <hr style="background-color:white !important">
+                    </div>
+                </div>
 
-                        <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
+                <!-- MENU PRINCIPAL ENLACES -->
+                <ul class="list-unstyled components">
 
-                        <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
+                    <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
 
-                        <li id="IrAGestionNavegadora"><a><i class="fas fa-calendar-alt"></i>Navegadoras</a></li>
+                    <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
 
-                        <li id="IrAGestionPaciente"><a><i class="fas fa-users"></i>Pacientes</a></li>
+                    <li id="IrAGestionNavegadora"><a><i class="fas fa-calendar-alt"></i>Navegadoras</a></li>
 
-                        <li id="IrAGestionAdministrador"><a><i class="fas fa-shield-alt"></i>Administradores</a></li>
+                    <li id="IrAGestionPaciente"><a><i class="fas fa-users"></i>Pacientes</a></li>
 
-                        <li id="IrAMiCuenta"><a><i class="far fa-user"></i>Mi cuenta</a></li>
-                        
-                        <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
+                    <li id="IrAGestionAdministrador"><a><i class="fas fa-shield-alt"></i>Administradores</a></li>
 
-                    </ul>
+                    <li id="IrAMiCuenta"><a><i class="far fa-user"></i>Mi cuenta</a></li>
+
+                    <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
+
+                </ul>
 
             </nav>
 
