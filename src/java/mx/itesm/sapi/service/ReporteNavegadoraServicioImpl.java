@@ -10,9 +10,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import mx.itesm.sapi.bean.formulario.ReporteNavegadora;
+import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 import mx.itesm.sapi.bean.persona.Estado;
 import mx.itesm.sapi.bean.persona.Municipio;
 import mx.itesm.sapi.bean.persona.Sexo;
+import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
 import mx.itesm.sapi.service.persona.EstadoServicioImpl;
 import mx.itesm.sapi.service.persona.MunicipioServicioImpl;
 import mx.itesm.sapi.service.persona.SexoServiciosImpl;
@@ -39,6 +42,10 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
         SexoServiciosImpl sexoServicioImpl = new SexoServiciosImpl();
         MunicipioServicioImpl municipioServicioImpl = new MunicipioServicioImpl();
         EstadoServicioImpl estadoServicioImpl = new EstadoServicioImpl();
+        EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+        //TablaMedicoAdministrado tablaMedicoAdministrador = new TablaMedicoAdministrador();
+        EstadoPacientePaciente estadoPacientePaciente = new EstadoPacientePaciente();
+        EstadoPacientePacienteServiceImpl estadoPacientePacienteServicioImpl = new EstadoPacientePacienteServiceImpl();
         
         try{
             conn = Conexion.getConnection();
@@ -83,7 +90,7 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             reporteNavegadora.setCantidadParafina(rs.getInt("v_cantidadParafina"));
             reporteNavegadora.setSerieLaminillas(rs.getString("v_serieLaminillas"));
             reporteNavegadora.setCantidadLaminillas(rs.getInt("v_cantidadLaminillas"));
-            reporteNavegadora.setFechaFin(rs.getDate("v_fechaFin"));
+            reporteNavegadora.setFechaDecision(String.valueOf(rs.getDate("v_fechaFin")));
             reporteNavegadora.setDecisionCosulta(rs.getString("v_decisionCosulta"));
             reporteNavegadora.setSocioeconomico(rs.getString("v_socioeconomico"));
             reporteNavegadora.setComentarioLLamada(rs.getString("v_comentarioLLamada"));
@@ -104,6 +111,9 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             sexo = sexoServicioImpl.mostrarSexo(rs.getInt("idSexo"));
             municipio = municipioServicioImpl.mostrarMunicipio(rs.getInt("idMunicipio"));
             estado = estadoServicioImpl.mostrarEstado(rs.getInt("idEstado"));
+            //tablaMedicoAdministrador = empleadoServicioImpl.mostrarMedicoAdministrador(int idEmpleado, int idRol);
+            estadoPacientePaciente = estadoPacientePacienteServicioImpl.mostrarEstadoPacientePacienteIdPaciente(idPaciente);
+            
             
             reporteNavegadora.setNombre(rs.getString("nombre"));
             reporteNavegadora.setEdad(String.valueOf(rs.getInt("edad")));
@@ -112,6 +122,11 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             reporteNavegadora.setCiudad(municipio.getNombre());
             reporteNavegadora.setEstado(estado.getNombre());
             reporteNavegadora.setTelefono(rs.getString("telefono"));
+            //reporteNavegadora.setNavegadora(tablaMedicoAdministrador.getNombre());
+            if(estadoPacientePaciente.getResultados() == 0)
+                reporteNavegadora.setResultado("Sí");
+            else
+                reporteNavegadora.setResultado("No");
                     
             rs.close();
             cstmt.close();
