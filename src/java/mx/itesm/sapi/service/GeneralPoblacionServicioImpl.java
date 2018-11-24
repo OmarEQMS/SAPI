@@ -52,23 +52,48 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
                 temp.setEstadoCivil(rs.getString("NombreEstadoCivil"));
                 temp.setSexo(rs.getString("NombreSexo"));
                 temp.setEscolaridad(rs.getString("NivelEducativo"));
+                temp.setEscolaridad(rs.getString("NivelSocioeconomico"));
                 temp.setPrz(rs.getString("prz"));
                 temp.setNoExpediente(rs.getString("expediente"));
                 temp.setSeguro(rs.getString("NombreSeguro"));
                 temp.setNoSeguroPopular(rs.getString("noSeguro"));
                 temp.setAlergias(rs.getString("alergia"));
+                temp.setBiopsiaINCanGradoHistologico(rs.getString("BiopsiaINCan_GradoHistologico"));
+                temp.setBiopsiaINCanHer2(rs.getString("BiopsiaINCan_Her2"));
+                temp.setBiopsiaINCanFish(rs.getString("BiopsiaINCan_Fish"));
+                temp.setBiopsiaINCanKi67(rs.getString("BiopsiaINCan_Ki67"));
+                temp.setBiopsiaINCanRe(rs.getString("BiopsiaINCan_RE"));
+                temp.setBiopsiaINCanRp(rs.getString("BiopsiaINCan_RP"));
                 
                 String NestedStProcedure = "CALL mostrarPoblacionNecesidadesEspeciales(?)";
                 CallableStatement NestedCstmt = conn.prepareCall(NestedStProcedure);
                 NestedCstmt.setInt(1, rs.getInt("idPaciente"));
                 ResultSet NestedRs = NestedCstmt.executeQuery();
                 NestedRs.next();
-                
                 temp.setSillaRuedas(NestedRs.getString("SillaDeRuedas"));
                 temp.setBastón(NestedRs.getString("Baston"));
                 temp.setOxigeno(NestedRs.getString("Oxigeno"));
                 temp.setCamilla(NestedRs.getString("Camilla"));
+                NestedRs.close();
+                NestedRs.close();
                 
+                NestedStProcedure = "CALL mostrarPoblacionBiopsiaPrevia(?)";
+                NestedCstmt = conn.prepareCall(NestedStProcedure);
+                NestedCstmt.setInt(1, rs.getInt("idPaciente"));
+                NestedRs = NestedCstmt.executeQuery();
+                if (NestedRs.next()){
+                    temp.setBiopsiaPreviaLaminillas(NestedRs.getString("Laminillas"));
+                    temp.setBiopsiaPreviaBloques(NestedRs.getString("Bloques"));
+                    temp.setBiopsiaPreviaTipo(NestedRs.getString("nombreTipo"));
+                    temp.setBiopsiaPreviaLugarCuerpo(NestedRs.getString("nombreLugarCuerpo"));
+                    temp.setBiopsiaPreviaFecha(NestedRs.getDate("Fecha"));
+                } else {
+                    temp.setBiopsiaPreviaLaminillas("NA");
+                    temp.setBiopsiaPreviaBloques("NA");
+                    temp.setBiopsiaPreviaTipo("NA");
+                    temp.setBiopsiaPreviaLugarCuerpo("NA");
+                    temp.setBiopsiaPreviaFecha(Date.valueOf("1900-01-01"));
+                }
                 NestedRs.close();
                 NestedRs.close();
                 
@@ -85,11 +110,18 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
                 if (temp.getEstadoCivil() == null)temp.setEstadoCivil("NA");
                 if (temp.getSexo() == null)temp.setSexo("NA");
                 if (temp.getEscolaridad() == null)temp.setEscolaridad("NA");
+                if (temp.getNivelSocioeconomico() == null)temp.setNivelSocioeconomico("NA");
                 if (temp.getPrz() == null)temp.setPrz("NA");
                 if (temp.getNoExpediente() == null)temp.setNoExpediente("NA");
                 if (temp.getSeguro() == null)temp.setSeguro("NA");
                 if (temp.getNoSeguroPopular() == null || !temp.getSeguro().equals("Seguro Popular"))temp.setNoSeguroPopular("NA");
                 if (temp.getAlergias() == null)temp.setAlergias("NA");
+                if (temp.getBiopsiaINCanGradoHistologico() == null)temp.setBiopsiaINCanGradoHistologico("NA");
+                if (temp.getBiopsiaINCanHer2( )== null)temp.setBiopsiaINCanHer2("NA");
+                if (temp.getBiopsiaINCanFish() == null)temp.setBiopsiaINCanFish("NA");
+                if (temp.getBiopsiaINCanKi67() == null)temp.setBiopsiaINCanKi67("NA");
+                if (temp.getBiopsiaINCanRe() == null)temp.setBiopsiaINCanRe("NA");
+                if (temp.getBiopsiaINCanRp() == null)temp.setBiopsiaINCanRp("NA");
                 if (temp.getSillaRuedas() == null)temp.setSillaRuedas("NA");
                 if (temp.getBastón() == null)temp.setBastón("NA");
                 if (temp.getOxigeno() == null)temp.setOxigeno("NA");
