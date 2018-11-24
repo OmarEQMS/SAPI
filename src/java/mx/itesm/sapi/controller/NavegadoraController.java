@@ -28,6 +28,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import net.sf.jasperreports.engine.JRDataSource;
 
 import java.util.List;
 
@@ -39,6 +40,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Base64;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.servlet.ServletException;
@@ -52,9 +55,12 @@ import javax.servlet.http.Part;
 import mx.itesm.sapi.autocomplete.AutocompletadoServicioImpl;
 import mx.itesm.sapi.bean.diagnostico.EstadiajeTNM;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
+import mx.itesm.sapi.bean.formulario.EstudioFormulario;
+import mx.itesm.sapi.bean.formulario.LlamadaPaciente;
 import mx.itesm.sapi.bean.gestionPaciente.Biopsia;
 import mx.itesm.sapi.bean.gestionPaciente.BloqueParafina;
 import mx.itesm.sapi.bean.formulario.MFormularioGeneral;
+import mx.itesm.sapi.bean.formulario.ReporteNavegadora;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
 import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
@@ -84,11 +90,13 @@ import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
 import mx.itesm.sapi.bean.persona.Login;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
+import mx.itesm.sapi.service.EstudioFormularioServicioImpl;
 import mx.itesm.sapi.service.diagnostico.EstadiajeTNMServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.BiopsiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.BloqueParafinaServicioImpl;
 import mx.itesm.sapi.service.MFormularioGeneralServicioImpl;
+import mx.itesm.sapi.service.ReporteNavegadoraServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
@@ -118,6 +126,8 @@ import mx.itesm.sapi.service.persona.DireccionServicioImpl;
 import mx.itesm.sapi.service.persona.LoginServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
+import net.sf.jasperreports.engine.JasperRunManager;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -2407,6 +2417,74 @@ public class NavegadoraController extends HttpServlet {
 
                         }
                         case "generar-reporte":{
+                            //Estos datos los deberia tener la sesion
+                            int idPaciente = 0, idEmpleado = 0, idRol = 0;
+                            String report = "/mx/itesm/reportes/reporte/ReporteNavegadoraP3_1.jasper";
+                            InputStream input = getClass().getResourceAsStream(report);
+                            List<ReporteNavegadora> reporteNavegadoraFields = new ArrayList<>();
+                            
+                            ReporteNavegadora reporteNavegadora = new ReporteNavegadora();
+                            ReporteNavegadoraServicioImpl reportenavegadoraServicioImpl = new ReporteNavegadoraServicioImpl();
+                            reporteNavegadora = reportenavegadoraServicioImpl.mostrarReporteNavegadora(idPaciente, idEmpleado, idRol);
+                            
+                            reporteNavegadoraFields.add(reporteNavegadora);
+                            response.setContentType("application/pdf");
+                            JRDataSource data = new JRBeanCollectionDataSource(reporteNavegadoraFields);
+                            
+                            EstudioFormularioServicioImpl estudioFormularioServicioImpl = new EstudioFormularioServicioImpl();
+                            LlamadaCitaServicioImpl llamadaCitaServicioImpl = new LlamadaCitaServicioImpl();
+                            
+                            List<EstudioFormulario> biopsias = new ArrayList<>(); //Tipo Fecha Lugar
+                            List<EstudioFormulario> rayosX = new ArrayList<>(); //tipo fecha
+                            List<EstudioFormulario> ultrasonido = new ArrayList<>(); //tipo fecha
+                            List<EstudioFormulario> medicinaNuclear = new ArrayList<>();//tipo fecha
+                            List<EstudioFormulario> valoracion = new ArrayList<>(); //tipo fecha
+                            List<EstudioFormulario> programa = new ArrayList<>(); //tipo fecha
+                            List<EstudioFormulario> laboratorio = new ArrayList<>();  //fecha
+                            List<EstudioFormulario> electrocardiograma = new ArrayList<>();//fecha
+                            List<EstudioFormulario> ecocardiograma = new ArrayList<>();//fecha
+                            List<EstudioFormulario> trabajoSocial = new ArrayList<>();//fecha
+                            List<EstudioFormulario> otrosEstudios = new ArrayList<>(); //tipo fecha
+                            List<LlamadaCita> llamadas = new ArrayList<>(); //Llamadas
+                            
+                            biopsias = estudioFormularioServicioImpl.mostrarFormularioDinamicoLTF(idPaciente,"Biopsia");
+                            rayosX = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente,"Rayos X");
+                            ultrasonido = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente,"Ultrasonido");
+                            medicinaNuclear = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente,"Medicina nuclear");
+                            valoracion = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente,"Valoración");
+                            programa = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente,"Programas");
+                            laboratorio = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente,"Laboratorio");
+                            electrocardiograma = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente,"Electrocardiogramas");
+                            ecocardiograma = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente,"Ecocardiogramas");
+                            trabajoSocial = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente,"Trabajos sociales");
+                            otrosEstudios = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente,"Otros");
+                            llamadas = llamadaCitaServicioImpl.mostrarLlamaCitaPreconsultaPaciente(idPaciente);
+                            
+                            Map params = new HashMap();
+                            params.put("datasetBiopsia", biopsias);
+                            params.put("datasetRayosX", rayosX);
+                            params.put("datasetUltrasonido", ultrasonido);
+                            params.put("datasetMedicinaNuclear", medicinaNuclear);
+                            params.put("datasetValoracion", valoracion);
+                            params.put("datasetPrograma", programa);
+                            params.put("datasetLaboratorio", laboratorio);
+                            params.put("datasetElectroCardiograma", electrocardiograma);
+                            params.put("datasetEcocardiograma", ecocardiograma);
+                            params.put("datasetTrabajoSocial", trabajoSocial);
+                            params.put("datasetOtro", otrosEstudios);
+                            params.put("datasetLlamada", llamadas);
+                            
+                            try{
+                                response.setContentType("application/pdf");
+                                    byte[] bytes = JasperRunManager.runReportToPdf(input, params, data);
+
+                                    OutputStream os = response.getOutputStream();
+                                    os.write(bytes);
+                                    os.flush();
+                                    os.close();
+                                }catch(Exception ex){
+                                    System.out.println(this.getClass().toString().concat(ex.getMessage()));
+                                }
                             
                             break;
                         }

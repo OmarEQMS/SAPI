@@ -37,10 +37,8 @@ public class ReporteNavegadora {
     private String otroResultado;
     private String estadoHormonal; 
     private String resultado;
-    private String fechaDecision;
     private String socioeconomico;
     private String decisionCosulta;
-    private String llamada;
     private String comentarioIncidencia;
     private String comentarioMedico;
     private String serieParafina;
@@ -71,8 +69,8 @@ public class ReporteNavegadora {
     private String re;
     private String rp;
     private String ki67;
-    private String mastografiaBiradsNombrePost;
-    private String ultrasonidoBiradsNombrePost;
+    private String ultra;
+    private String masto;
     public ReporteNavegadora() {
     }
   
@@ -435,22 +433,6 @@ public class ReporteNavegadora {
         this.resultado = resultado;
     }
 
-    public String getFechaDecision() {
-        return fechaDecision;
-    }
-
-    public void setFechaDecision(String fechaDecision) {
-        this.fechaDecision = fechaDecision;
-    }
-
-    public String getLlamada() {
-        return llamada;
-    }
-
-    public void setLlamada(String llamada) {
-        this.llamada = llamada;
-    }
-
     public String getNavegadora() {
         return navegadora;
     }
@@ -555,20 +537,20 @@ public class ReporteNavegadora {
         this.ki67 = ki67;
     }
 
-    public String getMastografiaBiradsNombrePost() {
-        return mastografiaBiradsNombrePost;
+    public String getMasto() {
+        return masto;
     }
 
-    public void setMastografiaBiradsNombrePost(String mastografiaBiradsNombrePost) {
-        this.mastografiaBiradsNombrePost = mastografiaBiradsNombrePost;
+    public void setMasto(String masto) {
+        this.masto = masto;
     }
 
-    public String getUltrasonidoBiradsNombrePost() {
-        return ultrasonidoBiradsNombrePost;
+    public String getUltra() {
+        return ultra;
     }
 
-    public void setUltrasonidoBiradsNombrePost(String ultrasonidoBiradsNombrePost) {
-        this.ultrasonidoBiradsNombrePost = ultrasonidoBiradsNombrePost;
+    public void setUltra(String ultra) {
+        this.ultra = ultra;
     }
 
     public String getEscolaridad() {

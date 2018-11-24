@@ -227,4 +227,37 @@ public class LlamadaCitaServicioImpl implements LlamadaCitaServicio {
         return llamadaCita;
     }
 
+    @Override
+    public List<LlamadaCita> mostrarLlamaCitaPreconsultaPaciente(int idPaciente) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarLlamaCitaPreconsultaPaciente(?)";
+        List<LlamadaCita> llamadasCita = new ArrayList();
+        
+        try{
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            rs = cstmt.executeQuery();
+            LlamadaCita llamadaCita;
+            
+            while(rs.next())
+            {
+                llamadaCita = new LlamadaCita();
+                llamadaCita.setIdLlamadaCita(rs.getInt("idLllamadaCita"));
+                llamadaCita.setIdCita(rs.getInt("idCita"));
+                llamadaCita.setIdEmpleado(rs.getInt("idEmpleado"));
+                llamadaCita.setFecha(rs.getTimestamp("fecha"));
+                llamadaCita.setLlamada(rs.getInt("llamada"));
+                llamadaCita.setEstatus(rs.getInt("estatus"));
+            }
+        }catch(SQLException ex)
+        {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            llamadasCita = null;
+        }
+        return llamadasCita;
+    }
+
 }

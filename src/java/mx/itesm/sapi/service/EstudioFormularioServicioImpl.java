@@ -18,7 +18,7 @@ import mx.itesm.sapi.util.Conexion;
  *
  * @author Oscar Miranda
  */
-public class EstudiosFormularioServicioImpl implements EstudioFormularioServicio{
+public class EstudioFormularioServicioImpl implements EstudioFormularioServicio{
 
     @Override
     public List<EstudioFormulario> mostrarFormularioDinamicoFecha(int idPaciente, String nombreEstudio) {

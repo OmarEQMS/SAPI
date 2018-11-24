@@ -25,4 +25,6 @@ public interface LlamadaCitaServicio {
     public boolean actualizarLlamadaCita(LlamadaCita llamadaCita);
 
     public boolean borradoLogicoLlamadaCita(int idLlamadaCita);
+
+    public List<LlamadaCita> mostrarLlamaCitaPreconsultaPaciente(int idPaciente);
 }
