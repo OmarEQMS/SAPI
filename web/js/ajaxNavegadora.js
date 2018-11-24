@@ -260,25 +260,25 @@ $(document).ready(function () {
                     $("#estadoNavegadora").each(function () {
                         $(this).children().remove();
                     });
-                    
+
                     //Limpia los campos de municipio 
                     $("#municipioNavegadora").each(function () {
                         $(this).children().remove();
                     });
-                    
+
                     //Primera opcion de estado
                     $('#estadoNavegadora').append("<option disabled selected>" + "Seleccione un estado" + "</option>");
-                    
+
                     //Primera opcion de municipio
                     $('#municipioNavegadora').append("<option disabled selected>" + "Seleccione un municipio" + "</option>");
-  
+
                     for (var i = 0; i < data.length; i++) {
                         //Carga estado
                         $('#estadoNavegadora').append("<option value='" + data[i].idEstado + "'>" + data[i].nombre + "</option>");
                     }
-                    
-                    $('#estadoNavegadora').prop('selectedIndex',0);
-                    $('#municipioNavegadora').prop('selectedIndex',0);
+
+                    $('#estadoNavegadora').prop('selectedIndex', 0);
+                    $('#municipioNavegadora').prop('selectedIndex', 0);
 
                     console.log(data);
 
@@ -2098,33 +2098,44 @@ $(document).ready(function () {
         });
 
     });
-    
-    var data =new FormData();
-    data.append("key","mostrarFormularioNavegadora");
-    
-     $.ajax({
-            url: "NavegadoraController",
-            method: "POST",
-            data: data,
-            enctype: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                if (response == "success") {
-                    console.log("si lelegamos");
-                                        console.log(response);
 
-                } else {
-                    console.log("Algo pasó no llegamos" + response);
-                }
-            },
-            error: function (request, status, error) {
-                console.log("Enviar datos Error " + request.responseText);
-                console.log("Enviar datos Error status " + status);
-                console.log("Enviar datos Error error" + error);
-                //alert("No enontre el controlador" + status);                               
-            }
-        });
+    var data = new FormData();
+    data.append("key", "mostrarFormularioNavegadora");
+
+    $.ajax({
+        url: "NavegadoraController",
+        method: "POST",
+        data: {key: "mostrarFormularioNavegadora"},
+
+        success: function (response) {
+
+            var data = JSON.parse(response);
+
+            console.log(data);
+            console.log(data[0][0].medicoRadiologo);
+            if (data[0][0].prz !== 0)
+                $('#prz-expediente').val(data[0][0].prz);
+            if (data[0][0].medicoAdscrito !== "")
+                $('#medico-adscrito').val(data[0][0].medicoAdscrito);
+            if (data[0][0].medicoRadiologo !== "")
+                $("#medico-radiologo").val(data[0][0].medicoRadiologo).change();
+            if (data[0][0].medicoAdscrito !== "")
+                $('#fechaNavegacion').val(data[0][0].fechaNavegacion);
+            if (data[0][0].tipoPaciente == true){
+                $('#tipoPaciente').val(data[0][0].tipoPaciente);//aqui que eliga la opcion 1 del index
+                }else(){//aqui es lo de  si es falso que eliga la opcion 2 asi como tu decias por el index }
+
+
+
+
+        },
+        error: function (request, status, error) {
+            console.log("Enviar datos Error " + request.responseText);
+            console.log("Enviar datos Error status " + status);
+            console.log("Enviar datos Error error" + error);
+            //alert("No enontre el controlador" + status);                               
+        }
+    });
 
 });
 

@@ -65,9 +65,9 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
             mFormularioGeneral.setRadioterapiaFecha(rs.getDate("v_radioterapiaFecha"));
             mFormularioGeneral.setRadioterapiaCiclo(rs.getInt("v_radioterapiaCiclo"));
             mFormularioGeneral.setRadioterapiaComentario(rs.getString("v_radioterapiaComentario"));
-            mFormularioGeneral.setMastografiaBiradsNombre(rs.getInt("v_mastografiaBiradsNombre"));
+            mFormularioGeneral.setMastografiaBiradsNombre(rs.getString("v_mastografiaBiradsNombre"));
             mFormularioGeneral.setMastografiaBiradsFecha(rs.getDate("v_mastografiaBiradsFecha"));
-            mFormularioGeneral.setUltrasonidoBiradsNombre(rs.getInt("v_ultrasonidoBiradsNombre"));
+            mFormularioGeneral.setUltrasonidoBiradsNombre(rs.getString("v_ultrasonidoBiradsNombre"));
             mFormularioGeneral.setUltrasonidoBiradsFecha(rs.getDate("v_ultrasonidoBiradsFecha"));
             mFormularioGeneral.setResultadoPatologia(rs.getString("v_resultadoPatologia"));
             mFormularioGeneral.setOtroResultado(rs.getString("v_otroResultado"));

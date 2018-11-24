@@ -384,13 +384,19 @@ public class NavegadoraController extends HttpServlet {
                             break;
                         }
                         case "mostrarFormularioNavegadora": {
-                            int idPaciente = (int) sesion.getAttribute("idPaciente");
+                            int idPaciente = 62;
+
+                            System.out.println("EL id paciente es: " + idPaciente);
 
                             ArrayList<MFormularioGeneral> formGeneralList = new ArrayList<>();
                             ArrayList<ArrayList<MFormularioGeneral>> ElJeison = new ArrayList<>();
 
                             MFormularioGeneralServicioImpl mFormularioGeneralServicioImpl = new MFormularioGeneralServicioImpl();
                             MFormularioGeneral formGeneral = mFormularioGeneralServicioImpl.mostrarFormularioGeneralNavegadora(idPaciente);
+                           // System.out.println(formGeneral.getFechaConsulta());
+                            if(formGeneral.getMedicoAdscrito() == null)formGeneral.setMedicoAdscrito("");
+                            if(formGeneral.getMedicoRadiologo()== null)formGeneral.setMedicoRadiologo("");
+                            
                             formGeneralList.add(formGeneral);
                             ElJeison.add(formGeneralList);
                             ArrayList<MFormularioGeneral> formBiopsia = mFormularioGeneralServicioImpl.mostrarFormularioLugarTipoFecha(idPaciente, "Biopsia");
@@ -420,6 +426,9 @@ public class NavegadoraController extends HttpServlet {
 
                             PrintWriter out = response.getWriter();
                             Gson json = new Gson();
+                            System.out.println(json);
+                            System.out.println(ElJeison);
+
                             out.print(json.toJson(ElJeison));
                             break;
                         }

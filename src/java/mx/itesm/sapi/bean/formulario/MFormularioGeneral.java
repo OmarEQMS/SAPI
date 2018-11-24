@@ -45,9 +45,9 @@ public class MFormularioGeneral implements Serializable {
     private Date radioterapiaFecha;
     private int radioterapiaCiclo;
     private String radioterapiaComentario;
-    private int mastografiaBiradsNombre;
+    private String mastografiaBiradsNombre;
     private Date mastografiaBiradsFecha;
-    private int ultrasonidoBiradsNombre;
+    private String ultrasonidoBiradsNombre;
     private Date ultrasonidoBiradsFecha;
     private String resultadoPatologia;
     private String otroResultado;
@@ -304,11 +304,11 @@ public class MFormularioGeneral implements Serializable {
         this.radioterapiaComentario = radioterapiaComentario;
     }
 
-    public int getMastografiaBiradsNombre() {
+    public String getMastografiaBiradsNombre() {
         return mastografiaBiradsNombre;
     }
 
-    public void setMastografiaBiradsNombre(int mastografiaBiradsNombre) {
+    public void setMastografiaBiradsNombre(String mastografiaBiradsNombre) {
         this.mastografiaBiradsNombre = mastografiaBiradsNombre;
     }
 
@@ -320,11 +320,11 @@ public class MFormularioGeneral implements Serializable {
         this.mastografiaBiradsFecha = mastografiaBiradsFecha;
     }
 
-    public int getUltrasonidoBiradsNombre() {
+    public String getUltrasonidoBiradsNombre() {
         return ultrasonidoBiradsNombre;
     }
 
-    public void setUltrasonidoBiradsNombre(int ultrasonidoBiradsNombre) {
+    public void setUltrasonidoBiradsNombre(String ultrasonidoBiradsNombre) {
         this.ultrasonidoBiradsNombre = ultrasonidoBiradsNombre;
     }
 
