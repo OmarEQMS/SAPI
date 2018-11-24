@@ -668,7 +668,8 @@ public class NavegadoraController extends HttpServlet {
                             /**
                              * DECLARACION DE ATRIBUTOS
                              */
-                            int idPacientePotencial = 30;
+                            int idPacientePotencial = 126;
+
                             int idCuenta = 63;
                             int idNavegadora = 2;//Navegadora
 
@@ -1965,8 +1966,10 @@ public class NavegadoraController extends HttpServlet {
                                         registroDiagnosticoServiceImpl.actualizarRegistroDiagnostico(registroDiagnostico);
                                     }else
                                     {
+                                        System.out.println("agregar registroDiagnostico ".concat(String.valueOf(registroDiagnostico.getIdRegistroDiagnostico())));
                                         registroDiagnostico.setIdRegistroTNM(idRegistroTNM);
-                                        registroDiagnosticoServiceImpl.agregarRegistroDiagnostico(registroDiagnostico);
+                                        registroDiagnostico.setIdRegistroDiagnostico(registroDiagnosticoServiceImpl.agregarRegistroDiagnostico(registroDiagnostico));
+                                        System.out.println("Agregado registroDiagnostico ".concat(String.valueOf(registroDiagnostico.getIdRegistroDiagnostico())));
                                     }
                                     
                             } else

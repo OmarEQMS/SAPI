@@ -523,15 +523,15 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarBiopsiaFormulario(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+        String stProcedure = "CALL actualizarBiopsiaFormulario(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
         boolean exito = false;
 
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
-            cstmt.setInt(1, biopsia.getIdPaciente());
-            cstmt.setInt(2, biopsia.getIdLugarDelCuerpo());
+            cstmt.setInt(1, biopsia.getIdBiopsia());
+            cstmt.setInt(2, biopsia.getIdPaciente());            
             cstmt.setInt(3, biopsia.getIdHer2());
             cstmt.setInt(4, biopsia.getIdReceptorProgesterona());
             cstmt.setInt(5, biopsia.getIdReceptorEstrogeno());
@@ -545,7 +545,7 @@ public class BiopsiaServicioImpl implements BiopsiaServicio {
             cstmt.setInt(13, biopsia.getEstatus());
             cstmt.setInt(14, biopsia.getIdTipoBiopsia());
             cstmt.setDate(15,biopsia.getFechaResultado());
-
+            System.out.println("Actualizar biopsia ".concat(cstmt.toString()));
             rs = cstmt.executeQuery();
             rs.next();
             exito = rs.getBoolean(1);
