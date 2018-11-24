@@ -42,9 +42,12 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
             rs = cstmt.executeQuery();
 
             rs.next();
+            
+            
             pacienteTratamientoPrevio.setIdPacienteTratamientoPrevio(rs.getInt(1));
             pacienteTratamientoPrevio.setIdPaciente(rs.getInt(2));
             pacienteTratamientoPrevio.setIdTipoTratamiento(rs.getInt(3));
+            System.out.println(rs.getDate(4));
             pacienteTratamientoPrevio.setFecha(rs.getDate(4));
             pacienteTratamientoPrevio.setEstatus(rs.getInt(5));
             pacienteTratamientoPrevio.setComentarios(rs.getString(6));

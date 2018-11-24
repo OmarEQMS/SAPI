@@ -187,7 +187,7 @@ public class PacienteServicioImpl implements PacienteServicio{
         ResultSet rs;
         try{
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall("CALL actualizarPaciente(?,?,?,?,?,?,?,?)");
+            cstmt = conn.prepareCall("CALL actualizarPaciente(?,?,?,?,?,?,?,?,?)");
             
             cstmt.setInt(1, paciente.getIdPaciente());
             cstmt.setInt(2, paciente.getIdCuenta());
@@ -197,7 +197,7 @@ public class PacienteServicioImpl implements PacienteServicio{
             cstmt.setDouble(6, paciente.getPeso() );
             cstmt.setDouble(7, paciente.getAltura());
             cstmt.setInt(8, paciente.getPosMenopausia());
-            //cstmt.setInt(9, paciente.getEstatus());
+            cstmt.setInt(9, paciente.getIdNivelSocioEconomico());
             
             System.out.println("Actualizar paciente ".concat(cstmt.toString()));
             
@@ -323,7 +323,7 @@ public class PacienteServicioImpl implements PacienteServicio{
     }    
 
     @Override
-    public boolean actualizarPrz(int idPaciente,String prz) {
+    public boolean actualizarPrz(Paciente paciente) {
         Connection conn;
         CallableStatement cstmt;
         boolean exito= false;
@@ -332,10 +332,42 @@ public class PacienteServicioImpl implements PacienteServicio{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall("CALL actualizarPRZ(?,?)");
             
-            cstmt.setInt(1, idPaciente);                                    
-            cstmt.setString(2, prz);
-            
+            cstmt.setInt(1, paciente.getIdPaciente());
+            cstmt.setString(2, paciente.getPrz());
             System.out.println("Actualizar prz ".concat(cstmt.toString()));
+            
+            rs = cstmt.executeQuery();
+            
+            rs.next();
+            
+            exito = rs.getBoolean(1);
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+        }catch(SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito=false;
+        }
+        return exito;
+    }
+    
+        @Override
+    public boolean actualizarPacienteMenopausia(Paciente paciente) {
+        Connection conn;
+        CallableStatement cstmt;
+        boolean exito= false;
+        ResultSet rs;
+        try{
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL actualizarPacienteMenopausia(?,?)");
+            
+            cstmt.setInt(1, paciente.getIdPaciente());
+            cstmt.setInt(2, paciente.getPosMenopausia());
+
+            
+            System.out.println("Actualizar paciente ".concat(cstmt.toString()));
             
             rs = cstmt.executeQuery();
             

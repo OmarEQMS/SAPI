@@ -54,7 +54,7 @@ public class CitaServicioImpl implements CitaServicio {
             cita.setEstatus(rs.getInt("estatus"));
             cita.setArchivo(rs.getBytes("archivo"));
             cita.setHospitalProcedencia(rs.getString("hospitalProcedencia"));
-            cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")).toString());
+            cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")));
 
             conn.close();
             cstmt.close();
@@ -97,7 +97,7 @@ public class CitaServicioImpl implements CitaServicio {
                 cita.setFechaReal((rs.getTimestamp("fechaReal")));
                 cita.setArchivo(rs.getBytes("archivo"));
                 cita.setHospitalProcedencia(rs.getString("hospitalProcedencia"));
-                cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")).toString());
+                cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")));
 
                 citas.add(cita);
             }
@@ -157,7 +157,7 @@ public class CitaServicioImpl implements CitaServicio {
 
             try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-                Date parsedDate = dateFormat.parse(cita.getFechaSolicitud());
+                Date parsedDate = dateFormat.parse(cita.getFechaSolicitud().toString());
                 Timestamp fechaSolicitud = new java.sql.Timestamp(parsedDate.getTime());
                 cstmt.setTimestamp(12, fechaSolicitud);
             } catch (Exception e) { //this generic but you can control nother types of exception
@@ -300,7 +300,7 @@ public class CitaServicioImpl implements CitaServicio {
 
             try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-                Date parsedDate = dateFormat.parse(cita.getFechaSolicitud());
+                Date parsedDate = dateFormat.parse(cita.getFechaSolicitud().toString());
                 fechaSolicitud = new java.sql.Timestamp(parsedDate.getTime());
 
             } catch (Exception e) { //this generic but you can control nother types of exception
@@ -468,7 +468,7 @@ public class CitaServicioImpl implements CitaServicio {
             cita.setEstatus(rs.getInt("estatus"));
             cita.setArchivo(rs.getBytes("archivo"));
             cita.setHospitalProcedencia(rs.getString("hospitalProcedencia"));
-            cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")).toString());
+            cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")));
 
             conn.close();
             cstmt.close();
@@ -514,7 +514,7 @@ public class CitaServicioImpl implements CitaServicio {
                 cita.setEstatus(rs.getInt("estatus"));
                 cita.setArchivo(rs.getBytes("archivo"));
                 cita.setHospitalProcedencia(rs.getString("hospitalProcedencia"));
-                cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")).toString());
+                cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")));
 
                 citas.add(cita);
             }
@@ -589,8 +589,10 @@ public class CitaServicioImpl implements CitaServicio {
             cita.setEstatus(rs.getInt("estatus"));
             cita.setArchivo(rs.getBytes("archivo"));
             cita.setHospitalProcedencia(rs.getString("hospitalProcedencia"));
-            cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")).toString());
+            cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")));
 
+            
+            System.out.println(cita);
             conn.close();
             cstmt.close();
             rs.close();
@@ -634,7 +636,7 @@ public class CitaServicioImpl implements CitaServicio {
             cita.setEstatus(rs.getInt("estatus"));
             cita.setArchivo(rs.getBytes("archivo"));
             cita.setHospitalProcedencia(rs.getString("hospitalProcedencia"));
-            cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")).toString());
+            cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")));
 
             conn.close();
             cstmt.close();
