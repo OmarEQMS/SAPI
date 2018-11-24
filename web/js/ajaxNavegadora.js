@@ -1399,7 +1399,7 @@ $(document).ready(function () {
     $('#salirCuenta').on('click', function () {
 
         console.log("Salir cuenta");
-        $.get("LoginController", {
+        $.post("LoginController", {
             key: "cerrar-sesion"
         },
                 function (response, status, xhr) {

@@ -1616,6 +1616,114 @@ $(document).ready(function () {
                     }
                 });
     });
+    
+    
+    //  REASIGNAR MEDICOS
+                
+        $('body').on('click', '#btn-continue-reasignar', function () {
+
+        console.log("Reasignar médicos");
+        
+        var doctor1 = $('#doctor1');
+        var doctor2 = $('#doctor2');
+
+        
+                 
+        swal({
+            title: '¿Estás segure de reasignar todos los pacientes a este otro médico?',
+            text: "Todos los pacientes serán transferidos a otro médico.",
+            icon: 'warning',
+            buttons:["Cancelar","Aceptar"]
+            
+        }).then((result) => {
+            
+            if (result === true) {                
+                
+                if (doctor1.val() !== null && doctor2.val() !== null) {
+                    $.ajax({
+
+                        url: 'AdministradorController',
+                        cache: false,
+                        method: 'POST',
+                        data: {
+                            key: 'reasignarPacientes',
+                            doctor1: doctor1.val(),
+                            doctor2: doctor2.val()
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            if(response == 0)
+                            {
+                                swal({
+                                title: "¡Ups!",
+                                text: "Se han reasignado " + response + " pacientes. Es posible que no haya pacientes que reasignar.",
+                                icon: "error",
+                                button: "Aceptar",
+                                });
+                            }else
+                            {
+                                swal({
+                                title: "Reasignación exitosa",
+                                text: "Se han reasignado " + response + " pacientes ",
+                                icon: "success",
+                                button: "Aceptar",
+                                });
+                            }                           
+                        }
+                    });
+                } else
+                {
+                    swal({
+                        title: "¡Ups!",
+                        text: "Escoge dos médicos",
+                        icon: "error",
+                        button: "Aceptar",
+                    });
+                }
+            }           
+        });
+        
+               
+    });
+        
+    
+        /** ELIMINAR MEDICO */
+    $('body').on('click', '#btn-continue1', function () {
+
+        var idPaciente = $(this).data('id');
+
+        //Modal editar medicos
+        swal({
+            title: "Estas seguro?",
+            text: "Los datos se eliminarán y no podrás recuperarlos.",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Cancelar', 'Aceptar'],
+            dangerMode: true,
+        })
+                .then((eliminar) => {
+                    if (eliminar) {
+
+                        $.ajax({
+
+                            url: 'AdministradorController',
+                            cache: false,
+                            method: 'POST',
+                            data: {
+                                key: 'eliminarPaciente',
+                                idPaciente: idPaciente
+                            },
+                            success: function (response) {
+
+                            }
+                        });
+
+                    } else {
+
+                    }
+                });
+    });
+    
 
     //AUTOCOMPLETAR Especialidades
     var especialidades = $('#listEspecialidades');
@@ -1640,8 +1748,8 @@ $(document).ready(function () {
                 console.log(JSON.stringify(especialidades));
 
             });
-
-
+            
+            
     // AUTOCOMPLETAR POSICIONES
 
     var posiciones = $('#listPosiciones');

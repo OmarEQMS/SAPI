@@ -176,7 +176,7 @@
                                         <div class="col-6">
                                             <label for="">Médico que se va</label>
                                             <div class="input-group">
-                                                <select class="form-control" id="docotor1">
+                                                <select class="form-control" id="doctor1">
                                                     <option disabled selected>Seleccione al médico</option>
                                                     <c:forEach items="${listaMedicos}" var="adscrito">  
 
@@ -206,7 +206,7 @@
                                     <!-- Boton guardar y continuar -->
                                     <div class="row justify-content-center mt-5">
                                         <div class="col-6">
-                                            <button class="btn btn-morado btn-block" id="btn-continue1" style="border-radius:20px"><i
+                                            <button class="btn btn-morado btn-block" id="btn-continue-reasignar" style="border-radius:20px"><i
                                                     class="fas fa-arrow-circle-right mr-2"></i>Reasignar</button>
                                         </div>
                                     </div>

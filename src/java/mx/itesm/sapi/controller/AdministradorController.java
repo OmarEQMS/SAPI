@@ -32,6 +32,7 @@ import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
+import mx.itesm.sapi.service.moduloGestionMedico.MedicoPacienteServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.PosicionServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
@@ -370,6 +371,22 @@ public class AdministradorController extends HttpServlet {
 
                     }
 
+                    break;
+                }
+                case "reasignarPacientes":
+                {
+                    int idMedico1 =  Integer.parseInt(request.getParameter("doctor1"));
+                    int idMedico2 =  Integer.parseInt(request.getParameter("doctor2"));
+                    
+                    System.out.println("Medico1 ".concat(String.valueOf(idMedico1)));
+                    System.out.println("Medico2 ".concat(String.valueOf(idMedico2)));
+                    
+                    MedicoPacienteServicioImpl medicoPacienteServicioImpl = new MedicoPacienteServicioImpl();
+                    int registrosCambiados = medicoPacienteServicioImpl.reasignarMedicoPaciente(idMedico1, idMedico2);
+                                        
+                    PrintWriter out = response.getWriter();
+                    out.print(registrosCambiados);
+                    
                     break;
                 }
 
