@@ -1395,12 +1395,32 @@ $(document).ready(function () {
         );
     });
 
+        //PARA SALIR DE LA CUENTA
+    $('#salirCuenta').on('click', function () {
 
+        console.log("Salir cuenta");
+        $.get("LoginController", {
+            key: "cerrar-sesion"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+
+        );
+    });
 
 
     function salir() {
         alert();
-
     }
     ;
 
@@ -1552,35 +1572,6 @@ $(document).ready(function () {
             $('#errorCurpNavegadora').show();
         }
     });
-
-
-
-    //PARA SALIR DE LA CUENTA
-    $('#salirCuenta').on('click', function () {
-
-        console.log("Salir cuenta");
-        $.get("LoginController", {
-            key: "cerrar-sesion"
-        },
-                function (response, status, xhr) {
-                    console.log(response);
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
-                }
-
-        );
-    });
-
-
-
-
 
     //TELEFONO EN EL REGISTRO
     $('#telNavegadora').on('change', function () {

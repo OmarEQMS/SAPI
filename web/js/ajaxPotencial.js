@@ -595,7 +595,7 @@ $(document).ready(function () {
                     buttons: {cancel: 'Cancelar', aceptar: 'Aceptar'},
                     dangerMode: true
                 }).then(function (value) {
-                    configureLoadingScreen($('#loading-screen'));
+                    configureLoadingScreen($('.loading-screen'));
                     if (value == "aceptar") {
                         //AJAX PARA ENVIAR SOLICITUD
                         $.ajax({
@@ -625,7 +625,6 @@ $(document).ready(function () {
                                         buttons: [, 'Aceptar']
 
                                     }).then(function () {
-                                        configureLoadingScreen($('.screenActualizar'));
                                         var consultarDocumentosPreconsulta = new FormData;
                                         consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
                                         console.log("Solicitar DOCUMENTOS de Preconsulta");
@@ -743,7 +742,7 @@ $(document).ready(function () {
                     buttons: {cancel: 'Cancelar', aceptar: 'Aceptar'},
                     dangerMode: true
                 }).then(function (value) {
-                    configureLoadingScreen($('#loading-screen'));
+                    configureLoadingScreen($('.loading-screen'));
                     if (value == "aceptar") {
                         //AJAX PARA ENVIAR SOLICITUD
                         $.ajax({
@@ -773,7 +772,6 @@ $(document).ready(function () {
                                         buttons: [, 'Aceptar']
 
                                     }).then(function () {
-                                        configureLoadingScreen($('.screenActualizar'));
                                         var consultarDocumentosPreconsulta = new FormData;
                                         consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
                                         console.log("Solicitar DOCUMENTOS de Preconsulta");
@@ -785,7 +783,6 @@ $(document).ready(function () {
                                             processData: false,
                                             contentType: false,
                                             success: function (response) {
-
                                                 if (response != null) {
                                                     var data = JSON.parse(response);
                                                     console.log(data);

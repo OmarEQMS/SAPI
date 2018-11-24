@@ -262,6 +262,7 @@
                                     <hr>
                                 </div>
                             </div>
+                        </form>
                     </div>
                 </div>
 

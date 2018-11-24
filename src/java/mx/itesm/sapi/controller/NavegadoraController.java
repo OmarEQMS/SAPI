@@ -54,6 +54,8 @@ import mx.itesm.sapi.bean.diagnostico.EstadiajeTNM;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
 import mx.itesm.sapi.bean.gestionPaciente.Biopsia;
 import mx.itesm.sapi.bean.gestionPaciente.BloqueParafina;
+import mx.itesm.sapi.bean.calendario.FullCalendar;
+import mx.itesm.sapi.bean.calendario.MCalendarioNavegadora;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
 import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
@@ -83,10 +85,15 @@ import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
 import mx.itesm.sapi.bean.persona.Login;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
+
 import mx.itesm.sapi.service.diagnostico.EstadiajeTNMServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.BiopsiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.BloqueParafinaServicioImpl;
+
+import mx.itesm.sapi.service.CalendarioServicioImpl;
+import mx.itesm.sapi.service.MCalendarioNavegadoraServicioImpl;
+
 import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
@@ -2202,7 +2209,63 @@ public class NavegadoraController extends HttpServlet {
                             break;
                         }
 
-                        case "autocompleteRayosX": {
+                        
+                        case "agregarCitaResultados": {
+                            
+                            PrintWriter out = response.getWriter();
+
+                            int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
+                            String nombre = request.getParameter("nombre");
+                            String fechaCita = request.getParameter("fechaCita");
+                            
+                            //Servicio
+                            MCalendarioNavegadoraServicioImpl navegadoraServicio = new MCalendarioNavegadoraServicioImpl();
+                            
+                            //Objeto
+                            MCalendarioNavegadora mCalendarioNavegadora = new MCalendarioNavegadora();
+                            mCalendarioNavegadora.setIdPaciente(idPaciente);
+                            mCalendarioNavegadora.setFechaCita(Date.valueOf(fechaCita));
+                            
+                            int agregado = navegadoraServicio.agregarCitaPaciente(mCalendarioNavegadora);
+                            
+                            System.out.println("AGREGADO ES: " + agregado);
+                            
+                            System.out.println(idPaciente);
+                            System.out.println(nombre);
+                            System.out.println(fechaCita);
+                            
+                            if(agregado > 0){
+                                out.print("success");
+                            }
+                            
+                            break;
+                        
+                        }
+                        
+                        case "obtenerEventosResultados": {
+                            
+                            PrintWriter out = response.getWriter();
+                            
+                            //Servicio
+                            CalendarioServicioImpl csi = new CalendarioServicioImpl();
+
+                            //Lista Calendarios
+                            List<FullCalendar> calendarios = csi.mostrarEventosResultados();
+
+                            response.setContentType("application/json");
+                            response.setCharacterEncoding("UTF-8");
+                            
+                            System.out.println(new Gson().toJson(calendarios));
+                            
+                            out.print(new Gson().toJson(calendarios));
+                        
+                            
+                            break;
+                        
+                        }
+                        
+                        case "autocompleteRayosX":{
+                            
 
                             AutocompletadoServicioImpl autocompletadoServicioImpl = new AutocompletadoServicioImpl();
 
