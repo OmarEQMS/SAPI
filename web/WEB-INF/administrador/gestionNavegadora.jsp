@@ -107,6 +107,8 @@
                     <li id="IrAGestionAdministrador"><a><i class="fas fa-shield-alt"></i>Administradores</a></li>
 
                     <li id="IrAMiCuenta"><a><i class="far fa-user"></i>Mi cuenta</a></li>
+                    
+                    <li id="IrAReasignarMedico"><a><i class="fas fa-sync"></i>Reasignar médico</a></li>
 
                     <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
 
