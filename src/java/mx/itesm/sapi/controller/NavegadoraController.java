@@ -2419,7 +2419,7 @@ public class NavegadoraController extends HttpServlet {
                         case "generar-reporte":{
                             //Estos datos los deberia tener la sesion
                             int idPaciente = 0, idEmpleado = 0, idRol = 0;
-                            String report = "/mx/itesm/reportes/reporte/ReporteNavegadoraP3_1.jasper";
+                            String report = "/mx/itesm/reportes/reporte/ReporteNavegadora2.0.jasper";
                             InputStream input = getClass().getResourceAsStream(report);
                             List<ReporteNavegadora> reporteNavegadoraFields = new ArrayList<>();
                             

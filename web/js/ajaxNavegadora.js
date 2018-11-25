@@ -57,7 +57,6 @@ $(document).ready(function () {
         data: {key: "autocompleteRayosX"}
     })
 
-<<<<<<< HEAD
             .done(function (response) {
 
                 var json = JSON.parse(response);
@@ -72,27 +71,14 @@ $(document).ready(function () {
             });
 
 
-
+   
     $('.rayosX').autocomplete({
         lookup: rayosX,
         onSelect: function (suggestion) {
 
         }
-    });
-=======
-        .done(function (response) {
-       
-       var json = JSON.parse(response);
-        for (var i = 0; i < json.length; i++) {
-                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
-                   rayosX.push(newObjeto);
-            }
-    
-       
-        console.log(rayosX);
-       
-        });
-    
+                
+     });
     
  $("body").on("click", '.rayosX', function(){
     
@@ -106,8 +92,7 @@ $(document).ready(function () {
      
  });
     
-    
->>>>>>> pantalla5
+
 
 //AutocompleteUltrasonido
 
@@ -133,7 +118,6 @@ $(document).ready(function () {
 
             });
 
-<<<<<<< HEAD
 
 
     $('#ultraSonido').autocomplete({
@@ -141,22 +125,19 @@ $(document).ready(function () {
         onSelect: function (suggestion) {
 
         }
-    });
-=======
-        .done(function (response) {
+             .done(function (response) {
        
-       var json = JSON.parse(response);
-        for (var i = 0; i < json.length; i++) {
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
                    var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
                    ultraSonido.push(newObjeto);
-            }
+                }
     
        
-        console.log(ultraSonido);
+                console.log(ultraSonido);
        
+            })
         });
-    
-    
          
  $("body").on("click", '.ultraSonido', function(){
     
@@ -169,7 +150,6 @@ $(document).ready(function () {
 });  
      
  });
->>>>>>> pantalla5
 
 
 
@@ -184,7 +164,6 @@ $(document).ready(function () {
         data: {key: "autocompletePrograma"}
     })
 
-<<<<<<< HEAD
             .done(function (response) {
 
                 var json = JSON.parse(response);
@@ -205,8 +184,7 @@ $(document).ready(function () {
         onSelect: function (suggestion) {
 
         }
-    });
-=======
+    })
         .done(function (response) {
        
        var json = JSON.parse(response);
@@ -217,10 +195,9 @@ $(document).ready(function () {
     
        
         console.log(programa);
-       
-        });
+
     
-    
+    });
          
  $("body").on("click", '.programa', function(){
     
@@ -233,7 +210,7 @@ $(document).ready(function () {
 });  
      
  });
->>>>>>> pantalla5
+
 
 
 //AutocompleteMedicinaNuclear
@@ -247,7 +224,6 @@ $(document).ready(function () {
         data: {key: "autocompleteMedicinaNuclear"}
     })
 
-<<<<<<< HEAD
             .done(function (response) {
 
                 var json = JSON.parse(response);
@@ -268,8 +244,7 @@ $(document).ready(function () {
         onSelect: function (suggestion) {
 
         }
-    });
-=======
+    })    
         .done(function (response) {
        
        var json = JSON.parse(response);
@@ -281,8 +256,7 @@ $(document).ready(function () {
        
         console.log(medicinaNuclear);
        
-        });
-    
+    });
     
          
  $("body").on("click", '.medicinaNuclear', function(){
@@ -296,7 +270,7 @@ $(document).ready(function () {
 });  
      
  });
->>>>>>> pantalla5
+
 
 
 //AutocompleteValoracion
@@ -330,13 +304,8 @@ $(document).ready(function () {
         onSelect: function (suggestion) {
 
         }
-    });
+    })
 
-
-
-
-<<<<<<< HEAD
-=======
         .done(function (response) {
        
        var json = JSON.parse(response);
@@ -360,14 +329,9 @@ $(document).ready(function () {
          alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
         
     }
+   });
 });  
-     
- });
->>>>>>> pantalla5
-
-
-
-
+    
     //Terminos y condiciones
     $('#acepto-terminos').change(function () {
 
@@ -1454,6 +1418,7 @@ $(document).ready(function () {
     });
 
     $('#irAForm').on('click', function () {
+        console.log("redireccionando a form");
         $.post("SAPI", {
             file: "navegadora/form.jsp"
 
@@ -2299,7 +2264,6 @@ function isValidEmail(input) {
     return true;
 
 }
-;
 
 function isValidPhoneNumber(input) {
 
@@ -2320,7 +2284,6 @@ function isValidPhoneNumber(input) {
 
     return true;
 }
-;
 
 
 function formatDate(date) {

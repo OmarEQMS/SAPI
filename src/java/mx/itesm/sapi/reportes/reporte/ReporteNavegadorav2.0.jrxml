@@ -135,13 +135,11 @@
 	<field name="ciudad" class="java.lang.String"/>
 	<field name="estado" class="java.lang.String"/>
 	<field name="alergias" class="java.lang.String"/>
-	<field name="telCasa" class="java.lang.String"/>
-	<field name="telCelular" class="java.lang.String"/>
-	<field name="seguro" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="Seguro" class="java.lang.String"/>
 	<field name="serieLaminillas" class="java.lang.String"/>
 	<field name="ultrsonidoBiradsFecha" class="java.lang.String"/>
 	<field name="ultrasonidoBiradsNombre" class="java.lang.String"/>
-	<field name="biopsiaConfirmado" class="java.lang.String"/>
 	<field name="mastografiaBiradsFecha" class="java.lang.String"/>
 	<field name="mastografiaBiradsNombre" class="java.lang.String"/>
 	<field name="cantidadLaminillas" class="java.lang.Integer"/>
@@ -151,16 +149,12 @@
 	<field name="navegadora" class="java.lang.String"/>
 	<field name="radioterapiaFecha" class="java.lang.String"/>
 	<field name="cirugiaTipo" class="java.lang.String"/>
-	<field name="USGConfirmado" class="java.lang.String"/>
 	<field name="resultadoPatologia" class="java.lang.String"/>
-	<field name="resultadosFecha1" class="java.lang.String"/>
 	<field name="otroResultado" class="java.lang.String"/>
 	<field name="estadoHormonal" class="java.lang.String"/>
-	<field name="resultados" class="java.lang.String"/>
-	<field name="fechaDecision" class="java.lang.String"/>
+	<field name="resultado" class="java.lang.String"/>
 	<field name="socioeconomico" class="java.lang.String"/>
-	<field name="decision" class="java.lang.String"/>
-	<field name="llamada" class="java.lang.String"/>
+	<field name="decisionConsulta" class="java.lang.String"/>
 	<field name="comentarioIncidencia" class="java.lang.String"/>
 	<field name="comentarioMedico" class="java.lang.String"/>
 	<field name="serieParafina" class="java.lang.String"/>
@@ -170,7 +164,29 @@
 	<field name="radioterapiaComentario" class="java.lang.String"/>
 	<field name="quimioterapiaCiclo" class="java.lang.String"/>
 	<field name="radioterapiaCiclo" class="java.lang.String"/>
-	<field name="mastoPreviaINCan" class="java.lang.String"/>
+	<field name="mastografiaPreINCAN" class="java.lang.String"/>
+	<field name="fechaNavegacion" class="java.lang.String"/>
+	<field name="fechaConsulta" class="java.lang.String"/>
+	<field name="medicoAdscrito" class="java.lang.String"/>
+	<field name="medicoRadiologo" class="java.lang.String"/>
+	<field name="medicoResidente" class="java.lang.String"/>
+	<field name="noAdscrito" class="java.lang.String"/>
+	<field name="noRadiologo" class="java.lang.String"/>
+	<field name="noSeguro" class="java.lang.String"/>
+	<field name="fechaFin" class="java.lang.String"/>
+	<field name="etapaClinica" class="java.lang.String"/>
+	<field name="T" class="java.lang.String"/>
+	<field name="N" class="java.lang.String"/>
+	<field name="M" class="java.lang.String"/>
+	<field name="resultadoPatologiaPost" class="java.lang.String"/>
+	<field name="gradoH" class="java.lang.String"/>
+	<field name="her2" class="java.lang.String"/>
+	<field name="fish" class="java.lang.String"/>
+	<field name="re" class="java.lang.String"/>
+	<field name="rp" class="java.lang.String"/>
+	<field name="ki67" class="java.lang.String"/>
+	<field name="masto" class="java.lang.String"/>
+	<field name="ultra" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -234,7 +250,7 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="440" splitType="Stretch">
+		<band height="479" splitType="Stretch">
 			<textField>
 				<reportElement stretchType="RelativeToBandHeight" x="387" y="33" width="181" height="15" uuid="b9c590ab-6e4e-4ba4-9fb3-8a92cfd6c7bb"/>
 				<textElement>
@@ -276,14 +292,14 @@
 				<textElement>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA["SEGURO: ".concat($F{seguro})]]></textFieldExpression>
+				<textFieldExpression><![CDATA["SEGURO: ".concat($F{Seguro})]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement stretchType="RelativeToBandHeight" x="196" y="307" width="179" height="20" uuid="6775568a-1909-4462-960f-5aec6b275d6f"/>
 				<textElement>
 					<font size="13"/>
 				</textElement>
-				<text><![CDATA[ESTUDIOS EXTERNOS]]></text>
+				<text><![CDATA[ESTUDIOS PREVIOS]]></text>
 			</staticText>
 			<staticText>
 				<reportElement stretchType="RelativeToBandHeight" x="0" y="328" width="150" height="20" uuid="dca3b047-fc42-43d4-b561-c246e149f6f8"/>
@@ -376,30 +392,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ultrasonidoBiradsNombre}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="483" y="348" width="82" height="20" uuid="7ceb1ee1-7562-4c20-a33d-eb3bb4e7e036"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<font isBold="true"/>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{USGConfirmado}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="364" y="348" width="119" height="20" uuid="502fe030-7290-452c-a365-d717f368a113"/>
-				<box leftPadding="2">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<text><![CDATA[BIOPSIA:]]></text>
-			</staticText>
 			<staticText>
 				<reportElement stretchType="RelativeToBandHeight" x="0" y="368" width="150" height="20" uuid="14793b67-fbf2-429e-8f29-77ec795112a2"/>
 				<box leftPadding="2">
@@ -440,17 +432,17 @@
 				<textFieldExpression><![CDATA[$F{mastografiaBiradsNombre}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="364" y="368" width="119" height="20" uuid="ab0538e0-ba53-4dc6-bab6-b1e6c007dce4"/>
+				<reportElement stretchType="RelativeToBandHeight" x="364" y="348" width="119" height="20" uuid="ab0538e0-ba53-4dc6-bab6-b1e6c007dce4"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<text><![CDATA[LAMINILLAS:]]></text>
+				<text><![CDATA[NUM. LAMINILLAS:]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="483" y="368" width="82" height="20" uuid="61b7c119-c395-4fbf-8473-ad35a5c8a96b"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="483" y="348" width="82" height="20" uuid="61b7c119-c395-4fbf-8473-ad35a5c8a96b"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -464,7 +456,7 @@
 				<textFieldExpression><![CDATA[$F{cantidadLaminillas}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="483" y="388" width="82" height="20" uuid="bd14da7a-be17-4a51-8a52-5b7d88a27abf"/>
+				<reportElement positionType="Float" x="483" y="368" width="82" height="20" uuid="bd14da7a-be17-4a51-8a52-5b7d88a27abf"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -475,20 +467,20 @@
 					<font isBold="true"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{cantidadParafina}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{serieLaminillas}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="364" y="388" width="119" height="20" uuid="2ae709cf-55c4-4d2b-bdf8-36d38e01cba3"/>
+				<reportElement x="364" y="368" width="119" height="20" uuid="2ae709cf-55c4-4d2b-bdf8-36d38e01cba3"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<text><![CDATA[BLOQUES:]]></text>
+				<text><![CDATA[SERIE LAMINILLAS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="408" width="150" height="20" uuid="aba71d29-fda8-498c-9388-768aec1f1b07"/>
+				<reportElement x="0" y="433" width="150" height="20" uuid="aba71d29-fda8-498c-9388-768aec1f1b07"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -501,7 +493,7 @@
 				<text><![CDATA[DIAGNÓSTICO]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="150" y="408" width="415" height="20" uuid="19b0f762-2100-4552-a991-69d4bb46dd58"/>
+				<reportElement x="150" y="433" width="415" height="20" uuid="19b0f762-2100-4552-a991-69d4bb46dd58"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -597,12 +589,60 @@
 				<textElement>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA["MASTOGRAFIA PREVIA EN EL INCAN: ".concat($F{mastoPreviaINCan})]]></textFieldExpression>
+				<textFieldExpression><![CDATA["MASTOGRAFIA PREVIA EN EL INCAN: ".concat($F{mastografiaPreINCAN})]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="11" y="116" width="558" height="49" uuid="0addd4b2-6ca0-4ea6-9148-de90a95b75b2"/>
 				<textFieldExpression><![CDATA[$F{cirugiaComentario}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="364" y="408" width="119" height="20" uuid="e985cca0-b5e4-4ecd-b0ce-93084227e2cd"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<text><![CDATA[BLOQUES:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="483" y="408" width="82" height="20" uuid="d871b9d9-71ca-49d1-9cb0-ebbb31acbe6a"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{serieParafina}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="483" y="388" width="82" height="20" uuid="ae48f7a7-8ead-4713-ba48-3b5937970dc2"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidadParafina}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="364" y="388" width="119" height="20" uuid="1dd5e747-8f4d-48b3-88b2-a707cde95240"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<text><![CDATA[BLOQUES PARAFINA:]]></text>
+			</staticText>
 		</band>
 		<band height="112">
 			<componentElement>
@@ -1023,36 +1063,36 @@
 				<text><![CDATA[ESTUDIOS]]></text>
 			</staticText>
 		</band>
-		<band height="261">
+		<band height="211">
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="233" y="0" width="94" height="20" uuid="ae7e177b-ae1b-453d-9962-0ab0697e4071"/>
+				<reportElement stretchType="RelativeToBandHeight" x="233" y="2" width="94" height="20" uuid="ae7e177b-ae1b-453d-9962-0ab0697e4071"/>
 				<textElement>
 					<font size="13"/>
 				</textElement>
 				<text><![CDATA[RESULTADOS]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="20" width="90" height="15" uuid="54500482-7f1d-4839-a59a-a2e57814b502"/>
+				<reportElement x="0" y="22" width="90" height="15" uuid="54500482-7f1d-4839-a59a-a2e57814b502"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textFieldExpression><![CDATA["Resultados: ".concat($F{resultados})]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Resultados: ".concat($F{resultado})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="90" y="20" width="240" height="15" uuid="1b996f69-85e2-4080-b013-9f27d183b878"/>
+				<reportElement x="90" y="22" width="240" height="15" uuid="1b996f69-85e2-4080-b013-9f27d183b878"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textFieldExpression><![CDATA["Decisión Preconsulta: ".concat($F{decision})]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Decisión Preconsulta: ".concat($F{decisionConsulta})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="330" y="20" width="240" height="15" uuid="ad19a4bc-2386-459f-b81e-857b3ed43967"/>
+				<reportElement x="330" y="22" width="240" height="15" uuid="ad19a4bc-2386-459f-b81e-857b3ed43967"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -1062,7 +1102,7 @@
 				<textFieldExpression><![CDATA["Fechade la decision: ".concat($F{fechaDecision})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="35" width="142" height="15" uuid="48fb2db7-c059-4d24-8b3f-8ec04be68e85"/>
+				<reportElement x="0" y="37" width="142" height="15" uuid="48fb2db7-c059-4d24-8b3f-8ec04be68e85"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -1072,17 +1112,17 @@
 				<textFieldExpression><![CDATA["Nivel Socioeconomico: ".concat($F{socioeconomico})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="142" y="35" width="100" height="15" uuid="c5ef3e58-7be7-423a-8c72-33179d3c5dda"/>
+				<reportElement x="142" y="37" width="100" height="15" uuid="c5ef3e58-7be7-423a-8c72-33179d3c5dda"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textFieldExpression><![CDATA["Se Lamo: ".concat($F{llamada})]]></textFieldExpression>
+				<textFieldExpression><![CDATA["RESULTADOS: ".concat($F{resultado})]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement x="242" y="35" width="328" height="45" uuid="edcafbcf-ad2c-4e65-b539-d8bb2a3bef9c"/>
+				<reportElement x="242" y="37" width="328" height="45" uuid="edcafbcf-ad2c-4e65-b539-d8bb2a3bef9c"/>
 				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="datasetLlamada" uuid="22ec97b9-8d4f-4def-a0e8-228ed51735a5">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
@@ -1122,7 +1162,7 @@
 				</jr:list>
 			</componentElement>
 			<textField>
-				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="2" y="111" width="566" height="36" uuid="9633e772-1534-4aaa-951f-419ddc605769"/>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="2" y="113" width="566" height="36" uuid="9633e772-1534-4aaa-951f-419ddc605769"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -1135,7 +1175,7 @@
 				<textFieldExpression><![CDATA["COMENTARIOS Y/O REPORTE E INCIDENCIAS: \n".concat($F{comentarioIncidencia})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="2" y="152" width="566" height="36" uuid="071ebb43-99f0-404b-ad20-8f4f5de283c9"/>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="2" y="154" width="566" height="36" uuid="071ebb43-99f0-404b-ad20-8f4f5de283c9"/>
 				<box leftPadding="2">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -1148,14 +1188,16 @@
 				<textFieldExpression><![CDATA["COMENTARIOS ADICIONALES DEL MEDICO: \n".concat($F{comentarioMedico})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="230" y="84" width="100" height="20" uuid="005a665c-c09d-4c01-ab00-9a54ea35a4db"/>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="230" y="86" width="100" height="20" uuid="005a665c-c09d-4c01-ab00-9a54ea35a4db"/>
 				<textElement>
 					<font size="13"/>
 				</textElement>
 				<text><![CDATA[COMENTARIOS]]></text>
 			</staticText>
+		</band>
+		<band height="255">
 			<staticText>
-				<reportElement positionType="FixRelativeToBottom" x="43" y="209" width="116" height="40" uuid="db339194-55cc-4e98-bcf1-13327e18a2ac"/>
+				<reportElement positionType="FixRelativeToBottom" x="48" y="214" width="116" height="40" uuid="8235caa6-d9d5-4662-83e2-e75b21856781"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
@@ -1164,7 +1206,7 @@
 CIRUGÍA        DR(A).]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="FixRelativeToBottom" x="339" y="210" width="50" height="40" uuid="f33bfebe-15c8-49f3-9ee3-1aecf00a4765"/>
+				<reportElement positionType="FixRelativeToBottom" x="344" y="215" width="50" height="40" uuid="673734f1-9a60-4214-ac61-c7fc534c8fbe"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
@@ -1173,17 +1215,69 @@ CIRUGÍA        DR(A).]]></text>
 FIRMA:]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="166" y="222" width="159" height="1" uuid="d682c3b5-ac00-4372-9172-23d3c61d7dcf"/>
+				<reportElement positionType="FixRelativeToBottom" x="171" y="227" width="159" height="1" uuid="e9e32be9-2bb9-4044-879c-6374a70e583d"/>
 			</line>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="166" y="248" width="159" height="1" uuid="2c9f9425-7921-429c-882e-68844278a961"/>
+				<reportElement positionType="FixRelativeToBottom" x="171" y="253" width="159" height="1" uuid="36ea727e-2e97-42fc-af60-3db41551389a"/>
 			</line>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="390" y="248" width="145" height="1" uuid="8799a503-9792-4d4d-b38c-b6a83cc5d390"/>
+				<reportElement positionType="FixRelativeToBottom" x="395" y="253" width="145" height="1" uuid="4b0f7821-1293-427e-bc6e-b0b87998a956"/>
 			</line>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="390" y="222" width="145" height="1" uuid="52c056de-ee73-46e9-a2d9-1fede71e971e"/>
+				<reportElement positionType="FixRelativeToBottom" x="395" y="227" width="145" height="1" uuid="a5498e69-cba3-4c86-b5fd-c073d87e872b"/>
 			</line>
+			<textField>
+				<reportElement x="0" y="10" width="207" height="15" uuid="76ce3568-393e-40dc-80b2-1bee090ffbbb"/>
+				<textFieldExpression><![CDATA["ETAPA CLÌNICA: ".concat($F{etapaClinica})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="34" width="280" height="15" uuid="f8844665-547b-44c8-b985-60422f836f74"/>
+				<textFieldExpression><![CDATA["RESULTADOS DE MASTOGRAFIA: ".concat($F{masto})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="34" width="290" height="15" uuid="78d16771-99ca-49d1-a1db-b26f9351b936"/>
+				<textFieldExpression><![CDATA["RESULTADOS DE ULTRASONIDO: ".concat($F{ultra})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="59" width="180" height="15" uuid="8c4b3c5d-07c0-461a-b952-9d3ec5b9c643"/>
+				<textFieldExpression><![CDATA["T: ".concat($F{T})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="59" width="180" height="15" uuid="66eb830e-7244-4d71-9ef2-8d6717242406"/>
+				<textFieldExpression><![CDATA["N: ".concat($F{N})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="59" width="180" height="15" uuid="3e2832d8-b211-4e18-b607-15d2b979bb61"/>
+				<textFieldExpression><![CDATA["M: ".concat($F{M})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="88" width="280" height="15" uuid="58852f52-547d-49a1-8764-ba005cfc4b1b"/>
+				<textFieldExpression><![CDATA["RESULTADOS PATOLOGÍA: ".concat($F{resultadoPatologiaPost})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="88" width="290" height="15" uuid="fd79e857-5888-4af1-8def-7f2624fffb2a"/>
+				<textFieldExpression><![CDATA["GRADO HISTOLOGICO: ".concat($F{gradoH})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="120" width="180" height="15" uuid="5407b8c5-b77c-4f69-9bbc-99498dd73b3a"/>
+				<textFieldExpression><![CDATA["RE: ".concat($F{re})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="120" width="180" height="15" uuid="2fb007b5-d4f8-45c8-8b8a-0cd9fb65c8c9"/>
+				<textFieldExpression><![CDATA["FISH: ".concat($F{fish})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="120" width="180" height="15" uuid="5f0efa13-1b6d-4eb6-96dc-c851a4864784"/>
+				<textFieldExpression><![CDATA["HER2: ".concat($F{her2})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="148" width="280" height="15" uuid="a4480d17-9371-4bec-a8f3-676e95b9081c"/>
+				<textFieldExpression><![CDATA["RP: ".concat($F{rp})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="148" width="290" height="15" uuid="dac32c01-17f5-431a-b471-e475b211e48f"/>
+				<textFieldExpression><![CDATA["Ki67: ".concat($F{ki67})]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>
