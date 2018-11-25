@@ -23,7 +23,7 @@ $(document).ready(function () {
     $('#errorCodigoPostalNavegadora').hide();
     $('#noEqualPasswordsErrorNavegadora').hide();
 
-
+    
     $('#error-editar-NombreNavegadora').hide();
     $('#error-editar-ApellidoPaternoNavegadora').hide();
     $('#error-editar-ApellidoMaternoNavegadora').hide();
@@ -41,44 +41,60 @@ $(document).ready(function () {
     $('#error-editar-EstadoNavegadora').hide();
     $('#error-editar-MunicipioNavegadora').hide();
     $('#error-editar-UsuarioRepetidoNavegadora').hide();
-
+    
     $('#error-contrasena').hide();
     $('#noEqualPasswordsError').hide();
+        
 
-
-//AutocompleteRayosX
-
-    var rayosX = [];
-
-    $.ajax({
-        url: 'NavegadoraController',
-        cache: false,
-        method: 'POST',
-        data: {key: "autocompleteRayosX"}
-    })
-
-            .done(function (response) {
-
-                var json = JSON.parse(response);
-                for (var i = 0; i < json.length; i++) {
-                    var newObjeto = {value: json[i].nombre, data: json[i].idEstudio};
-                    rayosX.push(newObjeto);
+    // Generar todo el reporte
+     $('#btn-export2').on('click', function () {
+        console.log("Intentnado redirecionar a generar reporte");
+     	$.ajax({
+            url: "NavegadoraController",
+            method: "POST",
+            data: {
+                key: "generar-reporte"
+            },
+            success: function (response) {
+                if (response == "success") {
+                    console.log("ok");
+                } else {
+                    console.log("Algo pasó" + response);
                 }
+            },
+            error: function (request, status, error) {
+                console.log("Enviar datos Error " + request.responseText);
+                console.log("Enviar datos Error status " + status);
+                console.log("Enviar datos Error error" + error);
+                //alert("No enontre el controlador" + status);                               
+            }
+        });
 
+    });
+    //AutocompleteRayosX
 
-                console.log(rayosX);
+    var rayosX=[];
 
-            });
+       $.ajax({
+        url: 'NavegadoraController',
+                cache: false,
+                method: 'POST',
+                data: {key: "autocompleteRayosX"}
+        })
 
-
-   
-    $('.rayosX').autocomplete({
-        lookup: rayosX,
-        onSelect: function (suggestion) {
-
-        }
-                
-     });
+        .done(function (response) {
+       
+       var json = JSON.parse(response);
+        for (var i = 0; i < json.length; i++) {
+                   var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
+                   rayosX.push(newObjeto);
+            }
+    
+       
+        console.log(rayosX);
+       
+        });
+    
     
  $("body").on("click", '.rayosX', function(){
     
@@ -92,52 +108,33 @@ $(document).ready(function () {
      
  });
     
-
+    
 
 //AutocompleteUltrasonido
 
-    var ultraSonido = [];
+    var ultraSonido=[];
 
-    $.ajax({
+       $.ajax({
         url: 'NavegadoraController',
-        cache: false,
-        method: 'POST',
-        data: {key: "autocompleteUltraSonido"}
-    })
+                cache: false,
+                method: 'POST',
+                data: {key: "autocompleteUltraSonido"}
+        })
 
-            .done(function (response) {
-
-                var json = JSON.parse(response);
-                for (var i = 0; i < json.length; i++) {
-                    var newObjeto = {value: json[i].nombre, data: json[i].idEstudio};
-                    ultraSonido.push(newObjeto);
-                }
-
-
-                console.log(ultraSonido);
-
-            });
-
-
-
-    $('#ultraSonido').autocomplete({
-        lookup: ultraSonido,
-        onSelect: function (suggestion) {
-
-        }
-             .done(function (response) {
+        .done(function (response) {
        
-                var json = JSON.parse(response);
-                for (var i = 0; i < json.length; i++) {
+       var json = JSON.parse(response);
+        for (var i = 0; i < json.length; i++) {
                    var newObjeto = { value: json[i].nombre, data: json[i].idEstudio };
                    ultraSonido.push(newObjeto);
-                }
+            }
     
        
-                console.log(ultraSonido);
+        console.log(ultraSonido);
        
-            })
         });
+    
+    
          
  $("body").on("click", '.ultraSonido', function(){
     
@@ -155,36 +152,15 @@ $(document).ready(function () {
 
 //AutocompletePrograma
 
-    var programa = [];
+    var programa=[];
 
-    $.ajax({
+       $.ajax({
         url: 'NavegadoraController',
-        cache: false,
-        method: 'POST',
-        data: {key: "autocompletePrograma"}
-    })
+                cache: false,
+                method: 'POST',
+                data: {key: "autocompletePrograma"}
+        })
 
-            .done(function (response) {
-
-                var json = JSON.parse(response);
-                for (var i = 0; i < json.length; i++) {
-                    var newObjeto = {value: json[i].nombre, data: json[i].idEstudio};
-                    programa.push(newObjeto);
-                }
-
-
-                console.log(programa);
-
-            });
-
-
-
-    $('#tipoPrograma').autocomplete({
-        lookup: programa,
-        onSelect: function (suggestion) {
-
-        }
-    })
         .done(function (response) {
        
        var json = JSON.parse(response);
@@ -195,9 +171,10 @@ $(document).ready(function () {
     
        
         console.log(programa);
-
+       
+        });
     
-    });
+    
          
  $("body").on("click", '.programa', function(){
     
@@ -212,39 +189,17 @@ $(document).ready(function () {
  });
 
 
-
 //AutocompleteMedicinaNuclear
 
-    var medicinaNuclear = [];
+    var medicinaNuclear=[];
 
-    $.ajax({
+       $.ajax({
         url: 'NavegadoraController',
-        cache: false,
-        method: 'POST',
-        data: {key: "autocompleteMedicinaNuclear"}
-    })
+                cache: false,
+                method: 'POST',
+                data: {key: "autocompleteMedicinaNuclear"}
+        })
 
-            .done(function (response) {
-
-                var json = JSON.parse(response);
-                for (var i = 0; i < json.length; i++) {
-                    var newObjeto = {value: json[i].nombre, data: json[i].idEstudio};
-                    medicinaNuclear.push(newObjeto);
-                }
-
-
-                console.log(medicinaNuclear);
-
-            });
-
-
-
-    $('#medicinaNuclear').autocomplete({
-        lookup: medicinaNuclear,
-        onSelect: function (suggestion) {
-
-        }
-    })    
         .done(function (response) {
        
        var json = JSON.parse(response);
@@ -256,7 +211,8 @@ $(document).ready(function () {
        
         console.log(medicinaNuclear);
        
-    });
+        });
+    
     
          
  $("body").on("click", '.medicinaNuclear', function(){
@@ -272,39 +228,16 @@ $(document).ready(function () {
  });
 
 
-
 //AutocompleteValoracion
 
-    var valoracion = [];
+    var valoracion=[];
 
-    $.ajax({
+       $.ajax({
         url: 'NavegadoraController',
-        cache: false,
-        method: 'POST',
-        data: {key: "autocompleteValoracion"}
-    })
-
-            .done(function (response) {
-
-                var json = JSON.parse(response);
-                for (var i = 0; i < json.length; i++) {
-                    var newObjeto = {value: json[i].nombre, data: json[i].idEstudio};
-                    valoracion.push(newObjeto);
-                }
-
-
-                console.log(valoracion);
-
-            });
-
-
-
-    $('#valoracion').autocomplete({
-        lookup: valoracion,
-        onSelect: function (suggestion) {
-
-        }
-    })
+                cache: false,
+                method: 'POST',
+                data: {key: "autocompleteValoracion"}
+        })
 
         .done(function (response) {
        
@@ -329,9 +262,17 @@ $(document).ready(function () {
          alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
         
     }
-   });
 });  
-    
+     
+ });
+
+
+
+
+     
+     
+     
+     
     //Terminos y condiciones
     $('#acepto-terminos').change(function () {
 
@@ -347,111 +288,56 @@ $(document).ready(function () {
     //Codigo Postal en Agregar Paciente
     $('#codigo-postalNavegadora').on('change', function () {
 
-        if ($(this).val().length === 0) {
+        $.ajax({
 
-            //Obtener estados
+            url: 'ZonaController',
+            cache: false,
+            method: 'POST',
+            data: {
 
-            $.ajax({
+                key: "getEstadoyMunicipio",
+                numeroCP: $('#codigo-postalNavegadora').val()
 
-                url: 'ZonaController',
-                cache: false,
-                method: 'POST',
-                data: {
+            },
+            success: function (response) {
 
-                    key: "getEstados"
+                if (response == 'postalCodeDoesntExist') {
+                    $('#error-CPexiste').show();
 
+                } else {
+                    $('#error-CPexiste').hide();
+                    var json = JSON.parse(response);
 
-                },
-                success: function (response) {
+                    if ($('#codigo-postalNavegadora').val().length === 5) {
 
-                    var data = JSON.parse(response);
+                        //Limpia los campos 
+                        $("#estadoNavegadora").each(function () {
+                            $(this).children().remove();
+                        });
 
-                    //Limpia los campos de estado 
-                    $("#estadoNavegadora").each(function () {
-                        $(this).children().remove();
-                    });
-                    
-                    //Limpia los campos de municipio 
-                    $("#municipioNavegadora").each(function () {
-                        $(this).children().remove();
-                    });
-                    
-                    //Primera opcion de estado
-                    $('#estadoNavegadora').append("<option disabled selected>" + "Seleccione un estado" + "</option>");
-                    
-                    //Primera opcion de municipio
-                    $('#municipioNavegadora').append("<option disabled selected>" + "Seleccione un municipio" + "</option>");
-  
-                    for (var i = 0; i < data.length; i++) {
+                        $("#municipioNavegadora").each(function () {
+                            $(this).children().remove();
+                        });
+
                         //Carga estado
-                        $('#estadoNavegadora').append("<option value='" + data[i].idEstado + "'>" + data[i].nombre + "</option>");
-                    }
-                    
-                    $('#estadoNavegadora').prop('selectedIndex',0);
-                    $('#municipioNavegadora').prop('selectedIndex',0);
+                        $('#estadoNavegadora').append("<option value='" + json[0] + "'>" + json[1] + "</option>");
 
-                    console.log(data);
-
-                }
-
-            });
-
-        } else if ($(this).val().length === 5) {
-
-            $.ajax({
-
-                url: 'ZonaController',
-                cache: false,
-                method: 'POST',
-                data: {
-
-                    key: "getEstadoyMunicipio",
-                    numeroCP: $('#codigo-postalNavegadora').val()
-
-                },
-                success: function (response) {
-
-                    if (response == 'postalCodeDoesntExist') {
-                        $('#error-CPexiste').show();
+                        //Carga Municipio
+                        $('#municipioNavegadora').append("<option value='" + json[2] + "'>" + json[3] + "</option>");
 
                     } else {
-                        $('#error-CPexiste').hide();
-                        var json = JSON.parse(response);
 
-                        if ($('#codigo-postalNavegadora').val().length === 5) {
+                        $('#estadoNavegadora').removeAttr('disabled');
+                        $('#estadoNavegadora').removeAttr('selected');
 
-                            //Limpia los campos 
-                            $("#estadoNavegadora").each(function () {
-                                $(this).children().remove();
-                            });
-
-                            $("#municipioNavegadora").each(function () {
-                                $(this).children().remove();
-                            });
-
-                            //Carga estado
-                            $('#estadoNavegadora').append("<option value='" + json[0] + "'>" + json[1] + "</option>");
-
-                            //Carga Municipio
-                            $('#municipioNavegadora').append("<option value='" + json[2] + "'>" + json[3] + "</option>");
-
-                        } else {
-
-                            $('#estadoNavegadora').removeAttr('disabled');
-                            $('#estadoNavegadora').removeAttr('selected');
-
-                        }
-
-                        console.log(json);
                     }
 
+                    console.log(json);
                 }
 
-            });
+            }
 
-        }
-
-
+        });
 
 
     });
@@ -503,8 +389,8 @@ $(document).ready(function () {
     $('.btn-editar').on('click', function () {
 
         $('#hidden-idPaciente').val($(this).data('id'));
-
-
+        
+       
         $.ajax({
 
             url: 'NavegadoraController',
@@ -570,57 +456,57 @@ $(document).ready(function () {
         });
 
     });
-
+    
     $('#btn-guardarCambios').on('click', function () {
         console.log("Presionó Guardar Cambios");
-
-
-
-
+        
+      
+        
+        
         // FALTA OBTENER EL ID DEL PACIENTE 
-
+        
         $.ajax({
-            url: 'NavegadoraController',
-            cache: false,
-            method: 'POST',
-            data: {
-                key: "actualizar-paciente",
-                idPaciente: $('#hidden-idPaciente').val(),
-                nombre: $('#editarNombreNavegadoraAPaciente').val(),
-                apellido1: $('#editarPrimer-apellidoNavegadoraAPaciente').val(),
-                apellido2: $('#editarSegundo-apellidoNavegadoraAPaciente').val(),
-                usuario: $("#editarUsuarioNavegadoraAPaciente").val(),
-                correo: $('#editarCorreoNavegadoraAPaciente').val(),
-                curp: $('#editarCurpNavegadoraAPaciente').val(),
-                colonia: $('#editarColNavegadoraAPaciente').val(),
-                calle: $('#editarCalleNavegadoraAPaciente').val(),
-                noExterior: $("#editarNumExtNavegadoraAPaciente").val(),
-                noInterior: $("#editarNumIntNavegadoraAPaciente").val(),
-                telefono: $("#editarTelNavegadoraAPaciente").val(),
-                estadoCivil: $("#editarEstado-civilNavegadora").val(),
-                fechaNacimiento: $("#editarCumpleNavegadoraAPaciente").val(),
-                estado: $("#editarEstadoNavegadoraAPaciente").val(),
-                municipio: $("#editarMunicipioNavegadoraAPaciente").val()
-            }, success: function (response) {
-                swal({
-                    title: 'Buen Trabajo',
-                    text: "Cuenta registrada correctamente",
-                    type: 'success',
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'Ok'
-                })
-            }
+                url: 'NavegadoraController',
+                cache: false,
+                method: 'POST',
+                data: {
+                    key: "actualizar-paciente",
+                    idPaciente: $('#hidden-idPaciente').val(),
+                    nombre: $('#editarNombreNavegadoraAPaciente').val(),
+                    apellido1: $('#editarPrimer-apellidoNavegadoraAPaciente').val(),
+                    apellido2: $('#editarSegundo-apellidoNavegadoraAPaciente').val(),
+                    usuario: $("#editarUsuarioNavegadoraAPaciente").val(),
+                    correo: $('#editarCorreoNavegadoraAPaciente').val(),
+                    curp: $('#editarCurpNavegadoraAPaciente').val(),
+                    colonia: $('#editarColNavegadoraAPaciente').val(),
+                    calle: $('#editarCalleNavegadoraAPaciente').val(),
+                    noExterior: $("#editarNumExtNavegadoraAPaciente").val(),
+                    noInterior: $("#editarNumIntNavegadoraAPaciente").val(),
+                    telefono: $("#editarTelNavegadoraAPaciente").val(),
+                    estadoCivil: $("#editarEstado-civilNavegadora").val(),
+                    fechaNacimiento: $("#editarCumpleNavegadoraAPaciente").val(),
+                    estado: $("#editarEstadoNavegadoraAPaciente").val(),
+                    municipio: $("#editarMunicipioNavegadoraAPaciente").val()
+                },success: function (response) {
+                        swal({
+                            title: 'Buen Trabajo',
+                            text: "Cuenta registrada correctamente",
+                            type: 'success',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        })
+                    }
 
-        });
+            });
     });
 
     //Redirige a documentos
     $('.btn-ver').on('click', function () {
-
+        
         $('#hidden-idPaciente').val($(this).data('id'));
-
+        
         //alert('saludos con el id: ' +  $('#hidden-idPaciente').val())
-
+        
         $.post("SAPI", {
             file: "navegadora/documentos.jsp",
             idPacientePotencialAtendido: $('#hidden-idPaciente').val()
@@ -635,7 +521,7 @@ $(document).ready(function () {
                             document.write(response);
                             document.close();
                         }
-                    }
+                    }                    
                 }
         );
     });
@@ -1045,7 +931,7 @@ $(document).ready(function () {
 
                         } else if (response == "todos")
                         {
-                            console.log("Redireccionar a documentos");
+                            console.log("Redireccionar a documentos"); 
                             $.post("SAPI", {
                                 file: "navegadora/documentos.jsp",
                                 idPacientePotencialAtendido: "hola"
@@ -1066,8 +952,8 @@ $(document).ready(function () {
                             swal({
                                 title: 'No más documentos por revisar.',
                                 timer: 3000
-                            });
-
+                            });                                                      
+                            
                         } else {
                             swal.close();
                             document.open("text/html", "replace");
@@ -1099,7 +985,6 @@ $(document).ready(function () {
     });
 
     $('#irACalendario').on('click', function () {
-
         $.post("SAPI", {
             file: "navegadora/calendar.jsp"
         },
@@ -1117,7 +1002,7 @@ $(document).ready(function () {
                 }
         );
     });
-
+    
     $('#irARendimiento').on('click', function () {
         $.post("SAPI", {
             file: "navegadora/rendimiento.jsp"
@@ -1138,7 +1023,6 @@ $(document).ready(function () {
     });
 
     $('#irACuenta').on('click', function () {
-
         $.post("SAPI", {
             file: "navegadora/cuentaNavegadora.jsp"
         },
@@ -1233,55 +1117,55 @@ $(document).ready(function () {
 
         //Modal cambiar contraseña 
         if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
-            swal({
-                title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
-                text: "No podras volver a usar tu contraseña anterior para ingresar",
-                icon: "warning",
-                buttons: true,
-                buttons: ['Regresar', 'Cambiar contraseña'],
-                dangerMode: true
-            })
-                    .then((cambiar) => {
-                        if (cambiar) {
-                            $.ajax({
-                                url: "NavegadoraController",
-                                data: {
-                                    key: "cambiarContrasena",
-                                    idCuenta: $("#sesionPaciente").val(),
-                                    password: $("#password").val(),
-                                    password2: $("#password-confirm").val()
-                                },
-                                method: "POST",
-                                success: function (response) {
-                                    if (response == "success") {
-                                        swal({
-                                            title: "Contraseña actualizada",
-                                            icon: "success",
-                                        });
-                                        $("#password").val('');
-                                        $("#password-confirm").val('');
-                                    } else {
-                                        //Aqui no se que hace
-                                    }
-                                },
-                                error: function (xhr) {
-
+        swal({
+            title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
+            text: "No podras volver a usar tu contraseña anterior para ingresar",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Regresar', 'Cambiar contraseña'],
+            dangerMode: true
+        })
+                .then((cambiar) => {
+                    if (cambiar) {
+                        $.ajax({
+                            url: "NavegadoraController",
+                            data: {
+                                key: "cambiarContrasena",
+                                idCuenta: $("#sesionPaciente").val(),
+                                password: $("#password").val(),
+                                password2: $("#password-confirm").val()
+                            },
+                            method: "POST",
+                            success: function (response) {
+                                if (response == "success") {
+                                    swal({
+                                        title: "Contraseña actualizada",
+                                        icon: "success",
+                                    });
+                                    $("#password").val('');
+                                    $("#password-confirm").val('');
+                                } else {
+                                    //Aqui no se que hace
                                 }
-                            });
-                            $('#modalCambiarContraseña').modal('toggle');
-                        }
-                    });
-        }
-    });
+                            },
+                            error: function (xhr) {
 
+                            }
+                        });
+                        $('#modalCambiarContraseña').modal('toggle');
+                    }
+                });
+            }
+    });
+    
     $("#password").on('change', function () {
         console.log("Cambio la ocntra");
-        if (isValidPassword($(this)))
+        if(isValidPassword($(this)))
             $("#error-contrasena").hide();
         else
             $("#error-contrasena").show();
     });
-
+    
     $("#password2").on('change', function () {
         var pass1 = $('#password');
         var pass2 = $(this);
@@ -1291,9 +1175,6 @@ $(document).ready(function () {
 
     //Cargar los municipios con base en el estado
     $('#estadoNavegadora').on('change', function () {
-
-
-
         $.ajax({
             url: 'ZonaController',
             data: {
@@ -1361,8 +1242,7 @@ $(document).ready(function () {
 
         return true;
 
-    }
-    ;
+    };
 
     function isValidPhoneNumber(input) {
 
@@ -1382,8 +1262,7 @@ $(document).ready(function () {
         }
 
         return true;
-    }
-    ;
+    };
 
     $('#irVerForm').on('click', function () {
         $.post("SAPI", {
@@ -1418,24 +1297,23 @@ $(document).ready(function () {
     });
 
     $('#irAForm').on('click', function () {
-        console.log("redireccionando a form");
         $.post("SAPI", {
             file: "navegadora/form.jsp"
 
         },
                 function (response, status, xhr) {
                     console.log(response);
-                    if (status == "success") {
-                        if (response == "error") {
+                    if(status=="success"){
+                        if (response=="error"){
                             $("#msj-error").show();
-                        } else {
+                        }else{
                             document.open("text/html", "replace");
                             document.write(response);
                             document.close();
                         }
-                    }
+                     }
                 }
-        );
+         );
     });
 
 
@@ -1444,9 +1322,8 @@ $(document).ready(function () {
     function salir() {
         alert();
 
-    }
-    ;
-
+    };
+    
     //VALIDACIONES
     //NOMBRE EN EL REGISTRO
     $('#nombreNavegadora').on('change', function () {
@@ -1583,10 +1460,10 @@ $(document).ready(function () {
                     $('#errorCurpRepetidoNavegadora').show();
                 } else {
                     $('#errorCurpRepetidoNavegadora').hide();
+                    }
                 }
-            }
-        });
-
+            });
+            
         if (isValidCURP($(this))) {
             $('#errorCurpNavegadora').hide();
         } else if ($(this).val() == '') {
@@ -1595,8 +1472,8 @@ $(document).ready(function () {
             $('#errorCurpNavegadora').show();
         }
     });
-
-
+            
+            
 
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
@@ -1618,120 +1495,120 @@ $(document).ready(function () {
                     }
                 }
 
-        );
+            );
+        });
+
+
+    
+
+
+        //TELEFONO EN EL REGISTRO
+        $('#telNavegadora').on('change', function () {
+
+            if (isValidPhoneNumber($(this))) {
+                $('#errorTelefonoNavegadora').hide();
+            } else if ($(this).val() == '') {
+                $('#errorTelefonoNavegadora').hide();
+            } else {
+                $('#errorTelefonoNavegadora').show();
+            }
+
+        });
+
+        //ESTADO CIVIL EN EL REGISTRO
+        $('#estado-civilNavegadora').on('change', function () {
+
+            if (isValidSelect($(this))) {
+                $('#errorECivilNavegadora').hide();
+            } else {
+                $('#errorECivilNavegadora').show();
+            }
+
+        });
+
+        //FECHA DE NACIMIENTO EN EL REGISTRO
+        $('#cumpleNavegadora').on('change', function () {
+
+            if (isValidDate($(this))) {
+                $('#errorFechaNavegadora').hide();
+            } else {
+                $('#errorFechaNavegadora').show();
+            }
+
+        });
+
+        //ESTADO EN EL REGISTRO
+        $('#estadoNavegadora').on('change', function () {
+
+            if (isValidSelect($(this))) {
+                $('#errorEstadoNavegadora').hide();
+            } else {
+                $('#errorEstadoNavegadora').show();
+            }
+
+        });
+
+        //MUNICIPIO EN EL REGISTRO
+        $('#municipioNavegadora').on('change', function () {
+
+            if (isValidSelect($(this))) {
+                $('#errorMunicipioNavegadora').hide();
+            } else {
+                $('#errorMunicipioNavegadora').show();
+            }
+
+        });
+
+        //COLONIA EN EL REGISTRO
+        $('#colNavegadora').on('change', function () {
+
+            if (isValidColonia($(this))) {
+                $('#errorColoniaNavegadora').hide();
+            } else {
+                $('#errorColoniaNavegadora').show();
+            }
+
+        });
+
+        //CALLE EN EL REGISTRO
+        $('#calleNavegadora').on('change', function () {
+
+            if (isValidStreet($(this))) {
+                $('#errorCalleNavegadora').hide();
+            } else {
+                $('#errorCalleNavegadora').show();
+            }
+
+        });
+
+        //NUMERO EXTERIOR EN EL REGISTRO
+         $('#numExtNavegadora').on('change', function () {
+
+            if (isValidExtNumber($(this))) {
+                $('#errorNoExteriorNavegadora').hide();
+            } else {
+                $('#errorNoExteriorNavegadora').show();
+            }
+
+        });
+
+        //NUMERO INTERIOR EN EL REGISTRO
+        $('#numIntNavegadora').on('change', function () {
+
+            if (isValidIntNumber($(this))) {
+                $('#errorNoInteriorNavegadora').hide();
+            } else {
+                $('#errorNoInteriorNavegadora').show();
+            }
+
+
     });
 
-
-
-
-
-    //TELEFONO EN EL REGISTRO
-    $('#telNavegadora').on('change', function () {
-
-        if (isValidPhoneNumber($(this))) {
-            $('#errorTelefonoNavegadora').hide();
-        } else if ($(this).val() == '') {
-            $('#errorTelefonoNavegadora').hide();
-        } else {
-            $('#errorTelefonoNavegadora').show();
-        }
-
-    });
-
-    //ESTADO CIVIL EN EL REGISTRO
-    $('#estado-civilNavegadora').on('change', function () {
-
-        if (isValidSelect($(this))) {
-            $('#errorECivilNavegadora').hide();
-        } else {
-            $('#errorECivilNavegadora').show();
-        }
-
-    });
-
-    //FECHA DE NACIMIENTO EN EL REGISTRO
-    $('#cumpleNavegadora').on('change', function () {
-
-        if (isValidDate($(this))) {
-            $('#errorFechaNavegadora').hide();
-        } else {
-            $('#errorFechaNavegadora').show();
-        }
-
-    });
-
-    //ESTADO EN EL REGISTRO
-    $('#estadoNavegadora').on('change', function () {
-
-        if (isValidSelect($(this))) {
-            $('#errorEstadoNavegadora').hide();
-        } else {
-            $('#errorEstadoNavegadora').show();
-        }
-
-    });
-
-    //MUNICIPIO EN EL REGISTRO
-    $('#municipioNavegadora').on('change', function () {
-
-        if (isValidSelect($(this))) {
-            $('#errorMunicipioNavegadora').hide();
-        } else {
-            $('#errorMunicipioNavegadora').show();
-        }
-
-    });
-
-    //COLONIA EN EL REGISTRO
-    $('#colNavegadora').on('change', function () {
-
-        if (isValidColonia($(this))) {
-            $('#errorColoniaNavegadora').hide();
-        } else {
-            $('#errorColoniaNavegadora').show();
-        }
-
-    });
-
-    //CALLE EN EL REGISTRO
-    $('#calleNavegadora').on('change', function () {
-
-        if (isValidStreet($(this))) {
-            $('#errorCalleNavegadora').hide();
-        } else {
-            $('#errorCalleNavegadora').show();
-        }
-
-    });
-
-    //NUMERO EXTERIOR EN EL REGISTRO
-    $('#numExtNavegadora').on('change', function () {
-
-        if (isValidExtNumber($(this))) {
-            $('#errorNoExteriorNavegadora').hide();
-        } else {
-            $('#errorNoExteriorNavegadora').show();
-        }
-
-    });
-
-    //NUMERO INTERIOR EN EL REGISTRO
-    $('#numIntNavegadora').on('change', function () {
-
-        if (isValidIntNumber($(this))) {
-            $('#errorNoInteriorNavegadora').hide();
-        } else {
-            $('#errorNoInteriorNavegadora').show();
-        }
-
-
-    });
-
-
+    
     //NOMBRE AL EDITAR
     $('#editarNombreNavegadoraAPaciente').on('change', function () {
 
-
+        
 
 
         if (isValidName($(this))) {
@@ -1789,7 +1666,7 @@ $(document).ready(function () {
 
                 if (response === 'UsuarioAlreadyExists') {
                     $('#editarUsuarioNavegadoraAPaciente').css('color', 'orange');
-                    $('#error-editar-UsuarioRepetidoNavegadora').show();
+                    $('#error-editar-UsuarioRepetidoNavegadora').show();                    
                 } else {
                     $('#error-editar-UsuarioRepetidoNavegadora').hide();
                 }
@@ -1957,8 +1834,8 @@ $(document).ready(function () {
         }
 
     });
-
-
+    
+   
     $('#irAForm').on('click', function () {
         $.post("SAPI", {
             file: "navegadora/form.jsp"
@@ -1978,150 +1855,150 @@ $(document).ready(function () {
                 }
         );
     });
-
-
+    
+    
     // Pantallas del formulario 
-    $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5').on('click', function () {
-
-
+     $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5').on('click', function () {
+         
+        
         var biopsias = [];
         console.log("Biopsia 1");
         $('.tuplaBiopsia').each(function () {
-
-            var biopsia = {tipo: $(this).find('.tipoBiopsia').val(),
-                fecha: $(this).find('.fechaBiopsia').val(),
-                lugar: $(this).find('.parteCuerpoBiopsia').val()
+            
+            var biopsia = {tipo:$(this).find('.tipoBiopsia').val(),
+                fecha:$(this).find('.fechaBiopsia').val(),
+                lugar:$(this).find('.parteCuerpoBiopsia').val()
             };
-
+            
             biopsias.push(biopsia);
             console.log(biopsia);
         });
         console.log("Biopsia 2");
-
-        var rayosxs = [];
-        console.log("Rayos x");
+         
+       var rayosxs = [];
+       console.log("Rayos x");
         $('.tuplaRayosX').each(function () {
-            var rayosx = {tipo: $(this).find('.tipoRayosX').val(),
-                fecha: $(this).find('.fechaRayos').val()
-            };
+            var rayosx = {tipo:$(this).find('.tipoRayosX').val(),
+                            fecha: $(this).find('.fechaRayos').val()
+                        };
             rayosxs.push(rayosx);
-            console.log(rayosx);
+            console.log(rayosx);                                
         });
-        console.log("Rayox x");
-
+        console.log("Rayox x");        
+        
         var ultrasonidos = [];
         console.log("Ultrasonido");
         $('.tuplaUltrasonido').each(function () {
-            var ultrasonido = {parte: $(this).find('.parteCuerpoUltrasonido').val(),
+            var ultrasonido = {parte:$(this).find('.parteCuerpoUltrasonido').val(),
                 fecha: $(this).find('.fechaUltrasonido').val()
             };
-
-            ultrasonidos.push(ultrasonido);
-            console.log(ultrasonido);
+            
+            ultrasonidos.push(ultrasonido);            
+            console.log(ultrasonido);                    
         });
         console.log("Ultrasonido");
-
-
+        
+                
         var medicinasNucleares = []
         console.log("Medicina Nuclear");
         $('.tuplaMedicinaNuclear').each(function () {
-            var medicinaNuclear = {medicinaNuclear: $(this).find('.medicinaNuclear').val(),
-                fecha: $(this).find('.fechaMedicinaNuclear').val()
-            };
-            console.log(medicinaNuclear);
+            var medicinaNuclear = {medicinaNuclear:$(this).find('.medicinaNuclear').val(),
+                fecha:$(this).find('.fechaMedicinaNuclear').val()
+            };            
+            console.log(medicinaNuclear);                    
             medicinasNucleares.push(medicinaNuclear);
         });
         console.log("Medicina Nuclear");
-
-
+        
+                         
         var laboratorios = [];
         console.log("tuplaLaboratorio");
         $('.tuplaLaboratorio').each(function () {
-            var laboratorio = {fecha: $(this).find('.fechaLaboratorio').val()};
+            var laboratorio = {fecha:$(this).find('.fechaLaboratorio').val()};
             laboratorios.push(laboratorio);
-            console.log(laboratorio);
+            console.log(laboratorio);                    
         });
         console.log("tuplaLaboratorio");
-
-
+        
+        
         var valoraciones = [];
         console.log("tuplaValoracion");
         $('.tuplaValoracion').each(function () {
-
-            var valoracion = {valoracion: $(this).find('.valoracion').val(),
-                fecha: $(this).find('.fechaValoracion').val()
+            
+            var valoracion = {valoracion:$(this).find('.valoracion').val(),
+                fecha:$(this).find('.fechaValoracion').val()
             };
             valoraciones.push(valoracion);
-            console.log(valoracion);
+            console.log(valoracion);                    
         });
         console.log("tuplaValoracion");
-
-
+        
+        
         var espirometrias = [];
         console.log("tuplaEspirometria");
         $('.tuplaEspirometria').each(function () {
-            var espirometria = {fecha: $(this).find('.fechaEspirometria').val()};
+            var espirometria = {fecha:$(this).find('.fechaEspirometria').val()};
             espirometrias.push(espirometria);
-            console.log(espirometria);
+            console.log(espirometria);                    
         });
         console.log("tuplaEspirometria");
-
-
+        
+        
         var electrocardiogramas = [];
         console.log("tuplaElectrocardiograma");
         $('.tuplaElectrocardiograma').each(function () {
-            var electrocardiograma = {fecha: $(this).find('.fechaElectrocardiograma').val()};
-
+            var electrocardiograma = {fecha:$(this).find('.fechaElectrocardiograma').val()};
+            
             electrocardiogramas.push(electrocardiograma);
-            console.log(electrocardiograma);
+            console.log(electrocardiograma);                    
         });
         console.log("tuplaElectrocardiograma");
-
-
+        
+        
         var ecocardiogramas = [];
         console.log("tuplaEcocardiograma");
         $('.tuplaEcocardiograma').each(function () {
-            var ecocardiograma = {fecha: $(this).find('.fechaEcocardiograma').val()};
-
+            var ecocardiograma = {fecha:$(this).find('.fechaEcocardiograma').val()};
+            
             ecocardiogramas.push(ecocardiograma);
-            console.log(ecocardiograma);
+            console.log(ecocardiograma);                    
         });
         console.log("tuplaEcocardiograma");
-
-
+        
+                 
         var trabajosSociales = []
         console.log("tuplaTrabajoSocial");
         $('.tuplaTrabajoSocial').each(function () {
             var trabajoSocial = {fecha: $(this).find('.fechaTrabajoSocial').val()};
             trabajosSociales.push(trabajoSocial);
-            console.log(trabajoSocial);
+            console.log(trabajoSocial);                    
         });
         console.log("tuplaTrabajoSocial");
-
-
+        
+        
         var programas = [];
         console.log("tuplaPrograma");
         $('.tuplaPrograma').each(function () {
-            var programa = {programa: $(this).find('.programa').val(),
-                fecha: $(this).find('.fechaPrograma').val()};
+            var programa = {programa:$(this).find('.programa').val(),
+            fecha: $(this).find('.fechaPrograma').val()};        
             programas.push(programa);
-            console.log(programa);
+            console.log(programa);                        
         });
         console.log("tuplaPrograma");
-
-
+        
+                        
         var otrosEstudios = [];
         console.log("tuplaOtro");
         $('.tuplaOtro').each(function () {
-            var otroEstudio = {fecha: $(this).find('.fechaOtro').val(),
-                otroEstudio: $(this).find('.otro-estudioPreconsulta').val()};
-
+            var otroEstudio = {fecha:$(this).find('.fechaOtro').val(),
+            otroEstudio: $(this).find('.otro-estudioPreconsulta').val()};
+        
             otrosEstudios.push(otroEstudio);
-            console.log(otroEstudio);
+            console.log(otroEstudio);                                
         });
         console.log("tuplaOtro");
-
-
+                
+               
         var llamadas = [];
         $('.tuplaLlamada').each(function () {
 
@@ -2133,24 +2010,32 @@ $(document).ready(function () {
             llamadas.push(llamada);
             console.log(llamada);
         });
-
-
-
+        
+        
+         
         console.log("Comentarios del médico");
         var comentariosMedico = $("#comentariosAdicionales").val();
-        if (comentariosMedico == null)
+        if(comentariosMedico == null)
         {
-            comentariosMedico = "";
+           comentariosMedico = "";
         }
         console.log(comentariosMedico);
         console.log("Comentarios del médico");
-
+        
         var tipoUltrasonidoMama = $('#tipoUltrasonidoMama').val();
-        if (tipoUltrasonidoMama == null)
+        if(tipoUltrasonidoMama == null)
             tipoUltrasonidoMama = "";
-
+        
+        var biradsMasto = $('#ResultadoTipoMastografia').val();
+        if(biradsMasto === null)
+            biradsMasto = "";
+        
+        var biradUSG = $('#tipoUSG').val();
+        if(biradUSG === null)
+            biradUSG = "";
+        
         console.log("click on 'btn-save[i]'");
-
+        
         var data = new FormData();
         var form;
         var dataTemp;
@@ -2167,22 +2052,25 @@ $(document).ready(function () {
             }
         }
         console.log("##########################################################################################");
-        data.append("key", "btn-save");
-        data.append("biopsias", JSON.stringify(biopsias));
-        data.append("rayosxs", JSON.stringify(rayosxs));
-        data.append("ultrasonidos", JSON.stringify(ultrasonidos));
-        data.append("medicinasNucleares", JSON.stringify(medicinasNucleares));
-        data.append("laboratorios", JSON.stringify(laboratorios));
-        data.append("valoraciones", JSON.stringify(valoraciones));
-        data.append("espirometrias", JSON.stringify(espirometrias));
-        data.append("electrocardiogramas", JSON.stringify(electrocardiogramas));
-        data.append("ecocardiogramas", JSON.stringify(ecocardiogramas));
-        data.append("trabajosSociales", JSON.stringify(trabajosSociales));
-        data.append("programas", JSON.stringify(programas));
-        data.append("otrosEstudios", JSON.stringify(otrosEstudios));
-        data.append("comentariosMedico", comentariosMedico);
-        data.append("tipoUltrasonidoMama", tipoUltrasonidoMama);
-        data.append("llamadasCita", JSON.stringify(llamadas));
+        data.append("key", "btn-save");      
+        data.append("biopsias",JSON.stringify(biopsias));
+        data.append("rayosxs",JSON.stringify(rayosxs));
+        data.append("ultrasonidos",JSON.stringify(ultrasonidos));
+        data.append("medicinasNucleares",JSON.stringify(medicinasNucleares));
+        data.append("laboratorios",JSON.stringify(laboratorios));
+        data.append("valoraciones",JSON.stringify(valoraciones));
+        data.append("espirometrias",JSON.stringify(espirometrias));
+        data.append("electrocardiogramas",JSON.stringify(electrocardiogramas));
+        data.append("ecocardiogramas",JSON.stringify(ecocardiogramas));
+        data.append("trabajosSociales",JSON.stringify(trabajosSociales));
+        data.append("programas",JSON.stringify(programas));
+        data.append("otrosEstudios",JSON.stringify(otrosEstudios));
+        data.append("comentariosMedico",comentariosMedico);
+        data.append("tipoUltrasonidoMama",tipoUltrasonidoMama);
+        data.append("llamadasCita",JSON.stringify(llamadas));
+        data.append("biradsMasto",biradsMasto);
+        data.append("biradUSG",biradUSG);
+        
         data.forEach((value, key) => {
             console.log(key + " " + value);
         });
@@ -2210,388 +2098,361 @@ $(document).ready(function () {
 
     });
     
-    var data =new FormData();
-    data.append("key","mostrarFormularioNavegadora");
-    
-     $.ajax({
-            url: "NavegadoraController",
-            method: "POST",
-            data: data,
-            enctype: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                if (response == "success") {
-                    console.log("si lelegamos");
-                                        console.log(response);
-
-                } else {
-                    console.log("Algo pasó no llegamos" + response);
-                }
-            },
-            error: function (request, status, error) {
-                console.log("Enviar datos Error " + request.responseText);
-                console.log("Enviar datos Error status " + status);
-                console.log("Enviar datos Error error" + error);
-                //alert("No enontre el controlador" + status);                               
-            }
-        });
-
 });
 
 
+    
+
+    
+    function isValidEmail(input) {
+
+        var m = input.val();
+
+        ////Expresion regular por el estandard: RFC 5322
+        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    }
+    ;
+
+    function isValidPhoneNumber(input) {
+
+        var m = input.val();
+
+        var expreg = /^[0-9]{10,10}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+    ;
 
 
+    function formatDate(date) {
+        var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
 
-function isValidEmail(input) {
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
 
-    var m = input.val();
-
-    ////Expresion regular por el estandard: RFC 5322
-    var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-
-    if (!expreg.test(m)) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
+        return [year, month, day].join('-');
     }
 
-    return true;
+    function isValidName(input) {
 
-}
+        var m = input.val();
 
-function isValidPhoneNumber(input) {
+        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
 
-    var m = input.val();
+        if (!expreg.test(m)) {
 
-    var expreg = /^[0-9]{10,10}$/;
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
 
-    if (!expreg.test(m)) {
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
 
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-}
-
-
-function formatDate(date) {
-    var d = new Date(date),
-            month = '' + (d.getMonth() + 1),
-            day = '' + d.getDate(),
-            year = d.getFullYear();
-
-    if (month.length < 2)
-        month = '0' + month;
-    if (day.length < 2)
-        day = '0' + day;
-
-    return [year, month, day].join('-');
-}
-
-function isValidName(input) {
-
-    var m = input.val();
-
-    var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
-
-    if (!expreg.test(m)) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-
-}
-
-function isValidLastName(input) {
-
-    var m = input.val();
-
-    var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,127}$/;
-
-    if (!expreg.test(m)) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-}
-
-function isValidEmail(input) {
-
-    var m = input.val();
-
-    ////Expresion regular por el estandard: RFC 5322
-    var expreg = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-
-    if (!expreg.test(m)) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-
-}
-
-function isValidPassword(input) {
-
-    var m = input.val();
-
-    //var expreg = /^[a-zA-Z0-9]{8,14}$/;
-    var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
-    if (!expreg.test(m)) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-
-}
-
-function isValidCURP(input) {
-
-    var m = input.val();
-
-    var expreg = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/;
-
-    if (!expreg.test(m)) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-}
-
-function isValidPhoneNumber(input) {
-
-    var m = input.val();
-
-    var expreg = /^[0-9]{10,10}$/;
-
-    if (!expreg.test(m)) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-}
-
-function isValidSelect(input) {
-
-    if (!input.val()) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-}
-
-function isValidDate(input) {
-
-    //Obtener fecha
-    let today = new Date();
-
-    //Valor seleccionado del input
-    let date_from = input.val();
-    date_from = new Date(date_from);
-
-    let event = false;
-
-    today < date_from ? event = true : event = false;
-
-
-    if (!input.val() || event) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-}
-
-function isValidColonia(input) {
-
-    var m = input.val();
-
-    var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,500}$/;
-
-
-    if (!expreg.test(m)) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-}
-
-function isValidStreet(input) {
-
-    var m = input.val();
-
-    var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,255}$/;
-
-    if (!expreg.test(m)) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-
-
-}
-
-function isValidIntNumber(input) {
-
-    var m = input.val();
-
-    var expreg = /^[#a-zA-Z0-9]{1,100000}$/;
-
-    if (!expreg.test(m)) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-
-
-}
-
-function isValidExtNumber(input) {
-
-    var m = input.val();
-
-    var expreg = /^[#0-9]{1,100000}$/;
-
-    if (!expreg.test(m)) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-
-
-}
-
-function isValidUserName(input) {
-
-    var m = input.val();
-
-    var expreg = /^[a-zA-Z0-9]{4,16}$/;
-
-    if (!expreg.test(m)) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-}
-
-function areEqualPasswords(pass1, pass2) {
-
-    if (pass1.val() != pass2.val()) {
-
-        pass2.css('border', '1px solid red');
-        pass1.css('border', '1px solid red');
-        $('#noEqualPasswordsError').show();
-
-        return false;
-
-    } else {
-        pass2.css('border', '');
-        pass1.css('border', '');
-        $('#noEqualPasswordsError').hide();
+        return true;
 
     }
 
-    return true;
-}
+    function isValidLastName(input) {
+
+        var m = input.val();
+
+        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,127}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+
+    function isValidEmail(input) {
+
+        var m = input.val();
+
+        ////Expresion regular por el estandard: RFC 5322
+        var expreg = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    }
+
+    function isValidPassword(input) {
+
+        var m = input.val();
+
+        //var expreg = /^[a-zA-Z0-9]{8,14}$/;
+        var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    }
+
+    function isValidCURP(input) {
+
+        var m = input.val();
+
+        var expreg = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+
+    function isValidPhoneNumber(input) {
+
+        var m = input.val();
+
+        var expreg = /^[0-9]{10,10}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+
+    function isValidSelect(input) {
+
+        if (!input.val()) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+
+    function isValidDate(input) {
+
+        //Obtener fecha
+        let today = new Date();
+
+        //Valor seleccionado del input
+        let date_from = input.val();
+        date_from = new Date(date_from);
+
+        let event = false;
+
+        today < date_from ? event = true : event = false;
+
+
+        if (!input.val() || event) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+
+    function isValidColonia(input) {
+
+        var m = input.val();
+
+        var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,500}$/;
+
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+
+    function isValidStreet(input) {
+
+        var m = input.val();
+
+        var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,255}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    }
+
+    function isValidIntNumber(input) {
+
+        var m = input.val();
+
+        var expreg = /^[#a-zA-Z0-9]{1,100000}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    }
+
+    function isValidExtNumber(input) {
+
+        var m = input.val();
+
+        var expreg = /^[#0-9]{1,100000}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+
+    }
+
+    function isValidUserName(input) {
+
+        var m = input.val();
+
+        var expreg = /^[a-zA-Z0-9]{4,16}$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+    }
+    
+    function areEqualPasswords(pass1, pass2) {
+
+        if (pass1.val() != pass2.val()) {
+
+            pass2.css('border', '1px solid red');
+            pass1.css('border', '1px solid red');
+            $('#noEqualPasswordsError').show();
+
+            return false;
+
+        } else {
+            pass2.css('border', '');
+            pass1.css('border', '');
+            $('#noEqualPasswordsError').hide();
+
+        }
+
+        return true;
+    }

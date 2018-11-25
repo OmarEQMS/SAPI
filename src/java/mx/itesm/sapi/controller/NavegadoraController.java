@@ -154,7 +154,7 @@ public class NavegadoraController extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         String key = request.getParameter("key");
-
+        System.out.println("Key: "+ key);
         HttpSession sesion = request.getSession(true);
 
         //COMENTARIO PARA COMMIT: TEAM LUGO ORDUÑA <3
@@ -2418,7 +2418,7 @@ public class NavegadoraController extends HttpServlet {
                         }
                         case "generar-reporte":{
                             //Estos datos los deberia tener la sesion
-                            int idPaciente = 0, idEmpleado = 0, idRol = 0;
+                            int idPaciente = 62 , idEmpleado = 0, idRol = 0;
                             String report = "/mx/itesm/reportes/reporte/ReporteNavegadora2.0.jasper";
                             InputStream input = getClass().getResourceAsStream(report);
                             List<ReporteNavegadora> reporteNavegadoraFields = new ArrayList<>();
@@ -2427,6 +2427,7 @@ public class NavegadoraController extends HttpServlet {
                             ReporteNavegadoraServicioImpl reportenavegadoraServicioImpl = new ReporteNavegadoraServicioImpl();
                             reporteNavegadora = reportenavegadoraServicioImpl.mostrarReporteNavegadora(idPaciente, idEmpleado, idRol);
                             
+                             System.out.println("|Se guardaron datos estaticos");
                             reporteNavegadoraFields.add(reporteNavegadora);
                             response.setContentType("application/pdf");
                             JRDataSource data = new JRBeanCollectionDataSource(reporteNavegadoraFields);

@@ -33,7 +33,7 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
         CallableStatement cstmt;
         ResultSet rs;
         String stProcedure1 = "CALL mostrarFormularioNavegadora(?)";
-        String stProcedure2 = "CALL mostrarPaciente(?)";
+        String stProcedure2 = "CALL mostrarPersonaPorIdPaciente(?)";
         
         ReporteNavegadora reporteNavegadora = null;
         Sexo sexo = null;
@@ -46,7 +46,7 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
         //TablaMedicoAdministrado tablaMedicoAdministrador = new TablaMedicoAdministrador();
         EstadoPacientePaciente estadoPacientePaciente = new EstadoPacientePaciente();
         EstadoPacientePacienteServiceImpl estadoPacientePacienteServicioImpl = new EstadoPacientePacienteServiceImpl();
-        
+       
         try{
             conn = Conexion.getConnection();
             reporteNavegadora = new ReporteNavegadora();
@@ -80,9 +80,9 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             reporteNavegadora.setRadioterapiaFecha(String.valueOf(rs.getDate("v_radioterapiaFecha")));
             reporteNavegadora.setRadioterapiaCiclo(String.valueOf(rs.getInt("v_radioterapiaCiclo")));
             reporteNavegadora.setRadioterapiaComentario(rs.getString("v_radioterapiaComentario"));
-            reporteNavegadora.setMastografiaBiradsNombre(String.valueOf(rs.getInt("v_mastografiaBiradsNombre")));
+            reporteNavegadora.setMastografiaBiradsNombre(rs.getString("v_mastografiaBiradsNombre"));
             reporteNavegadora.setMastografiaBiradsFecha(String.valueOf(rs.getDate("v_mastografiaBiradsFecha")));
-            reporteNavegadora.setUltrasonidoBiradsNombre(String.valueOf(rs.getInt("v_ultrasonidoBiradsNombre")));
+            reporteNavegadora.setUltrasonidoBiradsNombre(rs.getString("v_ultrasonidoBiradsNombre"));
             reporteNavegadora.setUltrasonidoBiradsFecha(String.valueOf(rs.getDate("v_ultrasonidoBiradsFecha")));
             reporteNavegadora.setResultadoPatologia(rs.getString("v_resultadoPatologia"));
             reporteNavegadora.setOtroResultado(rs.getString("v_otroResultado"));
