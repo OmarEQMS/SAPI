@@ -777,6 +777,7 @@ $(document).ready(function () {
                         $("#agregar-cedulaMedico").val("");
                         $("#agregar-passwordMedico").val("");
                         $("#agregar-password2Medico").val("");
+                        $("#terminosMedico").prop("checked", false);
 
                         //Cerrar el modal
                         $('#modalAgregarMedico').modal('toggle');

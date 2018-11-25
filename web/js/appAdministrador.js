@@ -187,7 +187,8 @@ $(document).ready(function () {
         $('#noEqualPasswordsError').hide();
         $('#error-campos').hide();
         $('#error-datosRepetidos').hide();
-        $('#errorTerminos').hide();
+        $('#errorAgregarPosicion').hide();
+        $('#errorAgregarEspecialidad').hide();
 
         $('#agregar-nombreMedico').css('border', '');
         $('#agregar-nombreMedico').css('color', '');
@@ -209,6 +210,12 @@ $(document).ready(function () {
 
         $('#agregar-cedulaMedico').css('border', '');
         $('#agregar-cedulaMedico').css('color', '');
+        
+        $('#agregar-especialidadMedico').css('border', '');
+        $('#agregar-especialidadMedico').css('color', '');
+        
+        $('#agregar-posiciondMedico').css('border', '');
+        $('#agregar-posiciondMedico').css('color', '');
 
         $('#agregar-passwordMedico').css('border', '');
         $('#agregar-passwordMedico').css('color', '');
