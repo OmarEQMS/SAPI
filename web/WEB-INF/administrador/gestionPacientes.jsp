@@ -104,7 +104,7 @@
                     <li id="IrAGestionAdministrador"><a><i class="fas fa-shield-alt"></i>Administradores</a></li>
 
                     <li id="IrAMiCuenta"><a><i class="far fa-user"></i>Mi cuenta</a></li>
-                    
+
                     <li id="IrAReasignarMedico"><a><i class="fas fa-sync"></i>Reasignar médico</a></li>
 
                     <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
@@ -170,9 +170,8 @@
                                 <tr>
                                     <th scope="col">PRZ</th>
                                     <th scope="col">Nombre</th>
-                                    <th scope="col">Apellido</th>
                                     <th scope="col">Tratamiento</th>
-                                    <th scope="col">Estadio</th>
+                                    <th scope="col">Etapa Clínica</th>
                                     <th scope="col">Teléfono</th>
                                     <th scope="col">Estado</th>
                                     <th scope="col">Médico</th>
@@ -180,27 +179,29 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>00999299</td>
-                                    <td>Julio</td>
-                                    <td>Badillo</td>
-                                    <td>Tratamiento 1</td>
-                                    <td>1</td>
-                                    <td>777898378</td>
-                                    <td>Morelos</td>
-                                    <td>Dr. Suarez</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-editarPaciente" data-id="" data-toggle="modal" data-target="#modalEditarPaciente"><i
-                                                class="fas fa-edit"></i></button>
-                                        <button class="btn btn-danger" data-id="" id="btn-eliminarPaciente"><i class="fas fa-trash-alt"></i></button>
-                                        <button class="btn btn-primary descargarFormulario"><i class="fas fa-cloud-download-alt"></i>
-                                        </button>
-                                    </td>
-                                </tr>
+                                <c:forEach items="${ListaPacientesAdministrador}" var="paciente">
+                                    <tr>
+                                        <td id="prz-${paciente.idPaciente}" value="${paciente.prz}" > <c:out value="${paciente.prz}"/> </td>
+                                        <td id="nombre-${paciente.idPaciente}" value="${paciente.nombre}" > <c:out value="${paciente.nombre} ${paciente.primerApellido} ${paciente.segundoApellido}"/> </td>
+                                        <td id="tratamiento-${paciente.idPaciente}" value="${paciente.tratamiento}" > <c:out value="${paciente.tratamiento}"/> </td>
+                                        <td id="etapaClinica-${paciente.idPaciente}" value="${paciente.etapaClinica}" > <c:out value="${paciente.etapaClinica}"/> </td>                                
+                                        <td id="telefono-${paciente.idPaciente}" value="${paciente.telefono}" > <c:out value="${paciente.telefono}"/> </td>       
+                                        <td id="estado-${paciente.idPaciente}" value="${paciente.estado}" > <c:out value="${paciente.estado}"/> </td>
+                                        <td id="medico-${paciente.idPaciente}" value="${paciente.medNombre}" > <c:out value="${paciente.medNombre} ${paciente.medPrimerApellido} ${paciente.medSegundoApellido}"/> </td>
+                                        <td>
+                                            
+                                            <button class="btn btn-primary btn-editarPaciente m-1" data-toggle="modal" 
+                                                    data-target="#modalEditarPaciente" data-id="${paciente.idPaciente}"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-danger btn-eliminarPaciente m-1" data-id="${paciente.idPaciente}"><i class="fas fa-trash-alt"></i></button>
+                                            <button class="btn btn-primary descargarFormulario m-1" data-id="${paciente.idPaciente}"><i class="fas fa-cloud-download-alt"></i>
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                                 <tr>
                                     <td>00999299</td>
                                     <td>Raul</td>
-                                    <td>Orihuela</td>
                                     <td>Tratamiento 3</td>
                                     <td>1</td>
                                     <td>777338292</td>

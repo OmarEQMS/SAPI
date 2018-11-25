@@ -8,6 +8,7 @@ package mx.itesm.sapi.service.gestionPaciente;
 import java.util.List;
 import mx.itesm.sapi.bean.gestionPaciente.PacientePotencial;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteAdmin;
 
 /**
  *
@@ -23,6 +24,7 @@ public interface PacienteService {
     public boolean borradoLogicoPaciente(int idPaciente);
     public List<PacientePotencial> mostrarPacientesPotenciales();
     public List<PacientePotencial> mostrarPacientesPotencialesAprobados();
+    public List<PacienteAdmin> mostrarPacientesAdmin();
     public int mostrarColor(int idPaciente);
     public int obtenerCuenta(int idPaciente);
     public int obtenerPersona(int idCuenta);

@@ -37,6 +37,7 @@ import mx.itesm.sapi.bean.gestionPaciente.GradoHistologico;
 import mx.itesm.sapi.bean.gestionPaciente.Her2;
 import mx.itesm.sapi.bean.gestionPaciente.NivelSocioeconomico;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteAdmin;
 import mx.itesm.sapi.bean.gestionPaciente.PacientePotencial;
 import mx.itesm.sapi.bean.gestionPaciente.ReceptorEstrogeno;
 import mx.itesm.sapi.bean.gestionPaciente.ReceptorProgesterona;
@@ -241,6 +242,12 @@ public class FrontController extends HttpServlet {
                                 }
                                 case "administrador/gestionPacientes.jsp":
                                 {
+                                    System.out.println("ENTRO?");
+                                    
+                                    PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
+                                    List<PacienteAdmin> pacientes = pacienteServicio.mostrarPacientesAdmin();
+                                    request.setAttribute("ListaPacientesAdministrador", pacientes);
+                                    
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     break;
                                 }
