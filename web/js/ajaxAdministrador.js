@@ -1,5 +1,199 @@
 $(document).ready(function () {
 
+    /////////////////// GESTION ADMINISTRADORES
+
+    ///////Agregar un nuevo administrador
+
+    //Esconder mensajes de error
+    $('#errorNombreAdministrador').hide();
+    $('#errorTelefonoAdministrador').hide();
+    $('#errorApellidoPaternoAdministrador').hide();
+    $('#errorApellidoMaternoAdministrador').hide();
+    $('#errorCorreoAdministrador').hide();
+    $('#errorCorreoRepetidoAdministrador').hide();
+    $('#errorNumEmpleadoAdministrador').hide();
+    $('#errorAgregarEspecialidadAdministrador').hide();
+    $('#errorAgregarPosicionAdministrador').hide();
+    $('#errorCedulaAdministrador').hide();
+    $('#errorPass1Administrador').hide();
+    $('#noEqualPasswordsErrorAdministrador').hide();
+
+    $('#btn-agregarAdministrador').on('click', function () {
+
+        $.ajax({
+
+            url: 'AdministradorController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "agregar-administrador",
+                nombre: $('#agregar-nombreAdministrador').val(),
+                telefono: $('#agregar-telefonoAdministrador').val(),
+                primerApellido: $('#agregar-primerApellidoAdministrador').val(),
+                segundoApellido: $('#agregar-segundoApellidoAdministrador').val(),
+                correo: $('#agregar-correoAdministrador').val(),
+                noEmpleado: $('#agregar-noEmpleadoAdministrador').val(),
+                especialidad: $('#agregar-especialidadAdministrador').val(),
+                posicion: $('#agregar-posiciondAdministrador').val(),
+                cedula: $('#agregar-cedulaAdministrador').val(),
+                password: $('#agregar-passwordAdministrador').val()
+
+            },
+            success: function (response) {
+
+                if (response == "success") {
+
+                    //mensaje de confirmacion
+                    swal("Buen trabajo", " Administrador agregado correctamente", "success");
+
+
+                    //limpiar los campos del modal
+                    $('#agregar-nombreAdministrador').val('');
+                    $('#agregar-telefonoAdministrador').val('');
+                    $('#agregar-primerApellidoAdministrador').val('');
+                    $('#agregar-segundoApellidoAdministrador').val('');
+                    $('#agregar-correoAdministrador').val('');
+                    $('#agregar-noEmpleadoAdministrador').val('');
+                    $('#agregar-especialidadAdministrador').val('');
+                    $('#agregar-posiciondAdministrador').val('');
+                    $('#agregar-cedulaAdministrador').val('');
+                    $('#agregar-passwordAdministrador').val('');
+
+                    //cerrar el modal
+                    $('#modalAgregarAdministrador').modal('toggle');
+
+                } else {
+                    swal("Error", "Hubo un problema al agregar el administrador", "error");
+                }
+
+            }
+
+
+        });
+
+    });
+
+    ///////Editar un administrador
+
+    //Esconder mensajes de error
+    $('#errorEditarNombreAdministrador').hide();
+    $('#errorEditarApellidoPaternoAdministrador').hide();
+    $('#errorEditarApellidoMaternoAdministrador').hide();
+    $('#errorEditarCorreoAdministrador').hide();
+    $('#errorEditarCorreoRepetidoAdministrador').hide();
+    $('#errorEditarTelefonoAdministrador').hide();
+    $('#errorEditarNumEmpleadoAdministrador').hide();
+    $('#errorEditarEspecialidadAdministrador').hide();
+    $('#errorEditarCedulaAdministrador').hide();
+    $('#error-editarDatosRepetidosAdministrador').hide();
+
+
+    //Recupera administrador
+    $('.btn-editarAdministrador').on('click', function () {
+
+        var id = $(this).data('id');
+
+        $('#idAdministrador').val($(this).data('id'));
+
+        $.ajax({
+
+            url: 'AdministradorController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "recupera-administrador",
+                id: id
+            },
+            success: function (response) {
+
+                var data = JSON.parse(response);
+
+                //Reemplazar los datos en el modal
+
+
+
+            }
+
+        });
+
+    });
+
+    ///////Eliminar un administrador
+    $('.btn-eliminarAdministrador').on('click', function () {
+
+        var id = $(this).data('id');
+
+        $('#idAdministrador').val($(this).data('id'));
+
+        swal({
+            title: "¿Estás segura?",
+            text: "Una vez eliminado, el administrador y sus datos ya no se podrán recuperar.",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Cancelar', 'Aceptar'],
+            dangerMode: true,
+        })
+                .then((eliminar) => {
+
+                    if (eliminar) {
+
+                        $.ajax({
+
+                            url: 'AdministradorController',
+                            cache: false,
+                            method: 'POST',
+                            data: {
+
+                                key: "eliminar-administrador",
+                                id: id
+
+                            },
+                            success: function (response) {
+
+                                
+
+
+                            }
+
+                        });
+
+
+
+                    }
+                });
+
+    });
+
+
+    //Guarda administrador
+    $('#btn-guardarAdministrador').on('click', function () {
+
+        $.ajax({
+
+            url: 'AdministradorController',
+            method: 'POST',
+            cache: false,
+            data: {
+                key: 'editar-administrador',
+                id: $('#idAdministrador').val(),
+                nombre: $('#editar-nombreAdministrador').val(),
+                primerApellido: $('#editar-primerApellidoAdministrador').val(),
+                segundoApellido: $('#editar-segundoApellidoAdministrador').val(),
+                correo: $('#editar-correoAdministrador').val(),
+                telefono: $('#editar-telefonoAdministrador').val(),
+                noEmpleado: $('#editar-noEmpleadoAdministrador').val(),
+                especialidad: $('#editar-especialidadAdministrador').val(),
+                posicion: $('#editar-posiciondAdministrador').val(),
+                cedula: $('#editar-cedulaProfesionalAdministrador').val()
+            },
+            success: function (response) {
+
+            }
+
+        });
+
+    });
+
     /////////////////////////////// MI CUENTA ////////
 
     $('#error-correo').hide();
@@ -212,7 +406,7 @@ $(document).ready(function () {
     $('#error-editarDatosRepetidos').hide();
     $('#errorEditarEspecialidad').hide();
     //$('#errorEditarPosicion').hide(); SHANNON
-    
+
 
 
     //Errores al agregar a un paciente
@@ -297,7 +491,7 @@ $(document).ready(function () {
         }
 
     });
-    
+
     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
     $('#editar-especialidadMedico').on('change', function () {
 
@@ -323,21 +517,21 @@ $(document).ready(function () {
         }
 
     });
-    
+
     /* SHANNON
-    
-    //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
-    $('#editar-posiciondMedico').on('change', function () {
-
-        if (isValidPosicion($(this))) {
-            $('#errorEditarPosicion').hide();
-        } else if ($(this).val() == '') {
-            $('#errorEditarPosicion').hide();
-        } else {
-            $('#errorEditarPosicion').show();
-        }
-
-    }); */
+     
+     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
+     $('#editar-posiciondMedico').on('change', function () {
+     
+     if (isValidPosicion($(this))) {
+     $('#errorEditarPosicion').hide();
+     } else if ($(this).val() == '') {
+     $('#errorEditarPosicion').hide();
+     } else {
+     $('#errorEditarPosicion').show();
+     }
+     
+     }); */
 
     //NOMBRE EN AGREGAR MÉDICO
     $('#agregar-nombreMedico').on('change', function () {
@@ -449,7 +643,7 @@ $(document).ready(function () {
 
     });
 
-    
+
     //////////////////////////////////////////////////////
     ///////////////// VALIDACIONES AGREGAR PACIENTE //////
     //////////////////////////////////////////////////////
@@ -702,7 +896,7 @@ $(document).ready(function () {
 
 
     });
-    
+
     //////////////////////////////////////////////////////
     /////////////////////////////// GESTION MEDICOS //////
     //////////////////////////////////////////////////////
@@ -1152,8 +1346,8 @@ $(document).ready(function () {
         );
     });
 
-    
-    
+
+
     //GUARDA EL MEDICO DESDE EL MODAL
     $('#btn-guardarMedico').on('click', function () {
 
@@ -1164,7 +1358,7 @@ $(document).ready(function () {
                     && isValidNumEmpleado($('#editar-noEmpleadoMedico')) && isValidEmail($('#editar-correoMedico')) && isValidCedula($('#editar-cedulaProfesionalMedico'))
                     && isValidPhoneNumber($('#editar-telefonoMedico')) && isValidEspecialidad($('#editar-especialidadMedico')) /*&& isValidPosicion($('#editar-posicionMedico'))*/
                     && $('#errorCorreoRepetido').hide()) {
-                
+
                 var idMedico = $('#idMedico').val();
                 var nombre = $('#editar-nombreMedico').val();
                 var telefono = $('#editar-telefonoMedico').val();
