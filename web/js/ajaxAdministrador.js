@@ -195,7 +195,6 @@ $(document).ready(function () {
     $('#noEqualPasswordsError').hide();
     $('#error-campos').hide();
     $('#error-datosRepetidos').hide();
-    $('#errorTerminos').hide();
 
     $('#errorAgregarEspecialidad').hide();
     $('#errorAgregarPosicion').hide();
@@ -212,7 +211,7 @@ $(document).ready(function () {
     $('#error-editarDatosRepetidos').hide();
     $('#errorEditarEspecialidad').hide();
     //$('#errorEditarPosicion').hide(); SHANNON
-    
+
 
 
     //Errores al agregar a un paciente
@@ -297,7 +296,7 @@ $(document).ready(function () {
         }
 
     });
-    
+
     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
     $('#editar-especialidadMedico').on('change', function () {
 
@@ -311,33 +310,47 @@ $(document).ready(function () {
 
     });
 
-    //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
-    $('#agregar-posiciondMedico').on('change', function () {
+    var isValidAddPosicion;
+    var dato = $("#agregar-posiciondMedico");
+    
+    dato.on('keyup', function (e) {
+        var option = $('#listPosiciones option').filter(function () {
+            return this.value === $("#agregar-posiciondMedico").val();
+        }).val();
 
-        if (isValidPosicion($(this))) {
+        if (option) {
             $('#errorAgregarPosicion').hide();
-        } else if ($(this).val() == '') {
+            dato.css('border', '');
+            dato.css('color', '');
+            isValidAddPosicion=true;
+        } else if(dato.val() == ''){
             $('#errorAgregarPosicion').hide();
+            dato.css('border', '');
+            dato.css('color', '');
+            isValidAddPosicion=false;
         } else {
             $('#errorAgregarPosicion').show();
+            dato.css('border', '1px solid red');
+            dato.css('color', 'red');
+            isValidAddPosicion=false;
         }
-
     });
-    
-    /* SHANNON
-    
-    //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
-    $('#editar-posiciondMedico').on('change', function () {
 
-        if (isValidPosicion($(this))) {
-            $('#errorEditarPosicion').hide();
-        } else if ($(this).val() == '') {
-            $('#errorEditarPosicion').hide();
-        } else {
-            $('#errorEditarPosicion').show();
-        }
-
-    }); */
+    /* 
+     SHANNON
+     
+     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
+     $('#editar-posiciondMedico').on('change', function () {
+     
+     if (isValidPosicion($(this))) {
+     $('#errorEditarPosicion').hide();
+     } else if ($(this).val() == '') {
+     $('#errorEditarPosicion').hide();
+     } else {
+     $('#errorEditarPosicion').show();
+     }
+     
+     }); */
 
     //NOMBRE EN AGREGAR MÉDICO
     $('#agregar-nombreMedico').on('change', function () {
@@ -401,15 +414,6 @@ $(document).ready(function () {
 
     });
 
-    $('#terminosMedico').on('change', function () {
-
-        if (isValidCheckbox($(this))) {
-            $('#errorTerminos').hide();
-        } else {
-            $('#errorTerminos').show();
-        }
-    });
-
     $('#agregar-correoMedico').on('change', function () {
         $.ajax({
 
@@ -449,7 +453,7 @@ $(document).ready(function () {
 
     });
 
-    
+
     //////////////////////////////////////////////////////
     ///////////////// VALIDACIONES AGREGAR PACIENTE //////
     //////////////////////////////////////////////////////
@@ -702,20 +706,19 @@ $(document).ready(function () {
 
 
     });
-    
+
     //////////////////////////////////////////////////////
     /////////////////////////////// GESTION MEDICOS //////
     //////////////////////////////////////////////////////
     /**AGREGAR MEDICO */
     $('#btn-agregarMedico').on('click', function () {
-        configureLoadingScreen($('.cargandoAgregarMedico'));
         if (!repiteCorreo) {
 
             $("#error-datosRepetidos").hide();
 
             if (isValidName($('#agregar-nombreMedico')) && isValidLastName($('#agregar-primerApellidoMedico')) && isValidLastName($('#agregar-segundoApellidoMedico'))
                     && isValidNumEmpleado($('#agregar-noEmpleadoMedico')) && isValidEmail($('#agregar-correoMedico')) && isValidPassword($('#agregar-passwordMedico')) && isValidCedula($('#agregar-cedulaMedico'))
-                    && isValidPhoneNumber($('#agregar-telefonoMedico')) && isValidCheckbox($('#terminosMedico')) && isValidEspecialidad($('#agregar-especialidadMedico')) && isValidPosicion($('#agregar-posiciondMedico'))
+                    && isValidPhoneNumber($('#agregar-telefonoMedico')) && isValidCheckbox($('#terminosMedico')) && isValidEspecialidad($('#agregar-especialidadMedico')) && isValidAddPosicion
                     && areEqualPasswords($('#agregar-passwordMedico'), $('#agregar-password2Medico'))
                     && $('#errorCorreoRepetido').hide()) {
 
@@ -732,6 +735,7 @@ $(document).ready(function () {
                 var cedula = $('#agregar-cedulaMedico');
                 var password = $('#agregar-passwordMedico');
 
+                configureLoadingScreen($('.cargandoAgregarMedico'));
                 $.ajax({
 
                     url: 'RegistraUsuarioController',
@@ -916,7 +920,6 @@ $(document).ready(function () {
 
         var idMedico = $(this).data('id');
         console.log("idMédico " + idMedico);
-
 
         $.ajax({
 
@@ -1152,8 +1155,8 @@ $(document).ready(function () {
         );
     });
 
-    
-    
+
+
     //GUARDA EL MEDICO DESDE EL MODAL
     $('#btn-guardarMedico').on('click', function () {
 
@@ -1164,7 +1167,7 @@ $(document).ready(function () {
                     && isValidNumEmpleado($('#editar-noEmpleadoMedico')) && isValidEmail($('#editar-correoMedico')) && isValidCedula($('#editar-cedulaProfesionalMedico'))
                     && isValidPhoneNumber($('#editar-telefonoMedico')) && isValidEspecialidad($('#editar-especialidadMedico')) /*&& isValidPosicion($('#editar-posicionMedico'))*/
                     && $('#errorCorreoRepetido').hide()) {
-                
+
                 var idMedico = $('#idMedico').val();
                 var nombre = $('#editar-nombreMedico').val();
                 var telefono = $('#editar-telefonoMedico').val();
@@ -1187,7 +1190,7 @@ $(document).ready(function () {
 
 
                 console.log("Holi, hará el ajax");
-
+                configureLoadingScreen($('.cargandoEditarMedico'));
                 $.ajax({
 
                     url: 'AdministradorController',
@@ -1753,26 +1756,6 @@ $(document).ready(function () {
     }
 
     function isValidName(input) {
-
-        var m = input.val();
-
-        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-    }
-
-    function isValidPosicion(input) {
 
         var m = input.val();
 
