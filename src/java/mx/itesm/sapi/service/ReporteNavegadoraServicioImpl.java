@@ -71,7 +71,14 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             reporteNavegadora.setNoRadiologo(String.valueOf(rs.getBoolean("v_noRadiologo")));
             reporteNavegadora.setEscolaridad(rs.getString("v_escolaridad"));
             reporteNavegadora.setAlergias(rs.getString("v_alergias"));
-            reporteNavegadora.setEstadoHormonal(String.valueOf(rs.getBoolean("v_estadoHormonal")));
+            
+            if(rs.getInt("v_estadoHormonal")==2){
+                System.out.println("estado hormaonal = 2 ");
+                reporteNavegadora.setEstadoHormonal("PosMenopaucia");
+            }else{
+                reporteNavegadora.setEstadoHormonal("PreMenopaucia");
+                System.out.println("estado hormaonal = 1 ");
+            }
             reporteNavegadora.setSeguro(rs.getString("v_tipoSeguro"));
             reporteNavegadora.setNoSeguro(rs.getString("v_numeroSeguro"));
             reporteNavegadora.setMastografiaPreINCAN(String.valueOf(rs.getBoolean("v_mastografiaPreINCAN")));
