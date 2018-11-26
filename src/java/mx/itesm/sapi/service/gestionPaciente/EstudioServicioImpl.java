@@ -37,7 +37,6 @@ public class EstudioServicioImpl implements EstudioServicio {
             rs = cstmt.executeQuery();
             rs.next();
             estudio.setIdEstudio(rs.getInt("idEstudio"));
-            estudio.setIdPiso(rs.getInt("idPiso"));
             estudio.setIdCategoriaEstudio(rs.getInt("idCategoriaEstudio"));
             estudio.setNombre(rs.getString("nombre"));
             
@@ -71,7 +70,6 @@ public class EstudioServicioImpl implements EstudioServicio {
             while(rs.next()){
                 estudio = new Estudio();
                 estudio.setIdEstudio(rs.getInt("idEstudio"));
-                estudio.setIdPiso(rs.getInt("idPiso"));
                 estudio.setIdCategoriaEstudio(rs.getInt("idCategoriaEstudio"));
                 estudio.setNombre(rs.getString("nombre"));
 
@@ -92,7 +90,33 @@ public class EstudioServicioImpl implements EstudioServicio {
 
     @Override
     public int agregarEstudio(Estudio estudio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL agregarEstudio(?, ?)";
+        int id = -1;
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+
+            cstmt.setInt(1, estudio.getIdCategoriaEstudio());
+            cstmt.setString(2, estudio.getNombre());
+
+            rs = cstmt.executeQuery();
+            rs.next();
+            id = rs.getInt(1);
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
+        }
+        return id;
     }
 
     @Override

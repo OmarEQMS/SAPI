@@ -752,7 +752,7 @@ public class NavegadoraController extends HttpServlet {
                                         if(estudio==null){break;}
                                         cita.setIdEstudio(estudio.getIdEstudio());
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
-                                        citaServicio.actualizarCita(cita);
+                                        citaServicio.agregarCita(cita);
                                         break;
                                     }
                                     case "actualizar": {
@@ -761,7 +761,7 @@ public class NavegadoraController extends HttpServlet {
                                         if(estudio==null){break;}
                                         cita.setIdEstudio(estudio.getIdEstudio());
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
-                                        citaServicio.agregarCita(cita);
+                                        citaServicio.actualizarCita(cita);
                                         break;
                                     }
                                     case "eliminar": {
@@ -863,14 +863,14 @@ public class NavegadoraController extends HttpServlet {
                                 fecha = fecha.substring(1, fecha.length() - 1);
                                 switch (accion) {
                                     case "agregar": {
-                                        cita.setIdEstudio(1); // TO DO
+                                        cita.setIdEstudio(25); // TO DO
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.agregarCita(cita);
                                         break;
                                     }
                                     case "actualizar": {
                                         cita.setIdCita(id);
-                                        cita.setIdEstudio(1); // TO DO
+                                        cita.setIdEstudio(25); // TO DO
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.actualizarCita(cita);
                                         break;
@@ -935,14 +935,14 @@ public class NavegadoraController extends HttpServlet {
                                 fecha = fecha.substring(1, fecha.length() - 1);
                                 switch (accion) {
                                     case "agregar": {
-                                        cita.setIdEstudio(1); // TO DO
+                                        cita.setIdEstudio(30); // TO DO
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.agregarCita(cita);
                                         break;
                                     }
                                     case "actualizar": {
                                         cita.setIdCita(id);
-                                        cita.setIdEstudio(1); // TO DO
+                                        cita.setIdEstudio(30); // TO DO
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.actualizarCita(cita);
                                         break;
@@ -968,14 +968,14 @@ public class NavegadoraController extends HttpServlet {
                                 fecha = fecha.substring(1, fecha.length() - 1);
                                 switch (accion) {
                                     case "agregar": {
-                                        cita.setIdEstudio(1); // TO DO
+                                        cita.setIdEstudio(31); // TO DO
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.agregarCita(cita);
                                         break;
                                     }
                                     case "actualizar": {
                                         cita.setIdCita(id);
-                                        cita.setIdEstudio(1); // TO DO
+                                        cita.setIdEstudio(31); // TO DO
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.actualizarCita(cita);
                                         break;
@@ -1001,14 +1001,14 @@ public class NavegadoraController extends HttpServlet {
                                 fecha = fecha.substring(1, fecha.length() - 1);
                                 switch (accion) {
                                     case "agregar": {
-                                        cita.setIdEstudio(1); // TO DO
+                                        cita.setIdEstudio(32); // TO DO
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.agregarCita(cita);
                                         break;
                                     }
                                     case "actualizar": {
                                         cita.setIdCita(id);
-                                        cita.setIdEstudio(1); // TO DO
+                                        cita.setIdEstudio(32); // TO DO
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.actualizarCita(cita);
                                         break;
@@ -1034,7 +1034,7 @@ public class NavegadoraController extends HttpServlet {
                                 fecha = fecha.substring(1, fecha.length() - 1);
                                 switch (accion) {
                                     case "agregar": {
-                                        cita.setIdEstudio(1); // TO DO
+                                        cita.setIdEstudio(33); // TO DO
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.agregarCita(cita);
                                         break;
@@ -1066,7 +1066,7 @@ public class NavegadoraController extends HttpServlet {
                                 String fecha = json.get("fecha").toString();
                                 fecha = fecha.substring(1, fecha.length() - 1);
                                 String programa = json.get("programa").toString();
-                                programa = fecha.substring(1, programa.length() - 1);
+                                programa = programa.substring(1, programa.length() - 1);
                                 switch (accion) {
                                     case "agregar": {
                                         estudio = estudioServicio.mostrarEstudio(programa);
@@ -1105,11 +1105,17 @@ public class NavegadoraController extends HttpServlet {
                                 String fecha = json.get("fecha").toString();
                                 fecha = fecha.substring(1, fecha.length() - 1);
                                 String otroEstudio = json.get("otroEstudio").toString();
-                                otroEstudio = fecha.substring(1, otroEstudio.length() - 1);
+                                otroEstudio = otroEstudio.substring(1, otroEstudio.length() - 1);
                                 switch (accion) {
                                     case "agregar": {
                                         estudio = estudioServicio.mostrarEstudio(otroEstudio);
-                                        if(estudio==null){break;}
+                                        if(estudio==null){
+                                            estudio = new Estudio();
+                                            estudio.setNombre(otroEstudio);
+                                            estudio.setIdCategoriaEstudio(7); //Otro
+                                            estudioServicio.agregarEstudio(estudio);
+                                            estudio = estudioServicio.mostrarEstudio(otroEstudio);
+                                        }
                                         cita.setIdEstudio(estudio.getIdEstudio());
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.agregarCita(cita);
@@ -1118,7 +1124,12 @@ public class NavegadoraController extends HttpServlet {
                                     case "actualizar": {
                                         cita.setIdCita(id);
                                         estudio = estudioServicio.mostrarEstudio(otroEstudio);
-                                        if(estudio==null){break;}
+                                        if(estudio==null){
+                                            estudio.setNombre(otroEstudio);
+                                            estudio.setIdCategoriaEstudio(7); //Otro
+                                            estudioServicio.agregarEstudio(estudio);
+                                            estudio = estudioServicio.mostrarEstudio(otroEstudio);
+                                        }
                                         cita.setIdEstudio(estudio.getIdEstudio());
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.actualizarCita(cita);
@@ -1233,7 +1244,6 @@ public class NavegadoraController extends HttpServlet {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        System.out.println(timestamp.toString());
         return timestamp;
     }
 

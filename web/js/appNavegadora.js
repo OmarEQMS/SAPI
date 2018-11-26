@@ -818,7 +818,7 @@ $(document).ready(function () {
 
 
                     <div class="col-5">
-                        <input name="programaAdded" type="text" id="tipoPrograma" class="form-control" placeholder="Introduce programa">
+                        <input name="programaAdded" type="text" id="tipoPrograma" class="form-control programa" placeholder="Introduce programa">
                     </div>
 
                     <div class="col-5">
