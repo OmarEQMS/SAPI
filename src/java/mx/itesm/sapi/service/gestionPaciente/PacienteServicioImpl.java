@@ -217,6 +217,42 @@ public class PacienteServicioImpl implements PacienteServicio{
         }
         return exito;
     }
+    
+    @Override
+    public boolean actualizarPacienteEscolaridad(Paciente paciente) {
+        Connection conn;
+        CallableStatement cstmt;
+        boolean exito= false;
+        ResultSet rs;
+        try{
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL actualizarPacienteEscolaridad(?,?)");
+            
+            cstmt.setInt(1, paciente.getIdPaciente());
+         
+            cstmt.setInt(2, paciente.getIdEscolaridad());
+            
+            
+            System.out.println("Actualizar paciente ".concat(cstmt.toString()));
+            
+            rs = cstmt.executeQuery();
+            
+            rs.next();
+            
+            exito = rs.getBoolean(1);
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+        }catch(SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito=false;
+        }
+        return exito;
+    }
+    
+    
 
     @Override
     public boolean borradoLogicoPaciente(int idPaciente) {

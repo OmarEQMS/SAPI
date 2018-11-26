@@ -29,10 +29,10 @@ public interface DocumentoEstudioServicio {
 
     public boolean actualizarDocumentoEstudio(DocumentoEstudio documentoEstudio);
 
-    public DocumentoEstudio mostrarDocumentoEstudioPacienteEstudio(int idpaciente,int idEstudio); 
-    
+    public DocumentoEstudio mostrarDocumentoEstudioPacienteEstudio(int idpaciente, int idEstudio);
+
     public DocumentoEstudio mostrarDocumentoEstudioPacienteEstudioPrevio(int idPaciente, int idEstudio, int previo);
-    
+
     public DocumentoEstudio mostrarDocumentoEstudioMasRecientePaciente(int idTipoEstudio, int idPaciente);
 
     public int agregarDocumentoEstudioMastoAntesPreconsulta(DocumentoEstudio documentoEstudio);
@@ -40,5 +40,9 @@ public interface DocumentoEstudioServicio {
     public int agregarDocumentoEstudioEstudioPrevio(DocumentoEstudio documentoEstudio);
 
     public boolean actualizarDocumentoEstudioEstudioPrevio(DocumentoEstudio documentoEstudio);
+
+    public boolean actualizarDocumentoEstudioMastoAntesPreconsulta(DocumentoEstudio documentoEstudio);
+
+    public DocumentoEstudio mostrarDocumentoEstudioMastoAntesPreconsulta(int idpaciente, int idEstudio);
 
 }

@@ -677,11 +677,10 @@ public class NavegadoraController extends HttpServlet {
                              */
 
 
-                            int idPacientePotencial = 126;
+                            int idPacientePotencial = 127;
 
-                            int idCuenta = 63;
-                            int idNavegadora = 2;//Navegadora
-
+                            int idCuenta =770;
+                            int idNavegadora = 5;//Navegadora
                             /**
                              *
                              * INICIO DECLARACION DE SERVICIOS
@@ -1004,7 +1003,7 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Nivel educativo " + (nivelEducativo));
                                 paciente = pacienteServicioImpl.mostrarPaciente(idPacientePotencial);
                                 paciente.setIdEscolaridad(nivelEducativo);
-                                pacienteServicioImpl.actualizarPaciente(paciente);
+                                pacienteServicioImpl.actualizarPacienteEscolaridad(paciente);
                             } else {
                                 System.out.println("Sin nivel educativo");
                             }
@@ -1019,11 +1018,10 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Alergias: ".concat(alergias));
 
                                 if (pacienteAlergia != null) {
-                                    pacienteAlergia.setIdPaciente(idPacientePotencial);
+                                    
                                     pacienteAlergia.setIdAlergia(1);
                                     pacienteAlergia.setAlergia(alergias);
-                                    pacienteAlergiaServicioImpl.borradoLogicoPacienteAlergia(pacienteAlergia.getIdPacienteAlergia());
-                                    pacienteAlergiaServicioImpl.agregarPacienteAlergia(pacienteAlergia);
+                                    pacienteAlergiaServicioImpl.actualizarPacienteAlergia(pacienteAlergia);
 
                                 } else {
                                     pacienteAlergia = new PacienteAlergia();
@@ -1120,19 +1118,18 @@ public class NavegadoraController extends HttpServlet {
                             if (request.getParameterMap().containsKey("primeraMasto")) {
                                 System.out.println("Entre a la masto");
                                 primeraMasto = 1;
-                                int idCitaPre = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
-                                DocumentoEstudio documentoEstudioPrimeraMasto = documentoEstudioServicioImpl.mostrarDocumentoEstudioPacienteEstudio(idPacientePotencial, 29);
-                                LocalDate inicio = java.time.LocalDate.now();
-                                Date inicioDate = Date.valueOf(inicio);
+                                //int idCitaPre = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
+                                DocumentoEstudio documentoEstudioPrimeraMasto = documentoEstudioServicioImpl.mostrarDocumentoEstudioMastoAntesPreconsulta(idPacientePotencial, 29);
+                               // LocalDate inicio = java.time.LocalDate.now();
+                               // Date inicioDate = Date.valueOf(inicio);
                                 if (documentoEstudioPrimeraMasto != null) {
-
-                                    System.out.println("borrado logico de Mastografia previa");
-                                    documentoEstudioServicioImpl.borradoLogicoDocumentoEstudio(documentoEstudioPrimeraMasto.getIdDocumentoEstudio());
+                                    
+                                    documentoEstudioPrimeraMasto.setEstatus(1);
+                                    documentoEstudioServicioImpl.actualizarDocumentoEstudioMastoAntesPreconsulta(documentoEstudioPrimeraMasto);
                                 } else {
                                     //HARCODEO
                                     documentoEstudioPrimeraMasto = new DocumentoEstudio();
                                     documentoEstudioPrimeraMasto.setIdPaciente(idPacientePotencial);
-                                    documentoEstudioPrimeraMasto.setFechaEstudioResultado(inicioDate);
 
                                     System.out.println(documentoEstudioPrimeraMasto);
 
