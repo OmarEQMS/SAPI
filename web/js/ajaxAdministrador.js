@@ -150,7 +150,7 @@ $(document).ready(function () {
                             },
                             success: function (response) {
 
-                                
+
 
 
                             }
@@ -196,14 +196,18 @@ $(document).ready(function () {
 
     /////////////////////////////// MI CUENTA ////////
 
-    $('#error-correo').hide();
-    $('#error-usuario').hide();
+    $('.error-correo').hide();
+    $('.error-correoRepetido').hide();
+    $('.error-usuario').hide();
+    $('.error-usuarioRepetido').hide();
     $('#error-contrasena').hide();
     $('#noEqualPasswordsError').hide();
 
+    //Guardar cambios
+
     $("#guardarCambios").on('click', function () {
 
-        if (isValidUserName($('#username')) && isValidEmail($('#correo'))) {
+        if (isValidUserName($('#username')) && isValidEmail($('#correo')) && !existeUsuario($("#username").val()) && !existeCorreo($("#correo").val())) {
 
             console.log("Presionó GuardarCambios");
             var form = $("form")[0];
@@ -270,6 +274,7 @@ $(document).ready(function () {
 
     });
 
+
     //Cambiar imagen temporalmente en elfront
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -320,22 +325,125 @@ $(document).ready(function () {
                                             icon: "success",
                                             button: "Entendido!",
                                         });
+                                        
+                                        //limpia los campos y cierra el modal
                                         $("#password").val('');
                                         $("#password2").val('');
-                                    } else {
-                                        //Aqui no se que hace
+                                        $('#modalCambiarContraseña').modal('toggle');
                                     }
                                 },
                                 error: function (xhr) {
 
                                 }
                             });
-                            $('#modalCambiarContraseña').modal('toggle');
+                            
                         }
                     });
         }
 
     });
+
+    ////*****VERIFICAR QUE EL USUARIO Y EL EMAIL NO EXISTAN
+    $('#username').on('change', function () {
+
+        $.ajax({
+
+            url: 'RegistraUsuarioController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "repiteUsuario",
+                usuario: $('#username').val()
+            },
+            success: function (response) {
+                if (response == "UsuarioAlreadyExists") {
+                    $('.error-usuarioRepetido').show();
+                } else {
+                    $('.error-usuarioRepetido').hide();
+                }
+            }
+
+        });
+            
+        
+    });
+    
+    $("#correo").on("change", function(){
+       
+       $.ajax({
+
+            url: 'RegistraUsuarioController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "repiteCorreo",
+                correo: $('#correo').val()
+            },
+            success: function (response) {
+                
+                if (response == "CorreoAlreadyExists") {
+                    $('.error-correoRepetido').show();
+                } else {
+                    $('.error-correoRepetido').hide();
+                }
+            }
+
+        });
+        
+    });
+
+    function existeUsuario(usuario) {
+        
+        var existe = true;
+        
+        $.ajax({
+
+            url: 'RegistraUsuarioController',
+            method: "POST",
+            async: false,
+            cache: false,
+            data: {
+                key: "repiteUsuario",
+                usuario: usuario
+            },
+            success: function (response) {
+                
+                if (response != "UsuarioAlreadyExists") {
+                    existe = false;
+                }
+            }
+
+        });
+       
+        
+        return existe;
+    }
+    
+    function existeCorreo(correo) {
+        
+        var existe = true;
+        
+        $.ajax({
+
+            url: 'PacienteController',
+            method: "POST",
+            async: false,
+            cache: false,
+            data: {
+                key: "repiteCorreo",
+                correo: correo
+            },
+            success: function (response) {
+                if (response != "CorreoAlreadyExists") {
+                    existe = false;
+                }
+            }
+
+        });
+       
+        
+        return existe;
+    }
 
     //1.- Usuario
     $('#username').on('change', function () {
@@ -351,10 +459,10 @@ $(document).ready(function () {
     //2.- Correo
     $('#correo').on('change', function () {
         if (isValidEmail($('#correo'))) {
-            $('#error-correo').hide();
+            $('.error-correo').hide();
 
         } else {
-            $('#error-correo').show();
+            $('.error-correo').show();
 
         }
     });

@@ -183,20 +183,7 @@
                             </thead>
                             <tbody>
 
-                                <tr>
-                                    <td>julio</td>
-                                    <td>correo</td>
-                                    <td>telefono</td>
-                                    <td>no empleado</td>
-                                    <td>especiliad</td>
-                                    <td>cedula</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-editarAdministrador" data-toggle="modal" data-id="${administrador.idEmpleado}" data-target="#modalEditarAdministrador"><i
-                                                class="fas fa-edit"></i></button>
-                                        <button class="btn btn-danger btn-eliminarAdministrador" id="btn-eliminarAdministrador" data-id="${administrador.idEmpleado}"><i 
-                                                class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
+                                
 
                                 <c:forEach items="${ListaAdministradoresAdmistrador}" var="administrador">
                                     <tr>
