@@ -26,6 +26,7 @@ import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
 import mx.itesm.sapi.bean.moduloGestionMedico.Posicion;
 import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
 import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
@@ -113,18 +114,17 @@ public class AdministradorController extends HttpServlet {
 
                     EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
                     Especialidad especialidadMedicos = especialidadServicioImpl.mostrarEspecialidadPorNombre(especialidad);
-                    
+
                     /* SHANNON
                     PosicionServicioImpl posicionServicioImpl = new PosicionServicioImpl();
                     Posicion posicionMedicos = posicionServicioImpl.mostrarPosicion(posicion);*/
-
                     MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
                     MedicoEspecialidad medicoEspecialidad = medicoEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(idMedicoAdministrador);
                     medicoEspecialidad.setCedulaProfesional(cedula);
                     medicoEspecialidad.setIdEspecialidad(especialidadMedicos.getIdEspecialidad());
                     System.out.println(" adminiController medicoEspecialidad ".concat(String.valueOf(medicoEspecialidad.getIdEmpleado())));
                     boolean medicoEspecialidadBoolean = medicoEspecialidadServicioImpl.actualizarMedicoEspecialidad(medicoEspecialidad);
-                    
+
                     /*SHANNON
                     
                     MedicoPosicionServicioImpl medicoEspecialidadServicioImpl = new MedicoPosicionServicioImpl();
@@ -133,7 +133,6 @@ public class AdministradorController extends HttpServlet {
                     medicoEspecialidad.setIdEspecialidad(especialidadMedicos.getIdEspecialidad());
                     System.out.println(" adminiController medicoEspecialidad ".concat(String.valueOf(medicoEspecialidad.getIdEmpleado())));
                     boolean medicoEspecialidadBoolean = medicoEspecialidadServicioImpl.actualizarMedicoEspecialidad(medicoEspecialidad); */
-
                     PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                     Persona persona = personaServicioImpl.mostrarPersona(medico.getIdPersona());
                     persona.setNombre(nombre);
@@ -163,6 +162,23 @@ public class AdministradorController extends HttpServlet {
                     }
                 }
                 break;
+                case "obtener-paciente": {
+
+                    int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
+
+                    PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+
+                    InformacionGeneralPersona datos = personaServicio.mostrarInformacionGeneralPersona(idPaciente);
+                    
+                    System.out.println("estadoCivil: " + datos.getIdEstadoCivil());
+                    System.out.println("estado: " + datos.getIdEstado());
+
+                    PrintWriter out = response.getWriter();
+                    out.print(new Gson().toJson(datos));
+
+                    break;
+
+                }
                 case "obtener-navegadora": {
                     int idNavegadora = Integer.valueOf(request.getParameter("idNavegadora"));
 
@@ -351,8 +367,8 @@ public class AdministradorController extends HttpServlet {
                         int idCuenta = (int) sesion.getAttribute("idCuenta");
                         String contrasena = request.getParameter("password");
                         String contrasena2 = request.getParameter("password2");
-                        
-                        System.out.println("pass1: " +  contrasena);
+
+                        System.out.println("pass1: " + contrasena);
                         System.out.println("pass2: " + contrasena2);
 
                         if (contrasena.equals(contrasena2)) {

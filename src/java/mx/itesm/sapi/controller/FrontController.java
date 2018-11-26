@@ -241,12 +241,21 @@ public class FrontController extends HttpServlet {
                                     break;
                                 }
                                 case "administrador/gestionPacientes.jsp":
-                                {
-                                    System.out.println("ENTRO?");
-                                    
+                                {                                    
+                                    //Lista de pacientes
                                     PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
                                     List<PacienteAdmin> pacientes = pacienteServicio.mostrarPacientesAdmin();
                                     request.setAttribute("ListaPacientesAdministrador", pacientes);
+                                    
+                                    //Estado civil
+                                    EstadoCivilServicioImpl estadoCivilServicio = new EstadoCivilServicioImpl();
+                                    List<EstadoCivil> estadosCiviles = estadoCivilServicio.mostrarEstadoCivil();
+                                    request.setAttribute("estadoCivil", estadosCiviles);
+
+                                    //Estados
+                                    EstadoServicioImpl estadoServicio = new EstadoServicioImpl();
+                                    List<Estado> estados = estadoServicio.mostrarEstado();
+                                    request.setAttribute("estado", estados);
                                     
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     break;

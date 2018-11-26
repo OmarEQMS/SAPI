@@ -1641,9 +1641,6 @@ $(document).ready(function () {
     //NOMBRE AL EDITAR
     $('#editarNombreNavegadoraAPaciente').on('change', function () {
 
-
-
-
         if (isValidName($(this))) {
             $('#error-editar-NombreNavegadora').hide();
         } else if ($(this).val() == '') {

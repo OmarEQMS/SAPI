@@ -212,32 +212,10 @@ $(document).ready(function () {
     $('#error-editarDatosRepetidos').hide();
     $('#errorEditarEspecialidad').hide();
     //$('#errorEditarPosicion').hide(); SHANNON
-    
 
 
-    //Errores al agregar a un paciente
-    $('#errorNombrePaciente').hide();
-    $('#errorCurpPaciente').hide();
-    $('#errorCurpRepetidoPaciente').hide();
-    $('#errorFechaPaciente').hide();
-    $('#errorApellidoPaternoPaciente').hide();
-    $('#errorApellidoMaternoPaciente').hide();
-    $('#errorNombreUsuarioPaciente').hide();
-    $('#errorUsuarioRepetidoPaciente').hide();
-    $('#errorECivilPaciente').hide();
-    $('#errorColoniaPaciente').hide();
-    $('#errorCallePaciente').hide();
-    $('#errorNoInteriorPaciente').hide();
-    $('#errorNoExteriorPaciente').hide();
-    $('#errorEstadoPaciente').hide();
-    $('#errorMunicipioPaciente').hide();
-    $('#errorTelefonoPaciente').hide();
-    $('#errorCorreoPaciente').hide();
-    $('#errorPass1Paciente').hide();
-    $('#errorPass2Paciente').hide();
-    $('#error-CPexistePaciente').hide();
-    $('#errorCodigoPostalPaciente').hide();
-    $('#noEqualPasswordsErrorPaciente').hide();
+
+
 
 
 
@@ -297,7 +275,7 @@ $(document).ready(function () {
         }
 
     });
-    
+
     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
     $('#editar-especialidadMedico').on('change', function () {
 
@@ -323,21 +301,21 @@ $(document).ready(function () {
         }
 
     });
-    
+
     /* SHANNON
-    
-    //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
-    $('#editar-posiciondMedico').on('change', function () {
-
-        if (isValidPosicion($(this))) {
-            $('#errorEditarPosicion').hide();
-        } else if ($(this).val() == '') {
-            $('#errorEditarPosicion').hide();
-        } else {
-            $('#errorEditarPosicion').show();
-        }
-
-    }); */
+     
+     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
+     $('#editar-posiciondMedico').on('change', function () {
+     
+     if (isValidPosicion($(this))) {
+     $('#errorEditarPosicion').hide();
+     } else if ($(this).val() == '') {
+     $('#errorEditarPosicion').hide();
+     } else {
+     $('#errorEditarPosicion').show();
+     }
+     
+     }); */
 
     //NOMBRE EN AGREGAR MÉDICO
     $('#agregar-nombreMedico').on('change', function () {
@@ -449,7 +427,50 @@ $(document).ready(function () {
 
     });
 
-    
+
+    //GESTION PACIENTES
+    //Errores al agregar a un paciente
+    $('#errorNombrePaciente').hide();
+    $('#errorCurpPaciente').hide();
+    $('#errorCurpRepetidoPaciente').hide();
+    $('#errorFechaPaciente').hide();
+    $('#errorApellidoPaternoPaciente').hide();
+    $('#errorApellidoMaternoPaciente').hide();
+    $('#errorNombreUsuarioPaciente').hide();
+    $('#errorUsuarioRepetidoPaciente').hide();
+    $('#errorECivilPaciente').hide();
+    $('#errorColoniaPaciente').hide();
+    $('#errorCallePaciente').hide();
+    $('#errorNoInteriorPaciente').hide();
+    $('#errorNoExteriorPaciente').hide();
+    $('#errorEstadoPaciente').hide();
+    $('#errorMunicipioPaciente').hide();
+    $('#errorTelefonoPaciente').hide();
+    $('#errorCorreoPaciente').hide();
+    $('#errorPass1Paciente').hide();
+    $('#errorPass2Paciente').hide();
+    $('#error-CPexistePaciente').hide();
+    $('#errorCodigoPostalPaciente').hide();
+    $('#noEqualPasswordsErrorPaciente').hide();
+
+    $('#error-editar-NombrePaciente').hide();
+    $('#error-editar-ApellidoPaternoPaciente').hide();
+    $('#error-editar-ApellidoMaternoPaciente').hide();
+    $('#error-editar-NombreUsuarioPaciente').hide();
+    $('#error-editar-CorreoPaciente').hide();
+    $('#error-editar-CurpPaciente').hide();
+    $('#error-editar-ColoniaPaciente').hide();
+    $('#error-editar-CallePaciente').hide();
+    $('#error-editar-NoExteriorPaciente').hide();
+    $('#error-editar-NoInteriorPaciente').hide();
+    $('#error-editar-CurpRepetidoPaciente').hide();
+    $('#error-editar-TelefonoPaciente').hide();
+    $('#error-editar-ECivilPaciente').hide();
+    $('#error-editar-FechaPaciente').hide();
+    $('#error-editar-EstadoPaciente').hide();
+    $('#error-editar-MunicipioPaciente').hide();
+    $('#error-editar-UsuarioRepetidoPaciente').hide();
+
     //////////////////////////////////////////////////////
     ///////////////// VALIDACIONES AGREGAR PACIENTE //////
     //////////////////////////////////////////////////////
@@ -702,7 +723,234 @@ $(document).ready(function () {
 
 
     });
-    
+
+    //NOMBRE AL EDITAR
+    $('#editarNombreAdministradorAPaciente').on('change', function () {
+
+        if (isValidName($(this))) {
+            $('#error-editar-NombrePaciente').hide();
+        } else if ($(this).val() == '') {
+            $('#error-editar-NombrePaciente').hide();
+        } else {
+            $('#error-editar-NombrePaciente').show();
+        }
+
+    });
+
+    //PRIMER APELLIDO AL EDITAR PACIENTE
+    $('#editarPrimer-apellidoAdministradorAPaciente').on('change', function () {
+
+        if (isValidLastName($(this))) {
+            $('#error-editar-ApellidoPaternoPaciente').hide();
+        } else if ($(this).val() == '') {
+            $('#error-editar-ApellidoPaternoPaciente').hide();
+        } else {
+            $('#error-editar-ApellidoPaternoPaciente').show();
+        }
+
+    });
+
+    //SEGUNDO APELLIDO AL EDITAR PACIENTE
+    $('#editarSegundo-apellidoAdministradorAPaciente').on('change', function () {
+
+        if (isValidLastName($(this))) {
+            $('#error-editar-ApellidoMaternoPaciente').hide();
+        } else if ($(this).val() == '') {
+            $('#error-editar-ApellidoMaternoPaciente').hide();
+        } else {
+            $('#error-editar-ApellidoMaternoPaciente').show();
+        }
+
+    });
+
+    //NOMBRE DE USUARIO AL EDITAR PACIENTE
+    $('#editarUsuarioAdministradorAPaciente').on('change', function () {
+
+        $.ajax({
+
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+
+                key: "repiteUsuario",
+                usuario: $('#editarUsuarioAdministradorAPaciente').val()
+
+
+            },
+            success: function (response) {
+
+                if (response === 'UsuarioAlreadyExists') {
+                    $('#editarUsuarioAdministradorAPaciente').css('color', 'orange');
+                    $('#error-editar-UsuarioRepetidoPaciente').show();
+                } else {
+                    $('#error-editar-UsuarioRepetidoPaciente').hide();
+                }
+
+            }
+
+        });
+
+        if (isValidUserName($(this))) {
+            $('#error-editar-NombreUsuarioPaciente').hide();
+        } else if ($(this).val() == '') {
+            $('#error-editar-NombreUsuarioPaciente').hide();
+        } else {
+            $('#error-editar-NombreUsuarioPaciente').show();
+        }
+
+    });
+
+    //CORREO AL EDITAR PACIENTE
+    $('#editarCorreoAdministradorAPaciente').on('change', function () {
+
+        if (isValidEmail($(this))) {
+            $('#error-editar-CorreoPaciente').hide();
+        } else if ($(this).val() == '') {
+            $('#error-editar-CorreoPaciente').hide();
+        } else {
+            $('#error-editar-CorreoPaciente').show();
+        }
+
+    });
+
+
+
+    //CURP AL EDITAR PACIENTE
+    $('#editarCurpAdministradorAPaciente').on('change', function () {
+
+        $.ajax({
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+                key: "repiteCurp",
+                curp: $('#editarCurpAdministradorAPaciente').val()
+            },
+            success: function (response) {
+
+                if (response === 'CurpAlreadyExists') {
+                    $('#editarCurpAdministradorAPaciente').css('color', 'orange');
+                    $('#error-editar-CurpRepetidoPaciente').show();
+                } else {
+                    $('#error-editar-CurpRepetidoPaciente').hide();
+                }
+
+            }
+        });
+
+
+        if (isValidCURP($(this))) {
+            $('#error-editar-CurpPaciente').hide();
+        } else if ($(this).val() == '') {
+            $('#error-editar-CurpPaciente').hide();
+        } else {
+            $('#error-editar-CurpPaciente').show();
+        }
+
+    });
+
+    //TELEFONO AL EDITAR PACIENTE
+    $('#editarTelAdministradorAPaciente').on('change', function () {
+
+        if (isValidPhoneNumber($(this))) {
+            $('#error-editar-TelefonoPaciente').hide();
+        } else if ($(this).val() == '') {
+            $('#error-editar-TelefonoPaciente').hide();
+        } else {
+            $('#error-editar-TelefonoPaciente').show();
+        }
+
+    });
+
+    //ESTADO CIVIL AL EDITAR PACIENTE
+    $('#editarEstado-civilPaciente').on('change', function () {
+
+        if (isValidSelect($(this))) {
+            $('#error-editar-ECivilPaciente').hide();
+        } else {
+            $('#error-editar-ECivilPaciente').show();
+        }
+
+    });
+
+    //FECHA DE NACIMIENTO AL EDITAR PACIENTE
+    $('#editarCumpleAdministradorAPaciente').on('change', function () {
+
+        if (isValidDate($(this))) {
+            $('#error-editar-FechaPaciente').hide();
+        } else {
+            $('#error-editar-FechaPaciente').show();
+        }
+
+    });
+
+    //ESTADO AL EDITAR PACIENTE
+    $('#editarEstadoAdministradorAPaciente').on('change', function () {
+
+        if (isValidSelect($(this))) {
+            $('#error-editar-EstadoPaciente').hide();
+        } else {
+            $('#error-editar-EstadoPaciente').show();
+        }
+
+    });
+
+    //MUNICIPIO AL EDITAR PACIENTE
+    $('#editarMunicipioAdministradorAPaciente').on('change', function () {
+
+        if (isValidSelect($(this))) {
+            $('#error-editar-MunicipioPaciente').hide();
+        } else {
+            $('#error-editar-MunicipioPaciente').show();
+        }
+
+    });
+
+    //COLONIA AL EDITAR PACIENTE
+    $('#editarColAdministradorAPaciente').on('change', function () {
+
+        if (isValidColonia($(this))) {
+            $('#error-editar-ColoniaPaciente').hide();
+        } else {
+            $('#error-editar-ColoniaPaciente').show();
+        }
+
+    });
+
+    //CALLE AL EDITAR PACIENTE
+    $('#editarCalleAdministradorAPaciente').on('change', function () {
+
+        if (isValidStreet($(this))) {
+            $('#error-editar-CallePaciente').hide();
+        } else {
+            $('#error-editar-CallePaciente').show();
+        }
+
+    });
+
+    //NUMERO EXTERIOR AL EDITAR PACIENTE
+    $('#editarNumExtAdministradorAPaciente').on('change', function () {
+
+        if (isValidExtNumber($(this))) {
+            $('#error-editar-NoExteriorPaciente').hide();
+        } else {
+            $('#error-editar-NoExteriorPaciente').show();
+        }
+
+    });
+
+    //NUMERO INTERIOR AL EDITAR PACIENTE
+    $('#editarNumIntAdministradorAPaciente').on('change', function () {
+
+        if (isValidIntNumber($(this))) {
+            $('#error-editar-NoInteriorPaciente').hide();
+        } else {
+            $('#error-editar-NoInteriorPaciente').show();
+        }
+
+    });
+
     //////////////////////////////////////////////////////
     /////////////////////////////// GESTION MEDICOS //////
     //////////////////////////////////////////////////////
@@ -1152,8 +1400,8 @@ $(document).ready(function () {
         );
     });
 
-    
-    
+
+
     //GUARDA EL MEDICO DESDE EL MODAL
     $('#btn-guardarMedico').on('click', function () {
 
@@ -1164,7 +1412,7 @@ $(document).ready(function () {
                     && isValidNumEmpleado($('#editar-noEmpleadoMedico')) && isValidEmail($('#editar-correoMedico')) && isValidCedula($('#editar-cedulaProfesionalMedico'))
                     && isValidPhoneNumber($('#editar-telefonoMedico')) && isValidEspecialidad($('#editar-especialidadMedico')) /*&& isValidPosicion($('#editar-posicionMedico'))*/
                     && $('#errorCorreoRepetido').hide()) {
-                
+
                 var idMedico = $('#idMedico').val();
                 var nombre = $('#editar-nombreMedico').val();
                 var telefono = $('#editar-telefonoMedico').val();
@@ -1525,7 +1773,78 @@ $(document).ready(function () {
 
     });
 
+    //  Editar paciente
+    $('body').on('click', '.btn-editarPaciente', function () {
 
+        var idPaciente = $(this).data('id');
+        console.log("idPaciente: " + idPaciente);
+
+        $.ajax({
+
+            url: 'AdministradorController',
+            cache: false,
+            method: 'POST',
+            data: {
+
+                key: "obtener-paciente",
+                idPaciente: idPaciente,
+
+            },
+            success: function (response) {
+
+                var data = JSON.parse(response);
+
+                console.log(data);
+
+                $('#editarNombreAdministradorAPaciente').val(data.nombre);
+                $('#editarCurpAdministradorAPaciente').val(data.curp);
+                $('#editarCumpleAdministradorAPaciente').val(formatDate(new Date(data.fechaNacimiento)));
+                $('#editarPrimer-apellidoAdministradorAPaciente').val(data.primerApellido);
+                $('#editarSegundo-apellidoAdministradorAPaciente').val(data.segundoApellido);
+                $('#editarSegundo-apellidoAdministradorAPaciente').val(data.segundoApellido);
+                $('#editarUsuarioAdministradorAPaciente').val(data.usuario);
+                $('#editarEstado-civilPaciente').val(data.idEstadoCivil);
+                $('#editarColAdministradorAPaciente').val(data.colonia);
+                $('#editarCalleAdministradorAPaciente').val(data.calle);
+                $('#editarNumIntAdministradorAPaciente').val(data.noInt);
+                $('#editarNumExtAdministradorAPaciente').val(data.noExt);
+                $('#editarEstadoAdministradorAPaciente').val(data.idEstado);
+                $('#editarTelAdministradorAPaciente').val(data.telefono);
+                $('#editarCorreoAdministradorAPaciente').val(data.correo);
+
+                $.ajax({
+
+                    url: 'ZonaController',
+                    cache: false,
+                    method: 'POST',
+                    data: {
+
+                        key: "getByEstado",
+                        idEstado: data.idEstado
+
+                    },
+                    success: function (response) {
+
+                        //Limpiar el select antes de que haga una consulta para que no se emapalmen los municipios
+                        $(".editarMunicipios select").each(function () {
+                            $(this).children().remove();
+                        });
+                        var json = JSON.parse(response);
+                        for (var i = 0; i < json.length; i++) {
+                            $('.editarMunicipios select').append("<option value=" + json[i].idMunicipio + ">" + json[i].nombre + "</option>");
+                        }
+                        $('.editarMunicipios select').prop('selectedIndex', 0);
+                        console.log(json);
+                        $('#editarMunicipioAdministradorAPaciente').val(data.idMunicipio);
+                    }
+
+                });
+            }
+
+        });
+
+    });
+    
 
     //GUARDA EL PACIENTE DESDE EL MODAL
     $('#btn-guardarPaciente').on('click', function () {
@@ -1578,6 +1897,128 @@ $(document).ready(function () {
 
                 });
 
+    });
+    
+    //Codigo Postal en Agregar Paciente
+    $('#codigo-postalPaciente').on('change', function () {
+
+        if ($(this).val().length === 0) {
+            //Obtener estados
+            $.ajax({
+                url: 'ZonaController',
+                cache: false,
+                method: 'POST',
+                data: {
+                    key: "getEstados"
+                },
+                success: function (response) {
+                    var data = JSON.parse(response);
+                    //Limpia los campos de estado 
+                    $("#estadoPaciente").each(function () {
+                        $(this).children().remove();
+                    });                    
+                    //Limpia los campos de municipio 
+                    $("#municipioPaciente").each(function () {
+                        $(this).children().remove();
+                    });                    
+                    //Primera opcion de estado
+                    $('#estadoPaciente').append("<option disabled selected>" + "Seleccione un estado" + "</option>");                    
+                    //Primera opcion de municipio
+                    $('#municipioPaciente').append("<option disabled selected>" + "Seleccione un municipio" + "</option>");  
+                    for (var i = 0; i < data.length; i++) {
+                        //Carga estado
+                        $('#estadoPaciente').append("<option value='" + data[i].idEstado + "'>" + data[i].nombre + "</option>");
+                    }                    
+                    $('#estadoPaciente').prop('selectedIndex',0);
+                    $('#municipioPaciente').prop('selectedIndex',0);
+                    console.log(data);
+                }
+            });
+        } else if ($(this).val().length === 5) {
+            $.ajax({
+                url: 'ZonaController',
+                cache: false,
+                method: 'POST',
+                data: {
+                    key: "getEstadoyMunicipio",
+                    numeroCP: $('#codigo-postalPaciente').val()
+                },
+                success: function (response) {
+                    if (response == 'postalCodeDoesntExist') {
+                        $('#error-CPexiste').show();
+                    } else {
+                        $('#error-CPexiste').hide();
+                        var json = JSON.parse(response);
+                        if ($('#codigo-postalPaciente').val().length === 5) {
+                            //Limpia los campos 
+                            $("#estadoPaciente").each(function () {
+                                $(this).children().remove();
+                            });
+                            $("#municipioPaciente").each(function () {
+                                $(this).children().remove();
+                            });
+                            //Carga estado
+                            $('#estadoPaciente').append("<option value='" + json[0] + "'>" + json[1] + "</option>");
+                            //Carga Municipio
+                            $('#municipioPaciente').append("<option value='" + json[2] + "'>" + json[3] + "</option>");
+                        } else {
+                            $('#estadoPaciente').removeAttr('disabled');
+                            $('#estadoPaciente').removeAttr('selected');
+                        }
+                        console.log(json);
+                    }
+                }
+            });
+        }
+    });
+    
+    //Cargar los municipios con base en el estado
+    $('#estadoPaciente').on('change', function () {
+        $.ajax({
+            url: 'ZonaController',
+            data: {
+                key: "getByEstado",
+                idEstado: $('#estadoPaciente').val()
+            },
+            method: 'POST',
+            success: function (response) {
+
+                //Limpiar el select antes de que haga una consulta para que no se emapalmen los municipios
+                $(".municipios select").each(function () {
+                    $(this).children().remove();
+                });
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+                    $('.municipios select').append("<option value=" + json[i].idMunicipio + ">" + json[i].nombre + "</option>");
+                }
+                $('.municipios select').prop('selectedIndex', 0);
+                console.log(json);
+            }
+        });
+    });
+
+    $('#editarEstadoAdministradorAPaciente').on('change', function () {
+        $.ajax({
+            url: 'ZonaController',
+            data: {
+                key: "getByEstado",
+                idEstado: $('#editarEstadoAdministradorAPaciente').val()
+            },
+            method: 'POST',
+            success: function (response) {
+
+                //Limpiar el select antes de que haga una consulta para que no se emapalmen los municipios
+                $(".editarMunicipios select").each(function () {
+                    $(this).children().remove();
+                });
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+                    $('.editarMunicipios select').append("<option value=" + json[i].idMunicipio + ">" + json[i].nombre + "</option>");
+                }
+                $('.editarMunicipios select').prop('selectedIndex', 0);
+                console.log(json);
+            }
+        });
     });
 
     /** ELIMINAR MEDICO */
@@ -1667,6 +2108,19 @@ $(document).ready(function () {
             });
 
     //VALIDACIONES
+    function formatDate(date) {
+        var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
 
     function isValidPassword(input) {
 
