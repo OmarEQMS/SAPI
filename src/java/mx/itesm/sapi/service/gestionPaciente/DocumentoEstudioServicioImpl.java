@@ -46,7 +46,48 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             documentoEstudio.setPrevio(rs.getInt("previo"));
             documentoEstudio.setFechaEstudioPrevio(rs.getDate("fechEstudioPrevio"));
             documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
+            documentoEstudio.setIdCita(rs.getInt("idCita"));
 
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            documentoEstudio = null;
+        }
+        return documentoEstudio;
+    }
+    
+    
+    public DocumentoEstudio mostrarDocumentoEstudioPorCita(int idCita) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarDocumentoEstudioPorCita(?)";
+        DocumentoEstudio documentoEstudio = null;
+
+        try {
+            conn = Conexion.getConnection();
+            documentoEstudio = new DocumentoEstudio();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idCita);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            documentoEstudio.setIdDocumentoEstudio(rs.getInt("idDocumentoEstudio"));
+            documentoEstudio.setIdEstudio(rs.getInt("idEstudio"));
+            documentoEstudio.setIdEstadoEstudio(rs.getInt("idEstadoEstudio"));
+            documentoEstudio.setIdPaciente(rs.getInt("idPaciente"));
+            documentoEstudio.setIdBirads(rs.getInt("idBirads"));
+            documentoEstudio.setArchivo(rs.getBytes("archivo"));
+            documentoEstudio.setPrevio(rs.getInt("previo"));
+            documentoEstudio.setFechaEstudioPrevio(rs.getDate("fechEstudioPrevio"));
+            documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
+            documentoEstudio.setIdCita(rs.getInt("idCita"));
+            
             conn.close();
             cstmt.close();
             rs.close();
@@ -86,7 +127,8 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
                 documentoEstudio.setPrevio(rs.getInt("previo"));
                 documentoEstudio.setFechaEstudioPrevio(rs.getDate("fechEstudioPrevio"));
                 documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
-
+                documentoEstudio.setIdCita(rs.getInt("idCita"));
+                
                 documentoEstudios.add(documentoEstudio);
             }
 
@@ -101,13 +143,15 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
         }
         return documentoEstudios;
     }
+    
+    
 
     @Override
     public int agregarDocumentoEstudio(DocumentoEstudio documentoEstudio) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarDocumentoEstudio(?,?,?,?,?,?,?,?)";
+        String stProcedure = "CALL agregarDocumentoEstudio(?,?,?,?,?,?,?,?,?)";
         int id = -1;
 
         try {
@@ -117,12 +161,17 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             cstmt.setInt(1, documentoEstudio.getIdEstudio());
             cstmt.setInt(2, documentoEstudio.getIdEstadoEstudio());
             cstmt.setInt(3, documentoEstudio.getIdPaciente());
-            cstmt.setInt(4, documentoEstudio.getIdBirads());
-            cstmt.setBytes(5, documentoEstudio.getArchivo());
-            cstmt.setInt(6, documentoEstudio.getPrevio());
-            cstmt.setDate(7, documentoEstudio.getFechaEstudioPrevio());
-            cstmt.setInt(8, documentoEstudio.getIdLugarDelCuerpo());
-
+            if(documentoEstudio.getIdBirads()!=null){
+                cstmt.setInt(4, documentoEstudio.getIdBirads());
+            }else{
+                cstmt.setNull(4, java.sql.Types.INTEGER);
+            }
+            cstmt.setInt(5, documentoEstudio.getIdLugarDelCuerpo());
+            cstmt.setBytes(6, documentoEstudio.getArchivo());
+            cstmt.setInt(7, documentoEstudio.getPrevio());
+            cstmt.setDate(8, documentoEstudio.getFechaEstudioPrevio());
+            cstmt.setInt(9, documentoEstudio.getIdCita());
+            
             rs = cstmt.executeQuery();
             rs.next();
 

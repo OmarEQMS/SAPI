@@ -55,27 +55,23 @@ public class LugarDelCuerpoServicioImpl implements LugarDelCuerpoServicio{
     public LugarDelCuerpo mostrarLugarDelCuerpo(String nombreLugarDelCuerpo) {
          Connection conn;
         CallableStatement cstmt;
-        ResultSet rs;
-        
-        LugarDelCuerpo lugarDelCuerpo = new LugarDelCuerpo();
-        
-        String stProcedure ="";
+        ResultSet rs;        
+        LugarDelCuerpo lugarDelCuerpo = new LugarDelCuerpo();        
+        String stProcedure ="CALL mostrarLugarDelCuerpo(?)";
         try{
-            conn = Conexion.getConnection();
+            conn = Conexion.getConnection();            
             cstmt = conn.prepareCall(stProcedure);
+            cstmt.setString(1, nombreLugarDelCuerpo);
             rs = cstmt.executeQuery();
             rs.next();
             
             lugarDelCuerpo.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
             lugarDelCuerpo.setNombre(rs.getString("nombre"));
-            lugarDelCuerpo.setEstatus(rs.getInt("estatus"));
-        
+            lugarDelCuerpo.setEstatus(rs.getInt("estatus"));        
             
             rs.close();
             cstmt.close();
             conn.close();
-            
-            
         }catch(SQLException ex){
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
@@ -84,6 +80,32 @@ public class LugarDelCuerpoServicioImpl implements LugarDelCuerpoServicio{
         return lugarDelCuerpo;
     }
 
+    public int agregarLugarDelCuerpo(LugarDelCuerpo lugarDelCuerpo) {
+         Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;       
+        int id = -1;
+        String stProcedure ="CALL agregarLugarDelCuerpo(?)";
+        try{
+            conn = Conexion.getConnection();            
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setString(1, lugarDelCuerpo.getNombre());
+            rs = cstmt.executeQuery();
+            rs.next();
+            
+            id = rs.getInt(1);        
+            
+            rs.close();
+            cstmt.close();
+            conn.close();            
+        }catch(SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            id = -1;
+        }
+        return id;
+    }
+    
     @Override
     public List<LugarDelCuerpo> mostrarLugarDelCuerpo() {
         Connection conn;

@@ -65,6 +65,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Estudio;
 import mx.itesm.sapi.bean.gestionPaciente.Laminilla;
 
 import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
+import mx.itesm.sapi.bean.gestionPaciente.LugarDelCuerpo;
 import mx.itesm.sapi.bean.gestionPaciente.OtroResultadoPatologia;
 
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
@@ -100,6 +101,7 @@ import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.EstudioServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.LaminillaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.LlamadaCitaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.LugarDelCuerpoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.OtroResultadoPatologiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
@@ -676,7 +678,13 @@ public class NavegadoraController extends HttpServlet {
 
                             EstudioServicioImpl estudioServicio = new EstudioServicioImpl();
                             Estudio estudio = new Estudio();
+                            
+                            DocumentoEstudioServicioImpl documentoEstudioServicio = new DocumentoEstudioServicioImpl();
+                            DocumentoEstudio documentoEstudio = new DocumentoEstudio();
 
+                            LugarDelCuerpoServicioImpl lugarDelCuerpoServicio = new LugarDelCuerpoServicioImpl();
+                            LugarDelCuerpo lugarDelCuerpo = new LugarDelCuerpo();
+                            
                             CategoriaEstudioServicioImpl categoriaEstudioServicio = new CategoriaEstudioServicioImpl();
                             CategoriaEstudio categoriaEstudio = new CategoriaEstudio();
 
@@ -707,13 +715,30 @@ public class NavegadoraController extends HttpServlet {
                                 fecha = fecha.substring(1, fecha.length() - 1);
                                 String tipo = json.get("tipo").toString();
                                 tipo = tipo.substring(1, tipo.length() - 1);
+                                String lugar = json.get("lugar").toString();
+                                lugar = lugar.substring(1, lugar.length() - 1);
                                 switch (accion) {
                                     case "agregar": {
                                         estudio = estudioServicio.mostrarEstudio(tipo);
                                         if(estudio==null){break;}
                                         cita.setIdEstudio(estudio.getIdEstudio());
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
-                                        citaServicio.agregarCita(cita);
+                                        int idCita = citaServicio.agregarCita(cita);
+                                        
+                                        lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(lugar);
+                                        if(lugarDelCuerpo==null){
+                                            lugarDelCuerpo = new LugarDelCuerpo();
+                                            lugarDelCuerpo.setNombre(lugar);
+                                            lugarDelCuerpoServicio.agregarLugarDelCuerpo(lugarDelCuerpo);
+                                            lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(lugar);
+                                        }                                      
+                                        documentoEstudio.setIdCita(idCita);
+                                        documentoEstudio.setIdPaciente(idPacientePotencial);
+                                        documentoEstudio.setIdEstudio(estudio.getIdEstudio());
+                                        documentoEstudio.setIdEstadoEstudio(1);  
+                                        documentoEstudio.setIdBirads(null);
+                                        documentoEstudio.setIdLugarDelCuerpo(lugarDelCuerpo.getIdLugarDelCuerpo());
+                                        documentoEstudioServicio.agregarDocumentoEstudio(documentoEstudio);                                        
                                         break;
                                     }
                                     case "actualizar": {
@@ -723,6 +748,21 @@ public class NavegadoraController extends HttpServlet {
                                         cita.setIdEstudio(estudio.getIdEstudio());
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.actualizarCita(cita);
+                                        
+                                        lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(lugar);
+                                        if(lugarDelCuerpo==null){
+                                            lugarDelCuerpo = new LugarDelCuerpo();
+                                            lugarDelCuerpo.setNombre(lugar);
+                                            lugarDelCuerpoServicio.agregarLugarDelCuerpo(lugarDelCuerpo);
+                                            lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(lugar);
+                                        }                                      
+                                        documentoEstudio.setIdCita(id);
+                                        documentoEstudio.setIdPaciente(idPacientePotencial);
+                                        documentoEstudio.setIdEstudio(estudio.getIdEstudio());
+                                        documentoEstudio.setIdEstadoEstudio(1);  
+                                        documentoEstudio.setIdBirads(null);
+                                        documentoEstudio.setIdLugarDelCuerpo(lugarDelCuerpo.getIdLugarDelCuerpo());
+                                        documentoEstudioServicio.agregarDocumentoEstudio(documentoEstudio);
                                         break;
                                     }
                                     case "eliminar": {
@@ -787,20 +827,46 @@ public class NavegadoraController extends HttpServlet {
                                 parte = parte.substring(1, parte.length() - 1);
                                 switch (accion) {
                                     case "agregar": {
-                                        estudio = estudioServicio.mostrarEstudio(parte);
-                                        if(estudio==null){break;}
-                                        cita.setIdEstudio(estudio.getIdEstudio());
+                                        cita.setIdEstudio(27);
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
-                                        citaServicio.agregarCita(cita);
+                                        int idCita = citaServicio.agregarCita(cita);
+                                        
+                                        lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(parte);
+                                        if(lugarDelCuerpo==null){
+                                            lugarDelCuerpo = new LugarDelCuerpo();
+                                            lugarDelCuerpo.setNombre(parte);
+                                            lugarDelCuerpoServicio.agregarLugarDelCuerpo(lugarDelCuerpo);
+                                            lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(parte);
+                                        }                                      
+                                        documentoEstudio.setIdCita(idCita);
+                                        documentoEstudio.setIdPaciente(idPacientePotencial);
+                                        documentoEstudio.setIdEstudio(estudio.getIdEstudio());
+                                        documentoEstudio.setIdEstadoEstudio(1);  
+                                        documentoEstudio.setIdBirads(null);
+                                        documentoEstudio.setIdLugarDelCuerpo(lugarDelCuerpo.getIdLugarDelCuerpo());
+                                        documentoEstudioServicio.agregarDocumentoEstudio(documentoEstudio);
                                         break;
                                     }
                                     case "actualizar": {
                                         cita.setIdCita(id);
-                                        estudio = estudioServicio.mostrarEstudio(parte);
-                                        if(estudio==null){break;}
-                                        cita.setIdEstudio(estudio.getIdEstudio());
+                                        cita.setIdEstudio(27);
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.actualizarCita(cita);
+                                        
+                                        lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(parte);
+                                        if(lugarDelCuerpo==null){
+                                            lugarDelCuerpo = new LugarDelCuerpo();
+                                            lugarDelCuerpo.setNombre(parte);
+                                            lugarDelCuerpoServicio.agregarLugarDelCuerpo(lugarDelCuerpo);
+                                            lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(parte);
+                                        }                                      
+                                        documentoEstudio.setIdCita(id);
+                                        documentoEstudio.setIdPaciente(idPacientePotencial);
+                                        documentoEstudio.setIdEstudio(estudio.getIdEstudio());
+                                        documentoEstudio.setIdEstadoEstudio(1);  
+                                        documentoEstudio.setIdBirads(null);
+                                        documentoEstudio.setIdLugarDelCuerpo(lugarDelCuerpo.getIdLugarDelCuerpo());
+                                        documentoEstudioServicio.agregarDocumentoEstudio(documentoEstudio);
                                         break;
                                     }
                                     case "eliminar": {
