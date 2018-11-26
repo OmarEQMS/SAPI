@@ -53,7 +53,39 @@ public class GeneralPoblacion  implements Serializable{
     private String biopsiaINCanFish;
     private String biopsiaINCanKi67;
     private String biopsiaINCanRe;
-    private String biopsiaINCanRp;
+    private String biopsiaINCanRp;    
+    private String estudioINCanMastografia;
+    private Date estudioINCanMastografiaFecha;
+    private String estudioINCanUSG;
+    private Date estudioINCanUSGFecha;
+    private Date estudioINCanRadiografia;
+    private Date estudioINCanTomografia;
+    private Date estudioINCanMr;
+    private Date estudioINCanTransvaginal;
+    private Date estudioINCanAbdominal;
+    private Date estudioINCanTiroides;
+    private Date estudioINCanPelvico;
+    private Date estudioINCanHepatico;
+    private Date estudioINCanPet;
+    private Date estudioINCanMuga;
+    private Date estudioINCanGamma;
+    private Date estudioINCanLaboratorio;
+    private Date estudioINCanCardio;
+    private Date estudioINCanAnestesica;
+    private Date estudioINCanInhaloterapia;
+    private Date estudioINCanElectro;
+    private Date estudioINCanEco;
+    private Date programaINCanTrabajoSocial;
+    private Date programaINCanMujeresJovenes;
+    private Date programaINCanNutricion;
+    private Date programaINCanGenetica;
+    private String preconsultaSegundaOpcion;
+    private Date preconsultaFechaDecision;
+    private String preconsultaDecision;
+    private String biopsiaINCanEtapa;
+    private String biopsiaINCanT;
+    private String biopsiaINCanN;
+    private String biopsiaINCanM;
 
     @Override
     public String toString() {
@@ -85,12 +117,45 @@ public class GeneralPoblacion  implements Serializable{
                 concat("\tBiopsia Previa - Tipo: ").concat(biopsiaPreviaTipo).
                 concat("\tBiopsia Previa - Fecha: ").concat(biopsiaPreviaFecha.toString()).
                 concat("\tBiopsia Previa - Lugar Cuerpo: ").concat(biopsiaPreviaLugarCuerpo).
+                concat("\tEstudio INCan - [Resultado] Mastografía Resultado: ").concat(estudioINCanMastografia).
+                concat("\tEstudio INCan - [Fecha] Mastografía Fecha: ").concat(estudioINCanMastografiaFecha.toString()).
+                concat("\tEstudio INCan - [Resultado] Guiada por ultrasonido: ").concat(estudioINCanUSG).
+                concat("\tEstudio INCan - [Fecha] Guiada por ultrasonido: ").concat(estudioINCanUSGFecha.toString()).
+                concat("\tEstudio INCan - [Fecha] Radiografía: ").concat(estudioINCanRadiografia.toString()).
+                concat("\tEstudio INCan - [Fecha] Tomografía: ").concat(estudioINCanTomografia.toString()).
+                concat("\tEstudio INCan - [Fecha] Resonancia Magentica: ").concat(estudioINCanMr.toString()).
+                concat("\tEstudio INCan - [Fecha] Transvaginal: ").concat(estudioINCanTransvaginal.toString()).
+                concat("\tEstudio INCan - [Fecha] Abdominal: ").concat(estudioINCanAbdominal.toString()).
+                concat("\tEstudio INCan - [Fecha] Tiroides: ").concat(estudioINCanTiroides.toString()).
+                concat("\tEstudio INCan - [Fecha] Pélvico: ").concat(estudioINCanPelvico.toString()).
+                concat("\tEstudio INCan - [Fecha] Hepático: ").concat(estudioINCanHepatico.toString()).
+                concat("\tEstudio INCan - [Fecha] PET-CT: ").concat(estudioINCanPet.toString()).
+                concat("\tEstudio INCan - [Fecha] MUGA: ").concat(estudioINCanMuga.toString()).
+                concat("\tEstudio INCan - [Fecha] Gammagrama óseo: ").concat(estudioINCanGamma.toString()).
+                concat("\tEstudio INCan - [Fecha] Laboratorio: ").concat(estudioINCanLaboratorio.toString()).
+                concat("\tEstudio INCan - [Fecha] Cardiovascular: ").concat(estudioINCanCardio.toString()).
+                concat("\tEstudio INCan - [Fecha] Por anestesia: ").concat(estudioINCanAnestesica.toString()).
+                concat("\tEstudio INCan - [Fecha] Espirometría / Inhaloterapia: ").concat(estudioINCanInhaloterapia.toString()).
+                concat("\tEstudio INCan - [Fecha] Electrocardiograma: ").concat(estudioINCanElectro.toString()).
+                concat("\tEstudio INCan - [Fecha] Ecoardiograma: ").concat(estudioINCanEco.toString()).
+                concat("\tPrograma INCan - [Fecha] Trabajo social: ").concat(programaINCanTrabajoSocial.toString()).
+                concat("\tPrograma INCan - [Fecha] Mujeres jóvenes: ").concat(programaINCanMujeresJovenes.toString()).
+                concat("\tPrograma INCan - [Fecha] Nutrición: ").concat(programaINCanNutricion.toString()).
+                concat("\tPrograma INCan - [Fecha] Genética: ").concat(programaINCanGenetica.toString()).
+                concat("\tPreconsulta - Primera vez / Segunda opción: ").concat(preconsultaSegundaOpcion).
+                concat("\tPreconsulta - Fecha decision: ").concat(preconsultaFechaDecision.toString()).
+                concat("\tPreconsulta - Decision: ").concat(preconsultaDecision).
+                concat("\tBiopsia INCan - Etapa: ").concat(biopsiaINCanEtapa).
+                concat("\tBiopsia INCan - T: ").concat(biopsiaINCanT).
+                concat("\tBiopsia INCan - N: ").concat(biopsiaINCanN).
+                concat("\tBiopsia INCan - M: ").concat(biopsiaINCanM).
                 concat("\tBiopsia INCan - Grado Histologico: ").concat(biopsiaINCanGradoHistologico).
                 concat("\tBiopsia INCan - Her2: ").concat(biopsiaINCanHer2).
                 concat("\tBiopsia INCan - Fish: ").concat(biopsiaINCanFish).
                 concat("\tBiopsia INCan - Ki67: ").concat(biopsiaINCanKi67).
                 concat("\tBiopsia INCan - Re: ").concat(biopsiaINCanRe).
                 concat("\tBiopsia INCan - Rp: ").concat(biopsiaINCanRp).
+                
                 concat(" ]");
 
     }
@@ -124,6 +189,38 @@ public class GeneralPoblacion  implements Serializable{
                 concat("\t").concat(biopsiaPreviaTipo).
                 concat("\t").concat(biopsiaPreviaFecha.toString()).
                 concat("\t").concat(biopsiaPreviaLugarCuerpo).
+                concat("\t").concat(estudioINCanMastografia).
+                concat("\t").concat(estudioINCanMastografiaFecha.toString()).
+                concat("\t").concat(estudioINCanUSG).
+                concat("\t").concat(estudioINCanUSGFecha.toString()).
+                concat("\t").concat(estudioINCanRadiografia.toString()).
+                concat("\t").concat(estudioINCanTomografia.toString()).
+                concat("\t").concat(estudioINCanMr.toString()).
+                concat("\t").concat(estudioINCanTransvaginal.toString()).
+                concat("\t").concat(estudioINCanAbdominal.toString()).
+                concat("\t").concat(estudioINCanTiroides.toString()).
+                concat("\t").concat(estudioINCanPelvico.toString()).
+                concat("\t").concat(estudioINCanHepatico.toString()).
+                concat("\t").concat(estudioINCanPet.toString()).
+                concat("\t").concat(estudioINCanMuga.toString()).
+                concat("\t").concat(estudioINCanGamma.toString()).
+                concat("\t").concat(estudioINCanLaboratorio.toString()).
+                concat("\t").concat(estudioINCanCardio.toString()).
+                concat("\t").concat(estudioINCanAnestesica.toString()).
+                concat("\t").concat(estudioINCanInhaloterapia.toString()).
+                concat("\t").concat(estudioINCanElectro.toString()).
+                concat("\t").concat(estudioINCanEco.toString()).
+                concat("\t").concat(programaINCanTrabajoSocial.toString()).
+                concat("\t").concat(programaINCanMujeresJovenes.toString()).
+                concat("\t").concat(programaINCanNutricion.toString()).
+                concat("\t").concat(programaINCanGenetica.toString()).
+                concat("\t").concat(preconsultaSegundaOpcion).
+                concat("\t").concat(preconsultaFechaDecision.toString()).
+                concat("\t").concat(preconsultaDecision).
+                concat("\t").concat(biopsiaINCanEtapa).
+                concat("\t").concat(biopsiaINCanT).
+                concat("\t").concat(biopsiaINCanN).
+                concat("\t").concat(biopsiaINCanM).
                 concat("\t").concat(biopsiaINCanGradoHistologico).
                 concat("\t").concat(biopsiaINCanHer2).
                 concat("\t").concat(biopsiaINCanFish).
@@ -159,12 +256,45 @@ public class GeneralPoblacion  implements Serializable{
                 concat("Biopsia Previa - Tipo\t").
                 concat("Biopsia Previa - Fecha\t").
                 concat("Biopsia Previa - Lugar Cuerpo\t").
+                concat("Estudio INCan - [Resultado] Mastografía Resultado\t").
+                concat("Estudio INCan - [Fecha] Mastografía Fecha\t").
+                concat("Estudio INCan - [Resultado] Guiada por ultrasonido\t").
+                concat("Estudio INCan - [Fecha] Guiada por ultrasonido\t").
+                concat("Estudio INCan - [Fecha] Radiografía\t").
+                concat("Estudio INCan - [Fecha] Tomografía\t").
+                concat("Estudio INCan - [Fecha] Resonancia Magentica\t").
+                concat("Estudio INCan - [Fecha] Transvaginal\t").
+                concat("Estudio INCan - [Fecha] Abdominal\t").
+                concat("Estudio INCan - [Fecha] Tiroides\t").
+                concat("Estudio INCan - [Fecha] Pélvico\t").
+                concat("Estudio INCan - [Fecha] Hepático\t").
+                concat("Estudio INCan - [Fecha] PET-CT\t").
+                concat("Estudio INCan - [Fecha] MUGA\t").
+                concat("Estudio INCan - [Fecha] Gammagrama óseo\t").
+                concat("Estudio INCan - [Fecha] Laboratorio\t").
+                concat("Estudio INCan - [Fecha] Cardiovascular\t").
+                concat("Estudio INCan - [Fecha] Por anestesia\t").
+                concat("Estudio INCan - [Fecha] Espirometría / Inhaloterapia\t").
+                concat("Estudio INCan - [Fecha] Electrocardiograma\t").
+                concat("Estudio INCan - [Fecha] Ecoardiograma\t").
+                concat("Programa INCan - [Fecha] Trabajo social\t").
+                concat("Programa INCan - [Fecha] Mujeres jóvenes\t").
+                concat("Programa INCan - [Fecha] Nutrición\t").
+                concat("Programa INCan - [Fecha] Genética\t").
+                concat("Preconsulta - Primera vez / Segunda opción\t").
+                concat("Preconsulta - Fecha decision\t").
+                concat("Preconsulta - Decision\t").
+                concat("Biopsia INCan - Etapa\t").
+                concat("Biopsia INCan - T\t").
+                concat("Biopsia INCan - N\t").
+                concat("Biopsia INCan - M\t").
                 concat("Biopsia INCan - Grado Histologico\t").
                 concat("Biopsia INCan - Her2\t").
                 concat("Biopsia INCan - Fish\t").
                 concat("Biopsia INCan - Ki67\t").
                 concat("Biopsia INCan - Re\t").
-                concat("Biopsia INCan - Rp\t");
+                concat("Biopsia INCan - Rp\t")
+                ;
     }
     public void setNombrePersona(String nombrePersona) {
         this.nombrePersona = nombrePersona;
@@ -436,6 +566,262 @@ public class GeneralPoblacion  implements Serializable{
 
     public void setBiopsiaPreviaLugarCuerpo(String biopsiaPreviaLugarCuerpo) {
         this.biopsiaPreviaLugarCuerpo = biopsiaPreviaLugarCuerpo;
+    }
+
+    public String getEstudioINCanMastografia() {
+        return estudioINCanMastografia;
+    }
+
+    public void setEstudioINCanMastografia(String estudioINCanMastografia) {
+        this.estudioINCanMastografia = estudioINCanMastografia;
+    }
+
+    public Date getEstudioINCanMastografiaFecha() {
+        return estudioINCanMastografiaFecha;
+    }
+
+    public void setEstudioINCanMastografiaFecha(Date estudioINCanMastografiaFecha) {
+        this.estudioINCanMastografiaFecha = estudioINCanMastografiaFecha;
+    }
+
+    public String getEstudioINCanUSG() {
+        return estudioINCanUSG;
+    }
+
+    public void setEstudioINCanUSG(String estudioINCanUSG) {
+        this.estudioINCanUSG = estudioINCanUSG;
+    }
+
+    public Date getEstudioINCanUSGFecha() {
+        return estudioINCanUSGFecha;
+    }
+
+    public void setEstudioINCanUSGFecha(Date estudioINCanUSGFecha) {
+        this.estudioINCanUSGFecha = estudioINCanUSGFecha;
+    }
+
+    public Date getEstudioINCanRadiografia() {
+        return estudioINCanRadiografia;
+    }
+
+    public void setEstudioINCanRadiografia(Date estudioINCanRadiografia) {
+        this.estudioINCanRadiografia = estudioINCanRadiografia;
+    }
+
+    public Date getEstudioINCanTomografia() {
+        return estudioINCanTomografia;
+    }
+
+    public void setEstudioINCanTomografia(Date estudioINCanTomografia) {
+        this.estudioINCanTomografia = estudioINCanTomografia;
+    }
+
+    public Date getEstudioINCanMr() {
+        return estudioINCanMr;
+    }
+
+    public void setEstudioINCanMr(Date estudioINCanMr) {
+        this.estudioINCanMr = estudioINCanMr;
+    }
+
+    public Date getEstudioINCanTransvaginal() {
+        return estudioINCanTransvaginal;
+    }
+
+    public void setEstudioINCanTransvaginal(Date estudioINCanTransvaginal) {
+        this.estudioINCanTransvaginal = estudioINCanTransvaginal;
+    }
+
+    public Date getEstudioINCanAbdominal() {
+        return estudioINCanAbdominal;
+    }
+
+    public void setEstudioINCanAbdominal(Date estudioINCanAbdominal) {
+        this.estudioINCanAbdominal = estudioINCanAbdominal;
+    }
+
+    public Date getEstudioINCanTiroides() {
+        return estudioINCanTiroides;
+    }
+
+    public void setEstudioINCanTiroides(Date estudioINCanTiroides) {
+        this.estudioINCanTiroides = estudioINCanTiroides;
+    }
+
+    public Date getEstudioINCanPelvico() {
+        return estudioINCanPelvico;
+    }
+
+    public void setEstudioINCanPelvico(Date estudioINCanPelvico) {
+        this.estudioINCanPelvico = estudioINCanPelvico;
+    }
+
+    public Date getEstudioINCanHepatico() {
+        return estudioINCanHepatico;
+    }
+
+    public void setEstudioINCanHepatico(Date estudioINCanHepatico) {
+        this.estudioINCanHepatico = estudioINCanHepatico;
+    }
+
+    public Date getEstudioINCanPet() {
+        return estudioINCanPet;
+    }
+
+    public void setEstudioINCanPet(Date estudioINCanPet) {
+        this.estudioINCanPet = estudioINCanPet;
+    }
+
+    public Date getEstudioINCanMuga() {
+        return estudioINCanMuga;
+    }
+
+    public void setEstudioINCanMuga(Date estudioINCanMuga) {
+        this.estudioINCanMuga = estudioINCanMuga;
+    }
+
+    public Date getEstudioINCanGamma() {
+        return estudioINCanGamma;
+    }
+
+    public void setEstudioINCanGamma(Date estudioINCanGamma) {
+        this.estudioINCanGamma = estudioINCanGamma;
+    }
+
+    public Date getEstudioINCanLaboratorio() {
+        return estudioINCanLaboratorio;
+    }
+
+    public void setEstudioINCanLaboratorio(Date estudioINCanLaboratorio) {
+        this.estudioINCanLaboratorio = estudioINCanLaboratorio;
+    }
+
+    public Date getEstudioINCanCardio() {
+        return estudioINCanCardio;
+    }
+
+    public void setEstudioINCanCardio(Date estudioINCanCardio) {
+        this.estudioINCanCardio = estudioINCanCardio;
+    }
+
+    public Date getEstudioINCanAnestesica() {
+        return estudioINCanAnestesica;
+    }
+
+    public void setEstudioINCanAnestesica(Date estudioINCanAnestesica) {
+        this.estudioINCanAnestesica = estudioINCanAnestesica;
+    }
+
+    public Date getEstudioINCanInhaloterapia() {
+        return estudioINCanInhaloterapia;
+    }
+
+    public void setEstudioINCanInhaloterapia(Date estudioINCanInhaloterapia) {
+        this.estudioINCanInhaloterapia = estudioINCanInhaloterapia;
+    }
+
+    public Date getEstudioINCanElectro() {
+        return estudioINCanElectro;
+    }
+
+    public void setEstudioINCanElectro(Date estudioINCanElectro) {
+        this.estudioINCanElectro = estudioINCanElectro;
+    }
+
+    public Date getEstudioINCanEco() {
+        return estudioINCanEco;
+    }
+
+    public void setEstudioINCanEco(Date estudioINCanEco) {
+        this.estudioINCanEco = estudioINCanEco;
+    }
+
+    public Date getProgramaINCanTrabajoSocial() {
+        return programaINCanTrabajoSocial;
+    }
+
+    public void setProgramaINCanTrabajoSocial(Date programaINCanTrabajoSocial) {
+        this.programaINCanTrabajoSocial = programaINCanTrabajoSocial;
+    }
+
+    public Date getProgramaINCanMujeresJovenes() {
+        return programaINCanMujeresJovenes;
+    }
+
+    public void setProgramaINCanMujeresJovenes(Date programaINCanMujeresJovenes) {
+        this.programaINCanMujeresJovenes = programaINCanMujeresJovenes;
+    }
+
+    public Date getProgramaINCanNutricion() {
+        return programaINCanNutricion;
+    }
+
+    public void setProgramaINCanNutricion(Date programaINCanNutricion) {
+        this.programaINCanNutricion = programaINCanNutricion;
+    }
+
+    public Date getProgramaINCanGenetica() {
+        return programaINCanGenetica;
+    }
+
+    public void setProgramaINCanGenetica(Date programaINCanGenetica) {
+        this.programaINCanGenetica = programaINCanGenetica;
+    }
+
+    public String getPreconsultaSegundaOpcion() {
+        return preconsultaSegundaOpcion;
+    }
+
+    public void setPreconsultaSegundaOpcion(String preconsultaSegundaOpcion) {
+        this.preconsultaSegundaOpcion = preconsultaSegundaOpcion;
+    }
+
+    public Date getPreconsultaFechaDecision() {
+        return preconsultaFechaDecision;
+    }
+
+    public void setPreconsultaFechaDecision(Date preconsultaFechaDecision) {
+        this.preconsultaFechaDecision = preconsultaFechaDecision;
+    }
+
+    public String getPreconsultaDecision() {
+        return preconsultaDecision;
+    }
+
+    public void setPreconsultaDecision(String preconsultaDecision) {
+        this.preconsultaDecision = preconsultaDecision;
+    }
+
+    public String getBiopsiaINCanEtapa() {
+        return biopsiaINCanEtapa;
+    }
+
+    public void setBiopsiaINCanEtapa(String biopsiaINCanEtapa) {
+        this.biopsiaINCanEtapa = biopsiaINCanEtapa;
+    }
+
+    public String getBiopsiaINCanT() {
+        return biopsiaINCanT;
+    }
+
+    public void setBiopsiaINCanT(String biopsiaINCanT) {
+        this.biopsiaINCanT = biopsiaINCanT;
+    }
+
+    public String getBiopsiaINCanN() {
+        return biopsiaINCanN;
+    }
+
+    public void setBiopsiaINCanN(String biopsiaINCanN) {
+        this.biopsiaINCanN = biopsiaINCanN;
+    }
+
+    public String getBiopsiaINCanM() {
+        return biopsiaINCanM;
+    }
+
+    public void setBiopsiaINCanM(String biopsiaINCanM) {
+        this.biopsiaINCanM = biopsiaINCanM;
     }
     
     
