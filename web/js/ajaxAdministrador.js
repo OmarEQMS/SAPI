@@ -2048,10 +2048,10 @@ $(document).ready(function () {
                 var data = JSON.parse(response);
 
                 console.log(data);
-                
-                /*alert(data.fechaNacimiento);
+
+                alert(data.fechaNacimiento);
                 alert(new Date(data.fechaNacimiento));
-                alert(convertDate(new Date(data.fechaNacimiento)));*/
+                alert(convertDate(new Date(data.fechaNacimiento)));
 
                 $('#editarNombreAdministradorAPaciente').val(data.nombre);
                 $('#editarCurpAdministradorAPaciente').val(data.curp);
@@ -2104,7 +2104,7 @@ $(document).ready(function () {
 
     //Guarda el paciente
     $('#btn-guardarCambios').on('click', function () {
-        
+
         var btn = $(this);
 
         $.ajax({
@@ -2134,17 +2134,17 @@ $(document).ready(function () {
 
             },
             success: function (response) {
-                
-                swal ( "Buen trabajo" ,  "Cuenta editada satisfactoriamente" ,  "success" );
-                
+
+                swal("Buen trabajo", "Cuenta editada satisfactoriamente", "success");
+
                 //Cerrar modal
                 $("#modalEditarPaciente").modal('toggle');
-                
+
                 //Actualizar informacion de la tabla
-                $("#nombre-"+$('#idPacienteAEditar').val()).html($("#editarNombreAdministradorAPaciente").val() + ' ' + $('#editarPrimer-apellidoAdministradorAPaciente').val() + ' ' +$('#editarSegundo-apellidoAdministradorAPaciente').val());
-                $("#telefono-"+$('#idPacienteAEditar').val()).html($("#editarTelAdministradorAPaciente").val());
-                $("#estado-"+$('#idPacienteAEditar').val()).html($("#editarEstadoAdministradorAPaciente option:selected").text());
-                
+                $("#nombre-" + $('#idPacienteAEditar').val()).html($("#editarNombreAdministradorAPaciente").val() + ' ' + $('#editarPrimer-apellidoAdministradorAPaciente').val() + ' ' + $('#editarSegundo-apellidoAdministradorAPaciente').val());
+                $("#telefono-" + $('#idPacienteAEditar').val()).html($("#editarTelAdministradorAPaciente").val());
+                $("#estado-" + $('#idPacienteAEditar').val()).html($("#editarEstadoAdministradorAPaciente option:selected").text());
+
             }
 
         });
@@ -2267,6 +2267,54 @@ $(document).ready(function () {
                 .done(function (response) {
 
 
+                });
+
+    });
+
+    ///ELIMINA PACIENTE
+    $('body').on('click', ".btn-eliminarPaciente", function () {
+
+
+        var id = $(this).data('id');
+        var boton = $(this);
+
+        swal({
+            title: "¿Estás segura?",
+            text: "Una vez eliminado, el paciente y sus datos ya no se podrán recuperar.",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Cancelar', 'Aceptar'],
+            dangerMode: true,
+        })
+                .then((eliminar) => {
+
+                    if (eliminar) {
+
+                        $.ajax({
+
+                            url: 'AdministradorController',
+                            cache: false,
+                            method: 'POST',
+                            data: {
+
+                                key: "eliminar-paciente",
+                                idPaciente: id
+
+                            },
+                            success: function (response) {
+
+
+                                swal("Buen trabajo!", "El paciente se eliminó correctamente!", "success");
+                                boton.parent().parent().remove();
+
+
+                            }
+
+                        });
+
+
+
+                    }
                 });
 
     });
@@ -2496,15 +2544,15 @@ $(document).ready(function () {
     function convertDate(date) {
 
         var yyyy = date.getFullYear().toString();
-        var mm = (date.getMonth()+1).toString();
-        var dd  = date.getDate().toString();
-      
+        var mm = (date.getMonth() + 1).toString();
+        var dd = date.getDate().toString();
+
         var mmChars = mm.split('');
         var ddChars = dd.split('');
-      
-        return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
-      }
-    
+
+        return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
+    }
+
 
     function isValidPassword(input) {
 
