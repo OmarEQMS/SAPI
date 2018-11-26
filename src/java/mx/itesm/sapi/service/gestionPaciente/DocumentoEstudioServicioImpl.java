@@ -130,7 +130,7 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             documentoEstudio.setIdBirads(rs.getInt("idBirads"));
             documentoEstudio.setArchivo(rs.getBytes("archivo"));
             documentoEstudio.setPrevio(rs.getInt("previo"));
-            documentoEstudio.setFechaEstudioPrevio(rs.getDate("fechEstudioPrevio"));
+            documentoEstudio.setFechaEstudioResultado(rs.getDate("fechEstudioPrevio"));
             documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
             documentoEstudio.setIdCita(rs.getInt("idCita"));
             
@@ -222,7 +222,7 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             cstmt.setInt(5, documentoEstudio.getIdLugarDelCuerpo());
             cstmt.setBytes(6, documentoEstudio.getArchivo());
             cstmt.setInt(7, documentoEstudio.getPrevio());
-            cstmt.setDate(8, documentoEstudio.getFechaEstudioPrevio());
+            cstmt.setDate(8, documentoEstudio.getFechaEstudioResultado());
             cstmt.setInt(9, documentoEstudio.getIdCita());
             
 

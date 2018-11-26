@@ -18,7 +18,7 @@ public class DocumentoEstudio {
     private int idEstudio;
     private int idEstadoEstudio;
     private int idPaciente;
-<<<<<<< HEAD
+
     private int idBirads;
     private int idLugarDelCuerpo;
     private byte[] archivo;
@@ -26,17 +26,6 @@ public class DocumentoEstudio {
     private int estatus;
     private Date fechaEstudioResultado;
     private int idCita;
-
-
-=======
-    private Integer idBirads;
-    private byte[] archivo;
-    private int previo;
-    private int estatus;
-    private Date fechaEstudioPrevio;
-    private int idLugarDelCuerpo;
-    private int idCita;
->>>>>>> origin/Omar
 
     public DocumentoEstudio() {
     }
@@ -59,9 +48,7 @@ public class DocumentoEstudio {
 
     }
 
-<<<<<<< HEAD
-   
-=======
+
     public int getIdCita() {
         return idCita;
     }
@@ -70,14 +57,7 @@ public class DocumentoEstudio {
         this.idCita = idCita;
     }
     
-    public Date getFechaEstudioPrevio() {
-        return fechaEstudioPrevio;
-    }
 
-    public void setFechaEstudioPrevio(Date fechaEstudioPrevio) {
-        this.fechaEstudioPrevio = fechaEstudioPrevio;
-    }
->>>>>>> origin/Omar
 
     public int getIdDocumentoEstudio() {
         return idDocumentoEstudio;
@@ -159,12 +139,5 @@ public class DocumentoEstudio {
         this.fechaEstudioResultado = fechaEstudioResultado;
     }
 
-    public int getIdCita() {
-        return idCita;
-    }
-
-    public void setIdCita(int idCita) {
-        this.idCita = idCita;
-    }
 
 }
