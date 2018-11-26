@@ -99,7 +99,7 @@ public class PosicionServicioImpl implements PosicionServicio {
         Posicion posicion = null;
 
         //Call del store procedure
-        String stProcedure = "CALL motrarPosicionPorNombre(?)";
+        String stProcedure = "CALL mostrarPosicionPorNombre(?)";
 
         try {
             posicion = new Posicion();
@@ -110,6 +110,7 @@ public class PosicionServicioImpl implements PosicionServicio {
             rs = cstmt.executeQuery();
 
             rs.next();
+            
             posicion.setIdPosicion(rs.getInt("idPosicion"));
             posicion.setNombre(rs.getString("nombre"));
             posicion.setEstatus(rs.getInt("estatus"));

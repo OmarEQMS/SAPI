@@ -210,7 +210,7 @@ $(document).ready(function () {
     $('#errorEditarCedulaMedicos').hide();
     $('#error-editarDatosRepetidos').hide();
     $('#errorEditarEspecialidad').hide();
-    //$('#errorEditarPosicion').hide(); SHANNON
+    $('#errorEditarPosicion').hide(); //SHANNON
 
 
 
@@ -957,9 +957,9 @@ $(document).ready(function () {
                 $('#editar-telefonoMedico').val(json.telefono);
                 $('#editar-noEmpleadoMedico').val(json.noEmpleado);
                 $('#editar-especialidadMedico').val(json.nombreEspecialidad);
-                //$('#editar-posicionMedico').val(json.nombrePosicion); SHANNON
+                $('#editar-posicionMedico').val(json.nombrePosicion); //SHANNON
                 $('#editar-cedulaProfesionalMedico').val(json.cedulaProfesional);
-
+                
             }
 
         });
@@ -1187,6 +1187,7 @@ $(document).ready(function () {
                 var correo = $('#editar-correoMedico').val();
                 var noEmpleado = $('#editar-noEmpleadoMedico').val();
                 var especialidad = $('#editar-especialidadMedico').val();
+                var posicion = $('#editar-posicionMedico').val();
                 var cedula = $('#editar-cedulaProfesionalMedico').val();
 
                 console.log("idMédicoooo " + idMedico);
@@ -1216,6 +1217,7 @@ $(document).ready(function () {
                         correo: correo,
                         noEmpleado: noEmpleado,
                         especialidad: especialidad,
+                        posicion: posicion,
                         cedula: cedula
                     },
                     success: function (response) {

@@ -23,6 +23,7 @@ import javax.servlet.http.Part;
 import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
 import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
 import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
+import mx.itesm.sapi.bean.moduloGestionMedico.MedicoPosicion;
 import mx.itesm.sapi.bean.moduloGestionMedico.Posicion;
 import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 import mx.itesm.sapi.bean.persona.Cuenta;
@@ -33,6 +34,7 @@ import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
+import mx.itesm.sapi.service.moduloGestionMedico.MedicoPosicionServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.PosicionServicioImpl;
 import mx.itesm.sapi.service.persona.LoginServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
@@ -92,7 +94,7 @@ public class AdministradorController extends HttpServlet {
                     String telefono = request.getParameter("telefono");
                     String noEmpleado = request.getParameter("noEmpleado");
                     String especialidad = request.getParameter("especialidad");
-                    //String posicion = request.getParameter("posicion");
+                    String posicion = request.getParameter("posicion");
                     String usuario = noEmpleado;
                     String cedula = request.getParameter("cedula");
 
@@ -104,7 +106,7 @@ public class AdministradorController extends HttpServlet {
                     System.out.println("telefeno ".concat(telefono));
                     System.out.println("noEmpleado ".concat(noEmpleado));
                     System.out.println("especialidad ".concat(especialidad));
-                    //System.out.println("posicion ".concat(posicion));
+                    System.out.println("posicion ".concat(posicion));
                     System.out.println("usuario ".concat(usuario));
                     System.out.println("cedula ".concat(cedula));
 
@@ -116,9 +118,9 @@ public class AdministradorController extends HttpServlet {
                     EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
                     Especialidad especialidadMedicos = especialidadServicioImpl.mostrarEspecialidadPorNombre(especialidad);
                     
-                    /* SHANNON
+                    
                     PosicionServicioImpl posicionServicioImpl = new PosicionServicioImpl();
-                    Posicion posicionMedicos = posicionServicioImpl.mostrarPosicion(posicion);*/
+                    Posicion posicionMedicos = posicionServicioImpl.mostrarPosicion(posicion);
 
                     MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
                     MedicoEspecialidad medicoEspecialidad = medicoEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(idMedicoAdministrador);
@@ -127,14 +129,14 @@ public class AdministradorController extends HttpServlet {
                     System.out.println(" adminiController medicoEspecialidad ".concat(String.valueOf(medicoEspecialidad.getIdEmpleado())));
                     boolean medicoEspecialidadBoolean = medicoEspecialidadServicioImpl.actualizarMedicoEspecialidad(medicoEspecialidad);
                     
-                    /*SHANNON
+                   
                     
-                    MedicoPosicionServicioImpl medicoEspecialidadServicioImpl = new MedicoPosicionServicioImpl();
-                    MedicoEspecialidad medicoEspecialidad = medicoEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(idMedicoAdministrador);
-                    medicoEspecialidad.setCedulaProfesional(cedula);
-                    medicoEspecialidad.setIdEspecialidad(especialidadMedicos.getIdEspecialidad());
-                    System.out.println(" adminiController medicoEspecialidad ".concat(String.valueOf(medicoEspecialidad.getIdEmpleado())));
-                    boolean medicoEspecialidadBoolean = medicoEspecialidadServicioImpl.actualizarMedicoEspecialidad(medicoEspecialidad); */
+                    MedicoPosicionServicioImpl medicoPosicionServicioImpl = new MedicoPosicionServicioImpl();
+                    MedicoPosicion medicoPosicion = medicoPosicionServicioImpl.mostrarMedicoPosicionEmpleado(idMedicoAdministrador);
+                    medicoPosicion.setIdPosicion(posicionMedicos.getIdPosicion());
+                    System.out.println(" adminiController medicoPosicion ".concat(String.valueOf(medicoPosicion.getIdEmpleado())));
+                    boolean medicoPosicionBoolean = medicoPosicionServicioImpl.actualizarMedicoPosicion(medicoPosicion); 
+                    
 
                     PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                     Persona persona = personaServicioImpl.mostrarPersona(medico.getIdPersona());
@@ -158,6 +160,16 @@ public class AdministradorController extends HttpServlet {
                         System.out.println("Actualizado exitoso");
                     } else {
                         System.out.println("MedicoEspecialidad: " + medicoEspecialidadBoolean);
+                        System.out.println("Persona: " + personaBoolean);
+                        System.out.println("Cuenta: " + cuentaBoolean);
+                        System.out.println("Empleado: " + empleadoBoolean);
+                        System.out.println("Actualizado no exitoso o, no se cambió nada");
+                    }
+                    
+                    if (medicoPosicionBoolean || personaBoolean || cuentaBoolean || empleadoBoolean) {
+                        System.out.println("Actualizado exitoso");
+                    } else {
+                        System.out.println("MedicoEspecialidad: " + medicoPosicionBoolean);
                         System.out.println("Persona: " + personaBoolean);
                         System.out.println("Cuenta: " + cuentaBoolean);
                         System.out.println("Empleado: " + empleadoBoolean);
