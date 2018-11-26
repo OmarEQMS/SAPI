@@ -110,7 +110,7 @@ public class EspecialidadServicioImpl implements EspecialidadServicio{
         Especialidad especialiadInterna = null;
 
         //Call del store procedure
-        String stProcedure = "CALL motrarEspecialidadPorNombre(?)";
+        String stProcedure = "CALL mostrarEspecialidadPorNombre(?)";
 
         try {
             especialiadInterna = new Especialidad();

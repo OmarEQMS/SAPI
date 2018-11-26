@@ -18,15 +18,19 @@ $(document).ready(function () {
     $('#errorPass1Administrador').hide();
     $('#noEqualPasswordsErrorAdministrador').hide();
 
+
+
     $('#btn-agregarAdministrador').on('click', function () {
+
+        //AQUÍ VA EL MEGAIF
 
         $.ajax({
 
-            url: 'AdministradorController',
+            url: 'RegistraUsuarioController',
             method: "POST",
             cache: false,
             data: {
-                key: "agregar-administrador",
+                key: "agregarAdministrador",
                 nombre: $('#agregar-nombreAdministrador').val(),
                 telefono: $('#agregar-telefonoAdministrador').val(),
                 primerApellido: $('#agregar-primerApellidoAdministrador').val(),
@@ -40,11 +44,16 @@ $(document).ready(function () {
 
             },
             success: function (response) {
-
+                alert(response);
                 if (response == "success") {
 
                     //mensaje de confirmacion
-                    swal("Buen trabajo", " Administrador agregado correctamente", "success");
+                    swal({
+                        title: "¡Buen trabajo!",
+                        text: "Administrador agregado correctamente.",
+                        icon: "success",
+                        buttons: [, 'Aceptar'],
+                    });
 
 
                     //limpiar los campos del modal
@@ -58,6 +67,7 @@ $(document).ready(function () {
                     $('#agregar-posiciondAdministrador').val('');
                     $('#agregar-cedulaAdministrador').val('');
                     $('#agregar-passwordAdministrador').val('');
+                    $('#agregar-password2Administradores').val('');
 
                     //cerrar el modal
                     $('#modalAgregarAdministrador').modal('toggle');
@@ -2048,10 +2058,10 @@ $(document).ready(function () {
                 var data = JSON.parse(response);
 
                 console.log(data);
-                
+
                 /*alert(data.fechaNacimiento);
-                alert(new Date(data.fechaNacimiento));
-                alert(convertDate(new Date(data.fechaNacimiento)));*/
+                 alert(new Date(data.fechaNacimiento));
+                 alert(convertDate(new Date(data.fechaNacimiento)));*/
 
                 $('#editarNombreAdministradorAPaciente').val(data.nombre);
                 $('#editarCurpAdministradorAPaciente').val(data.curp);
@@ -2104,7 +2114,7 @@ $(document).ready(function () {
 
     //Guarda el paciente
     $('#btn-guardarCambios').on('click', function () {
-        
+
         var btn = $(this);
 
         $.ajax({
@@ -2134,17 +2144,17 @@ $(document).ready(function () {
 
             },
             success: function (response) {
-                
-                swal ( "Buen trabajo" ,  "Cuenta editada satisfactoriamente" ,  "success" );
-                
+
+                swal("Buen trabajo", "Cuenta editada satisfactoriamente", "success");
+
                 //Cerrar modal
                 $("#modalEditarPaciente").modal('toggle');
-                
+
                 //Actualizar informacion de la tabla
-                $("#nombre-"+$('#idPacienteAEditar').val()).html($("#editarNombreAdministradorAPaciente").val() + ' ' + $('#editarPrimer-apellidoAdministradorAPaciente').val() + ' ' +$('#editarSegundo-apellidoAdministradorAPaciente').val());
-                $("#telefono-"+$('#idPacienteAEditar').val()).html($("#editarTelAdministradorAPaciente").val());
-                $("#estado-"+$('#idPacienteAEditar').val()).html($("#editarEstadoAdministradorAPaciente option:selected").text());
-                
+                $("#nombre-" + $('#idPacienteAEditar').val()).html($("#editarNombreAdministradorAPaciente").val() + ' ' + $('#editarPrimer-apellidoAdministradorAPaciente').val() + ' ' + $('#editarSegundo-apellidoAdministradorAPaciente').val());
+                $("#telefono-" + $('#idPacienteAEditar').val()).html($("#editarTelAdministradorAPaciente").val());
+                $("#estado-" + $('#idPacienteAEditar').val()).html($("#editarEstadoAdministradorAPaciente option:selected").text());
+
             }
 
         });
@@ -2496,15 +2506,15 @@ $(document).ready(function () {
     function convertDate(date) {
 
         var yyyy = date.getFullYear().toString();
-        var mm = (date.getMonth()+1).toString();
-        var dd  = date.getDate().toString();
-      
+        var mm = (date.getMonth() + 1).toString();
+        var dd = date.getDate().toString();
+
         var mmChars = mm.split('');
         var ddChars = dd.split('');
-      
-        return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
-      }
-    
+
+        return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
+    }
+
 
     function isValidPassword(input) {
 
