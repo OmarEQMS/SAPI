@@ -2059,9 +2059,11 @@ $(document).ready(function () {
 
                 console.log(data);
 
+
                 /*alert(data.fechaNacimiento);
                  alert(new Date(data.fechaNacimiento));
                  alert(convertDate(new Date(data.fechaNacimiento)));*/
+
 
                 $('#editarNombreAdministradorAPaciente').val(data.nombre);
                 $('#editarCurpAdministradorAPaciente').val(data.curp);
@@ -2277,6 +2279,54 @@ $(document).ready(function () {
                 .done(function (response) {
 
 
+                });
+
+    });
+
+    ///ELIMINA PACIENTE
+    $('body').on('click', ".btn-eliminarPaciente", function () {
+
+
+        var id = $(this).data('id');
+        var boton = $(this);
+
+        swal({
+            title: "¿Estás segura?",
+            text: "Una vez eliminado, el paciente y sus datos ya no se podrán recuperar.",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Cancelar', 'Aceptar'],
+            dangerMode: true,
+        })
+                .then((eliminar) => {
+
+                    if (eliminar) {
+
+                        $.ajax({
+
+                            url: 'AdministradorController',
+                            cache: false,
+                            method: 'POST',
+                            data: {
+
+                                key: "eliminar-paciente",
+                                idPaciente: id
+
+                            },
+                            success: function (response) {
+
+
+                                swal("Buen trabajo!", "El paciente se eliminó correctamente!", "success");
+                                boton.parent().parent().remove();
+
+
+                            }
+
+                        });
+
+
+
+                    }
                 });
 
     });
