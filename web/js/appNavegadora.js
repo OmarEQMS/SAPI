@@ -373,7 +373,9 @@ $(document).ready(function () {
     $('.add-biopsia').on('click', function () {
 
         var plantilla =
-                `<div class="form-group row mt-2 tuplaBiopsia">
+
+            `<div class="form-group row mt-2 tuplaBiopsia" data-id="0" data-accion="agregar">
+
 
             <!-- tipo biopsia -->
             <div class="col-3">
@@ -427,8 +429,10 @@ $(document).ready(function () {
     $('.add-rayosX').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaRayosX">
+
+            `
+            <div class="form-group row mt-2 tuplaRayosX" data-id="0" data-accion="agregar">
+
 
                 <!-- tipo rayos -->
                 <div class="col-5">
@@ -471,8 +475,10 @@ $(document).ready(function () {
     $('.add-ultrasonido').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaUltrasonido">
+
+            `
+            <div class="form-group row mt-2 tuplaUltrasonido" data-id="0" data-accion="agregar">
+
 
                
                 <div class="col-5">
@@ -515,8 +521,10 @@ $(document).ready(function () {
     $('.add-medicinaNuclear').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaMedicinaNuclear">
+
+            `
+            <div class="form-group row mt-2 tuplaMedicinaNuclear" data-id="0" data-accion="agregar">
+
     
                     <div class="col-5">
                         <input name ="mNuclearAdded" type="text" class="form-control medicinaNuclear" placeholder="Introduce medicina nuclear">
@@ -557,8 +565,10 @@ $(document).ready(function () {
     $('.add-laboratorio').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaLaboratorio">
+
+            `
+            <div class="form-group row mt-2 tuplaLaboratorio" data-id="0" data-accion="agregar">
+
 
                 <div class="col-10">
                     <div class="input-group">
@@ -594,8 +604,10 @@ $(document).ready(function () {
     $('.add-valoracion').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaValoracion">
+
+            `
+            <div class="form-group row mt-2 tuplaValoracion" data-id="0" data-accion="agregar">
+
 
        
                 <div class="col-5">
@@ -636,8 +648,10 @@ $(document).ready(function () {
     $('.add-espirometria').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaEspirometria">
+
+            `
+            <div class="form-group row mt-2 tuplaEspirometria" data-id="0" data-accion="agregar">
+
 
                 <div class="col-10">
                     <div class="input-group">
@@ -673,8 +687,10 @@ $(document).ready(function () {
     $('.add-electrocardiograma').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaElectrocardiograma">
+
+            `
+            <div class="form-group row mt-2 tuplaElectrocardiograma" data-id="0" data-accion="agregar">
+
 
                     <div class="col-10">
                         <div class="input-group">
@@ -710,8 +726,10 @@ $(document).ready(function () {
     $('.add-ecocardiograma').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaEcocardiograma">
+
+            `
+            <div class="form-group row mt-2 tuplaEcocardiograma" data-id="0" data-accion="agregar">
+
 
                     <div class="col-10">
                         <div class="input-group">
@@ -748,8 +766,10 @@ $(document).ready(function () {
     $('.add-trabajoSocial').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaTrabajoSocial">
+
+            `
+            <div class="form-group row mt-2 tuplaTrabajoSocial" data-id="0" data-accion="agregar">
+
 
                 <div class="col-10">
                     <div class="input-group">
@@ -785,8 +805,10 @@ $(document).ready(function () {
     $('.add-programa').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaPrograma">
+
+            `
+            <div class="form-group row mt-2 tuplaPrograma" data-id="0" data-accion="agregar">
+
 
 
                     <div class="col-5">
@@ -827,8 +849,10 @@ $(document).ready(function () {
     $('.add-otro').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaOtro">
+
+            `
+            <div class="form-group row mt-2 tuplaOtro" data-id="0" data-accion="agregar">
+
 
                     <div class="col-5">
                         <div class="input-group">
@@ -1083,24 +1107,17 @@ $(document).ready(function () {
     });
 
 
-    //PANTALLA 3 estudios                                    
+    //PANTALLA 3 estudios  //OMAR                                  
 
     $('#tiene-biopsia').on('change', () => {
         var tieneBiopsia = $('#tiene-biopsia').is(':checked') ? 1 : 0;
 
         switch (tieneBiopsia) {
             case 1:
-
                 muestra($('#biopsiaInit'));
-
-
                 break;
             case 0:
-
                 oculta($('#biopsiaInit'));
-                $('.tuplaBiopsia').remove();
-
-
                 break;
         }
     });
@@ -1111,15 +1128,10 @@ $(document).ready(function () {
 
         switch (tieneRayosX) {
             case 1:
-
                 muestra($('#rayosInit'));
-
                 break;
             case 0:
-
                 oculta($('#rayosInit'));
-                $('.tuplaRayosX').remove();
-
                 break;
         }
     });
@@ -1131,15 +1143,10 @@ $(document).ready(function () {
 
         switch (tieneUltrasonido) {
             case 1:
-
                 muestra($('#ultrasonidoInit'));
-
                 break;
             case 0:
-
                 oculta($('#ultrasonidoInit'));
-                $('.tuplaUltrasonido').remove();
-
                 break;
         }
     });
@@ -1150,15 +1157,10 @@ $(document).ready(function () {
 
         switch (tieneMedicinaNuclear) {
             case 1:
-
                 muestra($('#medicinaNuclearInit'));
-
                 break;
             case 0:
-
                 oculta($('#medicinaNuclearInit'));
-                $('.tuplaMedicinaNuclear').remove();
-
                 break;
         }
     });
@@ -1170,15 +1172,10 @@ $(document).ready(function () {
 
         switch (tieneValoracion) {
             case 1:
-
                 muestra($('#valoracionInit'));
-
                 break;
             case 0:
-
                 oculta($('#valoracionInit'));
-                $('.tuplaValoracion').remove();
-
                 break;
         }
     });
@@ -1189,15 +1186,10 @@ $(document).ready(function () {
 
         switch (tieneEspirometria) {
             case 1:
-
                 muestra($('#espirometriaInit'));
-
                 break;
             case 0:
-
                 oculta($('#espirometriaInit'));
-                $('.tuplaEspirometria').remove();
-
                 break;
         }
     });
@@ -1209,15 +1201,10 @@ $(document).ready(function () {
 
         switch (tieneElectrocardiograma) {
             case 1:
-
                 muestra($('#electrocardiogramaInit'));
-
                 break;
             case 0:
-
                 oculta($('#electrocardiogramaInit'));
-                $('.tuplaElectrocardiograma').remove();
-
                 break;
         }
     });
@@ -1228,15 +1215,10 @@ $(document).ready(function () {
 
         switch (tieneLaboratorio) {
             case 1:
-
                 muestra($('#laboratorioInit'));
-
                 break;
             case 0:
-
                 oculta($('#laboratorioInit'));
-                $('.tuplaLaboratorio').remove();
-
                 break;
         }
     });
@@ -1247,15 +1229,10 @@ $(document).ready(function () {
 
         switch (tieneEcocardiograma) {
             case 1:
-
                 muestra($('#ecocardiogramaInit'));
-
                 break;
             case 0:
-
                 oculta($('#ecocardiogramaInit'));
-                $('.tuplaEcocardiograma').remove();
-
                 break;
         }
     });
@@ -1266,15 +1243,10 @@ $(document).ready(function () {
 
         switch (tieneTrabajoSocial) {
             case 1:
-
                 muestra($('#trabajoSocialInit'));
-
                 break;
             case 0:
-
                 oculta($('#trabajoSocialInit'));
-                $('.tuplaTrabajoSocial').remove();
-
                 break;
         }
     });
@@ -1285,15 +1257,10 @@ $(document).ready(function () {
 
         switch (tienePrograma) {
             case 1:
-
                 muestra($('#programaInit'));
-
                 break;
             case 0:
-
                 oculta($('#programaInit'));
-                $('.tuplaPrograma').remove();
-
                 break;
         }
     });
@@ -1304,19 +1271,15 @@ $(document).ready(function () {
 
         switch (tieneOtro) {
             case 1:
-
                 muestra($('#otroInit'));
-
                 break;
             case 0:
-
                 oculta($('#otroInit'));
-                $('.tuplaOtro').remove();
-
                 break;
         }
     });
 
+    //OMAR
 
     $('#add-datosLlamada').on('click', () => {
         var nuevosDatos = `<div class="col-5" id="fechaLlamada">

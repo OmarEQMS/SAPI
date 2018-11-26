@@ -148,7 +148,7 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
         boolean exito = false;
 
         //Call del store procedure
-        String stProcedure = "actualizarpacienteMedicoTitular(?, ?, ?, ?)";
+        String stProcedure = "CALL actualizarPacienteMedicoTitular(?, ?, ?, ?,?)";
 
         try {
             conn = Conexion.getConnection();
@@ -158,7 +158,7 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
             cstmt.setInt(3, pacienteMedicoTitular.getIdEmpleado());
             cstmt.setDate(4, pacienteMedicoTitular.getInicio());
             cstmt.setDate(5, pacienteMedicoTitular.getFin());
-            cstmt.setInt(6, pacienteMedicoTitular.getEstatus());
+
 
             rs = cstmt.executeQuery();
 

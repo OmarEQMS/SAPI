@@ -4,6 +4,7 @@
 --%>
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +27,7 @@
             <!-- Input usuario -->
             <div class="input-group">
                 <input id="user" type="text" value="Urisiento" class="form-control input-usuario mb-2 useFontAwesomeFamily effect3" placeholder="&#xf007; USUARIO" autofocus>
+
             </div>
 
             <!-- Input contraseña -->

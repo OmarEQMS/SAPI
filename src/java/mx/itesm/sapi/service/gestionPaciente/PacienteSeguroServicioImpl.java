@@ -104,11 +104,9 @@ public class PacienteSeguroServicioImpl implements PacienteSeguroServicio {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stPrcedure);
 
-            
             cstmt.setInt(1, pacienteSeguro.getIdPaciente());
             cstmt.setInt(2, pacienteSeguro.getIdSeguro());
             cstmt.setString(3, pacienteSeguro.getNoSeguro());
-                       
 
             cstmt.executeUpdate();
             rs = cstmt.getGeneratedKeys();
@@ -145,7 +143,7 @@ public class PacienteSeguroServicioImpl implements PacienteSeguroServicio {
             cstmt.setString(4, pacienteSeguro.getNoSeguro());
 
             rs = cstmt.executeQuery();
-
+            rs.next();
             exito = rs.getBoolean(1);
 
             rs.close();
@@ -190,7 +188,7 @@ public class PacienteSeguroServicioImpl implements PacienteSeguroServicio {
 
     @Override
     public PacienteSeguro mostrarPacienteSeguroIdPaciente(int idPaciente) {
-    Connection conn;
+        Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
 
@@ -223,7 +221,7 @@ public class PacienteSeguroServicioImpl implements PacienteSeguroServicio {
 
     @Override
     public List<PacienteSeguro> mostrarPacienteSeguroIdEspecifico(int idPaciente) {
-     Connection conn;
+        Connection conn;
         CallableStatement cstmt;
         List<PacienteSeguro> listPacienteSeguro = null;
         String stProcedure = "CALL mostrarPacienteSeguroIdEspecifico(?)";
@@ -234,7 +232,7 @@ public class PacienteSeguroServicioImpl implements PacienteSeguroServicio {
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-             cstmt.setInt(1, idPaciente);
+            cstmt.setInt(1, idPaciente);
             rs = cstmt.executeQuery();
             listPacienteSeguro = new ArrayList<>();
 
@@ -257,6 +255,7 @@ public class PacienteSeguroServicioImpl implements PacienteSeguroServicio {
                     .concat(ex.getMessage()));
             listPacienteSeguro = null;
         }
-        return listPacienteSeguro;}
+        return listPacienteSeguro;
+    }
 
 }
