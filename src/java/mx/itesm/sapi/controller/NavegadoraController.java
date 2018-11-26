@@ -675,9 +675,12 @@ public class NavegadoraController extends HttpServlet {
                             /**
                              * DECLARACION DE ATRIBUTOS
                              */
+
+
                             int idPacientePotencial = 126;
-                            int idCuenta = 769;
-                            int idNavegadora = 5;//Navegadora
+
+                            int idCuenta = 63;
+                            int idNavegadora = 2;//Navegadora
 
                             /**
                              *
@@ -1978,17 +1981,23 @@ public class NavegadoraController extends HttpServlet {
 
                                 }
 
-                                System.out.println("Regristo TNM ".concat(String.valueOf(idRegistroTNM)));
-                                System.out.println("REgistro diagnostico ".concat(registroDiagnostico.toString()));
-                                if (registroDiagnostico.getIdRegistroDiagnostico() > 0) {
-                                    registroDiagnostico.setIdRegistroTNM(idRegistroTNM);
-                                    registroDiagnosticoServiceImpl.actualizarRegistroDiagnostico(registroDiagnostico);
-                                } else {
-                                    registroDiagnostico.setIdRegistroTNM(idRegistroTNM);
-                                    registroDiagnosticoServiceImpl.agregarRegistroDiagnostico(registroDiagnostico);
-                                }
-
-                            } else {
+                                
+                                    System.out.println("Regristo TNM ".concat(String.valueOf(idRegistroTNM)));
+                                    System.out.println("REgistro diagnostico ".concat(registroDiagnostico.toString()));
+                                    if(registroDiagnostico.getIdRegistroDiagnostico() > 0)
+                                    {
+                                        registroDiagnostico.setIdRegistroTNM(idRegistroTNM);
+                                        registroDiagnosticoServiceImpl.actualizarRegistroDiagnostico(registroDiagnostico);
+                                    }else
+                                    {
+                                        System.out.println("agregar registroDiagnostico ".concat(String.valueOf(registroDiagnostico.getIdRegistroDiagnostico())));
+                                        registroDiagnostico.setIdRegistroTNM(idRegistroTNM);
+                                        registroDiagnostico.setIdRegistroDiagnostico(registroDiagnosticoServiceImpl.agregarRegistroDiagnostico(registroDiagnostico));
+                                        System.out.println("Agregado registroDiagnostico ".concat(String.valueOf(registroDiagnostico.getIdRegistroDiagnostico())));
+                                    }
+                                    
+                            } else
+                            {
                                 System.out.println("sin tCodificado o nCodificado o mCodificado ");
                             }
 

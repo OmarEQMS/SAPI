@@ -45,10 +45,10 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
            
             System.out.println("Agregar TNM ".concat(cstmt.toString()));
            
-             cstmt.executeQuery();
-            rs = cstmt.getGeneratedKeys();
+            
+            rs = cstmt.executeQuery();
             rs.next();
-            id=rs.getInt(1);
+            id = rs.getInt(1);
             
             rs.close();
             cstmt.close();
