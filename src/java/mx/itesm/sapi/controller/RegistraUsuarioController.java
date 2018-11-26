@@ -314,6 +314,7 @@ public class RegistraUsuarioController extends HttpServlet {
                                 System.out.println("agrego imagen");
                                 enviaCorreo(usuario,correo);
                             }
+                            out.print(idPac);
 
                         }
                     }

@@ -672,8 +672,7 @@
                                                 </div>
                                                 <input type="text" class="form-control" id="correoPaciente" placeholder="Correo">
                                             </div>
-                                            <span class="text-danger" id="errorCorreoPaciente">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
-
+                                            <span class="text-danger" id="errorCorreoPaciente">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
                                         </div>
 
                                     </div>
@@ -701,9 +700,9 @@
                                                     </div>
                                                 </div>
                                                 <input type="password" class="form-control" id="confContraPaciente" placeholder="Confirmar contraseña">
-                                                <span class="text-warning" id="noEqualPasswordsErrorPaciente">Las contraseñas no son iguales.</span>
                                                 <span class="text-danger" id="errorPass2Paciente">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                             </div>
+                                            <span class="text-warning" id="noEqualPasswordsErrorPaciente">Las contraseñas no son iguales.</span>
                                         </div>
                                     </div>
 
@@ -723,13 +722,14 @@
                                                     El paciente está informado y aceptó los términos y condiciones
                                                 </label>
                                             </div>
+                                            <span class="text-danger" id="error-terminos">Para continuar debes de aceptar los términos y condiciones.</span>
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" style="border-radius: 20px;" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                    <button id="#btn-agregarPaciente" type="button" style="border-radius: 20px;" class="btn btn-primary">Agregar
+                                    <button id="btn-agregarPaciente" type="button" style="border-radius: 20px;" class="btn btn-primary">Agregar
                                         Paciente
                                     </button>
                                 </div>
