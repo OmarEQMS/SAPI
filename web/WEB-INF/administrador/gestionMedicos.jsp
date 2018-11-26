@@ -150,7 +150,7 @@
                 <div class="row mb-3 justify-content-end">
                     <div class="col-3 text-center">
                         <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="IrAInicio" class="colorMoradoLight">Inicio</a></span>
-                        - <span class="colorGlobal">Gestion de Pacientes</span>
+                        - <span class="colorGlobal">Gestion de Médicos</span>
                     </div>
                 </div>
 
@@ -285,7 +285,7 @@
                                             </div>
                                             <input type="text" id="editar-correoMedico" class="form-control" placeholder="Correo">
                                         </div>
-                                        <span class="text-danger" id="errorEditarCorreoMedico">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
+                                        <span class="text-danger" id="errorEditarCorreoMedico">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
                                         <span class="text-warning" id="errorEditarCorreoRepetido">El correo ya existe.</span>
                                     </div>
                                 </div>
@@ -440,7 +440,7 @@
                                             </div>
                                             <input type="text" class="form-control" id="agregar-correoMedico" placeholder="Correo">
                                         </div>
-                                        <span class="text-danger" id="errorCorreoMedico">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
+                                        <span class="text-danger" id="errorCorreoMedico">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
                                         <span class="text-warning" id="errorCorreoRepetido">El correo ya existe.</span>
                                     </div>
 
@@ -499,8 +499,11 @@
                                                 <div class="input-group-text"><i class="fas fa-lock"></i></div>
                                             </div>
                                             <input type="password" class="form-control" id="agregar-passwordMedico" placeholder="Contraseña">
-                                            <span class="text-danger" id="errorPass1Medico">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
+                                            <div id="medicoContrasena" class="input-group-append bg-white">
+                                                <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                            </div>
                                         </div>
+                                        <span class="text-danger" id="errorPass1Medico">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                     </div>
                                     <div class="col-6">
                                         <div class="input-group">
@@ -509,6 +512,9 @@
                                             </div>
                                             <input type="password" class="form-control" id="agregar-password2Medico"
                                                    placeholder="Confirmar contraseña">
+                                            <div id="medicoContrasenaConfirmacion" class="input-group-append bg-white">
+                                                <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                            </div>
                                         </div>
                                         <span class="text-warning" id="noEqualPasswordsError">Las contraseñas no son iguales.</span>
                                     </div>

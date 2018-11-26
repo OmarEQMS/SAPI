@@ -1,11 +1,10 @@
 $(document).ready(function () {
+    
+    mostrarContrasena($('#medicoContrasena'),'agregar-passwordMedico');
+    mostrarContrasena($('#medicoContrasenaConfirmacion'),'agregar-password2Medico');
+    mostrarContrasena($('#navegadoraContrasena'),'agregar-passwordNavegadora');
+    mostrarContrasena($('#navegadoraContrasenaConfirmacion'),'agregar-password2Navegadora');
 
-    //Esconder menu lateral a presionar click en el menu hamburguesa
-    $('#sidebarCollapse').on('click', () => {
-        $('#sidebar, #content').toggleClass('active');
-        $('.collapse.in').toggleClass('in');
-        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-    });
 
     ///////////////////////////////MEDICOS
 
@@ -210,10 +209,10 @@ $(document).ready(function () {
 
         $('#agregar-cedulaMedico').css('border', '');
         $('#agregar-cedulaMedico').css('color', '');
-        
+
         $('#agregar-especialidadMedico').css('border', '');
         $('#agregar-especialidadMedico').css('color', '');
-        
+
         $('#agregar-posiciondMedico').css('border', '');
         $('#agregar-posiciondMedico').css('color', '');
 
@@ -222,6 +221,8 @@ $(document).ready(function () {
 
         $('#agregar-password2Medico').css('border', '');
         $('#agregar-password2Medico').css('color', '');
+
+        $("#terminosMedico").prop("checked", false);
 
     });
 
@@ -249,8 +250,8 @@ $(document).ready(function () {
         $('#editar-correoMedico').css('border', '');
         $('#editar-correoMedico').css('color', '');
 
-        $('#agregar-correoMedico').css('border', '');
-        $('#agregar-correoMedico').css('color', '');
+        $('#editar-correoMedico').css('border', '');
+        $('#editar-correoMedico').css('color', '');
 
         $('#editar-telefonoMedico').css('border', '');
         $('#editar-telefonoMedico').css('color', '');
@@ -274,8 +275,101 @@ $(document).ready(function () {
         $("#agregar-cedulaNavegadora").val("");
         $("#agregar-passwordNavegadora").val("");
         $("#agregar-password2Navegadora").val("");
+        $("#terminosNavegadora").prop("checked", false);
+        
+        $('#errorNombreNavegadora').hide();
+        $('#errorTelefonoNavegadora').hide();
+        $('#errorApellidoPaternoNavegadora').hide();
+        $('#errorApellidoMaternoNavegadora').hide();
+        $('#errorCorreoNavegadora').hide();
+        $('#errorCorreoRepetidoNavegadora').hide();
+        $('#errorNumEmpleadoNavegadora').hide();
+        $('#errorAgregarEspecialidadNavegadora').hide();
+        $('#errorCedulaNavegadora').hide();
+        $('#errorPass1Navegadora').hide();
+        $('#noEqualPasswordsError').hide();
+        $('#error-camposNavegadora').hide();
+        $('#error-datosRepetidosNavegadora').hide();
+
+        $('#agregar-nombreNavegadora').css('border', '');
+        $('#agregar-nombreNavegadora').css('color', '');
+
+        $('#agregar-telefonoNavegadora').css('border', '');
+        $('#agregar-telefonoNavegadora').css('color', '');
+
+        $('#agregar-primerApellidoNavegadora').css('border', '');
+        $('#agregar-primerApellidoNavegadora').css('color', '');
+
+        $('#agregar-segundoApellidoNavegadora').css('border', '');
+        $('#agregar-segundoApellidoNavegadora').css('color', '');
+
+        $('#agregar-correoNavegadora').css('border', '');
+        $('#agregar-correoNavegadora').css('color', '');
+
+        $('#agregar-noEmpleadoNavegadora').css('border', '');
+        $('#agregar-noEmpleadoNavegadora').css('color', '');
+
+        $('#agregar-especialidadNavegadora').css('border', '');
+        $('#agregar-especialidadNavegadora').css('color', '');
+
+        $('#agregar-cedulaNavegadora').css('border', '');
+        $('#agregar-cedulaNavegadora').css('color', '');
+
+        $('#agregar-passwordNavegadora').css('border', '');
+        $('#agregar-passwordNavegadora').css('color', '');
+
+        $('#agregar-password2Navegadora').css('border', '');
+        $('#agregar-password2Navegadora').css('color', '');
 
     });
+    
+    $("body").on("click", ".clearCancelEditNavegadoraModal", function () {
+        
+        $('#errorEditarNombreNavegadora').hide();
+        $('#errorEditarTelefonoNavegadora').hide();
+        $('#errorEditarApellidoPaternoNavegadora').hide();
+        $('#errorEditarApellidoMaternoNavegadora').hide();
+        $('#errorEditarCorreoNavegadora').hide();
+        $('#errorEditarCorreoRepetidoNavegadora').hide();
+        $('#errorEditarNumNavegadora').hide();
+        $('#errorEditarCedulaNavegadora').hide();
+        $('#errorEditarEspecialidadNavegadora').hide();
+        $('#error-editarDatosRepetidosNavegadora').hide();
+        
+
+        $('#editar-nombreNavegadora').css('border', '');
+        $('#editar-nombreNavegadora').css('color', '');
+
+        $('#editar-primerApellidoNavegadora').css('border', '');
+        $('#editar-primerApellidoNavegadora').css('color', '');
+
+        $('#editar-segundoApellidoNavegadora').css('border', '');
+        $('#editar-segundoApellidoNavegadora').css('color', '');
+
+        $('#editar-correoNavegadora').css('border', '');
+        $('#editar-correoNavegadora').css('color', '');
+
+        $('#editar-telefonoNavegadora').css('border', '');
+        $('#editar-telefonoNavegadora').css('color', '');
+
+        $('#editar-noEmpleadoNavegadora').css('border', '');
+        $('#editar-noEmpleadoNavegadora').css('color', '');
+
+        $('#editar-cedulaProfesionalNavegadora').css('border', '');
+        $('#editar-cedulaProfesionalNavegadora').css('color', '');
+
+    });
+    
+    function mostrarContrasena(myButton, myField) {
+        myButton.on('mousedown', function () {
+            var x = document.getElementById(myField);
+            x.type = "text";
+        });
+        myButton.on('mouseup', function () {
+            var x = document.getElementById(myField);
+            x.type = "password";
+        });
+    }
 
 
 });
