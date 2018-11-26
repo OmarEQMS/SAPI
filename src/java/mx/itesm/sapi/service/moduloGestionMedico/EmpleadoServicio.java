@@ -9,6 +9,7 @@ import java.util.List;
 import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
 import mx.itesm.sapi.bean.moduloGestionMedico.Identificadores;
 import mx.itesm.sapi.bean.moduloGestionMedico.RestringirEmpleado;
+import mx.itesm.sapi.bean.moduloGestionMedico.TablaAdministradorAdministrador;
 import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 
 /**
@@ -25,5 +26,6 @@ public interface EmpleadoServicio {
     public boolean actualizarEmpleado(Empleado empleado);
     public Identificadores restringirEmpleado(RestringirEmpleado restringirEmpleado);
     public List<TablaMedicoAdministrador> mostrarListaEmpleadosAdministrador(int idRol);
+    public List<TablaAdministradorAdministrador> mostrarListaAdminAdministrador();
     public TablaMedicoAdministrador mostrarMedicoAdministrador(int idMedico,int idRol);
 }

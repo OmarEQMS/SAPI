@@ -41,6 +41,7 @@ import mx.itesm.sapi.bean.gestionPaciente.GradoHistologico;
 import mx.itesm.sapi.bean.gestionPaciente.Her2;
 import mx.itesm.sapi.bean.gestionPaciente.NivelSocioeconomico;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteAdmin;
 import mx.itesm.sapi.bean.gestionPaciente.PacientePotencial;
 import mx.itesm.sapi.bean.gestionPaciente.ReceptorEstrogeno;
 import mx.itesm.sapi.bean.gestionPaciente.ReceptorProgesterona;
@@ -48,6 +49,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Seguro;
 import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.UnionTratamientoPaciente;
+import mx.itesm.sapi.bean.moduloGestionMedico.TablaAdministradorAdministrador;
 import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Direccion;
@@ -244,12 +246,32 @@ public class FrontController extends HttpServlet {
                                     break;
                                 }
                                 case "administrador/gestionPacientes.jsp":
-                                {
+                                {                                    
+                                    //Lista de pacientes
+                                    PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
+                                    List<PacienteAdmin> pacientes = pacienteServicio.mostrarPacientesAdmin();
+                                    request.setAttribute("ListaPacientesAdministrador", pacientes);
+                                    
+                                    //Estado civil
+                                    EstadoCivilServicioImpl estadoCivilServicio = new EstadoCivilServicioImpl();
+                                    List<EstadoCivil> estadosCiviles = estadoCivilServicio.mostrarEstadoCivil();
+                                    request.setAttribute("estadoCivil", estadosCiviles);
+
+                                    //Estados
+                                    EstadoServicioImpl estadoServicio = new EstadoServicioImpl();
+                                    List<Estado> estados = estadoServicio.mostrarEstado();
+                                    request.setAttribute("estado", estados);
+                                    
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     break;
                                 }
                                 case "administrador/gestionarAdministradores.jsp":
                                 {
+                                    //Lista de pacientes
+                                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                                    List<TablaAdministradorAdministrador> administradores = empleadoServicioImpl.mostrarListaAdminAdministrador();
+                                    request.setAttribute("ListaAdministradoresAdmistrador", administradores);
+                                    
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     break;
                                 }

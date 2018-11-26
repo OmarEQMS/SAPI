@@ -105,7 +105,7 @@
                     <li id="IrAGestionAdministrador"><a><i class="fas fa-shield-alt"></i>Administradores</a></li>
 
                     <li id="IrAMiCuenta"><a><i class="far fa-user"></i>Mi cuenta</a></li>
-                    
+
                     <li id="IrAReasignarMedico"><a><i class="fas fa-sync"></i>Reasignar médico</a></li>
 
                     <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
@@ -178,17 +178,29 @@
                                 <div class="col-8">
                                     <label for="username">Usuario</label>
                                     <input type="text" class="form-control" id="username" name="username" value="${sessionScope.usuario}"/>
-                                    <span class="text-danger error-correo" id="error-usuario">Formato incorrecto</span>
+                                    <span class="text-danger error-usuario" id="error-usuario">Formato incorrecto</span>
+                                </div>
+
+                                <div class="col-8">
+                                    <span class="text-danger error-usuario" id="error-usuario">Formato incorrecto</span>
+                                    <span class="text-warning error-usuarioRepetido">El usuario ya existe</span>
                                 </div>
 
                             </div>
+
+
 
                             <!-- 4 -->
                             <div class="form-group row justify-content-center">
                                 <div class="col-8">
                                     <label for="correo">Correo</label>
                                     <input type="text" class="form-control" id="correo" name="correo" value="${sessionScope.correo}"/>
-                                    <span class="text-danger error-correo" id="error-correo">Formato incorrecto</span>
+
+                                </div>
+
+                                <div class="col-8">
+                                    <span class="text-danger error-correo" id="error-usuario">Formato incorrecto</span>
+                                    <span class="text-warning error-correoRepetido">El usuario ya existe</span>
                                 </div>
 
                             </div>
@@ -262,7 +274,7 @@
 
 
                     </div>
-                    >>>>>>> origin/Julion
+
                 </div>
 
             </div>
