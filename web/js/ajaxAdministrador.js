@@ -283,31 +283,57 @@ $(document).ready(function () {
         }
 
     });
+    /*
+     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
+     $('#agregar-especialidadMedico').on('change', function () {
+     
+     if (isValidEspecialidad($(this))) {
+     $('#errorAgregarEspecialidad').hide();
+     } else if ($(this).val() == '') {
+     $('#errorAgregarEspecialidad').hide();
+     } else {
+     $('#errorAgregarEspecialidad').show();
+     }
+     
+     });
+     
+     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
+     $('#editar-especialidadMedico').on('change', function () {
+     
+     if (isValidEspecialidad($(this))) {
+     $('#errorEditarEspecialidad').hide();
+     } else if ($(this).val() == '') {
+     $('#errorEditarEspecialidad').hide();
+     } else {
+     $('#errorEditarEspecialidad').show();
+     }
+     
+     });*/
 
-    //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
-    $('#agregar-especialidadMedico').on('change', function () {
+    var isValidAddEspecialidad;
+    var dato2 = $("#agregar-especialidadMedico");
 
-        if (isValidEspecialidad($(this))) {
+    dato2.on('keyup', function (e) {
+        var option = $('#listEspecialidades option').filter(function () {
+            return this.value === $("#agregar-especialidadMedico").val();
+        }).val();
+
+        if (option) {
             $('#errorAgregarEspecialidad').hide();
-        } else if ($(this).val() == '') {
+            dato2.css('border', '');
+            dato2.css('color', '');
+            isValidAddEspecialidad = true;
+        } else if (dato2.val() == '') {
             $('#errorAgregarEspecialidad').hide();
+            dato2.css('border', '');
+            dato2.css('color', '');
+            isValidAddEspecialidad = false;
         } else {
             $('#errorAgregarEspecialidad').show();
+            dato2.css('border', '1px solid red');
+            dato2.css('color', 'red');
+            isValidAddEspecialidad = false;
         }
-
-    });
-
-    //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
-    $('#editar-especialidadMedico').on('change', function () {
-
-        if (isValidEspecialidad($(this))) {
-            $('#errorEditarEspecialidad').hide();
-        } else if ($(this).val() == '') {
-            $('#errorEditarEspecialidad').hide();
-        } else {
-            $('#errorEditarEspecialidad').show();
-        }
-
     });
 
     var isValidAddPosicion;
@@ -702,7 +728,7 @@ $(document).ready(function () {
 
             if (isValidName($('#agregar-nombreMedico')) && isValidLastName($('#agregar-primerApellidoMedico')) && $('#errorApellidoMaternoMedico').hide() && $('#errorCedulaMedicos').hide()
                     && isValidNumEmpleado($('#agregar-noEmpleadoMedico')) && isValidEmail($('#agregar-correoMedico')) && isValidPassword($('#agregar-passwordMedico'))
-                    && isValidPhoneNumber($('#agregar-telefonoMedico')) && isValidCheckbox($('#terminosMedico')) && isValidEspecialidad($('#agregar-especialidadMedico')) && isValidAddPosicion
+                    && isValidPhoneNumber($('#agregar-telefonoMedico')) && isValidCheckbox($('#terminosMedico')) && isValidAddEspecialidad && isValidAddPosicion
                     && areEqualPasswords($('#agregar-passwordMedico'), $('#agregar-password2Medico'))
                     && $('#errorCorreoRepetido').hide()) {
 
@@ -916,9 +942,6 @@ $(document).ready(function () {
             data: {
                 key: 'obtener-medico',
                 idMedicoAdministrador: idMedico
-            },
-            beforeSend: function () {
-
             },
             success: function (response) {
 
@@ -1146,6 +1169,8 @@ $(document).ready(function () {
     //GUARDA EL MEDICO DESDE EL MODAL
     $('#btn-guardarMedico').on('click', function () {
 
+        configureLoadingScreen($('.cargandoEditarMedico'));
+        
         if (!repiteCorreo) {
             $("#error-editarDatosRepetidos").hide();
 
@@ -1174,9 +1199,8 @@ $(document).ready(function () {
                 console.log("especiliad  " + especialidad);
                 console.log("cedula " + cedula);
 
-
                 console.log("Holi, hará el ajax");
-                configureLoadingScreen($('.cargandoEditarMedico'));
+
                 $.ajax({
 
                     url: 'AdministradorController',
@@ -1605,7 +1629,7 @@ $(document).ready(function () {
                 console.log(cedula);
                 console.log(password);
 
-                configureLoadingScreen($('.cargandoAgregarNavegadora'));
+                //configureLoadingScreen($('.cargandoAgregarNavegadora'));
                 $.ajax({
 
                     url: 'RegistraUsuarioController',
@@ -1731,7 +1755,7 @@ $(document).ready(function () {
                 console.log("cedula " + cedula);
 
                 console.log("Holi, hará el ajax");
-                configureLoadingScreen($('.cargandoEditarNavegadora'));
+                //configureLoadingScreen($('.cargandoEditarNavegadora'));
                 $.ajax({
 
                     url: 'AdministradorController',
@@ -1775,6 +1799,7 @@ $(document).ready(function () {
         }
     });
 
+
     /** ELIMINAR NAVEGADORA */
     $('body').on('click', '#btn-eliminarNavegadora', function () {
 
@@ -1782,7 +1807,7 @@ $(document).ready(function () {
 
         //Modal editar medicos
         swal({
-            title: "Estas seguro?",
+            title: "¿Estás seguro?",
             text: "Los datos se eliminarán y no podrás recuperarlos.",
             icon: "warning",
             buttons: true,
@@ -1794,14 +1819,24 @@ $(document).ready(function () {
 
                         $.ajax({
 
-                            url: 'AdminController',
+                            url: 'AdministradorController',
                             cache: false,
                             method: 'POST',
                             data: {
                                 key: 'eliminarNavegadora',
-                                idNavegadora: idNavegadora
+                                idCuenta: idNavegadora
                             },
                             success: function (response) {
+                                if (response == "error") {
+                                    alert("Error al cargar");
+                                } else {
+                                    console.log("Intentando redireccionar");
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
+                                }
+                            },
+                            error: function (xhr) {
 
                             }
 

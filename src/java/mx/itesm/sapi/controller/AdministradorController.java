@@ -26,6 +26,7 @@ import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
 import mx.itesm.sapi.bean.moduloGestionMedico.Posicion;
 import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.Login;
 import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
@@ -33,6 +34,7 @@ import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.moduloGestionMedico.PosicionServicioImpl;
+import mx.itesm.sapi.service.persona.LoginServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import org.apache.commons.io.IOUtils;
@@ -241,6 +243,53 @@ public class AdministradorController extends HttpServlet {
                     }
                 }
                 break;
+                
+                case "eliminarNavegadora": { 
+                    System.out.println("Si llego aqui navegadora");
+
+                            /**
+                             * Veo si tiene sesion iniciada
+                             */
+                            if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
+                                // request.setAttribute("status", "");
+                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+                                /**
+                                 * Lo redirecciono al login
+                                 */
+                                return;
+                            } else {
+                                /**
+                                 * Elimino su cuenta (borrrado logico)
+                                 */
+                                /**
+                                 * Obtengo los id's de su cuenta y login de la
+                                 * sesion
+                                 */
+                                int idCuenta = (int) sesion.getAttribute("idCuenta");
+                                System.out.println(idCuenta);
+
+                                CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+
+                                LoginServicioImpl loginServicio = new LoginServicioImpl();
+                                if (loginServicio.mostrarLoginIdCuenta(idCuenta) != null) {
+                                    Login login = loginServicio.mostrarLoginIdCuenta(idCuenta);
+                                    loginServicio.borradoLogicoLogin(login.getIdLogin());
+                                }
+
+                                if (cuentaServicio.mostrarCuenta(idCuenta) != null) {
+                                    Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+
+                                    cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
+                                }
+
+                                /**
+                                 * Al no tener cuenta se le redirecciona al
+                                 * login
+                                 */
+                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+
+                            }
+                }
 
                 case "ReportePoblacion": {
                     /**

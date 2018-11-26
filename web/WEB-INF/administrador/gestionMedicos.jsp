@@ -463,6 +463,8 @@
                                             </div>
                                             <input type="text" class="form-control" id="agregar-especialidadMedico"
                                                    placeholder="Especialidad" list="listEspecialidades">
+                                            <datalist id="listEspecialidades">                                            
+                                            </datalist>
                                         </div>
                                         <span class="text-danger" id="errorAgregarEspecialidad">Selecciona una especialidad válida.</span>
                                     </div>
