@@ -776,6 +776,8 @@
 
                                 </div>
 
+                                <!-- OMAR -->
+                                
                                 <!-- PANTALLA 3 -->
                                 <div id="pantalla3">
                                     <form>
@@ -802,7 +804,7 @@
                                         <div id="biopsia-contenedor">
 
 
-                                            <div class="form-group row mt-2 tuplaBiopsia" id="biopsiaInit">
+                                            <div class="form-group row mt-2 tuplaBiopsia" data-id="0" data-accion="agregar" id="biopsiaInit">
 
 
                                                 <!-- tipo biopsia -->
@@ -869,11 +871,12 @@
                                         <div id="rayos-contenedor">
 
 
-                                            <div class="form-group row mt-2 tuplaRayosX" id="rayosInit">
+                                            <div class="form-group row mt-2 tuplaRayosX" data-id="0" data-accion="agregar" id="rayosInit">
 
                                                 <!-- tipo rayos -->
                                                 <div class="col-5">
-                                                    <input name="tipo-RayosXAdded" type="text" class="form-control rayosX" placeholder="Tipo de rayos X">
+
+                                                    <input name="tipo-RayosXAdded" id="rayosX" type="text" class="form-control rayosX" placeholder="Tipo de rayos X">
                                                 </div>
 
                                                 <!-- fecha rayos -->
@@ -921,7 +924,7 @@
                                         <div id="ultrasonido-contenedor">
 
 
-                                            <div class="form-group row mt-2 tuplaUltrasonido" id="ultrasonidoInit">
+                                            <div class="form-group row mt-2 tuplaUltrasonido" data-id="0" data-accion="agregar" id="ultrasonidoInit">
 
                                                 <!-- parte del cuerpo -->
                                                 <div class="col-5">
@@ -972,7 +975,7 @@
 
                                         <div id="medicinaNuclear-contenedor">
 
-                                            <div class="form-group row mt-2 tuplaMedicinaNuclear" id="medicinaNuclearInit">
+                                            <div class="form-group row mt-2 tuplaMedicinaNuclear" data-id="0" data-accion="agregar" id="medicinaNuclearInit">
 
                                                 <!-- medicina nuclear -->
                                                 <div class="col-5">
@@ -1022,7 +1025,7 @@
 
                                         <div id="laboratorio-contenedor">
 
-                                            <div class="form-group row mt-2 tuplaLaboratorio" id="laboratorioInit">
+                                            <div class="form-group row mt-2 tuplaLaboratorio" data-id="0" data-accion="agregar" id="laboratorioInit">
 
                                                 <!-- fecha laboratorio-->
                                                 <div class="col-10">
@@ -1068,7 +1071,7 @@
 
                                         <div id="valoracion-contenedor">
 
-                                            <div class="form-group row mt-2 tuplaValoracion" id="valoracionInit">
+                                            <div class="form-group row mt-2 tuplaValoracion" data-id="0" data-accion="agregar" id="valoracionInit">
 
                                                 <!-- valoracion -->
                                                 <div class="col-5">
@@ -1119,7 +1122,7 @@
                                         <div id="espirometria-contenedor">
 
 
-                                            <div class="form-group row mt-2 tuplaEspirometria" id="espirometriaInit">
+                                            <div class="form-group row mt-2 tuplaEspirometria" data-id="0" data-accion="agregar" id="espirometriaInit">
 
 
                                                 <!-- fecha espirometria-->
@@ -1170,7 +1173,7 @@
 
                                         <div id="electrocardiograma-contenedor">
 
-                                            <div class="form-group row mt-2 tuplaElectrocardiograma" id="electrocardiogramaInit">
+                                            <div class="form-group row mt-2 tuplaElectrocardiograma" data-id="0" data-accion="agregar" id="electrocardiogramaInit">
 
                                                 <!-- fecha electrocardiograma-->
 
@@ -1219,7 +1222,7 @@
                                         <div id="ecocardiograma-contenedor">
 
 
-                                            <div class="form-group row mt-2 tuplaEcocardiograma" id="ecocardiogramaInit">
+                                            <div class="form-group row mt-2 tuplaEcocardiograma" data-id="0" data-accion="agregar" id="ecocardiogramaInit">
 
 
                                                 <!-- fecha ecocardiograma-->
@@ -1268,7 +1271,7 @@
 
                                         <div id="trabajoSocial-contenedor">
 
-                                            <div class="form-group row mt-2 tuplaTrabajoSocial" id="trabajoSocialInit">
+                                            <div class="form-group row mt-2 tuplaTrabajoSocial" data-id="0" data-accion="agregar" id="trabajoSocialInit">
 
                                                 <!-- fecha trabajo social-->
 
@@ -1316,7 +1319,7 @@
                                         <div id="programa-contenedor">
 
 
-                                            <div class="form-group row mt-2 tuplaPrograma" id="programaInit">
+                                            <div class="form-group row mt-2 tuplaPrograma" data-id="0" data-accion="agregar" id="programaInit">
 
 
                                                 <!-- programas -->
@@ -1371,7 +1374,7 @@
 
                                         <div id="otro-contenedor">
 
-                                            <div class="form-group row mt-2 tuplaOtro" id="otroInit">
+                                            <div class="form-group row mt-2 tuplaOtro" data-id="0" data-accion="agregar" id="otroInit">
 
                                                 <!-- fecha otro -->
 
@@ -1448,19 +1451,11 @@
 
                                                         <option disabled selected>Seleccione la decisiï¿½n</option>              
 
-<<<<<<< HEAD
-                                                        <option value="1" >Unidad funcional</option>
-                                                        <option value="2">Alta</option>
-                                                        <option value="3">Alta voluntaria</option>
-                                                        <option value="4">Finada</option>
-                                                        <option value="5">Perdida</option>
-=======
                                                         <option value=3>Unidad funcional</option>
                                                         <option value=8>Alta</option>
                                                         <option value=9>Alta voluntaria</option>
                                                         <option value=7>Finada</option>
                                                         
->>>>>>> origin/FamiliaPacelufos
                                                     </select>
                                                 </div>
                                             </div>

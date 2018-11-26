@@ -31,6 +31,7 @@ import javax.mail.internet.MimeMultipart;
 
 import java.util.List;
 
+//import java.util.Date;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -54,6 +55,7 @@ import mx.itesm.sapi.bean.diagnostico.EstadiajeTNM;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
 import mx.itesm.sapi.bean.gestionPaciente.Biopsia;
 import mx.itesm.sapi.bean.gestionPaciente.BloqueParafina;
+import mx.itesm.sapi.bean.gestionPaciente.CategoriaEstudio;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
 import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
@@ -67,6 +69,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Estudio;
 import mx.itesm.sapi.bean.gestionPaciente.Laminilla;
 
 import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
+import mx.itesm.sapi.bean.gestionPaciente.LugarDelCuerpo;
 import mx.itesm.sapi.bean.gestionPaciente.OtroResultadoPatologia;
 
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
@@ -87,6 +90,7 @@ import mx.itesm.sapi.service.diagnostico.EstadiajeTNMServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.BiopsiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.BloqueParafinaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.CategoriaEstudioServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
@@ -99,8 +103,10 @@ import mx.itesm.sapi.service.gestionPaciente.DocumentoEstudioServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
 
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.EstudioServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.LaminillaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.LlamadaCitaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.LugarDelCuerpoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.OtroResultadoPatologiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
@@ -666,15 +672,13 @@ public class NavegadoraController extends HttpServlet {
                         }
 
                         case "btn-save": {
+                            // OMAR
                             System.out.println("########### Formulario de la navegadora ###########");
 
-                            
-                         
-                            
-                            
                             /**
                              * DECLARACION DE ATRIBUTOS
                              */
+
 
 
                             int idPacientePotencial = 127;
@@ -833,15 +837,108 @@ public class NavegadoraController extends HttpServlet {
                                     citaEmpleado.setIdEmpleado(idEmpleado);
                                     citaEmpleado.setIdCita(idCita);
                                     citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleado);
+
+
+
+
+                            EstudioServicioImpl estudioServicio = new EstudioServicioImpl();
+                            Estudio estudio = new Estudio();
+                            
+                            DocumentoEstudioServicioImpl documentoEstudioServicio = new DocumentoEstudioServicioImpl();
+                            DocumentoEstudio documentoEstudio = new DocumentoEstudio();
+
+                            LugarDelCuerpoServicioImpl lugarDelCuerpoServicio = new LugarDelCuerpoServicioImpl();
+                            LugarDelCuerpo lugarDelCuerpo = new LugarDelCuerpo();
+                            
+                            CategoriaEstudioServicioImpl categoriaEstudioServicio = new CategoriaEstudioServicioImpl();
+                            CategoriaEstudio categoriaEstudio = new CategoriaEstudio();
+
+                            CitaServicioImpl citaServicio = new CitaServicioImpl();
+
+                            //PANTALLA 3
+                            JsonParser parser = new JsonParser();
+
+                            cita.setIdPaciente(idPacientePotencial);
+                            cita.setIdTipoCita(1); // Estudio
+                            cita.setIdEstadoCita(3); // Pendiente
+                            cita.setIdImportanciaCita(1); // 1
+                            cita.setIdMotivoConsulta(5); // Otro
+                            cita.setIdTipoTratamiento(1); // TO DO : Quimioterapia?
+                            cita.setIdPiso(1); // TO DO : 
+
+                            //BIOPSIAS                            
+                            String biopsias = request.getParameter("biopsias");
+                            System.out.println("Biopsias ".concat(biopsias));
+                            Object obj = parser.parse(biopsias);
+                            JsonArray array = (JsonArray) obj;
+                            for (int i = 0; i < array.size(); i++) {
+                                JsonObject json = (JsonObject) array.get(i);
+                                int id = Integer.parseInt(json.get("id").toString());
+                                String accion = json.get("accion").toString();
+                                accion = accion.substring(1, accion.length() - 1);
+                                String fecha = json.get("fecha").toString();
+                                fecha = fecha.substring(1, fecha.length() - 1);
+                                String tipo = json.get("tipo").toString();
+                                tipo = tipo.substring(1, tipo.length() - 1);
+                                String lugar = json.get("lugar").toString();
+                                lugar = lugar.substring(1, lugar.length() - 1);
+                                switch (accion) {
+                                    case "agregar": {
+                                        estudio = estudioServicio.mostrarEstudio(tipo);
+                                        if(estudio==null){break;}
+                                        cita.setIdEstudio(estudio.getIdEstudio());
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        int idCita = citaServicio.agregarCita(cita);
+                                        
+                                        lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(lugar);
+                                        if(lugarDelCuerpo==null){
+                                            lugarDelCuerpo = new LugarDelCuerpo();
+                                            lugarDelCuerpo.setNombre(lugar);
+                                            lugarDelCuerpoServicio.agregarLugarDelCuerpo(lugarDelCuerpo);
+                                            lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(lugar);
+                                        }                                      
+                                        documentoEstudio.setIdCita(idCita);
+                                        documentoEstudio.setIdPaciente(idPacientePotencial);
+                                        documentoEstudio.setIdEstudio(estudio.getIdEstudio());
+                                        documentoEstudio.setIdEstadoEstudio(1);  
+                                        documentoEstudio.setIdBirads(null);
+                                        documentoEstudio.setIdLugarDelCuerpo(lugarDelCuerpo.getIdLugarDelCuerpo());
+                                        documentoEstudioServicio.agregarDocumentoEstudio(documentoEstudio);                                        
+                                        break;
+                                    }
+                                    case "actualizar": {
+                                        cita.setIdCita(id);
+                                        estudio = estudioServicio.mostrarEstudio(tipo);
+                                        if(estudio==null){break;}
+                                        cita.setIdEstudio(estudio.getIdEstudio());
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.actualizarCita(cita);
+                                        
+                                        lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(lugar);
+                                        if(lugarDelCuerpo==null){
+                                            lugarDelCuerpo = new LugarDelCuerpo();
+                                            lugarDelCuerpo.setNombre(lugar);
+                                            lugarDelCuerpoServicio.agregarLugarDelCuerpo(lugarDelCuerpo);
+                                            lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(lugar);
+                                        }                                      
+                                        documentoEstudio.setIdCita(id);
+                                        documentoEstudio.setIdPaciente(idPacientePotencial);
+                                        documentoEstudio.setIdEstudio(estudio.getIdEstudio());
+                                        documentoEstudio.setIdEstadoEstudio(1);  
+                                        documentoEstudio.setIdBirads(null);
+                                        documentoEstudio.setIdLugarDelCuerpo(lugarDelCuerpo.getIdLugarDelCuerpo());
+                                        documentoEstudioServicio.agregarDocumentoEstudio(documentoEstudio);
+                                        break;
+                                    }
+                                    case "eliminar": {
+                                        citaServicio.borradoLogicoCita(id);
+                                        break;
+                                    }
+
                                 }
-                                //citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleado);
-
-                                System.out.println("Adscrito Presente ".concat(String.valueOf(adscritoPresente)));
-
-                            } else {
-                                System.out.println("Sin médico adscrito");
                             }
 
+<<<<<<< HEAD
                             //LISTO
                             //MEDICO RADIOLOGO
                             String medicoRadiologoRequest = request.getParameter("medico-radiologo");
@@ -1029,13 +1126,113 @@ public class NavegadoraController extends HttpServlet {
                                     pacienteAlergia.setIdAlergia(1);
                                     pacienteAlergia.setAlergia(alergias);
                                     pacienteAlergiaServicioImpl.agregarPacienteAlergia(pacienteAlergia);
+=======
+                            //RAYOS X
+                            String rayosxs = request.getParameter("rayosxs");
+                            System.out.println("rayosxs ".concat(rayosxs));
+                            Object objRayosx = parser.parse(rayosxs);
+                            JsonArray arrayRayosx = (JsonArray) objRayosx;
+                            for (int i = 0; i < arrayRayosx.size(); i++) {
+                                JsonObject json = (JsonObject) arrayRayosx.get(i);
+                                int id = Integer.parseInt(json.get("id").toString());
+                                String accion = json.get("accion").toString();
+                                accion = accion.substring(1, accion.length() - 1);
+                                String fecha = json.get("fecha").toString();
+                                fecha = fecha.substring(1, fecha.length() - 1);
+                                String tipo = json.get("tipo").toString();
+                                tipo = tipo.substring(1, tipo.length() - 1);
+                                switch (accion) {
+                                    case "agregar": {
+                                        estudio = estudioServicio.mostrarEstudio(tipo);
+                                        if(estudio==null){break;}
+                                        cita.setIdEstudio(estudio.getIdEstudio());
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.agregarCita(cita);
+                                        break;
+                                    }
+                                    case "actualizar": {
+                                        cita.setIdCita(id);
+                                        estudio = estudioServicio.mostrarEstudio(tipo);
+                                        if(estudio==null){break;}
+                                        cita.setIdEstudio(estudio.getIdEstudio());
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.actualizarCita(cita);
+                                        break;
+                                    }
+                                    case "eliminar": {
+                                        citaServicio.borradoLogicoCita(id);
+                                        break;
+                                    }
                                 }
-
-                            } else {
-
-                                System.out.println("Sin alergias");
                             }
 
+                            //Ultrasonidos
+                            String ultrasonidos = request.getParameter("ultrasonidos");
+                            System.out.println("ultrasonidos ".concat(ultrasonidos));
+                            Object objUltrasonidos = parser.parse(ultrasonidos);
+                            JsonArray arrayUltrasonidos = (JsonArray) objUltrasonidos;
+                            for (int i = 0; i < arrayUltrasonidos.size(); i++) {
+                                JsonObject json = (JsonObject) arrayUltrasonidos.get(i);
+                                int id = Integer.parseInt(json.get("id").toString());
+                                String accion = json.get("accion").toString();
+                                accion = accion.substring(1, accion.length() - 1);
+                                String fecha = json.get("fecha").toString();
+                                fecha = fecha.substring(1, fecha.length() - 1);
+                                String parte = json.get("parte").toString();
+                                parte = parte.substring(1, parte.length() - 1);
+                                switch (accion) {
+                                    case "agregar": {
+                                        cita.setIdEstudio(27);
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        int idCita = citaServicio.agregarCita(cita);
+                                        
+                                        lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(parte);
+                                        if(lugarDelCuerpo==null){
+                                            lugarDelCuerpo = new LugarDelCuerpo();
+                                            lugarDelCuerpo.setNombre(parte);
+                                            lugarDelCuerpoServicio.agregarLugarDelCuerpo(lugarDelCuerpo);
+                                            lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(parte);
+                                        }                                      
+                                        documentoEstudio.setIdCita(idCita);
+                                        documentoEstudio.setIdPaciente(idPacientePotencial);
+                                        documentoEstudio.setIdEstudio(estudio.getIdEstudio());
+                                        documentoEstudio.setIdEstadoEstudio(1);  
+                                        documentoEstudio.setIdBirads(null);
+                                        documentoEstudio.setIdLugarDelCuerpo(lugarDelCuerpo.getIdLugarDelCuerpo());
+                                        documentoEstudioServicio.agregarDocumentoEstudio(documentoEstudio);
+                                        break;
+                                    }
+                                    case "actualizar": {
+                                        cita.setIdCita(id);
+                                        cita.setIdEstudio(27);
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.actualizarCita(cita);
+                                        
+                                        lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(parte);
+                                        if(lugarDelCuerpo==null){
+                                            lugarDelCuerpo = new LugarDelCuerpo();
+                                            lugarDelCuerpo.setNombre(parte);
+                                            lugarDelCuerpoServicio.agregarLugarDelCuerpo(lugarDelCuerpo);
+                                            lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(parte);
+                                        }                                      
+                                        documentoEstudio.setIdCita(id);
+                                        documentoEstudio.setIdPaciente(idPacientePotencial);
+                                        documentoEstudio.setIdEstudio(estudio.getIdEstudio());
+                                        documentoEstudio.setIdEstadoEstudio(1);  
+                                        documentoEstudio.setIdBirads(null);
+                                        documentoEstudio.setIdLugarDelCuerpo(lugarDelCuerpo.getIdLugarDelCuerpo());
+                                        documentoEstudioServicio.agregarDocumentoEstudio(documentoEstudio);
+                                        break;
+                                    }
+                                    case "eliminar": {
+                                        citaServicio.borradoLogicoCita(id);
+                                        break;
+                                    }
+>>>>>>> origin/Omar
+                                }
+                            }
+
+<<<<<<< HEAD
                             //LISTO
                             //ESTADO HORMONAL
                             int estadoHormonal = -1;
@@ -1102,12 +1299,48 @@ public class NavegadoraController extends HttpServlet {
                                         System.out.println("Nombre seguro " + (nombreSeguro));
                                     } else {
                                         System.out.println("Sin seguro");
+=======
+                            //Medicina Nuclear
+                            String medicinasNucleares = request.getParameter("medicinasNucleares");
+                            System.out.println("medicinasNucleares ".concat(medicinasNucleares));
+                            Object objMedicinasNucleares = parser.parse(medicinasNucleares);
+                            JsonArray arrayMedicinasNucleares = (JsonArray) objMedicinasNucleares;
+                            for (int i = 0; i < arrayMedicinasNucleares.size(); i++) {
+                                JsonObject json = (JsonObject) arrayMedicinasNucleares.get(i);
+                                int id = Integer.parseInt(json.get("id").toString());
+                                String accion = json.get("accion").toString();
+                                accion = accion.substring(1, accion.length() - 1);
+                                String fecha = json.get("fecha").toString();
+                                fecha = fecha.substring(1, fecha.length() - 1);
+                                String medicinaNuclear = json.get("medicinaNuclear").toString();
+                                medicinaNuclear = medicinaNuclear.substring(1, medicinaNuclear.length() - 1);
+                                switch (accion) {
+                                    case "agregar": {
+                                        estudio = estudioServicio.mostrarEstudio(medicinaNuclear);
+                                        if(estudio==null){break;}
+                                        cita.setIdEstudio(estudio.getIdEstudio());
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.agregarCita(cita);
+                                        break;
                                     }
-
+                                    case "actualizar": {
+                                        cita.setIdCita(id);
+                                        estudio = estudioServicio.mostrarEstudio(medicinaNuclear);
+                                        if(estudio==null){break;}
+                                        cita.setIdEstudio(estudio.getIdEstudio());
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.actualizarCita(cita);
+                                        break;
+                                    }
+                                    case "eliminar": {
+                                        citaServicio.borradoLogicoCita(id);
+                                        break;
+>>>>>>> origin/Omar
+                                    }
                                 }
-
                             }
 
+<<<<<<< HEAD
                             //LISTO
                             //MASTOGRAFIA PREVIA
                             //Se agrega en documentoEstudio
@@ -1824,10 +2057,181 @@ public class NavegadoraController extends HttpServlet {
                                     JsonObject json = (JsonObject) arrayLlamadas.get(i);
                                     System.out.println("json ".concat(json.toString()));
 
+=======
+                            //Laboratorios
+                            String laboratorios = request.getParameter("laboratorios");
+                            System.out.println("laboratorios ".concat(laboratorios));
+                            Object objLaboratorios = parser.parse(laboratorios);
+                            JsonArray arrayLaboratorios = (JsonArray) objLaboratorios;
+                            for (int i = 0; i < arrayLaboratorios.size(); i++) {
+                                JsonObject json = (JsonObject) arrayLaboratorios.get(i);
+                                int id = Integer.parseInt(json.get("id").toString());
+                                String accion = json.get("accion").toString();
+                                accion = accion.substring(1, accion.length() - 1);
+                                String fecha = json.get("fecha").toString();
+                                fecha = fecha.substring(1, fecha.length() - 1);
+                                switch (accion) {
+                                    case "agregar": {
+                                        cita.setIdEstudio(25); // TO DO
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.agregarCita(cita);
+                                        break;
+                                    }
+                                    case "actualizar": {
+                                        cita.setIdCita(id);
+                                        cita.setIdEstudio(25); // TO DO
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.actualizarCita(cita);
+                                        break;
+                                    }
+                                    case "eliminar": {
+                                        citaServicio.borradoLogicoCita(id);
+                                        break;
+                                    }
+                                }
+                            }
+
+                            //Valoraciones
+                            String valoraciones = request.getParameter("valoraciones");
+                            System.out.println("valoraciones ".concat(valoraciones));
+                            Object objValoraciones = parser.parse(valoraciones);
+                            JsonArray arrayValoraciones = (JsonArray) objValoraciones;
+                            for (int i = 0; i < arrayValoraciones.size(); i++) {
+                                JsonObject json = (JsonObject) arrayValoraciones.get(i);
+                                int id = Integer.parseInt(json.get("id").toString());
+                                String accion = json.get("accion").toString();
+                                accion = accion.substring(1, accion.length() - 1);
+                                String fecha = json.get("fecha").toString();
+                                fecha = fecha.substring(1, fecha.length() - 1);
+                                String valoracion = json.get("valoracion").toString();
+                                valoracion = valoracion.substring(1, valoracion.length() - 1);
+                                switch (accion) {
+                                    case "agregar": {
+                                        estudio = estudioServicio.mostrarEstudio(valoracion);
+                                        if(estudio==null){break;}
+                                        cita.setIdEstudio(estudio.getIdEstudio());
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.agregarCita(cita);
+                                        break;
+                                    }
+                                    case "actualizar": {
+                                        cita.setIdCita(id);
+                                        estudio = estudioServicio.mostrarEstudio(valoracion);
+                                        if(estudio==null){break;}
+                                        cita.setIdEstudio(estudio.getIdEstudio());
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.actualizarCita(cita);
+                                        break;
+                                    }
+                                    case "eliminar": {
+                                        citaServicio.borradoLogicoCita(id);
+                                        break;
+                                    }
+                                }
+                            }
+
+                            //Espirometrias
+                            String espirometrias = request.getParameter("espirometrias");
+                            System.out.println("espirometrias ".concat(espirometrias));
+                            Object objEspirometrias = parser.parse(espirometrias);
+                            JsonArray arrayEspirometrias = (JsonArray) objEspirometrias;
+                            for (int i = 0; i < arrayEspirometrias.size(); i++) {
+                                JsonObject json = (JsonObject) arrayEspirometrias.get(i);
+                                int id = Integer.parseInt(json.get("id").toString());
+                                String accion = json.get("accion").toString();
+                                accion = accion.substring(1, accion.length() - 1);
+                                String fecha = json.get("fecha").toString();
+                                fecha = fecha.substring(1, fecha.length() - 1);
+                                switch (accion) {
+                                    case "agregar": {
+                                        cita.setIdEstudio(30); // TO DO
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.agregarCita(cita);
+                                        break;
+                                    }
+                                    case "actualizar": {
+                                        cita.setIdCita(id);
+                                        cita.setIdEstudio(30); // TO DO
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.actualizarCita(cita);
+                                        break;
+                                    }
+                                    case "eliminar": {
+                                        citaServicio.borradoLogicoCita(id);
+                                        break;
+                                    }
+                                }
+                            }
+
+                            //Electrocardiogramas
+                            String electrocardiogramas = request.getParameter("electrocardiogramas");
+                            System.out.println("electrocardiogramas ".concat(electrocardiogramas));
+                            Object objElectrocardiogramas = parser.parse(electrocardiogramas);
+                            JsonArray arrayElectrocardiogramas = (JsonArray) objElectrocardiogramas;
+                            for (int i = 0; i < arrayElectrocardiogramas.size(); i++) {
+                                JsonObject json = (JsonObject) arrayElectrocardiogramas.get(i);
+                                int id = Integer.parseInt(json.get("id").toString());
+                                String accion = json.get("accion").toString();
+                                accion = accion.substring(1, accion.length() - 1);
+                                String fecha = json.get("fecha").toString();
+                                fecha = fecha.substring(1, fecha.length() - 1);
+                                switch (accion) {
+                                    case "agregar": {
+                                        cita.setIdEstudio(31); // TO DO
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.agregarCita(cita);
+                                        break;
+                                    }
+                                    case "actualizar": {
+                                        cita.setIdCita(id);
+                                        cita.setIdEstudio(31); // TO DO
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.actualizarCita(cita);
+                                        break;
+                                    }
+                                    case "eliminar": {
+                                        citaServicio.borradoLogicoCita(id);
+                                        break;
+                                    }
+                                }
+                            }
+
+                            //Ecocardiogramas
+                            String ecocardiogramas = request.getParameter("ecocardiogramas");
+                            System.out.println("ecocardiogramas ".concat(ecocardiogramas));
+                            Object objEcocardiogramas = parser.parse(ecocardiogramas);
+                            JsonArray arrayEcocardiogramas = (JsonArray) objEcocardiogramas;
+                            for (int i = 0; i < arrayEcocardiogramas.size(); i++) {
+                                JsonObject json = (JsonObject) arrayEcocardiogramas.get(i);
+                                int id = Integer.parseInt(json.get("id").toString());
+                                String accion = json.get("accion").toString();
+                                accion = accion.substring(1, accion.length() - 1);
+                                String fecha = json.get("fecha").toString();
+                                fecha = fecha.substring(1, fecha.length() - 1);
+                                switch (accion) {
+                                    case "agregar": {
+                                        cita.setIdEstudio(32); // TO DO
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.agregarCita(cita);
+                                        break;
+                                    }
+                                    case "actualizar": {
+                                        cita.setIdCita(id);
+                                        cita.setIdEstudio(32); // TO DO
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.actualizarCita(cita);
+                                        break;
+                                    }
+                                    case "eliminar": {
+                                        citaServicio.borradoLogicoCita(id);
+                                        break;
+                                    }
+>>>>>>> origin/Omar
                                 }
                             }
                             System.out.println("se Llamo ".concat(String.valueOf(llamadaPaciente)));
 
+<<<<<<< HEAD
                             //****** ComentarioCita*********
                             int idCitaPreConsulta = 0;
                             idCitaPreConsulta = (citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial)).getIdCita();
@@ -2202,6 +2606,133 @@ public class NavegadoraController extends HttpServlet {
                             break;
                         }
 
+=======
+                            //Trabajos sociales
+                            String trabajosSociales = request.getParameter("trabajosSociales");
+                            System.out.println("trabajosSociales ".concat(trabajosSociales));
+                            Object objTrabajosSociales = parser.parse(trabajosSociales);
+                            JsonArray arrayTrabajosSociales = (JsonArray) objTrabajosSociales;
+                            for (int i = 0; i < arrayTrabajosSociales.size(); i++) {
+                                JsonObject json = (JsonObject) arrayTrabajosSociales.get(i);
+                                int id = Integer.parseInt(json.get("id").toString());
+                                String accion = json.get("accion").toString();
+                                accion = accion.substring(1, accion.length() - 1);
+                                String fecha = json.get("fecha").toString();
+                                fecha = fecha.substring(1, fecha.length() - 1);
+                                switch (accion) {
+                                    case "agregar": {
+                                        cita.setIdEstudio(33); // TO DO
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.agregarCita(cita);
+                                        break;
+                                    }
+                                    case "actualizar": {
+                                        cita.setIdCita(id);
+                                        cita.setIdEstudio(1); // TO DO
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.actualizarCita(cita);
+                                        break;
+                                    }
+                                    case "eliminar": {
+                                        citaServicio.borradoLogicoCita(id);
+                                        break;
+                                    }
+                                }
+                            }
+
+                            //Programas
+                            String programas = request.getParameter("programas");
+                            System.out.println("programas ".concat(programas));
+                            Object objProgramas = parser.parse(programas);
+                            JsonArray arrayProgramas = (JsonArray) objProgramas;
+                            for (int i = 0; i < arrayProgramas.size(); i++) {
+                                JsonObject json = (JsonObject) arrayProgramas.get(i);
+                                int id = Integer.parseInt(json.get("id").toString());
+                                String accion = json.get("accion").toString();
+                                accion = accion.substring(1, accion.length() - 1);
+                                String fecha = json.get("fecha").toString();
+                                fecha = fecha.substring(1, fecha.length() - 1);
+                                String programa = json.get("programa").toString();
+                                programa = programa.substring(1, programa.length() - 1);
+                                switch (accion) {
+                                    case "agregar": {
+                                        estudio = estudioServicio.mostrarEstudio(programa);
+                                        if(estudio==null){break;}
+                                        cita.setIdEstudio(estudio.getIdEstudio());
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.agregarCita(cita);
+                                        break;
+                                    }
+                                    case "actualizar": {
+                                        cita.setIdCita(id);
+                                        estudio = estudioServicio.mostrarEstudio(programa);
+                                        if(estudio==null){break;}
+                                        cita.setIdEstudio(estudio.getIdEstudio());
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.actualizarCita(cita);
+                                        break;
+                                    }
+                                    case "eliminar": {
+                                        citaServicio.borradoLogicoCita(id);
+                                        break;
+                                    }
+                                }
+                            }
+
+                            //Otros Estudios
+                            String otrosEstudios = request.getParameter("otrosEstudios");
+                            System.out.println("otrosEstudios ".concat(otrosEstudios));
+                            Object objOtrosEstudios = parser.parse(otrosEstudios);
+                            JsonArray arrayOtrosEstudios = (JsonArray) objOtrosEstudios;
+                            for (int i = 0; i < arrayOtrosEstudios.size(); i++) {
+                                JsonObject json = (JsonObject) arrayOtrosEstudios.get(i);
+                                int id = Integer.parseInt(json.get("id").toString());
+                                String accion = json.get("accion").toString();
+                                accion = accion.substring(1, accion.length() - 1);
+                                String fecha = json.get("fecha").toString();
+                                fecha = fecha.substring(1, fecha.length() - 1);
+                                String otroEstudio = json.get("otroEstudio").toString();
+                                otroEstudio = otroEstudio.substring(1, otroEstudio.length() - 1);
+                                switch (accion) {
+                                    case "agregar": {
+                                        estudio = estudioServicio.mostrarEstudio(otroEstudio);
+                                        if(estudio==null){
+                                            estudio = new Estudio();
+                                            estudio.setNombre(otroEstudio);
+                                            estudio.setIdCategoriaEstudio(7); //Otro
+                                            estudioServicio.agregarEstudio(estudio);
+                                            estudio = estudioServicio.mostrarEstudio(otroEstudio);
+                                        }
+                                        cita.setIdEstudio(estudio.getIdEstudio());
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.agregarCita(cita);
+                                        break;
+                                    }
+                                    case "actualizar": {
+                                        cita.setIdCita(id);
+                                        estudio = estudioServicio.mostrarEstudio(otroEstudio);
+                                        if(estudio==null){
+                                            estudio.setNombre(otroEstudio);
+                                            estudio.setIdCategoriaEstudio(7); //Otro
+                                            estudioServicio.agregarEstudio(estudio);
+                                            estudio = estudioServicio.mostrarEstudio(otroEstudio);
+                                        }
+                                        cita.setIdEstudio(estudio.getIdEstudio());
+                                        cita.setFechaProgramada(fechaStringToTimestamp(fecha));
+                                        citaServicio.actualizarCita(cita);
+                                        break;
+                                    }
+                                    case "eliminar": {
+                                        citaServicio.borradoLogicoCita(id);
+                                        break;
+                                    }
+                                }
+                            }
+
+                            break;
+                        }
+
+>>>>>>> origin/Omar
                         case "autocompleteBiopsia": {
 
                             AutocompletadoServicioImpl autocompletadoServicioImpl = new AutocompletadoServicioImpl();
@@ -2295,6 +2826,21 @@ public class NavegadoraController extends HttpServlet {
             }
 
         }
+<<<<<<< HEAD
+=======
+    }
+
+    public Timestamp fechaStringToTimestamp(String fecha) {
+        Timestamp timestamp = null;        
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date date = dateFormat.parse(fecha);
+            timestamp = new Timestamp(date.getTime());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return timestamp;
+>>>>>>> origin/Omar
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

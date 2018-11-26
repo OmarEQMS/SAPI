@@ -114,12 +114,13 @@ public class CitaServicioImpl implements CitaServicio {
         return citas;
     }
 
+    // OMAR
     @Override
     public int agregarCita(Cita cita) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarCita(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL agregarCita(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int id = -1;
 
         try {
@@ -130,43 +131,17 @@ public class CitaServicioImpl implements CitaServicio {
             cstmt.setInt(2, cita.getIdPaciente());
             cstmt.setInt(3, cita.getIdEstadoCita());
             cstmt.setInt(4, cita.getIdImportanciaCita());
-            cstmt.setInt(5, cita.getIdTipoTratamiento());
-            cstmt.setInt(6, cita.getIdEstudio());
-            cstmt.setInt(7, cita.getIdMotivoConsulta());
 
-            try {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-                Date parsedDate = dateFormat.parse(cita.getFechaProgramada().toString());
-                Timestamp fechaProgramada = new java.sql.Timestamp(parsedDate.getTime());
-                cstmt.setTimestamp(8, fechaProgramada);
-            } catch (Exception e) { //this generic but you can control nother types of exception
-                // look the origin of excption 
-            }
+            cstmt.setInt(5, cita.getIdPiso());
+            cstmt.setInt(6, cita.getIdTipoTratamiento());
+            cstmt.setInt(7, cita.getIdEstudio());
+            cstmt.setInt(8, cita.getIdMotivoConsulta());
+            cstmt.setTimestamp(9, cita.getFechaProgramada());
+            cstmt.setTimestamp(10, cita.getFechaReal());
 
-            try {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-                Date parsedDate = dateFormat.parse(cita.getFechaReal().toString());
-                Timestamp fechaReal = new java.sql.Timestamp(parsedDate.getTime());
-                cstmt.setTimestamp(9, fechaReal);
-            } catch (Exception e) { //this generic but you can control nother types of exception
-                // look the origin of excption 
-            }
-
-            cstmt.setBytes(10, cita.getArchivo());
-            cstmt.setString(11, cita.getHospitalProcedencia());
-
-            try {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-                Date parsedDate = dateFormat.parse(cita.getFechaSolicitud().toString());
-                Timestamp fechaSolicitud = new java.sql.Timestamp(parsedDate.getTime());
-                cstmt.setTimestamp(12, fechaSolicitud);
-            } catch (Exception e) { //this generic but you can control nother types of exception
-                // look the origin of excption 
-            }
 
             rs = cstmt.executeQuery();
             rs.next();
-
             id = rs.getInt(1);
 
             conn.close();
@@ -210,6 +185,7 @@ public class CitaServicioImpl implements CitaServicio {
         return exito;
     }
 
+    // OMAR
     @Override
     public boolean actualizarCita(Cita cita) {
         Connection conn;
@@ -226,6 +202,7 @@ public class CitaServicioImpl implements CitaServicio {
             cstmt.setInt(3, cita.getIdPaciente());
             cstmt.setInt(4, cita.getIdEstadoCita());
             cstmt.setInt(5, cita.getIdImportanciaCita());
+
             cstmt.setInt(6, cita.getIdPiso());
             cstmt.setInt(7, cita.getIdTipoTratamiento());
             cstmt.setInt(8, cita.getIdEstudio());
@@ -267,6 +244,7 @@ public class CitaServicioImpl implements CitaServicio {
                 // look the origin of excption 
             }
 */
+
             rs = cstmt.executeQuery();
             rs.next();
             exito = rs.getBoolean(1);
@@ -649,6 +627,7 @@ public class CitaServicioImpl implements CitaServicio {
         }
         return cita;
     }
+
 
     @Override
     public boolean actualizarCitaFecha(Cita cita) {

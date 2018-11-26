@@ -105,6 +105,46 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
         }
         return documentoEstudio;
     }
+    
+    
+    public DocumentoEstudio mostrarDocumentoEstudioPorCita(int idCita) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarDocumentoEstudioPorCita(?)";
+        DocumentoEstudio documentoEstudio = null;
+
+        try {
+            conn = Conexion.getConnection();
+            documentoEstudio = new DocumentoEstudio();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idCita);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            documentoEstudio.setIdDocumentoEstudio(rs.getInt("idDocumentoEstudio"));
+            documentoEstudio.setIdEstudio(rs.getInt("idEstudio"));
+            documentoEstudio.setIdEstadoEstudio(rs.getInt("idEstadoEstudio"));
+            documentoEstudio.setIdPaciente(rs.getInt("idPaciente"));
+            documentoEstudio.setIdBirads(rs.getInt("idBirads"));
+            documentoEstudio.setArchivo(rs.getBytes("archivo"));
+            documentoEstudio.setPrevio(rs.getInt("previo"));
+            documentoEstudio.setFechaEstudioPrevio(rs.getDate("fechEstudioPrevio"));
+            documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
+            documentoEstudio.setIdCita(rs.getInt("idCita"));
+            
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            documentoEstudio = null;
+        }
+        return documentoEstudio;
+    }
 
     @Override
     public List<DocumentoEstudio> mostrarDocumentoEstudio() {
@@ -150,13 +190,17 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
         }
         return documentoEstudios;
     }
+    
+    
 
     @Override
     public int agregarDocumentoEstudio(DocumentoEstudio documentoEstudio) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL agregarDocumentoEstudio(?,?,?,?,?,?,?,?,?,?)";
+
+        String stProcedure = "CALL agregarDocumentoEstudio(?,?,?,?,?,?,?,?,?)";
+
         int id = -1;
 
         try {
@@ -166,14 +210,22 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             cstmt.setInt(1, documentoEstudio.getIdEstudio());
             cstmt.setInt(2, estadoEstudioAprobado);
             cstmt.setInt(3, documentoEstudio.getIdPaciente());
-            cstmt.setInt(4, documentoEstudio.getIdBirads());
+
+            cstmt.setInt(4, documentoEstudio.getIdBirads());            
+            System.out.println(cstmt.toString());
+
+            if(documentoEstudio.getIdBirads()!=null){
+                cstmt.setInt(4, documentoEstudio.getIdBirads());
+            }else{
+                cstmt.setNull(4, java.sql.Types.INTEGER);
+            }
             cstmt.setInt(5, documentoEstudio.getIdLugarDelCuerpo());
             cstmt.setBytes(6, documentoEstudio.getArchivo());
             cstmt.setInt(7, documentoEstudio.getPrevio());
-            cstmt.setInt(8, documentoEstudio.getEstatus());
-            cstmt.setDate(9, documentoEstudio.getFechaEstudioResultado());
-            cstmt.setInt(10, documentoEstudio.getIdCita());
-            System.out.println(cstmt.toString());
+            cstmt.setDate(8, documentoEstudio.getFechaEstudioPrevio());
+            cstmt.setInt(9, documentoEstudio.getIdCita());
+            
+
             rs = cstmt.executeQuery();
             rs.next();
 
