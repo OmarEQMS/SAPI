@@ -729,7 +729,7 @@ public class NavegadoraController extends HttpServlet {
 
                             OtroResultadoPatologiaServicioImpl otroResultadoServicio = new OtroResultadoPatologiaServicioImpl();
                             
-                           /* 
+                           
                             //Apartado para registrar interacción navegadora con Paciente
                             
                             PacienteNavegadoraServicioImpl pacienteNavegadoraServicioImpl = new PacienteNavegadoraServicioImpl();
@@ -741,7 +741,7 @@ public class NavegadoraController extends HttpServlet {
                             
                             pacienteNavegadoraServicioImpl.agregarPacienteNavegadora(pacienteNavegadora);
                             
-*/
+
                             /**
                              * NUEVOS SERVICIOS (OMAR)
                              */
