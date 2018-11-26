@@ -14,6 +14,7 @@ import java.util.List;
 import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
 import mx.itesm.sapi.bean.moduloGestionMedico.Identificadores;
 import mx.itesm.sapi.bean.moduloGestionMedico.RestringirEmpleado;
+import mx.itesm.sapi.bean.moduloGestionMedico.TablaAdministradorAdministrador;
 import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 import mx.itesm.sapi.util.Conexion;
 
@@ -363,6 +364,49 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
         }
 
         return medico;                
+    }
+
+    @Override
+    public List<TablaAdministradorAdministrador> mostrarListaAdminAdministrador() {
+        Connection conn = Conexion.getConnection();
+
+        List<TablaAdministradorAdministrador> administradores = new ArrayList<>();
+        CallableStatement cstmt;
+
+        try {
+
+            cstmt = conn.prepareCall("CALL mostrarAdministradores()");
+            ResultSet rs = cstmt.executeQuery();
+            TablaAdministradorAdministrador administrador;
+
+            while (rs.next()) {
+
+                administrador = new TablaAdministradorAdministrador();
+                
+                administrador.setIdEmpleado(rs.getInt(1));
+                administrador.setIdCuenta(rs.getInt(2));
+                administrador.setIdPersona(rs.getInt(3));
+                administrador.setNombre(rs.getString(4));
+                administrador.setPrimerApellido(rs.getString(5));
+                administrador.setSegundoApellido(rs.getString(6));
+                administrador.setCorreo(rs.getString(7));
+                administrador.setTelefono(rs.getString(8));
+                administrador.setNoEmpleado(rs.getString(9));     
+                administrador.setNombreEspecialidad(rs.getString(10));
+                administrador.setCedulaProfesional(rs.getString(11));
+                
+                administradores.add(administrador);
+            }
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (Exception e) {
+            System.out.println("Estoy en el catch de mostrar lista administradores ".concat(e.getMessage()));
+        }
+
+        return administradores;
     }
 
 }

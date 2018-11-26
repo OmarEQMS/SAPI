@@ -45,6 +45,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Seguro;
 import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.UnionTratamientoPaciente;
+import mx.itesm.sapi.bean.moduloGestionMedico.TablaAdministradorAdministrador;
 import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Direccion;
@@ -262,6 +263,11 @@ public class FrontController extends HttpServlet {
                                 }
                                 case "administrador/gestionarAdministradores.jsp":
                                 {
+                                    //Lista de pacientes
+                                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                                    List<TablaAdministradorAdministrador> administradores = empleadoServicioImpl.mostrarListaAdminAdministrador();
+                                    request.setAttribute("ListaAdministradoresAdmistrador", administradores);
+                                    
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     break;
                                 }
