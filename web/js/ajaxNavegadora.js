@@ -496,11 +496,11 @@ $(document).ready(function () {
             }, success: function (response) {
                 swal({
                     title: 'Buen Trabajo',
-                    text: "Cuenta registrada correctamente",
+                    text: "Cuenta editada correctamente",
                     type: 'success',
                     confirmButtonColor: '#3085d6',
                     confirmButtonText: 'Ok'
-                })
+                });
             }
 
         });

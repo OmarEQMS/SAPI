@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.Base64;
 import java.util.List;
 import javafx.print.Printer;
@@ -169,7 +170,7 @@ public class AdministradorController extends HttpServlet {
                     PersonaServicioImpl personaServicio = new PersonaServicioImpl();
 
                     InformacionGeneralPersona datos = personaServicio.mostrarInformacionGeneralPersona(idPaciente);
-                    
+
                     System.out.println("estadoCivil: " + datos.getIdEstadoCivil());
                     System.out.println("estado: " + datos.getIdEstado());
 
@@ -387,6 +388,54 @@ public class AdministradorController extends HttpServlet {
                     }
 
                     break;
+                }
+
+                case "actualizar-paciente": {
+
+                    int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
+
+                    InformacionGeneralPersona datos = new InformacionGeneralPersona();
+
+                    String nombre = request.getParameter("nombre");
+                    String apellido1 = request.getParameter("apellido1");
+                    String apellido2 = request.getParameter("apellido2");
+                    String curp = request.getParameter("curp");
+                    String fechaNacimiento = request.getParameter("fechaNacimiento");
+                    String usuario = request.getParameter("usuario");
+                    int estadoCivil = Integer.parseInt(request.getParameter("estadoCivil"));
+                    String calle = request.getParameter("calle");
+                    String noInterior = request.getParameter("noInterior");
+                    String noExterior = request.getParameter("noExterior");
+                    int estado = Integer.parseInt(request.getParameter("estado"));
+                    int municipio = Integer.parseInt(request.getParameter("municipio"));
+                    String telefono = request.getParameter("telefono");
+                    String correo = request.getParameter("correo");
+                    String colonia = request.getParameter("colonia");
+
+                    Date fn = Date.valueOf(fechaNacimiento);
+
+                    datos.setNombre(nombre);
+                    datos.setPrimerApellido(apellido1);
+                    datos.setSegundoApellido(apellido2);
+                    datos.setCurp(curp);
+                    datos.setFechaNacimiento(fn);
+                    datos.setUsuario(usuario);
+                    datos.setIdEstadoCivil(estadoCivil);
+                    datos.setCalle(calle);
+                    datos.setNoInt(noInterior);
+                    datos.setNoExt(noExterior);
+                    datos.setIdEstado(estado);
+                    datos.setIdMunicipio(municipio);
+                    datos.setTelefono(telefono);
+                    datos.setCorreo(correo);
+                    datos.setColonia(colonia);
+
+                    PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                    personaServicio.actualizarInformacionGeneralPersona(idPaciente, datos);
+
+                    break;
+                    
+
                 }
 
             }
