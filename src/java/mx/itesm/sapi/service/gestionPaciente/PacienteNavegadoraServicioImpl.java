@@ -102,14 +102,14 @@ public class PacienteNavegadoraServicioImpl implements PacienteNavegadoraServici
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stPrcedure);
             
-            cstmt.setInt(1, pacienteNavegadora.getIdPacienteNavegadora());
-            cstmt.setInt(2, pacienteNavegadora.getIdPaciente());
-            cstmt.setInt(3, pacienteNavegadora.getIdEmpleado());
-            cstmt.setInt(4, pacienteNavegadora.getEstatus() );
+           
+            cstmt.setInt(1, pacienteNavegadora.getIdPaciente());
+            cstmt.setInt(2, pacienteNavegadora.getIdEmpleado());
+           
             
             
-            cstmt.executeUpdate();
-            rs = cstmt.getGeneratedKeys();
+            rs=cstmt.executeQuery();
+            
             rs.next();
             id=rs.getInt(1);
             

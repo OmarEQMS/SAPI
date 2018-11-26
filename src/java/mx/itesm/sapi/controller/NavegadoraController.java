@@ -668,11 +668,15 @@ public class NavegadoraController extends HttpServlet {
                         case "btn-save": {
                             System.out.println("########### Formulario de la navegadora ###########");
 
+                            
+                         
+                            
+                            
                             /**
                              * DECLARACION DE ATRIBUTOS
                              */
-                            int idPacientePotencial = 62;
-                            int idCuenta = 121;
+                            int idPacientePotencial = 126;
+                            int idCuenta = 769;
                             int idNavegadora = 5;//Navegadora
 
                             /**
@@ -722,7 +726,20 @@ public class NavegadoraController extends HttpServlet {
                             EstadiajeTNM estadiajeTNM = new EstadiajeTNM();
 
                             OtroResultadoPatologiaServicioImpl otroResultadoServicio = new OtroResultadoPatologiaServicioImpl();
-
+                            
+                           /* 
+                            //Apartado para registrar interacción navegadora con Paciente
+                            
+                            PacienteNavegadoraServicioImpl pacienteNavegadoraServicioImpl = new PacienteNavegadoraServicioImpl();
+                            PacienteNavegadora pacienteNavegadora = new PacienteNavegadora();
+                            
+                            pacienteNavegadora.setIdEmpleado(idNavegadora);
+                            pacienteNavegadora.setIdPaciente(idPacientePotencial);
+                            
+                            
+                            pacienteNavegadoraServicioImpl.agregarPacienteNavegadora(pacienteNavegadora);
+                            
+*/
                             /**
                              * NUEVOS SERVICIOS (OMAR)
                              */
@@ -2172,6 +2189,9 @@ public class NavegadoraController extends HttpServlet {
                                     biopsiaServicioImpl.agregarBiopsiaFormulario(biopsia);
                                 }
                             }
+                            
+                            
+                            
 
                             break;
                         }
@@ -2251,7 +2271,12 @@ public class NavegadoraController extends HttpServlet {
 
                             Gson json = new Gson();
                             out.print(json.toJson(estudios));
-
+                            
+                            
+                           
+                            
+                            
+                            
                             break;
 
                         }
