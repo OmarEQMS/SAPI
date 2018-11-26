@@ -213,6 +213,8 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
+                                    
+                                    <input type="hidden" id="idPacienteAEditar">
 
                                     <div class="form-group row">
                                         <div class="col-6">
