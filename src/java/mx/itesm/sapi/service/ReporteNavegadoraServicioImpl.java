@@ -59,7 +59,11 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             reporteNavegadora.setPrz(rs.getString("v_PRZ"));
             reporteNavegadora.setFechaNavegacion(String.valueOf(rs.getDate("v_fechaNavegacion")));
             reporteNavegadora.setFechaConsulta(String.valueOf(rs.getDate("v_fechaConsulta")));
-            reporteNavegadora.setTipoPaciente(rs.getString("v_tipoPaciente"));
+            if(rs.getInt("v_tipoPaciente")==0){
+                reporteNavegadora.setTipoPaciente("Primera vez");
+            }else{
+                reporteNavegadora.setTipoPaciente("Segunda Opinion");
+            }
             reporteNavegadora.setMedicoAdscrito(rs.getString("v_medicoAdsctio"));
             reporteNavegadora.setMedicoRadiologo(rs.getString("v_medicoRadiologo"));
             reporteNavegadora.setMedicoResidente(rs.getString("v_medicoResidente"));
