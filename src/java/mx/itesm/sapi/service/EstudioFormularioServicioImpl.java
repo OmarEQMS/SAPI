@@ -34,14 +34,15 @@ public class EstudioFormularioServicioImpl implements EstudioFormularioServicio{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedute);
             estudiosFormulario = new ArrayList<>();
-            
+            cstmt.setInt(1, idPaciente);
+            cstmt.setString(2, nombreEstudio);
             rs = cstmt.executeQuery();
             EstudioFormulario estudioFormulario = null;
             
             while(rs.next())
             {
                 estudioFormulario = new EstudioFormulario();
-                estudioFormulario.setFecha(String.valueOf(rs.getTimestamp("fechaProgramada")));
+                estudioFormulario.setFecha(String.valueOf(rs.getTimestamp("FechaProgramada")));
                 
                 estudiosFormulario.add(estudioFormulario);
             }
@@ -72,6 +73,8 @@ public class EstudioFormularioServicioImpl implements EstudioFormularioServicio{
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedute);
+            cstmt.setInt(1, idPaciente);
+            cstmt.setString(2, nombreEstudio);
             estudiosFormulario = new ArrayList<>();
             
             rs = cstmt.executeQuery();
@@ -80,8 +83,8 @@ public class EstudioFormularioServicioImpl implements EstudioFormularioServicio{
             while(rs.next())
             {
                 estudioFormulario = new EstudioFormulario();
-                estudioFormulario.setFecha(String.valueOf(rs.getTimestamp("fechaProgramada")));
-                estudioFormulario.setTipo(rs.getString("nombre"));
+                estudioFormulario.setFecha(String.valueOf(rs.getTimestamp("FechaProgramada")));
+                estudioFormulario.setTipo(rs.getString("EstudioNombre"));
                 
                 estudiosFormulario.add(estudioFormulario);
             }
@@ -113,16 +116,17 @@ public class EstudioFormularioServicioImpl implements EstudioFormularioServicio{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedute);
             estudiosFormulario = new ArrayList<>();
-            
+            cstmt.setInt(1, idPaciente);
+            cstmt.setString(2, nombreEstudio);
             rs = cstmt.executeQuery();
             EstudioFormulario estudioFormulario = null;
             
             while(rs.next())
             {
                 estudioFormulario = new EstudioFormulario();
-                estudioFormulario.setFecha(String.valueOf(rs.getTimestamp("fechaProgramada")));
-                estudioFormulario.setTipo(rs.getString("nombre"));
-                estudioFormulario.setTipo(rs.getString("nombre"));
+                estudioFormulario.setFecha(String.valueOf(rs.getTimestamp("FechaProgramada")));
+                estudioFormulario.setTipo(rs.getString("EstudioNombre"));
+                estudioFormulario.setLugarDelCuerpo(rs.getString("LugarCuerpo"));
                 
                 estudiosFormulario.add(estudioFormulario);
             }

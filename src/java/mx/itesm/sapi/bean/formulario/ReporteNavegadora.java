@@ -74,31 +74,15 @@ public class ReporteNavegadora {
     public ReporteNavegadora() {
     }
   
-
-    @Override
-    public String toString() {
-        return "MFormularioGeneral{" + "prz=" + prz + ", fechaNavegacion=" + fechaNavegacion 
-                + ", fechaConsulta=" + fechaConsulta + ", tipoPaciente=" + tipoPaciente 
-                + ", medicoAdscrito=" + medicoAdscrito + ", medicoRadiologo=" + medicoRadiologo 
-                + ", medicoResidente=" + medicoResidente + ", noAdscrito=" + noAdscrito 
-                + ", estadoHormonal=" + estadoHormonal + ", Seguro=" + Seguro 
-                + ", noSeguro=" + noSeguro + ", mastografiaPreINCAN=" + mastografiaPreINCAN 
-                + ", cirugiaTipo=" + cirugiaTipo 
-                + ", cirugiaComentario=" + cirugiaComentario + ", quimioterapiaFecha=" + quimioterapiaFecha 
-                + ", quimioterapiaCiclo=" + quimioterapiaCiclo + ", quimioterapiaComentario=" + quimioterapiaComentario 
-                + ", radioterapiaFecha=" + radioterapiaFecha + ", radioterapiaCiclo=" + radioterapiaCiclo 
-                + ", radioterapiaComentario=" + radioterapiaComentario + ", mastografiaBiradsNombre=" + mastografiaBiradsNombre 
-                + ", mastografiaBiradsFecha=" + mastografiaBiradsFecha + ", ultrasonidoBiradsNombre=" + ultrasonidoBiradsNombre 
-                + ", ultrasonidoBiradsFecha=" + ultrasonidoBiradsFecha + ", resultadoPatologia=" + resultadoPatologia 
-                + ", otroResultado=" + otroResultado + ", serieParafina=" + serieParafina + ", cantidadParafina=" + cantidadParafina 
-                + ", serieLaminillas=" + serieLaminillas + ", cantidadLaminillas=" + cantidadLaminillas 
-                + ", fechaFin=" + fechaFin + ", decisionCosulta=" + decisionCosulta + ", socioeconomico=" + socioeconomico  
-                + ", comentarioIncidencia=" + comentarioIncidencia + ", comentarioMedico=" + comentarioMedico  
-                + '}';
-    }
+   
 
     public String getPrz() {
         return prz;
+    }
+
+    @Override
+    public String toString() {
+        return "ReporteNavegadora{" + "prz=" + prz + ", nombre=" + nombre + ", edad=" + edad + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", escolaridad=" + escolaridad + ", ciudad=" + ciudad + ", estado=" + estado + ", alergias=" + alergias + ", telefono=" + telefono + ", Seguro=" + Seguro + ", serieLaminillas=" + serieLaminillas + ", ultrasonidoBiradsFecha=" + ultrasonidoBiradsFecha + ", ultrasonidoBiradsNombre=" + ultrasonidoBiradsNombre + ", mastografiaBiradsFecha=" + mastografiaBiradsFecha + ", mastografiaBiradsNombre=" + mastografiaBiradsNombre + ", cantidadLaminillas=" + cantidadLaminillas + ", tipoPaciente=" + tipoPaciente + ", cirugiaFecha=" + cirugiaFecha + ", quimioterapiaFecha=" + quimioterapiaFecha + ", navegadora=" + navegadora + ", radioterapiaFecha=" + radioterapiaFecha + ", cirugiaTipo=" + cirugiaTipo + ", resultadoPatologia=" + resultadoPatologia + ", otroResultado=" + otroResultado + ", estadoHormonal=" + estadoHormonal + ", resultado=" + resultado + ", socioeconomico=" + socioeconomico + ", decisionCosulta=" + decisionCosulta + ", comentarioIncidencia=" + comentarioIncidencia + ", comentarioMedico=" + comentarioMedico + ", serieParafina=" + serieParafina + ", cantidadParafina=" + cantidadParafina + ", cirugiaComentario=" + cirugiaComentario + ", quimioterapiaComentario=" + quimioterapiaComentario + ", radioterapiaComentario=" + radioterapiaComentario + ", quimioterapiaCiclo=" + quimioterapiaCiclo + ", radioterapiaCiclo=" + radioterapiaCiclo + ", mastografiaPreINCAN=" + mastografiaPreINCAN + ", fechaNavegacion=" + fechaNavegacion + ", fechaConsulta=" + fechaConsulta + ", medicoAdscrito=" + medicoAdscrito + ", medicoRadiologo=" + medicoRadiologo + ", medicoResidente=" + medicoResidente + ", noAdscrito=" + noAdscrito + ", noRadiologo=" + noRadiologo + ", noSeguro=" + noSeguro + ", fechaFin=" + fechaFin + ", etapaClinica=" + etapaClinica + ", T=" + T + ", N=" + N + ", M=" + M + ", resultadoPatologiaPost=" + resultadoPatologiaPost + ", gradoH=" + gradoH + ", her2=" + her2 + ", fish=" + fish + ", re=" + re + ", rp=" + rp + ", ki67=" + ki67 + ", ultra=" + ultra + ", masto=" + masto + '}';
     }
 
     public void setPrz(String prz) {

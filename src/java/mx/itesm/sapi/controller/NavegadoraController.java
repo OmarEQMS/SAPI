@@ -28,7 +28,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import net.sf.jasperreports.engine.JRDataSource;
 
 import java.util.List;
 
@@ -126,8 +125,22 @@ import mx.itesm.sapi.service.persona.DireccionServicioImpl;
 import mx.itesm.sapi.service.persona.LoginServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
+
+import net.sf.jasperreports.engine.DefaultJasperReportsContext;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRField;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -154,7 +167,7 @@ public class NavegadoraController extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         String key = request.getParameter("key");
-        System.out.println("Key: "+ key);
+        
         HttpSession sesion = request.getSession(true);
 
         //COMENTARIO PARA COMMIT: TEAM LUGO ORDUÑA <3
@@ -2419,17 +2432,25 @@ public class NavegadoraController extends HttpServlet {
                         case "generar-reporte":{
                             //Estos datos los deberia tener la sesion
                             int idPaciente = 62 , idEmpleado = 40, idRol = 4;
-                            String report = "/mx/itesm/reportes/reporte/ReporteNavegadora2.0.jasper";
+                            String report = "/mx/itesm/sapi/reportes/reporte/ReporteNavegadorav2.0.jasper";
                             InputStream input = getClass().getResourceAsStream(report);
                             List<ReporteNavegadora> reporteNavegadoraFields = new ArrayList<>();
                             
-                            ReporteNavegadora reporteNavegadora;
+                            //ReporteNavegadora reporteNavegadora;
                             ReporteNavegadoraServicioImpl reportenavegadoraServicioImpl = new ReporteNavegadoraServicioImpl();
-                            reporteNavegadora = reportenavegadoraServicioImpl.mostrarReporteNavegadora(idPaciente, idEmpleado, idRol);
+                            ReporteNavegadora reporteNavegadora = reportenavegadoraServicioImpl.mostrarReporteNavegadora(idPaciente, idEmpleado, idRol);
                             
-                            System.out.println("|Se guardaron datos estaticos");
-                            reporteNavegadoraFields.add(reporteNavegadora);
+                            if(reporteNavegadora!=null)
+                                System.out.println("Se guardaron datos estaticos");
+                            else
+                                System.out.println("ESTA NULL");
+                            
                             response.setContentType("application/pdf");
+                            reporteNavegadoraFields.add(reporteNavegadora);
+                            System.out.println("El dato que esta en la lista:" + reporteNavegadoraFields.get(0).toString());
+                             
+                            System.out.println("El size de reporteNavegadoraFields: "+reporteNavegadoraFields.size());
+                            
                             JRDataSource data = new JRBeanCollectionDataSource(reporteNavegadoraFields);
                             
                             EstudioFormularioServicioImpl estudioFormularioServicioImpl = new EstudioFormularioServicioImpl();
@@ -2454,12 +2475,19 @@ public class NavegadoraController extends HttpServlet {
                             medicinaNuclear = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente,"Medicina nuclear");
                             valoracion = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente,"Valoración");
                             programa = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente,"Programas");
-                            laboratorio = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente,"Laboratorio");
+                            laboratorio = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente,"Laboratorios");
                             electrocardiograma = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente,"Electrocardiogramas");
                             ecocardiograma = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente,"Ecocardiogramas");
                             trabajoSocial = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente,"Trabajos sociales");
                             otrosEstudios = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente,"Otros");
                             llamadas = llamadaCitaServicioImpl.mostrarLlamaCitaPreconsultaPaciente(idPaciente);
+                            /* Probar que los array tengan valores*/
+                            System.out.println("biopsias: " + biopsias.size());
+                            System.out.println("Rayosx: " + biopsias.size());
+                            System.out.println("Medicina nuclear: " + biopsias.size());
+                            System.out.println("Valoración: " + biopsias.size());
+                            System.out.println("Programas: " + biopsias.size());
+                            
                             
                             Map params = new HashMap();
                             params.put("datasetBiopsia", biopsias);
@@ -2477,9 +2505,14 @@ public class NavegadoraController extends HttpServlet {
                             
                             try{
                                 response.setContentType("application/pdf");
-                                    byte[] bytes = JasperRunManager.runReportToPdf(input, params, data);
+                                System.out.println("Entra al try ");
+                                    byte[] bytes = JasperRunManager.runReportToPdf(input, null, data);
+                                    
+                                    System.out.println("Corre el JasperSoft");
 
                                     OutputStream os = response.getOutputStream();
+                                    System.out.println("Prepara la respuesta ");
+
                                     os.write(bytes);
                                     os.flush();
                                     os.close();

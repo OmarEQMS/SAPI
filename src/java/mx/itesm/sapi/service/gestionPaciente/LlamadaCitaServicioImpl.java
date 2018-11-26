@@ -232,12 +232,14 @@ public class LlamadaCitaServicioImpl implements LlamadaCitaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarLlamaCitaPreconsultaPaciente(?)";
+        String stProcedure = "CALL mostrarLlamadaCitaPreconsultaPaciente(?)";
         List<LlamadaCita> llamadasCita = new ArrayList();
         
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+        
             rs = cstmt.executeQuery();
             LlamadaCita llamadaCita;
             

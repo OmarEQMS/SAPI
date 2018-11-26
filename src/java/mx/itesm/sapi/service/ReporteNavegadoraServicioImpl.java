@@ -35,7 +35,7 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
         String stProcedure1 = "CALL mostrarFormularioNavegadora(?)";
         String stProcedure2 = "CALL mostrarPacienteCiudadEstadoSexo(?)";
         
-        ReporteNavegadora reporteNavegadora = null;
+        ReporteNavegadora reporteNavegadora = new ReporteNavegadora();
         Sexo sexo = null;
         Municipio municipio = null;
         Estado estado = null;
@@ -150,7 +150,7 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             reporteNavegadora.setEstado(rs.getString("v_estado"));
             reporteNavegadora.setTelefono(rs.getString("v_telefono"));
             reporteNavegadora.setNavegadora("Navegadora");//dato de prueba
-            if(estadoPacientePaciente.getResultados() == 1)
+            if(rs.getInt("v_resultados") == 1)
                 reporteNavegadora.setResultado("Sí");
             else
                 reporteNavegadora.setResultado("No");
