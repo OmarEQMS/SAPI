@@ -2418,16 +2418,16 @@ public class NavegadoraController extends HttpServlet {
                         }
                         case "generar-reporte":{
                             //Estos datos los deberia tener la sesion
-                            int idPaciente = 62 , idEmpleado = 0, idRol = 0;
+                            int idPaciente = 62 , idEmpleado = 40, idRol = 4;
                             String report = "/mx/itesm/reportes/reporte/ReporteNavegadora2.0.jasper";
                             InputStream input = getClass().getResourceAsStream(report);
                             List<ReporteNavegadora> reporteNavegadoraFields = new ArrayList<>();
                             
-                            ReporteNavegadora reporteNavegadora = new ReporteNavegadora();
+                            ReporteNavegadora reporteNavegadora;
                             ReporteNavegadoraServicioImpl reportenavegadoraServicioImpl = new ReporteNavegadoraServicioImpl();
                             reporteNavegadora = reportenavegadoraServicioImpl.mostrarReporteNavegadora(idPaciente, idEmpleado, idRol);
                             
-                             System.out.println("|Se guardaron datos estaticos");
+                            System.out.println("|Se guardaron datos estaticos");
                             reporteNavegadoraFields.add(reporteNavegadora);
                             response.setContentType("application/pdf");
                             JRDataSource data = new JRBeanCollectionDataSource(reporteNavegadoraFields);

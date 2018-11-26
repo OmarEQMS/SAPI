@@ -33,7 +33,7 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
         CallableStatement cstmt;
         ResultSet rs;
         String stProcedure1 = "CALL mostrarFormularioNavegadora(?)";
-        String stProcedure2 = "CALL mostrarPersonaPorIdPaciente(?)";
+        String stProcedure2 = "CALL mostrarPacienteCiudadEstadoSexo(?)";
         
         ReporteNavegadora reporteNavegadora = null;
         Sexo sexo = null;
@@ -118,7 +118,7 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             
             rs = cstmt.executeQuery();
             rs.next();
-            
+            /*
             sexo = sexoServicioImpl.mostrarSexo(rs.getInt("idSexo"));
             municipio = municipioServicioImpl.mostrarMunicipio(rs.getInt("idMunicipio"));
             estado = estadoServicioImpl.mostrarEstado(rs.getInt("idEstado"));
@@ -134,11 +134,27 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             reporteNavegadora.setEstado(estado.getNombre());
             reporteNavegadora.setTelefono(rs.getString("telefono"));
             //reporteNavegadora.setNavegadora(tablaMedicoAdministrador.getNombre());
+            reporteNavegadora.setNavegadora("Navegadora");//dato de prueba
             if(estadoPacientePaciente.getResultados() == 0)
                 reporteNavegadora.setResultado("Sí");
             else
                 reporteNavegadora.setResultado("No");
                     
+*/
+            //Procedimineto almacenado
+            reporteNavegadora.setNombre(rs.getString("v_nombre"));
+            reporteNavegadora.setEdad(String.valueOf(rs.getInt("v_edad")));
+            reporteNavegadora.setFechaNacimiento(String.valueOf(rs.getDate("v_fechaNacimiento")));
+            reporteNavegadora.setGenero(rs.getString("v_genero"));
+            reporteNavegadora.setCiudad(rs.getString("v_ciudad"));
+            reporteNavegadora.setEstado(rs.getString("v_estado"));
+            reporteNavegadora.setTelefono(rs.getString("v_telefono"));
+            reporteNavegadora.setNavegadora("Navegadora");//dato de prueba
+            if(estadoPacientePaciente.getResultados() == 1)
+                reporteNavegadora.setResultado("Sí");
+            else
+                reporteNavegadora.setResultado("No");
+            
             rs.close();
             cstmt.close();
             conn.close();
