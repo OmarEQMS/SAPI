@@ -683,10 +683,11 @@ public class NavegadoraController extends HttpServlet {
                             /**
                              * DECLARACION DE ATRIBUTOS
                              */
-                            
-                            
+
+                                                        
                             int idPacientePotencial = (int) sesion.getAttribute("idPacientePotencialForm");;                           
                             int idNavegadora = (int) sesion.getAttribute("idEmpleadoNavegadora");//Navegadora
+
                             /**
                              *
                              * INICIO DECLARACION DE SERVICIOS
@@ -760,13 +761,16 @@ public class NavegadoraController extends HttpServlet {
 
                             pacienteNavegadoraServicioImpl.agregarPacienteNavegadora(pacienteNavegadora);
 
+                            
+                            
+                            
+                            
                             /**
                              * NUEVOS SERVICIOS (OMAR)
                              */
                             /**
                              * FIN DECLARACION DE SERVICIOS
                              */
-
                             //PANTALLA 1 DEL FORMULARIO
                             //PRZ
                             //LISTO
@@ -935,10 +939,71 @@ public class NavegadoraController extends HttpServlet {
                             }
 
                             //MEDICO RESIDENTE------------------ *************************NO ESTÁ HECHO********
-                            String medicoResidente = null;
-                            medicoResidente = request.getParameter("medico-residente");
-                            if (medicoResidente != null && medicoResidente.length() > 0) {
-                                System.out.println("Medico Residente ".concat(medicoResidente));
+                            String medicoResidenteRequest = null;
+                            int idEmpleadoAnteriorResidente = 0;
+                            int medicoResidente;
+                            medicoResidenteRequest = request.getParameter("medico-residente");
+                            if (medicoResidenteRequest != null && medicoResidenteRequest.length() > 0) {
+
+                                medicoResidente = Integer.parseInt(medicoResidenteRequest);
+                                System.out.println("Medico residente " + (medicoResidente));
+                                int idEmpleadoResidente = empleadoServicioImpl.mostrarEmpleadoPersona(medicoResidente).getIdEmpleado();
+                                System.out.println("EL IDEMPLEADO EEEES: " + idEmpleadoResidente );
+                                int idCitaResidente = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
+
+                                LocalDate inicio = java.time.LocalDate.now();
+                                Date inicioDate = Date.valueOf(inicio);
+                                System.out.println(inicioDate);
+
+                                PacienteMedicoTitular pacienteMedicoTitularResidente = pacienteMedicoTitularServicioImpl.mostrarPacienteMedicoTitularIdPacientePosicion(idPacientePotencial, 1);
+
+                                if (pacienteMedicoTitularResidente != null) {
+                                    idEmpleadoAnteriorResidente = pacienteMedicoTitularResidente.getIdEmpleado();
+
+                                    pacienteMedicoTitularResidente.setIdPaciente(idPacientePotencial);
+                                    pacienteMedicoTitularResidente.setIdEmpleado(idEmpleadoResidente);
+                                    pacienteMedicoTitularResidente.setInicio(inicioDate);
+                                    pacienteMedicoTitularServicioImpl.actualizarPacienteMedicoTitular(pacienteMedicoTitularResidente);
+
+                                } else {
+
+                                    pacienteMedicoTitularResidente = new PacienteMedicoTitular();
+                                    pacienteMedicoTitularResidente.setIdPaciente(idPacientePotencial);
+                                    pacienteMedicoTitularResidente.setIdEmpleado(idEmpleadoResidente);
+                                    pacienteMedicoTitularResidente.setInicio(inicioDate);
+                                    pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitularResidente);
+
+                                }
+
+                                //checkbox adscritoPresente
+                                int noAdscrito = 1;
+                                if (request.getParameterMap().containsKey("noAdscrito") == true) {
+                                    noAdscrito = 0;
+                                }
+
+                                /**
+                                 * Asignación de radiologo presente en tabla
+                                 * CitaEmpleado (para fines practicos es el
+                                 * mismo atributo que el del medico adscrito)
+                                 */
+                                CitaEmpleado citaEmpleadoResidente = citaEmpleadoServicioImpl.mostrarCitaEmpleadoIdEmpleado(idEmpleadoAnteriorResidente);
+
+                                if (citaEmpleadoResidente != null) {
+                                    citaEmpleadoResidente.setAdscritoPresente(noAdscrito);
+                                    citaEmpleadoResidente.setIdEmpleado(idEmpleadoResidente);
+                                    citaEmpleadoResidente.setIdCita(idCitaResidente);
+                                    citaEmpleadoServicioImpl.actualizarCitaEmpleado(citaEmpleadoResidente);
+                                } else {
+                                    citaEmpleadoResidente = new CitaEmpleado();
+                                    citaEmpleadoResidente.setAdscritoPresente(noAdscrito);
+                                    citaEmpleadoResidente.setIdEmpleado(idEmpleadoResidente);
+                                    citaEmpleadoResidente.setIdCita(idCitaResidente);
+                                    citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleadoResidente);
+                                }
+                                //citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleado);
+
+                                System.out.println("Adscrito Presente ".concat(String.valueOf(noAdscrito)));
+
                             } else {
                                 System.out.println("sin médico residente");
                             }
@@ -1747,7 +1812,6 @@ public class NavegadoraController extends HttpServlet {
 
                             //HASTA AQUI LLEGA PAGINA 2-----------------------------------------------------------------
                             //INICIO PANTALLA 3 (OMAR) -----------------------------------------------------------------
-                            
                             //PANTALLA 3
                             JsonParser parser = new JsonParser();
 
@@ -1778,46 +1842,50 @@ public class NavegadoraController extends HttpServlet {
                                 switch (accion) {
                                     case "agregar": {
                                         estudio = estudioServicio.mostrarEstudio(tipo);
-                                        if(estudio==null){break;}
+                                        if (estudio == null) {
+                                            break;
+                                        }
                                         cita.setIdEstudio(estudio.getIdEstudio());
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         int idCita = citaServicio.agregarCita(cita);
-                                        
+
                                         lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(lugar);
-                                        if(lugarDelCuerpo==null){
+                                        if (lugarDelCuerpo == null) {
                                             lugarDelCuerpo = new LugarDelCuerpo();
                                             lugarDelCuerpo.setNombre(lugar);
                                             lugarDelCuerpoServicio.agregarLugarDelCuerpo(lugarDelCuerpo);
                                             lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(lugar);
-                                        }                                      
+                                        }
                                         documentoEstudio.setIdCita(idCita);
                                         documentoEstudio.setIdPaciente(idPacientePotencial);
                                         documentoEstudio.setIdEstudio(estudio.getIdEstudio());
-                                        documentoEstudio.setIdEstadoEstudio(1);  
+                                        documentoEstudio.setIdEstadoEstudio(1);
                                         documentoEstudio.setIdBirads(null);
                                         documentoEstudio.setIdLugarDelCuerpo(lugarDelCuerpo.getIdLugarDelCuerpo());
-                                        documentoEstudioServicio.agregarDocumentoEstudio(documentoEstudio);                                        
+                                        documentoEstudioServicio.agregarDocumentoEstudio(documentoEstudio);
                                         break;
                                     }
                                     case "actualizar": {
                                         cita.setIdCita(id);
                                         estudio = estudioServicio.mostrarEstudio(tipo);
-                                        if(estudio==null){break;}
+                                        if (estudio == null) {
+                                            break;
+                                        }
                                         cita.setIdEstudio(estudio.getIdEstudio());
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.actualizarCita(cita);
-                                        
+
                                         lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(lugar);
-                                        if(lugarDelCuerpo==null){
+                                        if (lugarDelCuerpo == null) {
                                             lugarDelCuerpo = new LugarDelCuerpo();
                                             lugarDelCuerpo.setNombre(lugar);
                                             lugarDelCuerpoServicio.agregarLugarDelCuerpo(lugarDelCuerpo);
                                             lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(lugar);
-                                        }                                      
+                                        }
                                         documentoEstudio.setIdCita(id);
                                         documentoEstudio.setIdPaciente(idPacientePotencial);
                                         documentoEstudio.setIdEstudio(estudio.getIdEstudio());
-                                        documentoEstudio.setIdEstadoEstudio(1);  
+                                        documentoEstudio.setIdEstadoEstudio(1);
                                         documentoEstudio.setIdBirads(null);
                                         documentoEstudio.setIdLugarDelCuerpo(lugarDelCuerpo.getIdLugarDelCuerpo());
                                         documentoEstudioServicio.agregarDocumentoEstudio(documentoEstudio);
@@ -1847,7 +1915,9 @@ public class NavegadoraController extends HttpServlet {
                                 switch (accion) {
                                     case "agregar": {
                                         estudio = estudioServicio.mostrarEstudio(tipo);
-                                        if(estudio==null){break;}
+                                        if (estudio == null) {
+                                            break;
+                                        }
                                         cita.setIdEstudio(estudio.getIdEstudio());
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.agregarCita(cita);
@@ -1856,7 +1926,9 @@ public class NavegadoraController extends HttpServlet {
                                     case "actualizar": {
                                         cita.setIdCita(id);
                                         estudio = estudioServicio.mostrarEstudio(tipo);
-                                        if(estudio==null){break;}
+                                        if (estudio == null) {
+                                            break;
+                                        }
                                         cita.setIdEstudio(estudio.getIdEstudio());
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.actualizarCita(cita);
@@ -1888,18 +1960,18 @@ public class NavegadoraController extends HttpServlet {
                                         cita.setIdEstudio(27);
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         int idCita = citaServicio.agregarCita(cita);
-                                        
+
                                         lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(parte);
-                                        if(lugarDelCuerpo==null){
+                                        if (lugarDelCuerpo == null) {
                                             lugarDelCuerpo = new LugarDelCuerpo();
                                             lugarDelCuerpo.setNombre(parte);
                                             lugarDelCuerpoServicio.agregarLugarDelCuerpo(lugarDelCuerpo);
                                             lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(parte);
-                                        }                                      
+                                        }
                                         documentoEstudio.setIdCita(idCita);
                                         documentoEstudio.setIdPaciente(idPacientePotencial);
                                         documentoEstudio.setIdEstudio(estudio.getIdEstudio());
-                                        documentoEstudio.setIdEstadoEstudio(1);  
+                                        documentoEstudio.setIdEstadoEstudio(1);
                                         documentoEstudio.setIdBirads(null);
                                         documentoEstudio.setIdLugarDelCuerpo(lugarDelCuerpo.getIdLugarDelCuerpo());
                                         documentoEstudioServicio.agregarDocumentoEstudio(documentoEstudio);
@@ -1910,18 +1982,18 @@ public class NavegadoraController extends HttpServlet {
                                         cita.setIdEstudio(27);
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.actualizarCita(cita);
-                                        
+
                                         lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(parte);
-                                        if(lugarDelCuerpo==null){
+                                        if (lugarDelCuerpo == null) {
                                             lugarDelCuerpo = new LugarDelCuerpo();
                                             lugarDelCuerpo.setNombre(parte);
                                             lugarDelCuerpoServicio.agregarLugarDelCuerpo(lugarDelCuerpo);
                                             lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(parte);
-                                        }                                      
+                                        }
                                         documentoEstudio.setIdCita(id);
                                         documentoEstudio.setIdPaciente(idPacientePotencial);
                                         documentoEstudio.setIdEstudio(estudio.getIdEstudio());
-                                        documentoEstudio.setIdEstadoEstudio(1);  
+                                        documentoEstudio.setIdEstadoEstudio(1);
                                         documentoEstudio.setIdBirads(null);
                                         documentoEstudio.setIdLugarDelCuerpo(lugarDelCuerpo.getIdLugarDelCuerpo());
                                         documentoEstudioServicio.agregarDocumentoEstudio(documentoEstudio);
@@ -1951,7 +2023,9 @@ public class NavegadoraController extends HttpServlet {
                                 switch (accion) {
                                     case "agregar": {
                                         estudio = estudioServicio.mostrarEstudio(medicinaNuclear);
-                                        if(estudio==null){break;}
+                                        if (estudio == null) {
+                                            break;
+                                        }
                                         cita.setIdEstudio(estudio.getIdEstudio());
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.agregarCita(cita);
@@ -1960,7 +2034,9 @@ public class NavegadoraController extends HttpServlet {
                                     case "actualizar": {
                                         cita.setIdCita(id);
                                         estudio = estudioServicio.mostrarEstudio(medicinaNuclear);
-                                        if(estudio==null){break;}
+                                        if (estudio == null) {
+                                            break;
+                                        }
                                         cita.setIdEstudio(estudio.getIdEstudio());
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.actualizarCita(cita);
@@ -2023,7 +2099,9 @@ public class NavegadoraController extends HttpServlet {
                                 switch (accion) {
                                     case "agregar": {
                                         estudio = estudioServicio.mostrarEstudio(valoracion);
-                                        if(estudio==null){break;}
+                                        if (estudio == null) {
+                                            break;
+                                        }
                                         cita.setIdEstudio(estudio.getIdEstudio());
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.agregarCita(cita);
@@ -2032,7 +2110,9 @@ public class NavegadoraController extends HttpServlet {
                                     case "actualizar": {
                                         cita.setIdCita(id);
                                         estudio = estudioServicio.mostrarEstudio(valoracion);
-                                        if(estudio==null){break;}
+                                        if (estudio == null) {
+                                            break;
+                                        }
                                         cita.setIdEstudio(estudio.getIdEstudio());
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.actualizarCita(cita);
@@ -2194,7 +2274,9 @@ public class NavegadoraController extends HttpServlet {
                                 switch (accion) {
                                     case "agregar": {
                                         estudio = estudioServicio.mostrarEstudio(programa);
-                                        if(estudio==null){break;}
+                                        if (estudio == null) {
+                                            break;
+                                        }
                                         cita.setIdEstudio(estudio.getIdEstudio());
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.agregarCita(cita);
@@ -2203,7 +2285,9 @@ public class NavegadoraController extends HttpServlet {
                                     case "actualizar": {
                                         cita.setIdCita(id);
                                         estudio = estudioServicio.mostrarEstudio(programa);
-                                        if(estudio==null){break;}
+                                        if (estudio == null) {
+                                            break;
+                                        }
                                         cita.setIdEstudio(estudio.getIdEstudio());
                                         cita.setFechaProgramada(fechaStringToTimestamp(fecha));
                                         citaServicio.actualizarCita(cita);
@@ -2233,7 +2317,7 @@ public class NavegadoraController extends HttpServlet {
                                 switch (accion) {
                                     case "agregar": {
                                         estudio = estudioServicio.mostrarEstudio(otroEstudio);
-                                        if(estudio==null){
+                                        if (estudio == null) {
                                             estudio = new Estudio();
                                             estudio.setNombre(otroEstudio);
                                             estudio.setIdCategoriaEstudio(7); //Otro
@@ -2248,7 +2332,7 @@ public class NavegadoraController extends HttpServlet {
                                     case "actualizar": {
                                         cita.setIdCita(id);
                                         estudio = estudioServicio.mostrarEstudio(otroEstudio);
-                                        if(estudio==null){
+                                        if (estudio == null) {
                                             estudio.setNombre(otroEstudio);
                                             estudio.setIdCategoriaEstudio(7); //Otro
                                             estudioServicio.agregarEstudio(estudio);
@@ -2265,10 +2349,8 @@ public class NavegadoraController extends HttpServlet {
                                     }
                                 }
                             }
-                        
+
                             //FIN PANTALLA 3 (OMAR) -----------------------------------------------------------------
-                            
-                            
                             //**************Pantalla 4************
                             //*********estadoPAcientePaciente*************
                             //Paciente Tipo resultados
@@ -2735,7 +2817,22 @@ public class NavegadoraController extends HttpServlet {
                                     biopsiaServicioImpl.agregarBiopsiaFormulario(biopsia);
                                 }
                             }
-
+                            
+                            //Cmbia el idRol del paciente
+                            String cambiarRolRequest= request.getParameter("cambiarRol");
+                            int cambiarRol;
+                            int idCuentaPaciente;
+                            if(cambiarRolRequest !=null && cambiarRolRequest.length()>0){
+                                cambiarRol=Integer.parseInt(cambiarRolRequest);
+                                if(cambiarRol==1){
+                                    CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
+                                    Cuenta cuentaPaciente = cuentaServicioImpl.mostrarCuenta(paciente.getIdCuenta());
+                                    cuentaPaciente.setIdRol(5);
+                                    cuentaServicioImpl.actualizarCuenta(cuentaPaciente);
+                                }
+                                    
+                            }
+                            
                             break;
                         }
 
@@ -2746,43 +2843,45 @@ public class NavegadoraController extends HttpServlet {
                             break;
                         }
 
-                        
                         case "agregarCitaResultados": {
-                            
+
                             PrintWriter out = response.getWriter();
 
                             int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
                             String nombre = request.getParameter("nombre");
                             String fechaCita = request.getParameter("fechaCita");
-                            
+
                             //Servicio
                             MCalendarioNavegadoraServicioImpl navegadoraServicio = new MCalendarioNavegadoraServicioImpl();
-                            
+
                             //Objeto
                             MCalendarioNavegadora mCalendarioNavegadora = new MCalendarioNavegadora();
                             mCalendarioNavegadora.setIdPaciente(idPaciente);
                             mCalendarioNavegadora.setFechaCita(Date.valueOf(fechaCita));
-                            
+
                             int agregado = navegadoraServicio.agregarCitaPaciente(mCalendarioNavegadora);
-                            
+
                             System.out.println("AGREGADO ES: " + agregado);
-                            
+
                             System.out.println(idPaciente);
                             System.out.println(nombre);
                             System.out.println(fechaCita);
-                            
-                            if(agregado > 0){
+
+                            if (agregado > 0) {
                                 out.print("success");
                             }
                             
+                            
+                            
+
                             break;
-                        
+
                         }
-                        
+
                         case "obtenerEventosResultados": {
-                            
+
                             PrintWriter out = response.getWriter();
-                            
+
                             //Servicio
                             CalendarioServicioImpl csi = new CalendarioServicioImpl();
 
@@ -2791,18 +2890,16 @@ public class NavegadoraController extends HttpServlet {
 
                             response.setContentType("application/json");
                             response.setCharacterEncoding("UTF-8");
-                            
+
                             System.out.println(new Gson().toJson(calendarios));
-                            
+
                             out.print(new Gson().toJson(calendarios));
-                        
-                            
+
                             break;
-                        
+
                         }
-                        
-                        case "autocompleteRayosX":{
-                            
+
+                        case "autocompleteRayosX": {
 
                             AutocompletadoServicioImpl autocompletadoServicioImpl = new AutocompletadoServicioImpl();
 
@@ -2915,11 +3012,9 @@ public class NavegadoraController extends HttpServlet {
 
         }
     }
-    
-    
-    
+
     private Timestamp fechaStringToTimestamp(String fecha) {
-        Timestamp timestamp = null;        
+        Timestamp timestamp = null;
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date date = dateFormat.parse(fecha);

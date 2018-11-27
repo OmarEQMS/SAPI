@@ -444,6 +444,41 @@ public class PersonaServicioImpl implements PersonaServicio {
 
         return personas;
     }
+    
+    @Override
+    public List<Persona> mostrarMedicosResidentes() {
+
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        List<Persona> personas = null;
+
+        try {
+            personas = new ArrayList<>();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL mostrarMedicosResidentes()");
+            rs = cstmt.executeQuery();
+            Persona persona;
+
+            while (rs.next()) {
+
+                persona = new Persona();
+                persona.setNombre(rs.getString("nombre"));
+                persona.setPrimerApellido(rs.getString("primerApellido"));
+                persona.setSegundoApellido(rs.getString("segundoApellido"));
+                persona.setIdPersona(rs.getInt("idPersona"));
+
+                personas.add(persona);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+
+        return personas;
+    }
 
     public Persona mostrarPersonaPorIdPaciente(int idPaciente) {
 

@@ -300,10 +300,27 @@
                                                         </div>
                                                     </div>
 
-                                                    <input name = "medico-residente" type="text" id="medico-residente" class="form-control" class="form-control" placeholder="Introduce MÃ¯Â¿Â½dico Residente">
-                                                </div>
-                                            </div>
+                                                   <select name="medico-residente" class="form-control" id="medico-radiologo">
 
+                                                        <option disabled selected>Seleccione un Residente</option>
+
+                                                        <c:forEach items="${listaResidentes}" var="residente">  
+
+                                                            <option value='<c:out value="${residente.idPersona}"/>'><c:out value='${residente.nombre} ${residente.primerApellido} ${residente.segundoApellido}'/> </option>
+
+                                                        </c:forEach>
+                                                        <option value="otro">Otro</option>
+
+                                                    </select>
+ </div>
+                                           
+                                            <div class="form-check mt-2">
+                                                    <input name="noAdscrito" class=" form-check-input" type="checkbox" value="" id="noAdscrito">
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                         No estuvo médico residente
+                                                    </label>
+                                                </div>
+ </div>
                                         </div>
 
                                         <!-- Fecha Consulta-->

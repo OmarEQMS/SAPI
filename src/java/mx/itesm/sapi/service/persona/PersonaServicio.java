@@ -32,6 +32,7 @@ public interface PersonaServicio {
 
     List<Persona> mostrarMedicosRadiologos();
     List<Persona> mostrarMedicosAdscritos();
+    List<Persona> mostrarMedicosResidentes();
 
     public InformacionGeneralPersona mostrarInformacionGeneralPersona(int idPaciente);
     public boolean actualizarInformacionGeneralPersona(int idPaciente, InformacionGeneralPersona persona);
