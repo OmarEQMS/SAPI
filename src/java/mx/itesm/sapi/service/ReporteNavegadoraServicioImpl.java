@@ -81,7 +81,12 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             }
             reporteNavegadora.setSeguro(rs.getString("v_tipoSeguro"));
             reporteNavegadora.setNoSeguro(rs.getString("v_numeroSeguro"));
-            reporteNavegadora.setMastografiaPreINCAN(String.valueOf(rs.getBoolean("v_mastografiaPreINCAN")));
+            if(rs.getInt("v_mastografiaPreINCAN") == 0)
+            
+                reporteNavegadora.setMastografiaPreINCAN("No");
+            else
+                reporteNavegadora.setMastografiaPreINCAN("Sí");
+            
             reporteNavegadora.setCirugiaFecha(String.valueOf(rs.getDate("v_cirugiaFecha")));
             reporteNavegadora.setCirugiaTipo(rs.getString("v_cirugiaTipo"));
             reporteNavegadora.setCirugiaComentario(rs.getString("v_cirugiaComentario"));
@@ -102,7 +107,7 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             reporteNavegadora.setSerieLaminillas(rs.getString("v_serieLaminillas"));
             reporteNavegadora.setCantidadLaminillas(String.valueOf(rs.getInt("v_cantidadLaminillas")));
             reporteNavegadora.setFechaFin(String.valueOf(rs.getDate("v_fechaFin")));
-            reporteNavegadora.setDecisionCosulta(rs.getString("v_decisionCosulta"));
+            reporteNavegadora.setDecisionConsulta(rs.getString("v_decisionCosulta"));
             reporteNavegadora.setSocioeconomico(rs.getString("v_socioeconomico"));
             reporteNavegadora.setComentarioIncidencia(rs.getString("v_comentarioIncidencia"));
             reporteNavegadora.setComentarioMedico(rs.getString("v_comentarioMedico"));

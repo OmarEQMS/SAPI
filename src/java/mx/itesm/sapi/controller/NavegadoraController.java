@@ -2506,6 +2506,7 @@ public class NavegadoraController extends HttpServlet {
                             
                             try{
                                 response.setContentType("application/pdf");
+                                response.addHeader("content-disposition", "attachment; filename=Reporte1.pdf");
                                 System.out.println("Entra al try ");
                                     byte[] bytes = JasperRunManager.runReportToPdf(input, null, data);
                                     

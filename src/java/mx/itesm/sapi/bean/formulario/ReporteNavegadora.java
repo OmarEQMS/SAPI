@@ -38,7 +38,7 @@ public class ReporteNavegadora {
     private String estadoHormonal; 
     private String resultado;
     private String socioeconomico;
-    private String decisionCosulta;
+    private String decisionConsulta;
     private String comentarioIncidencia;
     private String comentarioMedico;
     private String serieParafina;
@@ -82,7 +82,7 @@ public class ReporteNavegadora {
 
     @Override
     public String toString() {
-        return "ReporteNavegadora{" + "prz=" + prz + ", nombre=" + nombre + ", edad=" + edad + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", escolaridad=" + escolaridad + ", ciudad=" + ciudad + ", estado=" + estado + ", alergias=" + alergias + ", telefono=" + telefono + ", Seguro=" + seguro + ", serieLaminillas=" + serieLaminillas + ", ultrasonidoBiradsFecha=" + ultrasonidoBiradsFecha + ", ultrasonidoBiradsNombre=" + ultrasonidoBiradsNombre + ", mastografiaBiradsFecha=" + mastografiaBiradsFecha + ", mastografiaBiradsNombre=" + mastografiaBiradsNombre + ", cantidadLaminillas=" + cantidadLaminillas + ", tipoPaciente=" + tipoPaciente + ", cirugiaFecha=" + cirugiaFecha + ", quimioterapiaFecha=" + quimioterapiaFecha + ", navegadora=" + navegadora + ", radioterapiaFecha=" + radioterapiaFecha + ", cirugiaTipo=" + cirugiaTipo + ", resultadoPatologia=" + resultadoPatologia + ", otroResultado=" + otroResultado + ", estadoHormonal=" + estadoHormonal + ", resultado=" + resultado + ", socioeconomico=" + socioeconomico + ", decisionCosulta=" + decisionCosulta + ", comentarioIncidencia=" + comentarioIncidencia + ", comentarioMedico=" + comentarioMedico + ", serieParafina=" + serieParafina + ", cantidadParafina=" + cantidadParafina + ", cirugiaComentario=" + cirugiaComentario + ", quimioterapiaComentario=" + quimioterapiaComentario + ", radioterapiaComentario=" + radioterapiaComentario + ", quimioterapiaCiclo=" + quimioterapiaCiclo + ", radioterapiaCiclo=" + radioterapiaCiclo + ", mastografiaPreINCAN=" + mastografiaPreINCAN + ", fechaNavegacion=" + fechaNavegacion + ", fechaConsulta=" + fechaConsulta + ", medicoAdscrito=" + medicoAdscrito + ", medicoRadiologo=" + medicoRadiologo + ", medicoResidente=" + medicoResidente + ", noAdscrito=" + noAdscrito + ", noRadiologo=" + noRadiologo + ", noSeguro=" + noSeguro + ", fechaFin=" + fechaFin + ", etapaClinica=" + etapaClinica + ", T=" + T + ", N=" + N + ", M=" + M + ", resultadoPatologiaPost=" + resultadoPatologiaPost + ", gradoH=" + gradoH + ", her2=" + her2 + ", fish=" + fish + ", re=" + re + ", rp=" + rp + ", ki67=" + ki67 + ", ultra=" + ultra + ", masto=" + masto + '}';
+        return "ReporteNavegadora{" + "prz=" + prz + ", nombre=" + nombre + ", edad=" + edad + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", escolaridad=" + escolaridad + ", ciudad=" + ciudad + ", estado=" + estado + ", alergias=" + alergias + ", telefono=" + telefono + ", Seguro=" + seguro + ", serieLaminillas=" + serieLaminillas + ", ultrasonidoBiradsFecha=" + ultrasonidoBiradsFecha + ", ultrasonidoBiradsNombre=" + ultrasonidoBiradsNombre + ", mastografiaBiradsFecha=" + mastografiaBiradsFecha + ", mastografiaBiradsNombre=" + mastografiaBiradsNombre + ", cantidadLaminillas=" + cantidadLaminillas + ", tipoPaciente=" + tipoPaciente + ", cirugiaFecha=" + cirugiaFecha + ", quimioterapiaFecha=" + quimioterapiaFecha + ", navegadora=" + navegadora + ", radioterapiaFecha=" + radioterapiaFecha + ", cirugiaTipo=" + cirugiaTipo + ", resultadoPatologia=" + resultadoPatologia + ", otroResultado=" + otroResultado + ", estadoHormonal=" + estadoHormonal + ", resultado=" + resultado + ", socioeconomico=" + socioeconomico + ", decisionCosulta=" + decisionConsulta + ", comentarioIncidencia=" + comentarioIncidencia + ", comentarioMedico=" + comentarioMedico + ", serieParafina=" + serieParafina + ", cantidadParafina=" + cantidadParafina + ", cirugiaComentario=" + cirugiaComentario + ", quimioterapiaComentario=" + quimioterapiaComentario + ", radioterapiaComentario=" + radioterapiaComentario + ", quimioterapiaCiclo=" + quimioterapiaCiclo + ", radioterapiaCiclo=" + radioterapiaCiclo + ", mastografiaPreINCAN=" + mastografiaPreINCAN + ", fechaNavegacion=" + fechaNavegacion + ", fechaConsulta=" + fechaConsulta + ", medicoAdscrito=" + medicoAdscrito + ", medicoRadiologo=" + medicoRadiologo + ", medicoResidente=" + medicoResidente + ", noAdscrito=" + noAdscrito + ", noRadiologo=" + noRadiologo + ", noSeguro=" + noSeguro + ", fechaFin=" + fechaFin + ", etapaClinica=" + etapaClinica + ", T=" + T + ", N=" + N + ", M=" + M + ", resultadoPatologiaPost=" + resultadoPatologiaPost + ", gradoH=" + gradoH + ", her2=" + her2 + ", fish=" + fish + ", re=" + re + ", rp=" + rp + ", ki67=" + ki67 + ", ultra=" + ultra + ", masto=" + masto + '}';
     }
 
     public void setPrz(String prz) {
@@ -321,12 +321,12 @@ public class ReporteNavegadora {
         this.cantidadLaminillas = cantidadLaminillas;
     }
 
-    public String getDecisionCosulta() {
-        return decisionCosulta;
+    public String getDecisionConsulta() {
+        return decisionConsulta;
     }
 
-    public void setDecisionCosulta(String decisionCosulta) {
-        this.decisionCosulta = decisionCosulta;
+    public void setDecisionConsulta(String decisionConsulta) {
+        this.decisionConsulta = decisionConsulta;
     }
 
     public String getSocioeconomico() {
