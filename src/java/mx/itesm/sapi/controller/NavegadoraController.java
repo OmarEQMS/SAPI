@@ -2356,7 +2356,8 @@ public class NavegadoraController extends HttpServlet {
                             //**************Pantalla 4************
                             //*********estadoPAcientePaciente*************
                             //Paciente Tipo resultados
-                            //LLAMADAS                           
+                            //LLAMADAS       
+                            /*
                             String llamadas = request.getParameter("llamadasCita");
                             System.out.println("Llamadas ".concat(llamadas));
                             Object objLlamadas = parser.parse(llamadas);
@@ -2395,7 +2396,7 @@ public class NavegadoraController extends HttpServlet {
                                     }
                                 }
                             }
-                            
+                            */
                             EstadoPacientePaciente estadoPacientePaciente = null;
                             estadoPacientePaciente = estadoPacientePacienteServicioImpl.mostrarEstadoPacientePacienteIdPaciente(idPacientePotencial);
                             estadoPacientePaciente.setIdEmpleado(idNavegadora);
