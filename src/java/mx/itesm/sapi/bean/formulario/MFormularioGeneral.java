@@ -30,6 +30,7 @@ public class MFormularioGeneral implements Serializable {
     private String medicoResidente;
     private boolean noAdscrito;
     private boolean noRadiologo;
+    private boolean noResidente;
     private String escolaridad;
     private String alergias;
     private boolean estadoHormonal;
@@ -61,8 +62,7 @@ public class MFormularioGeneral implements Serializable {
     private Date fechaFin;
     private String decisionCosulta;
     private String socioeconomico;
-    private String comentarioLLamada;
-    private Date fechaLlamada;
+    
     private String comentarioIncidencia;
     private String comentarioMedico;
     private String etapaClinica;
@@ -77,7 +77,9 @@ public class MFormularioGeneral implements Serializable {
     private String resultadoPatologiaPost;
     private String otroResultadoPost;
 
-
+    private String comentarioLLamada;
+    private Date fechaLlamada;
+    
     private int idCita;
     private String nombreEstudio;
     private Date CitaProgramada;
@@ -91,7 +93,7 @@ public class MFormularioGeneral implements Serializable {
     public String toString() {
         return "MFormularioGeneral{" + "prz=" + prz + ", fechaNavegacion=" + fechaNavegacion + ", fechaConsulta=" + fechaConsulta + ", tipoPaciente=" + tipoPaciente 
                 + ", medicoAdscrito=" + medicoAdscrito + ", medicoRadiologo=" + medicoRadiologo + ", medicoResidente=" + medicoResidente + ", noAdscrito=" + noAdscrito 
-                + ", noRadiologo=" + noRadiologo + ", escolaridad=" + escolaridad + ", alergias=" + alergias + ", estadoHormonal=" + estadoHormonal + ", Seguro=" + Seguro 
+                + ", noRadiologo=" + noRadiologo + ", noResidente" + noResidente +", escolaridad=" + escolaridad + ", alergias=" + alergias + ", estadoHormonal=" + estadoHormonal + ", Seguro=" + Seguro 
                 + ", noSeguro=" + noSeguro + ", mastografiaPreINCAN=" + mastografiaPreINCAN + ", cirugiaFecha=" + cirugiaFecha + ", cirugiaTipo=" + cirugiaTipo 
                 + ", cirugiaComentario=" + cirugiaComentario + ", quimioterapiaFecha=" + quimioterapiaFecha + ", quimioterapiaCiclo=" + quimioterapiaCiclo 
                 + ", quimioterapiaComentario=" + quimioterapiaComentario + ", radioterapiaFecha=" + radioterapiaFecha + ", radioterapiaCiclo=" + radioterapiaCiclo 
@@ -105,6 +107,16 @@ public class MFormularioGeneral implements Serializable {
                 + ", idCita=" + idCita + ", nombreEstudio=" + nombreEstudio + ", CitaProgramada=" + CitaProgramada + ", lugarCuerpo=" + lugarCuerpo + '}';
     }
 
+    public boolean isNoResidente() {
+        return noResidente;
+    }
+
+    public void setNoResidente(boolean noResidente) {
+        this.noResidente = noResidente;
+    }
+
+    
+    
     public String getOtroResultadoPost() {
         return otroResultadoPost;
     }

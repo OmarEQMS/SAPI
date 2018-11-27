@@ -50,6 +50,7 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
             mFormularioGeneral.setMedicoResidente(rs.getString("v_medicoResidente"));
             mFormularioGeneral.setNoAdscrito(rs.getBoolean("v_noAdscrito"));
             mFormularioGeneral.setNoRadiologo(rs.getBoolean("v_noRadiologo"));
+            mFormularioGeneral.setNoResidente(rs.getBoolean("v_noResidente"));
             mFormularioGeneral.setEscolaridad(rs.getString("v_escolaridad"));
             mFormularioGeneral.setAlergias(rs.getString("v_alergias"));
             mFormularioGeneral.setEstadoHormonal(rs.getBoolean("v_estadoHormonal"));
@@ -81,8 +82,6 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
             mFormularioGeneral.setFechaFin(rs.getDate("v_fechaFin"));
             mFormularioGeneral.setDecisionCosulta(rs.getString("v_decisionCosulta"));
             mFormularioGeneral.setSocioeconomico(rs.getString("v_socioeconomico"));
-            mFormularioGeneral.setComentarioLLamada(rs.getString("v_comentarioLLamada"));
-            mFormularioGeneral.setFechaLlamada(rs.getDate("v_fechaLlamada"));
             mFormularioGeneral.setComentarioIncidencia(rs.getString("v_comentarioIncidencia"));
             mFormularioGeneral.setComentarioMedico(rs.getString("v_comentarioMedico"));
             mFormularioGeneral.setEtapaClinica(rs.getString("v_etapaClinica"));
@@ -256,6 +255,46 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
                 mFormularioGeneral.setIdCita(rs.getInt("IdCita"));
                 mFormularioGeneral.setLugarCuerpo(rs.getString("LugarCuerpo"));
                 mFormularioGeneral.setCitaProgramada(rs.getDate("FechaProgramada"));
+
+                citas.add(mFormularioGeneral);
+
+            }
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            citas = null;
+        }
+
+        return citas;
+    }
+
+    @Override
+    public ArrayList<MFormularioGeneral> mostrarFormularioNavegadoraLLamada(int idPaciente) {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        ArrayList<MFormularioGeneral> citas = new ArrayList<>();
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL mostrarFormularioNavegadoraLLamada(?)");
+            cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+            MFormularioGeneral mFormularioGeneral;
+
+            while (rs.next()) {
+
+                // cit.idCita, lug.nombre, cit.fechaProgramada
+                mFormularioGeneral = new MFormularioGeneral();
+                mFormularioGeneral.setComentarioLLamada(rs.getString("v_comentarioLLamada"));
+                mFormularioGeneral.setFechaLlamada(rs.getDate("v_fechaLlamada"));
 
                 citas.add(mFormularioGeneral);
 

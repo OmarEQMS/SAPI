@@ -2175,6 +2175,8 @@ $(document).ready(function () {
                 $('#noAdscrito').attr('checked', 'checked');
             if ((data[0][0].noRadiologo === true))
                 $('#esSustituto').attr('checked', 'checked');
+         //    if ((data[0][0].noResidente === true))
+           //     $('#noResidente').attr('checked', 'checked');
 
 // Segunda pagina formulario
 
@@ -2393,9 +2395,613 @@ $(document).ready(function () {
 
 // tercera pagina formulario
 
+//Biopsia
+
+//1./ checkbox habilitado
+            if ($('#tiene-biopsia').prop('checked', true)) {
+//2. habilitar init
+                $('#biopsiaInit').show();
+                $('#biopsia-contenedor').show();
+            } else {
+                $('#biopsia-contenedor').hide();
+                $('#biopsiaInit').hide();
+
+            }
+
+
+//3. recorrer el arreglo
+            for (var i = 0; i < data[1].length; i++) {
+                var plantilla =
+                        `<div class="form-group row mt-2 tuplaBiopsia">
+
+            <!-- tipo biopsia -->
+            <div class="col-3">
+                <input  name="tipo-BipsiaAdded" value="${data[1][i].nombreEstudio}" type="text" class="form-control tipoBiopsia" placeholder="Tipo de biopsiaa">
+            </div>
+
+            <!-- fecha biopsia -->
+            <div class="col-4">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    <input name="fecha-BipsiaAdded" value="${data[1][i].CitaProgramada}" placeholder="Fecha de la biopsia" class="form-control fechaBiopsia" type="text" onfocus="(this.type='date')">
+                </div>
+            </div>
+
+            <!-- parte del cuerpo -->
+            <div class="col-3">
+                <div class="input-group text-center">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fas fa-hand-paper"></i>
+                        </div>
+                    </div>
+                    <input name ="parte-BipsiaAdded" value="${data[1][i].lugarCuerpo}" type="text" class="form-control parteCuerpoBiopsia" placeholder="Parte del cuerpo">
+                </div>
+            </div>
+
+            <div class="col-2">
+                <button type="button" class="btn btn-outline-danger ml-2 remove-biopsia" style="border-radius: 25px;">
+                <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+
+        </div>`
+
+                $('#biopsia-contenedor').append(plantilla);
+
+            }
+
+//Rayos X
+
+//1./ checkbox habilitado
+            if ($('#tiene-rayosX').prop('checked', true)) {
+//2. habilitar init
+                $('#rayosInit').show();
+
+            } else {
+                $('#rayosInit').hide();
+            }
+
+
+//3. recorrer el arreglo
+            for (var i = 0; i < data[2].length; i++) {
+                var plantilla =
+                        `
+            <div class="form-group row mt-2 tuplaRayosX">
+
+                <!-- tipo rayos -->
+                <div class="col-5">
+
+                    <input name="tipo-RayosXAdded" value="${data[2][i].nombreEstudio}" type="text" class="form-control tipoBiopsia rayosX" placeholder="Tipo de rayos X">
+                </div>
+
+                <!-- fecha rayos -->
+                <div class="col-5">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                        </div>
+                        <input name ="fecha-RayosXAdded" value="${data[2][i].CitaProgramada}" placeholder="Fecha de los Rayos X" class="form-control fechaRayos" type="text" onfocus="(this.type='date')">
+                    </div>
+                </div>
+
+                <div class="col-2">
+                <button type="button" class="btn btn-outline-danger ml-2 remove-biopsia" style="border-radius: 25px;">
+                <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            </div>
+        
+     `
+
+                $('#rayos-contenedor').append(plantilla);
+
+            }
+
+//UltraSonido
+
+//1./ checkbox habilitado
+            if ($('#tiene-ultrasonido').prop('checked', true)) {
+//2. habilitar init
+                $('#ultrasonidoInit').show();
+            } else {
+                $('#ultrasonidoInit').hide();
+            }
+
+
+//3. recorrer el arreglo
+            for (var i = 0; i < data[3].length; i++) {
+                var plantilla =
+                        `
+            <div class="form-group row mt-2 tuplaUltrasonido">
+
+               
+                <div class="col-5">
+                    <input name ="parteCuperpo-USGAdded"type="text" value="${data[3][i].lugarCuerpo}" class="form-control parteCuerpoUltrasonido" placeholder="Parte del cuerpo">
+                </div>
+
+            
+                <div class="col-5">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                        </div>
+                        <input name ="fecha-USGAdded" value="${data[3][i].CitaProgramada}" placeholder="Fecha de USG" class="form-control fechaUltrasonido" type="text" onfocus="(this.type='date')">
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <button type="button" class="btn btn-outline-danger ml-2 remove-ultrasonido" style="border-radius: 25px;">
+                    <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+
+            </div>
+        
+     `
+
+                $('#ultrasonido-contenedor').append(plantilla);
+            }
+
+//Medicina Nuclear
+
+//1./ checkbox habilitado
+            if ($('#tiene-medicina-nuclear').prop('checked', true)) {
+//2. habilitar init
+                $('#medicinaNuclearInit').show();
+            } else {
+                $('#medicinaNuclearInit').hide();
+            }
+
+
+//3. recorrer el arreglo
+            for (var i = 0; i < data[4].length; i++) {
+                var plantilla =
+                        `
+            <div class="form-group row mt-2 tuplaMedicinaNuclear">
+    
+                    <div class="col-5">
+                        <input name ="mNuclearAdded" type="text" class="form-control medicinaNuclear" value="${data[4][i].nombreEstudio}" placeholder="Introduce medicina nuclear">
+                    </div>
+
+      
+                    <div class="col-5">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                            </div>
+                            <input name ="fecha-mNuclearAdded" value="${data[4][i].CitaProgramada}" placeholder="Fecha de medicina nuclear" class="form-control fechaMedicinaNuclear" type="text" onfocus="(this.type='date')">
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                        <button type="button" class="btn btn-outline-danger ml-2 remove-medicinaNuclear" style="border-radius: 25px;">
+                        <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                </div>
+        
+     `
+
+                $('#medicinaNuclear-contenedor').append(plantilla);
+
+            }
+
+//Laboratorio
+
+//1./ checkbox habilitado
+            if ($('#tiene-laboratorio').prop('checked', true)) {
+//2. habilitar init
+                $('#laboratorioInit').show();
+            } else {
+                $('#laboratorioInit').hide();
+            }
+
+
+//3. recorrer el arreglo
+            for (var i = 0; i < data[5].length; i++) {
+                var plantilla =
+                        `
+            <div class="form-group row mt-2 tuplaLaboratorio">
+
+                <div class="col-10">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                        </div>
+                        <input name ="fecha-LaboAdded" value="${data[5][i].CitaProgramada}" placeholder="Fecha de laboratorio" class="form-control fechaLaboratorio" type="text" onfocus="(this.type='date')">
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <button type="button" class="btn btn-outline-danger ml-2 remove-laboratorio" style="border-radius: 25px;">
+                    <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                    
+            </div>
+        
+     `
+
+                $('#laboratorio-contenedor').append(plantilla);
+
+            }
+
+//Valoracion
+
+//1./ checkbox habilitado
+            if ($('#tiene-valoracion').prop('checked', true)) {
+//2. habilitar init
+                $('#valoracionInit').show();
+            } else {
+                $('#valoracionInit').hide();
+            }
+
+
+//3. recorrer el arreglo
+            for (var i = 0; i < data[6].length; i++) {
+                var plantilla =
+                        `
+            <div class="form-group row mt-2 tuplaValoracion">
+
+       
+                <div class="col-5">
+                    <input name ="valoracionAdded" value="${data[6][i].nombreEstudio}" type="text" class="form-control valoracion" placeholder="Introduce valoración">
+                </div>
+
+                <div class="col-5">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                        </div>
+                        <input name ="fecha-valoracionAdded" value="${data[6][i].CitaProgramada}" placeholder="Fecha de valoración" class="form-control fechaValoracion" type="text" onfocus="(this.type='date')">
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <button type="button" class="btn btn-outline-danger ml-2 remove-valoracion" style="border-radius: 25px;">
+                    <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+            </div>
+        
+     `
+
+                $('#valoracion-contenedor').append(plantilla);
+
+            }
+
+// Espirometróa/Inhaloterapia
+
+//1./ checkbox habilitado
+            if ($('#tiene-espirometria').prop('checked', true)) {
+//2. habilitar init
+                $('#espirometriaInit').show();
+            } else {
+                $('#espirometriaInit').hide();
+            }
+
+
+//3. recorrer el arreglo
+            for (var i = 0; i < data[7].length; i++) {
+                var plantilla =
+                        `
+            <div class="form-group row mt-2 tuplaEspirometria">
+
+                <div class="col-10">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                        </div>
+                        <input name="fecha-espilometriaAdded" value="${data[7][i].CitaProgramada}" placeholder="Fecha de espirometría" class="form-control fechaEspirometria" type="text" onfocus="(this.type='date')">
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <button type="button" class="btn btn-outline-danger ml-2 remove-espirometria" style="border-radius: 25px;">
+                    <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+            </div>
+        
+     `
+
+                $('#espirometria-contenedor').append(plantilla);
+
+            }
+
+// Electrocardiograma
+
+//1./ checkbox habilitado
+            if ($('#tiene-electrocardiograma').prop('checked', true)) {
+//2. habilitar init
+                $('#electrocardiogramaInit').show();
+            } else {
+                $('#electrocardiogramaInit').hide();
+            }
+
+
+//3. recorrer el arreglo
+            for (var i = 0; i < data[8].length; i++) {
+                var plantilla =
+                        `
+            <div class="form-group row mt-2 tuplaElectrocardiograma">
+
+                    <div class="col-10">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                            </div>
+                            <input name="fecha-ECGAdded" value="${data[8][i].CitaProgramada}" placeholder="Fecha de electrocardiograma" class="form-control fechaElectrocardiograma" type="text" onfocus="(this.type='date')">
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                        <button type="button" class="btn btn-outline-danger ml-2 remove-electrocardiograma" style="border-radius: 25px;">
+                        <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                </div>
+        
+     `
+
+                $('#electrocardiograma-contenedor').append(plantilla);
+
+            }
+
+
+//ecocrdiaograma
+
+//1./ checkbox habilitado
+            if ($('#tiene-ecocardiograma').prop('checked', true)) {
+//2. habilitar init
+                $('#ecocardiogramaInit').show();
+            } else {
+                $('#ecocardiogramaInit').hide();
+            }
+
+//3. recorrer el arreglo
+            for (var i = 0; i < data[9].length; i++) {
+                var plantilla =
+                        `
+            <div class="form-group row mt-2 tuplaEcocardiograma">
+
+                    <div class="col-10">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                            </div>
+                            <input name="fecha-ecoAdded" value="${data[9][i].CitaProgramada}" placeholder="Fecha de ecocardiograma" class="form-control fechaEcocardiograma" type="text" onfocus="(this.type='date')">
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                        <button type="button" class="btn btn-outline-danger ml-2 remove-ecocardiograma" style="border-radius: 25px;">
+                        <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+
+                </div>
+        
+     `
+
+                $('#ecocardiograma-contenedor').append(plantilla);
+            }
+
+
+
+//Trabajo social
+
+//1./ checkbox habilitado
+            if ($('#tiene-trabajo-social').prop('checked', true)) {
+//2. habilitar init
+                $('#trabajoSocialInit').show();
+            } else {
+                $('#trabajoSocialInit').hide();
+            }
+
+//3. recorrer el arreglo
+
+            for (var i = 0; i < data[10].length; i++) {
+                var plantilla =
+                        `
+            <div class="form-group row mt-2 tuplaTrabajoSocial">
+
+                <div class="col-10">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                        </div>
+                        <input name="fecha-tSocilaAdded" value="${data[10][i].CitaProgramada}" placeholder="Fecha de trabajo social" class="form-control fechaTrabajoSocial" type="text" onfocus="(this.type='date')">
+                    </div>
+                </div>
+
+                <div class="col-2">
+                        <button type="button" class="btn btn-outline-danger ml-2 remove-trabajoSocial" style="border-radius: 25px;">
+                        <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+            </div>
+        
+     `;
+
+                $('#trabajoSocial-contenedor').append(plantilla);
+            }
+
+// Programa
+
+//1./ checkbox habilitado
+            if ($('#tiene-programa').prop('checked', true)) {
+//2. habilitar init
+                $('#programaInit').show();
+            } else {
+                $('#programaInit').hide();
+            }
+
+
+//3. recorrer el arreglo
+            for (var i = 0; i < data[11].length; i++) {
+                var plantilla =
+            `
+            <div class="form-group row mt-2 tuplaPrograma">
+
+
+                    <div class="col-5">
+                        <input name="programaAdded" value="${data[10][i].nombreEstudio}" type="text" id="tipoPrograma" class="form-control" placeholder="Introduce programa">
+                    </div>
+
+                    <div class="col-5">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                            </div>
+                            <input name="fecha-programaAdded" value="${data[11][i].CitaProgramada}" placeholder="Fecha del programa" class="form-control fechaPrograma" type="text" onfocus="(this.type='date')">
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                        <button type="button" class="btn btn-outline-danger ml-2 remove-programa" style="border-radius: 25px;">
+                        <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                </div>
+        
+     `
+
+        $('#programa-contenedor').append(plantilla);
+
+            }
+
+// Otro
+
+//1./ checkbox habilitado
+            if ($('#tiene-otro').prop('checked', true)) {
+//2. habilitar init
+                $('#otroInit').show();
+            } else {
+                $('#otroInit').hide();
+            }
+
+
+//3. recorrer el arreglo
+            for (var i = 0; i < data[12].length; i++) {
+              var plantilla =
+            `
+            <div class="form-group row mt-2 tuplaOtro">
+
+                    <div class="col-5">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                            </div>
+                            <input name="fecha-otroAdded" value="${data[12][i].CitaProgramada}" placeholder="Fecha de otro" class="form-control fechaOtro" type="text" onfocus="(this.type='date')">
+                        </div>
+                    </div>
+
+                    <div class="col-5">
+                        <input name="otroAdded" value="${data[12][i].nombreEstudio}" type="text" class="form-control otro-estudioPreconsulta" placeholder="Introduce otro">
+                    </div>
+
+                    <div class="col-2">
+                        <button type="button" class="btn btn-outline-danger ml-2 remove-otro" style="border-radius: 25px;">
+                        <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                </div>
+        
+     `
+
+        $('#otro-contenedor').append(plantilla);
+
+            }
+
 
 
 // cuarta pagina formulario
+
+
+// LLamada al paciente
+
+//1./ checkbox habilitado
+            if ($('#seLlamo').prop('checked', true)) {
+//2. habilitar init
+                $('#llamadaInit').show();
+
+            } else {
+                $('#llamadaInit').hide();
+            }
+
+
+//3. recorrer el arreglo
+            for (var i = 0; i < data[13].length; i++) {
+                var plantilla =
+                        `
+            <div class="tuplaLlamada mt-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                            </div>
+                            <input value="${data[13][i].fechaLlamada}" placeholder="Fecha llamada" class="form-control fecha-llamada" type="text" onfocus="(this.type='date')">
+                            <button type="button" class="btn btn-outline-danger ml-3 remove-llamada" style="border-radius: 25px;">
+                            <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <textarea class="form-control comentario-llamada" style="min-height:100px;" value="${data[12][i].comentarioLLamada}" placeholder="Introduce el motivo de la llamada "></textarea>
+                    </div>
+                </div>
+            </div>
+        
+     `
+
+                $('.llamadaInit').append(plantilla);
+
+            }
 
             if (data[0][0].fechaFin !== "ene 1, 1900")
                 $('#fecha-decisionPreconsulta').val(data[0][0].fechaFin);
@@ -2428,7 +3034,7 @@ $(document).ready(function () {
 
 // quinta pagina formulario
 
-              if ((data[0][0].etapaClinica !== "")) {
+            if ((data[0][0].etapaClinica !== "")) {
                 $('#etapaClinica option:contains(' + $.trim(data[0][0].etapaClinica) + ')').each(function () {
                     if ($.trim($(this).text()) === $.trim(data[0][0].etapaClinica)) {
                         $(this).attr('selected', 'selected');
@@ -2436,8 +3042,8 @@ $(document).ready(function () {
 
                 });
             }
-            
-              if ((data[0][0].masto !== "")) {
+
+            if ((data[0][0].masto !== "")) {
                 $('#tipoMastografia option:contains(' + $.trim(data[0][0].masto) + ')').each(function () {
                     if ($.trim($(this).text()) === $.trim(data[0][0].masto)) {
                         $(this).attr('selected', 'selected');
@@ -2445,7 +3051,7 @@ $(document).ready(function () {
 
                 });
             }
-            
+
             if ((data[0][0].ultra !== "")) {
                 $('#tipoUSG option:contains(' + $.trim(data[0][0].ultra) + ')').each(function () {
                     if ($.trim($(this).text()) === $.trim(data[0][0].ultra)) {
@@ -2454,7 +3060,7 @@ $(document).ready(function () {
 
                 });
             }
-                
+
             if ((data[0][0].T !== "")) {
                 $('#tumorPrimarioT option:contains(' + $.trim(data[0][0].T) + ')').each(function () {
                     if ($.trim($(this).text()) === $.trim(data[0][0].T)) {
@@ -2540,7 +3146,7 @@ $(document).ready(function () {
 
                 });
             }
-            
+
             if (data[0][0].ki67 !== "")
                 $('#ki67').val(data[0][0].ki67);
 

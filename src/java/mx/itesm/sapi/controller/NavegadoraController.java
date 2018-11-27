@@ -430,8 +430,6 @@ public class NavegadoraController extends HttpServlet {
                             if(formGeneral.getFechaFin() == null)formGeneral.setFechaFin(Date.valueOf("1900-01-01"));
                             if(formGeneral.getDecisionCosulta() == null)formGeneral.setDecisionCosulta("");
                             if(formGeneral.getSocioeconomico() == null)formGeneral.setSocioeconomico("");
-                            if(formGeneral.getComentarioLLamada() == null)formGeneral.setComentarioLLamada("");
-                            if(formGeneral.getFechaLlamada() == null)formGeneral.setFechaLlamada(Date.valueOf("1900-01-01"));
                             if(formGeneral.getComentarioIncidencia() == null)formGeneral.setComentarioIncidencia("");
                             if(formGeneral.getComentarioMedico() == null)formGeneral.setComentarioMedico("");
                             if(formGeneral.getEtapaClinica() == null)formGeneral.setEtapaClinica("");
@@ -447,22 +445,22 @@ public class NavegadoraController extends HttpServlet {
                     
                             formGeneralList.add(formGeneral);
                             ElJeison.add(formGeneralList);
+                            
                             ArrayList<MFormularioGeneral> formBiopsia = mFormularioGeneralServicioImpl.mostrarFormularioLugarTipoFecha(idPaciente, "Biopsia");
                             ElJeison.add(formBiopsia);
+                            
+                            ArrayList<MFormularioGeneral> formRayoX = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Rayos X");
+                            ElJeison.add(formRayoX);
+                            
                             ArrayList<MFormularioGeneral> formUltraSonido = mFormularioGeneralServicioImpl.mostrarFormularioLugarFecha(idPaciente, "Ultrasonido");
                             ElJeison.add(formUltraSonido);
 
                             ArrayList<MFormularioGeneral> formMedicinaNuclear = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Medicina nuclear");
                             ElJeison.add(formMedicinaNuclear);
-                            ArrayList<MFormularioGeneral> formValoracion = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Valoración");
-                            ElJeison.add(formValoracion);
-                            ArrayList<MFormularioGeneral> formProgramas = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Programas");
-                            ElJeison.add(formProgramas);
-                            ArrayList<MFormularioGeneral> formOtros = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Otros");
-                            ElJeison.add(formOtros);
-
                             ArrayList<MFormularioGeneral> formLaboratorio = mFormularioGeneralServicioImpl.mostrarFormularioFecha(idPaciente, "Laboratorios");
                             ElJeison.add(formLaboratorio);
+                            ArrayList<MFormularioGeneral> formValoracion = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Valoración");
+                            ElJeison.add(formValoracion);
                             ArrayList<MFormularioGeneral> formEspiro = mFormularioGeneralServicioImpl.mostrarFormularioFecha(idPaciente, "Espirometría/Inhaloterapia");
                             ElJeison.add(formEspiro);
                             ArrayList<MFormularioGeneral> formElectro = mFormularioGeneralServicioImpl.mostrarFormularioFecha(idPaciente, "Electrocardiograma");
@@ -471,6 +469,16 @@ public class NavegadoraController extends HttpServlet {
                             ElJeison.add(formEcocardio);
                             ArrayList<MFormularioGeneral> formTrabajoSocial = mFormularioGeneralServicioImpl.mostrarFormularioFecha(idPaciente, "Trabajo social");
                             ElJeison.add(formTrabajoSocial);
+                            ArrayList<MFormularioGeneral> formProgramas = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Programas");
+                            ElJeison.add(formProgramas);
+                            ArrayList<MFormularioGeneral> formOtros = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Otros");
+                            ElJeison.add(formOtros);
+
+                            
+                             ArrayList<MFormularioGeneral> formLlamada = mFormularioGeneralServicioImpl.mostrarFormularioNavegadoraLLamada(idPaciente);
+                            ElJeison.add(formLlamada);
+                            
+                            
 
                             PrintWriter out = response.getWriter();
                             Gson json = new Gson();
