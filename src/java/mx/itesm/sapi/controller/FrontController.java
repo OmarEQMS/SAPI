@@ -697,6 +697,18 @@ public class FrontController extends HttpServlet {
                                     
                                     request.setAttribute("listaRadiologos", radiologos);
                                     
+                                    /**-------------------Mostrar Lista Residente---------------------------------------*/
+                                    
+                                    PersonaServicioImpl personaServicioResidentes = new PersonaServicioImpl();
+                                    List<Persona> residentes = personaServicioResidentes.mostrarMedicosResidentes();
+                                    
+                                    
+                                        for(int i=0; i<residentes.size(); i++){
+                                            System.out.println("El id de este residente es "+residentes.get(i).getIdPersona());
+                                        }
+                                    
+                                    request.setAttribute("listaResidentes", residentes);
+                                    
                                     /**-------------------Mostrar Lista Escolaridad---------------------------------------*/
                                     
                                     EscolaridadServicioImpl escolaridadServicio = new EscolaridadServicioImpl();

@@ -1924,10 +1924,14 @@ $(document).ready(function () {
         );
     });
 
-
+    var cambiarRol=0;
+    
+    $("#btn-sendAll").on("click", function(){
+        cambiarRol=1;
+    });
     // Pantallas del formulario 
 
-     $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5').on('click', function () {
+     $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5, #btn-sendAll').on('click', function () {
          
         // OMAR
         var biopsias = [];
@@ -2223,6 +2227,9 @@ $(document).ready(function () {
         data.append("llamadasCita",JSON.stringify(llamadas));
         data.append("biradsMasto",biradsMasto);
         data.append("biradUSG",biradUSG);
+        if(cambiarRol==1)
+            data.append("cambiarRol", cambiarRol);
+        
 
         data.forEach((value, key) => {
             console.log(key + " " + value);

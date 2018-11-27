@@ -96,30 +96,16 @@
                     <!-- MENU PRINCIPAL ENLACES -->
                     <ul class="list-unstyled components">
 
-                        <li>
-                            <a href="./index.html">
-                                <i class="fas fa-home"></i>Inicio</a>
-                        </li>
+                       <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
+                                                            
+                       <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
-                        <li>
-                            <a href="./calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Calendario</a>
-                        </li>
+                       <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
+                       
+                       <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
 
-                        <li>
-                            <a href="./rendimiento.html">
-                                <i class="fas fa-chart-line"></i>Mi Rendimiento</a>
-                        </li>
+                       <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
-                        <li>
-                            <a href="./cuenta.html">
-                                <i class="far fa-user"></i>Mi Cuenta</a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-sign-out-alt"></i>Cerrar SesiÃ¯Â¿Â½n</a>
-                        </li>
 
                     </ul>
 
@@ -314,10 +300,27 @@
                                                         </div>
                                                     </div>
 
-                                                    <input name = "medico-residente" type="text" id="medico-residente" class="form-control" class="form-control" placeholder="Introduce MÃ¯Â¿Â½dico Residente">
-                                                </div>
-                                            </div>
+                                                   <select name="medico-residente" class="form-control" id="medico-radiologo">
 
+                                                        <option disabled selected>Seleccione un Residente</option>
+
+                                                        <c:forEach items="${listaResidentes}" var="residente">  
+
+                                                            <option value='<c:out value="${residente.idPersona}"/>'><c:out value='${residente.nombre} ${residente.primerApellido} ${residente.segundoApellido}'/> </option>
+
+                                                        </c:forEach>
+                                                        <option value="otro">Otro</option>
+
+                                                    </select>
+ </div>
+                                           
+                                            <div class="form-check mt-2">
+                                                    <input name="noAdscrito" class=" form-check-input" type="checkbox" value="" id="noAdscrito">
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                         No estuvo médico residente
+                                                    </label>
+                                                </div>
+ </div>
                                         </div>
 
                                         <!-- Fecha Consulta-->
