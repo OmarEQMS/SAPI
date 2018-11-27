@@ -258,6 +258,8 @@ public class PotencialController extends HttpServlet {
                     int idCuenta = (int) sesion.getAttribute("idCuenta");
                     String contrasena = request.getParameter("password");
                     String contrasena2 = request.getParameter("password2");
+                    
+                    System.out.println("Contrasena: ".concat(contrasena));
 
                     if (contrasena.equals(contrasena2)) {
 
