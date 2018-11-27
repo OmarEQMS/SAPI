@@ -204,6 +204,7 @@ $(document).ready(function () {
 
     });
 
+
     /////////////////////////////// MI CUENTA ////////
 
     $('.error-correo').hide();
@@ -492,7 +493,7 @@ $(document).ready(function () {
     });
 
 
-    /////////////////////////////// GESTION MEDICOS //////
+    /////////////////////////////// GESTION MEDICOS ////// 
 
     //Errores al agregar a un médico
     $('#errorNombreMedico').hide();
@@ -507,8 +508,6 @@ $(document).ready(function () {
     $('#noEqualPasswordsError').hide();
     $('#error-campos').hide();
     $('#error-datosRepetidos').hide();
-    $('#errorTerminos').hide();
-
     $('#errorAgregarEspecialidad').hide();
     $('#errorAgregarPosicion').hide();
 
@@ -523,7 +522,7 @@ $(document).ready(function () {
     $('#errorEditarCedulaMedicos').hide();
     $('#error-editarDatosRepetidos').hide();
     $('#errorEditarEspecialidad').hide();
-    //$('#errorEditarPosicion').hide(); SHANNON
+    $('#errorEditarPosicion').hide();
 
 
     var repiteCorreo;
@@ -569,46 +568,115 @@ $(document).ready(function () {
         }
 
     });
+    /*
+     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
+     $('#agregar-especialidadMedico').on('change', function () {
+     
+     if (isValidEspecialidad($(this))) {
+     $('#errorAgregarEspecialidad').hide();
+     } else if ($(this).val() == '') {
+     $('#errorAgregarEspecialidad').hide();
+     } else {
+     $('#errorAgregarEspecialidad').show();
+     }
+     
+     });
+     
+     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
+     $('#editar-especialidadMedico').on('change', function () {
+     
+     if (isValidEspecialidad($(this))) {
+     $('#errorEditarEspecialidad').hide();
+     } else if ($(this).val() == '') {
+     $('#errorEditarEspecialidad').hide();
+     } else {
+     $('#errorEditarEspecialidad').show();
+     }
+     
+     });*/
 
-    //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
-    $('#agregar-especialidadMedico').on('change', function () {
+    var isValidAddEspecialidad;
+    var dato2 = $("#agregar-especialidadMedico");
 
-        if (isValidEspecialidad($(this))) {
+    dato2.on('keyup', function (e) {
+        var option = $('#listEspecialidades option').filter(function () {
+            return this.value === $("#agregar-especialidadMedico").val();
+        }).val();
+
+        if (option) {
             $('#errorAgregarEspecialidad').hide();
-        } else if ($(this).val() == '') {
+            dato2.css('border', '');
+            dato2.css('color', '');
+            isValidAddEspecialidad = true;
+        } else if (dato2.val() == '') {
             $('#errorAgregarEspecialidad').hide();
+            dato2.css('border', '');
+            dato2.css('color', '');
+            isValidAddEspecialidad = false;
         } else {
             $('#errorAgregarEspecialidad').show();
+            dato2.css('border', '1px solid red');
+            dato2.css('color', 'red');
+            isValidAddEspecialidad = false;
         }
-
     });
-
+    
     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
     $('#editar-especialidadMedico').on('change', function () {
 
-        if (isValidEspecialidad($(this))) {
+    var isValidEditEspecialidad = true;
+    var dato2EditEspecialidad = $("#editar-especialidadMedico");
+
+    dato2EditEspecialidad.on('keyup', function (e) {
+        var option = $('#listEspecialidades option').filter(function () {
+            return this.value === $("#editar-especialidadMedico").val();
+        }).val();
+
+        if (option) {
             $('#errorEditarEspecialidad').hide();
-        } else if ($(this).val() == '') {
-            $('#errorEditarEspecialidad').hide();
+            dato2EditEspecialidad.css('border', '');
+            dato2EditEspecialidad.css('color', '');
+            isValidEditEspecialidad = true;
+        } else if (dato2EditEspecialidad.val() == '') {
+            $('#errorAgregarEspecialidad').hide();
+            dato2.css('border', '');
+            dato2.css('color', '');
+            isValidAddEspecialidad = false;
         } else {
             $('#errorEditarEspecialidad').show();
+            dato2EditEspecialidad.css('border', '1px solid red');
+            dato2EditEspecialidad.css('color', 'red');
+            isValidEditEspecialidad = false;
         }
-
     });
 
-    //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
-    $('#agregar-posiciondMedico').on('change', function () {
+    var isValidAddPosicion;
+    var dato = $("#agregar-posiciondMedico");
 
-        if (isValidPosicion($(this))) {
+    dato.on('keyup', function (e) {
+        var option = $('#listPosiciones option').filter(function () {
+            return this.value === $("#agregar-posiciondMedico").val();
+        }).val();
+
+        if (option) {
             $('#errorAgregarPosicion').hide();
-        } else if ($(this).val() == '') {
+            dato.css('border', '');
+            dato.css('color', '');
+            isValidAddPosicion = true;
+        } else if (dato.val() == '') {
             $('#errorAgregarPosicion').hide();
+            dato.css('border', '');
+            dato.css('color', '');
+            isValidAddPosicion = false;
         } else {
             $('#errorAgregarPosicion').show();
+            dato.css('border', '1px solid red');
+            dato.css('color', 'red');
+            isValidAddPosicion = false;
         }
-
     });
 
+<<<<<<< HEAD
     /* SHANNON
      
      //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
@@ -624,6 +692,43 @@ $(document).ready(function () {
      
      }); */
 
+||||||| merged common ancestors
+        if (isValidPosicion($(this))) {
+            $('#errorEditarPosicion').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarPosicion').hide();
+        } else {
+            $('#errorEditarPosicion').show();
+        }
+
+    }); */
+=======
+    var isValidEditPosicion = true;
+    var dato2EditPosicion = $("#editar-posicionMedico");
+
+    dato2EditPosicion.on('keyup', function (e) {
+        var option = $('#listPosiciones option').filter(function () {
+            return this.value === $("#editar-posicionMedico").val();
+        }).val();
+        alert()
+        if (option) {
+            $('#errorEditarPosicion').hide();
+            dato2EditPosicion.css('border', '');
+            dato2EditPosicion.css('color', '');
+            isValidEditPosicion = true;
+        } else if (dato2EditPosicion.val() == '') {
+            $('#errorAgregarPosicion').hide();
+            dato.css('border', '');
+            dato.css('color', '');
+            isValidAddPosicion = false;
+        } else {
+            $('#errorEditarPosicion').show();
+            dato2EditPosicion.css('border', '1px solid red');
+            dato2EditPosicion.css('color', 'red');
+            isValidEditPosicion = false;
+        }
+    });
+>>>>>>> origin/Shannon*/
 
     //NOMBRE EN AGREGAR MÉDICO
     $('#agregar-nombreMedico').on('change', function () {
@@ -685,15 +790,6 @@ $(document).ready(function () {
 
         areEqualPasswords(pass1, pass2);
 
-    });
-
-    $('#terminosMedico').on('change', function () {
-
-        if (isValidCheckbox($(this))) {
-            $('#errorTerminos').hide();
-        } else {
-            $('#errorTerminos').show();
-        }
     });
 
     $('#agregar-correoMedico').on('change', function () {
@@ -1262,18 +1358,17 @@ $(document).ready(function () {
     });
 
     //////////////////////////////////////////////////////
-    /////////////////////////////// GESTION MEDICOS //////
+    /////////////////////////////// GESTION MEDICOS ////// 
     //////////////////////////////////////////////////////
     /**AGREGAR MEDICO */
     $('#btn-agregarMedico').on('click', function () {
-        configureLoadingScreen($('.cargandoAgregarMedico'));
         if (!repiteCorreo) {
 
             $("#error-datosRepetidos").hide();
 
-            if (isValidName($('#agregar-nombreMedico')) && isValidLastName($('#agregar-primerApellidoMedico')) && isValidLastName($('#agregar-segundoApellidoMedico'))
-                    && isValidNumEmpleado($('#agregar-noEmpleadoMedico')) && isValidEmail($('#agregar-correoMedico')) && isValidPassword($('#agregar-passwordMedico')) && isValidCedula($('#agregar-cedulaMedico'))
-                    && isValidPhoneNumber($('#agregar-telefonoMedico')) && isValidCheckbox($('#terminosMedico')) && isValidEspecialidad($('#agregar-especialidadMedico')) && isValidPosicion($('#agregar-posiciondMedico'))
+            if (isValidName($('#agregar-nombreMedico')) && isValidLastName($('#agregar-primerApellidoMedico')) && $('#errorApellidoMaternoMedico').hide() && $('#errorCedulaMedicos').hide()
+                    && isValidNumEmpleado($('#agregar-noEmpleadoMedico')) && isValidEmail($('#agregar-correoMedico')) && isValidPassword($('#agregar-passwordMedico'))
+                    && isValidPhoneNumber($('#agregar-telefonoMedico')) && isValidCheckbox($('#terminosMedico')) && isValidAddEspecialidad && isValidAddPosicion
                     && areEqualPasswords($('#agregar-passwordMedico'), $('#agregar-password2Medico'))
                     && $('#errorCorreoRepetido').hide()) {
 
@@ -1294,6 +1389,9 @@ $(document).ready(function () {
 
                     url: 'RegistraUsuarioController',
                     cache: false,
+                    beforeSend: function () {
+                        $('.cargandoAgregarMedico').fadeIn();
+                    },
                     method: 'POST',
                     data: {
                         key: 'agregarMedico',
@@ -1307,6 +1405,9 @@ $(document).ready(function () {
                         posicion: posicion.val(),
                         cedula: cedula.val(),
                         password: password.val()
+                    },
+                    complete: function () {
+                        $('.cargandoAgregarMedico').fadeOut();
                     },
                     success: function (response) {
 
@@ -1331,9 +1432,13 @@ $(document).ready(function () {
                         $("#agregar-cedulaMedico").val("");
                         $("#agregar-passwordMedico").val("");
                         $("#agregar-password2Medico").val("");
+                        $("#terminosMedico").prop("checked", false);
 
                         //Cerrar el modal
                         $('#modalAgregarMedico').modal('toggle');
+                    },
+                    error: function (xhr) {
+                        //alert(xhr.statusText);
                     }
                 })
                         .done(function (response) {
@@ -1347,6 +1452,7 @@ $(document).ready(function () {
         } else {
             console.log("Entro al segundo else");
             $("#error-datosRepetidos").show(); //ya existe un campo
+            $("#error-campos").hide();
         }
     });
 
@@ -1475,7 +1581,6 @@ $(document).ready(function () {
         var idMedico = $(this).data('id');
         console.log("idMédico " + idMedico);
 
-
         $.ajax({
 
             url: 'AdministradorController',
@@ -1485,9 +1590,6 @@ $(document).ready(function () {
             data: {
                 key: 'obtener-medico',
                 idMedicoAdministrador: idMedico
-            },
-            beforeSend: function () {
-
             },
             success: function (response) {
 
@@ -1503,7 +1605,7 @@ $(document).ready(function () {
                 $('#editar-telefonoMedico').val(json.telefono);
                 $('#editar-noEmpleadoMedico').val(json.noEmpleado);
                 $('#editar-especialidadMedico').val(json.nombreEspecialidad);
-                //$('#editar-posicionMedico').val(json.nombrePosicion); SHANNON
+                $('#editar-posicionMedico').val(json.nombrePosicion);
                 $('#editar-cedulaProfesionalMedico').val(json.cedulaProfesional);
 
             }
@@ -1719,9 +1821,9 @@ $(document).ready(function () {
         if (!repiteCorreo) {
             $("#error-editarDatosRepetidos").hide();
 
-            if (isValidName($('#editar-nombreMedico')) && isValidLastName($('#editar-primerApellidoMedico')) && isValidLastName($('#editar-segundoApellidoMedico'))
-                    && isValidNumEmpleado($('#editar-noEmpleadoMedico')) && isValidEmail($('#editar-correoMedico')) && isValidCedula($('#editar-cedulaProfesionalMedico'))
-                    && isValidPhoneNumber($('#editar-telefonoMedico')) && isValidEspecialidad($('#editar-especialidadMedico')) /*&& isValidPosicion($('#editar-posicionMedico'))*/
+            if (isValidName($('#editar-nombreMedico')) && isValidLastName($('#editar-primerApellidoMedico')) && $('#errorApellidoMaternoMedico').hide() && $('#errorCedulaMedicos').hide()
+                    && isValidNumEmpleado($('#editar-noEmpleadoMedico')) && isValidEmail($('#editar-correoMedico'))
+                    && isValidPhoneNumber($('#editar-telefonoMedico')) && isValidEditEspecialidad && isValidEditPosicion
                     && $('#errorCorreoRepetido').hide()) {
 
                 var idMedico = $('#idMedico').val();
@@ -1732,6 +1834,7 @@ $(document).ready(function () {
                 var correo = $('#editar-correoMedico').val();
                 var noEmpleado = $('#editar-noEmpleadoMedico').val();
                 var especialidad = $('#editar-especialidadMedico').val();
+                var posicion = $('#editar-posicionMedico').val();
                 var cedula = $('#editar-cedulaProfesionalMedico').val();
 
                 console.log("idMédicoooo " + idMedico);
@@ -1744,13 +1847,14 @@ $(document).ready(function () {
                 console.log("especiliad  " + especialidad);
                 console.log("cedula " + cedula);
 
-
                 console.log("Holi, hará el ajax");
-
                 $.ajax({
 
                     url: 'AdministradorController',
                     cache: false,
+                    beforeSend: function () {
+                        $('.cargandoEditarMedico').fadeIn();
+                    },
                     method: 'POST',
                     data: {
                         key: 'actualizar-medico',
@@ -1762,7 +1866,11 @@ $(document).ready(function () {
                         correo: correo,
                         noEmpleado: noEmpleado,
                         especialidad: especialidad,
+                        posicion: posicion,
                         cedula: cedula
+                    },
+                    complete: function () {
+                        $('.cargandoEditarMedico').fadeOut();
                     },
                     success: function (response) {
                         $('#modalEditarMedico').modal('toggle'); //cerrar modal
@@ -1780,6 +1888,9 @@ $(document).ready(function () {
                         $('#noEmpleado-' + idMedico).html(noEmpleado);
                         $('#nombreEspecialidad-' + idMedico).html(especialidad);
                         $('#cedulaProfesional-' + idMedico).html(cedula);
+                    },
+                    error: function (xhr) {
+                        //alert(xhr.statusText);
                     }
 
                 });
@@ -1832,58 +1943,407 @@ $(document).ready(function () {
 
     });
 
-    ///////////////////////////////GESTIÓN NAVEGADORAS
+    ///////////////////////////////GESTIÓN NAVEGADORAS 
 
-    /**AGREGAR NAVEGADORA */
-    $('#btn-agregarNavegadora').on('click', function () {
+    //Errores al agregar a una navegadora
+    $('#errorNombreNavegadora').hide();
+    $('#errorTelefonoNavegadora').hide();
+    $('#errorApellidoPaternoNavegadora').hide();
+    $('#errorApellidoMaternoNavegadora').hide();
+    $('#errorCorreoNavegadora').hide();
+    $('#errorCorreoRepetidoNavegadora').hide();
+    $('#errorNumEmpleadoNavegadora').hide();
+    $('#errorAgregarEspecialidadNavegadora').hide();
+    $('#errorCedulaNavegadora').hide();
+    $('#errorPass1Navegadora').hide();
+    $('#noEqualPasswordsError').hide();
+    $('#error-camposNavegadora').hide();
+    $('#error-datosRepetidosNavegadora').hide();
 
-        var nombre = $('#agregar-nombreNavegadora');
-        var telefono = $('#agregar-telefonoNavegadora');
-        var primerApellido = $('#agregar-primerApellidoNavegadora');
-        var segundoApellido = $('#agregar-segundoApellidoNavegadora');
-        var correo = $('#agregar-correoNavegadora');
-        var noEmpleado = $('#agregar-noEmpleadoNavegadora');
-        var especialidad = $('#agregar-especialidadNavegadora');
-        var cedula = $('#agregar-cedulaNavegadora');
-        var password = $('#agregar-passwordNavegadora');
 
-        console.log(nombre);
-        console.log(telefono);
-        console.log(primerApellido);
-        console.log(segundoApellido);
-        console.log(correo);
-        console.log(noEmpleado);
-        console.log(especialidad);
-        console.log(cedula);
-        console.log(password);
+    //Errores al editar a una navegadora VICTOR
+    $('#errorEditarNombreNavegadora').hide();
+    $('#errorEditarTelefonoNavegadora').hide();
+    $('#errorEditarApellidoPaternoNavegadora').hide();
+    $('#errorEditarApellidoMaternoNavegadora').hide();
+    $('#errorEditarCorreoNavegadora').hide();
+    $('#errorEditarCorreoRepetidoNavegadora').hide();
+    $('#errorEditarNumNavegadora').hide();
+    $('#errorEditarCedulaNavegadora').hide();
+    $('#errorEditarEspecialidadNavegadora').hide();
+    $('#error-editarDatosRepetidosNavegadora').hide();
 
+    //////////////////////////////////////////////////////
+    /////////////////// VALIDACIONES EDITAR NAVEGADORA ///
+    //////////////////////////////////////////////////////
+
+    //TELEFONO EN EDITAR NAVEGADORA
+    $('#editar-telefonoNavegadora').on('change', function () {
+
+        if (isValidPhoneNumber($(this))) {
+            $('#errorEditarTelefonoNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarTelefonoNavegadora').hide();
+        } else {
+            $('#errorEditarTelefonoNavegadora').show();
+        }
+
+    });
+
+    //CÉDULA PROFESIONAL EN EDITAR MÉDICO
+    $('#editar-cedulaProfesionalNavegadora').on('change', function () {
+
+        if (isValidCedula($(this))) {
+            $('#errorEditarCedulaNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarCedulaNavegadora').hide();
+        } else {
+            $('#errorEditarCedulaNavegadora').show();
+        }
+
+    });
+
+    //NÚMERO DE EMPLEADO EN EDITAR NAVEGADORA
+    $('#editar-noEmpleadoNavegadora').on('change', function () {
+
+        if (isValidNumEmpleado($(this))) {
+            $('#errorEditarNumNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarNumNavegadora').hide();
+        } else {
+            $('#errorEditarNumNavegadora').show();
+        }
+
+    });
+
+    //NOMBRE EN EDITAR NAVEGADORA
+    $('#editar-nombreNavegadora').on('change', function () {
+
+        if (isValidName($(this))) {
+            $('#errorEditarNombreNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarNombreNavegadora').hide();
+        } else {
+            $('#errorEditarNombreNavegadora').show();
+        }
+    });
+
+    //PRIMER APELLIDO EN EDITAR NAVEGADORA
+    $('#editar-primerApellidoNavegadora').on('change', function () {
+
+        if (isValidLastName($(this))) {
+            $('#errorEditarApellidoPaternoNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarApellidoPaternoNavegadora').hide();
+        } else {
+            $('#errorEditarApellidoPaternoNavegadora').show();
+        }
+
+    });
+
+    //SEGUNDO APELLIDO EN EDITAR NAVEGADORA
+    $('#editar-segundoApellidoNavegadora').on('change', function () {
+
+        if (isValidLastName($(this))) {
+            $('#errorEditarApellidoMaternoNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarApellidoMaternoNavegadora').hide();
+        } else {
+            $('#errorEditarApellidoMaternoNavegadora').show();
+        }
+
+    });
+
+    $('#editar-correoNavegadora').on('change', function () {
         $.ajax({
 
             url: 'RegistraUsuarioController',
             cache: false,
             method: 'POST',
             data: {
-                key: 'agregarNavegadora',
-                nombre: nombre.val(),
-                telefono: telefono.val(),
-                primerApellido: primerApellido.val(),
-                segundoApellido: segundoApellido.val(),
-                correo: correo.val(),
-                noEmpleado: noEmpleado.val(),
-                especialidad: especialidad.val(),
-                cedula: cedula.val(),
-                password: password.val()
+
+                key: "repiteCorreo",
+                correo: $('#editar-correoNavegadora').val()
+
+
             },
             success: function (response) {
-                $('#modalAgregarNavegadora').modal('toggle'); //cerrar modal
-                swal({
-                    title: "Cambios guardados correctamente",
-                    icon: "success",
-                    buttons: true,
-                    buttons: [, 'Aceptar']
-                });
+
+                if (response === 'CorreoAlreadyExists') {
+                    console.log("correo repetidooo")
+                    $('#editar-correoNavegadora').css('color', 'orange');
+                    $('#errorEditarCorreoRepetidoNavegadora').show();
+                    repiteCorreoNavegadora = true;
+                } else {
+                    $('#errorEditarCorreoRepetidoNavegadora').hide();
+                    repiteCorreoNavegadora = false;
+                }
+
             }
+
         });
+
+        if (isValidEmail($(this))) {
+            $('#errorEditarCorreoNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#errorEditarCorreoNavegadora').hide();
+        } else {
+            $('#errorEditarCorreoNavegadora').show();
+        }
+
+    });
+
+
+    //////////////////////////////////////////////////////
+    /////////////////// VALIDACIONES AGREGAR NAVEGADORA //
+    //////////////////////////////////////////////////////
+
+    //TELEFONO EN AGREGAR NAVEGADORA
+    $('#agregar-telefonoNavegadora').on('change', function () {
+
+        if (isValidPhoneNumber($(this))) {
+            $('#errorTelefonoNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#errorTelefonoNavegadora').hide();
+        } else {
+            $('#errorTelefonoNavegadora').show();
+        }
+
+    });
+
+    //CÉDULA PROFESIONAL EN AGREGAR NAVEGADORA
+    $('#agregar-cedulaNavegadora').on('change', function () {
+
+        if (isValidCedula($(this))) {
+            $('#errorCedulaNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#errorCedulaNavegadora').hide();
+        } else {
+            $('#errorCedulaNavegadora').show();
+        }
+
+    });
+
+    //NÚMERO DE EMPLEADO EN AGREGAR NAVEGADORA
+    $('#agregar-noEmpleadoNavegadora').on('change', function () {
+
+        if (isValidNumEmpleado($(this))) {
+            $('#errorNumEmpleadoNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#errorNumEmpleadoNavegadora').hide();
+        } else {
+            $('#errorNumEmpleadoNavegadora').show();
+        }
+
+    });
+
+    //ESPECIALIDAD EN AGREGAR NAVEGADORA
+    $('#agregar-especialidadNavegadora').on('change', function () {
+
+        if (isValidEspecialidad($(this))) {
+            $('#errorAgregarEspecialidadNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#errorAgregarEspecialidadNavegadora').hide();
+        } else {
+            $('#errorAgregarEspecialidadNavegadora').show();
+        }
+
+    });
+
+    //NOMBRE EN AGREGAR NAVEGADORA
+    $('#agregar-nombreNavegadora').on('change', function () {
+
+        if (isValidName($(this))) {
+            $('#errorNombreNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#errorNombreNavegadora').hide();
+        } else {
+            $('#errorNombreNavegadora').show();
+        }
+    });
+
+    //PRIMER APELLIDO EN AGREGAR NAVEGADORA
+    $('#agregar-primerApellidoNavegadora').on('change', function () {
+
+        if (isValidLastName($(this))) {
+            $('#errorApellidoPaternoNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#errorApellidoPaternoNavegadora').hide();
+        } else {
+            $('#errorApellidoPaternoNavegadora').show();
+        }
+
+    });
+
+    //SEGUNDO APELLIDO EN AGREGAR NAVEGADORA
+    $('#agregar-segundoApellidoNavegadora').on('change', function () {
+
+        if (isValidLastName($(this))) {
+            $('#errorApellidoMaternoNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#errorApellidoMaternoNavegadora').hide();
+        } else {
+            $('#errorApellidoMaternoNavegadora').show();
+        }
+
+    });
+
+    //CONTRASEÑA EN AGREGAR NAVEGADORA
+    $('#agregar-passwordNavegadora').on('change', function () {
+
+        if (isValidPassword($(this))) {
+            $('#errorPass1Navegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#errorPass1Navegadora').hide();
+        } else {
+            $('#errorPass1Navegadora').show();
+        }
+
+    });
+
+
+    //CONTRASEÑAS IGUALES EN AGREGAR NAVEGADORA
+    $('#agregar-password2Navegadora').on('change', function () {
+
+        var pass1 = $('#agregar-passwordNavegadora');
+        var pass2 = $('#agregar-password2Navegadora');
+
+        areEqualPasswords(pass1, pass2);
+
+    });
+
+    var repiteCorreoNavegadora;
+
+    $('#agregar-correoNavegadora').on('change', function () {
+        $.ajax({
+
+            url: 'RegistraUsuarioController',
+            cache: false,
+            method: 'POST',
+            data: {
+
+                key: "repiteCorreo",
+                correo: $('#agregar-correoNavegadora').val()
+
+
+            },
+            success: function (response) {
+
+                if (response === 'CorreoAlreadyExists') {
+                    console.log("correo repetidooo")
+                    $('#agregar-correoNavegadora').css('color', 'orange');
+                    $('#errorCorreoRepetidoNavegadora').show();
+                    repiteCorreoNavegadora = true;
+                } else {
+                    $('#errorCorreoRepetidoNavegadora').hide();
+                    repiteCorreoNavegadora = false;
+                }
+
+            }
+
+        });
+
+        if (isValidEmail($(this))) {
+            $('#errorCorreoNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#errorCorreoNavegadora').hide();
+        } else {
+            $('#errorCorreoNavegadora').show();
+        }
+
+    });
+
+    /**AGREGAR NAVEGADORA*/
+    $('#btn-agregarNavegadora').on('click', function () {
+        if (!repiteCorreoNavegadora) {
+
+            $("#error-datosRepetidosNavegadora").hide();
+
+            if (isValidName($('#agregar-nombreNavegadora')) && isValidLastName($('#agregar-primerApellidoNavegadora')) && $('#errorApellidoMaternoNavegadora').hide() && $('#errorCedulaNavegadora').hide()
+                    && isValidNumEmpleado($('#agregar-noEmpleadoNavegadora')) && isValidEmail($('#agregar-correoNavegadora')) && isValidPassword($('#agregar-passwordNavegadora'))
+                    && isValidPhoneNumber($('#agregar-telefonoNavegadora')) && isValidCheckbox($('#terminosNavegadora')) && isValidEspecialidad($('#agregar-especialidadNavegadora'))
+                    && areEqualPasswords($('#agregar-passwordNavegadora'), $('#agregar-password2Navegadora')) && $('#errorCorreoRepetidoNavegadora').hide()) {
+
+                $("#error-camposNavegadora").hide();
+
+                var nombre = $('#agregar-nombreNavegadora');
+                var telefono = $('#agregar-telefonoNavegadora');
+                var primerApellido = $('#agregar-primerApellidoNavegadora');
+                var segundoApellido = $('#agregar-segundoApellidoNavegadora');
+                var correo = $('#agregar-correoNavegadora');
+                var noEmpleado = $('#agregar-noEmpleadoNavegadora');
+                var especialidad = $('#agregar-especialidadNavegadora');
+                var cedula = $('#agregar-cedulaNavegadora');
+                var password = $('#agregar-passwordNavegadora');
+
+                console.log(nombre);
+                console.log(telefono);
+                console.log(primerApellido);
+                console.log(segundoApellido);
+                console.log(correo);
+                console.log(noEmpleado);
+                console.log(especialidad);
+                console.log(cedula);
+                console.log(password);
+
+                $.ajax({
+
+                    url: 'RegistraUsuarioController',
+                    cache: false,
+                    method: 'POST',
+                    beforeSend: function () {
+                        $('.cargandoAgregarNavegadora').fadeIn();
+                    },
+                    data: {
+                        key: 'agregarNavegadora',
+                        nombre: nombre.val(),
+                        telefono: telefono.val(),
+                        primerApellido: primerApellido.val(),
+                        segundoApellido: segundoApellido.val(),
+                        correo: correo.val(),
+                        noEmpleado: noEmpleado.val(),
+                        especialidad: especialidad.val(),
+                        cedula: cedula.val(),
+                        password: password.val()
+                    },
+                    complete: function () {
+                        $('.cargandoAgregarNavegadora').fadeOut();
+                    },
+                    success: function (response) {
+                        swal({
+                            title: "¡Buen trabajo!",
+                            text: "Se ha agregado correctamente a la navegadora.",
+                            icon: "success",
+                            buttons: [, 'Aceptar'],
+                        });
+
+                        //Limpiar los campos después de registrarse 
+
+                        $("#agregar-nombreNavegadora").val("");
+                        $("#agregar-telefonoNavegadora").val("");
+                        $("#agregar-primerApellidoNavegadora").val("");
+                        $("#agregar-segundoApellidoNavegadora").val("");
+                        $("#agregar-correoNavegadora").val("");
+                        $("#agregar-noEmpleadoNavegadora").val("");
+                        $("#agregar-especialidadNavegadora").val("");
+                        $("#agregar-cedulaNavegadora").val("");
+                        $("#agregar-passwordNavegadora").val("");
+                        $("#agregar-password2Navegadora").val("");
+                        $("#terminosNavegadora").prop("checked", false);
+
+                        //Cerrar el modal
+                        $('#modalAgregarNavegadora').modal('toggle');
+                    }
+                });
+            } else {
+                console.log("Entro al segundo else");
+                $("#error-camposNavegadora").show(); //No se llenaron los campos obligatorios
+            }
+        } else {
+            console.log("Entro al segundo else");
+            $("#error-datosRepetidosNavegadora").show(); //ya existe un campo
+            $("#error-camposNavegadora").hide();
+        }
     });
 
     /**EDITAR NAVEGADORA */
@@ -1903,9 +2363,6 @@ $(document).ready(function () {
                 key: 'obtener-navegadora',
                 idNavegadora: idNavegadora,
             },
-            beforeSend: function () {
-
-            },
             success: function (response) {
 
                 console.log(response);
@@ -1924,78 +2381,99 @@ $(document).ready(function () {
 
     });
 
-    //GUARDA LA NAVEGADORA DESDE EL MODAL
+    //GUARDA LA NAVEGADORA DESDE EL MODAL ELIZABETH
     $('#btn-guardarNavegadora').on('click', function () {
 
-        var idNavegadora = $('#idNavegadora').val();
+        if (!repiteCorreoNavegadora) {
+            $("#error-editarDatosRepetidosNavegadora").hide();
 
-        var nombre = $('#editar-nombreNavegadora').val();
-        var telefono = $('#editar-telefonoNavegadora').val();
-        var primerApellido = $('#editar-primerApellidoNavegadora').val();
-        var segundoApellido = $('#editar-segundoApellidoNavegadora').val();
-        var correo = $('#editar-correoNavegadora').val();
-        var noEmpleado = $('#editar-no-empleadoNavegadora').val();
-        var especialidad = $('#editar-especialidad').val();
-        var cedula = $('#editar-cedulaNavegadora').val();
+            if (isValidName($('#editar-nombreNavegadora')) && isValidLastName($('#editar-primerApellidoNavegadora')) && $('#errorApellidoMaternoNavegadora').hide() && $('#errorCedulaNavegadora').hide()
+                    && isValidNumEmpleado($('#editar-no-empleadoNavegadora')) && isValidEmail($('#editar-correoNavegadora'))
+                    && isValidPhoneNumber($('#editar-telefonoNavegadora')) && isValidEspecialidad($('#editar-especialidad'))
+                    && $('#errorCorreoRepetidoNavegadora').hide()) {
 
-        console.log("idNavegadoraaaaa " + idNavegadora);
-        console.log("nombre " + nombre);
-        console.log("phone " + telefono);
-        console.log("ape 1 " + primerApellido);
-        console.log("ape 2 " + segundoApellido);
-        console.log("mail " + correo);
-        console.log("empleado no " + noEmpleado);
-        console.log("especiliad  " + especialidad);
-        console.log("cedula " + cedula);
+                var idNavegadora = $('#idNavegadora').val();
 
-        console.log("Holi, hará el ajax");
+                var nombre = $('#editar-nombreNavegadora').val();
+                var telefono = $('#editar-telefonoNavegadora').val();
+                var primerApellido = $('#editar-primerApellidoNavegadora').val();
+                var segundoApellido = $('#editar-segundoApellidoNavegadora').val();
+                var correo = $('#editar-correoNavegadora').val();
+                var noEmpleado = $('#editar-no-empleadoNavegadora').val();
+                var especialidad = $('#editar-especialidad').val();
+                var cedula = $('#editar-cedulaNavegadora').val();
 
-        $.ajax({
+                console.log("idNavegadoraaaaa " + idNavegadora);
+                console.log("nombre " + nombre);
+                console.log("phone " + telefono);
+                console.log("ape 1 " + primerApellido);
+                console.log("ape 2 " + segundoApellido);
+                console.log("mail " + correo);
+                console.log("empleado no " + noEmpleado);
+                console.log("especiliad  " + especialidad);
+                console.log("cedula " + cedula);
 
-            url: 'AdministradorController',
-            cache: false,
-            method: 'POST',
-            data: {
-                key: 'actualiza-navegadora',
-                idNavegadora: idNavegadora,
-                nombre: nombre,
-                telefono: telefono,
-                primerApellido: primerApellido,
-                segundoApellido: segundoApellido,
-                correo: correo,
-                noEmpleado: noEmpleado,
-                especialidad: especialidad,
-                cedula: cedula,
-            },
-            success: function (response) {
-                $('#modalEditarNavegadora').modal('toggle'); //cerrar modal
-                console.log("Cierra el modal");
-                swal({
-                    title: "Cambios guardados correctamente",
-                    icon: "success",
-                    buttons: true,
-                    buttons: [, 'Aceptar']
+                console.log("Holi, hará el ajax");
+
+                $.ajax({
+
+                    url: 'AdministradorController',
+                    cache: false,
+                    method: 'POST',
+                    beforeSend: function () {
+                        $('.cargandoEditarNavegadora').fadeIn();
+                    },
+                    data: {
+                        key: 'actualiza-navegadora',
+                        idNavegadora: idNavegadora,
+                        nombre: nombre,
+                        telefono: telefono,
+                        primerApellido: primerApellido,
+                        segundoApellido: segundoApellido,
+                        correo: correo,
+                        noEmpleado: noEmpleado,
+                        especialidad: especialidad,
+                        cedula: cedula,
+                    },
+                    complete: function () {
+                        $('.cargandoEditarNavegadora').fadeOut();
+                    },
+                    success: function (response) {
+                        $('#modalEditarNavegadora').modal('toggle'); //cerrar modal
+                        console.log("Cierra el modal");
+                        swal({
+                            title: "Cambios guardados correctamente",
+                            icon: "success",
+                            buttons: true,
+                            buttons: [, 'Aceptar']
+                        });
+                        console.log("ESTOY EN EL SUCCESS!! :o");
+                        $('#nombre-' + idNavegadora).html(nombre + " " + primerApellido + " " + segundoApellido);
+                        $('#correo-' + idNavegadora).html(correo);
+                        $('#telefono-' + idNavegadora).html(telefono);
+                        $('#noEmpleado-' + idNavegadora).html(noEmpleado);
+                        $('#nombreEspecialidad-' + idNavegadora).html(especialidad);
+                        $('#cedulaProfesional-' + idNavegadora).html(cedula);
+                    }
                 });
-                console.log("ESTOY EN EL SUCCESS!! :o");
-                $('#nombre-' + idNavegadora).html(nombre + " " + primerApellido + " " + segundoApellido);
-                $('#correo-' + idNavegadora).html(correo);
-                $('#telefono-' + idNavegadora).html(telefono);
-                $('#noEmpleado-' + idNavegadora).html(noEmpleado);
-                $('#nombreEspecialidad-' + idNavegadora).html(especialidad);
-                $('#cedulaProfesional-' + idNavegadora).html(cedula);
-            }
-        });
 
+            } else {
+                console.log("Entro al segundo else");
+                $("#error-datosRepetidosNavegadora").show(); //ya existe un campo
+            }
+        }
     });
+
 
     /** ELIMINAR NAVEGADORA */
     $('body').on('click', '#btn-eliminarNavegadora', function () {
 
         var idNavegadora = $(this).data('id');
+        alert($(this).data('id'));
 
         //Modal editar medicos
         swal({
-            title: "Estas seguro?",
+            title: "¿Estás seguro?",
             text: "Los datos se eliminarán y no podrás recuperarlos.",
             icon: "warning",
             buttons: true,
@@ -2007,14 +2485,24 @@ $(document).ready(function () {
 
                         $.ajax({
 
-                            url: 'AdminController',
+                            url: 'AdministradorController',
                             cache: false,
                             method: 'POST',
                             data: {
                                 key: 'eliminarNavegadora',
-                                idNavegadora: idNavegadora
+                                idCuenta: idNavegadora
                             },
                             success: function (response) {
+                                if (response == "error") {
+                                    alert("Error al cargar");
+                                } else {
+                                    console.log("Intentando redireccionar");
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
+                                }
+                            },
+                            error: function (xhr) {
 
                             }
 
@@ -2670,26 +3158,6 @@ $(document).ready(function () {
         return true;
     }
 
-    function isValidPosicion(input) {
-
-        var m = input.val();
-
-        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-    }
-
     function isValidEspecialidad(input) {
 
         var m = input.val();
@@ -2958,13 +3426,3 @@ $(document).ready(function () {
         return false;
     }
 });
-
-function configureLoadingScreen(screen) {
-    $(document)
-            .ajaxStart(function () {
-                screen.fadeIn();
-            })
-            .ajaxStop(function () {
-                screen.fadeOut();
-            })
-}

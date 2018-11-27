@@ -137,7 +137,7 @@
                 <div class="row mb-3 justify-content-end">
                     <div class="col-3 text-center">
                         <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="IrAInicio" class="colorMoradoLight">Inicio</a></span>
-                        - <span class="colorGlobal">Mi cuenta</span>
+                        - <span class="colorGlobal">Mi Cuenta</span>
                     </div>
                 </div>
 

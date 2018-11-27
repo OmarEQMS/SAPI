@@ -110,6 +110,7 @@ public class PosicionServicioImpl implements PosicionServicio {
             rs = cstmt.executeQuery();
 
             rs.next();
+            
             posicion.setIdPosicion(rs.getInt("idPosicion"));
             posicion.setNombre(rs.getString("nombre"));
             posicion.setEstatus(rs.getInt("estatus"));

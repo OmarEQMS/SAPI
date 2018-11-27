@@ -105,15 +105,16 @@ $(document).ready(function () {
         });
     });
 
-    configureLoadingScreen($('#loading-screen'));
-
     $('#btn-login').on('click', function () {
         var usu = $("#user");
         var pass = $("#password");
         $.post("LoginController", {
             key: "verificar",
             usuario: usu.val(),
-            password: pass.val()
+            password: pass.val(),
+            beforeSend: function () {
+                $('#loading-screen').fadeIn();
+            }
         },
                 function (response, status, xhr) {
                     //console.log(response);
@@ -155,15 +156,5 @@ $(document).ready(function () {
     });
 
 });
-
-function configureLoadingScreen(screen) {
-    $(document)
-            .ajaxStart(function () {
-                screen.fadeIn();
-            })
-            .ajaxStop(function () {
-                screen.fadeOut();
-            })
-}
 
 

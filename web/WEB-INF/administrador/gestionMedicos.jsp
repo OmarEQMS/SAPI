@@ -50,6 +50,11 @@
             <img src="img/loading.svg">
             <p class="clear">Agregando al médico, por favor espere...</p>
         </div>
+        
+        <div class="cargandoEditarMedico" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Actualizando información del médico, por favor espere...</p>
+        </div>
 
         <div class="wrapper">
 
@@ -113,7 +118,7 @@
                     <li id="IrAGestionAdministrador"><a><i class="fas fa-shield-alt"></i>Administradores</a></li>
 
                     <li id="IrAMiCuenta"><a><i class="far fa-user"></i>Mi cuenta</a></li>
-                    
+
                     <li id="IrAReasignarMedico"><a><i class="fas fa-sync"></i>Reasignar médico</a></li>
 
                     <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
@@ -145,7 +150,7 @@
                 <div class="row mb-3 justify-content-end">
                     <div class="col-3 text-center">
                         <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="IrAInicio" class="colorMoradoLight">Inicio</a></span>
-                        - <span class="colorGlobal">Gestion de Pacientes</span>
+                        - <span class="colorGlobal">Gestion de Médicos</span>
                     </div>
                 </div>
 
@@ -183,7 +188,7 @@
                                     <th scope="col">No. Empledo</th>
                                     <th scope="col">Especialidad</th>
                                     <th scope="col">Cédula Profesional</th>
-                                    <th scope="col">Acciones</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -198,13 +203,20 @@
                                         <td id="cedulaProfesional-${medico.idEmpleado}" value="${medico.cedulaProfesional}" > <c:out value="${medico.cedulaProfesional}"/> </td>
 
                                         <td>
-                                            <button class="btn btn-primary btn-editarMedico" data-toggle="modal" data-id="${medico.idEmpleado}" data-target="#modalEditarMedico"><i
+                                            <button class="btn btn-primary btn-editarMedico m-1" data-toggle="modal" data-id="${medico.idEmpleado}" data-target="#modalEditarMedico"><i
                                                     class="fas fa-edit"></i></button>
-                                            <button class="btn btn-danger" id="btn-eliminarMedico" data-id="${medico.idEmpleado}"><i 
+                                            <button class="btn btn-danger m-1" id="btn-eliminarMedico" data-id="${medico.idEmpleado}"><i 
                                                     class="fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
-                                </c:forEach>                            
+                                </c:forEach>     
+
+                                <!-- ***** Nota ***** -->
+                            <div class="row mb-3 justify-content-center">
+                                <div class="col-5 text-center bg-danger" style="border-radius:20px;">
+                                    <span style="font-size: 14px;" class="text-white">Nota: Antes de eliminar a un médico adscrito asegúrate de haber reasignado sus pacientes previamente.</span>
+                                </div>
+                            </div>
 
                             </tbody>
                         </table>
@@ -260,7 +272,7 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" id="editar-segundoApellidoMedico" class="form-control" placeholder="Segundo Apellido"> 
+                                            <input type="text" id="editar-segundoApellidoMedico" class="form-control" placeholder="Segundo Apellido (Opcional)"> 
                                         </div>
                                         <span class="text-danger" id="errorEditarApellidoMaternoMedico">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                     </div>
@@ -273,7 +285,7 @@
                                             </div>
                                             <input type="text" id="editar-correoMedico" class="form-control" placeholder="Correo">
                                         </div>
-                                        <span class="text-danger" id="errorEditarCorreoMedico">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
+                                        <span class="text-danger" id="errorEditarCorreoMedico">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
                                         <span class="text-warning" id="errorEditarCorreoRepetido">El correo ya existe.</span>
                                     </div>
                                 </div>
@@ -302,7 +314,7 @@
                                         <span class="text-danger" id="errorEditarNumEmpleado">Formato incorrecto, deben ser 6 dígitos.</span>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group row">
                                     <div class="col-6">
                                         <div class="input-group">
@@ -322,24 +334,24 @@
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text"><i class="fas fa-user-graduate"></i></div>
                                             </div>
-                                            <input type="text" class="form-control" id="editar-posiciondMedico" list="listPosiciones"
+                                            <input type="text" class="form-control" id="editar-posicionMedico" list="listPosiciones"
                                                    placeholder="Posicion">
                                             <datalist id="listPosiciones">                                            
                                             </datalist>
                                         </div>
-                                       <!-- <span class="text-danger" id="errorEditarPosicion">Selecciona una posición válida.</span> -->
+                                        <span class="text-danger" id="errorEditarPosicion">Selecciona una posición válida.</span> 
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-12">
-                                         <div class="input-group">
+                                        <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     <i class="fas fa-user-graduate"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" id="editar-cedulaProfesionalMedico" class="form-control" placeholder="Cédula Profesional">
+                                            <input type="text" id="editar-cedulaProfesionalMedico" class="form-control" placeholder="Cédula Profesional (Opcional)">
                                         </div>
                                         <span class="text-danger" id="errorEditarCedulaMedicos">Formato incorrecto, deben ser 7 dígitos.</span>
                                     </div>
@@ -414,7 +426,7 @@
                                                 <div class="input-group-text"><i class="fas fa-user"></i></div>
                                             </div>
                                             <input type="text" class="form-control" id="agregar-segundoApellidoMedico"
-                                                   placeholder="Segundo Apellido">
+                                                   placeholder="Segundo Apellido (Opcional)">
                                             <span class="text-danger" id="errorApellidoMaternoMedico">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                         </div>
                                     </div>
@@ -428,7 +440,7 @@
                                             </div>
                                             <input type="text" class="form-control" id="agregar-correoMedico" placeholder="Correo">
                                         </div>
-                                        <span class="text-danger" id="errorCorreoMedico">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
+                                        <span class="text-danger" id="errorCorreoMedico">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
                                         <span class="text-warning" id="errorCorreoRepetido">El correo ya existe.</span>
                                     </div>
 
@@ -451,6 +463,8 @@
                                             </div>
                                             <input type="text" class="form-control" id="agregar-especialidadMedico"
                                                    placeholder="Especialidad" list="listEspecialidades">
+                                            <datalist id="listEspecialidades">                                            
+                                            </datalist>
                                         </div>
                                         <span class="text-danger" id="errorAgregarEspecialidad">Selecciona una especialidad válida.</span>
                                     </div>
@@ -474,7 +488,7 @@
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text"><i class="far fa-id-card"></i></div>
                                             </div>
-                                            <input type="text" class="form-control" id="agregar-cedulaMedico" placeholder="Cédula Profesional">
+                                            <input type="text" class="form-control" id="agregar-cedulaMedico" placeholder="Cédula Profesional (Opcional)">
                                         </div>
                                         <span class="text-danger" id="errorCedulaMedicos">Formato incorrecto, deben ser 7 dígitos.</span>
                                     </div>
@@ -487,8 +501,11 @@
                                                 <div class="input-group-text"><i class="fas fa-lock"></i></div>
                                             </div>
                                             <input type="password" class="form-control" id="agregar-passwordMedico" placeholder="Contraseña">
-                                            <span class="text-danger" id="errorPass1Medico">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
+                                            <div id="medicoContrasena" class="input-group-append bg-white">
+                                                <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                            </div>
                                         </div>
+                                        <span class="text-danger" id="errorPass1Medico">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                     </div>
                                     <div class="col-6">
                                         <div class="input-group">
@@ -497,6 +514,9 @@
                                             </div>
                                             <input type="password" class="form-control" id="agregar-password2Medico"
                                                    placeholder="Confirmar contraseña">
+                                            <div id="medicoContrasenaConfirmacion" class="input-group-append bg-white">
+                                                <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                            </div>
                                         </div>
                                         <span class="text-warning" id="noEqualPasswordsError">Las contraseñas no son iguales.</span>
                                     </div>
@@ -512,13 +532,9 @@
 
                                 <div class="form-group row justify-content-center">
                                     <div class="col-12 text-center">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="terminosMedico">
-                                            <label class="form-check-label" for="autoSizingCheck2">
-                                                El médico está informado y aceptó los términos y condiciones
-                                            </label>
+                                        <div class="form-check form-check-inline"> 
+                                            <label><input class="form-check-input" type="checkbox" id="terminosMedico" /> El médico está informado y aceptó los términos y condiciones</label>
                                         </div>
-                                        <span class="text-danger" id="errorTerminos">Se deben aceptar términos y condiciones.</span>
                                     </div>
                                 </div>
 
