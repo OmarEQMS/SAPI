@@ -210,10 +210,6 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
             cstmt.setInt(1, documentoEstudio.getIdEstudio());
             cstmt.setInt(2, estadoEstudioAprobado);
             cstmt.setInt(3, documentoEstudio.getIdPaciente());
-
-            cstmt.setInt(4, documentoEstudio.getIdBirads());            
-            System.out.println(cstmt.toString());
-
             if(documentoEstudio.getIdBirads()!=null){
                 cstmt.setInt(4, documentoEstudio.getIdBirads());
             }else{
