@@ -99,11 +99,10 @@ $(document).ready(function () {
 
 
     //Recupera administrador
-    $('.btn-editarAdministrador').on('click', function () {
+    $('body').on('click', '.btn-editarAdministrador', function () {
 
-        var id = $(this).data('id');
-
-        $('#idAdministrador').val($(this).data('id'));
+        var idAdmin = $(this).data('id');
+        console.log("idAdmin " + idAdmin);
 
         $.ajax({
 
@@ -111,19 +110,28 @@ $(document).ready(function () {
             method: "POST",
             cache: false,
             data: {
-                key: "recupera-administrador",
-                id: id
+                key: "obtener-admin",
+                idAdmin: idAdmin
             },
             success: function (response) {
 
-                var data = JSON.parse(response);
+                response = JSON.parse(response);
 
-                //Reemplazar los datos en el modal
+                console.log("EL RESPONSE");
+                console.log(response);
 
-
+                $('#idAdministrador').val(response.idEmpleado);
+                $('#editar-nombreAdministrador').val(response.nombre);
+                $('#editar-primerApellidoAdministrador').val(response.primerApellido);
+                $('#editar-segundoApellidoAdministrador').val(response.segundoApellido);
+                $('#editar-correoAdministrador').val(response.correo);
+                $('#editar-telefonoAdministrador').val(response.telefono);
+                $('#editar-noEmpleadoAdministrador').val(response.noEmpleado);
+                $('#editar-especialidadAdministrador').val(response.nombreEspecialidad);
+                $('#editar-posicionAdministrador').val(response.nombrePosicion);
+                $('#editar-cedulaProfesionalAdministrador').val(response.cedulaProfesional);
 
             }
-
         });
 
     });
@@ -178,14 +186,16 @@ $(document).ready(function () {
     //Guarda administrador
     $('#btn-guardarAdministrador').on('click', function () {
 
+        var idAdmin = $('#idAdministrador').val();
+
         $.ajax({
 
             url: 'AdministradorController',
             method: 'POST',
             cache: false,
             data: {
-                key: 'editar-administrador',
-                id: $('#idAdministrador').val(),
+                key: 'actualizar-admin',
+                idAdmin: $('#idAdministrador').val(),
                 nombre: $('#editar-nombreAdministrador').val(),
                 primerApellido: $('#editar-primerApellidoAdministrador').val(),
                 segundoApellido: $('#editar-segundoApellidoAdministrador').val(),
@@ -193,12 +203,27 @@ $(document).ready(function () {
                 telefono: $('#editar-telefonoAdministrador').val(),
                 noEmpleado: $('#editar-noEmpleadoAdministrador').val(),
                 especialidad: $('#editar-especialidadAdministrador').val(),
-                posicion: $('#editar-posiciondAdministrador').val(),
+                posicion: $('#editar-posicionAdministrador').val(),
                 cedula: $('#editar-cedulaProfesionalAdministrador').val()
             },
             success: function (response) {
-
+                $('#modalEditarAdministrador').modal('toggle'); //cerrar modal
+                console.log("Cierra el modal");
+                swal({
+                    title: "Cambios guardados correctamente",
+                    icon: "success",
+                    buttons: true,
+                    buttons: [, 'Aceptar']
+                });
+                console.log("ESTOY EN EL SUCCESS!! :o");
+                $('#nombre-' + idAdmin).html($('#editar-nombreAdministrador').val() + " " + $('#editar-primerApellidoAdministrador').val() + " " + $('#editar-segundoApellidoAdministrador').val());
+                $('#correo-' + idAdmin).html($('#editar-correoAdministrador').val());
+                $('#telefono-' + idAdmin).html($('#editar-telefonoAdministrador').val());
+                $('#noEmpleado-' + idAdmin).html($('#editar-noEmpleadoAdministrador').val());
+                $('#nombreEspecialidad-' + idAdmin).html($('#editar-especialidadAdministrador').val());
+                $('#cedulaProfesional-' + idAdmin).html($('#editar-cedulaProfesionalAdministrador').val());
             }
+
 
         });
 

@@ -109,6 +109,109 @@ public class AdministradorController extends HttpServlet {
             System.out.println("Sin sesión");
         } else {
             switch (key) {
+                case "obtener-admin": {
+                    int idAdmin = Integer.valueOf(request.getParameter("idAdmin"));
+
+                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                    TablaMedicoAdministrador admin = empleadoServicioImpl.mostrarMedicoAdministrador(idAdmin, 2);//2 ES EL ROL DEL ADMINISTRADOR
+
+                    PrintWriter out = response.getWriter();
+                    out.print(new Gson().toJson(admin));
+                    break;
+                }
+                case "actualizar-admin": {
+                    System.out.println("Actualizar administrador");
+                    int idMedicoAdministrador = Integer.valueOf(request.getParameter("idAdmin"));
+                    String nombre = request.getParameter("nombre");
+                    String primerApellido = request.getParameter("primerApellido");
+                    String segundoApellido = request.getParameter("segundoApellido");
+                    String correo = request.getParameter("correo");
+                    String telefono = request.getParameter("telefono");
+                    String noEmpleado = request.getParameter("noEmpleado");
+                    String especialidad = request.getParameter("especialidad");
+                    String posicion = request.getParameter("posicion");
+                    String usuario = noEmpleado;
+                    String cedula = request.getParameter("cedula");
+
+                    System.out.println("idMEdico admin ".concat(String.valueOf(idMedicoAdministrador)));
+                    System.out.println("nombre ".concat(nombre));
+                    System.out.println("apellido 1 ".concat(primerApellido));
+                    System.out.println("apellido 2 ".concat(segundoApellido));
+                    System.out.println("correo  ".concat(correo));
+                    System.out.println("telefeno ".concat(telefono));
+                    System.out.println("noEmpleado ".concat(noEmpleado));
+                    System.out.println("especialidad ".concat(especialidad));
+                    System.out.println("posicion ".concat(posicion));
+                    System.out.println("usuario ".concat(usuario));
+                    System.out.println("cedula ".concat(cedula));
+
+                    PrintWriter out = response.getWriter();
+
+                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                    TablaMedicoAdministrador admin = empleadoServicioImpl.mostrarMedicoAdministrador(idMedicoAdministrador, 2);//El 3 significa rol de médico
+
+                    EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
+                    Especialidad especialidadAdmins = especialidadServicioImpl.mostrarEspecialidadPorNombre(especialidad);
+
+                    PosicionServicioImpl posicionServicioImpl = new PosicionServicioImpl();
+
+                    Posicion posicionMedicos = posicionServicioImpl.mostrarPosicion(posicion);
+
+                    //Se utiliza el servicio de medicoEspecialidadServicio porque el admin y el médico son similares
+                    MedicoEspecialidadServicioImpl adminEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
+                    MedicoEspecialidad adminEspecialidad = adminEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(idMedicoAdministrador);
+                    adminEspecialidad.setCedulaProfesional(cedula);
+                    adminEspecialidad.setIdEspecialidad(especialidadAdmins.getIdEspecialidad());
+                    System.out.println(" adminiController medicoEspecialidad ".concat(String.valueOf(adminEspecialidad.getIdEmpleado())));
+                    boolean medicoEspecialidadBoolean = adminEspecialidadServicioImpl.actualizarMedicoEspecialidad(adminEspecialidad);
+
+                    //Se utiliza el servicio de medicoPosicionServicio porque el admin y el médico son similares
+                    MedicoPosicionServicioImpl adminPosicionServicioImpl = new MedicoPosicionServicioImpl();
+                    MedicoPosicion adminPosicion = adminPosicionServicioImpl.mostrarMedicoPosicionEmpleado(idMedicoAdministrador);
+                    adminPosicion.setIdPosicion(posicionMedicos.getIdPosicion());
+                    System.out.println(" adminiController medicoPosicion ".concat(String.valueOf(adminPosicion.getIdEmpleado())));
+                    boolean medicoPosicionBoolean = adminPosicionServicioImpl.actualizarMedicoPosicion(adminPosicion);
+
+
+                    PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
+                    Persona persona = personaServicioImpl.mostrarPersona(admin.getIdPersona());
+                    persona.setNombre(nombre);
+                    persona.setPrimerApellido(primerApellido);
+                    persona.setSegundoApellido(segundoApellido);
+                    persona.setCorreo(correo);
+                    persona.setTelefono(telefono);
+                    boolean personaBoolean = personaServicioImpl.actualizarPersonaMedico(persona);
+
+                    CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
+                    Cuenta cuenta = cuentaServicioImpl.mostrarCuenta(admin.getIdCuenta());
+                    cuenta.setUsuario(usuario);
+                    boolean cuentaBoolean = cuentaServicioImpl.actualizarCuenta(cuenta);
+
+                    Empleado empleado = empleadoServicioImpl.mostrarEmpleado(admin.getIdEmpleado());
+                    empleado.setNoEmpleado(noEmpleado);
+                    boolean empleadoBoolean = empleadoServicioImpl.actualizarEmpleado(empleado);
+
+                    if (medicoEspecialidadBoolean || personaBoolean || cuentaBoolean || empleadoBoolean) {
+                        System.out.println("Actualizado exitoso");
+                    } else {
+                        System.out.println("MedicoEspecialidad: " + medicoEspecialidadBoolean);
+                        System.out.println("Persona: " + personaBoolean);
+                        System.out.println("Cuenta: " + cuentaBoolean);
+                        System.out.println("Empleado: " + empleadoBoolean);
+                        System.out.println("Actualizado no exitoso o, no se cambió nada");
+                    }
+
+                    if (medicoPosicionBoolean || personaBoolean || cuentaBoolean || empleadoBoolean) {
+                        System.out.println("Actualizado exitoso");
+                    } else {
+                        System.out.println("MedicoEspecialidad: " + medicoPosicionBoolean);
+                        System.out.println("Persona: " + personaBoolean);
+                        System.out.println("Cuenta: " + cuentaBoolean);
+                        System.out.println("Empleado: " + empleadoBoolean);
+                        System.out.println("Actualizado no exitoso o, no se cambió nada");
+                    }
+                }
+                break;
                 case "obtener-medico": {
                     int idMedicoAdministrador = Integer.valueOf(request.getParameter("idMedicoAdministrador"));
 
