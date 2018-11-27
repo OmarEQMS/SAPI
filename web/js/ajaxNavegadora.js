@@ -1974,11 +1974,6 @@ $(document).ready(function () {
            var rayosxs = [];
            
           $('.tuplaRayosX').each(function () {
-            var rayosx = {tipo: $(this).find('.tipoRayosX').val(),
-                fecha: $(this).find('.fechaRayos').val()
-            };
-            rayosxs.push(rayosx);
-            console.log(rayosx);
             if($(this).find('.rayosX').val()!="" || $(this).find('.fechaRayos').val()!=""){
                 var rayosx = {
                     id:$(this).data("id"),
@@ -1996,7 +1991,6 @@ $(document).ready(function () {
         var ultrasonidos = [];
         console.log("Ultrasonido");
         $('.tuplaUltrasonido').each(function () {
-
             if($(this).find('.parteCuerpoUltrasonido').val()!="" || $(this).find('.fechaUltrasonido').val()!=""){
                 var ultrasonido = {
                     id:$(this).data("id"),

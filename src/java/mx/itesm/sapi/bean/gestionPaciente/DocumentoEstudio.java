@@ -19,7 +19,7 @@ public class DocumentoEstudio {
     private int idEstadoEstudio;
     private int idPaciente;
 
-    private int idBirads;
+    private Integer idBirads;
     private int idLugarDelCuerpo;
     private byte[] archivo;
     private int previo;
