@@ -183,7 +183,7 @@
                             </thead>
                             <tbody>
 
-                                
+
 
                                 <c:forEach items="${ListaAdministradoresAdmistrador}" var="administrador">
                                     <tr>
@@ -344,6 +344,8 @@
                                             <input type="password" class="form-control" id="agregar-password2Administradores"
                                                    placeholder="Confirmar contraseña">
                                         </div>
+                                        <span class="text-danger" id="errorPass2Administrador">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
+
                                         <span class="text-warning" id="noEqualPasswordsErrorAdministrador">Las contraseñas no son iguales.</span>
                                     </div>
                                 </div>
@@ -359,12 +361,12 @@
                                 <div class="form-group row justify-content-center">
                                     <div class="col-12 text-center">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="terminosMedico">
+                                            <input class="form-check-input" type="checkbox" id="terminosAdministrador">
                                             <label class="form-check-label" for="autoSizingCheck2">
                                                 El médico está informado y aceptó los términos y condiciones
                                             </label>
                                         </div>
-                                        <span class="text-danger" id="errorTerminos">Se deben aceptar términos y condiciones.</span>
+                                        <span class="text-danger" id="errorTerminosAdministrador">Se deben aceptar términos y condiciones.</span>
                                     </div>
                                 </div>
 
@@ -401,8 +403,8 @@
                             </div>
                             <div class="modal-body">
 
-                                    
-                                
+
+
                                 <input type="hidden" id="idAdministrador" value="">
 
                                 <!-- FORMULARIO EDITAR MEDICO -->

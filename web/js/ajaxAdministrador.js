@@ -16,7 +16,9 @@ $(document).ready(function () {
     $('#errorAgregarPosicionAdministrador').hide();
     $('#errorCedulaAdministrador').hide();
     $('#errorPass1Administrador').hide();
+    $('#errorPass2Administrador').hide();
     $('#noEqualPasswordsErrorAdministrador').hide();
+    $('#errorTerminosAdministrador').hide();
 
 
 
@@ -24,62 +26,73 @@ $(document).ready(function () {
 
         //AQUÍ VA EL MEGAIF
 
-        $.ajax({
+        if (isValidName($("#agregar-nombreAdministrador")) && isValidPhoneNumber($("#agregar-telefonoAdministrador"))
+                && isValidLastName($('#agregar-primerApellidoAdministrador')) && isValidLastName($('#agregar-segundoApellidoAdministrador'))
+                && isValidEmail($('#agregar-correoAdministrador')) && isValidNumEmpleado($('#agregar-noEmpleadoAdministrador'))
+                && isValidEspecialidad($('#agregar-especialidadAdministrador')) && isValidPosicion($('#agregar-posiciondAdministrador'))
+                && isValidCedula($('#agregar-cedulaAdministrador')) && isValidPassword($('#agregar-passwordAdministrador'))
+                && isValidPassword($('#agregar-password2Administradores')) && areEqualPasswords($('#agregar-passwordAdministrador'), $('#agregar-password2Administradores'))
+                && isValidCheckbox($('#terminosAdministrador'))) {
+            $.ajax({
 
-            url: 'RegistraUsuarioController',
-            method: "POST",
-            cache: false,
-            data: {
-                key: "agregarAdministrador",
-                nombre: $('#agregar-nombreAdministrador').val(),
-                telefono: $('#agregar-telefonoAdministrador').val(),
-                primerApellido: $('#agregar-primerApellidoAdministrador').val(),
-                segundoApellido: $('#agregar-segundoApellidoAdministrador').val(),
-                correo: $('#agregar-correoAdministrador').val(),
-                noEmpleado: $('#agregar-noEmpleadoAdministrador').val(),
-                especialidad: $('#agregar-especialidadAdministrador').val(),
-                posicion: $('#agregar-posiciondAdministrador').val(),
-                cedula: $('#agregar-cedulaAdministrador').val(),
-                password: $('#agregar-passwordAdministrador').val()
+                url: 'RegistraUsuarioController',
+                method: "POST",
+                cache: false,
+                data: {
+                    key: "agregarAdministrador",
+                    nombre: $('#agregar-nombreAdministrador').val(),
+                    telefono: $('#agregar-telefonoAdministrador').val(),
+                    primerApellido: $('#agregar-primerApellidoAdministrador').val(),
+                    segundoApellido: $('#agregar-segundoApellidoAdministrador').val(),
+                    correo: $('#agregar-correoAdministrador').val(),
+                    noEmpleado: $('#agregar-noEmpleadoAdministrador').val(),
+                    especialidad: $('#agregar-especialidadAdministrador').val(),
+                    posicion: $('#agregar-posiciondAdministrador').val(),
+                    cedula: $('#agregar-cedulaAdministrador').val(),
+                    password: $('#agregar-passwordAdministrador').val()
 
-            },
-            success: function (response) {
-                alert(response);
-                if (response == "success") {
+                },
+                success: function (response) {
+                    alert(response);
+                    if (response == "success") {
 
-                    //mensaje de confirmacion
-                    swal({
-                        title: "¡Buen trabajo!",
-                        text: "Administrador agregado correctamente.",
-                        icon: "success",
-                        buttons: [, 'Aceptar'],
-                    });
+                        //mensaje de confirmacion
+                        swal({
+                            title: "¡Buen trabajo!",
+                            text: "Administrador agregado correctamente.",
+                            icon: "success",
+                            buttons: [, 'Aceptar'],
+                        });
 
 
-                    //limpiar los campos del modal
-                    $('#agregar-nombreAdministrador').val('');
-                    $('#agregar-telefonoAdministrador').val('');
-                    $('#agregar-primerApellidoAdministrador').val('');
-                    $('#agregar-segundoApellidoAdministrador').val('');
-                    $('#agregar-correoAdministrador').val('');
-                    $('#agregar-noEmpleadoAdministrador').val('');
-                    $('#agregar-especialidadAdministrador').val('');
-                    $('#agregar-posiciondAdministrador').val('');
-                    $('#agregar-cedulaAdministrador').val('');
-                    $('#agregar-passwordAdministrador').val('');
-                    $('#agregar-password2Administradores').val('');
+                        //limpiar los campos del modal
+                        $('#agregar-nombreAdministrador').val('');
+                        $('#agregar-telefonoAdministrador').val('');
+                        $('#agregar-primerApellidoAdministrador').val('');
+                        $('#agregar-segundoApellidoAdministrador').val('');
+                        $('#agregar-correoAdministrador').val('');
+                        $('#agregar-noEmpleadoAdministrador').val('');
+                        $('#agregar-especialidadAdministrador').val('');
+                        $('#agregar-posiciondAdministrador').val('');
+                        $('#agregar-cedulaAdministrador').val('');
+                        $('#agregar-passwordAdministrador').val('');
+                        $('#agregar-password2Administradores').val('');
 
-                    //cerrar el modal
-                    $('#modalAgregarAdministrador').modal('toggle');
+                        //cerrar el modal
+                        $('#modalAgregarAdministrador').modal('toggle');
 
-                } else {
-                    swal("Error", "Hubo un problema al agregar el administrador", "error");
+                    } else {
+                        swal("Error", "Hubo un problema al agregar el administrador", "error");
+                    }
+
                 }
 
-            }
 
+            });
 
-        });
+        }else{
+            swal ( "Error" ,  "Verifica que todos los campos sean correctos" ,  "error" );
+        }
 
     });
 
@@ -198,10 +211,167 @@ $(document).ready(function () {
             },
             success: function (response) {
 
+
+
             }
 
         });
 
+
+
+
+
+    });
+
+    //Validaciones Agregar Administrador
+
+    //1.-Nombre
+    $('#agregar-nombreAdministrador').on('change', function () {
+
+        if (!isValidName($(this))) {
+            $('#errorNombreAdministrador').show();
+        } else {
+            $('#errorNombreAdministrador').hide();
+        }
+
+    });
+
+    //2.- Telefono
+    $('#agregar-telefonoAdministrador').on('change', function () {
+
+        if (!isValidPhoneNumber($(this))) {
+            $('#errorTelefonoAdministrador').show();
+        } else {
+            $('#errorTelefonoAdministrador').hide();
+        }
+
+    });
+
+    //3.- Primer Apellido
+    $('#agregar-primerApellidoAdministrador').on('change', function () {
+
+        if (!isValidLastName($(this))) {
+            $('#errorApellidoPaternoAdministrador').show();
+        } else {
+            $('#errorApellidoPaternoAdministrador').hide();
+        }
+
+    });
+
+    //4.- Segundo Apellido
+    $('#agregar-segundoApellidoAdministrador').on('change', function () {
+
+        if (!isValidLastName($(this))) {
+            $('#errorApellidoMaternoAdministrador').show();
+        } else {
+            $('#errorApellidoMaternoAdministrador').hide();
+        }
+
+    });
+
+    //5.- Correo
+    $('#agregar-correoAdministrador').on('change', function () {
+
+        if (!isValidEmail($(this))) {
+            $('#errorCorreoAdministrador').show();
+        } else {
+            $('#errorCorreoAdministrador').hide();
+
+            //checa si el correo esta repetido
+            $.ajax({
+
+                url: 'PotencialController',
+                method: "POST",
+                cache: false,
+                data: {
+                    key: "repiteCorreo",
+                    correo: $('#agregar-correoAdministrador').val()
+                },
+                success: function (response) {
+
+                    alert(response);
+
+                    if (response == "CorreoAlreadyExists") {
+                        $('#errorCorreoRepetidoAdministrador').show();
+                    } else {
+                        $('#errorCorreoRepetidoAdministrador').hide();
+                    }
+                }
+
+            });
+
+        }
+
+    });
+
+    //6.- Numero de empleado
+    $('#agregar-noEmpleadoAdministrador').on('change', function () {
+        if (!isValidNumEmpleado($(this))) {
+            $('#errorNumEmpleadoAdministrador').show();
+        } else {
+            $('#errorNumEmpleadoAdministrador').hide();
+        }
+    });
+
+    //7.- Especialidad
+    $('#agregar-especialidadAdministrador').on('change', function () {
+        if (!isValidEspecialidad($(this))) {
+            $('#errorAgregarEspecialidadAdministrador').show();
+        } else {
+            $('#errorAgregarEspecialidadAdministrador').hide();
+        }
+    });
+
+    //8.- Posicion
+    $('#agregar-posiciondAdministrador').on('change', function () {
+        if (!isValidPosicion($(this))) {
+            $('#errorAgregarPosicionAdministrador').show();
+        } else {
+            $('#errorAgregarPosicionAdministrador').hide();
+        }
+    });
+
+    //9.- Cedula
+    $('#agregar-cedulaAdministrador').on('change', function () {
+        if (!isValidCedula($(this))) {
+            $('#errorCedulaAdministrador').show();
+        } else {
+            $('#errorCedulaAdministrador').hide();
+        }
+    });
+
+    //10.- Contraseña
+    $('#agregar-passwordAdministrador').on('change', function () {
+        if (!isValidPassword($(this))) {
+            $('#errorPass1Administrador').show();
+        } else {
+            $('#errorPass1Administrador').hide();
+        }
+    });
+
+    //11.- Contraseña 2
+    $('#agregar-password2Administradores').on('change', function () {
+        if (!isValidPassword($(this))) {
+            $('#errorPass2Administrador').show();
+
+        } else {
+            $('#errorPass2Administrador').hide();
+            if (!areEqualPasswords($('#agregar-passwordAdministrador'), $('#agregar-password2Administradores'))) {
+                $('#noEqualPasswordsErrorAdministrador').show();
+            } else {
+                $('#noEqualPasswordsErrorAdministrador').hide();
+            }
+        }
+    });
+
+    //12.- Terminos
+    $('#terminosAdministrador').on('change', function () {
+
+        if (isValidCheckbox($(this))) {
+            $('#errorTerminosAdministrador').hide();
+        } else {
+            $('#errorTerminosAdministrador').show();
+        }
     });
 
     /////////////////////////////// MI CUENTA ////////
@@ -382,7 +552,7 @@ $(document).ready(function () {
 
         $.ajax({
 
-            url: 'RegistraUsuarioController',
+            url: 'PotencialController',
             method: "POST",
             cache: false,
             data: {
@@ -408,7 +578,7 @@ $(document).ready(function () {
 
         $.ajax({
 
-            url: 'RegistraUsuarioController',
+            url: 'PotencialController',
             method: "POST",
             async: false,
             cache: false,
