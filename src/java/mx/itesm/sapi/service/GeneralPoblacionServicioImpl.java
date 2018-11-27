@@ -58,20 +58,10 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
                 temp.setSeguro(rs.getString("NombreSeguro"));
                 temp.setNoSeguroPopular(rs.getString("noSeguro"));
                 temp.setAlergias(rs.getString("alergia"));
-                temp.setBiopsiaINCanGradoHistologico(rs.getString("BiopsiaINCan_GradoHistologico"));
-                temp.setBiopsiaINCanHer2(rs.getString("BiopsiaINCan_Her2"));
-                temp.setBiopsiaINCanFish(rs.getString("BiopsiaINCan_Fish"));
-                temp.setBiopsiaINCanKi67(rs.getString("BiopsiaINCan_Ki67"));
-                temp.setBiopsiaINCanRe(rs.getString("BiopsiaINCan_RE"));
-                temp.setBiopsiaINCanRp(rs.getString("BiopsiaINCan_RP"));
                 temp.setBiopsiaINCanEtapa(rs.getString("INCan_Etapa"));
                 temp.setBiopsiaINCanT(rs.getString("INCan_T"));
                 temp.setBiopsiaINCanN(rs.getString("INCan_N"));
                 temp.setBiopsiaINCanM(rs.getString("INCan_M"));
-                if (rs.getInt("Preconsulta_SegundaOpinion") == 0)temp.setPreconsultaSegundaOpcion("Primera vez");
-                else temp.setPreconsultaSegundaOpcion("Segunda Opinión");
-                temp.setPreconsultaFechaDecision(rs.getDate("Preconsulta_FechaDecision"));
-                temp.setPreconsultaDecision(rs.getString("Preconsulta_Decision"));
                 
                 String NestedStProcedure = "CALL mostrarPoblacionNecesidadesEspeciales(?)";
                 CallableStatement NestedCstmt = conn.prepareCall(NestedStProcedure);
@@ -85,6 +75,24 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
                 NestedRs.close();
                 NestedRs.close();
                 
+                NestedStProcedure = "CALL mostrarPoblacionEstudiosPrevios(?)";
+                NestedCstmt = conn.prepareCall(NestedStProcedure);
+                NestedCstmt.setInt(1, rs.getInt("idPaciente"));
+                NestedRs = NestedCstmt.executeQuery();
+                NestedRs.next();
+                    temp.setEstudioPrevioMastografia(NestedRs.getString("BiradsMastografia"));
+                    temp.setEstudioPrevioMastografiaFecha(NestedRs.getDate("FechaMastografia"));
+                    temp.setEstudioPrevioUSG(NestedRs.getString("BiradsUsg"));
+                    temp.setEstudioPrevioUSGFecha(NestedRs.getDate("FechaUsg"));
+                    temp.setEstudioPrevioRadioCiclos(NestedRs.getInt("CiclosRadiografia"));
+                    temp.setEstudioPrevioRadioFecha(NestedRs.getDate("FechaRadiografia"));
+                    temp.setEstudioPrevioQuimioCiclos(NestedRs.getInt("CiclosQuimioterapia"));
+                    temp.setEstudioPrevioQuimioFecha(NestedRs.getDate("FechaQuimioterapia"));
+                    temp.setEstudioPrevioCirugiaTipo(NestedRs.getString("TipoCirugia"));
+                    temp.setEstudioPrevioCirugiaFecha(NestedRs.getDate("FechaCirugia"));
+                NestedRs.close();
+                NestedRs.close();
+                
                 NestedStProcedure = "CALL mostrarPoblacionBiopsiaPrevia(?)";
                 NestedCstmt = conn.prepareCall(NestedStProcedure);
                 NestedCstmt.setInt(1, rs.getInt("idPaciente"));
@@ -95,12 +103,6 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
                     temp.setBiopsiaPreviaTipo(NestedRs.getString("nombreTipo"));
                     temp.setBiopsiaPreviaLugarCuerpo(NestedRs.getString("nombreLugarCuerpo"));
                     temp.setBiopsiaPreviaFecha(NestedRs.getDate("Fecha"));
-                } else {
-                    temp.setBiopsiaPreviaLaminillas("NA");
-                    temp.setBiopsiaPreviaBloques("NA");
-                    temp.setBiopsiaPreviaTipo("NA");
-                    temp.setBiopsiaPreviaLugarCuerpo("NA");
-                    temp.setBiopsiaPreviaFecha(Date.valueOf("1900-01-01"));
                 }
                 NestedRs.close();
                 NestedRs.close();
@@ -135,6 +137,45 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
                     temp.setProgramaINCanMujeresJovenes(NestedRs.getDate("FechaMujerJoven"));
                     temp.setProgramaINCanNutricion(NestedRs.getDate("FechaNutricion"));
                     temp.setProgramaINCanGenetica(NestedRs.getDate("FechaGenetica"));
+                NestedRs.close();
+                NestedRs.close();
+                
+                NestedStProcedure = "CALL mostrarPoblacionBiopsiaINCan(?)";
+                NestedCstmt = conn.prepareCall(NestedStProcedure);
+                NestedCstmt.setInt(1, rs.getInt("idPaciente"));
+                NestedRs = NestedCstmt.executeQuery();
+                if (NestedRs.next()){
+                    temp.setBiopsiaINCanGradoHistologico(NestedRs.getString("BiopsiaINCan_GradoHistologico"));
+                    temp.setBiopsiaINCanHer2(NestedRs.getString("BiopsiaINCan_Her2"));
+                    temp.setBiopsiaINCanFish(NestedRs.getString("BiopsiaINCan_Fish"));
+                    temp.setBiopsiaINCanKi67(NestedRs.getString("BiopsiaINCan_Ki67"));
+                    temp.setBiopsiaINCanRe(NestedRs.getString("BiopsiaINCan_RE"));
+                    temp.setBiopsiaINCanRp(NestedRs.getString("BiopsiaINCan_RP"));
+                }
+                NestedRs.close();
+                NestedRs.close();
+                
+                NestedStProcedure = "CALL mostrarPoblacionPreconsulta(?)";
+                NestedCstmt = conn.prepareCall(NestedStProcedure);
+                NestedCstmt.setInt(1, rs.getInt("idPaciente"));
+                NestedRs = NestedCstmt.executeQuery();
+                if (NestedRs.next()){
+                    if (NestedRs.getInt("Preconsulta_SegundaOpinion") == 0)temp.setPreconsultaSegundaOpcion("Primera vez");
+                    else temp.setPreconsultaSegundaOpcion("Segunda Opinión");
+                    temp.setPreconsultaFechaDecision(NestedRs.getDate("Preconsulta_FechaDecision"));
+                    temp.setPreconsultaDecision(NestedRs.getString("Preconsulta_Decision"));
+                }
+                NestedRs.close();
+                NestedRs.close();
+                
+                NestedStProcedure = "CALL mostrarPoblacionCirugiasINCan(?)";
+                NestedCstmt = conn.prepareCall(NestedStProcedure);
+                NestedCstmt.setInt(1, rs.getInt("idPaciente"));
+                NestedRs = NestedCstmt.executeQuery();
+                NestedRs.next();
+                    temp.setCirugiasINCanMasectomiaFecha(NestedRs.getDate("FechaMasectomia"));
+                    temp.setCirugiasINCanConservadoraFecha(NestedRs.getDate("FechaConservadora"));
+                    temp.setCirugiasINCanReconstruccionFecha(NestedRs.getDate("FechaReconstruccion"));
                 NestedRs.close();
                 NestedRs.close();
                 
@@ -204,7 +245,20 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
                 if (temp.getProgramaINCanMujeresJovenes() == null)temp.setProgramaINCanMujeresJovenes(Date.valueOf("1900-01-01"));
                 if (temp.getProgramaINCanNutricion() == null)temp.setProgramaINCanNutricion(Date.valueOf("1900-01-01"));
                 if (temp.getProgramaINCanGenetica() == null)temp.setProgramaINCanGenetica(Date.valueOf("1900-01-01"));
-                    
+                if (temp.getEstudioPrevioMastografia() == null)temp.setEstudioPrevioMastografia("NA");
+                if (temp.getEstudioPrevioMastografiaFecha() == null)temp.setEstudioPrevioMastografiaFecha(Date.valueOf("1900-01-01"));
+                if (temp.getEstudioPrevioUSG() == null)temp.setEstudioPrevioUSG("NA");
+                if (temp.getEstudioPrevioUSGFecha() == null)temp.setEstudioPrevioUSGFecha(Date.valueOf("1900-01-01"));
+                if (temp.getEstudioPrevioRadioCiclos() == null)temp.setEstudioPrevioRadioCiclos(-1);
+                if (temp.getEstudioPrevioRadioFecha() == null)temp.setEstudioPrevioRadioFecha(Date.valueOf("1900-01-01"));
+                if (temp.getEstudioPrevioQuimioCiclos() == null)temp.setEstudioPrevioQuimioCiclos(-1);
+                if (temp.getEstudioPrevioQuimioFecha() == null)temp.setEstudioPrevioQuimioFecha(Date.valueOf("1900-01-01"));
+                if (temp.getEstudioPrevioCirugiaTipo() == null)temp.setEstudioPrevioCirugiaTipo("NA");
+                if (temp.getEstudioPrevioCirugiaFecha() == null)temp.setEstudioPrevioCirugiaFecha(Date.valueOf("1900-01-01"));
+                if (temp.getCirugiasINCanMasectomiaFecha() == null)temp.setCirugiasINCanMasectomiaFecha(Date.valueOf("1900-01-01"));
+                if (temp.getCirugiasINCanConservadoraFecha() == null)temp.setCirugiasINCanConservadoraFecha(Date.valueOf("1900-01-01"));
+                if (temp.getCirugiasINCanReconstruccionFecha() == null)temp.setCirugiasINCanReconstruccionFecha(Date.valueOf("1900-01-01"));
+                
                 PoblacionGeneral.add(temp);
             }
             rs.close();

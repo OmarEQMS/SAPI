@@ -86,6 +86,19 @@ public class GeneralPoblacion  implements Serializable{
     private String biopsiaINCanT;
     private String biopsiaINCanN;
     private String biopsiaINCanM;
+    private Date estudioPrevioQuimioFecha;
+    private Integer estudioPrevioQuimioCiclos;
+    private Date estudioPrevioRadioFecha;
+    private Integer estudioPrevioRadioCiclos;
+    private Date estudioPrevioCirugiaFecha;
+    private String estudioPrevioCirugiaTipo;
+    private Date estudioPrevioMastografiaFecha;
+    private String estudioPrevioMastografia;
+    private Date estudioPrevioUSGFecha;
+    private String estudioPrevioUSG;
+    private Date cirugiasINCanMasectomiaFecha;
+    private Date cirugiasINCanConservadoraFecha;
+    private Date cirugiasINCanReconstruccionFecha;
 
     @Override
     public String toString() {
@@ -112,6 +125,16 @@ public class GeneralPoblacion  implements Serializable{
                 concat("\tOxigeno: ").concat(oxigeno).
                 concat("\tCamilla: ").concat(camilla).
                 concat("\tBastón: ").concat(bastón).
+                concat("\tQuimioterapia previa - Fecha: ").concat(estudioPrevioQuimioFecha.toString()).
+                concat("\tQuimioterapia previa - Ciclos: ").concat(estudioPrevioQuimioCiclos.toString()).
+                concat("\tRadioterapia previa - Fecha: ").concat(estudioPrevioRadioFecha.toString()).
+                concat("\tRadioterapia previa - Ciclos: ").concat(estudioPrevioRadioCiclos.toString()).
+                concat("\tCirugía previa - Fecha: ").concat(estudioPrevioCirugiaFecha.toString()).
+                concat("\tCirugía previa - Tipo: ").concat(estudioPrevioCirugiaTipo).
+                concat("\tMastografía previa - Fecha: ").concat(estudioPrevioMastografiaFecha.toString()).
+                concat("\tMastografía previa - Resultado: ").concat(estudioPrevioMastografia).
+                concat("\tMastografía previa - Fecha: ").concat(estudioPrevioUSGFecha.toString()).
+                concat("\tMastografía previa - Resultado: ").concat(estudioPrevioUSG).
                 concat("\tBiopsia Previa - Laminillas: ").concat(biopsiaPreviaLaminillas).
                 concat("\tBiopsia Previa - Bloques: ").concat(biopsiaPreviaBloques).
                 concat("\tBiopsia Previa - Tipo: ").concat(biopsiaPreviaTipo).
@@ -155,6 +178,9 @@ public class GeneralPoblacion  implements Serializable{
                 concat("\tBiopsia INCan - Ki67: ").concat(biopsiaINCanKi67).
                 concat("\tBiopsia INCan - Re: ").concat(biopsiaINCanRe).
                 concat("\tBiopsia INCan - Rp: ").concat(biopsiaINCanRp).
+                concat("\tCirugia INCan - [Fecha] Masectomia: ").concat(cirugiasINCanMasectomiaFecha.toString()).
+                concat("\tCirugia INCan - [Fecha] Conservadora: ").concat(cirugiasINCanConservadoraFecha.toString()).
+                concat("\tCirugia INCan - [Fecha] Reconstruccion: ").concat(cirugiasINCanReconstruccionFecha.toString()).
                 
                 concat(" ]");
 
@@ -184,6 +210,16 @@ public class GeneralPoblacion  implements Serializable{
                 concat("\t").concat(oxigeno).
                 concat("\t").concat(camilla).
                 concat("\t").concat(bastón).
+                concat("\t").concat(estudioPrevioQuimioFecha.toString()).
+                concat("\t").concat(estudioPrevioQuimioCiclos.toString()).
+                concat("\t").concat(estudioPrevioRadioFecha.toString()).
+                concat("\t").concat(estudioPrevioRadioCiclos.toString()).
+                concat("\t").concat(estudioPrevioCirugiaFecha.toString()).
+                concat("\t").concat(estudioPrevioCirugiaTipo).
+                concat("\t").concat(estudioPrevioMastografiaFecha.toString()).
+                concat("\t").concat(estudioPrevioMastografia).
+                concat("\t").concat(estudioPrevioUSGFecha.toString()).
+                concat("\t").concat(estudioPrevioUSG).
                 concat("\t").concat(biopsiaPreviaLaminillas).
                 concat("\t").concat(biopsiaPreviaBloques).
                 concat("\t").concat(biopsiaPreviaTipo).
@@ -226,7 +262,11 @@ public class GeneralPoblacion  implements Serializable{
                 concat("\t").concat(biopsiaINCanFish).
                 concat("\t").concat(biopsiaINCanKi67).
                 concat("\t").concat(biopsiaINCanRe).
-                concat("\t").concat(biopsiaINCanRp);
+                concat("\t").concat(biopsiaINCanRp).
+                concat("\t").concat(cirugiasINCanMasectomiaFecha.toString()).
+                concat("\t").concat(cirugiasINCanConservadoraFecha.toString()).
+                concat("\t").concat(cirugiasINCanReconstruccionFecha.toString())
+                ;
 
     }
     public static String tableHeaderRStudio(){
@@ -251,6 +291,16 @@ public class GeneralPoblacion  implements Serializable{
                 concat("Oxígeno\t").
                 concat("Camilla\t").
                 concat("Bastón\t").
+                concat("Quimioterapia previa - Fecha\t").
+                concat("Quimioterapia previa - Ciclos\t").
+                concat("Radioterapia previa - Fecha\t").
+                concat("Radioterapia previa - Ciclos\t").
+                concat("Cirugía previa - Fecha\t").
+                concat("Cirugía previa - Tipo\t").
+                concat("Mastografía previa - Fecha\t").
+                concat("Mastografía previa - Resultado\t").
+                concat("Mastografía previa - Fecha\t").
+                concat("Mastografía previa - Resultado\t").
                 concat("Biopsia Previa - Laminillas\t").
                 concat("Biopsia Previa - Bloques\t").
                 concat("Biopsia Previa - Tipo\t").
@@ -293,7 +343,10 @@ public class GeneralPoblacion  implements Serializable{
                 concat("Biopsia INCan - Fish\t").
                 concat("Biopsia INCan - Ki67\t").
                 concat("Biopsia INCan - Re\t").
-                concat("Biopsia INCan - Rp\t")
+                concat("Biopsia INCan - Rp\t").
+                concat("Cirugia INCan - [Fecha] Masectomia\t").
+                concat("Cirugia INCan - [Fecha] Conservadora\t").
+                concat("Cirugia INCan - [Fecha] Reconstruccion\t")
                 ;
     }
     public void setNombrePersona(String nombrePersona) {
@@ -822,6 +875,110 @@ public class GeneralPoblacion  implements Serializable{
 
     public void setBiopsiaINCanM(String biopsiaINCanM) {
         this.biopsiaINCanM = biopsiaINCanM;
+    }
+
+    public Date getEstudioPrevioQuimioFecha() {
+        return estudioPrevioQuimioFecha;
+    }
+
+    public void setEstudioPrevioQuimioFecha(Date estudioPrevioQuimioFecha) {
+        this.estudioPrevioQuimioFecha = estudioPrevioQuimioFecha;
+    }
+
+    public Integer getEstudioPrevioQuimioCiclos() {
+        return estudioPrevioQuimioCiclos;
+    }
+
+    public void setEstudioPrevioQuimioCiclos(Integer estudioPrevioQuimioCiclos) {
+        this.estudioPrevioQuimioCiclos = estudioPrevioQuimioCiclos;
+    }
+
+    public Date getEstudioPrevioRadioFecha() {
+        return estudioPrevioRadioFecha;
+    }
+
+    public void setEstudioPrevioRadioFecha(Date estudioPrevioRadioFecha) {
+        this.estudioPrevioRadioFecha = estudioPrevioRadioFecha;
+    }
+
+    public Integer getEstudioPrevioRadioCiclos() {
+        return estudioPrevioRadioCiclos;
+    }
+
+    public void setEstudioPrevioRadioCiclos(Integer estudioPrevioRadioCiclos) {
+        this.estudioPrevioRadioCiclos = estudioPrevioRadioCiclos;
+    }
+
+    public Date getEstudioPrevioCirugiaFecha() {
+        return estudioPrevioCirugiaFecha;
+    }
+
+    public void setEstudioPrevioCirugiaFecha(Date estudioPrevioCirugiaFecha) {
+        this.estudioPrevioCirugiaFecha = estudioPrevioCirugiaFecha;
+    }
+
+    public String getEstudioPrevioCirugiaTipo() {
+        return estudioPrevioCirugiaTipo;
+    }
+
+    public void setEstudioPrevioCirugiaTipo(String estudioPrevioCirugiaTipo) {
+        this.estudioPrevioCirugiaTipo = estudioPrevioCirugiaTipo;
+    }
+
+    public Date getEstudioPrevioMastografiaFecha() {
+        return estudioPrevioMastografiaFecha;
+    }
+
+    public void setEstudioPrevioMastografiaFecha(Date estudioPrevioMastografiaFecha) {
+        this.estudioPrevioMastografiaFecha = estudioPrevioMastografiaFecha;
+    }
+
+    public String getEstudioPrevioMastografia() {
+        return estudioPrevioMastografia;
+    }
+
+    public void setEstudioPrevioMastografia(String estudioPrevioMastografia) {
+        this.estudioPrevioMastografia = estudioPrevioMastografia;
+    }
+
+    public Date getEstudioPrevioUSGFecha() {
+        return estudioPrevioUSGFecha;
+    }
+
+    public void setEstudioPrevioUSGFecha(Date estudioPrevioUSGFecha) {
+        this.estudioPrevioUSGFecha = estudioPrevioUSGFecha;
+    }
+
+    public String getEstudioPrevioUSG() {
+        return estudioPrevioUSG;
+    }
+
+    public void setEstudioPrevioUSG(String estudioPrevioUSG) {
+        this.estudioPrevioUSG = estudioPrevioUSG;
+    }
+
+    public Date getCirugiasINCanMasectomiaFecha() {
+        return cirugiasINCanMasectomiaFecha;
+    }
+
+    public void setCirugiasINCanMasectomiaFecha(Date cirugiasINCanMasectomiaFecha) {
+        this.cirugiasINCanMasectomiaFecha = cirugiasINCanMasectomiaFecha;
+    }
+
+    public Date getCirugiasINCanConservadoraFecha() {
+        return cirugiasINCanConservadoraFecha;
+    }
+
+    public void setCirugiasINCanConservadoraFecha(Date cirugiasINCanConservadoraFecha) {
+        this.cirugiasINCanConservadoraFecha = cirugiasINCanConservadoraFecha;
+    }
+
+    public Date getCirugiasINCanReconstruccionFecha() {
+        return cirugiasINCanReconstruccionFecha;
+    }
+
+    public void setCirugiasINCanReconstruccionFecha(Date cirugiasINCanReconstruccionFecha) {
+        this.cirugiasINCanReconstruccionFecha = cirugiasINCanReconstruccionFecha;
     }
     
     
