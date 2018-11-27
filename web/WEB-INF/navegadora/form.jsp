@@ -1508,7 +1508,7 @@
 
                                         <div class="llamadaInit">
 
-                                            <div class="tuplaLlamada">
+                                            <div class="tuplaLlamada" data-id="0" data-accion="agregar">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="input-group">
@@ -1528,7 +1528,7 @@
                                                 <div class="row mt-3">
                                                     <div class="col-12">
 
-                                                        <textarea name="motivoLlamada" class="form-control  comentario-llamada" style="min-height:100px;" placeholder="Introduce el motivo de la llamada "></textarea>
+                                                        <textarea name="motivoLlamada" class="form-control comentario-llamada" style="min-height:100px;" placeholder="Introduce el motivo de la llamada "></textarea>
 
                                                     </div>
                                                 </div>

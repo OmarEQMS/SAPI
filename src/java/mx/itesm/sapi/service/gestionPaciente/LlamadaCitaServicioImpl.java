@@ -98,21 +98,18 @@ public class LlamadaCitaServicioImpl implements LlamadaCitaServicio {
         ResultSet rs;
         CallableStatement cstmt;
         int id = -1;
-        String stPrcedure="CALL agregarLlamadaCita(?, ?, ?, ?)";
+        String stPrcedure="CALL agregarLlamadaCita(?, ?, ?, ?, ?)";
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stPrcedure);
             
-            cstmt.setInt(1, llamadaCita.getIdLlamadaCita());
-            cstmt.setInt(2, llamadaCita.getIdCita());
-            cstmt.setInt(3, llamadaCita.getIdEmpleado());
-            cstmt.setTimestamp(4, llamadaCita.getFecha() );
-            cstmt.setInt(5, llamadaCita.getLlamada());
-            cstmt.setInt(6, llamadaCita.getEstatus());
-
+            cstmt.setInt(1, llamadaCita.getIdCita());
+            cstmt.setInt(2, llamadaCita.getIdEmpleado());
+            cstmt.setTimestamp(3, llamadaCita.getFecha() );
+            cstmt.setInt(4, llamadaCita.getLlamada());
+            cstmt.setString(5, llamadaCita.getComentario());
             
-            cstmt.executeUpdate();
-            rs = cstmt.getGeneratedKeys();
+            rs = cstmt.executeQuery();
             rs.next();
             
             id=rs.getInt(1);
@@ -135,7 +132,7 @@ public class LlamadaCitaServicioImpl implements LlamadaCitaServicio {
     public boolean actualizarLlamadaCita(LlamadaCita llamadaCita) {
        Connection conn;
         CallableStatement cstmt;
-        String stProcedure = "CALL actualizarLlamadaCita(?, ?, ?, ?)";
+        String stProcedure = "CALL actualizarLlamadaCita(?, ?, ?, ?, ?, ?)";
         boolean exito= false;
         ResultSet rs;
         try{
@@ -147,7 +144,7 @@ public class LlamadaCitaServicioImpl implements LlamadaCitaServicio {
             cstmt.setInt(3, llamadaCita.getIdEmpleado());
             cstmt.setTimestamp(4, llamadaCita.getFecha() );
             cstmt.setInt(5, llamadaCita.getLlamada());
-            cstmt.setInt(6, llamadaCita.getEstatus() );
+            cstmt.setString(6, llamadaCita.getComentario());
             
             rs = cstmt.executeQuery();
             
@@ -168,7 +165,7 @@ public class LlamadaCitaServicioImpl implements LlamadaCitaServicio {
     public boolean borradoLogicoLlamadaCita(int idLlamadaCita) {
          Connection conn; 
         CallableStatement cstmt;
-        String stProcedure = "CALL actualizarLlamadaCita(?)";
+        String stProcedure = "CALL borradoLogicoLlamadaCita(?)";
         boolean exito = false;
         ResultSet rs;
         try{
