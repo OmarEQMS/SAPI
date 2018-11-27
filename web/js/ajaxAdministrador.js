@@ -620,9 +620,6 @@ $(document).ready(function () {
             isValidAddEspecialidad = false;
         }
     });
-    
-    //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
-    $('#editar-especialidadMedico').on('change', function () {
 
     var isValidEditEspecialidad = true;
     var dato2EditEspecialidad = $("#editar-especialidadMedico");
@@ -676,33 +673,6 @@ $(document).ready(function () {
         }
     });
 
-<<<<<<< HEAD
-    /* SHANNON
-     
-     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
-     $('#editar-posiciondMedico').on('change', function () {
-     
-     if (isValidPosicion($(this))) {
-     $('#errorEditarPosicion').hide();
-     } else if ($(this).val() == '') {
-     $('#errorEditarPosicion').hide();
-     } else {
-     $('#errorEditarPosicion').show();
-     }
-     
-     }); */
-
-||||||| merged common ancestors
-        if (isValidPosicion($(this))) {
-            $('#errorEditarPosicion').hide();
-        } else if ($(this).val() == '') {
-            $('#errorEditarPosicion').hide();
-        } else {
-            $('#errorEditarPosicion').show();
-        }
-
-    }); */
-=======
     var isValidEditPosicion = true;
     var dato2EditPosicion = $("#editar-posicionMedico");
 
@@ -728,7 +698,6 @@ $(document).ready(function () {
             isValidEditPosicion = false;
         }
     });
->>>>>>> origin/Shannon*/
 
     //NOMBRE EN AGREGAR MÉDICO
     $('#agregar-nombreMedico').on('change', function () {
