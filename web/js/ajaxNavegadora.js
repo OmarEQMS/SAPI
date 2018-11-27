@@ -2135,25 +2135,24 @@ $(document).ready(function () {
                     });
                 }
             }
-
             if (data[0][0].medicoAdscrito !== "") {
-                $('#medico-adscrito option:contains(' + data[0][0].medicoAdscrito + ')').each(function () {
-                    if ($(this).text() === data[0][0].medicoAdscrito) {
+                $('#medico-adscrito option:contains(' + $.trim(data[0][0].medicoAdscrito) + ')').each(function () {
+
+                    if ($.trim($(this).text()) === $.trim(data[0][0].medicoAdscrito)) {
                         $(this).attr('selected', 'selected');
                     }
 
                 });
             }
-
             if (data[0][0].medicoRadiologo !== "") {
-                $('#medico-radiologo option:contains(' + data[0][0].medicoRadiologo + ')').each(function () {
-                    if ($(this).text() === data[0][0].medicoRadiologo) {
+                $('#medico-radiologo option:contains(' + $.trim(data[0][0].medicoRadiologo) + ')').each(function () {
+
+                    if ($.trim($(this).text()) === $.trim(data[0][0].medicoRadiologo)) {
                         $(this).attr('selected', 'selected');
                     }
 
                 });
             }
-
             if (data[0][0].medicoResidente !== "") {
                 $('#medico-residente').val(data[0][0].medicoResidente);
                 /*   $('#medico-residente option:contains(' + data[0][0].medicoResidente + ')').each(function () {
