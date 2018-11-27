@@ -187,7 +187,7 @@ public class PacienteServicioImpl implements PacienteServicio{
         ResultSet rs;
         try{
             conn = Conexion.getConnection();
-            cstmt = conn.prepareCall("CALL actualizarPaciente(?,?,?,?,?,?,?,?)");
+            cstmt = conn.prepareCall("CALL actualizarPaciente(?,?,?,?,?,?,?,?,?)");
             
             cstmt.setInt(1, paciente.getIdPaciente());
             cstmt.setInt(2, paciente.getIdCuenta());
@@ -197,6 +197,7 @@ public class PacienteServicioImpl implements PacienteServicio{
             cstmt.setDouble(6, paciente.getPeso() );
             cstmt.setDouble(7, paciente.getAltura());
             cstmt.setInt(8, paciente.getPosMenopausia());
+            cstmt.setInt(9, paciente.getIdNivelSocioEconomico());
             //cstmt.setInt(9, paciente.getEstatus());
             
             System.out.println("Actualizar paciente ".concat(cstmt.toString()));

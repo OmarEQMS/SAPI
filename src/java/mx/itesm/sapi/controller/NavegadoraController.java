@@ -203,7 +203,7 @@ public class NavegadoraController extends HttpServlet {
                                  * Elimino su cuenta (borrrado logico)
                                  */
                                 /**
-                                 * Obtengo los id's de sue cuenta y llogin de la
+                                 * Obtengo los id's de su cuenta y login de la
                                  * sesion
                                  */
                                 int idCuenta = (int) sesion.getAttribute("idCuenta");

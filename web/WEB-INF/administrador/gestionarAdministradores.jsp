@@ -503,7 +503,7 @@
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text"><i class="fas fa-user-graduate"></i></div>
                                             </div>
-                                            <input type="text" class="form-control" id="editar-posiciondAdministrador" list="listPosiciones"
+                                            <input type="text" class="form-control" id="editar-posicionAdministrador" list="listPosiciones"
                                                    placeholder="Posicion">
                                             <datalist id="listPosiciones">                                            
                                             </datalist>

@@ -22,17 +22,12 @@ public class TablaMedicoAdministrador {
     private String noEmpleado;
     private String nombreEspecialidad;
     private String cedulaProfesional;
+    private String nombrePosicion;
 
     @Override
     public String toString() {
-        return "TablaMedicoAdministrador{" + "idEmpleado=" + idEmpleado + ", idCuenta=" + idCuenta + ", idPersona=" + idPersona + ", nombre=" + nombre + ", primerApellido=" + primerApellido + ", segundoApellido=" + segundoApellido + ", correo=" + correo + ", telefono=" + telefono + ", usuario=" + usuario + ", noEmpleado=" + noEmpleado + ", nombreEspecialidad=" + nombreEspecialidad + ", cedulaProfesional=" + cedulaProfesional + '}';
+        return "TablaMedicoAdministrador{" + "idEmpleado=" + idEmpleado + ", idCuenta=" + idCuenta + ", idPersona=" + idPersona + ", nombre=" + nombre + ", primerApellido=" + primerApellido + ", segundoApellido=" + segundoApellido + ", correo=" + correo + ", telefono=" + telefono + ", usuario=" + usuario + ", noEmpleado=" + noEmpleado + ", nombreEspecialidad=" + nombreEspecialidad + ", cedulaProfesional=" + cedulaProfesional + ", nombrePosicion=" + nombrePosicion + '}';
     }
-    
-    
-    
-    public TablaMedicoAdministrador(){
-        
-    };
 
     public int getIdEmpleado() {
         return idEmpleado;
@@ -129,7 +124,15 @@ public class TablaMedicoAdministrador {
     public void setCedulaProfesional(String cedulaProfesional) {
         this.cedulaProfesional = cedulaProfesional;
     }
+
+    public String getNombrePosicion() {
+        return nombrePosicion;
+    }
+
+    public void setNombrePosicion(String nombrePosicion) {
+        this.nombrePosicion = nombrePosicion;
+    }
+
     
-    
-    
+ 
 }
