@@ -21,10 +21,12 @@ $(document).ready(function () {
     $('#errorFecha').hide();
     $('#errorEstado').hide();
     $('#errorMunicipio').hide();
+    
     $('#errorColonia').hide();
     $('#errorCalle').hide();
     $('#errorNoExterior').hide();
     $('#errorNoInterior').hide();
+    
     $('#errorUsuarioRepetido').hide();
 
     $('#errorCorreoRepetido').hide();
@@ -44,7 +46,12 @@ $(document).ready(function () {
             $("#error-datosRepetidos").hide();
 
             //Verificar que todos los campos que han marcado
-            if (isValidName($('#nombre')) && isValidLastName($('#apellido1')) && isValidUserName($('#usuario')) && isValidEmail($('#correo')) && isValidPassword($('#pass1')) && isValidCURP($('#curp')) && isValidPhoneNumber($('#telefono')) && isValidSelect($('#estadoCivil')) && isValidDate($('#fechaNacimiento')) && isValidSelect($('#estado')) && isValidSelect($('#municipio')) && areEqualPasswords($('#pass1'),$('#pass2')) && $('#errorCorreoRepetido').hide()) {
+            if (isValidName($('#nombre')) && isValidLastName($('#apellido1')) &&$('#errorApellidoMaterno').hide() && $('#errorCodigoPostal').hide()
+                    && $('#errorColonia').hide() && $('#errorCalle').hide() && $('#errorNoExterior').hide() && $('#errorNoInterior').hide()
+                    && isValidUserName($('#usuario')) && isValidEmail($('#correo')) && isValidPassword($('#pass1')) 
+                    && isValidCURP($('#curp')) && isValidPhoneNumber($('#telefono')) && isValidSelect($('#estadoCivil')) 
+                    && isValidDate($('#fechaNacimiento')) && isValidSelect($('#estado')) && isValidSelect($('#municipio')) 
+                    && areEqualPasswords($('#pass1'),$('#pass2')) && $('#errorCorreoRepetido').hide()) {
                 $("#error-campos").hide();
 
                 swal(

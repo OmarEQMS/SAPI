@@ -203,7 +203,7 @@
                                             <button class="btn btn-primary btn-editarNavegadora m-1" data-toggle="modal"
                                                     data-target="#modalEditarNavegadora" data-id="${navegadora.idEmpleado}" ><i class="fas fa-edit"></i>
                                             </button>
-                                            <button class="btn btn-danger m-1" id="btn-eliminarNavegadora" data-id="${navegadora.idEmpleado}"><i class="fas fa-trash-alt">
+                                            <button class="btn btn-danger m-1" id="btn-eliminarNavegadora" data-id="${navegadora.idPersona}"><i class="fas fa-trash-alt">
 
                                                 </i></button>
                                         </td>

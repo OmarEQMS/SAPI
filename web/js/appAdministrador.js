@@ -237,6 +237,8 @@ $(document).ready(function () {
         $('#errorEditarNumEmpleado').hide();
         $('#errorEditarCedulaMedicos').hide();
         $('#error-editarDatosRepetidos').hide();
+        $('#errorEditarPosicion').hide();
+        $('#errorEditarEspecialidad').hide();
 
         $('#editar-nombreMedico').css('border', '');
         $('#editar-nombreMedico').css('color', '');
@@ -261,6 +263,12 @@ $(document).ready(function () {
 
         $('#editar-cedulaProfesionalMedico').css('border', '');
         $('#editar-cedulaProfesionalMedico').css('color', '');
+        
+        $('#editar-especialidadMedico').css('border', '');
+        $('#editar-especialidadMedico').css('color', '');
+        
+        $('#editar-posicionMedico').css('border', '');
+        $('#editar-posicionMedico').css('color', '');
 
     });
 

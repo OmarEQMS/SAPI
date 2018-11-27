@@ -56,7 +56,7 @@
                 <div class="form-group row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <input id="usuario" type="text" class="form-control inputGlobal mb-1 useFontAwesomeFamily" placeholder="&#xf2bd; NOMBRE DE USUARIO">
-                        <span class="text-danger" id="errorNombreUsuario">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 4 y un máximo de 16 caracteres.</span>
+                        <span class="text-danger" id="errorNombreUsuario">Formato incorrecto, solo caracteres alfanumérico con un mínimo de 4 y un máximo de 16 caracteres.</span>
                         <span class="text-warning" id="errorUsuarioRepetido">El usuario ya existe.</span>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">

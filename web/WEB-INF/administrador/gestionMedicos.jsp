@@ -339,7 +339,7 @@
                                             <datalist id="listPosiciones">                                            
                                             </datalist>
                                         </div>
-                                        <!-- <span class="text-danger" id="errorEditarPosicion">Selecciona una posición válida.</span> -->
+                                        <span class="text-danger" id="errorEditarPosicion">Selecciona una posición válida.</span> 
                                     </div>
                                 </div>
 
