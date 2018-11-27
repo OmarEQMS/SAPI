@@ -35,9 +35,6 @@
         <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
 
         <link rel="stylesheet" href="css/styleAdministrador.css">    
-        <script rel="stylesheet" href="lib/jquery/jquery-ui.min.js"></script>
-        <link rel="stylesheet" href="lib/jquery/jquery-ui.css">
-        <link rel="stylesheet" href="lib/jquery/jquery-ui.min.css">
         <script src="js/appAdministrador.js"></script>
         <script src="js/ajaxAdministrador.js"></script>
         <script src="js/autocomplete.js"></script>

@@ -529,6 +529,8 @@ public class AdministradorController extends HttpServlet {
                         pic.setTipo(part.getContentType());
 
                         picServiceImpl.agregarPic(pic);
+                        
+                        System.out.println("picName: ".concat(pic.getTipo()));
 
                         InputStream imagen = pic.getContenido();
                         byte[] bytes = IOUtils.toByteArray(imagen);
