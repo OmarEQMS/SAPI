@@ -797,11 +797,13 @@ $(document).ready(function () {
                 var cedula = $('#agregar-cedulaMedico');
                 var password = $('#agregar-passwordMedico');
 
-                //configureLoadingScreen($('.cargandoAgregarMedico'));
                 $.ajax({
 
                     url: 'RegistraUsuarioController',
                     cache: false,
+                    beforeSend: function () {
+                        $('.cargandoAgregarMedico').fadeIn();
+                    },
                     method: 'POST',
                     data: {
                         key: 'agregarMedico',
@@ -815,6 +817,9 @@ $(document).ready(function () {
                         posicion: posicion.val(),
                         cedula: cedula.val(),
                         password: password.val()
+                    },
+                    complete: function () {
+                        $('.cargandoAgregarMedico').fadeOut();
                     },
                     success: function (response) {
 
@@ -843,6 +848,9 @@ $(document).ready(function () {
 
                         //Cerrar el modal
                         $('#modalAgregarMedico').modal('toggle');
+                    },
+                    error: function (xhr) {
+                        //alert(xhr.statusText);
                     }
                 })
                         .done(function (response) {
@@ -1009,7 +1017,7 @@ $(document).ready(function () {
                 $('#editar-telefonoMedico').val(json.telefono);
                 $('#editar-noEmpleadoMedico').val(json.noEmpleado);
                 $('#editar-especialidadMedico').val(json.nombreEspecialidad);
-                $('#editar-posicionMedico').val(json.nombrePosicion); //SHANNON
+                $('#editar-posicionMedico').val(json.nombrePosicion);
                 $('#editar-cedulaProfesionalMedico').val(json.cedulaProfesional);
 
             }
@@ -1220,7 +1228,7 @@ $(document).ready(function () {
 
     //GUARDA EL MEDICO DESDE EL MODAL
     $('#btn-guardarMedico').on('click', function () {
-        
+
         if (!repiteCorreo) {
             $("#error-editarDatosRepetidos").hide();
 
@@ -1228,7 +1236,7 @@ $(document).ready(function () {
                     && isValidNumEmpleado($('#editar-noEmpleadoMedico')) && isValidEmail($('#editar-correoMedico'))
                     && isValidPhoneNumber($('#editar-telefonoMedico')) && isValidEditEspecialidad && isValidEditPosicion
                     && $('#errorCorreoRepetido').hide()) {
-                
+
                 var idMedico = $('#idMedico').val();
                 var nombre = $('#editar-nombreMedico').val();
                 var telefono = $('#editar-telefonoMedico').val();
@@ -1251,11 +1259,13 @@ $(document).ready(function () {
                 console.log("cedula " + cedula);
 
                 console.log("Holi, hará el ajax");
-                configureLoadingScreen($('.cargandoEditarMedico'));
                 $.ajax({
 
                     url: 'AdministradorController',
                     cache: false,
+                    beforeSend: function () {
+                        $('.cargandoEditarMedico').fadeIn();
+                    },
                     method: 'POST',
                     data: {
                         key: 'actualizar-medico',
@@ -1269,6 +1279,9 @@ $(document).ready(function () {
                         especialidad: especialidad,
                         posicion: posicion,
                         cedula: cedula
+                    },
+                    complete: function () {
+                        $('.cargandoEditarMedico').fadeOut();
                     },
                     success: function (response) {
                         $('#modalEditarMedico').modal('toggle'); //cerrar modal
@@ -1286,6 +1299,9 @@ $(document).ready(function () {
                         $('#noEmpleado-' + idMedico).html(noEmpleado);
                         $('#nombreEspecialidad-' + idMedico).html(especialidad);
                         $('#cedulaProfesional-' + idMedico).html(cedula);
+                    },
+                    error: function (xhr) {
+                        //alert(xhr.statusText);
                     }
 
                 });
@@ -1681,12 +1697,14 @@ $(document).ready(function () {
                 console.log(cedula);
                 console.log(password);
 
-                //configureLoadingScreen($('.cargandoAgregarNavegadora'));
                 $.ajax({
 
                     url: 'RegistraUsuarioController',
                     cache: false,
                     method: 'POST',
+                    beforeSend: function () {
+                        $('.cargandoAgregarNavegadora').fadeIn();
+                    },
                     data: {
                         key: 'agregarNavegadora',
                         nombre: nombre.val(),
@@ -1698,6 +1716,9 @@ $(document).ready(function () {
                         especialidad: especialidad.val(),
                         cedula: cedula.val(),
                         password: password.val()
+                    },
+                    complete: function () {
+                        $('.cargandoAgregarNavegadora').fadeOut();
                     },
                     success: function (response) {
                         swal({
@@ -1753,9 +1774,6 @@ $(document).ready(function () {
                 key: 'obtener-navegadora',
                 idNavegadora: idNavegadora,
             },
-            beforeSend: function () {
-
-            },
             success: function (response) {
 
                 console.log(response);
@@ -1807,12 +1825,15 @@ $(document).ready(function () {
                 console.log("cedula " + cedula);
 
                 console.log("Holi, hará el ajax");
-                //configureLoadingScreen($('.cargandoEditarNavegadora'));
+
                 $.ajax({
 
                     url: 'AdministradorController',
                     cache: false,
                     method: 'POST',
+                    beforeSend: function () {
+                        $('.cargandoEditarNavegadora').fadeIn();
+                    },
                     data: {
                         key: 'actualiza-navegadora',
                         idNavegadora: idNavegadora,
@@ -1824,6 +1845,9 @@ $(document).ready(function () {
                         noEmpleado: noEmpleado,
                         especialidad: especialidad,
                         cedula: cedula,
+                    },
+                    complete: function () {
+                        $('.cargandoEditarNavegadora').fadeOut();
                     },
                     success: function (response) {
                         $('#modalEditarNavegadora').modal('toggle'); //cerrar modal
@@ -2474,13 +2498,3 @@ $(document).ready(function () {
         return false;
     }
 });
-
-function configureLoadingScreen(screen) {
-    $(document)
-            .ajaxStart(function () {
-                screen.fadeIn();
-            })
-            .ajaxStop(function () {
-                screen.fadeOut();
-            })
-}

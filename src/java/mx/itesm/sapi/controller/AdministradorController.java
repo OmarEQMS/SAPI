@@ -117,8 +117,7 @@ public class AdministradorController extends HttpServlet {
 
                     EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
                     Especialidad especialidadMedicos = especialidadServicioImpl.mostrarEspecialidadPorNombre(especialidad);
-                    
-                    
+
                     PosicionServicioImpl posicionServicioImpl = new PosicionServicioImpl();
                     Posicion posicionMedicos = posicionServicioImpl.mostrarPosicion(posicion);
 
@@ -128,15 +127,12 @@ public class AdministradorController extends HttpServlet {
                     medicoEspecialidad.setIdEspecialidad(especialidadMedicos.getIdEspecialidad());
                     System.out.println(" adminiController medicoEspecialidad ".concat(String.valueOf(medicoEspecialidad.getIdEmpleado())));
                     boolean medicoEspecialidadBoolean = medicoEspecialidadServicioImpl.actualizarMedicoEspecialidad(medicoEspecialidad);
-                    
-                   
-                    
+
                     MedicoPosicionServicioImpl medicoPosicionServicioImpl = new MedicoPosicionServicioImpl();
                     MedicoPosicion medicoPosicion = medicoPosicionServicioImpl.mostrarMedicoPosicionEmpleado(idMedicoAdministrador);
                     medicoPosicion.setIdPosicion(posicionMedicos.getIdPosicion());
                     System.out.println(" adminiController medicoPosicion ".concat(String.valueOf(medicoPosicion.getIdEmpleado())));
-                    boolean medicoPosicionBoolean = medicoPosicionServicioImpl.actualizarMedicoPosicion(medicoPosicion); 
-                    
+                    boolean medicoPosicionBoolean = medicoPosicionServicioImpl.actualizarMedicoPosicion(medicoPosicion);
 
                     PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                     Persona persona = personaServicioImpl.mostrarPersona(medico.getIdPersona());
@@ -165,7 +161,7 @@ public class AdministradorController extends HttpServlet {
                         System.out.println("Empleado: " + empleadoBoolean);
                         System.out.println("Actualizado no exitoso o, no se cambió nada");
                     }
-                    
+
                     if (medicoPosicionBoolean || personaBoolean || cuentaBoolean || empleadoBoolean) {
                         System.out.println("Actualizado exitoso");
                     } else {
@@ -255,52 +251,51 @@ public class AdministradorController extends HttpServlet {
                     }
                 }
                 break;
-                
-                case "eliminarNavegadora": { 
+
+                case "eliminarNavegadora": {
                     System.out.println("Si llego aqui navegadora");
 
-                            /**
-                             * Veo si tiene sesion iniciada
-                             */
-                            if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
-                                // request.setAttribute("status", "");
-                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-                                /**
-                                 * Lo redirecciono al login
-                                 */
-                                return;
-                            } else {
-                                /**
-                                 * Elimino su cuenta (borrrado logico)
-                                 */
-                                /**
-                                 * Obtengo los id's de su cuenta y login de la
-                                 * sesion
-                                 */
-                                int idCuenta = (int) sesion.getAttribute("idCuenta");
-                                System.out.println(idCuenta);
+                    /**
+                     * Veo si tiene sesion iniciada
+                     */
+                    if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
+                        // request.setAttribute("status", "");
+                        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+                        /**
+                         * Lo redirecciono al login
+                         */
+                        return;
+                    } else {
+                        /**
+                         * Elimino su cuenta (borrrado logico)
+                         */
+                        /**
+                         * Obtengo los id's de su cuenta y login de la sesion
+                         */
+                        int idCuenta = (int) sesion.getAttribute("idCuenta");
+                        System.out.println(idCuenta);
 
-                                CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+                        CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
 
-                                LoginServicioImpl loginServicio = new LoginServicioImpl();
-                                if (loginServicio.mostrarLoginIdCuenta(idCuenta) != null) {
-                                    Login login = loginServicio.mostrarLoginIdCuenta(idCuenta);
-                                    loginServicio.borradoLogicoLogin(login.getIdLogin());
-                                }
+                        LoginServicioImpl loginServicio = new LoginServicioImpl();
+                        if (loginServicio.mostrarLoginIdCuenta(idCuenta) != null) {
+                            Login login = loginServicio.mostrarLoginIdCuenta(idCuenta);
+                            loginServicio.borradoLogicoLogin(login.getIdLogin());
+                        }
 
-                                if (cuentaServicio.mostrarCuenta(idCuenta) != null) {
-                                    Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+                        if (cuentaServicio.mostrarCuenta(idCuenta) != null) {
+                            Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
 
-                                    cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
-                                }
+                            cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
+                        }
 
-                                /**
-                                 * Al no tener cuenta se le redirecciona al
-                                 * login
-                                 */
-                                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+                        /**
+                         * Al no tener cuenta se le redirecciona al login
+                         */
+                        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 
-                            }
+                    }
+                    break;
                 }
 
                 case "ReportePoblacion": {
@@ -412,8 +407,8 @@ public class AdministradorController extends HttpServlet {
                         int idCuenta = (int) sesion.getAttribute("idCuenta");
                         String contrasena = request.getParameter("password");
                         String contrasena2 = request.getParameter("password2");
-                        
-                        System.out.println("pass1: " +  contrasena);
+
+                        System.out.println("pass1: " + contrasena);
                         System.out.println("pass2: " + contrasena2);
 
                         if (contrasena.equals(contrasena2)) {
