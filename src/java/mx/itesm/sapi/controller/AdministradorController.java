@@ -9,11 +9,13 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+
 import java.sql.Date;
+
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-import javafx.print.Printer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -22,58 +24,53 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-import mx.itesm.sapi.bean.gestionPaciente.Cita;
-import mx.itesm.sapi.bean.gestionPaciente.CitaEmpleado;
-import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
-import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
-import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
-import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
-import mx.itesm.sapi.bean.gestionPaciente.Paciente;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteMedicoTitular;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
-import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
-import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
+
+import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
 import mx.itesm.sapi.bean.moduloGestionMedico.MedicoPosicion;
+import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
+import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
 import mx.itesm.sapi.bean.moduloGestionMedico.Posicion;
-import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
-import mx.itesm.sapi.bean.persona.Cuenta;
-
-import mx.itesm.sapi.bean.persona.Direccion;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
+import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteMedicoTitular;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
+import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
+import mx.itesm.sapi.bean.gestionPaciente.CitaEmpleado;
+import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
+import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.gestionPaciente.Cita;
 import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
-import mx.itesm.sapi.bean.persona.Login;
-
-import mx.itesm.sapi.bean.persona.Login;
-
-import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
-import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
-import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
-import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.bean.persona.Persona;
+import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.Login;
 import mx.itesm.sapi.bean.persona.Pic;
 
-import mx.itesm.sapi.service.gestionPaciente.CitaEmpleadoServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.ComentarioCitaServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.MedicoPosicionServicioImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.PosicionServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
-import mx.itesm.sapi.service.gestionPaciente.LlamadaCitaServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.ComentarioCitaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.CitaEmpleadoServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.LlamadaCitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
-
-import mx.itesm.sapi.service.moduloGestionMedico.MedicoPosicionServicioImpl;
-
-import mx.itesm.sapi.service.moduloGestionMedico.PosicionServicioImpl;
-
+import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
-import mx.itesm.sapi.service.persona.LoginServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
+import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.service.persona.LoginServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
+
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -172,7 +169,6 @@ public class AdministradorController extends HttpServlet {
                     System.out.println(" adminiController medicoPosicion ".concat(String.valueOf(adminPosicion.getIdEmpleado())));
                     boolean medicoPosicionBoolean = adminPosicionServicioImpl.actualizarMedicoPosicion(adminPosicion);
 
-
                     PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                     Persona persona = personaServicioImpl.mostrarPersona(admin.getIdPersona());
                     persona.setNombre(nombre);
@@ -222,6 +218,57 @@ public class AdministradorController extends HttpServlet {
                     out.print(new Gson().toJson(medico));
                     break;
                 }
+                case "guardarCambios": {
+                    System.out.println("Llegó al case de GuardarCambios");
+
+                    String correo = "esteCorreo";
+                    String usuario = "esteUsuario";
+                    Part part = request.getPart("file-image");
+
+                    System.out.println("Correo: ".concat(correo));
+                    System.out.println("Usuario: ".concat(usuario));
+
+                    //Si tiene sesion iniciada
+                    int keyRol = (int) sesion.getAttribute("idRol");
+                    switch (keyRol) {
+                        case 2: {
+
+                            System.out.println("Entro al controller en guardarCambios");
+
+                            //No se valida el telefono ni el correo aquí? Lo validamos nosotros o el front?
+                            PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
+                            Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
+
+                            if ((int) part.getSize() > 0) {
+                                PicServicioImpl picServiceImpl = new PicServicioImpl();
+                                Pic pic = new Pic();
+
+                                pic.setIdPersona((int) sesion.getAttribute("idPersona"));
+                                pic.setContenido(part.getInputStream());
+                                pic.setTamano((int) part.getSize());
+                                pic.setTipo(part.getContentType());
+
+                                picServiceImpl.agregarPic(pic);
+
+                                InputStream imagen = pic.getContenido();
+                                byte[] bytes = IOUtils.toByteArray(imagen);
+                                String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                sesion.setAttribute("base64Img", base64String);
+                                System.out.println("Debió actualizar la imagen en la sesión");
+                            }
+
+                            persona.setCorreo(correo);
+
+                            personaServiceImpl.actualizarPersona(persona);
+
+                        }
+
+                    }
+
+                    break;
+
+                }
                 case "actualizar-medico": {
                     System.out.println("Actualizar médico");
                     int idMedicoAdministrador = Integer.valueOf(request.getParameter("idMedico"));
@@ -260,7 +307,6 @@ public class AdministradorController extends HttpServlet {
 
                     Posicion posicionMedicos = posicionServicioImpl.mostrarPosicion(posicion);
 
-
                     MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
                     MedicoEspecialidad medicoEspecialidad = medicoEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(idMedicoAdministrador);
                     medicoEspecialidad.setCedulaProfesional(cedula);
@@ -268,13 +314,11 @@ public class AdministradorController extends HttpServlet {
                     System.out.println(" adminiController medicoEspecialidad ".concat(String.valueOf(medicoEspecialidad.getIdEmpleado())));
                     boolean medicoEspecialidadBoolean = medicoEspecialidadServicioImpl.actualizarMedicoEspecialidad(medicoEspecialidad);
 
-
                     MedicoPosicionServicioImpl medicoPosicionServicioImpl = new MedicoPosicionServicioImpl();
                     MedicoPosicion medicoPosicion = medicoPosicionServicioImpl.mostrarMedicoPosicionEmpleado(idMedicoAdministrador);
                     medicoPosicion.setIdPosicion(posicionMedicos.getIdPosicion());
                     System.out.println(" adminiController medicoPosicion ".concat(String.valueOf(medicoPosicion.getIdEmpleado())));
                     boolean medicoPosicionBoolean = medicoPosicionServicioImpl.actualizarMedicoPosicion(medicoPosicion);
-
 
                     PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                     Persona persona = personaServicioImpl.mostrarPersona(medico.getIdPersona());
@@ -529,7 +573,7 @@ public class AdministradorController extends HttpServlet {
                         pic.setTipo(part.getContentType());
 
                         picServiceImpl.agregarPic(pic);
-                        
+
                         System.out.println("picName: ".concat(pic.getTipo()));
 
                         InputStream imagen = pic.getContenido();

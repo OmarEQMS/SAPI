@@ -419,7 +419,7 @@ $(document).ready(function () {
             var form = $("form")[0];
             console.log(form);
             var data = new FormData(form);
-            data.append("key", "cambiarDatos");
+            data.append("key", "guardarCambios");
             data.forEach((value, key) => {
                 console.log(key + " " + value);
             });

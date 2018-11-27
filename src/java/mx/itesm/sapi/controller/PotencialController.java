@@ -6,22 +6,19 @@
 package mx.itesm.sapi.controller;
 
 import com.google.gson.Gson;
-import static com.sun.xml.bind.util.CalendarConv.formatter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.util.Base64;
-import java.util.ResourceBundle;
+
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+
+import java.util.ResourceBundle;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Base64;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,52 +27,47 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
-import mx.itesm.sapi.bean.calendario.FullCalendar;
-import mx.itesm.sapi.bean.persona.Cuenta;
-import mx.itesm.sapi.bean.persona.Direccion;
-import mx.itesm.sapi.bean.persona.Persona;
-import mx.itesm.sapi.bean.persona.Pic;
-import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
-import mx.itesm.sapi.bean.gestionPaciente.Cita;
-import mx.itesm.sapi.bean.gestionPaciente.CitaEmpleado;
-import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
+
+import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
 import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteMedicoTitular;
+import mx.itesm.sapi.bean.gestionPaciente.SolicitudPreconsulta;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
+import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
+import mx.itesm.sapi.bean.gestionPaciente.CitaEmpleado;
 import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
 import mx.itesm.sapi.bean.gestionPaciente.OtroMotivo;
-
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteMedicoTitular;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
-
+import mx.itesm.sapi.bean.gestionPaciente.Cita;
+import mx.itesm.sapi.bean.calendario.FullCalendar;
+import mx.itesm.sapi.bean.persona.Direccion;
+import mx.itesm.sapi.bean.persona.Persona;
+import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Login;
-import mx.itesm.sapi.service.gestionPaciente.CitaEmpleadoServicioImpl;
+import mx.itesm.sapi.bean.persona.Pic;
 
-import mx.itesm.sapi.bean.gestionPaciente.SolicitudPreconsulta;
-import mx.itesm.sapi.service.CalendarioServicioImpl;
-
-import mx.itesm.sapi.service.persona.CuentaServicioImpl;
-import mx.itesm.sapi.service.persona.PersonaServicioImpl;
-import mx.itesm.sapi.service.persona.PicServicioImpl;
-
-import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.ComentarioCitaServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.SolicitudPreconsultaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.ComentarioCitaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.CitaEmpleadoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.LlamadaCitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.OtroMotivoServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.SolicitudPreconsultaServicioImpl;
-
-import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
+import mx.itesm.sapi.service.CalendarioServicioImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
+import mx.itesm.sapi.service.persona.PersonaServicioImpl;
+import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.LoginServicioImpl;
+import mx.itesm.sapi.service.persona.PicServicioImpl;
+
 
 //Checar los de las librerias de clases Apache
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
