@@ -893,7 +893,7 @@ $(document).ready(function () {
 
         var plantilla =
                 `
-            <div class="tuplaLlamada mt-3">
+            <div class="tuplaLlamada mt-3" data-id="0" data-accion="agregar">
                 <div class="row">
                     <div class="col-12">
                         <div class="input-group">

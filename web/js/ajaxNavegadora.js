@@ -2145,14 +2145,18 @@ $(document).ready(function () {
                 console.log(otroEstudio);  
             }
         });
-        console.log("tuplaOtro");
-        // OMAR                       
+        
+        console.log("tuplaLlamada");
         var llamadas = [];
         $('.tuplaLlamada').each(function () {
-            var llamada = {
-                fecha: $(this).find('.fecha-llamada').val(),
-                motivo: $(this).find('.comentario-llamada').val()
-            };
+            if($(this).find('.fecha-llamada').val()!="" || $(this).find('.comentario-llamada').val()!=""){
+                var llamada = {
+                    id:$(this).data("id"),
+                    accion:$(this).data("accion"),
+                    fecha: $(this).find('.fecha-llamada').val(),
+                    motivo: $(this).find('.comentario-llamada').val()
+                };
+            }
             llamadas.push(llamada);
             console.log(llamada);
         });

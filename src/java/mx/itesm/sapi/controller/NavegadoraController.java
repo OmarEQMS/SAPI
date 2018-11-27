@@ -683,7 +683,7 @@ public class NavegadoraController extends HttpServlet {
                             /**
                              * DECLARACION DE ATRIBUTOS
                              */
-                            int idPacientePotencial = 134;                           
+                            int idPacientePotencial = 62;                           
                             int idNavegadora = 5;//Navegadora
                             /**
                              *
@@ -2266,10 +2266,49 @@ public class NavegadoraController extends HttpServlet {
                         
                             //FIN PANTALLA 3 (OMAR) -----------------------------------------------------------------
                             
-                            
                             //**************Pantalla 4************
                             //*********estadoPAcientePaciente*************
                             //Paciente Tipo resultados
+                            //LLAMADAS                           
+                            String llamadas = request.getParameter("llamadasCita");
+                            System.out.println("Llamadas ".concat(llamadas));
+                            Object objLlamadas = parser.parse(llamadas);
+                            JsonArray arrayLlamadas = (JsonArray) objLlamadas;
+                            for (int i = 0; i < arrayLlamadas.size(); i++) {
+                                JsonObject json = (JsonObject) arrayLlamadas.get(i);
+                                int id = Integer.parseInt(json.get("id").toString());
+                                String accion = json.get("accion").toString();
+                                accion = accion.substring(1, accion.length() - 1);
+                                String fecha = json.get("fecha").toString();
+                                fecha = fecha.substring(1, fecha.length() - 1);
+                                String comentario = json.get("motivo").toString();
+                                comentario = comentario.substring(1, comentario.length() - 1);
+                                int idCita = citaServicio.mostrarCitaNavegacionPacientePotencial(idPacientePotencial).getIdCita();
+                                switch (accion) {
+                                    case "agregar": {
+                                        llamadaCita.setIdCita(idCita);
+                                        llamadaCita.setComentario(comentario);
+                                        llamadaCita.setIdEmpleado(idNavegadora);
+                                        llamadaCita.setFecha(fechaStringToTimestamp(fecha));                                        
+                                        LlamadaCitaServicioImpl.agregarLlamadaCita(llamadaCita);
+                                        break;
+                                    }
+                                    case "actualizar": {
+                                        llamadaCita.setIdLlamadaCita(id);
+                                        llamadaCita.setIdCita(idCita);
+                                        llamadaCita.setComentario(comentario);
+                                        llamadaCita.setIdEmpleado(idNavegadora);
+                                        llamadaCita.setFecha(fechaStringToTimestamp(fecha));                                        
+                                        LlamadaCitaServicioImpl.actualizarLlamadaCita(llamadaCita);
+                                        break;
+                                    }
+                                    case "eliminar": {
+                                        LlamadaCitaServicioImpl.borradoLogicoLlamadaCita(id);
+                                        break;
+                                    }
+                                }
+                            }
+                            
                             EstadoPacientePaciente estadoPacientePaciente = null;
                             estadoPacientePaciente = estadoPacientePacienteServicioImpl.mostrarEstadoPacientePacienteIdPaciente(idPacientePotencial);
                             estadoPacientePaciente.setIdEmpleado(idNavegadora);
@@ -2347,28 +2386,6 @@ public class NavegadoraController extends HttpServlet {
                             } else {
                                 System.out.println("Sin nivel socioeconomico ");
                             }
-
-                            //Llamadas de la preconsulta
-                            int llamadaPaciente = 0;
-                            if (request.getParameterMap().containsKey("seLlamo")) {
-                                llamadaPaciente = 1;
-
-                                String llamadas = null;
-                                llamadas = request.getParameter("llamadasCita");
-
-                                Timestamp fechaLlamada = null;
-                                String comentarioLlamada = null;
-                                JsonParser parserLlamadas = new JsonParser();
-                                Object objLlamadas = parserLlamadas.parse(llamadas);
-                                JsonArray arrayLlamadas = (JsonArray) objLlamadas;
-                                for (int i = 0; i < arrayLlamadas.size(); i++) {
-                                    System.out.println("JSON " + i);
-                                    JsonObject json = (JsonObject) arrayLlamadas.get(i);
-                                    System.out.println("json ".concat(json.toString()));
-
-                                }
-                            }
-                            System.out.println("se Llamo ".concat(String.valueOf(llamadaPaciente)));
 
                             //****** ComentarioCita*********
                             int idCitaPreConsulta = 0;
