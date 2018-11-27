@@ -2171,9 +2171,9 @@ $(document).ready(function () {
             if (data[0][0].fechaConsulta !== "ene 1, 1900")
                 $('#fechaConsulta').val(convertDate(new Date(data[0][0].fechaConsulta)));
 
-            if ((data[0][0].noAdscrito === true))
+            if ((data[0][0].noAdscrito !== true))
                 $('#noAdscrito').attr('checked', 'checked');
-            if ((data[0][0].noRadiologo === true))
+            if ((data[0][0].noRadiologo !== true))
                 $('#esSustituto').attr('checked', 'checked');
          //    if ((data[0][0].noResidente === true))
            //     $('#noResidente').attr('checked', 'checked');
