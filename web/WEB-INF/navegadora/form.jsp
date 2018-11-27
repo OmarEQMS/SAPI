@@ -96,30 +96,16 @@
                     <!-- MENU PRINCIPAL ENLACES -->
                     <ul class="list-unstyled components">
 
-                        <li>
-                            <a href="./index.html">
-                                <i class="fas fa-home"></i>Inicio</a>
-                        </li>
+                       <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
+                                                            
+                       <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
-                        <li>
-                            <a href="./calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Calendario</a>
-                        </li>
+                       <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
+                       
+                       <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
 
-                        <li>
-                            <a href="./rendimiento.html">
-                                <i class="fas fa-chart-line"></i>Mi Rendimiento</a>
-                        </li>
+                       <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
-                        <li>
-                            <a href="./cuenta.html">
-                                <i class="far fa-user"></i>Mi Cuenta</a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-sign-out-alt"></i>Cerrar SesiÃ¯Â¿Â½n</a>
-                        </li>
 
                     </ul>
 

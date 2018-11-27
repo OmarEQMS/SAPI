@@ -548,7 +548,7 @@ $(document).ready(function () {
     $('.btn-ver').on('click', function () {
 
         var id = $(this).data('id');
-
+        console.log(id);
         //alert('saludos con el id: ' +  $('#hidden-idPaciente').val())
 
         $.post("SAPI", {
@@ -2267,6 +2267,61 @@ $(document).ready(function () {
             }
         });
 
+    });
+    
+            
+        
+      $('.btn-perder-cita').on('click', function () {
+          var idPotencial = $(this).data('id') ;
+          
+          //
+                  
+          
+            swal({
+            title: '¿Estás segure cancelar las citas de navegación y preconsulta?',
+            text: "La paciente tendrá que solicitar una nueva cita de navegación y preconsulta.",
+            icon: 'warning',
+            buttons:["Cancelar","Aceptar"]
+            
+        }).then((result) => {
+            
+            if (result === true) {                
+                                
+                    $.ajax({
+
+                        url: 'NavegadoraController',
+                        cache: false,
+                        method: 'POST',
+                        data: {
+                            key: 'cancelarCitaPotencial',
+                            idPotencial: idPotencial                                        
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            if(response == 0)
+                            {
+                                swal({
+                                title: "¡Ups!",
+                                text: "Ha habido un error al cancelar las citas de navegación y preconsulta.",
+                                icon: "error",
+                                button: "Aceptar",
+                                });
+                            }else
+                            {
+                                swal({
+                                title: "Cancelación exitosa",
+                                text: "Ha habido un error al cancelar las citas de navegación y preconsulta.",
+                                icon: "success",
+                                button: "Aceptar",
+                                });
+                            }                           
+                        }
+                    });              
+            }           
+        });
+
+          //                               
+       
     });
     
     

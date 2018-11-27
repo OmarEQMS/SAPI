@@ -36,8 +36,7 @@
 
     <link rel="stylesheet" href="css/styleNavegadora.css">
     <link rel="stylesheet" href="css/styleNavegadoraImg.css">
-    <script src="js/appNavegadora.js"></script>
-    <script src="js/appNavegadora2.js"></script>
+    <script src="js/appNavegadora.js"></script>    
     <script src="js/ajaxNavegadora.js"></script>
     <script src="js/autocomplete.js"></script>
 
@@ -99,9 +98,7 @@
             <ul class="list-unstyled components">
 
                     <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
-                    
-                    <li id="irAForm"><a><i class="fas fa-home"></i>Ir a Form</a></li>
-                    
+                                                            
                     <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
                     <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
@@ -109,6 +106,7 @@
                     <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
 
                     <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+
 
                 </ul>
 

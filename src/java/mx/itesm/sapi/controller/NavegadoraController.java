@@ -2874,6 +2874,37 @@ public class NavegadoraController extends HttpServlet {
                             break;
 
                         }
+                        case "cancelarCitaPotencial":
+                        {
+                            PrintWriter out = response.getWriter();
+                            try{
+                                
+                            
+                            int idPaciente = Integer.parseInt(request.getParameter("idPotencial"));
+                            System.out.println("idPaciente: " + idPaciente);
+
+                            CitaServicioImpl citaServicio = new CitaServicioImpl();
+                            citaServicio.cancelarCitaPreconsulta(idPaciente);
+                            System.out.println("Ya la canceló");
+                            
+                            PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
+                            Persona personaPaciente = personaServicioImpl.mostrarPersonaPorIdPaciente(idPaciente);
+                            
+                            PacienteServicioImpl pacienteServicioImpl  = new PacienteServicioImpl();
+                            Paciente Paciente = pacienteServicioImpl.mostrarPaciente(idPaciente);
+                            
+                            CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
+                            Cuenta cuenta = cuentaServicioImpl.mostrarCuenta(Paciente.getIdCuenta());
+                            
+                            enviaCorreo(cuenta.getUsuario(),personaPaciente.getCorreo());
+                            
+                                out.print("1");
+                            }catch(Exception ex)
+                            {
+                                out.print("0");
+                            }
+                            break;
+                        }
 
                     }
 
@@ -2884,6 +2915,8 @@ public class NavegadoraController extends HttpServlet {
 
         }
     }
+    
+    
     
     private Timestamp fechaStringToTimestamp(String fecha) {
         Timestamp timestamp = null;        
@@ -2896,6 +2929,68 @@ public class NavegadoraController extends HttpServlet {
         }
         return timestamp;
     }
+    
+    protected void enviaCorreo(String usuario,String correo) {
+        
+                /** 
+                * El metodo enviaCorreo tiene como función el envío de un correo de confirmación al Usuario registrado.
+                * Se recibe como parametro el correo del Usuario.
+                * Mediante una cuenta ya introduciida dentro del codigo se envía el correo.
+                * El contenido del correo puede ser configurado en el mimeBodyPart.
+                */
+        
+        System.out.println("estoy en el metodo");
+        Properties config = new Properties();
+
+        try {
+            
+            config.load(getClass().getResourceAsStream("/mail.properties"));
+            Session session = Session.getInstance(config,
+                    new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication("sapi.prueba@gmail.com", "prueba.Sapi1");
+
+                }
+            });
+
+            System.out.println("despues del try");
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("sapi.prueba@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(correo));
+            message.setSubject("Cita cancelada");
+            //message.setText("Esto no es spam :)");
+
+            //Estos deberían ir como parametros dentro de la función de enviar correo
+            //String mail = "tucorreo@mail.com";
+            //String contrasena = "tucontrasena";
+            MimeBodyPart mimeBodyPart = new MimeBodyPart();
+            mimeBodyPart.setContent("<b>Tu cita de navegacón y preconsulta han sido canceladas.</b></br>".
+                    concat("<b>Usuario: ").
+                    concat(usuario), "text/html");
+
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(mimeBodyPart);
+
+            Path path = Files.createTempFile(null, ".properties");
+            File file = new File(path.toString());
+
+            OutputStream outputStream = new FileOutputStream(file);
+            IOUtils.copy(getClass().getResourceAsStream("/mail.properties"), outputStream);
+            outputStream.close();
+
+            //Comente este attach fail porque de lo contrario no se hace bien el set content de arriba (lo de los datos de usuario)
+            // mimeBodyPart.attachFile(file);
+            message.setContent(multipart);
+            Transport.send(message);
+
+        } catch (Exception ex) {
+            System.out.println("catch de envia correo");
+            System.out.println(this.getClass().toString().concat(ex.getMessage()));
+        }
+    }
+    
+    
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

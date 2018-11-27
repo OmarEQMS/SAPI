@@ -104,10 +104,8 @@
                 <!-- MENU PRINCIPAL ENLACES -->
                 <ul class="list-unstyled components">
 
-                    <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
-                    
-                    <li id="irAForm"><a><i class="fas fa-home"></i>Ir a Form</a></li>
-                    
+                   <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
+                                                            
                     <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
                     <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
@@ -115,6 +113,7 @@
                     <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
 
                     <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+
 
                 </ul>
             </nav>
@@ -367,7 +366,7 @@
                                                             <button class="btn btn-primary m-1 btn-editar" data-id="${pacienteAprobado.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarUsuario">
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
-                                                            <button class="btn btn-danger m-1 btn-perder-cita" data-id="${pacienteAprobado.idPaciente}" id="btn-perder-cita" data-toggle="modal" data-target="#modalEliminarUsuario">
+                                                            <button class="btn btn-danger m-1 btn-perder-cita" data-id="${pacienteAprobado.idPaciente}" data-toggle="modal" data-target="#modalEliminarUsuario">
                                                                 <i class="fas fa-ban"></i>
                                                             </button>
                                                         </td>
