@@ -547,13 +547,13 @@ $(document).ready(function () {
     //Redirige a documentos
     $('.btn-ver').on('click', function () {
 
-        $('#hidden-idPaciente').val($(this).data('id'));
+        var id = $(this).data('id');
 
         //alert('saludos con el id: ' +  $('#hidden-idPaciente').val())
 
         $.post("SAPI", {
             file: "navegadora/documentos.jsp",
-            idPacientePotencialAtendido: $('#hidden-idPaciente').val()
+            idPacientePotencialAtendido: id
         },
                 function (response, status, xhr) {
                     //console.log(response);
@@ -1924,6 +1924,30 @@ $(document).ready(function () {
         );
     });
 
+    
+      $('.btn-ver-formulario').on('click', function () {
+          console.log($(this).data('id'));
+          var data = {idPotencial :$(this).data('id')};
+        $.post("SAPI", {
+            file: "navegadora/form.jsp",
+            idPotencial:$(this).data('id')
+            
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            console.log(response);
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
 
     // Pantallas del formulario 
 
@@ -2250,7 +2274,12 @@ $(document).ready(function () {
         });
 
     });
-});
+    
+    
+    
+    
+    
+});//Terminar el document ready
 
 
 

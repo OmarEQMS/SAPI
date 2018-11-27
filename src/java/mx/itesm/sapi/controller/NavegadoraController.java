@@ -683,8 +683,10 @@ public class NavegadoraController extends HttpServlet {
                             /**
                              * DECLARACION DE ATRIBUTOS
                              */
-                            int idPacientePotencial = 134;                           
-                            int idNavegadora = 5;//Navegadora
+                            
+                            
+                            int idPacientePotencial = (int) sesion.getAttribute("idPacientePotencialForm");;                           
+                            int idNavegadora = (int) sesion.getAttribute("idEmpleadoNavegadora");//Navegadora
                             /**
                              *
                              * INICIO DECLARACION DE SERVICIOS

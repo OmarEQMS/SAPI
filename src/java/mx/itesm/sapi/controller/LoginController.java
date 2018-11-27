@@ -364,7 +364,7 @@ public class LoginController extends HttpServlet {
                             }
                             case 4: {
                                 // CASE Para Navegadora
-                                System.out.println("Cuenta de NAVEGADORA:  ".concat(sesion.getAttribute("nombre").toString()));
+                                System.out.println("Cuenta de NAVEGADORA:  ".concat(sesion.getAttribute("nombre").toString()));                                                                                                                                
 
                                 request.setAttribute("nombre", sesion.getAttribute("nombre"));
                                 request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));

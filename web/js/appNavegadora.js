@@ -1323,5 +1323,12 @@ $(document).ready(function () {
     $("#aceptarModal").on("click", function () {
         $("#modalComentario").empty();
     });
-
+    
+    
+    $('.btn-aceptar-potencial').on('click',function(){
+        $('#hidden-idPaciente').val('');
+        console.log("Me estás aceptando");
+        $('#hidden-idPaciente').val($(this).data('id'));
+    });
+    
 });

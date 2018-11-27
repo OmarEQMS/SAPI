@@ -226,13 +226,13 @@
                                                         <td>${paciente.curp}</td>
                                                         <td>${paciente.telefono}</td>
                                                         <td>
-                                                            <button class="btn btn-info btn-ver m-1" data-id="${paciente.idPaciente}" id="btn-ver">
+                                                            <button class="btn btn-info btn-ver  m-1" data-id="${paciente.idPaciente}" id="btn-ver">
                                                                 <i class="far fa-eye"></i>
                                                             </button>
 
                                                             <c:choose>
                                                                 <c:when test="${paciente.estadoPaciente=='Potencial en proceso'}">
-                                                                    <button class="btn btn-success btn-aceptar m-1" data-id="${paciente.idPaciente}" data-toggle="modal" data-target="#modalAceptarUsuario">
+                                                                    <button class="btn btn-success btn-aceptar-potencial m-1" data-id="${paciente.idPaciente}" data-toggle="modal" data-target="#modalAceptarUsuario">
                                                                         <i class="fas fa-check"></i>
                                                                     </button>
                                                                 </c:when>    
@@ -361,17 +361,14 @@
                                                         <td>${pacienteAprobado.fechaRegistro}</td>                  
                                                         <td>${pacienteAprobado.telefono}</td>
                                                         <td>
-                                                            <button class="btn btn-info btn-ver" data-id="${pacienteAprobado.idPaciente}" id="btn-ver">
-                                                                <i class="far fa-eye"></i>
-                                                            </button>
-                                                            <button class="btn btn-success btn-aceptar" data-id="${pacienteAprobado.idPaciente}" id="btn-aceptar" data-toggle="modal" data-target="#modalAceptarUsuario">
-                                                                <i class="fas fa-check"></i>
-                                                            </button>
-                                                            <button class="btn btn-primary btn-editar" data-id="${pacienteAprobado.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarUsuario">
+                                                            <button class="btn btn-info m-1 btn-ver-formulario" data-id="${pacienteAprobado.idPaciente}" id="btn-ver">
+                                                                <i class="fab fa-wpforms"></i>
+                                                            </button>                                                                                                                        </button>
+                                                            <button class="btn btn-primary m-1 btn-editar" data-id="${pacienteAprobado.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarUsuario">
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
-                                                            <button class="btn btn-danger mt-1 btn-eliminar" data-id="${pacienteAprobado.idPaciente}" id="btn-eliminar" data-toggle="modal" data-target="#modalEliminarUsuario">
-                                                                <i class="fas fa-trash-alt"></i>
+                                                            <button class="btn btn-danger m-1 btn-perder-cita" data-id="${pacienteAprobado.idPaciente}" id="btn-perder-cita" data-toggle="modal" data-target="#modalEliminarUsuario">
+                                                                <i class="fas fa-ban"></i>
                                                             </button>
                                                         </td>
 

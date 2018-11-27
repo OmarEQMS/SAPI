@@ -426,10 +426,11 @@ public class FrontController extends HttpServlet {
                                     try
                                     {
                                         idPacientePotencial = Integer.parseInt(request.getParameter("idPacientePotencialAtendido"));
+                                        sesion.setAttribute("idPacientePotencialAtendido", idPacientePotencial);
                                     }catch(Exception ex)
                                     {
                                         System.out.println("Catch parameter idPacientePotencial ".concat(ex.getMessage()));
-                                        idPacientePotencial = 68;
+                                        idPacientePotencial =(int) sesion.getAttribute("idPacientePotencialAtendido");
                                     }         
                                     
 
@@ -477,7 +478,7 @@ public class FrontController extends HttpServlet {
                                     request.setAttribute("documentos", documentosInicialTipoDocumentos);
 
                                     
-                                     sesion.setAttribute("nombrePacientePotencial",persona.getNombre());                                                                        
+                                    sesion.setAttribute("nombrePacientePotencial",persona.getNombre());                                                                        
                                     sesion.setAttribute("primerApellidoPacientePotencial", persona.getPrimerApellido());                                                                        
                                     sesion.setAttribute("segundoApellidoPacientePotencial", persona.getSegundoApellido());           
                                     
@@ -486,10 +487,17 @@ public class FrontController extends HttpServlet {
                                     sesion.setAttribute("municipio", municipio.getNombre());
                                     sesion.setAttribute("estado", estado.getNombre());
                                     sesion.setAttribute("fechaNacimiento", persona.getFechaNacimiento());
-                                    sesion.setAttribute("calle", direccion.getCalle());
-                                    sesion.setAttribute("colonia", direccion.getColonia());
-                                    sesion.setAttribute("noExterior", direccion.getNoExterior());
-                                    sesion.setAttribute("noInterior", direccion.getColonia());
+                                    
+                                    try
+                                    {
+                                        sesion.setAttribute("calle", direccion.getCalle());
+                                        sesion.setAttribute("colonia", direccion.getColonia());
+                                        sesion.setAttribute("noExterior", direccion.getNoExterior());
+                                        sesion.setAttribute("noInterior", direccion.getColonia());   
+                                    }catch(Exception ex)
+                                    {
+                                        System.out.println("Sin dirección completa");
+                                    }
                                     // Date fecha = Date.valueOf(cuenta.getFecha().toString());
                                     //String fecha = cuenta.getFecha().toString();
                                     //fecha = fecha.substring(0, 10);
@@ -668,6 +676,10 @@ public class FrontController extends HttpServlet {
 
                                 case "navegadora/form.jsp":
                                 {
+                                    
+                                    int idPacientePotencial = Integer.parseInt(request.getParameter("idPotencial"));
+                                    sesion.setAttribute("idPacientePotencialForm", idPacientePotencial);
+                                    
                                     System.out.println("Front Controller case:  Form Navegadora");
                                     
                                     /**-------------------Mostrar Lista Médicos---------------------------------------*/
@@ -826,7 +838,7 @@ public class FrontController extends HttpServlet {
                                     Calendar cal = Calendar.getInstance();
                                     System.out.println(dateFormat.format(cal.getTime()));
                                     
-                                    Date fecha = Date.valueOf(dateFormat.format(cal.getTime()));
+                                    //Date fecha = Date.valueOf(dateFormat.format(cal.getTime()));
                                     
                                     break;
 
