@@ -101,7 +101,6 @@
 
                     <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
 
-<<<<<<< HEAD
                     <li id="IrAGestionNavegadora"><a><i class="fas fa-calendar-alt"></i>Navegadoras</a></li>
 
                     <li id="IrAGestionPaciente"><a><i class="fas fa-users"></i>Pacientes</a></li>
@@ -109,170 +108,50 @@
                     <li id="IrAGestionAdministrador"><a><i class="fas fa-shield-alt"></i>Administradores</a></li>
 
                     <li id="IrAMiCuenta"><a><i class="far fa-user"></i>Mi cuenta</a></li>
-||||||| merged common ancestors
-            <!-- MENU PRINCIPAL ENLACES -->
-            <ul class="list-unstyled components">
-                
-                
-                <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
-                                
-                <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
-=======
-                    <li id="IrAGestionNavegadora"><a><i class="fas fa-calendar-alt"></i>Navegadoras</a></li>
->>>>>>> origin/Shannon
 
-<<<<<<< HEAD
                     <li id="IrAReasignarMedico"><a><i class="fas fa-sync"></i>Reasignar médico</a></li>
-||||||| merged common ancestors
-                <li id="IrAGestionNavegadora"><a><i class="fas fa-calendar-alt"></i>Navegadoras</a></li>
-=======
-                    <li id="IrAGestionPaciente"><a><i class="fas fa-users"></i>Pacientes</a></li>
->>>>>>> origin/Shannon
 
-<<<<<<< HEAD
                     <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
 
                 </ul>
 
             </nav>
-||||||| merged common ancestors
-                <li id="IrAGestionPaciente"><a><i class="fas fa-users"></i>Pacientes</a></li>
-                
-                <li id="IrAGestionAdministrador"><a><i class="fas fa-shield-alt"></i>Administradores</a></li>
-                
-                <li id="IrAMiCuenta"><a><i class="far fa-user"></i>Mi cuenta</a></li>
-=======
-                    <li id="IrAGestionAdministrador"><a><i class="fas fa-shield-alt"></i>Administradores</a></li>
->>>>>>> origin/Shannon
 
-<<<<<<< HEAD
-||||||| merged common ancestors
-                <li id="IrAReasignarMedico"><a><i class="fas fa-sync"></i>Reasignar médico</a></li>
-                                                
-                <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
-                
-            </ul>
-=======
-                    <li id="IrAMiCuenta"><a><i class="far fa-user"></i>Mi cuenta</a></li>
->>>>>>> origin/Shannon
 
-<<<<<<< HEAD
-||||||| merged common ancestors
-        </nav>
-=======
-                    <li id="IrAReasignarMedico"><a><i class="fas fa-sync"></i>Reasignar médico</a></li>
->>>>>>> origin/Shannon
 
-<<<<<<< HEAD
             <!-- CONTENIDO PRINCIPAL  -->
-||||||| merged common ancestors
-        
-=======
-                    <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
->>>>>>> origin/Shannon
 
-<<<<<<< HEAD
             <div id="content">
-||||||| merged common ancestors
-        <!-- CONTENIDO PRINCIPAL  -->
-=======
-                </ul>
->>>>>>> origin/Shannon
 
-<<<<<<< HEAD
                 <!-- MENU -->
-||||||| merged common ancestors
-        <div id="content">
-=======
-            </nav>
->>>>>>> origin/Shannon
 
-<<<<<<< HEAD
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="container-fluid">
-||||||| merged common ancestors
-            <!-- MENU -->
-=======
->>>>>>> origin/Shannon
 
-<<<<<<< HEAD
                         <button id="sidebarCollapse" class="btn boton-collapse">
                             <i class="fas fa-align-justify"></i>
                         </button>
-||||||| merged common ancestors
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-=======
->>>>>>> origin/Shannon
 
-<<<<<<< HEAD
                         <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
                             </span></span>
-||||||| merged common ancestors
-                    <button id="sidebarCollapse" class="btn boton-collapse">
-                        <i class="fas fa-align-justify"></i>
-                    </button>
-=======
-            <!-- CONTENIDO PRINCIPAL  -->
->>>>>>> origin/Shannon
 
-<<<<<<< HEAD
                     </div>
                 </nav>
-||||||| merged common ancestors
-                    <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
-                        </span></span>
-=======
-            <div id="content">
->>>>>>> origin/Shannon
 
-<<<<<<< HEAD
                 <div class="row mb-3 justify-content-end">
                     <div class="col-3 text-center">
                         <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="IrAInicio" class="colorMoradoLight">Inicio</a></span></span>
                     </div>
                 </div>
-||||||| merged common ancestors
-                </div>
-            </nav>
-=======
-                <!-- MENU -->
 
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-
-                        <button id="sidebarCollapse" class="btn boton-collapse">
-                            <i class="fas fa-align-justify"></i>
-                        </button>
-
-                        <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
-                            </span></span>
->>>>>>> origin/Shannon
-
-<<<<<<< HEAD
                 <!-- Jumbotron Titulo -->
 
                 <div class="jumbotron jumbotron-fluid p-2">
                     <div class="container">
                         <h1 class="display-4 tituloMisCitas text-center m-0">Gestión de Administradores</h1>
                     </div>
-||||||| merged common ancestors
-            <div class="row mb-3 justify-content-end">
-                <div class="col-3 text-center">
-                    <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="IrAInicio" class="colorMoradoLight">Inicio</a></span></span>
-=======
-                    </div>
-                </nav>
-
-                <div class="row mb-3 justify-content-end">
-                    <div class="col-3 text-center">
-                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="IrAInicio" class="colorMoradoLight">Inicio</a></span></span>
-                        - <span class="colorGlobal">Gestion de Administradores</span>
-                    </div>
->>>>>>> origin/Shannon
                 </div>
 
-<<<<<<< HEAD
                 <!-- Gestion -->
 
                 <div class="card mt-3">
@@ -663,10 +542,6 @@
                 </div>
 
             </div>
-||||||| merged common ancestors
-=======
-            </div>
->>>>>>> origin/Shannon
         </div>
 
 
