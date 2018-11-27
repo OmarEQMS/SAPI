@@ -176,8 +176,8 @@
                             <!-- 4 -->
                             <div class="form-group row justify-content-center">
                                 <div class="col-8">
-                                    <label for="username">Usuario</label>
-                                    <input type="text" class="form-control" id="username" name="username" value="${sessionScope.usuario}"/>
+                                    <label for="username">No. Empleado</label>
+                                    <input type="text" class="form-control" id="username" name="username" value="${sessionScope.usuario}" readonly/>
                                     <span class="text-danger error-usuario" id="error-usuario">Formato incorrecto</span>
                                 </div>
 
@@ -199,8 +199,8 @@
                                 </div>
 
                                 <div class="col-8">
-                                    <span class="text-danger error-correo" id="error-usuario">Formato incorrecto</span>
-                                    <span class="text-warning error-correoRepetido">El usuario ya existe</span>
+                                    <span class="text-danger error-correo" id="error-usuario">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
+                                    <span class="text-warning error-correoRepetido">El correo ya existe</span>
                                 </div>
 
                             </div>
@@ -263,7 +263,7 @@
 
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" style="border-radius: 20px"  data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-danger cleanerModal" style="border-radius: 20px"  data-dismiss="modal">Cancelar</button>
                                         <button type="button" class="btn btn-primary" id="btn-updatePassword" style="border-radius: 20px" >Cambiar contraseña</button>
 
                                     </div>

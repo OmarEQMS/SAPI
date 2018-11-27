@@ -90,8 +90,8 @@ $(document).ready(function () {
 
             });
 
-        }else{
-            swal ( "Error" ,  "Verifica que todos los campos sean correctos" ,  "error" );
+        } else {
+            swal("Error", "Verifica que todos los campos sean correctos", "error");
         }
 
     });
@@ -409,6 +409,19 @@ $(document).ready(function () {
     $('#error-contrasena').hide();
     $('#noEqualPasswordsError').hide();
 
+    //Limpiar los campos en el modal y cerrar los mensajes de error
+    $('.cleanerModal').on('click', function () {
+        $('#password').val('');
+        $('#password2').val('');
+        $('#error-contrasena').hide();
+        $('#noEqualPasswordsError').hide();
+        $('#password').css('border', '');
+        $('#password').css('color', '');
+        $('#password2').css('border', '');
+        $('#password2').css('color', '');
+
+    });
+
     //Guardar cambios
 
     $("#guardarCambios").on('click', function () {
@@ -681,11 +694,22 @@ $(document).ready(function () {
     });
 
     $("#password2").on('change', function () {
-        var pass1 = $('#password');
-        var pass2 = $(this);
+        if (isValidPassword($(this))) {
+            $("#error-contrasena").hide();
 
-        areEqualPasswords(pass1, pass2);
+            if(!areEqualPasswords($('#password'), $('#password2'))){
+                $('#noEqualPasswordsError').show();
+            }else{
+                $('#noEqualPasswordsError').hide();
+            }
+            
+        } else {
+            $("#error-contrasena").show();
+        }
+
     });
+
+    
 
 
     /////////////////////////////// GESTION MEDICOS ////// 
