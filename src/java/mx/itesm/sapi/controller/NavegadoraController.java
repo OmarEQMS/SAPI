@@ -683,7 +683,7 @@ public class NavegadoraController extends HttpServlet {
                             /**
                              * DECLARACION DE ATRIBUTOS
                              */
-                            int idPacientePotencial = 134;
+                            int idPacientePotencial = 62;
                             int idNavegadora = 5;//Navegadora
                             /**
                              *
@@ -758,6 +758,10 @@ public class NavegadoraController extends HttpServlet {
 
                             pacienteNavegadoraServicioImpl.agregarPacienteNavegadora(pacienteNavegadora);
 
+                            
+                            
+                            
+                            
                             /**
                              * NUEVOS SERVICIOS (OMAR)
                              */
@@ -2810,7 +2814,22 @@ public class NavegadoraController extends HttpServlet {
                                     biopsiaServicioImpl.agregarBiopsiaFormulario(biopsia);
                                 }
                             }
-
+                            
+                            //Cmbia el idRol del paciente
+                            String cambiarRolRequest= request.getParameter("cambiarRol");
+                            int cambiarRol;
+                            int idCuentaPaciente;
+                            if(cambiarRolRequest !=null && cambiarRolRequest.length()>0){
+                                cambiarRol=Integer.parseInt(cambiarRolRequest);
+                                if(cambiarRol==1){
+                                    CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
+                                    Cuenta cuentaPaciente = cuentaServicioImpl.mostrarCuenta(paciente.getIdCuenta());
+                                    cuentaPaciente.setIdRol(5);
+                                    cuentaServicioImpl.actualizarCuenta(cuentaPaciente);
+                                }
+                                    
+                            }
+                            
                             break;
                         }
 
@@ -2848,6 +2867,9 @@ public class NavegadoraController extends HttpServlet {
                             if (agregado > 0) {
                                 out.print("success");
                             }
+                            
+                            
+                            
 
                             break;
 
