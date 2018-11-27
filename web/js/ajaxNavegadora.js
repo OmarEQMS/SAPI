@@ -2112,20 +2112,437 @@ $(document).ready(function () {
             var data = JSON.parse(response);
 
             console.log(data);
-            console.log(data[0][0].medicoRadiologo);
+            // console.log(data[0][0].medicoRadiologo);
+// Primera pagina formulario
+
             if (data[0][0].prz !== 0)
                 $('#prz-expediente').val(data[0][0].prz);
-            if (data[0][0].medicoAdscrito !== "")
-                $('#medico-adscrito').val(data[0][0].medicoAdscrito);
-            if (data[0][0].medicoRadiologo !== "")
-                $("#medico-radiologo").val(data[0][0].medicoRadiologo).change();
-            if (data[0][0].medicoAdscrito !== "")
-                $('#fechaNavegacion').val(data[0][0].fechaNavegacion);
-            if (data[0][0].tipoPaciente == true){
-                $('#tipoPaciente').val(data[0][0].tipoPaciente);//aqui que eliga la opcion 1 del index
-                }else(){//aqui es lo de  si es falso que eliga la opcion 2 asi como tu decias por el index }
+
+            if (data[0][0].tipoPaciente !== "") {
+                if (data[0][0].tipoPaciente === true) {
+                    $('#tipoPaciente option:contains(' + "Segunda opinión" + ')').each(function () {
+                        if ($(this).text() === "Segunda opinión") {
+                            $(this).attr('selected', 'selected');
+                        }
+
+                    });
+                } else {
+                    $('#tipoPaciente option:contains(' + "Primera vez" + ')').each(function () {
+                        if ($(this).text() === "Primera vez") {
+                            $(this).attr('selected', 'selected');
+                        }
+
+                    });
+                }
+            }
+
+            if (data[0][0].medicoAdscrito !== "") {
+                $('#medico-adscrito option:contains(' + data[0][0].medicoAdscrito + ')').each(function () {
+                    if ($(this).text() === data[0][0].medicoAdscrito) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+
+            if (data[0][0].medicoRadiologo !== "") {
+                $('#medico-radiologo option:contains(' + data[0][0].medicoRadiologo + ')').each(function () {
+                    if ($(this).text() === data[0][0].medicoRadiologo) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+
+            if (data[0][0].medicoResidente !== "") {
+                $('#medico-residente').val(data[0][0].medicoResidente);
+                /*   $('#medico-residente option:contains(' + data[0][0].medicoResidente + ')').each(function () {
+                 if ($(this).text() === data[0][0].medicoResidente) {
+                 $(this).attr('selected', 'selected');
+                 }
+                 
+                 });
+                 */
+            }
+
+            if (data[0][0].fechaNavegacion !== "ene 1, 1900")
+                $('#fechaNavegacion').val(convertDate(new Date(data[0][0].fechaNavegacion)));
+
+            if (data[0][0].fechaConsulta !== "ene 1, 1900")
+                $('#fechaConsulta').val(convertDate(new Date(data[0][0].fechaConsulta)));
+
+            if ((data[0][0].noAdscrito === true))
+                $('#noAdscrito').attr('checked', 'checked');
+            if ((data[0][0].noRadiologo === true))
+                $('#esSustituto').attr('checked', 'checked');
+
+// Segunda pagina formulario
+
+            if (data[0][0].escolaridad !== "") {
+                $('#nivelEducativo option:contains(' + $.trim(data[0][0].escolaridad) + ')').each(function () {
+
+                    if ($.trim($(this).text()) === $.trim(data[0][0].escolaridad)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+            if (data[0][0].alergias !== 0)
+                $('#alergias').val(data[0][0].alergias);
+
+            if (data[0][0].estadoHormonal !== "") {
+                if (data[0][0].estadoHormonal === true) {
+                    $('#estadoHormonal option:contains(' + "Postmenopáusica" + ')').each(function () {
+                        if ($(this).text() === "Postmenopáusica") {
+                            $(this).attr('selected', 'selected');
+                        }
+
+                    });
+                } else {
+                    $('#estadoHormonal option:contains(' + "Premenopáusica" + ')').each(function () {
+                        if ($(this).text() === "Premenopáusica") {
+                            $(this).attr('selected', 'selected');
+                        }
+
+                    });
+                }
+            }
+
+            if (data[0][0].Seguro !== "") {
+                $('#tieneSeguroPopular').attr('checked', 'checked');
+                if ($('#tieneSeguroPopular').is(':checked')) {
+                    $('#tiene-seguro').show();
+                } else {
+                    $('#tiene-seguro').hide();
+                }
+
+                if ((data[0][0].Seguro === "Seguro Popular")) {
+                    $('#numSeguro').show(),
+                            $('#numSeguro').val(data[0][0].noSeguro);
+
+                }
+                $('#tiene-seguro option:contains(' + $.trim(data[0][0].Seguro) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].Seguro)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+
+            if (data[0][0].mastografiaPreINCAN === true) {
+                $('#tieneSeguroPopular').attr('checked', 'checked');
+            }
+
+            if (data[0][0].cirugiaFecha !== "ene 1, 1900" || data[0][0].cirugiaTipo !== "" || data[0][0].cirugiaComentario !== "") {
+                $('#tiene-cirugia').attr('checked', 'checked');
+                if ($('#tiene-cirugia').is(':checked')) {
+                    $('#divCirugia').show();
+                } else {
+                    $('#divCirugia').hide();
+                }
+
+                if (data[0][0].cirugiaFecha !== "ene 1, 1900")
+                    $('#fecha-cirugia').val(convertDate(new Date(data[0][0].cirugiaFecha)));
+
+                if ((data[0][0].cirugiaTipo !== "")) {
+                    $('#cirugia option:contains(' + $.trim(data[0][0].cirugiaTipo) + ')').each(function () {
+                        if ($.trim($(this).text()) === $.trim(data[0][0].cirugiaTipo)) {
+                            $(this).attr('selected', 'selected');
+                        }
+
+                    });
+                }
+                if (data[0][0].cirugiaComentario !== "") {
+                    $('#detalle-cirugia').val(data[0][0].cirugiaComentario);
+                }
+
+            }
+
+            if (data[0][0].quimioterapiaFecha !== "ene 1, 1900" || data[0][0].quimioterapiaCiclo !== -1 || data[0][0].quimioterapiaComentario !== "") {
+                $('#tiene-quimioterapia').attr('checked', 'checked');
+                if ($('#tiene-quimioterapia').is(':checked')) {
+                    $('#divQuimioterapia').show();
+                } else {
+                    $('#divQuimioterapia').hide();
+                }
+
+                if (data[0][0].quimioterapiaFecha !== "ene 1, 1900")
+                    $('#fecha-quimioterapia').val(convertDate(new Date(data[0][0].quimioterapiaFecha)));
+
+                if ((data[0][0].quimioterapiaCiclo !== -1)) {
+                    $('#quimioterapia').val(data[0][0].quimioterapiaComentario);
+                }
+                if (data[0][0].quimioterapiaComentario !== "") {
+                    $('#detalle-quimioterapia').val(data[0][0].quimioterapiaComentario);
+                }
+
+            }
+
+            if (data[0][0].radioterapiaFecha !== "ene 1, 1900" || data[0][0].radioterapiaCiclo !== -1 || data[0][0].radioterapiaComentario !== "") {
+                $('#tiene-radioterapia').attr('checked', 'checked');
+                if ($('#tiene-radioterapia').is(':checked')) {
+                    $('#divRadioterapia').show();
+                } else {
+                    $('#divRadioterapia').hide();
+                }
+
+                if (data[0][0].radioterapiaFecha !== "ene 1, 1900")
+                    // $('#fecha-radioterapia').val(convertDate(new Date(data[0][0].radioterapiaFecha)));
+                    $('#fecha-radioterapia').val(data[0][0].radioterapiaFecha);
+
+                if ((data[0][0].cirugiaTipo !== -1)) {
+                    $('#radioterapia').val(data[0][0].radioterapiaCiclo);
+                }
+                if (data[0][0].radioterapiaComentario !== "") {
+                    $('#detalle-radioterapia').val(data[0][0].radioterapiaComentario);
+                }
+
+            }
+
+            if (data[0][0].mastografiaBiradsNombre !== "" || data[0][0].mastografiaBiradsFecha !== "ene 1, 1900") {
+                $('#tiene-mastografia').attr('checked', 'checked');
+                if ($('#tiene-mastografia').is(':checked')) {
+                    $('#tipoMastografia').show();
+                    $('#fechaPreMasto').show();
+                } else {
+                    $('#tipoMastografia').hide();
+                    $('#fechaPreMasto').hide();
+                }
+
+                if ((data[0][0].mastografiaBiradsFecha !== "ene 1, 1900")) {
+                    $('#fechaPreMasto').val(data[0][0].mastografiaBiradsFecha);
+                }
+                if ((data[0][0].mastografiaBiradsNombre !== "")) {
+                    $('#tipoMastografia option:contains(' + $.trim(data[0][0].mastografiaBiradsNombre) + ')').each(function () {
+                        if ($.trim($(this).text()) === $.trim(data[0][0].mastografiaBiradsNombre)) {
+                            $(this).attr('selected', 'selected');
+                        }
+
+                    });
+                }
+            }
+
+            if (data[0][0].ultrasonidoBiradsNombre !== "" || data[0][0].ultrasonidoBiradsFecha !== "ene 1, 1900") {
+                $('#tiene-ultrasonido-mama').attr('checked', 'checked');
+                if ($('#tiene-ultrasonido-mama').is(':checked')) {
+                    $('#fechaPreUsg').show();
+                    $('#tipoUltrasonidoMama').show();
+                } else {
+                    $('#fechaPreUsg').hide();
+                    $('#tipoUltrasonidoMama').hide();
+                }
+
+                if ((data[0][0].ultrasonidoBiradsFecha !== "ene 1, 1900")) {
+                    $('#fechaPreUsg').val(data[0][0].ultrasonidoBiradsFecha);
+                }
+                if ((data[0][0].ultrasonidoBiradsNombre !== "")) {
+                    $('#tipoUltrasonidoMama option:contains(' + $.trim(data[0][0].ultrasonidoBiradsNombre) + ')').each(function () {
+                        if ($.trim($(this).text()) === $.trim(data[0][0].ultrasonidoBiradsNombre)) {
+                            $(this).attr('selected', 'selected');
+                        }
+
+                    });
+                }
+            }
+
+            if (data[0][0].resultadoPatologia !== "") {
+                if ((data[0][0].resultadoPatologia === "Otro")) {
+                    $('#introducirOtroPatologia').show(),
+                            $('#OtroResultadoPatologia').val(data[0][0].otroResultado);
+
+                }
+                $('#resultadoAnterior-patologia option:contains(' + $.trim(data[0][0].resultadoPatologia) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].resultadoPatologia)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+
+            if (data[0][0].serieLaminillas !== "" || data[0][0].cantidadLaminillas !== -1) {
+                $('#entregaLaminillas').attr('checked', 'checked');
+                if ($('#entregaLaminillas').is(':checked')) {
+                    $('#contenedor-laminillas').show();
+                } else {
+                    $('#contenedor-laminillas').hide();
+                }
+
+                if ((data[0][0].cantidadLaminillas !== -1)) {
+                    $('#numLaminillas').val(data[0][0].cantidadLaminillas);
+                }
+                if ((data[0][0].serieLaminillas !== "")) {
+                    $('#serieLaminillas').val(data[0][0].serieLaminillas);
+                }
+            }
+
+            if (data[0][0].serieParafina !== "" || data[0][0].cantidadParafina !== -1) {
+                $('#entregaBloques').attr('checked', 'checked');
+                if ($('#entregaBloques').is(':checked')) {
+                    $('#contenedor-bloques').show();
+                } else {
+                    $('#contenedor-bloques').hide();
+                }
+
+                if ((data[0][0].cantidadParafina !== -1)) {
+                    $('#numBloques').val(data[0][0].cantidadParafina);
+                }
+                if ((data[0][0].serieParafina !== "")) {
+                    $('#serieBloques').val(data[0][0].serieParafina);
+                }
+            }
+
+// tercera pagina formulario
 
 
+
+// cuarta pagina formulario
+
+            if (data[0][0].fechaFin !== "ene 1, 1900")
+                $('#fecha-decisionPreconsulta').val(data[0][0].fechaFin);
+
+            if ((data[0][0].decisionCosulta !== "")) {
+                $('#decisionPreconsulta option:contains(' + $.trim(data[0][0].decisionCosulta) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].decisionCosulta)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+
+            if ((data[0][0].socioeconomico !== "")) {
+                $('#nivelSocioeconomico option:contains(' + $.trim(data[0][0].socioeconomico) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].socioeconomico)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+
+            if (data[0][0].comentarioIncidencia !== "")
+                $('#exampleFormControlTextarea1').val(data[0][0].comentarioIncidencia);
+            if (data[0][0].comentarioMedico !== "")
+                $('#comentariosAdicionales').val(data[0][0].comentarioMedico);
+
+
+
+
+// quinta pagina formulario
+
+              if ((data[0][0].etapaClinica !== "")) {
+                $('#etapaClinica option:contains(' + $.trim(data[0][0].etapaClinica) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].etapaClinica)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+            
+              if ((data[0][0].masto !== "")) {
+                $('#tipoMastografia option:contains(' + $.trim(data[0][0].masto) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].masto)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+            
+            if ((data[0][0].ultra !== "")) {
+                $('#tipoUSG option:contains(' + $.trim(data[0][0].ultra) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].ultra)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+                
+            if ((data[0][0].T !== "")) {
+                $('#tumorPrimarioT option:contains(' + $.trim(data[0][0].T) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].T)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+
+            if ((data[0][0].N !== "")) {
+                $('#gangliosN option:contains(' + $.trim(data[0][0].N) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].N)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+
+            if ((data[0][0].M !== "")) {
+                $('#metastasisM option:contains(' + $.trim(data[0][0].M) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].M)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+
+            if (data[0][0].resultadoPatologiaPost !== "") {
+                if ((data[0][0].resultadoPatologiaPost === "Otro")) {
+                    $('#introducirOtro').show(),
+                            $('#otroResultadoPatologiaPost').val(data[0][0].otroResultadoPost);
+
+                }
+                $('#resultado-patologia option:contains(' + $.trim(data[0][0].resultadoPatologiaPost) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].resultadoPatologiaPost)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+
+            if ((data[0][0].gradoH !== "")) {
+                $('#grado-histologico option:contains(' + $.trim(data[0][0].gradoH) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].gradoH)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+
+            if ((data[0][0].her2 !== "")) {
+                $('#receptor-her2 option:contains(' + $.trim(data[0][0].her2) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].her2)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+
+            if ((data[0][0].fish !== "")) {
+                $('#receptor-fish option:contains(' + $.trim(data[0][0].fish) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].fish)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+
+            if ((data[0][0].re !== "")) {
+                $('#receptor-re option:contains(' + $.trim(data[0][0].re) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].re)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+
+            if ((data[0][0].rp !== "")) {
+                $('#receptor-rp option:contains(' + $.trim(data[0][0].rp) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].rp)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+            
+            if (data[0][0].ki67 !== "")
+                $('#ki67').val(data[0][0].ki67);
 
 
         },
@@ -2136,6 +2553,18 @@ $(document).ready(function () {
             //alert("No enontre el controlador" + status);                               
         }
     });
+
+    function convertDate(date) {
+
+        var yyyy = date.getFullYear().toString();
+        var mm = (date.getMonth() + 1).toString();
+        var dd = date.getDate().toString();
+
+        var mmChars = mm.split('');
+        var ddChars = dd.split('');
+
+        return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
+    }
 
 });
 

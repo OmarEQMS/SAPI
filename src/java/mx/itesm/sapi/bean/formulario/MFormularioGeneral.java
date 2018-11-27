@@ -75,6 +75,7 @@ public class MFormularioGeneral implements Serializable {
     private String ki67;
     private String gradoH;
     private String resultadoPatologiaPost;
+    private String otroResultadoPost;
 
 
     private int idCita;
@@ -88,23 +89,30 @@ public class MFormularioGeneral implements Serializable {
 
     @Override
     public String toString() {
-        return "MFormularioGeneral{" + "prz=" + prz + ", fechaNavegacion=" + fechaNavegacion + ", fechaConsulta=" + fechaConsulta + ", tipoPaciente=" + 
-                tipoPaciente + ", medicoAdscrito=" + medicoAdscrito + ", medicoRadiologo=" + medicoRadiologo + ", medicoResidente=" + medicoResidente + ", noAdscrito=" +
-                noAdscrito + ", noRadiologo=" + noRadiologo + ", escolaridad=" + escolaridad + ", alergias=" + alergias + ", estadoHormonal=" + estadoHormonal + ", Seguro=" + 
-                Seguro + ", noSeguro=" + noSeguro + ", mastografiaPreINCAN=" + mastografiaPreINCAN + ", cirugiaFecha=" + cirugiaFecha + ", cirugiaTipo=" + 
-                cirugiaTipo + ", cirugiaComentario=" + cirugiaComentario + ", quimioterapiaFecha=" + quimioterapiaFecha + ", quimioterapiaCiclo=" + 
-                quimioterapiaCiclo + ", quimioterapiaComentario=" + quimioterapiaComentario + ", radioterapiaFecha=" + radioterapiaFecha + ", radioterapiaCiclo=" + 
-                radioterapiaCiclo + ", radioterapiaComentario=" + radioterapiaComentario + ", mastografiaBiradsNombre=" + mastografiaBiradsNombre + ", mastografiaBiradsFecha=" + 
-                mastografiaBiradsFecha + ", ultrasonidoBiradsNombre=" + ultrasonidoBiradsNombre + ", ultrasonidoBiradsFecha=" + ultrasonidoBiradsFecha + ", resultadoPatologia=" + 
-                resultadoPatologia + ", otroResultado=" + otroResultado + ", serieParafina=" + serieParafina + ", cantidadParafina=" + cantidadParafina + ", serieLaminillas=" + 
-                serieLaminillas + ", cantidadLaminillas=" + cantidadLaminillas + ", T=" + T + ", N=" + N + ", M=" + M + ", fechaFin=" + fechaFin + ", decisionCosulta=" + 
-                decisionCosulta + ", socioeconomico=" + socioeconomico + ", comentarioLLamada=" + comentarioLLamada + ", fechaLlamada=" + fechaLlamada + ", comentarioIncidencia=" + 
-                comentarioIncidencia + ", comentarioMedico=" + comentarioMedico + ", etapaClinica=" + etapaClinica + ", masto=" + masto + ", ultra=" + ultra + ", rp=" + rp + ", re=" + 
-                re + ", her2=" + her2 + ", fish=" + fish + ", ki67=" + ki67 + ", gradoH=" + gradoH + ", resultadoPatologiaPost=" + resultadoPatologiaPost + idCita + ", idCita " +
-                ", nombreEstudio=" + nombreEstudio + ", CitaProgramada=" + CitaProgramada + ", lugarCuerpo=" + lugarCuerpo + '}';
+        return "MFormularioGeneral{" + "prz=" + prz + ", fechaNavegacion=" + fechaNavegacion + ", fechaConsulta=" + fechaConsulta + ", tipoPaciente=" + tipoPaciente 
+                + ", medicoAdscrito=" + medicoAdscrito + ", medicoRadiologo=" + medicoRadiologo + ", medicoResidente=" + medicoResidente + ", noAdscrito=" + noAdscrito 
+                + ", noRadiologo=" + noRadiologo + ", escolaridad=" + escolaridad + ", alergias=" + alergias + ", estadoHormonal=" + estadoHormonal + ", Seguro=" + Seguro 
+                + ", noSeguro=" + noSeguro + ", mastografiaPreINCAN=" + mastografiaPreINCAN + ", cirugiaFecha=" + cirugiaFecha + ", cirugiaTipo=" + cirugiaTipo 
+                + ", cirugiaComentario=" + cirugiaComentario + ", quimioterapiaFecha=" + quimioterapiaFecha + ", quimioterapiaCiclo=" + quimioterapiaCiclo 
+                + ", quimioterapiaComentario=" + quimioterapiaComentario + ", radioterapiaFecha=" + radioterapiaFecha + ", radioterapiaCiclo=" + radioterapiaCiclo 
+                + ", radioterapiaComentario=" + radioterapiaComentario + ", mastografiaBiradsNombre=" + mastografiaBiradsNombre + ", mastografiaBiradsFecha=" + mastografiaBiradsFecha 
+                + ", ultrasonidoBiradsNombre=" + ultrasonidoBiradsNombre + ", ultrasonidoBiradsFecha=" + ultrasonidoBiradsFecha + ", resultadoPatologia=" + resultadoPatologia 
+                + ", otroResultado=" + otroResultado + ", serieParafina=" + serieParafina + ", cantidadParafina=" + cantidadParafina + ", serieLaminillas=" + serieLaminillas 
+                + ", cantidadLaminillas=" + cantidadLaminillas + ", T=" + T + ", N=" + N + ", M=" + M + ", fechaFin=" + fechaFin + ", decisionCosulta=" + decisionCosulta 
+                + ", socioeconomico=" + socioeconomico + ", comentarioLLamada=" + comentarioLLamada + ", fechaLlamada=" + fechaLlamada + ", comentarioIncidencia=" + comentarioIncidencia 
+                + ", comentarioMedico=" + comentarioMedico + ", etapaClinica=" + etapaClinica + ", masto=" + masto + ", ultra=" + ultra + ", rp=" + rp + ", re=" + re + ", her2=" + her2 
+                + ", fish=" + fish + ", ki67=" + ki67 + ", gradoH=" + gradoH + ", resultadoPatologiaPost=" + resultadoPatologiaPost + ", otroResultadoPost=" + otroResultadoPost 
+                + ", idCita=" + idCita + ", nombreEstudio=" + nombreEstudio + ", CitaProgramada=" + CitaProgramada + ", lugarCuerpo=" + lugarCuerpo + '}';
     }
 
-    
+    public String getOtroResultadoPost() {
+        return otroResultadoPost;
+    }
+
+    public void setOtroResultadoPost(String otroResultadoPost) {
+        this.otroResultadoPost = otroResultadoPost;
+    }
+
     public int getIdCita() {
         return idCita;
     }

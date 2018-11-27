@@ -396,7 +396,55 @@ public class NavegadoraController extends HttpServlet {
                            // System.out.println(formGeneral.getFechaConsulta());
                             if(formGeneral.getMedicoAdscrito() == null)formGeneral.setMedicoAdscrito("");
                             if(formGeneral.getMedicoRadiologo()== null)formGeneral.setMedicoRadiologo("");
-                            
+                            if(formGeneral.getPrz() == null)formGeneral.setPrz("");
+                            if(formGeneral.getFechaNavegacion() == null)formGeneral.setFechaNavegacion(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getFechaConsulta() == null)formGeneral.setFechaConsulta(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getMedicoResidente() == null)formGeneral.setMedicoResidente("");
+                            if(formGeneral.getEscolaridad() == null){formGeneral.setEscolaridad("");}
+                           // else{formGeneral.setEscolaridad(formGeneral.getEscolaridad().concat(" "));}
+                            if(formGeneral.getAlergias() == null)formGeneral.setAlergias("");
+                            if(formGeneral.getSeguro() == null)formGeneral.setSeguro("");
+                            if(formGeneral.getNoSeguro() == null)formGeneral.setNoSeguro("");
+                            if(formGeneral.getCirugiaFecha() == null)formGeneral.setCirugiaFecha(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getCirugiaTipo() == null)formGeneral.setCirugiaTipo("");
+                            if(formGeneral.getCirugiaComentario() == null)formGeneral.setCirugiaComentario("");
+                            if(formGeneral.getQuimioterapiaFecha() == null)formGeneral.setQuimioterapiaFecha(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getQuimioterapiaCiclo() <= 0)formGeneral.setQuimioterapiaCiclo(-1);
+                            if(formGeneral.getQuimioterapiaComentario() == null)formGeneral.setQuimioterapiaComentario("");
+                            if(formGeneral.getRadioterapiaFecha() == null)formGeneral.setRadioterapiaFecha(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getRadioterapiaCiclo() <= 0)formGeneral.setRadioterapiaCiclo(-1);
+                            if(formGeneral.getRadioterapiaComentario() == null)formGeneral.setRadioterapiaComentario("");
+                            if(formGeneral.getMastografiaBiradsNombre() == null)formGeneral.setMastografiaBiradsNombre("");
+                            if(formGeneral.getMastografiaBiradsFecha() == null)formGeneral.setMastografiaBiradsFecha(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getUltrasonidoBiradsNombre() == null)formGeneral.setUltrasonidoBiradsNombre("");
+                            if(formGeneral.getUltrasonidoBiradsFecha() == null)formGeneral.setUltrasonidoBiradsFecha(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getResultadoPatologia() == null)formGeneral.setResultadoPatologia("");
+                            if(formGeneral.getOtroResultado() == null)formGeneral.setOtroResultado("");
+                            if(formGeneral.getSerieParafina() == null)formGeneral.setSerieParafina("");
+                            if(formGeneral.getCantidadParafina() <= 0)formGeneral.setCantidadParafina(-1);
+                            if(formGeneral.getSerieLaminillas() == null)formGeneral.setSerieLaminillas("");
+                            if(formGeneral.getCantidadLaminillas() <= 0)formGeneral.setCantidadLaminillas(-1);
+                            if(formGeneral.getT() == null)formGeneral.setT("");
+                            if(formGeneral.getN() == null)formGeneral.setN("");
+                            if(formGeneral.getM() == null)formGeneral.setM("");
+                            if(formGeneral.getFechaFin() == null)formGeneral.setFechaFin(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getDecisionCosulta() == null)formGeneral.setDecisionCosulta("");
+                            if(formGeneral.getSocioeconomico() == null)formGeneral.setSocioeconomico("");
+                            if(formGeneral.getComentarioLLamada() == null)formGeneral.setComentarioLLamada("");
+                            if(formGeneral.getFechaLlamada() == null)formGeneral.setFechaLlamada(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getComentarioIncidencia() == null)formGeneral.setComentarioIncidencia("");
+                            if(formGeneral.getComentarioMedico() == null)formGeneral.setComentarioMedico("");
+                            if(formGeneral.getEtapaClinica() == null)formGeneral.setEtapaClinica("");
+                            if(formGeneral.getMasto() == null)formGeneral.setMasto("");
+                            if(formGeneral.getUltra() == null)formGeneral.setUltra("");
+                            if(formGeneral.getRp() == null)formGeneral.setRp("");
+                            if(formGeneral.getRe() == null)formGeneral.setRe("");
+                            if(formGeneral.getHer2() == null)formGeneral.setHer2("");
+                            if(formGeneral.getFish() == null)formGeneral.setFish("");
+                            if(formGeneral.getKi67() == null)formGeneral.setKi67("");
+                            if(formGeneral.getGradoH() == null)formGeneral.setGradoH("");
+                            if(formGeneral.getResultadoPatologiaPost() == null)formGeneral.setResultadoPatologiaPost("");
+                    
                             formGeneralList.add(formGeneral);
                             ElJeison.add(formGeneralList);
                             ArrayList<MFormularioGeneral> formBiopsia = mFormularioGeneralServicioImpl.mostrarFormularioLugarTipoFecha(idPaciente, "Biopsia");
