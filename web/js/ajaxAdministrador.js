@@ -1002,7 +1002,7 @@ $(document).ready(function () {
     $('#agregar-correoMedico').on('change', function () {
         $.ajax({
 
-            url: 'RegistraUsuarioController',
+            url: 'PotencialController',
             cache: false,
             method: 'POST',
             data: {
@@ -1013,7 +1013,6 @@ $(document).ready(function () {
 
             },
             success: function (response) {
-
                 if (response === 'CorreoAlreadyExists') {
                     console.log("correo repetidooo")
                     $('#agregar-correoMedico').css('color', 'orange');
@@ -1618,6 +1617,19 @@ $(document).ready(function () {
                     },
                     success: function (response) {
 
+                        var t = $('#tablaMedicos').DataTable();
+
+                        t.row.add([
+                            $("#agregar-nombreMedico").val() + " " + $("#agregar-primerApellidoMedico").val() + " " + $("#agregar-segundoApellidoMedico").val(),
+                            $("#agregar-correoMedico").val(),
+                            $("#agregar-telefonoMedico").val(),
+                            $("#agregar-noEmpleadoMedico").val(),
+                            $("#agregar-especialidadMedico").val(),
+                            $("#agregar-cedulaMedico").val(),
+                            "<button class='btn btn-primary btn-editarMedico m-1' data-toggle='modal' data-id='" + response + "' data-target='#modalEditarMedico'><i class='fas fa-edit'></i></button>" +
+                                    "<button class='btn btn-danger m-1' id='btn-eliminarMedico' data-id='" + response + "'><i class='fas fa-trash-alt'></i></button>"
+                        ]).draw(false);
+
                         console.log(response);
                         swal({
                             title: "¡Buen trabajo!",
@@ -1643,6 +1655,8 @@ $(document).ready(function () {
 
                         //Cerrar el modal
                         $('#modalAgregarMedico').modal('toggle');
+
+
                     },
                     error: function (xhr) {
                         //alert(xhr.statusText);
@@ -1745,7 +1759,7 @@ $(document).ready(function () {
     $('#editar-correoMedico').on('change', function () {
         $.ajax({
 
-            url: 'RegistraUsuarioController',
+            url: 'AdministradorController',
             cache: false,
             method: 'POST',
             data: {
@@ -1756,7 +1770,6 @@ $(document).ready(function () {
 
             },
             success: function (response) {
-
                 if (response === 'CorreoAlreadyExists') {
                     console.log("correo repetidooo")
                     $('#editar-correoMedico').css('color', 'orange');
@@ -1953,8 +1966,7 @@ $(document).ready(function () {
     });
 
 
-
-    $('.btn-success').on('click', function () {
+    $('body').on('click', '.btn-verNavegadora', function () {
 
         console.log("VerNavegadora");
         var idNavegadora = $(this).data('id');
@@ -2264,7 +2276,7 @@ $(document).ready(function () {
     $('#editar-correoNavegadora').on('change', function () {
         $.ajax({
 
-            url: 'RegistraUsuarioController',
+            url: 'PotencialController',
             cache: false,
             method: 'POST',
             data: {
@@ -2424,7 +2436,7 @@ $(document).ready(function () {
     $('#agregar-correoNavegadora').on('change', function () {
         $.ajax({
 
-            url: 'RegistraUsuarioController',
+            url: 'PotencialController',
             cache: false,
             method: 'POST',
             data: {
@@ -2517,6 +2529,22 @@ $(document).ready(function () {
                         $('.cargandoAgregarNavegadora').fadeOut();
                     },
                     success: function (response) {
+
+                        var t = $('#tablaNavegadoras').DataTable();
+
+                        t.row.add([
+                            $("#agregar-nombreNavegadora").val() + " " + $("#agregar-primerApellidoNavegadora").val() + " " + $("#agregar-segundoApellidoNavegadora").val(),
+                            $("#agregar-correoNavegadora").val(),
+                            $("#agregar-telefonoNavegadora").val(),
+                            $("#agregar-noEmpleadoNavegadora").val(),
+                            $("#agregar-especialidadNavegadora").val(),
+                            $("#agregar-cedulaNavegadora").val(),
+                            "<button class='btn btn-success m-1 btn-verNavegadora' data-id='" + response + "'><i class='fas fa-chart-line'></i></button>" +
+                                    "<button class='btn btn-primary btn-editarNavegadora m-1' data-toggle='modal' data-target='#modalEditarNavegadora' data-id='" + response + "'><i class='fas fa-edit'></i></button>" +
+                                    "<button class='btn btn-danger m-1 btn-eliminarNavegadora' data-id='" + response + "'><i class='fas fa-trash-alt'></i></button>"
+                        ]).draw(false);
+
+
                         swal({
                             title: "¡Buen trabajo!",
                             text: "Se ha agregado correctamente a la navegadora.",

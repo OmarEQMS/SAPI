@@ -196,14 +196,13 @@
                                         <td id="nombreEspecialidad-${navegadora.idEmpleado}" value="${navegadora.nombreEspecialidad}" > <c:out value="${navegadora.nombreEspecialidad}"/> </td>                                
                                         <td id="cedulaProfesional-${navegadora.idEmpleado}" value="${navegadora.cedulaProfesional}" > <c:out value="${navegadora.cedulaProfesional}"/> </td>                              
                                         <td>
-                                            <button class="btn btn-success m-1"
-                                                    id="btn-verNavegadora" data-id="${navegadora.idEmpleado}">                                        
+                                            <button class="btn btn-success m-1 btn-verNavegadora" data-id="${navegadora.idEmpleado}">                                        
                                                 <i class="fas fa-chart-line"></i>
                                             </button>
                                             <button class="btn btn-primary btn-editarNavegadora m-1" data-toggle="modal"
                                                     data-target="#modalEditarNavegadora" data-id="${navegadora.idEmpleado}" ><i class="fas fa-edit"></i>
                                             </button>
-                                            <button class="btn btn-danger m-1" id="btn-eliminarNavegadora" data-id="${navegadora.idPersona}"><i class="fas fa-trash-alt">
+                                            <button class="btn btn-danger m-1 btn-eliminarNavegadora" data-id="${navegadora.idPersona}"><i class="fas fa-trash-alt">
 
                                                 </i></button>
                                         </td>

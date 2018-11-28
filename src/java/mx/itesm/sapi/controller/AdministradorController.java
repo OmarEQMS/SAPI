@@ -219,6 +219,7 @@ public class AdministradorController extends HttpServlet {
                     out.print(new Gson().toJson(medico));
                     break;
                 }
+
                 case "guardarCambios": {
                     System.out.println("Llegó al case de GuardarCambios");
 
@@ -278,6 +279,33 @@ public class AdministradorController extends HttpServlet {
                     break;
 
                 }
+
+                case "repiteCorreo": {
+                    
+                    String correo = request.getParameter("correo");
+                    int idPersona = (int) sesion.getAttribute("idPersona");
+                    System.out.println("El id de empleado es: " + idPersona);
+
+                    PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
+
+                    PrintWriter out = response.getWriter();
+
+                    System.out.println("ENTRA AQUÍ");
+
+                    //Checo si el usuario existe
+                    if (_registroServicio.existsCorreo(correo, idPersona)) {
+                        System.out.println("EXISTE");
+                        out.print("CorreoAlreadyExists");
+
+                    } else {
+                        System.out.println("NO EXISTE");
+                        //Si no existe, lo inserto
+                        out.print("CorreoDoesntExist");
+
+                    }
+                }
+                break;
+
                 case "actualizar-medico": {
                     System.out.println("Actualizar médico");
                     int idMedicoAdministrador = Integer.valueOf(request.getParameter("idMedico"));
@@ -550,57 +578,6 @@ public class AdministradorController extends HttpServlet {
                     Gson json = new Gson();
                     out.print(json.toJson(posicion));
 
-                    break;
-                }
-
-                case "cambiarDatos": {
-
-                    String usuario = request.getParameter("username");
-                    String correo = request.getParameter("correo");
-
-                    System.out.println("Usuario: " + usuario);
-                    System.out.println("Correo: " + correo);
-
-                    Part part = request.getPart("file-image");
-
-                    PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
-                    Persona persona = personaServicioImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
-
-                    CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
-                    Cuenta cuenta = cuentaServicioImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));
-
-                    System.out.println((int) sesion.getAttribute("idPersona"));
-                    System.out.println((int) sesion.getAttribute("idCuenta"));
-
-                    if ((int) part.getSize() > 0) {
-                        PicServicioImpl picServiceImpl = new PicServicioImpl();
-                        Pic pic = new Pic();
-
-                        pic.setIdPersona((int) sesion.getAttribute("idPersona"));
-                        pic.setContenido(part.getInputStream());
-                        pic.setTamano((int) part.getSize());
-                        pic.setTipo(part.getContentType());
-
-                        picServiceImpl.agregarPic(pic);
-
-                        System.out.println("picName: ".concat(pic.getTipo()));
-
-                        InputStream imagen = pic.getContenido();
-                        byte[] bytes = IOUtils.toByteArray(imagen);
-                        String base64String = Base64.getEncoder().encodeToString(bytes);
-
-                        sesion.setAttribute("base64Img", base64String);
-                        System.out.println("Debió actualizar la imagen en la sesión");
-                    }
-
-                    persona.setCorreo(correo);
-
-                    personaServicioImpl.actualizarPersona(persona);
-
-                    sesion.setAttribute("correo", persona.getCorreo());
-                    request.setAttribute("correo", sesion.getAttribute("correo"));
-
-                    //request.getRequestDispatcher("/WEB-INF/administrador/cuentaAdministrador.jsp").forward(request, response);
                     break;
                 }
 

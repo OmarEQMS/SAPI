@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    
+    mostrarContrasena($('#loginContrasena'),'password');
 
     $("#msj-error").hide();
     $("#msj-cargando").hide();
@@ -103,6 +105,17 @@ $(document).ready(function () {
         );
 
     });
+    
+    function mostrarContrasena(myButton, myField) {
+        myButton.on('mousedown', function () {
+            var x = document.getElementById(myField);
+            x.type = "text";
+        });
+        myButton.on('mouseup', function () {
+            var x = document.getElementById(myField);
+            x.type = "password";
+        });
+    }
 
 });
 
