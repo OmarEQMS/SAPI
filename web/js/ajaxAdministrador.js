@@ -1728,8 +1728,7 @@ $(document).ready(function () {
     });
 
 
-
-    $('.btn-success').on('click', function () {
+    $('body').on('click', '.btn-verNavegadora', function () {
 
         console.log("VerNavegadora");
         var idNavegadora = $(this).data('id');
@@ -2302,9 +2301,9 @@ $(document).ready(function () {
                             $("#agregar-noEmpleadoNavegadora").val(),
                             $("#agregar-especialidadNavegadora").val(),
                             $("#agregar-cedulaNavegadora").val(),
-                            "<button class='btn btn-success m-1' id='btn-verNavegadora' data-id='" + response + "'><i class='fas fa-chart-line'></i></button>" +
+                            "<button class='btn btn-success m-1 btn-verNavegadora' data-id='" + response + "'><i class='fas fa-chart-line'></i></button>" +
                                     "<button class='btn btn-primary btn-editarNavegadora m-1' data-toggle='modal' data-target='#modalEditarNavegadora' data-id='" + response + "'><i class='fas fa-edit'></i></button>" +
-                                    "<button class='btn btn-danger m-1' id='btn-eliminarNavegadora' data-id='" + response + "'><i class='fas fa-trash-alt'></i></button>"
+                                    "<button class='btn btn-danger m-1 btn-eliminarNavegadora' data-id='" + response + "'><i class='fas fa-trash-alt'></i></button>"
                         ]).draw(false);
 
 
