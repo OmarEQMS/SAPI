@@ -14,6 +14,7 @@ import java.sql.Date;
 
 import java.util.ArrayList;
 import java.util.Base64;
+
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -221,12 +222,10 @@ public class AdministradorController extends HttpServlet {
                 case "guardarCambios": {
                     System.out.println("Llegó al case de GuardarCambios");
 
-                    String correo = "esteCorreo";
-                    String usuario = "esteUsuario";
+                    String correo = request.getParameter("correo");
                     Part part = request.getPart("file-image");
 
                     System.out.println("Correo: ".concat(correo));
-                    System.out.println("Usuario: ".concat(usuario));
 
                     //Si tiene sesion iniciada
                     int keyRol = (int) sesion.getAttribute("idRol");
@@ -235,32 +234,42 @@ public class AdministradorController extends HttpServlet {
 
                             System.out.println("Entro al controller en guardarCambios");
 
-                            //No se valida el telefono ni el correo aquí? Lo validamos nosotros o el front?
                             PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
                             Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
 
                             if ((int) part.getSize() > 0) {
-                                PicServicioImpl picServiceImpl = new PicServicioImpl();
-                                Pic pic = new Pic();
 
-                                pic.setIdPersona((int) sesion.getAttribute("idPersona"));
-                                pic.setContenido(part.getInputStream());
-                                pic.setTamano((int) part.getSize());
-                                pic.setTipo(part.getContentType());
+                                PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                //AQUI
+                                Pic picture = new Pic();
 
-                                picServiceImpl.agregarPic(pic);
+                                picture.setIdPersona((int) sesion.getAttribute("idPersona"));
+                                picture.setContenido(part.getInputStream());
+                                picture.setTamano((int) part.getSize());
+                                picture.setTipo(part.getContentType());
 
-                                InputStream imagen = pic.getContenido();
-                                byte[] bytes = IOUtils.toByteArray(imagen);
-                                String base64String = Base64.getEncoder().encodeToString(bytes);
+                                picServicioImpl.agregarPic(picture);
+                                //AQUI
 
-                                sesion.setAttribute("base64Img", base64String);
-                                System.out.println("Debió actualizar la imagen en la sesión");
+                                Pic pic = picServicioImpl.mostrarPic(persona.getIdPersona());
+                                try {
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                    sesion.setAttribute("base64Img", base64String);
+                                } catch (Exception es) {
+                                    System.out.println("Sin foto de perfil");
+                                }
+
                             }
 
                             persona.setCorreo(correo);
 
                             personaServiceImpl.actualizarPersona(persona);
+
+                            sesion.setAttribute("correo", persona.getCorreo());
+                            request.setAttribute("correo", sesion.getAttribute("correo"));
 
                         }
 
@@ -585,21 +594,14 @@ public class AdministradorController extends HttpServlet {
                     }
 
                     persona.setCorreo(correo);
-                    cuenta.setUsuario(usuario);
 
                     personaServicioImpl.actualizarPersona(persona);
-                    cuentaServicioImpl.actualizarCuenta(cuenta);
 
                     sesion.setAttribute("correo", persona.getCorreo());
                     request.setAttribute("correo", sesion.getAttribute("correo"));
 
-                    sesion.setAttribute("usuario", cuenta.getUsuario());
-                    request.setAttribute("usuario", sesion.getAttribute("usuario"));
-
-                    request.getRequestDispatcher("/WEB-INF/administrador/cuentaAdministrador.jsp").forward(request, response);
-
+                    //request.getRequestDispatcher("/WEB-INF/administrador/cuentaAdministrador.jsp").forward(request, response);
                     break;
-
                 }
 
                 case "cambiarContrasena": {

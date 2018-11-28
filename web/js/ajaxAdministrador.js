@@ -90,8 +90,8 @@ $(document).ready(function () {
 
             });
 
-        }else{
-            swal ( "Error" ,  "Verifica que todos los campos sean correctos" ,  "error" );
+        } else {
+            swal("Error", "Verifica que todos los campos sean correctos", "error");
         }
 
     });
@@ -479,6 +479,38 @@ $(document).ready(function () {
         }
 
     });
+
+
+    /*
+     $('#guardarCambios').on('click', function () {
+     var continuar = true;
+     
+     
+     console.log("Presionó GuardarCambios")
+     var form = $("form")[0];
+     var data = new FormData(form);
+     data.append("key", "guardarCambios");
+     data.forEach((value, key) => {
+     console.log(key + " " + value);
+     })
+     $.ajax({
+     url: "AdministradorController",
+     data: data,
+     method: "POST",
+     encType: "multipart/form-data",
+     processData: false,
+     contentType: false,
+     cache: false,
+     success: function (response) {
+     console.log("Debió haber guardado");
+     },
+     error: function (xhr) {
+     //alert(xhr.statusText);
+     }
+     });
+     
+     
+     });*/
 
 
     //Cambiar imagen temporalmente en elfront

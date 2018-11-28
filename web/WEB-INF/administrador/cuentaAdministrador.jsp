@@ -177,7 +177,7 @@
                             <div class="form-group row justify-content-center">
                                 <div class="col-8">
                                     <label for="username">Usuario</label>
-                                    <input type="text" class="form-control" id="username" name="username" value="${sessionScope.usuario}"/>
+                                    <input type="text" class="form-control" id="username" name="username" value="${sessionScope.usuario}" readonly/>
                                     <span class="text-danger error-usuario" id="error-usuario">Formato incorrecto</span>
                                 </div>
 
