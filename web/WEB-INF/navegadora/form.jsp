@@ -304,7 +304,7 @@
                                                     </div>
 
 <!--<<<<<<< HEAD-->
-                                                   <select name="medico-residente" class="form-control" id="medico-radiologo">
+                                                   <select name="medico-residente" class="form-control" id="medico-residente">
 
                                                         <option disabled selected>Seleccione un Residente</option>
 

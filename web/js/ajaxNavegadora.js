@@ -2707,14 +2707,21 @@ $(document).ready(function () {
                 });
             }
             if (data[0][0].medicoResidente !== "") {
-                $('#medico-residente').val(data[0][0].medicoResidente);
-                /*   $('#medico-residente option:contains(' + data[0][0].medicoResidente + ')').each(function () {
+                $('#medico-residente option:contains(' + $.trim(data[0][0].medicoResidente) + ')').each(function () {
+
+                    if ($.trim($(this).text()) === $.trim(data[0][0].medicoResidente)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+         /*      
+                   $('#medico-residente option:contains(' + data[0][0].medicoResidente + ')').each(function () {
                  if ($(this).text() === data[0][0].medicoResidente) {
                  $(this).attr('selected', 'selected');
                  }
                  
                  });
-                 */
+          */       
             }
 
             if (data[0][0].fechaNavegacion !== "ene 1, 1900")
@@ -2728,8 +2735,8 @@ $(document).ready(function () {
                 $('#noAdscrito').attr('checked', 'checked');
             if ((data[0][0].noRadiologo !== true))
                 $('#esSustituto').attr('checked', 'checked');
-         //    if ((data[0][0].noResidente === true))
-           //     $('#noResidente').attr('checked', 'checked');
+             if ((data[0][0].noResidente === true))
+                $('#noAdscrito').attr('checked', 'checked');
 
 // Segunda pagina formulario
 
@@ -3545,7 +3552,7 @@ $(document).ready(function () {
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <textarea class="form-control comentario-llamada" style="min-height:100px;" value="${data[12][i].comentarioLLamada}" placeholder="Introduce el motivo de la llamada "></textarea>
+                        <textarea class="form-control comentario-llamada" style="min-height:100px;" value="${data[13][i].comentarioLLamada}" placeholder="Introduce el motivo de la llamada "></textarea>
                     </div>
                 </div>
             </div>
