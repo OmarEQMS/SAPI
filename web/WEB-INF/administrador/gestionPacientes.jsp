@@ -730,7 +730,7 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" style="border-radius: 20px;" class="btn btn-danger" id="cancelarAgregadoPaciente" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" style="border-radius: 20px;" class="btn btn-danger clearAddPacientesModal" data-dismiss="modal">Cancelar</button>
                                     <button id="btn-agregarPaciente" type="button" style="border-radius: 20px;" class="btn btn-primary">Agregar
                                         Paciente
                                     </button>

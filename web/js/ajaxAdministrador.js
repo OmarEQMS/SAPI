@@ -1755,38 +1755,6 @@ $(document).ready(function () {
         }
     });
 
-    $('#cancelarAgregadoPaciente').on('click', function () {
-        alert("BORRA!");
-        
-        
-        $("#agregar-password2Medico").val("");
-        $("#agregar-password2Medico").css('border', '');
-        $("#agregar-password2Medico").css('color', '');
-
-        $('#errorNombrePaciente').hide();
-        $('#errorCurpPaciente').hide();
-        $('#errorCurpRepetidoPaciente').hide();
-        $('#errorFechaPaciente').hide();
-        $('#errorApellidoPaternoPaciente').hide();
-        $('#errorApellidoMaternoPaciente').hide();
-        $('#errorNombreUsuarioPaciente').hide();
-        $('#errorUsuarioRepetidoPaciente').hide();
-        $('#errorECivilPaciente').hide();
-        $('#errorColoniaPaciente').hide();
-        $('#errorCallePaciente').hide();
-        $('#errorNoInteriorPaciente').hide();
-        $('#errorNoExteriorPaciente').hide();
-        $('#errorEstadoPaciente').hide();
-        $('#errorMunicipioPaciente').hide();
-        $('#errorTelefonoPaciente').hide();
-        $('#errorCorreoPaciente').hide();
-        $('#errorPass1Paciente').hide();
-        $('#errorPass2Paciente').hide();
-        $('#error-CPexistePaciente').hide();
-        $('#errorCodigoPostalPaciente').hide();
-        $('#noEqualPasswordsErrorPaciente').hide();
-        $('#error-terminos').hide();
-    });
 
     ////////////////////////////////////////////////////////////// VALIDACIONES EDITAR UN MÉDICO
 
@@ -2903,7 +2871,6 @@ $(document).ready(function () {
                 $('#editarCurpAdministradorAPaciente').val(data.curp);
                 $('#editarCumpleAdministradorAPaciente').val(convertDate(new Date(data.fechaNacimiento)));
                 $('#editarPrimer-apellidoAdministradorAPaciente').val(data.primerApellido);
-                $('#editarSegundo-apellidoAdministradorAPaciente').val(data.segundoApellido);
                 $('#editarSegundo-apellidoAdministradorAPaciente').val(data.segundoApellido);
                 $('#editarUsuarioAdministradorAPaciente').val(data.usuario);
                 $('#editarEstado-civilPaciente').val(data.idEstadoCivil);

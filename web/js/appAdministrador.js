@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    
-    mostrarContrasena($('#medicoContrasena'),'agregar-passwordMedico');
-    mostrarContrasena($('#medicoContrasenaConfirmacion'),'agregar-password2Medico');
-    mostrarContrasena($('#navegadoraContrasena'),'agregar-passwordNavegadora');
-    mostrarContrasena($('#navegadoraContrasenaConfirmacion'),'agregar-password2Navegadora');
+
+    mostrarContrasena($('#medicoContrasena'), 'agregar-passwordMedico');
+    mostrarContrasena($('#medicoContrasenaConfirmacion'), 'agregar-password2Medico');
+    mostrarContrasena($('#navegadoraContrasena'), 'agregar-passwordNavegadora');
+    mostrarContrasena($('#navegadoraContrasenaConfirmacion'), 'agregar-password2Navegadora');
 
 
     //Esconder menu lateral a presionar click en el menu hamburguesa
@@ -11,12 +11,12 @@ $(document).ready(function () {
         $('#sidebar, #content').toggleClass('active');
         $('.collapse.in').toggleClass('in');
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-        
-       
+
+
     });
-    
+
     ///////////////////////////////ADMINISTRADORES
-    
+
     //TABLA MEDICOS
     $('#tablaAdministradores').DataTable({
         responsive: true,
@@ -219,6 +219,90 @@ $(document).ready(function () {
     $('.btnPdf').prepend("<i class='far fa-file-pdf mr-2'></i>");
 
     //Limpiar campos
+    $("body").on("click", ".clearAddPacientesModal", function () {
+
+        $('#nombrePaciente').val("");
+        $('#nombrePaciente').css('border', '');
+        $('#nombrePaciente').css('color', '');
+
+        $('#curpPaciente').val("");
+        $('#curpPaciente').css('border', '');
+        $('#curpPaciente').css('color', '');
+
+        $('#cumplePaciente').val("");
+        $('#cumplePaciente').css('border', '');
+        $('#cumplePaciente').css('color', '');
+
+        $('#primer-apellidoPaciente').val("");
+        $('#primer-apellidoPaciente').css('border', '');
+        $('#primer-apellidoPaciente').css('color', '');
+
+        $('#segundo-apellidoPaciente').val("");
+        $('#segundo-apellidoPaciente').css('border', '');
+        $('#segundo-apellidoPaciente').css('color', '');
+
+        $('#usuarioPaciente').val("");
+        $('#usuarioPaciente').css('border', '');
+        $('#usuarioPaciente').css('color', '');
+
+        $('#estado-civilPaciente').val("");
+        $('#estado-civilPaciente').css('border', '');
+        $('#estado-civilPaciente').css('color', '');
+
+        $('#colPaciente').val("");
+        $('#colPaciente').css('border', '');
+        $('#colPaciente').css('color', '');
+
+        $('#callePaciente').val("");
+        $('#callePaciente').css('border', '');
+        $('#callePaciente').css('color', '');
+
+        $('#numIntPaciente').val("");
+        $('#numIntPaciente').css('border', '');
+        $('#numIntPaciente').css('color', '');
+
+        $('#numExtPaciente').val("");
+        $('#numExtPaciente').css('border', '');
+        $('#numExtPaciente').css('color', '');
+
+        $('#estadoPaciente').val("");
+        $('#estadoPaciente').css('border', '');
+        $('#estadoPaciente').css('color', '');
+
+        $('#telPaciente').val("");
+        $('#telPaciente').css('border', '');
+        $('#telPaciente').css('color', '');
+
+        $('#correoPaciente').val("");
+        $('#correoPaciente').css('border', '');
+        $('#correoPaciente').css('color', '');
+
+
+        $('#errorNombrePaciente').hide();
+        $('#errorCurpPaciente').hide();
+        $('#errorCurpRepetidoPaciente').hide();
+        $('#errorFechaPaciente').hide();
+        $('#errorApellidoPaternoPaciente').hide();
+        $('#errorApellidoMaternoPaciente').hide();
+        $('#errorNombreUsuarioPaciente').hide();
+        $('#errorUsuarioRepetidoPaciente').hide();
+        $('#errorECivilPaciente').hide();
+        $('#errorColoniaPaciente').hide();
+        $('#errorCallePaciente').hide();
+        $('#errorNoInteriorPaciente').hide();
+        $('#errorNoExteriorPaciente').hide();
+        $('#errorEstadoPaciente').hide();
+        $('#errorMunicipioPaciente').hide();
+        $('#errorTelefonoPaciente').hide();
+        $('#errorCorreoPaciente').hide();
+        $('#errorPasscurpPacientePaciente').hide();
+        $('#errorPasscumplePacientePaciente').hide();
+        $('#error-CPexistePaciente').hide();
+        $('#errorCodigoPostalPaciente').hide();
+        $('#noEqualPasswordsErrorPaciente').hide();
+        $('#error-terminos').hide();
+
+    });
 
     $("body").on("click", ".clearAddMedicosModal", function () {
         $("#agregar-nombreMedico").val("");
@@ -322,10 +406,10 @@ $(document).ready(function () {
 
         $('#editar-cedulaProfesionalMedico').css('border', '');
         $('#editar-cedulaProfesionalMedico').css('color', '');
-        
+
         $('#editar-especialidadMedico').css('border', '');
         $('#editar-especialidadMedico').css('color', '');
-        
+
         $('#editar-posicionMedico').css('border', '');
         $('#editar-posicionMedico').css('color', '');
 
@@ -343,7 +427,7 @@ $(document).ready(function () {
         $("#agregar-passwordNavegadora").val("");
         $("#agregar-password2Navegadora").val("");
         $("#terminosNavegadora").prop("checked", false);
-        
+
         $('#errorNombreNavegadora').hide();
         $('#errorTelefonoNavegadora').hide();
         $('#errorApellidoPaternoNavegadora').hide();
@@ -389,9 +473,9 @@ $(document).ready(function () {
         $('#agregar-password2Navegadora').css('color', '');
 
     });
-    
+
     $("body").on("click", ".clearCancelEditNavegadoraModal", function () {
-        
+
         $('#errorEditarNombreNavegadora').hide();
         $('#errorEditarTelefonoNavegadora').hide();
         $('#errorEditarApellidoPaternoNavegadora').hide();
@@ -402,7 +486,7 @@ $(document).ready(function () {
         $('#errorEditarCedulaNavegadora').hide();
         $('#errorEditarEspecialidadNavegadora').hide();
         $('#error-editarDatosRepetidosNavegadora').hide();
-        
+
 
         $('#editar-nombreNavegadora').css('border', '');
         $('#editar-nombreNavegadora').css('color', '');
@@ -426,7 +510,7 @@ $(document).ready(function () {
         $('#editar-cedulaProfesionalNavegadora').css('color', '');
 
     });
-    
+
     function mostrarContrasena(myButton, myField) {
         myButton.on('mousedown', function () {
             var x = document.getElementById(myField);
