@@ -2720,6 +2720,7 @@ $(document).ready(function () {
             if (data[0][0].fechaNavegacion !== "ene 1, 1900")
                 $('#fechaNavegacion').val(convertDate(new Date(data[0][0].fechaNavegacion)));
 
+
             if (data[0][0].fechaConsulta !== "ene 1, 1900")
                 $('#fechaConsulta').val(convertDate(new Date(data[0][0].fechaConsulta)));
 
