@@ -363,7 +363,8 @@ public class FrontController extends HttpServlet {
                                     List<PacientePotencial> pacientesAprobados = pacienteServicio.mostrarPacientesPotencialesAprobados();
                                     
                                     for (int i = 0; i < pacientesAprobados.size(); i++) {
-                                        pacientesAprobados.get(i).setColor(pacienteServicio.mostrarColor(pacientesAprobados.get(i).getIdPaciente()));                                        
+                                        pacientesAprobados.get(i).setColor(pacienteServicio.mostrarColor(pacientesAprobados.get(i).getIdPaciente()));  
+                                        System.out.println("EL PACIENTE ES: "+ pacientesAprobados.get(i).getNombre()+"EL COLOR ESSSS: " +pacientesAprobados.get(i).getColor());
                                         //Recorrer la lista y uno por uno ir asignando los colores
                                     }
 
