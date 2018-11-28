@@ -41,7 +41,7 @@ $(document).ready(function () {
     $('#error-editar-EstadoNavegadora').hide();
     $('#error-editar-MunicipioNavegadora').hide();
     $('#error-editar-UsuarioRepetidoNavegadora').hide();
-    
+
     $('#error-imgPerfil').hide();
 
     $('#error-contrasena').hide();
@@ -57,36 +57,31 @@ $(document).ready(function () {
         cache: false,
         method: 'POST',
         data: {key: "autocompleteRayosX"}
-    })
+    }).done(function (response) {
+       
+        var json = JSON.parse(response);
+        for (var i = 0; i < json.length; i++) {
+            var newObjeto = {value: json[i].nombre, data: json[i].idEstudio};
+            rayosX.push(newObjeto);
+        }
 
-            .done(function (response) {
+        console.log(rayosX);
 
-                var json = JSON.parse(response);
-                for (var i = 0; i < json.length; i++) {
-                    var newObjeto = {value: json[i].nombre, data: json[i].idEstudio};
-                    rayosX.push(newObjeto);
-                }
+    });
 
 
-                console.log(rayosX);
+    $("body").on("click", '.rayosX', function () {
 
-            });
+        $('.rayosX').autocomplete({
+            lookup: rayosX,
+            onSelect: function (suggestion) {
+                console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+            }
+        });
 
-    
-    
- $("body").on("click", '.rayosX', function(){
-    
-   $('.rayosX').autocomplete({
-    lookup: rayosX,
-    onSelect: function (suggestion) {
-         console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
-        
-    }
-});  
-     
- });
-    
-    
+    });
+
+
 
 //AutocompleteUltrasonido
 
@@ -111,21 +106,21 @@ $(document).ready(function () {
                 console.log(ultraSonido);
 
             });
-        
-    
-    
-         
- $("body").on("click", '.ultraSonido', function(){
-    
-   $('.ultraSonido').autocomplete({
-    lookup: ultraSonido,
-    onSelect: function (suggestion) {
-         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
-        
-    }
-});  
-     
- });
+
+
+
+
+    $("body").on("click", '.ultraSonido', function () {
+
+        $('.ultraSonido').autocomplete({
+            lookup: ultraSonido,
+            onSelect: function (suggestion) {
+                alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+
+            }
+        });
+
+    });
 
 
 
@@ -153,21 +148,21 @@ $(document).ready(function () {
                 console.log(programa);
 
             });
-        
-    
-    
-         
- $("body").on("click", '.programa', function(){
-    
-   $('.programa').autocomplete({
-    lookup: programa,
-    onSelect: function (suggestion) {
-         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
-        
-    }
-});  
-     
- });
+
+
+
+
+    $("body").on("click", '.programa', function () {
+
+        $('.programa').autocomplete({
+            lookup: programa,
+            onSelect: function (suggestion) {
+                alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+
+            }
+        });
+
+    });
 
 
 
@@ -195,19 +190,19 @@ $(document).ready(function () {
 
             });
 
-        
-       
- $("body").on("click", '.medicinaNuclear', function(){
-    
-   $('.medicinaNuclear').autocomplete({
-    lookup: medicinaNuclear,
-    onSelect: function (suggestion) {
-         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
-        
-    }
-});  
-     
- });
+
+
+    $("body").on("click", '.medicinaNuclear', function () {
+
+        $('.medicinaNuclear').autocomplete({
+            lookup: medicinaNuclear,
+            onSelect: function (suggestion) {
+                alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+
+            }
+        });
+
+    });
 
 
 //AutocompleteValoracion
@@ -244,20 +239,20 @@ $(document).ready(function () {
     });
 
 
-     
-    
-         
- $("body").on("click", '.valoracion', function(){
-    
-   $('.valoracion').autocomplete({
-    lookup: valoracion,
-    onSelect: function (suggestion) {
-         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
-        
-    }
-});  
-     
- });
+
+
+
+    $("body").on("click", '.valoracion', function () {
+
+        $('.valoracion').autocomplete({
+            lookup: valoracion,
+            onSelect: function (suggestion) {
+                alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+
+            }
+        });
+
+    });
 
 
 
@@ -300,25 +295,25 @@ $(document).ready(function () {
                     $("#estadoNavegadora").each(function () {
                         $(this).children().remove();
                     });
-                    
+
                     //Limpia los campos de municipio 
                     $("#municipioNavegadora").each(function () {
                         $(this).children().remove();
                     });
-                    
+
                     //Primera opcion de estado
                     $('#estadoNavegadora').append("<option disabled selected>" + "Seleccione un estado" + "</option>");
-                    
+
                     //Primera opcion de municipio
                     $('#municipioNavegadora').append("<option disabled selected>" + "Seleccione un municipio" + "</option>");
-  
+
                     for (var i = 0; i < data.length; i++) {
                         //Carga estado
                         $('#estadoNavegadora').append("<option value='" + data[i].idEstado + "'>" + data[i].nombre + "</option>");
                     }
-                    
-                    $('#estadoNavegadora').prop('selectedIndex',0);
-                    $('#municipioNavegadora').prop('selectedIndex',0);
+
+                    $('#estadoNavegadora').prop('selectedIndex', 0);
+                    $('#municipioNavegadora').prop('selectedIndex', 0);
 
                     console.log(data);
 
@@ -844,333 +839,333 @@ $(document).ready(function () {
         })
                 .then((enviar) => {
                     if (enviar) {
-                        
+
                         //Aquí se va agregagar
-                       // OMAR
-        var biopsias = [];
-        console.log("Biopsia 1");
-        $('.tuplaBiopsia').each(function () {
-            if($(this).find('.tipoBiopsia').val()!="" || $(this).find('.fechaBiopsia').val()!="" || $(this).find('.parteCuerpoBiopsia').val()!=""){
-                var biopsia = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    tipo:$(this).find('.tipoBiopsia').val(),
-                    fecha:$(this).find('.fechaBiopsia').val(),
-                    lugar:$(this).find('.parteCuerpoBiopsia').val()                    
-                };            
-                biopsias.push(biopsia);
-                console.log(biopsia);
-            }
-            });
-            
-            
-           var rayosxs = [];
-           
-          $('.tuplaRayosX').each(function () {
-            var rayosx = {tipo: $(this).find('.tipoRayosX').val(),
-                fecha: $(this).find('.fechaRayos').val()
-            };
-            rayosxs.push(rayosx);
-            console.log(rayosx);
-            if($(this).find('.rayosX').val()!="" || $(this).find('.fechaRayos').val()!=""){
-                var rayosx = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    tipo:$(this).find('.rayosX').val(),
-                    fecha: $(this).find('.fechaRayos').val()
-                };
-                rayosxs.push(rayosx);
-                console.log(rayosx); 
-            }
-
-        });
-        console.log("Rayox x");
-
-        var ultrasonidos = [];
-        console.log("Ultrasonido");
-        $('.tuplaUltrasonido').each(function () {
-
-            if($(this).find('.parteCuerpoUltrasonido').val()!="" || $(this).find('.fechaUltrasonido').val()!=""){
-                var ultrasonido = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    parte:$(this).find('.parteCuerpoUltrasonido').val(),
-                    fecha: $(this).find('.fechaUltrasonido').val()
-                };
-
-                ultrasonidos.push(ultrasonido);            
-                console.log(ultrasonido);       
-            }
-
-        });
-        console.log("Ultrasonido");
+                        // OMAR
+                        var biopsias = [];
+                        console.log("Biopsia 1");
+                        $('.tuplaBiopsia').each(function () {
+                            if ($(this).find('.tipoBiopsia').val() != "" || $(this).find('.fechaBiopsia').val() != "" || $(this).find('.parteCuerpoBiopsia').val() != "") {
+                                var biopsia = {
+                                    id: $(this).data("id"),
+                                    accion: $(this).data("accion"),
+                                    tipo: $(this).find('.tipoBiopsia').val(),
+                                    fecha: $(this).find('.fechaBiopsia').val(),
+                                    lugar: $(this).find('.parteCuerpoBiopsia').val()
+                                };
+                                biopsias.push(biopsia);
+                                console.log(biopsia);
+                            }
+                        });
 
 
-        var medicinasNucleares = []
-        console.log("Medicina Nuclear");
-        $('.tuplaMedicinaNuclear').each(function () {
+                        var rayosxs = [];
 
-            if($(this).find('.medicinaNuclear').val()!="" || $(this).find('.fechaMedicinaNuclear').val()!=""){
-                var medicinaNuclear = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    medicinaNuclear:$(this).find('.medicinaNuclear').val(),
-                    fecha:$(this).find('.fechaMedicinaNuclear').val()
-                };            
-                console.log(medicinaNuclear);                    
-                medicinasNucleares.push(medicinaNuclear);
-            }
+                        $('.tuplaRayosX').each(function () {
+                            var rayosx = {tipo: $(this).find('.tipoRayosX').val(),
+                                fecha: $(this).find('.fechaRayos').val()
+                            };
+                            rayosxs.push(rayosx);
+                            console.log(rayosx);
+                            if ($(this).find('.rayosX').val() != "" || $(this).find('.fechaRayos').val() != "") {
+                                var rayosx = {
+                                    id: $(this).data("id"),
+                                    accion: $(this).data("accion"),
+                                    tipo: $(this).find('.rayosX').val(),
+                                    fecha: $(this).find('.fechaRayos').val()
+                                };
+                                rayosxs.push(rayosx);
+                                console.log(rayosx);
+                            }
 
-        });
-        console.log("Medicina Nuclear");
+                        });
+                        console.log("Rayox x");
 
+                        var ultrasonidos = [];
+                        console.log("Ultrasonido");
+                        $('.tuplaUltrasonido').each(function () {
 
-        var laboratorios = [];
-        console.log("tuplaLaboratorio");
-        $('.tuplaLaboratorio').each(function () {
+                            if ($(this).find('.parteCuerpoUltrasonido').val() != "" || $(this).find('.fechaUltrasonido').val() != "") {
+                                var ultrasonido = {
+                                    id: $(this).data("id"),
+                                    accion: $(this).data("accion"),
+                                    parte: $(this).find('.parteCuerpoUltrasonido').val(),
+                                    fecha: $(this).find('.fechaUltrasonido').val()
+                                };
 
-            if($(this).find('.fechaLaboratorio').val()!=""){
-                var laboratorio = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    fecha:$(this).find('.fechaLaboratorio').val()
-                };
-                laboratorios.push(laboratorio);
-                console.log(laboratorio);     
-            }
+                                ultrasonidos.push(ultrasonido);
+                                console.log(ultrasonido);
+                            }
 
-        });
-        console.log("tuplaLaboratorio");
-
-
-        var valoraciones = [];
-        console.log("tuplaValoracion");
-        $('.tuplaValoracion').each(function () {
-
-            if($(this).find('.valoracion').val()!="" || $(this).find('.fechaValoracion').val()!=""){
-                var valoracion = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    valoracion:$(this).find('.valoracion').val(),
-                    fecha:$(this).find('.fechaValoracion').val()
-                };
-                valoraciones.push(valoracion);
-                console.log(valoracion);    
-            }
-
-        });
-        console.log("tuplaValoracion");
+                        });
+                        console.log("Ultrasonido");
 
 
-        var espirometrias = [];
-        console.log("tuplaEspirometria");
-        $('.tuplaEspirometria').each(function () {
+                        var medicinasNucleares = []
+                        console.log("Medicina Nuclear");
+                        $('.tuplaMedicinaNuclear').each(function () {
 
-            if($(this).find('.fechaEspirometria').val()!=""){
-                var espirometria = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    fecha:$(this).find('.fechaEspirometria').val()
-                };
-                espirometrias.push(espirometria);
-                console.log(espirometria);
-            }              
+                            if ($(this).find('.medicinaNuclear').val() != "" || $(this).find('.fechaMedicinaNuclear').val() != "") {
+                                var medicinaNuclear = {
+                                    id: $(this).data("id"),
+                                    accion: $(this).data("accion"),
+                                    medicinaNuclear: $(this).find('.medicinaNuclear').val(),
+                                    fecha: $(this).find('.fechaMedicinaNuclear').val()
+                                };
+                                console.log(medicinaNuclear);
+                                medicinasNucleares.push(medicinaNuclear);
+                            }
 
-        });
-        console.log("tuplaEspirometria");
-
-
-        var electrocardiogramas = [];
-        console.log("tuplaElectrocardiograma");
-        $('.tuplaElectrocardiograma').each(function () {
-
-            if($(this).find('.fechaElectrocardiograma').val()!=""){
-                var electrocardiograma = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    fecha:$(this).find('.fechaElectrocardiograma').val()
-                };
-                electrocardiogramas.push(electrocardiograma);
-                console.log(electrocardiograma);      
-            }
-
-        });
-        console.log("tuplaElectrocardiograma");
+                        });
+                        console.log("Medicina Nuclear");
 
 
-        var ecocardiogramas = [];
-        console.log("tuplaEcocardiograma");
-        $('.tuplaEcocardiograma').each(function () {
+                        var laboratorios = [];
+                        console.log("tuplaLaboratorio");
+                        $('.tuplaLaboratorio').each(function () {
 
-            if($(this).find('.fechaEcocardiograma').val()!=""){
-                var ecocardiograma = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    fecha:$(this).find('.fechaEcocardiograma').val()
-                };
-                ecocardiogramas.push(ecocardiograma);
-                console.log(ecocardiograma);    
-            }
+                            if ($(this).find('.fechaLaboratorio').val() != "") {
+                                var laboratorio = {
+                                    id: $(this).data("id"),
+                                    accion: $(this).data("accion"),
+                                    fecha: $(this).find('.fechaLaboratorio').val()
+                                };
+                                laboratorios.push(laboratorio);
+                                console.log(laboratorio);
+                            }
 
-        });
-        console.log("tuplaEcocardiograma");
-
-
-        var trabajosSociales = []
-        console.log("tuplaTrabajoSocial");
-        $('.tuplaTrabajoSocial').each(function () {
-
-            if($(this).find('.fechaTrabajoSocial').val()!=""){
-                var trabajoSocial = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    fecha: $(this).find('.fechaTrabajoSocial').val()
-                };
-                trabajosSociales.push(trabajoSocial);
-                console.log(trabajoSocial);      
-            }
-
-        });
-        console.log("tuplaTrabajoSocial");
+                        });
+                        console.log("tuplaLaboratorio");
 
 
-        var programas = [];
-        console.log("tuplaPrograma");
-        $('.tuplaPrograma').each(function () {
+                        var valoraciones = [];
+                        console.log("tuplaValoracion");
+                        $('.tuplaValoracion').each(function () {
 
-            if($(this).find('.programa').val()!="" || $(this).find('.fechaPrograma').val()!=""){
-                var programa = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    programa:$(this).find('.programa').val(),
-                    fecha: $(this).find('.fechaPrograma').val()
-                };        
-                programas.push(programa);
-                console.log(programa);      
-            }
+                            if ($(this).find('.valoracion').val() != "" || $(this).find('.fechaValoracion').val() != "") {
+                                var valoracion = {
+                                    id: $(this).data("id"),
+                                    accion: $(this).data("accion"),
+                                    valoracion: $(this).find('.valoracion').val(),
+                                    fecha: $(this).find('.fechaValoracion').val()
+                                };
+                                valoraciones.push(valoracion);
+                                console.log(valoracion);
+                            }
 
-        });
-        console.log("tuplaPrograma");
-
-
-        var otrosEstudios = [];
-        console.log("tuplaOtro");
-        $('.tuplaOtro').each(function () {
-
-            if($(this).find('.fechaOtro').val()!="" || $(this).find('.otro-estudioPreconsulta').val()!=""){
-                var otroEstudio = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    fecha:$(this).find('.fechaOtro').val(),
-                    otroEstudio: $(this).find('.otro-estudioPreconsulta').val()
-                };
-                otrosEstudios.push(otroEstudio);
-                console.log(otroEstudio);  
-            }
-        });
-        console.log("tuplaOtro");
-        // OMAR                       
-        var llamadas = [];
-        $('.tuplaLlamada').each(function () {
-            var llamada = {
-                fecha: $(this).find('.fecha-llamada').val(),
-                motivo: $(this).find('.comentario-llamada').val()
-            };
-            llamadas.push(llamada);
-            console.log(llamada);
-        });
+                        });
+                        console.log("tuplaValoracion");
 
 
+                        var espirometrias = [];
+                        console.log("tuplaEspirometria");
+                        $('.tuplaEspirometria').each(function () {
 
-        console.log("Comentarios del médico");
-        var comentariosMedico = $("#comentariosAdicionales").val();
-        if (comentariosMedico == null)
-        {
-            comentariosMedico = "";
-        }
-        console.log(comentariosMedico);
-        console.log("Comentarios del médico");
+                            if ($(this).find('.fechaEspirometria').val() != "") {
+                                var espirometria = {
+                                    id: $(this).data("id"),
+                                    accion: $(this).data("accion"),
+                                    fecha: $(this).find('.fechaEspirometria').val()
+                                };
+                                espirometrias.push(espirometria);
+                                console.log(espirometria);
+                            }
 
-        var tipoUltrasonidoMama = $('#tipoUltrasonidoMama').val();
-        if (tipoUltrasonidoMama == null)
-            tipoUltrasonidoMama = "";
+                        });
+                        console.log("tuplaEspirometria");
 
-        
-        var biradsMasto = $('#ResultadoTipoMastografia').val();
-        if(biradsMasto === null)
-            biradsMasto = "";
-        
-        var biradUSG = $('#tipoUSG').val();
-        if(biradUSG === null)
-            biradUSG = "";
-        
-        console.log("click on 'btn-save[i]'");
 
-        var data = new FormData();
-        var form;
-        var dataTemp;
-        var formValues;
+                        var electrocardiogramas = [];
+                        console.log("tuplaElectrocardiograma");
+                        $('.tuplaElectrocardiograma').each(function () {
 
-        for (var i = 0; i < 5; i++) {
-            form = $("form")[i];
-            dataTemp = new FormData(form);
-            formValues = dataTemp.entries();
-            while (!(ent = formValues.next()).done) {
-                // ent.value[0] es la 'key' and ent.value[1] es el valor
-                data.append(ent.value[0], ent.value[1]);
-                console.log(ent.value[0] + " : " + ent.value[1]);
-            }
-        }
-        console.log("##########################################################################################");
-        data.append("key", "btn-save");      
-        data.append("biopsias",JSON.stringify(biopsias));
-        data.append("rayosxs",JSON.stringify(rayosxs));
-        data.append("ultrasonidos",JSON.stringify(ultrasonidos));
-        data.append("medicinasNucleares",JSON.stringify(medicinasNucleares));
-        data.append("laboratorios",JSON.stringify(laboratorios));
-        data.append("valoraciones",JSON.stringify(valoraciones));
-        data.append("espirometrias",JSON.stringify(espirometrias));
-        data.append("electrocardiogramas",JSON.stringify(electrocardiogramas));
-        data.append("ecocardiogramas",JSON.stringify(ecocardiogramas));
-        data.append("trabajosSociales",JSON.stringify(trabajosSociales));
-        data.append("programas",JSON.stringify(programas));
-        data.append("otrosEstudios",JSON.stringify(otrosEstudios));
-        data.append("comentariosMedico",comentariosMedico);
-        data.append("tipoUltrasonidoMama",tipoUltrasonidoMama);
-        data.append("llamadasCita",JSON.stringify(llamadas));
-        data.append("biradsMasto",biradsMasto);
-        data.append("biradUSG",biradUSG);
-        data.append("cambiarRol", 1);
-        
+                            if ($(this).find('.fechaElectrocardiograma').val() != "") {
+                                var electrocardiograma = {
+                                    id: $(this).data("id"),
+                                    accion: $(this).data("accion"),
+                                    fecha: $(this).find('.fechaElectrocardiograma').val()
+                                };
+                                electrocardiogramas.push(electrocardiograma);
+                                console.log(electrocardiograma);
+                            }
 
-        data.forEach((value, key) => {
-            console.log(key + " " + value);
-        });
-        $.ajax({
-            url: "NavegadoraController",
-            method: "POST",
-            data: data,
-            enctype: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                if (response == "success") {
-                    console.log("ok");
-                } else {
-                    console.log("Algo pasó" + response);
-                }
-            },
-            error: function (request, status, error) {
-                console.log("Enviar datos Error " + request.responseText);
-                console.log("Enviar datos Error status " + status);
-                console.log("Enviar datos Error error" + error);
-                //alert("No enontre el controlador" + status);                               
-            }
-        });
+                        });
+                        console.log("tuplaElectrocardiograma");
 
-                        
-                        
-                        
+
+                        var ecocardiogramas = [];
+                        console.log("tuplaEcocardiograma");
+                        $('.tuplaEcocardiograma').each(function () {
+
+                            if ($(this).find('.fechaEcocardiograma').val() != "") {
+                                var ecocardiograma = {
+                                    id: $(this).data("id"),
+                                    accion: $(this).data("accion"),
+                                    fecha: $(this).find('.fechaEcocardiograma').val()
+                                };
+                                ecocardiogramas.push(ecocardiograma);
+                                console.log(ecocardiograma);
+                            }
+
+                        });
+                        console.log("tuplaEcocardiograma");
+
+
+                        var trabajosSociales = []
+                        console.log("tuplaTrabajoSocial");
+                        $('.tuplaTrabajoSocial').each(function () {
+
+                            if ($(this).find('.fechaTrabajoSocial').val() != "") {
+                                var trabajoSocial = {
+                                    id: $(this).data("id"),
+                                    accion: $(this).data("accion"),
+                                    fecha: $(this).find('.fechaTrabajoSocial').val()
+                                };
+                                trabajosSociales.push(trabajoSocial);
+                                console.log(trabajoSocial);
+                            }
+
+                        });
+                        console.log("tuplaTrabajoSocial");
+
+
+                        var programas = [];
+                        console.log("tuplaPrograma");
+                        $('.tuplaPrograma').each(function () {
+
+                            if ($(this).find('.programa').val() != "" || $(this).find('.fechaPrograma').val() != "") {
+                                var programa = {
+                                    id: $(this).data("id"),
+                                    accion: $(this).data("accion"),
+                                    programa: $(this).find('.programa').val(),
+                                    fecha: $(this).find('.fechaPrograma').val()
+                                };
+                                programas.push(programa);
+                                console.log(programa);
+                            }
+
+                        });
+                        console.log("tuplaPrograma");
+
+
+                        var otrosEstudios = [];
+                        console.log("tuplaOtro");
+                        $('.tuplaOtro').each(function () {
+
+                            if ($(this).find('.fechaOtro').val() != "" || $(this).find('.otro-estudioPreconsulta').val() != "") {
+                                var otroEstudio = {
+                                    id: $(this).data("id"),
+                                    accion: $(this).data("accion"),
+                                    fecha: $(this).find('.fechaOtro').val(),
+                                    otroEstudio: $(this).find('.otro-estudioPreconsulta').val()
+                                };
+                                otrosEstudios.push(otroEstudio);
+                                console.log(otroEstudio);
+                            }
+                        });
+                        console.log("tuplaOtro");
+                        // OMAR                       
+                        var llamadas = [];
+                        $('.tuplaLlamada').each(function () {
+                            var llamada = {
+                                fecha: $(this).find('.fecha-llamada').val(),
+                                motivo: $(this).find('.comentario-llamada').val()
+                            };
+                            llamadas.push(llamada);
+                            console.log(llamada);
+                        });
+
+
+
+                        console.log("Comentarios del médico");
+                        var comentariosMedico = $("#comentariosAdicionales").val();
+                        if (comentariosMedico == null)
+                        {
+                            comentariosMedico = "";
+                        }
+                        console.log(comentariosMedico);
+                        console.log("Comentarios del médico");
+
+                        var tipoUltrasonidoMama = $('#tipoUltrasonidoMama').val();
+                        if (tipoUltrasonidoMama == null)
+                            tipoUltrasonidoMama = "";
+
+
+                        var biradsMasto = $('#ResultadoTipoMastografia').val();
+                        if (biradsMasto === null)
+                            biradsMasto = "";
+
+                        var biradUSG = $('#tipoUSG').val();
+                        if (biradUSG === null)
+                            biradUSG = "";
+
+                        console.log("click on 'btn-save[i]'");
+
+                        var data = new FormData();
+                        var form;
+                        var dataTemp;
+                        var formValues;
+
+                        for (var i = 0; i < 5; i++) {
+                            form = $("form")[i];
+                            dataTemp = new FormData(form);
+                            formValues = dataTemp.entries();
+                            while (!(ent = formValues.next()).done) {
+                                // ent.value[0] es la 'key' and ent.value[1] es el valor
+                                data.append(ent.value[0], ent.value[1]);
+                                console.log(ent.value[0] + " : " + ent.value[1]);
+                            }
+                        }
+                        console.log("##########################################################################################");
+                        data.append("key", "btn-save");
+                        data.append("biopsias", JSON.stringify(biopsias));
+                        data.append("rayosxs", JSON.stringify(rayosxs));
+                        data.append("ultrasonidos", JSON.stringify(ultrasonidos));
+                        data.append("medicinasNucleares", JSON.stringify(medicinasNucleares));
+                        data.append("laboratorios", JSON.stringify(laboratorios));
+                        data.append("valoraciones", JSON.stringify(valoraciones));
+                        data.append("espirometrias", JSON.stringify(espirometrias));
+                        data.append("electrocardiogramas", JSON.stringify(electrocardiogramas));
+                        data.append("ecocardiogramas", JSON.stringify(ecocardiogramas));
+                        data.append("trabajosSociales", JSON.stringify(trabajosSociales));
+                        data.append("programas", JSON.stringify(programas));
+                        data.append("otrosEstudios", JSON.stringify(otrosEstudios));
+                        data.append("comentariosMedico", comentariosMedico);
+                        data.append("tipoUltrasonidoMama", tipoUltrasonidoMama);
+                        data.append("llamadasCita", JSON.stringify(llamadas));
+                        data.append("biradsMasto", biradsMasto);
+                        data.append("biradUSG", biradUSG);
+                        data.append("cambiarRol", 1);
+
+
+                        data.forEach((value, key) => {
+                            console.log(key + " " + value);
+                        });
+                        $.ajax({
+                            url: "NavegadoraController",
+                            method: "POST",
+                            data: data,
+                            enctype: "multipart/form-data",
+                            processData: false,
+                            contentType: false,
+                            success: function (response) {
+                                if (response == "success") {
+                                    console.log("ok");
+                                } else {
+                                    console.log("Algo pasó" + response);
+                                }
+                            },
+                            error: function (request, status, error) {
+                                console.log("Enviar datos Error " + request.responseText);
+                                console.log("Enviar datos Error status " + status);
+                                console.log("Enviar datos Error error" + error);
+                                //alert("No enontre el controlador" + status);                               
+                            }
+                        });
+
+
+
+
                         //
                     } else {
 
@@ -1479,11 +1474,10 @@ $(document).ready(function () {
 
     $("#file-input").on('change', function () {
         console.log("Llegó :)");
-        if(validProfilePhoto($('#file-input'), document.querySelector('#file-input').files)){
+        if (validProfilePhoto($('#file-input'), document.querySelector('#file-input').files)) {
             $('#error-imgPerfil').hide();
             readURL(this);
-        }
-        else{
+        } else {
             $('#error-imgPerfil').show();
         }
     });
@@ -1601,13 +1595,13 @@ $(document).ready(function () {
             }
         });
     });
-    
+
     function validProfilePhoto(input, archivos) {
 
         for (let index = 0; index < archivos.length; index++) {
 
             if (archivos[index]["type"] == "image/jpg" || archivos[index]["type"] == "image/png"
-                ) {
+                    ) {
 
                 console.log('si se puede' + archivos[index]["type"]);
                 input.css('border', '');
@@ -1720,7 +1714,7 @@ $(document).ready(function () {
         );
     });
 
-        //PARA SALIR DE LA CUENTA
+    //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
 
         console.log("Salir cuenta");
@@ -2250,14 +2244,14 @@ $(document).ready(function () {
     });
 
 
-    
-      $('.btn-ver-formulario').on('click', function () {
-          console.log($(this).data('id'));
-          var data = {idPotencial :$(this).data('id')};
+
+    $('.btn-ver-formulario').on('click', function () {
+        console.log($(this).data('id'));
+        var data = {idPotencial: $(this).data('id')};
         $.post("SAPI", {
             file: "navegadora/form.jsp",
-            idPotencial:$(this).data('id')
-            
+            idPotencial: $(this).data('id')
+
         },
                 function (response, status, xhr) {
                     console.log("El ajax fue exitoso!!-----------------------");
@@ -2279,38 +2273,38 @@ $(document).ready(function () {
 
     // Pantallas del formulario 
 
-     $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5').on('click', function () {
-         
+    $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5').on('click', function () {
+
         // OMAR
         var biopsias = [];
         console.log("Biopsia 1");
         $('.tuplaBiopsia').each(function () {
-            if($(this).find('.tipoBiopsia').val()!="" || $(this).find('.fechaBiopsia').val()!="" || $(this).find('.parteCuerpoBiopsia').val()!=""){
+            if ($(this).find('.tipoBiopsia').val() != "" || $(this).find('.fechaBiopsia').val() != "" || $(this).find('.parteCuerpoBiopsia').val() != "") {
                 var biopsia = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    tipo:$(this).find('.tipoBiopsia').val(),
-                    fecha:$(this).find('.fechaBiopsia').val(),
-                    lugar:$(this).find('.parteCuerpoBiopsia').val()                    
-                };            
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    tipo: $(this).find('.tipoBiopsia').val(),
+                    fecha: $(this).find('.fechaBiopsia').val(),
+                    lugar: $(this).find('.parteCuerpoBiopsia').val()
+                };
                 biopsias.push(biopsia);
                 console.log(biopsia);
             }
-            });
-            
-            
-           var rayosxs = [];
-           
-          $('.tuplaRayosX').each(function () {
-            if($(this).find('.rayosX').val()!="" || $(this).find('.fechaRayos').val()!=""){
+        });
+
+
+        var rayosxs = [];
+
+        $('.tuplaRayosX').each(function () {
+            if ($(this).find('.rayosX').val() != "" || $(this).find('.fechaRayos').val() != "") {
                 var rayosx = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    tipo:$(this).find('.rayosX').val(),
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    tipo: $(this).find('.rayosX').val(),
                     fecha: $(this).find('.fechaRayos').val()
                 };
                 rayosxs.push(rayosx);
-                console.log(rayosx); 
+                console.log(rayosx);
             }
 
         });
@@ -2319,16 +2313,16 @@ $(document).ready(function () {
         var ultrasonidos = [];
         console.log("Ultrasonido");
         $('.tuplaUltrasonido').each(function () {
-            if($(this).find('.parteCuerpoUltrasonido').val()!="" || $(this).find('.fechaUltrasonido').val()!=""){
+            if ($(this).find('.parteCuerpoUltrasonido').val() != "" || $(this).find('.fechaUltrasonido').val() != "") {
                 var ultrasonido = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    parte:$(this).find('.parteCuerpoUltrasonido').val(),
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    parte: $(this).find('.parteCuerpoUltrasonido').val(),
                     fecha: $(this).find('.fechaUltrasonido').val()
                 };
 
-                ultrasonidos.push(ultrasonido);            
-                console.log(ultrasonido);       
+                ultrasonidos.push(ultrasonido);
+                console.log(ultrasonido);
             }
 
         });
@@ -2339,14 +2333,14 @@ $(document).ready(function () {
         console.log("Medicina Nuclear");
         $('.tuplaMedicinaNuclear').each(function () {
 
-            if($(this).find('.medicinaNuclear').val()!="" || $(this).find('.fechaMedicinaNuclear').val()!=""){
+            if ($(this).find('.medicinaNuclear').val() != "" || $(this).find('.fechaMedicinaNuclear').val() != "") {
                 var medicinaNuclear = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    medicinaNuclear:$(this).find('.medicinaNuclear').val(),
-                    fecha:$(this).find('.fechaMedicinaNuclear').val()
-                };            
-                console.log(medicinaNuclear);                    
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    medicinaNuclear: $(this).find('.medicinaNuclear').val(),
+                    fecha: $(this).find('.fechaMedicinaNuclear').val()
+                };
+                console.log(medicinaNuclear);
                 medicinasNucleares.push(medicinaNuclear);
             }
 
@@ -2358,14 +2352,14 @@ $(document).ready(function () {
         console.log("tuplaLaboratorio");
         $('.tuplaLaboratorio').each(function () {
 
-            if($(this).find('.fechaLaboratorio').val()!=""){
+            if ($(this).find('.fechaLaboratorio').val() != "") {
                 var laboratorio = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    fecha:$(this).find('.fechaLaboratorio').val()
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    fecha: $(this).find('.fechaLaboratorio').val()
                 };
                 laboratorios.push(laboratorio);
-                console.log(laboratorio);     
+                console.log(laboratorio);
             }
 
         });
@@ -2376,15 +2370,15 @@ $(document).ready(function () {
         console.log("tuplaValoracion");
         $('.tuplaValoracion').each(function () {
 
-            if($(this).find('.valoracion').val()!="" || $(this).find('.fechaValoracion').val()!=""){
+            if ($(this).find('.valoracion').val() != "" || $(this).find('.fechaValoracion').val() != "") {
                 var valoracion = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    valoracion:$(this).find('.valoracion').val(),
-                    fecha:$(this).find('.fechaValoracion').val()
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    valoracion: $(this).find('.valoracion').val(),
+                    fecha: $(this).find('.fechaValoracion').val()
                 };
                 valoraciones.push(valoracion);
-                console.log(valoracion);    
+                console.log(valoracion);
             }
 
         });
@@ -2395,15 +2389,15 @@ $(document).ready(function () {
         console.log("tuplaEspirometria");
         $('.tuplaEspirometria').each(function () {
 
-            if($(this).find('.fechaEspirometria').val()!=""){
+            if ($(this).find('.fechaEspirometria').val() != "") {
                 var espirometria = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    fecha:$(this).find('.fechaEspirometria').val()
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    fecha: $(this).find('.fechaEspirometria').val()
                 };
                 espirometrias.push(espirometria);
                 console.log(espirometria);
-            }              
+            }
 
         });
         console.log("tuplaEspirometria");
@@ -2413,14 +2407,14 @@ $(document).ready(function () {
         console.log("tuplaElectrocardiograma");
         $('.tuplaElectrocardiograma').each(function () {
 
-            if($(this).find('.fechaElectrocardiograma').val()!=""){
+            if ($(this).find('.fechaElectrocardiograma').val() != "") {
                 var electrocardiograma = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    fecha:$(this).find('.fechaElectrocardiograma').val()
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    fecha: $(this).find('.fechaElectrocardiograma').val()
                 };
                 electrocardiogramas.push(electrocardiograma);
-                console.log(electrocardiograma);      
+                console.log(electrocardiograma);
             }
 
         });
@@ -2431,14 +2425,14 @@ $(document).ready(function () {
         console.log("tuplaEcocardiograma");
         $('.tuplaEcocardiograma').each(function () {
 
-            if($(this).find('.fechaEcocardiograma').val()!=""){
+            if ($(this).find('.fechaEcocardiograma').val() != "") {
                 var ecocardiograma = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    fecha:$(this).find('.fechaEcocardiograma').val()
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    fecha: $(this).find('.fechaEcocardiograma').val()
                 };
                 ecocardiogramas.push(ecocardiograma);
-                console.log(ecocardiograma);    
+                console.log(ecocardiograma);
             }
 
         });
@@ -2449,14 +2443,14 @@ $(document).ready(function () {
         console.log("tuplaTrabajoSocial");
         $('.tuplaTrabajoSocial').each(function () {
 
-            if($(this).find('.fechaTrabajoSocial').val()!=""){
+            if ($(this).find('.fechaTrabajoSocial').val() != "") {
                 var trabajoSocial = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
                     fecha: $(this).find('.fechaTrabajoSocial').val()
                 };
                 trabajosSociales.push(trabajoSocial);
-                console.log(trabajoSocial);      
+                console.log(trabajoSocial);
             }
 
         });
@@ -2467,15 +2461,15 @@ $(document).ready(function () {
         console.log("tuplaPrograma");
         $('.tuplaPrograma').each(function () {
 
-            if($(this).find('.programa').val()!="" || $(this).find('.fechaPrograma').val()!=""){
+            if ($(this).find('.programa').val() != "" || $(this).find('.fechaPrograma').val() != "") {
                 var programa = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    programa:$(this).find('.programa').val(),
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    programa: $(this).find('.programa').val(),
                     fecha: $(this).find('.fechaPrograma').val()
-                };        
+                };
                 programas.push(programa);
-                console.log(programa);      
+                console.log(programa);
             }
 
         });
@@ -2486,31 +2480,31 @@ $(document).ready(function () {
         console.log("tuplaOtro");
         $('.tuplaOtro').each(function () {
 
-            if($(this).find('.fechaOtro').val()!="" || $(this).find('.otro-estudioPreconsulta').val()!=""){
+            if ($(this).find('.fechaOtro').val() != "" || $(this).find('.otro-estudioPreconsulta').val() != "") {
                 var otroEstudio = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
-                    fecha:$(this).find('.fechaOtro').val(),
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    fecha: $(this).find('.fechaOtro').val(),
                     otroEstudio: $(this).find('.otro-estudioPreconsulta').val()
                 };
                 otrosEstudios.push(otroEstudio);
-                console.log(otroEstudio);  
+                console.log(otroEstudio);
             }
         });
-        
+
         console.log("tuplaLlamada");
         var llamadas = [];
         $('.tuplaLlamada').each(function () {
-            if($(this).find('.fecha-llamada').val()!="" || $(this).find('.comentario-llamada').val()!=""){
+            if ($(this).find('.fecha-llamada').val() != "" || $(this).find('.comentario-llamada').val() != "") {
                 var llamada = {
-                    id:$(this).data("id"),
-                    accion:$(this).data("accion"),
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
                     fecha: $(this).find('.fecha-llamada').val(),
                     motivo: $(this).find('.comentario-llamada').val()
                 };
+                llamadas.push(llamada);
+                console.log(llamada);
             }
-            llamadas.push(llamada);
-            console.log(llamada);
         });
 
 
@@ -2528,15 +2522,15 @@ $(document).ready(function () {
         if (tipoUltrasonidoMama == null)
             tipoUltrasonidoMama = "";
 
-        
+
         var biradsMasto = $('#ResultadoTipoMastografia').val();
-        if(biradsMasto === null)
+        if (biradsMasto === null)
             biradsMasto = "";
-        
+
         var biradUSG = $('#tipoUSG').val();
-        if(biradUSG === null)
+        if (biradUSG === null)
             biradUSG = "";
-        
+
         console.log("click on 'btn-save[i]'");
 
         var data = new FormData();
@@ -2555,27 +2549,27 @@ $(document).ready(function () {
             }
         }
         console.log("##########################################################################################");
-        data.append("key", "btn-save");      
-        data.append("biopsias",JSON.stringify(biopsias));
-        data.append("rayosxs",JSON.stringify(rayosxs));
-        data.append("ultrasonidos",JSON.stringify(ultrasonidos));
-        data.append("medicinasNucleares",JSON.stringify(medicinasNucleares));
-        data.append("laboratorios",JSON.stringify(laboratorios));
-        data.append("valoraciones",JSON.stringify(valoraciones));
-        data.append("espirometrias",JSON.stringify(espirometrias));
-        data.append("electrocardiogramas",JSON.stringify(electrocardiogramas));
-        data.append("ecocardiogramas",JSON.stringify(ecocardiogramas));
-        data.append("trabajosSociales",JSON.stringify(trabajosSociales));
-        data.append("programas",JSON.stringify(programas));
-        data.append("otrosEstudios",JSON.stringify(otrosEstudios));
-        data.append("comentariosMedico",comentariosMedico);
-        data.append("tipoUltrasonidoMama",tipoUltrasonidoMama);
-        data.append("llamadasCita",JSON.stringify(llamadas));
-        data.append("biradsMasto",biradsMasto);
-        data.append("biradUSG",biradUSG);
-        if(cambiarRol==1)
+        data.append("key", "btn-save");
+        data.append("biopsias", JSON.stringify(biopsias));
+        data.append("rayosxs", JSON.stringify(rayosxs));
+        data.append("ultrasonidos", JSON.stringify(ultrasonidos));
+        data.append("medicinasNucleares", JSON.stringify(medicinasNucleares));
+        data.append("laboratorios", JSON.stringify(laboratorios));
+        data.append("valoraciones", JSON.stringify(valoraciones));
+        data.append("espirometrias", JSON.stringify(espirometrias));
+        data.append("electrocardiogramas", JSON.stringify(electrocardiogramas));
+        data.append("ecocardiogramas", JSON.stringify(ecocardiogramas));
+        data.append("trabajosSociales", JSON.stringify(trabajosSociales));
+        data.append("programas", JSON.stringify(programas));
+        data.append("otrosEstudios", JSON.stringify(otrosEstudios));
+        data.append("comentariosMedico", comentariosMedico);
+        data.append("tipoUltrasonidoMama", tipoUltrasonidoMama);
+        data.append("llamadasCita", JSON.stringify(llamadas));
+        data.append("biradsMasto", biradsMasto);
+        data.append("biradUSG", biradUSG);
+        if (cambiarRol == 1)
             data.append("cambiarRol", cambiarRol);
-        
+
 
         data.forEach((value, key) => {
             console.log(key + " " + value);
@@ -2603,66 +2597,66 @@ $(document).ready(function () {
         });
 
     });
-    
-            
-        
-      $('.btn-perder-cita').on('click', function () {
-          var idPotencial = $(this).data('id') ;
-          
-          //
-                  
-          
-            swal({
+
+
+
+    $('.btn-perder-cita').on('click', function () {
+        var idPotencial = $(this).data('id');
+
+        //
+
+
+        swal({
             title: '¿Estás segure cancelar las citas de navegación y preconsulta?',
             text: "La paciente tendrá que solicitar una nueva cita de navegación y preconsulta.",
             icon: 'warning',
-            buttons:["Cancelar","Aceptar"]
-            
-        }).then((result) => {
-            
-            if (result === true) {                
-                                
-                    $.ajax({
+            buttons: ["Cancelar", "Aceptar"]
 
-                        url: 'NavegadoraController',
-                        cache: false,
-                        method: 'POST',
-                        data: {
-                            key: 'cancelarCitaPotencial',
-                            idPotencial: idPotencial                                        
-                        },
-                        success: function (response) {
-                            console.log(response);
-                            if(response == 0)
-                            {
-                                swal({
+        }).then((result) => {
+
+            if (result === true) {
+
+                $.ajax({
+
+                    url: 'NavegadoraController',
+                    cache: false,
+                    method: 'POST',
+                    data: {
+                        key: 'cancelarCitaPotencial',
+                        idPotencial: idPotencial
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        if (response == 0)
+                        {
+                            swal({
                                 title: "¡Ups!",
                                 text: "Ha habido un error al cancelar las citas de navegación y preconsulta.",
                                 icon: "error",
                                 button: "Aceptar",
-                                });
-                            }else
-                            {
-                                swal({
+                            });
+                        } else
+                        {
+                            swal({
                                 title: "Cancelación exitosa",
                                 text: "Ha habido un error al cancelar las citas de navegación y preconsulta.",
                                 icon: "success",
                                 button: "Aceptar",
-                                });
-                            }                           
+                            });
                         }
-                    });              
-            }           
+                    }
+                });
+            }
         });
 
-          //                               
-       
+        //                               
+
     });
-    
-    
-    
-    
-    
+
+
+
+
+
 });//Terminar el document ready
 
 

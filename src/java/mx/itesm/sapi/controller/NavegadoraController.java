@@ -154,8 +154,8 @@ public class NavegadoraController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        
         String key = request.getParameter("key");
 
         HttpSession sesion = request.getSession(true);
@@ -689,6 +689,9 @@ public class NavegadoraController extends HttpServlet {
                             int idPacientePotencial = (int) sesion.getAttribute("idPacientePotencialForm");;                           
                             int idNavegadora = (int) sesion.getAttribute("idEmpleadoNavegadora");//Navegadora
 
+                            System.out.println("Paciente " + idPacientePotencial);
+                            System.out.println("Navegadora " + idNavegadora);
+                            
                             /**
                              *
                              * INICIO DECLARACION DE SERVICIOS
@@ -2357,7 +2360,7 @@ public class NavegadoraController extends HttpServlet {
                             //*********estadoPAcientePaciente*************
                             //Paciente Tipo resultados
                             //LLAMADAS       
-                            /*
+                            
                             String llamadas = request.getParameter("llamadasCita");
                             System.out.println("Llamadas ".concat(llamadas));
                             Object objLlamadas = parser.parse(llamadas);
@@ -2396,7 +2399,8 @@ public class NavegadoraController extends HttpServlet {
                                     }
                                 }
                             }
-                            */
+                            
+                            //
                             EstadoPacientePaciente estadoPacientePaciente = null;
                             estadoPacientePaciente = estadoPacientePacienteServicioImpl.mostrarEstadoPacientePacienteIdPaciente(idPacientePotencial);
                             estadoPacientePaciente.setIdEmpleado(idNavegadora);
