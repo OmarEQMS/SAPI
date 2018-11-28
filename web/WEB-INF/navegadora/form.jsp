@@ -1856,8 +1856,10 @@
 
                                     <div class="row justify-content-center mt-3">
                                         <div class="col-8">
-                                            <button class="btn btn-morado btn-block" id="btn-export2" style="border-radius:20px">
-                                                <i class="fas fa-file-contract"></i> Generar Reporte</button>
+                                            <form action="ReporteControllerJaspersoft?key=generar-reporte" method="post">
+                                                <input type="submit" class="btn btn-morado btn-block" id="btn-export2" style="border-radius:20px" value="Generar Reporte">
+                                                <i class="fas fa-file-contract"></i>
+                                            </form>
                                         </div>
                                     </div>
 

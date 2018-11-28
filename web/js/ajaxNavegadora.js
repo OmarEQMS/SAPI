@@ -46,31 +46,6 @@ $(document).ready(function () {
     $('#noEqualPasswordsError').hide();
         
 
-    // Generar todo el reporte
-     $('#btn-export2').on('click', function () {
-        console.log("Intentnado redirecionar a generar reporte");
-     	$.ajax({
-            url: "NavegadoraController",
-            method: "POST",
-            data: {
-                key: "generar-reporte"
-            },
-            success: function (response) {
-                if (response == "success") {
-                    console.log("ok");
-                } else {
-                    console.log("Algo pasó" + response);
-                }
-            },
-            error: function (request, status, error) {
-                console.log("Enviar datos Error " + request.responseText);
-                console.log("Enviar datos Error status " + status);
-                console.log("Enviar datos Error error" + error);
-                //alert("No enontre el controlador" + status);                               
-            }
-        });
-
-    });
     //AutocompleteRayosX
 
     var rayosX=[];

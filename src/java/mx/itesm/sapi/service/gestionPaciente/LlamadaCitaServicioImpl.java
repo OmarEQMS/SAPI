@@ -246,7 +246,7 @@ public class LlamadaCitaServicioImpl implements LlamadaCitaServicio {
             while(rs.next())
             {
                 llamadaCita = new LlamadaCita();
-                llamadaCita.setIdLlamadaCita(rs.getInt("idLllamadaCita"));
+                llamadaCita.setIdLlamadaCita(rs.getInt("idLlamadaCita"));
                 llamadaCita.setIdCita(rs.getInt("idCita"));
                 llamadaCita.setIdEmpleado(rs.getInt("idEmpleado"));
                 llamadaCita.setFecha(rs.getTimestamp("fecha"));

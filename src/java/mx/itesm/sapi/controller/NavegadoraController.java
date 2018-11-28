@@ -2446,7 +2446,6 @@ public class NavegadoraController extends HttpServlet {
                             else
                                 System.out.println("ESTA NULL");
                             
-                            response.setContentType("application/pdf");
                             reporteNavegadoraFields.add(reporteNavegadora);
                             System.out.println("El dato que esta en la lista:" + reporteNavegadoraFields.get(0).toString());
                              
@@ -2468,7 +2467,9 @@ public class NavegadoraController extends HttpServlet {
                             List<EstudioFormulario> ecocardiograma = new ArrayList<>();//fecha
                             List<EstudioFormulario> trabajoSocial = new ArrayList<>();//fecha
                             List<EstudioFormulario> otrosEstudios = new ArrayList<>(); //tipo fecha
-                            List<LlamadaCita> llamadas = new ArrayList<>(); //Llamadas
+                            List<EstudioFormulario> espirometrias = new ArrayList<>(); //tipo fecha
+                            List<LlamadaCita> llamada = new ArrayList<>(); //Llamada
+                            List<LlamadaPaciente> llamadas  = new ArrayList<>(); //Llamadas
                             
                             biopsias = estudioFormularioServicioImpl.mostrarFormularioDinamicoLTF(idPaciente,"Biopsia");
                             rayosX = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente,"Rayos X");
@@ -2481,7 +2482,18 @@ public class NavegadoraController extends HttpServlet {
                             ecocardiograma = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente,"Ecocardiogramas");
                             trabajoSocial = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente,"Trabajos sociales");
                             otrosEstudios = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente,"Otros");
-                            llamadas = llamadaCitaServicioImpl.mostrarLlamaCitaPreconsultaPaciente(idPaciente);
+                            espirometrias = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente,"Trabajos sociales");
+                            llamada = llamadaCitaServicioImpl.mostrarLlamaCitaPreconsultaPaciente(idPaciente);
+                            LlamadaPaciente llamadaPaciente;
+                            for(int x = 0; x <= llamada.size(); x++)
+                            {
+                                llamadaPaciente = new LlamadaPaciente();
+                                llamadaPaciente.setFechaLlamada(String.valueOf(llamada.get(x).getFecha()));
+                                llamadaPaciente.setMotivoLlamada(llamada.get(x).getComentario());
+                                llamadas.add(llamadaPaciente);
+                                
+                            }
+                            
                             /* Probar que los array tengan valores*/
                             System.out.println("biopsias: " + biopsias.size());
                             System.out.println("Rayosx: " + biopsias.size());
@@ -2498,6 +2510,7 @@ public class NavegadoraController extends HttpServlet {
                             params.put("datasetValoracion", valoracion);
                             params.put("datasetPrograma", programa);
                             params.put("datasetLaboratorio", laboratorio);
+                            params.put("datasetEspirometria", espirometrias);
                             params.put("datasetElectroCardiograma", electrocardiograma);
                             params.put("datasetEcocardiograma", ecocardiograma);
                             params.put("datasetTrabajoSocial", trabajoSocial);
@@ -2508,7 +2521,7 @@ public class NavegadoraController extends HttpServlet {
                                 response.setContentType("application/pdf");
                                 response.addHeader("content-disposition", "attachment; filename=Reporte1.pdf");
                                 System.out.println("Entra al try ");
-                                    byte[] bytes = JasperRunManager.runReportToPdf(input, null, data);
+                                    byte[] bytes = JasperRunManager.runReportToPdf(input, params, data);
                                     
                                     System.out.println("Corre el JasperSoft");
 
@@ -2518,6 +2531,8 @@ public class NavegadoraController extends HttpServlet {
                                     os.write(bytes);
                                     os.flush();
                                     os.close();
+                                    //request.getRequestDispatcher("/WEB-INF/potencial/cuentaPaciente.jsp").forward(request, response);
+                                    
                                 }catch(Exception ex){
                                     System.out.println(this.getClass().toString().concat(ex.getMessage()));
                                 }
