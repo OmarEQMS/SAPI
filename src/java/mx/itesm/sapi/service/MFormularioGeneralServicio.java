@@ -19,6 +19,8 @@ public interface MFormularioGeneralServicio {
 
     public MFormularioGeneral mostrarFormularioGeneralNavegadora(int idPaciente);
 
+     public ArrayList<MFormularioGeneral> mostrarFormularioNavegadoraLLamada(int idPaciente);
+
     public ArrayList<MFormularioGeneral> mostrarFormularioLugarTipoFecha(int idPaciente, String nombreEstudio);
 
     public ArrayList<MFormularioGeneral> mostrarFormularioLugarFecha(int idPaciente, String nombreEstudio);

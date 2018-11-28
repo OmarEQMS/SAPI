@@ -435,202 +435,120 @@ public class NavegadoraController extends HttpServlet {
                             break;
                         }
                         case "mostrarFormularioNavegadora": {
-                            int idPaciente = (int) sesion.getAttribute("idPacientePotencialForm");
+                            
+                            int idPaciente;
+                            try{
+                                 idPaciente = (int) sesion.getAttribute("idPacientePotencialForm");
+                            }catch(Exception ex)
+                            {
+                                idPaciente = 0;
+                                System.out.println("Sin paaciente para atender aún");
+                            }
+                            
                             
                             if(idPaciente != 0)
                             {
 
-                                System.out.println("EL id paciente es: " + idPaciente);
+                            System.out.println("EL id paciente es: " + idPaciente);
 
-                                ArrayList<MFormularioGeneral> formGeneralList = new ArrayList<>();
-                                ArrayList<ArrayList<MFormularioGeneral>> ElJeison = new ArrayList<>();
+                            ArrayList<MFormularioGeneral> formGeneralList = new ArrayList<>();
+                                System.out.println("va a mamar");
+                            ArrayList<ArrayList<MFormularioGeneral>> ElJeison = new ArrayList<>();
+                                System.out.println("mamó");
+                            MFormularioGeneralServicioImpl mFormularioGeneralServicioImpl = new MFormularioGeneralServicioImpl();
+                            MFormularioGeneral formGeneral = mFormularioGeneralServicioImpl.mostrarFormularioGeneralNavegadora(idPaciente);
+                           // System.out.println(formGeneral.getFechaConsulta());
+                            if(formGeneral.getMedicoAdscrito() == null)formGeneral.setMedicoAdscrito("");
+                            if(formGeneral.getMedicoRadiologo()== null)formGeneral.setMedicoRadiologo("");
+                            if(formGeneral.getPrz() == null)formGeneral.setPrz("");
+                            if(formGeneral.getFechaNavegacion() == null)formGeneral.setFechaNavegacion(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getFechaConsulta() == null)formGeneral.setFechaConsulta(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getMedicoResidente() == null)formGeneral.setMedicoResidente("");
+                            if(formGeneral.getEscolaridad() == null){formGeneral.setEscolaridad("");}
+                           // else{formGeneral.setEscolaridad(formGeneral.getEscolaridad().concat(" "));}
+                            if(formGeneral.getAlergias() == null)formGeneral.setAlergias("");
+                            if(formGeneral.getSeguro() == null)formGeneral.setSeguro("");
+                            if(formGeneral.getNoSeguro() == null)formGeneral.setNoSeguro("");
+                            if(formGeneral.getCirugiaFecha() == null)formGeneral.setCirugiaFecha(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getCirugiaTipo() == null)formGeneral.setCirugiaTipo("");
+                            if(formGeneral.getCirugiaComentario() == null)formGeneral.setCirugiaComentario("");
+                            if(formGeneral.getQuimioterapiaFecha() == null)formGeneral.setQuimioterapiaFecha(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getQuimioterapiaCiclo() <= 0)formGeneral.setQuimioterapiaCiclo(-1);
+                            if(formGeneral.getQuimioterapiaComentario() == null)formGeneral.setQuimioterapiaComentario("");
+                            if(formGeneral.getRadioterapiaFecha() == null)formGeneral.setRadioterapiaFecha(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getRadioterapiaCiclo() <= 0)formGeneral.setRadioterapiaCiclo(-1);
+                            if(formGeneral.getRadioterapiaComentario() == null)formGeneral.setRadioterapiaComentario("");
+                            if(formGeneral.getMastografiaBiradsNombre() == null)formGeneral.setMastografiaBiradsNombre("");
+                            if(formGeneral.getMastografiaBiradsFecha() == null)formGeneral.setMastografiaBiradsFecha(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getUltrasonidoBiradsNombre() == null)formGeneral.setUltrasonidoBiradsNombre("");
+                            if(formGeneral.getUltrasonidoBiradsFecha() == null)formGeneral.setUltrasonidoBiradsFecha(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getResultadoPatologia() == null)formGeneral.setResultadoPatologia("");
+                            if(formGeneral.getOtroResultado() == null)formGeneral.setOtroResultado("");
+                            if(formGeneral.getSerieParafina() == null)formGeneral.setSerieParafina("");
+                            if(formGeneral.getCantidadParafina() <= 0)formGeneral.setCantidadParafina(-1);
+                            if(formGeneral.getSerieLaminillas() == null)formGeneral.setSerieLaminillas("");
+                            if(formGeneral.getCantidadLaminillas() <= 0)formGeneral.setCantidadLaminillas(-1);
+                            if(formGeneral.getT() == null)formGeneral.setT("");
+                            if(formGeneral.getN() == null)formGeneral.setN("");
+                            if(formGeneral.getM() == null)formGeneral.setM("");
+                            if(formGeneral.getFechaFin() == null)formGeneral.setFechaFin(Date.valueOf("1900-01-01"));
+                            if(formGeneral.getDecisionCosulta() == null)formGeneral.setDecisionCosulta("");
+                            if(formGeneral.getSocioeconomico() == null)formGeneral.setSocioeconomico("");
+                            if(formGeneral.getComentarioIncidencia() == null)formGeneral.setComentarioIncidencia("");
+                            if(formGeneral.getComentarioMedico() == null)formGeneral.setComentarioMedico("");
+                            if(formGeneral.getEtapaClinica() == null)formGeneral.setEtapaClinica("");
+                            if(formGeneral.getMasto() == null)formGeneral.setMasto("");
+                            if(formGeneral.getUltra() == null)formGeneral.setUltra("");
+                            if(formGeneral.getRp() == null)formGeneral.setRp("");
+                            if(formGeneral.getRe() == null)formGeneral.setRe("");
+                            if(formGeneral.getHer2() == null)formGeneral.setHer2("");
+                            if(formGeneral.getFish() == null)formGeneral.setFish("");
+                            if(formGeneral.getKi67() == null)formGeneral.setKi67("");
+                            if(formGeneral.getGradoH() == null)formGeneral.setGradoH("");
+                            if(formGeneral.getResultadoPatologiaPost() == null)formGeneral.setResultadoPatologiaPost("");
+                    
+                            formGeneralList.add(formGeneral);
+                            ElJeison.add(formGeneralList);
+                            
+                            ArrayList<MFormularioGeneral> formBiopsia = mFormularioGeneralServicioImpl.mostrarFormularioLugarTipoFecha(idPaciente, "Biopsia");
+                            ElJeison.add(formBiopsia);
+                            
+                            ArrayList<MFormularioGeneral> formRayoX = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Rayos X");
+                            ElJeison.add(formRayoX);
+                            
+                            ArrayList<MFormularioGeneral> formUltraSonido = mFormularioGeneralServicioImpl.mostrarFormularioLugarFecha(idPaciente, "Ultrasonido");
+                            ElJeison.add(formUltraSonido);
 
-                                MFormularioGeneralServicioImpl mFormularioGeneralServicioImpl = new MFormularioGeneralServicioImpl();
-                                MFormularioGeneral formGeneral = mFormularioGeneralServicioImpl.mostrarFormularioGeneralNavegadora(idPaciente);
-                                // System.out.println(formGeneral.getFechaConsulta());
-                                if (formGeneral.getMedicoAdscrito() == null) {
-                                    formGeneral.setMedicoAdscrito("");
-                                }
-                                if (formGeneral.getMedicoRadiologo() == null) {
-                                    formGeneral.setMedicoRadiologo("");
-                                }
-                                if (formGeneral.getPrz() == null) {
-                                    formGeneral.setPrz("");
-                                }
-                                if (formGeneral.getFechaNavegacion() == null) {
-                                    formGeneral.setFechaNavegacion(Date.valueOf("1900-01-01"));
-                                }
-                                if (formGeneral.getFechaConsulta() == null) {
-                                    formGeneral.setFechaConsulta(Date.valueOf("1900-01-01"));
-                                }
-                                if (formGeneral.getMedicoResidente() == null) {
-                                    formGeneral.setMedicoResidente("");
-                                }
-                                if (formGeneral.getEscolaridad() == null) {
-                                    formGeneral.setEscolaridad("");
-                                }
-                                // else{formGeneral.setEscolaridad(formGeneral.getEscolaridad().concat(" "));}
-                                if (formGeneral.getAlergias() == null) {
-                                    formGeneral.setAlergias("");
-                                }
-                                if (formGeneral.getSeguro() == null) {
-                                    formGeneral.setSeguro("");
-                                }
-                                if (formGeneral.getNoSeguro() == null) {
-                                    formGeneral.setNoSeguro("");
-                                }
-                                if (formGeneral.getCirugiaFecha() == null) {
-                                    formGeneral.setCirugiaFecha(Date.valueOf("1900-01-01"));
-                                }
-                                if (formGeneral.getCirugiaTipo() == null) {
-                                    formGeneral.setCirugiaTipo("");
-                                }
-                                if (formGeneral.getCirugiaComentario() == null) {
-                                    formGeneral.setCirugiaComentario("");
-                                }
-                                if (formGeneral.getQuimioterapiaFecha() == null) {
-                                    formGeneral.setQuimioterapiaFecha(Date.valueOf("1900-01-01"));
-                                }
-                                if (formGeneral.getQuimioterapiaCiclo() <= 0) {
-                                    formGeneral.setQuimioterapiaCiclo(-1);
-                                }
-                                if (formGeneral.getQuimioterapiaComentario() == null) {
-                                    formGeneral.setQuimioterapiaComentario("");
-                                }
-                                if (formGeneral.getRadioterapiaFecha() == null) {
-                                    formGeneral.setRadioterapiaFecha(Date.valueOf("1900-01-01"));
-                                }
-                                if (formGeneral.getRadioterapiaCiclo() <= 0) {
-                                    formGeneral.setRadioterapiaCiclo(-1);
-                                }
-                                if (formGeneral.getRadioterapiaComentario() == null) {
-                                    formGeneral.setRadioterapiaComentario("");
-                                }
-                                if (formGeneral.getMastografiaBiradsNombre() == null) {
-                                    formGeneral.setMastografiaBiradsNombre("");
-                                }
-                                if (formGeneral.getMastografiaBiradsFecha() == null) {
-                                    formGeneral.setMastografiaBiradsFecha(Date.valueOf("1900-01-01"));
-                                }
-                                if (formGeneral.getUltrasonidoBiradsNombre() == null) {
-                                    formGeneral.setUltrasonidoBiradsNombre("");
-                                }
-                                if (formGeneral.getUltrasonidoBiradsFecha() == null) {
-                                    formGeneral.setUltrasonidoBiradsFecha(Date.valueOf("1900-01-01"));
-                                }
-                                if (formGeneral.getResultadoPatologia() == null) {
-                                    formGeneral.setResultadoPatologia("");
-                                }
-                                if (formGeneral.getOtroResultado() == null) {
-                                    formGeneral.setOtroResultado("");
-                                }
-                                if (formGeneral.getSerieParafina() == null) {
-                                    formGeneral.setSerieParafina("");
-                                }
-                                if (formGeneral.getCantidadParafina() <= 0) {
-                                    formGeneral.setCantidadParafina(-1);
-                                }
-                                if (formGeneral.getSerieLaminillas() == null) {
-                                    formGeneral.setSerieLaminillas("");
-                                }
-                                if (formGeneral.getCantidadLaminillas() <= 0) {
-                                    formGeneral.setCantidadLaminillas(-1);
-                                }
-                                if (formGeneral.getT() == null) {
-                                    formGeneral.setT("");
-                                }
-                                if (formGeneral.getN() == null) {
-                                    formGeneral.setN("");
-                                }
-                                if (formGeneral.getM() == null) {
-                                    formGeneral.setM("");
-                                }
-                                if (formGeneral.getFechaFin() == null) {
-                                    formGeneral.setFechaFin(Date.valueOf("1900-01-01"));
-                                }
-                                if (formGeneral.getDecisionCosulta() == null) {
-                                    formGeneral.setDecisionCosulta("");
-                                }
-                                if (formGeneral.getSocioeconomico() == null) {
-                                    formGeneral.setSocioeconomico("");
-                                }
-                                if (formGeneral.getComentarioLLamada() == null) {
-                                    formGeneral.setComentarioLLamada("");
-                                }
-                                if (formGeneral.getFechaLlamada() == null) {
-                                    formGeneral.setFechaLlamada(Date.valueOf("1900-01-01"));
-                                }
-                                if (formGeneral.getComentarioIncidencia() == null) {
-                                    formGeneral.setComentarioIncidencia("");
-                                }
-                                if (formGeneral.getComentarioMedico() == null) {
-                                    formGeneral.setComentarioMedico("");
-                                }
-                                if (formGeneral.getEtapaClinica() == null) {
-                                    formGeneral.setEtapaClinica("");
-                                }
-                                if (formGeneral.getMasto() == null) {
-                                    formGeneral.setMasto("");
-                                }
-                                if (formGeneral.getUltra() == null) {
-                                    formGeneral.setUltra("");
-                                }
-                                if (formGeneral.getRp() == null) {
-                                    formGeneral.setRp("");
-                                }
-                                if (formGeneral.getRe() == null) {
-                                    formGeneral.setRe("");
-                                }
-                                if (formGeneral.getHer2() == null) {
-                                    formGeneral.setHer2("");
-                                }
-                                if (formGeneral.getFish() == null) {
-                                    formGeneral.setFish("");
-                                }
-                                if (formGeneral.getKi67() == null) {
-                                    formGeneral.setKi67("");
-                                }
-                                if (formGeneral.getGradoH() == null) {
-                                    formGeneral.setGradoH("");
-                                }
-                                if (formGeneral.getResultadoPatologiaPost() == null) {
-                                    formGeneral.setResultadoPatologiaPost("");
-                                }
+                            ArrayList<MFormularioGeneral> formMedicinaNuclear = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Medicina nuclear");
+                            ElJeison.add(formMedicinaNuclear);
+                            ArrayList<MFormularioGeneral> formLaboratorio = mFormularioGeneralServicioImpl.mostrarFormularioFecha(idPaciente, "Laboratorios");
+                            ElJeison.add(formLaboratorio);
+                            ArrayList<MFormularioGeneral> formValoracion = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Valoración");
+                            ElJeison.add(formValoracion);
+                            ArrayList<MFormularioGeneral> formEspiro = mFormularioGeneralServicioImpl.mostrarFormularioFecha(idPaciente, "Espirometría/Inhaloterapia");
+                            ElJeison.add(formEspiro);
+                            ArrayList<MFormularioGeneral> formElectro = mFormularioGeneralServicioImpl.mostrarFormularioFecha(idPaciente, "Electrocardiograma");
+                            ElJeison.add(formElectro);
+                            ArrayList<MFormularioGeneral> formEcocardio = mFormularioGeneralServicioImpl.mostrarFormularioFecha(idPaciente, "Ecocardiograma");
+                            ElJeison.add(formEcocardio);
+                            ArrayList<MFormularioGeneral> formTrabajoSocial = mFormularioGeneralServicioImpl.mostrarFormularioFecha(idPaciente, "Trabajo social");
+                            ElJeison.add(formTrabajoSocial);
+                            ArrayList<MFormularioGeneral> formProgramas = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Programas");
+                            ElJeison.add(formProgramas);
+                            ArrayList<MFormularioGeneral> formOtros = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Otros");
+                            ElJeison.add(formOtros);
 
-                                formGeneralList.add(formGeneral);
-                                ElJeison.add(formGeneralList);
-                                ArrayList<MFormularioGeneral> formBiopsia = mFormularioGeneralServicioImpl.mostrarFormularioLugarTipoFecha(idPaciente, "Biopsia");
-                                ElJeison.add(formBiopsia);
-                                ArrayList<MFormularioGeneral> formUltraSonido = mFormularioGeneralServicioImpl.mostrarFormularioLugarFecha(idPaciente, "Ultrasonido");
-                                ElJeison.add(formUltraSonido);
+                            
+                            ArrayList<MFormularioGeneral> formLlamada = mFormularioGeneralServicioImpl.mostrarFormularioNavegadoraLLamada(idPaciente);
+                            ElJeison.add(formLlamada);
+                            
+                            PrintWriter out = response.getWriter();
+                            Gson json = new Gson();
+                            System.out.println(json);
+                            System.out.println(ElJeison);
 
-                                ArrayList<MFormularioGeneral> formMedicinaNuclear = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Medicina nuclear");
-                                ElJeison.add(formMedicinaNuclear);
-                                ArrayList<MFormularioGeneral> formValoracion = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Valoración");
-                                ElJeison.add(formValoracion);
-                                ArrayList<MFormularioGeneral> formProgramas = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Programas");
-                                ElJeison.add(formProgramas);
-                                ArrayList<MFormularioGeneral> formOtros = mFormularioGeneralServicioImpl.mostrarFormularioFechaTipo(idPaciente, "Otros");
-                                ElJeison.add(formOtros);
-
-                                ArrayList<MFormularioGeneral> formLaboratorio = mFormularioGeneralServicioImpl.mostrarFormularioFecha(idPaciente, "Laboratorios");
-                                ElJeison.add(formLaboratorio);
-                                ArrayList<MFormularioGeneral> formEspiro = mFormularioGeneralServicioImpl.mostrarFormularioFecha(idPaciente, "Espirometría/Inhaloterapia");
-                                ElJeison.add(formEspiro);
-                                ArrayList<MFormularioGeneral> formElectro = mFormularioGeneralServicioImpl.mostrarFormularioFecha(idPaciente, "Electrocardiograma");
-                                ElJeison.add(formElectro);
-                                ArrayList<MFormularioGeneral> formEcocardio = mFormularioGeneralServicioImpl.mostrarFormularioFecha(idPaciente, "Ecocardiograma");
-                                ElJeison.add(formEcocardio);
-                                ArrayList<MFormularioGeneral> formTrabajoSocial = mFormularioGeneralServicioImpl.mostrarFormularioFecha(idPaciente, "Trabajo social");
-                                ElJeison.add(formTrabajoSocial);
-
-                                PrintWriter out = response.getWriter();
-                                Gson json = new Gson();
-                                System.out.println(json);
-                                System.out.println(ElJeison);
-
-                                out.print(json.toJson(ElJeison));
-                            }
+                            out.print(json.toJson(ElJeison));
+                        }
                             break;
                         }
 
