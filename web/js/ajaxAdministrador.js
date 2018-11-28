@@ -383,7 +383,7 @@ $(document).ready(function () {
 
         $.ajax({
 
-            url: 'RegistraUsuarioController',
+            url: 'PotencialController',
             method: "POST",
             cache: false,
             data: {
@@ -764,7 +764,7 @@ $(document).ready(function () {
     $('#agregar-correoMedico').on('change', function () {
         $.ajax({
 
-            url: 'RegistraUsuarioController',
+            url: 'PotencialController',
             cache: false,
             method: 'POST',
             data: {
@@ -775,7 +775,6 @@ $(document).ready(function () {
 
             },
             success: function (response) {
-
                 if (response === 'CorreoAlreadyExists') {
                     console.log("correo repetidooo")
                     $('#agregar-correoMedico').css('color', 'orange');
@@ -1507,7 +1506,7 @@ $(document).ready(function () {
     $('#editar-correoMedico').on('change', function () {
         $.ajax({
 
-            url: 'RegistraUsuarioController',
+            url: 'PotencialController',
             cache: false,
             method: 'POST',
             data: {
@@ -1518,7 +1517,7 @@ $(document).ready(function () {
 
             },
             success: function (response) {
-
+                alert("esto está raro");
                 if (response === 'CorreoAlreadyExists') {
                     console.log("correo repetidooo")
                     $('#editar-correoMedico').css('color', 'orange');
@@ -2026,7 +2025,7 @@ $(document).ready(function () {
     $('#editar-correoNavegadora').on('change', function () {
         $.ajax({
 
-            url: 'RegistraUsuarioController',
+            url: 'PotencialController',
             cache: false,
             method: 'POST',
             data: {
@@ -2186,7 +2185,7 @@ $(document).ready(function () {
     $('#agregar-correoNavegadora').on('change', function () {
         $.ajax({
 
-            url: 'RegistraUsuarioController',
+            url: 'PotencialController',
             cache: false,
             method: 'POST',
             data: {

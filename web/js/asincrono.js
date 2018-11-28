@@ -1,6 +1,8 @@
 $(document).ready(function () {
 
-
+    mostrarContrasena($('#recuperarContrasena'),'cambio1');
+    mostrarContrasena($('#recuperarConfirmarContrasena'),'cambio2');
+    
     //Esconder mensajes de error
     $('#msj-error').hide();
     $('#error-terminos').hide();
@@ -1030,6 +1032,17 @@ $(document).ready(function () {
         }
 
         return true;
+    }
+    
+    function mostrarContrasena(myButton, myField) {
+        myButton.on('mousedown', function () {
+            var x = document.getElementById(myField);
+            x.type = "text";
+        });
+        myButton.on('mouseup', function () {
+            var x = document.getElementById(myField);
+            x.type = "password";
+        });
     }
 
 });

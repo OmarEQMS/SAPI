@@ -126,7 +126,7 @@ input::-webkit-input-placeholder {
     font-family: 'Roboto Condensed', "Font Awesome\ 5 Free" !important;
 }
 .useFontAwesomeFamily::placeholder { /* Most modern browsers */
-    font-family: 'Roboto Condensed', "Font Awesome\ 5 Free", "Font Awesome 5 Regular", !important;
+    font-family: 'Roboto Condensed', "Font Awesome\ 5 Free", "Font Awesome 5 Regular" !important;
     font-weight: 900;
 }
 

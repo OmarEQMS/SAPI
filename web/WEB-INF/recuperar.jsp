@@ -42,11 +42,26 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <input id="cambio1" type="password" class="form-control" placeholder="Introduce tu nueva contraseña" >
+                        <div class="input-group">
+                            <div id="recuperarContrasena" class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="far fa-eye"></i>
+                                </div>
+                            </div>
+                            <input id="cambio1" type="password" class="form-control" placeholder="Introduce tu nueva contraseña" >
+                        </div>
                         <span class="text-danger" id="errorPass1">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                     </div>
+                    
                     <div class="col-12">
-                        <input id="cambio2"type="password" class="form-control mt-3" placeholder="Confirma tu nueva contraseña" >
+                        <div class="input-group">
+                            <div id="recuperarConfirmarContrasena" class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="far fa-eye"></i>
+                                </div>
+                            </div>
+                            <input id="cambio2" type="password" class="form-control mt-3" placeholder="Confirma tu nueva contraseña" >
+                        </div>
                         <span class="text-warning" id="noEqualPasswordsError">Las contraseñas no son iguales.</span>
                     </div>
                 </div>

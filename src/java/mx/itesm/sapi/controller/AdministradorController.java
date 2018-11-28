@@ -119,6 +119,30 @@ public class AdministradorController extends HttpServlet {
                     out.print(new Gson().toJson(medico));
                     break;
                 }
+                case "repiteCorreo": {
+                    
+                    String correo = request.getParameter("correo");
+                    int idPersona = (int) sesion.getAttribute("idEmpleado");
+
+                    PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
+
+                    PrintWriter out = response.getWriter();
+
+                    System.out.println("ENTRA AQUÍ");
+
+                    //Checo si el usuario existe
+                    if (_registroServicio.existsCorreo(correo, idPersona)) {
+                        System.out.println("EXISTE");
+                        out.print("CorreoAlreadyExists");
+
+                    } else {
+                        System.out.println("NO EXISTE");
+                        //Si no existe, lo inserto
+                        out.print("CorreoDoesntExist");
+
+                    }
+                }
+                break;
                 case "actualizar-medico": {
                     System.out.println("Actualizar médico");
                     int idMedicoAdministrador = Integer.valueOf(request.getParameter("idMedico"));
@@ -157,7 +181,6 @@ public class AdministradorController extends HttpServlet {
 
                     Posicion posicionMedicos = posicionServicioImpl.mostrarPosicion(posicion);
 
-
                     MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
                     MedicoEspecialidad medicoEspecialidad = medicoEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(idMedicoAdministrador);
                     medicoEspecialidad.setCedulaProfesional(cedula);
@@ -165,13 +188,11 @@ public class AdministradorController extends HttpServlet {
                     System.out.println(" adminiController medicoEspecialidad ".concat(String.valueOf(medicoEspecialidad.getIdEmpleado())));
                     boolean medicoEspecialidadBoolean = medicoEspecialidadServicioImpl.actualizarMedicoEspecialidad(medicoEspecialidad);
 
-
                     MedicoPosicionServicioImpl medicoPosicionServicioImpl = new MedicoPosicionServicioImpl();
                     MedicoPosicion medicoPosicion = medicoPosicionServicioImpl.mostrarMedicoPosicionEmpleado(idMedicoAdministrador);
                     medicoPosicion.setIdPosicion(posicionMedicos.getIdPosicion());
                     System.out.println(" adminiController medicoPosicion ".concat(String.valueOf(medicoPosicion.getIdEmpleado())));
                     boolean medicoPosicionBoolean = medicoPosicionServicioImpl.actualizarMedicoPosicion(medicoPosicion);
-
 
                     PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                     Persona persona = personaServicioImpl.mostrarPersona(medico.getIdPersona());
