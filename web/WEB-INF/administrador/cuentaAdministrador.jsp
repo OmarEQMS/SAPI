@@ -199,8 +199,10 @@
                                 </div>
 
                                 <div class="col-8">
+
                                     <span class="text-danger error-correo" id="error-usuario">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
                                     <span class="text-warning error-correoRepetido">El correo ya existe</span>
+
                                 </div>
 
                             </div>
@@ -263,7 +265,8 @@
 
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" id="btn-cancelarContrasena" style="border-radius: 20px"  data-dismiss="modal">Cancelar</button>
+
+                                        <button type="button" class="btn btn-danger cleanerModal" style="border-radius: 20px"  data-dismiss="modal">Cancelar</button>
                                         <button type="button" class="btn btn-primary" id="btn-updatePassword" style="border-radius: 20px" >Cambiar contraseña</button>
 
                                     </div>
