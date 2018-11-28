@@ -630,8 +630,10 @@ $(document).ready(function () {
 
                 if (response == "CorreoAlreadyExists") {
                     $('.error-correoRepetido').show();
+                    $('#correo').css('color', 'orange');
                 } else {
                     $('.error-correoRepetido').hide();
+                    $('#correo').css('color', '');
                 }
             }
 

@@ -199,8 +199,8 @@
                                 </div>
 
                                 <div class="col-8">
-                                    <span class="text-danger error-correo" id="error-usuario">Formato incorrecto</span>
-                                    <span class="text-warning error-correoRepetido">El usuario ya existe</span>
+                                    <span class="text-danger error-correo" id="error-usuario">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
+                                    <span class="text-warning error-correoRepetido">El correo ya existe</span>
                                 </div>
 
                             </div>
