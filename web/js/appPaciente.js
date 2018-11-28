@@ -381,12 +381,11 @@ $(document).ready(function () {
      });*/
     
     //TABLA TRATAMIENTOS
-    $('#tablaTratamientos').DataTable({
-        order: [],
+    $('.tablaTratamientos').DataTable({
         responsive: true,
+        searching: true,
         dom: 'lBfrtip',
-        buttons: [
-        ],
+        buttons: [,],
 
         "language": {
 
@@ -416,6 +415,8 @@ $(document).ready(function () {
         }
 
     });
+    
+    
 
 
 });

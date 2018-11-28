@@ -110,7 +110,7 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
 
         int id = -1;
         //Aquí va el call del procedure
-        String stProcedure = "CALL agregarPersona(?, ?, ?, ?)";
+        String stProcedure = "CALL agregarPacienteMedicoTitular(?, ?, ?, ?)";
 
         try {
             conn = Conexion.getConnection();
@@ -148,7 +148,7 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
         boolean exito = false;
 
         //Call del store procedure
-        String stProcedure = "actualizarpacienteMedicoTitular(?, ?, ?, ?)";
+        String stProcedure = "CALL actualizarPacienteMedicoTitular(?, ?, ?, ?,?)";
 
         try {
             conn = Conexion.getConnection();
@@ -158,7 +158,7 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
             cstmt.setInt(3, pacienteMedicoTitular.getIdEmpleado());
             cstmt.setDate(4, pacienteMedicoTitular.getInicio());
             cstmt.setDate(5, pacienteMedicoTitular.getFin());
-            cstmt.setInt(6, pacienteMedicoTitular.getEstatus());
+
 
             rs = cstmt.executeQuery();
 
@@ -180,7 +180,7 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL borradoLogicoCita(?)";
+        String stProcedure = "CALL borradoLogicoPacienteMedicoTitular(?)";
         boolean exito = false;
 
         try {
@@ -220,6 +220,46 @@ public class PacienteMedicoTitularServicioImpl implements PacienteMedicoTitularS
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+
+            rs.next();
+
+            pacienteMedicoTitular.setIdPacienteMedicoTitular(rs.getInt("idPacienteMedicoTitular"));
+            pacienteMedicoTitular.setIdPaciente(rs.getInt("idPaciente"));
+            pacienteMedicoTitular.setIdEmpleado(rs.getInt("idEmpleado"));
+            pacienteMedicoTitular.setInicio(rs.getDate("inicio"));
+            pacienteMedicoTitular.setFin(rs.getDate("fin"));
+            pacienteMedicoTitular.setEstatus(rs.getInt("estatus"));
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            pacienteMedicoTitular = null;
+        }
+        return pacienteMedicoTitular;
+    }
+    
+    @Override
+    public PacienteMedicoTitular mostrarPacienteMedicoTitularIdPacientePosicion(int idPaciente, int idPosicion) {
+         Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        PacienteMedicoTitular pacienteMedicoTitular = null;
+
+        //Call del store procedure
+        String stProcedure = "CALL mostrarPacienteMedicoTitularIdPacientePosicion(?, ?)";
+
+        try {
+            pacienteMedicoTitular = new PacienteMedicoTitular();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+            cstmt.setInt(2, idPosicion);
 
             rs = cstmt.executeQuery();
 

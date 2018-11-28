@@ -23,6 +23,9 @@ public class SolicitudPreconsulta {
     private String referencia;
     private String mastografia;
     private String ultrasonido;
+    private int motivoCosulta;
+    private String otro;
+    private String hospital;
 
     public SolicitudPreconsulta()
     {
@@ -52,6 +55,32 @@ public class SolicitudPreconsulta {
         return "SolicitudPreconsulta{" + "idSexo=" + idSexo + ", silla=" + silla + ", camilla=" + camilla + ", baston=" + baston + ", oxigeno=" + oxigeno + ", estudioPrevio=" + estudioPrevio + ", biopsiaPrevia=" + biopsiaPrevia + ", identificacion=" + identificacion + ", comprobante=" + comprobante + ", curp=" + curp + ", referencia=" + referencia + ", mastografia=" + mastografia + ", ultrasonido=" + ultrasonido + '}';
     }
  */   
+
+    public String getOtro() {
+        return otro;
+    }
+
+    public void setOtro(String otro) {
+        this.otro = otro;
+    }
+
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
+
+    
+    public int getMotivoCosulta() {
+        return motivoCosulta;
+    }
+
+    public void setMotivoCosulta(int motivoCosulta) {
+        this.motivoCosulta = motivoCosulta;
+    }
+    
     public int getIdSexo() {
         return idSexo;
     }

@@ -101,9 +101,7 @@
                 <ul class="list-unstyled components">
 
                     <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
-                    
-                    <li id="irAForm"><a><i class="fas fa-home"></i>Ir a Form</a></li>
-                    
+                                                            
                     <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
                     <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
@@ -173,6 +171,7 @@
                             <div class="row mb-4">
                                 <div class="col-12 text-center">
                                     <h4 class="FotoPerfil text-secondary" style="font-size:17px;">Edita tu foto de perfil</h4>
+                                    <span class="text-danger" id="error-imgPerfil">No es una extensión válida. Puedes subir un archivo .jpg o .png</span>
                                 </div>
                             </div>
 
@@ -261,6 +260,7 @@
                                     <hr>
                                 </div>
                             </div>
+                        </form>
                     </div>
                 </div>
 

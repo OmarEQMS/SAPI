@@ -14,7 +14,8 @@ import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
  */
 public interface ComentarioCitaServicio {
     public ComentarioCita mostrarComentarioCita(int idComentarioCita);
-    public ComentarioCita mostrarComentarioCitaIdCita(int idCita);
+    public ComentarioCita mostrarComentarioCitaIdCita(int idComentarioCita);
+   
     public List<ComentarioCita> mostrarComentarioCita();
     public int agregarComentarioCita(ComentarioCita comentarioCita);
     public boolean borradoLogicoComentarioCita(int idComentarioCita);

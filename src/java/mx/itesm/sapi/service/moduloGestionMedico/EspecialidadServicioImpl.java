@@ -71,7 +71,7 @@ public class EspecialidadServicioImpl implements EspecialidadServicio{
         try{
             
             
-            cstmt = conn.prepareCall("CALL -----");
+            cstmt = conn.prepareCall("CALL mostrarEspecialidades()");
             ResultSet rs = cstmt.executeQuery();
             Especialidad especialidad;
             
@@ -79,9 +79,10 @@ public class EspecialidadServicioImpl implements EspecialidadServicio{
                 
                 especialidad = new Especialidad();
                 
-                 especialidad.setNombre(rs.getString(1));
-            especialidad.setSubEspecialidad(rs.getInt(2));
-            especialidad.setEstatus(rs.getInt(3));
+                especialidad.setIdEspecialidad(rs.getInt(1));
+                especialidad.setNombre(rs.getString(2));
+                especialidad.setSubEspecialidad(rs.getInt(3));
+                especialidad.setEstatus(rs.getInt(4));
                 
                 especialidades.add(especialidad);
             
@@ -109,7 +110,7 @@ public class EspecialidadServicioImpl implements EspecialidadServicio{
         Especialidad especialiadInterna = null;
 
         //Call del store procedure
-        String stProcedure = "CALL motrarEspecialidadPorNombre(?)";
+        String stProcedure = "CALL mostrarEspecialidadPorNombre(?)";
 
         try {
             especialiadInterna = new Especialidad();

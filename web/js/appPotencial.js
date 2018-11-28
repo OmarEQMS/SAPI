@@ -108,7 +108,7 @@ $(document).ready(function () {
                         + '<div class="custom-file col-8" id="customFile">'
                         + '<input type="file" class="custom-file-input" id="referenciaArchivo" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp">'
                         + '<span class="text-danger" id="error-referencia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png, .pdf o .docx</span>'
-                        + '<label class="custom-file-label">'
+                        + '<label class="custom-file-label" id="labelReferencia">'
                         + 'Adjunta la hoja de referencia de médico del hospital.'
                         + '</label>'
                         + '</div>';
@@ -223,6 +223,10 @@ $(document).ready(function () {
         }, 400);
 
     });
+    
+    $("body").on("click",".clearMotivo", function(){
+                $(".motivoCancelacion").attr("type","text").val('').attr("placeholder","¿Por qué desea cancelar su cita?");
+	});
     
     $('#btn-continuarAResolucion').on('click', function () {
 

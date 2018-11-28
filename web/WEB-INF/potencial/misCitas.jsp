@@ -291,10 +291,10 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <textarea class="form-control" placeholder="¿Por qué desea cancelar su cita?"></textarea>
+                                                <textarea class="form-control motivoCancelacion" placeholder="¿Por qué desea cancelar su cita?"></textarea>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" style="border-radius: 20px;" data-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-danger clearMotivo" style="border-radius: 20px;" data-dismiss="modal">Cerrar</button>
                                                 <button type="button" id="btn-cancelarDefinitivo" class="btn btn-primary" style="border-radius: 20px;">Cancelar Cita</button>
                                             </div>
                                         </div>

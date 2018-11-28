@@ -218,4 +218,34 @@ public class PacienteNecesidadEspecialServicioImpl implements PacienteNecesidadE
         return pacienteNecesidadEspecial;
     }
     
+    @Override
+    public boolean borradoLogicoPacienteNecesidadEspecial(int idPacientePotencial, int idNecesidadEspecial) {
+        Connection conn; 
+        CallableStatement cstmt;
+        String stProcedure = "CALL borradoLogicoPacienteNecesidadEspecialIdPacIdNec(?,?)";
+        boolean exito = false;
+        ResultSet rs;
+        try{
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPacientePotencial);
+            cstmt.setInt(2, idNecesidadEspecial);
+            
+            rs = cstmt.executeQuery();
+            rs.next();
+            
+            exito = rs.getBoolean(1);
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+        }catch( SQLException ex){
+           
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito=false;
+        }
+        return exito;
+    }
+    
 }

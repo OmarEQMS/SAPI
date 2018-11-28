@@ -18,4 +18,5 @@ public interface EstadiajeTNMService {
     List<EstadiajeTNM> mostrarEstadiajeTNM();
     public boolean actualizarEstadiajeTNM(EstadiajeTNM idRegistroTNM);
     public boolean borradoLogicoEstadiajeTNM(int idRegistroTNM);
+    public EstadiajeTNM mostrarEstadiajeTNMPaciente(int idPaciente);
 }

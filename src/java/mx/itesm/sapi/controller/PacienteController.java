@@ -168,9 +168,9 @@ public class PacienteController extends HttpServlet {
 
                             response.setContentType("application/json");
                             response.setCharacterEncoding("UTF-8");
-                            
+
                             System.out.println(new Gson().toJson(calendarios));
-                            
+
                             out.print(new Gson().toJson(calendarios));
                         }
                         break;
@@ -250,12 +250,35 @@ public class PacienteController extends HttpServlet {
 
                         break;
 
+                        case "repiteCorreo": {
+
+                            String correo = request.getParameter("correo");
+                            int idPersona = (int) sesion.getAttribute("idPersona");
+
+                            PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
+
+                            System.out.println("ENTRA AQUÍ");
+
+                            //Checo si el usuario existe
+                            if (_registroServicio.existsCorreo(correo, idPersona)) {
+                                System.out.println("EXISTE");
+                                out.print("CorreoAlreadyExists");
+
+                            } else {
+                                System.out.println("NO EXISTE");
+                                //Si no existe, lo inserto
+                                out.print("CorreoDoesntExist");
+
+                            }
+                        }
+                        break;
+
                         case "eliminarCuentaPaciente": {
                             System.out.println("Si llego aqui paciente");
                             if (sesion.getAttribute("idCuenta") == null) {
                                 /**
-                                 * Angel Gutiérrez 01/11/2018
-                                 * Si no tiene sesion iniciada
+                                 * Angel Gutiérrez 01/11/2018 Si no tiene sesion
+                                 * iniciada
                                  */
                                 // request.setAttribute("status", "");
                                 request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
@@ -316,7 +339,7 @@ public class PacienteController extends HttpServlet {
                                 PicServicioImpl picServicio = new PicServicioImpl();
                                 if (picServicio.mostrarPic(idPersona) != null) {
                                     Pic pic = picServicio.mostrarPic(idPersona);
-                                     picServicio.borradoLogicoPic(pic.getIdPic());
+                                    picServicio.borradoLogicoPic(pic.getIdPic());
                                 }
                                 EstadoPacientePacienteServiceImpl estadoPacientePacienteServicio = new EstadoPacientePacienteServiceImpl();
                                 if (estadoPacientePacienteServicio.mostrarEstadoPacientePacienteIdPaciente(idPaciente) != null) {
@@ -530,12 +553,11 @@ public class PacienteController extends HttpServlet {
                                 }
 
                                 if (cuentaServicio.mostrarCuenta(idCuenta) != null) {
-                                         Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
+                                    Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
 
-                                         cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
+                                    cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
                                 }
 
-                                
                                 /**
                                  * Al no tener cuenta se le redirecciona al
                                  * login
@@ -690,7 +712,6 @@ public class PacienteController extends HttpServlet {
                              * TratamientoPaciente y posteriormente agregárselo
                              * al paciente
                              */
-                                                                              
                             System.out.println("Entre a agregar tratamiento");
                             System.out.println("entro a la key Agregar tratamiento");
                             if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
@@ -756,7 +777,6 @@ public class PacienteController extends HttpServlet {
                         }
                         break;
 
-                       
                     }
                 }
 

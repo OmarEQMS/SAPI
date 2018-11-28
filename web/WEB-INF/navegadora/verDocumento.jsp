@@ -36,8 +36,7 @@
 
     <link rel="stylesheet" href="css/styleNavegadora.css">
     <link rel="stylesheet" href="css/styleNavegadoraImg.css">
-    <script src="js/appNavegadora.js"></script>
-    <script src="js/appNavegadora2.js"></script>
+    <script src="js/appNavegadora.js"></script>    
     <script src="js/ajaxNavegadora.js"></script>
     <script src="js/autocomplete.js"></script>
 
@@ -99,9 +98,7 @@
             <ul class="list-unstyled components">
 
                     <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
-                    
-                    <li id="irAForm"><a><i class="fas fa-home"></i>Ir a Form</a></li>
-                    
+                                                            
                     <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
                     <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
@@ -109,6 +106,7 @@
                     <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
 
                     <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+
 
                 </ul>
 
@@ -164,10 +162,10 @@
                 <div class="card-body text-center">
                     <c:choose>
                         <c:when test="${sessionScope.extensionArchivo == 1 }">
-                            <img class="mb-4" style="width: 500px" src="data:image/png;base64,${sessionScope.documentB64}" />
+                            <img class="mb-4" style="width: 1000px" src="data:image/png;base64,${sessionScope.documentB64}" />
                         </c:when>
                         <c:when test="${sessionScope.extensionArchivo == 2 }">
-                            <img class="mb-4" style="width: 500px" src="data:image/jpeg;base64,${sessionScope.documentB64}" />
+                            <img class="mb-4" style="width: 1000px" src="data:image/jpeg;base64,${sessionScope.documentB64}" />
                         </c:when>
                         <c:when test="${sessionScope.extensionArchivo == 3 }">
                             <embed type="application/pdf" class="mb-4" style="width:25cm;height:15cm;zoom: 100%" src="data:application/pdf;base64,${sessionScope.documentB64}"></embed>

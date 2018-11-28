@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import mx.itesm.sapi.bean.gestionPaciente.PacientePotencial;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteAdmin;
 import mx.itesm.sapi.util.Conexion;
 
 /**
@@ -480,5 +481,54 @@ public class PacienteServiceImpl implements PacienteService {
 
         return id;
         
+    }
+
+    @Override
+    public List<PacienteAdmin> mostrarPacientesAdmin() {
+        
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+
+        List<PacienteAdmin> pacientes = null;
+
+        String stProcedure = "CALL mostrarPacientesAdmin()";
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            rs = cstmt.executeQuery();
+
+            pacientes = new ArrayList<>();
+            PacienteAdmin paciente;
+
+            while (rs.next()) {
+                paciente = new PacienteAdmin();
+
+                paciente.setIdPaciente(rs.getInt("idPaciente"));
+                paciente.setPrz(rs.getString("prz"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setPrimerApellido(rs.getString("primerApellido"));
+                paciente.setSegundoApellido(rs.getString("segundoApellido"));
+                paciente.setTratamiento(rs.getString("tratamiento"));
+                paciente.setEtapaClinica(rs.getString("etapaClinica"));
+                paciente.setTelefono(rs.getString("telefono"));
+                paciente.setEstado(rs.getString("estado"));
+                paciente.setMedNombre(rs.getString("medNombre"));
+                paciente.setMedPrimerApellido(rs.getString("medPrimerApellido"));
+                paciente.setMedSegundoApellido(rs.getString("medSegundoApellido"));                
+
+                pacientes.add(paciente);
+            }
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            pacientes = null;
+        }
+        return pacientes;
     }
 }

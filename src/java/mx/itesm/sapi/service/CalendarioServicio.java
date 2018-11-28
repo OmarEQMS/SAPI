@@ -16,6 +16,7 @@ import mx.itesm.sapi.bean.gestionPaciente.Cita;
 public interface CalendarioServicio {
     
     List<FullCalendar> mostrarEventos(int idPaciente);
+    List<FullCalendar> mostrarEventosResultados();
     public int agregarEvento(Cita cita, String edificio);
     
 }

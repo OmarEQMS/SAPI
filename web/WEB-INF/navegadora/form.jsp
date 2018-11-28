@@ -4,7 +4,8 @@
 <html lang="es">
 
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -96,21 +97,18 @@
                     <!-- MENU PRINCIPAL ENLACES -->
                     <ul class="list-unstyled components">
 
-                    <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
-                    
-                    <li id="irAForm"><a><i class="fas fa-home"></i>Ir a Form</a></li>
-                    
-                    <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+                       <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
+                                                            
+                       <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
-                    <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
+                       <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
+                       
+                       <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
 
-                    <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+                       <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
-                    <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
-                </ul>
-
-                </ul>
+                    </ul>
 
             </nav>
 
@@ -128,7 +126,7 @@
                         </button>
 
                         <span class="pull-right d-block">
-                            <span style="color:#6c6f80">Hola, </span>
+                            <span style="color:#6c6f80">Bienvenido, </span>
                             <span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
                             </span>
                         </span>
@@ -234,8 +232,10 @@
                                                     </div>
                                                     <select name= "tipoPaciente" class="form-control" id="tipoPaciente">
                                                         <option disabled selected>Seleccione un tipo de paciente</option>
-                                                        <option>Primera vez</option>
-                                                        <option>Segunda opinión</option>
+
+                                                        <option value="0">Primera vez</option>
+                                                        <option value="1">Segunda opiniÃ¯Â¿Â½n</option>
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -266,7 +266,7 @@
                                                 <div class="form-check mt-2">
                                                     <input name="esSustituto" class=" form-check-input" type="checkbox" value="" id="esSustituto">
                                                     <label class="form-check-label" for="defaultCheck1">
-                                                        Sustituto
+                                                        No estuvo médico radiologo
                                                     </label>
                                                 </div>
                                             </div>
@@ -303,10 +303,33 @@
                                                         </div>
                                                     </div>
 
+<!--<<<<<<< HEAD-->
+                                                   <select name="medico-residente" class="form-control" id="medico-radiologo">
+
+                                                        <option disabled selected>Seleccione un Residente</option>
+
+                                                        <c:forEach items="${listaResidentes}" var="residente">  
+
+                                                            <option value='<c:out value="${residente.idPersona}"/>'><c:out value='${residente.nombre} ${residente.primerApellido} ${residente.segundoApellido}'/> </option>
+
+                                                        </c:forEach>
+                                                        <option value="otro">Otro</option>
+<!--=======
                                                     <input name = "medico-residente" type="text" id="medico-residente" class="form-control" class="form-control" placeholder="Introduce Médico Residente">
                                                 </div>
                                             </div>
-
+>>>>>>> origin/AngelRaul
+-->
+                                                    </select>
+ </div>
+                                           
+                                            <div class="form-check mt-2">
+                                                    <input name="noAdscrito" class=" form-check-input" type="checkbox" value="" id="noAdscrito">
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                         No estuvo médico residente
+                                                    </label>
+                                                </div>
+ </div>
                                         </div>
 
                                         <!-- Fecha Consulta-->
@@ -765,6 +788,8 @@
 
                                 </div>
 
+                                <!-- OMAR -->
+                                
                                 <!-- PANTALLA 3 -->
                                 <div id="pantalla3">
                                     <form>
@@ -791,7 +816,7 @@
                                         <div id="biopsia-contenedor">
 
 
-                                            <div class="form-group row mt-2 tuplaBiopsia" id="biopsiaInit">
+                                            <div class="form-group row mt-2 tuplaBiopsia" data-id="0" data-accion="agregar" id="biopsiaInit">
 
 
                                                 <!-- tipo biopsia -->
@@ -858,11 +883,11 @@
                                         <div id="rayos-contenedor">
 
 
-                                            <div class="form-group row mt-2 tuplaRayosX" id="rayosInit">
+                                            <div class="form-group row mt-2 tuplaRayosX" data-id="0" data-accion="agregar" id="rayosInit">
 
                                                 <!-- tipo rayos -->
                                                 <div class="col-5">
-                                                    <input name="tipo-RayosXAdded" id="rayosX" class="rayosX" type="text" class="form-control tipoRayosX" placeholder="Tipo de rayos X">
+                                                    <input name="tipo-RayosXAdded" id="rayosX" type="text" class="form-control rayosX" placeholder="Tipo de rayos X">
                                                 </div>
 
                                                 <!-- fecha rayos -->
@@ -910,7 +935,7 @@
                                         <div id="ultrasonido-contenedor">
 
 
-                                            <div class="form-group row mt-2 tuplaUltrasonido" id="ultrasonidoInit">
+                                            <div class="form-group row mt-2 tuplaUltrasonido" data-id="0" data-accion="agregar" id="ultrasonidoInit">
 
                                                 <!-- parte del cuerpo -->
                                                 <div class="col-5">
@@ -961,7 +986,7 @@
 
                                         <div id="medicinaNuclear-contenedor">
 
-                                            <div class="form-group row mt-2 tuplaMedicinaNuclear" id="medicinaNuclearInit">
+                                            <div class="form-group row mt-2 tuplaMedicinaNuclear" data-id="0" data-accion="agregar" id="medicinaNuclearInit">
 
                                                 <!-- medicina nuclear -->
                                                 <div class="col-5">
@@ -1011,7 +1036,7 @@
 
                                         <div id="laboratorio-contenedor">
 
-                                            <div class="form-group row mt-2 tuplaLaboratorio" id="laboratorioInit">
+                                            <div class="form-group row mt-2 tuplaLaboratorio" data-id="0" data-accion="agregar" id="laboratorioInit">
 
                                                 <!-- fecha laboratorio-->
                                                 <div class="col-10">
@@ -1057,7 +1082,7 @@
 
                                         <div id="valoracion-contenedor">
 
-                                            <div class="form-group row mt-2 tuplaValoracion" id="valoracionInit">
+                                            <div class="form-group row mt-2 tuplaValoracion" data-id="0" data-accion="agregar" id="valoracionInit">
 
                                                 <!-- valoracion -->
                                                 <div class="col-5">
@@ -1108,7 +1133,7 @@
                                         <div id="espirometria-contenedor">
 
 
-                                            <div class="form-group row mt-2 tuplaEspirometria" id="espirometriaInit">
+                                            <div class="form-group row mt-2 tuplaEspirometria" data-id="0" data-accion="agregar" id="espirometriaInit">
 
 
                                                 <!-- fecha espirometria-->
@@ -1159,7 +1184,7 @@
 
                                         <div id="electrocardiograma-contenedor">
 
-                                            <div class="form-group row mt-2 tuplaElectrocardiograma" id="electrocardiogramaInit">
+                                            <div class="form-group row mt-2 tuplaElectrocardiograma" data-id="0" data-accion="agregar" id="electrocardiogramaInit">
 
                                                 <!-- fecha electrocardiograma-->
 
@@ -1208,7 +1233,7 @@
                                         <div id="ecocardiograma-contenedor">
 
 
-                                            <div class="form-group row mt-2 tuplaEcocardiograma" id="ecocardiogramaInit">
+                                            <div class="form-group row mt-2 tuplaEcocardiograma" data-id="0" data-accion="agregar" id="ecocardiogramaInit">
 
 
                                                 <!-- fecha ecocardiograma-->
@@ -1257,7 +1282,7 @@
 
                                         <div id="trabajoSocial-contenedor">
 
-                                            <div class="form-group row mt-2 tuplaTrabajoSocial" id="trabajoSocialInit">
+                                            <div class="form-group row mt-2 tuplaTrabajoSocial" data-id="0" data-accion="agregar" id="trabajoSocialInit">
 
                                                 <!-- fecha trabajo social-->
 
@@ -1305,7 +1330,7 @@
                                         <div id="programa-contenedor">
 
 
-                                            <div class="form-group row mt-2 tuplaPrograma" id="programaInit">
+                                            <div class="form-group row mt-2 tuplaPrograma" data-id="0" data-accion="agregar" id="programaInit">
 
 
                                                 <!-- programas -->
@@ -1360,7 +1385,7 @@
 
                                         <div id="otro-contenedor">
 
-                                            <div class="form-group row mt-2 tuplaOtro" id="otroInit">
+                                            <div class="form-group row mt-2 tuplaOtro" data-id="0" data-accion="agregar" id="otroInit">
 
                                                 <!-- fecha otro -->
 
@@ -1492,7 +1517,7 @@
 
                                         <div class="llamadaInit">
 
-                                            <div class="tuplaLlamada">
+                                            <div class="tuplaLlamada" data-id="0" data-accion="agregar">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="input-group">
@@ -1512,7 +1537,7 @@
                                                 <div class="row mt-3">
                                                     <div class="col-12">
 
-                                                        <textarea name="motivoLlamada" class="form-control  comentario-llamada" style="min-height:100px;" placeholder="Introduce el motivo de la llamada "></textarea>
+                                                        <textarea name="motivoLlamada" class="form-control comentario-llamada" style="min-height:100px;" placeholder="Introduce el motivo de la llamada "></textarea>
 
                                                     </div>
                                                 </div>
@@ -1620,8 +1645,10 @@
 
                                                 <label for="">Resultados de mastografóa</label>
                                                 <div class="input-group">
-                                                    <select name="tipoMastografia" class="form-control" id="tipoMastografia">
-                                                        <option disabled selected>Mastrografóa BI-RADS</option>
+
+                                                    <select name="ResultadoTipoMastografia" class="form-control" id="ResultadoTipoMastografia">
+                                                        <option disabled selected>MastrografÃ¯Â¿Â½a BI-RADS</option>
+
                                                         <c:forEach items="${listaBirads}" var="birads">  
                                                             <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
                                                         </c:forEach>

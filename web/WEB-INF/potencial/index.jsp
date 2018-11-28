@@ -109,8 +109,20 @@
                 </ul>
 
             </nav>
+                        
+            <!-- PANTALLAS DE CARGA -->
+            <div class="loading-screen" id="loading-screen" style="display: none">
+                <img src="img/loading.svg">
+                <p class="clear">Cargando, por favor espere...</p>
+            </div>
+                        
+            <div class="loading-screenGuardar" id="loading-screen" style="display: none">
+                <img src="img/loading.svg">
+                <p class="clear">Guardando tu información, por favor espere...</p>
+            </div>
+            
 
-            <!-- CONTENIDO PRINCIPAL POTENCIAL -->
+            <!-- CONTENIDO PRINCIPAL POTENCIAL-->
 
             <div id="content">
 
@@ -126,6 +138,7 @@
                         <!-- aqui se inyecta la sesion de id-->
                         <input type="hidden" id="sesionPaciente" value="${sessionScope.idSesion}" />
                         <input type="hidden" id="idPaciente" value="${sessionScope.idPaciente}"/>
+                        <input type="hidden" id="idMotivoConsulta" value="${sessionScope.idMotivoConsulta}" />
 
                         <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">
                                 <!--Julio Badillo-->
@@ -147,7 +160,7 @@
 
                             <div class="card-body justify-content-center">
 
-                                <!-- navbar SHANNON -->
+                                <!-- navbar -->
 
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -163,7 +176,7 @@
                                                 <a class="nav-item nav-link text-center colorMoradoLight texto-tab" id="nav-solicitud-tab" data-toggle="tab" href="#solicitud" role="tab"
                                                    aria-controls="nav-solicitud" aria-selected="true" style="width:33%"><!--<i
                                                         class="fas fa-check-circle text-success mr-2"></i>-->SOLICITUD</a>
-                                                
+
                                                 <a class="nav-item nav-link active text-center colorMoradoLight texto-tab" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
                                                    aria-controls="nav-contact" aria-selected="false" style="width:33%">RESOLUCIÓN</a>
 
@@ -214,7 +227,9 @@
                                                             <!-- Genero -->
                                                             <div class="row">
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-center">
-                                                                    <span class="textoDocumento">Sexo</span>
+                                                                    <span class="textoDocumento">Sexo<br>
+                                                                        <small><strong>Obligatorio</strong></small>
+                                                                    </span>
                                                                 </div>
 
                                                                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 text-center">
@@ -330,7 +345,7 @@
                                                                             <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacion" aria-describedby="fileHelp" disabled>
                                                                             <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label">
-                                                                                Elegir archivo...
+                                                                                Elegir archivo (obligatorio)...
                                                                             </label>
                                                                         </div>
                                                                     </c:when>    
@@ -389,7 +404,7 @@
                                                                             <input type="file" name="fileCURP" class="custom-file-input centraInput" id="fileCURP" aria-describedby="fileHelp" disabled>
                                                                             <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label">
-                                                                                Elegir archivo...
+                                                                                Elegir archivo (obligatorio)...
                                                                             </label>
                                                                         </div>
 
@@ -436,7 +451,7 @@
                                                                             <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilio" aria-describedby="fileHelp" disabled>
                                                                             <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label">
-                                                                                Elegir archivo...
+                                                                                Elegir archivo (obligatorio)...
                                                                             </label>
                                                                         </div>
 
@@ -484,33 +499,6 @@
                                                                 </div>
 
                                                             </div>
-
-                                                            <!-- Motivo de la consulta -->
-
-                                                            <div class="row mt-4" id="formMotivoConsulta">
-
-                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center">
-                                                                    <span class="textoDocumento">Motivo de la consulta</span>
-                                                                </div>
-
-                                                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 removePadding">
-                                                                    <select class="form-control" id="motivoConsulta" disabled>
-                                                                        <option value="0">Seleccione el motivo de la consulta</option>
-                                                                        <option value="1">Me envió un médico</option>
-                                                                        <option value="3">Me sentí una bolita en el seno</option>
-                                                                        <option value="4">Me envían de otro hospital</option>
-                                                                        <option value="5">Otro</option>
-                                                                    </select>
-                                                                    <span class="text-danger ml-3" id="error-motivoConsulta">No seleccionaste un motivo de consulta</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row mt-4" id="documentoAdjuntoMotivo">
-                                                            </div>
-
-                                                            <div class="row mt-4 mb-4" id="otroHospital">
-                                                            </div>
-
 
                                                             <!-- Estudios previos Mastografí­a-->
                                                             <div class="row mt-1">
@@ -712,8 +700,84 @@
                                                                         </div>
                                                                     </span>
                                                                 </div>
-
                                                             </div>
+
+                                                            <!-- Motivo de la consulta -->
+
+                                                            <div class="row mt-4" id="formMotivoConsulta">
+
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center">
+                                                                    <span class="textoDocumento">Motivo de la consulta <br>
+                                                                        <small><strong>Obligatorio</strong></small>
+                                                                    </span>
+                                                                </div>
+
+
+
+                                                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 removePadding">
+                                                                    <select class="form-control" id="motivoConsulta" disabled>
+                                                                        <option value="0">Seleccione el motivo de la consulta</option>
+                                                                        <option value="1">Me envió un médico</option>
+                                                                        <option value="3">No he consultado a ningun médico; pero me senti una bolita en el seno</option>
+                                                                        <option value="4">Me envían de otro hospital</option>
+                                                                        <option value="5">Otro</option>
+                                                                    </select>
+                                                                    <span class="text-danger ml-3" id="error-motivoConsulta">No seleccionaste un motivo de consulta</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <c:choose>
+                                                                <c:when test="${sessionScope.idMotivoConsulta==1}">
+                                                                    <div class="row mt-4" id="documentoAdjuntoMotivo">
+                                                                        <div class="col-3 text-center">
+                                                                            <span class="textoDocumento">Referencia</span>
+                                                                        </div>
+                                                                        <div class="custom-file col-8" id="customFile">
+                                                                            <input type="file" class="custom-file-input" id="referenciaArchivo" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp" disabled>
+                                                                            <label class="custom-file-label" id="labelReferencia">
+                                                                                ${sessionScope.referenciaName}
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </c:when>
+                                                            </c:choose>
+
+                                                            <c:choose>
+                                                                <c:when test="${sessionScope.idMotivoConsulta==4}">
+                                                                    <div class="row mt-4" id="documentoAdjuntoMotivo">
+                                                                        <div class="col-3 text-center">
+                                                                            <span class="textoDocumento">Referencia</span>
+                                                                        </div>
+                                                                        <div class="custom-file col-8" id="customFile">
+                                                                            <input type="file" class="custom-file-input" id="referenciaArchivo" name="referenciaArchivo" multiple="multiple" aria-describedby="fileHelp" disabled>
+                                                                            <label class="custom-file-label">
+                                                                                ${sessionScope.referenciaName}
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mt-4 mb-4" id="otroHospital">
+                                                                        <div class="col-3 text-center">
+                                                                            <span class="textoDocumento">Hospital</span>
+                                                                        </div>
+                                                                        <div class="custom-file col-8 p-0 m-0" id="customFile">
+                                                                            <input type="text" class="form-control" id="otroHospital" name="otroHospital" placeholder="Introduce tu hospital de procedencia" value="${sessionScope.hospital}" disabled>
+                                                                        </div>
+                                                                    </div>
+                                                                </c:when>
+                                                            </c:choose>  
+
+                                                            <c:choose>
+                                                                <c:when test="${sessionScope.idMotivoConsulta==5}">
+                                                                    <div class="row mt-4 mb-4" id="otroHospital">
+                                                                        <div class="col-3 text-center">
+                                                                            <span class="textoDocumento">Otro motivo</span>
+                                                                        </div>
+                                                                        <div class="custom-file col-8 p-0 m-0" id="customFile">
+                                                                            <input type="text" class="form-control" id="otro-motivo-consulta" placeholder="Introduce otro motivo" value="${sessionScope.otroMotivo}" disabled>
+                                                                        </div>
+                                                                    </div>
+                                                                </c:when>
+                                                            </c:choose>  
 
                                                         </form>
 
@@ -736,7 +800,7 @@
                                                                 </div>
                                                                 <div class="row justify-content-center mt-3">
                                                                     <div class="col-4 text-center">
-                                                                        <button style="border-radius:20px" type="button" class="btn btn-outline-primary btn-block" id="btn-continuarAResolucion">Continuar
+                                                                        <button style="border-radius:20px" type="button" class="btn btn-outline-primary btn-block" id="btn-continuarAResolucion">Ir a resolución
                                                                             <i class="ml-2 fas fa-arrow-right"></i></button>
                                                                     </div>
                                                                 </div>
@@ -761,7 +825,9 @@
                                                             <!-- Genero -->
                                                             <div class="row">
                                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-center">
-                                                                    <span class="textoDocumento">Sexo</span>
+                                                                    <span class="textoDocumento">Sexo<br>
+                                                                        <small><strong>Obligatorio</strong></small>
+                                                                    </span>
                                                                 </div>
 
                                                                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 text-center">
@@ -877,7 +943,7 @@
                                                                             <input type="file" name="fileIdentificacion" class="custom-file-input" id="fileIdentificacion" aria-describedby="fileHelp">
                                                                             <span class="text-danger" id="error-identificacionOficial">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label" id="labelIdentificacion">
-                                                                                Elegir archivo...
+                                                                                Elegir archivo (obligatorio)...
                                                                             </label>
                                                                         </div>
                                                                     </c:when>    
@@ -936,7 +1002,7 @@
                                                                             <input type="file" name="fileCURP" class="custom-file-input centraInput" id="fileCURP" aria-describedby="fileHelp">
                                                                             <span class="text-danger" id="error-CURP">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label" id="labelCurp">
-                                                                                Elegir archivo...
+                                                                                Elegir archivo (obligatorio)...
                                                                             </label>
                                                                         </div>
 
@@ -983,7 +1049,7 @@
                                                                             <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilio" aria-describedby="fileHelp">
                                                                             <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label" id="labelComprobante">
-                                                                                Elegir archivo...
+                                                                                Elegir archivo (obligatorio)...
                                                                             </label>
                                                                         </div>
 
@@ -1030,32 +1096,6 @@
                                                                     </span>
                                                                 </div>
 
-                                                            </div>
-
-                                                            <!-- Motivo de la consulta -->
-
-                                                            <div class="row mt-4" id="formMotivoConsulta">
-
-                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center">
-                                                                    <span class="textoDocumento">Motivo de la consulta</span>
-                                                                </div>
-
-                                                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 removePadding">
-                                                                    <select class="form-control" id="motivoConsulta">
-                                                                        <option value="0">Seleccione el motivo de la consulta</option>
-                                                                        <option value="1">Me envió un médico</option>
-                                                                        <option value="3">Me sentí una bolita en el seno</option>
-                                                                        <option value="4">Me envían de otro hospital</option>
-                                                                        <option value="5">Otro</option>
-                                                                    </select>
-                                                                    <span class="text-danger ml-3" id="error-motivoConsulta">No seleccionaste un motivo de consulta</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row mt-4" id="documentoAdjuntoMotivo">
-                                                            </div>
-
-                                                            <div class="row mt-4 mb-4" id="otroHospital">
                                                             </div>
 
 
@@ -1259,7 +1299,34 @@
                                                                         </div>
                                                                     </span>
                                                                 </div>
+                                                            </div>
 
+                                                            <!-- Motivo de la consulta -->
+
+                                                            <div class="row mt-4" id="formMotivoConsulta">
+
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center">
+                                                                    <span class="textoDocumento">Motivo de la consulta<br>
+                                                                        <small><strong>Obligatorio</strong></small>
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 removePadding">
+                                                                    <select class="form-control" id="motivoConsulta">
+                                                                        <option value="0">Seleccione el motivo de la consulta</option>
+                                                                        <option value="1">Me envió un médico</option>
+                                                                        <option value="3">No he consultado a ningún médico; pero me sentí una bolita en el seno</option>
+                                                                        <option value="4">Me envían de otro hospital</option>
+                                                                        <option value="5">Otro</option>
+                                                                    </select>
+                                                                    <span class="text-danger ml-3" id="error-motivoConsulta">No seleccionaste un motivo de consulta</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mt-4" id="documentoAdjuntoMotivo">
+                                                            </div>
+
+                                                            <div class="row mt-4 mb-4" id="otroHospital">
                                                             </div>
 
                                                         </form>
@@ -1274,14 +1341,14 @@
                                                                         class="fas fa-check-circle mr-2"></i>Enviar</button>
                                                             </div>
                                                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-2">
-                                                                <button class="btn btn-guardar-continuar btn-block" id="btn-GuardarContinuar" style="border-radius:20px"><i
+                                                                <button class="btn btn-guardar-continuar btn-outline-primary btn-block" id="btn-GuardarContinuar" style="border-radius:20px"><i
                                                                         class="fas fa-save mr-2"></i>Guardar y Continuar Después</button>
                                                             </div>
                                                         </div>
 
                                                         <!-- ***** Nota ***** -->
                                                         <div class="row mt-3 justify-content-center">
-                                                            <div class="col-7 text-center bg-primary" style="border-radius:20px;">
+                                                            <div class="col-7 text-center bg-danger" style="border-radius:20px;">
                                                                 <span style="font-size: 14px;" class="text-white">Nota: Asegúrate de que tu motivo de consulta sea lo último
                                                                     que subas, puesto que no es información que puedas guardar y completar después. Debes estar segura(o) que
                                                                     cuando lo subas es porque darás click al botón de envíar para guardar la información.</span>
@@ -1376,7 +1443,7 @@
                                                                         <ul style="list-style:none">
                                                                             <li>-IFE/INE</li>
                                                                             <li>-Comprobante de domicilio</li>
-                                                                            <li>-Poliza de seguro popular (si tienes)</li>
+                                                                            <li>-Póliza de seguro popular (si tienes)</li>
                                                                             <li>-Estudios previos por los que te mandan al INCan, pueden ser:
                                                                                 <ul style="list-style:none" class="justificar">
                                                                                     <li>
@@ -1566,15 +1633,13 @@
                                                                             <div class="card-body m-3 justificar">
                                                                                 El segundo día pasarás a <strong>consulta</strong> con el médico,
                                                                                 revisará todos tus estudios, te explicará si necesitas otros
-                                                                                y te dirá que sigue. Al igual que el primer día ,nuestro servicio
-                                                                                de navegación te recibirá en el área de preconsulta,  nuevamente
+                                                                                y te dirá que sigue. Al igual que el primer día, nuestro servicio
+                                                                                de navegación te recibirá en el área de preconsulta, nuevamente
                                                                                 te pedirán los documentos que entregaste el día anterior. Si
-                                                                                te realizaron una biopsia fuera del INCan debes traer dos copias
-                                                                                del reporte de patología que contiene los resultados. Al terminar,
+                                                                                te realizaron una biopsia fuera del INCan debes traer <strong>dos copias</strong> del 
+                                                                                reporte de patología que contiene los resultados. Al terminar,
                                                                                 ellas te solicitarán pasar a la sala de espera mientras el médico
                                                                                 te recibe.
-
-
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -1594,7 +1659,7 @@
                                                                                 te pude pedir diversos estudios, el costo de estos estudios está
                                                                                 entre <strong>$350.00
                                                                                     MXN
-                                                                                </strong> y
+                                                                                </strong>y
                                                                                 <strong>$3000.00 MXN</strong> te recomendamos vengas preparada con
                                                                                 esa cantidad de dinero para que los puedas agendar y agilizar
                                                                                 el proceso de tu atención.
@@ -1609,7 +1674,7 @@
                                                                         <div class="col-4 text-center">
                                                                             <a href="documentos/reportePrimeraVez.pdf" download>
                                                                                 <button style="border-radius:20px" type="button" class="btn btn-morado btn-block"><i
-                                                                                        class="fas fa-print"></i> Imprimir información
+                                                                                        class="fas fa-print"></i> Descargar información
                                                                                 </button>
                                                                             </a>
                                                                         </div>
@@ -1691,7 +1756,7 @@
                                                                         <ul style="list-style:none">
                                                                             <li>-IFE/INE</li>
                                                                             <li>-Comprobante de domicilio</li>
-                                                                            <li>-Poliza de seguro popular (si tienes)</li>
+                                                                            <li>-Póliza de seguro popular (si tienes)</li>
                                                                             <li>-Estudios previos por los que te mandan al INCan, pueden ser:
                                                                                 <ul style="list-style:none" class="justificar">
                                                                                     <li>
@@ -1812,7 +1877,7 @@
                                                                                 debes venir con disponibilidad de tiempo, desayunada y te
                                                                                 recomendamos traer un libro o revista.Al finalizar tu
                                                                                 consulta el médico te pude pedir diversos estudios, el
-                                                                                costo de estos estudios está entre <strong>$350.00 MXN</strong> y <strong>$3000.00
+                                                                                costo de estos estudios está entre <strong>$350.00 MXN</strong>y <strong>$3000.00
                                                                                     MXN</strong> te
                                                                                 recomendamos vengas preparada con esa cantidad de dinero
                                                                                 para que los puedas agendar y agilizar el proceso de tu
@@ -2088,7 +2153,7 @@
                                                                         <ul style="list-style:none">
                                                                             <li>-IFE/INE</li>
                                                                             <li>-Comprobante de domicilio</li>
-                                                                            <li>-Poliza de seguro popular (si tienes)</li>
+                                                                            <li>-Póliza de seguro popular (si tienes)</li>
                                                                             <li>-Estudios previos por los que te mandan al INCan, pueden ser:
                                                                                 <ul style="list-style:none" class="justificar">
                                                                                     <li>
@@ -2278,11 +2343,11 @@
                                                                             <div class="card-body m-3 justificar">
                                                                                 El segundo día pasarás a <strong>consulta</strong> con el médico,
                                                                                 revisará todos tus estudios, te explicará si necesitas otros
-                                                                                y te dirá que sigue. Al igual que el primer día ,nuestro servicio
-                                                                                de navegación te recibirá en el área de preconsulta,  nuevamente
+                                                                                y te dirá que sigue. Al igual que el primer día, nuestro servicio
+                                                                                de navegación te recibirá en el área de preconsulta, nuevamente
                                                                                 te pedirán los documentos que entregaste el día anterior. Si
-                                                                                te realizaron una biopsia fuera del INCan debes traer dos copias
-                                                                                del reporte de patología que contiene los resultados. Al terminar,
+                                                                                te realizaron una biopsia fuera del INCan debes traer <strong>dos copias</strong> del 
+                                                                                reporte de patología que contiene los resultados. Al terminar,
                                                                                 ellas te solicitarán pasar a la sala de espera mientras el médico
                                                                                 te recibe.
 
@@ -2306,7 +2371,7 @@
                                                                                 te pude pedir diversos estudios, el costo de estos estudios está
                                                                                 entre <strong>$350.00
                                                                                     MXN
-                                                                                </strong> y
+                                                                                </strong>y
                                                                                 <strong>$3000.00 MXN</strong> te recomendamos vengas preparada con
                                                                                 esa cantidad de dinero para que los puedas agendar y agilizar
                                                                                 el proceso de tu atención.
@@ -2403,7 +2468,7 @@
                                                                         <ul style="list-style:none">
                                                                             <li>-IFE/INE</li>
                                                                             <li>-Comprobante de domicilio</li>
-                                                                            <li>-Poliza de seguro popular (si tienes)</li>
+                                                                            <li>-Póliza de seguro popular (si tienes)</li>
                                                                             <li>-Estudios previos por los que te mandan al INCan, pueden ser:
                                                                                 <ul style="list-style:none" class="justificar">
                                                                                     <li>
@@ -2524,7 +2589,7 @@
                                                                                 debes venir con disponibilidad de tiempo, desayunada y te
                                                                                 recomendamos traer un libro o revista.Al finalizar tu
                                                                                 consulta el médico te pude pedir diversos estudios, el
-                                                                                costo de estos estudios está entre <strong>$350.00 MXN</strong> y <strong>$3000.00
+                                                                                costo de estos estudios está entre <strong>$350.00 MXN</strong>y <strong>$3000.00
                                                                                     MXN</strong> te
                                                                                 recomendamos vengas preparada con esa cantidad de dinero
                                                                                 para que los puedas agendar y agilizar el proceso de tu

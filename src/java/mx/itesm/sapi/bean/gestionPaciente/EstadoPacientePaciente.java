@@ -21,9 +21,10 @@ public class EstadoPacientePaciente {
     private int estatus;
     private int resultados;
     private int idEmpleado;
-    
-    
-    
+    private Timestamp fechaFin;
+
+        
+   
     @Override 
     public String toString(){
         String str="EstadoPacientePaciente [idEstadoPacientePaciente:".concat(String.valueOf(idEstadoPacientePaciente))
@@ -34,9 +35,18 @@ public class EstadoPacientePaciente {
                 .concat(",estatus:").concat(String.valueOf(estatus))
                 .concat(",resultados:").concat(String.valueOf(resultados))
                 .concat(",idEmpleado:").concat(String.valueOf(idEmpleado))
+                .concat(",fechaFin:").concat(String.valueOf(fechaFin))
                 .concat("]");
         
         return str;
+    }
+
+    public Timestamp getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Timestamp fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public int getResultados() {

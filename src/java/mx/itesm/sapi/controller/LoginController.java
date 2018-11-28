@@ -124,6 +124,7 @@ public class LoginController extends HttpServlet {
                         sesion.setAttribute("nombre", nombre);
                         sesion.setAttribute("primerApellido", primerApellido);
                         sesion.setAttribute("segundoApellido", segundoApellido);
+                        sesion.setAttribute("correo", persona.getCorreo());
 
                         PicServicioImpl picServicioImpl = new PicServicioImpl();
                         Pic pic = picServicioImpl.mostrarPic(idPersona);
@@ -181,6 +182,28 @@ public class LoginController extends HttpServlet {
                                 solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
 
                                 System.out.println("Consultar documentos");
+
+                                System.out.println("Motivo SolicitudPreconsulta: " + solicitudPreconsulta.getMotivoCosulta());
+
+                                sesion.setAttribute("idMotivoConsulta", solicitudPreconsulta.getMotivoCosulta());
+                                if (solicitudPreconsulta.getMotivoCosulta() == 1 || solicitudPreconsulta.getMotivoCosulta() == 4) {
+                                    System.out.println("Referencia Motivo: ".concat(solicitudPreconsulta.getReferencia()));
+                                    sesion.setAttribute("referenciaName", solicitudPreconsulta.getReferencia());
+                                }
+
+                                if (solicitudPreconsulta.getMotivoCosulta() == 4) {
+                                    System.out.println("---------------------------------------------------------------------------------------------------------");
+                                    System.out.println("hospital: ".concat(solicitudPreconsulta.getHospital()));
+                                    sesion.setAttribute("hospital", solicitudPreconsulta.getHospital());
+                                    System.out.println("---------------------------------------------------------------------------------------------------------");
+                                }
+
+                                if (solicitudPreconsulta.getMotivoCosulta() == 5) {
+                                    System.out.println("---------------------------------------------------------------------------------------------------------");
+                                    System.out.println("OtroMotivo: ".concat(solicitudPreconsulta.getOtro()));
+                                    sesion.setAttribute("otroMotivo", solicitudPreconsulta.getOtro());
+                                    System.out.println("---------------------------------------------------------------------------------------------------------");
+                                }
 
                                 if (solicitudPreconsulta.getIdSexo() == 0) {
                                     sesion.setAttribute("idSexo", 0);
@@ -311,6 +334,7 @@ public class LoginController extends HttpServlet {
                                 request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));
                                 request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
                                 
+                                
                                 EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
                                 Empleado empleado =  empleadoServicioImpl.mostrarEmpleadoCuenta(Integer.parseInt(sesion.getAttribute("idCuenta").toString()));
                                 
@@ -326,11 +350,13 @@ public class LoginController extends HttpServlet {
                                 } catch (Exception ex) {
 
                                 }
-
+                                
+                                
+                                
                                 sesion.setAttribute("path", keyRuta);
-                                
-                                
-                                request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
+                                //request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);                                                                                                
+                                request.getRequestDispatcher("/SAPI").forward(request, response);                                                                                                
+                                //response.sendRedirect("/SAPI");
                                 break;
                             }
                             case 3: {
@@ -338,7 +364,7 @@ public class LoginController extends HttpServlet {
                             }
                             case 4: {
                                 // CASE Para Navegadora
-                                System.out.println("Cuenta de NAVEGADORA:  ".concat(sesion.getAttribute("nombre").toString()));
+                                System.out.println("Cuenta de NAVEGADORA:  ".concat(sesion.getAttribute("nombre").toString()));                                                                                                                                
 
                                 request.setAttribute("nombre", sesion.getAttribute("nombre"));
                                 request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));
@@ -367,7 +393,8 @@ public class LoginController extends HttpServlet {
 
                                 EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
                                 Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());
-
+                                
+                                sesion.setAttribute("idEmpleadoNavegadora",empleado.getIdEmpleado());
                                 sesion.setAttribute("nombre", persona.getNombre());
                                 sesion.setAttribute("primerApellido", persona.getPrimerApellido());
                                 sesion.setAttribute("segundoApellido", persona.getSegundoApellido());
@@ -392,6 +419,7 @@ public class LoginController extends HttpServlet {
                                 String idPacienteStr = String.valueOf(paciente.getIdPaciente());
 
                                 sesion.setAttribute("idPaciente", idPacienteStr);
+                                sesion.setAttribute("fechaNacimiento", persona.getFechaNacimiento());
 
                                 //Redirigir al paciente potencial a su dashboard correspondiente                               
                                 System.out.println("idPaciente ".concat(idPacienteStr));
