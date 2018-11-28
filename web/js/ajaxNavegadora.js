@@ -41,7 +41,7 @@ $(document).ready(function () {
     $('#error-editar-EstadoNavegadora').hide();
     $('#error-editar-MunicipioNavegadora').hide();
     $('#error-editar-UsuarioRepetidoNavegadora').hide();
-    
+
     $('#error-imgPerfil').hide();
 
     $('#error-contrasena').hide();
@@ -262,25 +262,25 @@ $(document).ready(function () {
                     $("#estadoNavegadora").each(function () {
                         $(this).children().remove();
                     });
-                    
+
                     //Limpia los campos de municipio 
                     $("#municipioNavegadora").each(function () {
                         $(this).children().remove();
                     });
-                    
+
                     //Primera opcion de estado
                     $('#estadoNavegadora').append("<option disabled selected>" + "Seleccione un estado" + "</option>");
-                    
+
                     //Primera opcion de municipio
                     $('#municipioNavegadora').append("<option disabled selected>" + "Seleccione un municipio" + "</option>");
-  
+
                     for (var i = 0; i < data.length; i++) {
                         //Carga estado
                         $('#estadoNavegadora').append("<option value='" + data[i].idEstado + "'>" + data[i].nombre + "</option>");
                     }
-                    
-                    $('#estadoNavegadora').prop('selectedIndex',0);
-                    $('#municipioNavegadora').prop('selectedIndex',0);
+
+                    $('#estadoNavegadora').prop('selectedIndex', 0);
+                    $('#municipioNavegadora').prop('selectedIndex', 0);
 
                     console.log(data);
 
@@ -507,29 +507,46 @@ $(document).ready(function () {
     });
 
     //Redirige a documentos
-    $('.btn-ver').on('click', function () {
+    $('body').on('click', '.btn-ver', function () {
 
         $('#hidden-idPaciente').val($(this).data('id'));
+        
+        alert('IdPaciente ' + ($(this).data('id')));
 
-        //alert('saludos con el id: ' +  $('#hidden-idPaciente').val())
+        $.ajax({
+            url: 'NavegadoraController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "getImagenPaciente",
+                idPaciente: $(this).data('id')
+            },
+            success: function (response) {
+                
+                alert('Debió poner la imagen del paciente');
 
-        $.post("SAPI", {
-            file: "navegadora/documentos.jsp",
-            idPacientePotencialAtendido: $('#hidden-idPaciente').val()
-        },
-                function (response, status, xhr) {
-                    //console.log(response);
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
+                $.post("SAPI", {
+                    file: "navegadora/documentos.jsp",
+                    idPacientePotencialAtendido: $('#hidden-idPaciente').val()
+                },
+                        function (response, status, xhr) {
+                            //console.log(response);
+                            if (status == "success") {
+                                if (response == "error") {
+                                    $("#msj-error").show();
+                                } else {
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
+                                }
+                            }
                         }
-                    }
-                }
-        );
+                );
+            },
+            error: function (){
+                alert('ERROR');
+            }
+        });
     });
 
     $('.irAVerDocumento').on('click', function () {
@@ -1116,11 +1133,10 @@ $(document).ready(function () {
 
     $("#file-input").on('change', function () {
         console.log("Llegó :)");
-        if(validProfilePhoto($('#file-input'), document.querySelector('#file-input').files)){
+        if (validProfilePhoto($('#file-input'), document.querySelector('#file-input').files)) {
             $('#error-imgPerfil').hide();
             readURL(this);
-        }
-        else{
+        } else {
             $('#error-imgPerfil').show();
         }
     });
@@ -1238,13 +1254,13 @@ $(document).ready(function () {
             }
         });
     });
-    
+
     function validProfilePhoto(input, archivos) {
 
         for (let index = 0; index < archivos.length; index++) {
 
             if (archivos[index]["type"] == "image/jpg" || archivos[index]["type"] == "image/png"
-                ) {
+                    ) {
 
                 console.log('si se puede' + archivos[index]["type"]);
                 input.css('border', '');
@@ -1357,7 +1373,7 @@ $(document).ready(function () {
         );
     });
 
-        //PARA SALIR DE LA CUENTA
+    //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
 
         console.log("Salir cuenta");

@@ -442,6 +442,7 @@ public class PersonaServicioImpl implements PersonaServicio {
         return personas;
     }
 
+    @Override
     public Persona mostrarPersonaPorIdPaciente(int idPaciente) {
 
         Connection conn;

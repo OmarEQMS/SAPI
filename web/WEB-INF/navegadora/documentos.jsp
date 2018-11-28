@@ -175,8 +175,8 @@
 
                         <div class="form-group row justify-content-center mt-2">
                             <div class="col-12 text-center">
-                              
-                                <img src="data:image/jpeg;base64,${sessionScope.base64Img}" id="ImagenPerfil" class="edit-image" alt="Click aquí" title="Click aquí" width="150px" height="150px">
+                                
+                                <img src="data:image/jpeg;base64,${sessionScope.base64ImgPac}" class="imagenPerfil edit-image" width="150px" height="150px" alt="">
                                 
                             </div>
                         </div>
