@@ -581,6 +581,15 @@ $(document).ready(function () {
 
     });
 
+    $("#btn-cancelarContrasena").on('click', function () {
+        $("#password").val('');
+        $("#password2").val('');
+        $('#noEqualPasswordsError').hide();
+        $("#error-contrasena").hide();
+        $('#password2').css('border', '');
+        $('#password').css('border', '');
+    });
+
     ////*****VERIFICAR QUE EL USUARIO Y EL EMAIL NO EXISTAN
     $('#username').on('change', function () {
 

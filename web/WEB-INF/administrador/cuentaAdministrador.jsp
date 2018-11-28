@@ -263,7 +263,7 @@
 
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" style="border-radius: 20px"  data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-danger" id="btn-cancelarContrasena" style="border-radius: 20px"  data-dismiss="modal">Cancelar</button>
                                         <button type="button" class="btn btn-primary" id="btn-updatePassword" style="border-radius: 20px" >Cambiar contraseña</button>
 
                                     </div>
