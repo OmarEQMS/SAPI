@@ -1506,7 +1506,7 @@ $(document).ready(function () {
     $('#editar-correoMedico').on('change', function () {
         $.ajax({
 
-            url: 'PotencialController',
+            url: 'AdministradorController',
             cache: false,
             method: 'POST',
             data: {
@@ -1517,7 +1517,6 @@ $(document).ready(function () {
 
             },
             success: function (response) {
-                alert("esto está raro");
                 if (response === 'CorreoAlreadyExists') {
                     console.log("correo repetidooo")
                     $('#editar-correoMedico').css('color', 'orange');

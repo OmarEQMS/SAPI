@@ -123,6 +123,7 @@ public class AdministradorController extends HttpServlet {
                     
                     String correo = request.getParameter("correo");
                     int idPersona = (int) sesion.getAttribute("idEmpleado");
+                    System.out.println("El id de empleado es: " + idPersona);
 
                     PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
 
