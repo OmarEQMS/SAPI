@@ -5,6 +5,8 @@
  */
 package mx.itesm.sapi.bean.rendimiento;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Raul Orihuela
@@ -17,7 +19,7 @@ package mx.itesm.sapi.bean.rendimiento;
  * Field summary private String decripcion: Contiene la descripcion del grupo de
  * datos private int cantidad: Contiene el total de datos dentro del grupo
  */
-public class Rendimiento {
+public class Rendimiento  implements Serializable {
 
     private String decripcion;
     private int cantidad;
