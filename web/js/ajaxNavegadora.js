@@ -2250,7 +2250,7 @@ $(document).ready(function () {
         var data = {idPotencial: $(this).data('id')};
         $.post("SAPI", {
             file: "navegadora/form.jsp",
-            idPotencial: $(this).data('id')
+            data: data
 
         },
                 function (response, status, xhr) {

@@ -435,8 +435,16 @@ public class NavegadoraController extends HttpServlet {
                             break;
                         }
                         case "mostrarFormularioNavegadora": {
-
-                            int idPaciente = (int) sesion.getAttribute("idPacientePotencialForm");
+                            
+                            int idPaciente;
+                            try{
+                                 idPaciente = (int) sesion.getAttribute("idPacientePotencialForm");
+                            }catch(Exception ex)
+                            {
+                                idPaciente = 0;
+                                System.out.println("Sin paaciente para atender aún");
+                            }
+                            
                             
                             if(idPaciente != 0)
                             {
