@@ -231,13 +231,10 @@
                                                     </div>
                                                     <select name= "tipoPaciente" class="form-control" id="tipoPaciente">
                                                         <option disabled selected>Seleccione un tipo de paciente</option>
-<<<<<<< HEAD
+
                                                         <option value="0">Primera vez</option>
                                                         <option value="1">Segunda opiniÃ¯Â¿Â½n</option>
-=======
-                                                        <option>Primera vez</option>
-                                                        <option>Segunda opinión</option>
->>>>>>> origin/AngelRaul
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -305,7 +302,7 @@
                                                         </div>
                                                     </div>
 
-<<<<<<< HEAD
+<!--<<<<<<< HEAD-->
                                                    <select name="medico-residente" class="form-control" id="medico-radiologo">
 
                                                         <option disabled selected>Seleccione un Residente</option>
@@ -316,12 +313,12 @@
 
                                                         </c:forEach>
                                                         <option value="otro">Otro</option>
-=======
+<!--=======
                                                     <input name = "medico-residente" type="text" id="medico-residente" class="form-control" class="form-control" placeholder="Introduce Médico Residente">
                                                 </div>
                                             </div>
 >>>>>>> origin/AngelRaul
-
+-->
                                                     </select>
  </div>
                                            
@@ -1647,13 +1644,10 @@
 
                                                 <label for="">Resultados de mastografóa</label>
                                                 <div class="input-group">
-<<<<<<< HEAD
+
                                                     <select name="ResultadoTipoMastografia" class="form-control" id="ResultadoTipoMastografia">
                                                         <option disabled selected>MastrografÃ¯Â¿Â½a BI-RADS</option>
-=======
-                                                    <select name="tipoMastografia" class="form-control" id="tipoMastografia">
-                                                        <option disabled selected>Mastrografóa BI-RADS</option>
->>>>>>> origin/AngelRaul
+
                                                         <c:forEach items="${listaBirads}" var="birads">  
                                                             <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
                                                         </c:forEach>
