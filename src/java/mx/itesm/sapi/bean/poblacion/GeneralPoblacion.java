@@ -99,6 +99,16 @@ public class GeneralPoblacion  implements Serializable{
     private Date cirugiasINCanMasectomiaFecha;
     private Date cirugiasINCanConservadoraFecha;
     private Date cirugiasINCanReconstruccionFecha;
+    private String consultaTipo;
+    private String consultaEstado;
+    private String consultaMotivo;
+    private String consultaComentario;
+    private Date consultaFecha;
+    private Date consultaDiagnosticoFecha;
+    private String consultaAdscritoNombre;
+    private String consultaAdscritoPresente;
+    private String consultaRadiologoNombre;
+    private String consultaRadiologoPresente;
 
     @Override
     public String toString() {
@@ -125,6 +135,16 @@ public class GeneralPoblacion  implements Serializable{
                 concat("\tOxigeno: ").concat(oxigeno).
                 concat("\tCamilla: ").concat(camilla).
                 concat("\tBastón: ").concat(bastón).
+                concat("\tConsulta - Tipo: ").concat(consultaTipo).
+                concat("\tConsulta - Estado: ").concat(consultaEstado).
+                concat("\tConsulta - Motivo: ").concat(consultaMotivo).
+                concat("\tConsulta - Comentario: ").concat(consultaComentario).
+                concat("\tConsulta - Fecha: ").concat(consultaFecha.toString()).
+                concat("\tConsulta - Fecha de diagnostico: ").concat(consultaDiagnosticoFecha.toString()).
+                concat("\tConsulta - Nombre de adscrito: ").concat(consultaAdscritoNombre).
+                concat("\tConsulta - Adscrito presente: ").concat(consultaAdscritoPresente).
+                concat("\tConsulta - Nombre de radiologo: ").concat(consultaRadiologoNombre).
+                concat("\tConsulta - Radiologo presente: ").concat(consultaRadiologoPresente).
                 concat("\tQuimioterapia previa - Fecha: ").concat(estudioPrevioQuimioFecha.toString()).
                 concat("\tQuimioterapia previa - Ciclos: ").concat(estudioPrevioQuimioCiclos.toString()).
                 concat("\tRadioterapia previa - Fecha: ").concat(estudioPrevioRadioFecha.toString()).
@@ -210,6 +230,16 @@ public class GeneralPoblacion  implements Serializable{
                 concat("\t").concat(oxigeno).
                 concat("\t").concat(camilla).
                 concat("\t").concat(bastón).
+                concat("\t").concat(consultaTipo).
+                concat("\t").concat(consultaEstado).
+                concat("\t").concat(consultaMotivo).
+                concat("\t").concat(consultaComentario).
+                concat("\t").concat(consultaFecha.toString()).
+                concat("\t").concat(consultaDiagnosticoFecha.toString()).
+                concat("\t").concat(consultaAdscritoNombre).
+                concat("\t").concat(consultaAdscritoPresente).
+                concat("\t").concat(consultaRadiologoNombre).
+                concat("\t").concat(consultaRadiologoPresente).
                 concat("\t").concat(estudioPrevioQuimioFecha.toString()).
                 concat("\t").concat(estudioPrevioQuimioCiclos.toString()).
                 concat("\t").concat(estudioPrevioRadioFecha.toString()).
@@ -291,6 +321,16 @@ public class GeneralPoblacion  implements Serializable{
                 concat("Oxígeno\t").
                 concat("Camilla\t").
                 concat("Bastón\t").
+                concat("Consulta - Tipo\t").
+                concat("Consulta - Estado\t").
+                concat("Consulta - Motivo\t").
+                concat("Consulta - Comentario\t").
+                concat("Consulta - Fecha\t").
+                concat("Consulta - Fecha de diagnostico\t").
+                concat("Consulta - Nombre de adscrito\t").
+                concat("Consulta - Adscrito presente\t").
+                concat("Consulta - Nombre de radiologo\t").
+                concat("Consulta - Radiologo presente\t").
                 concat("Quimioterapia previa - Fecha\t").
                 concat("Quimioterapia previa - Ciclos\t").
                 concat("Radioterapia previa - Fecha\t").
@@ -979,6 +1019,86 @@ public class GeneralPoblacion  implements Serializable{
 
     public void setCirugiasINCanReconstruccionFecha(Date cirugiasINCanReconstruccionFecha) {
         this.cirugiasINCanReconstruccionFecha = cirugiasINCanReconstruccionFecha;
+    }
+
+    public String getConsultaTipo() {
+        return consultaTipo;
+    }
+
+    public void setConsultaTipo(String consultaTipo) {
+        this.consultaTipo = consultaTipo;
+    }
+
+    public String getConsultaEstado() {
+        return consultaEstado;
+    }
+
+    public void setConsultaEstado(String consultaEstado) {
+        this.consultaEstado = consultaEstado;
+    }
+
+    public String getConsultaMotivo() {
+        return consultaMotivo;
+    }
+
+    public void setConsultaMotivo(String consultaMotivo) {
+        this.consultaMotivo = consultaMotivo;
+    }
+
+    public String getConsultaComentario() {
+        return consultaComentario;
+    }
+
+    public void setConsultaComentario(String consultaComentario) {
+        this.consultaComentario = consultaComentario;
+    }
+
+    public Date getConsultaFecha() {
+        return consultaFecha;
+    }
+
+    public void setConsultaFecha(Date consultaFecha) {
+        this.consultaFecha = consultaFecha;
+    }
+
+    public Date getConsultaDiagnosticoFecha() {
+        return consultaDiagnosticoFecha;
+    }
+
+    public void setConsultaDiagnosticoFecha(Date consultaDiagnosticoFecha) {
+        this.consultaDiagnosticoFecha = consultaDiagnosticoFecha;
+    }
+
+    public String getConsultaAdscritoNombre() {
+        return consultaAdscritoNombre;
+    }
+
+    public void setConsultaAdscritoNombre(String consultaAdscritoNombre) {
+        this.consultaAdscritoNombre = consultaAdscritoNombre;
+    }
+
+    public String getConsultaAdscritoPresente() {
+        return consultaAdscritoPresente;
+    }
+
+    public void setConsultaAdscritoPresente(String consultaAdscritoPresente) {
+        this.consultaAdscritoPresente = consultaAdscritoPresente;
+    }
+
+    public String getConsultaRadiologoNombre() {
+        return consultaRadiologoNombre;
+    }
+
+    public void setConsultaRadiologoNombre(String consultaRadiologoNombre) {
+        this.consultaRadiologoNombre = consultaRadiologoNombre;
+    }
+
+    public String getConsultaRadiologoPresente() {
+        return consultaRadiologoPresente;
+    }
+
+    public void setConsultaRadiologoPresente(String consultaRadiologoPresente) {
+        this.consultaRadiologoPresente = consultaRadiologoPresente;
     }
     
     
