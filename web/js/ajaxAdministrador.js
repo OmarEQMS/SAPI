@@ -307,7 +307,7 @@ $(document).ready(function () {
             //checa si el correo esta repetido
             $.ajax({
 
-                url: 'PotencialController',
+                url: 'RegistraUsuarioController',
                 method: "POST",
                 cache: false,
                 data: {
@@ -511,7 +511,7 @@ $(document).ready(function () {
                     icon: "error",
                     button: "Entendido!",
                 });
-            }            
+            }
         } else {
             swal({
                 title: "¡Datos inválidos!",
@@ -582,8 +582,8 @@ $(document).ready(function () {
             $('#error-imgPerfil').show();
         }
     });
-    
-        function validProfilePhoto(input, archivos) {
+
+    function validProfilePhoto(input, archivos) {
 
         for (let index = 0; index < archivos.length; index++) {
 
@@ -1080,7 +1080,7 @@ $(document).ready(function () {
     $('#agregar-correoMedico').on('change', function () {
         $.ajax({
 
-            url: 'PotencialController',
+            url: 'RegistraUsuarioController',
             cache: false,
             method: 'POST',
             data: {
@@ -1755,6 +1755,39 @@ $(document).ready(function () {
         }
     });
 
+    $('#cancelarAgregadoPaciente').on('click', function () {
+        alert("BORRA!");
+        
+        
+        $("#agregar-password2Medico").val("");
+        $("#agregar-password2Medico").css('border', '');
+        $("#agregar-password2Medico").css('color', '');
+
+        $('#errorNombrePaciente').hide();
+        $('#errorCurpPaciente').hide();
+        $('#errorCurpRepetidoPaciente').hide();
+        $('#errorFechaPaciente').hide();
+        $('#errorApellidoPaternoPaciente').hide();
+        $('#errorApellidoMaternoPaciente').hide();
+        $('#errorNombreUsuarioPaciente').hide();
+        $('#errorUsuarioRepetidoPaciente').hide();
+        $('#errorECivilPaciente').hide();
+        $('#errorColoniaPaciente').hide();
+        $('#errorCallePaciente').hide();
+        $('#errorNoInteriorPaciente').hide();
+        $('#errorNoExteriorPaciente').hide();
+        $('#errorEstadoPaciente').hide();
+        $('#errorMunicipioPaciente').hide();
+        $('#errorTelefonoPaciente').hide();
+        $('#errorCorreoPaciente').hide();
+        $('#errorPass1Paciente').hide();
+        $('#errorPass2Paciente').hide();
+        $('#error-CPexistePaciente').hide();
+        $('#errorCodigoPostalPaciente').hide();
+        $('#noEqualPasswordsErrorPaciente').hide();
+        $('#error-terminos').hide();
+    });
+
     ////////////////////////////////////////////////////////////// VALIDACIONES EDITAR UN MÉDICO
 
     //TELEFONO EN EDITAR MÉDICO
@@ -2354,7 +2387,7 @@ $(document).ready(function () {
     $('#editar-correoNavegadora').on('change', function () {
         $.ajax({
 
-            url: 'PotencialController',
+            url: 'AdministradorController',
             cache: false,
             method: 'POST',
             data: {
@@ -2514,7 +2547,7 @@ $(document).ready(function () {
     $('#agregar-correoNavegadora').on('change', function () {
         $.ajax({
 
-            url: 'PotencialController',
+            url: 'RegistraUsuarioController',
             cache: false,
             method: 'POST',
             data: {

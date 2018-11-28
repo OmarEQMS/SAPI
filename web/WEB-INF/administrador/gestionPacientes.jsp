@@ -304,7 +304,7 @@
                                                 </div>
                                                 <input type="text" class="form-control" id="editarUsuarioAdministradorAPaciente" placeholder="Usuario">
                                             </div>
-                                            <span class="text-danger" id="error-editar-NombreUsuarioPaciente">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 4 y un máximo de 16 caracteres.</span><br>
+                                            <span class="text-danger" id="error-editar-NombreUsuarioPaciente">Formato incorrecto, solo caracteres alfanumérico con un mínimo de 4 y un máximo de 16 caracteres.</span><br>
                                             <span class="text-warning" id="error-editar-UsuarioRepetidoPaciente">El usuario ya existe.</span>
                                         </div>
                                         <div class="col-6">
@@ -425,7 +425,7 @@
                                                 </div>
                                                 <input type="text" class="form-control" id="editarCorreoAdministradorAPaciente" placeholder="Correo">
                                             </div>
-                                            <span class="text-danger" id="error-editar-CorreoPaciente">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
+                                            <span class="text-danger" id="error-editar-CorreoPaciente">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
 
                                         </div>
 
@@ -674,7 +674,7 @@
                                                 </div>
                                                 <input type="text" class="form-control" id="correoPaciente" placeholder="Correo">
                                             </div>
-                                            <span class="text-danger" id="errorCorreoPaciente">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
+                                            <span class="text-danger" id="errorCorreoPaciente">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
                                         </div>
 
                                     </div>
@@ -730,7 +730,7 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" style="border-radius: 20px;" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" style="border-radius: 20px;" class="btn btn-danger" id="cancelarAgregadoPaciente" data-dismiss="modal">Cancelar</button>
                                     <button id="btn-agregarPaciente" type="button" style="border-radius: 20px;" class="btn btn-primary">Agregar
                                         Paciente
                                     </button>
