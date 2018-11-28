@@ -20,6 +20,8 @@ $(document).ready(function () {
     $('#noEqualPasswordsErrorAdministrador').hide();
     $('#errorTerminosAdministrador').hide();
 
+    var cambioImagen = false;
+    var imagenValida = false;
 
 
     $('#btn-agregarAdministrador').on('click', function () {
@@ -401,7 +403,7 @@ $(document).ready(function () {
 
 
     /////////////////////////////// MI CUENTA ////////
-
+    $('#error-imgPerfil').hide();
     $('.error-correo').hide();
     $('.error-correoRepetido').hide();
     $('.error-usuario').hide();
@@ -426,72 +428,100 @@ $(document).ready(function () {
 
     $("#guardarCambios").on('click', function () {
 
-        if (isValidUserName($('#username')) && isValidEmail($('#correo')) && !existeUsuario($("#username").val()) && !existeCorreo($("#correo").val())) {
+        var continuar = false;
 
-            console.log("Presionó GuardarCambios");
-            var form = $("form")[0];
-            console.log(form);
-            var data = new FormData(form);
-            data.append("key", "guardarCambios");
-            data.forEach((value, key) => {
-                console.log(key + " " + value);
-            });
+        if (cambioImagen) {
+            if (imagenValida)
+                continuar = true;
+            else
+                continuar = false;
+        } else {
+            continuar = true;
+        }
 
-            $.ajax({
-                url: "AdministradorController",
-                data: data,
-                method: "POST",
-                enctype: 'multipart/form-data',
-                processData: false, // Important!
-                contentType: false,
-                cache: false,
-                success: function (response) {
+        console.log("CambioImagen: " + cambioImagen);
+        console.log("imagenValida: " + imagenValida);
 
-                    swal({
-                        title: "Buen trabajo!",
-                        text: "Cuenta actualizada correctamente",
-                        icon: "success",
-                        button: "Ok",
-                    })
-                            .then((value) => {
-                                $.post("SAPI", {
-                                    file: "administrador/cuentaAdministrador.jsp"
-                                },
-                                        function (response, status, xhr) {
-                                            console.log("El ajax fue exitoso!!-----------------------");
-                                            if (status == "success") {
-                                                if (response == "error") {
-                                                    swal("Error", "Hubo un error actualizando tus datos", "error");
-                                                } else {
-                                                    document.open("text/html", "replace");
-                                                    document.write(response);
-                                                    document.close();
+        if (continuar)
+            console.log("Se actualizan cambios");
+        else
+            console.log("No se puede (imagenInVálida");
 
+
+        if (continuar) {
+            if (isValidEmail($('#correo')) && !existeCorreo($("#correo").val())) {
+
+                console.log("Presionó GuardarCambios");
+                var form = $("form")[0];
+                console.log(form);
+                var data = new FormData(form);
+                data.append("key", "guardarCambios");
+                data.forEach((value, key) => {
+                    console.log(key + " " + value);
+                });
+
+                $.ajax({
+                    url: "AdministradorController",
+                    data: data,
+                    method: "POST",
+                    enctype: 'multipart/form-data',
+                    processData: false, // Important!
+                    contentType: false,
+                    cache: false,
+                    success: function (response) {
+
+                        swal({
+                            title: "Buen trabajo!",
+                            text: "Cuenta actualizada correctamente",
+                            icon: "success",
+                            button: "Ok",
+                        })
+                                .then((value) => {
+                                    $.post("SAPI", {
+                                        file: "administrador/cuentaAdministrador.jsp"
+                                    },
+                                            function (response, status, xhr) {
+                                                console.log("El ajax fue exitoso!!-----------------------");
+                                                if (status == "success") {
+                                                    if (response == "error") {
+                                                        swal("Error", "Hubo un error actualizando tus datos", "error");
+                                                    } else {
+                                                        document.open("text/html", "replace");
+                                                        document.write(response);
+                                                        document.close();
+
+                                                    }
                                                 }
                                             }
-                                        }
-                                );
-                            });
+                                    );
+                                });
 
 
-                },
-                error: function (xhr) {
-                    //alert(xhr.statusText);
-                }
-            });
+                    },
+                    error: function (xhr) {
+                        //alert(xhr.statusText);
+                    }
+                });
 
 
+            } else {
+                swal({
+                    title: "Error",
+                    text: "Verifica que todos los datos sean validos",
+                    icon: "error",
+                    button: "Entendido!",
+                });
+            }            
         } else {
             swal({
-                title: "Error",
-                text: "Verifica que todos los datos sean validos",
+                title: "¡Datos inválidos!",
+                text: "Revisa todos los campos antes de continuar",
                 icon: "error",
-                button: "Entendido!",
             });
-
         }
 
     });
+
 
 
     /*
@@ -540,8 +570,40 @@ $(document).ready(function () {
 
     $("#file-input").on('change', function () {
         console.log("Llegó :)");
-        readURL(this);
+        cambioImagen = true;
+        var tieneFoto = ($('#file-input').get(0).files.length === 0) ? false : true;
+        console.log("Tiene algo? " + tieneFoto)
+        if (validProfilePhoto($('#file-input'), document.querySelector('#file-input').files) || !tieneFoto) {
+            imagenValida = true;
+            $('#error-imgPerfil').hide();
+            readURL(this);
+        } else {
+            imagenValida = false;
+            $('#error-imgPerfil').show();
+        }
     });
+    
+        function validProfilePhoto(input, archivos) {
+
+        for (let index = 0; index < archivos.length; index++) {
+
+            if (archivos[index]["type"] == "image/jpg" || archivos[index]["type"] == "image/png"
+                    || archivos[index]["type"] == "image/jpeg") {
+
+                console.log('si se puede' + archivos[index]["type"]);
+                input.css('border', '');
+                return true;
+
+
+            } else {
+                console.log('no se puede' + archivos[index]["type"]);
+                input.css('border', '1px solid red');
+            }
+
+        }
+
+        return false;
+    }
 
     ////*****CAMBIAR CONTRASEÑA
     $("#btn-updatePassword").on('click', function () {
@@ -732,19 +794,19 @@ $(document).ready(function () {
         if (isValidPassword($(this))) {
             $("#error-contrasena").hide();
 
-            if(!areEqualPasswords($('#password'), $('#password2'))){
+            if (!areEqualPasswords($('#password'), $('#password2'))) {
                 $('#noEqualPasswordsError').show();
-            }else{
+            } else {
                 $('#noEqualPasswordsError').hide();
             }
-            
+
         } else {
             $("#error-contrasena").show();
         }
 
     });
 
-    
+
 
 
     /////////////////////////////// GESTION MEDICOS ////// 
