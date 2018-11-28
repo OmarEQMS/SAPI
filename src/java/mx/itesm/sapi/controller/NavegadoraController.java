@@ -436,7 +436,7 @@ public class NavegadoraController extends HttpServlet {
                         }
                         case "mostrarFormularioNavegadora": {
 
-                               int idPaciente = (int) sesion.getAttribute("idPacientePotencialForm");
+                            int idPaciente = (int) sesion.getAttribute("idPacientePotencialForm");
                             
                             if(idPaciente != 0)
                             {
@@ -444,8 +444,9 @@ public class NavegadoraController extends HttpServlet {
                             System.out.println("EL id paciente es: " + idPaciente);
 
                             ArrayList<MFormularioGeneral> formGeneralList = new ArrayList<>();
+                                System.out.println("va a mamar");
                             ArrayList<ArrayList<MFormularioGeneral>> ElJeison = new ArrayList<>();
-
+                                System.out.println("mamó");
                             MFormularioGeneralServicioImpl mFormularioGeneralServicioImpl = new MFormularioGeneralServicioImpl();
                             MFormularioGeneral formGeneral = mFormularioGeneralServicioImpl.mostrarFormularioGeneralNavegadora(idPaciente);
                            // System.out.println(formGeneral.getFechaConsulta());
@@ -530,8 +531,15 @@ public class NavegadoraController extends HttpServlet {
                             ElJeison.add(formOtros);
 
                             
-                             ArrayList<MFormularioGeneral> formLlamada = mFormularioGeneralServicioImpl.mostrarFormularioNavegadoraLLamada(idPaciente);
+                            ArrayList<MFormularioGeneral> formLlamada = mFormularioGeneralServicioImpl.mostrarFormularioNavegadoraLLamada(idPaciente);
                             ElJeison.add(formLlamada);
+                            
+                            PrintWriter out = response.getWriter();
+                            Gson json = new Gson();
+                            System.out.println(json);
+                            System.out.println(ElJeison);
+
+                            out.print(json.toJson(ElJeison));
                         }
                             break;
                         }
