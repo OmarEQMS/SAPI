@@ -122,7 +122,7 @@ public class AdministradorController extends HttpServlet {
                 case "repiteCorreo": {
                     
                     String correo = request.getParameter("correo");
-                    int idPersona = (int) sesion.getAttribute("idEmpleado");
+                    int idPersona = (int) sesion.getAttribute("idPersona");
                     System.out.println("El id de empleado es: " + idPersona);
 
                     PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
