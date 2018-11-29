@@ -2040,7 +2040,7 @@ $(document).ready(function () {
             method: "POST",
             data: {
                 key: 'obtener-admin',
-                idMedicoAdministrador: idAdmin
+                idAdmin: idAdmin
             },
             success: function (response) {
 
@@ -2325,17 +2325,16 @@ $(document).ready(function () {
     });
 
     $('#editar-correoAdministrador').on('change', function () {
-        $.ajax({
+        var idAdmin = $('#idAdministrador').val();
 
+        $.ajax({
             url: 'AdministradorController',
             cache: false,
             method: 'POST',
             data: {
-
-                key: "repiteCorreo",
-                correo: $('#editar-correoAdministrador').val()
-
-
+                key: "repiteCorreoEditEmpleado",
+                correo: $('#editar-correoAdministrador').val(),
+                idEmpleado: idAdmin
             },
             success: function (response) {
                 if (response === 'CorreoAlreadyExists') {
