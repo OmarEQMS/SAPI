@@ -383,19 +383,6 @@ $(document).ready(function () {
 
     });
 
-    //CORREO EN RECUPERAR CONTRASEÑA
-    $('#email').on('change', function () {
-
-        if (isValidEmail($(this))) {
-            $('#errorCorreo').hide();
-        } else if ($(this).val() == '') {
-            $('#errorCorreo').hide();
-        } else {
-            $('#errorCorreo').show();
-        }
-
-    });
-
     //CONTRASEÑA1 EN EL REGISTRO
     $('#pass1').on('change', function () {
 
