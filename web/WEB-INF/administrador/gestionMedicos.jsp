@@ -202,7 +202,7 @@
                                         <td>
                                             <button class="btn btn-primary btn-editarMedico m-1" data-toggle="modal" data-id="${medico.idEmpleado}" data-target="#modalEditarMedico"><i
                                                     class="fas fa-edit"></i></button>
-                                            <button class="btn btn-danger m-1" id="btn-eliminarMedico" data-id="${medico.idEmpleado}"><i 
+                                            <button class="btn btn-danger m-1 btn-eliminarMedico" data-id="${medico.idEmpleado}"><i 
                                                     class="fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>

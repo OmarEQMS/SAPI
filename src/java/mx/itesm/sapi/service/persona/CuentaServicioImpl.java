@@ -287,7 +287,7 @@ public class CuentaServicioImpl implements CuentaServicio {
     }
 
     @Override
-    public Cuenta mostrarCuentaEmpleado(int idEmpleado) {
+    public Cuenta mostrarCuentaidEmpleado(int idEmpleado) {
          Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
@@ -295,7 +295,7 @@ public class CuentaServicioImpl implements CuentaServicio {
         Cuenta cuenta = null;
 
         //Call del store procedure
-        String stProcedure = "CALL mostrarCuentaEmpleado(?)";
+        String stProcedure = "CALL mostrarCuentaIdEmpleado(?)";
 
         try {
             cuenta = new Cuenta();

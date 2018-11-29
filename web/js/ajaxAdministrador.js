@@ -152,22 +152,23 @@ $(document).ready(function () {
     });
 
     ///////Eliminar un administrador
-    $('.btn-eliminarAdministrador').on('click', function () {
+    $('body').on('click', '.btn-eliminarAdministrador', function () {
 
-        var id = $(this).data('id');
+        var t = $('#tablaAdministradores').DataTable();
+        var fila = $(this).parents('tr');
 
-        $('#idAdministrador').val($(this).data('id'));
+        var idAdmin = $(this).data('id');
+
 
         swal({
-            title: "¿Estás segura?",
-            text: "Una vez eliminado, el administrador y sus datos ya no se podrán recuperar.",
+            title: "¿Estás seguro?",
+            text: "Los datos se eliminarán y no podrás recuperarlos.",
             icon: "warning",
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
                 .then((eliminar) => {
-
                     if (eliminar) {
 
                         $.ajax({
@@ -176,22 +177,20 @@ $(document).ready(function () {
                             cache: false,
                             method: 'POST',
                             data: {
-
-                                key: "eliminar-administrador",
-                                id: id
-
+                                key: 'eliminarEmpleado',
+                                idEmpleado: idAdmin
                             },
                             success: function (response) {
-
-
-
+                                if (response == "error") {
+                                    alert("Error al cargar");
+                                } else {
+                                    t.row(fila).remove().draw();
+                                }
+                            },
+                            error: function (xhr) {
 
                             }
-
                         });
-
-
-
                     }
                 });
 
@@ -1705,7 +1704,7 @@ $(document).ready(function () {
                             $("#agregar-especialidadMedico").val(),
                             $("#agregar-cedulaMedico").val(),
                             "<button class='btn btn-primary btn-editarMedico m-1' data-toggle='modal' data-id='" + response + "' data-target='#modalEditarMedico'><i class='fas fa-edit'></i></button>" +
-                                    "<button class='btn btn-danger m-1' id='btn-eliminarMedico' data-id='" + response + "'><i class='fas fa-trash-alt'></i></button>"
+                                    "<button class='btn btn-danger m-1 btn-eliminarMedico' data-id='" + response + "'><i class='fas fa-trash-alt'></i></button>"
                         ]).draw(false);
 
                         console.log(response);
@@ -2202,13 +2201,16 @@ $(document).ready(function () {
     });
 
     /** ELIMINAR MEDICO */
-    $('body').on('click', '#btn-eliminarMedico', function () {
+    $('body').on('click', '.btn-eliminarMedico', function () {        
+
+        var t = $('#tablaMedicos').DataTable();
+        var fila = $(this).parents('tr');
 
         var idMedico = $(this).data('id');
 
-        //Modal editar medicos
+
         swal({
-            title: "Estas segura(o)?",
+            title: "¿Estás seguro?",
             text: "Los datos se eliminarán y no podrás recuperarlos.",
             icon: "warning",
             buttons: true,
@@ -2220,22 +2222,24 @@ $(document).ready(function () {
 
                         $.ajax({
 
-                            url: 'AdminController',
+                            url: 'AdministradorController',
                             cache: false,
                             method: 'POST',
                             data: {
-                                key: 'eliminarMedico',
-                                idMedico: idMedico
+                                key: 'eliminarEmpleado',
+                                idEmpleado: idMedico
                             },
                             success: function (response) {
+                                if (response == "error") {
+                                    alert("Error al cargar");
+                                } else {
+                                    t.row(fila).remove().draw();
+                                }
+                            },
+                            error: function (xhr) {
 
                             }
-
-
                         });
-
-                    } else {
-
                     }
                 });
 
@@ -2780,12 +2784,14 @@ $(document).ready(function () {
 
 
     /** ELIMINAR NAVEGADORA */
-    $('body').on('click', '#btn-eliminarNavegadora', function () {
+    $('body').on('click', '.btn-eliminarNavegadora', function () {
+
+        var t = $('#tablaNavegadoras').DataTable();
+        var fila = $(this).parents('tr');
 
         var idNavegadora = $(this).data('id');
-        alert($(this).data('id'));
 
-        //Modal editar medicos
+
         swal({
             title: "¿Estás seguro?",
             text: "Los datos se eliminarán y no podrás recuperarlos.",
@@ -2803,17 +2809,14 @@ $(document).ready(function () {
                             cache: false,
                             method: 'POST',
                             data: {
-                                key: 'eliminarNavegadora',
-                                idCuenta: idNavegadora
+                                key: 'eliminarEmpleado',
+                                idEmpleado: idNavegadora
                             },
                             success: function (response) {
                                 if (response == "error") {
                                     alert("Error al cargar");
                                 } else {
-                                    console.log("Intentando redireccionar");
-                                    document.open("text/html", "replace");
-                                    document.write(response);
-                                    document.close();
+                                    t.row(fila).remove().draw();
                                 }
                             },
                             error: function (xhr) {
@@ -2822,8 +2825,6 @@ $(document).ready(function () {
 
 
                         });
-
-                    } else {
 
                     }
                 });

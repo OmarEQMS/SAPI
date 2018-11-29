@@ -281,7 +281,7 @@ public class AdministradorController extends HttpServlet {
                 }
 
                 case "repiteCorreo": {
-                    
+
                     String correo = request.getParameter("correo");
                     int idPersona = (int) sesion.getAttribute("idPersona");
                     System.out.println("El id de empleado es: " + idPersona);
@@ -492,49 +492,38 @@ public class AdministradorController extends HttpServlet {
                 }
                 break;
 
-                case "eliminarNavegadora": {
-                    System.out.println("Si llego aqui navegadora");
+                case "eliminarEmpleado": {
+                    System.out.println("Case para borrar a un empleado (cuenta y persona)");
 
                     /**
-                     * Veo si tiene sesion iniciada
+                     * Elimino su cuenta (borrrado logico)
                      */
-                    if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
-                        // request.setAttribute("status", "");
-                        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-                        /**
-                         * Lo redirecciono al login
-                         */
-                        return;
-                    } else {
-                        /**
-                         * Elimino su cuenta (borrrado logico)
-                         */
-                        /**
-                         * Obtengo los id's de su cuenta y login de la sesion
-                         */
-                        int idCuenta = (int) sesion.getAttribute("idCuenta");
-                        System.out.println(idCuenta);
+                    /**
+                     * Obtengo los id's de su cuenta y login de la sesion
+                     */
+                    
+                    
+                    int idEmpleado = Integer.parseInt(request.getParameter("idEmpleado"));
+                    System.out.println("idEmpleado: " + idEmpleado);
 
-                        CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+                    Cuenta cuentaNav;
+                    
+                    PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                    CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+                    cuentaNav = cuentaServicio.mostrarCuentaidEmpleado(idEmpleado);
+                    
+                    int idCuenta = cuentaNav.getIdCuenta();
+                    int idPersona = cuentaNav.getIdPersona();
+                    
+                    
+                    if (cuentaNav != null)
+                        cuentaServicio.borradoLogicoCuenta(idCuenta);
+                    if (idPersona != 0)
+                        personaServicio.borradoLogicoPersona(idPersona);
+                    
+                    System.out.println("SUPUESTAMENTE YA LA BORRÓ");
+                    
 
-                        LoginServicioImpl loginServicio = new LoginServicioImpl();
-                        if (loginServicio.mostrarLoginIdCuenta(idCuenta) != null) {
-                            Login login = loginServicio.mostrarLoginIdCuenta(idCuenta);
-                            loginServicio.borradoLogicoLogin(login.getIdLogin());
-                        }
-
-                        if (cuentaServicio.mostrarCuenta(idCuenta) != null) {
-                            Cuenta cuenta = cuentaServicio.mostrarCuenta(idCuenta);
-
-                            cuentaServicio.borradoLogicoCuenta(cuenta.getIdCuenta());
-                        }
-
-                        /**
-                         * Al no tener cuenta se le redirecciona al login
-                         */
-                        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-
-                    }
                     break;
                 }
 
