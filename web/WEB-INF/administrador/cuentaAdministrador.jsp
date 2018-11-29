@@ -43,6 +43,11 @@
 
     <body>
 
+        <div class="cargandoGuardarCambios" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Guardando cambios, por favor espere...</p>
+        </div>
+
         <div class="wrapper">
 
             <!-- SIDEBAR -->
@@ -93,8 +98,6 @@
 
                 <!-- MENU PRINCIPAL ENLACES -->
                 <ul class="list-unstyled components">
-
-                    <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
 
                     <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
 
@@ -235,7 +238,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Cambiar contraseña</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <button type="button" class="close cleanerModal" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
@@ -243,7 +246,10 @@
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <label for="name">Contraseña</label>
-                                                <input type="password" class="form-control" id="password" placeholder="Ingresa tu nueva contraseña" />
+                                                <div id="cambio1Contrasena" class="input-group-append bg-white">
+                                                    <input type="password" class="form-control" id="password" placeholder="Ingresa tu nueva contraseña" />
+                                                    <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row" id="error-contrasena">
@@ -254,7 +260,10 @@
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <label for="name">Confirma tu contraseña</label>
-                                                <input type="password" class="form-control" id="password2" placeholder="Reingresa tu nueva contraseña" />
+                                                <div id="cambio2Contrasena" class="input-group-append bg-white">
+                                                    <input type="password" class="form-control" id="password2" placeholder="Reingresa tu nueva contraseña" />
+                                                    <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row" id="noEqualPasswordsError">

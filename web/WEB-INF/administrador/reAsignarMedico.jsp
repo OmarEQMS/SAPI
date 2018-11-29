@@ -95,10 +95,6 @@
                 <!-- MENU PRINCIPAL ENLACES -->
                 <ul class="list-unstyled components">
 
-
-
-                    <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
-
                     <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
 
                     <li id="IrAGestionNavegadora"><a><i class="fas fa-calendar-alt"></i>Navegadoras</a></li>
