@@ -213,7 +213,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    
+
                                     <input type="hidden" id="idPacienteAEditar">
 
                                     <div class="form-group row">
@@ -429,6 +429,12 @@
                                             <span class="text-warning" id="errorEditarPacienteCorreoRepetido">El correo ya existe.</span>
                                         </div>
 
+                                    </div>
+
+                                    <div class="row mb-3" id="error-editarDatosRepetidosPaciente">
+                                        <div class="col-12 text-center">
+                                            <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>
+                                        </div>
                                     </div>
 
 

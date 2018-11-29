@@ -65,6 +65,9 @@ $(document).ready(function () {
                             icon: "success",
                             buttons: [, 'Aceptar'],
                         });
+                        
+                        //AQUÍ VA EL ROW ADD
+                        //CHECKPOINT
 
 
                         //limpiar los campos del modal
@@ -156,7 +159,7 @@ $(document).ready(function () {
 
         var t = $('#tablaAdministradores').DataTable();
         var fila = $(this).parents('tr');
-        
+
         var idAdmin = $(this).data('id');
 
 
@@ -1141,6 +1144,7 @@ $(document).ready(function () {
     $('#noEqualPasswordsErrorPaciente').hide();
     $('#error-terminos').hide();
 
+    $("#error-editarDatosRepetidosPaciente").hide();
     $('#error-editar-NombrePaciente').hide();
     $('#error-editar-ApellidoPaternoPaciente').hide();
     $('#error-editar-ApellidoMaternoPaciente').hide();
@@ -1495,7 +1499,7 @@ $(document).ready(function () {
     $('#editarCorreoAdministradorAPaciente').on('change', function () {
 
         var idPaciente = $('#idPacienteAEditar').val();
-        
+
         $.ajax({
             url: 'AdministradorController',
             cache: false,
@@ -1863,7 +1867,7 @@ $(document).ready(function () {
 
     $('#editar-correoMedico').on('change', function () {
         var idMedico = $('#idMedico').val();
-        
+
         $.ajax({
             url: 'AdministradorController',
             cache: false,
@@ -2227,7 +2231,7 @@ $(document).ready(function () {
     });
 
     /** ELIMINAR MEDICO */
-    $('body').on('click', '.btn-eliminarMedico', function () {        
+    $('body').on('click', '.btn-eliminarMedico', function () {
 
         var t = $('#tablaMedicos').DataTable();
         var fila = $(this).parents('tr');
@@ -2384,7 +2388,7 @@ $(document).ready(function () {
 
     $('#editar-correoNavegadora').on('change', function () {
         var idNavegadora = $('#idNavegadora').val();
-        
+
         $.ajax({
             url: 'AdministradorController',
             cache: false,
@@ -2800,11 +2804,10 @@ $(document).ready(function () {
                         $('#cedulaProfesional-' + idNavegadora).html(cedula);
                     }
                 });
-
-            } else {
-                console.log("Entro al segundo else");
-                $("#error-datosRepetidosNavegadora").show(); //ya existe un campo
             }
+        } else {
+            console.log("Entro al segundo else");
+            $("#error-datosRepetidosNavegadora").show(); //ya existe un campo
         }
     });
 
@@ -2944,50 +2947,57 @@ $(document).ready(function () {
 
     //Guarda el paciente
     $('#btn-guardarCambios').on('click', function () {
+        if (!repiteCorreo) {
+            $("#error-editarDatosRepetidosNavegadora").hide();
+            if (isValidName($('#editarNombreAdministradorAPaciente')) && isValidLastName($('#editarPrimer-apellidoAdministradorAPaciente')) && isValidUserName($('#editarUsuarioAdministradorAPaciente')) &&
+                    isValidEmail($('#editarCorreoAdministradorAPaciente')) && isValidCURP($('#editarCurpAdministradorAPaciente')) && isValidPhoneNumber($('#editarTelAdministradorAPaciente')) &&
+                    isValidSelect($('#editarEstado-civilPaciente')) && isValidDate($('#editarCumpleAdministradorAPaciente')) && isValidSelect($('#editarEstadoAdministradorAPaciente')) && isValidSelect($('#editarMunicipioAdministradorAPaciente'))) {
+                $.ajax({
+
+                    url: "AdministradorController",
+                    method: "POST",
+                    cache: false,
+                    data: {
+                        key: "actualizar-paciente",
+                        idPaciente: $('#idPacienteAEditar').val(),
+                        nombre: $('#editarNombreAdministradorAPaciente').val(),
+                        apellido1: $('#editarPrimer-apellidoAdministradorAPaciente').val(),
+                        apellido2: $('#editarSegundo-apellidoAdministradorAPaciente').val(),
+                        usuario: $("#editarUsuarioAdministradorAPaciente").val(),
+                        correo: $('#editarCorreoAdministradorAPaciente').val(),
+                        curp: $('#editarCurpAdministradorAPaciente').val(),
+                        colonia: $('#editarColAdministradorAPaciente').val(),
+                        calle: $('#editarCalleAdministradorAPaciente').val(),
+                        noExterior: $("#editarNumExtAdministradorAPaciente").val(),
+                        noInterior: $("#editarNumIntAdministradorAPacient").val(),
+                        telefono: $("#editarTelAdministradorAPaciente").val(),
+                        estadoCivil: $("#editarEstado-civilPaciente").val(),
+                        fechaNacimiento: $("#editarCumpleAdministradorAPaciente").val(),
+                        estado: $("#editarEstadoAdministradorAPaciente").val(),
+                        municipio: $("#editarMunicipioAdministradorAPaciente").val()
 
 
+                    },
+                    success: function (response) {
 
-        $.ajax({
+                        swal("Buen trabajo", "Cuenta editada satisfactoriamente", "success");
 
-            url: "AdministradorController",
-            method: "POST",
-            cache: false,
-            data: {
-                key: "actualizar-paciente",
-                idPaciente: $('#idPacienteAEditar').val(),
-                nombre: $('#editarNombreAdministradorAPaciente').val(),
-                apellido1: $('#editarPrimer-apellidoAdministradorAPaciente').val(),
-                apellido2: $('#editarSegundo-apellidoAdministradorAPaciente').val(),
-                usuario: $("#editarUsuarioAdministradorAPaciente").val(),
-                correo: $('#editarCorreoAdministradorAPaciente').val(),
-                curp: $('#editarCurpAdministradorAPaciente').val(),
-                colonia: $('#editarColAdministradorAPaciente').val(),
-                calle: $('#editarCalleAdministradorAPaciente').val(),
-                noExterior: $("#editarNumExtAdministradorAPaciente").val(),
-                noInterior: $("#editarNumIntAdministradorAPacient").val(),
-                telefono: $("#editarTelAdministradorAPaciente").val(),
-                estadoCivil: $("#editarEstado-civilPaciente").val(),
-                fechaNacimiento: $("#editarCumpleAdministradorAPaciente").val(),
-                estado: $("#editarEstadoAdministradorAPaciente").val(),
-                municipio: $("#editarMunicipioAdministradorAPaciente").val()
+                        //Cerrar modal
+                        $("#modalEditarPaciente").modal('toggle');
 
+                        //Actualizar informacion de la tabla
+                        $("#nombre-" + $('#idPacienteAEditar').val()).html($("#editarNombreAdministradorAPaciente").val() + ' ' + $('#editarPrimer-apellidoAdministradorAPaciente').val() + ' ' + $('#editarSegundo-apellidoAdministradorAPaciente').val());
+                        $("#telefono-" + $('#idPacienteAEditar').val()).html($("#editarTelAdministradorAPaciente").val());
+                        $("#estado-" + $('#idPacienteAEditar').val()).html($("#editarEstadoAdministradorAPaciente option:selected").text());
 
-            },
-            success: function (response) {
+                    }
 
-                swal("Buen trabajo", "Cuenta editada satisfactoriamente", "success");
-
-                //Cerrar modal
-                $("#modalEditarPaciente").modal('toggle');
-
-                //Actualizar informacion de la tabla
-                $("#nombre-" + $('#idPacienteAEditar').val()).html($("#editarNombreAdministradorAPaciente").val() + ' ' + $('#editarPrimer-apellidoAdministradorAPaciente').val() + ' ' + $('#editarSegundo-apellidoAdministradorAPaciente').val());
-                $("#telefono-" + $('#idPacienteAEditar').val()).html($("#editarTelAdministradorAPaciente").val());
-                $("#estado-" + $('#idPacienteAEditar').val()).html($("#editarEstadoAdministradorAPaciente option:selected").text());
-
+                });
             }
-
-        });
+        } else {
+            console.log("Entro al segundo else");
+            $("#error-editarDatosRepetidosPaciente").show(); //ya existe un campo
+        }
 
     });
 
@@ -3113,9 +3123,9 @@ $(document).ready(function () {
 
     ///ELIMINA PACIENTE
     $('body').on('click', ".btn-eliminarPaciente", function () {
-        
+
         var t = $('#tablaAdministradores').DataTable();
-        var fila = $(this).parents('tr');        
+        var fila = $(this).parents('tr');
 
         var id = $(this).data('id');
 
