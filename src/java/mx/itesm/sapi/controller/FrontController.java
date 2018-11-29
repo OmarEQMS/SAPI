@@ -676,10 +676,11 @@ public class FrontController extends HttpServlet {
 
                                 case "navegadora/form.jsp":
                                 {
-                                    
-                                    int idPacientePotencial = Integer.parseInt(request.getParameter("idPotencial"));
-                                    sesion.setAttribute("idPacientePotencialForm", idPacientePotencial);
-                                    
+                                    String idPaciente = request.getParameter("idPotencial");
+                                    if(idPaciente!=null){
+                                        int idPacientePotencial = Integer.parseInt(idPaciente);
+                                        sesion.setAttribute("idPacientePotencialForm", idPacientePotencial);
+                                    }
                                     System.out.println("Front Controller case:  Form Navegadora");
                                     
                                     /**-------------------Mostrar Lista Médicos---------------------------------------*/
