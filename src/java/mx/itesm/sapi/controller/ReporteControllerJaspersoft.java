@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -323,21 +324,16 @@ public class ReporteControllerJaspersoft extends HttpServlet {
                 llamada = llamadaCitaServicioImpl.mostrarLlamaCitaPreconsultaPaciente(idPaciente);
                 LlamadaPaciente llamadaPaciente;
                 
-                System.out.println("Tamaño de llamada" + llamada.size());
+                System.out.println("Tamaño de llamada " + llamada.size());
                 for (int x = 0; x < llamada.size(); x++) {
                     llamadaPaciente = new LlamadaPaciente();
-                    llamadaPaciente.setFechaLlamada(String.valueOf((llamada.get(x)).getFecha()));
-                    llamadaPaciente.setMotivoLlamada(llamada.get(x).getComentario());
+                    llamadaPaciente.setFecha(String.valueOf(new Date(((llamada.get(x)).getFecha()).getTime())));
+                    llamadaPaciente.setMotivo((llamada.get(x)).getComentario());
                     llamadas.add(llamadaPaciente);
-
                 }
 
                 /* Probar que los array tengan valores*/
-                System.out.println("biopsias: " + biopsias.size());
-                System.out.println("Rayosx: " + biopsias.size());
-                System.out.println("Medicina nuclear: " + biopsias.size());
-                System.out.println("Valoración: " + biopsias.size());
-                System.out.println("Programas: " + biopsias.size());
+                System.out.println("Llamadas: " + llamadas.size());
 
                 Map params = new HashMap();
                 params.put("datasetBiopsia", biopsias);

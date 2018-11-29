@@ -11,26 +11,26 @@ package mx.itesm.sapi.bean.formulario;
  */
 public class LlamadaPaciente {
 
-    private String fechaLlamada;
-    private String motivoLlamada;
+    private String fecha;
+    private String motivo;
     
     public LlamadaPaciente() {
     }
 
-    public String getFechaLlamada() {
-        return fechaLlamada;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setFechaLlamada(String fechaLlamada) {
-        this.fechaLlamada = fechaLlamada;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
-    public String getMotivoLlamada() {
-        return motivoLlamada;
+    public String getMotivo() {
+        return motivo;
     }
 
-    public void setMotivoLlamada(String motivoLlamada) {
-        this.motivoLlamada = motivoLlamada;
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
     }
     
 }

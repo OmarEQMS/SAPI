@@ -27,7 +27,7 @@ public class ReporteNavegadora {
     private String mastografiaBiradsFecha;
     private String mastografiaBiradsNombre;
     private String cantidadLaminillas;
-    private String tipoPaciente;
+    private String tipoPaciente;//falta
     private String cirugiaFecha;
     private String quimioterapiaFecha;
     private String navegadora;
@@ -35,7 +35,7 @@ public class ReporteNavegadora {
     private String cirugiaTipo;
     private String resultadoPatologia;
     private String otroResultado;
-    private String estadoHormonal; 
+    private String estadoHormonal;//estado Hormonal 
     private String resultado;
     private String socioeconomico;
     private String decisionConsulta;
@@ -48,20 +48,20 @@ public class ReporteNavegadora {
     private String radioterapiaComentario;
     private String quimioterapiaCiclo;
     private String radioterapiaCiclo;
-    private String mastografiaPreINCAN;
+    private String mastografiaPreINCAN; //falta
     private String fechaNavegacion;
     private String fechaConsulta;
     private String medicoAdscrito;
     private String medicoRadiologo;
     private String medicoResidente;
-    private String noAdscrito;
+    private String noAdscrito;//falta
     private String noRadiologo;
     private String noSeguro;
     private String fechaFin;
     private String etapaClinica;
-    private String T;
-    private String N;
-    private String M;
+    private String t;
+    private String n;
+    private String m;
     private String resultadoPatologiaPost;
     private String gradoH;
     private String her2;
@@ -69,8 +69,8 @@ public class ReporteNavegadora {
     private String re;
     private String rp;
     private String ki67;
-    private String ultra;
     private String masto;
+    private String ultra;
     public ReporteNavegadora() {
     }
   
@@ -82,7 +82,20 @@ public class ReporteNavegadora {
 
     @Override
     public String toString() {
-        return "ReporteNavegadora{" + "prz=" + prz + ", nombre=" + nombre + ", edad=" + edad + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", escolaridad=" + escolaridad + ", ciudad=" + ciudad + ", estado=" + estado + ", alergias=" + alergias + ", telefono=" + telefono + ", Seguro=" + seguro + ", serieLaminillas=" + serieLaminillas + ", ultrasonidoBiradsFecha=" + ultrasonidoBiradsFecha + ", ultrasonidoBiradsNombre=" + ultrasonidoBiradsNombre + ", mastografiaBiradsFecha=" + mastografiaBiradsFecha + ", mastografiaBiradsNombre=" + mastografiaBiradsNombre + ", cantidadLaminillas=" + cantidadLaminillas + ", tipoPaciente=" + tipoPaciente + ", cirugiaFecha=" + cirugiaFecha + ", quimioterapiaFecha=" + quimioterapiaFecha + ", navegadora=" + navegadora + ", radioterapiaFecha=" + radioterapiaFecha + ", cirugiaTipo=" + cirugiaTipo + ", resultadoPatologia=" + resultadoPatologia + ", otroResultado=" + otroResultado + ", estadoHormonal=" + estadoHormonal + ", resultado=" + resultado + ", socioeconomico=" + socioeconomico + ", decisionCosulta=" + decisionConsulta + ", comentarioIncidencia=" + comentarioIncidencia + ", comentarioMedico=" + comentarioMedico + ", serieParafina=" + serieParafina + ", cantidadParafina=" + cantidadParafina + ", cirugiaComentario=" + cirugiaComentario + ", quimioterapiaComentario=" + quimioterapiaComentario + ", radioterapiaComentario=" + radioterapiaComentario + ", quimioterapiaCiclo=" + quimioterapiaCiclo + ", radioterapiaCiclo=" + radioterapiaCiclo + ", mastografiaPreINCAN=" + mastografiaPreINCAN + ", fechaNavegacion=" + fechaNavegacion + ", fechaConsulta=" + fechaConsulta + ", medicoAdscrito=" + medicoAdscrito + ", medicoRadiologo=" + medicoRadiologo + ", medicoResidente=" + medicoResidente + ", noAdscrito=" + noAdscrito + ", noRadiologo=" + noRadiologo + ", noSeguro=" + noSeguro + ", fechaFin=" + fechaFin + ", etapaClinica=" + etapaClinica + ", T=" + T + ", N=" + N + ", M=" + M + ", resultadoPatologiaPost=" + resultadoPatologiaPost + ", gradoH=" + gradoH + ", her2=" + her2 + ", fish=" + fish + ", re=" + re + ", rp=" + rp + ", ki67=" + ki67 + ", ultra=" + ultra + ", masto=" + masto + '}';
+        return "ReporteNavegadora{" + "prz=" + prz + ", nombre=" + nombre + ", edad=" + edad + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero
+                + ", escolaridad=" + escolaridad + ", ciudad=" + ciudad + ", estado=" + estado + ", alergias=" + alergias + ", telefono=" + telefono + ", Seguro=" + seguro
+                + ", serieLaminillas=" + serieLaminillas + ", ultrasonidoBiradsFecha=" + ultrasonidoBiradsFecha + ", ultrasonidoBiradsNombre=" + ultrasonidoBiradsNombre 
+                + ", mastografiaBiradsFecha=" + mastografiaBiradsFecha + ", mastografiaBiradsNombre=" + mastografiaBiradsNombre + ", cantidadLaminillas=" + cantidadLaminillas 
+                + ", tipoPaciente=" + tipoPaciente + ", cirugiaFecha=" + cirugiaFecha + ", quimioterapiaFecha=" + quimioterapiaFecha + ", navegadora=" + navegadora 
+                + ", radioterapiaFecha=" + radioterapiaFecha + ", cirugiaTipo=" + cirugiaTipo + ", resultadoPatologia=" + resultadoPatologia + ", otroResultado=" + otroResultado 
+                + ", estadoHormonal=" + estadoHormonal + ", resultado=" + resultado + ", socioeconomico=" + socioeconomico + ", decisionCosulta=" + decisionConsulta 
+                + ", comentarioIncidencia=" + comentarioIncidencia + ", comentarioMedico=" + comentarioMedico + ", serieParafina=" + serieParafina + ", cantidadParafina=" + cantidadParafina 
+                + ", cirugiaComentario=" + cirugiaComentario + ", quimioterapiaComentario=" + quimioterapiaComentario + ", radioterapiaComentario=" + radioterapiaComentario 
+                + ", quimioterapiaCiclo=" + quimioterapiaCiclo + ", radioterapiaCiclo=" + radioterapiaCiclo + ", mastografiaPreINCAN=" + mastografiaPreINCAN 
+                + ", fechaNavegacion=" + fechaNavegacion + ", fechaConsulta=" + fechaConsulta + ", medicoAdscrito=" + medicoAdscrito + ", medicoRadiologo=" + medicoRadiologo 
+                + ", medicoResidente=" + medicoResidente + ", noAdscrito=" + noAdscrito + ", noRadiologo=" + noRadiologo + ", noSeguro=" + noSeguro + ", fechaFin=" + fechaFin 
+                + ", etapaClinica=" + etapaClinica + ", T=" + t + ", N=" + n + ", M=" + m + ", resultadoPatologiaPost=" + resultadoPatologiaPost + ", gradoH=" + gradoH 
+                + ", her2=" + her2 + ", fish=" + fish + ", re=" + re + ", rp=" + rp + ", ki67=" + ki67 + ", ultra=" + ultra + ", masto=" + masto + '}';
     }
 
     public void setPrz(String prz) {
@@ -442,27 +455,27 @@ public class ReporteNavegadora {
     }
 
     public String getT() {
-        return T;
+        return t;
     }
 
-    public void setT(String T) {
-        this.T = T;
+    public void setT(String t) {
+        this.t = t;
     }
 
     public String getN() {
-        return N;
+        return n;
     }
 
-    public void setN(String N) {
-        this.N = N;
+    public void setN(String n) {
+        this.n = n;
     }
 
     public String getM() {
-        return M;
+        return m;
     }
 
-    public void setM(String M) {
-        this.M = M;
+    public void setM(String m) {
+        this.m = m;
     }
 
     public String getResultadoPatologiaPost() {

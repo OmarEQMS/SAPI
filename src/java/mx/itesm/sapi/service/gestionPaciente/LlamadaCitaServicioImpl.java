@@ -252,6 +252,8 @@ public class LlamadaCitaServicioImpl implements LlamadaCitaServicio {
                 llamadaCita.setFecha(rs.getTimestamp("fecha"));
                 llamadaCita.setLlamada(rs.getInt("llamada"));
                 llamadaCita.setEstatus(rs.getInt("estatus"));
+                llamadaCita.setComentario(rs.getString("comentario"));
+                llamadasCita.add(llamadaCita);
             }
         }catch(SQLException ex)
         {

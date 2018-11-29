@@ -7,6 +7,7 @@ package mx.itesm.sapi.service;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class EstudioFormularioServicioImpl implements EstudioFormularioServicio{
             while(rs.next())
             {
                 estudioFormulario = new EstudioFormulario();
-                estudioFormulario.setFecha(String.valueOf(rs.getTimestamp("FechaProgramada")));
+                estudioFormulario.setFecha(String.valueOf(new Date((rs.getTimestamp("FechaProgramada")).getTime())));
                 
                 estudiosFormulario.add(estudioFormulario);
             }
@@ -83,7 +84,7 @@ public class EstudioFormularioServicioImpl implements EstudioFormularioServicio{
             while(rs.next())
             {
                 estudioFormulario = new EstudioFormulario();
-                estudioFormulario.setFecha(String.valueOf(rs.getTimestamp("FechaProgramada")));
+                estudioFormulario.setFecha(String.valueOf(new Date((rs.getTimestamp("FechaProgramada")).getTime())));
                 estudioFormulario.setTipo(rs.getString("EstudioNombre"));
                 
                 estudiosFormulario.add(estudioFormulario);
@@ -124,7 +125,7 @@ public class EstudioFormularioServicioImpl implements EstudioFormularioServicio{
             while(rs.next())
             {
                 estudioFormulario = new EstudioFormulario();
-                estudioFormulario.setFecha(String.valueOf(rs.getTimestamp("FechaProgramada")));
+                estudioFormulario.setFecha(String.valueOf(new Date((rs.getTimestamp("FechaProgramada")).getTime())));
                 estudioFormulario.setTipo(rs.getString("EstudioNombre"));
                 estudioFormulario.setLugarDelCuerpo(rs.getString("LugarCuerpo"));
                 
