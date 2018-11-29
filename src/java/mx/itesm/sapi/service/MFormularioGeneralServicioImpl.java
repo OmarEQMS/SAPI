@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+
 import mx.itesm.sapi.bean.formulario.MFormularioGeneral;
 import mx.itesm.sapi.util.Conexion;
 
@@ -50,6 +50,7 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
             mFormularioGeneral.setMedicoResidente(rs.getString("v_medicoResidente"));
             mFormularioGeneral.setNoAdscrito(rs.getBoolean("v_noAdscrito"));
             mFormularioGeneral.setNoRadiologo(rs.getBoolean("v_noRadiologo"));
+            mFormularioGeneral.setNoResidente(rs.getBoolean("v_noResidente"));
             mFormularioGeneral.setEscolaridad(rs.getString("v_escolaridad"));
             mFormularioGeneral.setAlergias(rs.getString("v_alergias"));
             mFormularioGeneral.setEstadoHormonal(rs.getBoolean("v_estadoHormonal"));
@@ -65,9 +66,9 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
             mFormularioGeneral.setRadioterapiaFecha(rs.getDate("v_radioterapiaFecha"));
             mFormularioGeneral.setRadioterapiaCiclo(rs.getInt("v_radioterapiaCiclo"));
             mFormularioGeneral.setRadioterapiaComentario(rs.getString("v_radioterapiaComentario"));
-            mFormularioGeneral.setMastografiaBiradsNombre(rs.getInt("v_mastografiaBiradsNombre"));
+            mFormularioGeneral.setMastografiaBiradsNombre(rs.getString("v_mastografiaBiradsNombre"));
             mFormularioGeneral.setMastografiaBiradsFecha(rs.getDate("v_mastografiaBiradsFecha"));
-            mFormularioGeneral.setUltrasonidoBiradsNombre(rs.getInt("v_ultrasonidoBiradsNombre"));
+            mFormularioGeneral.setUltrasonidoBiradsNombre(rs.getString("v_ultrasonidoBiradsNombre"));
             mFormularioGeneral.setUltrasonidoBiradsFecha(rs.getDate("v_ultrasonidoBiradsFecha"));
             mFormularioGeneral.setResultadoPatologia(rs.getString("v_resultadoPatologia"));
             mFormularioGeneral.setOtroResultado(rs.getString("v_otroResultado"));
@@ -81,12 +82,10 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
             mFormularioGeneral.setFechaFin(rs.getDate("v_fechaFin"));
             mFormularioGeneral.setDecisionCosulta(rs.getString("v_decisionCosulta"));
             mFormularioGeneral.setSocioeconomico(rs.getString("v_socioeconomico"));
-            mFormularioGeneral.setComentarioLLamada(rs.getString("v_comentarioLLamada"));
-            mFormularioGeneral.setFechaLlamada(rs.getDate("v_fechaLlamada"));
             mFormularioGeneral.setComentarioIncidencia(rs.getString("v_comentarioIncidencia"));
             mFormularioGeneral.setComentarioMedico(rs.getString("v_comentarioMedico"));
             mFormularioGeneral.setEtapaClinica(rs.getString("v_etapaClinica"));
-            mFormularioGeneral.setUltra(rs.getString("v_ultra"));         
+            mFormularioGeneral.setUltra(rs.getString("v_ultra"));
             mFormularioGeneral.setMasto(rs.getString("v_masto"));
             mFormularioGeneral.setHer2(rs.getString("v_her2"));
             mFormularioGeneral.setRp(rs.getString("v_rp"));
@@ -108,15 +107,15 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
     }
 
     @Override
-    public List<MFormularioGeneral> mostrarFormularioLugarTipoFecha(int idPaciente, String nombreEstudio) {
+    public ArrayList<MFormularioGeneral> mostrarFormularioLugarTipoFecha(int idPaciente, String nombreEstudio) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
 
-        List<MFormularioGeneral> citas = null;
+        ArrayList<MFormularioGeneral> citas = new ArrayList<>();
 
         try {
-            citas = new ArrayList<>();
+
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall("CALL mostrarFormularioDinamicoLTF(?, ?)");
             cstmt.setInt(1, idPaciente);
@@ -152,15 +151,14 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
     }
 
     @Override
-    public List<MFormularioGeneral> mostrarFormularioFechaTipo(int idPaciente, String nombreEstudio) {
+    public ArrayList<MFormularioGeneral> mostrarFormularioFechaTipo(int idPaciente, String nombreEstudio) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
 
-        List<MFormularioGeneral> citas = null;
-
+        ArrayList<MFormularioGeneral> citas = new ArrayList<>();
         try {
-            citas = new ArrayList<>();
+
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall("CALL mostrarFormularioDinamicoFechaTipo(?, ?)");
             cstmt.setInt(1, idPaciente);
@@ -194,15 +192,15 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
     }
 
     @Override
-    public List<MFormularioGeneral> mostrarFormularioFecha(int idPaciente, String nombreEstudio) {
+    public ArrayList<MFormularioGeneral> mostrarFormularioFecha(int idPaciente, String nombreEstudio) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
 
-        List<MFormularioGeneral> citas = null;
+        ArrayList<MFormularioGeneral> citas = new ArrayList<>();
 
         try {
-            citas = new ArrayList<>();
+
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall("CALL mostrarFormularioDinamicoFecha(?, ?)");
             cstmt.setInt(1, idPaciente);
@@ -235,15 +233,14 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
     }
 
     @Override
-    public List<MFormularioGeneral> mostrarFormularioLugarFecha(int idPaciente, String nombreEstudio) {
+    public ArrayList<MFormularioGeneral> mostrarFormularioLugarFecha(int idPaciente, String nombreEstudio) {
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
 
-        List<MFormularioGeneral> citas = null;
+        ArrayList<MFormularioGeneral> citas = new ArrayList<>();
 
         try {
-            citas = new ArrayList<>();
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall("CALL mostrarFormularioDinamicoLTF(?, ?)");
             cstmt.setInt(1, idPaciente);
@@ -258,6 +255,46 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
                 mFormularioGeneral.setIdCita(rs.getInt("IdCita"));
                 mFormularioGeneral.setLugarCuerpo(rs.getString("LugarCuerpo"));
                 mFormularioGeneral.setCitaProgramada(rs.getDate("FechaProgramada"));
+
+                citas.add(mFormularioGeneral);
+
+            }
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            citas = null;
+        }
+
+        return citas;
+    }
+
+    @Override
+    public ArrayList<MFormularioGeneral> mostrarFormularioNavegadoraLLamada(int idPaciente) {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        ArrayList<MFormularioGeneral> citas = new ArrayList<>();
+
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall("CALL mostrarFormularioNavegadoraLLamada(?)");
+            cstmt.setInt(1, idPaciente);
+            rs = cstmt.executeQuery();
+            MFormularioGeneral mFormularioGeneral;
+
+            while (rs.next()) {
+
+                // cit.idCita, lug.nombre, cit.fechaProgramada
+                mFormularioGeneral = new MFormularioGeneral();
+                mFormularioGeneral.setComentarioLLamada(rs.getString("v_comentarioLLamada"));
+                mFormularioGeneral.setFechaLlamada(rs.getDate("v_fechaLlamada"));
 
                 citas.add(mFormularioGeneral);
 

@@ -20,6 +20,7 @@ public class Cita {
     private int idImportanciaCita;
     private int idPiso;
     private int idTipoTratamiento;
+
     private int idEstudio;
     private int idMotivoConsulta;
     private Timestamp fechaProgramada;
@@ -27,7 +28,7 @@ public class Cita {
     private int estatus;
     private byte[] archivo;
     private String hospitalProcedencia;
-    private String fechaSolicitud;
+    private Timestamp fechaSolicitud;
 
     public Cita() {
     }
@@ -70,7 +71,7 @@ public class Cita {
         this.hospitalProcedencia = hospitalProcedencia;
     }
 
-    public String getFechaSolicitud() {
+    public Timestamp getFechaSolicitud() {
         return fechaSolicitud;
     }
     
@@ -82,7 +83,7 @@ public class Cita {
         return idImportanciaCita;
     }
 
-    public void setFechaSolicitud(String fechaSolicitud) {
+    public void setFechaSolicitud(Timestamp fechaSolicitud) {
         this.fechaSolicitud = fechaSolicitud;
     }
 

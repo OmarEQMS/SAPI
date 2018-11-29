@@ -45,6 +45,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
             estadoPacientePaciente.setSegundaOpinion(rs.getInt("segundaOpinion"));
             estadoPacientePaciente.setResultados(rs.getInt("resultados"));
             estadoPacientePaciente.setIdEmpleado(rs.getInt("idEmpleado"));
+            estadoPacientePaciente.setFechaFin(rs.getTimestamp("fechaFin"));
 
             conn.close();
             cstmt.close();
@@ -85,6 +86,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
                 estadoPacientePaciente.setSegundaOpinion(rs.getInt("segundaOpinion"));
                 estadoPacientePaciente.setResultados(rs.getInt("resultados"));
                 estadoPacientePaciente.setIdEmpleado(rs.getInt("idEmpleado"));
+                estadoPacientePaciente.setFechaFin(rs.getTimestamp("fechaFin"));
 
                 listaestadoPacientePacientes.add(estadoPacientePaciente);
             }
@@ -106,8 +108,8 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        
-        String stProcedure = "CALL agregarEstadoPacientePaciente(?,?, ?, ?, ?)";
+
+        String stProcedure = "CALL agregarEstadoPacientePaciente(?,?, ?, ?, ?,?,?)";
 
         int id = -1;
 
@@ -121,15 +123,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
             cstmt.setInt(4, estadoPacientePaciente.getSegundaOpinion());
             cstmt.setInt(5, estadoPacientePaciente.getResultados());
             cstmt.setInt(6, estadoPacientePaciente.getIdEmpleado());
-
-
-       /* preguntarle a Diego     
-            cstmt.setInt(1, 1);                        
-            cstmt.setInt(2, estadoPacientePaciente.getIdPaciente());
-            cstmt.setInt(3, estadoPacientePaciente.getSegundaOpinion());
-            cstmt.setInt(4, estadoPacientePaciente.getResultados());
-            cstmt.setInt(5, 1);
-          */  
+            cstmt.setTimestamp(7, estadoPacientePaciente.getFechaFin());
 
             rs = cstmt.executeQuery();
             rs.next();
@@ -188,7 +182,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         ResultSet rs;
 
         String stProcedure = "CALL borradoLogicoEstadoPacientePaciente(?)";
-        
+
         boolean exito = false;
 
         try {
@@ -217,7 +211,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarEstadoPacientePaciente(?, ?, ?, ?, ?, ?, ?)";
+        String stProcedure = "CALL actualizarEstadoPacientePaciente(?, ?, ?, ?, ?, ?, ?,?)";
         boolean exito = false;
         try {
             conn = Conexion.getConnection();
@@ -231,14 +225,14 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
             cstmt.setInt(5, estadoPacientePaciente.getSegundaOpinion());
             cstmt.setInt(6, estadoPacientePaciente.getResultados());
             cstmt.setInt(7, estadoPacientePaciente.getIdEmpleado());
-            
+            cstmt.setTimestamp(8, estadoPacientePaciente.getFechaFin());
+
             System.out.println(cstmt.toString());
 
             rs = cstmt.executeQuery();
             rs.next();
             exito = rs.getBoolean(1);
 
-            
             rs.close();
             conn.close();
             cstmt.close();
@@ -295,7 +289,7 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
             estadoPacientePaciente = new EstadoPacientePaciente();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idPaciente);
-                 
+
             rs = cstmt.executeQuery();
             rs.next();
             estadoPacientePaciente.setIdEstadoPacientePaciente(rs.getInt("idEstadoPacientePaciente"));
@@ -305,17 +299,17 @@ public class EstadoPacientePacienteServiceImpl implements EstadoPacientePaciente
             estadoPacientePaciente.setSegundaOpinion(rs.getInt("segundaOpinion"));
             estadoPacientePaciente.setResultados(rs.getInt("resultados"));
             estadoPacientePaciente.setIdEmpleado(rs.getInt("idEmpleado"));
-            
+
             conn.close();
             cstmt.close();
             rs.close();
-            
+
         } catch (SQLException ex) {
-           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
-                   .concat(ex.getMessage()));
-           estadoPacientePaciente = null;
-        }   
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            estadoPacientePaciente = null;
+        }
         return estadoPacientePaciente;
     }
-    
+
 }

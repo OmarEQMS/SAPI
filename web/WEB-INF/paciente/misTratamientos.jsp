@@ -31,7 +31,7 @@
         <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
 
         <link rel="stylesheet" href="css/stylePaciente.css">
-        <script src="js/appPaciente.js" type="module"></script>
+        <script src="js/appPaciente.js"></script>
         <script src="js/calendarPaciente.js"></script>
         <script src="js/ajaxPaciente.js"></script>
         <script src="js/validacionesPaciente.js"></script>
@@ -39,6 +39,9 @@
     </head>
 
     <body>
+        
+        <input type="hidden" value="5" class="idTratamientoPaciente">
+        <input type="hidden" value="${sessionScope.fechaNacimiento}" class="fechaNacimientoPaciente">
 
         <div class="wrapper">
 
@@ -159,7 +162,7 @@
 
                         <!-- Table -->
 
-                        <table class="table table-striped mt-3" id="tablaTratamientos">
+                        <table class="table table-striped tablaTratamientos mt-3" id="tablaTratamientos">
                             <thead>
                                 <tr>
                                     <th scope="col">Tratamiento</th>
@@ -178,14 +181,14 @@
                                                   data-target="#modalEditarTerminado"><i class="fas fa-edit"></i></button></td>
                                   </tr>
                                 -->
-                            <input type="hidden" value="" id="idTratamientoPaciente">
+                            
 
 
                             <c:forEach  items="${UnionTratamientosPaciente}" var="unionTratamientoPaciente">
                                 <tr>
                                 <input type="hidden" value="${unionTratamientoPaciente.nombre}" id="nombre-${unionTratamientoPaciente.idTratamientoPaciente}">
                                 <input type="hidden" value="${unionTratamientoPaciente.fechaInicio}" id="fechaInicio-${unionTratamientoPaciente.idTratamientoPaciente}">
-                                <input type="hidden" value="${unionTratamiento.idTratamientoPaciente}" id="boton-${unionTratamiento.idTratamientoPaciente}">
+                                <input type="hidden" value="${unionTratamientoPaciente.idTratamientoPaciente}" id="boton-${unionTratamientoPaciente.idTratamientoPaciente}">
                                 <td id="nombre-${unionTratamientoPaciente.idTratamientoPaciente}" value="${unionTratamientoPaciente.nombre}" > <c:out value="${unionTratamientoPaciente.nombre}"/> </td>
                                 <td id="fechaInicio-${unionTratamientoPaciente.idTratamientoPaciente}" > <c:out value="${unionTratamientoPaciente.fechaInicio}"/> </td>
                                 <td id="fecha-${unionTratamientoPaciente.idTratamientoPaciente}"> <c:out value="${unionTratamientoPaciente.fechaFin}"/> </td>
@@ -247,7 +250,7 @@
                                                type="text" onfocus="(this.type = 'date')" id="fechaInicioTratamiento">
 
                                     </div>
-                                    <span class="text-danger error-fecha" id="error-fechaInicio"> Fecha incorrecta.</span>
+                                    <span class="text-danger error-fecha" id="error-fechaInicio"> Fecha incorrecta. Introduce una fecha posterior a tu fecha de nacimiento y no mayor a 2 meses a partir de hoy.</span>
                                 </div>
 
                             </div>
@@ -349,11 +352,17 @@
                                         <input placeholder="Introduce la fecha de fin" class="selectStyle form-control textbox-n fechaFin"
                                                type="text" onfocus="(this.type = 'date')" id="fechaFinTratamiento">
                                     </div>
-                                    <span class="text-danger error-fechaFin" id="error-fechaFin"> Fecha incorrecta.</span>
+                                    <span class="text-danger error-fechaFin" id="error-fechaFin"> Fecha incorrecta. Introduce una fecha posterior a la fecha de inicio de tu tratamiento y no mayor a la fecha de hoy.</span>
                                 </div>
 
                             </div>
 
+                        </div>
+                        <div class="row mt-3 justify-content-center">
+                            <div class="col-9 text-center bg-danger" style="border-radius:20px;">
+                                <span style="font-size: 14px;" class="text-white"> <strong>Nota:</strong> Ten en cuenta que una vez registrada la fecha de fin de tu tratamiento
+                                    no podrás modificarla posteriormente.</span>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger myCleanerAddFinTratamientos" style="border-radius:20px;" data-dismiss="modal">Cancelar</button>

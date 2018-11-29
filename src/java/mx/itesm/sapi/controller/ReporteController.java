@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.rendimiento.Rendimiento;
 import mx.itesm.sapi.service.RendimientoServicioImpl;
 
@@ -43,15 +44,26 @@ public class ReporteController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String key = request.getParameter("key");
+        
+        //Recibe Fechas
+        String fecha1 = request.getParameter("fecha1");
+        String fecha2 = request.getParameter("fecha2");
 
-        String now = request.getParameter("fecha");
-
+        //Imprime parametros para pruebas
         System.out.println("Key: ".concat(key));
-
-        System.out.println("Fecha: ".concat(now));
+        System.out.println("Fecha1: ".concat(fecha1));
+        System.out.println("Fecha2: ".concat(fecha2));
 
         PrintWriter out = response.getWriter();
-
+        HttpSession sesion = request.getSession(true);
+        int idEmpleadoNavegadora = (int) sesion.getAttribute("idEmpleadoNavegadora");
+        if(sesion.getAttribute("idCuenta") == null)
+        {
+            request.setAttribute("status", "");
+            request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
+        }
+        else
+        {
         switch (key) {
 
             case "mostrarVisitaMes":
@@ -61,7 +73,9 @@ public class ReporteController extends HttpServlet {
 
                 Rendimiento visitasPorMes = new Rendimiento();
 
-                visitasPorMes = rendimientoVisitasPorMes.mostrarVisitaRango(2, Date.valueOf(now),Date.valueOf(now));
+
+                visitasPorMes = rendimientoVisitasPorMes.mostrarVisitaRango(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+
 
                 out.print(new Gson().toJson(visitasPorMes));
 
@@ -73,7 +87,9 @@ public class ReporteController extends HttpServlet {
                 RendimientoServicioImpl rendimientoServicioEdad = new RendimientoServicioImpl();
 
                 ArrayList<Rendimiento> rendimientoPorEdad = new ArrayList<>();
-                rendimientoPorEdad = rendimientoServicioEdad.mostrarVisitaEdad(2, Date.valueOf(now),Date.valueOf(now));
+
+                rendimientoPorEdad = rendimientoServicioEdad.mostrarVisitaEdad(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+
 
                 out.print(new Gson().toJson(rendimientoPorEdad));
 
@@ -85,7 +101,9 @@ public class ReporteController extends HttpServlet {
                 RendimientoServicioImpl rendimientoServicioEscolaridad = new RendimientoServicioImpl();
 
                 ArrayList<Rendimiento> rendimientoPorEscolaridad = new ArrayList<>();
-                rendimientoPorEscolaridad = rendimientoServicioEscolaridad.mostrarVisitaEscolaridad(2, Date.valueOf(now),Date.valueOf(now));
+
+                rendimientoPorEscolaridad = rendimientoServicioEscolaridad.mostrarVisitaEscolaridad(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+
 
                 out.print(new Gson().toJson(rendimientoPorEscolaridad));
 
@@ -99,7 +117,9 @@ public class ReporteController extends HttpServlet {
                 RendimientoServicioImpl rendimientoServicioLugarResidencia = new RendimientoServicioImpl();
                 
                 ArrayList<Rendimiento> rendimientoPorLugar = new ArrayList<>();
-                rendimientoPorLugar = rendimientoServicioLugarResidencia.mostrarVisitaLugarResidencia(2, Date.valueOf(now),Date.valueOf(now));
+
+                rendimientoPorLugar = rendimientoServicioLugarResidencia.mostrarVisitaLugarResidencia(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+
                 
                 out.print(new Gson().toJson(rendimientoPorLugar));
                 
@@ -114,7 +134,9 @@ public class ReporteController extends HttpServlet {
                 RendimientoServicioImpl rendimientoServicioNivelSocioEconomico = new RendimientoServicioImpl();
                 
                 ArrayList<Rendimiento> rendimientoPorNivel = new ArrayList<>();
-                rendimientoPorNivel = rendimientoServicioNivelSocioEconomico.mostrarVisitaNivelSocioEconomico(2, Date.valueOf(now),Date.valueOf(now));
+
+                rendimientoPorNivel = rendimientoServicioNivelSocioEconomico.mostrarVisitaNivelSocioEconomico(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+
                 
                 out.print(new Gson().toJson(rendimientoPorNivel));
                 
@@ -128,7 +150,9 @@ public class ReporteController extends HttpServlet {
                 RendimientoServicioImpl rendimientoServicioDecisionPre = new RendimientoServicioImpl();
                 
                 ArrayList<Rendimiento> rendimientoPorDecision = new ArrayList<>();
-                rendimientoPorDecision = rendimientoServicioDecisionPre.mostrarVisitaDecisionPreconsulta(2, Date.valueOf(now),Date.valueOf(now));
+
+                rendimientoPorDecision = rendimientoServicioDecisionPre.mostrarVisitaDecisionPreconsulta(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+
                 
                 out.print(new Gson().toJson(rendimientoPorDecision));
             
@@ -142,7 +166,9 @@ public class ReporteController extends HttpServlet {
                 RendimientoServicioImpl rendimientoServicioResPatologia = new RendimientoServicioImpl();
                 
                 ArrayList<Rendimiento> rendimientoPorResPatologia  = new ArrayList<>();
-                rendimientoPorResPatologia = rendimientoServicioResPatologia.mostrarVisitaResultadoPatologia(2, Date.valueOf(now),Date.valueOf(now));
+
+                rendimientoPorResPatologia = rendimientoServicioResPatologia.mostrarVisitaResultadoPatologia(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+
                 
                 out.print(new Gson().toJson(rendimientoPorResPatologia));
                 
@@ -150,6 +176,8 @@ public class ReporteController extends HttpServlet {
             
             }
 
+            }
+      
         }
 
     }

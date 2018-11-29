@@ -5,6 +5,7 @@
  */
 package mx.itesm.sapi.service.gestionPaciente;
 
+import java.sql.Date;
 import java.util.List;
 import mx.itesm.sapi.bean.gestionPaciente.DocumentoEstudio;
 
@@ -27,10 +28,21 @@ public interface DocumentoEstudioServicio {
     public boolean borradoLogicoDocumentoEstudio(int idDocumentoEstudio);
 
     public boolean actualizarDocumentoEstudio(DocumentoEstudio documentoEstudio);
-    
 
-    public DocumentoEstudio mostrarDocumentoEstudioPacienteEstudio(int idpaciente,int idEstudio); 
-    
+    public DocumentoEstudio mostrarDocumentoEstudioPacienteEstudio(int idpaciente, int idEstudio);
+
     public DocumentoEstudio mostrarDocumentoEstudioPacienteEstudioPrevio(int idPaciente, int idEstudio, int previo);
+
+    public DocumentoEstudio mostrarDocumentoEstudioMasRecientePaciente(int idTipoEstudio, int idPaciente);
+
+    public int agregarDocumentoEstudioMastoAntesPreconsulta(DocumentoEstudio documentoEstudio);
+
+    public int agregarDocumentoEstudioEstudioPrevio(DocumentoEstudio documentoEstudio);
+
+    public boolean actualizarDocumentoEstudioEstudioPrevio(DocumentoEstudio documentoEstudio);
+
+    public boolean actualizarDocumentoEstudioMastoAntesPreconsulta(DocumentoEstudio documentoEstudio);
+
+    public DocumentoEstudio mostrarDocumentoEstudioMastoAntesPreconsulta(int idpaciente, int idEstudio);
 
 }

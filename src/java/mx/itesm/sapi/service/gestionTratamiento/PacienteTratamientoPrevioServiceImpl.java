@@ -22,8 +22,8 @@ import mx.itesm.sapi.service.gestionTratamiento.PacienteTratamientoPrevioService
 public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamientoPrevioService {
 
     @Override
-    public PacienteTratamientoPrevio mostrarPacienteTratamientoPrevioTratamiento(int idPaciente, int idTratamiento){
-       Connection conn;
+    public PacienteTratamientoPrevio mostrarPacienteTratamientoPrevioTratamiento(int idPaciente, int idTratamiento) {
+        Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
 
@@ -42,12 +42,16 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
             rs = cstmt.executeQuery();
 
             rs.next();
+            
+            
             pacienteTratamientoPrevio.setIdPacienteTratamientoPrevio(rs.getInt(1));
             pacienteTratamientoPrevio.setIdPaciente(rs.getInt(2));
             pacienteTratamientoPrevio.setIdTipoTratamiento(rs.getInt(3));
+            System.out.println(rs.getDate(4));
             pacienteTratamientoPrevio.setFecha(rs.getDate(4));
-            pacienteTratamientoPrevio.setComentarios(rs.getString(5));
-            pacienteTratamientoPrevio.setEstatus(rs.getInt(6));
+            pacienteTratamientoPrevio.setEstatus(rs.getInt(5));
+            pacienteTratamientoPrevio.setComentarios(rs.getString(6));
+            pacienteTratamientoPrevio.setCiclos(rs.getInt(7));
 
             rs.close();
             cstmt.close();
@@ -59,9 +63,9 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
         }
-        return pacienteTratamientoPrevio; 
+        return pacienteTratamientoPrevio;
     }
-    
+
     @Override
     public int agregarPacienteTratamientoPrevio(PacienteTratamientoPrevio pacienteTratamientoPrevio) {
 
@@ -73,7 +77,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
         int id = -1;
 
         //Aquí va el call del procedure
-        String stProcedure = "CALL agregarPacienteTratamientoPrevio(?,?,?,?)";
+        String stProcedure = "CALL agregarPacienteTratamientoPrevio(?,?,?,?,?)";
 
         try {
             conn = Conexion.getConnection();
@@ -84,11 +88,10 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
             cstmt.setInt(2, pacienteTratamientoPrevio.getIdTipoTratamiento());
             cstmt.setDate(3, pacienteTratamientoPrevio.getFecha());
             cstmt.setString(4, pacienteTratamientoPrevio.getComentarios());
-            
+            cstmt.setInt(5, pacienteTratamientoPrevio.getCiclos());
 
             rs = cstmt.executeQuery();
 
-            
             rs.next();
 
             id = rs.getInt(1);
@@ -216,7 +219,7 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
             cstmt.setInt(3, pacienteTratamientoPrevio.getIdTipoTratamiento());
             cstmt.setDate(4, pacienteTratamientoPrevio.getFecha());
             cstmt.setString(5, pacienteTratamientoPrevio.getComentarios());
-            cstmt.setInt(6, pacienteTratamientoPrevio.getEstatus());
+            cstmt.setInt(6, pacienteTratamientoPrevio.getCiclos());
 
             rs = cstmt.executeQuery();
 
@@ -357,5 +360,5 @@ public class PacienteTratamientoPrevioServiceImpl implements PacienteTratamiento
         }
         return pacientesTratamientoPrevio;
     }
-    
-   }
+
+}

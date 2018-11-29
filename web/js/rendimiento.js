@@ -4,545 +4,902 @@
 
 $(document).ready(function () {
 
-    //Enviar la fecha actual
-    var now = new Date();
-    //alert(formatDate(now));
 
-    //1.- Total de visitas por mes
-    $.ajax({
+    $('.errorFechasMes').hide();
+    $('.errorFechasEdad').hide();
+    $('.errorFechasEscolaridad').hide();
+    $('.errorFechasResidencia').hide();
+    $('.errorFechasEconomico').hide();
+    $('.errorFechasPre').hide();
+    $('.errorFechasPatologia').hide();
 
-        url: "ReporteController",
-        method: "POST",
-        cache: false,
-        data: {
-            key: "mostrarVisitaMes",
-            fecha: formatDate(now)
-        },
-        success: function (response) {
+    //1.- CANTIDAD DE VISITAS TOTALES EN UN RANGO DE MES
 
-            var data = JSON.parse(response);
 
-            console.log(data);
+    $('#fecha2Mes').on('change', function () {
 
-            var plantilla = `<tr>
+        if ($('#fecha1Mes').val() != '') {
+            if (areValidDates($('#fecha1Mes').val(), $('#fecha2Mes').val())) {
+                
+                $('.errorFechasMes').hide();
+
+                totalVisitasMes($('#fecha1Mes').val(), $('#fecha2Mes').val());
+
+                console.log($('#fecha1Mes').val());
+                console.log($('#fecha2Mes').val());
+
+            } else {
+                $('.errorFechasMes').show();
+            }
+        }
+
+    });
+
+    $('#fecha1Mes').on('change', function () {
+
+        if ($('#fecha2Mes').val() != '') {
+            if (areValidDates($('#fecha1Mes').val(), $('#fecha2Mes').val())) {
+
+                $('.errorFechasMes').hide();
+
+                totalVisitasMes($('#fecha1Mes').val(), $('#fecha2Mes').val());
+
+                console.log($('#fecha1Mes').val());
+                console.log($('#fecha2Mes').val());
+
+            } else {
+                $('.errorFechasMes').show();
+            }
+        }
+
+    });
+
+    //Total de visitas por mes
+    function totalVisitasMes(fecha1, fecha2) {
+        $.ajax({
+
+            url: "ReporteController",
+            method: "POST",
+            cache: false,
+            data: {
+                key: "mostrarVisitaMes",
+                fecha1: fecha1,
+                fecha2: fecha2
+            },
+            success: function (response) {
+
+                $(".totalVisitasMes").dataTable().fnDestroy();
+
+                $('.totalVisitasMes tbody').children().remove();
+
+                var data = JSON.parse(response);
+
+                console.log(data);
+
+                var plantilla = `<tr>
                     <td>${data.decripcion}</td>
                     <td>${data.cantidad}</td>
                   </tr>`;
 
-            $('#totalVisitasMes tbody').append(plantilla);
+                $('.totalVisitasMes tbody').append(plantilla);
 
-            $('#totalVisitasMes').DataTable({
-                responsive: true,
-                searching: true,
-                dom: 'lBfrtip',
-                buttons: [
+                $('.totalVisitasMes').DataTable({
+                    responsive: true,
+                    searching: true,
 
-                    {
-                        extend: 'excel',
-                        text: 'Exportar a Excel',
-                        className: 'btn-outline-success mr-3 btnExcel mt-3'
-                    },
-                    {
-                        extend: 'pdf',
-                        text: 'Exportar a pdf',
-                        className: 'btn-outline-info mr-3 btnPDF mt-3 '
+                    dom: 'lBfrtip',
+                    buttons: [
+
+                        {
+                            extend: 'excel',
+                            text: 'Exportar a Excel',
+                            className: 'btn-outline-success mr-3 btnExcel mt-3'
+                        },
+                        {
+                            extend: 'pdf',
+                            text: 'Exportar a pdf',
+                            className: 'btn-outline-info mr-3 btnPDF mt-3 '
+                        }
+                    ],
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+
                     }
-                ],
-                "language": {
+                });
 
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
 
-                }
-            });
 
-            
+            }
 
+        });
+    }
+
+    //2.- CANTIDAD DE VISITAS POR EDADES
+
+    $('#fecha2Edad').on('change', function () {
+
+        if ($('#fecha1Edad').val() != '') {
+            if (areValidDates($('#fecha1Edad').val(), $('#fecha2Edad').val())) {
+                
+                $('.errorFechasEdad').hide();
+
+                cantidadPorEdad($('#fecha1Edad').val(), $('#fecha2Edad').val());
+
+                console.log($('#fecha1Edad').val());
+                console.log($('#fecha2Edad').val());
+
+            } else {
+                $('.errorFechasEdad').show();
+            }
         }
 
     });
+
+    $('#fecha1Edad').on('change', function () {
+
+        if ($('#fecha2Edad').val() != '') {
+            if (areValidDates($('#fecha1Edad').val(), $('#fecha2Edad').val())) {
+
+                $('.errorFechasEdad').hide();
+
+                cantidadPorEdad($('#fecha1Edad').val(), $('#fecha2Edad').val());
+
+                console.log($('#fecha1Edad').val());
+                console.log($('#fecha2Edad').val());
+
+            } else {
+                $('.errorFechasEdad').show();
+            }
+        }
+
+    });
+
 
     //2.- Cantidad de visitas por edades
-    $.ajax({
+    function cantidadPorEdad(fecha1, fecha2) {
+        $.ajax({
 
-        url: "ReporteController",
-        method: "POST",
-        cache: false,
-        data: {
-            key: "mostrarVisitaEdad",
-            fecha: formatDate(now)
-        },
-        success: function (response) {
+            url: "ReporteController",
+            method: "POST",
+            cache: false,
+            data: {
+                key: "mostrarVisitaEdad",
+                fecha1: fecha1,
+                fecha2: fecha2
+            },
+            success: function (response) {
 
-            var data = JSON.parse(response);
+                $(".cantidadVisitasEdades").dataTable().fnDestroy();
 
-            for (var i = 0; i < data.length; i++) {
+                $('.cantidadVisitasEdades tbody').children().remove();
 
-                var plantilla = `<tr>
-                    <td>${data[i].decripcion}</td>
-                    <td>${data[i].cantidad}</td>
-                  </tr>`;
+                var data = JSON.parse(response);
 
-                $('#cantidadVisitasEdades tbody').append(plantilla);
+                for (var i = 0; i < data.length; i++) {
+
+                    var plantilla = `<tr>
+     <td>${data[i].decripcion}</td>
+     <td>${data[i].cantidad}</td>
+     </tr>`;
+
+                    $('.cantidadVisitasEdades tbody').append(plantilla);
+                }
+
+                $('.cantidadVisitasEdades').DataTable({
+                    responsive: true,
+                    searching: true,
+                    dom: 'lBfrtip',
+                    buttons: [
+
+                        {
+                            extend: 'excel',
+                            text: 'Exportar a Excel',
+                            className: 'btn-outline-success mr-3 btnExcel mt-3'
+                        },
+                        {
+                            extend: 'pdf',
+                            text: 'Exportar a pdf',
+                            className: 'btn-outline-info mr-3 btnPDF mt-3 '
+                        }
+                    ],
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+
+                    }
+                });
+
+
+
+                console.log(data);
+
             }
 
-            $('#cantidadVisitasEdades').DataTable({
-                responsive: true,
-                searching: true,
-                dom: 'lBfrtip',
-                buttons: [
+        });
+    }
 
-                    {
-                        extend: 'excel',
-                        text: 'Exportar a Excel',
-                        className: 'btn-outline-success mr-3 btnExcel mt-3'
-                    },
-                    {
-                        extend: 'pdf',
-                        text: 'Exportar a pdf',
-                        className: 'btn-outline-info mr-3 btnPDF mt-3 '
-                    }
-                ],
-                "language": {
 
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
+    //3.- CANTIDAD DE VISITAS POR ESCOLARIDAD
 
+    $('#fecha2Escolaridad').on('change', function () {
+
+        if ($('#fecha1Escolaridad').val() != '') {
+            if (areValidDates($('#fecha1Escolaridad').val(), $('#fecha2Escolaridad').val())) {
+                
+                $('.errorFechasEscolaridad').hide();
+
+                cantidadPorEscolaridad($('#fecha1Escolaridad').val(), $('#fecha2Escolaridad').val());
+
+                console.log($('#fecha1Escolaridad').val());
+                console.log($('#fecha2Escolaridad').val());
+
+            } else {
+                $('.errorFechasEscolaridad').show();
+            }
+        }
+
+    });
+
+    $('#fecha1Escolaridad').on('change', function () {
+
+        if ($('#fecha2Escolaridad').val() != '') {
+            if (areValidDates($('#fecha1Escolaridad').val(), $('#fecha2Escolaridad').val())) {
+
+                $('.errorFechasEscolaridad').hide();
+
+                cantidadPorEscolaridad($('#fecha1Escolaridad').val(), $('#fecha2Escolaridad').val());
+
+                console.log($('#fecha1Escolaridad').val());
+                console.log($('#fecha2Escolaridad').val());
+
+            } else {
+                $('.errorFechasEscolaridad').show();
+            }
+        }
+
+    });
+
+    function cantidadPorEscolaridad(fecha1, fecha2) {
+        $.ajax({
+
+            url: "ReporteController",
+            method: "POST",
+            cache: false,
+            data: {
+                key: "mostrarVisitaEscolaridad",
+                fecha1: fecha1,
+                fecha2: fecha2
+            },
+            success: function (response) {
+
+                $(".cantidadVisitasEscolaridad").dataTable().fnDestroy();
+
+                $('.cantidadVisitasEscolaridad tbody').children().remove();
+
+                var data = JSON.parse(response);
+
+                for (var i = 0; i < data.length; i++) {
+
+                    var plantilla = `<tr>
+     <td>${data[i].decripcion}</td>
+     <td>${data[i].cantidad}</td>
+     </tr>`;
+
+                    $('.cantidadVisitasEscolaridad tbody').append(plantilla);
                 }
-            });
-            
-         
 
-            console.log(data);
+                $('.cantidadVisitasEscolaridad').DataTable({
+                    responsive: true,
+                    searching: true,
+                    dom: 'lBfrtip',
+                    buttons: [
 
+                        {
+                            extend: 'excel',
+                            text: 'Exportar a Excel',
+                            className: 'btn-outline-success mr-3 btnExcel mt-3'
+                        },
+                        {
+                            extend: 'pdf',
+                            text: 'Exportar a pdf',
+                            className: 'btn-outline-info mr-3 btnPDF mt-3 '
+                        }
+                    ],
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+
+                    }
+                });
+
+
+
+                console.log(data);
+
+            }
+
+        });
+    }
+
+
+
+    //4.- CANTIDAD DE VISITAS POR RESIDENCIA
+
+    $('#fecha2Residencia').on('change', function () {
+
+        if ($('#fecha1Residencia').val() != '') {
+            if (areValidDates($('#fecha1Residencia').val(), $('#fecha2Residencia').val())) {
+                
+                $('.errorFechasResidencia').hide();
+
+                cantidadPorResidencia($('#fecha1Residencia').val(), $('#fecha2Residencia').val());
+
+                console.log($('#fecha1Residencia').val());
+                console.log($('#fecha2Residencia').val());
+
+            } else {
+                $('.errorFechasResidencia').show();
+            }
+        }
+
+    });
+
+    $('#fecha1Residencia').on('change', function () {
+
+        if ($('#fecha2Residencia').val() != '') {
+            if (areValidDates($('#fecha1Residencia').val(), $('#fecha2Residencia').val())) {
+
+                $('.errorFechasResidencia').hide();
+
+                cantidadPorResidencia($('#fecha1Residencia').val(), $('#fecha2Residencia').val());
+
+                console.log($('#fecha1Residencia').val());
+                console.log($('#fecha2Residencia').val());
+
+            } else {
+                $('.errorFechasResidencia').show();
+            }
         }
 
     });
 
 
-    //3.- Cantidad de visitas por escolaridad
-    $.ajax({
+    function cantidadPorResidencia(fecha1, fecha2) {
 
-        url: "ReporteController",
-        method: "POST",
-        cache: false,
-        data: {
-            key: "mostrarVisitaEscolaridad",
-            fecha: formatDate(now)
-        },
-        success: function (response) {
+        $.ajax({
 
-            var data = JSON.parse(response);
+            url: "ReporteController",
+            method: "POST",
+            cache: false,
+            data: {
+                key: "mostrarVisitaLugarResidencia",
+                fecha1: fecha1,
+                fecha2: fecha2
+            },
+            success: function (response) {
 
-            for (var i = 0; i < data.length; i++) {
+                $(".cantidadVisitasResidencia").dataTable().fnDestroy();
 
-                var plantilla = `<tr>
-                    <td>${data[i].decripcion}</td>
-                    <td>${data[i].cantidad}</td>
-                  </tr>`;
+                $('.cantidadVisitasResidencia tbody').children().remove();
 
-                $('#cantidadVisitasEscolaridad tbody').append(plantilla);
-            }
+                var data = JSON.parse(response);
 
-            $('#cantidadVisitasEscolaridad').DataTable({
-                responsive: true,
-                searching: true,
-                dom: 'lBfrtip',
-                buttons: [
+                for (var i = 0; i < data.length; i++) {
 
-                    {
-                        extend: 'excel',
-                        text: 'Exportar a Excel',
-                        className: 'btn-outline-success mr-3 btnExcel mt-3'
-                    },
-                    {
-                        extend: 'pdf',
-                        text: 'Exportar a pdf',
-                        className: 'btn-outline-info mr-3 btnPDF mt-3 '
-                    }
-                ],
-                "language": {
+                    var plantilla = `<tr>
+     <td>${data[i].decripcion}</td>
+     <td>${data[i].cantidad}</td>
+     </tr>`;
 
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
+                    $('.cantidadVisitasResidencia tbody').append(plantilla);
 
                 }
-            });
-            
-            
 
-            console.log(data);
+                $('.cantidadVisitasResidencia').DataTable({
+                    responsive: true,
+                    searching: true,
+                    dom: 'lBfrtip',
+                    buttons: [
 
+                        {
+                            extend: 'excel',
+                            text: 'Exportar a Excel',
+                            className: 'btn-outline-success mr-3 btnExcel mt-3'
+                        },
+                        {
+                            extend: 'pdf',
+                            text: 'Exportar a pdf',
+                            className: 'btn-outline-info mr-3 btnPDF mt-3 '
+                        }
+                    ],
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+
+                    }
+                });
+
+
+
+                console.log(data);
+
+            }
+
+        });
+
+    }
+
+
+
+
+
+    //5.- CANTIDAD DE VISITAS POR NIVEL SOCIECONOMICO
+
+    $('#fecha2Economico').on('change', function () {
+
+        if ($('#fecha1Economico').val() != '') {
+            if (areValidDates($('#fecha1Economico').val(), $('#fecha2Economico').val())) {
+                
+                $('.errorFechasEconomico').hide();
+
+                cantidadPorEconomico($('#fecha1Economico').val(), $('#fecha2Economico').val());
+
+                console.log($('#fecha1Economico').val());
+                console.log($('#fecha2Economico').val());
+
+            } else {
+                $('.errorFechasEconomico').show();
+            }
         }
 
     });
 
-    //4.- Cantidad de visitas por lugar de residencia
-    $.ajax({
+    $('#fecha1Economico').on('change', function () {
 
-        url: "ReporteController",
-        method: "POST",
-        cache: false,
-        data: {
-            key: "mostrarVisitaLugarResidencia",
-            fecha: formatDate(now)
-        },
-        success: function (response) {
+        if ($('#fecha2Economico').val() != '') {
+            if (areValidDates($('#fecha1Economico').val(), $('#fecha2Economico').val())) {
 
-            var data = JSON.parse(response);
+                $('.errorFechasEconomico').hide();
 
-            for (var i = 0; i < data.length; i++) {
+                cantidadPorEconomico($('#fecha1Economico').val(), $('#fecha2Economico').val());
 
-                var plantilla = `<tr>
-                    <td>${data[i].decripcion}</td>
-                    <td>${data[i].cantidad}</td>
-                  </tr>`;
+                console.log($('#fecha1Economico').val());
+                console.log($('#fecha2Economico').val());
 
-                $('#cantidadVisitasLugar tbody').append(plantilla);
-
+            } else {
+                $('.errorFechasEconomico').show();
             }
-
-            $('#cantidadVisitasLugar').DataTable({
-                responsive: true,
-                searching: true,
-                dom: 'lBfrtip',
-                buttons: [
-
-                    {
-                        extend: 'excel',
-                        text: 'Exportar a Excel',
-                        className: 'btn-outline-success mr-3 btnExcel mt-3'
-                    },
-                    {
-                        extend: 'pdf',
-                        text: 'Exportar a pdf',
-                        className: 'btn-outline-info mr-3 btnPDF mt-3 '
-                    }
-                ],
-                "language": {
-
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-
-                }
-            });
-            
-            
-
-            console.log(data);
-
         }
 
     });
 
-    //5.- Cantidad de visitas por nivelsocioeconomico
-    $.ajax({
+    function cantidadPorEconomico(fecha1, fecha2) {
 
-        url: "ReporteController",
-        method: "POST",
-        cache: false,
-        data: {
-            key: "mostrarVisitaNivelSocioEconomico",
-            fecha: formatDate(now)
-        },
-        success: function (response) {
+        $.ajax({
 
-            var data = JSON.parse(response);
+            url: "ReporteController",
+            method: "POST",
+            cache: false,
+            data: {
+                key: "mostrarVisitaNivelSocioEconomico",
+                fecha1: fecha1,
+                fecha2: fecha2
+            },
+            success: function (response) {
 
-            for (var i = 0; i < data.length; i++) {
+                $(".cantidadVisitasNivel").dataTable().fnDestroy();
 
-                var plantilla = `<tr>
-                    <td>${data[i].decripcion}</td>
-                    <td>${data[i].cantidad}</td>
-                  </tr>`;
+                $('.cantidadVisitasNivel tbody').children().remove();
 
-                $('#cantidadVisitasNivel tbody').append(plantilla);
+                var data = JSON.parse(response);
+
+                for (var i = 0; i < data.length; i++) {
+
+                    var plantilla = `<tr>
+     <td>${data[i].decripcion}</td>
+     <td>${data[i].cantidad}</td>
+     </tr>`;
+
+                    $('.cantidadVisitasNivel tbody').append(plantilla);
+                }
+
+                $('.cantidadVisitasNivel').DataTable({
+                    responsive: true,
+                    searching: true,
+                    dom: 'lBfrtip',
+                    buttons: [
+
+                        {
+                            extend: 'excel',
+                            text: 'Exportar a Excel',
+                            className: 'btn-outline-success mr-3 btnExcel mt-3'
+                        },
+                        {
+                            extend: 'pdf',
+                            text: 'Exportar a pdf',
+                            className: 'btn-outline-info mr-3 btnPDF mt-3 '
+                        }
+                    ],
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+
+                    }
+                });
+
+
+
+                console.log(data);
+
             }
 
-            $('#cantidadVisitasNivel').DataTable({
-                responsive: true,
-                searching: true,
-                dom: 'lBfrtip',
-                buttons: [
+        });
 
-                    {
-                        extend: 'excel',
-                        text: 'Exportar a Excel',
-                        className: 'btn-outline-success mr-3 btnExcel mt-3'
-                    },
-                    {
-                        extend: 'pdf',
-                        text: 'Exportar a pdf',
-                        className: 'btn-outline-info mr-3 btnPDF mt-3 '
-                    }
-                ],
-                "language": {
+    }
 
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
 
-                }
-            });
-            
-            
 
-            console.log(data);
+    //6.- CCANTIDAD DE VISITAS POR DECISION PRE CONSULTA
 
+    $('#fecha2Pre').on('change', function () {
+
+        if ($('#fecha1Pre').val() != '') {
+            if (areValidDates($('#fecha1Pre').val(), $('#fecha2Pre').val())) {
+                
+                $('.errorFechasPre').hide();
+
+                cantidadPorDecisionPreconsulta($('#fecha1Pre').val(), $('#fecha2Pre').val());
+
+                console.log($('#fecha1Pre').val());
+                console.log($('#fecha2Pre').val());
+
+            } else {
+                $('.errorFechasPre').show();
+            }
         }
 
     });
 
-    //6.- Cantidad de visitas por decision de preconsulta
-    $.ajax({
+    $('#fecha1Pre').on('change', function () {
 
-        url: "ReporteController",
-        method: "POST",
-        cache: false,
-        data: {
-            key: "mostrarVisitaDecisionPreconsulta",
-            fecha: formatDate(now)
-        },
-        success: function (response) {
+        if ($('#fecha2Pre').val() != '') {
+            if (areValidDates($('#fecha1Pre').val(), $('#fecha2Pre').val())) {
 
-            var data = JSON.parse(response);
+                $('.errorFechasPre').hide();
 
-            for (var i = 0; i < data.length; i++) {
+                cantidadPorDecisionPreconsulta($('#fecha1Pre').val(), $('#fecha2Pre').val());
 
-                var plantilla = `<tr>
-                    <td>${data[i].decripcion}</td>
-                    <td>${data[i].cantidad}</td>
-                  </tr>`;
+                console.log($('#fecha1Pre').val());
+                console.log($('#fecha2Pre').val());
 
-                $('#cantidadVisitasDecision tbody').append(plantilla);
+            } else {
+                $('.errorFechasPre').show();
             }
-
-            $('#cantidadVisitasDecision').DataTable({
-                responsive: true,
-                searching: true,
-                dom: 'lBfrtip',
-                buttons: [
-
-                    {
-                        extend: 'excel',
-                        text: 'Exportar a Excel',
-                        className: 'btn-outline-success mr-3 btnExcel mt-3'
-                    },
-                    {
-                        extend: 'pdf',
-                        text: 'Exportar a pdf',
-                        className: 'btn-outline-info mr-3 btnPDF mt-3 '
-                    }
-                ],
-                "language": {
-
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-
-                }
-            });
-
-            console.log(data);
-
         }
 
     });
+
+    function cantidadPorDecisionPreconsulta(fecha1, fecha2) {
+
+        $.ajax({
+
+            url: "ReporteController",
+            method: "POST",
+            cache: false,
+            data: {
+                key: "mostrarVisitaDecisionPreconsulta",
+                fecha1: fecha1,
+                fecha2: fecha2
+            },
+            success: function (response) {
+
+                $(".cantidadVisitasPre").dataTable().fnDestroy();
+
+                $('.cantidadVisitasPre tbody').children().remove();
+
+                var data = JSON.parse(response);
+
+                for (var i = 0; i < data.length; i++) {
+
+
+
+                    var plantilla = `<tr>
+     <td>${data[i].decripcion}</td>
+     <td>${data[i].cantidad}</td>
+     </tr>`;
+
+                    $('.cantidadVisitasPre tbody').append(plantilla);
+                }
+
+                $('.cantidadVisitasPre').DataTable({
+                    responsive: true,
+                    searching: true,
+                    dom: 'lBfrtip',
+                    buttons: [
+
+                        {
+                            extend: 'excel',
+                            text: 'Exportar a Excel',
+                            className: 'btn-outline-success mr-3 btnExcel mt-3'
+                        },
+                        {
+                            extend: 'pdf',
+                            text: 'Exportar a pdf',
+                            className: 'btn-outline-info mr-3 btnPDF mt-3 '
+                        }
+                    ],
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+
+                    }
+                });
+
+                console.log(data);
+
+            }
+
+        });
+
+    }
+
+
 
     //7.- Cantidad de visitas por resultado patologia
-    $.ajax({
 
-        url: "ReporteController",
-        method: "POST",
-        cache: false,
-        data: {
-            key: "mostrarVisitaResultadoPatologia",
-            fecha: formatDate(now)
-        },
-        success: function (response) {
+    $('#fecha2Patologia').on('change', function () {
 
-            var data = JSON.parse(response);
+        if ($('#fecha1Patologia').val() != '') {
+            if (areValidDates($('#fecha1Patologia').val(), $('#fecha2Patologia').val())) {
+                
+                $('.errorFechasPatologia').hide();
 
-            for (var i = 0; i < data.length; i++) {
+                cantidadPorPatologia($('#fecha1Patologia').val(), $('#fecha2Patologia').val());
 
-                var plantilla = `<tr>
-                    <td>${data[i].decripcion}</td>
-                    <td>${data[i].cantidad}</td>
-                  </tr>`;
+                console.log($('#fecha1Patologia').val());
+                console.log($('#fecha2Patologia').val());
 
-                $('#cantidadVisitasResultado tbody').append(plantilla);
+            } else {
+                $('.errorFechasPatologia').show();
             }
-
-            $('#cantidadVisitasResultado').DataTable({
-                responsive: true,
-                searching: true,
-                dom: 'lBfrtip',
-                buttons: [
-
-                    {
-                        extend: 'excel',
-                        text: 'Exportar a Excel',
-                        className: 'btn-outline-success mr-3 btnExcel mt-3'
-                    },
-                    {
-                        extend: 'pdf',
-                        text: 'Exportar a pdf',
-                        className: 'btn-outline-info mr-3 btnPDF mt-3 '
-                    }
-                ],
-                "language": {
-
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-
-                }
-            });
-
-            console.log(data);
-
         }
 
     });
 
-    $('.btnExcel').prepend("<i class='fas fa-file-excel mr-1'></i>");
+    $('#fecha1Patologia').on('change', function () {
+
+        if ($('#fecha2Patologia').val() != '') {
+            if (areValidDates($('#fecha1Patologia').val(), $('#fecha2Patologia').val())) {
+
+                $('.errorFechasPatologia').hide();
+
+                cantidadPorPatologia($('#fecha1Patologia').val(), $('#fecha2Patologia').val());
+
+                console.log($('#fecha1Patologia').val());
+                console.log($('#fecha2Patologia').val());
+
+            } else {
+                $('.errorFechasPatologia').show();
+            }
+        }
+
+    });
+
+    function cantidadPorPatologia(fecha1, fecha2) {
+
+        $.ajax({
+
+            url: "ReporteController",
+            method: "POST",
+            cache: false,
+            data: {
+                key: "mostrarVisitaResultadoPatologia",
+                fecha1: fecha1,
+                fecha2: fecha2
+            },
+            success: function (response) {
+                
+                $(".cantidadVisitasPatologia").dataTable().fnDestroy();
+
+                $('.cantidadVisitasPatologia tbody').children().remove();
+
+                var data = JSON.parse(response);
+
+                for (var i = 0; i < data.length; i++) {
+
+                    var plantilla = `<tr>
+     <td>${data[i].decripcion}</td>
+     <td>${data[i].cantidad}</td>
+     </tr>`;
+
+                    $('.cantidadVisitasPatologia tbody').append(plantilla);
+                }
+
+                $('.cantidadVisitasPatologia').DataTable({
+                    responsive: true,
+                    searching: true,
+                    dom: 'lBfrtip',
+                    buttons: [
+
+                        {
+                            extend: 'excel',
+                            text: 'Exportar a Excel',
+                            className: 'btn-outline-success mr-3 btnExcel mt-3'
+                        },
+                        {
+                            extend: 'pdf',
+                            text: 'Exportar a pdf',
+                            className: 'btn-outline-info mr-3 btnPDF mt-3 '
+                        }
+                    ],
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+
+                    }
+                });
+
+                console.log(data);
+
+            }
+
+        });
+
+    }
+
+
+
+
+
+    $('.btnExcel').prepend("<i class='fas fa-file-excel mr-1'></i > ");
     $('.btnPDF').prepend("<i class='far fa-file-pdf mr-1'></i>");
 
     function formatDate(date) {
@@ -557,6 +914,23 @@ $(document).ready(function () {
             day = '0' + day;
 
         return [year, month, day].join('-');
+    }
+
+    function areValidDates(fecha1, fecha2) {
+
+        var fecha1Final = new Date(fecha1);
+        var fecha2Final = new Date(fecha2);
+
+        if (fecha1 > fecha2) {
+            console.log('NO SEAS MAMON NO PUEDES');
+            return false;
+        }
+
+        console.log(fecha1Final);
+        console.log(fecha2Final);
+
+        return true;
+
     }
 
 });

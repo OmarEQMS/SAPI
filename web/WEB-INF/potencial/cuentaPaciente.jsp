@@ -91,8 +91,8 @@
                     <li id ="irACitaPreconsulta"><a><i class="fas fa-home"></i>Cita a Preconsulta </a></li>
 
                     <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas
-                            <c:choose>
-                                <c:when test="${sessionScope.estatus==1}">
+                                <c:choose>
+                                    <c:when test="${sessionScope.estatus==1}">
                                     <span class="notificacion">1</span>                        
                                 </c:when>
                             </c:choose>
@@ -108,6 +108,13 @@
                 </ul>
 
             </nav>
+
+            <!-- PANTALLAS DE CARGA -->
+
+            <div class="loading-screenGuardar" id="loading-screen" style="display: none">
+                <img src="img/loading.svg">
+                <p class="clear">Guardando tu información, por favor espere...</p>
+            </div>
 
             <!-- CONTENIDO PRINCIPAL  -->
 
@@ -160,7 +167,7 @@
                             <div class="form-group row justify-content-center">
                                 <div class="col-12 text-center">
                                     <input type="file" class="editar-imagen" id="file-input" name="file-image"/>
-                                    <label for="file-input">
+                                    <label for="file-input" id="fileLabel">
                                         <img src="data:image/jpeg;base64,${sessionScope.base64Img}" id="ImagenPerfil" class="edit-image" alt="Click aquí" title="Click aquí" width="200px" height="200px">
                                     </label>
                                 </div>
@@ -168,6 +175,7 @@
                             <div class="row mb-4">
                                 <div class="col-12 text-center">
                                     <h4 class="FotoPerfil text-secondary" style="font-size:17px;">Edita tu foto de perfil</h4>
+                                    <span class="text-danger" id="error-imgPerfil">No es una extensión válida. Puedes subir un archivo .jpg o .png</span>
                                 </div>
                             </div>
 
@@ -220,10 +228,16 @@
                                 </div>
                             </div>
 
+                            <div class="row mb-3" id="error-datosRepetidos">
+                                <div class="col-12 text-center">
+                                    <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>
+                                </div>
+                            </div>
+
                             <!-- 5 -->
                             <div class="form-group row justify-content-center mt-4">
                                 <div class="col-4">
-                                    <button type="button" id = "guardarCambios"  class="btn btn-outline-success btn-block" style="border-radius:20px"><i
+                                    <button type="button" id = "guardarCambios" class="btn btn-outline-success btn-block" style="border-radius:20px"><i
                                             class="fas fa-save mr-1"></i>
                                         Guardar Cambios</button>
                                 </div>
@@ -245,13 +259,13 @@
                                 </div>
                             </div>
 
-                        <div class="form-group row justify-content-center mt-4">
-                            <div class="col-4">
-                                <button type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaPotencial"><i
-                                        class="fas fa-trash-alt mr-1"></i>
-                                    Eliminar Cuenta</button>
+                            <div class="form-group row justify-content-center mt-4">
+                                <div class="col-4">
+                                    <button type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaPotencial"><i
+                                            class="fas fa-trash-alt mr-1"></i>
+                                        Eliminar Cuenta</button>
 
-                            </div>
+                                </div>
                         </form>
 
                     </div>

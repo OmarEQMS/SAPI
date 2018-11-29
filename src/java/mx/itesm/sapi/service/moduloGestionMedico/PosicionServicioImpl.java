@@ -63,7 +63,7 @@ public class PosicionServicioImpl implements PosicionServicio {
         try {
 
             CallableStatement cstmt;
-            cstmt = conn.prepareCall("");
+            cstmt = conn.prepareCall("CALL mostrarListaPosicion()");
             ResultSet rs = cstmt.executeQuery();
             Posicion posicion;
 
@@ -99,7 +99,7 @@ public class PosicionServicioImpl implements PosicionServicio {
         Posicion posicion = null;
 
         //Call del store procedure
-        String stProcedure = "CALL motrarPosicionPorNombre(?)";
+        String stProcedure = "CALL mostrarPosicionPorNombre(?)";
 
         try {
             posicion = new Posicion();
@@ -119,7 +119,7 @@ public class PosicionServicioImpl implements PosicionServicio {
             conn.close();
 
         } catch (SQLException ex) {
-
+            System.out.println("NombrePosicion: " + nombrePosicion);
             System.out.println("Catch PosicionServicio mostrarPosicion por nombre");
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));            

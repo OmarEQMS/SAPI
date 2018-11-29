@@ -24,6 +24,7 @@ public class Laminilla {
                 .concat(",idBiopsia:").concat(String.valueOf(idBiopsia))
                 .concat(",nombre:").concat(nombre)
                 .concat(",estatus:").concat(String.valueOf(estatus))
+                .concat(",cantidad:").concat(String.valueOf(cantidad))
                 .concat("]");
         return str;
     }

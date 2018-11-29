@@ -141,10 +141,7 @@ public class PacienteAlergiaServicioImpl implements PacienteAlergiaServicio{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, pacienteAlergia.getIdPacienteAlergia());
-            cstmt.setInt(2, pacienteAlergia.getIdPaciente());
-            cstmt.setInt(3, pacienteAlergia.getIdAlergia());
-            cstmt.setInt(4, pacienteAlergia.getEstatus() );
-            cstmt.setString(5, pacienteAlergia.getAlergia());
+            cstmt.setString(2, pacienteAlergia.getAlergia());
            
             
             rs = cstmt.executeQuery();

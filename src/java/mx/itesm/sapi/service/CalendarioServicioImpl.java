@@ -134,5 +134,50 @@ public class CalendarioServicioImpl implements CalendarioServicio {
         return id;
     }
 
+    @Override
+    public List<FullCalendar> mostrarEventosResultados() {
+        
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+        
+        List<FullCalendar> eventos = null;
+        
+        try{
+            
+            eventos = new ArrayList<>();
+            conn = Conexion.getConnection();
+            
+            //llamar al procedimiento que te devuelva las citas
+            cstmt = conn.prepareCall("CALL mostrarCitasPacienteR()");
+            
+            rs = cstmt.executeQuery();
+            
+            FullCalendar calendario;
+            
+            while(rs.next()){
+                
+                calendario = new FullCalendar();
+                calendario.setTitle(rs.getString("nombre").concat(" ").concat(rs.getString("primerApellido")));
+                calendario.setStart(rs.getString("fechaReal"));
+                
+                eventos.add(calendario);
+                
+            }
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+            
+        }catch (SQLException ex){
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            eventos = null;
+        }
+        
+        return eventos;
+        
+    }
+
     
 }

@@ -5,6 +5,35 @@
     GENERALES
 ----------------------------------------------------- */
 
+p.clear {
+    clear: both;
+    color: #fff;
+    text-align: center;
+    margin: auto;
+    padding: 530px 0;
+    font-size: 20px;
+}
+
+#loading-screen {
+  background-color: rgba(25,25,25,0.7);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 9999;
+  margin-top: 0;
+  top: 0;
+  text-align: center;
+}
+#loading-screen img {
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  margin-top: -50px;
+  margin-left: -50px;
+  top: 50%;
+  text-align: center;
+}
+
 .swal-button--confirm {
     padding: 7px 19px;
     border-radius: 25px;
@@ -59,6 +88,27 @@ body {
 
 .centrarBlock{
     margin: auto;
+}
+
+.tituloPacientes{
+  font-size: 40px;
+  color: #696f71
+}
+
+.editar-imagen{
+    display: none;
+}
+
+.edit-image{
+    border-radius: 99px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.edit-image:hover{
+    -webkit-box-shadow: -1px -2px 38px -6px rgba(0,0,0,0.73);
+    -moz-box-shadow: -1px -2px 38px -6px rgba(0,0,0,0.73);
+    box-shadow: -1px -2px 38px -6px rgba(0,0,0,0.73);
 }
 
 a,

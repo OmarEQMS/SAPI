@@ -27,6 +27,7 @@ public interface CitaServicio {
     public String mostrarPreconsultaAceptada(int idPacientePotencaial);
     public boolean aprobarPaciente(int idPaciente, String fechaNav, String fechaCon, int segundaOpinion);
     public int citaPendiente(int idPaciente);
+    public boolean actualizarCitaFecha(Cita  cita);
 
 
 }

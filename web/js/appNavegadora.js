@@ -78,6 +78,7 @@ $(document).ready(function () {
         delay: '140'
     });
 
+
     //Cambiar de color los botones del calendario y varios textos
     $('.fc-agendaWeek-button').removeClass('btn-primary').addClass('btn-outline-danger');
     $('.fc-month-button').removeClass('btn-primary').addClass('btn-outline-danger');
@@ -87,37 +88,8 @@ $(document).ready(function () {
     $('.fc-today-button').removeClass('btn-primary').addClass('btn-outline-danger');
     $('.fc-right h2').addClass('display-4').css({'color': '#696f71', 'font-size': '30px'});
 
-    $('#calendarCitasPaciente').fullCalendar({
-        locale: 'es',
-        height: 630,
-        themeSystem: 'bootstrap4',
-        header: {
-            left: 'prev,next today',
-            center: 'month,agendaWeek,agendaDay',
-            right: 'title'
-        },
-        eventBackgroundColor: "#eb5865",
-        eventBorderColor: "#de1f1f",
-        eventLimit: true, // allow "more" link when too many events
-        eventClick: function () {
 
-            $('#modalVerCita').modal('toggle');
-
-        },
-        dayClick: function (date) {
-            $('#modalAgregarCita').modal('toggle');
-        },
-        events: [
-            {
-                title: 'Paciente B',
-                start: '2018-09-23'
-            },
-            {
-                title: 'Paciente A',
-                start: '2018-08-30'
-            }
-        ]
-    });
+    
 
     //Cambiar de color los botones del calendario y varios textos
     $('.fc-agendaWeek-button').removeClass('btn-primary').addClass('btn-outline-danger');
@@ -401,7 +373,9 @@ $(document).ready(function () {
     $('.add-biopsia').on('click', function () {
 
         var plantilla =
-                `<div class="form-group row mt-2 tuplaBiopsia">
+
+            `<div class="form-group row mt-2 tuplaBiopsia" data-id="0" data-accion="agregar">
+
 
             <!-- tipo biopsia -->
             <div class="col-3">
@@ -447,16 +421,18 @@ $(document).ready(function () {
 
     //remover biopsia
     $('body').on('click', '.remove-biopsia', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     //agregar rayos
     $('.add-rayosX').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaRayosX">
+
+            `
+            <div class="form-group row mt-2 tuplaRayosX" data-id="0" data-accion="agregar">
+
 
                 <!-- tipo rayos -->
                 <div class="col-5">
@@ -492,15 +468,17 @@ $(document).ready(function () {
 
     //remover rayos
     $('body').on('click', '.remove-rayos', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-ultrasonido').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaUltrasonido">
+
+            `
+            <div class="form-group row mt-2 tuplaUltrasonido" data-id="0" data-accion="agregar">
+
 
                
                 <div class="col-5">
@@ -536,15 +514,17 @@ $(document).ready(function () {
 
     //remover ultrasonidos
     $('body').on('click', '.remove-ultrasonido', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-medicinaNuclear').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaMedicinaNuclear">
+
+            `
+            <div class="form-group row mt-2 tuplaMedicinaNuclear" data-id="0" data-accion="agregar">
+
     
                     <div class="col-5">
                         <input name ="mNuclearAdded" type="text" class="form-control medicinaNuclear" placeholder="Introduce medicina nuclear">
@@ -578,15 +558,17 @@ $(document).ready(function () {
 
     //remover rayos
     $('body').on('click', '.remove-medicinaNuclear', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-laboratorio').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaLaboratorio">
+
+            `
+            <div class="form-group row mt-2 tuplaLaboratorio" data-id="0" data-accion="agregar">
+
 
                 <div class="col-10">
                     <div class="input-group">
@@ -615,15 +597,17 @@ $(document).ready(function () {
 
     //remover laboratorio
     $('body').on('click', '.remove-laboratorio', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-valoracion').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaValoracion">
+
+            `
+            <div class="form-group row mt-2 tuplaValoracion" data-id="0" data-accion="agregar">
+
 
        
                 <div class="col-5">
@@ -657,15 +641,17 @@ $(document).ready(function () {
 
     //remover valoracion
     $('body').on('click', '.remove-valoracion', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-espirometria').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaEspirometria">
+
+            `
+            <div class="form-group row mt-2 tuplaEspirometria" data-id="0" data-accion="agregar">
+
 
                 <div class="col-10">
                     <div class="input-group">
@@ -694,15 +680,17 @@ $(document).ready(function () {
 
     //remover valoracion
     $('body').on('click', '.remove-espirometria', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-electrocardiograma').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaElectrocardiograma">
+
+            `
+            <div class="form-group row mt-2 tuplaElectrocardiograma" data-id="0" data-accion="agregar">
+
 
                     <div class="col-10">
                         <div class="input-group">
@@ -731,15 +719,17 @@ $(document).ready(function () {
 
     //remover electrocardiograma
     $('body').on('click', '.remove-electrocardiograma', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-ecocardiograma').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaEcocardiograma">
+
+            `
+            <div class="form-group row mt-2 tuplaEcocardiograma" data-id="0" data-accion="agregar">
+
 
                     <div class="col-10">
                         <div class="input-group">
@@ -769,15 +759,17 @@ $(document).ready(function () {
 
     //remover ecocardiograma
     $('body').on('click', '.remove-ecocardiograma', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-trabajoSocial').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaTrabajoSocial">
+
+            `
+            <div class="form-group row mt-2 tuplaTrabajoSocial" data-id="0" data-accion="agregar">
+
 
                 <div class="col-10">
                     <div class="input-group">
@@ -806,15 +798,17 @@ $(document).ready(function () {
 
     //remover trabajoSocial
     $('body').on('click', '.remove-trabajoSocial', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-programa').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaPrograma">
+
+            `
+            <div class="form-group row mt-2 tuplaPrograma" data-id="0" data-accion="agregar">
+
 
 
                     <div class="col-5">
@@ -848,15 +842,17 @@ $(document).ready(function () {
 
     //remover trabajoSocial
     $('body').on('click', '.remove-programa', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-otro').on('click', function () {
 
         var plantilla =
-                `
-            <div class="form-group row mt-2 tuplaOtro">
+
+            `
+            <div class="form-group row mt-2 tuplaOtro" data-id="0" data-accion="agregar">
+
 
                     <div class="col-5">
                         <div class="input-group">
@@ -889,15 +885,15 @@ $(document).ready(function () {
 
     //remover trabajoSocial
     $('body').on('click', '.remove-otro', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-llamada').on('click', function () {
 
         var plantilla =
                 `
-            <div class="tuplaLlamada mt-3">
+            <div class="tuplaLlamada mt-3" data-id="0" data-accion="agregar">
                 <div class="row">
                     <div class="col-12">
                         <div class="input-group">
@@ -929,8 +925,8 @@ $(document).ready(function () {
 
     //remover trabajoSocial
     $('body').on('click', '.remove-llamada', function () {
-        $(this).parent().parent().parent().parent().remove();
-
+        $(this).parent().parent().parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().parent().parent().hide();
     });
 
     //MEDICO RADIOLOGO OTRO
@@ -1015,14 +1011,12 @@ $(document).ready(function () {
 
         switch (tieneLlamada) {
             case 1:
-
                 muestra($('.llamadaInit'));
-
+                muestra($('.add-llamada'));
                 break;
             case 0:
                 oculta($('.llamadaInit'));
-                $('.tuplaLlamada').remove();
-
+                oculta($('.add-llamada'));
                 break;
         }
     });
@@ -1111,24 +1105,19 @@ $(document).ready(function () {
     });
 
 
-    //PANTALLA 3 estudios                                    
+    //PANTALLA 3 estudios  //OMAR                                  
 
     $('#tiene-biopsia').on('change', () => {
         var tieneBiopsia = $('#tiene-biopsia').is(':checked') ? 1 : 0;
 
         switch (tieneBiopsia) {
             case 1:
-
-                muestra($('#biopsiaInit'));
-
-
+                muestra($('#biopsia-contenedor'));
+                muestra($('.add-biopsia'));
                 break;
             case 0:
-
-                oculta($('#biopsiaInit'));
-                $('.tuplaBiopsia').remove();
-
-
+                oculta($('#biopsia-contenedor'));
+                oculta($('.add-biopsia'));
                 break;
         }
     });
@@ -1139,15 +1128,12 @@ $(document).ready(function () {
 
         switch (tieneRayosX) {
             case 1:
-
-                muestra($('#rayosInit'));
-
+                muestra($('#rayos-contenedor'));
+                muestra($('.add-rayosX'));
                 break;
             case 0:
-
-                oculta($('#rayosInit'));
-                $('.tuplaRayosX').remove();
-
+                oculta($('#rayos-contenedor'));
+                oculta($('.add-rayosX'));
                 break;
         }
     });
@@ -1159,15 +1145,12 @@ $(document).ready(function () {
 
         switch (tieneUltrasonido) {
             case 1:
-
-                muestra($('#ultrasonidoInit'));
-
+                muestra($('#ultrasonido-contenedor'));
+                muestra($('.add-ultrasonido'));
                 break;
             case 0:
-
-                oculta($('#ultrasonidoInit'));
-                $('.tuplaUltrasonido').remove();
-
+                oculta($('#ultrasonido-contenedor'));
+                oculta($('.add-ultrasonido'));
                 break;
         }
     });
@@ -1178,15 +1161,12 @@ $(document).ready(function () {
 
         switch (tieneMedicinaNuclear) {
             case 1:
-
-                muestra($('#medicinaNuclearInit'));
-
+                muestra($('#medicinaNuclear-contenedor'));
+                muestra($('.add-medicinaNuclear'));
                 break;
             case 0:
-
-                oculta($('#medicinaNuclearInit'));
-                $('.tuplaMedicinaNuclear').remove();
-
+                oculta($('#medicinaNuclear-contenedor'));
+                oculta($('.add-medicinaNuclear'));
                 break;
         }
     });
@@ -1198,15 +1178,12 @@ $(document).ready(function () {
 
         switch (tieneValoracion) {
             case 1:
-
-                muestra($('#valoracionInit'));
-
+                muestra($('#valoracion-contenedor'));
+                muestra($('.add-valoracion'));
                 break;
             case 0:
-
-                oculta($('#valoracionInit'));
-                $('.tuplaValoracion').remove();
-
+                oculta($('#valoracion-contenedor'));
+                oculta($('.add-valoracion'));
                 break;
         }
     });
@@ -1217,15 +1194,12 @@ $(document).ready(function () {
 
         switch (tieneEspirometria) {
             case 1:
-
-                muestra($('#espirometriaInit'));
-
+                muestra($('#espirometria-contenedor'));
+                muestra($('.add-espirometria'));
                 break;
             case 0:
-
-                oculta($('#espirometriaInit'));
-                $('.tuplaEspirometria').remove();
-
+                oculta($('#espirometria-contenedor'));
+                oculta($('.add-espirometria'));
                 break;
         }
     });
@@ -1237,15 +1211,12 @@ $(document).ready(function () {
 
         switch (tieneElectrocardiograma) {
             case 1:
-
-                muestra($('#electrocardiogramaInit'));
-
+                muestra($('#electrocardiograma-contenedor'));
+                muestra($('.add-electrocardiograma'));
                 break;
             case 0:
-
-                oculta($('#electrocardiogramaInit'));
-                $('.tuplaElectrocardiograma').remove();
-
+                oculta($('#electrocardiograma-contenedor'));
+                oculta($('.add-electrocardiograma'));
                 break;
         }
     });
@@ -1256,15 +1227,12 @@ $(document).ready(function () {
 
         switch (tieneLaboratorio) {
             case 1:
-
-                muestra($('#laboratorioInit'));
-
+                muestra($('#laboratorio-contenedor'));
+                muestra($('.add-laboratorio'));
                 break;
             case 0:
-
-                oculta($('#laboratorioInit'));
-                $('.tuplaLaboratorio').remove();
-
+                oculta($('#laboratorio-contenedor'));
+                oculta($('.add-laboratorio'));
                 break;
         }
     });
@@ -1275,15 +1243,12 @@ $(document).ready(function () {
 
         switch (tieneEcocardiograma) {
             case 1:
-
-                muestra($('#ecocardiogramaInit'));
-
+                muestra($('#ecocardiograma-contenedor'));
+                muestra($('.add-ecocardiograma'));
                 break;
             case 0:
-
-                oculta($('#ecocardiogramaInit'));
-                $('.tuplaEcocardiograma').remove();
-
+                oculta($('#ecocardiograma-contenedor'));
+                oculta($('.add-ecocardiograma'));
                 break;
         }
     });
@@ -1294,15 +1259,12 @@ $(document).ready(function () {
 
         switch (tieneTrabajoSocial) {
             case 1:
-
-                muestra($('#trabajoSocialInit'));
-
+                muestra($('#trabajoSocial-contenedor'));
+                muestra($('.add-trabajoSocial'));
                 break;
             case 0:
-
-                oculta($('#trabajoSocialInit'));
-                $('.tuplaTrabajoSocial').remove();
-
+                oculta($('#trabajoSocial-contenedor'));
+                oculta($('.add-trabajoSocial'));
                 break;
         }
     });
@@ -1313,15 +1275,12 @@ $(document).ready(function () {
 
         switch (tienePrograma) {
             case 1:
-
-                muestra($('#programaInit'));
-
+                muestra($('#programa-contenedor'));
+                muestra($('.add-programa'));
                 break;
             case 0:
-
-                oculta($('#programaInit'));
-                $('.tuplaPrograma').remove();
-
+                oculta($('#programa-contenedor'));
+                oculta($('.add-programa'));
                 break;
         }
     });
@@ -1332,19 +1291,17 @@ $(document).ready(function () {
 
         switch (tieneOtro) {
             case 1:
-
-                muestra($('#otroInit'));
-
+                muestra($('#otro-contenedor'));
+                muestra($('.add-otro'));
                 break;
             case 0:
-
-                oculta($('#otroInit'));
-                $('.tuplaOtro').remove();
-
+                oculta($('#otro-contenedor'));
+                oculta($('.add-otro'));
                 break;
         }
     });
 
+    //OMAR
 
     $('#add-datosLlamada').on('click', () => {
         var nuevosDatos = `<div class="col-5" id="fechaLlamada">
@@ -1369,8 +1326,6 @@ $(document).ready(function () {
     });
 
 
-
-
     //Ver Comentario navegadora
 
 
@@ -1390,9 +1345,12 @@ $(document).ready(function () {
     $("#aceptarModal").on("click", function () {
         $("#modalComentario").empty();
     });
-
-
-
-
-
+    
+    
+    $('.btn-aceptar-potencial').on('click',function(){
+        $('#hidden-idPaciente').val('');
+        console.log("Me estás aceptando");
+        $('#hidden-idPaciente').val($(this).data('id'));
+    });
+    
 });

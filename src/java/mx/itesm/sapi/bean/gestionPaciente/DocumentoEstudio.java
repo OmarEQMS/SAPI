@@ -18,15 +18,14 @@ public class DocumentoEstudio {
     private int idEstudio;
     private int idEstadoEstudio;
     private int idPaciente;
-    private int idBirads;
+
+    private Integer idBirads;
     private int idLugarDelCuerpo;
     private byte[] archivo;
     private int previo;
     private int estatus;
     private Date fechaEstudioResultado;
     private int idCita;
-
-
 
     public DocumentoEstudio() {
     }
@@ -49,7 +48,16 @@ public class DocumentoEstudio {
 
     }
 
-   
+
+    public int getIdCita() {
+        return idCita;
+    }
+    
+    public void setIdCita(int idCita) {
+        this.idCita = idCita;
+    }
+    
+
 
     public int getIdDocumentoEstudio() {
         return idDocumentoEstudio;
@@ -83,11 +91,11 @@ public class DocumentoEstudio {
         this.idEstudio = idEstudio;
     }
 
-    public int getIdBirads() {
+    public Integer getIdBirads() {
         return idBirads;
     }
 
-    public void setIdBirads(int idBirads) {
+    public void setIdBirads(Integer idBirads) {
         this.idBirads = idBirads;
     }
 
@@ -131,12 +139,5 @@ public class DocumentoEstudio {
         this.fechaEstudioResultado = fechaEstudioResultado;
     }
 
-    public int getIdCita() {
-        return idCita;
-    }
-
-    public void setIdCita(int idCita) {
-        this.idCita = idCita;
-    }
 
 }
