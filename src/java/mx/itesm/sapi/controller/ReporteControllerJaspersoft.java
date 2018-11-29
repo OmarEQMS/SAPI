@@ -266,8 +266,53 @@ public class ReporteControllerJaspersoft extends HttpServlet {
 
                 break;
             }
+            case "generar-reporte1": {
+                //Estos datos los deberia tener la sesion
+                int idPaciente = 62, idEmpleado = 40, idRol = 4;
+                String report = "/mx/itesm/sapi/reportes/reporte/ReporteNavegadorav2.0.jasper";
+                InputStream input = getClass().getResourceAsStream(report);
+                List<ReporteNavegadora> reporteNavegadoraFields = new ArrayList<>();
+                
+                //ReporteNavegadora reporteNavegadora;
+                ReporteNavegadoraServicioImpl reportenavegadoraServicioImpl = new ReporteNavegadoraServicioImpl();
+                ReporteNavegadora reporteNavegadora = reportenavegadoraServicioImpl.mostrarReporteNavegadora(idPaciente, idEmpleado, idRol);
 
-            case "generar-reporte": {
+                if (reporteNavegadora != null) {
+                    System.out.println("Se guardaron datos estaticos");
+                } else {
+                    System.out.println("ESTA NULL");
+                }
+
+                reporteNavegadoraFields.add(reporteNavegadora);
+                System.out.println("El dato que esta en la lista:" + reporteNavegadoraFields.get(0).toString());
+
+                System.out.println("El size de reporteNavegadoraFields: " + reporteNavegadoraFields.size());
+
+                JRDataSource data = new JRBeanCollectionDataSource(reporteNavegadoraFields);
+                
+                try {
+                    response.setContentType("application/pdf");
+                    response.addHeader("content-disposition", "attachment; filename=Reporte1.pdf");
+                    System.out.println("Entra al try ");
+                    byte[] bytes = JasperRunManager.runReportToPdf(input, null, data);
+
+                    System.out.println("Corre el JasperSoft");
+
+                    OutputStream os = response.getOutputStream();
+                    System.out.println("Prepara la respuesta ");
+
+                    os.write(bytes);
+                    os.flush();
+                    os.close();
+                    //request.getRequestDispatcher("/WEB-INF/potencial/cuentaPaciente.jsp").forward(request, response);
+
+                } catch (Exception ex) {
+                    System.out.println(this.getClass().toString().concat(ex.getMessage()));
+                }
+                
+                break;
+            }
+            case "generar-reporte2": {
                 //Estos datos los deberia tener la sesion
                 int idPaciente = 62, idEmpleado = 40, idRol = 4;
                 String report = "/mx/itesm/sapi/reportes/reporte/ReporteNavegadorav2.0.jasper";
@@ -324,7 +369,6 @@ public class ReporteControllerJaspersoft extends HttpServlet {
                 llamada = llamadaCitaServicioImpl.mostrarLlamaCitaPreconsultaPaciente(idPaciente);
                 LlamadaPaciente llamadaPaciente;
                 
-                System.out.println("Tamaño de llamada " + llamada.size());
                 for (int x = 0; x < llamada.size(); x++) {
                     llamadaPaciente = new LlamadaPaciente();
                     llamadaPaciente.setFecha(String.valueOf(new Date(((llamada.get(x)).getFecha()).getTime())));
@@ -332,8 +376,6 @@ public class ReporteControllerJaspersoft extends HttpServlet {
                     llamadas.add(llamadaPaciente);
                 }
 
-                /* Probar que los array tengan valores*/
-                System.out.println("Llamadas: " + llamadas.size());
 
                 Map params = new HashMap();
                 params.put("datasetBiopsia", biopsias);
