@@ -13,5 +13,5 @@ import mx.itesm.sapi.bean.poblacion.GeneralPoblacion;
  * @author Raul Orihuela
  */
 public interface GeneralPoblacionServicio {
-    public ArrayList<GeneralPoblacion> mostrarPoblacionGeneral();
+    public ArrayList<ArrayList<String>> mostrarPoblacionGeneral();
 }

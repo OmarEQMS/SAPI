@@ -20,14 +20,14 @@ import mx.itesm.sapi.bean.poblacion.GeneralPoblacion;
 public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
     
     @Override
-    public ArrayList<GeneralPoblacion> mostrarPoblacionGeneral() {
+    public ArrayList<ArrayList<String>> mostrarPoblacionGeneral() {
         
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
 
-        ArrayList<GeneralPoblacion> PoblacionGeneral = new ArrayList<>();
-
+        ArrayList<ArrayList<String>> PoblacionGeneral = new ArrayList<>();
+        PoblacionGeneral.add(GeneralPoblacion.tableHeaderRStudio());
         //Call del store procedure
         String stProcedure = "CALL mostrarPoblacionGeneral()";
         
@@ -289,7 +289,7 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
                 if (temp.getConsultaRadiologoNombre() == null)temp.setConsultaRadiologoNombre("NA");
                 if (temp.getConsultaRadiologoPresente() == null)temp.setConsultaRadiologoPresente("NA");
                 
-                PoblacionGeneral.add(temp);
+                PoblacionGeneral.add(temp.toStringRStudio());
             }
             rs.close();
             cstmt.close();

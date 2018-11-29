@@ -7,6 +7,7 @@ package mx.itesm.sapi.bean.poblacion;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -205,189 +206,197 @@ public class GeneralPoblacion  implements Serializable{
                 concat(" ]");
 
     }
-    
-    public String toStringRStudio() {
-        return nombrePersona.
-                concat(" ").concat(primerApellido).
-                concat(" ").concat(segundoApellido).
-                concat("\t").concat(curp).
-                concat("\t").concat(telefono).
-                concat("\t").concat(correo).
-                concat("\t").concat(tipoSangre).
-                concat("\t").concat(estado).
-                concat("\t").concat(municipio).
-                concat("\t").concat(fechaNacimiento.toString()).
-                concat("\t").concat(estadoCivil).
-                concat("\t").concat(sexo).
-                concat("\t").concat(escolaridad).
-                concat("\t").concat(nivelSocioeconomico).
-                concat("\t").concat(seguro).
-                concat("\t").concat(noSeguroPopular).
-                concat("\t").concat(prz).
-                concat("\t").concat(noExpediente).
-                concat("\t").concat(Alergias).
-                concat("\t").concat(sillaRuedas).
-                concat("\t").concat(oxigeno).
-                concat("\t").concat(camilla).
-                concat("\t").concat(bastón).
-                concat("\t").concat(consultaTipo).
-                concat("\t").concat(consultaEstado).
-                concat("\t").concat(consultaMotivo).
-                concat("\t").concat(consultaComentario).
-                concat("\t").concat(consultaFecha.toString()).
-                concat("\t").concat(consultaDiagnosticoFecha.toString()).
-                concat("\t").concat(consultaAdscritoNombre).
-                concat("\t").concat(consultaAdscritoPresente).
-                concat("\t").concat(consultaRadiologoNombre).
-                concat("\t").concat(consultaRadiologoPresente).
-                concat("\t").concat(estudioPrevioQuimioFecha.toString()).
-                concat("\t").concat(estudioPrevioQuimioCiclos.toString()).
-                concat("\t").concat(estudioPrevioRadioFecha.toString()).
-                concat("\t").concat(estudioPrevioRadioCiclos.toString()).
-                concat("\t").concat(estudioPrevioCirugiaFecha.toString()).
-                concat("\t").concat(estudioPrevioCirugiaTipo).
-                concat("\t").concat(estudioPrevioMastografiaFecha.toString()).
-                concat("\t").concat(estudioPrevioMastografia).
-                concat("\t").concat(estudioPrevioUSGFecha.toString()).
-                concat("\t").concat(estudioPrevioUSG).
-                concat("\t").concat(biopsiaPreviaLaminillas).
-                concat("\t").concat(biopsiaPreviaBloques).
-                concat("\t").concat(biopsiaPreviaTipo).
-                concat("\t").concat(biopsiaPreviaFecha.toString()).
-                concat("\t").concat(biopsiaPreviaLugarCuerpo).
-                concat("\t").concat(estudioINCanMastografia).
-                concat("\t").concat(estudioINCanMastografiaFecha.toString()).
-                concat("\t").concat(estudioINCanUSG).
-                concat("\t").concat(estudioINCanUSGFecha.toString()).
-                concat("\t").concat(estudioINCanRadiografia.toString()).
-                concat("\t").concat(estudioINCanTomografia.toString()).
-                concat("\t").concat(estudioINCanMr.toString()).
-                concat("\t").concat(estudioINCanTransvaginal.toString()).
-                concat("\t").concat(estudioINCanAbdominal.toString()).
-                concat("\t").concat(estudioINCanTiroides.toString()).
-                concat("\t").concat(estudioINCanPelvico.toString()).
-                concat("\t").concat(estudioINCanHepatico.toString()).
-                concat("\t").concat(estudioINCanPet.toString()).
-                concat("\t").concat(estudioINCanMuga.toString()).
-                concat("\t").concat(estudioINCanGamma.toString()).
-                concat("\t").concat(estudioINCanLaboratorio.toString()).
-                concat("\t").concat(estudioINCanCardio.toString()).
-                concat("\t").concat(estudioINCanAnestesica.toString()).
-                concat("\t").concat(estudioINCanInhaloterapia.toString()).
-                concat("\t").concat(estudioINCanElectro.toString()).
-                concat("\t").concat(estudioINCanEco.toString()).
-                concat("\t").concat(programaINCanTrabajoSocial.toString()).
-                concat("\t").concat(programaINCanMujeresJovenes.toString()).
-                concat("\t").concat(programaINCanNutricion.toString()).
-                concat("\t").concat(programaINCanGenetica.toString()).
-                concat("\t").concat(preconsultaSegundaOpcion).
-                concat("\t").concat(preconsultaFechaDecision.toString()).
-                concat("\t").concat(preconsultaDecision).
-                concat("\t").concat(biopsiaINCanEtapa).
-                concat("\t").concat(biopsiaINCanT).
-                concat("\t").concat(biopsiaINCanN).
-                concat("\t").concat(biopsiaINCanM).
-                concat("\t").concat(biopsiaINCanGradoHistologico).
-                concat("\t").concat(biopsiaINCanHer2).
-                concat("\t").concat(biopsiaINCanFish).
-                concat("\t").concat(biopsiaINCanKi67).
-                concat("\t").concat(biopsiaINCanRe).
-                concat("\t").concat(biopsiaINCanRp).
-                concat("\t").concat(cirugiasINCanMasectomiaFecha.toString()).
-                concat("\t").concat(cirugiasINCanConservadoraFecha.toString()).
-                concat("\t").concat(cirugiasINCanReconstruccionFecha.toString())
-                ;
-
+    public static String DateNa (Date myDate){
+        if (myDate.toString().equals("1900-01-01")) return "NA";
+        else return myDate.toString();
     }
-    public static String tableHeaderRStudio(){
-        return "Nombre\t".
-                concat("Curp\t").
-                concat("Telefono\t").
-                concat("Correo\t").
-                concat("Tipo de sangre\t").
-                concat("Estado\t").
-                concat("Municipio\t").
-                concat("Fecha de nacimiento\t").
-                concat("Estado civil\t").
-                concat("Sexo\t").
-                concat("Nivel educativo\t").
-                concat("Nivel Socioeconomico\t").
-                concat("Seguro\t").
-                concat("Número de Seguro popular\t").
-                concat("PRZ\t").
-                concat("Número de expediente\t").
-                concat("Alergias\t").
-                concat("Silla de ruedas\t").
-                concat("Oxígeno\t").
-                concat("Camilla\t").
-                concat("Bastón\t").
-                concat("Consulta - Tipo\t").
-                concat("Consulta - Estado\t").
-                concat("Consulta - Motivo\t").
-                concat("Consulta - Comentario\t").
-                concat("Consulta - Fecha\t").
-                concat("Consulta - Fecha de diagnostico\t").
-                concat("Consulta - Nombre de adscrito\t").
-                concat("Consulta - Adscrito presente\t").
-                concat("Consulta - Nombre de radiologo\t").
-                concat("Consulta - Radiologo presente\t").
-                concat("Quimioterapia previa - Fecha\t").
-                concat("Quimioterapia previa - Ciclos\t").
-                concat("Radioterapia previa - Fecha\t").
-                concat("Radioterapia previa - Ciclos\t").
-                concat("Cirugía previa - Fecha\t").
-                concat("Cirugía previa - Tipo\t").
-                concat("Mastografía previa - Fecha\t").
-                concat("Mastografía previa - Resultado\t").
-                concat("Mastografía previa - Fecha\t").
-                concat("Mastografía previa - Resultado\t").
-                concat("Biopsia Previa - Laminillas\t").
-                concat("Biopsia Previa - Bloques\t").
-                concat("Biopsia Previa - Tipo\t").
-                concat("Biopsia Previa - Fecha\t").
-                concat("Biopsia Previa - Lugar Cuerpo\t").
-                concat("Estudio INCan - [Resultado] Mastografía Resultado\t").
-                concat("Estudio INCan - [Fecha] Mastografía Fecha\t").
-                concat("Estudio INCan - [Resultado] Guiada por ultrasonido\t").
-                concat("Estudio INCan - [Fecha] Guiada por ultrasonido\t").
-                concat("Estudio INCan - [Fecha] Radiografía\t").
-                concat("Estudio INCan - [Fecha] Tomografía\t").
-                concat("Estudio INCan - [Fecha] Resonancia Magentica\t").
-                concat("Estudio INCan - [Fecha] Transvaginal\t").
-                concat("Estudio INCan - [Fecha] Abdominal\t").
-                concat("Estudio INCan - [Fecha] Tiroides\t").
-                concat("Estudio INCan - [Fecha] Pélvico\t").
-                concat("Estudio INCan - [Fecha] Hepático\t").
-                concat("Estudio INCan - [Fecha] PET-CT\t").
-                concat("Estudio INCan - [Fecha] MUGA\t").
-                concat("Estudio INCan - [Fecha] Gammagrama óseo\t").
-                concat("Estudio INCan - [Fecha] Laboratorio\t").
-                concat("Estudio INCan - [Fecha] Cardiovascular\t").
-                concat("Estudio INCan - [Fecha] Por anestesia\t").
-                concat("Estudio INCan - [Fecha] Espirometría / Inhaloterapia\t").
-                concat("Estudio INCan - [Fecha] Electrocardiograma\t").
-                concat("Estudio INCan - [Fecha] Ecoardiograma\t").
-                concat("Programa INCan - [Fecha] Trabajo social\t").
-                concat("Programa INCan - [Fecha] Mujeres jóvenes\t").
-                concat("Programa INCan - [Fecha] Nutrición\t").
-                concat("Programa INCan - [Fecha] Genética\t").
-                concat("Preconsulta - Primera vez / Segunda opción\t").
-                concat("Preconsulta - Fecha decision\t").
-                concat("Preconsulta - Decision\t").
-                concat("Biopsia INCan - Etapa\t").
-                concat("Biopsia INCan - T\t").
-                concat("Biopsia INCan - N\t").
-                concat("Biopsia INCan - M\t").
-                concat("Biopsia INCan - Grado Histologico\t").
-                concat("Biopsia INCan - Her2\t").
-                concat("Biopsia INCan - Fish\t").
-                concat("Biopsia INCan - Ki67\t").
-                concat("Biopsia INCan - Re\t").
-                concat("Biopsia INCan - Rp\t").
-                concat("Cirugia INCan - [Fecha] Masectomia\t").
-                concat("Cirugia INCan - [Fecha] Conservadora\t").
-                concat("Cirugia INCan - [Fecha] Reconstruccion\t")
-                ;
+    public static String IntNa (Integer myInt){
+        if (myInt.toString().equals("-1")) return "NA";
+        else return myInt.toString();
+    }
+    
+    public ArrayList<String> toStringRStudio() {
+        ArrayList<String> Atributos = new ArrayList<>();
+        Atributos.add(nombrePersona.concat(" ").concat(primerApellido).
+                concat(" ").concat(segundoApellido));
+        Atributos.add(curp);
+        Atributos.add(telefono);
+        Atributos.add(correo);
+        Atributos.add(tipoSangre);
+        Atributos.add(estado);
+        Atributos.add(municipio);
+        Atributos.add(DateNa(fechaNacimiento));
+        Atributos.add(estadoCivil);
+        Atributos.add(sexo);
+        Atributos.add(escolaridad);
+        Atributos.add(nivelSocioeconomico);
+        Atributos.add(seguro);
+        Atributos.add(noSeguroPopular);
+        Atributos.add(prz);
+        Atributos.add(noExpediente);
+        Atributos.add(Alergias);
+        Atributos.add(sillaRuedas);
+        Atributos.add(oxigeno);
+        Atributos.add(camilla);
+        Atributos.add(bastón);
+        Atributos.add(consultaTipo);
+        Atributos.add(consultaEstado);
+        Atributos.add(consultaMotivo);
+        Atributos.add(consultaComentario);
+        Atributos.add(DateNa(consultaFecha));
+        Atributos.add(DateNa(consultaDiagnosticoFecha));
+        Atributos.add(consultaAdscritoNombre);
+        Atributos.add(consultaAdscritoPresente);
+        Atributos.add(consultaRadiologoNombre);
+        Atributos.add(consultaRadiologoPresente);
+        Atributos.add(DateNa(estudioPrevioQuimioFecha));
+        Atributos.add(IntNa(estudioPrevioQuimioCiclos));
+        Atributos.add(DateNa(estudioPrevioRadioFecha));
+        Atributos.add(IntNa(estudioPrevioRadioCiclos));
+        Atributos.add(DateNa(estudioPrevioCirugiaFecha));
+        Atributos.add(estudioPrevioCirugiaTipo);
+        Atributos.add(DateNa(estudioPrevioMastografiaFecha));
+        Atributos.add(estudioPrevioMastografia);
+        Atributos.add(DateNa(estudioPrevioUSGFecha));
+        Atributos.add(estudioPrevioUSG);
+        Atributos.add(biopsiaPreviaLaminillas);
+        Atributos.add(biopsiaPreviaBloques);
+        Atributos.add(biopsiaPreviaTipo);
+        Atributos.add(DateNa(biopsiaPreviaFecha));
+        Atributos.add(biopsiaPreviaLugarCuerpo);
+        Atributos.add(estudioINCanMastografia);
+        Atributos.add(DateNa(estudioINCanMastografiaFecha));
+        Atributos.add(estudioINCanUSG);
+        Atributos.add(DateNa(estudioINCanUSGFecha));
+        Atributos.add(DateNa(estudioINCanRadiografia));
+        Atributos.add(DateNa(estudioINCanTomografia));
+        Atributos.add(DateNa(estudioINCanMr));
+        Atributos.add(DateNa(estudioINCanTransvaginal));
+        Atributos.add(DateNa(estudioINCanAbdominal));
+        Atributos.add(DateNa(estudioINCanTiroides));
+        Atributos.add(DateNa(estudioINCanPelvico));
+        Atributos.add(DateNa(estudioINCanHepatico));
+        Atributos.add(DateNa(estudioINCanPet));
+        Atributos.add(DateNa(estudioINCanMuga));
+        Atributos.add(DateNa(estudioINCanGamma));
+        Atributos.add(DateNa(estudioINCanLaboratorio));
+        Atributos.add(DateNa(estudioINCanCardio));
+        Atributos.add(DateNa(estudioINCanAnestesica));
+        Atributos.add(DateNa(estudioINCanInhaloterapia));
+        Atributos.add(DateNa(estudioINCanElectro));
+        Atributos.add(DateNa(estudioINCanEco));
+        Atributos.add(DateNa(programaINCanTrabajoSocial));
+        Atributos.add(DateNa(programaINCanMujeresJovenes));
+        Atributos.add(DateNa(programaINCanNutricion));
+        Atributos.add(DateNa(programaINCanGenetica));
+        Atributos.add(preconsultaSegundaOpcion);
+        Atributos.add(DateNa(preconsultaFechaDecision));
+        Atributos.add(preconsultaDecision);
+        Atributos.add(biopsiaINCanEtapa);
+        Atributos.add(biopsiaINCanT);
+        Atributos.add(biopsiaINCanN);
+        Atributos.add(biopsiaINCanM);
+        Atributos.add(biopsiaINCanGradoHistologico);
+        Atributos.add(biopsiaINCanHer2);
+        Atributos.add(biopsiaINCanFish);
+        Atributos.add(biopsiaINCanKi67);
+        Atributos.add(biopsiaINCanRe);
+        Atributos.add(biopsiaINCanRp);
+        Atributos.add(DateNa(cirugiasINCanMasectomiaFecha));
+        Atributos.add(DateNa(cirugiasINCanConservadoraFecha));
+        Atributos.add(DateNa(cirugiasINCanReconstruccionFecha));
+        return Atributos;
+    }
+    public static ArrayList<String> tableHeaderRStudio(){
+        ArrayList<String> Encabezados = new ArrayList<>();
+        Encabezados.add("Nombre");
+        Encabezados.add("Curp");
+        Encabezados.add("Telefono");
+        Encabezados.add("Correo");
+        Encabezados.add("Tipo de sangre");
+        Encabezados.add("Estado");
+        Encabezados.add("Municipio");
+        Encabezados.add("Fecha de nacimiento");
+        Encabezados.add("Estado civil");
+        Encabezados.add("Sexo");
+        Encabezados.add("Nivel educativo");
+        Encabezados.add("Nivel Socioeconomico");
+        Encabezados.add("Seguro");
+        Encabezados.add("Número de Seguro popular");
+        Encabezados.add("PRZ");
+        Encabezados.add("Número de expediente");
+        Encabezados.add("Alergias");
+        Encabezados.add("Silla de ruedas");
+        Encabezados.add("Oxígeno");
+        Encabezados.add("Camilla");
+        Encabezados.add("Bastón");
+        Encabezados.add("Consulta - Tipo");
+        Encabezados.add("Consulta - Estado");
+        Encabezados.add("Consulta - Motivo");
+        Encabezados.add("Consulta - Comentario");
+        Encabezados.add("Consulta - Fecha");
+        Encabezados.add("Consulta - Fecha de diagnostico");
+        Encabezados.add("Consulta - Nombre de adscrito");
+        Encabezados.add("Consulta - Adscrito presente");
+        Encabezados.add("Consulta - Nombre de radiologo");
+        Encabezados.add("Consulta - Radiologo presente");
+        Encabezados.add("Quimioterapia previa - Fecha");
+        Encabezados.add("Quimioterapia previa - Ciclos");
+        Encabezados.add("Radioterapia previa - Fecha");
+        Encabezados.add("Radioterapia previa - Ciclos");
+        Encabezados.add("Cirugía previa - Fecha");
+        Encabezados.add("Cirugía previa - Tipo");
+        Encabezados.add("Mastografía previa - Fecha");
+        Encabezados.add("Mastografía previa - Resultado");
+        Encabezados.add("Mastografía previa - Fecha");
+        Encabezados.add("Mastografía previa - Resultado");
+        Encabezados.add("Biopsia Previa - Laminillas");
+        Encabezados.add("Biopsia Previa - Bloques");
+        Encabezados.add("Biopsia Previa - Tipo");
+        Encabezados.add("Biopsia Previa - Fecha");
+        Encabezados.add("Biopsia Previa - Lugar Cuerpo");
+        Encabezados.add("Estudio INCan - [Resultado] Mastografía Resultado");
+        Encabezados.add("Estudio INCan - [Fecha] Mastografía Fecha");
+        Encabezados.add("Estudio INCan - [Resultado] Guiada por ultrasonido");
+        Encabezados.add("Estudio INCan - [Fecha] Guiada por ultrasonido");
+        Encabezados.add("Estudio INCan - [Fecha] Radiografía");
+        Encabezados.add("Estudio INCan - [Fecha] Tomografía");
+        Encabezados.add("Estudio INCan - [Fecha] Resonancia Magentica");
+        Encabezados.add("Estudio INCan - [Fecha] Transvaginal");
+        Encabezados.add("Estudio INCan - [Fecha] Abdominal");
+        Encabezados.add("Estudio INCan - [Fecha] Tiroides");
+        Encabezados.add("Estudio INCan - [Fecha] Pélvico");
+        Encabezados.add("Estudio INCan - [Fecha] Hepático");
+        Encabezados.add("Estudio INCan - [Fecha] PET-CT");
+        Encabezados.add("Estudio INCan - [Fecha] MUGA");
+        Encabezados.add("Estudio INCan - [Fecha] Gammagrama óseo");
+        Encabezados.add("Estudio INCan - [Fecha] Laboratorio");
+        Encabezados.add("Estudio INCan - [Fecha] Cardiovascular");
+        Encabezados.add("Estudio INCan - [Fecha] Por anestesia");
+        Encabezados.add("Estudio INCan - [Fecha] Espirometría / Inhaloterapia");
+        Encabezados.add("Estudio INCan - [Fecha] Electrocardiograma");
+        Encabezados.add("Estudio INCan - [Fecha] Ecoardiograma");
+        Encabezados.add("Programa INCan - [Fecha] Trabajo social");
+        Encabezados.add("Programa INCan - [Fecha] Mujeres jóvenes");
+        Encabezados.add("Programa INCan - [Fecha] Nutrición");
+        Encabezados.add("Programa INCan - [Fecha] Genética");
+        Encabezados.add("Preconsulta - Primera vez / Segunda opción");
+        Encabezados.add("Preconsulta - Fecha decision");
+        Encabezados.add("Preconsulta - Decision");
+        Encabezados.add("Biopsia INCan - Etapa");
+        Encabezados.add("Biopsia INCan - T");
+        Encabezados.add("Biopsia INCan - N");
+        Encabezados.add("Biopsia INCan - M");
+        Encabezados.add("Biopsia INCan - Grado Histologico");
+        Encabezados.add("Biopsia INCan - Her2");
+        Encabezados.add("Biopsia INCan - Fish");
+        Encabezados.add("Biopsia INCan - Ki67");
+        Encabezados.add("Biopsia INCan - Re");
+        Encabezados.add("Biopsia INCan - Rp");
+        Encabezados.add("Cirugia INCan - [Fecha] Masectomia");
+        Encabezados.add("Cirugia INCan - [Fecha] Conservadora");
+        Encabezados.add("Cirugia INCan - [Fecha] Reconstruccion");
+        return Encabezados;
     }
     public void setNombrePersona(String nombrePersona) {
         this.nombrePersona = nombrePersona;
