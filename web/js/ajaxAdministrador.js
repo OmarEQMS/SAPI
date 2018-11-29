@@ -70,7 +70,6 @@ $(document).ready(function () {
                         $('.cargandoAgregarAdmin').fadeOut();
                     },
                     success: function (response) {
-                        if (response == "success") {
 
                             //mensaje de confirmacion
                             swal({
@@ -80,6 +79,19 @@ $(document).ready(function () {
                                 buttons: [, 'Aceptar'],
                             });
 
+                            //CHECKPOINT
+                            var t = $('#tablaAdministradores').DataTable();
+
+                            t.row.add([
+                                $("#agregar-nombreAdministrador").val() + " " + $("#agregar-primerApellidoAdministrador").val() + " " + $("#agregar-segundoApellidoAdministrador").val(),
+                                $("#agregar-correoAdministrador").val(),
+                                $("#agregar-telefonoAdministrador").val(),
+                                $("#agregar-noEmpleadoAdministrador").val(),
+                                $("#agregar-especialidadAdministrador").val(),
+                                $("#agregar-cedulaAdministrador").val(),
+                                "<button class='btn btn-primary btn-editarAdministrador m-1' data-toggle='modal' data-id='" + response + "' data-target='#modalEditarAdministrador'><i class='fas fa-edit'></i></button>" +
+                                        "<button class='btn btn-danger m-1 btn-eliminarAdministrador' data-id='" + response + "'><i class='fas fa-trash-alt'></i></button>"
+                            ]).draw(false);
 
                             //limpiar los campos del modal
                             $('#agregar-nombreAdministrador').val('');
@@ -97,10 +109,6 @@ $(document).ready(function () {
 
                             //cerrar el modal
                             $('#modalAgregarAdministrador').modal('toggle');
-
-                        } else {
-                            swal("Error", "Hubo un problema al agregar el administrador", "error");
-                        }
 
                     }
 
@@ -333,13 +341,13 @@ $(document).ready(function () {
     $('#agregar-correoAdministrador').on('change', function () {
         $.ajax({
 
-                url: 'RegistraUsuarioController',
-                method: "POST",
-                cache: false,
-                data: {
-                    key: "repiteCorreo",
-                    correo: $('#agregar-correoAdministrador').val()
-                },
+            url: 'RegistraUsuarioController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "repiteCorreo",
+                correo: $('#agregar-correoAdministrador').val()
+            },
             success: function (response) {
 
                 if (response === 'CorreoAlreadyExists') {
