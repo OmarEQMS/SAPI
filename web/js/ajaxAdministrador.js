@@ -156,7 +156,7 @@ $(document).ready(function () {
 
         var t = $('#tablaAdministradores').DataTable();
         var fila = $(this).parents('tr');
-
+        
         var idAdmin = $(this).data('id');
 
 
@@ -3113,10 +3113,11 @@ $(document).ready(function () {
 
     ///ELIMINA PACIENTE
     $('body').on('click', ".btn-eliminarPaciente", function () {
-
+        
+        var t = $('#tablaAdministradores').DataTable();
+        var fila = $(this).parents('tr');        
 
         var id = $(this).data('id');
-        var boton = $(this);
 
         swal({
             title: "¿Estás segura?",
@@ -3145,8 +3146,7 @@ $(document).ready(function () {
 
 
                                 swal("Buen trabajo!", "El paciente se eliminó correctamente!", "success");
-                                boton.parent().parent().remove();
-
+                                t.row(fila).remove().draw();
 
                             }
 

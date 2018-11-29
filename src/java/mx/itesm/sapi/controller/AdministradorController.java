@@ -25,6 +25,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import mx.itesm.sapi.bean.diagnostico.AuditoriaRegistroDiagnostico;
+import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
+import mx.itesm.sapi.bean.gestionPaciente.Biopsia;
 
 import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
@@ -43,12 +46,24 @@ import mx.itesm.sapi.bean.gestionPaciente.CitaEmpleado;
 import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.gestionPaciente.Cita;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoEstudio;
+import mx.itesm.sapi.bean.gestionPaciente.OtroResultadoPatologia;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteSeguro;
+import mx.itesm.sapi.bean.gestionPaciente.ProgramaPaciente;
+import mx.itesm.sapi.bean.gestionTratamiento.AlergiaPacienteFarmaco;
+import mx.itesm.sapi.bean.gestionTratamiento.AuditoriaTratamientoPaciente;
+import mx.itesm.sapi.bean.gestionTratamiento.PacienteTratamientoPrevio;
+import mx.itesm.sapi.bean.gestionTratamiento.TratamientoPaciente;
 import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
 import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Login;
 import mx.itesm.sapi.bean.persona.Pic;
+import mx.itesm.sapi.service.diagnostico.AuditoriaRegistroDiagnosticoServiceImpl;
+import mx.itesm.sapi.service.diagnostico.EstadiajeTNMServiceImpl;
+import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.BiopsiaServicioImpl;
 
 import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.MedicoPosicionServicioImpl;
@@ -66,6 +81,14 @@ import mx.itesm.sapi.service.gestionPaciente.CitaEmpleadoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.LlamadaCitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.DocumentoEstudioServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.OtroResultadoPatologiaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteSeguroServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.ProgramaPacienteServicioImpl;
+import mx.itesm.sapi.service.gestionTratamiento.AlergiaPacienteFarmacoServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.AuditoriaTratamientoPacienteServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.PacienteTratamientoPrevioServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.TratamientoPacienteServiceImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
@@ -282,18 +305,16 @@ public class AdministradorController extends HttpServlet {
                 case "repiteCorreoEditEmpleado": {
 
                     String correo = request.getParameter("correo");
-                    
+
                     int idEmpleado = Integer.parseInt(request.getParameter("idEmpleado"));
                     System.out.println("idEmpleado: " + idEmpleado);
 
                     Cuenta cuentaEdit;
-                    
+
                     CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
                     cuentaEdit = cuentaServicio.mostrarCuentaidEmpleado(idEmpleado);
-                    
+
                     int idPersona = cuentaEdit.getIdPersona();
-                    
-                    
 
                     PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
 
@@ -318,16 +339,16 @@ public class AdministradorController extends HttpServlet {
                 case "repiteCorreoEditPaciente": {
 
                     String correo = request.getParameter("correo");
-                    
+
                     int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
                     System.out.println("idPaciente: " + idPaciente);
 
                     Persona personaEdit;
-                    
+
                     PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                     personaEdit = personaServicio.mostrarPersonaPorIdPaciente(idPaciente);
-                    
-                    int idPersona = personaEdit.getIdPersona();                                       
+
+                    int idPersona = personaEdit.getIdPersona();
 
                     PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
 
@@ -348,7 +369,7 @@ public class AdministradorController extends HttpServlet {
                     }
                 }
                 break;
-                
+
                 case "repiteCorreo": {
 
                     String correo = request.getParameter("correo");
@@ -570,28 +591,26 @@ public class AdministradorController extends HttpServlet {
                     /**
                      * Obtengo los id's de su cuenta y login de la sesion
                      */
-                    
-                    
                     int idEmpleado = Integer.parseInt(request.getParameter("idEmpleado"));
                     System.out.println("idEmpleado: " + idEmpleado);
 
                     Cuenta cuentaNav;
-                    
+
                     PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                     CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
                     cuentaNav = cuentaServicio.mostrarCuentaidEmpleado(idEmpleado);
-                    
+
                     int idCuenta = cuentaNav.getIdCuenta();
                     int idPersona = cuentaNav.getIdPersona();
-                    
-                    
-                    if (cuentaNav != null)
+
+                    if (cuentaNav != null) {
                         cuentaServicio.borradoLogicoCuenta(idCuenta);
-                    if (idPersona != 0)
+                    }
+                    if (idPersona != 0) {
                         personaServicio.borradoLogicoPersona(idPersona);
-                    
+                    }
+
                     System.out.println("SUPUESTAMENTE YA LA BORRÓ");
-                    
 
                     break;
                 }
@@ -722,12 +741,12 @@ public class AdministradorController extends HttpServlet {
 
                     int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
 
-                    System.out.println(idPaciente);
+                    System.out.println("idPaciente: " + idPaciente);
 
-                    PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
+                    PacienteServiceImpl pacienteServicioP = new PacienteServiceImpl();
 
-                    int idCuenta = pacienteServicio.obtenerCuenta(idPaciente);
-                    int idPersona = pacienteServicio.obtenerPersona(idCuenta);
+                    int idCuenta = pacienteServicioP.obtenerCuenta(idPaciente);
+                    int idPersona = pacienteServicioP.obtenerPersona(idCuenta);
 
                     System.out.println(idPaciente);
                     System.out.println(idCuenta);
@@ -749,10 +768,11 @@ public class AdministradorController extends HttpServlet {
                     Persona persona = personaServicio.mostrarPersona(idPersona);
                     personaServicio.borradoLogicoPersona(persona.getIdPersona());
 
+                    PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
                     if (pacienteServicio.mostrarPaciente(idPaciente) != null) {
 
                         Paciente paciente = pacienteServicio.mostrarPaciente(idPaciente);
-                        pacienteServicio.borradoLogicoPaciente(paciente.getIdCuenta());
+                        pacienteServicio.borradoLogicoPaciente(idPaciente);
                     }
 
                     LoginServicioImpl loginServicio = new LoginServicioImpl();
@@ -760,6 +780,7 @@ public class AdministradorController extends HttpServlet {
                         Login login = loginServicio.mostrarLoginIdCuenta(idCuenta);
                         loginServicio.borradoLogicoLogin(login.getIdLogin());
                     }
+
                     DireccionServicioImpl direccionServicio = new DireccionServicioImpl();
                     if (direccionServicio.mostrarDireccion(persona.getIdDireccion()) != null) {
                         Direccion direccion = direccionServicio.mostrarDireccion(persona.getIdDireccion());
@@ -775,7 +796,7 @@ public class AdministradorController extends HttpServlet {
                         EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServicio.mostrarEstadoPacientePacienteIdPaciente(idPaciente);
                         estadoPacientePacienteServicio.borradoLogicoEstadoPacientePaciente(estadoPacientePaciente.getIdEstadoPacientePaciente());
                     }
-
+                    System.out.println("precitas");
                     CitaServicioImpl citaServicio = new CitaServicioImpl();
                     if (citaServicio.mostrarCitaIdEspecifico(idPaciente) != null) {
 
@@ -816,7 +837,7 @@ public class AdministradorController extends HttpServlet {
                             System.out.println(citasTotales);
                         }
                     }
-
+                    System.out.println("poscitas");
                     PacienteMedicoTitularServicioImpl pacienteMedicoTitularServicio = new PacienteMedicoTitularServicioImpl();
                     if (pacienteMedicoTitularServicio.mostrarPacienteMedicoTitularIdPaciente(idPaciente) != null) {
                         PacienteMedicoTitular pacienteMedicoTitular = pacienteMedicoTitularServicio.mostrarPacienteMedicoTitularIdPaciente(idPaciente);
@@ -845,6 +866,140 @@ public class AdministradorController extends HttpServlet {
                     if (pacienteAlergiaServicio.mostrarPacienteAlergiaIdPaciente(idPaciente) != null) {
                         PacienteAlergia pacienteAlergia = pacienteAlergiaServicio.mostrarPacienteAlergiaIdPaciente(idPaciente);
                         pacienteAlergiaServicio.borradoLogicoPacienteAlergia(pacienteAlergia.getIdPacienteAlergia());
+                    }
+
+                    DocumentoEstudioServicioImpl documentoEstudioServicio = new DocumentoEstudioServicioImpl();
+                    if (documentoEstudioServicio.mostrarDocumentoEstudioIdEspecifico(idPaciente) != null) {
+                        List<DocumentoEstudio> docuemntoEstudios = new ArrayList<>();
+                        docuemntoEstudios = documentoEstudioServicio.mostrarDocumentoEstudioIdEspecifico(idPaciente);
+                        int documentosTotales = docuemntoEstudios.size() - 1;
+                        int idDocumento = 0;
+                        while (documentosTotales > -1) {
+                            idDocumento = docuemntoEstudios.get(documentosTotales).getIdDocumentoEstudio();
+                            documentoEstudioServicio.borradoLogicoDocumentoEstudio(idDocumento);
+                            documentosTotales = documentosTotales - 1;
+                        }
+                    }
+
+                    PacienteSeguroServicioImpl pacienteSeguroServicio = new PacienteSeguroServicioImpl();
+                    if (pacienteSeguroServicio.mostrarPacienteSeguroIdEspecifico(idPaciente) != null) {
+                        List<PacienteSeguro> seguros = new ArrayList<>();
+                        seguros = pacienteSeguroServicio.mostrarPacienteSeguroIdEspecifico(idPaciente);
+                        int segurosTotales = seguros.size() - 1;
+                        int idSeguro = 0;
+                        while (segurosTotales > -1) {
+                            idSeguro = seguros.get(segurosTotales).getIdPacienteSeguro();
+                            pacienteSeguroServicio.borradoLogicoPacienteSeguro(idSeguro);
+                            segurosTotales = segurosTotales - 1;
+                        }
+
+                    }
+
+                    BiopsiaServicioImpl biopsiaServicio = new BiopsiaServicioImpl();
+                    if (biopsiaServicio.mostrarAllBiopsiaIdEspecifico(idPaciente) != null) {
+                        List<Biopsia> biopsias = new ArrayList<>();
+                        biopsias = biopsiaServicio.mostrarAllBiopsiaIdEspecifico(idPaciente);
+                        int biopsiasTotales = biopsias.size() - 1;
+                        int idBiopsia = 0;
+                        while (biopsiasTotales > -1) {
+                            idBiopsia = biopsias.get(biopsiasTotales).getIdBiopsia();
+                            OtroResultadoPatologiaServicioImpl otroResultadoPatologiaServicio = new OtroResultadoPatologiaServicioImpl();
+                            if (otroResultadoPatologiaServicio.mostrarOtroResultadoPatologiaIdBiopsia(idBiopsia) != null) {
+                                OtroResultadoPatologia otroResultadoPatologia = otroResultadoPatologiaServicio.mostrarOtroResultadoPatologiaIdBiopsia(idBiopsia);
+                                otroResultadoPatologiaServicio.borradoLogicoOtroResultadoPatologia(otroResultadoPatologia.getIdOtroResultadoPatologia());
+
+                            }
+                            biopsiaServicio.borradoLogicoBiopsia(idBiopsia);
+                            biopsiasTotales = biopsiasTotales - 1;
+                        }
+
+                    }
+
+                    TratamientoPacienteServiceImpl tratamientoPacienteServicio = new TratamientoPacienteServiceImpl();
+                    if (tratamientoPacienteServicio.mostrarTratamientoPacienteIdEspecifico(idPaciente) != null) {
+                        List<TratamientoPaciente> tratamientos = new ArrayList<>();
+                        tratamientos = tratamientoPacienteServicio.mostrarTratamientoPacienteIdEspecifico(idPaciente);
+                        int tratamientosTotales = tratamientos.size() - 1;
+                        int idTratamiento = 0;
+                        while (tratamientosTotales > -1) {
+                            idTratamiento = tratamientos.get(idTratamiento).getIdTipoTratamiento();
+                            AuditoriaTratamientoPacienteServiceImpl auditoriaTratamientoPacienteServicio = new AuditoriaTratamientoPacienteServiceImpl();
+
+                            if (auditoriaTratamientoPacienteServicio.mostrarAuditoriaTratamientoPacienteIdTratamiento(idTratamiento) != null) {
+                                AuditoriaTratamientoPaciente auditoriaTratamientoPaciente = auditoriaTratamientoPacienteServicio.mostrarAuditoriaTratamientoPacienteIdTratamiento(idTratamiento);
+                                auditoriaTratamientoPacienteServicio.borradoLogicoAuditoriaTratamientoPaciente(auditoriaTratamientoPaciente.getIdAuditoriaTratamientoPaciente());
+
+                            }
+                            tratamientoPacienteServicio.borradoLogicoTratamientoPaciente(idTratamiento);
+                            tratamientosTotales = tratamientosTotales - 1;
+                        }
+
+                    }
+
+                    ProgramaPacienteServicioImpl programaPacienteServicio = new ProgramaPacienteServicioImpl();
+                    if (programaPacienteServicio.mostrarProgramaPacienteIdPaciente(idPaciente) != null) {
+                        List<ProgramaPaciente> programas = new ArrayList<>();
+                        programas = programaPacienteServicio.mostrarProgramaPacienteSeguroIdEspecifico(idPaciente);
+                        int programasTotales = programas.size() - 1;
+                        int idPrograma = 0;
+                        while (programasTotales > -1) {
+                            idPrograma = programas.get(programasTotales).getIdProgramaPaciente();
+                            programaPacienteServicio.borradoLogicoProgramaPaciente(idPrograma);
+                            programasTotales = programasTotales - 1;
+                        }
+                    }
+
+                    PacienteTratamientoPrevioServiceImpl pacienteTratamientoPrevioServicio = new PacienteTratamientoPrevioServiceImpl();
+                    if (pacienteTratamientoPrevioServicio.mostrarPacienteTratamientoPrevioIdPaciente(idPaciente) != null) {
+                        List<PacienteTratamientoPrevio> tratamientos = new ArrayList<>();
+                        tratamientos = pacienteTratamientoPrevioServicio.mostrarPacienteTratamientoPrevioIdEspecifico(idPaciente);
+                        int tratamientosTotales = tratamientos.size() - 1;
+                        int idTratamiento = 0;
+                        while (tratamientosTotales > - 1) {
+                            idTratamiento = tratamientos.get(tratamientosTotales).getIdPacienteTratamientoPrevio();
+                            pacienteTratamientoPrevioServicio.borradoLogicoPacienteTratamientoPrevio(idTratamiento);
+                            tratamientosTotales = tratamientosTotales - 1;
+                        }
+                    }
+
+                    AlergiaPacienteFarmacoServiceImpl alergiaPacienteFarmacoServicio = new AlergiaPacienteFarmacoServiceImpl();
+                    if (alergiaPacienteFarmacoServicio.mostrarAlergiaPacienteFarmacoIdPaciente(idPaciente) != null) {
+                        List< AlergiaPacienteFarmaco> alergias = new ArrayList<>();
+                        alergias = alergiaPacienteFarmacoServicio.mostrarAlergiaPacienteFarmacoIdEspecifico(idPaciente);
+                        int alergiasTotales = alergias.size() - 1;
+                        int idAlergias = 0;
+                        while (alergiasTotales > - 1) {
+                            idAlergias = alergias.get(alergiasTotales).getIdAlergiaPacienteFarmaco();
+                            alergiaPacienteFarmacoServicio.borradoLogicoAlergiaPacienteFarmaco(idAlergias);
+                            alergiasTotales = alergiasTotales - 1;
+                        }
+                    }
+
+                    RegistroDiagnosticoServiceImpl registroDiagnosticoServicio = new RegistroDiagnosticoServiceImpl();
+                    if (registroDiagnosticoServicio.mostrarRegistroDiagnosticoPaciente(idPaciente) != null) {
+                        List< RegistroDiagnostico> registros = new ArrayList<>();
+                        registros = registroDiagnosticoServicio.mostrarRegistroDiagnosticoIdEspecifico(idPaciente);
+                        int registrosTotales = registros.size() - 1;
+                        int idRegistro = 0, idEstadiaje = 0;
+                        while (registrosTotales > - 1) {
+                            idRegistro = registros.get(registrosTotales).getIdRegistroDiagnostico();
+                            idEstadiaje = registros.get(registrosTotales).getIdRegistroTNM();
+
+                            EstadiajeTNMServiceImpl estadiajeTNMServicio = new EstadiajeTNMServiceImpl();
+                            if (estadiajeTNMServicio.mostrarEstadiajeTNM(idEstadiaje) != null) {
+                                estadiajeTNMServicio.borradoLogicoEstadiajeTNM(idEstadiaje);
+
+                            }
+
+                            AuditoriaRegistroDiagnosticoServiceImpl auditoriaRegistroDiagnosticoServicio = new AuditoriaRegistroDiagnosticoServiceImpl();
+                            if (auditoriaRegistroDiagnosticoServicio.mostrarAuditoriaRegistroDiagnosticoIdRegistro(idRegistro) != null) {
+                                AuditoriaRegistroDiagnostico auditoriaRegistro = auditoriaRegistroDiagnosticoServicio.mostrarAuditoriaRegistroDiagnosticoIdRegistro(idRegistro);
+                                auditoriaRegistroDiagnosticoServicio.borradoLogicoAuditoriaRegistroDiagnostico(auditoriaRegistro.getIdAuditoriaRegistroDiagnostico());
+                            }
+
+                            registroDiagnosticoServicio.borradoLogicoRegistroDiagnostico(idRegistro);
+                            registrosTotales = registrosTotales - 1;
+                        }
                     }
 
                     if (cuentaServicio.mostrarCuenta(idCuenta) != null) {

@@ -508,6 +508,7 @@ public class CitaServicioImpl implements CitaServicio {
                 cita.setEstatus(rs.getInt("estatus"));
                 cita.setArchivo(rs.getBytes("archivo"));
                 cita.setHospitalProcedencia(rs.getString("hospitalProcedencia"));
+                System.out.println((rs.getTimestamp("fechaSolicitud")).toString());
                 cita.setFechaSolicitud((rs.getTimestamp("fechaSolicitud")).toString());
 
                 citas.add(cita);
