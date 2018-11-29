@@ -304,6 +304,72 @@ $(document).ready(function () {
 
     });
 
+    $("body").on("click", ".clearEditPacientesModal", function () {
+
+        $('#editarNombreAdministradorAPaciente').css('border', '');
+        $('#editarNombreAdministradorAPaciente').css('color', '');
+
+        $('#editarCurpAdministradorAPaciente').css('border', '');
+        $('#editarCurpAdministradorAPaciente').css('color', '');
+
+        $('#editarCumpleAdministradorAPaciente').css('border', '');
+        $('#editarCumpleAdministradorAPaciente').css('color', '');
+
+        $('#editarPrimer-apellidoAdministradorAPaciente').css('border', '');
+        $('#editarPrimer-apellidoAdministradorAPaciente').css('color', '');
+
+        $('#editarSegundo-apellidoAdministradorAPaciente').css('border', '');
+        $('#editarSegundo-apellidoAdministradorAPaciente').css('color', '');
+
+        $('#editarUsuarioAdministradorAPaciente').css('border', '');
+        $('#editarUsuarioAdministradorAPaciente').css('color', '');
+
+        $('#editarEstado-civilPaciente').css('border', '');
+        $('#editarEstado-civilPaciente').css('color', '');
+
+        $('#editarColAdministradorAPaciente').css('border', '');
+        $('#editarColAdministradorAPaciente').css('color', '');
+
+        $('#editarCalleAdministradorAPaciente').css('border', '');
+        $('#editarCalleAdministradorAPaciente').css('color', '');
+
+        $('#editarNumIntAdministradorAPaciente').css('border', '');
+        $('#editarNumIntAdministradorAPaciente').css('color', '');
+
+        $('#editarNumExtAdministradorAPaciente').css('border', '');
+        $('#editarNumExtAdministradorAPaciente').css('color', '');
+
+        $('#editarEstadoAdministradorAPaciente').css('border', '');
+        $('#editarEstadoAdministradorAPaciente').css('color', '');
+
+        $('#editarTelAdministradorAPaciente').css('border', '');
+        $('#editarTelAdministradorAPaciente').css('color', '');
+
+        $('#editarCorreoAdministradorAPaciente').css('border', '');
+        $('#editarCorreoAdministradorAPaciente').css('color', '');
+
+
+        $('#error-editar-NombrePaciente').hide();
+        $('#error-editar-ApellidoPaternoPaciente').hide();
+        $('#error-editar-ApellidoMaternoPaciente').hide();
+        $('#error-editar-NombreUsuarioPaciente').hide();
+        $('#error-editar-CorreoPaciente').hide();
+        $('#error-editar-CurpPaciente').hide();
+        $('#error-editar-ColoniaPaciente').hide();
+        $('#error-editar-CallePaciente').hide();
+        $('#error-editar-NoExteriorPaciente').hide();
+        $('#error-editar-NoInteriorPaciente').hide();
+        $('#error-editar-CurpRepetidoPaciente').hide();
+        $('#error-editar-TelefonoPaciente').hide();
+        $('#error-editar-ECivilPaciente').hide();
+        $('#error-editar-FechaPaciente').hide();
+        $('#error-editar-EstadoPaciente').hide();
+        $('#error-editar-MunicipioPaciente').hide();
+        $('#error-editar-UsuarioRepetidoPaciente').hide();
+        $('#errorEditarPacienteCorreoRepetido').hide();
+
+    });
+
     $("body").on("click", ".clearAddMedicosModal", function () {
         $("#agregar-nombreMedico").val("");
         $("#agregar-telefonoMedico").val("");
