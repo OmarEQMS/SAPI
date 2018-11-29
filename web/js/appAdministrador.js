@@ -1,9 +1,14 @@
 $(document).ready(function () {
 
-    mostrarContrasena($('#medicoContrasena'), 'agregar-passwordMedico');
-    mostrarContrasena($('#medicoContrasenaConfirmacion'), 'agregar-password2Medico');
-    mostrarContrasena($('#navegadoraContrasena'), 'agregar-passwordNavegadora');
-    mostrarContrasena($('#navegadoraContrasenaConfirmacion'), 'agregar-password2Navegadora');
+    
+    mostrarContrasena($('#medicoContrasena'),'agregar-passwordMedico');
+    mostrarContrasena($('#medicoContrasenaConfirmacion'),'agregar-password2Medico');
+    mostrarContrasena($('#navegadoraContrasena'),'agregar-passwordNavegadora');
+    mostrarContrasena($('#navegadoraContrasenaConfirmacion'),'agregar-password2Navegadora');
+    mostrarContrasena($('#cambio1Contrasena'),'password');
+    mostrarContrasena($('#cambio2Contrasena'),'password2');
+    mostrarContrasena($('#adminContrasena'),'agregar-passwordAdministrador');
+    mostrarContrasena($('#adminConfirmContrasena'),'agregar-password2Administradores');
 
 
     //Esconder menu lateral a presionar click en el menu hamburguesa

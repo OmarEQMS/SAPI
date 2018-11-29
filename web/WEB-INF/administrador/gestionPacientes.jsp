@@ -93,8 +93,6 @@
                 <!-- MENU PRINCIPAL ENLACES -->
                 <ul class="list-unstyled components">
 
-                    <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
-
                     <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
 
                     <li id="IrAGestionNavegadora"><a><i class="fas fa-calendar-alt"></i>Navegadoras</a></li>
@@ -156,11 +154,19 @@
 
                         <!-- Boton agregar -->
 
-                        <div class="row mb-3">
+                        <div class="row justify-content-end mt-2">
                             <div class="col-12">
                                 <button style="border-radius:20px;" class="btn btn-morado float-right" data-toggle="modal" data-target="#modalAgregarPaciente"><i
                                         class="fas fa-plus-circle mr-2"></i>Agregar Paciente</button>
                             </div>
+
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-12 centrado mb-3">
+                                <button style="border-radius:20px; vertical-align:middle" class="btn-reportePoblacion float-left"><span> Descargar Reporte de Población</span></button>
+                            </div>
+
                         </div>
 
                         <!-- Table -->
@@ -192,7 +198,7 @@
 
                                             <button class="btn btn-primary btn-editarPaciente m-1" data-toggle="modal" 
                                                     data-target="#modalEditarPaciente" data-id="${paciente.idPaciente}"><i class="fas fa-edit"></i></button>
-                                            <button class="btn btn-primary descargarFormulario m-1" data-id="${paciente.idPaciente}"><i class="fas fa-cloud-download-alt"></i></button>
+                                            <button style="color:white;" class="btn btn-warning descargarFormulario m-1" data-id="${paciente.idPaciente}"><i class="fas fa-cloud-download-alt"></i></button>
                                             <button class="btn btn-danger btn-eliminarPaciente m-1" data-id="${paciente.idPaciente}"><i class="fas fa-trash-alt"></i></button>
 
                                         </td>
