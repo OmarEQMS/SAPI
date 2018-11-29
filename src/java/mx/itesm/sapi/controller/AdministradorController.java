@@ -279,12 +279,47 @@ public class AdministradorController extends HttpServlet {
                     break;
 
                 }
+                case "repiteCorreoEditEmpleado": {
+
+                    String correo = request.getParameter("correo");
+                    
+                    int idEmpleado = Integer.parseInt(request.getParameter("idEmpleado"));
+                    System.out.println("idEmpleado: " + idEmpleado);
+
+                    Cuenta cuentaEdit;
+                    
+                    CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+                    cuentaEdit = cuentaServicio.mostrarCuentaidEmpleado(idEmpleado);
+                    
+                    int idPersona = cuentaEdit.getIdPersona();
+                    
+                    
+
+                    PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
+
+                    PrintWriter out = response.getWriter();
+
+                    System.out.println("ENTRA AQUÍ");
+
+                    //Checo si el usuario existe
+                    if (_registroServicio.existsCorreo(correo, idPersona)) {
+                        System.out.println("EXISTE");
+                        out.print("CorreoAlreadyExists");
+
+                    } else {
+                        System.out.println("NO EXISTE");
+                        //Si no existe, lo inserto
+                        out.print("CorreoDoesntExist");
+
+                    }
+                }
+                break;
 
                 case "repiteCorreo": {
 
                     String correo = request.getParameter("correo");
                     int idPersona = (int) sesion.getAttribute("idPersona");
-                    System.out.println("El id de empleado es: " + idPersona);
+                    System.out.println("El id de persona es: " + idPersona);
 
                     PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
 

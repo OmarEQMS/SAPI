@@ -1835,17 +1835,16 @@ $(document).ready(function () {
     });
 
     $('#editar-correoMedico').on('change', function () {
+        var idMedico = $('#idMedico').val();
+        
         $.ajax({
-
             url: 'AdministradorController',
             cache: false,
             method: 'POST',
             data: {
-
-                key: "repiteCorreo",
-                correo: $('#editar-correoMedico').val()
-
-
+                key: "repiteCorreoEditEmpleado",
+                correo: $('#editar-correoMedico').val(),
+                idEmpleado: idMedico
             },
             success: function (response) {
                 if (response === 'CorreoAlreadyExists') {
@@ -2357,17 +2356,17 @@ $(document).ready(function () {
     });
 
     $('#editar-correoNavegadora').on('change', function () {
+        var idNavegadora = $('#idNavegadora').val();
+        
         $.ajax({
-
             url: 'AdministradorController',
             cache: false,
             method: 'POST',
             data: {
 
-                key: "repiteCorreo",
-                correo: $('#editar-correoNavegadora').val()
-
-
+                key: "repiteCorreoEditEmpleado",
+                correo: $('#editar-correoNavegadora').val(),
+                idEmpleado: idNavegadora
             },
             success: function (response) {
 
