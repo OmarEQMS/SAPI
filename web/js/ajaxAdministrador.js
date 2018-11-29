@@ -20,15 +20,12 @@ $(document).ready(function () {
     $('#noEqualPasswordsErrorAdministrador').hide();
     $('#errorTerminosAdministrador').hide();
 
-<<<<<<< HEAD
+
     var cambioImagen = false;
     var imagenValida = false;
-||||||| merged common ancestors
-=======
+
     $("#error-camposAdministrador").hide();
     $("#error-datosRepetidosAdministrador").hide();
-
->>>>>>> origin/Shannon
 
 
     $('#btn-agregarAdministrador').on('click', function () {
@@ -48,29 +45,7 @@ $(document).ready(function () {
                 $("#error-camposAdministrador").hide();
 
 
-<<<<<<< HEAD
-                        //mensaje de confirmacion
-                        swal({
-                            title: "¡Buen trabajo!",
-                            text: "Administrador agregado correctamente.",
-                            icon: "success",
-                            buttons: [, 'Aceptar'],
-                        });
-                        
-                        //AQUÍ VA EL ROW ADD
-                        //CHECKPOINT
-||||||| merged common ancestors
-                        //mensaje de confirmacion
-                        swal({
-                            title: "¡Buen trabajo!",
-                            text: "Administrador agregado correctamente.",
-                            icon: "success",
-                            buttons: [, 'Aceptar'],
-                        });
-=======
                 $.ajax({
->>>>>>> origin/Shannon
-
                     url: 'RegistraUsuarioController',
                     method: "POST",
                     beforeSend: function () {
@@ -358,15 +333,6 @@ $(document).ready(function () {
     $('#agregar-correoAdministrador').on('change', function () {
         $.ajax({
 
-            url: 'PotencialController',
-            cache: false,
-            method: 'POST',
-            data: {
-
-                key: "repiteCorreo",
-                correo: $('#agregar-correoAdministrador').val()
-
-<<<<<<< HEAD
                 url: 'RegistraUsuarioController',
                 method: "POST",
                 cache: false,
@@ -374,20 +340,6 @@ $(document).ready(function () {
                     key: "repiteCorreo",
                     correo: $('#agregar-correoAdministrador').val()
                 },
-                success: function (response) {
-||||||| merged common ancestors
-                url: 'PotencialController',
-                method: "POST",
-                cache: false,
-                data: {
-                    key: "repiteCorreo",
-                    correo: $('#agregar-correoAdministrador').val()
-                },
-                success: function (response) {
-=======
->>>>>>> origin/Shannon
-
-            },
             success: function (response) {
 
                 if (response === 'CorreoAlreadyExists') {
@@ -519,38 +471,9 @@ $(document).ready(function () {
             continuar = true;
         }
 
-<<<<<<< HEAD
         console.log("CambioImagen: " + cambioImagen);
         console.log("imagenValida: " + imagenValida);
-||||||| merged common ancestors
-            $.ajax({
-                url: "AdministradorController",
-                data: data,
-                method: "POST",
-                enctype: 'multipart/form-data',
-                processData: false, // Important!
-                contentType: false,
-                cache: false,
-                success: function (response) {
-=======
-            $.ajax({
-                url: "AdministradorController",
-                data: data,
-                method: "POST",
-                beforeSend: function () {
-                    $('.cargandoGuardarCambios').fadeIn();
-                },
-                enctype: 'multipart/form-data',
-                processData: false, // Important!
-                contentType: false,
-                cache: false,
-                complete: function () {
-                    $('.cargandoGuardarCambios').fadeOut();
-                },
-                success: function (response) {
->>>>>>> origin/Shannon
 
-<<<<<<< HEAD
         if (continuar)
             console.log("Se actualizan cambios");
         else
@@ -568,47 +491,6 @@ $(document).ready(function () {
                 data.forEach((value, key) => {
                     console.log(key + " " + value);
                 });
-||||||| merged common ancestors
-                    swal({
-                        title: "Buen trabajo!",
-                        text: "Cuenta actualizada correctamente",
-                        icon: "success",
-                        button: "Ok",
-                    })
-                            .then((value) => {
-                                $.post("SAPI", {
-                                    file: "administrador/cuentaAdministrador.jsp"
-                                },
-                                        function (response, status, xhr) {
-                                            console.log("El ajax fue exitoso!!-----------------------");
-                                            if (status == "success") {
-                                                if (response == "error") {
-                                                    swal("Error", "Hubo un error actualizando tus datos", "error");
-                                                } else {
-                                                    document.open("text/html", "replace");
-                                                    document.write(response);
-                                                    document.close();
-=======
-                    swal({
-                        title: "¡Buen trabajo!",
-                        text: "Cuenta actualizada correctamente.",
-                        icon: "success",
-                        button: "Aceptar",
-                    })
-                            .then((value) => {
-                                $.post("SAPI", {
-                                    file: "administrador/cuentaAdministrador.jsp"
-                                },
-                                        function (response, status, xhr) {
-                                            console.log("El ajax fue exitoso!!-----------------------");
-                                            if (status == "success") {
-                                                if (response == "error") {
-                                                    swal("Error", "Hubo un error actualizando tus datos", "error");
-                                                } else {
-                                                    document.open("text/html", "replace");
-                                                    document.write(response);
-                                                    document.close();
->>>>>>> origin/Shannon
 
                 $.ajax({
                     url: "AdministradorController",
@@ -671,40 +553,6 @@ $(document).ready(function () {
         }
 
     });
-
-
-
-    /*
-     $('#guardarCambios').on('click', function () {
-     var continuar = true;
-     
-     
-     console.log("Presionó GuardarCambios")
-     var form = $("form")[0];
-     var data = new FormData(form);
-     data.append("key", "guardarCambios");
-     data.forEach((value, key) => {
-     console.log(key + " " + value);
-     })
-     $.ajax({
-     url: "AdministradorController",
-     data: data,
-     method: "POST",
-     encType: "multipart/form-data",
-     processData: false,
-     contentType: false,
-     cache: false,
-     success: function (response) {
-     console.log("Debió haber guardado");
-     },
-     error: function (xhr) {
-     //alert(xhr.statusText);
-     }
-     });
-     
-     
-     });*/
-
 
     //Cambiar imagen temporalmente en elfront
     function readURL(input) {
@@ -943,40 +791,14 @@ $(document).ready(function () {
     //CONTRASEÑAS IGUALES EN CUENTA
     $('#password2').on('change', function () {
 
-<<<<<<< HEAD
-            if (!areEqualPasswords($('#password'), $('#password2'))) {
-                $('#noEqualPasswordsError').show();
-            } else {
-                $('#noEqualPasswordsError').hide();
-            }
-
-        } else {
-            $("#error-contrasena").show();
-        }
-||||||| merged common ancestors
-            if(!areEqualPasswords($('#password'), $('#password2'))){
-                $('#noEqualPasswordsError').show();
-            }else{
-                $('#noEqualPasswordsError').hide();
-            }
-            
-        } else {
-            $("#error-contrasena").show();
-        }
-=======
         var pass1 = $('#password');
         var pass2 = $('#password2');
 
         areEqualPasswords(pass1, pass2);
->>>>>>> origin/Shannon
 
     });
 
-<<<<<<< HEAD
 
-||||||| merged common ancestors
-    
-=======
     //CONTRASEÑA EN AGREGAR MÉDICO
     $('#password').on('change', function () {
 
@@ -987,8 +809,6 @@ $(document).ready(function () {
         } else {
             $('#error-contrasena').show();
         }
->>>>>>> origin/Shannon
-
     });
 
     /////////////////////////////// GESTION MEDICOS ////// 
