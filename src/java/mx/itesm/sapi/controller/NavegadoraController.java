@@ -371,9 +371,9 @@ public class NavegadoraController extends HttpServlet {
 
                             boolean rechazado = documentoInicialServicioImpl.agregarRechazoDocumento(idDocumentoInicial, comentario);
                             //ESto es para el correo
+                           
 
-
-                            int pacientePotencial = (int) sesion.getAttribute("idPacienteAtendido");
+                            int pacientePotencial = (int) sesion.getAttribute("idPacientePotencialAtendido");
 
                             PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                             Persona persona = personaServicio.mostrarPersonaPorIdPaciente(pacientePotencial);
