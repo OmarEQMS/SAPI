@@ -315,6 +315,40 @@ public class AdministradorController extends HttpServlet {
                 }
                 break;
 
+                case "repiteCorreoEditPaciente": {
+
+                    String correo = request.getParameter("correo");
+                    
+                    int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
+                    System.out.println("idPaciente: " + idPaciente);
+
+                    Persona personaEdit;
+                    
+                    PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                    personaEdit = personaServicio.mostrarPersonaPorIdPaciente(idPaciente);
+                    
+                    int idPersona = personaEdit.getIdPersona();                                       
+
+                    PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
+
+                    PrintWriter out = response.getWriter();
+
+                    System.out.println("ENTRA AQUÍ");
+
+                    //Checo si el usuario existe
+                    if (_registroServicio.existsCorreo(correo, idPersona)) {
+                        System.out.println("EXISTE");
+                        out.print("CorreoAlreadyExists");
+
+                    } else {
+                        System.out.println("NO EXISTE");
+                        //Si no existe, lo inserto
+                        out.print("CorreoDoesntExist");
+
+                    }
+                }
+                break;
+                
                 case "repiteCorreo": {
 
                     String correo = request.getParameter("correo");

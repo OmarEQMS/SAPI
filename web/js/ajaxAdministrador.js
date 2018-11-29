@@ -1158,6 +1158,7 @@ $(document).ready(function () {
     $('#error-editar-EstadoPaciente').hide();
     $('#error-editar-MunicipioPaciente').hide();
     $('#error-editar-UsuarioRepetidoPaciente').hide();
+    $('#errorEditarPacienteCorreoRepetido').hide();
 
 
     //////////////////////////////////////////////////////
@@ -1492,6 +1493,32 @@ $(document).ready(function () {
 
     //CORREO AL EDITAR PACIENTE
     $('#editarCorreoAdministradorAPaciente').on('change', function () {
+
+        var idPaciente = $('#idPacienteAEditar').val();
+        
+        $.ajax({
+            url: 'AdministradorController',
+            cache: false,
+            method: 'POST',
+            data: {
+                key: "repiteCorreoEditPaciente",
+                correo: $('#editarCorreoAdministradorAPaciente').val(),
+                idPaciente: idPaciente
+            },
+            success: function (response) {
+                if (response === 'CorreoAlreadyExists') {
+                    console.log("correo repetidooo")
+                    $('#editarCorreoAdministradorAPaciente').css('color', 'orange');
+                    $('#errorEditarPacienteCorreoRepetido').show();
+                    repiteCorreo = true;
+                } else {
+                    $('#errorEditarPacienteCorreoRepetido').hide();
+                    repiteCorreo = false;
+                }
+
+            }
+
+        });
 
         if (isValidEmail($(this))) {
             $('#error-editar-CorreoPaciente').hide();
@@ -2918,7 +2945,7 @@ $(document).ready(function () {
     //Guarda el paciente
     $('#btn-guardarCambios').on('click', function () {
 
-        var btn = $(this);
+
 
         $.ajax({
 

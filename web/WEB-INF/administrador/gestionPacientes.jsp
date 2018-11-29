@@ -426,7 +426,7 @@
                                                 <input type="text" class="form-control" id="editarCorreoAdministradorAPaciente" placeholder="Correo">
                                             </div>
                                             <span class="text-danger" id="error-editar-CorreoPaciente">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
-
+                                            <span class="text-warning" id="errorEditarPacienteCorreoRepetido">El correo ya existe.</span>
                                         </div>
 
                                     </div>
