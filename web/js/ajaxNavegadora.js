@@ -58,7 +58,7 @@ $(document).ready(function () {
         method: 'POST',
         data: {key: "autocompleteRayosX"}
     }).done(function (response) {
-       
+
         var json = JSON.parse(response);
         for (var i = 0; i < json.length; i++) {
             var newObjeto = {value: json[i].nombre, data: json[i].idEstudio};
@@ -862,11 +862,6 @@ $(document).ready(function () {
                         var rayosxs = [];
 
                         $('.tuplaRayosX').each(function () {
-                            var rayosx = {tipo: $(this).find('.tipoRayosX').val(),
-                                fecha: $(this).find('.fechaRayos').val()
-                            };
-                            rayosxs.push(rayosx);
-                            console.log(rayosx);
                             if ($(this).find('.rayosX').val() != "" || $(this).find('.fechaRayos').val() != "") {
                                 var rayosx = {
                                     id: $(this).data("id"),
@@ -1065,14 +1060,19 @@ $(document).ready(function () {
                         });
                         console.log("tuplaOtro");
                         // OMAR                       
+                        console.log("tuplaLlamada");
                         var llamadas = [];
                         $('.tuplaLlamada').each(function () {
-                            var llamada = {
-                                fecha: $(this).find('.fecha-llamada').val(),
-                                motivo: $(this).find('.comentario-llamada').val()
-                            };
-                            llamadas.push(llamada);
-                            console.log(llamada);
+                            if ($(this).find('.fecha-llamada').val() != "" || $(this).find('.comentario-llamada').val() != "") {
+                                var llamada = {
+                                    id: $(this).data("id"),
+                                    accion: $(this).data("accion"),
+                                    fecha: $(this).find('.fecha-llamada').val(),
+                                    motivo: $(this).find('.comentario-llamada').val()
+                                };
+                                llamadas.push(llamada);
+                                console.log(llamada);
+                            }
                         });
 
 
@@ -2250,7 +2250,7 @@ $(document).ready(function () {
         var data = {idPotencial: $(this).data('id')};
         $.post("SAPI", {
             file: "navegadora/form.jsp",
-            idPotencial:  $(this).data('id')
+            idPotencial: $(this).data('id')
 
         },
                 function (response, status, xhr) {
@@ -2650,7 +2650,7 @@ $(document).ready(function () {
         });
 
     });
-   
+
 
     var data = new FormData();
     data.append("key", "mostrarFormularioNavegadora");
@@ -2707,14 +2707,21 @@ $(document).ready(function () {
                 });
             }
             if (data[0][0].medicoResidente !== "") {
-                $('#medico-residente').val(data[0][0].medicoResidente);
-                /*   $('#medico-residente option:contains(' + data[0][0].medicoResidente + ')').each(function () {
+                $('#medico-residente option:contains(' + $.trim(data[0][0].medicoResidente) + ')').each(function () {
+
+                    if ($.trim($(this).text()) === $.trim(data[0][0].medicoResidente)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+         /*      
+                   $('#medico-residente option:contains(' + data[0][0].medicoResidente + ')').each(function () {
                  if ($(this).text() === data[0][0].medicoResidente) {
                  $(this).attr('selected', 'selected');
                  }
                  
                  });
-                 */
+          */       
             }
 
             if (data[0][0].fechaNavegacion !== "ene 1, 1900")
@@ -2728,8 +2735,8 @@ $(document).ready(function () {
                 $('#noAdscrito').attr('checked', 'checked');
             if ((data[0][0].noRadiologo !== true))
                 $('#esSustituto').attr('checked', 'checked');
-         //    if ((data[0][0].noResidente === true))
-           //     $('#noResidente').attr('checked', 'checked');
+             if ((data[0][0].noResidente === true))
+                $('#noAdscrito').attr('checked', 'checked');
 
 // Segunda pagina formulario
 
@@ -2965,7 +2972,7 @@ $(document).ready(function () {
 //3. recorrer el arreglo
             for (var i = 0; i < data[1].length; i++) {
                 var plantilla =
-                        `<div class="form-group row mt-2 tuplaBiopsia">
+                        `<div class="form-group row mt-2 tuplaBiopsia" data-id="${data[1][i].idCita}" data-accion="actualizar">
 
             <!-- tipo biopsia -->
             <div class="col-3">
@@ -3025,7 +3032,7 @@ $(document).ready(function () {
             for (var i = 0; i < data[2].length; i++) {
                 var plantilla =
                         `
-            <div class="form-group row mt-2 tuplaRayosX">
+            <div class="form-group row mt-2 tuplaRayosX" data-id="${data[2][i].idCita}" data-accion="actualizar">
 
                 <!-- tipo rayos -->
                 <div class="col-5">
@@ -3074,7 +3081,7 @@ $(document).ready(function () {
             for (var i = 0; i < data[3].length; i++) {
                 var plantilla =
                         `
-            <div class="form-group row mt-2 tuplaUltrasonido">
+            <div class="form-group row mt-2 tuplaUltrasonido" data-id="${data[3][i].idCita}" data-accion="actualizar">
 
                
                 <div class="col-5">
@@ -3122,7 +3129,7 @@ $(document).ready(function () {
             for (var i = 0; i < data[4].length; i++) {
                 var plantilla =
                         `
-            <div class="form-group row mt-2 tuplaMedicinaNuclear">
+            <div class="form-group row mt-2 tuplaMedicinaNuclear" data-id="${data[4][i].idCita}" data-accion="actualizar">
     
                     <div class="col-5">
                         <input name ="mNuclearAdded" type="text" class="form-control medicinaNuclear" value="${data[4][i].nombreEstudio}" placeholder="Introduce medicina nuclear">
@@ -3169,7 +3176,7 @@ $(document).ready(function () {
             for (var i = 0; i < data[5].length; i++) {
                 var plantilla =
                         `
-            <div class="form-group row mt-2 tuplaLaboratorio">
+            <div class="form-group row mt-2 tuplaLaboratorio" data-id="${data[5][i].idCita}" data-accion="actualizar">
 
                 <div class="col-10">
                     <div class="input-group">
@@ -3211,7 +3218,7 @@ $(document).ready(function () {
             for (var i = 0; i < data[6].length; i++) {
                 var plantilla =
                         `
-            <div class="form-group row mt-2 tuplaValoracion">
+            <div class="form-group row mt-2 tuplaValoracion" data-id="${data[6][i].idCita}" data-accion="actualizar">
 
        
                 <div class="col-5">
@@ -3258,7 +3265,7 @@ $(document).ready(function () {
             for (var i = 0; i < data[7].length; i++) {
                 var plantilla =
                         `
-            <div class="form-group row mt-2 tuplaEspirometria">
+            <div class="form-group row mt-2 tuplaEspirometria" data-id="${data[7][i].idCita}" data-accion="actualizar">
 
                 <div class="col-10">
                     <div class="input-group">
@@ -3300,7 +3307,7 @@ $(document).ready(function () {
             for (var i = 0; i < data[8].length; i++) {
                 var plantilla =
                         `
-            <div class="form-group row mt-2 tuplaElectrocardiograma">
+            <div class="form-group row mt-2 tuplaElectrocardiograma" data-id="${data[8][i].idCita}" data-accion="actualizar">
 
                     <div class="col-10">
                         <div class="input-group">
@@ -3342,7 +3349,7 @@ $(document).ready(function () {
             for (var i = 0; i < data[9].length; i++) {
                 var plantilla =
                         `
-            <div class="form-group row mt-2 tuplaEcocardiograma">
+            <div class="form-group row mt-2 tuplaEcocardiograma" data-id="${data[9][i].idCita}" data-accion="actualizar">
 
                     <div class="col-10">
                         <div class="input-group">
@@ -3386,7 +3393,7 @@ $(document).ready(function () {
             for (var i = 0; i < data[10].length; i++) {
                 var plantilla =
                         `
-            <div class="form-group row mt-2 tuplaTrabajoSocial">
+            <div class="form-group row mt-2 tuplaTrabajoSocial" data-id="${data[10][i].idCita}" data-accion="actualizar">
 
                 <div class="col-10">
                     <div class="input-group">
@@ -3426,8 +3433,8 @@ $(document).ready(function () {
 //3. recorrer el arreglo
             for (var i = 0; i < data[11].length; i++) {
                 var plantilla =
-            `
-            <div class="form-group row mt-2 tuplaPrograma">
+                        `
+            <div class="form-group row mt-2 tuplaPrograma" data-id="${data[11][i].idCita}" data-accion="actualizar">
 
 
                     <div class="col-5">
@@ -3455,7 +3462,7 @@ $(document).ready(function () {
         
      `
 
-        $('#programa-contenedor').append(plantilla);
+                $('#programa-contenedor').append(plantilla);
 
             }
 
@@ -3472,9 +3479,9 @@ $(document).ready(function () {
 
 //3. recorrer el arreglo
             for (var i = 0; i < data[12].length; i++) {
-              var plantilla =
-            `
-            <div class="form-group row mt-2 tuplaOtro">
+                var plantilla =
+                        `
+            <div class="form-group row mt-2 tuplaOtro" data-id="${data[12][i].idCita}" data-accion="actualizar">
 
                     <div class="col-5">
                         <div class="input-group">
@@ -3501,7 +3508,7 @@ $(document).ready(function () {
         
      `
 
-        $('#otro-contenedor').append(plantilla);
+                $('#otro-contenedor').append(plantilla);
 
             }
 
@@ -3526,7 +3533,7 @@ $(document).ready(function () {
             for (var i = 0; i < data[13].length; i++) {
                 var plantilla =
                         `
-            <div class="tuplaLlamada mt-3">
+            <div class="tuplaLlamada mt-3" data-id="${data[13][i].idCita}" data-accion="actualizar">
                 <div class="row">
                     <div class="col-12">
                         <div class="input-group">
@@ -3545,7 +3552,7 @@ $(document).ready(function () {
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <textarea class="form-control comentario-llamada" style="min-height:100px;" value="${data[12][i].comentarioLLamada}" placeholder="Introduce el motivo de la llamada "></textarea>
+                        <textarea class="form-control comentario-llamada" style="min-height:100px;" value="${data[13][i].comentarioLLamada}" placeholder="Introduce el motivo de la llamada "></textarea>
                     </div>
                 </div>
             </div>

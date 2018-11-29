@@ -87,7 +87,7 @@
                         </div>
 
                     </div>
-                            
+
                     <div class="row justify-content-center">
                         <div class="col-12 text-center">
                             <hr style="background-color:white !important">
@@ -97,15 +97,15 @@
                     <!-- MENU PRINCIPAL ENLACES -->
                     <ul class="list-unstyled components">
 
-                       <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
-                                                            
-                       <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+                        <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
 
-                       <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
-                       
-                       <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+                        <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
-                       <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+                        <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
+
+                        <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+
+                        <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
 
                     </ul>
@@ -304,7 +304,7 @@
                                                     </div>
 
 <!--<<<<<<< HEAD-->
-                                                   <select name="medico-residente" class="form-control" id="medico-radiologo">
+                                                   <select name="medico-residente" class="form-control" id="medico-residente">
 
                                                         <option disabled selected>Seleccione un Residente</option>
 
@@ -314,22 +314,22 @@
 
                                                         </c:forEach>
                                                         <option value="otro">Otro</option>
-<!--=======
-                                                    <input name = "medico-residente" type="text" id="medico-residente" class="form-control" class="form-control" placeholder="Introduce Médico Residente">
-                                                </div>
-                                            </div>
->>>>>>> origin/AngelRaul
--->
+                                                        <!--=======
+                                                                                                            <input name = "medico-residente" type="text" id="medico-residente" class="form-control" class="form-control" placeholder="Introduce Médico Residente">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                        >>>>>>> origin/AngelRaul
+                                                        -->
                                                     </select>
- </div>
-                                           
-                                            <div class="form-check mt-2">
+                                                </div>
+
+                                                <div class="form-check mt-2">
                                                     <input name="noAdscrito" class=" form-check-input" type="checkbox" value="" id="noAdscrito">
                                                     <label class="form-check-label" for="defaultCheck1">
-                                                         No estuvo médico residente
+                                                        No estuvo médico residente
                                                     </label>
                                                 </div>
- </div>
+                                            </div>
                                         </div>
 
                                         <!-- Fecha Consulta-->
@@ -789,7 +789,7 @@
                                 </div>
 
                                 <!-- OMAR -->
-                                
+
                                 <!-- PANTALLA 3 -->
                                 <div id="pantalla3">
                                     <form>
@@ -805,60 +805,21 @@
 
                                         <!-- Checkbox biopsia -->
                                         <div class="row mt-5 mb-3">
-                                            <div class="col-12">
+                                            <div class="col-10">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="tiene-biopsia">
                                                     <label class="form-check-label" for="tiene-biopsia"> Biopsia</label>
                                                 </div>
                                             </div>
+                                            <!-- boton agregar biopsia -->
+                                            <div class="col-2 text-center">
+                                                <button type="button" class="btn btn-morado ml-2 add-biopsia" style="border-radius: 25px;">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
 
                                         <div id="biopsia-contenedor">
-
-
-                                            <div class="form-group row mt-2 tuplaBiopsia" data-id="0" data-accion="agregar" id="biopsiaInit">
-
-
-                                                <!-- tipo biopsia -->
-                                                <div class="col-3">
-
-                                                    <input id="tipo-BiopsiaAdded" type="text" class="form-control tipoBiopsia" placeholder="Tipo de biopsia">
-                                                    <input type="hidden" name="tipo-BiopsiaAdded">
-                                                </div>
-
-                                                <!-- fecha biopsia -->
-                                                <div class="col-4">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <i class="fas fa-calendar-alt"></i>
-                                                            </div>
-                                                        </div>
-                                                        <input name="fecha-BiopsiaAdded" placeholder="Fecha de la biopsia" class="form-control fechaBiopsia" type="text" onfocus="(this.type = 'date')">
-                                                    </div>
-                                                </div>
-
-                                                <!-- parte del cuerpo -->
-                                                <div class="col-3">
-                                                    <div class="input-group text-center">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <i class="fas fa-hand-paper"></i>
-                                                            </div>
-                                                        </div>
-                                                        <input name="parte-BiopsiaAdded" type="text" class="form-control parteCuerpoBiopsia" placeholder="Parte del cuerpo">
-                                                    </div>
-                                                </div>
-
-                                                <!-- boton agregar biopsia -->
-                                                <div class="col-2">
-                                                    <button type="button" class="btn btn-morado ml-2 add-biopsia" style="border-radius: 25px;">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-
-
-                                            </div>
 
                                         </div>
 
@@ -872,45 +833,21 @@
 
                                         <!-- Checkbox rayox x -->
                                         <div class="row mt-5 mb-3">
-                                            <div class="col-12">
+                                            <div class="col-10">
                                                 <div class="form-check form-check-inline">
                                                     <input name="rayosAdded" class="form-check-input" type="checkbox" id="tiene-rayosX">
                                                     <label class="form-check-label" for="tiene-rayosX"> Rayos X</label>
                                                 </div>
                                             </div>
+                                            <!-- boton agregar rayos -->
+                                            <div class="col-2 text-center">
+                                                <button type="button" class="btn btn-morado ml-2 add-rayosX" style="border-radius: 25px;">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
 
                                         <div id="rayos-contenedor">
-
-
-                                            <div class="form-group row mt-2 tuplaRayosX" data-id="0" data-accion="agregar" id="rayosInit">
-
-                                                <!-- tipo rayos -->
-                                                <div class="col-5">
-                                                    <input name="tipo-RayosXAdded" id="rayosX" type="text" class="form-control rayosX" placeholder="Tipo de rayos X">
-                                                </div>
-
-                                                <!-- fecha rayos -->
-                                                <div class="col-5">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <i class="fas fa-calendar-alt"></i>
-                                                            </div>
-                                                        </div>
-                                                        <input name="fecha-RayosXAdded" placeholder="Fecha de los Rayos X" class="form-control fechaRayos" type="text" onfocus="(this.type = 'date')">
-                                                    </div>
-                                                </div>
-
-                                                <!-- boton agregar rayos -->
-                                                <div class="col-2">
-                                                    <button type="button" class="btn btn-morado ml-2 add-rayosX" style="border-radius: 25px;">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-
-
-                                            </div>
 
                                         </div>
 
@@ -924,45 +861,21 @@
                                         <!-- Ultrasonido -->
 
                                         <div class="row mt-5 mb-3">
-                                            <div class="col-12">
+                                            <div class="col-10">
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-ultrasonido" class="form-check-input" type="checkbox" id="tiene-ultrasonido">
                                                     <label class="form-check-label" for="tiene-ultrasonido"> Ultrasonido</label>
                                                 </div>
                                             </div>
+                                            <!-- boton agregar ultrasonido -->
+                                            <div class="col-2 text-center">
+                                                <button type="button" class="btn btn-morado ml-2 add-ultrasonido" style="border-radius: 25px;">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
 
                                         <div id="ultrasonido-contenedor">
-
-
-                                            <div class="form-group row mt-2 tuplaUltrasonido" data-id="0" data-accion="agregar" id="ultrasonidoInit">
-
-                                                <!-- parte del cuerpo -->
-                                                <div class="col-5">
-                                                    <input name="parteCuerpo-USGAdded" id="ultraSonido" type="text" class="form-control parteCuerpoUltrasonido" placeholder="Parte del cuerpo">
-                                                </div>
-
-                                                <!-- fecha ultrasonido -->
-                                                <div class="col-5">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <i class="fas fa-calendar-alt"></i>
-                                                            </div>
-                                                        </div>
-                                                        <input name="fecha-USGAdded" placeholder="Fecha de USG" class="form-control fechaUltrasonido" type="text" onfocus="(this.type = 'date')">
-                                                    </div>
-                                                </div>
-
-                                                <!-- boton agregar ultrasonido -->
-                                                <div class="col-2">
-                                                    <button type="button" class="btn btn-morado ml-2 add-ultrasonido" style="border-radius: 25px;">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-
-
-                                            </div>
 
                                         </div>
 
@@ -976,44 +889,21 @@
                                         <!-- Medicina Nuclear -->
 
                                         <div class="row mt-5 mb-3">
-                                            <div class="col-12">
+                                            <div class="col-10">
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-medicina-nuclear" class="form-check-input" type="checkbox" id="tiene-medicina-nuclear">
                                                     <label class="form-check-label" for="tiene-medicina-nuclear"> Medicina Nuclear</label>
                                                 </div>
                                             </div>
+                                            <!-- boton agregar medicina nuclear -->
+                                            <div class="col-2 text-center">
+                                                <button type="button" class="btn btn-morado ml-2 add-medicinaNuclear" style="border-radius: 25px;">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
 
                                         <div id="medicinaNuclear-contenedor">
-
-                                            <div class="form-group row mt-2 tuplaMedicinaNuclear" data-id="0" data-accion="agregar" id="medicinaNuclearInit">
-
-                                                <!-- medicina nuclear -->
-                                                <div class="col-5">
-                                                    <input name="mNuclearAdded" id="medicinaNuclear" type="text" class="form-control medicinaNuclear" placeholder="Introduce medicina nuclear">
-                                                </div>
-
-                                                <!-- fecha medicina nuclear -->
-                                                <div class="col-5">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <i class="fas fa-calendar-alt"></i>
-                                                            </div>
-                                                        </div>
-                                                        <input name="fecha-mNuclearAdded" placeholder="Fecha de medicina nuclear" class="form-control fechaMedicinaNuclear" type="text" onfocus="(this.type = 'date')">
-                                                    </div>
-                                                </div>
-
-                                                <!-- boton agregar medicina nuclear -->
-                                                <div class="col-2">
-                                                    <button type="button" class="btn btn-morado ml-2 add-medicinaNuclear" style="border-radius: 25px;">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-
-
-                                            </div>
 
                                         </div>
 
@@ -1026,39 +916,21 @@
                                         <!-- Laboratorio -->
 
                                         <div class="row mt-5 mb-3">
-                                            <div class="col-12">
+                                            <div class="col-10">
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-laboratorio" class="form-check-input" type="checkbox" id="tiene-laboratorio">
                                                     <label class="form-check-label" for="tiene-laboratorio"> Laboratorio</label>
                                                 </div>
                                             </div>
+                                            <!-- boton agregar laboratorio -->
+                                            <div class="col-2 text-center">
+                                                <button type="button" class="btn btn-morado ml-2 add-laboratorio" style="border-radius: 25px;">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
 
                                         <div id="laboratorio-contenedor">
-
-                                            <div class="form-group row mt-2 tuplaLaboratorio" data-id="0" data-accion="agregar" id="laboratorioInit">
-
-                                                <!-- fecha laboratorio-->
-                                                <div class="col-10">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <i class="fas fa-calendar-alt"></i>
-                                                            </div>
-                                                        </div>
-                                                        <input name="fecha-LaboAdded" placeholder="Fecha de laboratorio" class="form-control fechaLaboratorio" type="text" onfocus="(this.type = 'date')">
-                                                    </div>
-                                                </div>
-
-                                                <!-- boton agregar laboratorio -->
-                                                <div class="col-2">
-                                                    <button type="button" class="btn btn-morado ml-2 add-laboratorio" style="border-radius: 25px;">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-
-
-                                            </div>
 
                                         </div>
 
@@ -1072,44 +944,21 @@
                                         <!-- Valoracion -->
 
                                         <div class="row mt-5 mb-3">
-                                            <div class="col-12">
+                                            <div class="col-10">
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-valoracion" class="form-check-input" type="checkbox" id="tiene-valoracion">
                                                     <label class="form-check-label" for="tiene-valoracion"> Valoración</label>
                                                 </div>
                                             </div>
+                                            <!-- boton agregar valoración -->
+                                            <div class="col-2 text-center">
+                                                <button type="button" class="btn btn-morado ml-2 add-valoracion" style="border-radius: 25px;">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
 
                                         <div id="valoracion-contenedor">
-
-                                            <div class="form-group row mt-2 tuplaValoracion" data-id="0" data-accion="agregar" id="valoracionInit">
-
-                                                <!-- valoracion -->
-                                                <div class="col-5">
-                                                    <input name="valoracionAdded" id="valoracion" type="text" class="form-control valoracion" placeholder="Introduce valoración">
-                                                </div>
-
-                                                <!-- fecha medicina valoracion -->
-                                                <div class="col-5">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <i class="fas fa-calendar-alt"></i>
-                                                            </div>
-                                                        </div>
-                                                        <input name="fecha-valoracionAdded" placeholder="Fecha de valoración" class="form-control fechaValoracion" type="text" onfocus="(this.type = 'date')">
-                                                    </div>
-                                                </div>
-
-                                                <!-- boton agregar valoración -->
-                                                <div class="col-2">
-                                                    <button type="button" class="btn btn-morado ml-2 add-valoracion" style="border-radius: 25px;">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-
-
-                                            </div>
 
                                         </div>
 
@@ -1122,44 +971,21 @@
                                         <!-- Espirometria -->
 
                                         <div class="row mt-5 mb-3">
-                                            <div class="col-12">
+                                            <div class="col-10">
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-espirometria" class="form-check-input" type="checkbox" id="tiene-espirometria">
                                                     <label class="form-check-label" for="tiene-espirometria"> Espirometróa/Inhaloterapia</label>
                                                 </div>
                                             </div>
+                                            <!-- boton agregar espirometria -->
+                                            <div class="col-2 text-center">
+                                                <button type="button" class="btn btn-morado ml-2 add-espirometria" style="border-radius: 25px;">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
 
                                         <div id="espirometria-contenedor">
-
-
-                                            <div class="form-group row mt-2 tuplaEspirometria" data-id="0" data-accion="agregar" id="espirometriaInit">
-
-
-                                                <!-- fecha espirometria-->
-
-                                                <div class="col-10">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <i class="fas fa-calendar-alt"></i>
-                                                            </div>
-                                                        </div>
-
-                                                        <input name="fecha-espirometriaAdded" placeholder="Fecha de espirometría" class="form-control fechaEspirometria" type="text" onfocus="(this.type = 'date')">
-                                                    </div>
-                                                </div>
-
-                                                <!-- boton agregar espirometria -->
-
-                                                <div class="col-2">
-                                                    <button type="button" class="btn btn-morado ml-2 add-espirometria" style="border-radius: 25px;">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-
-
-                                            </div>
 
                                         </div>
 
@@ -1172,7 +998,7 @@
                                         <!-- Electrocardiograma -->
 
                                         <div class="row mt-5 mb-3">
-                                            <div class="col-12">
+                                            <div class="col-10">
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-electrocardiograma" class="form-check-input" type="checkbox" id="tiene-electrocardiograma">
                                                     <label class="form-check-label" for="tiene-electrocardiograma"> Electrocardiograma
@@ -1180,35 +1006,15 @@
                                                     </label>
                                                 </div>
                                             </div>
+                                            <!-- boton agregar electrocardiograma -->
+                                            <div class="col-2 text-center">
+                                                <button type="button" class="btn btn-morado ml-2 add-electrocardiograma" style="border-radius: 25px;">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
 
                                         <div id="electrocardiograma-contenedor">
-
-                                            <div class="form-group row mt-2 tuplaElectrocardiograma" data-id="0" data-accion="agregar" id="electrocardiogramaInit">
-
-                                                <!-- fecha electrocardiograma-->
-
-                                                <div class="col-10">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <i class="fas fa-calendar-alt"></i>
-                                                            </div>
-                                                        </div>
-                                                        <input name="fecha-ECGAdded" placeholder="Fecha de electrocardiograma" class="form-control fechaElectrocardiograma" type="text" onfocus="(this.type = 'date')">
-                                                    </div>
-                                                </div>
-
-                                                <!-- boton agregar electrocardiograma -->
-
-                                                <div class="col-2">
-                                                    <button type="button" class="btn btn-morado ml-2 add-electrocardiograma" style="border-radius: 25px;">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-
-
-                                            </div>
 
                                         </div>
 
@@ -1222,43 +1028,21 @@
                                         <!-- Ecocardiograma -->
 
                                         <div class="row mt-5 mb-3">
-                                            <div class="col-12">
+                                            <div class="col-10">
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-ecocardiograma" class="form-check-input" type="checkbox" id="tiene-ecocardiograma">
                                                     <label class="form-check-label" for="tiene-ecocardiograma"> Ecocardiograma</label>
                                                 </div>
                                             </div>
+                                            <!-- boton agregar ecocardiograma -->
+                                            <div class="col-2 text-center">
+                                                <button type="button" class="btn btn-morado ml-2 add-ecocardiograma" style="border-radius: 25px;">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
 
                                         <div id="ecocardiograma-contenedor">
-
-
-                                            <div class="form-group row mt-2 tuplaEcocardiograma" data-id="0" data-accion="agregar" id="ecocardiogramaInit">
-
-
-                                                <!-- fecha ecocardiograma-->
-
-                                                <div class="col-10">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <i class="fas fa-calendar-alt"></i>
-                                                            </div>
-                                                        </div>
-                                                        <input name="fecha-ecoAddded" placeholder="Fecha de ecocardiograma" class="form-control fechaEcocardiograma" type="text" onfocus="(this.type = 'date')">
-                                                    </div>
-                                                </div>
-
-                                                <!-- boton agregar ecocardiograma -->
-
-                                                <div class="col-2">
-                                                    <button type="button" class="btn btn-morado ml-2 add-ecocardiograma" style="border-radius: 25px;">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-
-
-                                            </div>
 
                                         </div>
 
@@ -1271,42 +1055,22 @@
                                         <!-- Trabajo Social-->
 
                                         <div class="row mt-5 mb-3">
-                                            <div class="col-12">
+                                            <div class="col-10">
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-trabajo-social" class="form-check-input" type="checkbox" id="tiene-trabajo-social">
                                                     <label class="form-check-label" for="tiene-trabajo-social"> Trabajo Social</label>
                                                 </div>
                                             </div>
+                                            <!-- boton agregar trabajo social -->
+                                            <div class="col-2 text-center">
+                                                <button type="button" class="btn btn-morado ml-2 add-trabajoSocial" style="border-radius: 25px;">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
 
 
                                         <div id="trabajoSocial-contenedor">
-
-                                            <div class="form-group row mt-2 tuplaTrabajoSocial" data-id="0" data-accion="agregar" id="trabajoSocialInit">
-
-                                                <!-- fecha trabajo social-->
-
-                                                <div class="col-10">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <i class="fas fa-calendar-alt"></i>
-                                                            </div>
-                                                        </div>
-                                                        <input name="fecha-tSocialAdded" placeholder="Fecha de trabajo social" class="form-control fechaTrabajoSocial" type="text" onfocus="(this.type = 'date')">
-                                                    </div>
-                                                </div>
-
-                                                <!-- boton agregar trabajo social -->
-
-                                                <div class="col-2">
-                                                    <button type="button" class="btn btn-morado ml-2 add-trabajoSocial" style="border-radius: 25px;">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-
-
-                                            </div>
 
                                         </div>
 
@@ -1319,49 +1083,21 @@
                                         <!-- Programas -->
 
                                         <div class="row mt-5 mb-3">
-                                            <div class="col-12">
+                                            <div class="col-10">
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-programa" class="form-check-input" type="checkbox" id="tiene-programa">
                                                     <label class="form-check-label" for="tiene-programa"> Programa</label>
                                                 </div>
                                             </div>
+                                            <!-- boton agregar programa -->
+                                            <div class="col-2 text-center">
+                                                <button type="button" class="btn btn-morado ml-2 add-programa" style="border-radius: 25px;">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
 
                                         <div id="programa-contenedor">
-
-
-                                            <div class="form-group row mt-2 tuplaPrograma" data-id="0" data-accion="agregar" id="programaInit">
-
-
-                                                <!-- programas -->
-
-                                                <div class="col-5">
-                                                    <input name="programaAdded" type="text" id="tipoPrograma" class="form-control programa" placeholder="Introduce programa">
-                                                </div>
-
-                                                <!-- fecha programa -->
-
-                                                <div class="col-5">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <i class="fas fa-calendar-alt"></i>
-                                                            </div>
-                                                        </div>
-                                                        <input name="fecha-programaAdded" placeholder="Fecha del programa" class="form-control fechaPrograma" type="text" onfocus="(this.type = 'date')">
-                                                    </div>
-                                                </div>
-
-                                                <!-- boton agregar programa -->
-
-                                                <div class="col-2">
-                                                    <button type="button" class="btn btn-morado ml-2 add-programa" style="border-radius: 25px;">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-
-
-                                            </div>
 
                                         </div>
 
@@ -1375,49 +1111,26 @@
                                         <!-- Otro -->
 
                                         <div class="row mt-5 mb-3">
-                                            <div class="col-12">
+                                            <div class="col-10">
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-otro" class="form-check-input" type="checkbox" id="tiene-otro">
                                                     <label class="form-check-label" for="tiene-otro"> Otro</label>
                                                 </div>
                                             </div>
+                                            <!-- boton agregar otro -->
+                                            <div class="col-2 text-center">
+                                                <button type="button" class="btn btn-morado ml-2 add-otro" style="border-radius: 25px;">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
 
                                         <div id="otro-contenedor">
 
-                                            <div class="form-group row mt-2 tuplaOtro" data-id="0" data-accion="agregar" id="otroInit">
-
-                                                <!-- fecha otro -->
-
-                                                <div class="col-5">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <i class="fas fa-calendar-alt"></i>
-                                                            </div>
-                                                        </div>
-                                                        <input name="fecha-otroAdded" placeholder="Fecha de otro" class="form-control fechaOtro" type="text" onfocus="(this.type = 'date')">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-5">
-                                                    <input name="otroAdded" type="text" class="form-control otro-estudioPreconsulta" placeholder="Introduce otro">
-                                                </div>
-
-                                                <!-- boton agregar otro -->
-
-                                                <div class="col-2">
-                                                    <button type="button" class="btn btn-morado ml-2 add-otro" style="border-radius: 25px;">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-
-
-                                            </div>
-
                                         </div>
 
                                     </form>
+
                                     <div class="row justify-content-center mt-5">
                                         <div class="col-4">
                                             <button class="btn btn-outline-danger btn-block" id="btn-back3" style="border-radius:20px">
@@ -1506,42 +1219,21 @@
                                         </div>
 
                                         <div class="form-group row mt-4">
-                                            <div class="col-3">
+                                            <div class="col-10">
                                                 <div class="form-check form-check-inline">
                                                     <input name="seLlamo" class="form-check-input mr-3" type="checkbox" id="seLlamo" value="option1">
                                                     <label class="form-check-label" for="inlineCheckbox1">Llamada al paciente</label>
                                                 </div>
                                             </div>
+                                            <div class="col-2 text-center">
+                                                <button type="button" class="btn btn-morado ml-3 add-llamada" style="border-radius: 25px;">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
 
                                         </div>
 
                                         <div class="llamadaInit">
-
-                                            <div class="tuplaLlamada" data-id="0" data-accion="agregar">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-calendar-alt"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input name="fecha-seLlamo" placeholder="Fecha llamada" class="form-control fecha-llamada" type="text" onfocus="(this.type = 'date')">
-                                                            <button type="button" class="btn btn-morado ml-3 add-llamada" style="border-radius: 25px;">
-                                                                <i class="fas fa-plus"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row mt-3">
-                                                    <div class="col-12">
-
-                                                        <textarea name="motivoLlamada" class="form-control comentario-llamada" style="min-height:100px;" placeholder="Introduce el motivo de la llamada "></textarea>
-
-                                                    </div>
-                                                </div>
-                                            </div>
 
                                         </div>
 
@@ -1599,21 +1291,21 @@
                                         </div>
                                     </div>
 
-                                <div class="row justify-content-center mt-5">
-                                    <div class="col-4">
-                                        <button class="btn btn-outline-danger btn-block" id="btn-back4" style="border-radius:20px">
-                                            <i class="fas fa-undo mr-2"></i>Regresar</button>
+                                    <div class="row justify-content-center mt-5">
+                                        <div class="col-4">
+                                            <button class="btn btn-outline-danger btn-block" id="btn-back4" style="border-radius:20px">
+                                                <i class="fas fa-undo mr-2"></i>Regresar</button>
+                                        </div>
+                                        <div class="col-4">
+                                            <button id="btn-save4" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Después</button>
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-outline-success btn-block" id="btn-continue4" style="border-radius:20px">
+                                                <i class="fas fa-arrow-circle-right mr-2"></i>Continuar</button>
+                                        </div>
+
                                     </div>
-                                    <div class="col-4">
-                                        <button id="btn-save4" class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                            <i class="fas fa-save mr-2" ></i>Guardar y Continuar Después</button>
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn btn-outline-success btn-block" id="btn-continue4" style="border-radius:20px">
-                                            <i class="fas fa-arrow-circle-right mr-2"></i>Continuar</button>
-                                    </div>
-                                    
-                                </div>
 
                                 </div>
 
@@ -1874,10 +1566,10 @@
                                                 <i class="fas fa-undo mr-2"></i>Regresar</button>
                                         </div>
                                         <div class="col-4">
-                                        <button id="btn-save5" class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                            <i class="fas fa-save mr-2" ></i>Guardar y Continuar Después</button>
+                                            <button id="btn-save5" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Después</button>
 
-                                    </div>
+                                        </div>
 
                                     </div>
 
@@ -1893,7 +1585,7 @@
                                             <button class="btn btn-outline-success btn-block" id="btn-sendAll" style="border-radius:20px">
                                                 <i class="fas fa-check-circle mr-2"></i>Enviar</button>
                                         </div>
-                             </div>
+                                    </div>
 
                                 </div>
                             </div>
