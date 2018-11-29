@@ -50,7 +50,7 @@ $(document).ready(function () {
 
 //AutocompleteRayosX
 
-    var rayosX = [];
+    var rayosX = $("#listRayosX");
 
     $.ajax({
         url: 'NavegadoraController',
@@ -69,7 +69,7 @@ $(document).ready(function () {
 
     });
 
-
+/*
     $("body").on("click", '.rayosX', function () {
 
         $('.rayosX').autocomplete({
@@ -80,7 +80,7 @@ $(document).ready(function () {
         });
 
     });
-
+*/
 
 
 //AutocompleteUltrasonido

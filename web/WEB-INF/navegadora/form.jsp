@@ -87,7 +87,7 @@
                         </div>
 
                     </div>
-                            
+
                     <div class="row justify-content-center">
                         <div class="col-12 text-center">
                             <hr style="background-color:white !important">
@@ -97,15 +97,15 @@
                     <!-- MENU PRINCIPAL ENLACES -->
                     <ul class="list-unstyled components">
 
-                       <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
-                                                            
-                       <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+                        <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
 
-                       <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
-                       
-                       <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+                        <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
-                       <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+                        <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
+
+                        <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+
+                        <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
 
                     </ul>
@@ -154,7 +154,9 @@
                 <div class="jumbotron jumbotron-fluid p-2">
                     <div class="container">
                         <h1 class="display-4 tituloPacientes text-center m-0">Formato de Control Preconsulta Mama</h1>
-                    </div>
+                        <h6 class="display-4 text-center m-0 text-secondary" id="pacienteSelec" style="font-size:25px;"> Paciente:
+                            ${sessionScope.nombrePaciente} ${sessionScope.apellido1Paciente} ${sessionScope.apellido2Paciente} 
+                        </h6>                    </div>
                 </div>
 
                 <div class="card mt-3">
@@ -303,8 +305,8 @@
                                                         </div>
                                                     </div>
 
-<!--<<<<<<< HEAD-->
-                                                   <select name="medico-residente" class="form-control" id="medico-radiologo">
+                                                    <!--<<<<<<< HEAD-->
+                                                    <select name="medico-residente" class="form-control" id="medico-radiologo">
 
                                                         <option disabled selected>Seleccione un Residente</option>
 
@@ -314,22 +316,22 @@
 
                                                         </c:forEach>
                                                         <option value="otro">Otro</option>
-<!--=======
-                                                    <input name = "medico-residente" type="text" id="medico-residente" class="form-control" class="form-control" placeholder="Introduce Médico Residente">
-                                                </div>
-                                            </div>
->>>>>>> origin/AngelRaul
--->
+                                                        <!--=======
+                                                                                                            <input name = "medico-residente" type="text" id="medico-residente" class="form-control" class="form-control" placeholder="Introduce Médico Residente">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                        >>>>>>> origin/AngelRaul
+                                                        -->
                                                     </select>
- </div>
-                                           
-                                            <div class="form-check mt-2">
+                                                </div>
+
+                                                <div class="form-check mt-2">
                                                     <input name="noAdscrito" class=" form-check-input" type="checkbox" value="" id="noAdscrito">
                                                     <label class="form-check-label" for="defaultCheck1">
-                                                         No estuvo médico residente
+                                                        No estuvo médico residente
                                                     </label>
                                                 </div>
- </div>
+                                            </div>
                                         </div>
 
                                         <!-- Fecha Consulta-->
@@ -789,7 +791,7 @@
                                 </div>
 
                                 <!-- OMAR -->
-                                
+
                                 <!-- PANTALLA 3 -->
                                 <div id="pantalla3">
                                     <form>
@@ -887,7 +889,9 @@
 
                                                 <!-- tipo rayos -->
                                                 <div class="col-5">
-                                                    <input name="tipo-RayosXAdded" id="rayosX" type="text" class="form-control rayosX" placeholder="Tipo de rayos X">
+                                                    <input name="tipo-RayosXAdded" id="rayosX" type="text" class="form-control rayosX" list="listRayosX" placeholder="Tipo de rayos X">
+                                                    <datalist id="listRayosX">                                            
+                                            </datalist>
                                                 </div>
 
                                                 <!-- fecha rayos -->
@@ -1599,21 +1603,21 @@
                                         </div>
                                     </div>
 
-                                <div class="row justify-content-center mt-5">
-                                    <div class="col-4">
-                                        <button class="btn btn-outline-danger btn-block" id="btn-back4" style="border-radius:20px">
-                                            <i class="fas fa-undo mr-2"></i>Regresar</button>
+                                    <div class="row justify-content-center mt-5">
+                                        <div class="col-4">
+                                            <button class="btn btn-outline-danger btn-block" id="btn-back4" style="border-radius:20px">
+                                                <i class="fas fa-undo mr-2"></i>Regresar</button>
+                                        </div>
+                                        <div class="col-4">
+                                            <button id="btn-save4" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Después</button>
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-outline-success btn-block" id="btn-continue4" style="border-radius:20px">
+                                                <i class="fas fa-arrow-circle-right mr-2"></i>Continuar</button>
+                                        </div>
+
                                     </div>
-                                    <div class="col-4">
-                                        <button id="btn-save4" class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                            <i class="fas fa-save mr-2" ></i>Guardar y Continuar Después</button>
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn btn-outline-success btn-block" id="btn-continue4" style="border-radius:20px">
-                                            <i class="fas fa-arrow-circle-right mr-2"></i>Continuar</button>
-                                    </div>
-                                    
-                                </div>
 
                                 </div>
 
@@ -1874,10 +1878,10 @@
                                                 <i class="fas fa-undo mr-2"></i>Regresar</button>
                                         </div>
                                         <div class="col-4">
-                                        <button id="btn-save5" class="btn btn-outline-primary btn-block" style="border-radius:20px">
-                                            <i class="fas fa-save mr-2" ></i>Guardar y Continuar Después</button>
+                                            <button id="btn-save5" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Después</button>
 
-                                    </div>
+                                        </div>
 
                                     </div>
 
@@ -1893,7 +1897,7 @@
                                             <button class="btn btn-outline-success btn-block" id="btn-sendAll" style="border-radius:20px">
                                                 <i class="fas fa-check-circle mr-2"></i>Enviar</button>
                                         </div>
-                             </div>
+                                    </div>
 
                                 </div>
                             </div>
