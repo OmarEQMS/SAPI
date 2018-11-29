@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import mx.itesm.sapi.bean.formulario.ReporteNavegadora;
+import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
 import mx.itesm.sapi.util.Conexion;
@@ -30,8 +31,9 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
         
         ReporteNavegadora reporteNavegadora = new ReporteNavegadora();
         EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
-        //TablaMedicoAdministrado tablaMedicoAdministrador = new TablaMedicoAdministrador();
-       
+        TablaMedicoAdministrador tablaMedicoAdministrador = new TablaMedicoAdministrador();
+        tablaMedicoAdministrador = empleadoServicioImpl.mostrarMedicoAdministrador(idEmpleado, idRol);
+        
         try{
             conn = Conexion.getConnection();
             reporteNavegadora = new ReporteNavegadora();
@@ -39,7 +41,7 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             cstmt.setInt(1, idPaciente);
             
             rs = cstmt.executeQuery();
-            rs.next();
+            rs.next();  
             
             if (!(rs.getString("v_PRZ") == null))
                 reporteNavegadora.setPrz(rs.getString("v_PRZ"));
@@ -322,8 +324,8 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             rs.next();
             
             
-            //reporteNavegadora.setNavegadora(tablaMedicoAdministrador.getNombre());
-            reporteNavegadora.setNavegadora("Navegadora");//dato de prueba
+            reporteNavegadora.setNavegadora(tablaMedicoAdministrador.getNombre().concat(" ").concat(tablaMedicoAdministrador.getPrimerApellido()).concat(" ").concat(tablaMedicoAdministrador.getSegundoApellido()));
+            //reporteNavegadora.setNavegadora("Navegadora");//dato de prueba
             //Procedimineto almacenado
             if(!(rs.getString("v_nombre") == null))
                 reporteNavegadora.setNombre(rs.getString("v_nombre"));

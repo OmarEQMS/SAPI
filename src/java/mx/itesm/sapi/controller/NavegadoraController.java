@@ -836,7 +836,7 @@ public class NavegadoraController extends HttpServlet {
 
 
                                                         
-                            int idPacientePotencial = (int) sesion.getAttribute("idPacientePotencialForm");;                           
+                            int idPacientePotencial = (int) sesion.getAttribute("idPacientePotencialForm");                       
                             int idNavegadora = (int) sesion.getAttribute("idEmpleadoNavegadora");//Navegadora
 
                             System.out.println("Paciente " + idPacientePotencial);
