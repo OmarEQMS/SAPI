@@ -494,7 +494,7 @@ $(document).ready(function () {
         if (isValidDate($('#fechaInicioTratamiento'), $('.fechaNacimientoPaciente')) && $("#tipoTratamiento").val() != null) {
 
             var fechaInicioTratamiento = $("#fechaInicioTratamiento").val();
-            
+
             alert(fechaInicioTratamiento);
 
 
@@ -525,15 +525,26 @@ $(document).ready(function () {
 
                         var t = $('#tablaTratamientos').DataTable();
 
-                            t.row.add([
-                                "<input type='hidden' value='" + $("#nombreTipoTratamiento").val() + "' id='nombre-" + response + "'>" +
-                                "<input type='hidden' value='" + fechaInicioTratamiento + "' id='fechaInicio-" + response + "'>" +
-                                "<input type='hidden' value='" + response + "' id='boton-" + response + "'>" +
-                                $("#nombreTipoTratamiento").val(),
-                                fechaInicioTratamiento,
-                                '',
-                                "<button class='btn btn-primary terminarTratamiento' id='modal-" + response + "' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button>"
-                            ]).draw(false);
+                        t.row.add([
+                            "<input type='hidden' value='" + $("#nombreTipoTratamiento").val() + "' id='nombre-" + response + "'>" +
+                                    "<input type='hidden' value='" + fechaInicioTratamiento + "' id='fechaInicio-" + response + "'>" +
+                                    "<input type='hidden' value='" + response + "' id='boton-" + response + "'>" +
+                                    $("#nombreTipoTratamiento").val(),
+                            fechaInicioTratamiento,
+                            '',
+                            "<button class='btn btn-primary terminarTratamiento' id='modal-" + response + "' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button>"
+                        ]).draw(false);
+
+                        var hiddens =
+                                `
+            <input type='hidden' value='` + $("#nombreTipoTratamiento").val() + `' id='nombre-` + response + `'>
+            <input type='hidden' value='` + fechaInicioTratamiento + `' id='fechaInicio-` + response + `'>
+            <input type='hidden' value='` + response + `' id='boton-` + response + `'>        
+     `
+
+                        $('#hiddensDiv').append(hiddens);
+                        
+                        console.log("WHALALALALA" + $("#nombre-"+response).val())
 
 
                         $('#tipoTratamiento').prop('selectedIndex', 0);

@@ -43,6 +43,7 @@
         <input type="hidden" value="5" class="idTratamientoPaciente">
         <input type="hidden" value="${sessionScope.fechaNacimiento}" class="fechaNacimientoPaciente">
 
+        <div id="hiddensDiv"></div>
         <div class="wrapper">
 
             <!-- SIDEBAR -->
