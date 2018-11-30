@@ -182,7 +182,9 @@
                                                         </div>
                                                     </div>
                                                     <input name="prz-expediente" type="text" class="form-control" id="prz-expediente" placeholder="Introduce PRZ">
+
                                                 </div>
+                                                <span class="text-danger" id="error-PRZ">Formato inválido</span>
                                             </div>
 
                                             <div class="col-6">
@@ -290,6 +292,7 @@
                                                     <input name= "fechaNavegacion" placeholder="Introduce la fecha de navegación" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                            id="fechaNavegacion">
                                                 </div>
+                                                <span class="text-danger" id="error-fechaNavegacion">Fecha incorrecta</span>
                                             </div>
 
 
@@ -303,8 +306,8 @@
                                                         </div>
                                                     </div>
 
-<!--<<<<<<< HEAD-->
-                                                   <select name="medico-residente" class="form-control" id="medico-residente">
+                                                    <!--<<<<<<< HEAD-->
+                                                    <select name="medico-residente" class="form-control" id="medico-residente">
 
                                                         <option disabled selected>Seleccione un Residente</option>
 
@@ -346,6 +349,7 @@
                                                     <input name="fechaConsulta" placeholder="Introduce la fecha de consulta" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                            id="fechaConsulta">
                                                 </div>
+                                                <span class="text-danger" id="error-fechaConsulta">Fecha incorrecta</span>
                                             </div>
 
                                         </div>
@@ -405,6 +409,7 @@
                                                     <input name="alergias" type="text" id="alergias" class="form-control" placeholder="Introduce las alergias separadas por comas ( , )">
 
                                                 </div>
+                                                <span class="text-danger" id="error-alergias">Formato incorrecto</span>
                                             </div>
                                         </div>
 
@@ -459,6 +464,7 @@
                                                 </div>
 
                                                 <input name="numSeguro" type="text" id="numSeguro" class="form-control mt-2" placeholder="Introduce el nómero de tu seguro">
+                                                <span class="text-danger" id="error-numSeguro">Formato incorrecto</span>
                                             </div>
 
 
@@ -512,7 +518,10 @@
 
                                                     <input name="fecha-cirugia" placeholder="Introduce la fecha de cirugóa" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                            id="fecha-cirugia">
+
                                                 </div>
+                                                <span class="text-danger" id="error-fechaCirugia">Fecha incorrecta</span>
+
                                             </div>
 
                                             <div class="row mt-3">
@@ -560,12 +569,14 @@
                                                     <input name="fecha-quimioterapia" placeholder="Introduce la fecha de quimioterapia" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                            id="fecha-quimioterapia">
                                                 </div>
+                                                <span class="text-danger" id="error-fechaQuimio">Fecha incorrecta</span>
                                             </div>
 
                                             <div class="row mt-3">
                                                 <div class="col-12 input-group">
                                                     <input name="quimioterapia" type="text" id="quimioterapia" class="form-control" class="form-control" placeholder="Introduce el nómero de ciclos">
                                                 </div>
+                                                <span class="text-danger" id="error-numCiclosQuimio">Formato invalido</span>
                                             </div>
 
                                             <div class="row mt-3">
@@ -599,12 +610,14 @@
                                                     <input name="fecha-radioterapia" placeholder="Introduce la fecha de radioterapia" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                            id="fecha-radioterapia">
                                                 </div>
+                                                <span class="text-danger" id="error-fechaRadio">Fecha incorrecta</span>
                                             </div>
 
                                             <div class="row mt-3">
                                                 <div class="col-12 input-group">
                                                     <input name="radioterapia" type="text" id="radioterapia" class="form-control" class="form-control" placeholder="Introduce el nómero de ciclos">
                                                 </div>
+                                                <span class="text-danger" id="error-numCiclosRadio">Formato invalido</span>
                                             </div>
 
                                             <div class="row mt-3">
@@ -652,8 +665,9 @@
                                                         <input name="fechaPreMasto" placeholder="Introduce la fecha de mastografóa" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                                id="fechaPreMasto">
                                                     </div>
-                                                </div>
 
+                                                </div>
+                                                <span class="text-danger" id="error-fechaMastografia">Fecha incorrecta</span>   
 
 
                                             </div>
@@ -685,6 +699,9 @@
                                                         <input name="fechaPreUsg" placeholder="Introduce la fecha de ultrasonido" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                                id="fechaPreUsg">
                                                     </div>
+                                                    <span class="text-danger" id="error-fechaUltra">Fecha incorrecta</span> 
+
+
                                                 </div>
 
                                             </div>
@@ -719,6 +736,7 @@
                                             <div class="col-12">
                                                 <input name="introducirOtroResultadoPatologia" id="OtroResultadoPatologia" type="text" class="form-control" placeholder="Introduce otro resultado">
                                             </div>
+                                            <span class="text-danger" id="error-OtroResultadoPatologia">Formato incorrecto</span>
                                         </div>
 
                                         <!-- Entrega de laminillas y bloques -->
@@ -739,9 +757,19 @@
 
                                                 <input name="numLaminillas" type="text" id="numLaminillas" class="form-control" placeholder="Introduce el nómero">
                                             </div>
+
                                             <div class="col-6">
                                                 <input name="serieLaminillas" type="text" id="serieLaminillas" class="form-control" placeholder="Identificadores separados por ( , )">
                                             </div>
+
+                                            <div class="col-12">
+                                                <span class="text-danger" id="error-numeroLaminillas">Formato incorrecto. Solo numeros</span>
+                                            </div>
+                                            
+                                            <div class="col-12">
+                                                <span class="text-danger" id="error-serieLaminillas">Formato incorrecto</span>
+                                            </div>
+
                                         </div>
 
                                         <div class="form-group row mt-4">
@@ -758,9 +786,20 @@
 
                                                 <input name="numBloques" type="text" id="numBloques" class="form-control" placeholder="Introduce el nómero">
                                             </div>
+                                            
+           
                                             <div class="col-6">
                                                 <input name="serieBloques" type="text" id="serieBloques" class="form-control" placeholder="Identificadores separados por ( , )">
                                             </div>
+                                            
+                                            <div class="col-12">
+                                                <span class="text-danger" id="error-numeroParafrina">Formato incorrecto. Solo numeros</span>
+                                            </div>
+                                            
+                                            <div class="col-12">
+                                                <span class="text-danger" id="error-serieParafrina">Formato incorrecto</span>
+                                            </div>
+                                            
                                         </div>
                                     </form>
                                     <div class="row justify-content-center mt-5">

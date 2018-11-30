@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    
 
     //Esconder seguros, mastrografía, ultrasonido y tratamientos en la segunda hoja de la pantalla 2
     $('#tiene-seguro').hide();
@@ -422,7 +423,7 @@ $(document).ready(function () {
     //remover biopsia
     $('body').on('click', '.remove-biopsia', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     //agregar rayos
@@ -469,7 +470,7 @@ $(document).ready(function () {
     //remover rayos
     $('body').on('click', '.remove-rayos', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-ultrasonido').on('click', function () {
@@ -515,7 +516,7 @@ $(document).ready(function () {
     //remover ultrasonidos
     $('body').on('click', '.remove-ultrasonido', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-medicinaNuclear').on('click', function () {
@@ -559,7 +560,7 @@ $(document).ready(function () {
     //remover rayos
     $('body').on('click', '.remove-medicinaNuclear', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-laboratorio').on('click', function () {
@@ -598,7 +599,7 @@ $(document).ready(function () {
     //remover laboratorio
     $('body').on('click', '.remove-laboratorio', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-valoracion').on('click', function () {
@@ -642,7 +643,7 @@ $(document).ready(function () {
     //remover valoracion
     $('body').on('click', '.remove-valoracion', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-espirometria').on('click', function () {
@@ -681,7 +682,7 @@ $(document).ready(function () {
     //remover valoracion
     $('body').on('click', '.remove-espirometria', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-electrocardiograma').on('click', function () {
@@ -720,7 +721,7 @@ $(document).ready(function () {
     //remover electrocardiograma
     $('body').on('click', '.remove-electrocardiograma', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-ecocardiograma').on('click', function () {
@@ -760,7 +761,7 @@ $(document).ready(function () {
     //remover ecocardiograma
     $('body').on('click', '.remove-ecocardiograma', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-trabajoSocial').on('click', function () {
@@ -799,7 +800,7 @@ $(document).ready(function () {
     //remover trabajoSocial
     $('body').on('click', '.remove-trabajoSocial', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-programa').on('click', function () {
@@ -843,7 +844,7 @@ $(document).ready(function () {
     //remover trabajoSocial
     $('body').on('click', '.remove-programa', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-otro').on('click', function () {
@@ -886,7 +887,7 @@ $(document).ready(function () {
     //remover trabajoSocial
     $('body').on('click', '.remove-otro', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-llamada').on('click', function () {
@@ -926,7 +927,7 @@ $(document).ready(function () {
     //remover trabajoSocial
     $('body').on('click', '.remove-llamada', function () {
         $(this).parent().parent().parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().parent().parent().hide();
+        $(this).parent().parent().parent().parent().remove();
     });
 
     //MEDICO RADIOLOGO OTRO
