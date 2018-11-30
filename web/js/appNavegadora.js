@@ -380,7 +380,7 @@ $(document).ready(function () {
 
             <!-- tipo biopsia -->
             <div class="col-3">
-                <input name="tipo-BipsiaAdded" type="text" class="form-control tipoBiopsia" placeholder="Tipo de biopsiaa">
+                <input name="tipo-BipsiaAdded" type="text" class="form-control tipoBiopsia" list="listBiopsia" placeholder="Tipo de biopsiaa">
             </div>
 
             <!-- fecha biopsia -->
@@ -403,7 +403,7 @@ $(document).ready(function () {
                             <i class="fas fa-hand-paper"></i>
                         </div>
                     </div>
-                    <input name ="parte-BipsiaAdded" type="text" class="form-control parteCuerpoBiopsia" placeholder="Parte del cuerpo">
+                    <input name ="parte-BipsiaAdded" type="text" class="form-control parteCuerpoBiopsia" list="listLugarDelCuerpo" placeholder="Parte del cuerpo">
                 </div>
             </div>
 
@@ -438,7 +438,7 @@ $(document).ready(function () {
                 <!-- tipo rayos -->
                 <div class="col-5">
 
-                    <input name="tipo-RayosXAdded" type="text" class="form-control rayosX" placeholder="Tipo de rayos X">
+                    <input name="tipo-RayosXAdded" type="text" class="form-control rayosX" list="listRayosX" placeholder="Tipo de rayos X">
                 </div>
 
                 <!-- fecha rayos -->
@@ -483,7 +483,7 @@ $(document).ready(function () {
 
                
                 <div class="col-5">
-                    <input name ="parteCuperpo-USGAdded"type="text" class="form-control parteCuerpoUltrasonido ultraSonido" placeholder="Parte del cuerpo">
+                    <input name ="parteCuperpo-USGAdded"type="text" class="form-control parteCuerpoUltrasonido ultraSonido" list="listUltraSonido" placeholder="Parte del cuerpo">
                 </div>
 
             
@@ -528,7 +528,7 @@ $(document).ready(function () {
 
     
                     <div class="col-5">
-                        <input name ="mNuclearAdded" type="text" class="form-control medicinaNuclear" placeholder="Introduce medicina nuclear">
+                        <input name ="mNuclearAdded" type="text" class="form-control medicinaNuclear" list="listMedicinaNuclear" placeholder="Introduce medicina nuclear">
                     </div>
 
       
@@ -612,7 +612,7 @@ $(document).ready(function () {
 
        
                 <div class="col-5">
-                    <input name ="valoracionAdded" type="text" class="form-control valoracion" placeholder="Introduce valoración">
+                    <input name ="valoracionAdded" type="text" class="form-control valoracion" list="listValoracion" placeholder="Introduce valoración">
                 </div>
 
                 <div class="col-5">
@@ -813,7 +813,7 @@ $(document).ready(function () {
 
 
                     <div class="col-5">
-                        <input name="programaAdded" type="text" id="tipoPrograma" class="form-control programa" placeholder="Introduce programa">
+                        <input name="programaAdded" type="text" id="tipoPrograma" class="form-control programa" list="listPrograma" placeholder="Introduce programa">
                     </div>
 
                     <div class="col-5">
