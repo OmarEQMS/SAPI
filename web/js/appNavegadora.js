@@ -421,8 +421,8 @@ $(document).ready(function () {
 
     //remover biopsia
     $('body').on('click', '.remove-biopsia', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     //agregar rayos
@@ -468,8 +468,8 @@ $(document).ready(function () {
 
     //remover rayos
     $('body').on('click', '.remove-rayos', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-ultrasonido').on('click', function () {
@@ -514,8 +514,8 @@ $(document).ready(function () {
 
     //remover ultrasonidos
     $('body').on('click', '.remove-ultrasonido', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-medicinaNuclear').on('click', function () {
@@ -558,8 +558,8 @@ $(document).ready(function () {
 
     //remover rayos
     $('body').on('click', '.remove-medicinaNuclear', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-laboratorio').on('click', function () {
@@ -597,8 +597,8 @@ $(document).ready(function () {
 
     //remover laboratorio
     $('body').on('click', '.remove-laboratorio', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-valoracion').on('click', function () {
@@ -641,8 +641,8 @@ $(document).ready(function () {
 
     //remover valoracion
     $('body').on('click', '.remove-valoracion', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-espirometria').on('click', function () {
@@ -680,8 +680,8 @@ $(document).ready(function () {
 
     //remover valoracion
     $('body').on('click', '.remove-espirometria', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-electrocardiograma').on('click', function () {
@@ -719,8 +719,8 @@ $(document).ready(function () {
 
     //remover electrocardiograma
     $('body').on('click', '.remove-electrocardiograma', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-ecocardiograma').on('click', function () {
@@ -759,8 +759,8 @@ $(document).ready(function () {
 
     //remover ecocardiograma
     $('body').on('click', '.remove-ecocardiograma', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-trabajoSocial').on('click', function () {
@@ -798,8 +798,8 @@ $(document).ready(function () {
 
     //remover trabajoSocial
     $('body').on('click', '.remove-trabajoSocial', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-programa').on('click', function () {
@@ -842,8 +842,8 @@ $(document).ready(function () {
 
     //remover trabajoSocial
     $('body').on('click', '.remove-programa', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-otro').on('click', function () {
@@ -885,8 +885,8 @@ $(document).ready(function () {
 
     //remover trabajoSocial
     $('body').on('click', '.remove-otro', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-llamada').on('click', function () {
@@ -925,8 +925,8 @@ $(document).ready(function () {
 
     //remover trabajoSocial
     $('body').on('click', '.remove-llamada', function () {
-        $(this).parent().parent().parent().parent().remove();
-
+        $(this).parent().parent().parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().parent().parent().hide();
     });
 
     //MEDICO RADIOLOGO OTRO
@@ -1011,14 +1011,12 @@ $(document).ready(function () {
 
         switch (tieneLlamada) {
             case 1:
-
                 muestra($('.llamadaInit'));
-
+                muestra($('.add-llamada'));
                 break;
             case 0:
                 oculta($('.llamadaInit'));
-                $('.tuplaLlamada').remove();
-
+                oculta($('.add-llamada'));
                 break;
         }
     });
@@ -1114,10 +1112,12 @@ $(document).ready(function () {
 
         switch (tieneBiopsia) {
             case 1:
-                muestra($('#biopsiaInit'));
+                muestra($('#biopsia-contenedor'));
+                muestra($('.add-biopsia'));
                 break;
             case 0:
-                oculta($('#biopsiaInit'));
+                oculta($('#biopsia-contenedor'));
+                oculta($('.add-biopsia'));
                 break;
         }
     });
@@ -1128,10 +1128,12 @@ $(document).ready(function () {
 
         switch (tieneRayosX) {
             case 1:
-                muestra($('#rayosInit'));
+                muestra($('#rayos-contenedor'));
+                muestra($('.add-rayosX'));
                 break;
             case 0:
-                oculta($('#rayosInit'));
+                oculta($('#rayos-contenedor'));
+                oculta($('.add-rayosX'));
                 break;
         }
     });
@@ -1143,10 +1145,12 @@ $(document).ready(function () {
 
         switch (tieneUltrasonido) {
             case 1:
-                muestra($('#ultrasonidoInit'));
+                muestra($('#ultrasonido-contenedor'));
+                muestra($('.add-ultrasonido'));
                 break;
             case 0:
-                oculta($('#ultrasonidoInit'));
+                oculta($('#ultrasonido-contenedor'));
+                oculta($('.add-ultrasonido'));
                 break;
         }
     });
@@ -1157,10 +1161,12 @@ $(document).ready(function () {
 
         switch (tieneMedicinaNuclear) {
             case 1:
-                muestra($('#medicinaNuclearInit'));
+                muestra($('#medicinaNuclear-contenedor'));
+                muestra($('.add-medicinaNuclear'));
                 break;
             case 0:
-                oculta($('#medicinaNuclearInit'));
+                oculta($('#medicinaNuclear-contenedor'));
+                oculta($('.add-medicinaNuclear'));
                 break;
         }
     });
@@ -1172,10 +1178,12 @@ $(document).ready(function () {
 
         switch (tieneValoracion) {
             case 1:
-                muestra($('#valoracionInit'));
+                muestra($('#valoracion-contenedor'));
+                muestra($('.add-valoracion'));
                 break;
             case 0:
-                oculta($('#valoracionInit'));
+                oculta($('#valoracion-contenedor'));
+                oculta($('.add-valoracion'));
                 break;
         }
     });
@@ -1186,10 +1194,12 @@ $(document).ready(function () {
 
         switch (tieneEspirometria) {
             case 1:
-                muestra($('#espirometriaInit'));
+                muestra($('#espirometria-contenedor'));
+                muestra($('.add-espirometria'));
                 break;
             case 0:
-                oculta($('#espirometriaInit'));
+                oculta($('#espirometria-contenedor'));
+                oculta($('.add-espirometria'));
                 break;
         }
     });
@@ -1201,10 +1211,12 @@ $(document).ready(function () {
 
         switch (tieneElectrocardiograma) {
             case 1:
-                muestra($('#electrocardiogramaInit'));
+                muestra($('#electrocardiograma-contenedor'));
+                muestra($('.add-electrocardiograma'));
                 break;
             case 0:
-                oculta($('#electrocardiogramaInit'));
+                oculta($('#electrocardiograma-contenedor'));
+                oculta($('.add-electrocardiograma'));
                 break;
         }
     });
@@ -1215,10 +1227,12 @@ $(document).ready(function () {
 
         switch (tieneLaboratorio) {
             case 1:
-                muestra($('#laboratorioInit'));
+                muestra($('#laboratorio-contenedor'));
+                muestra($('.add-laboratorio'));
                 break;
             case 0:
-                oculta($('#laboratorioInit'));
+                oculta($('#laboratorio-contenedor'));
+                oculta($('.add-laboratorio'));
                 break;
         }
     });
@@ -1229,10 +1243,12 @@ $(document).ready(function () {
 
         switch (tieneEcocardiograma) {
             case 1:
-                muestra($('#ecocardiogramaInit'));
+                muestra($('#ecocardiograma-contenedor'));
+                muestra($('.add-ecocardiograma'));
                 break;
             case 0:
-                oculta($('#ecocardiogramaInit'));
+                oculta($('#ecocardiograma-contenedor'));
+                oculta($('.add-ecocardiograma'));
                 break;
         }
     });
@@ -1243,10 +1259,12 @@ $(document).ready(function () {
 
         switch (tieneTrabajoSocial) {
             case 1:
-                muestra($('#trabajoSocialInit'));
+                muestra($('#trabajoSocial-contenedor'));
+                muestra($('.add-trabajoSocial'));
                 break;
             case 0:
-                oculta($('#trabajoSocialInit'));
+                oculta($('#trabajoSocial-contenedor'));
+                oculta($('.add-trabajoSocial'));
                 break;
         }
     });
@@ -1257,10 +1275,12 @@ $(document).ready(function () {
 
         switch (tienePrograma) {
             case 1:
-                muestra($('#programaInit'));
+                muestra($('#programa-contenedor'));
+                muestra($('.add-programa'));
                 break;
             case 0:
-                oculta($('#programaInit'));
+                oculta($('#programa-contenedor'));
+                oculta($('.add-programa'));
                 break;
         }
     });
@@ -1271,10 +1291,12 @@ $(document).ready(function () {
 
         switch (tieneOtro) {
             case 1:
-                muestra($('#otroInit'));
+                muestra($('#otro-contenedor'));
+                muestra($('.add-otro'));
                 break;
             case 0:
-                oculta($('#otroInit'));
+                oculta($('#otro-contenedor'));
+                oculta($('.add-otro'));
                 break;
         }
     });

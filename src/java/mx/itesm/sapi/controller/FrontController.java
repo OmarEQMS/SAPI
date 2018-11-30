@@ -436,9 +436,7 @@ public class FrontController extends HttpServlet {
                                 MunicipioServicioImpl municipioServicioImpl = new MunicipioServicioImpl();
                                 Municipio municipio = municipioServicioImpl.mostrarMunicipio(persona.getIdMunicipio());
 
-                                /*
-                                    EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
-                                    Especialidad especialidad = especialidadServicioImpl.mostrarEspecialidad(medicoEspecialidad.getIdEspecialidad());*/
+
                                 EstadoServicioImpl estadoServicioImpl = new EstadoServicioImpl();
                                 Estado estado = estadoServicioImpl.mostrarEstado(municipio.getIdEstado());
 
@@ -635,13 +633,13 @@ public class FrontController extends HttpServlet {
                                     }
                                 }
 
-                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
+                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); 
                                 break;
                             }
-
-                            case "navegadora/form.jsp": {
-
-                                int idPacientePotencial = Integer.parseInt(request.getParameter("idPotencial"));
+                          
+                                case "navegadora/form.jsp":
+                                {
+                                    int idPacientePotencial = Integer.parseInt(request.getParameter("idPotencial"));
                                 sesion.setAttribute("idPacientePotencialForm", idPacientePotencial);
 
                                 System.out.println("Front Controller case:  Form Navegadora");
@@ -654,198 +652,179 @@ public class FrontController extends HttpServlet {
                                 sesion.setAttribute("apellido1Paciente", personaNombre.getPrimerApellido());
                                 sesion.setAttribute("apellido2Paciente", personaNombre.getSegundoApellido());
 
-                                /**
-                                 * -------------------Mostrar Lista Médicos---------------------------------------
-                                 */
-                                PersonaServicioImpl personaServicioMedicos = new PersonaServicioImpl();
-                                List<Persona> medicos = personaServicioMedicos.mostrarMedicosAdscritos();
+                                    
+                                    /**-------------------Mostrar Lista Médicos---------------------------------------*/
+                                    
+                                    PersonaServicioImpl personaServicioMedicos = new PersonaServicioImpl();
+                                    List<Persona> medicos = personaServicioMedicos.mostrarMedicosAdscritos();
+                                    
+                                        for(int i=0; i<medicos.size(); i++){
+                                            System.out.println("El id de este radiologo es "+medicos.get(i).getIdPersona());
+                                        }
+                                    
+                                    request.setAttribute("listaMedicos", medicos);
+                                    
+                                    for(int i=0; i<medicos.size(); i++){
+                                        System.out.println(medicos.get(i).getIdPersona());
+                                    }
+                                    
+                                    /**-------------------Mostrar Lista Radiologos---------------------------------------*/
+                                    
+                                    PersonaServicioImpl personaServicioRadiologos = new PersonaServicioImpl();
+                                    List<Persona> radiologos = personaServicioRadiologos.mostrarMedicosRadiologos();
+                                    
+                                    
+                                        for(int i=0; i<radiologos.size(); i++){
+                                            System.out.println("El id de este radiologo es "+radiologos.get(i).getIdPersona());
+                                        }
+                                    
+                                    request.setAttribute("listaRadiologos", radiologos);
+                                    
+                                    /**-------------------Mostrar Lista Residente---------------------------------------*/
+                                    
+                                    PersonaServicioImpl personaServicioResidentes = new PersonaServicioImpl();
+                                    List<Persona> residentes = personaServicioResidentes.mostrarMedicosResidentes();
+                                    
+                                    
+                                        for(int i=0; i<residentes.size(); i++){
+                                            System.out.println("El id de este residente es "+residentes.get(i).getIdPersona());
+                                        }
+                                    
+                                    request.setAttribute("listaResidentes", residentes);
+                                    
+                                    /**-------------------Mostrar Lista Escolaridad---------------------------------------*/
+                                    
+                                    EscolaridadServicioImpl escolaridadServicio = new EscolaridadServicioImpl();
+                                    List<Escolaridad> escolaridad = escolaridadServicio.mostrarEscolaridades();
+                                    request.setAttribute("listaEscolaridad", escolaridad);
+                                    
+                                    System.out.println(escolaridad);
+                                    
+                                    /**-------------------Mostrar Lista Seguros---------------------------------------*/
+                                    
+                                    SeguroServicioImpl seguroServicio = new SeguroServicioImpl();
+                                    List<Seguro> seguro = seguroServicio.mostrarAllSeguro();
+                                    request.setAttribute("listaSeguro", seguro);
+                                    
+                                    System.out.println(seguro);
+                                    
+                                    /**-------------------Mostrar ista Tipo Cirugia---------------------------------------*/
+                                    
+                                    TipoTratamientoServiceImpl TipoTratamientoService = new TipoTratamientoServiceImpl();
+                                    List<TipoTratamiento> tipoCirugia = TipoTratamientoService.mostrarTratamientoCirugia();
+                                    request.setAttribute("listaCirugia", tipoCirugia);
+                                    
+                                    System.out.println(tipoCirugia);
+                                    
+                                     /**-------------------Mostrar Lista BI-RADS---------------------------------------*/
+                                    
+                                    BIRADSServicioImpl BIRADSServicio = new BIRADSServicioImpl();
+                                    List<BIRADS> birads = BIRADSServicio.mostrarBIRADS();
+                                    request.setAttribute("listaBirads", birads);
+                                    
+                                    System.out.println(birads);
 
-                                for (int i = 0; i < medicos.size(); i++) {
-                                    System.out.println("El id de este radiologo es " + medicos.get(i).getIdPersona());
-                                }
+                                    
+                                     /**-------------------Mostrar Lista Tipo Histológico---------------------------------------*/
+                                    
+                                    TipoHistologicoServicioImpl TipoHistologicoServicio = new TipoHistologicoServicioImpl();
+                                    List<TipoHistologico> tipoHistologico = TipoHistologicoServicio.mostraTipoHistologico();
+                                    request.setAttribute("listaTipoHistologico", tipoHistologico);
+                                    
+                                    System.out.println(tipoHistologico);
+                                    
+                                     /**-------------------Mostrar Lista Nivel Socioeconomico---------------------------------------*/
+                                    
+                                    NivelSocioeconomicoServicioImpl NivelSocioeconomicoServicio = new NivelSocioeconomicoServicioImpl();
+                                    List<NivelSocioeconomico> nivelSocioeconomico = NivelSocioeconomicoServicio.mostrarNivelSocioeconomico();
+                                    request.setAttribute("listaNivelSocioEconomico", nivelSocioeconomico);
+                                    
+                                    System.out.println(nivelSocioeconomico);
+                                    
+                                    /**-------------------Mostrar Lista Estapa Clínica---------------------------------------*/
+                                    
+                                    EtapaClinicaServiceImpl etapaServicio = new EtapaClinicaServiceImpl();
+                                    List<EtapaClinica> etapas = etapaServicio.mostrarEtapaClinica();
+                                    request.setAttribute("listaEtapaClinica", etapas);
+                                    
+                                    System.out.println(etapas);
+                                    
+                                    /**-------------------Mostrar Lista T---------------------------------------*/
+                                    
+                                    TCodificadoServiceImpl TCodificadoService = new TCodificadoServiceImpl();
+                                    List<TCodificado> TCodificado = TCodificadoService.mostrarTCodificado();
+                                    request.setAttribute("listaT", TCodificado);
+                                    
+                                    System.out.println(TCodificado);
+                                    
+                                    /**-------------------Mostrar Lista N---------------------------------------*/
+                                    
+                                    NCodificadoServiceImpl NCodificadoService = new NCodificadoServiceImpl();
+                                    List<NCodificado> NCodificado = NCodificadoService.mostrarNCodificado();
+                                    request.setAttribute("listaN", NCodificado);
+                                    
+                                    System.out.println(NCodificado);
+                                    
+                                    /**-------------------Mostrar Lista M---------------------------------------*/
+                                    
+                                    MCodificadoServiceImpl MCodificadoService = new MCodificadoServiceImpl();
+                                    List<MCodificado> MCodificado = MCodificadoService.mostrarMCodificado();
+                                    request.setAttribute("listaM", MCodificado);
+                                    
+                                    System.out.println(MCodificado);
+                                    
+                                    /**-------------------Mostrar Lista Grados Histológico---------------------------------------*/
+                                    
+                                    GradoHistologicoServicioImpl GradoHistologicoServicio = new GradoHistologicoServicioImpl();
+                                    List<GradoHistologico> gradoHistologico = GradoHistologicoServicio.mostrarGradoHistologico();
+                                    request.setAttribute("listaGradoHistologico", gradoHistologico);
+                                    
+                                    System.out.println(gradoHistologico);
+                                    
+                                    /**-------------------Mostrar Lista HER2----------------------------------------*/
+                                    
+                                    Her2ServicioImpl Her2Servicio = new Her2ServicioImpl();
+                                    List<Her2> her2 = Her2Servicio.mostrarHer2();
+                                    request.setAttribute("listaHer2", her2);
+                                    
+                                    System.out.println(her2);
+                                    
+                                    /**-------------------Mostrar Lista Fish---------------------------------------*/
+                                    
+                                    FishServicioImpl FishServicio = new FishServicioImpl();
+                                    List<Fish> fish = FishServicio.mostrarFish();
+                                    request.setAttribute("listaFish", fish);
+                                    
+                                    System.out.println(fish);
+                                    
+                                    /**-------------------Mostrar Lista RE---------------------------------------*/
+                                    
+                                    ReceptorEstrogenoServicioImpl ReceptorEstrogenoServicio = new ReceptorEstrogenoServicioImpl();
+                                    List<ReceptorEstrogeno> RE = ReceptorEstrogenoServicio.mostrarReceptorEstrogeno();
+                                    request.setAttribute("listaRE", RE);
+                                    
+                                    System.out.println(RE);
+                                    
+                                    /**-------------------Mostrar Lista RP---------------------------------------*/
+                                    
+                                    ReceptorProgesteronaServicioImpl ReceptorProgesteronaServicio = new ReceptorProgesteronaServicioImpl();
+                                    List<ReceptorProgesterona> RP = ReceptorProgesteronaServicio.mostrarAllReceptorProgesterona();
+                                    request.setAttribute("listaRP", RP);
+                                    
+                                    System.out.println(RP);
 
-                                request.setAttribute("listaMedicos", medicos);
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                    
+                                    System.out.println("La fecha de hoy es");
+                                    
+                                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                                    Calendar cal = Calendar.getInstance();
+                                    System.out.println(dateFormat.format(cal.getTime()));
+                                    
+                                    //Date fecha = Date.valueOf(dateFormat.format(cal.getTime()));
+                                    
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su form
 
-                                for (int i = 0; i < medicos.size(); i++) {
-                                    System.out.println(medicos.get(i).getIdPersona());
-                                }
-
-                                /**
-                                 * -------------------Mostrar Lista Radiologos---------------------------------------
-                                 */
-                                PersonaServicioImpl personaServicioRadiologos = new PersonaServicioImpl();
-                                List<Persona> radiologos = personaServicioRadiologos.mostrarMedicosRadiologos();
-
-                                for (int i = 0; i < radiologos.size(); i++) {
-                                    System.out.println("El id de este radiologo es " + radiologos.get(i).getIdPersona());
-                                }
-
-                                request.setAttribute("listaRadiologos", radiologos);
-
-                                /**
-                                 * -------------------Mostrar Lista Residente---------------------------------------
-                                 */
-                                PersonaServicioImpl personaServicioResidentes = new PersonaServicioImpl();
-                                List<Persona> residentes = personaServicioResidentes.mostrarMedicosResidentes();
-
-                                for (int i = 0; i < residentes.size(); i++) {
-                                    System.out.println("El id de este residente es " + residentes.get(i).getIdPersona());
-                                }
-
-                                request.setAttribute("listaResidentes", residentes);
-
-                                /**
-                                 * -------------------Mostrar Lista Escolaridad---------------------------------------
-                                 */
-                                EscolaridadServicioImpl escolaridadServicio = new EscolaridadServicioImpl();
-                                List<Escolaridad> escolaridad = escolaridadServicio.mostrarEscolaridades();
-                                request.setAttribute("listaEscolaridad", escolaridad);
-
-                                System.out.println(escolaridad);
-
-                                /**
-                                 * -------------------Mostrar Lista Seguros---------------------------------------
-                                 */
-                                SeguroServicioImpl seguroServicio = new SeguroServicioImpl();
-                                List<Seguro> seguro = seguroServicio.mostrarAllSeguro();
-                                request.setAttribute("listaSeguro", seguro);
-
-                                System.out.println(seguro);
-
-                                /**
-                                 * -------------------Mostrar ista Tipo Cirugia---------------------------------------
-                                 */
-                                TipoTratamientoServiceImpl TipoTratamientoService = new TipoTratamientoServiceImpl();
-                                List<TipoTratamiento> tipoCirugia = TipoTratamientoService.mostrarTratamientoCirugia();
-                                request.setAttribute("listaCirugia", tipoCirugia);
-
-                                System.out.println(tipoCirugia);
-
-                                /**
-                                 * -------------------Mostrar Lista BI-RADS---------------------------------------
-                                 */
-                                BIRADSServicioImpl BIRADSServicio = new BIRADSServicioImpl();
-                                List<BIRADS> birads = BIRADSServicio.mostrarBIRADS();
-                                request.setAttribute("listaBirads", birads);
-
-                                System.out.println(birads);
-
-                                /**
-                                 * -------------------Mostrar Lista Tipo Histológico---------------------------------------
-                                 */
-                                TipoHistologicoServicioImpl TipoHistologicoServicio = new TipoHistologicoServicioImpl();
-                                List<TipoHistologico> tipoHistologico = TipoHistologicoServicio.mostraTipoHistologico();
-                                request.setAttribute("listaTipoHistologico", tipoHistologico);
-
-                                System.out.println(tipoHistologico);
-
-                                /**
-                                 * -------------------Mostrar Lista Nivel Socioeconomico---------------------------------------
-                                 */
-                                NivelSocioeconomicoServicioImpl NivelSocioeconomicoServicio = new NivelSocioeconomicoServicioImpl();
-                                List<NivelSocioeconomico> nivelSocioeconomico = NivelSocioeconomicoServicio.mostrarNivelSocioeconomico();
-                                request.setAttribute("listaNivelSocioEconomico", nivelSocioeconomico);
-
-                                System.out.println(nivelSocioeconomico);
-
-                                /**
-                                 * -------------------Mostrar Lista Estapa Clínica---------------------------------------
-                                 */
-                                EtapaClinicaServiceImpl etapaServicio = new EtapaClinicaServiceImpl();
-                                List<EtapaClinica> etapas = etapaServicio.mostrarEtapaClinica();
-                                request.setAttribute("listaEtapaClinica", etapas);
-
-                                System.out.println(etapas);
-
-                                /**
-                                 * -------------------Mostrar Lista T---------------------------------------
-                                 */
-                                TCodificadoServiceImpl TCodificadoService = new TCodificadoServiceImpl();
-                                List<TCodificado> TCodificado = TCodificadoService.mostrarTCodificado();
-                                request.setAttribute("listaT", TCodificado);
-
-                                System.out.println(TCodificado);
-
-                                /**
-                                 * -------------------Mostrar Lista N---------------------------------------
-                                 */
-                                NCodificadoServiceImpl NCodificadoService = new NCodificadoServiceImpl();
-                                List<NCodificado> NCodificado = NCodificadoService.mostrarNCodificado();
-                                request.setAttribute("listaN", NCodificado);
-
-                                System.out.println(NCodificado);
-
-                                /**
-                                 * -------------------Mostrar Lista M---------------------------------------
-                                 */
-                                MCodificadoServiceImpl MCodificadoService = new MCodificadoServiceImpl();
-                                List<MCodificado> MCodificado = MCodificadoService.mostrarMCodificado();
-                                request.setAttribute("listaM", MCodificado);
-
-                                System.out.println(MCodificado);
-
-                                /**
-                                 * -------------------Mostrar Lista Grados Histológico---------------------------------------
-                                 */
-                                GradoHistologicoServicioImpl GradoHistologicoServicio = new GradoHistologicoServicioImpl();
-                                List<GradoHistologico> gradoHistologico = GradoHistologicoServicio.mostrarGradoHistologico();
-                                request.setAttribute("listaGradoHistologico", gradoHistologico);
-
-                                System.out.println(gradoHistologico);
-
-                                /**
-                                 * -------------------Mostrar Lista HER2----------------------------------------
-                                 */
-                                Her2ServicioImpl Her2Servicio = new Her2ServicioImpl();
-                                List<Her2> her2 = Her2Servicio.mostrarHer2();
-                                request.setAttribute("listaHer2", her2);
-
-                                System.out.println(her2);
-
-                                /**
-                                 * -------------------Mostrar Lista Fish---------------------------------------
-                                 */
-                                FishServicioImpl FishServicio = new FishServicioImpl();
-                                List<Fish> fish = FishServicio.mostrarFish();
-                                request.setAttribute("listaFish", fish);
-
-                                System.out.println(fish);
-
-                                /**
-                                 * -------------------Mostrar Lista RE---------------------------------------
-                                 */
-                                ReceptorEstrogenoServicioImpl ReceptorEstrogenoServicio = new ReceptorEstrogenoServicioImpl();
-                                List<ReceptorEstrogeno> RE = ReceptorEstrogenoServicio.mostrarReceptorEstrogeno();
-                                request.setAttribute("listaRE", RE);
-
-                                System.out.println(RE);
-
-                                /**
-                                 * -------------------Mostrar Lista RP---------------------------------------
-                                 */
-                                ReceptorProgesteronaServicioImpl ReceptorProgesteronaServicio = new ReceptorProgesteronaServicioImpl();
-                                List<ReceptorProgesterona> RP = ReceptorProgesteronaServicio.mostrarAllReceptorProgesterona();
-                                request.setAttribute("listaRP", RP);
-
-                                System.out.println(RP);
-
-                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
-
-                                System.out.println("La fecha de hoy es");
-
-                                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                                Calendar cal = Calendar.getInstance();
-                                System.out.println(dateFormat.format(cal.getTime()));
-
-                                //Date fecha = Date.valueOf(dateFormat.format(cal.getTime()));
-                                /*
-                                PrintWriter out = response.getWriter();
-                                Gson json = new Gson();
-                                System.out.println(json);
-                                System.out.println(ElJeison);
-
-                                out.print(json.toJson(ElJeison));
-                                */
                                 break;
 
                             }
