@@ -302,6 +302,31 @@ public class AdministradorController extends HttpServlet {
                     break;
 
                 }
+                case "repiteNoEmpleadoEdit": {
+
+                    String noEmpleado = request.getParameter("noEmpleado");
+
+                    int idEmpleado = Integer.parseInt(request.getParameter("idEmpleado"));
+                    System.out.println("idEmpleado: " + idEmpleado);
+
+                    PrintWriter out = response.getWriter();
+
+                    EmpleadoServicioImpl empleadoServicio = new EmpleadoServicioImpl();
+
+                    //Checo si el usuario existe
+                    if (empleadoServicio.existsNoEmpleado(noEmpleado, idEmpleado)) {
+
+                        out.print("NoEmpleadoAlreadyExists");
+
+                    } else {
+
+                        //Si no existe, lo inserto
+                        out.print("NoEmpleadoDoesntExist");
+
+                    }
+                }
+                break;
+
                 case "repiteCorreoEditEmpleado": {
 
                     String correo = request.getParameter("correo");
@@ -365,6 +390,33 @@ public class AdministradorController extends HttpServlet {
                         System.out.println("NO EXISTE");
                         //Si no existe, lo inserto
                         out.print("CorreoDoesntExist");
+
+                    }
+                }
+                break;
+                
+                case "repiteUsuarioEdit": {
+
+                    String usuario = request.getParameter("usuario");
+                    int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
+                    
+                    System.out.println("usuario: " + usuario);
+                    System.out.println("idPaciente: " + idPaciente);
+                    
+                    CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+
+                    PrintWriter out = response.getWriter();
+
+                    System.out.println("ENTRA AQUÍ");
+
+                    //Checo si el usuario existe
+                    if (cuentaServicio.existsUsuario(usuario, idPaciente)) {
+                        System.out.println("EXISTE");
+                        out.print("UsuarioAlreadyExists");
+                    } else {
+                        System.out.println("NO EXISTE");
+                        //Si no existe, lo inserto
+                        out.print("UsuarioDoesn'tExists");
 
                     }
                 }

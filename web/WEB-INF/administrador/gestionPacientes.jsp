@@ -174,7 +174,7 @@
 
                         <div class="row">
                             <div class="col-12 centrado mb-3">
-                                <button style="border-radius:20px; vertical-align:middle" class="btn-reportePoblacion float-left"><span> Descargar Reporte de Población</span></button>
+                                <button style="border-radius:20px; vertical-align:middle" class="btn-reportePoblacion float-left" id="btn-poblacion"><span> Descargar Reporte de Población</span></button>
                             </div>
 
                         </div>
@@ -319,7 +319,7 @@
                                                 </div>
                                                 <input type="text" class="form-control" id="editarUsuarioAdministradorAPaciente" placeholder="Usuario">
                                             </div>
-                                            <span class="text-danger" id="error-editar-NombreUsuarioPaciente">Formato incorrecto, solo caracteres alfanuméricos con un mínimo de 4 y un máximo de 16 caracteres.</span><br>
+                                            <span class="text-danger" id="error-editar-NombreUsuarioPaciente">Formato incorrecto, solo caracteres alfanuméricos con un mínimo de 4 y un máximo de 16 caracteres.</span>
                                             <span class="text-warning" id="error-editar-UsuarioRepetidoPaciente">El usuario ya existe.</span>
                                         </div>
                                         <div class="col-6">
@@ -562,7 +562,7 @@
                                                 <input type="text" class="form-control" id="usuarioPaciente" usuario="usuarioPaciente" placeholder="Usuario">
 
                                             </div>
-                                            <span class="text-danger" id="errorNombreUsuarioPaciente">Formato incorrecto, solo caracteres alfanuméricos con un mínimo de 4 y un máximo de 16 caracteres.</span><br>
+                                            <span class="text-danger" id="errorNombreUsuarioPaciente">Formato incorrecto, solo caracteres alfanuméricos con un mínimo de 4 y un máximo de 16 caracteres.</span>
                                             <span class="text-warning" id="errorUsuarioRepetidoPaciente">El usuario ya existe.</span>
                                         </div>
                                         <div class="col-6">

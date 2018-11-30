@@ -297,6 +297,7 @@
                                             <input type="text" class="form-control" id="agregar-noEmpleadoAdministrador" placeholder="No. empleado">
                                         </div>
                                         <span class="text-danger" id="errorNumEmpleadoAdministrador">Formato incorrecto, deben ser 6 dígitos.</span>
+                                        <span class="text-warning" id="errorNumEmpleadoRepetidoAdministrador">El número de empleado ya existe.</span>
                                     </div>
                                 </div>
 
@@ -498,6 +499,7 @@
                                             <input type="text" id="editar-noEmpleadoAdministrador" class="form-control" placeholder="No. Empleado">
                                         </div>
                                         <span class="text-danger" id="errorEditarNumEmpleadoAdministrador">Formato incorrecto, deben ser 6 dígitos.</span>
+                                        <span class="text-warning" id="errorEditarNumEmpleadoRepetidoAdministrador">El número de empleado ya existe.</span>
                                     </div>
                                 </div>
 
