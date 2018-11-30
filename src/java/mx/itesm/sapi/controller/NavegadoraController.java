@@ -441,7 +441,7 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Sin paaciente para atender aún");
                             }
 
-                            if (idPaciente != 0) {
+                            if (idPaciente != 0 && sesion.getAttribute("path")!= null) {
 
                                 PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                                 Persona personaNombre = personaServicioImpl.mostrarPersonaPorIdPaciente(idPaciente);

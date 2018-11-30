@@ -1325,10 +1325,11 @@ $(document).ready(function () {
     });
     
     
-    $('.btn-aceptar-potencial').on('click',function(){
+   $('body').on('click', '.btn-aceptar-potencial', function () {
         $('#hidden-idPaciente').val('');
-        console.log("Me estás aceptando");
+            console.log("Me estás aceptando "+ $(this).data('id'));        
         $('#hidden-idPaciente').val($(this).data('id'));
     });
+    
     
 });
