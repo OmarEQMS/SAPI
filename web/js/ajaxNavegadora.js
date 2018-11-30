@@ -23,7 +23,7 @@ $(document).ready(function () {
     $('#errorCodigoPostalNavegadora').hide();
     $('#noEqualPasswordsErrorNavegadora').hide();
 
-
+    $('#error-campos').hide();
     $('#error-editar-NombreNavegadora').hide();
     $('#error-editar-ApellidoPaternoNavegadora').hide();
     $('#error-editar-ApellidoMaternoNavegadora').hide();
@@ -503,19 +503,17 @@ $(document).ready(function () {
 
 
         // FALTA OBTENER EL ID DEL PACIENTE 
-        if (!isValidCURP( $('#editarCurpNavegadoraAPaciente'))) {
-             swal({
-                        title: 'Información invalida',
-                        text: "Corrija la información invlaida para continuar",
-                        icon: "error",
-                        
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Ok'
-                    });
-            //$('#error-editar-CurpNavegadora').show();  if ($('#tieneSeguroPopular').is(':checked')) $('#tiene-seguro').show(); 
+        if (!isValidCURP( $('#editarCurpNavegadoraAPaciente')) || !isValidDate( $("#editarCumpleNavegadoraAPaciente")) || !isValidPhoneNumber( $("#editarTelNavegadoraAPaciente")) 
+                || !isValidColonia( $('#editarColNavegadoraAPaciente')) || !isValidStreet($('#editarCalleNavegadoraAPaciente')) || !isValidExtNumber(  $("#editarNumExtNavegadoraAPaciente")) 
+                || !isValidIntNumber($("#editarNumIntNavegadoraAPaciente")) || !isValidName($('#editarNombreNavegadoraAPaciente')) || !isValidLastName( $('#editarPrimer-apellidoNavegadoraAPaciente')) 
+                || !isValidUserName( $('#editarUsuarioNavegadoraAPaciente')) || !isValidEmail( $('#editarCorreoNavegadoraAPaciente'))
+                ) {
             
-        } else {
+          $('#error-campos').show();
             
+        } 
+        else {
+            $('#error-campos').hide();
             $.ajax({
                 url: 'NavegadoraController',
                 cache: false,
@@ -1899,9 +1897,10 @@ $(document).ready(function () {
 
         if (isValidCURP($(this))) {
             $('#errorCurpNavegadora').hide();
-        } else if ($(this).val() == '') {
+        } else if ($(this).val() === '') {
             $('#errorCurpNavegadora').hide();
-        } else {
+        } 
+        else {
             $('#errorCurpNavegadora').show();
         }
     });
