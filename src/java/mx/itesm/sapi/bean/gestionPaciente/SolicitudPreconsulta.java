@@ -47,6 +47,9 @@ public class SolicitudPreconsulta {
         .concat(",referencia:").concat(referencia)
         .concat(",mastografia:").concat(mastografia)
         .concat(",ultrasonido:").concat(ultrasonido)
+        .concat(",motivoConsulta: ").concat(String.valueOf(motivoCosulta))
+        .concat(",otro: ").concat(otro)
+        .concat(",hospital").concat(hospital)
         .concat("]");
         return str;
     }
@@ -56,31 +59,6 @@ public class SolicitudPreconsulta {
     }
  */   
 
-    public String getOtro() {
-        return otro;
-    }
-
-    public void setOtro(String otro) {
-        this.otro = otro;
-    }
-
-    public String getHospital() {
-        return hospital;
-    }
-
-    public void setHospital(String hospital) {
-        this.hospital = hospital;
-    }
-
-    
-    public int getMotivoCosulta() {
-        return motivoCosulta;
-    }
-
-    public void setMotivoCosulta(int motivoCosulta) {
-        this.motivoCosulta = motivoCosulta;
-    }
-    
     public int getIdSexo() {
         return idSexo;
     }
@@ -183,6 +161,30 @@ public class SolicitudPreconsulta {
 
     public void setUltrasonido(String ultrasonido) {
         this.ultrasonido = ultrasonido;
+    }
+
+    public int getMotivoCosulta() {
+        return motivoCosulta;
+    }
+
+    public void setMotivoCosulta(int motivoCosulta) {
+        this.motivoCosulta = motivoCosulta;
+    }
+
+    public String getOtro() {
+        return otro;
+    }
+
+    public void setOtro(String otro) {
+        this.otro = otro;
+    }
+
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
     }
 
     
