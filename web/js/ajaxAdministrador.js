@@ -3286,14 +3286,13 @@ $(document).ready(function () {
 
                         t.row.add([
                             '',
-                            $("#nombrePaciente").val() + " " + $("#primer-apellidoPaciente").val() + " " + $("#segundo-apellidoPaciente").val(),
+                            "<span id='nombre-" + response + "'>" + $("#nombrePaciente").val() + " " + $("#primer-apellidoPaciente").val() + " " + $("#segundo-apellidoPaciente").val() + "</span>",
                             '',
                             '',
-                            $("#telPaciente").val(),
-                            $("#estadoPaciente option:selected").text(),
+                            "<span id='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
+                            "<span id='estado-" + response + "'>" + $("#estadoPaciente option:selected").text() + "</span>",
                             '',
                             "<button class='btn btn-primary btn-editarPaciente m-1' data-toggle='modal' data-target='#modalEditarPaciente' data-id='" + response + "'><i class='fas fa-edit'></i></button>" +
-                                    "<button class='btn btn-primary descargarFormulario m-1' data-id='" + response + "'><i class='fas fa-cloud-download-alt'></i></button>" +
                                     "<button class='btn btn-danger btn-eliminarPaciente m-1' data-id='" + response + "'><i class='fas fa-trash-alt'></i></button>"
                         ]).draw(false);
                     }
