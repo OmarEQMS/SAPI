@@ -3522,10 +3522,10 @@ $(document).ready(function () {
 //1./ checkbox habilitado
             if ($('#seLlamo').prop('checked', true)) {
 //2. habilitar init
-                $('#llamadaInit').show();
+                $('.llamadaInit').show();
 
             } else {
-                $('#llamadaInit').hide();
+                $('.llamadaInit').hide();
             }
 
 

@@ -297,6 +297,7 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
                 mFormularioGeneral.setComentarioLLamada(rs.getString("comentario"));
                 mFormularioGeneral.setFechaLlamada(rs.getDate("fecha"));
 
+
                 citas.add(mFormularioGeneral);
 
             }
