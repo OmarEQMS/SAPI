@@ -386,6 +386,7 @@ $(document).ready(function () {
 
     });
 
+    var repiteNoEmpleadoAdministrador;
     $('#agregar-noEmpleadoAdministrador').on('change', function () {
 
         $.ajax({
@@ -403,11 +404,11 @@ $(document).ready(function () {
                     console.log("NoEmpleado repetidooo")
                     $('#agregar-noEmpleadoAdministrador').css('color', 'orange');
                     $('#errorNumEmpleadoRepetidoAdministrador').show();
-                    repiteCorreoAdministrador = true;
+                    repiteNoEmpleadoAdministrador = true;
                 } else {
                     console.log("NoEmpleado no repetidooo")
                     $('#errorNumEmpleadoRepetidoAdministrador').hide();
-                    repiteCorreoAdministrador = false;
+                    repiteNoEmpleadoAdministrador = false;
                 }
 
             }
@@ -908,7 +909,8 @@ $(document).ready(function () {
         }
 
     });
-
+    
+    var repiteNoEmpleadoMedico;
     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
     $('#agregar-noEmpleadoMedico').on('change', function () {
         
@@ -929,11 +931,11 @@ $(document).ready(function () {
                     console.log("NoEmpleado repetidooo")
                     $('#agregar-noEmpleadoMedico').css('color', 'orange');
                     $('#errorNumEmpleadoRepetidoMedico').show();
-                    repiteCorreoAdministrador = true;
+                    repiteNoEmpleadoMedico = true;
                 } else {
                     console.log("NoEmpleado no repetidooo")
                     $('#errorNumEmpleadoRepetidoMedico').hide();
-                    repiteCorreoAdministrador = false;
+                    repiteNoEmpleadoMedico = false;
                 }
 
             }
