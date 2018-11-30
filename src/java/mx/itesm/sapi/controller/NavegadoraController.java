@@ -3098,13 +3098,7 @@ public class NavegadoraController extends HttpServlet {
                             break;
                         }
 
-                        case "autocompleteBiopsia": {
-
-                            AutocompletadoServicioImpl autocompletadoServicioImpl = new AutocompletadoServicioImpl();
-
-                            break;
-                        }
-
+                        
                         case "agregarCitaResultados": {
 
                             PrintWriter out = response.getWriter();
@@ -3157,6 +3151,40 @@ public class NavegadoraController extends HttpServlet {
                             break;
 
                         }
+                        
+                        case "autocompleteLugarDelCuerpo": {
+
+                            LugarDelCuerpoServicioImpl lugarDelCuerpoServicioImpl = new LugarDelCuerpoServicioImpl();
+                            
+                            List<LugarDelCuerpo> lugaresDelCuerpo =  lugarDelCuerpoServicioImpl.mostrarLugarDelCuerpo();
+                            
+                            for(int i=0; i<lugaresDelCuerpo.size(); i++){
+                                System.out.println(lugaresDelCuerpo.get(i));
+                            }
+
+                            PrintWriter out = response.getWriter();
+
+                            Gson json = new Gson();
+                            
+                            out.print(json.toJson(lugaresDelCuerpo));
+                            
+                            break;
+                        }
+                        
+                        case "autocompleteBiopsia": {
+
+                            TipoBiopsiaServicioImpl tipoBiopsiaServicioImpl = new TipoBiopsiaServicioImpl();
+                            
+                            List<TipoBiopsia> tipoBiosiaLista =  tipoBiopsiaServicioImpl.mostrarListaTipoBiopsia();
+
+                            PrintWriter out = response.getWriter();
+
+                            Gson json = new Gson();
+                            
+                            out.print(json.toJson(tipoBiosiaLista));
+                            
+                            break;
+                        }
 
                         case "autocompleteRayosX": {
 
@@ -3167,6 +3195,7 @@ public class NavegadoraController extends HttpServlet {
                             PrintWriter out = response.getWriter();
 
                             Gson json = new Gson();
+                            
                             out.print(json.toJson(estudios));
 
                             break;
@@ -3182,6 +3211,8 @@ public class NavegadoraController extends HttpServlet {
                             PrintWriter out = response.getWriter();
 
                             Gson json = new Gson();
+                            
+                            out.flush();
                             out.print(json.toJson(estudios));
 
                             break;
@@ -3197,6 +3228,7 @@ public class NavegadoraController extends HttpServlet {
                             PrintWriter out = response.getWriter();
 
                             Gson json = new Gson();
+                            out.flush();
                             out.print(json.toJson(estudios));
 
                             break;
@@ -3211,6 +3243,7 @@ public class NavegadoraController extends HttpServlet {
                             PrintWriter out = response.getWriter();
 
                             Gson json = new Gson();
+                            out.flush();
                             out.print(json.toJson(estudios));
 
                             break;
@@ -3225,11 +3258,15 @@ public class NavegadoraController extends HttpServlet {
                             PrintWriter out = response.getWriter();
 
                             Gson json = new Gson();
+                            out.flush();
                             out.print(json.toJson(estudios));
 
                             break;
 
+
                         }
+
+                        
                         case "cancelarCitaPotencial": {
                             PrintWriter out = response.getWriter();
                             try {

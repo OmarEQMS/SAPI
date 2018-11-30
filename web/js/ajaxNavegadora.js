@@ -47,6 +47,210 @@ $(document).ready(function () {
     $('#noEqualPasswordsError').hide();
         
 
+    var lugarDelCuerpo = $("#listLugarDelCuerpo");
+
+    $.ajax({
+        url: 'NavegadoraController',
+        cache: false,
+        method: 'POST',
+        data: {key: "autocompleteLugarDelCuerpo"}
+    })
+
+            .done(function (response) {
+                console.log('voy a imprimir la respuesta de lugarDelCuerpo');
+                console.log(response);
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+
+                    var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
+                    console.log(newObjeto);
+                    lugarDelCuerpo.append(newObjeto);
+                }
+
+
+                console.log(JSON.stringify(lugarDelCuerpo));
+
+            });
+
+
+ var biopsia = $("#listBiopsia");
+
+    $.ajax({
+        url: 'NavegadoraController',
+        cache: false,
+        method: 'POST',
+        data: {key: "autocompleteBiopsia"}
+    })
+
+            .done(function (response) {
+                console.log('voy a imprimir la respuesta de Biopsia');
+                console.log(response);
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+
+                    var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
+                    biopsia.append(newObjeto);
+                }
+
+
+                console.log(JSON.stringify(biopsia));
+
+            });
+
+
+ var rayosX = $("#listRayosX");
+
+    $.ajax({
+        url: 'NavegadoraController',
+        cache: false,
+        method: 'POST',
+        data: {key: "autocompleteRayosX"}
+    })
+
+            .done(function (response) {
+                console.log('voy a imprimir la respuesta de RayosX');
+                console.log(response);
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+
+                    var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
+                    rayosX.append(newObjeto);
+                }
+
+
+                console.log(JSON.stringify(rayosX));
+
+            });
+
+
+
+
+
+
+//AutocompleteRayosX
+
+   
+
+
+
+//AutocompleteUltrasonido
+
+    var ultraSonido = $("#listUltraSonido");
+
+    $.ajax({
+        url: 'NavegadoraController',
+        cache: false,
+        method: 'POST',
+        data: {key: "autocompleteUltraSonido"}
+    })
+
+            .done(function (response) {
+                console.log('voy a imprimir la respuesta UltraSonido');
+                console.log(response);
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+                    var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
+                    ultraSonido.append(newObjeto);
+                }
+
+
+                console.log(ultraSonido);
+
+            });
+
+
+
+
+    
+
+
+
+
+//AutocompletePrograma
+
+   var programa = $("#listPrograma");
+
+    $.ajax({
+        url: 'NavegadoraController',
+        cache: false,
+        method: 'POST',
+        data: {key: "autocompletePrograma"}
+    })
+
+            .done(function (response) {
+                console.log('voy a imprimir la respuesta Programa');
+                console.log(response);
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+                    var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
+                    programa.append(newObjeto);
+                }
+
+
+                console.log(programa);
+
+            });
+
+
+
+
+//AutocompleteMedicinaNuclear
+
+    var medicinaNuclear = $("#listMedicinaNuclear");
+
+    $.ajax({
+        url: 'NavegadoraController',
+        cache: false,
+        method: 'POST',
+        data: {key: "autocompleteMedicinaNuclear"}
+    })
+
+            .done(function (response) {
+                console.log('voy a imprimir la respuesta MedicinaNuclear');
+                console.log(response);
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+                    var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
+                    medicinaNuclear.append(newObjeto);
+                }
+
+
+                console.log(medicinaNuclear);
+
+            });
+
+
+//AutocompleteValoracion
+
+    var valoracion = $("#listValoracion");
+
+    $.ajax({
+        url: 'NavegadoraController',
+        cache: false,
+        method: 'POST',
+        data: {key: "autocompleteValoracion"}
+    })
+
+            .done(function (response) {
+                console.log('voy a imprimir la respuesta Valoracion');
+                console.log(response);
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+                    var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
+                    valoracion.append(newObjeto);
+                }
+
+
+                console.log(valoracion);
+
+            });
+
+
+
+   
+
+
+
 
     
      
