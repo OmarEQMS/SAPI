@@ -370,8 +370,7 @@ $(document).ready(function () {
 
     //agregar biopsia
 
-   
-     $('.add-biopsia').on('click', function () {
+    $('.add-biopsia').on('click', function () {
 
         var plantilla =
 
@@ -422,8 +421,8 @@ $(document).ready(function () {
 
     //remover biopsia
     $('body').on('click', '.remove-biopsia', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     //agregar rayos
@@ -469,8 +468,8 @@ $(document).ready(function () {
 
     //remover rayos
     $('body').on('click', '.remove-rayos', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-ultrasonido').on('click', function () {
@@ -515,8 +514,8 @@ $(document).ready(function () {
 
     //remover ultrasonidos
     $('body').on('click', '.remove-ultrasonido', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-medicinaNuclear').on('click', function () {
@@ -559,8 +558,8 @@ $(document).ready(function () {
 
     //remover rayos
     $('body').on('click', '.remove-medicinaNuclear', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-laboratorio').on('click', function () {
@@ -598,8 +597,8 @@ $(document).ready(function () {
 
     //remover laboratorio
     $('body').on('click', '.remove-laboratorio', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-valoracion').on('click', function () {
@@ -642,8 +641,8 @@ $(document).ready(function () {
 
     //remover valoracion
     $('body').on('click', '.remove-valoracion', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-espirometria').on('click', function () {
@@ -681,8 +680,8 @@ $(document).ready(function () {
 
     //remover valoracion
     $('body').on('click', '.remove-espirometria', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-electrocardiograma').on('click', function () {
@@ -720,8 +719,8 @@ $(document).ready(function () {
 
     //remover electrocardiograma
     $('body').on('click', '.remove-electrocardiograma', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-ecocardiograma').on('click', function () {
@@ -760,8 +759,8 @@ $(document).ready(function () {
 
     //remover ecocardiograma
     $('body').on('click', '.remove-ecocardiograma', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-trabajoSocial').on('click', function () {
@@ -799,8 +798,8 @@ $(document).ready(function () {
 
     //remover trabajoSocial
     $('body').on('click', '.remove-trabajoSocial', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-programa').on('click', function () {
@@ -813,7 +812,7 @@ $(document).ready(function () {
 
 
                     <div class="col-5">
-                        <input name="programaAdded" type="text" id="tipoPrograma" list="listPrograma" class="form-control programa" placeholder="Introduce programa">
+                        <input name="programaAdded" type="text" id="tipoPrograma" class="form-control programa" list="listPrograma" placeholder="Introduce programa">
                     </div>
 
                     <div class="col-5">
@@ -843,8 +842,8 @@ $(document).ready(function () {
 
     //remover trabajoSocial
     $('body').on('click', '.remove-programa', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
 
     $('.add-otro').on('click', function () {
@@ -886,13 +885,10 @@ $(document).ready(function () {
 
     //remover trabajoSocial
     $('body').on('click', '.remove-otro', function () {
-        $(this).parent().parent().remove();
-
+        $(this).parent().parent().data("accion", "eliminar");
+        $(this).parent().parent().hide();
     });
-   
-   
-   
-   //
+
     $('.add-llamada').on('click', function () {
 
         var plantilla =

@@ -811,6 +811,8 @@
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="tiene-biopsia">
                                                     <label class="form-check-label" for="tiene-biopsia"> Biopsia</label>
+                                                    <datalist id="listBiopsia"></datalist>
+                                                    <datalist id="listLugarDelCuerpo"></datalist>
                                                 </div>
                                             </div>
                                             <!-- boton agregar biopsia -->
@@ -839,6 +841,7 @@
                                                 <div class="form-check form-check-inline">
                                                     <input name="rayosAdded" class="form-check-input" type="checkbox" id="tiene-rayosX">
                                                     <label class="form-check-label" for="tiene-rayosX"> Rayos X</label>
+                                                    <datalist id="listRayosX"></datalist>
                                                 </div>
                                             </div>
                                             <!-- boton agregar rayos -->
@@ -867,6 +870,7 @@
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-ultrasonido" class="form-check-input" type="checkbox" id="tiene-ultrasonido">
                                                     <label class="form-check-label" for="tiene-ultrasonido"> Ultrasonido</label>
+                                                    <datalist id="listUltraSonido"></datalist>
                                                 </div>
                                             </div>
                                             <!-- boton agregar ultrasonido -->
@@ -895,6 +899,7 @@
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-medicina-nuclear" class="form-check-input" type="checkbox" id="tiene-medicina-nuclear">
                                                     <label class="form-check-label" for="tiene-medicina-nuclear"> Medicina Nuclear</label>
+                                                    <datalist id="listMedicinaNuclear"></datalist>
                                                 </div>
                                             </div>
                                             <!-- boton agregar medicina nuclear -->
@@ -950,6 +955,7 @@
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-valoracion" class="form-check-input" type="checkbox" id="tiene-valoracion">
                                                     <label class="form-check-label" for="tiene-valoracion"> Valoración</label>
+                                                    <datalist id="listValoracion"></datalist>
                                                 </div>
                                             </div>
                                             <!-- boton agregar valoración -->
@@ -1089,6 +1095,7 @@
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-programa" class="form-check-input" type="checkbox" id="tiene-programa">
                                                     <label class="form-check-label" for="tiene-programa"> Programa</label>
+                                                    <datalist id="listPrograma"></datalist>
                                                 </div>
                                             </div>
                                             <!-- boton agregar programa -->
