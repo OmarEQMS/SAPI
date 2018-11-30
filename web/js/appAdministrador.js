@@ -9,6 +9,8 @@ $(document).ready(function () {
     mostrarContrasena($('#cambio2Contrasena'),'password2');
     mostrarContrasena($('#adminContrasena'),'agregar-passwordAdministrador');
     mostrarContrasena($('#adminConfirmContrasena'),'agregar-password2Administradores');
+    mostrarContrasena($('#pacienteContrasena'),'contraPaciente');
+    mostrarContrasena($('#pacienteContrasenaConfirmacion'),'confContraPaciente');
 
 
     //Esconder menu lateral a presionar click en el menu hamburguesa
@@ -234,7 +236,7 @@ $(document).ready(function () {
         $('#curpPaciente').css('border', '');
         $('#curpPaciente').css('color', '');
 
-        $('#cumplePaciente').val("");
+        $("#cumplePaciente").attr("type", "text").val('').attr("placeholder", "Fecha de nacimiento");
         $('#cumplePaciente').css('border', '');
         $('#cumplePaciente').css('color', '');
 
@@ -250,7 +252,7 @@ $(document).ready(function () {
         $('#usuarioPaciente').css('border', '');
         $('#usuarioPaciente').css('color', '');
 
-        $('#estado-civilPaciente').val("");
+        $("#estado-civilPaciente").prop('selectedIndex', 0);
         $('#estado-civilPaciente').css('border', '');
         $('#estado-civilPaciente').css('color', '');
 
@@ -270,10 +272,17 @@ $(document).ready(function () {
         $('#numExtPaciente').css('border', '');
         $('#numExtPaciente').css('color', '');
 
-        $('#estadoPaciente').val("");
+        $('#estadoPaciente').prop('selectedIndex', 0);
         $('#estadoPaciente').css('border', '');
         $('#estadoPaciente').css('color', '');
 
+        $('#municipioPaciente').append("<option disabled selected>" + "Seleccione un Municipio" + "</option>");
+        $('#municipioPaciente').css('border', '');
+        $('#municipioPaciente').css('color', '');
+        
+        $("#acepto-terminos").prop("checked", false);
+        
+        
         $('#telPaciente').val("");
         $('#telPaciente').css('border', '');
         $('#telPaciente').css('color', '');
@@ -281,6 +290,14 @@ $(document).ready(function () {
         $('#correoPaciente').val("");
         $('#correoPaciente').css('border', '');
         $('#correoPaciente').css('color', '');
+        
+        $('#contraPaciente').val("");
+        $('#contraPaciente').css('border', '');
+        $('#contraPaciente').css('color', '');
+        
+        $('#confContraPaciente').val("");
+        $('#confContraPaciente').css('border', '');
+        $('#confContraPaciente').css('color', '');
 
 
         $('#errorNombrePaciente').hide();
@@ -304,7 +321,9 @@ $(document).ready(function () {
         $('#errorPasscumplePacientePaciente').hide();
         $('#error-CPexistePaciente').hide();
         $('#errorCodigoPostalPaciente').hide();
+        $('#errorPass1Paciente').hide();
         $('#noEqualPasswordsErrorPaciente').hide();
+        $('#errorCorreoRepetidoPaciente').hide();
         $('#error-terminos').hide();
 
     });
@@ -372,6 +391,8 @@ $(document).ready(function () {
         $('#error-editar-MunicipioPaciente').hide();
         $('#error-editar-UsuarioRepetidoPaciente').hide();
         $('#errorEditarPacienteCorreoRepetido').hide();
+        $('#error-editarDatosRepetidosPaciente').hide();
+        
 
     });
 

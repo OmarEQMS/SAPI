@@ -51,6 +51,11 @@
             <img src="img/loading.svg">
             <p class="clear">Actualizando información del administrador, por favor espere...</p>
         </div>
+        
+        <div class="cargandoEliminarAdmin" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Eliminando al administrador, por favor espere...</p>
+        </div>
 
         <div class="wrapper">
 
@@ -71,7 +76,7 @@
 
                     <div class="row">
                         <div class="col-12 mb-2 mt-4">
-                            <img src="img/user.png" class="imagenPerfil" alt="">
+                            <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="imagenPerfil edit-image" width="66px" height="66px" alt="">
                         </div>
                     </div>
 
@@ -85,11 +90,11 @@
                     <div class="row justify-content-center">
 
                         <div class="col-2 text-center">
-                            <a class="iconoSidebar" href="" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
+                            <a class="iconoSidebar IrAMiCuenta" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
                         </div>
 
                         <div class="col-2">
-                            <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
+                            <a class="iconoSidebar salirCuenta" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
                         </div>
 
                     </div>
@@ -144,9 +149,9 @@
                     </div>
                 </nav>
 
-                <div class="row mb-3 justify-content-end">
-                    <div class="col-3 text-center">
-                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="IrAInicio" class="colorMoradoLight">Inicio</a></span></span>
+                <div class="row mb-3">
+                    <div class="col-12 text-right">
+                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a class="colorMoradoLight">Administrador</a></span></span>
                     </div>
                 </div>
 
@@ -215,7 +220,7 @@
                 </div>
 
                 <!-- ********** MODAL AGREGAR ADMINISTRADOR ********** -->
-                <div class="modal fade" id="modalAgregarAdministrador" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal fade" id="modalAgregarAdministrador" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -404,7 +409,7 @@
                 </div>
 
                 <!-- ********** MODAL EDITAR ADMINISTRADOR ********** -->
-                <div class="modal fade" id="modalEditarAdministrador" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal fade" id="modalEditarAdministrador" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
