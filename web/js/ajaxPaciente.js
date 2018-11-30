@@ -495,9 +495,6 @@ $(document).ready(function () {
 
             var fechaInicioTratamiento = $("#fechaInicioTratamiento").val();
 
-            alert(fechaInicioTratamiento);
-
-
             $.ajax({
                 url: 'PacienteController',
                 cache: false,
