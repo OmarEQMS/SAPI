@@ -12,6 +12,7 @@ $(document).ready(function () {
     $('#errorCorreoAdministrador').hide();
     $('#errorCorreoRepetidoAdministrador').hide();
     $('#errorNumEmpleadoAdministrador').hide();
+    $('#errorNumEmpleadoRepetidoAdministrador').hide();
     $('#errorAgregarEspecialidadAdministrador').hide();
     $('#errorAgregarPosicionAdministrador').hide();
     $('#errorCedulaAdministrador').hide();
@@ -386,6 +387,32 @@ $(document).ready(function () {
     });
 
     $('#agregar-noEmpleadoAdministrador').on('change', function () {
+
+        $.ajax({
+
+            url: 'RegistraUsuarioController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "repiteNoEmpleado",
+                noEmpleado: $('#agregar-noEmpleadoAdministrador').val()
+            },
+            success: function (response) {
+
+                if (response === 'NoEmpleadoAlreadyExists') {
+                    console.log("NoEmpleado repetidooo")
+                    $('#agregar-noEmpleadoAdministrador').css('color', 'orange');
+                    $('#errorNumEmpleadoRepetidoAdministrador').show();
+                    repiteCorreoAdministrador = true;
+                } else {
+                    console.log("NoEmpleado no repetidooo")
+                    $('#errorNumEmpleadoRepetidoAdministrador').hide();
+                    repiteCorreoAdministrador = false;
+                }
+
+            }
+
+        });
 
         if (isValidNumEmpleado($(this))) {
             $('#errorNumEmpleadoAdministrador').hide();
@@ -828,6 +855,7 @@ $(document).ready(function () {
     $('#errorCorreoMedico').hide();
     $('#errorCorreoRepetido').hide();
     $('#errorNumEmpleado').hide();
+    $('#errorNumEmpleadoRepetidoMedico').hide();
     $('#errorCedulaMedicos').hide();
     $('#errorPass1Medico').hide();
     $('#noEqualPasswordsError').hide();
@@ -883,6 +911,34 @@ $(document).ready(function () {
 
     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
     $('#agregar-noEmpleadoMedico').on('change', function () {
+        
+        console.log("hola")
+        
+        $.ajax({
+
+            url: 'RegistraUsuarioController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "repiteNoEmpleado",
+                noEmpleado: $('#agregar-noEmpleadoMedico').val()
+            },
+            success: function (response) {
+
+                if (response === 'NoEmpleadoAlreadyExists') {
+                    console.log("NoEmpleado repetidooo")
+                    $('#agregar-noEmpleadoMedico').css('color', 'orange');
+                    $('#errorNumEmpleadoRepetidoMedico').show();
+                    repiteCorreoAdministrador = true;
+                } else {
+                    console.log("NoEmpleado no repetidooo")
+                    $('#errorNumEmpleadoRepetidoMedico').hide();
+                    repiteCorreoAdministrador = false;
+                }
+
+            }
+
+        });
 
         if (isValidNumEmpleado($(this))) {
             $('#errorNumEmpleado').hide();

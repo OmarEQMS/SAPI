@@ -9,13 +9,17 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
 import mx.itesm.sapi.bean.moduloGestionMedico.Identificadores;
 import mx.itesm.sapi.bean.moduloGestionMedico.RestringirEmpleado;
 import mx.itesm.sapi.bean.moduloGestionMedico.TablaAdministradorAdministrador;
 import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
+import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.util.Conexion;
 
 /**
@@ -409,6 +413,57 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
         }
 
         return administradores;
+    }
+    
+    @Override
+    public boolean existsNoEmpleado(String noEmpleado) {
+
+        Connection conn = Conexion.getConnection();
+
+        CallableStatement cstmt;
+
+        try {
+
+            cstmt = conn.prepareCall("CALL existeNoEmpleado(?,?)");
+            cstmt.setString(1, noEmpleado);
+            cstmt.registerOutParameter(2, Types.BOOLEAN);
+
+            cstmt.execute();
+            return cstmt.getBoolean(2);
+
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            return false;
+        }
+
+    }
+
+    @Override
+    public boolean existsNoEmpleado(String noEmpleado, int idEmpleado) {
+
+        Connection conn = Conexion.getConnection();
+
+        CallableStatement cstmt;
+
+        try {
+            cstmt = conn.prepareCall("CALL existeNoEmpleadoIdEmpleado(?, ?, ?)");
+            cstmt.setString(1, noEmpleado);
+            cstmt.setInt(2, idEmpleado);
+            cstmt.registerOutParameter(3, Types.BOOLEAN);
+
+            System.out.println("existeCorreoIdPersona: ".concat(cstmt.toString()));
+            cstmt.execute();
+            return cstmt.getBoolean(3);
+
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            return false;
+        }
+
     }
 
 }

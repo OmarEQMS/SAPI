@@ -292,6 +292,7 @@
                                             <input type="text" class="form-control" id="agregar-noEmpleadoAdministrador" placeholder="No. empleado">
                                         </div>
                                         <span class="text-danger" id="errorNumEmpleadoAdministrador">Formato incorrecto, deben ser 6 dígitos.</span>
+                                        <span class="text-warning" id="errorNumEmpleadoRepetidoAdministrador">El correo ya existe.</span>
                                     </div>
                                 </div>
 
