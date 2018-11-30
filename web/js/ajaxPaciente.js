@@ -485,50 +485,6 @@ $(document).ready(function () {
         }
     });
 
-    //TABLA TRATAMIENTOS
-    $('#tablaTratamientos').DataTable({
-        responsive: true,
-        searching: true,
-        dom: 'lBfrtip',
-        buttons: [, ],
-
-        "language": {
-
-            "sProcessing": "Procesando...",
-            "sLengthMenu": "Mostrar _MENU_ registros",
-            "sZeroRecords": "No se encontraron resultados",
-            "sEmptyTable": "Ningún dato disponible en esta tabla",
-            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "sInfoPostFix": "",
-            "sSearch": "Buscar:",
-            "sUrl": "",
-            "sInfoThousands": ",",
-            "sLoadingRecords": "Cargando...",
-            "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Último",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "oAria": {
-                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-            },
-            'createdRow': function (row, data, dataIndex) {
-                $(row).attr('id', 'row-' + dataIndex);
-            },
-            "columnDefs": [{
-                    "targets": 0,
-                    "createdCell": function (td, cellData, rowData, row, col) {
-                            $(td).attr('id', 'cell-');
-                    }
-                }]
-        }
-
-    });
-
     //Agregar tratamientos
     $("#btn-agregarTratamiento").on('click', function () {
 
@@ -575,7 +531,7 @@ $(document).ready(function () {
                                     "<input type='hidden' value='" + response + "' id='boton-" + response + "'>" +
                                     $("#nombreTipoTratamiento").val(),
                             fechaInicioTratamiento,
-                            '',
+                            "<span id='fecha-" + response + "'></span>",
                             "<button class='btn btn-primary terminarTratamiento' id='modal-" + response + "' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button>"
                         ]).draw(false);
 
