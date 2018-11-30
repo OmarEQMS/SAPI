@@ -71,43 +71,43 @@ $(document).ready(function () {
                     },
                     success: function (response) {
 
-                            //mensaje de confirmacion
-                            swal({
-                                title: "¡Buen trabajo!",
-                                text: "Administrador agregado correctamente.",
-                                icon: "success",
-                                buttons: [, 'Aceptar'],
-                            });
+                        //mensaje de confirmacion
+                        swal({
+                            title: "¡Buen trabajo!",
+                            text: "Administrador agregado correctamente.",
+                            icon: "success",
+                            buttons: [, 'Aceptar'],
+                        });
 
-                            var t = $('#tablaAdministradores').DataTable();
+                        var t = $('#tablaAdministradores').DataTable();
 
-                            t.row.add([
-                                $("#agregar-nombreAdministrador").val() + " " + $("#agregar-primerApellidoAdministrador").val() + " " + $("#agregar-segundoApellidoAdministrador").val(),
-                                $("#agregar-correoAdministrador").val(),
-                                $("#agregar-telefonoAdministrador").val(),
-                                $("#agregar-noEmpleadoAdministrador").val(),
-                                $("#agregar-especialidadAdministrador").val(),
-                                $("#agregar-cedulaAdministrador").val(),
-                                "<button class='btn btn-primary btn-editarAdministrador m-1' data-toggle='modal' data-id='" + response + "' data-target='#modalEditarAdministrador'><i class='fas fa-edit'></i></button>" +
-                                        "<button class='btn btn-danger m-1 btn-eliminarAdministrador' data-id='" + response + "'><i class='fas fa-trash-alt'></i></button>"
-                            ]).draw(false);
+                        t.row.add([
+                            $("#agregar-nombreAdministrador").val() + " " + $("#agregar-primerApellidoAdministrador").val() + " " + $("#agregar-segundoApellidoAdministrador").val(),
+                            $("#agregar-correoAdministrador").val(),
+                            $("#agregar-telefonoAdministrador").val(),
+                            $("#agregar-noEmpleadoAdministrador").val(),
+                            $("#agregar-especialidadAdministrador").val(),
+                            $("#agregar-cedulaAdministrador").val(),
+                            "<button class='btn btn-primary btn-editarAdministrador m-1' data-toggle='modal' data-id='" + response + "' data-target='#modalEditarAdministrador'><i class='fas fa-edit'></i></button>" +
+                                    "<button class='btn btn-danger m-1 btn-eliminarAdministrador' data-id='" + response + "'><i class='fas fa-trash-alt'></i></button>"
+                        ]).draw(false);
 
-                            //limpiar los campos del modal
-                            $('#agregar-nombreAdministrador').val('');
-                            $('#agregar-telefonoAdministrador').val('');
-                            $('#agregar-primerApellidoAdministrador').val('');
-                            $('#agregar-segundoApellidoAdministrador').val('');
-                            $('#agregar-correoAdministrador').val('');
-                            $('#agregar-noEmpleadoAdministrador').val('');
-                            $('#agregar-especialidadAdministrador').val('');
-                            $('#agregar-posiciondAdministrador').val('');
-                            $('#agregar-cedulaAdministrador').val('');
-                            $('#agregar-passwordAdministrador').val('');
-                            $('#agregar-password2Administradores').val('');
-                            $("#terminosAdministrador").prop("checked", false);
+                        //limpiar los campos del modal
+                        $('#agregar-nombreAdministrador').val('');
+                        $('#agregar-telefonoAdministrador').val('');
+                        $('#agregar-primerApellidoAdministrador').val('');
+                        $('#agregar-segundoApellidoAdministrador').val('');
+                        $('#agregar-correoAdministrador').val('');
+                        $('#agregar-noEmpleadoAdministrador').val('');
+                        $('#agregar-especialidadAdministrador').val('');
+                        $('#agregar-posiciondAdministrador').val('');
+                        $('#agregar-cedulaAdministrador').val('');
+                        $('#agregar-passwordAdministrador').val('');
+                        $('#agregar-password2Administradores').val('');
+                        $("#terminosAdministrador").prop("checked", false);
 
-                            //cerrar el modal
-                            $('#modalAgregarAdministrador').modal('toggle');
+                        //cerrar el modal
+                        $('#modalAgregarAdministrador').modal('toggle');
 
                     }
 

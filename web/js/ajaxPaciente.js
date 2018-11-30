@@ -485,6 +485,50 @@ $(document).ready(function () {
         }
     });
 
+    //TABLA TRATAMIENTOS
+    $('#tablaTratamientos').DataTable({
+        responsive: true,
+        searching: true,
+        dom: 'lBfrtip',
+        buttons: [, ],
+
+        "language": {
+
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+            'createdRow': function (row, data, dataIndex) {
+                $(row).attr('id', 'row-' + dataIndex);
+            },
+            "columnDefs": [{
+                    "targets": 0,
+                    "createdCell": function (td, cellData, rowData, row, col) {
+                            $(td).attr('id', 'cell-');
+                    }
+                }]
+        }
+
+    });
+
     //Agregar tratamientos
     $("#btn-agregarTratamiento").on('click', function () {
 
@@ -535,16 +579,8 @@ $(document).ready(function () {
                             "<button class='btn btn-primary terminarTratamiento' id='modal-" + response + "' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button>"
                         ]).draw(false);
 
-                        var hiddens =
-                                `
-            <input type='hidden' value='` + $("#nombreTipoTratamiento").val() + `' id='nombre-` + response + `'>
-            <input type='hidden' value='` + fechaInicioTratamiento + `' id='fechaInicio-` + response + `'>
-            <input type='hidden' value='` + response + `' id='boton-` + response + `'>        
-     `
 
-                        $('#hiddensDiv').append(hiddens);
-                        
-                        console.log("WHALALALALA" + $("#nombre-"+response).val())
+                        console.log("WHALALALALA" + $("#nombre-" + response).val())
 
 
                         $('#tipoTratamiento').prop('selectedIndex', 0);
@@ -678,9 +714,7 @@ $(document).ready(function () {
         }
     });
     //Designar idTratamientoPaciente
-    //$('body').on('click', '.terminarTratamiento', function () {
-
-    $(".terminarTratamiento").on('click', function () {
+    $('body').on('click', '.terminarTratamiento', function () {
 
         $(".idTratamientoPaciente").val(
                 $("#boton-" + $(this).data('id')).val()

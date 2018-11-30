@@ -1,10 +1,10 @@
 //import {validation} from './validaciones.js';
 
 $(document).ready(function () {
-    
-    $('#tipoSangre option[value="'+$('#selectSangre').val()+'"]').prop("selected", true);
-    $('#etapaClinica option[value="'+$('#selectEtapa').val()+'"]').prop("selected", true);
-    
+
+    $('#tipoSangre option[value="' + $('#selectSangre').val() + '"]').prop("selected", true);
+    $('#etapaClinica option[value="' + $('#selectEtapa').val() + '"]').prop("selected", true);
+
     //Esconder mensajes de error en cuenta
     $('.error-correo').hide();
     $('#error-noExpediente').hide();
@@ -24,16 +24,16 @@ $(document).ready(function () {
     $('.questionMark').tooltipster({
         theme: 'tooltipster-shadow',
         delay: '140',
-       
+
     });
-    
+
     $('.questionMarkRight').tooltipster({
         theme: 'tooltipster-shadow',
         delay: '140',
         side: 'right'
     });
-    
-    
+
+
 
     //Reemplazar el nombre del archivo en el input
     $('.custom-file-input').on('change', function () {
@@ -166,7 +166,7 @@ $(document).ready(function () {
                 $('#tratamientos').append(plantilla);
 
 
-                       var plantilla = `<div class="form-group row justify-content-center contenedor-tratamientos">
+                var plantilla = `<div class="form-group row justify-content-center contenedor-tratamientos">
                  <div class="col-7">
                  <select id="tratamiento" class="form-control">
                  <option disabled selected>Elegir Tratamiento</option>
@@ -179,10 +179,10 @@ $(document).ready(function () {
                  </div>
                  
                  </div>`;
-                 
-                 $('#tratamientos').append(plantilla);
-                 
-                 
+
+                $('#tratamientos').append(plantilla);
+
+
 
             }
 
@@ -221,51 +221,51 @@ $(document).ready(function () {
         $(this).attr('disabled', true);
 
     });
-    
-   $("body").on("click",".myCleaner", function(){
-		$(".hora").val("");
-                $(".tipo").prop('selectedIndex',0);
-                $(".medico").prop('selectedIndex',0);
-                $("#RegistrarCita_edificioAntiguo").prop("checked", false);
-                $("#RegistrarCita_edificioNuevo").prop("checked", false);
-                $('input[name=Pisos]').prop("checked", false);
-                $('#pisosDiv').hide();
-                
-                $('#error-campos').hide();
-                $('#RegistrarCita_hora').css('border', '');
-                $('#RegistrarCita_hora').css('color', '');
-                
-	});
-        
-        $("body").on("click",".passwordCleaner", function(){
-		$("#password").val("");
-                $("#password2").val("");
-                
-                $('#error-contrasena').hide();
-                $('#noEqualPasswordsError').hide();
-                $('#password').css('border', '');
-                $('#password').css('color', '');
-                $('#password2').css('border', '');
-                $('#password2').css('color', '');
-                
-	});
-        
-        $("body").on("click",".myCleanerAddTratamientos", function(){
-		$(".fechaInicio").attr("type","text").val('').attr("placeholder","Introduce la fecha de inicio");
-                $('.error-fecha').hide();
-                $('#fechaInicioTratamiento').css('border', '');
-                $('#fechaInicioTratamiento').css('color', '');
-                $(".tratamiento").prop('selectedIndex',0);
-               
-	});
-        
-        
-        $("body").on("click",".myCleanerAddFinTratamientos", function(){
-		$(".fechaFin").attr("type","text").val('').attr("placeholder","Introduce la fecha de fin");
-                $('.error-fechaFin').hide();
-                $('#fechaFinTratamiento').css('border', '');
-                $('#fechaFinTratamiento').css('color', '');
-	});
+
+    $("body").on("click", ".myCleaner", function () {
+        $(".hora").val("");
+        $(".tipo").prop('selectedIndex', 0);
+        $(".medico").prop('selectedIndex', 0);
+        $("#RegistrarCita_edificioAntiguo").prop("checked", false);
+        $("#RegistrarCita_edificioNuevo").prop("checked", false);
+        $('input[name=Pisos]').prop("checked", false);
+        $('#pisosDiv').hide();
+
+        $('#error-campos').hide();
+        $('#RegistrarCita_hora').css('border', '');
+        $('#RegistrarCita_hora').css('color', '');
+
+    });
+
+    $("body").on("click", ".passwordCleaner", function () {
+        $("#password").val("");
+        $("#password2").val("");
+
+        $('#error-contrasena').hide();
+        $('#noEqualPasswordsError').hide();
+        $('#password').css('border', '');
+        $('#password').css('color', '');
+        $('#password2').css('border', '');
+        $('#password2').css('color', '');
+
+    });
+
+    $("body").on("click", ".myCleanerAddTratamientos", function () {
+        $(".fechaInicio").attr("type", "text").val('').attr("placeholder", "Introduce la fecha de inicio");
+        $('.error-fecha').hide();
+        $('#fechaInicioTratamiento').css('border', '');
+        $('#fechaInicioTratamiento').css('color', '');
+        $(".tratamiento").prop('selectedIndex', 0);
+
+    });
+
+
+    $("body").on("click", ".myCleanerAddFinTratamientos", function () {
+        $(".fechaFin").attr("type", "text").val('').attr("placeholder", "Introduce la fecha de fin");
+        $('.error-fechaFin').hide();
+        $('#fechaFinTratamiento').css('border', '');
+        $('#fechaFinTratamiento').css('color', '');
+    });
 
 
     //Cambiar color al botón de confirmación de tratamiento terminado
@@ -379,44 +379,10 @@ $(document).ready(function () {
      $('#error-medico').show();
      }
      });*/
-    
-    //TABLA TRATAMIENTOS
-    $('.tablaTratamientos').DataTable({
-        responsive: true,
-        searching: true,
-        dom: 'lBfrtip',
-        buttons: [,],
 
-        "language": {
 
-            "sProcessing": "Procesando...",
-            "sLengthMenu": "Mostrar _MENU_ registros",
-            "sZeroRecords": "No se encontraron resultados",
-            "sEmptyTable": "Ningún dato disponible en esta tabla",
-            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "sInfoPostFix": "",
-            "sSearch": "Buscar:",
-            "sUrl": "",
-            "sInfoThousands": ",",
-            "sLoadingRecords": "Cargando...",
-            "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Último",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "oAria": {
-                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-            }
 
-        }
 
-    });
-    
-    
 
 
 });
