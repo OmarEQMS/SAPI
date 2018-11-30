@@ -47,13 +47,13 @@ $(document).ready(function () {
     $('#error-imgPerfil').hide();
     $('#error-contrasena').hide();
     $('#noEqualPasswordsError').hide();
-        
+
 
     //AutocompleteRayosX
 
-    var rayosX=[];
+    var rayosX = [];
 
-       $.ajax({
+    $.ajax({
         url: 'NavegadoraController',
         cache: false,
         method: 'POST',
@@ -83,14 +83,14 @@ $(document).ready(function () {
 
 //AutocompleteUltrasonido
 
-    var ultraSonido=[];
+    var ultraSonido = [];
 
-       $.ajax({
+    $.ajax({
         url: 'NavegadoraController',
-                cache: false,
-                method: 'POST',
-                data: {key: "autocompleteUltraSonido"}
-        })
+        cache: false,
+        method: 'POST',
+        data: {key: "autocompleteUltraSonido"}
+    })
 
     $("body").on("click", '.ultraSonido', function () {
 
@@ -108,14 +108,14 @@ $(document).ready(function () {
 
 //AutocompletePrograma
 
-    var programa=[];
+    var programa = [];
 
-       $.ajax({
+    $.ajax({
         url: 'NavegadoraController',
-                cache: false,
-                method: 'POST',
-                data: {key: "autocompletePrograma"}
-        })
+        cache: false,
+        method: 'POST',
+        data: {key: "autocompletePrograma"}
+    })
 
     $("body").on("click", '.programa', function () {
 
@@ -131,14 +131,14 @@ $(document).ready(function () {
 
 //AutocompleteMedicinaNuclear
 
-    var medicinaNuclear=[];
+    var medicinaNuclear = [];
 
-       $.ajax({
+    $.ajax({
         url: 'NavegadoraController',
-                cache: false,
-                method: 'POST',
-                data: {key: "autocompleteMedicinaNuclear"}
-        })
+        cache: false,
+        method: 'POST',
+        data: {key: "autocompleteMedicinaNuclear"}
+    })
 
 
     $("body").on("click", '.medicinaNuclear', function () {
@@ -156,14 +156,14 @@ $(document).ready(function () {
 
 //AutocompleteValoracion
 
-    var valoracion=[];
+    var valoracion = [];
 
-       $.ajax({
+    $.ajax({
         url: 'NavegadoraController',
-                cache: false,
-                method: 'POST',
-                data: {key: "autocompleteValoracion"}
-        })
+        cache: false,
+        method: 'POST',
+        data: {key: "autocompleteValoracion"}
+    })
 
 
     $("body").on("click", '.valoracion', function () {
@@ -177,7 +177,7 @@ $(document).ready(function () {
         });
 
     });
-     
+
     //Terminos y condiciones
     $('#acepto-terminos').change(function () {
 
@@ -203,7 +203,7 @@ $(document).ready(function () {
 
             },
             success: function (response) {
-                
+
                 if (response == 'postalCodeDoesntExist') {
                     $('#error-CPexiste').show();
                     repiteCURP = false;
@@ -292,8 +292,8 @@ $(document).ready(function () {
     $('.btn-editar').on('click', function () {
 
         $('#hidden-idPaciente').val($(this).data('id'));
-        
-       
+
+
         $.ajax({
 
             url: 'NavegadoraController',
@@ -359,24 +359,23 @@ $(document).ready(function () {
         });
 
     });
-    
+
     $('#btn-guardarCambios').on('click', function () {
         console.log("Presionó Guardar Cambios");
-        
-      
-        
-        
+
+
+
+
         // FALTA OBTENER EL ID DEL PACIENTE 
-        if (!isValidCURP( $('#editarCurpNavegadoraAPaciente')) || !isValidDate( $("#editarCumpleNavegadoraAPaciente")) || !isValidPhoneNumber( $("#editarTelNavegadoraAPaciente")) 
-                || !isValidColonia( $('#editarColNavegadoraAPaciente')) || !isValidStreet($('#editarCalleNavegadoraAPaciente')) || !isValidExtNumber(  $("#editarNumExtNavegadoraAPaciente")) 
-                || !isValidIntNumber($("#editarNumIntNavegadoraAPaciente")) || !isValidName($('#editarNombreNavegadoraAPaciente')) || !isValidLastName( $('#editarPrimer-apellidoNavegadoraAPaciente')) 
-                || !isValidUserName( $('#editarUsuarioNavegadoraAPaciente')) || !isValidEmail( $('#editarCorreoNavegadoraAPaciente'))
+        if (!isValidCURP($('#editarCurpNavegadoraAPaciente')) || !isValidDate($("#editarCumpleNavegadoraAPaciente")) || !isValidPhoneNumber($("#editarTelNavegadoraAPaciente"))
+                || !isValidColonia($('#editarColNavegadoraAPaciente')) || !isValidStreet($('#editarCalleNavegadoraAPaciente')) || !isValidExtNumber($("#editarNumExtNavegadoraAPaciente"))
+                || !isValidIntNumber($("#editarNumIntNavegadoraAPaciente")) || !isValidName($('#editarNombreNavegadoraAPaciente')) || !isValidLastName($('#editarPrimer-apellidoNavegadoraAPaciente'))
+                || !isValidUserName($('#editarUsuarioNavegadoraAPaciente')) || !isValidEmail($('#editarCorreoNavegadoraAPaciente'))
                 ) {
-            
-          $('#error-campos').show();
-            
-        } 
-        else {
+
+            $('#error-campos').show();
+
+        } else {
             $('#error-campos').hide();
             $.ajax({
                 url: 'NavegadoraController',
@@ -411,7 +410,7 @@ $(document).ready(function () {
                 }
 
             });
-            
+
         }
     });
 
@@ -421,7 +420,7 @@ $(document).ready(function () {
         var id = $(this).data('id');
         console.log(id);
         //alert('saludos con el id: ' +  $('#hidden-idPaciente').val())
-        
+
         $.post("SAPI", {
             file: "navegadora/documentos.jsp",
             idPacientePotencialAtendido: id
@@ -436,7 +435,7 @@ $(document).ready(function () {
                             document.write(response);
                             document.close();
                         }
-                    }                    
+                    }
                 }
         );
     });
@@ -1171,7 +1170,7 @@ $(document).ready(function () {
 
                         } else if (response == "todos")
                         {
-                            console.log("Redireccionar a documentos"); 
+                            console.log("Redireccionar a documentos");
                             $.post("SAPI", {
                                 file: "navegadora/documentos.jsp",
                                 idPacientePotencialAtendido: "hola"
@@ -1192,8 +1191,8 @@ $(document).ready(function () {
                             swal({
                                 title: 'No más documentos por revisar.',
                                 timer: 3000
-                            });                                                      
-                            
+                            });
+
                         } else {
                             swal.close();
                             document.open("text/html", "replace");
@@ -1242,7 +1241,7 @@ $(document).ready(function () {
                 }
         );
     });
-    
+
     $('#irARendimiento').on('click', function () {
         $.post("SAPI", {
             file: "navegadora/rendimiento.jsp"
@@ -1362,55 +1361,55 @@ $(document).ready(function () {
 
         //Modal cambiar contraseña 
         if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
-        swal({
-            title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
-            text: "No podras volver a usar tu contraseña anterior para ingresar",
-            icon: "warning",
-            buttons: true,
-            buttons: ['Regresar', 'Cambiar contraseña'],
-            dangerMode: true
-        })
-                .then((cambiar) => {
-                    if (cambiar) {
-                        $.ajax({
-                            url: "NavegadoraController",
-                            data: {
-                                key: "cambiarContrasena",
-                                idCuenta: $("#sesionPaciente").val(),
-                                password: $("#password").val(),
-                                password2: $("#password-confirm").val()
-                            },
-                            method: "POST",
-                            success: function (response) {
-                                if (response == "success") {
-                                    swal({
-                                        title: "Contraseña actualizada",
-                                        icon: "success",
-                                    });
-                                    $("#password").val('');
-                                    $("#password-confirm").val('');
-                                } else {
-                                    //Aqui no se que hace
-                                }
-                            },
-                            error: function (xhr) {
+            swal({
+                title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
+                text: "No podras volver a usar tu contraseña anterior para ingresar",
+                icon: "warning",
+                buttons: true,
+                buttons: ['Regresar', 'Cambiar contraseña'],
+                dangerMode: true
+            })
+                    .then((cambiar) => {
+                        if (cambiar) {
+                            $.ajax({
+                                url: "NavegadoraController",
+                                data: {
+                                    key: "cambiarContrasena",
+                                    idCuenta: $("#sesionPaciente").val(),
+                                    password: $("#password").val(),
+                                    password2: $("#password-confirm").val()
+                                },
+                                method: "POST",
+                                success: function (response) {
+                                    if (response == "success") {
+                                        swal({
+                                            title: "Contraseña actualizada",
+                                            icon: "success",
+                                        });
+                                        $("#password").val('');
+                                        $("#password-confirm").val('');
+                                    } else {
+                                        //Aqui no se que hace
+                                    }
+                                },
+                                error: function (xhr) {
 
-                            }
-                        });
-                        $('#modalCambiarContraseña').modal('toggle');
-                    }
-                });
-            }
+                                }
+                            });
+                            $('#modalCambiarContraseña').modal('toggle');
+                        }
+                    });
+        }
     });
-    
+
     $("#password").on('change', function () {
         console.log("Cambio la ocntra");
-        if(isValidPassword($(this)))
+        if (isValidPassword($(this)))
             $("#error-contrasena").hide();
         else
             $("#error-contrasena").show();
     });
-    
+
     $("#password2").on('change', function () {
         var pass1 = $('#password');
         var pass2 = $(this);
@@ -1509,7 +1508,8 @@ $(document).ready(function () {
 
         return true;
 
-    };
+    }
+    ;
 
     function isValidPhoneNumber(input) {
 
@@ -1529,7 +1529,8 @@ $(document).ready(function () {
         }
 
         return true;
-    };
+    }
+    ;
 
     $('#irVerForm').on('click', function () {
         $.post("SAPI", {
@@ -1570,17 +1571,17 @@ $(document).ready(function () {
         },
                 function (response, status, xhr) {
                     console.log(response);
-                    if(status=="success"){
-                        if (response=="error"){
+                    if (status == "success") {
+                        if (response == "error") {
                             $("#msj-error").show();
-                        }else{
+                        } else {
                             document.open("text/html", "replace");
                             document.write(response);
                             document.close();
                         }
-                     }
+                    }
                 }
-         );
+        );
     });
 
     //PARA SALIR DE LA CUENTA
@@ -1609,7 +1610,8 @@ $(document).ready(function () {
 
     function salir() {
         alert();
-    };
+    }
+    ;
     //VALIDACIONES
     //NOMBRE EN EL REGISTRO
     $('#nombreNavegadora').on('change', function () {
@@ -1746,16 +1748,15 @@ $(document).ready(function () {
                     $('#errorCurpRepetidoNavegadora').show();
                 } else {
                     $('#errorCurpRepetidoNavegadora').hide();
-                    }
                 }
-            });
-            
+            }
+        });
+
         if (isValidCURP($(this))) {
             $('#errorCurpNavegadora').hide();
         } else if ($(this).val() === '') {
             $('#errorCurpNavegadora').hide();
-        } 
-        else {
+        } else {
             $('#errorCurpNavegadora').show();
         }
     });
@@ -1773,96 +1774,96 @@ $(document).ready(function () {
 
     });
 
-        //ESTADO CIVIL EN EL REGISTRO
-        $('#estado-civilNavegadora').on('change', function () {
+    //ESTADO CIVIL EN EL REGISTRO
+    $('#estado-civilNavegadora').on('change', function () {
 
-            if (isValidSelect($(this))) {
-                $('#errorECivilNavegadora').hide();
-            } else {
-                $('#errorECivilNavegadora').show();
-            }
+        if (isValidSelect($(this))) {
+            $('#errorECivilNavegadora').hide();
+        } else {
+            $('#errorECivilNavegadora').show();
+        }
 
-        });
+    });
 
-        //FECHA DE NACIMIENTO EN EL REGISTRO
-        $('#cumpleNavegadora').on('change', function () {
+    //FECHA DE NACIMIENTO EN EL REGISTRO
+    $('#cumpleNavegadora').on('change', function () {
 
-            if (isValidDate($(this))) {
-                $('#errorFechaNavegadora').hide();
-            } else {
-                $('#errorFechaNavegadora').show();
-            }
+        if (isValidDate($(this))) {
+            $('#errorFechaNavegadora').hide();
+        } else {
+            $('#errorFechaNavegadora').show();
+        }
 
-        });
+    });
 
-        //ESTADO EN EL REGISTRO
-        $('#estadoNavegadora').on('change', function () {
+    //ESTADO EN EL REGISTRO
+    $('#estadoNavegadora').on('change', function () {
 
-            if (isValidSelect($(this))) {
-                $('#errorEstadoNavegadora').hide();
-            } else {
-                $('#errorEstadoNavegadora').show();
-            }
+        if (isValidSelect($(this))) {
+            $('#errorEstadoNavegadora').hide();
+        } else {
+            $('#errorEstadoNavegadora').show();
+        }
 
-        });
+    });
 
-        //MUNICIPIO EN EL REGISTRO
-        $('#municipioNavegadora').on('change', function () {
+    //MUNICIPIO EN EL REGISTRO
+    $('#municipioNavegadora').on('change', function () {
 
-            if (isValidSelect($(this))) {
-                $('#errorMunicipioNavegadora').hide();
-            } else {
-                $('#errorMunicipioNavegadora').show();
-            }
+        if (isValidSelect($(this))) {
+            $('#errorMunicipioNavegadora').hide();
+        } else {
+            $('#errorMunicipioNavegadora').show();
+        }
 
-        });
+    });
 
-        //COLONIA EN EL REGISTRO
-        $('#colNavegadora').on('change', function () {
+    //COLONIA EN EL REGISTRO
+    $('#colNavegadora').on('change', function () {
 
-            if (isValidColonia($(this))) {
-                $('#errorColoniaNavegadora').hide();
-            } else {
-                $('#errorColoniaNavegadora').show();
-            }
+        if (isValidColonia($(this))) {
+            $('#errorColoniaNavegadora').hide();
+        } else {
+            $('#errorColoniaNavegadora').show();
+        }
 
-        });
+    });
 
-        //CALLE EN EL REGISTRO
-        $('#calleNavegadora').on('change', function () {
+    //CALLE EN EL REGISTRO
+    $('#calleNavegadora').on('change', function () {
 
-            if (isValidStreet($(this))) {
-                $('#errorCalleNavegadora').hide();
-            } else {
-                $('#errorCalleNavegadora').show();
-            }
+        if (isValidStreet($(this))) {
+            $('#errorCalleNavegadora').hide();
+        } else {
+            $('#errorCalleNavegadora').show();
+        }
 
-        });
+    });
 
-        //NUMERO EXTERIOR EN EL REGISTRO
-         $('#numExtNavegadora').on('change', function () {
+    //NUMERO EXTERIOR EN EL REGISTRO
+    $('#numExtNavegadora').on('change', function () {
 
-            if (isValidExtNumber($(this))) {
-                $('#errorNoExteriorNavegadora').hide();
-            } else {
-                $('#errorNoExteriorNavegadora').show();
-            }
+        if (isValidExtNumber($(this))) {
+            $('#errorNoExteriorNavegadora').hide();
+        } else {
+            $('#errorNoExteriorNavegadora').show();
+        }
 
-        });
+    });
 
-        //NUMERO INTERIOR EN EL REGISTRO
-        $('#numIntNavegadora').on('change', function () {
+    //NUMERO INTERIOR EN EL REGISTRO
+    $('#numIntNavegadora').on('change', function () {
 
-            if (isValidIntNumber($(this))) {
-                $('#errorNoInteriorNavegadora').hide();
-            } else {
-                $('#errorNoInteriorNavegadora').show();
-            }
+        if (isValidIntNumber($(this))) {
+            $('#errorNoInteriorNavegadora').hide();
+        } else {
+            $('#errorNoInteriorNavegadora').show();
+        }
 
 
     });
 
-    
+
     //NOMBRE AL EDITAR
     $('#editarNombreNavegadoraAPaciente').on('change', function () {
         if (isValidName($(this))) {
@@ -1920,7 +1921,7 @@ $(document).ready(function () {
 
                 if (response === 'UsuarioAlreadyExists') {
                     $('#editarUsuarioNavegadoraAPaciente').css('color', 'orange');
-                    $('#error-editar-UsuarioRepetidoNavegadora').show();                    
+                    $('#error-editar-UsuarioRepetidoNavegadora').show();
                 } else {
                     $('#error-editar-UsuarioRepetidoNavegadora').hide();
                 }
@@ -1982,8 +1983,7 @@ $(document).ready(function () {
             $('#error-editar-CurpNavegadora').hide();
         } else if ($(this).val() === '') {
             $('#error-editar-CurpNavegadora').hide();
-        } 
-        else {
+        } else {
             $('#error-editar-CurpNavegadora').show();
         }
 
@@ -2089,8 +2089,8 @@ $(document).ready(function () {
         }
 
     });
-    
-   
+
+
     $('#irAForm').on('click', function () {
         $.post("SAPI", {
             file: "navegadora/form.jsp"
@@ -2173,8 +2173,8 @@ $(document).ready(function () {
                 console.log(rayosx);
             }
         });
-        console.log("Rayox x");        
-        
+        console.log("Rayox x");
+
         var ultrasonidos = [];
         console.log("Ultrasonido");
         $('.tuplaUltrasonido').each(function () {
@@ -2191,8 +2191,8 @@ $(document).ready(function () {
             }
         });
         console.log("Ultrasonido");
-        
-                
+
+
         var medicinasNucleares = []
         console.log("Medicina Nuclear");
         $('.tuplaMedicinaNuclear').each(function () {
@@ -2210,8 +2210,8 @@ $(document).ready(function () {
             }
         });
         console.log("Medicina Nuclear");
-        
-                         
+
+
         var laboratorios = [];
         console.log("tuplaLaboratorio");
         $('.tuplaLaboratorio').each(function () {
@@ -2228,8 +2228,8 @@ $(document).ready(function () {
 
         });
         console.log("tuplaLaboratorio");
-        
-        
+
+
         var valoraciones = [];
         console.log("tuplaValoracion");
         $('.tuplaValoracion').each(function () {
@@ -2245,8 +2245,8 @@ $(document).ready(function () {
             }
         });
         console.log("tuplaValoracion");
-        
-        
+
+
         var espirometrias = [];
         console.log("tuplaEspirometria");
         $('.tuplaEspirometria').each(function () {
@@ -2262,8 +2262,8 @@ $(document).ready(function () {
             }
         });
         console.log("tuplaEspirometria");
-        
-        
+
+
         var electrocardiogramas = [];
         console.log("tuplaElectrocardiograma");
         $('.tuplaElectrocardiograma').each(function () {
@@ -2279,8 +2279,8 @@ $(document).ready(function () {
             }
         });
         console.log("tuplaElectrocardiograma");
-        
-        
+
+
         var ecocardiogramas = [];
         console.log("tuplaEcocardiograma");
         $('.tuplaEcocardiograma').each(function () {
@@ -2296,8 +2296,8 @@ $(document).ready(function () {
             }
         });
         console.log("tuplaEcocardiograma");
-        
-                 
+
+
         var trabajosSociales = []
         console.log("tuplaTrabajoSocial");
         $('.tuplaTrabajoSocial').each(function () {
@@ -2313,8 +2313,8 @@ $(document).ready(function () {
             }
         });
         console.log("tuplaTrabajoSocial");
-        
-        
+
+
         var programas = [];
         console.log("tuplaPrograma");
         $('.tuplaPrograma').each(function () {
@@ -2331,8 +2331,8 @@ $(document).ready(function () {
             }
         });
         console.log("tuplaPrograma");
-        
-                        
+
+
         var otrosEstudios = [];
         console.log("tuplaOtro");
         $('.tuplaOtro').each(function () {
@@ -2362,20 +2362,20 @@ $(document).ready(function () {
                 console.log(llamada);
             }
         });
-        
-        
-         
+
+
+
         console.log("Comentarios del médico");
         var comentariosMedico = $("#comentariosAdicionales").val();
-        if(comentariosMedico == null)
+        if (comentariosMedico == null)
         {
-           comentariosMedico = "";
+            comentariosMedico = "";
         }
         console.log(comentariosMedico);
         console.log("Comentarios del médico");
-        
+
         var tipoUltrasonidoMama = $('#tipoUltrasonidoMama').val();
-        if(tipoUltrasonidoMama == null)
+        if (tipoUltrasonidoMama == null)
             tipoUltrasonidoMama = "";
 
         var biradsMasto = $('#ResultadoTipoMastografia').val();
@@ -2386,7 +2386,7 @@ $(document).ready(function () {
         if (biradUSG === null)
             biradUSG = "";
         console.log("click on 'btn-save[i]'");
-        
+
         var data = new FormData();
         var form;
         var dataTemp;
@@ -2699,8 +2699,8 @@ $(document).ready(function () {
                 }
 
                 if (data[0][0].radioterapiaFecha !== "ene 1, 1900")
-                    // $('#fecha-radioterapia').val(convertDate(new Date(data[0][0].radioterapiaFecha)));
-                    $('#fecha-radioterapia').val(data[0][0].radioterapiaFecha);
+                    $('#fecha-radioterapia').val(convertDate(new Date(data[0][0].radioterapiaFecha)));
+                // $('#fecha-radioterapia').val(data[0][0].radioterapiaFecha);
 
                 if ((data[0][0].cirugiaTipo !== -1)) {
                     $('#radioterapia').val(data[0][0].radioterapiaCiclo);
@@ -2722,7 +2722,8 @@ $(document).ready(function () {
                 }
 
                 if ((data[0][0].mastografiaBiradsFecha !== "ene 1, 1900")) {
-                    $('#fechaPreMasto').val(data[0][0].mastografiaBiradsFecha);
+                    // $('#fechaPreMasto').val(data[0][0].mastografiaBiradsFecha);
+                    $('#fechaPreMasto').val(convertDate(new Date(data[0][0].mastografiaBiradsFecha)));
                 }
                 if ((data[0][0].mastografiaBiradsNombre !== "")) {
                     $('#tipoMastografia option:contains(' + $.trim(data[0][0].mastografiaBiradsNombre) + ')').each(function () {
@@ -2743,9 +2744,10 @@ $(document).ready(function () {
                     $('#fechaPreUsg').hide();
                     $('#tipoUltrasonidoMama').hide();
                 }
-                
+
                 if ((data[0][0].ultrasonidoBiradsFecha !== "ene 1, 1900")) {
-                    $('#fechaPreUsg').val(data[0][0].ultrasonidoBiradsFecha);
+                    //   $('#fechaPreUsg').val(data[0][0].ultrasonidoBiradsFecha);
+                    $('#fechaPreUsg').val(convertDate(new Date(data[0][0].ultrasonidoBiradsFecha)));
                 }
                 if ((data[0][0].ultrasonidoBiradsNombre !== "")) {
                     $('#tipoUltrasonidoMama option:contains(' + $.trim(data[0][0].ultrasonidoBiradsNombre) + ')').each(function () {
@@ -2818,9 +2820,14 @@ $(document).ready(function () {
 
             }
 
-
+             // $('#fechaConsulta').val(convertDate(new Date(data[0][0].fechaConsulta)));
 //3. recorrer el arreglo
             for (var i = 0; i < data[1].length; i++) {
+            
+                var fecha = data[1][i].CitaProgramada;
+                fecha = convertDate(fecha);
+                
+                
                 var plantilla =
                         `<div class="form-group row mt-2 tuplaBiopsia" data-id="${data[1][i].idCita}" data-accion="actualizar">
 
@@ -2837,7 +2844,7 @@ $(document).ready(function () {
                             <i class="fas fa-calendar-alt"></i>
                         </div>
                     </div>
-                    <input name="fecha-BipsiaAdded" value="${data[1][i].CitaProgramada}" placeholder="Fecha de la biopsia" class="form-control fechaBiopsia" type="text" onfocus="(this.type='date')">
+                    <input name="fecha-BipsiaAdded" value="${fecha}" placeholder="Fecha de la biopsia" class="form-control fechaBiopsia" type="text" onfocus="(this.type='date')">
                 </div>
             </div>
 
@@ -2880,6 +2887,8 @@ $(document).ready(function () {
 
 //3. recorrer el arreglo
             for (var i = 0; i < data[2].length; i++) {
+                var fecha = data[2][i].CitaProgramada;
+                fecha = convertDate(fecha);
                 var plantilla =
                         `
             <div class="form-group row mt-2 tuplaRayosX" data-id="${data[2][i].idCita}" data-accion="actualizar">
@@ -2898,7 +2907,7 @@ $(document).ready(function () {
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                         </div>
-                        <input name ="fecha-RayosXAdded" value="${data[2][i].CitaProgramada}" placeholder="Fecha de los Rayos X" class="form-control fechaRayos" type="text" onfocus="(this.type='date')">
+                        <input name ="fecha-RayosXAdded" value="${fecha}" placeholder="Fecha de los Rayos X" class="form-control fechaRayos" type="text" onfocus="(this.type='date')">
                     </div>
                 </div>
 
@@ -2929,6 +2938,8 @@ $(document).ready(function () {
 
 //3. recorrer el arreglo
             for (var i = 0; i < data[3].length; i++) {
+                var fecha = data[3][i].CitaProgramada;
+                fecha = convertDate(fecha);
                 var plantilla =
                         `
             <div class="form-group row mt-2 tuplaUltrasonido" data-id="${data[3][i].idCita}" data-accion="actualizar">
@@ -2946,7 +2957,7 @@ $(document).ready(function () {
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                         </div>
-                        <input name ="fecha-USGAdded" value="${data[3][i].CitaProgramada}" placeholder="Fecha de USG" class="form-control fechaUltrasonido" type="text" onfocus="(this.type='date')">
+                        <input name ="fecha-USGAdded" value="${fecha}" placeholder="Fecha de USG" class="form-control fechaUltrasonido" type="text" onfocus="(this.type='date')">
                     </div>
                 </div>
 
@@ -2977,6 +2988,8 @@ $(document).ready(function () {
 
 //3. recorrer el arreglo
             for (var i = 0; i < data[4].length; i++) {
+                var fecha = data[4][i].CitaProgramada;
+                fecha = convertDate(fecha);
                 var plantilla =
                         `
             <div class="form-group row mt-2 tuplaMedicinaNuclear" data-id="${data[4][i].idCita}" data-accion="actualizar">
@@ -2993,7 +3006,7 @@ $(document).ready(function () {
                                     <i class="fas fa-calendar-alt"></i>
                                 </div>
                             </div>
-                            <input name ="fecha-mNuclearAdded" value="${data[4][i].CitaProgramada}" placeholder="Fecha de medicina nuclear" class="form-control fechaMedicinaNuclear" type="text" onfocus="(this.type='date')">
+                            <input name ="fecha-mNuclearAdded" value="${fecha}" placeholder="Fecha de medicina nuclear" class="form-control fechaMedicinaNuclear" type="text" onfocus="(this.type='date')">
                         </div>
                     </div>
 
@@ -3024,6 +3037,8 @@ $(document).ready(function () {
 
 //3. recorrer el arreglo
             for (var i = 0; i < data[5].length; i++) {
+                var fecha = data[5][i].CitaProgramada;
+                fecha = convertDate(fecha);
                 var plantilla =
                         `
             <div class="form-group row mt-2 tuplaLaboratorio" data-id="${data[5][i].idCita}" data-accion="actualizar">
@@ -3035,7 +3050,7 @@ $(document).ready(function () {
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                         </div>
-                        <input name ="fecha-LaboAdded" value="${data[5][i].CitaProgramada}" placeholder="Fecha de laboratorio" class="form-control fechaLaboratorio" type="text" onfocus="(this.type='date')">
+                        <input name ="fecha-LaboAdded" value="${fecha}" placeholder="Fecha de laboratorio" class="form-control fechaLaboratorio" type="text" onfocus="(this.type='date')">
                     </div>
                 </div>
 
@@ -3066,6 +3081,8 @@ $(document).ready(function () {
 
 //3. recorrer el arreglo
             for (var i = 0; i < data[6].length; i++) {
+                var fecha = data[6][i].CitaProgramada;
+                fecha = convertDate(fecha);
                 var plantilla =
                         `
             <div class="form-group row mt-2 tuplaValoracion" data-id="${data[6][i].idCita}" data-accion="actualizar">
@@ -3082,7 +3099,7 @@ $(document).ready(function () {
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                         </div>
-                        <input name ="fecha-valoracionAdded" value="${data[6][i].CitaProgramada}" placeholder="Fecha de valoración" class="form-control fechaValoracion" type="text" onfocus="(this.type='date')">
+                        <input name ="fecha-valoracionAdded" value="${fecha}" placeholder="Fecha de valoración" class="form-control fechaValoracion" type="text" onfocus="(this.type='date')">
                     </div>
                 </div>
 
@@ -3113,6 +3130,8 @@ $(document).ready(function () {
 
 //3. recorrer el arreglo
             for (var i = 0; i < data[7].length; i++) {
+                var fecha = data[7][i].CitaProgramada;
+                fecha = convertDate(fecha);
                 var plantilla =
                         `
             <div class="form-group row mt-2 tuplaEspirometria" data-id="${data[7][i].idCita}" data-accion="actualizar">
@@ -3124,7 +3143,7 @@ $(document).ready(function () {
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                         </div>
-                        <input name="fecha-espilometriaAdded" value="${data[7][i].CitaProgramada}" placeholder="Fecha de espirometría" class="form-control fechaEspirometria" type="text" onfocus="(this.type='date')">
+                        <input name="fecha-espilometriaAdded" value="${fecha}" placeholder="Fecha de espirometría" class="form-control fechaEspirometria" type="text" onfocus="(this.type='date')">
                     </div>
                 </div>
 
@@ -3155,6 +3174,8 @@ $(document).ready(function () {
 
 //3. recorrer el arreglo
             for (var i = 0; i < data[8].length; i++) {
+                var fecha = data[8][i].CitaProgramada;
+                fecha = convertDate(fecha);
                 var plantilla =
                         `
             <div class="form-group row mt-2 tuplaElectrocardiograma" data-id="${data[8][i].idCita}" data-accion="actualizar">
@@ -3166,7 +3187,7 @@ $(document).ready(function () {
                                     <i class="fas fa-calendar-alt"></i>
                                 </div>
                             </div>
-                            <input name="fecha-ECGAdded" value="${data[8][i].CitaProgramada}" placeholder="Fecha de electrocardiograma" class="form-control fechaElectrocardiograma" type="text" onfocus="(this.type='date')">
+                            <input name="fecha-ECGAdded" value="${fecha}" placeholder="Fecha de electrocardiograma" class="form-control fechaElectrocardiograma" type="text" onfocus="(this.type='date')">
                         </div>
                     </div>
 
@@ -3197,6 +3218,8 @@ $(document).ready(function () {
 
 //3. recorrer el arreglo
             for (var i = 0; i < data[9].length; i++) {
+                var fecha = data[9][i].CitaProgramada;
+                fecha = convertDate(fecha);
                 var plantilla =
                         `
             <div class="form-group row mt-2 tuplaEcocardiograma" data-id="${data[9][i].idCita}" data-accion="actualizar">
@@ -3208,7 +3231,7 @@ $(document).ready(function () {
                                     <i class="fas fa-calendar-alt"></i>
                                 </div>
                             </div>
-                            <input name="fecha-ecoAdded" value="${data[9][i].CitaProgramada}" placeholder="Fecha de ecocardiograma" class="form-control fechaEcocardiograma" type="text" onfocus="(this.type='date')">
+                            <input name="fecha-ecoAdded" value="${fecha}" placeholder="Fecha de ecocardiograma" class="form-control fechaEcocardiograma" type="text" onfocus="(this.type='date')">
                         </div>
                     </div>
 
@@ -3241,6 +3264,8 @@ $(document).ready(function () {
 //3. recorrer el arreglo
 
             for (var i = 0; i < data[10].length; i++) {
+                var fecha = data[10][i].CitaProgramada;
+                fecha = convertDate(fecha);
                 var plantilla =
                         `
             <div class="form-group row mt-2 tuplaTrabajoSocial" data-id="${data[10][i].idCita}" data-accion="actualizar">
@@ -3252,7 +3277,7 @@ $(document).ready(function () {
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                         </div>
-                        <input name="fecha-tSocilaAdded" value="${data[10][i].CitaProgramada}" placeholder="Fecha de trabajo social" class="form-control fechaTrabajoSocial" type="text" onfocus="(this.type='date')">
+                        <input name="fecha-tSocilaAdded" value="${fecha}" placeholder="Fecha de trabajo social" class="form-control fechaTrabajoSocial" type="text" onfocus="(this.type='date')">
                     </div>
                 </div>
 
@@ -3282,6 +3307,8 @@ $(document).ready(function () {
 
 //3. recorrer el arreglo
             for (var i = 0; i < data[11].length; i++) {
+                var fecha = data[11][i].CitaProgramada;
+                fecha = convertDate(fecha);
                 var plantilla =
                         `
             <div class="form-group row mt-2 tuplaPrograma" data-id="${data[11][i].idCita}" data-accion="actualizar">
@@ -3298,7 +3325,7 @@ $(document).ready(function () {
                                     <i class="fas fa-calendar-alt"></i>
                                 </div>
                             </div>
-                            <input name="fecha-programaAdded" value="${data[11][i].CitaProgramada}" placeholder="Fecha del programa" class="form-control fechaPrograma" type="text" onfocus="(this.type='date')">
+                            <input name="fecha-programaAdded" value="${fecha}" placeholder="Fecha del programa" class="form-control fechaPrograma" type="text" onfocus="(this.type='date')">
                         </div>
                     </div>
 
@@ -3329,6 +3356,8 @@ $(document).ready(function () {
 
 //3. recorrer el arreglo
             for (var i = 0; i < data[12].length; i++) {
+                var fecha = data[12][i].CitaProgramada;
+                fecha = convertDate(fecha);
                 var plantilla =
                         `
             <div class="form-group row mt-2 tuplaOtro" data-id="${data[12][i].idCita}" data-accion="actualizar">
@@ -3340,7 +3369,7 @@ $(document).ready(function () {
                                     <i class="fas fa-calendar-alt"></i>
                                 </div>
                             </div>
-                            <input name="fecha-otroAdded" value="${data[12][i].CitaProgramada}" placeholder="Fecha de otro" class="form-control fechaOtro" type="text" onfocus="(this.type='date')">
+                            <input name="fecha-otroAdded" value="${fecha}" placeholder="Fecha de otro" class="form-control fechaOtro" type="text" onfocus="(this.type='date')">
                         </div>
                     </div>
 
@@ -3381,6 +3410,8 @@ $(document).ready(function () {
 
 //3. recorrer el arreglo
             for (var i = 0; i < data[13].length; i++) {
+                var fecha = data[13][i].CitaProgramada;
+                fecha = convertDate(fecha);
                 var plantilla =
                         `
             <div class="tuplaLlamada mt-3" data-id="${data[13][i].idCita}" data-accion="actualizar">
@@ -3402,7 +3433,7 @@ $(document).ready(function () {
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <textarea class="form-control comentario-llamada" style="min-height:100px;" value="${data[13][i].comentarioLLamada}" placeholder="Introduce el motivo de la llamada "></textarea>
+                        <textarea class="form-control comentario-llamada" style="min-height:100px;" value="${fecha}" placeholder="Introduce el motivo de la llamada "></textarea>
                     </div>
                 </div>
             </div>
@@ -3569,9 +3600,21 @@ $(document).ready(function () {
             //alert("No enontre el controlador" + status);                               
         }
     });
-
-    function convertDate(date) {
-
+// 'ene 1, 2001'
+    function convertDate(fecha) {
+         fecha = fecha.replace("ene", "jan");
+        fecha = fecha.replace("feb", "feb");
+        fecha = fecha.replace("mar", "mar");
+        fecha = fecha.replace("abr", "apr");
+        fecha = fecha.replace("may", "may");
+        fecha = fecha.replace("jun", "jun");
+        fecha = fecha.replace("jul", "jul");
+        fecha = fecha.replace("ago", "aug");
+        fecha = fecha.replace("sep", "sep");
+        fecha = fecha.replace("oct", "oct");
+        fecha = fecha.replace("nov", "nov");
+        fecha = fecha.replace("dic", "dec");
+        var date = new Date(fecha);
         var yyyy = date.getFullYear().toString();
         var mm = (date.getMonth() + 1).toString();
         var dd = date.getDate().toString();
@@ -3582,360 +3625,392 @@ $(document).ready(function () {
         return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
     }
 
+    function convertDate2(fecha) {
+        //fecha = fecha + " 00:00:00 GMT";
+        fecha = fecha.replace("ene", "jan");
+        fecha = fecha.replace("feb", "feb");
+        fecha = fecha.replace("mar", "mar");
+        fecha = fecha.replace("abr", "apr");
+        fecha = fecha.replace("may", "may");
+        fecha = fecha.replace("jun", "jun");
+        fecha = fecha.replace("jul", "jul");
+        fecha = fecha.replace("ago", "aug");
+        fecha = fecha.replace("sep", "sep");
+        fecha = fecha.replace("oct", "oct");
+        fecha = fecha.replace("nov", "nov");
+        fecha = fecha.replace("dic", "dec");
+        
+        console.log(fecha);
+        var date = new Date(fecha);
+        console.log(date);
+        var yyyy = date.getFullYear().toString();
+        console.log(yyyy);
+        var mm = (date.getMonth() + 1).toString();
+        console.log(mm);
+        var dd = date.getDate().toString();
+        console.log(dd);
+        var mmChars = mm.split('');
+        var ddChars = dd.split('');
+
+        return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
+    }
+
 });
 
-    
-
-    
-    function isValidEmail(input) {
-
-        var m = input.val();
-
-        ////Expresion regular por el estandard: RFC 5322
-        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-
-    }
-    ;
-
-    function isValidPhoneNumber(input) {
-
-        var m = input.val();
-
-        var expreg = /^[0-9]{10,10}$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-    }
-    ;
 
 
-    function formatDate(date) {
-        var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
 
-        if (month.length < 2) month = '0' + month;
-        if (day.length < 2) day = '0' + day;
+function isValidEmail(input) {
 
-        return [year, month, day].join('-');
+    var m = input.val();
+
+    ////Expresion regular por el estandard: RFC 5322
+    var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
     }
 
-    function isValidName(input) {
+    return true;
 
-        var m = input.val();
+}
+;
 
-        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
+function isValidPhoneNumber(input) {
 
-        if (!expreg.test(m)) {
+    var m = input.val();
 
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
+    var expreg = /^[0-9]{10,10}$/;
 
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
+    if (!expreg.test(m)) {
 
-        return true;
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+;
+
+
+function formatDate(date) {
+    var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
+function isValidName(input) {
+
+    var m = input.val();
+
+    var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+}
+
+function isValidLastName(input) {
+
+    var m = input.val();
+
+    var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,127}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+function isValidEmail(input) {
+
+    var m = input.val();
+
+    ////Expresion regular por el estandard: RFC 5322
+    var expreg = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+}
+
+function isValidPassword(input) {
+
+    var m = input.val();
+
+    //var expreg = /^[a-zA-Z0-9]{8,14}$/;
+    var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+}
+
+function isValidCURP(input) {
+
+    var m = input.val();
+
+    var expreg = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+function isValidPhoneNumber(input) {
+
+    var m = input.val();
+
+    var expreg = /^[0-9]{10,10}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+function isValidSelect(input) {
+
+    if (!input.val()) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+function isValidDate(input) {
+
+    //Obtener fecha
+    let today = new Date();
+
+    //Valor seleccionado del input
+    let date_from = input.val();
+    date_from = new Date(date_from);
+
+    let event = false;
+
+    today < date_from ? event = true : event = false;
+
+
+    if (!input.val() || event) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+function isValidColonia(input) {
+
+    var m = input.val();
+
+    var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,500}$/;
+
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+function isValidStreet(input) {
+
+    var m = input.val();
+
+    var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,255}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+
+}
+
+function isValidIntNumber(input) {
+
+    var m = input.val();
+
+    var expreg = /^[#a-zA-Z0-9]{1,100000}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+
+}
+
+function isValidExtNumber(input) {
+
+    var m = input.val();
+
+    var expreg = /^[#0-9]{1,100000}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+
+}
+
+function isValidUserName(input) {
+
+    var m = input.val();
+
+    var expreg = /^[a-zA-Z0-9]{4,16}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+function areEqualPasswords(pass1, pass2) {
+
+    if (pass1.val() != pass2.val()) {
+
+        pass2.css('border', '1px solid red');
+        pass1.css('border', '1px solid red');
+        $('#noEqualPasswordsError').show();
+
+        return false;
+
+    } else {
+        pass2.css('border', '');
+        pass1.css('border', '');
+        $('#noEqualPasswordsError').hide();
 
     }
 
-    function isValidLastName(input) {
-
-        var m = input.val();
-
-        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,127}$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-    }
-
-    function isValidEmail(input) {
-
-        var m = input.val();
-
-        ////Expresion regular por el estandard: RFC 5322
-        var expreg = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-
-    }
-
-    function isValidPassword(input) {
-
-        var m = input.val();
-
-        //var expreg = /^[a-zA-Z0-9]{8,14}$/;
-        var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-
-    }
-
-    function isValidCURP(input) {
-
-        var m = input.val();
-
-        var expreg = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-    }
-
-    function isValidPhoneNumber(input) {
-
-        var m = input.val();
-
-        var expreg = /^[0-9]{10,10}$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-    }
-
-    function isValidSelect(input) {
-
-        if (!input.val()) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-    }
-
-    function isValidDate(input) {
-
-        //Obtener fecha
-        let today = new Date();
-
-        //Valor seleccionado del input
-        let date_from = input.val();
-        date_from = new Date(date_from);
-
-        let event = false;
-
-        today < date_from ? event = true : event = false;
-
-
-        if (!input.val() || event) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-    }
-
-    function isValidColonia(input) {
-
-        var m = input.val();
-
-        var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,500}$/;
-
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-    }
-
-    function isValidStreet(input) {
-
-        var m = input.val();
-
-        var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,255}$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-
-
-    }
-
-    function isValidIntNumber(input) {
-
-        var m = input.val();
-
-        var expreg = /^[#a-zA-Z0-9]{1,100000}$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-
-
-    }
-
-    function isValidExtNumber(input) {
-
-        var m = input.val();
-
-        var expreg = /^[#0-9]{1,100000}$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-
-
-    }
-
-    function isValidUserName(input) {
-
-        var m = input.val();
-
-        var expreg = /^[a-zA-Z0-9]{4,16}$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-    }
-    
-    function areEqualPasswords(pass1, pass2) {
-
-        if (pass1.val() != pass2.val()) {
-
-            pass2.css('border', '1px solid red');
-            pass1.css('border', '1px solid red');
-            $('#noEqualPasswordsError').show();
-
-            return false;
-
-        } else {
-            pass2.css('border', '');
-            pass1.css('border', '');
-            $('#noEqualPasswordsError').hide();
-
-        }
-
-        return true;
-    }
+    return true;
+}
