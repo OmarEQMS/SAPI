@@ -82,12 +82,12 @@ $(document).ready(function () {
                         var t = $('#tablaAdministradores').DataTable();
 
                         t.row.add([
-                            $("#agregar-nombreAdministrador").val() + " " + $("#agregar-primerApellidoAdministrador").val() + " " + $("#agregar-segundoApellidoAdministrador").val(),
-                            $("#agregar-correoAdministrador").val(),
-                            $("#agregar-telefonoAdministrador").val(),
-                            $("#agregar-noEmpleadoAdministrador").val(),
-                            $("#agregar-especialidadAdministrador").val(),
-                            $("#agregar-cedulaAdministrador").val(),
+                            "<span id='nombre-" + response + "'>" + $("#agregar-nombreAdministrador").val() + " " + $("#agregar-primerApellidoAdministrador").val() + " " + $("#agregar-segundoApellidoAdministrador").val() + "</span>",
+                            "<span id='correo-" + response + "'>" + $("#agregar-correoAdministrador").val() + "</span>",
+                            "<span id='telefono-" + response + "'>" + $("#agregar-telefonoAdministrador").val() + "</span>",
+                            "<span id='noEmpleado-" + response + "'>" + $("#agregar-noEmpleadoAdministrador").val() + "</span>",
+                            "<span id='nombreEspecialidad-" + response + "'>" + $("#agregar-especialidadAdministrador").val() + "</span>",
+                            "<span id='cedulaProfesional-" + response + "'>" + $("#agregar-cedulaAdministrador").val() + "</span>",
                             "<button class='btn btn-primary btn-editarAdministrador m-1' data-toggle='modal' data-id='" + response + "' data-target='#modalEditarAdministrador'><i class='fas fa-edit'></i></button>" +
                                     "<button class='btn btn-danger m-1 btn-eliminarAdministrador' data-id='" + response + "'><i class='fas fa-trash-alt'></i></button>"
                         ]).draw(false);
