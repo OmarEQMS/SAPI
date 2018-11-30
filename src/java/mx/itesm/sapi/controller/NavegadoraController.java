@@ -389,9 +389,9 @@ public class NavegadoraController extends HttpServlet {
 
                             boolean rechazado = documentoInicialServicioImpl.agregarRechazoDocumento(idDocumentoInicial, comentario);
                             //ESto es para el correo
+                           
 
-
-                            int pacientePotencial = (int) sesion.getAttribute("idPacienteAtendido");
+                            int pacientePotencial = (int) sesion.getAttribute("idPacientePotencialAtendido");
 
                             PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                             Persona persona = personaServicio.mostrarPersonaPorIdPaciente(pacientePotencial);
@@ -2034,13 +2034,7 @@ public class NavegadoraController extends HttpServlet {
                                             lugarDelCuerpoServicio.agregarLugarDelCuerpo(lugarDelCuerpo);
                                             lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(lugar);
                                         }
-                                        documentoEstudio.setIdCita(id);
-                                        documentoEstudio.setIdPaciente(idPacientePotencial);
-                                        documentoEstudio.setIdEstudio(estudio.getIdEstudio());
-                                        documentoEstudio.setIdEstadoEstudio(1);
-                                        documentoEstudio.setIdBirads(null);
-                                        documentoEstudio.setIdLugarDelCuerpo(lugarDelCuerpo.getIdLugarDelCuerpo());
-                                        documentoEstudioServicio.agregarDocumentoEstudio(documentoEstudio);
+                                        documentoEstudioServicio.actualizarLugarDelCuerpoCita(id,lugarDelCuerpo.getIdLugarDelCuerpo());
                                         break;
                                     }
                                     case "eliminar": {
@@ -2142,13 +2136,7 @@ public class NavegadoraController extends HttpServlet {
                                             lugarDelCuerpoServicio.agregarLugarDelCuerpo(lugarDelCuerpo);
                                             lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(parte);
                                         }
-                                        documentoEstudio.setIdCita(id);
-                                        documentoEstudio.setIdPaciente(idPacientePotencial);
-                                        documentoEstudio.setIdEstudio(estudio.getIdEstudio());
-                                        documentoEstudio.setIdEstadoEstudio(1);
-                                        documentoEstudio.setIdBirads(null);
-                                        documentoEstudio.setIdLugarDelCuerpo(lugarDelCuerpo.getIdLugarDelCuerpo());
-                                        documentoEstudioServicio.agregarDocumentoEstudio(documentoEstudio);
+                                        documentoEstudioServicio.actualizarLugarDelCuerpoCita(id,lugarDelCuerpo.getIdLugarDelCuerpo());
                                         break;
                                     }
                                     case "eliminar": {

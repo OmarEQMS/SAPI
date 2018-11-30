@@ -20,14 +20,14 @@ import mx.itesm.sapi.bean.poblacion.GeneralPoblacion;
 public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
     
     @Override
-    public ArrayList<GeneralPoblacion> mostrarPoblacionGeneral() {
+    public ArrayList<ArrayList<String>> mostrarPoblacionGeneral() {
         
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
 
-        ArrayList<GeneralPoblacion> PoblacionGeneral = new ArrayList<>();
-
+        ArrayList<ArrayList<String>> PoblacionGeneral = new ArrayList<>();
+        PoblacionGeneral.add(GeneralPoblacion.tableHeaderRStudio());
         //Call del store procedure
         String stProcedure = "CALL mostrarPoblacionGeneral()";
         
@@ -62,6 +62,12 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
                 temp.setBiopsiaINCanT(rs.getString("INCan_T"));
                 temp.setBiopsiaINCanN(rs.getString("INCan_N"));
                 temp.setBiopsiaINCanM(rs.getString("INCan_M"));
+                temp.setConsultaTipo(rs.getString("Consulta_Tipo"));
+                temp.setConsultaEstado(rs.getString("Consulta_Estado"));
+                temp.setConsultaMotivo(rs.getString("Consulta_Motivo"));
+                temp.setConsultaComentario(rs.getString("Consulta_Comentario"));
+                temp.setConsultaFecha(rs.getDate("Consulta_Fecha"));
+                temp.setConsultaDiagnosticoFecha(rs.getDate("Consulta_FechaDiagnostico"));
                 
                 String NestedStProcedure = "CALL mostrarPoblacionNecesidadesEspeciales(?)";
                 CallableStatement NestedCstmt = conn.prepareCall(NestedStProcedure);
@@ -72,6 +78,20 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
                     temp.setBastón(NestedRs.getString("Baston"));
                     temp.setOxigeno(NestedRs.getString("Oxigeno"));
                     temp.setCamilla(NestedRs.getString("Camilla"));
+                NestedRs.close();
+                NestedRs.close();
+                
+                NestedStProcedure = "CALL mostrarPoblacionMedicosCita(?)";
+                NestedCstmt = conn.prepareCall(NestedStProcedure);
+                NestedCstmt.setInt(1, rs.getInt("idCita"));
+                NestedRs = NestedCstmt.executeQuery();
+                NestedRs.next();
+                    temp.setConsultaAdscritoNombre(NestedRs.getString("MedicosCita_Adscrito"));
+                    if (NestedRs.getInt("MedicosCita_AdscritoPresente") == 0) temp.setConsultaAdscritoPresente("No");
+                    else temp.setConsultaAdscritoPresente("Sí");
+                    temp.setConsultaRadiologoNombre(NestedRs.getString("MedicosCita_Radiologo"));
+                    if (NestedRs.getInt("MedicosCita_RadiologoPresente") == 0) temp.setConsultaRadiologoPresente("No");
+                    else temp.setConsultaRadiologoPresente("Sí");
                 NestedRs.close();
                 NestedRs.close();
                 
@@ -258,8 +278,18 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
                 if (temp.getCirugiasINCanMasectomiaFecha() == null)temp.setCirugiasINCanMasectomiaFecha(Date.valueOf("1900-01-01"));
                 if (temp.getCirugiasINCanConservadoraFecha() == null)temp.setCirugiasINCanConservadoraFecha(Date.valueOf("1900-01-01"));
                 if (temp.getCirugiasINCanReconstruccionFecha() == null)temp.setCirugiasINCanReconstruccionFecha(Date.valueOf("1900-01-01"));
+                if (temp.getConsultaTipo() == null)temp.setConsultaTipo("NA");
+                if (temp.getConsultaEstado() == null)temp.setConsultaEstado("NA");
+                if (temp.getConsultaMotivo() == null)temp.setConsultaMotivo("NA");
+                if (temp.getConsultaComentario() == null)temp.setConsultaComentario("NA");
+                if (temp.getConsultaFecha() == null)temp.setConsultaFecha(Date.valueOf("1900-01-01"));
+                if (temp.getConsultaDiagnosticoFecha() == null)temp.setConsultaDiagnosticoFecha(Date.valueOf("1900-01-01"));
+                if (temp.getConsultaAdscritoNombre() == null)temp.setConsultaAdscritoNombre("NA");
+                if (temp.getConsultaAdscritoPresente() == null)temp.setConsultaAdscritoPresente("NA");
+                if (temp.getConsultaRadiologoNombre() == null)temp.setConsultaRadiologoNombre("NA");
+                if (temp.getConsultaRadiologoPresente() == null)temp.setConsultaRadiologoPresente("NA");
                 
-                PoblacionGeneral.add(temp);
+                PoblacionGeneral.add(temp.toStringRStudio());
             }
             rs.close();
             cstmt.close();

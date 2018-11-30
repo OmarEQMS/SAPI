@@ -104,8 +104,8 @@
                 <!-- MENU PRINCIPAL ENLACES -->
                 <ul class="list-unstyled components">
 
-                   <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
-                                                            
+                    <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
+
                     <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
                     <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
@@ -667,6 +667,12 @@
                                 </div>
                             </div>
 
+                            <div class="row mb-3" id="error-campos2">
+                                <div class="col-12 text-center">
+                                    <span class="text-danger">Completa todos los campos y asegúrate de aceptar los términos para registrar la cuenta.</span>
+                                </div>
+                            </div>
+
 
                         </div>
                         <div class="modal-footer">
@@ -904,7 +910,11 @@
                                 </div>
 
                             </div>
-
+                            <div class="row mb-3" id="error-campos">
+                                <div class="col-12 text-center">
+                                    <span class="text-danger">Completa todos los campos y asegúrate de aceptar los términos para registrar la cuenta.</span>
+                                </div>
+                            </div>
 
 
                         </div>
