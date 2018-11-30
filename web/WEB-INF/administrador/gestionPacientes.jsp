@@ -164,7 +164,7 @@
                         
                         <div class="row">
                             <div class="col-12 centrado mb-3">
-                                <button style="border-radius:20px; vertical-align:middle" class="btn-reportePoblacion float-left"><span> Descargar Reporte de Población</span></button>
+                                <button style="border-radius:20px; vertical-align:middle" class="btn-reportePoblacion float-left" id="btn-poblacion"><span> Descargar Reporte de Población</span></button>
                             </div>
 
                         </div>
