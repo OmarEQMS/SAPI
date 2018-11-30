@@ -8,6 +8,7 @@ package mx.itesm.sapi.controller;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 
 import java.sql.Date;
@@ -94,6 +95,7 @@ import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.LoginServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
+import mx.itesm.sapi.util.ExcelExport;
 
 import org.apache.commons.io.IOUtils;
 
@@ -616,23 +618,27 @@ public class AdministradorController extends HttpServlet {
                 }
 
                 case "ReportePoblacion": {
-                    /**
-                     * Author Angel Gtz
-                     *
-                     * Toma datos de todos los pacientes para crear un estudio
-                     * de la poblacion del INCAN Mostrando: Nombre Primer
-                     * Apellido Segundo apellido CURP Codigo postal Estado
-                     * Municipio Fecha de nacimiento Estado civil Sexo Nivel
-                     * educativo Motivo de consulta Medico adscrito Adscrito
-                     * presente Medico radiologo Radiologo presente Compañia
-                     * seguro
-                     *
-                     *
-                     */
-
-                    PersonaServicioImpl personaServicio = new PersonaServicioImpl();
-                    Persona persona = personaServicio.mostrarPersona(2);
-
+                    try{
+                        ArrayList<ArrayList<String>> myArrayList = new ArrayList<>();
+                        ArrayList<String> temp = new ArrayList<>();
+                        ArrayList<String> temp2 = new ArrayList<>();
+                        temp.add("1");
+                        temp.add("2");
+                        temp.add("3");
+                        temp2.add("4");
+                        temp2.add("5");
+                        temp2.add("6");
+                        myArrayList.add(temp);
+                        myArrayList.add(temp2);
+                        response.setContentType("application/octet-stream");
+                        response.setHeader("Content-Disposition", "attachment;filename=reportePoblacion.xls");
+                        OutputStream os = response.getOutputStream();
+                        ExcelExport.export("Poblacion",os, myArrayList);
+                        os.flush();
+                        os.close();
+                    }catch(IOException ex){
+                        System.out.print(this.getClass().toString().concat(ex.getMessage()));
+                    } 
                     break;
                 }
 
