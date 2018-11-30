@@ -154,6 +154,9 @@
                 <div class="jumbotron jumbotron-fluid p-2">
                     <div class="container">
                         <h1 class="display-4 tituloPacientes text-center m-0">Formato de Control Preconsulta Mama</h1>
+                        <h6 class="display-4 text-center m-0 text-secondary" id="pacienteSelec" style="font-size:25px;">
+                        ${sessionScope.nombrePaciente} ${sessionScope.apellido1Paciente} ${sessionScope.apellido2Paciente}
+                    </h6>
                     </div>
                 </div>
 
@@ -207,7 +210,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-check mt-2">
-                                                    <input name="noAdscrito" class="form-check-input" type="checkbox" value="" id="noAdscrito">
+                                                    <input name="noAdscritoAdscrito" class="form-check-input" type="checkbox" value="" id="noAdscritoAdscrito">
                                                     <label class="form-check-label" for="defaultCheck1">
                                                         No estuvo el Médico adscrito
                                                     </label>
@@ -264,7 +267,7 @@
 
                                                 </div>
                                                 <div class="form-check mt-2">
-                                                    <input name="esSustituto" class=" form-check-input" type="checkbox" value="" id="esSustituto">
+                                                    <input name="noAdscritoRadiologo" class=" form-check-input" type="checkbox" value="" id="noAdscritoRadiologo">
                                                     <label class="form-check-label" for="defaultCheck1">
                                                         No estuvo médico radiologo
                                                     </label>
@@ -303,7 +306,6 @@
                                                         </div>
                                                     </div>
 
-<!--<<<<<<< HEAD-->
                                                    <select name="medico-residente" class="form-control" id="medico-residente">
 
                                                         <option disabled selected>Seleccione un Residente</option>
@@ -314,17 +316,12 @@
 
                                                         </c:forEach>
                                                         <option value="otro">Otro</option>
-                                                        <!--=======
-                                                                                                            <input name = "medico-residente" type="text" id="medico-residente" class="form-control" class="form-control" placeholder="Introduce Médico Residente">
-                                                                                                        </div>
-                                                                                                    </div>
-                                                        >>>>>>> origin/AngelRaul
-                                                        -->
+                                                       
                                                     </select>
                                                 </div>
 
                                                 <div class="form-check mt-2">
-                                                    <input name="noAdscrito" class=" form-check-input" type="checkbox" value="" id="noAdscrito">
+                                                    <input name="noAdscritoResidente" class=" form-check-input" type="checkbox" value="" id="noAdscritoResidente">
                                                     <label class="form-check-label" for="defaultCheck1">
                                                         No estuvo médico residente
                                                     </label>
@@ -1184,11 +1181,10 @@
 
                                                         <option disabled selected>Seleccione la decisión</option>              
 
-                                                        <option>Unidad funcional</option>
-                                                        <option>Alta</option>
-                                                        <option>Alta voluntaria</option>
-                                                        <option>Finada</option>
-                                                        <option>Perdida</option>
+                                                        <option value=3 >Unidad funcional</option>
+                                                        <option value=8>Alta</option>
+                                                        <option value="9">Alta voluntaria</option>
+                                                        <option value="7">Finada</option>
                                                     </select>
                                                 </div>
                                             </div>
