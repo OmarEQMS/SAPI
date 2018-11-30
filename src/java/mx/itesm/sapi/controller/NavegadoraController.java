@@ -85,6 +85,7 @@ import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteMedicoTitular;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteSeguro;
 import mx.itesm.sapi.bean.gestionPaciente.ProgramaPaciente;
+import mx.itesm.sapi.bean.gestionPaciente.TipoBiopsia;
 import mx.itesm.sapi.bean.gestionTratamiento.PacienteTratamientoPrevio;
 import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
 
@@ -127,6 +128,7 @@ import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteSeguroServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.ProgramaPacienteServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.TipoBiopsiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.TipoDocumentoServicioImpl;
 import mx.itesm.sapi.service.gestionTratamiento.PacienteTratamientoPrevioServiceImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;

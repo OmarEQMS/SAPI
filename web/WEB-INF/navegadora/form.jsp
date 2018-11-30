@@ -100,19 +100,11 @@
                         <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
 
                         <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
-<<<<<<< HEAD
 
                         <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
                         <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
 
-=======
-
-                        <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
-
-                        <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
-
->>>>>>> origin/Develop
                         <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
 
@@ -162,9 +154,7 @@
                 <div class="jumbotron jumbotron-fluid p-2">
                     <div class="container">
                         <h1 class="display-4 tituloPacientes text-center m-0">Formato de Control Preconsulta Mama</h1>
-                        <h6 class="display-4 text-center m-0 text-secondary" id="pacienteSelec" style="font-size:25px;"> Paciente:
-                            ${sessionScope.nombrePaciente} ${sessionScope.apellido1Paciente} ${sessionScope.apellido2Paciente} 
-                        </h6>                    </div>
+                    </div>
                 </div>
 
                 <div class="card mt-3">
@@ -313,13 +303,8 @@
                                                         </div>
                                                     </div>
 
-<<<<<<< HEAD
-                                                    <!--<<<<<<< HEAD-->
-                                                    <select name="medico-residente" class="form-control" id="medico-radiologo">
-=======
 <!--<<<<<<< HEAD-->
                                                    <select name="medico-residente" class="form-control" id="medico-residente">
->>>>>>> origin/Develop
 
                                                         <option disabled selected>Seleccione un Residente</option>
 
@@ -866,41 +851,6 @@
 
                                         <div id="rayos-contenedor">
 
-<<<<<<< HEAD
-
-                                            <div class="form-group row mt-2 tuplaRayosX" data-id="0" data-accion="agregar" id="rayosInit">
-
-                                                <!-- tipo rayos -->
-                                                <div class="col-5">
-                                                    <input name="tipo-RayosXAdded" id="rayosX" type="text" class="form-control rayosX" list="listRayosX" placeholder="Tipo de rayos X">
-                                                    <datalist id="listRayosX">                                            
-                                            </datalist>
-                                                </div>
-
-                                                <!-- fecha rayos -->
-                                                <div class="col-5">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <i class="fas fa-calendar-alt"></i>
-                                                            </div>
-                                                        </div>
-                                                        <input name="fecha-RayosXAdded" placeholder="Fecha de los Rayos X" class="form-control fechaRayos" type="text" onfocus="(this.type = 'date')">
-                                                    </div>
-                                                </div>
-
-                                                <!-- boton agregar rayos -->
-                                                <div class="col-2">
-                                                    <button type="button" class="btn btn-morado ml-2 add-rayosX" style="border-radius: 25px;">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-
-
-                                            </div>
-
-=======
->>>>>>> origin/Develop
                                         </div>
 
 
