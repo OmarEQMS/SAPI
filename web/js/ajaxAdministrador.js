@@ -1821,15 +1821,17 @@ $(document).ready(function () {
                         var t = $('#tablaMedicos').DataTable();
 
                         t.row.add([
-                            $("#agregar-nombreMedico").val() + " " + $("#agregar-primerApellidoMedico").val() + " " + $("#agregar-segundoApellidoMedico").val(),
-                            $("#agregar-correoMedico").val(),
-                            $("#agregar-telefonoMedico").val(),
-                            $("#agregar-noEmpleadoMedico").val(),
-                            $("#agregar-especialidadMedico").val(),
-                            $("#agregar-cedulaMedico").val(),
+                            "<span id='nombre-" + response + "'>" + $("#agregar-nombreMedico").val() + " " + $("#agregar-primerApellidoMedico").val() + " " + $("#agregar-segundoApellidoMedico").val() + "</span>",
+                            "<span id='correo-" + response + "'>" + $("#agregar-correoMedico").val() + "</span>",
+                            "<span id='telefono-" + response + "'>" + $("#agregar-telefonoMedico").val() + "</span>",
+                            "<span id='noEmpleado-" + response + "'>" + $("#agregar-noEmpleadoMedico").val() + "</span>",
+                            "<span id='nombreEspecialidad-" + response + "'>" + $("#agregar-especialidadMedico").val() + "</span>",
+                            "<span id='cedulaProfesional-" + response + "'>" + $("#agregar-cedulaMedico").val() + "</span>",
                             "<button class='btn btn-primary btn-editarMedico m-1' data-toggle='modal' data-id='" + response + "' data-target='#modalEditarMedico'><i class='fas fa-edit'></i></button>" +
                                     "<button class='btn btn-danger m-1 btn-eliminarMedico' data-id='" + response + "'><i class='fas fa-trash-alt'></i></button>"
                         ]).draw(false);
+
+
 
                         console.log(response);
                         swal({
