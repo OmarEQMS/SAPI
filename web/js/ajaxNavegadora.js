@@ -51,7 +51,6 @@ $(document).ready(function () {
     $('#noEqualPasswordsError').hide();
         
 
-<<<<<<< HEAD
     /////ERRORES FORMULARIO
     $('#error-fechaNavegacion').hide();
     $('#error-fechaConsulta').hide();
@@ -70,9 +69,7 @@ $(document).ready(function () {
     $('#error-serieLaminillas').hide();
     $('#error-numeroParafrina').hide();
     $('#error-serieParafrina').hide();
-=======
-    //AutocompleteRayosX
->>>>>>> origin/Develop
+
 
 
     var rayosX=[];
@@ -2964,7 +2961,7 @@ $(document).ready(function () {
 
                     alert('si selecciono seguro popular');
 
-                    btnSave(data);
+                    //btnSave(data);
                 }
 
             } else {
@@ -2974,7 +2971,7 @@ $(document).ready(function () {
 
                 alert('no selecciono seguro popular');
 
-                btnSave(data);
+                //btnSave(data);
 
             }
 
@@ -4164,77 +4161,50 @@ $(document).ready(function () {
     
 
     
-    function isValidEmail(input) {
-
-        var m = input.val();
-
-<<<<<<< HEAD
 
 function isValidPRZ(input) {
-=======
-        ////Expresion regular por el estandard: RFC 5322
-        var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
->>>>>>> origin/Develop
 
-        if (!expreg.test(m)) {
+    var m = input.val();
 
-<<<<<<< HEAD
     var expreg = /^[a-zA-Z0-9]{4,16}$/;
-=======
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
->>>>>>> origin/Develop
 
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
+    if (!expreg.test(m)) {
 
-        return true;
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
 
+    } else {
+        input.css('border', '');
+        input.css('color', '');
     }
-    ;
 
-<<<<<<< HEAD
     return true;
 
 }
 
 function isValidEmail(input) {
-=======
-    function isValidPhoneNumber(input) {
 
-        var m = input.val();
->>>>>>> origin/Develop
+    var m = input.val();
 
-        var expreg = /^[0-9]{10,10}$/;
-
-<<<<<<< HEAD
     ////Expresion regular por el estandard: RFC 5322
     var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-=======
-        if (!expreg.test(m)) {
->>>>>>> origin/Develop
 
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
+    if (!expreg.test(m)) {
 
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
 
-        return true;
+    } else {
+        input.css('border', '');
+        input.css('color', '');
     }
-    ;
 
-
-<<<<<<< HEAD
     return true;
 
 }
+
 
 function isValidTratamientoPrevio(input) {
 
@@ -4387,64 +4357,64 @@ function isValidDate6monthsDynamic(input) {
     return true;
 
 }
-=======
-    function formatDate(date) {
-        var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
->>>>>>> origin/Develop
 
-        if (month.length < 2) month = '0' + month;
-        if (day.length < 2) day = '0' + day;
 
-        return [year, month, day].join('-');
+
+function formatDate(date) {
+    var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
+function isValidName(input) {
+
+    var m = input.val();
+
+    var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
     }
 
-    function isValidName(input) {
+    return true;
 
-        var m = input.val();
+}
 
-        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
+function isValidLastName(input) {
 
-        if (!expreg.test(m)) {
+    var m = input.val();
 
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
+    var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,127}$/;
 
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
+    if (!expreg.test(m)) {
 
-        return true;
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
 
+    } else {
+        input.css('border', '');
+        input.css('color', '');
     }
 
-    function isValidLastName(input) {
+    return true;
+}
 
-        var m = input.val();
-
-        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,127}$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-    }
-
-    function isValidEmail(input) {
-
-<<<<<<< HEAD
 function isValidAlfanumerico(input) {
 
     var m = input.val();
@@ -4466,93 +4436,89 @@ function isValidAlfanumerico(input) {
 }
 
 function isValidEmail(input) {
-=======
-        var m = input.val();
->>>>>>> origin/Develop
 
-        ////Expresion regular por el estandard: RFC 5322
-        var expreg = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+    var m = input.val();
 
-        if (!expreg.test(m)) {
+    ////Expresion regular por el estandard: RFC 5322
+    var expreg = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
+    if (!expreg.test(m)) {
 
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
 
-        return true;
-
+    } else {
+        input.css('border', '');
+        input.css('color', '');
     }
 
-    function isValidPassword(input) {
+    return true;
 
-        var m = input.val();
+}
 
-        //var expreg = /^[a-zA-Z0-9]{8,14}$/;
-        var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
-        if (!expreg.test(m)) {
+function isValidPassword(input) {
 
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
+    var m = input.val();
 
-        } else {
+    //var expreg = /^[a-zA-Z0-9]{8,14}$/;
+    var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
+    if (!expreg.test(m)) {
 
-            input.css('border', '');
-            input.css('color', '');
-        }
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
 
-        return true;
+    } else {
 
+        input.css('border', '');
+        input.css('color', '');
     }
 
-    function isValidCURP(input) {
+    return true;
 
-        var m = input.val();
+}
 
-        var expreg = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/;
+function isValidCURP(input) {
 
-        if (!expreg.test(m)) {
+    var m = input.val();
 
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
+    var expreg = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/;
 
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
+    if (!expreg.test(m)) {
 
-        return true;
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
     }
 
-    function isValidPhoneNumber(input) {
+    return true;
+}
 
-        var m = input.val();
+function isValidPhoneNumber(input) {
 
-        var expreg = /^[0-9]{10,10}$/;
+    var m = input.val();
 
-        if (!expreg.test(m)) {
+    var expreg = /^[0-9]{10,10}$/;
 
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
+    if (!expreg.test(m)) {
 
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
 
-        return true;
+    } else {
+        input.css('border', '');
+        input.css('color', '');
     }
 
-    function isValidSelect(input) {
+    return true;
+}
 
-<<<<<<< HEAD
 function isValidNumerico(input) {
 
     var m = input.val();
@@ -4614,25 +4580,21 @@ function isValidNumCiclos(input) {
 }
 
 function isValidSelect(input) {
-=======
-        if (!input.val()) {
->>>>>>> origin/Develop
 
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
+    if (!input.val()) {
 
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
 
-        return true;
+    } else {
+        input.css('border', '');
+        input.css('color', '');
     }
 
-    function isValidDate(input) {
+    return true;
+}
 
-<<<<<<< HEAD
 function isValidAllergy(input) {
 
     var m = input.val();
@@ -4655,157 +4617,156 @@ function isValidAllergy(input) {
 }
 
 function isValidDate(input) {
-=======
-        //Obtener fecha
-        let today = new Date();
->>>>>>> origin/Develop
 
-        //Valor seleccionado del input
-        let date_from = input.val();
-        date_from = new Date(date_from);
+    //Obtener fecha
+    let today = new Date();
 
-        let event = false;
+    //Valor seleccionado del input
+    let date_from = input.val();
+    date_from = new Date(date_from);
 
-        today < date_from ? event = true : event = false;
+    let event = false;
+
+    today < date_from ? event = true : event = false;
 
 
-        if (!input.val() || event) {
+    if (!input.val() || event) {
 
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
 
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
+    } else {
+        input.css('border', '');
+        input.css('color', '');
     }
 
-    function isValidColonia(input) {
+    return true;
+}
 
-        var m = input.val();
+function isValidColonia(input) {
 
-        var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,500}$/;
+    var m = input.val();
+
+    var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,500}$/;
 
 
-        if (!expreg.test(m)) {
+    if (!expreg.test(m)) {
 
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
 
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
+    } else {
+        input.css('border', '');
+        input.css('color', '');
     }
 
-    function isValidStreet(input) {
+    return true;
+}
 
-        var m = input.val();
+function isValidStreet(input) {
 
-        var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,255}$/;
+    var m = input.val();
 
-        if (!expreg.test(m)) {
+    var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,255}$/;
 
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
+    if (!expreg.test(m)) {
 
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
 
-        return true;
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
 
+    return true;
+
+
+}
+
+function isValidIntNumber(input) {
+
+    var m = input.val();
+
+    var expreg = /^[#a-zA-Z0-9]{1,100000}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+
+}
+
+function isValidExtNumber(input) {
+
+    var m = input.val();
+
+    var expreg = /^[#0-9]{1,100000}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+
+}
+
+function isValidUserName(input) {
+
+    var m = input.val();
+
+    var expreg = /^[a-zA-Z0-9]{4,16}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+function areEqualPasswords(pass1, pass2) {
+
+    if (pass1.val() != pass2.val()) {
+
+        pass2.css('border', '1px solid red');
+        pass1.css('border', '1px solid red');
+        $('#noEqualPasswordsError').show();
+
+        return false;
+
+    } else {
+        pass2.css('border', '');
+        pass1.css('border', '');
+        $('#noEqualPasswordsError').hide();
 
     }
 
-    function isValidIntNumber(input) {
-
-        var m = input.val();
-
-        var expreg = /^[#a-zA-Z0-9]{1,100000}$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-
-
-    }
-
-    function isValidExtNumber(input) {
-
-        var m = input.val();
-
-        var expreg = /^[#0-9]{1,100000}$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-
-
-    }
-
-    function isValidUserName(input) {
-
-        var m = input.val();
-
-        var expreg = /^[a-zA-Z0-9]{4,16}$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-    }
-    
-    function areEqualPasswords(pass1, pass2) {
-
-        if (pass1.val() != pass2.val()) {
-
-            pass2.css('border', '1px solid red');
-            pass1.css('border', '1px solid red');
-            $('#noEqualPasswordsError').show();
-
-            return false;
-
-        } else {
-            pass2.css('border', '');
-            pass1.css('border', '');
-            $('#noEqualPasswordsError').hide();
-
-        }
-
-        return true;
-    }
+    return true;
+}
