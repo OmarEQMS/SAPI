@@ -307,6 +307,36 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
         }
         return exito;
     }
+    
+    public boolean actualizarLugarDelCuerpoCita(int idCita, int idLugarDelCuerpo) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL actualizarLugarDelCuerpoCita(?, ?)";
+        boolean exito = false;
+        try {
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+
+            cstmt.setInt(1, idCita);
+            cstmt.setInt(2, idLugarDelCuerpo);
+            
+            System.out.println(cstmt.toString());
+            
+            rs = cstmt.executeQuery();
+            rs.next();
+            exito = rs.getBoolean(1);
+
+            rs.close();
+            conn.close();
+            cstmt.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            exito = false;
+        }
+        return exito;
+    }
 
     @Override
     public DocumentoEstudio mostrarDocumentoEstudioIdPaciente(int idPaciente) {

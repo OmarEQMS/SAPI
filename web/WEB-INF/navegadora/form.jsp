@@ -99,11 +99,12 @@
 
                         <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
 
-                        <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+
 
                         <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
                         <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+
 
                         <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
@@ -154,7 +155,9 @@
                 <div class="jumbotron jumbotron-fluid p-2">
                     <div class="container">
                         <h1 class="display-4 tituloPacientes text-center m-0">Formato de Control Preconsulta Mama</h1>
-                    </div>
+                        <h6 class="display-4 text-center m-0 text-secondary" id="pacienteSelec" style="font-size:25px;"> Paciente:
+                            ${sessionScope.nombrePaciente} ${sessionScope.apellido1Paciente} ${sessionScope.apellido2Paciente} 
+                        </h6>                    </div>
                 </div>
 
                 <div class="card mt-3">
@@ -308,6 +311,7 @@
 
                                                     <!--<<<<<<< HEAD-->
                                                     <select name="medico-residente" class="form-control" id="medico-residente">
+
 
                                                         <option disabled selected>Seleccione un Residente</option>
 
@@ -814,8 +818,10 @@
                                     </div>
                                     <div class="row justify-content-center mt-2">
                                         <div class="col-8">
-                                            <button class="btn btn-morado btn-block" id="btn-exportar1" style="border-radius:20px">
-                                                <i class="fas fa-file-contract"></i> Generar Reporte</button>
+                                            <form action="ReporteControllerJaspersoft?key=generar-reporte1" method="post">
+                                                <input type="submit" class="btn btn-morado btn-block" id="btn-exportar1" style="border-radius:20px" value="Generar Reporte">
+                                                <i class="fas fa-file-contract"></i>
+                                            </form>
                                         </div>
                                     </div>
                                     <div class="row justify-content-center mt-2">
@@ -1272,16 +1278,12 @@
 
                                         </div>
 
-                                        <div class="llamadaInit">
+                                        <div class="llamadaInit" id="llamadaInit">
 
                                         </div>
 
                                         <!-- <div id="datosLlamada">
-<<<<<<< HEAD
-                            s                <div class="col-5" id="fechaLlamada">
-=======
                                             <div class="col-5" id="fechaLlamada">
->>>>>>> origin/Develop
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
@@ -1614,8 +1616,10 @@
 
                                     <div class="row justify-content-center mt-3">
                                         <div class="col-8">
-                                            <button class="btn btn-morado btn-block" id="btn-export2" style="border-radius:20px">
-                                                <i class="fas fa-file-contract"></i> Generar Reporte</button>
+                                            <form action="ReporteControllerJaspersoft?key=generar-reporte2" method="post">
+                                                <input type="submit" class="btn btn-morado btn-block" id="btn-export2" style="border-radius:20px" value="Generar Reporte">
+                                                <i class="fas fa-file-contract"></i>
+                                            </form>
                                         </div>
                                     </div>
 
