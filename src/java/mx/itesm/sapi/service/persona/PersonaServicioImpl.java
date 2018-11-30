@@ -480,6 +480,7 @@ public class PersonaServicioImpl implements PersonaServicio {
         return personas;
     }
 
+    @Override
     public Persona mostrarPersonaPorIdPaciente(int idPaciente) {
 
         Connection conn;
@@ -711,12 +712,12 @@ public class PersonaServicioImpl implements PersonaServicio {
         CallableStatement cstmt;
 
         try {
-
             cstmt = conn.prepareCall("CALL existeCorreoIdPersona(?, ?, ?)");
             cstmt.setString(1, usuario);
             cstmt.setInt(2, idPersona);
             cstmt.registerOutParameter(3, Types.BOOLEAN);
 
+            System.out.println("existeCorreoIdPersona: ".concat(cstmt.toString()));
             cstmt.execute();
             return cstmt.getBoolean(3);
 

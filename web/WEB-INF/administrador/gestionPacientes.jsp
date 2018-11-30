@@ -93,8 +93,6 @@
                 <!-- MENU PRINCIPAL ENLACES -->
                 <ul class="list-unstyled components">
 
-                    <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
-
                     <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
 
                     <li id="IrAGestionNavegadora"><a><i class="fas fa-calendar-alt"></i>Navegadoras</a></li>
@@ -156,11 +154,19 @@
 
                         <!-- Boton agregar -->
 
-                        <div class="row mb-3">
+                        <div class="row justify-content-end mt-2">
                             <div class="col-12">
                                 <button style="border-radius:20px;" class="btn btn-morado float-right" data-toggle="modal" data-target="#modalAgregarPaciente"><i
                                         class="fas fa-plus-circle mr-2"></i>Agregar Paciente</button>
                             </div>
+
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-12 centrado mb-3">
+                                <button style="border-radius:20px; vertical-align:middle" class="btn-reportePoblacion float-left" id="btn-poblacion"><span> Descargar Reporte de Población</span></button>
+                            </div>
+
                         </div>
 
                         <!-- Table -->
@@ -192,7 +198,7 @@
 
                                             <button class="btn btn-primary btn-editarPaciente m-1" data-toggle="modal" 
                                                     data-target="#modalEditarPaciente" data-id="${paciente.idPaciente}"><i class="fas fa-edit"></i></button>
-                                            <button class="btn btn-primary descargarFormulario m-1" data-id="${paciente.idPaciente}"><i class="fas fa-cloud-download-alt"></i></button>
+                                            <button style="color:white;" class="btn btn-warning descargarFormulario m-1" data-id="${paciente.idPaciente}"><i class="fas fa-cloud-download-alt"></i></button>
                                             <button class="btn btn-danger btn-eliminarPaciente m-1" data-id="${paciente.idPaciente}"><i class="fas fa-trash-alt"></i></button>
 
                                         </td>
@@ -213,7 +219,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    
+
                                     <input type="hidden" id="idPacienteAEditar">
 
                                     <div class="form-group row">
@@ -241,8 +247,7 @@
                                             </div>
                                             <span class="text-danger" id="error-editar-CurpPaciente">Formato incorrecto, las letras deben estar en mayúsculas y asegúrate de introducir un CURP válido y sin espacios. Puedes consultarlo 
                                                 <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí.</a>
-                                            </span><br>
-
+                                            </span>
                                             <span class="text-warning" id="error-editar-CurpRepetidoPaciente">El curp ya existe.</span>
                                         </div>
 
@@ -304,7 +309,7 @@
                                                 </div>
                                                 <input type="text" class="form-control" id="editarUsuarioAdministradorAPaciente" placeholder="Usuario">
                                             </div>
-                                            <span class="text-danger" id="error-editar-NombreUsuarioPaciente">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 4 y un máximo de 16 caracteres.</span><br>
+                                            <span class="text-danger" id="error-editar-NombreUsuarioPaciente">Formato incorrecto, solo caracteres alfanuméricos con un mínimo de 4 y un máximo de 16 caracteres.</span><br>
                                             <span class="text-warning" id="error-editar-UsuarioRepetidoPaciente">El usuario ya existe.</span>
                                         </div>
                                         <div class="col-6">
@@ -425,17 +430,23 @@
                                                 </div>
                                                 <input type="text" class="form-control" id="editarCorreoAdministradorAPaciente" placeholder="Correo">
                                             </div>
-                                            <span class="text-danger" id="error-editar-CorreoPaciente">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
-
+                                            <span class="text-danger" id="error-editar-CorreoPaciente">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
+                                            <span class="text-warning" id="errorEditarPacienteCorreoRepetido">El correo ya existe.</span>
                                         </div>
 
+                                    </div>
+
+                                    <div class="row mb-3" id="error-editarDatosRepetidosPaciente">
+                                        <div class="col-12 text-center">
+                                            <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>
+                                        </div>
                                     </div>
 
 
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal" style="border-radius:20px">Cancelar</button>
+                                    <button type="button" class="btn btn-danger clearEditPacientesModal" data-dismiss="modal" style="border-radius:20px">Cancelar</button>
                                     <button type="button" class="btn btn-primary" id="btn-guardarCambios" style="border-radius:20px">Guardar Cambios</button>
                                 </div>
                             </div>
@@ -483,7 +494,7 @@
 
                                             <span class="text-danger" id="errorCurpPaciente">Formato incorrecto, las letras deben estar en mayúsculas y asegúrate de introducir un CURP válido y sin espacios. Puedes consultarlo 
                                                 <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí.</a>
-                                            </span><br>
+                                            </span>
 
                                             <span class="text-warning" id="errorCurpRepetidoPaciente">El curp ya existe.</span>
                                         </div>
@@ -542,7 +553,7 @@
                                                 <input type="text" class="form-control" id="usuarioPaciente" usuario="usuarioPaciente" placeholder="Usuario">
 
                                             </div>
-                                            <span class="text-danger" id="errorNombreUsuarioPaciente">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 4 y un máximo de 16 caracteres.</span><br>
+                                            <span class="text-danger" id="errorNombreUsuarioPaciente">Formato incorrecto, solo caracteres alfanuméricos con un mínimo de 4 y un máximo de 16 caracteres.</span><br>
                                             <span class="text-warning" id="errorUsuarioRepetidoPaciente">El usuario ya existe.</span>
                                         </div>
                                         <div class="col-6">
@@ -674,7 +685,7 @@
                                                 </div>
                                                 <input type="text" class="form-control" id="correoPaciente" placeholder="Correo">
                                             </div>
-                                            <span class="text-danger" id="errorCorreoPaciente">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
+                                            <span class="text-danger" id="errorCorreoPaciente">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
                                         </div>
 
                                     </div>
@@ -730,7 +741,7 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" style="border-radius: 20px;" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" style="border-radius: 20px;" class="btn btn-danger clearAddPacientesModal" data-dismiss="modal">Cancelar</button>
                                     <button id="btn-agregarPaciente" type="button" style="border-radius: 20px;" class="btn btn-primary">Agregar
                                         Paciente
                                     </button>

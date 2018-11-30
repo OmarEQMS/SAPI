@@ -20,8 +20,7 @@
         <link href="lib/fontawesome/css/all.css" rel="stylesheet" />
         <link href='lib/fullcalendar/fullcalendar.css' rel='stylesheet' />
         <link href="lib/tooltipster/dist/css/tooltipster.bundle.min.css" rel="stylesheet" />
-        <link href="lib/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css" rel="stylesheet"
-              />
+        <link href="lib/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css" rel="stylesheet"/>
         <link href="lib/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
         <script src="lib/jquery/jquery-3.3.1.js" type="application/javascript"></script>
         <script src="lib/jquery/jqueryPostGo.js" type="application/javascript"></script>
@@ -42,6 +41,16 @@
     </head>
 
     <body>
+        
+        <div class="cargandoAgregarAdmin" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Agregando al administrador, por favor espere...</p>
+        </div>
+        
+        <div class="cargandoEditarAdmin" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Actualizando información del administrador, por favor espere...</p>
+        </div>
 
         <div class="wrapper">
 
@@ -95,9 +104,6 @@
 
                 <!-- MENU PRINCIPAL ENLACES -->
                 <ul class="list-unstyled components">
-
-
-                    <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
 
                     <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
 
@@ -183,7 +189,7 @@
                             </thead>
                             <tbody>
 
-                                
+
 
                                 <c:forEach items="${ListaAdministradoresAdmistrador}" var="administrador">
                                     <tr>
@@ -195,9 +201,9 @@
                                         <td id="cedulaProfesional-${administrador.idEmpleado}" value="${administrador.cedulaProfesional}" > <c:out value="${administrador.cedulaProfesional}"/> </td>
 
                                         <td>
-                                            <button class="btn btn-primary btn-editarAdministrador" data-toggle="modal" data-id="${administrador.idEmpleado}" data-target="#modalEditarAdministrador"><i
+                                            <button class="btn btn-primary btn-editarAdministrador m-1" data-toggle="modal" data-id="${administrador.idEmpleado}" data-target="#modalEditarAdministrador"><i
                                                     class="fas fa-edit"></i></button>
-                                            <button class="btn btn-danger btn-eliminarAdministrador" id="btn-eliminarAdministrador" data-id="${administrador.idEmpleado}"><i 
+                                            <button class="btn btn-danger btn-eliminarAdministrador m-1" id="btn-eliminarAdministrador" data-id="${administrador.idEmpleado}"><i 
                                                     class="fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
@@ -214,7 +220,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Agregar Administrador</h5>
-                                <button type="button" class="close clearAddMedicosModal" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close clearAddAdminModal" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -260,7 +266,7 @@
                                                 <div class="input-group-text"><i class="fas fa-user"></i></div>
                                             </div>
                                             <input type="text" class="form-control" id="agregar-segundoApellidoAdministrador"
-                                                   placeholder="Segundo Apellido">
+                                                   placeholder="Segundo Apellido (Opcional)">
                                             <span class="text-danger" id="errorApellidoMaternoAdministrador">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                         </div>
                                     </div>
@@ -297,6 +303,8 @@
                                             </div>
                                             <input type="text" class="form-control" id="agregar-especialidadAdministrador"
                                                    placeholder="Especialidad" list="listEspecialidades">
+                                            <datalist id="listEspecialidades">                                            
+                                            </datalist>
                                         </div>
                                         <span class="text-danger" id="errorAgregarEspecialidadAdministrador">Selecciona una especialidad válida.</span>
                                     </div>
@@ -320,7 +328,7 @@
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text"><i class="far fa-id-card"></i></div>
                                             </div>
-                                            <input type="text" class="form-control" id="agregar-cedulaAdministrador" placeholder="Cédula Profesional">
+                                            <input type="text" class="form-control" id="agregar-cedulaAdministrador" placeholder="Cédula Profesional (Opcional)">
                                         </div>
                                         <span class="text-danger" id="errorCedulaAdministrador">Formato incorrecto, deben ser 7 dígitos.</span>
                                     </div>
@@ -333,6 +341,9 @@
                                                 <div class="input-group-text"><i class="fas fa-lock"></i></div>
                                             </div>
                                             <input type="password" class="form-control" id="agregar-passwordAdministrador" placeholder="Contraseña">
+                                            <div id="adminContrasena" class="input-group-append bg-white">
+                                                <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                            </div>
                                             <span class="text-danger" id="errorPass1Administrador">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                         </div>
                                     </div>
@@ -343,8 +354,13 @@
                                             </div>
                                             <input type="password" class="form-control" id="agregar-password2Administradores"
                                                    placeholder="Confirmar contraseña">
+                                            <div id="adminConfirmContrasena" class="input-group-append bg-white">
+                                                <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                            </div>
                                         </div>
-                                        <span class="text-warning" id="noEqualPasswordsErrorAdministrador">Las contraseñas no son iguales.</span>
+                                        <span class="text-danger" id="errorPass2Administrador">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
+
+                                        <span class="text-warning" id="noEqualPasswordsError">Las contraseñas no son iguales.</span>
                                     </div>
                                 </div>
 
@@ -355,26 +371,24 @@
                                         </a>
                                     </div>
                                 </div>
-
+                                
                                 <div class="form-group row justify-content-center">
                                     <div class="col-12 text-center">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="terminosMedico">
-                                            <label class="form-check-label" for="autoSizingCheck2">
-                                                El médico está informado y aceptó los términos y condiciones
-                                            </label>
+                                        <div class="form-check form-check-inline"> 
+                                            <label><input class="form-check-input" type="checkbox" id="terminosAdministrador" /> 
+                                                El administrador está informado y aceptó los términos y condiciones.</label>
                                         </div>
-                                        <span class="text-danger" id="errorTerminos">Se deben aceptar términos y condiciones.</span>
                                     </div>
+                                    <span class="text-danger" id="errorTerminosAdministrador">Se deben aceptar términos y condiciones.</span>
                                 </div>
 
-                                <div class="row mb-3" id="error-campos">
+                                <div class="row mb-3" id="error-camposAdministrador">
                                     <div class="col-12 text-center">
                                         <span class="text-danger">Completa todos los campos y asegúrate de aceptar los términos para registrar la cuenta.</span>
                                     </div>
                                 </div>
 
-                                <div class="row mb-3" id="error-datosRepetidos">
+                                <div class="row mb-3" id="error-datosRepetidosAdministrador">
                                     <div class="col-12 text-center">
                                         <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>
                                     </div>
@@ -382,7 +396,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" style="border-radius:20px" class="btn btn-danger clearAddMedicosModal" data-dismiss="modal">Cancelar</button>
+                                <button type="button" style="border-radius:20px" class="btn btn-danger clearAddAdminModal" data-dismiss="modal">Cancelar</button>
                                 <button id="btn-agregarAdministrador" type="button" style="border-radius:20px" class="btn btn-primary">Agregar administrador</button>
                             </div>
                         </div>
@@ -395,14 +409,14 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Editar Administrador</h5>
-                                <button type="button" class="close clearCancelEditMedicosModal" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close clearCancelEditAdminModal" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
 
-                                    
-                                
+
+
                                 <input type="hidden" id="idAdministrador" value="">
 
                                 <!-- FORMULARIO EDITAR MEDICO -->
@@ -439,7 +453,7 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" id="editar-segundoApellidoAdministrador" class="form-control" placeholder="Segundo Apellido"> 
+                                            <input type="text" id="editar-segundoApellidoAdministrador" class="form-control" placeholder="Segundo Apellido (Opcional)"> 
                                         </div>
                                         <span class="text-danger" id="errorEditarApellidoMaternoAdministrador">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                     </div>
@@ -501,12 +515,12 @@
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text"><i class="fas fa-user-graduate"></i></div>
                                             </div>
-                                            <input type="text" class="form-control" id="editar-posiciondAdministrador" list="listPosiciones"
+                                            <input type="text" class="form-control" id="editar-posicionAdministrador" list="listPosiciones"
                                                    placeholder="Posicion">
                                             <datalist id="listPosiciones">                                            
                                             </datalist>
                                         </div>
-                                        <!-- <span class="text-danger" id="errorEditarPosicion">Selecciona una posición válida.</span> -->
+                                        <span class="text-danger" id="errorEditarPosicionAdministrador">Selecciona una posición válida.</span> 
                                     </div>
                                 </div>
 
@@ -518,7 +532,7 @@
                                                     <i class="fas fa-user-graduate"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" id="editar-cedulaProfesionalAdministrador" class="form-control" placeholder="Cédula Profesional">
+                                            <input type="text" id="editar-cedulaProfesionalAdministrador" class="form-control" placeholder="Cédula Profesional (Opcional)">
                                         </div>
                                         <span class="text-danger" id="errorEditarCedulaAdministrador">Formato incorrecto, deben ser 7 dígitos.</span>
                                     </div>
@@ -532,7 +546,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" style="border-radius:20px" class="btn btn-danger clearCancelEditMedicosModal" data-dismiss="modal">Cancelar</button>
+                                <button type="button" style="border-radius:20px" class="btn btn-danger clearCancelEditAdminModal" data-dismiss="modal">Cancelar</button>
                                 <button id="btn-guardarAdministrador" type="button" style="border-radius:20px" class="btn btn-primary">Guardar
                                     Cambios
                                 </button>

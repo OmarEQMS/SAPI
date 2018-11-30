@@ -43,6 +43,7 @@ $(document).ready(function () {
     $('#error-editar-EstadoNavegadora').hide();
     $('#error-editar-MunicipioNavegadora').hide();
     $('#error-editar-UsuarioRepetidoNavegadora').hide();
+    $('#error-imgPerfil').hide();
 
     $('#error-imgPerfil').hide();
     $('#error-contrasena').hide();
@@ -189,62 +190,119 @@ $(document).ready(function () {
 
 
     });
-
+    
     //Codigo Postal en Agregar Paciente
     $('#codigo-postalNavegadora').on('change', function () {
 
-        $.ajax({
-            url: 'ZonaController',
-            cache: false,
-            method: 'POST',
-            data: {
-                key: "getEstadoyMunicipio",
-                numeroCP: $('#codigo-postalNavegadora').val()
+        if ($(this).val().length === 0) {
 
-            },
-            success: function (response) {
-                
-                if (response == 'postalCodeDoesntExist') {
-                    $('#error-CPexiste').show();
-                    repiteCURP = false;
-                } else {
-                    $('#error-CPexiste').hide();
-                    var json = JSON.parse(response);
-                    repiteCURP = false;
+            //Obtener estados
 
-                    if ($('#codigo-postalNavegadora').val().length === 5) {
-                        //Limpia los campos 
-                        $("#estadoNavegadora").each(function () {
-                            $(this).children().remove();
-                        });
+            $.ajax({
 
-                        $("#municipioNavegadora").each(function () {
-                            $(this).children().remove();
-                        });
+                url: 'ZonaController',
+                cache: false,
+                method: 'POST',
+                data: {
 
+                    key: "getEstados"
+
+
+                },
+                success: function (response) {
+
+                    var data = JSON.parse(response);
+
+                    //Limpia los campos de estado 
+                    $("#estadoNavegadora").each(function () {
+                        $(this).children().remove();
+                    });
+
+                    //Limpia los campos de municipio 
+                    $("#municipioNavegadora").each(function () {
+                        $(this).children().remove();
+                    });
+
+                    //Primera opcion de estado
+                    $('#estadoNavegadora').append("<option disabled selected>" + "Seleccione un estado" + "</option>");
+
+                    //Primera opcion de municipio
+                    $('#municipioNavegadora').append("<option disabled selected>" + "Seleccione un municipio" + "</option>");
+
+                    for (var i = 0; i < data.length; i++) {
                         //Carga estado
-                        $('#estadoNavegadora').append("<option value='" + json[0] + "'>" + json[1] + "</option>");
-
-                        //Carga Municipio
-                        $('#municipioNavegadora').append("<option value='" + json[2] + "'>" + json[3] + "</option>");
-
-                    } else {
-
-                        $('#estadoNavegadora').removeAttr('disabled');
-                        $('#estadoNavegadora').removeAttr('selected');
-
+                        $('#estadoNavegadora').append("<option value='" + data[i].idEstado + "'>" + data[i].nombre + "</option>");
                     }
 
-                    console.log(json);
+                    $('#estadoNavegadora').prop('selectedIndex', 0);
+                    $('#municipioNavegadora').prop('selectedIndex', 0);
+
+                    console.log(data);
+
                 }
 
-            }
+            });
 
-        });
+        } else if ($(this).val().length === 5) {
+
+            $.ajax({
+
+                url: 'ZonaController',
+                cache: false,
+                method: 'POST',
+                data: {
+
+                    key: "getEstadoyMunicipio",
+                    numeroCP: $('#codigo-postalNavegadora').val()
+
+                },
+                success: function (response) {
+
+                    if (response == 'postalCodeDoesntExist') {
+                        $('#error-CPexiste').show();
+
+                    } else {
+                        $('#error-CPexiste').hide();
+                        var json = JSON.parse(response);
+
+                        if ($('#codigo-postalNavegadora').val().length === 5) {
+
+                            //Limpia los campos 
+                            $("#estadoNavegadora").each(function () {
+                                $(this).children().remove();
+                            });
+
+                            $("#municipioNavegadora").each(function () {
+                                $(this).children().remove();
+                            });
+
+                            //Carga estado
+                            $('#estadoNavegadora').append("<option value='" + json[0] + "'>" + json[1] + "</option>");
+
+                            //Carga Municipio
+                            $('#municipioNavegadora').append("<option value='" + json[2] + "'>" + json[3] + "</option>");
+
+                        } else {
+
+                            $('#estadoNavegadora').removeAttr('disabled');
+                            $('#estadoNavegadora').removeAttr('selected');
+
+                        }
+
+                        console.log(json);
+                    }
+
+                }
+
+            });
+
+        }
 
 
-    });
 
+
+    })
+    
     //Agregar Paciente
     $('#agregarPaciente').on('click', function (e) {
 
@@ -416,8 +474,7 @@ $(document).ready(function () {
     });
 
     //Redirige a documentos
-    $('.btn-ver').on('click', function () {
-
+    $('body').on('click', '.btn-ver', function () {
         var id = $(this).data('id');
         console.log(id);
         //alert('saludos con el id: ' +  $('#hidden-idPaciente').val())
@@ -439,6 +496,44 @@ $(document).ready(function () {
                     }                    
                 }
         );
+        $('#hidden-idPaciente').val($(this).data('id'));
+        
+        alert('IdPaciente ' + ($(this).data('id')));
+
+        $.ajax({
+            url: 'NavegadoraController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "getImagenPaciente",
+                idPaciente: $(this).data('id')
+            },
+            success: function (response) {
+                
+                alert('Debió poner la imagen del paciente');
+
+                $.post("SAPI", {
+                    file: "navegadora/documentos.jsp",
+                    idPacientePotencialAtendido: $('#hidden-idPaciente').val()
+                },
+                        function (response, status, xhr) {
+                            //console.log(response);
+                            if (status == "success") {
+                                if (response == "error") {
+                                    $("#msj-error").show();
+                                } else {
+                                    document.open("text/html", "replace");
+                                    document.write(response);
+                                    document.close();
+                                }
+                            }
+                        }
+                );
+            },
+            error: function (){
+                alert('ERROR');
+            }
+        });
     });
 
     $('.irAVerDocumento').on('click', function () {

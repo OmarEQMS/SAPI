@@ -33,6 +33,7 @@
             <!-- Input contraseÃ±a -->
             <div class="input-group">
                 <input id="password" type="password" value="Urisiento" class="form-control input-pass mb-4 useFontAwesomeFamily" placeholder="&#xf023; CONTRASEÑA">
+                <div id="loginContrasena"><i class="inputGlobal far fa-eye mt-3 mr-1"></i></div>
             </div>
 
             <!-- Input submit -->

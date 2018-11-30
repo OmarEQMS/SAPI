@@ -224,11 +224,14 @@ public class FrontController extends HttpServlet {
                             switch(keyRuta){
                                 case "administrador/cuentaAdministrador.jsp":
                                 {
+                                    sesion.setAttribute("path", keyRuta);
                                     request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                     break;
                                 }
                                 case "administrador/gestionMedicos.jsp":
                                 {
+                                    sesion.setAttribute("path", keyRuta);
+                                    
                                     EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
                                     List<TablaMedicoAdministrador> medicosAdministrador = empleadoServicioImpl.mostrarListaEmpleadosAdministrador(3);
                                     request.setAttribute("ListaMedicosAdmistrador", medicosAdministrador);
@@ -238,6 +241,7 @@ public class FrontController extends HttpServlet {
                                 }
                                 case "administrador/gestionNavegadora.jsp":
                                 {
+                                    sesion.setAttribute("path", keyRuta);
                                     EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
                                     List<TablaMedicoAdministrador> navegadorasAdministrador = empleadoServicioImpl.mostrarListaEmpleadosAdministrador(4);
                                     request.setAttribute("ListaNavegadorasAdministrador", navegadorasAdministrador);
@@ -247,6 +251,7 @@ public class FrontController extends HttpServlet {
                                 }
                                 case "administrador/gestionPacientes.jsp":
                                 {                                    
+                                    sesion.setAttribute("path", keyRuta);
                                     //Lista de pacientes
                                     PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
                                     List<PacienteAdmin> pacientes = pacienteServicio.mostrarPacientesAdmin();
@@ -267,6 +272,7 @@ public class FrontController extends HttpServlet {
                                 }
                                 case "administrador/gestionarAdministradores.jsp":
                                 {
+                                    sesion.setAttribute("path", keyRuta);
                                     //Lista de pacientes
                                     EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
                                     List<TablaAdministradorAdministrador> administradores = empleadoServicioImpl.mostrarListaAdminAdministrador();
@@ -282,8 +288,8 @@ public class FrontController extends HttpServlet {
                                 }
                                 case "administrador/reAsignarMedico.jsp":
                                 {
+                                    sesion.setAttribute("path", keyRuta);
                                     /**-------------------Mostrar Lista Médicos---------------------------------------*/
-                                    
                                     PersonaServicioImpl personaServicioMedicos = new PersonaServicioImpl();
                                     List<Persona> medicos = personaServicioMedicos.mostrarMedicosAdscritos();
                                     request.setAttribute("listaMedicos", medicos);
@@ -292,7 +298,7 @@ public class FrontController extends HttpServlet {
                                     break;
                                 }
                                  case "administrador/rendimientoNavegadora.jsp": {
-                                    
+                                    sesion.setAttribute("path", keyRuta);
                                      
                                     int idEmpleadoNavegadora = Integer.parseInt(request.getParameter("idNavegadora"));
                                     

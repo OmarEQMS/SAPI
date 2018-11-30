@@ -342,6 +342,7 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
                 medico.setNoEmpleado(rs.getString(10));     
                 medico.setNombreEspecialidad(rs.getString(11));
                 medico.setCedulaProfesional(rs.getString(12));
+                
                                         
                 
                 medicos.add(medico);
@@ -367,7 +368,7 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
 
         try {
 
-            cstmt = conn.prepareCall("CALL mostrarMedicoAdministrador(?,?)");            
+            cstmt = conn.prepareCall("CALL mostrarMedicoAdministrador(?,?)");         
             
             cstmt.setInt(1, idMedico);
             cstmt.setInt(2, idRol);
@@ -386,7 +387,8 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
                 medico.setUsuario(rs.getString(9));
                 medico.setNoEmpleado(rs.getString(10));     
                 medico.setNombreEspecialidad(rs.getString(11));
-                medico.setCedulaProfesional(rs.getString(12));                                                     
+                medico.setCedulaProfesional(rs.getString(12)); 
+                medico.setNombrePosicion(rs.getString(13));
 
             rs.close();
             cstmt.close();

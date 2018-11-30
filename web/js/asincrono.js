@@ -1,6 +1,8 @@
 $(document).ready(function () {
 
-
+    mostrarContrasena($('#recuperarContrasena'),'cambio1');
+    mostrarContrasena($('#recuperarConfirmarContrasena'),'cambio2');
+    
     //Esconder mensajes de error
     $('#msj-error').hide();
     $('#error-terminos').hide();
@@ -21,10 +23,12 @@ $(document).ready(function () {
     $('#errorFecha').hide();
     $('#errorEstado').hide();
     $('#errorMunicipio').hide();
+    
     $('#errorColonia').hide();
     $('#errorCalle').hide();
     $('#errorNoExterior').hide();
     $('#errorNoInterior').hide();
+    
     $('#errorUsuarioRepetido').hide();
 
     $('#errorCorreoRepetido').hide();
@@ -44,7 +48,12 @@ $(document).ready(function () {
             $("#error-datosRepetidos").hide();
 
             //Verificar que todos los campos que han marcado
-            if (isValidName($('#nombre')) && isValidLastName($('#apellido1')) && isValidUserName($('#usuario')) && isValidEmail($('#correo')) && isValidPassword($('#pass1')) && isValidCURP($('#curp')) && isValidPhoneNumber($('#telefono')) && isValidSelect($('#estadoCivil')) && isValidDate($('#fechaNacimiento')) && isValidSelect($('#estado')) && isValidSelect($('#municipio')) && areEqualPasswords($('#pass1'),$('#pass2')) && $('#errorCorreoRepetido').hide()) {
+            if (isValidName($('#nombre')) && isValidLastName($('#apellido1')) &&$('#errorApellidoMaterno').hide() && $('#errorCodigoPostal').hide()
+                    && $('#errorColonia').hide() && $('#errorCalle').hide() && $('#errorNoExterior').hide() && $('#errorNoInterior').hide()
+                    && isValidUserName($('#usuario')) && isValidEmail($('#correo')) && isValidPassword($('#pass1')) 
+                    && isValidCURP($('#curp')) && isValidPhoneNumber($('#telefono')) && isValidSelect($('#estadoCivil')) 
+                    && isValidDate($('#fechaNacimiento')) && isValidSelect($('#estado')) && isValidSelect($('#municipio')) 
+                    && areEqualPasswords($('#pass1'),$('#pass2')) && $('#errorCorreoRepetido').hide()) {
                 $("#error-campos").hide();
 
                 swal(
@@ -363,19 +372,6 @@ $(document).ready(function () {
             }
 
         });
-
-        if (isValidEmail($(this))) {
-            $('#errorCorreo').hide();
-        } else if ($(this).val() == '') {
-            $('#errorCorreo').hide();
-        } else {
-            $('#errorCorreo').show();
-        }
-
-    });
-
-    //CORREO EN RECUPERAR CONTRASEÑA
-    $('#email').on('change', function () {
 
         if (isValidEmail($(this))) {
             $('#errorCorreo').hide();
@@ -1023,6 +1019,17 @@ $(document).ready(function () {
         }
 
         return true;
+    }
+    
+    function mostrarContrasena(myButton, myField) {
+        myButton.on('mousedown', function () {
+            var x = document.getElementById(myField);
+            x.type = "text";
+        });
+        myButton.on('mouseup', function () {
+            var x = document.getElementById(myField);
+            x.type = "password";
+        });
     }
 
 });

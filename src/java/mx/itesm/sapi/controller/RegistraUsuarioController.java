@@ -449,7 +449,7 @@ public class RegistraUsuarioController extends HttpServlet {
                             System.out.println("idMedicoEspecialidad: ".concat(String.valueOf(idMedicoEspecialidad)));
                             
                             if(idEmpleado > 0 && idEmpleadoPosicionServicio > 0)
-                                permitir.print("1");
+                                permitir.print(idEmpleado);
                             else
                                 permitir.print("0");
                             
@@ -587,7 +587,7 @@ public class RegistraUsuarioController extends HttpServlet {
                             System.out.println("idEmpleadoPosicion: ".concat(String.valueOf(idEmpleadoPosicionServicio)));
                             System.out.println("idMedicoEspecialidad: ".concat(String.valueOf(idMedicoEspecialidad)));                            
                             
-                            out.print("success");
+                            out.print(idEmpleado);
                         }
                         
                     }
@@ -728,7 +728,7 @@ public class RegistraUsuarioController extends HttpServlet {
                             System.out.println("idMedicoEspecialidad: ".concat(String.valueOf(idMedicoEspecialidad)));
                             
                             if(idEmpleado > 0 && idEmpleadoPosicionServicio > 0){
-                                permitir.print("1");
+                                permitir.print(idEmpleado);
                                 enviaCorreo(noEmpleado,correo);
                             }
                             else

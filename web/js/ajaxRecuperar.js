@@ -6,7 +6,10 @@
 //Author Angel Gtz
 
 $(document).ready(function () {
+
     $('#errorCambiar').hide();
+    $('#errorCorreoNoExistente').hide();
+    $('#errorCorreo').hide();
 
     $("#RestablcerContra").on('click', function () {
         if (isValidPassword($('#cambio1')) && isValidPassword($('#cambio2')) && areEqualPasswords($('#cambio1'), $('#cambio2'))) {
@@ -17,7 +20,6 @@ $(document).ready(function () {
                 url: "RecuperarController",
                 data: {
                     key: "cambiarContrasena",
-
                     password: $("#cambio1").val(),
                     password2: $("#cambio2").val()
                 },
@@ -31,9 +33,6 @@ $(document).ready(function () {
                         document.write(response);
                         document.close();
                     }
-                },
-                error: function (xhr) {
-
                 }
             });
         } else {
@@ -44,34 +43,43 @@ $(document).ready(function () {
 
     $('#recuperarEnviarCorreo').on('click', function () {
         console.log("Click en Recuperar después de ingresar el correo");
+        var mail = $('#email').val();
 
-        swal({
-            title: "Correo enviado",
-            text: "Revisa el correo con el que creaste tu cuenta para poder cambiar tu contraseña",
-            icon: "success",
-            buttons: true,
-            buttons: [, 'Aceptar']
-        }).then(function () {
-            var mail = $('#email');
-            $.post("RecuperarController", {
-                key: "recuperarEnviarCorreo",
-                email: mail.val()
+        if (repiteCorreo) {
 
-            },
-                    function (response, status) {
-                        console.log("---------------------------------");
+            $.ajax({
+                url: "RecuperarController",
+                data: {
+                    key: "recuperarEnviarCorreo",
+                    email: mail
+                },
+                method: "POST",
+                success: function (response) {
+                    if (response == "error") {
 
-                        if (response == "") {
-                            console.log("Error al cargar");
-
-                        } else {
+                    } else {
+                        swal({
+                            title: "Correo enviado",
+                            text: "Revisa el correo con el que creaste tu cuenta para poder cambiar tu contraseña",
+                            icon: "success",
+                            buttons: true,
+                            buttons: [, 'Aceptar']
+                        }).then(function () {
+                            console.log("Intentando redireccionar");
                             document.open("text/html", "replace");
                             document.write(response);
                             document.close();
-                        }
+                        })
                     }
-            );
-        })
+                },
+                beforeSend: function () {
+                    $('.cargandoEnviandoCorreo').fadeIn();
+                },
+                complete: function () {
+                    $('.cargandoEnviandoCorreo').fadeOut();
+                }
+            });
+        }
     });
 
     $('#ir-a-loginR').on('click', function () {
@@ -94,6 +102,57 @@ $(document).ready(function () {
         );
 
     });
+
+    var repiteCorreo = false;
+    //CORREO EN RECUPERAR CONTRASEÑA
+    $('#email').on('change', function () {
+
+        var validEmail;
+
+        if (isValidEmail($(this))) {
+            $('#errorCorreo').hide();
+            validEmail = true;
+        } else if ($(this).val() == '') {
+            $('#errorCorreo').hide();
+            validEmail = true;
+        } else {
+            $('#errorCorreo').show();
+            validEmail = false;
+        }
+
+        if (validEmail) {
+            $.ajax({
+
+                url: 'RegistraUsuarioController',
+                cache: false,
+                method: 'POST',
+                data: {
+
+                    key: "repiteCorreo",
+                    correo: $('#email').val()
+
+
+                },
+                success: function (response) {
+
+                    if (response === 'CorreoAlreadyExists') {
+                        console.log("correo existente")
+                        $('#errorCorreoNoExistente').hide();
+                        repiteCorreo = true;
+                    } else {
+                        $('#email').css('color', 'orange');
+                        $('#errorCorreoNoExistente').show();
+                        repiteCorreo = false;
+                    }
+
+                }
+
+            });
+        }
+
+    });
+
+
 
     function areEqualPasswords(pass1, pass2) {
 
@@ -130,6 +189,28 @@ $(document).ready(function () {
 
         } else {
 
+            input.css('border', '');
+            input.css('color', '');
+        }
+
+        return true;
+
+    }
+
+    function isValidEmail(input) {
+
+        var m = input.val();
+
+        ////Expresion regular por el estandard: RFC 5322
+        var expreg = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+        if (!expreg.test(m)) {
+
+            input.css('border', '1px solid red');
+            input.css('color', 'red');
+            return false;
+
+        } else {
             input.css('border', '');
             input.css('color', '');
         }

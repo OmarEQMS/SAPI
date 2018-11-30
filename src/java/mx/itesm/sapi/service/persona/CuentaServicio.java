@@ -14,7 +14,7 @@ import mx.itesm.sapi.bean.persona.Cuenta;
  */
 public interface CuentaServicio {
     public Cuenta mostrarCuenta(int idCuenta);
-    public Cuenta mostrarCuentaEmpleado(int idEmpleado);
+    public Cuenta mostrarCuentaidEmpleado(int idEmpleado);
     List<Cuenta> mostrarCuenta();
     public int agregarCuenta(Cuenta cuenta);
     public boolean actualizarCuenta(Cuenta cuenta);

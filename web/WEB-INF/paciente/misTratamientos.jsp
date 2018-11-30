@@ -43,6 +43,7 @@
         <input type="hidden" value="5" class="idTratamientoPaciente">
         <input type="hidden" value="${sessionScope.fechaNacimiento}" class="fechaNacimientoPaciente">
 
+        <div id="hiddensDiv"></div>
         <div class="wrapper">
 
             <!-- SIDEBAR -->
@@ -172,17 +173,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-                                <!--  <tr> 
-                                      <td>Reconstrucción</td>
-                                      <td>17/02/2018</td>
-                                      <td></td>
-                                      <td><button class="btn btn-primary btn-editarPaciente" data-id="" data-toggle="modal"
-                                                  data-target="#modalEditarTerminado"><i class="fas fa-edit"></i></button></td>
-                                  </tr>
-                                -->
-                            
-
 
                             <c:forEach  items="${UnionTratamientosPaciente}" var="unionTratamientoPaciente">
                                 <tr>

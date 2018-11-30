@@ -181,7 +181,6 @@ public class NavegadoraController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         
         String key = request.getParameter("key");
-        
         HttpSession sesion = request.getSession(true);
 
         //COMENTARIO PARA COMMIT: TEAM LUGO ORDUÑA <3
@@ -266,7 +265,7 @@ public class NavegadoraController extends HttpServlet {
                                  * Elimino su cuenta (borrrado logico)
                                  */
                                 /**
-                                 * Obtengo los id's de sue cuenta y llogin de la
+                                 * Obtengo los id's de su cuenta y login de la
                                  * sesion
                                  */
                                 int idCuenta = (int) sesion.getAttribute("idCuenta");
@@ -316,8 +315,6 @@ public class NavegadoraController extends HttpServlet {
 
                             break;
                         }
-
-
                         case "mostrarForumalario": {
 
                             break;
@@ -351,7 +348,20 @@ public class NavegadoraController extends HttpServlet {
                             break;
                         }
 
-                        case "agregar-paciente": {
+                        case "getImagenPaciente": {
+                            int idPac = Integer.parseInt(request.getParameter("idPaciente"));
+                            PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                            Persona persona = personaServicio.mostrarPersonaPorIdPaciente(idPac);
+
+                            PicServicioImpl picServicio = new PicServicioImpl();
+                            picServicio.mostrarPic(persona.getIdPersona());
+                            Pic pic = picServicio.mostrarPic(persona.getIdPersona());
+
+                            InputStream imagen = pic.getContenido();
+                            byte[] bytes = IOUtils.toByteArray(imagen);
+                            String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                            sesion.setAttribute("base64ImgPac", base64String);
 
                             PrintWriter out = response.getWriter();
                             out.print("hola");
@@ -389,7 +399,6 @@ public class NavegadoraController extends HttpServlet {
 
                             boolean rechazado = documentoInicialServicioImpl.agregarRechazoDocumento(idDocumentoInicial, comentario);
                             //ESto es para el correo
-                           
 
                             int pacientePotencial = (int) sesion.getAttribute("idPacientePotencialAtendido");
 
@@ -569,7 +578,6 @@ public class NavegadoraController extends HttpServlet {
                         }
                             break;
                         }
-
 
                         case "descargarArchivo": {
 
@@ -937,6 +945,7 @@ public class NavegadoraController extends HttpServlet {
 
                                 paciente.setPrz(prz);
                                 pacienteServicioImpl.actualizarPrz(paciente);
+
 
                             } else {
                                 System.out.println("Sin PRZ");
@@ -2540,7 +2549,6 @@ public class NavegadoraController extends HttpServlet {
                             EstadoPacientePaciente estadoPacientePaciente = null;
                             estadoPacientePaciente = estadoPacientePacienteServicioImpl.mostrarEstadoPacientePacienteIdPaciente(idPacientePotencial);
                             estadoPacientePaciente.setIdEmpleado(idNavegadora);
-
                             int pacienteResultados = 0;
                             if (request.getParameterMap().containsKey("resultadosCheckbox")) {
                                 pacienteResultados = 1;
@@ -2595,11 +2603,9 @@ public class NavegadoraController extends HttpServlet {
                                     System.out.println("No hay registro de estadoPacientePaciente para el idpaciete: " + idPacientePotencial);
 
                                 }
-
                             } else {
                                 System.out.println("Sin fecha decisión preconsulta");
                             }
-
                             ///*********Paciente**********
                             //Nivel Socioeconomico
                             int nivelSocioeconomico = 0;
@@ -2720,7 +2726,6 @@ public class NavegadoraController extends HttpServlet {
                             } else {
                                 System.out.println("sin etapaClinica ");
                             }
-
                             //*******************************EstadiageTNM*****************************
                             //T codificado N Codificado M codificado
                             int tCodificado = 0, nCodificado = 0, mCodificado = 0;
@@ -2828,7 +2833,6 @@ public class NavegadoraController extends HttpServlet {
                             } else {
                                 System.out.println("sin resultadoMastrografia ");
                             }
-
                             //Resltado Ultrasonido
                             DocumentoEstudio documentoEstudioUSG = null;
                             int resultadoUltrasonido = 0;
@@ -2883,6 +2887,7 @@ public class NavegadoraController extends HttpServlet {
                                 tipoHistologico = Integer.parseInt(tipoHistologicoRequest);
                                 System.out.println("Resultado resultadoPatologiaPantalla5 " + (tipoHistologico));
                                 biopsia.setIdTipoHistologico(tipoHistologico);
+                                
                             } else {
                                 System.out.println("sin resultadoPatologiaPantalla5 ");
                             }
@@ -2952,7 +2957,6 @@ public class NavegadoraController extends HttpServlet {
                             } else {
                                 System.out.println("sin ki67 ");
                             }
-
                             if (tipoHistologico != 0 || gradoHistologico != 0 || receptorHer2 != 0 || receptorFish != 0
                                     || receptorRe != 0 || receptorRp != 0 || ki67 != 0) {
 
@@ -2990,7 +2994,6 @@ public class NavegadoraController extends HttpServlet {
                                 }
                                     
                             }
-                            
                             break;
                         }
 
@@ -3000,7 +3003,6 @@ public class NavegadoraController extends HttpServlet {
 
                             break;
                         }
-
 
                         case "agregarCitaResultados": {
 
@@ -3029,10 +3031,6 @@ public class NavegadoraController extends HttpServlet {
                             if (agregado > 0) {
                                 out.print("success");
                             }
-                            
-                            
-                            
-
                             break;
 
                         }
@@ -3057,7 +3055,6 @@ public class NavegadoraController extends HttpServlet {
                             break;
 
                         }
-
 
                         case "autocompleteRayosX": {
 
@@ -3129,8 +3126,6 @@ public class NavegadoraController extends HttpServlet {
                             out.print(json.toJson(estudios));
 
                             break;
-
-
                         }
                         case "cancelarCitaPotencial":
                         {
