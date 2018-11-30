@@ -503,40 +503,54 @@ $(document).ready(function () {
 
 
         // FALTA OBTENER EL ID DEL PACIENTE 
+        if (!isValidCURP( $('#editarCurpNavegadoraAPaciente'))) {
+             swal({
+                        title: 'Información invalida',
+                        text: "Corrija la información invlaida para continuar",
+                        icon: "error",
+                        
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok'
+                    });
+            //$('#error-editar-CurpNavegadora').show();  if ($('#tieneSeguroPopular').is(':checked')) $('#tiene-seguro').show(); 
+            
+        } else {
+            
+            $.ajax({
+                url: 'NavegadoraController',
+                cache: false,
+                method: 'POST',
+                data: {
+                    key: "actualizar-paciente",
+                    idPaciente: $('#hidden-idPaciente').val(),
+                    nombre: $('#editarNombreNavegadoraAPaciente').val(),
+                    apellido1: $('#editarPrimer-apellidoNavegadoraAPaciente').val(),
+                    apellido2: $('#editarSegundo-apellidoNavegadoraAPaciente').val(),
+                    usuario: $("#editarUsuarioNavegadoraAPaciente").val(),
+                    correo: $('#editarCorreoNavegadoraAPaciente').val(),
+                    curp: $('#editarCurpNavegadoraAPaciente').val(),
+                    colonia: $('#editarColNavegadoraAPaciente').val(),
+                    calle: $('#editarCalleNavegadoraAPaciente').val(),
+                    noExterior: $("#editarNumExtNavegadoraAPaciente").val(),
+                    noInterior: $("#editarNumIntNavegadoraAPaciente").val(),
+                    telefono: $("#editarTelNavegadoraAPaciente").val(),
+                    estadoCivil: $("#editarEstado-civilNavegadora").val(),
+                    fechaNacimiento: $("#editarCumpleNavegadoraAPaciente").val(),
+                    estado: $("#editarEstadoNavegadoraAPaciente").val(),
+                    municipio: $("#editarMunicipioNavegadoraAPaciente").val()
+                }, success: function (response) {
+                    swal({
+                        title: 'Buen Trabajo',
+                        text: "Cuenta editada correctamente",
+                        type: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok'
+                    });
+                }
 
-        $.ajax({
-            url: 'NavegadoraController',
-            cache: false,
-            method: 'POST',
-            data: {
-                key: "actualizar-paciente",
-                idPaciente: $('#hidden-idPaciente').val(),
-                nombre: $('#editarNombreNavegadoraAPaciente').val(),
-                apellido1: $('#editarPrimer-apellidoNavegadoraAPaciente').val(),
-                apellido2: $('#editarSegundo-apellidoNavegadoraAPaciente').val(),
-                usuario: $("#editarUsuarioNavegadoraAPaciente").val(),
-                correo: $('#editarCorreoNavegadoraAPaciente').val(),
-                curp: $('#editarCurpNavegadoraAPaciente').val(),
-                colonia: $('#editarColNavegadoraAPaciente').val(),
-                calle: $('#editarCalleNavegadoraAPaciente').val(),
-                noExterior: $("#editarNumExtNavegadoraAPaciente").val(),
-                noInterior: $("#editarNumIntNavegadoraAPaciente").val(),
-                telefono: $("#editarTelNavegadoraAPaciente").val(),
-                estadoCivil: $("#editarEstado-civilNavegadora").val(),
-                fechaNacimiento: $("#editarCumpleNavegadoraAPaciente").val(),
-                estado: $("#editarEstadoNavegadoraAPaciente").val(),
-                municipio: $("#editarMunicipioNavegadoraAPaciente").val()
-            }, success: function (response) {
-                swal({
-                    title: 'Buen Trabajo',
-                    text: "Cuenta editada correctamente",
-                    type: 'success',
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'Ok'
-                });
-            }
-
-        });
+            });
+            
+        }
     });
 
     //Redirige a documentos
@@ -1749,7 +1763,7 @@ $(document).ready(function () {
 
         if (isValidName($(this))) {
             $('#errorNombreNavegadora').hide();
-        } else if ($(this).val() == '') {
+        } else if ($(this).val() === '') {
             $('#errorNombreNavegadora').hide();
         } else {
             $('#errorNombreNavegadora').show();
@@ -2000,7 +2014,7 @@ $(document).ready(function () {
 
         if (isValidName($(this))) {
             $('#error-editar-NombreNavegadora').hide();
-        } else if ($(this).val() == '') {
+        } else if ($(this).val() === '') {
             $('#error-editar-NombreNavegadora').hide();
         } else {
             $('#error-editar-NombreNavegadora').show();
@@ -2013,7 +2027,7 @@ $(document).ready(function () {
 
         if (isValidLastName($(this))) {
             $('#error-editar-ApellidoPaternoNavegadora').hide();
-        } else if ($(this).val() == '') {
+        } else if ($(this).val() === '') {
             $('#error-editar-ApellidoPaternoNavegadora').hide();
         } else {
             $('#error-editar-ApellidoPaternoNavegadora').show();
@@ -2026,7 +2040,7 @@ $(document).ready(function () {
 
         if (isValidLastName($(this))) {
             $('#error-editar-ApellidoMaternoNavegadora').hide();
-        } else if ($(this).val() == '') {
+        } else if ($(this).val() === '') {
             $('#error-editar-ApellidoMaternoNavegadora').hide();
         } else {
             $('#error-editar-ApellidoMaternoNavegadora').show();
@@ -2113,9 +2127,10 @@ $(document).ready(function () {
 
         if (isValidCURP($(this))) {
             $('#error-editar-CurpNavegadora').hide();
-        } else if ($(this).val() == '') {
+        } else if ($(this).val() === '') {
             $('#error-editar-CurpNavegadora').hide();
-        } else {
+        } 
+        else {
             $('#error-editar-CurpNavegadora').show();
         }
 
@@ -2714,14 +2729,14 @@ $(document).ready(function () {
                     }
 
                 });
-         /*      
-                   $('#medico-residente option:contains(' + data[0][0].medicoResidente + ')').each(function () {
+                /*      
+                 $('#medico-residente option:contains(' + data[0][0].medicoResidente + ')').each(function () {
                  if ($(this).text() === data[0][0].medicoResidente) {
                  $(this).attr('selected', 'selected');
                  }
                  
                  });
-          */       
+                 */
             }
 
             if (data[0][0].fechaNavegacion !== "ene 1, 1900")
@@ -2735,7 +2750,7 @@ $(document).ready(function () {
                 $('#noAdscrito').attr('checked', 'checked');
             if ((data[0][0].noRadiologo !== true))
                 $('#esSustituto').attr('checked', 'checked');
-             if ((data[0][0].noResidente === true))
+            if ((data[0][0].noResidente === true))
                 $('#noAdscrito').attr('checked', 'checked');
 
 // Segunda pagina formulario
