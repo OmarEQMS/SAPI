@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+
+
     $('#errorNombreNavegadora').hide();
     $('#errorCurpNavegadora').hide();
     $('#errorCurpRepetidoNavegadora').hide();
@@ -49,41 +51,120 @@ $(document).ready(function () {
     $('#noEqualPasswordsError').hide();
 
 
-    //AutocompleteRayosX
 
-    var rayosX = [];
+
+    /////ERRORES FORMULARIO
+    $('#error-fechaNavegacion').hide();
+    $('#error-fechaConsulta').hide();
+    $('#error-PRZ').hide();
+    $('#error-alergias').hide();
+    $('#error-numSeguro').hide();
+    $('#error-fechaCirugia').hide();
+    $('#error-fechaQuimio').hide();
+    $('#error-fechaRadio').hide();
+    $('#error-numCiclosQuimio').hide();
+    $('#error-numCiclosRadio').hide();
+    $('#error-fechaMastografia').hide();
+    $('#error-fechaUltra').hide();
+    $('#error-OtroResultadoPatologia').hide();
+    $('#error-numeroLaminillas').hide();
+    $('#error-serieLaminillas').hide();
+    $('#error-numeroParafrina').hide();
+    $('#error-serieParafrina').hide();
+
+
+var lugarDelCuerpo = $("#listLugarDelCuerpo");
+
+    $.ajax({
+        url: 'NavegadoraController',
+        cache: false,
+        method: 'POST',
+        data: {key: "autocompleteLugarDelCuerpo"}
+    })
+
+            .done(function (response) {
+                console.log('voy a imprimir la respuesta de lugarDelCuerpo');
+                console.log(response);
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+
+                    var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
+                    console.log(newObjeto);
+                    lugarDelCuerpo.append(newObjeto);
+                }
+
+
+                console.log(JSON.stringify(lugarDelCuerpo));
+
+            });
+
+
+ var biopsia = $("#listBiopsia");
+
+    $.ajax({
+        url: 'NavegadoraController',
+        cache: false,
+        method: 'POST',
+        data: {key: "autocompleteBiopsia"}
+    })
+
+            .done(function (response) {
+                console.log('voy a imprimir la respuesta de Biopsia');
+                console.log(response);
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+
+                    var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
+                    biopsia.append(newObjeto);
+                }
+
+
+                console.log(JSON.stringify(biopsia));
+
+            });
+
+
+ var rayosX = $("#listRayosX");
+
 
     $.ajax({
         url: 'NavegadoraController',
         cache: false,
         method: 'POST',
         data: {key: "autocompleteRayosX"}
-    }).done(function (response) {
+    })
 
-        var json = JSON.parse(response);
-        for (var i = 0; i < json.length; i++) {
-            var newObjeto = {value: json[i].nombre, data: json[i].idEstudio};
-            rayosX.push(newObjeto);
-        }
+            .done(function (response) {
+                console.log('voy a imprimir la respuesta de RayosX');
+                console.log(response);
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
 
-        console.log(rayosX);
+                    var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
+                    rayosX.append(newObjeto);
+                }
 
-    });
-    $("body").on("click", '.rayosX', function () {
 
-        $('.rayosX').autocomplete({
-            lookup: rayosX,
-            onSelect: function (suggestion) {
-                console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
-            }
-        });
+                console.log(JSON.stringify(rayosX));
 
-    });
+            });
+
+
+
+
+
+
+//AutocompleteRayosX
+
+   
+
 
 
 //AutocompleteUltrasonido
 
-    var ultraSonido = [];
+
+    var ultraSonido = $("#listUltraSonido");
+
 
     $.ajax({
         url: 'NavegadoraController',
@@ -92,23 +173,35 @@ $(document).ready(function () {
         data: {key: "autocompleteUltraSonido"}
     })
 
-    $("body").on("click", '.ultraSonido', function () {
 
-        $('.ultraSonido').autocomplete({
-            lookup: ultraSonido,
-            onSelect: function (suggestion) {
-                alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+            .done(function (response) {
+                console.log('voy a imprimir la respuesta UltraSonido');
+                console.log(response);
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+                    var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
+                    ultraSonido.append(newObjeto);
+                }
 
-            }
-        });
 
-    });
+
+                console.log(ultraSonido);
+
+            });
+
+
+
+
+    
+
 
 
 
 //AutocompletePrograma
 
-    var programa = [];
+
+   var programa = $("#listPrograma");
+
 
     $.ajax({
         url: 'NavegadoraController',
@@ -117,21 +210,27 @@ $(document).ready(function () {
         data: {key: "autocompletePrograma"}
     })
 
-    $("body").on("click", '.programa', function () {
+            .done(function (response) {
+                console.log('voy a imprimir la respuesta Programa');
+                console.log(response);
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+                    var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
+                    programa.append(newObjeto);
+                }
 
-        $('.programa').autocomplete({
-            lookup: programa,
-            onSelect: function (suggestion) {
-                alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
 
-            }
-        });
+                console.log(programa);
 
-    });
+            });
+
+
+
 
 //AutocompleteMedicinaNuclear
 
-    var medicinaNuclear = [];
+
+    var medicinaNuclear = $("#listMedicinaNuclear");
 
     $.ajax({
         url: 'NavegadoraController',
@@ -141,22 +240,26 @@ $(document).ready(function () {
     })
 
 
-    $("body").on("click", '.medicinaNuclear', function () {
+            .done(function (response) {
+                console.log('voy a imprimir la respuesta MedicinaNuclear');
+                console.log(response);
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+                    var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
+                    medicinaNuclear.append(newObjeto);
+                }
 
-        $('.medicinaNuclear').autocomplete({
-            lookup: medicinaNuclear,
-            onSelect: function (suggestion) {
-                alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
 
-            }
-        });
+                console.log(medicinaNuclear);
 
-    });
+            });
 
 
 //AutocompleteValoracion
 
-    var valoracion = [];
+
+    var valoracion = $("#listValoracion");
+
 
     $.ajax({
         url: 'NavegadoraController',
@@ -166,18 +269,21 @@ $(document).ready(function () {
     })
 
 
-    $("body").on("click", '.valoracion', function () {
+            .done(function (response) {
+                console.log('voy a imprimir la respuesta Valoracion');
+                console.log(response);
+                var json = JSON.parse(response);
+                for (var i = 0; i < json.length; i++) {
+                    var newObjeto = $('<option value="' + json[i].nombre + '"></option>');
+                    valoracion.append(newObjeto);
+                }
 
-        $('.valoracion').autocomplete({
-            lookup: valoracion,
-            onSelect: function (suggestion) {
-                alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
 
-            }
-        });
+                console.log(valoracion);
 
-    });
-
+            });
+   
+     
     //Terminos y condiciones
     $('#acepto-terminos').change(function () {
 
@@ -289,8 +395,8 @@ $(document).ready(function () {
     });
 
     //  Editar paciente
-    $('.btn-editar').on('click', function () {
-
+    
+    $('body').on('click', '.btn-editar', function () {
         $('#hidden-idPaciente').val($(this).data('id'));
 
 
@@ -414,8 +520,8 @@ $(document).ready(function () {
         }
     });
 
-    //Redirige a documentos
-    $('.btn-ver').on('click', function () {
+    //Redirige a documentos    
+    $('body').on('click', '.btn-ver', function () {
 
         var id = $(this).data('id');
         console.log(id);
@@ -493,7 +599,8 @@ $(document).ready(function () {
 
     $('#btn-aceptarDocumento').on('click', function () {
 
-        alert('el id final es:' + $('#hidden-idPaciente').val());
+        var idPaciente = $('#hidden-idPaciente').val();
+        //alert('el id final es:' + $('#hidden-idPaciente').val());
 
         $.ajax({
 
@@ -503,7 +610,7 @@ $(document).ready(function () {
             data: {
 
                 key: "aprobar-paciente",
-                idPaciente: $('#hidden-idPaciente').val(),
+                idPaciente: idPaciente,
                 fechaNavegacion: $('#Fecha-Navegacion').val(),
                 fechaConsulta: $('#Fecha-Consulta').val(),
                 tipoPaciente: $('#tipo-paciente').val()
@@ -528,7 +635,8 @@ $(document).ready(function () {
     });
 
     //Eliminar paciente
-    $('.btn-eliminar').on('click', function () {
+    
+    $('body').on('click', '.btn-eliminar', function () {
 
         alert('saludos con el id' + $(this).data('id'));
 
@@ -1465,7 +1573,8 @@ $(document).ready(function () {
             }
         });
     });
-
+    },
+    
     function validProfilePhoto(input, archivos) {
 
         for (let index = 0; index < archivos.length; index++) {
@@ -2111,7 +2220,9 @@ $(document).ready(function () {
         );
     });
 
-    $('.btn-ver-formulario').on('click', function () {
+
+    $('body').on('click', '.btn-ver-formulario', function () {
+
         console.log($(this).data('id'));
         var data = {idPotencial: $(this).data('id')};
         $.post("SAPI", {
@@ -2137,29 +2248,20 @@ $(document).ready(function () {
 
     var cambiarRol = 0;
 
-    // Pantallas del formulario 
+    //////////////////////////
+    /////VALIDACIONES////////
+    /////////////////////////
 
-    $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5').on('click', function () {
+    //**PANTALLA 1
 
-        // OMAR
-        var biopsias = [];
-        console.log("Biopsia 1");
-        $('.tuplaBiopsia').each(function () {
-            if ($(this).find('.tipoBiopsia').val() != "" || $(this).find('.fechaBiopsia').val() != "" || $(this).find('.parteCuerpoBiopsia').val() != "") {
-                var biopsia = {
-                    id: $(this).data("id"),
-                    accion: $(this).data("accion"),
-                    tipo: $(this).find('.tipoBiopsia').val(),
-                    fecha: $(this).find('.fechaBiopsia').val(),
-                    lugar: $(this).find('.parteCuerpoBiopsia').val()
-                };
-                biopsias.push(biopsia);
-                console.log(biopsia);
-            }
-        });
+    //PRZ
+    $('#prz-expediente').on('change', function () {
+        alert('cambie');
+    });
 
 
-        var rayosxs = [];
+    //fecha navegacion
+    $('#fechaNavegacion').on('change', function () {
 
         $('.tuplaRayosX').each(function () {
             if ($(this).find('.rayosX').val() != "" || $(this).find('.fechaRayos').val() != "") {
@@ -2197,6 +2299,17 @@ $(document).ready(function () {
         console.log("Medicina Nuclear");
         $('.tuplaMedicinaNuclear').each(function () {
 
+        if (!isValidDate6months($(this))) {
+            $('#error-fechaNavegacion').show();
+        } else {
+            $('#error-fechaNavegacion').hide();
+        }
+
+    });
+
+
+    //fecha consulta
+    $('#fechaConsulta').on('change', function () {
 
             if ($(this).find('.medicinaNuclear').val() != "" || $(this).find('.fechaMedicinaNuclear').val() != "") {
                 var medicinaNuclear = {
@@ -2216,15 +2329,15 @@ $(document).ready(function () {
         console.log("tuplaLaboratorio");
         $('.tuplaLaboratorio').each(function () {
 
-            if ($(this).find('.fechaLaboratorio').val() != "") {
-                var laboratorio = {
-                    id: $(this).data("id"),
-                    accion: $(this).data("accion"),
-                    fecha: $(this).find('.fechaLaboratorio').val()
-                };
-                laboratorios.push(laboratorio);
-                console.log(laboratorio);
-            }
+        if (!isValidDate6months($(this))) {
+            $('#error-fechaConsulta').show();
+        } else {
+            $('#error-fechaConsulta').hide();
+        }
+
+
+    });
+
 
         });
         console.log("tuplaLaboratorio");
@@ -2251,6 +2364,559 @@ $(document).ready(function () {
         console.log("tuplaEspirometria");
         $('.tuplaEspirometria').each(function () {
 
+
+    //**PANTALLA2
+
+    //fecha consulta
+    $('#alergias').on('change', function () {
+
+        if (!isValidAllergy($(this))) {
+            $('#error-alergias').show();
+        } else {
+            $('#error-alergias').hide();
+        }
+
+    });
+
+    //numero del seguro
+    $('#numSeguro').on('change', function () {
+
+        if (!isValidNumSeguro($(this))) {
+            $('#error-numSeguro').show();
+        } else {
+            $('#error-numSeguro').hide();
+        }
+
+    });
+
+    //fecha cirugia
+    $('#fecha-cirugia').on('change', function () {
+
+        if (!isValidTratamientoPrevio($(this))) {
+            $('#error-fechaCirugia').show();
+        } else {
+            $('#error-fechaCirugia').hide();
+        }
+
+    });
+
+    //fecha quimioterapia
+    $('#fecha-quimioterapia').on('change', function () {
+
+        if (!isValidTratamientoPrevio($(this))) {
+            $('#error-fechaQuimio').show();
+        } else {
+            $('#error-fechaQuimio').hide();
+        }
+
+    });
+
+    //fecha radioterapia
+    $('#fecha-radioterapia').on('change', function () {
+
+        if (!isValidTratamientoPrevio($(this))) {
+            $('#error-fechaRadio').show();
+        } else {
+            $('#error-fechaRadio').hide();
+        }
+
+    });
+
+    //numero de ciclos quimioterapia
+    $('#quimioterapia').on('change', function () {
+
+        if (!isValidNumCiclos($(this))) {
+            $('#error-numCiclosQuimio').show();
+        } else {
+            $('#error-numCiclosQuimio').hide();
+        }
+
+    });
+
+    //numero de ciclos radioterapia
+    $('#radioterapia').on('change', function () {
+
+        if (!isValidNumCiclos($(this))) {
+            $('#error-numCiclosRadio').show();
+        } else {
+            $('#error-numCiclosRadio').hide();
+        }
+
+    });
+    
+    //estudio previo MASTOGRAFIA
+    $('#fechaPreMasto').on('change', function(){
+        
+        if(!isValidFechaEstudioPrevio($(this))){
+            $('#error-fechaMastografia').show();
+        }else{
+            $('#error-fechaMastografia').hide();
+        }
+        
+    });
+    
+    //estudio previo ULTRASONIDO
+    $('#fechaPreUsg').on('change', function(){
+        
+        if(!isValidFechaEstudioPrevio($(this))){
+            $('#error-fechaUltra').show();
+        }else{
+            $('#error-fechaUltra').hide();
+        }
+        
+    });
+    
+    //Otro resultado de patologia
+    $('#OtroResultadoPatologia').on('change', function(){
+       
+       if(!isValidAlfanumerico($(this))){
+            $('#error-OtroResultadoPatologia').show();
+        }else{
+            $('#error-OtroResultadoPatologia').hide();
+        }
+          
+    });
+    
+    //numero de laminillas
+    $('#numLaminillas').on('change', function(){
+       
+       if(!isValidNumerico($(this))){
+            $('#error-numeroLaminillas').show();
+        }else{
+            $('#error-numeroLaminillas').hide();
+        }
+        
+    });
+    
+    //serie laminillas
+    $('#serieLaminillas').on('change', function(){
+       
+       if(!isValidAlfanumerico($(this))){
+            $('#error-serieLaminillas').show();
+        }else{
+            $('#error-serieLaminillas').hide();
+        }
+        
+    });
+    
+    //numero bloques parafrina
+    $('#numBloques').on('change', function(){
+       
+       if(!isValidNumerico($(this))){
+            $('#error-numeroParafrina').show();
+        }else{
+            $('#error-numeroParafrina').hide();
+        }
+        
+    });
+    
+    //serie bloques
+    $('#serieBloques').on('change', function(){
+       
+       if(!isValidAlfanumerico($(this))){
+            $('#error-serieParafrina').show();
+        }else{
+            $('#error-serieParafrina').hide();
+        }
+        
+    });
+    
+    //**PANTALLA3
+    
+    //Biopsia
+    $('body').on('change', '.fechaBiopsia', function(){
+       
+        if(!isValidDate6months($(this))){
+            
+            $(this).css('border', "1px solid red");
+            $(this).css('color', 'red');
+            
+            $(this).parent().parent().append("<span class='text-danger fechaIncorrectaBiopsia'>Fecha Incorrecta</span>");
+            
+        }else{
+            
+
+            $(this).css('border', "");
+            $(this).css('color', '');
+            
+            $(this).parent().parent().find("span.fechaIncorrectaBiopsia").remove();
+            
+        }
+        
+    });
+    
+    //Rayos
+    $('body').on('change', '.fechaRayos', function(){
+       
+        if(!isValidDate6months($(this))){
+            
+            $(this).css('border', "1px solid red");
+            $(this).css('color', 'red');
+            
+            $(this).parent().parent().append("<span class='text-danger fechaIncorrectaRayos'>Fecha Incorrecta</span>");
+            
+        }else{
+            
+
+            $(this).css('border', "");
+            $(this).css('color', '');
+            
+            $(this).parent().parent().find("span.fechaIncorrectaRayos").remove();
+            
+        }
+        
+    });
+    
+    //Ultrasonido
+    $('body').on('change', '.fechaUltrasonido', function(){
+       
+        if(!isValidDate6months($(this))){
+            
+            $(this).css('border', "1px solid red");
+            $(this).css('color', 'red');
+            
+            $(this).parent().parent().append("<span class='text-danger fechaIncorrectaUltra'>Fecha Incorrecta</span>");
+            
+        }else{
+            
+
+            $(this).css('border', "");
+            $(this).css('color', '');
+            
+            $(this).parent().parent().find("span.fechaIncorrectaUltra").remove();
+            
+        }
+        
+    });
+    
+    //Medicina nuclear
+    $('body').on('change', '.fechaMedicinaNuclear', function(){
+       
+        if(!isValidDate6months($(this))){
+            
+            $(this).css('border', "1px solid red");
+            $(this).css('color', 'red');
+            
+            $(this).parent().parent().append("<span class='text-danger fechaIncorrectaMNuclear'>Fecha Incorrecta</span>");
+            
+        }else{
+            
+
+            $(this).css('border', "");
+            $(this).css('color', '');
+            
+            $(this).parent().parent().find("span.fechaIncorrectaMNuclear").remove();
+            
+        }
+        
+    });
+    
+    //Laboratorio
+    $('body').on('change', '.fechaLaboratorio', function(){
+       
+        if(!isValidDate6months($(this))){
+            
+            $(this).css('border', "1px solid red");
+            $(this).css('color', 'red');
+            
+            $(this).parent().parent().append("<span class='text-danger fechaIncorrectaMLabo'>Fecha Incorrecta</span>");
+            
+        }else{
+            
+
+            $(this).css('border', "");
+            $(this).css('color', '');
+            
+            $(this).parent().parent().find("span.fechaIncorrectaLabo").remove();
+            
+        }
+        
+    });
+    
+    //Valoracion
+    $('body').on('change', '.fechaValoracion', function(){
+       
+        if(!isValidDate6months($(this))){
+            
+            $(this).css('border', "1px solid red");
+            $(this).css('color', 'red');
+            
+            $(this).parent().parent().append("<span class='text-danger fechaIncorrectaValoracion'>Fecha Incorrecta</span>");
+            
+        }else{
+            
+
+            $(this).css('border', "");
+            $(this).css('color', '');
+            
+            $(this).parent().parent().find("span.fechaIncorrectaValoracion").remove();
+            
+        }
+        
+    });
+    
+    //Espirometria
+    $('body').on('change', '.fechaEspirometria', function(){
+       
+        if(!isValidDate6months($(this))){
+            
+            $(this).css('border', "1px solid red");
+            $(this).css('color', 'red');
+            
+            $(this).parent().parent().append("<span class='text-danger fechaIncorrectaEspirometria'>Fecha Incorrecta</span>");
+            
+        }else{
+            
+
+            $(this).css('border', "");
+            $(this).css('color', '');
+            
+            $(this).parent().parent().find("span.fechaIncorrectaEspirometria").remove();
+            
+        }
+        
+    });
+    
+    //Electrocardiograma
+    $('body').on('change', '.fechaElectrocardiograma', function(){
+       
+        if(!isValidDate6months($(this))){
+            
+            $(this).css('border', "1px solid red");
+            $(this).css('color', 'red');
+            
+            $(this).parent().parent().append("<span class='text-danger fechaIncorrectaElectro'>Fecha Incorrecta</span>");
+            
+        }else{
+            
+
+            $(this).css('border', "");
+            $(this).css('color', '');
+            
+            $(this).parent().parent().find("span.fechaIncorrectaElectro").remove();
+            
+        }
+        
+    });
+    
+    //Ecocardiograma
+    $('body').on('change', '.fechaEcocardiograma', function(){
+       
+        if(!isValidDate6months($(this))){
+            
+            $(this).css('border', "1px solid red");
+            $(this).css('color', 'red');
+            
+            $(this).parent().parent().append("<span class='text-danger fechaIncorrectaEco'>Fecha Incorrecta</span>");
+            
+        }else{
+            
+
+            $(this).css('border', "");
+            $(this).css('color', '');
+            
+            $(this).parent().parent().find("span.fechaIncorrectaEco").remove();
+            
+        }
+        
+    });
+    
+    //Trabajo Social
+    $('body').on('change', '.fechaTrabajoSocial', function(){
+       
+        if(!isValidDate6months($(this))){
+            
+            $(this).css('border', "1px solid red");
+            $(this).css('color', 'red');
+            
+            $(this).parent().parent().append("<span class='text-danger fechaIncorrectaTSocial'>Fecha Incorrecta</span>");
+            
+        }else{
+            
+
+            $(this).css('border', "");
+            $(this).css('color', '');
+            
+            $(this).parent().parent().find("span.fechaIncorrectaTSocial").remove();
+            
+        }
+        
+    });
+    
+    //Programa
+    $('body').on('change', '.fechaPrograma', function(){
+       
+        if(!isValidDate6months($(this))){
+            
+            $(this).css('border', "1px solid red");
+            $(this).css('color', 'red');
+            
+            $(this).parent().parent().append("<span class='text-danger fechaIncorrectaPrograma'>Fecha Incorrecta</span>");
+            
+        }else{
+            
+
+            $(this).css('border', "");
+            $(this).css('color', '');
+            
+            $(this).parent().parent().find("span.fechaIncorrectaPrograma").remove();
+            
+        }
+        
+    });
+    
+    //Otro
+    $('body').on('change', '.fechaOtro', function(){
+       
+        if(!isValidDate6months($(this))){
+            
+            $(this).css('border', "1px solid red");
+            $(this).css('color', 'red');
+            
+            $(this).parent().parent().append("<span class='text-danger fechaIncorrectaOtro'>Fecha Incorrecta</span>");
+            
+        }else{
+            
+
+            $(this).css('border', "");
+            $(this).css('color', '');
+            
+            $(this).parent().parent().find("span.fechaIncorrectaOtro").remove();
+            
+        }
+        
+    });
+    
+    
+    
+    function areValidDynamicDates6Months(dates){
+        
+        for (var i = 0; i < dates.length; i++) {
+            console.log("***FECHA***: " + dates[i].value);
+            if(!isValidDate6monthsDynamic(dates[i].value))
+                return false;
+        }
+        
+        return true;
+        
+    }
+
+    // Pantallas del formulario 
+
+    $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5').on('click', function () {
+        
+       
+        // OMAR
+        var biopsias = [];
+        console.log("Biopsia 1");
+        $('.tuplaBiopsia').each(function () {
+            if ($(this).find('.tipoBiopsia').val() != "" || $(this).find('.fechaBiopsia').val() != "" || $(this).find('.parteCuerpoBiopsia').val() != "") {
+                var biopsia = {
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    tipo: $(this).find('.tipoBiopsia').val(),
+                    fecha: $(this).find('.fechaBiopsia').val(),
+                    lugar: $(this).find('.parteCuerpoBiopsia').val()
+                };
+                biopsias.push(biopsia);
+                console.log(biopsia);
+            }
+        });
+
+
+        var rayosxs = [];
+
+        $('.tuplaRayosX').each(function () {
+            if ($(this).find('.rayosX').val() != "" || $(this).find('.fechaRayos').val() != "") {
+                var rayosx = {
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    tipo: $(this).find('.rayosX').val(),
+                    fecha: $(this).find('.fechaRayos').val()
+                };
+                rayosxs.push(rayosx);
+                console.log(rayosx);
+            }
+        });
+        console.log("Rayox x");        
+        
+        var ultrasonidos = [];
+        console.log("Ultrasonido");
+        $('.tuplaUltrasonido').each(function () {
+            if ($(this).find('.parteCuerpoUltrasonido').val() != "" || $(this).find('.fechaUltrasonido').val() != "") {
+                var ultrasonido = {
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    parte: $(this).find('.parteCuerpoUltrasonido').val(),
+                    fecha: $(this).find('.fechaUltrasonido').val()
+                };
+
+                ultrasonidos.push(ultrasonido);
+                console.log(ultrasonido);
+            }
+        });
+        console.log("Ultrasonido");
+        
+                
+        var medicinasNucleares = []
+        console.log("Medicina Nuclear");
+        $('.tuplaMedicinaNuclear').each(function () {
+
+
+            if ($(this).find('.medicinaNuclear').val() != "" || $(this).find('.fechaMedicinaNuclear').val() != "") {
+                var medicinaNuclear = {
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    medicinaNuclear: $(this).find('.medicinaNuclear').val(),
+                    fecha: $(this).find('.fechaMedicinaNuclear').val()
+                };
+                console.log(medicinaNuclear);
+                medicinasNucleares.push(medicinaNuclear);
+            }
+        });
+        console.log("Medicina Nuclear");
+        
+                         
+        var laboratorios = [];
+        console.log("tuplaLaboratorio");
+        $('.tuplaLaboratorio').each(function () {
+
+            if ($(this).find('.fechaLaboratorio').val() != "") {
+                var laboratorio = {
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    fecha: $(this).find('.fechaLaboratorio').val()
+                };
+                laboratorios.push(laboratorio);
+                console.log(laboratorio);
+            }
+
+        });
+        console.log("tuplaLaboratorio");
+        
+        
+        var valoraciones = [];
+        console.log("tuplaValoracion");
+        $('.tuplaValoracion').each(function () {
+            if ($(this).find('.valoracion').val() != "" || $(this).find('.fechaValoracion').val() != "") {
+                var valoracion = {
+                    id: $(this).data("id"),
+                    accion: $(this).data("accion"),
+                    valoracion: $(this).find('.valoracion').val(),
+                    fecha: $(this).find('.fechaValoracion').val()
+                };
+                valoraciones.push(valoracion);
+                console.log(valoracion);
+            }
+        });
+        console.log("tuplaValoracion");
+        
+        
+        var espirometrias = [];
+        console.log("tuplaEspirometria");
+        $('.tuplaEspirometria').each(function () {
+
+
             if ($(this).find('.fechaEspirometria').val() != "") {
                 var espirometria = {
                     id: $(this).data("id"),
@@ -2263,7 +2929,8 @@ $(document).ready(function () {
         });
         console.log("tuplaEspirometria");
 
-
+        
+ 
         var electrocardiogramas = [];
         console.log("tuplaElectrocardiograma");
         $('.tuplaElectrocardiograma').each(function () {
@@ -2426,6 +3093,63 @@ $(document).ready(function () {
         data.forEach((value, key) => {
             console.log(key + " " + value);
         });
+
+        /////MEGA IF
+        if (isValidDate6months($('#fechaNavegacion')) && isValidDate6months($('#fechaConsulta')) &&
+                isValidAllergy($('#alergias')) && isValidNumSeguro($('#numSeguro')) && isValidTratamientoPrevio($('#fecha-cirugia')) &&
+                isValidTratamientoPrevio($('#fecha-quimioterpia')) &&
+                isValidNumCiclos($('#quimioterapia')) && isValidNumCiclos($('#radioterapia'))
+                && isValidFechaEstudioPrevio($('#fechaPreMasto')) && isValidFechaEstudioPrevio($('#fechaPreUsg')) 
+                && isValidAlfanumerico($('#OtroResultadoPatologia')) && isValidNumerico($('#numLaminillas'))
+                && isValidAlfanumerico($('#serieLaminillas')) && isValidNumerico($('#numBloques')) 
+                && isValidAlfanumerico($('#serieBloques')) && areValidDynamicDates6Months(document.querySelectorAll(".fechaBiopsia"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaRayos")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaUltrasonido"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaMedicinaNuclear")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaLaboratorio"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaValoracion")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaEspirometria"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaElectrocardiograma")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaEcocardiograma"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaTrabajoSocial")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaPrograma"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaOtro"))) {
+
+            alert('pase el primer if');
+
+            //Verificar que si marco que tiene seguro popular introduzca el numero del seguro
+            if (parseInt($('.tiene-seguro option:selected').val()) == 1) {
+
+                if ($('#numSeguro').val().length == 0) {
+
+                    alert('break 2');
+
+                    swal("Error", "Verifica que hayas rellenado todos los datos", "error");
+                    $('#numSeguro').css('border', '1px solid red');
+                    $('#numSeguro').css('color', 'red');
+
+                } else {
+
+                    alert('si selecciono seguro popular');
+
+                    //btnSave(data);
+                }
+
+            } else {
+
+                $('#numSeguro').css('border', '');
+                $('#numSeguro').css('color', '');
+
+                alert('no selecciono seguro popular');
+
+                //btnSave(data);
+
+            }
+
+        }else{
+            swal("Error", "Hay datos incorrectos o faltantes", "error");
+        }
+
+
+
+    });
+
+    function btnSave(data) {
         $.ajax({
             url: "NavegadoraController",
             method: "POST",
@@ -2448,9 +3172,10 @@ $(document).ready(function () {
             }
         });
 
-    });
+    }
 
-    $('.btn-perder-cita').on('click', function () {
+    
+    $('body').on('click', '.btn-perder-cita', function () {
         var idPotencial = $(this).data('id');
 
         //
@@ -3600,6 +4325,215 @@ $(document).ready(function () {
             //alert("No enontre el controlador" + status);                               
         }
     });
+
+    function convertDate(date) {
+
+        var yyyy = date.getFullYear().toString();
+        var mm = (date.getMonth() + 1).toString();
+        var dd = date.getDate().toString();
+
+        var mmChars = mm.split('');
+        var ddChars = dd.split('');
+
+        return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
+    }
+    
+    
+    
+
+    $('.button').click(function () {
+        myFunction(this);
+    });
+
+
+    function myFunction(ele) {
+        var lastID;
+        lastID = $(ele).attr("id");
+        $('#hidden-idPaciente').val(lastID);
+        console.log(lastID);
+    }
+
+});
+
+    
+
+    
+
+function isValidPRZ(input) {
+
+    var m = input.val();
+
+    var expreg = /^[a-zA-Z0-9]{4,16}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+}
+
+function isValidEmail(input) {
+
+    var m = input.val();
+
+    ////Expresion regular por el estandard: RFC 5322
+    var expreg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+}
+
+
+function isValidTratamientoPrevio(input) {
+
+    let valorSeleccionado = input.val();
+
+    let fechaIntroducida = new Date(valorSeleccionado);
+
+    var year2 = fechaIntroducida.getFullYear();
+    var month2 = fechaIntroducida.getMonth();
+    var day2 = fechaIntroducida.getDate();
+
+    fechaIntroducida = new Date(year2, month2, day2 + 1);
+    fechaIntroducida.setHours(0);
+
+    console.log("fecha introducida: " + fechaIntroducida);
+
+    let hoy = new Date();
+    hoy.setHours(0);
+
+    /*var year = hoy.getFullYear();
+     var month = hoy.getMonth();
+     var day = hoy.getDate();
+     
+     hoy = new Date(year, month, day+1);
+     hoy.setHours(0);*/
+
+    console.log("HOY:" + hoy);
+
+    if (fechaIntroducida >= hoy) {
+        console.log("MMM NO PUEDES");
+        return false;
+    }
+
+
+    return true;
+}
+
+function isValidFechaEstudioPrevio(input) {
+
+    let valorSeleccionado = input.val();
+
+    let fechaIntroducida = new Date(valorSeleccionado);
+
+    var year2 = fechaIntroducida.getFullYear();
+    var month2 = fechaIntroducida.getMonth();
+    var day2 = fechaIntroducida.getDate();
+
+    fechaIntroducida = new Date(year2, month2, day2 + 1);
+    fechaIntroducida.setHours(0);
+
+    console.log("fecha introducida: " + fechaIntroducida);
+
+    let hoy = new Date();
+    hoy.setHours(0);
+    
+    console.log("HOY:" + hoy);
+
+    if (fechaIntroducida >= hoy) {
+        console.log("MMM NO PUEDES");
+        return false;
+    }
+
+
+    return true;
+}
+
+
+function isValidDate6months(input) {
+
+    let valorSeleccionado = input.val();
+
+    let fechaIntroducida = new Date(valorSeleccionado);
+
+    var year2 = fechaIntroducida.getFullYear();
+    var month2 = fechaIntroducida.getMonth();
+    var day2 = fechaIntroducida.getDate();
+
+    fechaIntroducida = new Date(year2, month2, day2 + 1);
+    fechaIntroducida.setHours(0);
+
+    console.log("fecha introducida: " + fechaIntroducida);
+
+    let hoy = new Date();
+
+    //obtener dia mes y año PARA LAS FECHAS POSIBLES
+    var year = hoy.getFullYear();
+    var month = hoy.getMonth();
+    var day = hoy.getDate();
+
+    //fechas posibles
+    let mesesAdelante = new Date(year, month + 6, day);
+    let mesesAtras = new Date(year, month - 6, day);
+
+    if (fechaIntroducida >= mesesAdelante) {
+        console.log("**SOBREPASA LOS 6 MESES**");
+        return false;
+
+    } else if (fechaIntroducida <= mesesAtras) {
+        console.log("**NO ES POSIBLE TAN ATRAS**");
+        return false;
+    }
+
+    console.log("Meses adelante: " + mesesAdelante);
+    console.log("Meses atras: " + mesesAtras)
+    console.log("hoy: " + hoy);
+
+    return true;
+
+}
+
+function isValidDate6monthsDynamic(input) {
+
+    let valorSeleccionado = input;
+
+    let fechaIntroducida = new Date(valorSeleccionado);
+
+    var year2 = fechaIntroducida.getFullYear();
+    var month2 = fechaIntroducida.getMonth();
+    var day2 = fechaIntroducida.getDate();
+
+    fechaIntroducida = new Date(year2, month2, day2 + 1);
+    fechaIntroducida.setHours(0);
+
+    console.log("fecha introducida: " + fechaIntroducida);
+    
+        error: function (request, status, error) {
+            console.log("Enviar datos Error " + request.responseText);
+            console.log("Enviar datos Error status " + status);
+            console.log("Enviar datos Error error" + error);
+            //alert("No enontre el controlador" + status);                               
+        }
+    };
 // 'ene 1, 2001'
     function convertDate(fecha) {
          fecha = fecha.replace("ene", "jan");
@@ -3652,11 +4586,32 @@ $(document).ready(function () {
         var mmChars = mm.split('');
         var ddChars = dd.split('');
 
-        return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
+    let hoy = new Date();
+
+    //obtener dia mes y año PARA LAS FECHAS POSIBLES
+    var year = hoy.getFullYear();
+    var month = hoy.getMonth();
+    var day = hoy.getDate();
+
+    //fechas posibles
+    let mesesAdelante = new Date(year, month + 6, day);
+    let mesesAtras = new Date(year, month - 6, day);
+
+    if (fechaIntroducida >= mesesAdelante) {
+        console.log("**SOBREPASA LOS 6 MESES**");
+        return false;
+
+
+    } else if (fechaIntroducida <= mesesAtras) {
+        console.log("**NO ES POSIBLE TAN ATRAS**");
+        return false;
     }
 
-});
+    console.log("Meses adelante: " + mesesAdelante);
+    console.log("Meses atras: " + mesesAtras)
+    console.log("hoy: " + hoy);
 
+    }
 
 
 
@@ -3669,6 +4624,37 @@ function isValidEmail(input) {
 
     if (!expreg.test(m)) {
 
+
+    return true;
+
+}
+}
+
+
+
+function formatDate(date) {
+    var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
+function isValidName(input) {
+
+    var m = input.val();
+
+    var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
+
+    if (!expreg.test(m)) {
+
+
         input.css('border', '1px solid red');
         input.css('color', 'red');
         return false;
@@ -3681,13 +4667,22 @@ function isValidEmail(input) {
     return true;
 
 }
-;
+
+
 
 function isValidPhoneNumber(input) {
 
     var m = input.val();
 
     var expreg = /^[0-9]{10,10}$/;
+    }
+
+function isValidLastName(input) {
+
+    var m = input.val();
+
+    var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,127}$/;
+
 
     if (!expreg.test(m)) {
 
@@ -3702,7 +4697,8 @@ function isValidPhoneNumber(input) {
 
     return true;
 }
-;
+
+
 
 
 function formatDate(date) {
@@ -3731,20 +4727,13 @@ function isValidName(input) {
         input.css('color', 'red');
         return false;
 
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
+    }}
 
-    return true;
-
-}
-
-function isValidLastName(input) {
+function isValidAlfanumerico(input) {
 
     var m = input.val();
 
-    var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,127}$/;
+    var expreg = /^$|[a-zA-Z\u00E0-\u00FCñÑ. ]$/;
 
     if (!expreg.test(m)) {
 
@@ -3766,6 +4755,63 @@ function isValidEmail(input) {
 
     ////Expresion regular por el estandard: RFC 5322
     var expreg = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+}
+
+function isValidLastName(input) {
+
+    var m = input.val();
+
+    var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,127}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {}}
+
+function isValidPassword(input) {
+
+    var m = input.val();
+
+    //var expreg = /^[a-zA-Z0-9]{8,14}$/;
+    var expreg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,14}$/;
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+function isValidCURP(input) {
+
+    var m = input.val();
+
+    var expreg = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/;
 
     if (!expreg.test(m)) {
 
@@ -3796,33 +4842,8 @@ function isValidPassword(input) {
 
     } else {
 
-        input.css('border', '');
-        input.css('color', '');
-    }
 
-    return true;
-
-}
-
-function isValidCURP(input) {
-
-    var m = input.val();
-
-    var expreg = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/;
-
-    if (!expreg.test(m)) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-}
+}}
 
 function isValidPhoneNumber(input) {
 
@@ -3837,12 +4858,88 @@ function isValidPhoneNumber(input) {
         return false;
 
     } else {
+
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+
+}
+
+
+function isValidNumerico(input) {
+
+    var m = input.val();
+
+    var expreg = /^$|[0-9]$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+
+    } else {
         input.css('border', '');
         input.css('color', '');
     }
 
     return true;
 }
+
+
+
+function isValidNumSeguro(input) {
+
+    var m = input.val();
+
+    var expreg = /^$|[0-9]+$/;
+
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+
+
+
+
+function isValidNumCiclos(input) {
+
+    var m = input.val();
+
+    var expreg = /^$|[0-9]+$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+
+
 
 function isValidSelect(input) {
 
@@ -3859,6 +4956,30 @@ function isValidSelect(input) {
 
     return true;
 }
+
+function isValidAllergy(input) {
+
+    var m = input.val();
+
+    var expreg = /^$|[a-zA-Z0-9\u00E0-\u00FCñÑ., ]{2,255}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+}
+
+
 
 function isValidDate(input) {
 
@@ -3879,6 +5000,7 @@ function isValidDate(input) {
         input.css('border', '1px solid red');
         input.css('color', 'red');
         return false;
+
 
     } else {
         input.css('border', '');
@@ -3920,6 +5042,7 @@ function isValidStreet(input) {
         input.css('border', '1px solid red');
         input.css('color', 'red');
         return false;
+
 
     } else {
         input.css('border', '');

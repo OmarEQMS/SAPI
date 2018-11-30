@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    
 
     //Esconder seguros, mastrografía, ultrasonido y tratamientos en la segunda hoja de la pantalla 2
     $('#tiene-seguro').hide();
@@ -379,7 +380,7 @@ $(document).ready(function () {
 
             <!-- tipo biopsia -->
             <div class="col-3">
-                <input name="tipo-BipsiaAdded" type="text" class="form-control tipoBiopsia" placeholder="Tipo de biopsiaa">
+                <input name="tipo-BipsiaAdded" type="text" class="form-control tipoBiopsia" list="listBiopsia" placeholder="Tipo de biopsiaa">
             </div>
 
             <!-- fecha biopsia -->
@@ -402,7 +403,7 @@ $(document).ready(function () {
                             <i class="fas fa-hand-paper"></i>
                         </div>
                     </div>
-                    <input name ="parte-BipsiaAdded" type="text" class="form-control parteCuerpoBiopsia" placeholder="Parte del cuerpo">
+                    <input name ="parte-BipsiaAdded" type="text" class="form-control parteCuerpoBiopsia" list="listLugarDelCuerpo" placeholder="Parte del cuerpo">
                 </div>
             </div>
 
@@ -422,7 +423,7 @@ $(document).ready(function () {
     //remover biopsia
     $('body').on('click', '.remove-biopsia', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     //agregar rayos
@@ -437,7 +438,7 @@ $(document).ready(function () {
                 <!-- tipo rayos -->
                 <div class="col-5">
 
-                    <input name="tipo-RayosXAdded" type="text" class="form-control rayosX" placeholder="Tipo de rayos X">
+                    <input name="tipo-RayosXAdded" type="text" class="form-control rayosX" list="listRayosX" placeholder="Tipo de rayos X">
                 </div>
 
                 <!-- fecha rayos -->
@@ -469,7 +470,7 @@ $(document).ready(function () {
     //remover rayos
     $('body').on('click', '.remove-rayos', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-ultrasonido').on('click', function () {
@@ -482,7 +483,7 @@ $(document).ready(function () {
 
                
                 <div class="col-5">
-                    <input name ="parteCuperpo-USGAdded"type="text" class="form-control parteCuerpoUltrasonido ultraSonido" placeholder="Parte del cuerpo">
+                    <input name ="parteCuperpo-USGAdded"type="text" class="form-control parteCuerpoUltrasonido ultraSonido" list="listUltraSonido" placeholder="Parte del cuerpo">
                 </div>
 
             
@@ -515,7 +516,7 @@ $(document).ready(function () {
     //remover ultrasonidos
     $('body').on('click', '.remove-ultrasonido', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-medicinaNuclear').on('click', function () {
@@ -527,7 +528,7 @@ $(document).ready(function () {
 
     
                     <div class="col-5">
-                        <input name ="mNuclearAdded" type="text" class="form-control medicinaNuclear" placeholder="Introduce medicina nuclear">
+                        <input name ="mNuclearAdded" type="text" class="form-control medicinaNuclear" list="listMedicinaNuclear" placeholder="Introduce medicina nuclear">
                     </div>
 
       
@@ -559,7 +560,7 @@ $(document).ready(function () {
     //remover rayos
     $('body').on('click', '.remove-medicinaNuclear', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-laboratorio').on('click', function () {
@@ -598,7 +599,7 @@ $(document).ready(function () {
     //remover laboratorio
     $('body').on('click', '.remove-laboratorio', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-valoracion').on('click', function () {
@@ -611,7 +612,7 @@ $(document).ready(function () {
 
        
                 <div class="col-5">
-                    <input name ="valoracionAdded" type="text" class="form-control valoracion" placeholder="Introduce valoración">
+                    <input name ="valoracionAdded" type="text" class="form-control valoracion" list="listValoracion" placeholder="Introduce valoración">
                 </div>
 
                 <div class="col-5">
@@ -642,7 +643,7 @@ $(document).ready(function () {
     //remover valoracion
     $('body').on('click', '.remove-valoracion', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-espirometria').on('click', function () {
@@ -681,7 +682,7 @@ $(document).ready(function () {
     //remover valoracion
     $('body').on('click', '.remove-espirometria', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-electrocardiograma').on('click', function () {
@@ -720,7 +721,7 @@ $(document).ready(function () {
     //remover electrocardiograma
     $('body').on('click', '.remove-electrocardiograma', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-ecocardiograma').on('click', function () {
@@ -760,7 +761,7 @@ $(document).ready(function () {
     //remover ecocardiograma
     $('body').on('click', '.remove-ecocardiograma', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-trabajoSocial').on('click', function () {
@@ -799,7 +800,7 @@ $(document).ready(function () {
     //remover trabajoSocial
     $('body').on('click', '.remove-trabajoSocial', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-programa').on('click', function () {
@@ -812,7 +813,7 @@ $(document).ready(function () {
 
 
                     <div class="col-5">
-                        <input name="programaAdded" type="text" id="tipoPrograma" class="form-control programa" placeholder="Introduce programa">
+                        <input name="programaAdded" type="text" id="tipoPrograma" class="form-control programa" list="listPrograma" placeholder="Introduce programa">
                     </div>
 
                     <div class="col-5">
@@ -843,7 +844,7 @@ $(document).ready(function () {
     //remover trabajoSocial
     $('body').on('click', '.remove-programa', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-otro').on('click', function () {
@@ -886,7 +887,7 @@ $(document).ready(function () {
     //remover trabajoSocial
     $('body').on('click', '.remove-otro', function () {
         $(this).parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
     });
 
     $('.add-llamada').on('click', function () {
@@ -926,7 +927,7 @@ $(document).ready(function () {
     //remover trabajoSocial
     $('body').on('click', '.remove-llamada', function () {
         $(this).parent().parent().parent().parent().data("accion", "eliminar");
-        $(this).parent().parent().parent().parent().hide();
+        $(this).parent().parent().parent().parent().remove();
     });
 
     //MEDICO RADIOLOGO OTRO
@@ -1347,10 +1348,11 @@ $(document).ready(function () {
     });
     
     
-    $('.btn-aceptar-potencial').on('click',function(){
+   $('body').on('click', '.btn-aceptar-potencial', function () {
         $('#hidden-idPaciente').val('');
-        console.log("Me estás aceptando");
+            console.log("Me estás aceptando "+ $(this).data('id'));        
         $('#hidden-idPaciente').val($(this).data('id'));
     });
+    
     
 });

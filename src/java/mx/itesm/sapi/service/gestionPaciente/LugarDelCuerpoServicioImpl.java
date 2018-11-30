@@ -111,7 +111,7 @@ public class LugarDelCuerpoServicioImpl implements LugarDelCuerpoServicio{
         Connection conn;
         List<LugarDelCuerpo> listaLugarDelCuerpo = new ArrayList<>();
         CallableStatement cstmt;
-        String stProcedure="";
+        String stProcedure="CALL mostrarListaLugarDelCuerpo()";
         
         ResultSet rs;
         
