@@ -135,7 +135,117 @@ public class ReporteControllerJaspersoft extends HttpServlet {
                         case "generar-reporte2": {
                             //Estos datos los deberia tener la sesion
                             //int idPaciente = 62, idEmpleado = 40, keyRol = 4;
+                            
+                            int idPaciente = (int) sesion.getAttribute("idPacientePotencialForm");
+                            int idEmpleado = (int) sesion.getAttribute("idEmpleadoNavegadora");
 
+                            String report = "/mx/itesm/sapi/reportes/reporte/ReporteNavegadorav2.0.jasper";
+                            InputStream input = getClass().getResourceAsStream(report);
+                            List<ReporteNavegadora> reporteNavegadoraFields = new ArrayList<>();
+
+                            //ReporteNavegadora reporteNavegadora;
+                            ReporteNavegadoraServicioImpl reportenavegadoraServicioImpl = new ReporteNavegadoraServicioImpl();
+                            ReporteNavegadora reporteNavegadora = reportenavegadoraServicioImpl.mostrarReporteNavegadora(idPaciente, idEmpleado, keyRol);
+
+                            if (reporteNavegadora != null) {
+                                System.out.println("Se guardaron datos estaticos");
+                            } else {
+                                System.out.println("ESTA NULL");
+                            }
+
+                            reporteNavegadoraFields.add(reporteNavegadora);
+                            System.out.println("El dato que esta en la lista:" + reporteNavegadoraFields.get(0).toString());
+
+                            System.out.println("El size de reporteNavegadoraFields: " + reporteNavegadoraFields.size());
+
+                            JRDataSource data = new JRBeanCollectionDataSource(reporteNavegadoraFields);
+
+                            EstudioFormularioServicioImpl estudioFormularioServicioImpl = new EstudioFormularioServicioImpl();
+                            LlamadaCitaServicioImpl llamadaCitaServicioImpl = new LlamadaCitaServicioImpl();
+
+                            List<EstudioFormulario> biopsias = new ArrayList<>(); //Tipo Fecha Lugar
+                            List<EstudioFormulario> rayosX = new ArrayList<>(); //tipo fecha
+                            List<EstudioFormulario> ultrasonido = new ArrayList<>(); //tipo fecha
+                            List<EstudioFormulario> medicinaNuclear = new ArrayList<>();//tipo fecha
+                            List<EstudioFormulario> valoracion = new ArrayList<>(); //tipo fecha
+                            List<EstudioFormulario> programa = new ArrayList<>(); //tipo fecha
+                            List<EstudioFormulario> laboratorio = new ArrayList<>();  //fecha
+                            List<EstudioFormulario> electrocardiograma = new ArrayList<>();//fecha
+                            List<EstudioFormulario> ecocardiograma = new ArrayList<>();//fecha
+                            List<EstudioFormulario> trabajoSocial = new ArrayList<>();//fecha
+                            List<EstudioFormulario> otrosEstudios = new ArrayList<>(); //tipo fecha
+                            List<EstudioFormulario> espirometrias = new ArrayList<>(); //tipo fecha
+                            List<LlamadaCita> llamada = new ArrayList<>(); //Llamada
+                            List<LlamadaPaciente> llamadas = new ArrayList<>(); //Llamadas
+
+                            biopsias = estudioFormularioServicioImpl.mostrarFormularioDinamicoLTF(idPaciente, "Biopsia");
+                            rayosX = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente, "Rayos X");
+                            ultrasonido = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente, "Ultrasonido");
+                            medicinaNuclear = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente, "Medicina nuclear");
+                            valoracion = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente, "Valoración");
+                            programa = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente, "Programas");
+                            laboratorio = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente, "Laboratorios");
+                            electrocardiograma = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente, "Electrocardiogramas");
+                            ecocardiograma = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente, "Ecocardiogramas");
+                            trabajoSocial = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente, "Trabajos sociales");
+                            otrosEstudios = estudioFormularioServicioImpl.mostrarFormularioDinamicoFechaTipo(idPaciente, "Otros");
+                            espirometrias = estudioFormularioServicioImpl.mostrarFormularioDinamicoFecha(idPaciente, "Trabajos sociales");
+                            llamada = llamadaCitaServicioImpl.mostrarLlamaCitaPreconsultaPaciente(idPaciente);
+                            LlamadaPaciente llamadaPaciente;
+
+                            for (int x = 0; x < llamada.size(); x++) {
+                                llamadaPaciente = new LlamadaPaciente();
+                                llamadaPaciente.setFecha(String.valueOf(new Date(((llamada.get(x)).getFecha()).getTime())));
+                                llamadaPaciente.setMotivo((llamada.get(x)).getComentario());
+                                llamadas.add(llamadaPaciente);
+                            }
+
+                            Map params = new HashMap();
+                            params.put("datasetBiopsia", biopsias);
+                            params.put("datasetRayosX", rayosX);
+                            params.put("datasetUltrasonido", ultrasonido);
+                            params.put("datasetMedicinaNuclear", medicinaNuclear);
+                            params.put("datasetValoracion", valoracion);
+                            params.put("datasetPrograma", programa);
+                            params.put("datasetLaboratorio", laboratorio);
+                            params.put("datasetEspirometria", espirometrias);
+                            params.put("datasetElectroCardiograma", electrocardiograma);
+                            params.put("datasetEcocardiograma", ecocardiograma);
+                            params.put("datasetTrabajoSocial", trabajoSocial);
+                            params.put("datasetOtro", otrosEstudios);
+                            params.put("datasetLlamada", llamadas);
+
+                            try {
+                                response.setContentType("application/pdf");
+                                response.addHeader("content-disposition", "attachment; filename=Reporte1.pdf");
+                                System.out.println("Entra al try ");
+                                byte[] bytes = JasperRunManager.runReportToPdf(input, params, data);
+
+                                System.out.println("Corre el JasperSoft");
+
+                                OutputStream os = response.getOutputStream();
+                                System.out.println("Prepara la respuesta ");
+
+                                os.write(bytes);
+                                os.flush();
+                                os.close();
+                                //request.getRequestDispatcher("/WEB-INF/potencial/cuentaPaciente.jsp").forward(request, response);
+
+                            } catch (Exception ex) {
+                                System.out.println(this.getClass().toString().concat(ex.getMessage()));
+                            }
+
+                            break;
+                        }
+                    }
+                    break;
+                }
+                case 2:
+                {
+                    String key = request.getParameter("key");
+                    switch (key) {
+                        case "generar-reporteformulario": {
+                            
                             int idPaciente = (int) sesion.getAttribute("idPacientePotencialForm");
                             int idEmpleado = (int) sesion.getAttribute("idEmpleadoNavegadora");
 
