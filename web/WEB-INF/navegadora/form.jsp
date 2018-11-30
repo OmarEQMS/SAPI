@@ -311,12 +311,9 @@
                                                         </div>
                                                     </div>
 
-<<<<<<< HEAD
+
                                                     <!--<<<<<<< HEAD-->
                                                     <select name="medico-residente" class="form-control" id="medico-residente">
-=======
-                                                   <select name="medico-residente" class="form-control" id="medico-residente">
->>>>>>> origin/Develop
 
 
                                                         <option disabled selected>Seleccione un Residente</option>
