@@ -821,9 +821,7 @@ public class FrontController extends HttpServlet {
                                     Calendar cal = Calendar.getInstance();
                                     System.out.println(dateFormat.format(cal.getTime()));
                                     
-                                    //Date fecha = Date.valueOf(dateFormat.format(cal.getTime()));
-                                    
-                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su form
+                                    //Date fecha = Date.valueOf(dateFormat.format(cal.getTime()));                                                                        
 
                                 break;
 
