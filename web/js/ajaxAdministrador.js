@@ -2878,12 +2878,12 @@ $(document).ready(function () {
                         var t = $('#tablaNavegadoras').DataTable();
 
                         t.row.add([
-                            $("#agregar-nombreNavegadora").val() + " " + $("#agregar-primerApellidoNavegadora").val() + " " + $("#agregar-segundoApellidoNavegadora").val(),
-                            $("#agregar-correoNavegadora").val(),
-                            $("#agregar-telefonoNavegadora").val(),
-                            $("#agregar-noEmpleadoNavegadora").val(),
-                            $("#agregar-especialidadNavegadora").val(),
-                            $("#agregar-cedulaNavegadora").val(),
+                            "<span id='nombre-" + response + "'>" + $("#agregar-nombreNavegadora").val() + " " + $("#agregar-primerApellidoNavegadora").val() + " " + $("#agregar-segundoApellidoNavegadora").val() + "</span>",
+                            "<span id='correo-" + response + "'>" + $("#agregar-correoNavegadora").val() + "</span>",
+                            "<span id='telefono-" + response + "'>" + $("#agregar-telefonoNavegadora").val() + "</span>",
+                            "<span id='noEmpleado-" + response + "'>" + $("#agregar-noEmpleadoNavegadora").val() + "</span>",
+                            "<span id='nombreEspecialidad-" + response + "'>" + $("#agregar-especialidadNavegadora").val() + "</span>",
+                            "<span id='cedulaProfesional-" + response + "'>" + $("#agregar-cedulaNavegadora").val() + "</span>",
                             "<button class='btn btn-success m-1 btn-verNavegadora' data-id='" + response + "'><i class='fas fa-chart-line'></i></button>" +
                                     "<button class='btn btn-primary btn-editarNavegadora m-1' data-toggle='modal' data-target='#modalEditarNavegadora' data-id='" + response + "'><i class='fas fa-edit'></i></button>" +
                                     "<button class='btn btn-danger m-1 btn-eliminarNavegadora' data-id='" + response + "'><i class='fas fa-trash-alt'></i></button>"
