@@ -494,6 +494,9 @@ $(document).ready(function () {
         if (isValidDate($('#fechaInicioTratamiento'), $('.fechaNacimientoPaciente')) && $("#tipoTratamiento").val() != null) {
 
             var fechaInicioTratamiento = $("#fechaInicioTratamiento").val();
+            
+            alert(fechaInicioTratamiento);
+
 
             $.ajax({
                 url: 'PacienteController',
@@ -520,22 +523,24 @@ $(document).ready(function () {
 
                         console.log("FechaInicioTratamiento: " + $("#fechaInicioTratamiento").val());
 
+                        var t = $('#tablaTratamientos').DataTable();
 
-                        var row = "<tr>" +
-                                "<input type='hidden' id='nombre-" + response + "' value='" + $("#nombreTipoTratamiento").val() + "'/>" +
-                                "<input type='hidden' id='fechaInicio-" + response + "' value='" + $("#fechaInicioTratamiento").val() + "'/>" +
-                                "<td id='nombre-" + response + "' >" + $("#nombreTipoTratamiento").val() + "</td>" +
-                                "<td id='fechaInicio-" + response + "' >" + fechaInicioTratamiento + "</td>" +
-                                "<td  id='fecha-" + response + "'>" + "</td>" +
-                                "<td><button class='btn btn-primary terminarTratamiento' id='modal-" + response + "' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button></td > " +
-                                "</tr>";
-                        $("#tablaTratamientos").append(row);
+                            t.row.add([
+                                "<input type='hidden' value='" + $("#nombreTipoTratamiento").val() + "' id='nombre-" + response + "'>" +
+                                "<input type='hidden' value='" + fechaInicioTratamiento + "' id='fechaInicio-" + response + "'>" +
+                                "<input type='hidden' value='" + response + "' id='boton-" + response + "'>" +
+                                $("#nombreTipoTratamiento").val(),
+                                fechaInicioTratamiento,
+                                '',
+                                "<button class='btn btn-primary terminarTratamiento' id='modal-" + response + "' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button>"
+                            ]).draw(false);
+
 
                         $('#tipoTratamiento').prop('selectedIndex', 0);
 
                         $("#fechaInicioTratamiento").val('');
 
-                        //$('#idTratamientoPaciente').val(response);*/
+                        //$('#idTratamientoPaciente').val(response);
 
                     })
                     .fail(function (xhr, textStatus, errorThrown) {

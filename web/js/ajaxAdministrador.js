@@ -79,7 +79,6 @@ $(document).ready(function () {
                                 buttons: [, 'Aceptar'],
                             });
 
-                            //CHECKPOINT
                             var t = $('#tablaAdministradores').DataTable();
 
                             t.row.add([
