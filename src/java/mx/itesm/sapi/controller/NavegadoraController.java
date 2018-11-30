@@ -17,6 +17,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+
 import java.util.ArrayList;
 import java.util.Properties;
 import javax.mail.Message;
@@ -39,6 +40,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Base64;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.servlet.ServletException;
@@ -50,16 +53,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import mx.itesm.sapi.autocomplete.AutocompletadoServicioImpl;
-
 import mx.itesm.sapi.bean.diagnostico.EstadiajeTNM;
 import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
+import mx.itesm.sapi.bean.formulario.EstudioFormulario;
+import mx.itesm.sapi.bean.formulario.LlamadaPaciente;
 import mx.itesm.sapi.bean.gestionPaciente.Biopsia;
 import mx.itesm.sapi.bean.gestionPaciente.BloqueParafina;
-
+import mx.itesm.sapi.bean.formulario.MFormularioGeneral;
+import mx.itesm.sapi.bean.formulario.ReporteNavegadora;
 import mx.itesm.sapi.bean.calendario.FullCalendar;
 import mx.itesm.sapi.bean.calendario.MCalendarioNavegadora;
 import mx.itesm.sapi.bean.gestionPaciente.CategoriaEstudio;
-import mx.itesm.sapi.bean.formulario.MFormularioGeneral;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
 import mx.itesm.sapi.bean.gestionPaciente.TipoDocumento;
@@ -90,18 +94,17 @@ import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
 import mx.itesm.sapi.bean.persona.Login;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
-
+import mx.itesm.sapi.service.EstudioFormularioServicioImpl;
 import mx.itesm.sapi.service.diagnostico.EstadiajeTNMServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.BiopsiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.BloqueParafinaServicioImpl;
-
+import mx.itesm.sapi.service.MFormularioGeneralServicioImpl;
+import mx.itesm.sapi.service.ReporteNavegadoraServicioImpl;
 import mx.itesm.sapi.service.CalendarioServicioImpl;
 import mx.itesm.sapi.service.MCalendarioNavegadoraServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.CategoriaEstudioServicioImpl;
-
 import mx.itesm.sapi.service.MFormularioGeneralServicioImpl;
-
 import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
@@ -133,6 +136,22 @@ import mx.itesm.sapi.service.persona.DireccionServicioImpl;
 import mx.itesm.sapi.service.persona.LoginServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
+
+import net.sf.jasperreports.engine.DefaultJasperReportsContext;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRField;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.JasperRunManager;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -162,7 +181,7 @@ public class NavegadoraController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String key = request.getParameter("key");
-
+        
         HttpSession sesion = request.getSession(true);
 
         //COMENTARIO PARA COMMIT: TEAM LUGO ORDUÑA <3
@@ -369,8 +388,10 @@ public class NavegadoraController extends HttpServlet {
 
                             boolean rechazado = documentoInicialServicioImpl.agregarRechazoDocumento(idDocumentoInicial, comentario);
                             //ESto es para el correo
+                           
 
-                            int pacientePotencial = (int) sesion.getAttribute("idPacienteAtendido");
+
+                            int pacientePotencial = (int) sesion.getAttribute("idPacientePotencialAtendido");
 
                             PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                             Persona persona = personaServicio.mostrarPersonaPorIdPaciente(pacientePotencial);
@@ -1013,12 +1034,12 @@ public class NavegadoraController extends HttpServlet {
 
                             } else {
                                 System.out.println("Sin PRZ");
-
                             }
 
                             //LISTO
                             //Tabla pacienteMedicoTitular
                             //MEDICO ADSCRITO
+                            int adscritoPresente = 1;
                             String medicoAdscritoRequest;
                             int medicoAdscrito = 0;
                             int idEmpleadoAnteriorAdscrito = 0;
@@ -1056,7 +1077,7 @@ public class NavegadoraController extends HttpServlet {
                                     pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitular);
                                 }
                                 //checkbox adscritoPresente
-                                int adscritoPresente = 1;
+                                adscritoPresente = 1;
                                 if (request.getParameterMap().containsKey("noAdscrito") == true) {
                                     adscritoPresente = 0;
                                 }
@@ -1100,7 +1121,6 @@ public class NavegadoraController extends HttpServlet {
                             int idEmpleadoAnteriorRadiologo = 0;
 
                             System.out.println("Estoy en medico radiologo");
-
                             if (medicoRadiologoRequest != null) {
                                 medicoRadiologo = Integer.parseInt(medicoRadiologoRequest);
                                 System.out.println("Medico radiologo " + (medicoRadiologo));
@@ -1133,7 +1153,6 @@ public class NavegadoraController extends HttpServlet {
                                 }
 
                                 //checkbox adscritoPresente
-                                int adscritoPresente = 1;
                                 if (request.getParameterMap().containsKey("esSustituto") == true) {
                                     adscritoPresente = 0;
                                 }
@@ -1237,19 +1256,19 @@ public class NavegadoraController extends HttpServlet {
 
                             //LISTO
                             //TIPO PACIENTE 
-                            int tipoPaciente = -1;
+                            int idtipoPaciente = -1;
 
                             String tipoPacienteRequest = request.getParameter("tipoPaciente");
 
                             if (tipoPacienteRequest != null) {
                                 EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServicioImpl.mostrarEstadoPacientePacienteIdPaciente(idPacientePotencial);
 
-                                tipoPaciente = Integer.parseInt(tipoPacienteRequest);
-                                estadoPacientePaciente.setSegundaOpinion(tipoPaciente);
+                                idtipoPaciente = Integer.parseInt(tipoPacienteRequest);
+                                estadoPacientePaciente.setSegundaOpinion(idtipoPaciente);
                                 estadoPacientePaciente.setIdEmpleado(idNavegadora);
                                 estadoPacientePacienteServicioImpl.actualizarEstadoPacientePaciente(estadoPacientePaciente);
                                 System.out.println(estadoPacientePaciente);
-                                System.out.println("Tipo Paciente " + (tipoPaciente));
+                                //System.out.println("Tipo Paciente " + (tipoPaciente));
                             } else {
                                 System.out.println("Sin tipoPaciente");
                             }
@@ -2787,9 +2806,6 @@ public class NavegadoraController extends HttpServlet {
                                 Date fecha = Date.valueOf(registro);
 
                                 if (registroDiagnostico.getIdRegistroDiagnostico() > 0) {
-                                    //if(estadiajeTNM.getIdRegistroTNM() > 0)
-                                    //  registroDiagnostico.setIdRegistroTNM(estadiajeTNM.getIdRegistroTNM());
-
                                     registroDiagnostico.setFecha(fecha);
                                     registroDiagnostico.setPrevioDiagnostico(previoDiagnostico);
                                     registroDiagnostico.setIdPaciente(idPacientePotencial);

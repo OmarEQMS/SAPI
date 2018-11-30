@@ -5,14 +5,12 @@
  */
 package mx.itesm.sapi.service;
 
-import java.util.ArrayList;
-import mx.itesm.sapi.bean.poblacion.GeneralPoblacion;
+import mx.itesm.sapi.bean.formulario.ReporteNavegadora;
 
 /**
  *
- * @author Raul Orihuela
+ * @author Oscar Miranda
  */
-public interface GeneralPoblacionServicio {
-    public ArrayList<ArrayList<String>> mostrarPoblacionGeneral();
-    
+public interface ReporteNavegadoraServicio {
+    public ReporteNavegadora mostrarReporteNavegadora(int idPaciente, int idEmpleado, int idRol);
 }
