@@ -307,6 +307,7 @@
                                             <input type="text" id="editar-noEmpleadoMedico" class="form-control" placeholder="No. Empleado">
                                         </div>
                                         <span class="text-danger" id="errorEditarNumEmpleado">Formato incorrecto, deben ser 6 dígitos.</span>
+                                        <span class="text-warning" id="errorEditarNumEmpleadoRepetidoMedico">El número de empleado ya existe.</span>
                                     </div>
                                 </div>
 

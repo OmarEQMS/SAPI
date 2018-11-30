@@ -136,6 +136,7 @@ $(document).ready(function () {
     $('#errorEditarCorreoRepetidoAdministrador').hide();
     $('#errorEditarTelefonoAdministrador').hide();
     $('#errorEditarNumEmpleadoAdministrador').hide();
+    $('#errorEditarNumEmpleadoRepetidoAdministrador').hide();
     $('#errorEditarEspecialidadAdministrador').hide();
     $('#errorEditarCedulaAdministrador').hide();
     $('#error-editarDatosRepetidosAdministrador').hide();
@@ -873,6 +874,7 @@ $(document).ready(function () {
     $('#errorEditarCorreoMedico').hide();
     $('#errorEditarCorreoRepetido').hide();
     $('#errorEditarNumEmpleado').hide();
+    $('#errorEditarNumEmpleadoRepetidoMedico').hide();
     $('#errorEditarCedulaMedicos').hide();
     $('#error-editarDatosRepetidos').hide();
     $('#errorEditarEspecialidad').hide();
@@ -1967,8 +1969,35 @@ $(document).ready(function () {
 
     });
 
+    var repiteEditNoEmpleadoMedico;
     //NÚMERO DE EMPLEADO EN EDITAR MÉDICO
     $('#editar-noEmpleadoMedico').on('change', function () {
+        var idAdministrador = $('#idMedico').val();
+        $.ajax({
+            url: 'AdministradorController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "repiteNoEmpleadoEdit",
+                noEmpleado: $('#editar-noEmpleadoMedico').val(),
+                idEmpleado: idAdministrador
+            },
+            success: function (response) {
+
+                if (response === 'NoEmpleadoAlreadyExists') {
+                    console.log("NoEmpleado repetidooo")
+                    $('#editar-noEmpleadoMedico').css('color', 'orange');
+                    $('#errorEditarNumEmpleadoRepetidoMedico').show();
+                    repiteEditNoEmpleadoMedico = true;
+                } else {
+                    console.log("NoEmpleado no repetidooo")
+                    $('#errorEditarNumEmpleadoRepetidoMedico').hide();
+                    repiteEditNoEmpleadoMedico = false;
+                }
+
+            }
+
+        });
 
         if (isValidNumEmpleado($(this))) {
             $('#errorEditarNumEmpleado').hide();
@@ -2340,8 +2369,36 @@ $(document).ready(function () {
 
     });
 
+    var repiteEditNoEmpleadoAdministrador;
     //NÚMERO DE EMPLEADO EN EDITAR ADMINISTRADOR
     $('#editar-noEmpleadoAdministrador').on('change', function () {
+
+        var idAdministrador = $('#idAdministrador').val();
+        $.ajax({
+            url: 'AdministradorController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "repiteNoEmpleadoEdit",
+                noEmpleado: $('#editar-noEmpleadoAdministrador').val(),
+                idEmpleado: idAdministrador
+            },
+            success: function (response) {
+
+                if (response === 'NoEmpleadoAlreadyExists') {
+                    console.log("NoEmpleado repetidooo")
+                    $('#editar-noEmpleadoAdministrador').css('color', 'orange');
+                    $('#errorEditarNumEmpleadoRepetidoAdministrador').show();
+                    repiteEditNoEmpleadoAdministrador = true;
+                } else {
+                    console.log("NoEmpleado no repetidooo")
+                    $('#errorEditarNumEmpleadoRepetidoAdministrador').hide();
+                    repiteEditNoEmpleadoAdministrador = false;
+                }
+
+            }
+
+        });
 
         if (isValidNumEmpleado($(this))) {
             $('#errorEditarNumEmpleadoAdministrador').hide();
@@ -2591,6 +2648,7 @@ $(document).ready(function () {
     $('#errorEditarCorreoNavegadora').hide();
     $('#errorEditarCorreoRepetidoNavegadora').hide();
     $('#errorEditarNumNavegadora').hide();
+    $('#errorEditarNumEmpleadoRepetidoNavegadora').hide();
     $('#errorEditarCedulaNavegadora').hide();
     $('#errorEditarEspecialidadNavegadora').hide();
     $('#error-editarDatosRepetidosNavegadora').hide();
@@ -2625,8 +2683,37 @@ $(document).ready(function () {
 
     });
 
+    var repiteEditNoEmpleadoNavegadora;
     //NÚMERO DE EMPLEADO EN EDITAR NAVEGADORA
-    $('#editar-noEmpleadoNavegadora').on('change', function () {
+    $('#editar-no-empleadoNavegadora').on('change', function () {
+        
+        var idNavegadora = $('#idNavegadora').val();
+        $.ajax({
+
+            url: 'AdministradorController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "repiteNoEmpleadoEdit",
+                noEmpleado: $('#editar-no-empleadoNavegadora').val(),
+                idEmpleado: idNavegadora
+            },
+            success: function (response) {
+
+                if (response === 'NoEmpleadoAlreadyExists') {
+                    console.log("NoEmpleado repetidooo")
+                    $('#editar-no-empleadoNavegadora').css('color', 'orange');
+                    $('#errorEditarNumEmpleadoRepetidoNavegadora').show();
+                    repiteEditNoEmpleadoNavegadora = true;
+                } else {
+                    console.log("NoEmpleado no repetidooo")
+                    $('#errorEditarNumEmpleadoRepetidoNavegadora').hide();
+                    repiteEditNoEmpleadoNavegadora = false;
+                }
+
+            }
+
+        });
 
         if (isValidNumEmpleado($(this))) {
             $('#errorEditarNumNavegadora').hide();
