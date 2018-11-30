@@ -49,7 +49,10 @@ $(document).ready(function () {
     $('#noEqualPasswordsError').hide();
         
 
-    var lugarDelCuerpo = $("#listLugarDelCuerpo");
+
+
+
+var lugarDelCuerpo = $("#listLugarDelCuerpo");
 
     $.ajax({
         url: 'NavegadoraController',
@@ -246,15 +249,7 @@ $(document).ready(function () {
                 console.log(valoracion);
 
             });
-
-
-
    
-
-
-
-
-    
      
     //Terminos y condiciones
     $('#acepto-terminos').change(function () {
@@ -367,8 +362,8 @@ $(document).ready(function () {
     });
 
     //  Editar paciente
-    $('.btn-editar').on('click', function () {
-
+    
+    $('body').on('click', '.btn-editar', function () {
         $('#hidden-idPaciente').val($(this).data('id'));
         
        
@@ -493,8 +488,8 @@ $(document).ready(function () {
         }
     });
 
-    //Redirige a documentos
-    $('.btn-ver').on('click', function () {
+    //Redirige a documentos    
+    $('body').on('click', '.btn-ver', function () {
 
         var id = $(this).data('id');
         console.log(id);
@@ -572,7 +567,8 @@ $(document).ready(function () {
 
     $('#btn-aceptarDocumento').on('click', function () {
 
-        alert('el id final es:' + $('#hidden-idPaciente').val());
+        var idPaciente = $('#hidden-idPaciente').val();
+        //alert('el id final es:' + $('#hidden-idPaciente').val());
 
         $.ajax({
 
@@ -582,7 +578,7 @@ $(document).ready(function () {
             data: {
 
                 key: "aprobar-paciente",
-                idPaciente: $('#hidden-idPaciente').val(),
+                idPaciente: idPaciente,
                 fechaNavegacion: $('#Fecha-Navegacion').val(),
                 fechaConsulta: $('#Fecha-Consulta').val(),
                 tipoPaciente: $('#tipo-paciente').val()
@@ -607,7 +603,8 @@ $(document).ready(function () {
     });
 
     //Eliminar paciente
-    $('.btn-eliminar').on('click', function () {
+    
+    $('body').on('click', '.btn-eliminar', function () {
 
         alert('saludos con el id' + $(this).data('id'));
 
@@ -2189,7 +2186,9 @@ $(document).ready(function () {
         );
     });
 
-    $('.btn-ver-formulario').on('click', function () {
+
+    $('body').on('click', '.btn-ver-formulario', function () {
+
         console.log($(this).data('id'));
         var data = {idPotencial: $(this).data('id')};
         $.post("SAPI", {
@@ -2528,7 +2527,8 @@ $(document).ready(function () {
 
     });
 
-    $('.btn-perder-cita').on('click', function () {
+    
+    $('body').on('click', '.btn-perder-cita', function () {
         var idPotencial = $(this).data('id');
 
         //
@@ -3658,6 +3658,21 @@ $(document).ready(function () {
         var ddChars = dd.split('');
 
         return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
+    }
+    
+    
+    
+
+    $('.button').click(function () {
+        myFunction(this);
+    });
+
+
+    function myFunction(ele) {
+        var lastID;
+        lastID = $(ele).attr("id");
+        $('#hidden-idPaciente').val(lastID);
+        console.log(lastID);
     }
 
 });

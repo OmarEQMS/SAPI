@@ -95,6 +95,7 @@ import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
 import mx.itesm.sapi.bean.persona.Login;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
+
 import mx.itesm.sapi.service.EstudioFormularioServicioImpl;
 import mx.itesm.sapi.service.diagnostico.EstadiajeTNMServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
@@ -392,8 +393,8 @@ public class NavegadoraController extends HttpServlet {
                             //ESto es para el correo
                            
 
+                            int pacientePotencial = (int) sesion.getAttribute("idPacienteAtendido");
 
-                            int pacientePotencial = (int) sesion.getAttribute("idPacientePotencialAtendido");
 
                             PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                             Persona persona = personaServicio.mostrarPersonaPorIdPaciente(pacientePotencial);
@@ -464,7 +465,7 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Sin paaciente para atender aún");
                             }
 
-                            if (idPaciente != 0) {
+                            if (idPaciente != 0 && sesion.getAttribute("path")!= null) {
 
                                 PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                                 Persona personaNombre = personaServicioImpl.mostrarPersonaPorIdPaciente(idPaciente);

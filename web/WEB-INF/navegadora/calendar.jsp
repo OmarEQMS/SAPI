@@ -128,8 +128,7 @@
                             <i class="fas fa-align-justify"></i>
                         </button>
 
-                        <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">Shannon
-                                Rosas
+                        <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
                             </span> <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
 
                     </div>
@@ -138,7 +137,7 @@
                 <!-- CONTENIDO -->
                 <div class="row mb-3 justify-content-end">
                     <div class="col-3 text-center">
-                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a href="./index2.html" class="colorMoradoLight">Inicio</a></span>
+                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span>Inicio</span>
                         - <span class="colorGlobal">Mis Citas</span>
                     </div>
                 </div>

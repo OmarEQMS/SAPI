@@ -101,9 +101,11 @@
 
                         <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
+
                         <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
                         <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+
 
                         <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
@@ -307,6 +309,7 @@
                                                     </div>
 
                                                    <select name="medico-residente" class="form-control" id="medico-residente">
+
 
                                                         <option disabled selected>Seleccione un Residente</option>
 
