@@ -911,13 +911,13 @@ $(document).ready(function () {
         }
 
     });
-    
+
     var repiteNoEmpleadoMedico;
     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
     $('#agregar-noEmpleadoMedico').on('change', function () {
-        
+
         console.log("hola")
-        
+
         $.ajax({
 
             url: 'RegistraUsuarioController',
@@ -1609,28 +1609,30 @@ $(document).ready(function () {
 
     });
 
+    var repiteUsuarioPaciente;
     //NOMBRE DE USUARIO AL EDITAR PACIENTE
     $('#editarUsuarioAdministradorAPaciente').on('change', function () {
-
+        var idPaciente = $('#idPacienteAEditar').val();
+        console.log("holaaaaaa");
+        console.log("idPaciente: " + idPaciente)
         $.ajax({
-
-            url: 'RegistraUsuarioController',
+            url: 'AdministradorController',
+            method: "POST",
             cache: false,
-            method: 'POST',
             data: {
-
-                key: "repiteUsuario",
-                usuario: $('#editarUsuarioAdministradorAPaciente').val()
-
-
+                key: "repiteUsuarioEdit",
+                usuario: $('#editarUsuarioAdministradorAPaciente').val(),
+                idPaciente: idPaciente
             },
             success: function (response) {
 
                 if (response === 'UsuarioAlreadyExists') {
                     $('#editarUsuarioAdministradorAPaciente').css('color', 'orange');
                     $('#error-editar-UsuarioRepetidoPaciente').show();
+                    repiteUsuarioPaciente = true;
                 } else {
                     $('#error-editar-UsuarioRepetidoPaciente').hide();
+                    repiteUsuarioPaciente = false;
                 }
 
             }
@@ -2686,7 +2688,7 @@ $(document).ready(function () {
     var repiteEditNoEmpleadoNavegadora;
     //NÚMERO DE EMPLEADO EN EDITAR NAVEGADORA
     $('#editar-no-empleadoNavegadora').on('change', function () {
-        
+
         var idNavegadora = $('#idNavegadora').val();
         $.ajax({
 
@@ -2836,7 +2838,7 @@ $(document).ready(function () {
     var repiteNoEmpleadoNavegadora;
     //NÚMERO DE EMPLEADO EN AGREGAR NAVEGADORA
     $('#agregar-noEmpleadoNavegadora').on('change', function () {
-        
+
         $.ajax({
 
             url: 'RegistraUsuarioController',
