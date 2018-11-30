@@ -293,8 +293,10 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
 
                 // cit.idCita, lug.nombre, cit.fechaProgramada
                 mFormularioGeneral = new MFormularioGeneral();
-                mFormularioGeneral.setComentarioLLamada(rs.getString("v_comentarioLLamada"));
-                mFormularioGeneral.setFechaLlamada(rs.getDate("v_fechaLlamada"));
+                mFormularioGeneral.setIdCita(rs.getInt("idLlamadaCita"));
+                mFormularioGeneral.setComentarioLLamada(rs.getString("comentario"));
+                mFormularioGeneral.setFechaLlamada(rs.getDate("fecha"));
+
 
                 citas.add(mFormularioGeneral);
 
