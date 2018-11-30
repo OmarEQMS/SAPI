@@ -581,6 +581,117 @@ $(document).ready(function () {
         $('#editar-cedulaProfesionalNavegadora').css('color', '');
 
     });
+    
+    $("body").on("click", ".clearCancelEditAdminModal", function () {
+
+        $('#errorEditarNombreAdministrador').hide();
+        $('#errorEditarApellidoPaternoAdministrador').hide();
+        $('#errorEditarApellidoMaternoAdministrador').hide();
+        $('#errorEditarCorreoAdministrador').hide();
+        $('#errorEditarCorreoRepetidoAdministrador').hide();
+        $('#errorEditarTelefonoAdministrador').hide();
+        $('#errorEditarNumEmpleadoAdministrador').hide();
+        $('#errorEditarEspecialidadAdministrador').hide();
+        $('#errorEditarPosicionAdministrador').hide();
+        $('#errorEditarCedulaAdministrador').hide();
+        $('#error-editarDatosRepetidosAdministrador').hide();
+
+
+        $('#editar-nombreAdministrador').css('border', '');
+        $('#editar-nombreAdministrador').css('color', '');
+
+        $('#editar-primerApellidoAdministrador').css('border', '');
+        $('#editar-primerApellidoAdministrador').css('color', '');
+
+        $('#editar-segundoApellidoAdministrador').css('border', '');
+        $('#editar-segundoApellidoAdministrador').css('color', '');
+
+        $('#editar-correoAdministrador').css('border', '');
+        $('#editar-correoAdministrador').css('color', '');
+
+        $('#editar-telefonoAdministrador').css('border', '');
+        $('#editar-telefonoAdministrador').css('color', '');
+
+        $('#editar-noEmpleadoAdministrador').css('border', '');
+        $('#editar-noEmpleadoAdministrador').css('color', '');
+        
+        $('#editar-especialidadAdministrador').css('border', '');
+        $('#editar-especialidadAdministrador').css('color', '');
+        
+        $('#editar-posicionAdministrador').css('border', '');
+        $('#editar-posicionAdministrador').css('color', '');
+
+        $('#editar-cedulaProfesionalAdministrador').css('border', '');
+        $('#editar-cedulaProfesionalAdministrador').css('color', '');
+
+    });
+    
+    $("body").on("click", ".clearAddAdminModal", function () {
+        
+        $("#agregar-nombreAdministrador").val("");
+        $("#agregar-telefonoAdministrador").val("");
+        $("#agregar-primerApellidoAdministrador").val("");
+        $("#agregar-segundoApellidoAdministrador").val("");
+        $("#agregar-correoAdministrador").val("");
+        $("#agregar-noEmpleadoAdministrador").val("");
+        $("#agregar-especialidadAdministrador").val("");
+        $("#agregar-posiciondAdministrador").val("");
+        $("#agregar-cedulaAdministrador").val("");
+        $("#agregar-passwordAdministrador").val("");
+        $("#agregar-password2Administradores").val("");
+        $("#terminosAdministrador").prop("checked", false);
+
+        $('#errorNombreAdministrador').hide();
+        $('#errorTelefonoAdministrador').hide();
+        $('#errorApellidoPaternoAdministrador').hide();
+        $('#errorApellidoMaternoAdministrador').hide();
+        $('#errorCorreoAdministrador').hide();
+        $('#errorCorreoRepetidoAdministrador').hide();
+        $('#errorNumEmpleadoAdministrador').hide();
+        $('#errorAgregarEspecialidadAdministrador').hide();
+        $('#errorAgregarPosicionAdministrador').hide();
+        $('#errorCedulaAdministrador').hide();
+        $('#errorPass1Administrador').hide();
+        $('#errorPass2Administrador').hide();
+        $('#noEqualPasswordsError').hide();
+        $('#errorTerminosAdministrador').hide();
+        $('#error-camposAdministrador').hide();
+        $('#error-datosRepetidosAdministrador').hide();
+
+        $('#agregar-nombreAdministrador').css('border', '');
+        $('#agregar-nombreAdministrador').css('color', '');
+
+        $('#agregar-telefonoAdministrador').css('border', '');
+        $('#agregar-telefonoAdministrador').css('color', '');
+
+        $('#agregar-primerApellidoAdministrador').css('border', '');
+        $('#agregar-primerApellidoAdministrador').css('color', '');
+
+        $('#agregar-segundoApellidoAdministrador').css('border', '');
+        $('#agregar-segundoApellidoAdministrador').css('color', '');
+
+        $('#agregar-correoAdministrador').css('border', '');
+        $('#agregar-correoAdministrador').css('color', '');
+
+        $('#agregar-noEmpleadoAdministrador').css('border', '');
+        $('#agregar-noEmpleadoAdministrador').css('color', '');
+
+        $('#agregar-especialidadAdministrador').css('border', '');
+        $('#agregar-especialidadAdministrador').css('color', '');
+
+        $('#agregar-posiciondAdministrador').css('border', '');
+        $('#agregar-posiciondAdministrador').css('color', '');
+
+        $('#agregar-cedulaAdministrador').css('border', '');
+        $('#agregar-cedulaAdministrador').css('color', '');
+
+        $('#agregar-passwordAdministrador').css('border', '');
+        $('#agregar-passwordAdministrador').css('color', '');
+
+        $('#agregar-password2Administradores').css('border', '');
+        $('#agregar-password2Administradores').css('color', '');
+
+    });
 
     function mostrarContrasena(myButton, myField) {
         myButton.on('mousedown', function () {

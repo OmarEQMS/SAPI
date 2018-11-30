@@ -17,7 +17,7 @@ $(document).ready(function () {
     $('#errorCedulaAdministrador').hide();
     $('#errorPass1Administrador').hide();
     $('#errorPass2Administrador').hide();
-    $('#noEqualPasswordsErrorAdministrador').hide();
+    $('#noEqualPasswordsError').hide();
     $('#errorTerminosAdministrador').hide();
 
 

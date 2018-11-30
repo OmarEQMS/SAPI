@@ -220,7 +220,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Agregar Administrador</h5>
-                                <button type="button" class="close clearAddMedicosModal" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close clearAddAdminModal" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -360,7 +360,7 @@
                                         </div>
                                         <span class="text-danger" id="errorPass2Administrador">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
 
-                                        <span class="text-warning" id="noEqualPasswordsErrorAdministrador">Las contraseñas no son iguales.</span>
+                                        <span class="text-warning" id="noEqualPasswordsError">Las contraseñas no son iguales.</span>
                                     </div>
                                 </div>
 
@@ -396,7 +396,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" style="border-radius:20px" class="btn btn-danger clearAddMedicosModal" data-dismiss="modal">Cancelar</button>
+                                <button type="button" style="border-radius:20px" class="btn btn-danger clearAddAdminModal" data-dismiss="modal">Cancelar</button>
                                 <button id="btn-agregarAdministrador" type="button" style="border-radius:20px" class="btn btn-primary">Agregar administrador</button>
                             </div>
                         </div>
@@ -409,7 +409,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Editar Administrador</h5>
-                                <button type="button" class="close clearCancelEditMedicosModal" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close clearCancelEditAdminModal" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -546,7 +546,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" style="border-radius:20px" class="btn btn-danger clearCancelEditMedicosModal" data-dismiss="modal">Cancelar</button>
+                                <button type="button" style="border-radius:20px" class="btn btn-danger clearCancelEditAdminModal" data-dismiss="modal">Cancelar</button>
                                 <button id="btn-guardarAdministrador" type="button" style="border-radius:20px" class="btn btn-primary">Guardar
                                     Cambios
                                 </button>
