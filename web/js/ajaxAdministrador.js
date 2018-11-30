@@ -3564,6 +3564,30 @@ $(document).ready(function () {
                     }
                 });
     });
+    
+    ///////DescargarReportePoblacionPacietes
+    $('body').on('click', '.btn-reportePoblacion', function () {
+
+        swal({
+            title: "¿Está seguro de descargar el reporte?",
+            text: "Este proceso es tardado.",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Cancelar', 'Aceptar'],
+            dangerMode: true,
+        })
+                .then((aceptar) => {
+                    if (aceptar) {
+                        var form = document.createElement("form");
+                        form.method = "post";
+                        form.action = "/SAPI/AdministradorController?key=ReportePoblacion";
+                        document.body.appendChild(form);
+                        form.submit();
+                        document.body.removeChild(form);
+                    }
+                });
+
+    });
 
     //AUTOCOMPLETAR Especialidades
     var especialidades = $('#listEspecialidades');

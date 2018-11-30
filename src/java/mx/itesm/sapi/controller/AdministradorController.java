@@ -61,6 +61,7 @@ import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Login;
 import mx.itesm.sapi.bean.persona.Pic;
+import mx.itesm.sapi.service.GeneralPoblacionServicioImpl;
 import mx.itesm.sapi.service.diagnostico.AuditoriaRegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.diagnostico.EstadiajeTNMServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
@@ -619,17 +620,8 @@ public class AdministradorController extends HttpServlet {
 
                 case "ReportePoblacion": {
                     try{
-                        ArrayList<ArrayList<String>> myArrayList = new ArrayList<>();
-                        ArrayList<String> temp = new ArrayList<>();
-                        ArrayList<String> temp2 = new ArrayList<>();
-                        temp.add("1");
-                        temp.add("2");
-                        temp.add("3");
-                        temp2.add("4");
-                        temp2.add("5");
-                        temp2.add("6");
-                        myArrayList.add(temp);
-                        myArrayList.add(temp2);
+                        GeneralPoblacionServicioImpl MyTable = new GeneralPoblacionServicioImpl();
+                        ArrayList<ArrayList<String>> myArrayList = MyTable.mostrarPoblacionGeneral();
                         response.setContentType("application/octet-stream");
                         response.setHeader("Content-Disposition", "attachment;filename=reportePoblacion.xls");
                         OutputStream os = response.getOutputStream();
