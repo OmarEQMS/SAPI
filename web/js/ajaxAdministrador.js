@@ -2574,6 +2574,7 @@ $(document).ready(function () {
     $('#errorCorreoNavegadora').hide();
     $('#errorCorreoRepetidoNavegadora').hide();
     $('#errorNumEmpleadoNavegadora').hide();
+    $('#errorNumEmpleadoRepetidoNavegadora').hide();
     $('#errorAgregarEspecialidadNavegadora').hide();
     $('#errorCedulaNavegadora').hide();
     $('#errorPass1Navegadora').hide();
@@ -2745,8 +2746,35 @@ $(document).ready(function () {
 
     });
 
+    var repiteNoEmpleadoNavegadora;
     //NÚMERO DE EMPLEADO EN AGREGAR NAVEGADORA
     $('#agregar-noEmpleadoNavegadora').on('change', function () {
+        
+        $.ajax({
+
+            url: 'RegistraUsuarioController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "repiteNoEmpleado",
+                noEmpleado: $('#agregar-noEmpleadoNavegadora').val()
+            },
+            success: function (response) {
+
+                if (response === 'NoEmpleadoAlreadyExists') {
+                    console.log("NoEmpleado repetidooo")
+                    $('#agregar-noEmpleadoNavegadora').css('color', 'orange');
+                    $('#errorNumEmpleadoRepetidoNavegadora').show();
+                    repiteNoEmpleadoNavegadora = true;
+                } else {
+                    console.log("NoEmpleado no repetidooo")
+                    $('#errorNumEmpleadoRepetidoNavegadora').hide();
+                    repiteNoEmpleadoNavegadora = false;
+                }
+
+            }
+
+        });
 
         if (isValidNumEmpleado($(this))) {
             $('#errorNumEmpleadoNavegadora').hide();

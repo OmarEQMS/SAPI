@@ -423,6 +423,7 @@
                                                    placeholder="No. empleado">
                                         </div>
                                         <span class="text-danger" id="errorNumEmpleadoNavegadora">Formato incorrecto, deben ser 6 dígitos.</span>
+                                        <span class="text-warning" id="errorNumEmpleadoRepetidoNavegadora">El número de empleado ya existe.</span>
                                     </div>
                                 </div>
 

@@ -447,7 +447,7 @@
                                             <input type="text" class="form-control" id="agregar-noEmpleadoMedico" placeholder="No. empleado">
                                         </div>
                                         <span class="text-danger" id="errorNumEmpleado">Formato incorrecto, deben ser 6 dígitos.</span>
-                                        <span class="text-warning" id="errorNumEmpleadoRepetidoMedico">El correo ya existe.</span>
+                                        <span class="text-warning" id="errorNumEmpleadoRepetidoMedico">El número de empleado ya existe.</span>
                                     </div>
                                 </div>
 
