@@ -52,6 +52,11 @@
             <img src="img/loading.svg">
             <p class="clear">Actualizando información del médico, por favor espere...</p>
         </div>
+        
+        <div class="cargandoEliminarMedico" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Eliminando al médico, por favor espere...</p>
+        </div>
 
         <div class="wrapper">
 
@@ -72,7 +77,7 @@
 
                     <div class="row">
                         <div class="col-12 mb-2 mt-4">
-                            <img src="img/user.png" class="imagenPerfil" alt="">
+                            <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="imagenPerfil edit-image" width="66px" height="66px" alt="">
                         </div>
                     </div>
 
@@ -86,11 +91,11 @@
                     <div class="row justify-content-center">
 
                         <div class="col-2 text-center">
-                            <a class="iconoSidebar" href="" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
+                            <a class="iconoSidebar IrAMiCuenta" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
                         </div>
 
                         <div class="col-2">
-                            <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
+                            <a class="iconoSidebar salirCuenta" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
                         </div>
                     </div>
                 </div>
@@ -142,9 +147,9 @@
                 <!-- Navegacion -->
 
 
-                <div class="row mb-3 justify-content-end">
-                    <div class="col-3 text-center">
-                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="IrAInicio" class="colorMoradoLight">Inicio</a></span>
+                <div class="row mb-3">
+                    <div class="col-12 text-right">
+                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a class="colorMoradoLight">Administrador</a></span>
                         - <span class="colorGlobal">Gestion de Médicos</span>
                     </div>
                 </div>
@@ -220,7 +225,7 @@
 
 
                 <!-- ********** MODAL EDITAR MEDICO ********** -->
-                <div class="modal fade" id="modalEditarMedico" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal fade" id="modalEditarMedico" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -371,7 +376,7 @@
                 </div>
 
                 <!-- ********** MODAL AGREGAR MEDICO ********** -->
-                <div class="modal fade" id="modalAgregarMedico" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal fade" id="modalAgregarMedico" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
