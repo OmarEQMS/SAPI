@@ -466,4 +466,26 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
 
     }
 
+    @Override
+    public boolean relacionMedicoPaciente(int idEmpleado) {
+        Connection conn = Conexion.getConnection();
+
+        CallableStatement cstmt;
+
+        try {
+            cstmt = conn.prepareCall("CALL relacionMedicoPaciente(?, ?)");
+            cstmt.setInt(1, idEmpleado);
+            cstmt.registerOutParameter(2, Types.BOOLEAN);
+
+            cstmt.execute();
+            return cstmt.getBoolean(2);
+
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            return false;
+        }
+    }
+
 }
