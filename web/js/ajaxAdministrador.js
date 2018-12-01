@@ -2785,7 +2785,31 @@ $(document).ready(function () {
         })
                 .then((eliminar) => {
                     if (eliminar) {
+                        $.ajax({
+                            url: 'AdministradorController',
+                            cache: false,
+                            method: 'POST',
+                            beforeSend: function () {
+                                $('.cargandoEliminarMedico').fadeIn();
+                            },
+                            data: {
+                                key: 'verificarRelacion',
+                                idEmpleado: idMedico
+                            },
+                            complete: function () {
+                                $('.cargandoEliminarMedico').fadeOut();
+                            },
+                            success: function (response) {
+                                if (response == "relacionNoExistente") {
+                                    alert("Se puede borrar el médico");
+                                } else {
+                                    alert("El médico no se puede borrar");
+                                }
+                            },
+                            error: function (xhr) {
 
+                            }
+                        });/*
                         $.ajax({
 
                             url: 'AdministradorController',
@@ -2811,7 +2835,7 @@ $(document).ready(function () {
                             error: function (xhr) {
 
                             }
-                        });
+                        });*/
                     }
                 });
 

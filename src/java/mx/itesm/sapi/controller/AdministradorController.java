@@ -638,10 +638,7 @@ public class AdministradorController extends HttpServlet {
                     System.out.println("Case para borrar a un empleado (cuenta y persona)");
 
                     /**
-                     * Elimino su cuenta (borrrado logico)
-                     */
-                    /**
-                     * Obtengo los id's de su cuenta y login de la sesion
+                     * Elimino la cuenta y persona del empleado obtenido
                      */
                     int idEmpleado = Integer.parseInt(request.getParameter("idEmpleado"));
                     System.out.println("idEmpleado: " + idEmpleado);
@@ -663,6 +660,30 @@ public class AdministradorController extends HttpServlet {
                     }
 
                     System.out.println("SUPUESTAMENTE YA LA BORRÓ");
+
+                    break;
+                }
+                
+                case "verificarRelacion": {
+                    System.out.println("Case para ver si un médico tiene relación con algún paciente");
+
+                    /**
+                     * Manda a llamar al servicio de empleado y revisa si el médico tiene o no relación
+                     * con algún paciente
+                     */
+                    int idEmpleado = Integer.parseInt(request.getParameter("idEmpleado"));
+                    System.out.println("idEmpleado: " + idEmpleado);
+
+                    EmpleadoServicioImpl empleadoServicio = new EmpleadoServicioImpl();
+                    
+                    PrintWriter out = response.getWriter();
+                    
+                    if(empleadoServicio.relacionMedicoPaciente(idEmpleado)){
+                        out.print("relacionExistente");
+                    }
+                    else{
+                        out.print("relacionNoExistente");
+                    }
 
                     break;
                 }
