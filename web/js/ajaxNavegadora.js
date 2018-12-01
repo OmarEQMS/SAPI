@@ -3028,7 +3028,7 @@ $(document).ready(function () {
 
                     alert('si selecciono seguro popular');
 
-                    //btnSave(data);
+                    btnSave(data);
                 }
 
             } else {
@@ -3038,7 +3038,7 @@ $(document).ready(function () {
 
                 alert('no selecciono seguro popular');
 
-                //btnSave(data);
+                btnSave(data);
 
             }
 
