@@ -3200,11 +3200,16 @@ $(document).ready(function () {
             }
 
             if (data[0][0].fechaNavegacion !== "ene 1, 1900")
-                $('#fechaNavegacion').val(convertDate(new Date(data[0][0].fechaNavegacion)));
+                var fecha = data[0][0].fechaNavegacion;
+            fecha = convertDate(fecha);
+            $('#fechaNavegacion').val(fecha);
 
 
             if (data[0][0].fechaConsulta !== "ene 1, 1900")
-                $('#fechaConsulta').val(convertDate(new Date(data[0][0].fechaConsulta)));
+                var fecha = data[0][0].fechaConsulta;
+            fecha = convertDate(fecha);
+            $('#fechaConsulta').val(fecha);
+            // $('#fechaConsulta').val(convertDate(new Date(data[0][0].fechaConsulta)));
 
             if ((data[0][0].noAdscrito !== true))
                 $('#noAdscrito').attr('checked', 'checked');
@@ -3279,7 +3284,10 @@ $(document).ready(function () {
                 }
 
                 if (data[0][0].cirugiaFecha !== "ene 1, 1900")
-                    $('#fecha-cirugia').val(convertDate(new Date(data[0][0].cirugiaFecha)));
+                    var fecha = data[0][0].cirugiaFecha;
+                    fecha = convertDate(fecha);
+                    $('#fecha-cirugia').val(fecha);
+                //$('#fecha-cirugia').val(convertDate(new Date(data[0][0].cirugiaFecha)));
 
                 if ((data[0][0].cirugiaTipo !== "")) {
                     $('#cirugia option:contains(' + $.trim(data[0][0].cirugiaTipo) + ')').each(function () {
@@ -3304,7 +3312,10 @@ $(document).ready(function () {
                 }
 
                 if (data[0][0].quimioterapiaFecha !== "ene 1, 1900")
-                    $('#fecha-quimioterapia').val(convertDate(new Date(data[0][0].quimioterapiaFecha)));
+                    var fecha = data[0][0].quimioterapiaFecha;
+                    fecha = convertDate(fecha);
+                    $('#fecha-quimioterapia').val(fecha);
+                   // $('#fecha-quimioterapia').val(convertDate(new Date(data[0][0].quimioterapiaFecha)));
 
                 if ((data[0][0].quimioterapiaCiclo !== -1)) {
                     $('#quimioterapia').val(data[0][0].quimioterapiaCiclo);
@@ -3324,8 +3335,11 @@ $(document).ready(function () {
                 }
 
                 if (data[0][0].radioterapiaFecha !== "ene 1, 1900")
-                    $('#fecha-radioterapia').val(convertDate(new Date(data[0][0].radioterapiaFecha)));
-                // $('#fecha-radioterapia').val(data[0][0].radioterapiaFecha);
+                    var fecha = data[0][0].radioterapiaFecha;
+                    fecha = convertDate(fecha);
+                    $('#fecha-radioterapia').val(fecha);
+                   // $('#fecha-radioterapia').val(convertDate(new Date(data[0][0].radioterapiaFecha)));
+                
 
                 if ((data[0][0].cirugiaTipo !== -1)) {
                     $('#radioterapia').val(data[0][0].radioterapiaCiclo);
@@ -3349,8 +3363,10 @@ $(document).ready(function () {
                 }
 
                 if ((data[0][0].mastografiaBiradsFecha !== "ene 1, 1900")) {
-                    // $('#fechaPreMasto').val(data[0][0].mastografiaBiradsFecha);
-                    $('#fechaPreMasto').val(convertDate(new Date(data[0][0].mastografiaBiradsFecha)));
+                     var fecha = data[0][0].mastografiaBiradsFecha;
+                    fecha = convertDate(fecha);
+                    $('#fechaPreMasto').val(fecha);
+                    //.$('#fechaPreMasto').val(convertDate(new Date(data[0][0].mastografiaBiradsFecha)));
                 }
                 if ((data[0][0].mastografiaBiradsNombre !== "")) {
                     $('#tipoMastografia option:contains(' + $.trim(data[0][0].mastografiaBiradsNombre) + ')').each(function () {
@@ -3369,7 +3385,8 @@ $(document).ready(function () {
                     $('#tiene-UltrasonidoPrevio').show();
                     $('#fechaPreUsg').show();
                     $('#tipoUltrasonidoMama').show();
-                } else {
+                } 
+                else {
                     $('#tiene-UltrasonidoPrevio').hide();
                     $('#fechaPreUsg').hide();
                     $('#tipoUltrasonidoMama').hide();
@@ -3377,7 +3394,9 @@ $(document).ready(function () {
 
                 if ((data[0][0].ultrasonidoBiradsFecha !== "ene 1, 1900")) {
                     //   $('#fechaPreUsg').val(data[0][0].ultrasonidoBiradsFecha);
-                    $('#fechaPreUsg').val(convertDate(new Date(data[0][0].ultrasonidoBiradsFecha)));
+                    var fecha = data[0][0].ultrasonidoBiradsFecha;
+                    fecha = convertDate(fecha);
+                    $('#fechaPreUsg').val(fecha);
                 }
                 if ((data[0][0].ultrasonidoBiradsNombre !== "")) {
                     $('#tipoUltrasonidoMama option:contains(' + $.trim(data[0][0].ultrasonidoBiradsNombre) + ')').each(function () {
@@ -3450,7 +3469,7 @@ $(document).ready(function () {
 
             }
 
-            // $('#fechaConsulta').val(convertDate(new Date(data[0][0].fechaConsulta)));
+                        // $('#fechaConsulta').val(convertDate(new Date(data[0][0].fechaConsulta)));
 //3. recorrer el arreglo
             for (var i = 0; i < data[1].length; i++) {
 
@@ -4232,6 +4251,7 @@ $(document).ready(function () {
     });
 // 'ene 1, 2001'
     function convertDate(fecha) {
+        console.log(fecha);
         fecha = fecha.replace("ene", "jan");
         fecha = fecha.replace("feb", "feb");
         fecha = fecha.replace("mar", "mar");
@@ -4255,8 +4275,8 @@ $(document).ready(function () {
         return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
     }
 
-    function convertDate(date) {
-
+    function convertDate2(date) {
+        console.log(date);
         var yyyy = date.getFullYear().toString();
         var mm = (date.getMonth() + 1).toString();
         var dd = date.getDate().toString();
