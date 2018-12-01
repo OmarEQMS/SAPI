@@ -2786,6 +2786,8 @@ public class NavegadoraController extends HttpServlet {
                             //Etapa Clinica                                                        
                             int etapaClinica = 0;
                             String etapaClinicaRequest = (request.getParameter("etapaClinica"));
+                            //String etapaClinicaRequest="1";
+                            System.out.println("LA ETAPA CLINCIA QUE RECIBO ES:"+etapaClinicaRequest);
                             if (etapaClinicaRequest != null && etapaClinicaRequest.length() > 0) {
                                 etapaClinica = Integer.parseInt(etapaClinicaRequest);
                                 int previoDiagnostico = 0;

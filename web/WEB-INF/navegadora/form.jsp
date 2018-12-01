@@ -1329,7 +1329,7 @@
                                                         <option disabled selected>Seleccione etapa clínica</option>
                                                         <c:forEach items="${listaEtapaClinica}" var="etapa">  
 
-                                                            <option value='<c:out value="${etapa.idEtapaClinica}"/>'><c:out value='${etapa.nombre}'/> </option>
+                                                            <option value='<c:out value='${etapa.idEtapaClinica}'/>'><c:out value='${etapa.nombre}'/> </option>
 
                                                         </c:forEach>
                                                     </select>
