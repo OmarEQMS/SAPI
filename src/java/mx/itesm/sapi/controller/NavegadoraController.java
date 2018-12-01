@@ -189,6 +189,7 @@ public class NavegadoraController extends HttpServlet {
         HttpSession sesion = request.getSession(true);
 
         //COMENTARIO PARA COMMIT: TEAM LUGO ORDUÑA <3
+        //COMENTARIO PARA COMMIT: TEAM LUGO ORDUÑA <3
         if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
             // request.setAttribute("status", "");
             request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response); //Lo redirecciono al login
@@ -202,6 +203,7 @@ public class NavegadoraController extends HttpServlet {
 
                 case 4: {
 
+                    System.out.println("LA KEY ES "+key);
                     switch (key) {
 
                         case "cambiarDatos": {
