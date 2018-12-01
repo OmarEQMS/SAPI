@@ -2994,7 +2994,7 @@ $(document).ready(function () {
         data.forEach((value, key) => {
             console.log(key + " " + value);
         });
-
+        /*
         /////MEGA IF
         if (isValidDate6months($('#fechaNavegacion')) && isValidDate6months($('#fechaConsulta')) &&
                 isValidAllergy($('#alergias')) && isValidNumSeguro($('#numSeguro')) && isValidTratamientoPrevio($('#fecha-cirugia')) &&
@@ -3046,7 +3046,8 @@ $(document).ready(function () {
             swal("Error", "Hay datos incorrectos o faltantes", "error");
         }
 
-
+*/
+    btnSave(data);
 
     });
 

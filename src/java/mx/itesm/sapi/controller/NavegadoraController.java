@@ -1055,8 +1055,8 @@ public class NavegadoraController extends HttpServlet {
                                 medicoAdscrito = Integer.parseInt(medicoAdscritoRequest);
                                 System.out.println("Medico adscrito " + (medicoAdscrito));
                                 int idEmpleado = empleadoServicioImpl.mostrarEmpleadoPersona(medicoAdscrito).getIdEmpleado();
-                                int idCita = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
-                                System.out.println("La cita es " + idCita);
+                                int idCitaAdscrito = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
+                                System.out.println("La cita es " + idCitaAdscrito);
 
                                 LocalDate inicio = java.time.LocalDate.now();
                                 Date inicioDate = Date.valueOf(inicio);
@@ -1101,7 +1101,7 @@ public class NavegadoraController extends HttpServlet {
                                     System.out.println("Voy actualizar la cita");
                                     citaEmpleadoAdscrito.setAdscritoPresente(adscritoPresenteAdscrito);
                                     citaEmpleadoAdscrito.setIdEmpleado(idEmpleado);
-                                    citaEmpleadoAdscrito.setIdCita(idCita);
+                                    citaEmpleadoAdscrito.setIdCita(idCitaAdscrito);
                                     System.out.println("la cita empleado antes de actualizar es:" + citaEmpleadoAdscrito);
                                     citaEmpleadoServicioImpl.actualizarCitaEmpleado(citaEmpleadoAdscrito);
                                 } else {
@@ -1109,7 +1109,7 @@ public class NavegadoraController extends HttpServlet {
                                     citaEmpleadoAdscrito = new CitaEmpleado();
                                     citaEmpleadoAdscrito.setAdscritoPresente(adscritoPresenteAdscrito);
                                     citaEmpleadoAdscrito.setIdEmpleado(idEmpleado);
-                                    citaEmpleadoAdscrito.setIdCita(idCita);
+                                    citaEmpleadoAdscrito.setIdCita(idCitaAdscrito);
                                     citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleadoAdscrito);
                                 }
                                 //citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleado);
@@ -1133,7 +1133,7 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Medico radiologo " + (medicoRadiologo));
                                 int idEmpleado = empleadoServicioImpl.mostrarEmpleadoPersona(medicoRadiologo).getIdEmpleado();
                                 System.out.println("EL IDEMPLEADO EEEES: " + idEmpleado);
-                                int idCita = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
+                                int idCitaRadiologo = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
 
                                 LocalDate inicio = java.time.LocalDate.now();
                                 Date inicioDate = Date.valueOf(inicio);
@@ -1174,13 +1174,13 @@ public class NavegadoraController extends HttpServlet {
                                 if (citaEmpleadoRadiologo != null) {
                                     citaEmpleadoRadiologo.setAdscritoPresente(adscritoPresenteRadiologo);
                                     citaEmpleadoRadiologo.setIdEmpleado(idEmpleado);
-                                    citaEmpleadoRadiologo.setIdCita(idCita);
+                                    citaEmpleadoRadiologo.setIdCita(idCitaRadiologo);
                                     citaEmpleadoServicioImpl.actualizarCitaEmpleado(citaEmpleadoRadiologo);
                                 } else {
                                     citaEmpleadoRadiologo = new CitaEmpleado();
                                     citaEmpleadoRadiologo.setAdscritoPresente(adscritoPresenteRadiologo);
                                     citaEmpleadoRadiologo.setIdEmpleado(idEmpleado);
-                                    citaEmpleadoRadiologo.setIdCita(idCita);
+                                    citaEmpleadoRadiologo.setIdCita(idCitaRadiologo);
                                     citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleadoRadiologo);
                                 }
                                 //citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleado);
