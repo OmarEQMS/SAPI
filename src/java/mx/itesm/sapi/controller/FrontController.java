@@ -500,10 +500,17 @@ public class FrontController extends HttpServlet {
                                     sesion.setAttribute("motivoPreconsulta", solicitudPreconsulta.getOtro());
                                 }else
                                 {
-                                    MotivoConsulta motivoConsulta;
-                                    MotivoConsultaServicioImpl motivoConsultaServicioImpl = new MotivoConsultaServicioImpl();
-                                    motivoConsulta = motivoConsultaServicioImpl.mostrarMotivoConsulta(solicitudPreconsulta.getMotivoCosulta());
-                                    sesion.setAttribute("motivoPreconsulta", motivoConsulta.getNombre());
+                                    try
+                                    {
+                                        MotivoConsulta motivoConsulta;
+                                        MotivoConsultaServicioImpl motivoConsultaServicioImpl = new MotivoConsultaServicioImpl();
+                                        motivoConsulta = motivoConsultaServicioImpl.mostrarMotivoConsulta(solicitudPreconsulta.getMotivoCosulta());                                    
+                                        sesion.setAttribute("motivoPreconsulta", motivoConsulta.getNombre());
+                                    }catch(Exception ex)
+                                    {
+                                        System.out.println("Sin motivo por ser aprobada en el INcan");
+                                        sesion.setAttribute("motivoPreconsulta", "Vino direcamente al INCan" );
+                                    }
                                 }
 
                                 Timestamp ts = cuenta.getFecha();
