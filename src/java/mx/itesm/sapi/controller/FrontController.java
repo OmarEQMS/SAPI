@@ -38,6 +38,7 @@ import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 import mx.itesm.sapi.bean.gestionPaciente.Fish;
 import mx.itesm.sapi.bean.gestionPaciente.GradoHistologico;
 import mx.itesm.sapi.bean.gestionPaciente.Her2;
+import mx.itesm.sapi.bean.gestionPaciente.MotivoConsulta;
 import mx.itesm.sapi.bean.gestionPaciente.NivelSocioeconomico;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteAdmin;
@@ -45,6 +46,7 @@ import mx.itesm.sapi.bean.gestionPaciente.PacientePotencial;
 import mx.itesm.sapi.bean.gestionPaciente.ReceptorEstrogeno;
 import mx.itesm.sapi.bean.gestionPaciente.ReceptorProgesterona;
 import mx.itesm.sapi.bean.gestionPaciente.Seguro;
+import mx.itesm.sapi.bean.gestionPaciente.SolicitudPreconsulta;
 import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.UnionTratamientoPaciente;
@@ -73,12 +75,14 @@ import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.FishServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.GradoHistologicoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.Her2ServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.MotivoConsultaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.NivelSocioeconomicoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.ReceptorEstrogenoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.ReceptorProgesteronaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.SeguroServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.TipoHistologicoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.SolicitudPreconsultaServicioImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.UnionTratamientoPacienteServiceImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
@@ -486,6 +490,20 @@ public class FrontController extends HttpServlet {
                                 // Date fecha = Date.valueOf(cuenta.getFecha().toString());
                                 //String fecha = cuenta.getFecha().toString();
                                 //fecha = fecha.substring(0, 10);
+                                SolicitudPreconsulta solicitudPreconsulta;
+                                SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
+                                solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
+                                
+                                if(solicitudPreconsulta.getMotivoCosulta() == 5)
+                                {
+                                    sesion.setAttribute("motivoPreconsulta", solicitudPreconsulta.getOtro());
+                                }else
+                                {
+                                    MotivoConsulta motivoConsulta;
+                                    MotivoConsultaServicioImpl motivoConsultaServicioImpl = new MotivoConsultaServicioImpl();
+                                    motivoConsulta = motivoConsultaServicioImpl.mostrarMotivoConsulta(solicitudPreconsulta.getMotivoCosulta());
+                                    sesion.setAttribute("motivoPreconsulta", motivoConsulta.getNombre());
+                                }
 
                                 Timestamp ts = cuenta.getFecha();
                                 Date fecha = new Date(ts.getTime());

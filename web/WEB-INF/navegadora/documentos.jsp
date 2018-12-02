@@ -199,7 +199,7 @@
                             <strong>${sessionScope.telefono}</strong>
                         </li>
                         <li class="list-group-item">Motivo:
-                            <strong>Me sentí una bolita en el seno</strong>
+                            <strong>${sessionScope.motivoPreconsulta}</strong>
                         </li>
                         <li class="list-group-item">Correo:
                             <strong>${sessionScope.correo}</strong>
