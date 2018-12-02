@@ -254,12 +254,6 @@ public class FrontController extends HttpServlet {
                                     
                                     for (int i = 0; i < pacientes.size(); i++) {
                                         
-                                        if(pacientes.get(i).getPrz().equals("1234567")){
-                                            System.out.println("SOY URI Y MI COLOR ES...");
-                                            System.out.println(pacienteServicio.mostrarColor(pacientes.get(i).getIdPaciente()));
-                                            
-                                        }
-                                        
                                         if(pacienteServicio.mostrarColor(pacientes.get(i).getIdPaciente()) == 3 || pacienteServicio.mostrarColor(pacientes.get(i).getIdPaciente()) == 4){
                                             pacientes.get(i).setDescargaFormulario(1);
                                         }else{

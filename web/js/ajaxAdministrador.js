@@ -1629,7 +1629,8 @@ $(document).ready(function () {
         }
 
     });
-
+    
+    var curpRepetidoPaciente;
     //CURP EN AGREGAR PACIENTE
     $('#curpPaciente').on('change', function () {
 
@@ -1646,8 +1647,10 @@ $(document).ready(function () {
                 if (response === 'CurpAlreadyExists') {
                     $('#curpPaciente').css('color', 'orange');
                     $('#errorCurpRepetidoPaciente').show();
+                    curpRepetidoPaciente = true;
                 } else {
                     $('#errorCurpRepetidoPaciente').hide();
+                    curpRepetidoPaciente = false;
                 }
             }
         });
@@ -3967,7 +3970,7 @@ $(document).ready(function () {
     //Agregar Paciente 
 
     $('#btn-agregarPaciente').on('click', function () {
-        if (!repiteCorreoPaciente) {
+        if (!repiteCorreoPaciente && !curpRepetidoPaciente) {
 
             $("#error-datosRepetidosPaciente").hide();
 
