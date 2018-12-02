@@ -38,7 +38,7 @@ $(document).ready(function () {
 
 
     $('#btn-agregarAdministrador').on('click', function () {
-        if (!repiteCorreoAdministrador) {
+        if (!repiteCorreoAdministrador && !repiteNoEmpleadoAdministrador) {
 
             $("#error-datosRepetidosAdministrador").hide();
 
@@ -2148,7 +2148,7 @@ $(document).ready(function () {
     //////////////////////////////////////////////////////
     /**AGREGAR MEDICO */
     $('#btn-agregarMedico').on('click', function () {
-        if (!repiteCorreo) {
+        if (!repiteCorreo && !repiteNoEmpleadoMedico) {
 
             $("#error-datosRepetidos").hide();
 
@@ -3521,7 +3521,7 @@ $(document).ready(function () {
 
     /**AGREGAR NAVEGADORA*/
     $('#btn-agregarNavegadora').on('click', function () {
-        if (!repiteCorreoNavegadora) {
+        if (!repiteCorreoNavegadora && !repiteNoEmpleadoNavegadora) {
 
             $("#error-datosRepetidosNavegadora").hide();
 
