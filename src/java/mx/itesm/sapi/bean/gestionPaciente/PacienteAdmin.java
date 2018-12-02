@@ -22,6 +22,7 @@ public class PacienteAdmin {
     private String medNombre;
     private String medPrimerApellido;
     private String medSegundoApellido;
+    private int descargaFormulario;
 
     @Override
     public String toString() {
@@ -122,6 +123,14 @@ public class PacienteAdmin {
 
     public void setMedSegundoApellido(String medSegundoApellido) {
         this.medSegundoApellido = medSegundoApellido;
+    }
+
+    public int getDescargaFormulario() {
+        return descargaFormulario;
+    }
+
+    public void setDescargaFormulario(int descargaFormulario) {
+        this.descargaFormulario = descargaFormulario;
     }
     
     

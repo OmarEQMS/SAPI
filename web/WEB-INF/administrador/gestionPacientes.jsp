@@ -208,12 +208,16 @@
 
                                             <button class="btn btn-primary btn-editarPaciente m-1" data-toggle="modal" 
                                                     data-target="#modalEditarPaciente" data-id="${paciente.idPaciente}"><i class="fas fa-edit"></i></button>
-                                            <button style="color:white;" class="btn btn-warning descargarFormulario m-1" data-id="${paciente.idPaciente}"><i class="fas fa-cloud-download-alt"></i></button>
-                                            <button class="btn btn-danger btn-eliminarPaciente m-1" data-id="${paciente.idPaciente}"><i class="fas fa-trash-alt"></i></button>
+                                        <c:choose>
+                                            <c:when test="${paciente.descargaFormulario==1}">
+                                                <button style="color:white;" class="btn btn-warning descargarFormulario m-1" data-id="${paciente.idPaciente}"><i class="fas fa-cloud-download-alt"></i></button>
+                                            </c:when>                                                            
+                                        </c:choose>                                
+                                <button class="btn btn-danger btn-eliminarPaciente m-1" data-id="${paciente.idPaciente}"><i class="fas fa-trash-alt"></i></button>
 
-                                        </td>
-                                    </tr>
-                                </c:forEach>
+                                </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
