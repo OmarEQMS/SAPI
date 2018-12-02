@@ -463,6 +463,7 @@ public class FrontController extends HttpServlet {
 
                                 if (documentosInicialTipoDocumentos.size() > 0) {
                                     System.out.println("Esta llena");
+                                    System.out.println("Doc Inicial ".concat(String.valueOf(documentosInicialTipoDocumentos.get(1).getAprobado())));
                                 } else {
                                     System.out.println("Esta vacía");
                                 }

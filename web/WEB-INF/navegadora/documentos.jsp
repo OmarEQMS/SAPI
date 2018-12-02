@@ -248,6 +248,10 @@
                                              <c:out value="${documento.nombreTipo}"/>
                                             <span class=" ml-2 badge badge-success">Aprobado</span>
                                         </c:when>
+                                        <c:when test="${documento.aprobado==-1}">
+                                             <c:out value="${documento.nombreTipo}"/>
+                                            <span class=" ml-2 badge badge-warning">No revisado</span>
+                                        </c:when>
                                         <c:otherwise>
                                              <i class="fas fa-comments mr-2 iconoComentarios verComentario" data-id="${documento.idDocumentoInicial}" data-toggle="modal" data-target="#modalVerComentario" ></i>
 
