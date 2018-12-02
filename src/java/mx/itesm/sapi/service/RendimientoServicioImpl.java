@@ -558,7 +558,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             cstmt.setInt(1, idEmpleado);
             cstmt.setDate(2, fechaInicio);
             cstmt.setDate(3, fechaFin);
-
+            System.out.println("Rendimiento decision preconsulta ".concat(cstmt.toString()));
             rs = cstmt.executeQuery();
 
             rs.next();
@@ -622,7 +622,7 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             cstmt.setInt(1, idEmpleado);
             cstmt.setDate(2, fechaInicio);
             cstmt.setDate(3, fechaFin);
-
+            System.out.println("Visita resultado patología ".concat(cstmt.toString()));
             rs = cstmt.executeQuery();
 
             rs.next();

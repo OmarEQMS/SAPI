@@ -101,9 +101,11 @@
 
                         <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
+
                         <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
 
                         <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
+
 
                         <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
 
@@ -154,6 +156,9 @@
                 <div class="jumbotron jumbotron-fluid p-2">
                     <div class="container">
                         <h1 class="display-4 tituloPacientes text-center m-0">Formato de Control Preconsulta Mama</h1>
+                        <h6 class="display-4 text-center m-0 text-secondary" id="pacienteSelec" style="font-size:25px;">
+                        ${sessionScope.nombrePaciente} ${sessionScope.apellido1Paciente} ${sessionScope.apellido2Paciente}
+                    </h6>
                     </div>
                 </div>
 
@@ -182,7 +187,9 @@
                                                         </div>
                                                     </div>
                                                     <input name="prz-expediente" type="text" class="form-control" id="prz-expediente" placeholder="Introduce PRZ">
+
                                                 </div>
+                                                <span class="text-danger" id="error-PRZ">Formato inválido</span>
                                             </div>
 
                                             <div class="col-6">
@@ -207,7 +214,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-check mt-2">
-                                                    <input name="noAdscrito" class="form-check-input" type="checkbox" value="" id="noAdscrito">
+                                                    <input name="noAdscritoAdscrito" class="form-check-input" type="checkbox" value="" id="noAdscritoAdscrito">
                                                     <label class="form-check-label" for="defaultCheck1">
                                                         No estuvo el Médico adscrito
                                                     </label>
@@ -264,7 +271,7 @@
 
                                                 </div>
                                                 <div class="form-check mt-2">
-                                                    <input name="esSustituto" class=" form-check-input" type="checkbox" value="" id="esSustituto">
+                                                    <input name="noAdscritoRadiologo" class=" form-check-input" type="checkbox" value="" id="noAdscritoRadiologo">
                                                     <label class="form-check-label" for="defaultCheck1">
                                                         No estuvo médico radiologo
                                                     </label>
@@ -290,6 +297,7 @@
                                                     <input name= "fechaNavegacion" placeholder="Introduce la fecha de navegación" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                            id="fechaNavegacion">
                                                 </div>
+                                                <span class="text-danger" id="error-fechaNavegacion">Fecha incorrecta</span>
                                             </div>
 
 
@@ -303,8 +311,10 @@
                                                         </div>
                                                     </div>
 
-<!--<<<<<<< HEAD-->
-                                                   <select name="medico-residente" class="form-control" id="medico-residente">
+
+                                                    <!--<<<<<<< HEAD-->
+                                                    <select name="medico-residente" class="form-control" id="medico-residente">
+
 
                                                         <option disabled selected>Seleccione un Residente</option>
 
@@ -314,17 +324,12 @@
 
                                                         </c:forEach>
                                                         <option value="otro">Otro</option>
-                                                        <!--=======
-                                                                                                            <input name = "medico-residente" type="text" id="medico-residente" class="form-control" class="form-control" placeholder="Introduce Médico Residente">
-                                                                                                        </div>
-                                                                                                    </div>
-                                                        >>>>>>> origin/AngelRaul
-                                                        -->
+                                                       
                                                     </select>
                                                 </div>
 
                                                 <div class="form-check mt-2">
-                                                    <input name="noAdscrito" class=" form-check-input" type="checkbox" value="" id="noAdscrito">
+                                                    <input name="noAdscritoResidente" class=" form-check-input" type="checkbox" value="" id="noAdscritoResidente">
                                                     <label class="form-check-label" for="defaultCheck1">
                                                         No estuvo médico residente
                                                     </label>
@@ -346,6 +351,7 @@
                                                     <input name="fechaConsulta" placeholder="Introduce la fecha de consulta" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                            id="fechaConsulta">
                                                 </div>
+                                                <span class="text-danger" id="error-fechaConsulta">Fecha incorrecta</span>
                                             </div>
 
                                         </div>
@@ -405,6 +411,7 @@
                                                     <input name="alergias" type="text" id="alergias" class="form-control" placeholder="Introduce las alergias separadas por comas ( , )">
 
                                                 </div>
+                                                <span class="text-danger" id="error-alergias">Formato incorrecto</span>
                                             </div>
                                         </div>
 
@@ -459,6 +466,7 @@
                                                 </div>
 
                                                 <input name="numSeguro" type="text" id="numSeguro" class="form-control mt-2" placeholder="Introduce el nómero de tu seguro">
+                                                <span class="text-danger" id="error-numSeguro">Formato incorrecto</span>
                                             </div>
 
 
@@ -512,7 +520,10 @@
 
                                                     <input name="fecha-cirugia" placeholder="Introduce la fecha de cirugóa" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                            id="fecha-cirugia">
+
                                                 </div>
+                                                <span class="text-danger" id="error-fechaCirugia">Fecha incorrecta</span>
+
                                             </div>
 
                                             <div class="row mt-3">
@@ -560,12 +571,14 @@
                                                     <input name="fecha-quimioterapia" placeholder="Introduce la fecha de quimioterapia" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                            id="fecha-quimioterapia">
                                                 </div>
+                                                <span class="text-danger" id="error-fechaQuimio">Fecha incorrecta</span>
                                             </div>
 
                                             <div class="row mt-3">
                                                 <div class="col-12 input-group">
                                                     <input name="quimioterapia" type="text" id="quimioterapia" class="form-control" class="form-control" placeholder="Introduce el nómero de ciclos">
                                                 </div>
+                                                <span class="text-danger" id="error-numCiclosQuimio">Formato invalido</span>
                                             </div>
 
                                             <div class="row mt-3">
@@ -599,12 +612,14 @@
                                                     <input name="fecha-radioterapia" placeholder="Introduce la fecha de radioterapia" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                            id="fecha-radioterapia">
                                                 </div>
+                                                <span class="text-danger" id="error-fechaRadio">Fecha incorrecta</span>
                                             </div>
 
                                             <div class="row mt-3">
                                                 <div class="col-12 input-group">
                                                     <input name="radioterapia" type="text" id="radioterapia" class="form-control" class="form-control" placeholder="Introduce el nómero de ciclos">
                                                 </div>
+                                                <span class="text-danger" id="error-numCiclosRadio">Formato invalido</span>
                                             </div>
 
                                             <div class="row mt-3">
@@ -652,8 +667,9 @@
                                                         <input name="fechaPreMasto" placeholder="Introduce la fecha de mastografóa" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                                id="fechaPreMasto">
                                                     </div>
-                                                </div>
 
+                                                </div>
+                                                <span class="text-danger" id="error-fechaMastografia">Fecha incorrecta</span>   
 
 
                                             </div>
@@ -685,6 +701,9 @@
                                                         <input name="fechaPreUsg" placeholder="Introduce la fecha de ultrasonido" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                                id="fechaPreUsg">
                                                     </div>
+                                                    <span class="text-danger" id="error-fechaUltra">Fecha incorrecta</span> 
+
+
                                                 </div>
 
                                             </div>
@@ -719,6 +738,7 @@
                                             <div class="col-12">
                                                 <input name="introducirOtroResultadoPatologia" id="OtroResultadoPatologia" type="text" class="form-control" placeholder="Introduce otro resultado">
                                             </div>
+                                            <span class="text-danger" id="error-OtroResultadoPatologia">Formato incorrecto</span>
                                         </div>
 
                                         <!-- Entrega de laminillas y bloques -->
@@ -739,9 +759,19 @@
 
                                                 <input name="numLaminillas" type="text" id="numLaminillas" class="form-control" placeholder="Introduce el nómero">
                                             </div>
+
                                             <div class="col-6">
                                                 <input name="serieLaminillas" type="text" id="serieLaminillas" class="form-control" placeholder="Identificadores separados por ( , )">
                                             </div>
+
+                                            <div class="col-12">
+                                                <span class="text-danger" id="error-numeroLaminillas">Formato incorrecto. Solo numeros</span>
+                                            </div>
+                                            
+                                            <div class="col-12">
+                                                <span class="text-danger" id="error-serieLaminillas">Formato incorrecto</span>
+                                            </div>
+
                                         </div>
 
                                         <div class="form-group row mt-4">
@@ -758,9 +788,20 @@
 
                                                 <input name="numBloques" type="text" id="numBloques" class="form-control" placeholder="Introduce el nómero">
                                             </div>
+                                            
+           
                                             <div class="col-6">
                                                 <input name="serieBloques" type="text" id="serieBloques" class="form-control" placeholder="Identificadores separados por ( , )">
                                             </div>
+                                            
+                                            <div class="col-12">
+                                                <span class="text-danger" id="error-numeroParafrina">Formato incorrecto. Solo numeros</span>
+                                            </div>
+                                            
+                                            <div class="col-12">
+                                                <span class="text-danger" id="error-serieParafrina">Formato incorrecto</span>
+                                            </div>
+                                            
                                         </div>
                                     </form>
                                     <div class="row justify-content-center mt-5">
@@ -811,6 +852,8 @@
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="tiene-biopsia">
                                                     <label class="form-check-label" for="tiene-biopsia"> Biopsia</label>
+                                                    <datalist id="listBiopsia"></datalist>
+                                                    <datalist id="listLugarDelCuerpo"></datalist>
                                                 </div>
                                             </div>
                                             <!-- boton agregar biopsia -->
@@ -839,6 +882,7 @@
                                                 <div class="form-check form-check-inline">
                                                     <input name="rayosAdded" class="form-check-input" type="checkbox" id="tiene-rayosX">
                                                     <label class="form-check-label" for="tiene-rayosX"> Rayos X</label>
+                                                    <datalist id="listRayosX"></datalist>
                                                 </div>
                                             </div>
                                             <!-- boton agregar rayos -->
@@ -867,6 +911,7 @@
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-ultrasonido" class="form-check-input" type="checkbox" id="tiene-ultrasonido">
                                                     <label class="form-check-label" for="tiene-ultrasonido"> Ultrasonido</label>
+                                                    <datalist id="listUltraSonido"></datalist>
                                                 </div>
                                             </div>
                                             <!-- boton agregar ultrasonido -->
@@ -895,6 +940,7 @@
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-medicina-nuclear" class="form-check-input" type="checkbox" id="tiene-medicina-nuclear">
                                                     <label class="form-check-label" for="tiene-medicina-nuclear"> Medicina Nuclear</label>
+                                                    <datalist id="listMedicinaNuclear"></datalist>
                                                 </div>
                                             </div>
                                             <!-- boton agregar medicina nuclear -->
@@ -950,6 +996,7 @@
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-valoracion" class="form-check-input" type="checkbox" id="tiene-valoracion">
                                                     <label class="form-check-label" for="tiene-valoracion"> Valoración</label>
+                                                    <datalist id="listValoracion"></datalist>
                                                 </div>
                                             </div>
                                             <!-- boton agregar valoración -->
@@ -1089,6 +1136,7 @@
                                                 <div class="form-check form-check-inline">
                                                     <input name="tiene-programa" class="form-check-input" type="checkbox" id="tiene-programa">
                                                     <label class="form-check-label" for="tiene-programa"> Programa</label>
+                                                    <datalist id="listPrograma"></datalist>
                                                 </div>
                                             </div>
                                             <!-- boton agregar programa -->
@@ -1177,11 +1225,10 @@
 
                                                         <option disabled selected>Seleccione la decisión</option>              
 
-                                                        <option>Unidad funcional</option>
-                                                        <option>Alta</option>
-                                                        <option>Alta voluntaria</option>
-                                                        <option>Finada</option>
-                                                        <option>Perdida</option>
+                                                        <option value=3 >Unidad funcional</option>
+                                                        <option value=8>Alta</option>
+                                                        <option value="9">Alta voluntaria</option>
+                                                        <option value="7">Finada</option>
                                                     </select>
                                                 </div>
                                             </div>

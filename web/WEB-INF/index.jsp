@@ -26,14 +26,13 @@
 
             <!-- Input usuario -->
             <div class="input-group">
-                <input id="user" type="text" value="Urisiento" class="form-control input-usuario mb-2 useFontAwesomeFamily effect3" placeholder="&#xf007; USUARIO" autofocus>
+                <input id="user" type="text" value="A02" class="form-control input-usuario mb-2 useFontAwesomeFamily effect3" placeholder="&#xf007; USUARIO" autofocus>
 
             </div>
 
             <!-- Input contraseÃ±a -->
             <div class="input-group">
-                <input id="password" type="password" value="Urisiento" class="form-control input-pass mb-4 useFontAwesomeFamily" placeholder="&#xf023; CONTRASEÑA">
-                <div id="loginContrasena"><i class="inputGlobal far fa-eye mt-3 mr-1"></i></div>
+                <input id="password" type="password" value="A02" class="form-control input-pass mb-4 useFontAwesomeFamily" placeholder="&#xf023; CONTRASEÑA">
             </div>
 
             <!-- Input submit -->
