@@ -273,7 +273,7 @@
                                                 <div class="input-group-text"><i class="fas fa-user"></i></div>
                                             </div>
                                             <input type="text" class="form-control" id="editar-segundoApellidoNavegadora"
-                                                   placeholder="Segundo apellido">
+                                                   placeholder="Segundo apellido (Opcional)">
                                         </div>
                                         <span class="text-danger" id="errorEditarApellidoMaternoNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                     </div>
@@ -313,7 +313,7 @@
                                                 <div class="input-group-text"><i class="fas fa-user-graduate"></i></div>
                                             </div>
                                             <input type="text" class="form-control" id="editar-cedulaNavegadora"
-                                                   placeholder="Cédula Profesional">
+                                                   placeholder="Cédula Profesional (Opcional)">
                                         </div>
                                         <span class="text-danger" id="errorEditarCedulaNavegadora">Formato incorrecto, deben ser 7 dígitos.</span>
                                     </div>
@@ -500,6 +500,7 @@
                                             <label><input class="form-check-input" type="checkbox" id="terminosNavegadora" /> La navegadora está informada y aceptó los términos y condiciones</label>
                                         </div>
                                     </div>
+                                    <span class="text-danger" id="errorTerminosNavegadora">Se deben aceptar los términos y condiciones.</span>
                                 </div>
 
                                 <div class="row mb-3" id="error-camposNavegadora">
