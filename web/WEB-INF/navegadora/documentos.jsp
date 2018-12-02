@@ -168,6 +168,13 @@
                         ${sessionScope.nombrePacientePotencial} ${sessionScope.primerApellidoPacientePotencial} ${sessionScope.segundoApellidoPacientePotencial}
                     </h6>
                 </div>
+                     <div class="form-group row justify-content-center mt-2">
+                            <div class="col-12 text-center">
+                                
+                                <img src="data:image/jpeg;base64,${sessionScope.base64ImgPac}" class="imagenPerfil edit-image" width="150px" height="150px" alt="">
+                                
+                            </div>
+                      </div>
             </div>
 
             <div class="row justify-content-center">
