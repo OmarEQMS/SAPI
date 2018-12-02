@@ -2800,42 +2800,41 @@ $(document).ready(function () {
                                 $('.cargandoEliminarMedico').fadeOut();
                             },
                             success: function (response) {
-                                if (response == "relacionNoExistente") {
-                                    alert("Se puede borrar el médico");
+                                if (response == "relacionNoExistente") {                                    
+                                    $.ajax({
+                                        url: 'AdministradorController',
+                                        cache: false,
+                                        method: 'POST',
+                                        data: {
+                                            key: 'eliminarEmpleado',
+                                            idEmpleado: idMedico
+                                        },
+                                        success: function (response) {
+                                            if (response == "error") {
+                                                alert("Error al cargar");
+                                            } else {
+                                                t.row(fila).remove().draw();
+                                            }
+                                        },
+                                        error: function (xhr) {
+
+                                        }
+                                    });
                                 } else {
-                                    alert("El médico no se puede borrar");
+                                    swal({
+                                        title: "¡No se puede eliminar a este médico!",
+                                        text: "El médico tiene pacientes a su cargo. Reasígnalos e intenta nuevamente.",
+                                        closeOnClickOutside: false,
+                                        icon: "error",
+                                        buttons: [, 'Aceptar'],
+                                    });
                                 }
                             },
                             error: function (xhr) {
 
                             }
-                        });/*
-                        $.ajax({
+                        });
 
-                            url: 'AdministradorController',
-                            cache: false,
-                            method: 'POST',
-                            beforeSend: function () {
-                                $('.cargandoEliminarMedico').fadeIn();
-                            },
-                            data: {
-                                key: 'eliminarEmpleado',
-                                idEmpleado: idMedico
-                            },
-                            complete: function () {
-                                $('.cargandoEliminarMedico').fadeOut();
-                            },
-                            success: function (response) {
-                                if (response == "error") {
-                                    alert("Error al cargar");
-                                } else {
-                                    t.row(fila).remove().draw();
-                                }
-                            },
-                            error: function (xhr) {
-
-                            }
-                        });*/
                     }
                 });
 

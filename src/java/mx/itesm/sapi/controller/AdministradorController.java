@@ -675,10 +675,11 @@ public class AdministradorController extends HttpServlet {
                     System.out.println("idEmpleado: " + idEmpleado);
 
                     EmpleadoServicioImpl empleadoServicio = new EmpleadoServicioImpl();
+                    boolean relacion = empleadoServicio.relacionMedicoPaciente(idEmpleado);                    
                     
                     PrintWriter out = response.getWriter();
                     
-                    if(empleadoServicio.relacionMedicoPaciente(idEmpleado)){
+                    if(relacion){
                         out.print("relacionExistente");
                     }
                     else{
