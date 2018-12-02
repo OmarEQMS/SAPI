@@ -28,7 +28,7 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
         ArrayList<ArrayList<String>> PoblacionGeneral = new ArrayList<>();
         PoblacionGeneral.add(GeneralPoblacion.tableHeaderRStudio());
         //Call del store procedure
-        String stProcedure = "CALL mostrarPoblacionGeneral()";
+        String stProcedure = "CALL mostrarPoblacion()";
         
         try {
             
@@ -38,26 +38,25 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
 
             while (rs.next()){
                 GeneralPoblacion temp = new GeneralPoblacion();
-                Integer idPaciente = rs.getInt("idPaciente");
-                temp.setNombrePersona(rs.getString("Nombre"));
-                temp.setPrimerApellido(rs.getString("primerApellido"));
-                temp.setSegundoApellido(rs.getString("segundoApellido"));
-                temp.setCurp(rs.getString("curp"));
-                temp.setTelefono(rs.getString("telefono"));
-                temp.setCorreo(rs.getString("correo"));
-                temp.setTipoSangre(rs.getString("TipoDeSangre"));
-                temp.setEstado(rs.getString("NombreEstado"));
-                temp.setMunicipio(rs.getString("NombreMunicipio"));
-                temp.setFechaNacimiento(rs.getDate("fechaNacimiento"));
-                temp.setEstadoCivil(rs.getString("NombreEstadoCivil"));
-                temp.setSexo(rs.getString("NombreSexo"));
-                temp.setEscolaridad(rs.getString("NivelEducativo"));
-                temp.setEscolaridad(rs.getString("NivelSocioeconomico"));
-                temp.setPrz(rs.getString("prz"));
-                temp.setNoExpediente(rs.getString("expediente"));
-                temp.setSeguro(rs.getString("NombreSeguro"));
-                temp.setNoSeguroPopular(rs.getString("noSeguro"));
-                temp.setAlergias(rs.getString("alergia"));
+                temp.setNombrePersona(rs.getString("General_Nombre"));
+                temp.setPrimerApellido(rs.getString("General_primerApellido"));
+                temp.setSegundoApellido(rs.getString("General_segundoApellido"));
+                temp.setCurp(rs.getString("General_curp"));
+                temp.setTelefono(rs.getString("General_telefono"));
+                temp.setCorreo(rs.getString("General_correo"));
+                temp.setTipoSangre(rs.getString("General_TipoDeSangre"));
+                temp.setEstado(rs.getString("General_NombreEstado"));
+                temp.setMunicipio(rs.getString("General_NombreMunicipio"));
+                temp.setFechaNacimiento(rs.getDate("General_fechaNacimiento"));
+                temp.setEstadoCivil(rs.getString("General_NombreEstadoCivil"));
+                temp.setSexo(rs.getString("General_NombreSexo"));
+                temp.setEscolaridad(rs.getString("General_NivelEducativo"));
+                temp.setEscolaridad(rs.getString("General_NivelSocioeconomico"));
+                temp.setPrz(rs.getString("General_prz"));
+                temp.setNoExpediente(rs.getString("General_expediente"));
+                temp.setSeguro(rs.getString("General_NombreSeguro"));
+                temp.setNoSeguroPopular(rs.getString("General_noSeguro"));
+                temp.setAlergias(rs.getString("General_alergia"));
                 temp.setBiopsiaINCanEtapa(rs.getString("INCan_Etapa"));
                 temp.setBiopsiaINCanT(rs.getString("INCan_T"));
                 temp.setBiopsiaINCanN(rs.getString("INCan_N"));
@@ -68,137 +67,69 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
                 temp.setConsultaComentario(rs.getString("Consulta_Comentario"));
                 temp.setConsultaFecha(rs.getDate("Consulta_Fecha"));
                 temp.setConsultaDiagnosticoFecha(rs.getDate("Consulta_FechaDiagnostico"));
-                
-                String NestedStProcedure = "CALL mostrarPoblacionNecesidadesEspeciales(?)";
-                CallableStatement NestedCstmt = conn.prepareCall(NestedStProcedure);
-                NestedCstmt.setInt(1, idPaciente);
-                ResultSet NestedRs = NestedCstmt.executeQuery();
-                NestedRs.next();
-                    temp.setSillaRuedas(NestedRs.getString("SillaDeRuedas"));
-                    temp.setBastón(NestedRs.getString("Baston"));
-                    temp.setOxigeno(NestedRs.getString("Oxigeno"));
-                    temp.setCamilla(NestedRs.getString("Camilla"));
-                NestedRs.close();
-                NestedRs.close();
-                
-                NestedStProcedure = "CALL mostrarPoblacionMedicosCita(?)";
-                NestedCstmt = conn.prepareCall(NestedStProcedure);
-                NestedCstmt.setInt(1, rs.getInt("idCita"));
-                NestedRs = NestedCstmt.executeQuery();
-                NestedRs.next();
-                    temp.setConsultaAdscritoNombre(NestedRs.getString("MedicosCita_Adscrito"));
-                    if (NestedRs.getInt("MedicosCita_AdscritoPresente") == 0) temp.setConsultaAdscritoPresente("No");
-                    else temp.setConsultaAdscritoPresente("Sí");
-                    temp.setConsultaRadiologoNombre(NestedRs.getString("MedicosCita_Radiologo"));
-                    if (NestedRs.getInt("MedicosCita_RadiologoPresente") == 0) temp.setConsultaRadiologoPresente("No");
-                    else temp.setConsultaRadiologoPresente("Sí");
-                NestedRs.close();
-                NestedRs.close();
-                
-                NestedStProcedure = "CALL mostrarPoblacionEstudiosPrevios(?)";
-                NestedCstmt = conn.prepareCall(NestedStProcedure);
-                NestedCstmt.setInt(1, idPaciente);
-                NestedRs = NestedCstmt.executeQuery();
-                NestedRs.next();
-                    temp.setEstudioPrevioMastografia(NestedRs.getString("BiradsMastografia"));
-                    temp.setEstudioPrevioMastografiaFecha(NestedRs.getDate("FechaMastografia"));
-                    temp.setEstudioPrevioUSG(NestedRs.getString("BiradsUsg"));
-                    temp.setEstudioPrevioUSGFecha(NestedRs.getDate("FechaUsg"));
-                    temp.setEstudioPrevioRadioCiclos(NestedRs.getInt("CiclosRadiografia"));
-                    temp.setEstudioPrevioRadioFecha(NestedRs.getDate("FechaRadiografia"));
-                    temp.setEstudioPrevioQuimioCiclos(NestedRs.getInt("CiclosQuimioterapia"));
-                    temp.setEstudioPrevioQuimioFecha(NestedRs.getDate("FechaQuimioterapia"));
-                    temp.setEstudioPrevioCirugiaTipo(NestedRs.getString("TipoCirugia"));
-                    temp.setEstudioPrevioCirugiaFecha(NestedRs.getDate("FechaCirugia"));
-                NestedRs.close();
-                NestedRs.close();
-                
-                NestedStProcedure = "CALL mostrarPoblacionBiopsiaPrevia(?)";
-                NestedCstmt = conn.prepareCall(NestedStProcedure);
-                NestedCstmt.setInt(1, idPaciente);
-                NestedRs = NestedCstmt.executeQuery();
-                if (NestedRs.next()){
-                    temp.setBiopsiaPreviaLaminillas(NestedRs.getString("Laminillas"));
-                    temp.setBiopsiaPreviaBloques(NestedRs.getString("Bloques"));
-                    temp.setBiopsiaPreviaTipo(NestedRs.getString("nombreTipo"));
-                    temp.setBiopsiaPreviaLugarCuerpo(NestedRs.getString("nombreLugarCuerpo"));
-                    temp.setBiopsiaPreviaFecha(NestedRs.getDate("Fecha"));
-                }
-                NestedRs.close();
-                NestedRs.close();
-                
-                NestedStProcedure = "CALL mostrarPoblacionEstudiosINCan(?)";
-                NestedCstmt = conn.prepareCall(NestedStProcedure);
-                NestedCstmt.setInt(1, idPaciente);
-                NestedRs = NestedCstmt.executeQuery();
-                NestedRs.next();
-                    temp.setEstudioINCanMastografia(NestedRs.getString("BiradsMastografia"));
-                    temp.setEstudioINCanMastografiaFecha(NestedRs.getDate("FechaMastografia"));
-                    temp.setEstudioINCanUSG(NestedRs.getString("BiradsUSG"));
-                    temp.setEstudioINCanUSGFecha(NestedRs.getDate("FechaUSG"));
-                    temp.setEstudioINCanRadiografia(NestedRs.getDate("FechaRadio"));
-                    temp.setEstudioINCanTomografia(NestedRs.getDate("FechaTomo"));
-                    temp.setEstudioINCanMr(NestedRs.getDate("FechaMr"));
-                    temp.setEstudioINCanTransvaginal(NestedRs.getDate("FechaTransvaginal"));
-                    temp.setEstudioINCanAbdominal(NestedRs.getDate("FechaAbdominal"));
-                    temp.setEstudioINCanTiroides(NestedRs.getDate("FechaTiroideo"));
-                    temp.setEstudioINCanPelvico(NestedRs.getDate("FechaPelvico"));
-                    temp.setEstudioINCanHepatico(NestedRs.getDate("FechaHepatico"));
-                    temp.setEstudioINCanPet(NestedRs.getDate("FechaPet"));
-                    temp.setEstudioINCanMuga(NestedRs.getDate("FechaMuga"));
-                    temp.setEstudioINCanGamma(NestedRs.getDate("FechaGamma"));
-                    temp.setEstudioINCanLaboratorio(NestedRs.getDate("FechaLaboratorio"));
-                    temp.setEstudioINCanCardio(NestedRs.getDate("FechaCardio"));
-                    temp.setEstudioINCanAnestesica(NestedRs.getDate("FechaAnestesica"));
-                    temp.setEstudioINCanInhaloterapia(NestedRs.getDate("FechaInhalo"));
-                    temp.setEstudioINCanElectro(NestedRs.getDate("FechaElectro"));
-                    temp.setEstudioINCanEco(NestedRs.getDate("FechaEco"));
-                    temp.setProgramaINCanTrabajoSocial(NestedRs.getDate("FechaTrabajoSocial"));
-                    temp.setProgramaINCanMujeresJovenes(NestedRs.getDate("FechaMujerJoven"));
-                    temp.setProgramaINCanNutricion(NestedRs.getDate("FechaNutricion"));
-                    temp.setProgramaINCanGenetica(NestedRs.getDate("FechaGenetica"));
-                NestedRs.close();
-                NestedRs.close();
-                
-                NestedStProcedure = "CALL mostrarPoblacionBiopsiaINCan(?)";
-                NestedCstmt = conn.prepareCall(NestedStProcedure);
-                NestedCstmt.setInt(1, idPaciente);
-                NestedRs = NestedCstmt.executeQuery();
-                if (NestedRs.next()){
-                    temp.setBiopsiaINCanGradoHistologico(NestedRs.getString("BiopsiaINCan_GradoHistologico"));
-                    temp.setBiopsiaINCanHer2(NestedRs.getString("BiopsiaINCan_Her2"));
-                    temp.setBiopsiaINCanFish(NestedRs.getString("BiopsiaINCan_Fish"));
-                    temp.setBiopsiaINCanKi67(NestedRs.getString("BiopsiaINCan_Ki67"));
-                    temp.setBiopsiaINCanRe(NestedRs.getString("BiopsiaINCan_RE"));
-                    temp.setBiopsiaINCanRp(NestedRs.getString("BiopsiaINCan_RP"));
-                }
-                NestedRs.close();
-                NestedRs.close();
-                
-                NestedStProcedure = "CALL mostrarPoblacionPreconsulta(?)";
-                NestedCstmt = conn.prepareCall(NestedStProcedure);
-                NestedCstmt.setInt(1, idPaciente);
-                NestedRs = NestedCstmt.executeQuery();
-                if (NestedRs.next()){
-                    if (NestedRs.getInt("Preconsulta_SegundaOpinion") == 0)temp.setPreconsultaSegundaOpcion("Primera vez");
-                    else temp.setPreconsultaSegundaOpcion("Segunda Opinión");
-                    temp.setPreconsultaFechaDecision(NestedRs.getDate("Preconsulta_FechaDecision"));
-                    temp.setPreconsultaDecision(NestedRs.getString("Preconsulta_Decision"));
-                }
-                NestedRs.close();
-                NestedRs.close();
-                
-                NestedStProcedure = "CALL mostrarPoblacionCirugiasINCan(?)";
-                NestedCstmt = conn.prepareCall(NestedStProcedure);
-                NestedCstmt.setInt(1, idPaciente);
-                NestedRs = NestedCstmt.executeQuery();
-                NestedRs.next();
-                    temp.setCirugiasINCanMasectomiaFecha(NestedRs.getDate("FechaMasectomia"));
-                    temp.setCirugiasINCanConservadoraFecha(NestedRs.getDate("FechaConservadora"));
-                    temp.setCirugiasINCanReconstruccionFecha(NestedRs.getDate("FechaReconstruccion"));
-                NestedRs.close();
-                NestedRs.close();
-                
+                temp.setSillaRuedas(rs.getString("SillaDeRuedas"));
+                temp.setBastón(rs.getString("Baston"));
+                temp.setOxigeno(rs.getString("Oxigeno"));
+                temp.setCamilla(rs.getString("Camilla"));
+                temp.setConsultaAdscritoNombre(rs.getString("MedicosCita_Adscrito"));
+                if (rs.getInt("MedicosCita_AdscritoPresente") == 0) temp.setConsultaAdscritoPresente("No");
+                else temp.setConsultaAdscritoPresente("Sí");
+                temp.setConsultaRadiologoNombre(rs.getString("MedicosCita_Radiologo"));
+                if (rs.getInt("MedicosCita_RadiologoPresente") == 0) temp.setConsultaRadiologoPresente("No");
+                else temp.setConsultaRadiologoPresente("Sí");
+                temp.setEstudioPrevioMastografia(rs.getString("EstudioPrevio_BiradsMastografia"));
+                temp.setEstudioPrevioMastografiaFecha(rs.getDate("EstudioPrevio_FechaMastografia"));
+                temp.setEstudioPrevioUSG(rs.getString("EstudioPrevio_BiradsUsg"));
+                temp.setEstudioPrevioUSGFecha(rs.getDate("EstudioPrevio_FechaUsg"));
+                temp.setEstudioPrevioRadioCiclos(rs.getInt("EstudioPrevio_CiclosRadiografia"));
+                temp.setEstudioPrevioRadioFecha(rs.getDate("EstudioPrevio_FechaRadiografia"));
+                temp.setEstudioPrevioQuimioCiclos(rs.getInt("EstudioPrevio_CiclosQuimioterapia"));
+                temp.setEstudioPrevioQuimioFecha(rs.getDate("EstudioPrevio_FechaQuimioterapia"));
+                temp.setEstudioPrevioCirugiaTipo(rs.getString("EstudioPrevio_TipoCirugia"));
+                temp.setEstudioPrevioCirugiaFecha(rs.getDate("EstudioPrevio_FechaCirugia"));
+                temp.setBiopsiaPreviaLaminillas(rs.getString("BiopsiaPrevia_Laminillas"));
+                temp.setBiopsiaPreviaBloques(rs.getString("BiopsiaPrevia_Bloques"));
+                temp.setBiopsiaPreviaTipo(rs.getString("BiopsiaPrevia_Tipo"));
+                temp.setBiopsiaPreviaLugarCuerpo(rs.getString("BiopsiaPrevia_LugarCuerpo"));
+                temp.setBiopsiaPreviaFecha(rs.getDate("BiopsiaPrevia_Fecha"));
+                temp.setEstudioINCanMastografia(rs.getString("EstudioINCan_BiradsMastografia"));
+                temp.setEstudioINCanMastografiaFecha(rs.getDate("EstudioINCan_FechaMastografia"));
+                temp.setEstudioINCanUSG(rs.getString("EstudioINCan_BiradsUSG"));
+                temp.setEstudioINCanUSGFecha(rs.getDate("EstudioINCan_FechaUSG"));
+                temp.setEstudioINCanRadiografia(rs.getDate("EstudioINCan_FechaRadio"));
+                temp.setEstudioINCanTomografia(rs.getDate("EstudioINCan_FechaTomo"));
+                temp.setEstudioINCanMr(rs.getDate("EstudioINCan_FechaMr"));
+                temp.setEstudioINCanTransvaginal(rs.getDate("EstudioINCan_FechaTransvaginal"));
+                temp.setEstudioINCanAbdominal(rs.getDate("EstudioINCan_FechaAbdominal"));
+                temp.setEstudioINCanTiroides(rs.getDate("EstudioINCan_FechaTiroideo"));
+                temp.setEstudioINCanPelvico(rs.getDate("EstudioINCan_FechaPelvico"));
+                temp.setEstudioINCanHepatico(rs.getDate("EstudioINCan_FechaHepatico"));
+                temp.setEstudioINCanPet(rs.getDate("EstudioINCan_FechaPet"));
+                temp.setEstudioINCanMuga(rs.getDate("EstudioINCan_FechaMuga"));
+                temp.setEstudioINCanGamma(rs.getDate("EstudioINCan_FechaGamma"));
+                temp.setEstudioINCanLaboratorio(rs.getDate("EstudioINCan_FechaLaboratorio"));
+                temp.setEstudioINCanCardio(rs.getDate("EstudioINCan_FechaCardio"));
+                temp.setEstudioINCanAnestesica(rs.getDate("EstudioINCan_FechaAnestesica"));
+                temp.setEstudioINCanInhaloterapia(rs.getDate("EstudioINCan_FechaInhalo"));
+                temp.setEstudioINCanElectro(rs.getDate("EstudioINCan_FechaElectro"));
+                temp.setEstudioINCanEco(rs.getDate("EstudioINCan_FechaEco"));
+                temp.setProgramaINCanTrabajoSocial(rs.getDate("Programa_FechaTrabajoSocial"));
+                temp.setProgramaINCanMujeresJovenes(rs.getDate("Programa_FechaMujerJoven"));
+                temp.setProgramaINCanNutricion(rs.getDate("Programa_FechaNutricion"));
+                temp.setProgramaINCanGenetica(rs.getDate("Programa_FechaGenetica"));
+                temp.setBiopsiaINCanGradoHistologico(rs.getString("BiopsiaINCan_GradoHistologico"));
+                temp.setBiopsiaINCanHer2(rs.getString("BiopsiaINCan_Her2"));
+                temp.setBiopsiaINCanFish(rs.getString("BiopsiaINCan_Fish"));
+                temp.setBiopsiaINCanKi67(rs.getString("BiopsiaINCan_Ki67"));
+                temp.setBiopsiaINCanRe(rs.getString("BiopsiaINCan_RE"));
+                temp.setBiopsiaINCanRp(rs.getString("BiopsiaINCan_RP"));
+                if (rs.getInt("Preconsulta_SegundaOpinion") == 0)temp.setPreconsultaSegundaOpcion("Primera vez");
+                else temp.setPreconsultaSegundaOpcion("Segunda Opinión");
+                temp.setPreconsultaFechaDecision(rs.getDate("Preconsulta_FechaDecision"));
+                temp.setPreconsultaDecision(rs.getString("Preconsulta_Decision"));
+                temp.setCirugiasINCanMasectomiaFecha(rs.getDate("FechaMasectomia"));
+                temp.setCirugiasINCanConservadoraFecha(rs.getDate("FechaConservadora"));
+                temp.setCirugiasINCanReconstruccionFecha(rs.getDate("FechaReconstruccion"));
                 PoblacionGeneral.add(temp.toStringRStudio());
                 System.out.println(PoblacionGeneral.size());
             }
@@ -213,6 +144,33 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
         }
         return PoblacionGeneral;
         
+    }
+    @Override
+    public boolean actualizarPoblacionGeneral() {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        //Call del store procedure
+        String stProcedure = "CALL actualizarPoblacion()";
+        
+        try {
+            
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            rs = cstmt.executeQuery();
+            
+            rs.close();
+            cstmt.close();
+            conn.close();
+            return true;
+
+        } catch (SQLException ex) {
+            System.out.println("GeneralPoblacionServicioImpl mostrarPoblacionGeneral");
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            return false;
+        }
     }
     
 }
