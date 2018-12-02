@@ -438,6 +438,25 @@ public class FrontController extends HttpServlet {
 
                                 EstadoCivilServicioImpl estadoCivilServicioImpl = new EstadoCivilServicioImpl();
                                 EstadoCivil estadoCivil = estadoCivilServicioImpl.mostrarEstadoCivil(persona.getIdEstadoCivil());
+                                
+                                try
+                                {
+                                    Pic picPaciente;
+                                    PicServicioImpl PicServicioImpl = new PicServicioImpl ();
+                                    picPaciente = PicServicioImpl.mostrarPic(persona.getIdPersona());
+                                    
+                                    InputStream imagenPaciente = picPaciente.getContenido();
+                                    byte[] byteImg = IOUtils.toByteArray(imagenPaciente);
+                                    String base64StringPic = Base64.getEncoder().encodeToString(byteImg);
+                                    
+                                    
+                                    sesion.setAttribute("base64ImgPac",base64StringPic);
+                                    
+                                }catch(Exception ex)
+                                {
+                                    System.out.println("Sin pic ".concat(ex.getMessage()));
+                                }                                    
+                                
 
                                 MunicipioServicioImpl municipioServicioImpl = new MunicipioServicioImpl();
                                 Municipio municipio = municipioServicioImpl.mostrarMunicipio(persona.getIdMunicipio());
