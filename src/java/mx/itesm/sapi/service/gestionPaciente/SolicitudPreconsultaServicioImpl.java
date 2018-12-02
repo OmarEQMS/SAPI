@@ -39,9 +39,10 @@ public class SolicitudPreconsultaServicioImpl implements SolicitudPreconsultaSer
             cstmt.setInt(1, idPaciente);
             System.out.println("MOSTRAR SOLICITUD PRECONSULTA ".concat(cstmt.toString()));
             rs = cstmt.executeQuery();
-
+            System.out.println("Justo antes de entrar al resultset de mostrar solicitud de preconsulta");
+            
             while(rs.next()){
-                System.out.println("En el while de rs next ".concat(rs.getString("MOTIVOCONSULTA")));
+                
                 solicitudPreconsulta.setIdSexo(rs.getInt(1));
                 solicitudPreconsulta.setSilla(rs.getInt(2));
                 solicitudPreconsulta.setCamilla(rs.getInt(3));
@@ -78,13 +79,14 @@ public class SolicitudPreconsultaServicioImpl implements SolicitudPreconsultaSer
                 System.out.println("otro motivo  " + (rs.getNString("OTRO")));
                 System.out.println("hospital " + (rs.getNString(16)));
             }
-                                    
+            System.out.println("Termino el while del resultset");           
             conn.close();
             rs.close();
             cstmt.close();
 
         } catch (SQLException ex) {
 
+            System.out.println("Catch de mostrar solicitud de preconsulta");
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             solicitudPreconsulta = null;

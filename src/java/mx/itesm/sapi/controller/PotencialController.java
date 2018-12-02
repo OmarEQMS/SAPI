@@ -753,7 +753,8 @@ public class PotencialController extends HttpServlet {
                             citaPreconsulta.setIdImportanciaCita(idImportante);
                             citaPreconsulta.setIdMotivoConsulta(Integer.parseInt(motivoConsulta));
                             citaPreconsulta.setHospitalProcedencia("\'NULL\'");//Se coloca NULL por si no hay otro hospital de referencia y MySQL lo reconozca.
-
+                            citaPreconsulta.setFechaSolicitud(timestamp);
+                            
                             switch (motivoConsulta) {
                                 case "1": {
 
