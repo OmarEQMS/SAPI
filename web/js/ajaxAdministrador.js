@@ -1359,6 +1359,7 @@ $(document).ready(function () {
     });
 
     $('#agregar-correoMedico').on('change', function () {
+        $("#error-datosRepetidos").hide();
         $.ajax({
 
             url: 'RegistraUsuarioController',
@@ -2149,8 +2150,8 @@ $(document).ready(function () {
     /**AGREGAR MEDICO */
     $('#btn-agregarMedico').on('click', function () {
         if (!repiteCorreo && !repiteNoEmpleadoMedico) {
-
             $("#error-datosRepetidos").hide();
+            
 
             if (isValidName($('#agregar-nombreMedico')) && isValidLastName($('#agregar-primerApellidoMedico')) && isValidSegundoApellidoMedico && isValidCedulaMedico
                     && isValidNumEmpleado($('#agregar-noEmpleadoMedico')) && isValidEmail($('#agregar-correoMedico')) && isValidPassword($('#agregar-passwordMedico')) &&
@@ -3348,7 +3349,7 @@ $(document).ready(function () {
     var repiteNoEmpleadoNavegadora;
     //NÚMERO DE EMPLEADO EN AGREGAR NAVEGADORA
     $('#agregar-noEmpleadoNavegadora').on('change', function () {
-
+        $("#error-datosRepetidos").hide();
         $.ajax({
 
             url: 'RegistraUsuarioController',
