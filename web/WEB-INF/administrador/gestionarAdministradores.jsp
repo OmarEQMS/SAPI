@@ -189,7 +189,7 @@
                                     <th scope="col">No. Empledo</th>
                                     <th scope="col">Especialidad</th>
                                     <th scope="col">Cédula Profesional</th>
-                                    <th scope="col">Acciones</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>

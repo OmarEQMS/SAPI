@@ -52,6 +52,11 @@
             <p class="clear">Agregando al paciente, por favor espere...</p>
         </div>
 
+        <div class="cargandoEditarPaciente" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Actualizando al paciente, por favor espere...</p>
+        </div>
+
         <div class="wrapper">
 
             <!-- SIDEBAR -->
@@ -163,20 +168,32 @@
                     <div class="card-body">
 
                         <!-- Boton agregar -->
+                        
+                        <div class="row mb-2 mt-2 ml-1">
+                            <div class="col-12">
+                                <h6 class="display-4 text-secondary" style="font-size:25px;">Reporte de Población
+                                </h6>
+                            </div>
+                        </div>
 
+                        <div class="row">
+                            <div class="col-12 centrado mb-3">
+                                <button style="border-radius:20px; vertical-align:middle" class="btn-actualizarReportePoblacion float-left" id="btn-actualizarPoblacion"><span> Actualizar Reporte</span></button>
+                                <button style="border-radius:20px; vertical-align:middle" class="btn-reportePoblacion float-left" id="btn-poblacion"><span> Descargar Reporte</span></button>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <div class="col-12 text-center">
+                                <hr>
+                            </div>
+                        </div>
+                        
                         <div class="row justify-content-end mt-2">
                             <div class="col-12">
                                 <button style="border-radius:20px;" class="btn btn-morado float-right" data-toggle="modal" data-target="#modalAgregarPaciente"><i
                                         class="fas fa-plus-circle mr-2"></i>Agregar Paciente</button>
                             </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12 centrado mb-3">
-                                <button style="border-radius:20px; vertical-align:middle" class="btn-reportePoblacion float-left" id="btn-poblacion"><span> Descargar Reporte de Población</span></button>
-                            </div>
-
                         </div>
 
                         <!-- Table -->
@@ -377,7 +394,7 @@
                                                         <i class="fas fa-map-marker-alt"></i>
                                                     </div>
                                                 </div>
-                                                <input type="text" class="form-control" id="editarNumIntAdministradorAPaciente" placeholder="No. int (Opcional))">
+                                                <input style = "font-size:13px" type="text" class="form-control" id="editarNumIntAdministradorAPaciente" placeholder="No. int (Opcional))">
                                             </div>
                                             <span class="text-danger" id="error-editar-NoInteriorPaciente">Formato incorrecto, solo dígitos y/o letras.</span>
 
@@ -389,7 +406,7 @@
                                                         <i class="fas fa-map-marker-alt"></i>
                                                     </div>
                                                 </div>
-                                                <input type="text" class="form-control" id="editarNumExtAdministradorAPaciente" placeholder="No. ext (Opcional)">
+                                                <input style = "font-size:13px" type="text" class="form-control" id="editarNumExtAdministradorAPaciente" placeholder="No. ext (Opcional)">
                                             </div>
                                             <span class="text-danger" id="error-editar-NoExteriorPaciente">Formato incorrecto, solo dígitos y/o letras.</span>
 
@@ -755,7 +772,7 @@
                                                     El paciente está informado y aceptó los términos y condiciones
                                                 </label>
                                             </div>
-                                            <span class="text-danger" id="error-terminos">Para continuar debes de aceptar los términos y condiciones.</span>
+                                            <span class="text-danger" id="error-terminos">Se deben aceptar los términos y condiciones.</span>
                                         </div>
                                     </div>
 

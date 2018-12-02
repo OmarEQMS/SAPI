@@ -247,6 +247,10 @@ $(document).ready(function () {
         $('#segundo-apellidoPaciente').val("");
         $('#segundo-apellidoPaciente').css('border', '');
         $('#segundo-apellidoPaciente').css('color', '');
+        
+        $('#codigo-postalPaciente').val("");
+        $('#codigo-postalPaciente').css('border', '');
+        $('#codigo-postalPaciente').css('color', '');
 
         $('#usuarioPaciente').val("");
         $('#usuarioPaciente').css('border', '');
@@ -423,6 +427,8 @@ $(document).ready(function () {
         $('#error-datosRepetidos').hide();
         $('#errorAgregarPosicion').hide();
         $('#errorAgregarEspecialidad').hide();
+        
+        $('#errorTerminosMedico').hide();
 
         $('#agregar-nombreMedico').css('border', '');
         $('#agregar-nombreMedico').css('color', '');
@@ -533,6 +539,8 @@ $(document).ready(function () {
         $('#noEqualPasswordsError').hide();
         $('#error-camposNavegadora').hide();
         $('#error-datosRepetidosNavegadora').hide();
+        
+        $('#errorTerminosNavegadora').hide();
 
         $('#agregar-nombreNavegadora').css('border', '');
         $('#agregar-nombreNavegadora').css('color', '');
@@ -678,6 +686,8 @@ $(document).ready(function () {
         $('#errorTerminosAdministrador').hide();
         $('#error-camposAdministrador').hide();
         $('#error-datosRepetidosAdministrador').hide();
+        
+        $('#errorTerminosAdministrador').hide();
 
         $('#agregar-nombreAdministrador').css('border', '');
         $('#agregar-nombreAdministrador').css('color', '');

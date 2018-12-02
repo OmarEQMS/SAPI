@@ -538,11 +538,12 @@
                                             <label><input class="form-check-input" type="checkbox" id="terminosMedico" /> El médico está informado y aceptó los términos y condiciones</label>
                                         </div>
                                     </div>
+                                    <span class="text-danger" id="errorTerminosMedico">Se deben aceptar los términos y condiciones.</span>
                                 </div>
 
                                 <div class="row mb-3" id="error-campos">
                                     <div class="col-12 text-center">
-                                        <span class="text-danger">Completa todos los campos y asegúrate de aceptar los términos para registrar la cuenta.</span>
+                                        <span class="text-danger">Completa todos los campos obligatorios para registrar la cuenta.</span>
                                     </div>
                                 </div>
 
