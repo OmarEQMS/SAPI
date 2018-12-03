@@ -8,6 +8,7 @@ package mx.itesm.sapi.controller;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 
 import java.sql.Date;
@@ -60,6 +61,7 @@ import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Login;
 import mx.itesm.sapi.bean.persona.Pic;
+import mx.itesm.sapi.service.GeneralPoblacionServicioImpl;
 import mx.itesm.sapi.service.diagnostico.AuditoriaRegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.diagnostico.EstadiajeTNMServiceImpl;
 import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
@@ -94,6 +96,7 @@ import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
 import mx.itesm.sapi.service.persona.LoginServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
+import mx.itesm.sapi.util.ExcelExport;
 
 import org.apache.commons.io.IOUtils;
 
@@ -690,23 +693,18 @@ public class AdministradorController extends HttpServlet {
                 }
 
                 case "ReportePoblacion": {
-                    /**
-                     * Author Angel Gtz
-                     *
-                     * Toma datos de todos los pacientes para crear un estudio
-                     * de la poblacion del INCAN Mostrando: Nombre Primer
-                     * Apellido Segundo apellido CURP Codigo postal Estado
-                     * Municipio Fecha de nacimiento Estado civil Sexo Nivel
-                     * educativo Motivo de consulta Medico adscrito Adscrito
-                     * presente Medico radiologo Radiologo presente Compañia
-                     * seguro
-                     *
-                     *
-                     */
-
-                    PersonaServicioImpl personaServicio = new PersonaServicioImpl();
-                    Persona persona = personaServicio.mostrarPersona(2);
-
+                    try{
+                        GeneralPoblacionServicioImpl MyTable = new GeneralPoblacionServicioImpl();
+                        ArrayList<ArrayList<String>> myArrayList = MyTable.mostrarPoblacionGeneral();
+                        response.setContentType("application/octet-stream");
+                        response.setHeader("Content-Disposition", "attachment;filename=reportePoblacion.xls");
+                        OutputStream os = response.getOutputStream();
+                        ExcelExport.export("Poblacion",os, myArrayList);
+                        os.flush();
+                        os.close();
+                    }catch(IOException ex){
+                        System.out.print(this.getClass().toString().concat(ex.getMessage()));
+                    } 
                     break;
                 }
 
