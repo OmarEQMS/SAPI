@@ -251,7 +251,7 @@ public class ReporteControllerJaspersoft extends HttpServlet {
                             int idPaciente = (int) sesion.getAttribute("idPaciente");
                             int idEmpleado = (int) sesion.getAttribute("idEmpleado");
 
-                            String report = "/mx/itesm/sapi/reportes/reporte/ReporteNavegadorav2.0.jasper";
+                            String report = "/mx/itesm/sapi/reportes/reporte/ReporteNavegadoraMitad.jasper";
                             InputStream input = getClass().getResourceAsStream(report);
                             List<ReporteNavegadora> reporteNavegadoraFields = new ArrayList<>();
 

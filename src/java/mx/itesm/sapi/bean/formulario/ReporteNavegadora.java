@@ -27,7 +27,7 @@ public class ReporteNavegadora {
     private String mastografiaBiradsFecha;
     private String mastografiaBiradsNombre;
     private String cantidadLaminillas;
-    private String tipoPaciente;//falta
+    private String tipoPaciente;
     private String cirugiaFecha;
     private String quimioterapiaFecha;
     private String navegadora;
@@ -35,7 +35,7 @@ public class ReporteNavegadora {
     private String cirugiaTipo;
     private String resultadoPatologia;
     private String otroResultado;
-    private String estadoHormonal;//estado Hormonal 
+    private String estadoHormonal;
     private String resultado;
     private String socioeconomico;
     private String decisionConsulta;
@@ -48,7 +48,7 @@ public class ReporteNavegadora {
     private String radioterapiaComentario;
     private String quimioterapiaCiclo;
     private String radioterapiaCiclo;
-    private String mastografiaPreINCAN; //falta
+    private String mastografiaPreINCAN;
     private String fechaNavegacion;
     private String fechaConsulta;
     private String medicoAdscrito;
@@ -118,7 +118,7 @@ public class ReporteNavegadora {
         this.fechaConsulta = fechaConsulta;
     }
 
-    public String isTipoPaciente() {
+    public String getTipoPaciente() {
         return tipoPaciente;
     }
 
@@ -150,7 +150,7 @@ public class ReporteNavegadora {
         this.medicoResidente = medicoResidente;
     }
 
-    public String isNoAdscrito() {
+    public String getNoAdscrito() {
         return noAdscrito;
     }
 
@@ -158,7 +158,7 @@ public class ReporteNavegadora {
         this.noAdscrito = noAdscrito;
     }
 
-    public String isEstadoHormonal() {
+    public String getEstadoHormonal() {
         return estadoHormonal;
     }
 
@@ -182,7 +182,7 @@ public class ReporteNavegadora {
         this.noSeguro = noSeguro;
     }
 
-    public String isMastografiaPreINCAN() {
+    public String getMastografiaPreINCAN() {
         return mastografiaPreINCAN;
     }
 
