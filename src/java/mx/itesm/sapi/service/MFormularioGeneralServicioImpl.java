@@ -94,6 +94,7 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
             mFormularioGeneral.setKi67(rs.getString("v_ki67"));
             mFormularioGeneral.setGradoH(rs.getString("v_gradoH"));
             mFormularioGeneral.setResultadoPatologiaPost(rs.getString("v_resultadoPatologiaPost"));
+            mFormularioGeneral.setOtroResultadoPost(rs.getString("v_otroResultadoPost"));
 
             rs.close();
             cstmt.close();

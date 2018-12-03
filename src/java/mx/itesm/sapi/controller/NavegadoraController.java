@@ -629,6 +629,9 @@ public class NavegadoraController extends HttpServlet {
                                 if (formGeneral.getResultadoPatologiaPost() == null) {
                                     formGeneral.setResultadoPatologiaPost("");
                                 }
+                                if(formGeneral.getOtroResultadoPost() == null){
+                                    formGeneral.setOtroResultadoPost("");
+                                }
 
                                 formGeneralList.add(formGeneral);
                                 ElJeison.add(formGeneralList);

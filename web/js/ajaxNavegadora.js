@@ -4136,7 +4136,7 @@ $(document).ready(function () {
             }
 
             if ((data[0][0].masto !== "")) {
-                $('#tipoMastografia option:contains(' + $.trim(data[0][0].masto) + ')').each(function () {
+                $('#ResultadoTipoMastografia option:contains(' + $.trim(data[0][0].masto) + ')').each(function () {
                     if ($.trim($(this).text()) === $.trim(data[0][0].masto)) {
                         $(this).attr('selected', 'selected');
                     }
@@ -4240,12 +4240,15 @@ $(document).ready(function () {
             }
 
             if (data[0][0].ki67 !== ""){
-                $('#ki67 option:contains(' + $.trim(data[0][0].ki67) + ')').each(function () {
+                  $('#ki67').val(data[0][0].ki67);
+
+          /*      $('#ki67 option:contains(' + $.trim(data[0][0].ki67) + ')').each(function () {
                     if ($.trim($(this).text()) === $.trim(data[0][0].ki67)) {
                         $(this).attr('selected', 'selected');
                     }
 
                 });
+                */
             }
                 
 
@@ -4260,7 +4263,7 @@ $(document).ready(function () {
     });
 // 'ene 1, 2001'
     function convertDate(fecha) {
-        //console.log(fecha);
+        console.log(fecha);
         fecha = fecha.replace("ene", "jan");
         fecha = fecha.replace("feb", "feb");
         fecha = fecha.replace("mar", "mar");
