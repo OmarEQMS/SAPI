@@ -1025,9 +1025,7 @@ public class NavegadoraController extends HttpServlet {
                             /**
                              * FIN DECLARACION DE SERVICIOS
                              */
-                            //PANTALLA 1 DEL FORMULARIO
-                            //PRZ
-                            //LISTO
+
                             String prz = null;
                             prz = request.getParameter("prz-expediente");
 
@@ -1135,30 +1133,6 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("EL IDEMPLEADO EEEES: " + idEmpleado);
                                 int idCitaRadiologo = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
 
-                                LocalDate inicio = java.time.LocalDate.now();
-                                Date inicioDate = Date.valueOf(inicio);
-                                System.out.println(inicioDate);
-
-                                PacienteMedicoTitular pacienteMedicoTitularRadiologo = pacienteMedicoTitularServicioImpl.mostrarPacienteMedicoTitularIdPacientePosicion(idPacientePotencial, 11);
-
-                                if (pacienteMedicoTitularRadiologo != null) {
-                                    idEmpleadoAnteriorRadiologo = pacienteMedicoTitularRadiologo.getIdEmpleado();
-
-                                    pacienteMedicoTitularRadiologo.setIdPaciente(idPacientePotencial);
-                                    pacienteMedicoTitularRadiologo.setIdEmpleado(idEmpleado);
-                                    pacienteMedicoTitularRadiologo.setInicio(inicioDate);
-                                    pacienteMedicoTitularServicioImpl.actualizarPacienteMedicoTitular(pacienteMedicoTitularRadiologo);
-
-                                } else {
-
-                                    pacienteMedicoTitularRadiologo = new PacienteMedicoTitular();
-                                    pacienteMedicoTitularRadiologo.setIdPaciente(idPacientePotencial);
-                                    pacienteMedicoTitularRadiologo.setIdEmpleado(idEmpleado);
-                                    pacienteMedicoTitularRadiologo.setInicio(inicioDate);
-                                    pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitularRadiologo);
-
-                                }
-
                                 //checkbox adscritoPresente
                                 if (request.getParameterMap().containsKey("noAdscritoRadiologo") == true) {
                                     adscritoPresenteRadiologo = 0;
@@ -1188,7 +1162,7 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Adscrito Presente ".concat(String.valueOf(adscritoPresenteRadiologo)));
 
                             } else {
-                                System.out.println("Sin médico adscrito");
+                                System.out.println("Sin médico radiologo");
                             }
 
                             //MEDICO RESIDENTE------------------ *************************NO ESTÁ HECHO********
@@ -1204,30 +1178,6 @@ public class NavegadoraController extends HttpServlet {
                                 int idEmpleadoResidente = empleadoServicioImpl.mostrarEmpleadoPersona(medicoResidente).getIdEmpleado();
                                 System.out.println("EL IDEMPLEADO EEEES: " + idEmpleadoResidente);
                                 int idCitaResidente = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
-
-                                LocalDate inicio = java.time.LocalDate.now();
-                                Date inicioDate = Date.valueOf(inicio);
-                                System.out.println(inicioDate);
-
-                                PacienteMedicoTitular pacienteMedicoTitularResidente = pacienteMedicoTitularServicioImpl.mostrarPacienteMedicoTitularIdPacientePosicion(idPacientePotencial, 1);
-
-                                if (pacienteMedicoTitularResidente != null) {
-                                    idEmpleadoAnteriorResidente = pacienteMedicoTitularResidente.getIdEmpleado();
-
-                                    pacienteMedicoTitularResidente.setIdPaciente(idPacientePotencial);
-                                    pacienteMedicoTitularResidente.setIdEmpleado(idEmpleadoResidente);
-                                    pacienteMedicoTitularResidente.setInicio(inicioDate);
-                                    pacienteMedicoTitularServicioImpl.actualizarPacienteMedicoTitular(pacienteMedicoTitularResidente);
-
-                                } else {
-
-                                    pacienteMedicoTitularResidente = new PacienteMedicoTitular();
-                                    pacienteMedicoTitularResidente.setIdPaciente(idPacientePotencial);
-                                    pacienteMedicoTitularResidente.setIdEmpleado(idEmpleadoResidente);
-                                    pacienteMedicoTitularResidente.setInicio(inicioDate);
-                                    pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitularResidente);
-
-                                }
 
                                 //checkbox adscritoPresente
                                 if (request.getParameterMap().containsKey("noAdscritoResidente") == true) {
@@ -2885,7 +2835,7 @@ public class NavegadoraController extends HttpServlet {
                             DocumentoEstudio documentoEstudioMastografia = null;
 
                             int resultadoMastografia = 0;
-                            String resultadoMastografiaRequest = (request.getParameter("biradsMasto"));
+                            String resultadoMastografiaRequest = (request.getParameter("ResultadoTipoMastografia"));
                             if (resultadoMastografiaRequest != null && resultadoMastografiaRequest.length() > 0) {
                                 resultadoMastografia = Integer.parseInt(resultadoMastografiaRequest);
 
@@ -2934,7 +2884,7 @@ public class NavegadoraController extends HttpServlet {
                             //Resltado Ultrasonido
                             DocumentoEstudio documentoEstudioUSG = null;
                             int resultadoUltrasonido = 0;
-                            String resultadoUltrasonidoRequest = (request.getParameter("biradUSG"));
+                            String resultadoUltrasonidoRequest = (request.getParameter("tipoUSG"));
                             if (resultadoUltrasonidoRequest != null && resultadoUltrasonidoRequest.length() > 0) {
                                 resultadoUltrasonido = Integer.parseInt(resultadoUltrasonidoRequest);
 
@@ -3039,7 +2989,7 @@ public class NavegadoraController extends HttpServlet {
                             if (receptorRpRequest != null && receptorRpRequest.length() > 0) {
                                 receptorRp = Integer.parseInt(receptorRpRequest);
                                 System.out.println("receptorRp " + (receptorRp));
-                                biopsia.setIdReceptorProgesterona(receptorRe);
+                                biopsia.setIdReceptorProgesterona(receptorRp);
                             } else {
                                 System.out.println("sin etapaClinica ");
                             }
