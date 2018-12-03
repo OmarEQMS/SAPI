@@ -2363,7 +2363,7 @@ $(document).ready(function () {
         if (!isValidFechaEstudioPrevio($(this))) {
             $('#error-fechaUltra').show();
         } else {
-         //   $('#error-fechaUltra').hide();
+            $('#error-fechaUltra').hide();
         }
 
     });
@@ -4216,7 +4216,7 @@ $(document).ready(function () {
             }
 
             if ((data[0][0].masto !== "")) {
-                $('#tipoMastografia option:contains(' + $.trim(data[0][0].masto) + ')').each(function () {
+                $('#ResultadoTipoMastografia option:contains(' + $.trim(data[0][0].masto) + ')').each(function () {
                     if ($.trim($(this).text()) === $.trim(data[0][0].masto)) {
                         $(this).attr('selected', 'selected');
                     }
@@ -4320,12 +4320,15 @@ $(document).ready(function () {
             }
 
             if (data[0][0].ki67 !== ""){
-                $('#ki67 option:contains(' + $.trim(data[0][0].ki67) + ')').each(function () {
+                  $('#ki67').val(data[0][0].ki67);
+
+          /*      $('#ki67 option:contains(' + $.trim(data[0][0].ki67) + ')').each(function () {
                     if ($.trim($(this).text()) === $.trim(data[0][0].ki67)) {
                         $(this).attr('selected', 'selected');
                     }
 
                 });
+                */
             }
                 
 
@@ -4365,7 +4368,7 @@ $(document).ready(function () {
     }
 
     function convertDate2(date) {
-        console.log(date);
+       // console.log(date);
         var yyyy = date.getFullYear().toString();
         var mm = (date.getMonth() + 1).toString();
         var dd = date.getDate().toString();
@@ -4478,7 +4481,7 @@ function isValidTratamientoPrevio(input) {
 }
 
 function isValidFechaEstudioPrevio(input) {
-
+    console.log(input);
     let valorSeleccionado = input.val();
 
     let fechaIntroducida = new Date(valorSeleccionado);
