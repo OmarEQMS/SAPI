@@ -423,6 +423,25 @@ $(document).ready(function () {
 
     });
 
+    //Mediaqueries
+    $(window).resize(function () {
+
+        if ($(window).width() <= 650) {
+
+            $('div#calendarCitasPaciente .fc-toolbar .fc-center .btn-group').hide();
+            $('div#calendarCitasPaciente .fc-toolbar .fc-left .fc-today-button').hide();
+
+        }
+        
+        if ($(window).width() <= 500) {
+
+            $('.btnAgregarTratamiento').removeClass('float-right');
+            $('#tablaTratamientos_info').hide();
+            
+
+        }
+
+    });
 
 
 
