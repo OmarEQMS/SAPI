@@ -298,12 +298,12 @@
                                                 <tr>
                                                     <th scope="col">PRZ</th>
                                                     <th scope="col">Nombre</th>
-                                                    <th scope="col">Primer Apellido</th>
-                                                    <th scope="col">Segundo Apellido</th>
+                                                    
                                                     <th scope="col">Tipo de paciente</th>
                                                     <th scope="col"></th>
                                                     <th scope="col">Fecha de navegación</th>
                                                     <th scope="col">Teléfono</th>
+                                                    <th scope="col">Estado Cita</th>
                                                     <th scope="col"></th>
                                                 </tr>
                                             </thead>
@@ -334,9 +334,9 @@
 
 
                                                         <td>${pacienteAprobado.prz}</td>
-                                                        <td>${pacienteAprobado.nombre}</td>
-                                                        <td>${pacienteAprobado.primerApellido}</td>
-                                                        <td>${pacienteAprobado.segundoApellido}</td>
+                                                        <td>${pacienteAprobado.nombre} ${pacienteAprobado.primerApellido} ${pacienteAprobado.segundoApellido}</td>
+                                                        
+                                                       
 
                                                         <c:choose>
                                                             <c:when test="${pacienteAprobado.tipoPaciente==1}">
@@ -359,6 +359,7 @@
 
                                                         <td>${pacienteAprobado.fechaRegistro}</td>                  
                                                         <td>${pacienteAprobado.telefono}</td>
+                                                        <td>${pacienteAprobado.nombreEstadoCita}</td>
                                                         <td>
                                                             <button class="btn btn-info m-1 btn-ver-formulario" data-id="${pacienteAprobado.idPaciente}" id="btn-ver">
                                                                 <i class="fab fa-wpforms"></i>
