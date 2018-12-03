@@ -649,6 +649,8 @@ public class AdministradorController extends HttpServlet {
                     int idEmpleado = Integer.parseInt(request.getParameter("idEmpleado"));
                     System.out.println("idEmpleado: " + idEmpleado);
 
+                    int idEmpleadoS = (int) sesion.getAttribute("idEmpleado");                    
+                    
                     Cuenta cuentaNav;
 
                     PersonaServicioImpl personaServicio = new PersonaServicioImpl();
@@ -666,6 +668,13 @@ public class AdministradorController extends HttpServlet {
                     }
 
                     System.out.println("SUPUESTAMENTE YA LA BORRÓ");
+                    
+                    if(idEmpleadoS == idEmpleado){                        
+                        System.out.println("Me borré a mi mismo '・o・'");
+                        
+                        PrintWriter out = response.getWriter();
+                        out.print("meBorre");
+                    }
 
                     break;
                 }

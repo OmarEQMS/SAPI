@@ -224,6 +224,7 @@ public class FrontController extends HttpServlet {
 
                         switch (keyRuta) {
                             case "administrador/cuentaAdministrador.jsp": {
+                                sesion.setAttribute("path", keyRuta);
                                 request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                 break;
                             }
@@ -232,6 +233,7 @@ public class FrontController extends HttpServlet {
                                 List<TablaMedicoAdministrador> medicosAdministrador = empleadoServicioImpl.mostrarListaEmpleadosAdministrador(3);
                                 request.setAttribute("ListaMedicosAdmistrador", medicosAdministrador);
 
+                                sesion.setAttribute("path", keyRuta);
                                 request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                 break;
                             }
@@ -240,6 +242,7 @@ public class FrontController extends HttpServlet {
                                 List<TablaMedicoAdministrador> navegadorasAdministrador = empleadoServicioImpl.mostrarListaEmpleadosAdministrador(4);
                                 request.setAttribute("ListaNavegadorasAdministrador", navegadorasAdministrador);
 
+                                sesion.setAttribute("path", keyRuta);
                                 request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                 break;
                             }
@@ -259,6 +262,7 @@ public class FrontController extends HttpServlet {
                                 List<Estado> estados = estadoServicio.mostrarEstado();
                                 request.setAttribute("estado", estados);
 
+                                sesion.setAttribute("path", keyRuta);
                                 request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                 break;
                             }
@@ -268,6 +272,7 @@ public class FrontController extends HttpServlet {
                                 List<TablaAdministradorAdministrador> administradores = empleadoServicioImpl.mostrarListaAdminAdministrador();
                                 request.setAttribute("ListaAdministradoresAdmistrador", administradores);
 
+                                sesion.setAttribute("path", keyRuta);
                                 request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                 break;
                             }
@@ -280,7 +285,8 @@ public class FrontController extends HttpServlet {
                                 PersonaServicioImpl personaServicioMedicos = new PersonaServicioImpl();
                                 List<Persona> medicos = personaServicioMedicos.mostrarMedicosAdscritos();
                                 request.setAttribute("listaMedicos", medicos);
-
+                                
+                                sesion.setAttribute("path", keyRuta);
                                 request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                 break;
                             }

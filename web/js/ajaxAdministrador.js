@@ -239,16 +239,39 @@ $(document).ready(function () {
                                 $('.cargandoEliminarAdmin').fadeOut();
                             },
                             success: function (response) {
-                                swal({
-                                    title: "¡Buen trabajo!",
-                                    text: "El administrador se eliminó correctamente.",
-                                    icon: "success",
-                                    closeOnClickOutside: false,
-                                    buttons: [, 'Aceptar'],
-                                });
-                                if (response == "error") {
-                                    alert("Error al cargar");
+                                if (response == "meBorre") {
+                                    swal({
+                                        title: "¡Te borraste!",
+                                        text: "Hasta pronto.",
+                                        icon: "success",
+                                        closeOnClickOutside: false,
+                                        buttons: [, 'Aceptar'],
+                                    }).then((value) => {
+                                        $.post("LoginController", {
+                                            key: "cerrar-sesion"
+                                        },
+                                                function (response, status, xhr) {
+                                                    console.log(response);
+                                                    if (status == "success") {
+                                                        if (response == "error") {
+                                                            $("#msj-error").show();
+                                                        } else {
+                                                            document.open("text/html", "replace");
+                                                            document.write(response);
+                                                            document.close();
+                                                        }
+                                                    }
+                                                }
+                                        );
+                                    });
                                 } else {
+                                    swal({
+                                        title: "¡Buen trabajo!",
+                                        text: "El administrador se eliminó correctamente.",
+                                        icon: "success",
+                                        closeOnClickOutside: false,
+                                        buttons: [, 'Aceptar'],
+                                    });
                                     t.row(fila).remove().draw();
                                 }
                             },
@@ -2606,7 +2629,7 @@ $(document).ready(function () {
                     document.close();
                 }
             }
-        });        
+        });
     });
     $('#IrAGestionPaciente').on('click', function () {
         console.log("VE!");
@@ -4482,29 +4505,29 @@ $(document).ready(function () {
                 });
 
     });
-    
-    
+
+
     //  REASIGNAR MEDICOS
-                
-        $('body').on('click', '#btn-continue-reasignar', function () {
+
+    $('body').on('click', '#btn-continue-reasignar', function () {
 
         console.log("Reasignar médicos");
-        
+
         var doctor1 = $('#doctor1');
         var doctor2 = $('#doctor2');
 
-        
-                 
+
+
         swal({
             title: '¿Estás seguro de reasignar todos los pacientes a este otro médico?',
             text: "Todos los pacientes serán transferidos a otro médico.",
             icon: 'warning',
-            buttons:["Cancelar","Aceptar"]
-            
+            buttons: ["Cancelar", "Aceptar"]
+
         }).then((result) => {
-            
-            if (result === true) {                
-                
+
+            if (result === true) {
+
                 if (doctor1.val() !== null && doctor2.val() !== null) {
                     $.ajax({
 
@@ -4518,23 +4541,23 @@ $(document).ready(function () {
                         },
                         success: function (response) {
                             console.log(response);
-                            if(response == 0)
+                            if (response == 0)
                             {
                                 swal({
-                                title: "¡Ups!",
-                                text: "Se han reasignado " + response + " pacientes. Es posible que no haya pacientes que reasignar.",
-                                icon: "error",
-                                button: "Aceptar",
+                                    title: "¡Ups!",
+                                    text: "Se han reasignado " + response + " pacientes. Es posible que no haya pacientes que reasignar.",
+                                    icon: "error",
+                                    button: "Aceptar",
                                 });
-                            }else
+                            } else
                             {
                                 swal({
-                                title: "Reasignación exitosa",
-                                text: "Se han reasignado " + response + " pacientes ",
-                                icon: "success",
-                                button: "Aceptar",
+                                    title: "Reasignación exitosa",
+                                    text: "Se han reasignado " + response + " pacientes ",
+                                    icon: "success",
+                                    button: "Aceptar",
                                 });
-                            }                           
+                            }
                         }
                     });
                 } else
@@ -4546,14 +4569,14 @@ $(document).ready(function () {
                         button: "Aceptar",
                     });
                 }
-            }           
+            }
         });
-        
-               
+
+
     });
-        
-    
-        /** ELIMINAR MEDICO */
+
+
+    /** ELIMINAR MEDICO */
     $('body').on('click', '#btn-continue1', function () {
 
         var idPaciente = $(this).data('id');
@@ -4589,7 +4612,7 @@ $(document).ready(function () {
                     }
                 });
     });
-    
+
 
     //AUTOCOMPLETAR Especialidades
     var especialidades = $('#listEspecialidades');
@@ -4614,8 +4637,8 @@ $(document).ready(function () {
                 console.log(JSON.stringify(especialidades));
 
             });
-            
-            
+
+
     // AUTOCOMPLETAR POSICIONES
 
     var posiciones = $('#listPosiciones');
