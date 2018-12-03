@@ -225,8 +225,13 @@
                                         <td>
                                             <button class="btn btn-primary btn-editarAdministrador m-1" data-toggle="modal" data-id="${administrador.idEmpleado}" data-target="#modalEditarAdministrador"><i
                                                     class="fas fa-edit"></i></button>
-                                            <button class="btn btn-danger btn-eliminarAdministrador m-1" id="btn-eliminarAdministrador" data-id="${administrador.idEmpleado}"><i 
+                                                                                                
+                                            <c:choose>
+                                                <c:when test="${administrador.idEmpleado!=111 && administrador.idEmpleado!=112}">
+                                                    <button class="btn btn-danger btn-eliminarAdministrador m-1" id="btn-eliminarAdministrador" data-id="${administrador.idEmpleado}"><i 
                                                     class="fas fa-trash-alt"></i></button>
+                                                </c:when>                                                            
+                                            </c:choose>   
                                         </td>
                                     </tr>
                                 </c:forEach>                            
