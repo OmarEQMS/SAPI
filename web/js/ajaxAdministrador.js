@@ -273,7 +273,7 @@ $(document).ready(function () {
                     && isValidNumEmpleado($('#editar-noEmpleadoAdministrador')) && isValidEmail($('#editar-correoAdministrador'))
                     && isValidPhoneNumber($('#editar-telefonoAdministrador')) && isValidEditEspecialidadAdmin && isValidEditPosicionAdmin
                     && $('#errorEditarCorreoRepetidoAdministrador').hide()) {
-                
+
                 $("#error-camposEditarAdmin").hide();
 
                 var idAdmin = $('#idAdministrador').val();
@@ -326,7 +326,7 @@ $(document).ready(function () {
 
                 });
 
-            } else{
+            } else {
                 $("#error-camposEditarAdmin").show();
             }
         } else {
@@ -1082,7 +1082,7 @@ $(document).ready(function () {
         }
 
     });
-    
+
     //PARA NAVEGADORA
     var isValidAddEspecialidadNavegadora;
     var dato2AddNavegadora = $("#agregar-especialidadNavegadora");
@@ -1420,7 +1420,7 @@ $(document).ready(function () {
                     repiteCorreo = true;
                 } else {
                     $('#errorCorreoRepetido').hide();
-                    $("#error-datosRepetidos").hide();                    
+                    $("#error-datosRepetidos").hide();
                     repiteCorreo = false;
                 }
 
@@ -2196,7 +2196,7 @@ $(document).ready(function () {
     $('#btn-agregarMedico').on('click', function () {
         if (!repiteCorreo && !repiteNoEmpleadoMedico) {
             $("#error-datosRepetidos").hide();
-            
+
 
             if (isValidName($('#agregar-nombreMedico')) && isValidLastName($('#agregar-primerApellidoMedico')) && isValidSegundoApellidoMedico && isValidCedulaMedico
                     && isValidNumEmpleado($('#agregar-noEmpleadoMedico')) && isValidEmail($('#agregar-correoMedico')) && isValidPassword($('#agregar-passwordMedico')) &&
@@ -2558,78 +2558,106 @@ $(document).ready(function () {
     });
 
     $('#IrAGestionMedicos').on('click', function () {
-        $.post("SAPI", {
-            file: "administrador/gestionMedicos.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "administrador/gestionMedicos.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrAMedico').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrAMedico').fadeOut();
+            },
+            success: function (response) {
+                if (response == "error") {
+                    $("#msj-error").show();
+                } else {
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
                 }
-        );
+            }
+        });
     });
 
     $('#IrAGestionNavegadora').on('click', function () {
-        $.post("SAPI", {
-            file: "administrador/gestionNavegadora.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "administrador/gestionNavegadora.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrANavegadora').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrANavegadora').fadeOut();
+            },
+            success: function (response) {
+                if (response == "error") {
+                    $("#msj-error").show();
+                } else {
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
                 }
-        );
+            }
+        });        
     });
     $('#IrAGestionPaciente').on('click', function () {
         console.log("VE!");
-        $.post("SAPI", {
-            file: "administrador/gestionPacientes.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "administrador/gestionPacientes.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrAPaciente').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrAPaciente').fadeOut();
+            },
+            success: function (response) {
+                if (response == "error") {
+                    $("#msj-error").show();
+                } else {
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
                 }
-        );
+            }
+        });
     });
     $('#IrAGestionAdministrador').on('click', function () {
-        $.post("SAPI", {
-            file: "administrador/gestionarAdministradores.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "administrador/gestionarAdministradores.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrAAdministrador').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrAAdministrador').fadeOut();
+            },
+            success: function (response) {
+                if (response == "error") {
+                    $("#msj-error").show();
+                } else {
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
                 }
-        );
+            }
+        });
     });
     $('#IrAReasignarMedico').on('click', function () {
         $.post("SAPI", {
@@ -2956,7 +2984,7 @@ $(document).ready(function () {
                     && isValidNumEmpleado($('#editar-noEmpleadoMedico')) && isValidEmail($('#editar-correoMedico'))
                     && isValidPhoneNumber($('#editar-telefonoMedico')) && isValidEditEspecialidad && isValidEditPosicion
                     ) {
-                
+
                 $('#error-camposEditar').hide();
 
                 var idMedico = $('#idMedico').val();
@@ -3728,7 +3756,7 @@ $(document).ready(function () {
                     && isValidNumEmpleado($('#editar-no-empleadoNavegadora')) && isValidEmail($('#editar-correoNavegadora'))
                     && isValidPhoneNumber($('#editar-telefonoNavegadora')) && isValidEditEspecialidadNavegadora
                     ) {
-                
+
                 $("#error-camposEditarNavegadora").hide();
 
                 var idNavegadora = $('#idNavegadora').val();
@@ -3796,7 +3824,7 @@ $(document).ready(function () {
                         $('#cedulaProfesional-' + idNavegadora).html(cedula);
                     }
                 });
-            } else{
+            } else {
                 $("#error-camposEditarNavegadora").show();
             }
         } else {
@@ -3951,7 +3979,7 @@ $(document).ready(function () {
     $('#btn-guardarCambios').on('click', function () {
         if (!repiteCorreo && !repiteUsuarioPaciente) {
             $("#error-editarDatosRepetidosPaciente").hide();
-            
+
             if (isValidName($('#editarNombreAdministradorAPaciente')) && isValidLastName($('#editarPrimer-apellidoAdministradorAPaciente'))
                     && isValidUserName($('#editarUsuarioAdministradorAPaciente')) &&
                     isValidEdit2ApellidoPaciente && isValidEditColPaciente && isValidEditCallePaciente && isValidEditNumIntPaciente &&
@@ -3960,9 +3988,9 @@ $(document).ready(function () {
                     && isValidPhoneNumber($('#editarTelAdministradorAPaciente')) &&
                     isValidSelect($('#editarEstado-civilPaciente')) && isValidDate($('#editarCumpleAdministradorAPaciente'))
                     && isValidSelect($('#editarEstadoAdministradorAPaciente')) && isValidSelect($('#editarMunicipioAdministradorAPaciente'))) {
-                
+
                 $("#error-camposEditarPaciente").hide();
-                
+
                 $.ajax({
 
                     url: "AdministradorController",
@@ -4016,7 +4044,7 @@ $(document).ready(function () {
                     }
 
                 });
-            } else{
+            } else {
                 $("#error-camposEditarPaciente").show();
             }
         } else {
@@ -4387,7 +4415,7 @@ $(document).ready(function () {
             }
         });
     });
-    
+
     ///////DescargarReportePoblacionPacietes
     $('body').on('click', '.btn-reportePoblacion', function () {
 
@@ -4411,7 +4439,7 @@ $(document).ready(function () {
                 });
 
     });
-    
+
     $('body').on('click', '.btn-actualizarPoblacion', function () {
 
         swal({
@@ -4619,27 +4647,7 @@ $(document).ready(function () {
 
         var m = input.val();
 
-        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
-
-        if (!expreg.test(m)) {
-
-            input.css('border', '1px solid red');
-            input.css('color', 'red');
-            return false;
-
-        } else {
-            input.css('border', '');
-            input.css('color', '');
-        }
-
-        return true;
-    }
-
-    function isValidEspecialidad(input) {
-
-        var m = input.val();
-
-        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
+        var expreg = /^[a-zA-Z\u00C0-\u017F]+,\s[a-zA-Z\u00C0-\u017F]+$/;
 
         if (!expreg.test(m)) {
 
@@ -4659,7 +4667,7 @@ $(document).ready(function () {
 
         var m = input.val();
 
-        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,127}$/;
+        var expreg = /^[a-zA-Z\u00C0-\u017F]+,\s[a-zA-Z\u00C0-\u017F]+$/;
 
         if (!expreg.test(m)) {
 

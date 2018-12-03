@@ -56,6 +56,23 @@
             <img src="img/loading.svg">
             <p class="clear">Actualizando al paciente, por favor espere...</p>
         </div>
+        
+        <div class="cargandoIrAMedico" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando la lista de médicos...</p>
+        </div>
+        <div class="cargandoIrANavegadora" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando la lista de navegadoras...</p>
+        </div>
+        <div class="cargandoIrAPaciente" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando la lista de pacientes...</p>
+        </div>
+        <div class="cargandoIrAAdministrador" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando la lista de administradores...</p>
+        </div>
 
         <div class="wrapper">
 
