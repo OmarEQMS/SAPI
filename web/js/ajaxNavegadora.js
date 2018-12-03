@@ -2364,7 +2364,7 @@ $(document).ready(function () {
         if (!isValidFechaEstudioPrevio($(this))) {
             $('#error-fechaUltra').show();
         } else {
-            $('#error-fechaUltra').hide();
+         //   $('#error-fechaUltra').hide();
         }
 
     });
@@ -4094,7 +4094,9 @@ $(document).ready(function () {
             }
 
             if (data[0][0].fechaFin !== "ene 1, 1900")
-                $('#fecha-decisionPreconsulta').val(data[0][0].fechaFin);
+                var fecha = data[0][0].fechaFin;
+                fecha = convertDate(fecha);
+                $('#fecha-decisionPreconsulta').val(fecha);
 
             if ((data[0][0].decisionCosulta !== "")) {
                 $('#decisionPreconsulta option:contains(' + $.trim(data[0][0].decisionCosulta) + ')').each(function () {
@@ -4237,8 +4239,15 @@ $(document).ready(function () {
                 });
             }
 
-            if (data[0][0].ki67 !== "")
-                $('#ki67').val(data[0][0].ki67);
+            if (data[0][0].ki67 !== ""){
+                $('#ki67 option:contains(' + $.trim(data[0][0].ki67) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].ki67)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+                
 
 
         },
