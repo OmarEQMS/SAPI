@@ -2364,7 +2364,7 @@ $(document).ready(function () {
         if (!isValidFechaEstudioPrevio($(this))) {
             $('#error-fechaUltra').show();
         } else {
-         //   $('#error-fechaUltra').hide();
+            $('#error-fechaUltra').hide();
         }
 
     });
@@ -4260,7 +4260,7 @@ $(document).ready(function () {
     });
 // 'ene 1, 2001'
     function convertDate(fecha) {
-        console.log(fecha);
+        //console.log(fecha);
         fecha = fecha.replace("ene", "jan");
         fecha = fecha.replace("feb", "feb");
         fecha = fecha.replace("mar", "mar");
@@ -4285,7 +4285,7 @@ $(document).ready(function () {
     }
 
     function convertDate2(date) {
-        console.log(date);
+       // console.log(date);
         var yyyy = date.getFullYear().toString();
         var mm = (date.getMonth() + 1).toString();
         var dd = date.getDate().toString();
@@ -4398,7 +4398,7 @@ function isValidTratamientoPrevio(input) {
 }
 
 function isValidFechaEstudioPrevio(input) {
-
+    console.log(input);
     let valorSeleccionado = input.val();
 
     let fechaIntroducida = new Date(valorSeleccionado);
