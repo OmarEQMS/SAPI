@@ -20,4 +20,5 @@ public interface CitaEmpleadoServicio {
     public boolean borradoLogicoCitaEmpleado(int idCitaEmpleado);
     public boolean actualizarCitaEmpleado(CitaEmpleado  citaEmpleado);
     public CitaEmpleado mostrarCitaEmpleadoIdEmpleado(int idEmpleado);
+    public CitaEmpleado mostrarCitaEmpleadoPacientePosicion(int idPaciente, int idPosicion);
 }

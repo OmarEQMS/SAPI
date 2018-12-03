@@ -533,7 +533,7 @@
                                                         <option disabled selected>Introduce la cirugóa</option>
                                                         <c:forEach items="${listaCirugia}" var="cirugia">  
 
-                                                            <option value='<c:out value="${cirugia.idTratamiento}"/>'><c:out value='${cirugia.nombre}'/> </option>
+                                                            <option value='<c:out value="${cirugia.idTipoTratamiento}"/>'><c:out value='${cirugia.nombre}'/> </option>
 
                                                         </c:forEach>
                                                     </select>
