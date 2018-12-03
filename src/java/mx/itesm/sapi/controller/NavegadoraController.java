@@ -2941,6 +2941,10 @@ public class NavegadoraController extends HttpServlet {
                                 tipoHistologico = Integer.parseInt(tipoHistologicoRequest);
                                 System.out.println("Resultado resultadoPatologiaPantalla5 " + (tipoHistologico));
                                 biopsia.setIdTipoHistologico(tipoHistologico);
+                                
+                              
+                                
+                                
                             } else {
                                 System.out.println("sin resultadoPatologiaPantalla5 ");
                             }
@@ -3034,9 +3038,49 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("BIOPSIA ".concat(biopsia.toString()));
                                 if (biopsia.getIdBiopsia() > 0) {
                                     biopsiaServicioImpl.actualizarBiopsiaFormulario(biopsia);
+                                    
+                                    
                                 } else {
                                     biopsiaServicioImpl.agregarBiopsiaFormulario(biopsia);
                                 }
+                                
+                                
+                                  if(tipoHistologico==16){
+                                    String otroResultadoPatologiaPostRequest = request.getParameter("otroResultadoPatologiaPost");
+                                    if(otroResultadoPatologiaPostRequest!=null && otroResultadoPatologiaPostRequest.length()>0){
+                                        OtroResultadoPatologia otroResultado2 = otroResultadoServicio.mostrarOtroResultadoPatologiaIdBiopsia(biopsia.getIdBiopsia());
+                                        
+                                        if(otroResultado2!=null){
+                                            otroResultado2.setNombre(otroResultadoPatologiaPostRequest);
+                                            otroResultadoServicio.actualizarOtroResultadoPatologia(otroResultado2);
+                                        }else{
+                                            otroResultado2= new OtroResultadoPatologia();
+                                            otroResultado2.setIdBiopsia(biopsia.getIdBiopsia());
+                                            otroResultado2.setNombre(otroResultadoPatologiaPostRequest);
+                                            otroResultadoServicio.agregarOtroResultadoPatologia(otroResultado2);
+                                        }
+                                    }
+                                    
+                                }else{
+                                    
+                                    String otroResultadoPatologiaPostRequest = "";
+                                    if(otroResultadoPatologiaPostRequest!=null && otroResultadoPatologiaPostRequest.length()>0){
+                                        OtroResultadoPatologia otroResultado2 = otroResultadoServicio.mostrarOtroResultadoPatologiaIdBiopsia(biopsia.getIdBiopsia());
+                                        
+                                        if(otroResultado2!=null){
+                                            otroResultado2.setNombre(otroResultadoPatologiaPostRequest);
+                                            otroResultadoServicio.actualizarOtroResultadoPatologia(otroResultado2);
+                                        }else{
+                                            otroResultado2= new OtroResultadoPatologia();
+                                            otroResultado2.setIdBiopsia(biopsia.getIdBiopsia());
+                                            otroResultado2.setNombre(otroResultadoPatologiaPostRequest);
+                                            otroResultadoServicio.actualizarOtroResultadoPatologia(otroResultado2);
+                                        }
+                                    }
+                                    
+                                    
+                                }
+                                
                             }
 
                             //Cmbia el idRol del paciente

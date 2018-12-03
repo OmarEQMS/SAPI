@@ -3062,6 +3062,7 @@ $(document).ready(function () {
         data.append("receptor-re", receptorRe);
         data.append("receptor-rp", receptorRp);
         data.append("ki67", ki67);
+        data.append("otroResultadoPatologiaPost", otroResultadoPatologiaPost);
         
          
         
