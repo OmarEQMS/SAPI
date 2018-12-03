@@ -513,7 +513,7 @@ public class FrontController extends HttpServlet {
                                 SolicitudPreconsulta solicitudPreconsulta;
                                 SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
                                 solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
-                                
+                                System.out.println("Solicitud preconsulta ".concat(String.valueOf(solicitudPreconsulta.getMotivoCosulta())));
                                 if(solicitudPreconsulta.getMotivoCosulta() == 5)
                                 {
                                     sesion.setAttribute("motivoPreconsulta", solicitudPreconsulta.getOtro());
