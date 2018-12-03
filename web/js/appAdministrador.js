@@ -396,8 +396,8 @@ $(document).ready(function () {
         $('#error-editar-UsuarioRepetidoPaciente').hide();
         $('#errorEditarPacienteCorreoRepetido').hide();
         $('#error-editarDatosRepetidosPaciente').hide();
+        $('#error-camposEditarPaciente').hide();
         
-
     });
 
     $("body").on("click", ".clearAddMedicosModal", function () {
@@ -480,6 +480,7 @@ $(document).ready(function () {
         $('#error-editarDatosRepetidos').hide();
         $('#errorEditarPosicion').hide();
         $('#errorEditarEspecialidad').hide();
+        $('#error-camposEditar').hide();
 
         $('#editar-nombreMedico').css('border', '');
         $('#editar-nombreMedico').css('color', '');
@@ -586,7 +587,10 @@ $(document).ready(function () {
         $('#errorEditarCedulaNavegadora').hide();
         $('#errorEditarEspecialidadNavegadora').hide();
         $('#error-editarDatosRepetidosNavegadora').hide();
-
+        $('#error-camposEditarNavegadora').hide();
+        
+        $('#editar-especialidad').css('border', '');
+        $('#editar-especialidad').css('color', '');
 
         $('#editar-nombreNavegadora').css('border', '');
         $('#editar-nombreNavegadora').css('color', '');
@@ -624,7 +628,7 @@ $(document).ready(function () {
         $('#errorEditarPosicionAdministrador').hide();
         $('#errorEditarCedulaAdministrador').hide();
         $('#error-editarDatosRepetidosAdministrador').hide();
-
+        $('#error-camposEditarAdmin').hide();
 
         $('#editar-nombreAdministrador').css('border', '');
         $('#editar-nombreAdministrador').css('color', '');

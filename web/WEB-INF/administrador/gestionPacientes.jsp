@@ -168,7 +168,7 @@
                     <div class="card-body">
 
                         <!-- Boton agregar -->
-                        
+
                         <div class="row mb-2 mt-2 ml-1">
                             <div class="col-12">
                                 <h6 class="display-4 text-secondary" style="font-size:25px;">Reporte de Población
@@ -188,7 +188,7 @@
                                 <hr>
                             </div>
                         </div>
-                        
+
                         <div class="row justify-content-end mt-2">
                             <div class="col-12">
                                 <button style="border-radius:20px;" class="btn btn-morado float-right" data-toggle="modal" data-target="#modalAgregarPaciente"><i
@@ -225,16 +225,16 @@
 
                                             <button class="btn btn-primary btn-editarPaciente m-1" data-toggle="modal" 
                                                     data-target="#modalEditarPaciente" data-id="${paciente.idPaciente}"><i class="fas fa-edit"></i></button>
-                                        <c:choose>
-                                            <c:when test="${paciente.descargaFormulario==1}">
-                                                <button style="color:white;" class="btn btn-warning descargarFormulario m-1" data-id="${paciente.idPaciente}"><i class="fas fa-cloud-download-alt"></i></button>
-                                            </c:when>                                                            
-                                        </c:choose>                                
-                                <button class="btn btn-danger btn-eliminarPaciente m-1" data-id="${paciente.idPaciente}"><i class="fas fa-trash-alt"></i></button>
+                                                <c:choose>
+                                                    <c:when test="${paciente.descargaFormulario==1}">
+                                                    <button style="color:white;" class="btn btn-warning descargarFormulario m-1" data-id="${paciente.idPaciente}"><i class="fas fa-cloud-download-alt"></i></button>
+                                                    </c:when>                                                            
+                                                </c:choose>                                
+                                            <button class="btn btn-danger btn-eliminarPaciente m-1" data-id="${paciente.idPaciente}"><i class="fas fa-trash-alt"></i></button>
 
-                                </td>
-                                </tr>
-                            </c:forEach>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -465,6 +465,12 @@
                                             <span class="text-warning" id="errorEditarPacienteCorreoRepetido">El correo ya existe.</span>
                                         </div>
 
+                                    </div>
+
+                                    <div class="row mb-3" id="error-camposEditarPaciente">
+                                        <div class="col-12 text-center">
+                                            <span class="text-danger">Debes llenar correctamente los campos para editar la cuenta.</span>
+                                        </div>
                                     </div>
 
                                     <div class="row mb-3" id="error-editarDatosRepetidosPaciente">

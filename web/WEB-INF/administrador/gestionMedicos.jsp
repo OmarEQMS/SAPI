@@ -357,6 +357,12 @@
                                         <span class="text-danger" id="errorEditarCedulaMedicos">Formato incorrecto, deben ser 7 dígitos.</span>
                                     </div>
                                 </div>
+                                
+                                <div class="row mb-3" id="error-camposEditar">
+                                    <div class="col-12 text-center">
+                                        <span class="text-danger">Debes llenar correctamente los campos para editar la cuenta.</span>
+                                    </div>
+                                </div>
 
                                 <div class="row mb-3" id="error-editarDatosRepetidos">
                                     <div class="col-12 text-center">

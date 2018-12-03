@@ -41,17 +41,17 @@
     </head>
 
     <body>
-        
+
         <div class="cargandoAgregarAdmin" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Agregando al administrador, por favor espere...</p>
         </div>
-        
+
         <div class="cargandoEditarAdmin" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Actualizando información del administrador, por favor espere...</p>
         </div>
-        
+
         <div class="cargandoEliminarAdmin" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Eliminando al administrador, por favor espere...</p>
@@ -377,7 +377,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group row justify-content-center">
                                     <div class="col-12 text-center">
                                         <div class="form-check form-check-inline"> 
@@ -542,6 +542,12 @@
                                             <input type="text" id="editar-cedulaProfesionalAdministrador" class="form-control" placeholder="Cédula Profesional (Opcional)">
                                         </div>
                                         <span class="text-danger" id="errorEditarCedulaAdministrador">Formato incorrecto, deben ser 7 dígitos.</span>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3" id="error-camposEditarAdmin">
+                                    <div class="col-12 text-center">
+                                        <span class="text-danger">Debes llenar correctamente los campos para editar la cuenta.</span>
                                     </div>
                                 </div>
 
