@@ -8,12 +8,12 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Rendimiento de: ${sessionScope.nombreNavegadora} ${sessionScope.primerApellidoNavegadora}</title>
+        <title>Rendimiento de: ${sessionScope.nombreNavegadora} ${sessionScope.primerApellidoNavegadora}</title>
 
 
         <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
@@ -34,92 +34,92 @@
         <script src="lib/tooltipster/dist/js/tooltipster.bundle.min.js" type="text/javascript"></script>
         <script src="lib/datatables/datatables.min.js" type="text/javascript"></script>
 
-    <link rel="stylesheet" href="css/styleAdministrador.css">
-    <script src="js/appAdministrador.js"></script>
-    <script src="js/ajaxAdministrador.js"></script>
-    <script src="js/rendimiento.js"></script>
+        <link rel="stylesheet" href="css/styleAdministrador.css">
+        <script src="js/appAdministrador.js"></script>
+        <script src="js/ajaxAdministrador.js"></script>
+        <script src="js/rendimiento.js"></script>
 
 
-</head>
+    </head>
 
-<body>
+    <body>
 
-    <div class="wrapper">
+        <div class="wrapper">
 
-        <!-- SIDEBAR -->
-        <nav id="sidebar">
+            <!-- SIDEBAR -->
+            <nav id="sidebar">
 
-            <div class="sidebar-header">
+                <div class="sidebar-header">
 
-                <div class="row text-center justify-content-center mt-2">
-                    <div class="col-12">
-                        <img src="img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
+                    <div class="row text-center justify-content-center mt-2">
+                        <div class="col-12">
+                            <img src="img/logoSapi.png" style="width: 70%; display:block; margin:auto;" alt="">
+                        </div>
                     </div>
+
                 </div>
 
-            </div>
+                <div class="profile">
 
-            <div class="profile">
-
-                <div class="row">
-                    <div class="col-12 mb-2 mt-4">
-                        <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="imagenPerfil edit-image" width="66px" height="66px" alt="">
+                    <div class="row">
+                        <div class="col-12 mb-2 mt-4">
+                            <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="imagenPerfil edit-image" width="66px" height="66px" alt="">
+                        </div>
                     </div>
-                </div>
 
-                <div class="row justify-content-center mb-2">
-                    <div class="col-6 text-center">
-                        <span class="textoSidebar m-0">${sessionScope.nombre} ${sessionScope.primerApellido}</span>
-                        <span class="textoSidebar userSidebar m-0">@${sessionScope.usuario}</span>
+                    <div class="row justify-content-center mb-2">
+                        <div class="col-6 text-center">
+                            <span class="textoSidebar m-0">${sessionScope.nombre} ${sessionScope.primerApellido}</span>
+                            <span class="textoSidebar userSidebar m-0">@${sessionScope.usuario}</span>
+                        </div>
                     </div>
+
+                    <div class="row justify-content-center">
+
+                        <div class="col-2 text-center">
+                            <a class="iconoSidebar IrAMiCuenta" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
+                        </div>
+
+                        <div class="col-2">
+                            <a class="iconoSidebar salirCuenta" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
+                        </div>
+
+                    </div>
+
                 </div>
 
                 <div class="row justify-content-center">
-
-                    <div class="col-2 text-center">
-                        <a class="iconoSidebar IrAMiCuenta" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
+                    <div class="col-12 text-center">
+                        <hr style="background-color:white !important">
                     </div>
-
-                    <div class="col-2">
-                        <a class="iconoSidebar salirCuenta" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
-                    </div>
-
                 </div>
 
-            </div>
+                <!-- MENU PRINCIPAL ENLACES -->
+                <ul class="list-unstyled components">
 
-            <div class="row justify-content-center">
-                <div class="col-12 text-center">
-                    <hr style="background-color:white !important">
-                </div>
-            </div>
+                    <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
 
-            <!-- MENU PRINCIPAL ENLACES -->
-            <ul class="list-unstyled components">
-                                
-                <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
+                    <li id="IrAGestionNavegadora"><a><i class="fas fa-calendar-alt"></i>Navegadoras</a></li>
 
-                <li id="IrAGestionNavegadora"><a><i class="fas fa-calendar-alt"></i>Navegadoras</a></li>
+                    <li id="IrAGestionPaciente"><a><i class="fas fa-users"></i>Pacientes</a></li>
 
-                <li id="IrAGestionPaciente"><a><i class="fas fa-users"></i>Pacientes</a></li>
-                
-                <li id="IrAGestionAdministrador"><a><i class="fas fa-shield-alt"></i>Administradores</a></li>
-                
-                <li id="IrAMiCuenta"><a><i class="far fa-user"></i>Mi cuenta</a></li>
+                    <li id="IrAGestionAdministrador"><a><i class="fas fa-shield-alt"></i>Administradores</a></li>
 
-                <li id="IrAReasignarMedico"><a><i class="fas fa-sync"></i>Reasignar médico</a></li>
-                                                
-                <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
-                
-            </ul>
+                    <li id="IrAMiCuenta"><a><i class="far fa-user"></i>Mi cuenta</a></li>
 
-        </nav>
+                    <li id="IrAReasignarMedico"><a><i class="fas fa-sync"></i>Reasignar médico</a></li>
 
-        
+                    <li id="salirCuenta"><a><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
 
-        <!-- CONTENIDO PRINCIPAL  -->
+                </ul>
 
-        
+            </nav>
+
+
+
+            <!-- CONTENIDO PRINCIPAL  -->
+
+
             <div id="content">
 
                 <!-- MENU -->
@@ -200,7 +200,7 @@
                                     </div>
 
                                 </div>
-                                
+
                                 <div class="row errorFechasEdad">
                                     <div class="col-12">
                                         <h6 class="text-danger">Elija un rango de fechas válido</h6>
@@ -230,7 +230,7 @@
                                         <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por Escolaridad</h1>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row form-group">
                                     <div class="col-6">
                                         <label for="fecha1Escolaridad">Fecha 1</label>
@@ -242,7 +242,7 @@
                                     </div>
 
                                 </div>
-                                
+
                                 <div class="row errorFechasEscolaridad">
                                     <div class="col-12">
                                         <h6 class="text-danger">Elija un rango de fechas válido</h6>
@@ -272,7 +272,7 @@
                                         <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por lugar de residencia</h1>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row form-group">
                                     <div class="col-6">
                                         <label for="fecha1Residencia">Fecha 1</label>
@@ -284,7 +284,7 @@
                                     </div>
 
                                 </div>
-                                
+
                                 <div class="row errorFechasResidencia">
                                     <div class="col-12">
                                         <h6 class="text-danger">Elija un rango de fechas válido</h6>
@@ -314,7 +314,7 @@
                                         <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por nivel socioeconómico</h1>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row form-group">
                                     <div class="col-6">
                                         <label for="fecha1Economico">Fecha 1</label>
@@ -326,7 +326,7 @@
                                     </div>
 
                                 </div>
-                                
+
                                 <div class="row errorFechasEconomico">
                                     <div class="col-12">
                                         <h6 class="text-danger">Elija un rango de fechas válido</h6>
@@ -356,7 +356,7 @@
                                         <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por decision pre-consulta</h1>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row form-group">
                                     <div class="col-6">
                                         <label for="fecha1Pre">Fecha 1</label>
@@ -368,7 +368,7 @@
                                     </div>
 
                                 </div>
-                                
+
                                 <div class="row errorFechasPre">
                                     <div class="col-12">
                                         <h6 class="text-danger">Elija un rango de fechas válido</h6>
@@ -398,7 +398,7 @@
                                         <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por resultado de patología</h1>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row form-group">
                                     <div class="col-6">
                                         <label for="fecha1Patologia">Fecha 1</label>
@@ -410,7 +410,7 @@
                                     </div>
 
                                 </div>
-                                
+
                                 <div class="row errorFechasPatologia">
                                     <div class="col-12">
                                         <h6 class="text-danger">Elija un rango de fechas válido</h6>
@@ -438,10 +438,10 @@
                                 </div>
 
                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-    </div>
+                                </div>
 
-    
 
-</body>
 
-</html>
+                                </body>
+
+                                </html>

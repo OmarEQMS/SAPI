@@ -248,6 +248,7 @@ public class FrontController extends HttpServlet {
                                 PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
                                 List<PacienteAdmin> pacientes = pacienteServicio.mostrarPacientesAdmin();
                                 request.setAttribute("ListaPacientesAdministrador", pacientes);
+                                
 
                                 //Estado civil
                                 EstadoCivilServicioImpl estadoCivilServicio = new EstadoCivilServicioImpl();
@@ -284,6 +285,23 @@ public class FrontController extends HttpServlet {
                                 request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                 break;
                             }
+                            
+                            case "administrador/rendimientoNavegadora.jsp": {
+                                    sesion.setAttribute("path", keyRuta);
+                                     
+                                    int idEmpleadoNavegadora = Integer.parseInt(request.getParameter("idNavegadora"));
+                                    
+                                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                                    TablaMedicoAdministrador navegadora = empleadoServicioImpl.mostrarMedicoAdministrador(idEmpleadoNavegadora, 4);
+                                    
+                                    sesion.setAttribute("nombreNavegadora", navegadora.getNombre());
+                                    sesion.setAttribute("primerApellidoNavegadora", navegadora.getPrimerApellido());
+                                    sesion.setAttribute("idEmpleadoNavegadora", idEmpleadoNavegadora);
+                                                                                                                                                                                                                                                            
+                                    request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
+                                    break;
+
+                                }
                         }                            
                         break;
                     }

@@ -93,6 +93,7 @@ $(document).ready(function () {
                                 title: "¡Buen trabajo!",
                                 text: "Administrador agregado correctamente.",
                                 icon: "success",
+                                closeOnEsc: false,
                                 closeOnClickOutside: false,
                                 buttons: [, 'Aceptar'],
                             });
@@ -216,6 +217,7 @@ $(document).ready(function () {
             text: "Los datos se eliminarán y no podrás recuperarlos.",
             icon: "warning",
             buttons: true,
+            closeOnEsc: false,
             closeOnClickOutside: false,
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
@@ -243,6 +245,7 @@ $(document).ready(function () {
                                     title: "¡Buen trabajo!",
                                     text: "El administrador se eliminó correctamente.",
                                     icon: "success",
+                                    closeOnEsc: false,
                                     closeOnClickOutside: false,
                                     buttons: [, 'Aceptar'],
                                 });
@@ -309,6 +312,7 @@ $(document).ready(function () {
                         swal({
                             title: "Cambios guardados correctamente",
                             icon: "success",
+                            closeOnEsc: false,
                             closeOnClickOutside: false,
                             buttons: true,
                             buttons: [, 'Aceptar']
@@ -616,6 +620,7 @@ $(document).ready(function () {
                         swal({
                             title: "¡Buen trabajo!",
                             text: "Cuenta actualizada correctamente.",
+                            closeOnEsc: false,
                             closeOnClickOutside: false,
                             icon: "success",
                             button: "Aceptar",
@@ -632,6 +637,7 @@ $(document).ready(function () {
                                                             title: "Error",
                                                             text: "Hubo un error actualizando tus datos.",
                                                             icon: "error",
+                                                            closeOnEsc: false,
                                                             closeOnClickOutside: false,
                                                             buttons: [, 'Aceptar'],
                                                         });
@@ -659,6 +665,7 @@ $(document).ready(function () {
                     title: "Error",
                     text: "Verifica que todos los datos sean validos",
                     icon: "error",
+                    closeOnEsc: false,
                     closeOnClickOutside: false,
                     button: "Aceptar",
                 });
@@ -666,9 +673,11 @@ $(document).ready(function () {
         } else {
             swal({
                 title: "¡Datos inválidos!",
-                text: "Revisa todos los campos antes de continuar",
+                text: "Revisa todos los campos antes de continuar.",
+                closeOnEsc: false,
                 closeOnClickOutside: false,
                 icon: "error",
+                button: "Aceptar",
             });
         }
 
@@ -730,9 +739,11 @@ $(document).ready(function () {
         //Modal cambiar contraseña 
         if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
             swal({
-                title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
+                title: "¿Estás seguro que deseas guardar los cambios de tu contraseña?",
                 text: "No podras volver a usar tu contraseña anterior para ingresar",
                 icon: "warning",
+                closeOnEsc: false,
+                closeOnEsc: false,
                 closeOnClickOutside: false,
                 buttons: true,
                 buttons: ['Regresar', 'Cambiar contraseña'],
@@ -755,6 +766,7 @@ $(document).ready(function () {
                                             title: "Buen trabajo!",
                                             text: "Contraseña actualizada correctamente!",
                                             icon: "success",
+                                            closeOnEsc: false,
                                             closeOnClickOutside: false,
                                             button: "Entendido!",
                                         });
@@ -2195,6 +2207,7 @@ $(document).ready(function () {
     /**AGREGAR MEDICO */
     $('#btn-agregarMedico').on('click', function () {
         if (!repiteCorreo && !repiteNoEmpleadoMedico) {
+            
             $("#error-datosRepetidos").hide();
 
 
@@ -2204,6 +2217,9 @@ $(document).ready(function () {
                     && isValidPhoneNumber($('#agregar-telefonoMedico')) && isValidAddEspecialidad && isValidAddPosicion
                     && areEqualPasswords($('#agregar-passwordMedico'), $('#agregar-password2Medico'))
                     ) {
+                
+                $("#error-datosRepetidos").hide();
+                $("#error-campos").hide();
 
                 if (isValidTerminosMedicos) {
 
@@ -2266,6 +2282,7 @@ $(document).ready(function () {
                             swal({
                                 title: "¡Buen trabajo!",
                                 text: "Se ha agregado correctamente al médico.",
+                                closeOnEsc: false,
                                 closeOnClickOutside: false,
                                 icon: "success",
                                 buttons: [, 'Aceptar'],
@@ -2606,7 +2623,7 @@ $(document).ready(function () {
                     document.close();
                 }
             }
-        });        
+        });
     });
     $('#IrAGestionPaciente').on('click', function () {
         console.log("VE!");
@@ -2710,6 +2727,7 @@ $(document).ready(function () {
                 function (response, status, xhr) {
                     console.log("El ajax fue exitoso!!-----------------------");
                     if (status == "success") {
+                        
                         if (response == "error") {
                             $("#msj-error").show();
                         } else {
@@ -3038,6 +3056,7 @@ $(document).ready(function () {
                         console.log("Cierra el modal");
                         swal({
                             title: "Cambios guardados correctamente",
+                            closeOnEsc: false,
                             closeOnClickOutside: false,
                             icon: "success",
                             buttons: true,
@@ -3083,6 +3102,7 @@ $(document).ready(function () {
         swal({
             title: "¿Estás seguro?",
             text: "Los datos se eliminarán y no podrás recuperarlos.",
+            closeOnEsc: false,
             closeOnClickOutside: false,
             icon: "warning",
             buttons: true,
@@ -3130,6 +3150,7 @@ $(document).ready(function () {
                                     swal({
                                         title: "¡No se puede eliminar a este médico!",
                                         text: "El médico tiene pacientes a su cargo. Reasígnalos e intenta nuevamente.",
+                                        closeOnEsc: false,
                                         closeOnClickOutside: false,
                                         icon: "error",
                                         buttons: [, 'Aceptar'],
@@ -3674,6 +3695,7 @@ $(document).ready(function () {
                             swal({
                                 title: "¡Buen trabajo!",
                                 text: "Se ha agregado correctamente a la navegadora.",
+                                closeOnEsc: false,
                                 closeOnClickOutside: false,
                                 icon: "success",
                                 buttons: [, 'Aceptar'],
@@ -3811,6 +3833,7 @@ $(document).ready(function () {
                         swal({
                             title: "Cambios guardados correctamente",
                             icon: "success",
+                            closeOnEsc: false,
                             closeOnClickOutside: false,
                             buttons: true,
                             buttons: [, 'Aceptar']
@@ -3848,6 +3871,7 @@ $(document).ready(function () {
             title: "¿Estás seguro?",
             text: "Los datos se eliminarán y no podrás recuperarlos.",
             icon: "warning",
+            closeOnEsc: false,
             closeOnClickOutside: false,
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
@@ -4028,6 +4052,7 @@ $(document).ready(function () {
                         swal({
                             title: "Cambios guardados correctamente",
                             icon: "success",
+                            closeOnEsc: false,
                             closeOnClickOutside: false,
                             buttons: true,
                             buttons: [, 'Aceptar']
@@ -4117,6 +4142,7 @@ $(document).ready(function () {
                             swal({
                                 title: "¡Buen trabajo!",
                                 text: "Paciente agregado correctamente.",
+                                closeOnEsc: false,
                                 closeOnClickOutside: false,
                                 icon: "success",
                                 buttons: [, 'Aceptar'],
@@ -4238,8 +4264,9 @@ $(document).ready(function () {
         var id = $(this).data('id');
 
         swal({
-            title: "¿Estás segura?",
+            title: "¿Estás seguro?",
             text: "Una vez eliminado, el paciente y sus datos ya no se podrán recuperar.",
+            closeOnEsc: false,
             closeOnClickOutside: false,
             icon: "warning",
             buttons: true,
@@ -4273,6 +4300,7 @@ $(document).ready(function () {
                                 swal({
                                     title: "¡Buen trabajo!",
                                     text: "El paciente se eliminó correctamente.",
+                                    closeOnEsc: false,
                                     closeOnClickOutside: false,
                                     icon: "success",
                                     buttons: [, 'Aceptar'],
@@ -4416,14 +4444,16 @@ $(document).ready(function () {
         });
     });
 
-    ///////DescargarReportePoblacionPacietes
+    ///////DescargarReportePoblacionPacietes 
     $('body').on('click', '.btn-reportePoblacion', function () {
 
         swal({
             title: "¿Está seguro de descargar el reporte?",
             text: "Este proceso puede ser tardado.",
             icon: "warning",
+            closeOnEsc: false,
             buttons: true,
+            closeOnClickOutside: false,
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
@@ -4446,6 +4476,8 @@ $(document).ready(function () {
             title: "¿Está seguro de actualizar el reporte?",
             text: "Este proceso es tardado.",
             icon: "warning",
+            closeOnEsc: false,
+            closeOnClickOutside: false,
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
@@ -4470,6 +4502,7 @@ $(document).ready(function () {
                                     title: "¡Buen trabajo!",
                                     text: "El reporte se actualizó correctamente.",
                                     icon: "success",
+                                    closeOnEsc: false,
                                     closeOnClickOutside: false,
                                     buttons: [, 'Aceptar'],
                                 });
@@ -4482,29 +4515,31 @@ $(document).ready(function () {
                 });
 
     });
-    
-    
+
+
     //  REASIGNAR MEDICOS
-                
-        $('body').on('click', '#btn-continue-reasignar', function () {
+
+    $('body').on('click', '#btn-continue-reasignar', function () {
 
         console.log("Reasignar médicos");
-        
+
         var doctor1 = $('#doctor1');
         var doctor2 = $('#doctor2');
 
-        
-                 
+
+
         swal({
-            title: '¿Estás segure de reasignar todos los pacientes a este otro médico?',
+            title: '¿Estás seguro de reasignar todos los pacientes a este otro médico?',
             text: "Todos los pacientes serán transferidos a otro médico.",
+            closeOnEsc: false,
+            closeOnClickOutside: false,
             icon: 'warning',
-            buttons:["Cancelar","Aceptar"]
-            
+            buttons: ["Cancelar", "Aceptar"]
+
         }).then((result) => {
-            
-            if (result === true) {                
-                
+
+            if (result === true) {
+
                 if (doctor1.val() !== null && doctor2.val() !== null) {
                     $.ajax({
 
@@ -4518,49 +4553,55 @@ $(document).ready(function () {
                         },
                         success: function (response) {
                             console.log(response);
-                            if(response == 0)
+                            if (response == 0)
                             {
                                 swal({
-                                title: "¡Ups!",
-                                text: "Se han reasignado " + response + " pacientes. Es posible que no haya pacientes que reasignar.",
-                                icon: "error",
-                                button: "Aceptar",
+                                    title: "Error",
+                                    text: "Se han reasignado " + response + " pacientes. Es posible que no haya pacientes que reasignar.",
+                                    icon: "error",
+                                    closeOnEsc: false,
+                                    closeOnClickOutside: false,
+                                    button: "Aceptar",
                                 });
-                            }else
+                            } else
                             {
                                 swal({
-                                title: "Reasignación exitosa",
-                                text: "Se han reasignado " + response + " pacientes ",
-                                icon: "success",
-                                button: "Aceptar",
+                                    title: "¡Buen trabajo!",
+                                    text: "Se han reasignado " + response + " pacientes. ",
+                                    icon: "success",
+                                    closeOnEsc: false,
+                                    closeOnClickOutside: false,
+                                    button: "Aceptar",
                                 });
-                            }                           
+                            }
                         }
                     });
                 } else
                 {
                     swal({
-                        title: "¡Ups!",
+                        title: "Error",
                         text: "Escoge dos médicos",
                         icon: "error",
+                        closeOnEsc: false,
+                        closeOnClickOutside: false,
                         button: "Aceptar",
                     });
                 }
-            }           
+            }
         });
-        
-               
+
+
     });
-        
-    
-        /** ELIMINAR MEDICO */
+
+
+    /** ELIMINAR MEDICO */
     $('body').on('click', '#btn-continue1', function () {
 
         var idPaciente = $(this).data('id');
 
         //Modal editar medicos
         swal({
-            title: "Estas seguro?",
+            title: "¿Estás seguro?",
             text: "Los datos se eliminarán y no podrás recuperarlos.",
             icon: "warning",
             buttons: true,
@@ -4589,7 +4630,7 @@ $(document).ready(function () {
                     }
                 });
     });
-    
+
 
     //AUTOCOMPLETAR Especialidades
     var especialidades = $('#listEspecialidades');
@@ -4614,8 +4655,8 @@ $(document).ready(function () {
                 console.log(JSON.stringify(especialidades));
 
             });
-            
-            
+
+
     // AUTOCOMPLETAR POSICIONES
 
     var posiciones = $('#listPosiciones');
