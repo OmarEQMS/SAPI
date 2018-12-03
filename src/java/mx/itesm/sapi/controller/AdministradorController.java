@@ -710,11 +710,13 @@ public class AdministradorController extends HttpServlet {
                     } 
                     break;
                 }
-                
+                      
                 case "ActualizarReportePoblacion": {
                     try{
                         GeneralPoblacionServicioImpl MyTable = new GeneralPoblacionServicioImpl();
-                        MyTable.actualizarPoblacionGeneral();
+                        if(MyTable.actualizarPoblacionGeneral()){
+                            System.out.println("YA CARGÓ");
+                        }                        
                         PrintWriter out = response.getWriter();
                         out.print("Actualizado");
                     }catch(IOException ex){

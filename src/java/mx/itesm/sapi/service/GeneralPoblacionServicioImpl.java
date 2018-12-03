@@ -159,6 +159,8 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
         Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
+        
+        boolean exito = false;
 
         //Call del store procedure
         String stProcedure = "CALL actualizarPoblacion()";
@@ -169,17 +171,22 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
             cstmt = conn.prepareCall(stProcedure);
             rs = cstmt.executeQuery();
             
-            rs.close();
-            cstmt.close();
+            rs.next();
+            
+            if(rs.getInt("Resultado") == 1){
+                exito = true;
+            }
+            
             conn.close();
-            return true;
+            rs.close();
+            cstmt.close();            
 
         } catch (SQLException ex) {
             System.out.println("GeneralPoblacionServicioImpl mostrarPoblacionGeneral");
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
-                    .concat(ex.getMessage()));
-            return false;
+                    .concat(ex.getMessage()));            
         }
+        return exito;
     }
     
 }

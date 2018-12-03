@@ -73,6 +73,10 @@
             <img src="img/loading.svg">
             <p class="clear">Cargando la lista de administradores...</p>
         </div>
+        <div class="cargandoActualizarReporte" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Actualizando reporte...</p>
+        </div>
 
         <div class="wrapper">
 

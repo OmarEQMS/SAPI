@@ -4421,7 +4421,7 @@ $(document).ready(function () {
 
         swal({
             title: "¿Está seguro de descargar el reporte?",
-            text: "Este proceso es tardado.",
+            text: "Este proceso puede ser tardado.",
             icon: "warning",
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
@@ -4440,7 +4440,7 @@ $(document).ready(function () {
 
     });
 
-    $('body').on('click', '.btn-actualizarPoblacion', function () {
+    $('body').on('click', '.btn-actualizarReportePoblacion', function () {
 
         swal({
             title: "¿Está seguro de actualizar el reporte?",
@@ -4457,13 +4457,13 @@ $(document).ready(function () {
                             cache: false,
                             method: 'POST',
                             beforeSend: function () {
-                                $('.cargandoEliminarAdmin').fadeIn();
+                                $('.cargandoActualizarReporte').fadeIn();
                             },
                             data: {
-                                key: 'AcualizarReportePoblacion'
+                                key: 'ActualizarReportePoblacion'
                             },
                             complete: function () {
-                                $('.cargandoEliminarAdmin').fadeOut();
+                                $('.cargandoActualizarReporte').fadeOut();
                             },
                             success: function (response) {
                                 swal({
