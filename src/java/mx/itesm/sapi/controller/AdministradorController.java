@@ -707,6 +707,18 @@ public class AdministradorController extends HttpServlet {
                     } 
                     break;
                 }
+                
+                case "ActualizarReportePoblacion": {
+                    try{
+                        GeneralPoblacionServicioImpl MyTable = new GeneralPoblacionServicioImpl();
+                        MyTable.actualizarPoblacionGeneral();
+                        PrintWriter out = response.getWriter();
+                        out.print("Actualizado");
+                    }catch(IOException ex){
+                        System.out.print(this.getClass().toString().concat(ex.getMessage()));
+                    } 
+                    break;
+                }
 
                 case "autocompletarEspecialidades": {
                     EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();

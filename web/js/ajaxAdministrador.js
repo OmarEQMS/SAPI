@@ -4411,6 +4411,49 @@ $(document).ready(function () {
                 });
 
     });
+    
+    $('body').on('click', '.btn-actualizarPoblacion', function () {
+
+        swal({
+            title: "¿Está seguro de actualizar el reporte?",
+            text: "Este proceso es tardado.",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Cancelar', 'Aceptar'],
+            dangerMode: true,
+        })
+                .then((aceptar) => {
+                    if (aceptar) {
+                        $.ajax({
+                            url: 'AdministradorController',
+                            cache: false,
+                            method: 'POST',
+                            beforeSend: function () {
+                                $('.cargandoEliminarAdmin').fadeIn();
+                            },
+                            data: {
+                                key: 'AcualizarReportePoblacion'
+                            },
+                            complete: function () {
+                                $('.cargandoEliminarAdmin').fadeOut();
+                            },
+                            success: function (response) {
+                                swal({
+                                    title: "¡Buen trabajo!",
+                                    text: "El reporte se actualizó correctamente.",
+                                    icon: "success",
+                                    closeOnClickOutside: false,
+                                    buttons: [, 'Aceptar'],
+                                });
+                            },
+                            error: function (xhr) {
+
+                            }
+                        });
+                    }
+                });
+
+    });
 
     //AUTOCOMPLETAR Especialidades
     var especialidades = $('#listEspecialidades');

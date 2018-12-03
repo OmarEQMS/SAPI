@@ -72,11 +72,17 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
                 temp.setOxigeno(rs.getString("Oxigeno"));
                 temp.setCamilla(rs.getString("Camilla"));
                 temp.setConsultaAdscritoNombre(rs.getString("MedicosCita_Adscrito"));
-                if (rs.getInt("MedicosCita_AdscritoPresente") == 0) temp.setConsultaAdscritoPresente("No");
-                else temp.setConsultaAdscritoPresente("Sí");
+                switch (rs.getInt("MedicosCita_AdscritoPresente")) {
+                    case 0:temp.setConsultaAdscritoPresente("No");break;
+                    case 1:temp.setConsultaAdscritoPresente("Sí");break;
+                    default:temp.setConsultaAdscritoPresente("NA");break;
+                }
                 temp.setConsultaRadiologoNombre(rs.getString("MedicosCita_Radiologo"));
-                if (rs.getInt("MedicosCita_RadiologoPresente") == 0) temp.setConsultaRadiologoPresente("No");
-                else temp.setConsultaRadiologoPresente("Sí");
+                switch (rs.getInt("MedicosCita_RadiologoPresente")) {
+                    case 0:temp.setConsultaRadiologoPresente("No");break;
+                    case 1:temp.setConsultaRadiologoPresente("Sí");break;
+                    default:temp.setConsultaRadiologoPresente("NA");break;
+                }
                 temp.setEstudioPrevioMastografia(rs.getString("EstudioPrevio_BiradsMastografia"));
                 temp.setEstudioPrevioMastografiaFecha(rs.getDate("EstudioPrevio_FechaMastografia"));
                 temp.setEstudioPrevioUSG(rs.getString("EstudioPrevio_BiradsUsg"));
@@ -123,8 +129,11 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
                 temp.setBiopsiaINCanKi67(rs.getString("BiopsiaINCan_Ki67"));
                 temp.setBiopsiaINCanRe(rs.getString("BiopsiaINCan_RE"));
                 temp.setBiopsiaINCanRp(rs.getString("BiopsiaINCan_RP"));
-                if (rs.getInt("Preconsulta_SegundaOpinion") == 0)temp.setPreconsultaSegundaOpcion("Primera vez");
-                else temp.setPreconsultaSegundaOpcion("Segunda Opinión");
+                switch (rs.getInt("Preconsulta_SegundaOpinion")) {
+                    case 0: temp.setPreconsultaSegundaOpcion("Primera vez");break;
+                    case 1: temp.setPreconsultaSegundaOpcion("Segunda Opinión");break;
+                    default: temp.setPreconsultaSegundaOpcion("NA"); break;
+                }
                 temp.setPreconsultaFechaDecision(rs.getDate("Preconsulta_FechaDecision"));
                 temp.setPreconsultaDecision(rs.getString("Preconsulta_Decision"));
                 temp.setCirugiasINCanMasectomiaFecha(rs.getDate("FechaMasectomia"));
