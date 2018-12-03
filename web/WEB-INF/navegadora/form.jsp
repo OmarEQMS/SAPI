@@ -241,7 +241,7 @@
                                                         <option disabled selected>Seleccione un tipo de paciente</option>
 
                                                         <option value="0">Primera vez</option>
-                                                        <option value="1">Segunda opiniÃ¯Â¿Â½n</option>
+                                                        <option value="1">Segunda opinión</option>
 
                                                     </select>
                                                 </div>
