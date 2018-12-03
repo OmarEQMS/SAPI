@@ -393,6 +393,7 @@ $(document).ready(function () {
                     repiteCorreoAdministrador = true;
                 } else {
                     $('#errorCorreoRepetidoAdministrador').hide();
+                    $("#error-datosRepetidosAdministrador").hide();
                     repiteCorreoAdministrador = false;
                 }
 
@@ -452,6 +453,7 @@ $(document).ready(function () {
                 } else {
                     console.log("NoEmpleado no repetidooo")
                     $('#errorNumEmpleadoRepetidoAdministrador').hide();
+                    $("#error-datosRepetidosAdministrador").hide();
                     repiteNoEmpleadoAdministrador = false;
                 }
 
@@ -1050,6 +1052,7 @@ $(document).ready(function () {
                 } else {
                     console.log("NoEmpleado no repetidooo")
                     $('#errorNumEmpleadoRepetidoMedico').hide();
+                    $("#error-datosRepetidos").hide();
                     repiteNoEmpleadoMedico = false;
                 }
 
@@ -1359,7 +1362,6 @@ $(document).ready(function () {
     });
 
     $('#agregar-correoMedico').on('change', function () {
-        $("#error-datosRepetidos").hide();
         $.ajax({
 
             url: 'RegistraUsuarioController',
@@ -1380,6 +1382,7 @@ $(document).ready(function () {
                     repiteCorreo = true;
                 } else {
                     $('#errorCorreoRepetido').hide();
+                    $("#error-datosRepetidos").hide();                    
                     repiteCorreo = false;
                 }
 
@@ -1541,6 +1544,7 @@ $(document).ready(function () {
                     $('#errorUsuarioRepetidoPaciente').show();
                 } else {
                     $('#errorUsuarioRepetidoPaciente').hide();
+                    $("#error-datosRepetidosPaciente").hide();
                 }
 
             }
@@ -1582,6 +1586,7 @@ $(document).ready(function () {
                     repiteCorreoPaciente = true;
                 } else {
                     $('#errorCorreoRepetidoPaciente').hide();
+                    $("#error-datosRepetidosPaciente").hide();
                     repiteCorreoPaciente = false;
                 }
 
@@ -1873,6 +1878,7 @@ $(document).ready(function () {
                     repiteUsuarioPaciente = true;
                 } else {
                     $('#error-editar-UsuarioRepetidoPaciente').hide();
+                    $("#error-editarDatosRepetidosPaciente").hide();
                     repiteUsuarioPaciente = false;
                 }
 
@@ -1914,6 +1920,7 @@ $(document).ready(function () {
                     repiteCorreo = true;
                 } else {
                     $('#errorEditarPacienteCorreoRepetido').hide();
+                    $("#error-editarDatosRepetidosPaciente").hide();
                     repiteCorreo = false;
                 }
 
@@ -2328,6 +2335,7 @@ $(document).ready(function () {
                 } else {
                     console.log("NoEmpleado no repetidooo")
                     $('#errorEditarNumEmpleadoRepetidoMedico').hide();
+                    $("#error-editarDatosRepetidos").hide();
                     repiteEditNoEmpleadoMedico = false;
                 }
 
@@ -2415,6 +2423,7 @@ $(document).ready(function () {
                     repiteCorreo = true;
                 } else {
                     $('#errorEditarCorreoRepetido').hide();
+                    $("#error-editarDatosRepetidos").hide();
                     repiteCorreo = false;
                 }
 
@@ -2790,6 +2799,7 @@ $(document).ready(function () {
                 } else {
                     console.log("NoEmpleado no repetidooo")
                     $('#errorEditarNumEmpleadoRepetidoAdministrador').hide();
+                    $("#error-editarDatosRepetidosAdministrador").hide();
                     repiteEditNoEmpleadoAdministrador = false;
                 }
 
@@ -2877,6 +2887,7 @@ $(document).ready(function () {
                     repiteCorreo = true;
                 } else {
                     $('#errorEditarCorreoRepetidoAdministrador').hide();
+                    $("#error-editarDatosRepetidosAdministrador").hide();
                     repiteCorreo = false;
                 }
 
@@ -2980,7 +2991,7 @@ $(document).ready(function () {
             }
         } else {
             console.log("Entro al segundo else");
-            $("#error-datosRepetidos").show(); //ya existe un campo
+            $("#error-editarDatosRepetidos").show(); //ya existe un campo
         }
 
     });
@@ -3154,6 +3165,7 @@ $(document).ready(function () {
                 } else {
                     console.log("NoEmpleado no repetidooo")
                     $('#errorEditarNumEmpleadoRepetidoNavegadora').hide();
+                    $("#error-editarDatosRepetidosNavegadora").hide();
                     repiteEditNoEmpleadoNavegadora = false;
                 }
 
@@ -3289,6 +3301,7 @@ $(document).ready(function () {
                     repiteCorreoNavegadora = true;
                 } else {
                     $('#errorEditarCorreoRepetidoNavegadora').hide();
+                    $("#error-editarDatosRepetidosNavegadora").hide();
                     repiteCorreoNavegadora = false;
                 }
 
@@ -3370,6 +3383,7 @@ $(document).ready(function () {
                 } else {
                     console.log("NoEmpleado no repetidooo")
                     $('#errorNumEmpleadoRepetidoNavegadora').hide();
+                    $("#error-datosRepetidosNavegadora").hide();
                     repiteNoEmpleadoNavegadora = false;
                 }
 
@@ -3503,6 +3517,7 @@ $(document).ready(function () {
                     repiteCorreoNavegadora = true;
                 } else {
                     $('#errorCorreoRepetidoNavegadora').hide();
+                    $("#error-datosRepetidosNavegadora").hide();
                     repiteCorreoNavegadora = false;
                 }
 
@@ -3753,7 +3768,7 @@ $(document).ready(function () {
             }
         } else {
             console.log("Entro al segundo else");
-            $("#error-datosRepetidosNavegadora").show(); //ya existe un campo
+            $("#error-editarDatosRepetidosNavegadora").show(); //ya existe un campo
         }
     });
 
@@ -3902,6 +3917,7 @@ $(document).ready(function () {
     $('#btn-guardarCambios').on('click', function () {
         if (!repiteCorreo && !repiteUsuarioPaciente) {
             $("#error-editarDatosRepetidosPaciente").hide();
+            
             if (isValidName($('#editarNombreAdministradorAPaciente')) && isValidLastName($('#editarPrimer-apellidoAdministradorAPaciente'))
                     && isValidUserName($('#editarUsuarioAdministradorAPaciente')) &&
                     isValidEdit2ApellidoPaciente && isValidEditColPaciente && isValidEditCallePaciente && isValidEditNumIntPaciente &&
