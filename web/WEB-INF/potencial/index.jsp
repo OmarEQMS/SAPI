@@ -447,7 +447,7 @@
 
                                                                         </div>
 
-                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFile">
+                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
                                                                             <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilio" aria-describedby="fileHelp" disabled>
                                                                             <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label">
@@ -464,7 +464,7 @@
                                                                             <span class="text-success" style="font-size:11px;">Documento subido</span>
                                                                         </div>
 
-                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFile">
+                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
                                                                             <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilioSubido" aria-describedby="fileHelp" disabled>
                                                                             <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label">
@@ -511,7 +511,7 @@
                                                                             </span>
                                                                         </div>
 
-                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
+                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFileMasto">
                                                                             <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMasto" aria-describedby="fileHelp" disabled>
                                                                             <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label">
@@ -527,7 +527,7 @@
                                                                             <span class="text-success" style="font-size:11px;">Documento subido</span>
                                                                         </div>
 
-                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
+                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFileMasto">
                                                                             <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMastoSubido" aria-describedby="fileHelp" disabled>
                                                                             <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label">
@@ -578,7 +578,7 @@
                                                                             </span>
                                                                         </div>
 
-                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
+                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFileUsg">
                                                                             <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsg" aria-describedby="fileHelp" disabled>
                                                                             <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label">
@@ -592,7 +592,7 @@
                                                                             <span class="text-success" style="font-size:11px;">Documento subido</span>
                                                                         </div>
 
-                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
+                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFileUsg">
                                                                             <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsgSubido" aria-describedby="fileHelp" disabled>
                                                                             <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label">
@@ -668,7 +668,7 @@
                                                                             <span class="text-success" style="font-size:11px">Documento subido</span>
                                                                         </div>
 
-                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10">
                                                                             <input type="file" class="custom-file-input" id="fileEstudioBiopsiaSubido" name="fileEstudioBiopsia" aria-describedby="fileHelp" disabled>
                                                                             <span class="text-danger" id="error-biopsia">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label">
@@ -769,10 +769,10 @@
                                                             <c:choose>
                                                                 <c:when test="${sessionScope.idMotivoConsulta==5}">
                                                                     <div class="row mt-4 mb-4" id="otroHospital">
-                                                                        <div class="col-3 text-center">
+                                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center">
                                                                             <span class="textoDocumento">Otro motivo</span>
                                                                         </div>
-                                                                        <div class="custom-file col-8 p-0 m-0" id="customFile">
+                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0 m-0" id="customFile">
                                                                             <input type="text" class="form-control" id="otro-motivo-consulta" placeholder="Introduce otro motivo" value="${sessionScope.otroMotivo}" disabled>
                                                                         </div>
                                                                     </div>
@@ -1062,7 +1062,7 @@
                                                                             <span class="text-success" style="font-size:11px;">Documento subido</span>
                                                                         </div>
 
-                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFile">
+                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
                                                                             <input type="file" name="fileComprobanteDomicilio" class="custom-file-input" id="fileComprobanteDomicilio" aria-describedby="fileHelp">
                                                                             <span class="text-danger" id="error-comprobanteDomicilio">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label" id="labelComprobante">
@@ -1110,7 +1110,7 @@
                                                                             </span>
                                                                         </div>
 
-                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
+                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFileMasto">
                                                                             <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMasto" aria-describedby="fileHelp">
                                                                             <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label" id="labelEstudioMasto">
@@ -1126,7 +1126,7 @@
                                                                             <span class="text-success" style="font-size:11px;">Documento subido</span>
                                                                         </div>
 
-                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileMasto">
+                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFileMasto">
                                                                             <input type="file" name="fileEstudioPrevioMasto" class="custom-file-input" id="fileEstudioPrevioMasto" aria-describedby="fileHelp">
                                                                             <span class="text-danger" id="error-previoMasto">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label" id="labelEstudioMasto">
@@ -1177,7 +1177,7 @@
                                                                             </span>
                                                                         </div>
 
-                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
+                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFileUsg">
                                                                             <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsg" aria-describedby="fileHelp">
                                                                             <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label" id="labelEstudioUsg">
@@ -1191,7 +1191,7 @@
                                                                             <span class="text-success" style="font-size:11px;">Documento subido</span>
                                                                         </div>
 
-                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11" id="customFileUsg">
+                                                                        <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFileUsg">
                                                                             <input type="file" name="fileEstudioPrevioUsg" class="custom-file-input" id="fileEstudioPrevioUsg" aria-describedby="fileHelp">
                                                                             <span class="text-danger" id="error-previoUsg">No es una extensión válida. Puedes subir un archivo .jpg, .jpeg, .png o .pdf </span>
                                                                             <label class="custom-file-label" id="labelEstudioUsg">

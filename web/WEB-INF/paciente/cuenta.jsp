@@ -46,7 +46,7 @@
 
         <div class="wrapper">
 
-            <span id="prueba-jeje">prueba</span>
+            
 
             <!-- SIDEBAR -->
             <nav id="sidebar">
@@ -134,8 +134,8 @@
                 <!-- ***** A PARTIR DE AQUI ESCRIBEN EL CODIGO QUE QUIERAN..... ***** -->
                 <!-- **************************************************************** -->
 
-                <div class="row mb-3 justify-content-end">
-                    <div class="col-3 text-center">
+                <div class="row mb-3">
+                    <div class="col-12 text-right">
                         <span class="iconoHome mr-2">
                             <i class="fas fa-home"></i>
                         </span>
@@ -185,11 +185,11 @@
 
                             <!-- 1 -->
                             <div class="form-group row justify-content-center">
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-8 col-8">
                                     <label for="name">Nombre</label>
                                     <input type="text" class="form-control" id="name" value="${sessionScope.nombre}" readonly />
                                 </div>
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-8 col-8">
                                     <label for="surname1">Primer Apellido</label>
                                     <input type="text" class="form-control" id="surname1" value="${sessionScope.primerApellido}" readonly />
                                 </div>
@@ -198,11 +198,11 @@
 
                             <!-- 2 -->
                             <div class="form-group row justify-content-center">
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-8 col-8">
                                     <label for="surname2">Segundo Apellido</label>
                                     <input type="text" class="form-control" id="surname2" value="${sessionScope.segundoApellido}" readonly />
                                 </div>
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-8 col-8">
                                     <label for="username">Usuario</label>
                                     <input type="text" class="form-control" id="username" value="${sessionScope.usuario}" readonly />
                                 </div>
@@ -211,13 +211,13 @@
 
                             <!-- 3 -->
                             <div class="form-group row justify-content-center">
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-8 col-8">
                                     <label for="myEmail">Correo</label>
                                     <input type="text" class="form-control" id="correo" name="correo" value="${sessionScope.correo}" placeholder="Introduzca su correo" required />
                                     <span class="text-danger error-correo" id="error-correo">Formato incorrecto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
                                     <span class="text-warning" id="errorCorreoRepetido">El correo ya existe.</span>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-8 col-8">
                                     <label for="numExpediente">Número de Expediente</label>
                                     <input type="text" class="form-control" id="noExpediente" value="${sessionScope.expediente}" name="noExpediente" placeholder="Introduce numero de expediente" />
                                     <span class="text-danger error-noExpediente" id="error-noExpediente">El formato no es correcto, deben ser 9 caracteres y solo los 3 primeros pueden empezar con letras.</span>
@@ -226,14 +226,14 @@
 
                             <!-- 4 -->
                             <div class="form-group row justify-content-center">
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-8 col-8">
                                     <label for="telephoneNum">Teléfono</label>
                                     <input type="text" class="form-control" value="${sessionScope.telefono}" id="telefono" name="telefono" placeholder="Introduce teléfono"
                                            required />
                                     <span class="text-danger" id="error-tel">El formato no es correcto, deben ser 10 dígitos.</span>
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-8 col-8">
 
                                     <label class="form-check-label" for="etapaClinica">Etapa Clínica</label>
                                     <div class="input-group">
@@ -250,7 +250,7 @@
                             </div>
 
                             <div class="form-group row justify-content-center">
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-8 col-8">
                                     <label>Tipo de sangre</label>
                                     <input type="hidden" value="${sessionScope.tipoSangre}" id="selectSangre"/>
                                     <select class="form-control" id="tipoSangre" name="tipoSangre" >
@@ -260,7 +260,7 @@
                                         </c:forEach>                                             
                                     </select>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-8 col-8">
                                     <label for="myPRZ">PRZ</label>
                                     <input type="text" class="form-control" id="myPRZ" value="${sessionScope.prz}" readonly/>
                                 </div>
@@ -274,7 +274,7 @@
 
                             <!-- 5 -->
                             <div class="form-group row justify-content-center mt-4">
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-7 col-sm-5 col-10">
                                     <button type="button" class="btn btn-outline-success btn-block" id="guardarCambios" style="border-radius:20px">
                                         <i class="fas fa-save mr-1"></i>
                                         Guardar Cambios</button>
@@ -284,7 +284,7 @@
 
                             <!-- 6 -->
                             <div class="form-group row justify-content-center mt-3">
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-7 col-sm-5 col-10">
                                     <button type="button" class="btn btn-outline-info btn-block" id="btn-contraseña" style="border-radius:20px" data-toggle="modal"
                                             data-target="#modalCambiarContraseña">
                                         <i class="fas fa-key mr-1"></i>
@@ -299,7 +299,7 @@
                             </div>
 
                             <div class="form-group row justify-content-center mt-4">
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-7 col-sm-5 col-10">
                                     <button type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuenta" >
                                         <i class="fas fa-trash-alt mr-1"></i>
                                         Eliminar Cuenta</button>

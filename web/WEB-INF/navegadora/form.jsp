@@ -1242,6 +1242,7 @@
                                                     </div>
                                                     <input name="fecha-decisionPreconsulta" placeholder="Fecha decisión" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')" id="fecha-decisionPreconsulta">
                                                 </div>
+                                                <span class="text-danger" id="error-fechaDecision">Fecha incorrecta</span>
                                             </div>
                                         </div>
 
@@ -1319,8 +1320,9 @@
 
                                         <div class="form-group row">
                                             <div class="col-12">
-                                                <textarea name="comentarios" class="form-control" id="exampleFormControlTextarea1" style="min-height:200px;" placeholder="Introduce comentarios "></textarea>
+                                                <textarea name="comentarios" class="form-control" id="comentarioIncidencias" style="min-height:200px;" placeholder="Introduce comentarios "></textarea>
                                             </div>
+                                            <span class="text-danger" id="error-comentarioIncidencias">El texto excede el limite</span>
                                         </div>
 
                                         <div class="row mt-5 mb-3">
@@ -1334,6 +1336,7 @@
                                         <div class="col-12">
                                             <textarea name="comentariosAdicionales" class="form-control" id="comentariosAdicionales" style="min-height:200px;" placeholder="Introduce comentarios adicionales"></textarea>
                                         </div>
+                                        <span class="text-danger" id="error-comentarioAdicionales">El texto excede el limite</span>
                                     </div>
 
                                     <div class="row justify-content-center mt-5">
@@ -1601,7 +1604,7 @@
                                                     <input name="ki67" type="text" class="form-control" id="ki67" placeholder="Introduce Ki67">
                                                     <label type="text" class="ml-2 mt-2">%</label>
                                                 </div>
-
+                                                <span class="text-danger" id="error-ki67">Solo caracteres numéricos</span>
                                             </div>
                                         </div>
                                     </form>    

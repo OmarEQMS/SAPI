@@ -1345,6 +1345,9 @@ $(document).ready(function () {
 
         return false;
     }
+    
+    //Mediaqueries
+    
 
 });
 
