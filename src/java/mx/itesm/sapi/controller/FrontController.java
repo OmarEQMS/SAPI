@@ -247,6 +247,15 @@ public class FrontController extends HttpServlet {
                                 //Lista de pacientes
                                 PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
                                 List<PacienteAdmin> pacientes = pacienteServicio.mostrarPacientesAdmin();
+                                for (int i = 0; i < pacientes.size(); i++) {
+                                        pacientes.get(i).setDescargaFormulario(1);
+                                        /*if(pacienteServicio.mostrarColor(pacientes.get(i).getIdPaciente()) == 3 || pacienteServicio.mostrarColor(pacientes.get(i).getIdPaciente()) == 2){
+                                            pacientes.get(i).setDescargaFormulario(1);
+                                        }else{
+                                            pacientes.get(i).setDescargaFormulario(0);
+                                        }*/
+                                    }
+                                
                                 request.setAttribute("ListaPacientesAdministrador", pacientes);
 
                                 //Estado civil

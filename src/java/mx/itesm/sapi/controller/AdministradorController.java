@@ -1114,6 +1114,22 @@ public class AdministradorController extends HttpServlet {
                     break;
 
                 }
+                case "setIdSesion": {
+                   
+                    int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
+                    int idPersona = (int) sesion.getAttribute("idPersona");
+
+                    Empleado empleado;
+                    EmpleadoServicioImpl empleadoServicio = new EmpleadoServicioImpl();
+                    empleado = empleadoServicio.mostrarEmpleadoPersona(idPersona);
+
+                    int idEmpleado = empleado.getIdEmpleado();
+
+                    sesion.setAttribute("idPaciente", idPaciente);
+                    sesion.setAttribute("idEmpleado", idEmpleado);
+                    
+                    break;
+                }
 
             }
 

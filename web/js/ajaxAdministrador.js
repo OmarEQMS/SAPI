@@ -41,7 +41,37 @@ $(document).ready(function () {
 
     $("#error-camposAdministrador").hide();
     $("#error-datosRepetidosAdministrador").hide();
+    $('body').on('click', '.descargarFormulario', function () {
+        var idPaciente = $(this).data('id');
+                        $.ajax({
+                            url: 'AdministradorController',
+                            method: "POST",
+                            cache: false,
+                            data: {
+                                key: "setIdSesion",
+                                idPaciente: idPaciente
+                            },
+                            success: function (response) {
+                               
+                                var form = document.createElement("form");
+                                form.method = "post";
+                                form.action = "/SAPI/ReporteControllerJaspersoft?key=generar-reporteformulario";
+                                document.body.appendChild(form);
+                                form.submit();
+                                document.body.removeChild(form);
+                                
 
+
+                            },
+                            beforeSend: function(){
+                                 $('.generarReporte').fadeIn();  
+                            },
+                            complete: function(){
+                                $('.generarReporte').fadeOut();
+                            }
+                        });
+                    
+    });
 
     $('#btn-agregarAdministrador').on('click', function () {
         if (!repiteCorreoAdministrador && !repiteNoEmpleadoAdministrador) {

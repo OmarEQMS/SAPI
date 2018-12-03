@@ -139,7 +139,8 @@ public class ReporteControllerJaspersoft extends HttpServlet {
                             
                             int idPaciente = (int) sesion.getAttribute("idPacientePotencialForm");
                             int idEmpleado = (int) sesion.getAttribute("idEmpleadoNavegadora");
-
+                            System.out.println("El id del paciente es:" + String.valueOf(idPaciente));
+                            System.out.println("El id del paciente es:" + String.valueOf(idEmpleado));
                             String report = "/mx/itesm/sapi/reportes/reporte/ReporteNavegadoraCompleto.jasper";
                             InputStream input = getClass().getResourceAsStream(report);
                             List<ReporteNavegadora> reporteNavegadoraFields = new ArrayList<>();
@@ -251,7 +252,7 @@ public class ReporteControllerJaspersoft extends HttpServlet {
                             int idPaciente = (int) sesion.getAttribute("idPaciente");
                             int idEmpleado = (int) sesion.getAttribute("idEmpleado");
 
-                            String report = "/mx/itesm/sapi/reportes/reporte/ReporteNavegadoraMitad.jasper";
+                            String report = "/mx/itesm/sapi/reportes/reporte/ReporteNavegadoraCompleto.jasper";
                             InputStream input = getClass().getResourceAsStream(report);
                             List<ReporteNavegadora> reporteNavegadoraFields = new ArrayList<>();
 

@@ -40,6 +40,7 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             cstmt.setInt(1, idPaciente);
             
             rs = cstmt.executeQuery();
+            System.out.println("Ejecuta el 1 store procedure");
             rs.next();  
             
             if (!(rs.getString("v_PRZ") == null))
@@ -314,12 +315,13 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
                 reporteNavegadora.setResultadoPatologiaPost(rs.getString("v_resultadoPatologiaPost"));
             else
                 reporteNavegadora.setResultadoPatologiaPost("");
-            
+            System.out.println("Llena el bean del primer store procedure");
             
             cstmt = conn.prepareCall(stProcedure2);
             cstmt.setInt(1, idPaciente);
             
             rs = cstmt.executeQuery();
+            System.out.println("Ejectuta el 2 store procedure");
             rs.next();
             
             
@@ -372,15 +374,16 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
                 else
                     reporteNavegadora.setResultado("");
             
-            
+            System.out.println("Llena el bean del 2 store procedure");
             cstmt = conn.prepareCall(stProcedure3);
             cstmt.setInt(1, idEmpleado);
             
             rs = cstmt.executeQuery();
+            System.out.println("Ejecuta el 3 store procedure");
             rs.next();
             
             reporteNavegadora.setNavegadora(rs.getString("nombre").concat(" ").concat(rs.getString("primerApellido")).concat(" ").concat(rs.getString("segundoApellido")));
-            
+            System.out.println("Llena el bean del 4 store procedure");
             rs.close();
             cstmt.close();
             conn.close();
