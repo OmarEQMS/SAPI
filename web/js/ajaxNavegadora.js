@@ -315,102 +315,8 @@ $(document).ready(function () {
                             $(this).children().remove();
                         });
 
-<<<<<<< HEAD
-                    //Limpia los campos de estado 
-                    $("#estadoNavegadora").each(function () {
-                        $(this).children().remove();
-                    });
-
-                    //Limpia los campos de municipio 
-                    $("#municipioNavegadora").each(function () {
-                        $(this).children().remove();
-                    });
-
-                    //Primera opcion de estado
-                    $('#estadoNavegadora').append("<option disabled selected>" + "Seleccione un estado" + "</option>");
-
-                    //Primera opcion de municipio
-                    $('#municipioNavegadora').append("<option disabled selected>" + "Seleccione un municipio" + "</option>");
-
-                    for (var i = 0; i < data.length; i++) {
-||||||| merged common ancestors
-                    //Limpia los campos de estado 
-                    $("#estadoNavegadora").each(function () {
-                        $(this).children().remove();
-                    });
-                    
-                    //Limpia los campos de municipio 
-                    $("#municipioNavegadora").each(function () {
-                        $(this).children().remove();
-                    });
-                    
-                    //Primera opcion de estado
-                    $('#estadoNavegadora').append("<option disabled selected>" + "Seleccione un estado" + "</option>");
-                    
-                    //Primera opcion de municipio
-                    $('#municipioNavegadora').append("<option disabled selected>" + "Seleccione un municipio" + "</option>");
-  
-                    for (var i = 0; i < data.length; i++) {
-=======
->>>>>>> origin/Develop
                         //Carga estado
-<<<<<<< HEAD
-                        $('#estadoNavegadora').append("<option value='" + data[i].idEstado + "'>" + data[i].nombre + "</option>");
-                    }
-
-                    $('#estadoNavegadora').prop('selectedIndex', 0);
-                    $('#municipioNavegadora').prop('selectedIndex', 0);
-
-                    console.log(data);
-
-                }
-
-            });
-
-        } else if ($(this).val().length === 5) {
-
-            $.ajax({
-
-                url: 'ZonaController',
-                cache: false,
-                method: 'POST',
-                data: {
-
-                    key: "getEstadoyMunicipio",
-                    numeroCP: $('#codigo-postalNavegadora').val()
-
-                },
-                success: function (response) {
-||||||| merged common ancestors
-                        $('#estadoNavegadora').append("<option value='" + data[i].idEstado + "'>" + data[i].nombre + "</option>");
-                    }
-                    
-                    $('#estadoNavegadora').prop('selectedIndex',0);
-                    $('#municipioNavegadora').prop('selectedIndex',0);
-
-                    console.log(data);
-
-                }
-
-            });
-
-        } else if ($(this).val().length === 5) {
-
-            $.ajax({
-
-                url: 'ZonaController',
-                cache: false,
-                method: 'POST',
-                data: {
-
-                    key: "getEstadoyMunicipio",
-                    numeroCP: $('#codigo-postalNavegadora').val()
-
-                },
-                success: function (response) {
-=======
                         $('#estadoNavegadora').append("<option value='" + json[0] + "'>" + json[1] + "</option>");
->>>>>>> origin/Develop
 
                         //Carga Municipio
                         $('#municipioNavegadora').append("<option value='" + json[2] + "'>" + json[3] + "</option>");
@@ -550,9 +456,6 @@ $(document).ready(function () {
     $('#btn-guardarCambios').on('click', function () {
         console.log("Presionó Guardar Cambios");
 
-
-
-
         // FALTA OBTENER EL ID DEL PACIENTE 
         if (!isValidCURP($('#editarCurpNavegadoraAPaciente')) || !isValidDate($("#editarCumpleNavegadoraAPaciente")) || !isValidPhoneNumber($("#editarTelNavegadoraAPaciente"))
                 || !isValidColonia($('#editarColNavegadoraAPaciente')) || !isValidStreet($('#editarCalleNavegadoraAPaciente')) || !isValidExtNumber($("#editarNumExtNavegadoraAPaciente"))
@@ -595,82 +498,17 @@ $(document).ready(function () {
                         confirmButtonText: 'Ok'
                     });
                 }
-
-<<<<<<< HEAD
-    //Redirige a documentos
-    $('body').on('click', '.btn-ver', function () {
-||||||| merged common ancestors
-    //Redirige a documentos
-    $('.btn-ver').on('click', function () {
-=======
             });
->>>>>>> origin/Develop
-
-<<<<<<< HEAD
-        $('#hidden-idPaciente').val($(this).data('id'));
-        
-        alert('IdPaciente ' + ($(this).data('id')));
-||||||| merged common ancestors
-        $('#hidden-idPaciente').val($(this).data('id'));
-=======
-        }
+    }
     });
->>>>>>> origin/Develop
-
-<<<<<<< HEAD
-        $.ajax({
-            url: 'NavegadoraController',
-            method: "POST",
-            cache: false,
-            data: {
-                key: "getImagenPaciente",
-                idPaciente: $(this).data('id')
-            },
-            success: function (response) {
-                
-                alert('Debió poner la imagen del paciente');
-||||||| merged common ancestors
-        //alert('saludos con el id: ' +  $('#hidden-idPaciente').val())
-=======
-    //Redirige a documentos    
+    
+     //Redirige a documentos    
     $('body').on('click', '.btn-ver', function () {
 
         var id = $(this).data('id');
         console.log(id);
         //alert('saludos con el id: ' +  $('#hidden-idPaciente').val())
->>>>>>> origin/Develop
 
-<<<<<<< HEAD
-                $.post("SAPI", {
-                    file: "navegadora/documentos.jsp",
-                    idPacientePotencialAtendido: $('#hidden-idPaciente').val()
-                },
-                        function (response, status, xhr) {
-                            //console.log(response);
-                            if (status == "success") {
-                                if (response == "error") {
-                                    $("#msj-error").show();
-                                } else {
-                                    document.open("text/html", "replace");
-                                    document.write(response);
-                                    document.close();
-                                }
-                            }
-||||||| merged common ancestors
-        $.post("SAPI", {
-            file: "navegadora/documentos.jsp",
-            idPacientePotencialAtendido: $('#hidden-idPaciente').val()
-        },
-                function (response, status, xhr) {
-                    //console.log(response);
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-=======
         $.post("SAPI", {
             file: "navegadora/documentos.jsp",
             idPacientePotencialAtendido: id
@@ -684,14 +522,10 @@ $(document).ready(function () {
                             document.open("text/html", "replace");
                             document.write(response);
                             document.close();
->>>>>>> origin/Develop
                         }
-                );
-            },
-            error: function (){
-                alert('ERROR');
-            }
-        });
+                    }
+                }
+        );
     });
 
     $('.irAVerDocumento').on('click', function () {
