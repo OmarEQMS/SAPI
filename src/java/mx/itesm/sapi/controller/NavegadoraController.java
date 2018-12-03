@@ -120,6 +120,7 @@ import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
 
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.EstudioServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.Ki67ServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.LaminillaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.LlamadaCitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.LugarDelCuerpoServicioImpl;
@@ -185,9 +186,10 @@ public class NavegadoraController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String key = request.getParameter("key");
-        
+
         HttpSession sesion = request.getSession(true);
 
+        //COMENTARIO PARA COMMIT: TEAM LUGO ORDUÑA <3
         //COMENTARIO PARA COMMIT: TEAM LUGO ORDUÑA <3
         if (sesion.getAttribute("idCuenta") == null) { //no tiene sesion iniciada
             // request.setAttribute("status", "");
@@ -202,6 +204,7 @@ public class NavegadoraController extends HttpServlet {
 
                 case 4: {
 
+                    System.out.println("LA KEY ES " + key);
                     switch (key) {
 
                         case "cambiarDatos": {
@@ -389,10 +392,8 @@ public class NavegadoraController extends HttpServlet {
 
                             boolean rechazado = documentoInicialServicioImpl.agregarRechazoDocumento(idDocumentoInicial, comentario);
                             //ESto es para el correo
-                           
 
                             int pacientePotencial = (int) sesion.getAttribute("idPacienteAtendido");
-
 
                             PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                             Persona persona = personaServicio.mostrarPersonaPorIdPaciente(pacientePotencial);
@@ -463,7 +464,7 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Sin paaciente para atender aún");
                             }
 
-                            if (idPaciente != 0 && sesion.getAttribute("path")!= null) {
+                            if (idPaciente != 0 && sesion.getAttribute("path") != null) {
 
                                 PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                                 Persona personaNombre = personaServicioImpl.mostrarPersonaPorIdPaciente(idPaciente);
@@ -1024,9 +1025,6 @@ public class NavegadoraController extends HttpServlet {
                             /**
                              * FIN DECLARACION DE SERVICIOS
                              */
-                            //PANTALLA 1 DEL FORMULARIO
-                            //PRZ
-                            //LISTO
                             String prz = null;
                             prz = request.getParameter("prz-expediente");
 
@@ -1047,15 +1045,15 @@ public class NavegadoraController extends HttpServlet {
                             int adscritoPresenteAdscrito = 1;
                             String medicoAdscritoRequest;
                             int medicoAdscrito = 0;
-                            int idEmpleadoAnteriorAdscrito = 0;
+                            //int idEmpleadoAnteriorAdscrito = 0;
                             medicoAdscritoRequest = request.getParameter("medico-adscrito");
 
                             if (medicoAdscritoRequest != null) {
                                 medicoAdscrito = Integer.parseInt(medicoAdscritoRequest);
                                 System.out.println("Medico adscrito " + (medicoAdscrito));
-                                int idEmpleado = empleadoServicioImpl.mostrarEmpleadoPersona(medicoAdscrito).getIdEmpleado();
-                                int idCita = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
-                                System.out.println("La cita es " + idCita);
+                                int idEmpleadoAdscrito = empleadoServicioImpl.mostrarEmpleadoPersona(medicoAdscrito).getIdEmpleado();
+                                int idCitaAdscrito = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
+                                System.out.println("La cita es " + idCitaAdscrito);
 
                                 LocalDate inicio = java.time.LocalDate.now();
                                 Date inicioDate = Date.valueOf(inicio);
@@ -1065,10 +1063,9 @@ public class NavegadoraController extends HttpServlet {
 
                                 if (pacienteMedicoTitularAdscrito != null) {
                                     //nuevo
-                                    idEmpleadoAnteriorAdscrito = pacienteMedicoTitularAdscrito.getIdEmpleado();
                                     System.out.println("Voy actualizar el paciente medicoTitular");
                                     pacienteMedicoTitularAdscrito.setIdPaciente(idPacientePotencial);
-                                    pacienteMedicoTitularAdscrito.setIdEmpleado(idEmpleado);
+                                    pacienteMedicoTitularAdscrito.setIdEmpleado(idEmpleadoAdscrito);
                                     pacienteMedicoTitularAdscrito.setInicio(inicioDate);
                                     pacienteMedicoTitularServicioImpl.actualizarPacienteMedicoTitular(pacienteMedicoTitularAdscrito);
 
@@ -1077,7 +1074,7 @@ public class NavegadoraController extends HttpServlet {
 
                                     pacienteMedicoTitularAdscrito = new PacienteMedicoTitular();
                                     pacienteMedicoTitularAdscrito.setIdPaciente(idPacientePotencial);
-                                    pacienteMedicoTitularAdscrito.setIdEmpleado(idEmpleado);
+                                    pacienteMedicoTitularAdscrito.setIdEmpleado(idEmpleadoAdscrito);
                                     pacienteMedicoTitularAdscrito.setInicio(inicioDate);
                                     pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitularAdscrito);
                                 }
@@ -1091,24 +1088,28 @@ public class NavegadoraController extends HttpServlet {
                                  * Asignación de adscrito presente en tabla
                                  * CitaEmpleado
                                  */
-                                System.out.println("Voys a buscar la citaEmpleado: " + idEmpleadoAnteriorAdscrito);
-                                CitaEmpleado citaEmpleadoAdscrito = citaEmpleadoServicioImpl.mostrarCitaEmpleadoIdEmpleado(idEmpleadoAnteriorAdscrito);
+                                //System.out.println("Voys a buscar la citaEmpleado: " + idEmpleadoAnteriorAdscrito);
+                                int idEmpleadoPosicionAdscrito = 2;
+
+                                CitaEmpleado citaEmpleadoAdscrito = citaEmpleadoServicioImpl.mostrarCitaEmpleadoPacientePosicion(idPacientePotencial, idEmpleadoPosicionAdscrito);
+                                //idEmpleadoAnteriorAdscrito = citaEmpleadoAdscrito.getIdEmpleado();
+
                                 System.out.println("voy a imprimir la pinche cita empleado" + citaEmpleadoAdscrito);
                                 System.out.println("ADSCRITO PRESENTEEEE" + adscritoPresenteAdscrito);
                                 if (citaEmpleadoAdscrito != null) {
 
                                     System.out.println("Voy actualizar la cita");
                                     citaEmpleadoAdscrito.setAdscritoPresente(adscritoPresenteAdscrito);
-                                    citaEmpleadoAdscrito.setIdEmpleado(idEmpleado);
-                                    citaEmpleadoAdscrito.setIdCita(idCita);
+                                    citaEmpleadoAdscrito.setIdEmpleado(idEmpleadoAdscrito);
+                                    citaEmpleadoAdscrito.setIdCita(idCitaAdscrito);
                                     System.out.println("la cita empleado antes de actualizar es:" + citaEmpleadoAdscrito);
                                     citaEmpleadoServicioImpl.actualizarCitaEmpleado(citaEmpleadoAdscrito);
                                 } else {
                                     System.out.println("Voy agregar la cita");
                                     citaEmpleadoAdscrito = new CitaEmpleado();
                                     citaEmpleadoAdscrito.setAdscritoPresente(adscritoPresenteAdscrito);
-                                    citaEmpleadoAdscrito.setIdEmpleado(idEmpleado);
-                                    citaEmpleadoAdscrito.setIdCita(idCita);
+                                    citaEmpleadoAdscrito.setIdEmpleado(idEmpleadoAdscrito);
+                                    citaEmpleadoAdscrito.setIdCita(idCitaAdscrito);
                                     citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleadoAdscrito);
                                 }
                                 //citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleado);
@@ -1123,40 +1124,16 @@ public class NavegadoraController extends HttpServlet {
                             //MEDICO RADIOLOGO
                             String medicoRadiologoRequest = request.getParameter("medico-radiologo");
                             int medicoRadiologo;
-                            int idEmpleadoAnteriorRadiologo = 0;
-                            int adscritoPresenteRadiologo=1;
+                            //int idEmpleadoAnteriorRadiologo = 0;
+                            int adscritoPresenteRadiologo = 1;
 
                             System.out.println("Estoy en medico radiologo");
                             if (medicoRadiologoRequest != null) {
                                 medicoRadiologo = Integer.parseInt(medicoRadiologoRequest);
                                 System.out.println("Medico radiologo " + (medicoRadiologo));
-                                int idEmpleado = empleadoServicioImpl.mostrarEmpleadoPersona(medicoRadiologo).getIdEmpleado();
-                                System.out.println("EL IDEMPLEADO EEEES: " + idEmpleado);
-                                int idCita = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
-
-                                LocalDate inicio = java.time.LocalDate.now();
-                                Date inicioDate = Date.valueOf(inicio);
-                                System.out.println(inicioDate);
-
-                                PacienteMedicoTitular pacienteMedicoTitularRadiologo = pacienteMedicoTitularServicioImpl.mostrarPacienteMedicoTitularIdPacientePosicion(idPacientePotencial, 11);
-
-                                if (pacienteMedicoTitularRadiologo != null) {
-                                    idEmpleadoAnteriorRadiologo = pacienteMedicoTitularRadiologo.getIdEmpleado();
-
-                                    pacienteMedicoTitularRadiologo.setIdPaciente(idPacientePotencial);
-                                    pacienteMedicoTitularRadiologo.setIdEmpleado(idEmpleado);
-                                    pacienteMedicoTitularRadiologo.setInicio(inicioDate);
-                                    pacienteMedicoTitularServicioImpl.actualizarPacienteMedicoTitular(pacienteMedicoTitularRadiologo);
-
-                                } else {
-
-                                    pacienteMedicoTitularRadiologo = new PacienteMedicoTitular();
-                                    pacienteMedicoTitularRadiologo.setIdPaciente(idPacientePotencial);
-                                    pacienteMedicoTitularRadiologo.setIdEmpleado(idEmpleado);
-                                    pacienteMedicoTitularRadiologo.setInicio(inicioDate);
-                                    pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitularRadiologo);
-
-                                }
+                                int idEmpleadoRadiologo = empleadoServicioImpl.mostrarEmpleadoPersona(medicoRadiologo).getIdEmpleado();
+                                System.out.println("EL IDEMPLEADO EEEES: " + idEmpleadoRadiologo);
+                                int idCitaRadiologo = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
 
                                 //checkbox adscritoPresente
                                 if (request.getParameterMap().containsKey("noAdscritoRadiologo") == true) {
@@ -1168,18 +1145,21 @@ public class NavegadoraController extends HttpServlet {
                                  * CitaEmpleado (para fines practicos es el
                                  * mismo atributo que el del medico adscrito)
                                  */
-                                CitaEmpleado citaEmpleadoRadiologo  = citaEmpleadoServicioImpl.mostrarCitaEmpleadoIdEmpleado(idEmpleadoAnteriorRadiologo);
+                                int idPosicionRadiologo = 11;
+
+                                CitaEmpleado citaEmpleadoRadiologo = citaEmpleadoServicioImpl.mostrarCitaEmpleadoPacientePosicion(idPacientePotencial, idPosicionRadiologo);
+                                //idEmpleadoAnteriorRadiologo = citaEmpleadoRadiologo.getIdEmpleado();
 
                                 if (citaEmpleadoRadiologo != null) {
                                     citaEmpleadoRadiologo.setAdscritoPresente(adscritoPresenteRadiologo);
-                                    citaEmpleadoRadiologo.setIdEmpleado(idEmpleado);
-                                    citaEmpleadoRadiologo.setIdCita(idCita);
+                                    citaEmpleadoRadiologo.setIdEmpleado(idEmpleadoRadiologo);
+                                    citaEmpleadoRadiologo.setIdCita(idCitaRadiologo);
                                     citaEmpleadoServicioImpl.actualizarCitaEmpleado(citaEmpleadoRadiologo);
                                 } else {
                                     citaEmpleadoRadiologo = new CitaEmpleado();
                                     citaEmpleadoRadiologo.setAdscritoPresente(adscritoPresenteRadiologo);
-                                    citaEmpleadoRadiologo.setIdEmpleado(idEmpleado);
-                                    citaEmpleadoRadiologo.setIdCita(idCita);
+                                    citaEmpleadoRadiologo.setIdEmpleado(idEmpleadoRadiologo);
+                                    citaEmpleadoRadiologo.setIdCita(idCitaRadiologo);
                                     citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleadoRadiologo);
                                 }
                                 //citaEmpleadoServicioImpl.agregarCitaEmpleado(citaEmpleado);
@@ -1187,14 +1167,14 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("Adscrito Presente ".concat(String.valueOf(adscritoPresenteRadiologo)));
 
                             } else {
-                                System.out.println("Sin médico adscrito");
+                                System.out.println("Sin médico radiologo");
                             }
 
                             //MEDICO RESIDENTE------------------ *************************NO ESTÁ HECHO********
                             String medicoResidenteRequest = null;
-                            int idEmpleadoAnteriorResidente = 0;
+                            //int idEmpleadoAnteriorResidente = 0;
                             int medicoResidente;
-                            int adscritoPresenteResidente=1;
+                            int adscritoPresenteResidente = 1;
                             medicoResidenteRequest = request.getParameter("medico-residente");
                             if (medicoResidenteRequest != null && medicoResidenteRequest.length() > 0) {
 
@@ -1203,30 +1183,6 @@ public class NavegadoraController extends HttpServlet {
                                 int idEmpleadoResidente = empleadoServicioImpl.mostrarEmpleadoPersona(medicoResidente).getIdEmpleado();
                                 System.out.println("EL IDEMPLEADO EEEES: " + idEmpleadoResidente);
                                 int idCitaResidente = citaServicioImpl.mostrarCitaPreconsultaPacientePotencial(idPacientePotencial).getIdCita();
-
-                                LocalDate inicio = java.time.LocalDate.now();
-                                Date inicioDate = Date.valueOf(inicio);
-                                System.out.println(inicioDate);
-
-                                PacienteMedicoTitular pacienteMedicoTitularResidente = pacienteMedicoTitularServicioImpl.mostrarPacienteMedicoTitularIdPacientePosicion(idPacientePotencial, 1);
-
-                                if (pacienteMedicoTitularResidente != null) {
-                                    idEmpleadoAnteriorResidente = pacienteMedicoTitularResidente.getIdEmpleado();
-
-                                    pacienteMedicoTitularResidente.setIdPaciente(idPacientePotencial);
-                                    pacienteMedicoTitularResidente.setIdEmpleado(idEmpleadoResidente);
-                                    pacienteMedicoTitularResidente.setInicio(inicioDate);
-                                    pacienteMedicoTitularServicioImpl.actualizarPacienteMedicoTitular(pacienteMedicoTitularResidente);
-
-                                } else {
-
-                                    pacienteMedicoTitularResidente = new PacienteMedicoTitular();
-                                    pacienteMedicoTitularResidente.setIdPaciente(idPacientePotencial);
-                                    pacienteMedicoTitularResidente.setIdEmpleado(idEmpleadoResidente);
-                                    pacienteMedicoTitularResidente.setInicio(inicioDate);
-                                    pacienteMedicoTitularServicioImpl.agregarPacienteMedicoTitular(pacienteMedicoTitularResidente);
-
-                                }
 
                                 //checkbox adscritoPresente
                                 if (request.getParameterMap().containsKey("noAdscritoResidente") == true) {
@@ -1238,8 +1194,10 @@ public class NavegadoraController extends HttpServlet {
                                  * CitaEmpleado (para fines practicos es el
                                  * mismo atributo que el del medico adscrito)
                                  */
-                                CitaEmpleado citaEmpleadoResidente = citaEmpleadoServicioImpl.mostrarCitaEmpleadoIdEmpleado(idEmpleadoAnteriorResidente);
+                                int idEmpleadoPosicionResidente = 1;
 
+                                CitaEmpleado citaEmpleadoResidente = citaEmpleadoServicioImpl.mostrarCitaEmpleadoPacientePosicion(idPacientePotencial, idEmpleadoPosicionResidente);
+                                //idEmpleadoAnteriorResidente = citaEmpleadoResidente.getIdEmpleado();
                                 if (citaEmpleadoResidente != null) {
                                     citaEmpleadoResidente.setAdscritoPresente(adscritoPresenteResidente);
                                     citaEmpleadoResidente.setIdEmpleado(idEmpleadoResidente);
@@ -2134,7 +2092,7 @@ public class NavegadoraController extends HttpServlet {
                                             lugarDelCuerpoServicio.agregarLugarDelCuerpo(lugarDelCuerpo);
                                             lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(lugar);
                                         }
-                                        documentoEstudioServicio.actualizarLugarDelCuerpoCita(id,lugarDelCuerpo.getIdLugarDelCuerpo());
+                                        documentoEstudioServicio.actualizarLugarDelCuerpoCita(id, lugarDelCuerpo.getIdLugarDelCuerpo());
                                         break;
                                     }
                                     case "eliminar": {
@@ -2236,7 +2194,7 @@ public class NavegadoraController extends HttpServlet {
                                             lugarDelCuerpoServicio.agregarLugarDelCuerpo(lugarDelCuerpo);
                                             lugarDelCuerpo = lugarDelCuerpoServicio.mostrarLugarDelCuerpo(parte);
                                         }
-                                        documentoEstudioServicio.actualizarLugarDelCuerpoCita(id,lugarDelCuerpo.getIdLugarDelCuerpo());
+                                        documentoEstudioServicio.actualizarLugarDelCuerpoCita(id, lugarDelCuerpo.getIdLugarDelCuerpo());
                                         break;
                                     }
                                     case "eliminar": {
@@ -2655,7 +2613,7 @@ public class NavegadoraController extends HttpServlet {
                             int decisionPreconsulta = 0;
                             String decisionPreconsultaRequest = request.getParameter("decisionPreconsulta");
 
-                            System.out.println("LA DECISION PRECOSNULTA QUE RECIBO ES"+decisionPreconsultaRequest);
+                            System.out.println("LA DECISION PRECOSNULTA QUE RECIBO ES" + decisionPreconsultaRequest);
                             if (decisionPreconsultaRequest != null && decisionPreconsultaRequest.length() > 0) {
                                 decisionPreconsulta = Integer.parseInt(decisionPreconsultaRequest);
                                 System.out.println("Decision Preconsulta " + (decisionPreconsulta));
@@ -2788,6 +2746,8 @@ public class NavegadoraController extends HttpServlet {
                             //Etapa Clinica                                                        
                             int etapaClinica = 0;
                             String etapaClinicaRequest = (request.getParameter("etapaClinica"));
+                            //String etapaClinicaRequest="1";
+                            System.out.println("LA ETAPA CLINCIA QUE RECIBO ES:" + etapaClinicaRequest);
                             if (etapaClinicaRequest != null && etapaClinicaRequest.length() > 0) {
                                 etapaClinica = Integer.parseInt(etapaClinicaRequest);
                                 int previoDiagnostico = 0;
@@ -2882,7 +2842,7 @@ public class NavegadoraController extends HttpServlet {
                             DocumentoEstudio documentoEstudioMastografia = null;
 
                             int resultadoMastografia = 0;
-                            String resultadoMastografiaRequest = (request.getParameter("biradsMasto"));
+                            String resultadoMastografiaRequest = (request.getParameter("ResultadoTipoMastografia"));
                             if (resultadoMastografiaRequest != null && resultadoMastografiaRequest.length() > 0) {
                                 resultadoMastografia = Integer.parseInt(resultadoMastografiaRequest);
 
@@ -2911,6 +2871,7 @@ public class NavegadoraController extends HttpServlet {
                                     documentoEstudioMastografia.setFechaEstudioResultado(dateMasto);
                                     documentoEstudioMastografia.setIdLugarDelCuerpo(idLugarDelCuerpo);
                                     documentoEstudioMastografia.setIdCita(citaPreconsulta.getIdCita());
+                                    documentoEstudioMastografia.setEstatus(1);
                                     documentoEstudioServicioImpl.actualizarDocumentoEstudio(documentoEstudioMastografia);
                                 } else {
                                     documentoEstudioMastografia.setIdEstudio(idEstudio);
@@ -2931,7 +2892,7 @@ public class NavegadoraController extends HttpServlet {
                             //Resltado Ultrasonido
                             DocumentoEstudio documentoEstudioUSG = null;
                             int resultadoUltrasonido = 0;
-                            String resultadoUltrasonidoRequest = (request.getParameter("biradUSG"));
+                            String resultadoUltrasonidoRequest = (request.getParameter("tipoUSG"));
                             if (resultadoUltrasonidoRequest != null && resultadoUltrasonidoRequest.length() > 0) {
                                 resultadoUltrasonido = Integer.parseInt(resultadoUltrasonidoRequest);
 
@@ -2957,6 +2918,7 @@ public class NavegadoraController extends HttpServlet {
                                     documentoEstudioUSG.setIdLugarDelCuerpo(idLugarDelCuerpo);
                                     documentoEstudioUSG.setFechaEstudioResultado(dateUsg);
                                     documentoEstudioUSG.setIdCita(citaPreconsulta.getIdCita());
+                                    documentoEstudioUSG.setEstatus(1);
                                     documentoEstudioServicioImpl.actualizarDocumentoEstudio(documentoEstudioUSG);
                                 } else {
                                     documentoEstudioUSG.setIdEstudio(idEstudio);
@@ -3036,18 +2998,23 @@ public class NavegadoraController extends HttpServlet {
                             if (receptorRpRequest != null && receptorRpRequest.length() > 0) {
                                 receptorRp = Integer.parseInt(receptorRpRequest);
                                 System.out.println("receptorRp " + (receptorRp));
-                                biopsia.setIdReceptorProgesterona(receptorRe);
+                                biopsia.setIdReceptorProgesterona(receptorRp);
                             } else {
                                 System.out.println("sin etapaClinica ");
                             }
 
                             //Ki67
+                            Ki67ServicioImpl ki67ServicioImpl=new Ki67ServicioImpl();
                             int ki67 = 0;
+                            int idKi67 = 0;
                             String ki67Request = (request.getParameter("ki67"));
                             if (ki67Request != null && ki67Request.length() > 0) {
                                 ki67 = Integer.parseInt(ki67Request);
+                                idKi67=ki67ServicioImpl.mostrarKi67Nombre(ki67).getIdKi67();
+                                System.out.println("idki67 " + (idKi67));
                                 System.out.println("ki67 " + (ki67));
-                                biopsia.setIdKi67(ki67);
+
+                                biopsia.setIdKi67(idKi67);
                             } else {
                                 System.out.println("sin ki67 ");
                             }
@@ -3093,7 +3060,6 @@ public class NavegadoraController extends HttpServlet {
                             break;
                         }
 
-                        
                         case "agregarCitaResultados": {
 
                             PrintWriter out = response.getWriter();
@@ -3146,38 +3112,38 @@ public class NavegadoraController extends HttpServlet {
                             break;
 
                         }
-                        
+
                         case "autocompleteLugarDelCuerpo": {
 
                             LugarDelCuerpoServicioImpl lugarDelCuerpoServicioImpl = new LugarDelCuerpoServicioImpl();
-                            
-                            List<LugarDelCuerpo> lugaresDelCuerpo =  lugarDelCuerpoServicioImpl.mostrarLugarDelCuerpo();
-                            
-                            for(int i=0; i<lugaresDelCuerpo.size(); i++){
+
+                            List<LugarDelCuerpo> lugaresDelCuerpo = lugarDelCuerpoServicioImpl.mostrarLugarDelCuerpo();
+
+                            for (int i = 0; i < lugaresDelCuerpo.size(); i++) {
                                 System.out.println(lugaresDelCuerpo.get(i));
                             }
 
                             PrintWriter out = response.getWriter();
 
                             Gson json = new Gson();
-                            
+
                             out.print(json.toJson(lugaresDelCuerpo));
-                            
+
                             break;
                         }
-                        
+
                         case "autocompleteBiopsia": {
 
                             TipoBiopsiaServicioImpl tipoBiopsiaServicioImpl = new TipoBiopsiaServicioImpl();
-                            
-                            List<TipoBiopsia> tipoBiosiaLista =  tipoBiopsiaServicioImpl.mostrarListaTipoBiopsia();
+
+                            List<TipoBiopsia> tipoBiosiaLista = tipoBiopsiaServicioImpl.mostrarListaTipoBiopsia();
 
                             PrintWriter out = response.getWriter();
 
                             Gson json = new Gson();
-                            
+
                             out.print(json.toJson(tipoBiosiaLista));
-                            
+
                             break;
                         }
 
@@ -3190,7 +3156,7 @@ public class NavegadoraController extends HttpServlet {
                             PrintWriter out = response.getWriter();
 
                             Gson json = new Gson();
-                            
+
                             out.print(json.toJson(estudios));
 
                             break;
@@ -3206,7 +3172,7 @@ public class NavegadoraController extends HttpServlet {
                             PrintWriter out = response.getWriter();
 
                             Gson json = new Gson();
-                            
+
                             out.flush();
                             out.print(json.toJson(estudios));
 
@@ -3258,10 +3224,8 @@ public class NavegadoraController extends HttpServlet {
 
                             break;
 
-
                         }
 
-                        
                         case "cancelarCitaPotencial": {
                             PrintWriter out = response.getWriter();
                             try {

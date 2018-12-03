@@ -364,6 +364,7 @@ public class PacienteServiceImpl implements PacienteService {
                 paciente.setTieneResultados(rs.getInt("resultados"));
                 paciente.setFechaRegistro(rs.getDate("fechaProgramada"));
                 paciente.setTelefono(rs.getString("telefono"));
+                paciente.setNombreEstadoCita(rs.getString("nombreEstadoCita"));
 
                 pacientes.add(paciente);
             }

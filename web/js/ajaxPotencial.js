@@ -134,15 +134,20 @@ $(document).ready(function () {
                     data.forEach((value, key) => {
                         console.log(key + " " + value);
                     })
-                    configureLoadingScreen($('.loading-screenGuardar'));
                     $.ajax({
                         url: "PotencialController",
                         data: data,
                         method: "POST",
+                        beforeSend: function () {
+                            $('.loading-screenGuardar').fadeIn();
+                        },
                         encType: "multipart/form-data",
                         processData: false,
                         contentType: false,
                         cache: false,
+                        complete: function () {
+                            $('.loading-screenGuardar').fadeOut();
+                        },
                         success: function (response) {
                             console.log("Debió haber guardado");
                             $.post("SAPI", {
@@ -376,106 +381,111 @@ $(document).ready(function () {
             data.forEach((value, key) => {
                 console.log(key + " " + value);
             });
-            swal({
-                title: "Datos guardados correctamente",
-                text: "Puedes regresar a editar/completar el resto de información en cualquier momento.",
-                icon: "success",
-                buttons: true,
-                buttons: [, 'Aceptar']
-
-            }).then(function () {
-                configureLoadingScreen($('.loading-screenGuardar'));
-                $.ajax({
-                    url: "PotencialController",
-                    method: "POST",
-                    data: data,
-                    enctype: "multipart/form-data",
-                    processData: false,
-                    contentType: false,
-                    success: function (response) {
-                        console.log("dsafdsafdsafsdafsdafjsalkjflsadjfkjsañlfjkasjfklsjaflsñjfklsjdfkljaslkfjla");
+            $.ajax({
+                url: "PotencialController",
+                method: "POST",
+                beforeSend: function () {
+                    $('.loading-screenGuardar').fadeIn();
+                },
+                data: data,
+                enctype: "multipart/form-data",
+                processData: false,
+                contentType: false,
+                complete: function () {
+                    $('.loading-screenGuardar').fadeOut();
+                },
+                success: function (response) {
+                    console.log("dsafdsafdsafsdafsdafjsalkjflsadjfkjsañlfjkasjfklsjaflsñjfklsjdfkljaslkfjla");
 
 
-                        var consultarDocumentosPreconsulta = new FormData;
-                        consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
+                    swal({
+                        title: "Datos guardados correctamente",
+                        text: "Puedes regresar a editar/completar el resto de información en cualquier momento.",
+                        icon: "success",
+                        buttons: true,
+                        buttons: [, 'Aceptar']
 
-                        console.log("Solicitar DOCUMENTOS de Preconsulta");
-                        $.ajax({
-                            url: "PotencialController",
-                            method: "POST",
-                            data: consultarDocumentosPreconsulta,
-                            enctype: "multipart/form-data",
-                            processData: false,
-                            contentType: false,
-                            success: function (response) {
+                    });
 
-                                if (response != null) {
-                                    var data = JSON.parse(response);
-                                    console.log(data);
+                    var consultarDocumentosPreconsulta = new FormData;
+                    consultarDocumentosPreconsulta.append("key", "consultarDocumentosPreconsulta");
 
-                                    console.log("Solicitar ESTADO de Preconsulta");
-                                    $.ajax({
-                                        url: "PotencialController",
-                                        method: "POST",
-                                        data: {key: "consultarEstadoPreconsulta"},
-                                        success: function (response) {
-                                            console.log("SUCCESS!")
-                                            console.log("Solicitar EstadoPaciente");
-                                            $.ajax({
-                                                url: "PotencialController",
-                                                method: "POST",
-                                                data: {key: "consultarEstadoPaciente"},
-                                                success: function (response) {
-                                                    //Ajax redireccionamiento
-                                                    $.ajax({
-                                                        url: "SAPI",
-                                                        method: "POST",
-                                                        data: {file: "potencial/index.jsp"},
-                                                        success: function (response) {
-                                                            if (response == "error") {
-                                                                console.log("Error al cargar");
-                                                            } else {
-                                                                console.log("Intentando redireccionar");
-                                                                document.open("text/html", "replace");
-                                                                document.write(response);
-                                                                document.close();
-                                                            }
+                    console.log("Solicitar DOCUMENTOS de Preconsulta");
+                    $.ajax({
+                        url: "PotencialController",
+                        method: "POST",
+                        data: consultarDocumentosPreconsulta,
+                        enctype: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+
+                            if (response != null) {
+                                var data = JSON.parse(response);
+                                console.log(data);
+
+                                console.log("Solicitar ESTADO de Preconsulta");
+                                $.ajax({
+                                    url: "PotencialController",
+                                    method: "POST",
+                                    data: {key: "consultarEstadoPreconsulta"},
+                                    success: function (response) {
+                                        console.log("SUCCESS!")
+                                        console.log("Solicitar EstadoPaciente");
+                                        $.ajax({
+                                            url: "PotencialController",
+                                            method: "POST",
+                                            data: {key: "consultarEstadoPaciente"},
+                                            success: function (response) {
+                                                //Ajax redireccionamiento
+                                                $.ajax({
+                                                    url: "SAPI",
+                                                    method: "POST",
+                                                    data: {file: "potencial/index.jsp"},
+                                                    success: function (response) {
+                                                        if (response == "error") {
+                                                            console.log("Error al cargar");
+                                                        } else {
+                                                            console.log("Intentando redireccionar");
+                                                            document.open("text/html", "replace");
+                                                            document.write(response);
+                                                            document.close();
                                                         }
-                                                    });
-                                                },
-                                                error: function () {
-                                                    console.log("error" + xhr.statusText);
-                                                    alert("No enontre el controlador" + xhr.statusText);
-                                                    console.log("Error SolicitarEstadoPaciente");
-                                                }
+                                                    }
+                                                });
+                                            },
+                                            error: function () {
+                                                console.log("error" + xhr.statusText);
+                                                alert("No enontre el controlador" + xhr.statusText);
+                                                console.log("Error SolicitarEstadoPaciente");
+                                            }
 
-                                            });
-                                        },
-                                        error: function (xhr) {
-                                            console.log("error" + xhr.statusText);
-                                            console.log("Error SolicitarEstadoPreconsulta");
-                                            //alert(xhr);
-                                        }
+                                        });
+                                    },
+                                    error: function (xhr) {
+                                        console.log("error" + xhr.statusText);
+                                        console.log("Error SolicitarEstadoPreconsulta");
+                                        //alert(xhr);
+                                    }
 
-                                    });
+                                });
 
-                                } else {
-                                    console.log("Algo pasó" + response);
-                                }
-                            },
-                            error: function () {
-                                alert("No enontre el controlador");
+                            } else {
+                                console.log("Algo pasó" + response);
                             }
+                        },
+                        error: function () {
+                            alert("No enontre el controlador");
+                        }
 
-                        });
-                    },
-                    error: function (request, status, error) {
-                        console.log("Enviar solicitud Error request " + request.responseText);
-                        console.log("Enviar solicitud Error status " + status);
-                        console.log("Enviar solicitud Error error" + error);
-                        //alert("No enontre el controlador" + status);                               
-                    }
-                });
+                    });
+                },
+                error: function (request, status, error) {
+                    console.log("Enviar solicitud Error request " + request.responseText);
+                    console.log("Enviar solicitud Error status " + status);
+                    console.log("Enviar solicitud Error error" + error);
+                    //alert("No enontre el controlador" + status);                               
+                }
             });
         } else {
             swal({
@@ -595,16 +605,21 @@ $(document).ready(function () {
                     buttons: {cancel: 'Cancelar', aceptar: 'Aceptar'},
                     dangerMode: true
                 }).then(function (value) {
-                    configureLoadingScreen($('.loading-screen'));
                     if (value == "aceptar") {
                         //AJAX PARA ENVIAR SOLICITUD
                         $.ajax({
                             url: "PotencialController",
                             method: "POST",
+                            beforeSend: function () {
+                                $('.loading-screen').fadeIn();
+                            },
                             data: data,
                             enctype: "multipart/form-data",
                             processData: false,
                             contentType: false,
+                            complete: function () {
+                                $('.loading-screen').fadeOut();
+                            },
                             success: function (response) {
 
                                 if (response == "documentosNoSubidos") {
@@ -631,10 +646,16 @@ $(document).ready(function () {
                                         $.ajax({
                                             url: "PotencialController",
                                             method: "POST",
+                                            beforeSend: function () {
+                                                $('.loading-screenActualizar').fadeIn();
+                                            },
                                             data: consultarDocumentosPreconsulta,
                                             enctype: "multipart/form-data",
                                             processData: false,
                                             contentType: false,
+                                            complete: function () {
+                                                $('.loading-screenActualizar').fadeOut();
+                                            },
                                             success: function (response) {
 
                                                 if (response != null) {
@@ -742,16 +763,21 @@ $(document).ready(function () {
                     buttons: {cancel: 'Cancelar', aceptar: 'Aceptar'},
                     dangerMode: true
                 }).then(function (value) {
-                    configureLoadingScreen($('.loading-screen'));
                     if (value == "aceptar") {
                         //AJAX PARA ENVIAR SOLICITUD
                         $.ajax({
                             url: "PotencialController",
                             method: "POST",
+                            beforeSend: function () {
+                                $('.loading-screen').fadeIn();
+                            },
                             data: data,
                             enctype: "multipart/form-data",
                             processData: false,
                             contentType: false,
+                            complete: function () {
+                                $('.loading-screen').fadeOut();
+                            },
                             success: function (response) {
 
                                 if (response == "documentosNoSubidos") {
@@ -778,10 +804,16 @@ $(document).ready(function () {
                                         $.ajax({
                                             url: "PotencialController",
                                             method: "POST",
+                                            beforeSend: function () {
+                                                $('.loading-screenActualizar').fadeIn();
+                                            },
                                             data: consultarDocumentosPreconsulta,
                                             enctype: "multipart/form-data",
                                             processData: false,
                                             contentType: false,
+                                            complete: function () {
+                                                $('.loading-screenActualizar').fadeOut();
+                                            },
                                             success: function (response) {
                                                 if (response != null) {
                                                     var data = JSON.parse(response);
@@ -1169,8 +1201,7 @@ $(document).ready(function () {
                 dangerMode: true
             })
                     .then((cambiar) => {
-                        $("#password").val("");
-                        $("#password2").val("");
+
                         if (cambiar) {
                             $.ajax({
                                 url: "PotencialController",
@@ -1347,13 +1378,3 @@ $(document).ready(function () {
     }
 
 });
-
-function configureLoadingScreen(screen) {
-    $(document)
-            .ajaxStart(function () {
-                screen.fadeIn();
-            })
-            .ajaxStop(function () {
-                screen.fadeOut();
-            })
-}

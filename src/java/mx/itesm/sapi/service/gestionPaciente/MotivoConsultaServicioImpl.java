@@ -28,11 +28,12 @@ public class MotivoConsultaServicioImpl implements MotivoConsultaServicio{
         
         MotivoConsulta motivoConsulta = new MotivoConsulta();
         
-        String stProcedure ="";
+        String stProcedure ="CALL mostrarMotivoConsulta(?)";
         try{
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            rs = cstmt.executeQuery();
+            cstmt.setInt(1, idMotivoConsulta);
+            rs = cstmt.executeQuery();            
             rs.next();
             
             motivoConsulta.setIdMotivoConsulta(rs.getInt("idMotivoConsulta"));

@@ -42,8 +42,36 @@
         
         <div class="cargandoAgregarNavegadora" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
-            <p class="clear">Agregando la navegadora, por favor espere...</p>
+            <p class="clear">Agregando a la navegadora, por favor espere...</p>
         </div>
+        
+        <div class="cargandoEditarNavegadora" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Actualizando información de la navegadora, por favor espere...</p>
+        </div>
+        
+        <div class="cargandoEliminarNavegadora" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Eliminando a la navegadora, por favor espere...</p>
+        </div>
+        
+        <div class="cargandoIrAMedico" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando la lista de médicos...</p>
+        </div>
+        <div class="cargandoIrANavegadora" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando la lista de navegadoras...</p>
+        </div>
+        <div class="cargandoIrAPaciente" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando la lista de pacientes...</p>
+        </div>
+        <div class="cargandoIrAAdministrador" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando la lista de administradores...</p>
+        </div>
+        
 
         <div class="wrapper">
 
@@ -64,7 +92,7 @@
 
                     <div class="row">
                         <div class="col-12 mb-2 mt-4">
-                            <img src="img/user.png" class="imagenPerfil" alt="">
+                            <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="imagenPerfil edit-image" width="66px" height="66px" alt="">
                         </div>
                     </div>
 
@@ -78,11 +106,11 @@
                     <div class="row justify-content-center">
 
                         <div class="col-2 text-center">
-                            <a class="iconoSidebar" href="" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
+                            <a class="iconoSidebar IrAMiCuenta" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
                         </div>
 
                         <div class="col-2">
-                            <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
+                            <a class="iconoSidebar salirCuenta" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
                         </div>
                     </div>
                 </div>
@@ -95,8 +123,6 @@
 
                 <!-- MENU PRINCIPAL ENLACES -->
                 <ul class="list-unstyled components">
-
-                    <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
 
                     <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
 
@@ -136,10 +162,10 @@
                 <!-- Navegacion -->
 
 
-                <div class="row mb-3 justify-content-end">
-                    <div class="col-3 text-center">
-                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="IrAInicio" class="colorMoradoLight">Inicio</a></span>
-                        - <span class="colorGlobal">Gestion de Pacientes</span>
+                <div class="row mb-3">
+                    <div class="col-12 text-right">
+                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a class="colorMoradoLight">Administrador</a></span>
+                        - <span class="colorGlobal">Gestion de Navegadoras</span>
                     </div>
                 </div>
 
@@ -177,7 +203,7 @@
                                     <th scope="col">No. empleado</th>                                
                                     <th scope="col">Especialidad</th>
                                     <th scope="col">Cédula Profesional</th>
-                                    <th scope="col">Acciones</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -191,14 +217,13 @@
                                         <td id="nombreEspecialidad-${navegadora.idEmpleado}" value="${navegadora.nombreEspecialidad}" > <c:out value="${navegadora.nombreEspecialidad}"/> </td>                                
                                         <td id="cedulaProfesional-${navegadora.idEmpleado}" value="${navegadora.cedulaProfesional}" > <c:out value="${navegadora.cedulaProfesional}"/> </td>                              
                                         <td>
-                                            <button class="btn btn-success m-1"
-                                                    id="btn-verNavegadora" data-id="${navegadora.idEmpleado}">                                        
+                                            <button class="btn btn-success m-1 btn-verNavegadora" data-id="${navegadora.idEmpleado}">                                        
                                                 <i class="fas fa-chart-line"></i>
                                             </button>
                                             <button class="btn btn-primary btn-editarNavegadora m-1" data-toggle="modal"
                                                     data-target="#modalEditarNavegadora" data-id="${navegadora.idEmpleado}" ><i class="fas fa-edit"></i>
                                             </button>
-                                            <button class="btn btn-danger m-1" id="btn-eliminarNavegadora" data-id="${navegadora.idEmpleado}"><i class="fas fa-trash-alt">
+                                            <button class="btn btn-danger m-1 btn-eliminarNavegadora" data-id="${navegadora.idEmpleado}"><i class="fas fa-trash-alt">
 
                                                 </i></button>
                                         </td>
@@ -211,12 +236,12 @@
 
 
                 <!-- ********** MODAL EDITAR NAVEGADORA ********** -->
-                <div class="modal fade" id="modalEditarNavegadora" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal fade" data-keyboard="false" data-backdrop="static" id="modalEditarNavegadora" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Editar Navegadora</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close clearCancelEditNavegadoraModal" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -234,6 +259,7 @@
                                             <input type="text" class="form-control" id="editar-nombreNavegadora"
                                                    placeholder="Nombre">
                                         </div>
+                                        <span class="text-danger" id="errorEditarNombreNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 255 caracteres.</span>
                                     </div>
                                     <div class="col-6">
                                         <div class="input-group">
@@ -243,6 +269,8 @@
                                             <input type="text" class="form-control" id="editar-correoNavegadora"
                                                    placeholder="Correo">
                                         </div>
+                                        <span class="text-danger" id="errorEditarCorreoNavegadora">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
+                                        <span class="text-warning" id="errorEditarCorreoRepetidoNavegadora">El correo ya existe.</span>
                                     </div>
                                 </div>
 
@@ -255,6 +283,7 @@
                                             <input type="text" class="form-control" id="editar-primerApellidoNavegadora"
                                                    placeholder="Primer Apellido">
                                         </div>
+                                        <span class="text-danger" id="errorEditarApellidoPaternoNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                     </div>
                                     <div class="col-6">
                                         <div class="input-group">
@@ -262,8 +291,9 @@
                                                 <div class="input-group-text"><i class="fas fa-user"></i></div>
                                             </div>
                                             <input type="text" class="form-control" id="editar-segundoApellidoNavegadora"
-                                                   placeholder="Segundo apellido">
+                                                   placeholder="Segundo apellido (Opcional)">
                                         </div>
+                                        <span class="text-danger" id="errorEditarApellidoMaternoNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                     </div>
                                 </div>
 
@@ -276,6 +306,7 @@
                                             <input type="text" class="form-control" id="editar-telefonoNavegadora"
                                                    placeholder="Teléfono">
                                         </div>
+                                        <span class="text-danger" id="errorEditarTelefonoNavegadora">Formato incorrecto, deben ser 10 dígitos.</span>
                                     </div>
 
                                     <div class="col-6">
@@ -286,6 +317,8 @@
                                             <input type="text" class="form-control" id="editar-no-empleadoNavegadora"
                                                    placeholder="No. empleado">
                                         </div>
+                                        <span class="text-danger" id="errorEditarNumNavegadora">Formato incorrecto, deben ser 6 dígitos.</span>
+                                        <span class="text-warning" id="errorEditarNumEmpleadoRepetidoNavegadora">El número de empleado ya existe.</span>
                                     </div>
                                 </div>
 
@@ -298,8 +331,9 @@
                                                 <div class="input-group-text"><i class="fas fa-user-graduate"></i></div>
                                             </div>
                                             <input type="text" class="form-control" id="editar-cedulaNavegadora"
-                                                   placeholder="Cédula Profesional">
+                                                   placeholder="Cédula Profesional (Opcional)">
                                         </div>
+                                        <span class="text-danger" id="errorEditarCedulaNavegadora">Formato incorrecto, deben ser 7 dígitos.</span>
                                     </div>
                                     <div class="col-6">
                                         <div class="input-group">
@@ -309,12 +343,25 @@
                                             <input type="text" class="form-control" id="editar-especialidad" placeholder="Especialidad" list="listEspecialidades">
                                             <datalist id="listEspecialidades"></datalist>
                                         </div>
+                                        <span class="text-danger" id="errorEditarEspecialidadNavegadora">Selecciona una especialidad válida.</span>
+                                    </div>
+                                </div>
+                                
+                                 <div class="row mb-3" id="error-camposEditarNavegadora">
+                                    <div class="col-12 text-center">
+                                        <span class="text-danger">Debes llenar correctamente los campos para editar la cuenta.</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3" id="error-editarDatosRepetidosNavegadora">
+                                    <div class="col-12 text-center">
+                                        <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>
                                     </div>
                                 </div>
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal" style="border-radius: 20px;">Cancelar</button>
+                                <button type="button" class="btn btn-danger clearCancelEditNavegadoraModal" data-dismiss="modal" style="border-radius: 20px;">Cancelar</button>
                                 <button id="btn-guardarNavegadora" type="button" class="btn btn-primary" style="border-radius: 20px;">Guardar
                                     Cambios</button>
                             </div>
@@ -323,12 +370,12 @@
                 </div>
 
                 <!-- ********** MODAL AGREGAR NAVEGADORA ********** -->
-                <div class="modal fade" id="modalAgregarNavegadora" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal fade" data-keyboard="false" data-backdrop="static" id="modalAgregarNavegadora" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Agregar Navegadora</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close clearAddNavegadoraModal" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -344,6 +391,7 @@
                                             <input type="text" class="form-control" id="agregar-nombreNavegadora"
                                                    placeholder="Nombre">
                                         </div>
+                                        <span class="text-danger" id="errorNombreNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 255 caracteres.</span>
                                     </div>
 
                                     <div class="col-6">
@@ -352,10 +400,10 @@
                                                 <div class="input-group-text"><i class="fas fa-phone"></i></div>
                                             </div>
                                             <input type="text" class="form-control" id="agregar-telefonoNavegadora"
-                                                   placeholder="Telefono">
+                                                   placeholder="Teléfono">
                                         </div>
+                                        <span class="text-danger" id="errorTelefonoNavegadora">Formato incorrecto, deben ser 10 dígitos.</span>
                                     </div>
-
                                 </div>
 
                                 <div class="form-group row">
@@ -367,6 +415,7 @@
                                             <input type="text" class="form-control" id="agregar-primerApellidoNavegadora"
                                                    placeholder="Primer Apellido">
                                         </div>
+                                        <span class="text-danger" id="errorApellidoPaternoNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                     </div>
 
                                     <div class="col-6">
@@ -375,8 +424,9 @@
                                                 <div class="input-group-text"><i class="fas fa-user"></i></div>
                                             </div>
                                             <input type="text" class="form-control" id="agregar-segundoApellidoNavegadora"
-                                                   placeholder="Segundo Apellido">
+                                                   placeholder="Segundo Apellido (Opcional)">
                                         </div>
+                                        <span class="text-danger" id="errorApellidoMaternoNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                     </div>
                                 </div>
 
@@ -390,6 +440,8 @@
                                             <input type="text" class="form-control" id="agregar-correoNavegadora"
                                                    placeholder="Correo">
                                         </div>
+                                        <span class="text-danger" id="errorCorreoNavegadora">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
+                                        <span class="text-warning" id="errorCorreoRepetidoNavegadora">El correo ya existe.</span>
                                     </div>
 
                                     <div class="col-6">
@@ -400,6 +452,8 @@
                                             <input type="text" class="form-control" id="agregar-noEmpleadoNavegadora"
                                                    placeholder="No. empleado">
                                         </div>
+                                        <span class="text-danger" id="errorNumEmpleadoNavegadora">Formato incorrecto, deben ser 6 dígitos.</span>
+                                        <span class="text-warning" id="errorNumEmpleadoRepetidoNavegadora">El número de empleado ya existe.</span>
                                     </div>
                                 </div>
 
@@ -412,6 +466,7 @@
                                             <input type="text" class="form-control" id="agregar-especialidadNavegadora"
                                                    placeholder="Especialidad" list="listEspecialidades">
                                         </div>
+                                        <span class="text-danger" id="errorAgregarEspecialidadNavegadora">Selecciona una especialidad válida.</span>
                                     </div>
                                     <div class="col-6">
                                         <div class="input-group">
@@ -419,8 +474,9 @@
                                                 <div class="input-group-text"><i class="fas fa-id-card"></i></div>
                                             </div>
                                             <input type="text" class="form-control" id="agregar-cedulaNavegadora"
-                                                   placeholder="Cédula Profesional">
+                                                   placeholder="Cédula Profesional (Opcional)">
                                         </div>
+                                        <span class="text-danger" id="errorCedulaNavegadora">Formato incorrecto, deben ser 7 dígitos.</span>
                                     </div>
                                 </div>
 
@@ -433,7 +489,11 @@
                                             </div>
                                             <input type="password" class="form-control" id="agregar-passwordNavegadora"
                                                    placeholder="Contraseña">
+                                            <div id="navegadoraContrasena" class="input-group-append bg-white">
+                                                <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                            </div>
                                         </div>
+                                        <span class="text-danger" id="errorPass1Navegadora">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                     </div>
                                     <div class="col-6">
                                         <div class="input-group">
@@ -442,7 +502,11 @@
                                             </div>
                                             <input type="password" class="form-control" id="agregar-password2Navegadora"
                                                    placeholder="Confirmar contraseña">
+                                            <div id="navegadoraContrasenaConfirmacion" class="input-group-append bg-white">
+                                                <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                            </div>
                                         </div>
+                                        <span class="text-warning" id="noEqualPasswordsError">Las contraseñas no son iguales.</span>
                                     </div>
                                 </div>
 
@@ -456,15 +520,25 @@
 
                                 <div class="form-group row justify-content-center">
                                     <div class="col-12 text-center">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="autoSizingCheck2">
-                                            <label class="form-check-label" for="autoSizingCheck2">
-                                                La navegadora está informada y aceptó los términos y condiciones
-                                            </label>
+                                         <div class="form-check form-check-inline"> 
+                                            <label><input class="form-check-input" type="checkbox" id="terminosNavegadora" /> La navegadora está informada y aceptó los términos y condiciones</label>
                                         </div>
+                                    </div>
+                                    <span class="text-danger" id="errorTerminosNavegadora">Se deben aceptar los términos y condiciones.</span>
+                                </div>
+
+                                <div class="row mb-3" id="error-camposNavegadora">
+                                    <div class="col-12 text-center">
+                                        <span class="text-danger">Completa todos los campos y asegúrate de aceptar los términos para registrar la cuenta.</span>
                                     </div>
                                 </div>
 
+                                <div class="row mb-3" id="error-datosRepetidosNavegadora">
+                                    <div class="col-12 text-center">
+                                        <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>
+                                    </div>
+                                </div>
+                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger clearAddNavegadoraModal" style="border-radius:20px;" data-dismiss="modal">Cancelar</button>

@@ -588,6 +588,8 @@ public class PacienteController extends HttpServlet {
                             String etapaClinica = request.getParameter("etapaClinica");
                             int tipoSangre = Integer.parseInt(request.getParameter("tipoSangre"));
                             Part part = request.getPart("file-image");
+                            
+                            
 
                             //No se valida el telefono ni el correo aquí? Lo validamos nosotros o el front?
                             /**
@@ -598,7 +600,10 @@ public class PacienteController extends HttpServlet {
 
                             PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                             Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial((int) sesion.getAttribute("idCuenta"));
-                            //jeje
+                            
+                            System.out.println("NuevoNoExpediente: ".concat(noExpediente));
+                            System.out.println("AntExpediente: ".concat(paciente.getExpediente()));
+                            
                             /**
                              * El case cambiarDatos también se encarga de
                              * cambiar la foto de perfil del paciente cuando el

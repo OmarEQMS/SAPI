@@ -194,6 +194,7 @@ $(document).ready(function () {
     });
     
      $("body").on("click",".myCleaner", function(){
+         console.log("LOS LIMPIÓ");
 		$("#password").val("");
                 $("#password2").val("");
                 

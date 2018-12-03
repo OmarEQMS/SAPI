@@ -38,6 +38,7 @@ import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
 import mx.itesm.sapi.bean.gestionPaciente.Fish;
 import mx.itesm.sapi.bean.gestionPaciente.GradoHistologico;
 import mx.itesm.sapi.bean.gestionPaciente.Her2;
+import mx.itesm.sapi.bean.gestionPaciente.MotivoConsulta;
 import mx.itesm.sapi.bean.gestionPaciente.NivelSocioeconomico;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteAdmin;
@@ -45,6 +46,7 @@ import mx.itesm.sapi.bean.gestionPaciente.PacientePotencial;
 import mx.itesm.sapi.bean.gestionPaciente.ReceptorEstrogeno;
 import mx.itesm.sapi.bean.gestionPaciente.ReceptorProgesterona;
 import mx.itesm.sapi.bean.gestionPaciente.Seguro;
+import mx.itesm.sapi.bean.gestionPaciente.SolicitudPreconsulta;
 import mx.itesm.sapi.bean.gestionPaciente.TipoHistologico;
 import mx.itesm.sapi.bean.gestionTratamiento.TipoTratamiento;
 import mx.itesm.sapi.bean.gestionTratamiento.UnionTratamientoPaciente;
@@ -73,12 +75,14 @@ import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.FishServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.GradoHistologicoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.Her2ServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.MotivoConsultaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.NivelSocioeconomicoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.ReceptorEstrogenoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.ReceptorProgesteronaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.SeguroServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.TipoHistologicoServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.SolicitudPreconsultaServicioImpl;
 import mx.itesm.sapi.service.gestionTratamiento.TipoTratamientoServiceImpl;
 import mx.itesm.sapi.service.gestionTratamiento.UnionTratamientoPacienteServiceImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
@@ -267,10 +271,6 @@ public class FrontController extends HttpServlet {
                                 request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                 break;
                             }
-                            case "administrador/index.jsp": {
-
-                                break;
-                            }
                             case "administrador/reAsignarMedico.jsp": {
                                 /**
                                  * -------------------Mostrar Lista
@@ -284,23 +284,7 @@ public class FrontController extends HttpServlet {
                                 request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                 break;
                             }
-                            case "administrador/rendimientoNavegadora.jsp": {
-
-                                int idEmpleadoNavegadora = Integer.parseInt(request.getParameter("idNavegadora"));
-
-                                EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
-                                TablaMedicoAdministrador navegadora = empleadoServicioImpl.mostrarMedicoAdministrador(idEmpleadoNavegadora, 4);
-
-                                sesion.setAttribute("nombreNavegadora", navegadora.getNombre());
-                                sesion.setAttribute("primerApellidoNavegadora", navegadora.getPrimerApellido());
-                                sesion.setAttribute("idEmpleadoNavegadora", idEmpleadoNavegadora);
-
-                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
-                                break;
-
-                            }
-                        }
-
+                        }                            
                         break;
                     }
                     case 3: {
@@ -434,6 +418,25 @@ public class FrontController extends HttpServlet {
 
                                 EstadoCivilServicioImpl estadoCivilServicioImpl = new EstadoCivilServicioImpl();
                                 EstadoCivil estadoCivil = estadoCivilServicioImpl.mostrarEstadoCivil(persona.getIdEstadoCivil());
+                                
+                                try
+                                {
+                                    Pic picPaciente;
+                                    PicServicioImpl PicServicioImpl = new PicServicioImpl ();
+                                    picPaciente = PicServicioImpl.mostrarPic(persona.getIdPersona());
+                                    
+                                    InputStream imagenPaciente = picPaciente.getContenido();
+                                    byte[] byteImg = IOUtils.toByteArray(imagenPaciente);
+                                    String base64StringPic = Base64.getEncoder().encodeToString(byteImg);
+                                    
+                                    
+                                    sesion.setAttribute("base64ImgPac",base64StringPic);
+                                    
+                                }catch(Exception ex)
+                                {
+                                    System.out.println("Sin pic ".concat(ex.getMessage()));
+                                }                                    
+                                
 
                                 MunicipioServicioImpl municipioServicioImpl = new MunicipioServicioImpl();
                                 Municipio municipio = municipioServicioImpl.mostrarMunicipio(persona.getIdMunicipio());
@@ -459,6 +462,7 @@ public class FrontController extends HttpServlet {
 
                                 if (documentosInicialTipoDocumentos.size() > 0) {
                                     System.out.println("Esta llena");
+                                    System.out.println("Doc Inicial ".concat(String.valueOf(documentosInicialTipoDocumentos.get(1).getAprobado())));
                                 } else {
                                     System.out.println("Esta vacía");
                                 }
@@ -486,6 +490,27 @@ public class FrontController extends HttpServlet {
                                 // Date fecha = Date.valueOf(cuenta.getFecha().toString());
                                 //String fecha = cuenta.getFecha().toString();
                                 //fecha = fecha.substring(0, 10);
+                                SolicitudPreconsulta solicitudPreconsulta;
+                                SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
+                                solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
+                                System.out.println("Solicitud preconsulta ".concat(String.valueOf(solicitudPreconsulta.getMotivoCosulta())));
+                                if(solicitudPreconsulta.getMotivoCosulta() == 5)
+                                {
+                                    sesion.setAttribute("motivoPreconsulta", solicitudPreconsulta.getOtro());
+                                }else
+                                {
+                                    try
+                                    {
+                                        MotivoConsulta motivoConsulta;
+                                        MotivoConsultaServicioImpl motivoConsultaServicioImpl = new MotivoConsultaServicioImpl();
+                                        motivoConsulta = motivoConsultaServicioImpl.mostrarMotivoConsulta(solicitudPreconsulta.getMotivoCosulta());                                    
+                                        sesion.setAttribute("motivoPreconsulta", motivoConsulta.getNombre());
+                                    }catch(Exception ex)
+                                    {
+                                        System.out.println("Sin motivo por ser aprobada en el INcan");
+                                        sesion.setAttribute("motivoPreconsulta", "Vino direcamente al INCan" );
+                                    }
+                                }
 
                                 Timestamp ts = cuenta.getFecha();
                                 Date fecha = new Date(ts.getTime());

@@ -231,7 +231,6 @@ public class CuentaServicioImpl implements CuentaServicio {
     public boolean existsUsuario(String usuario) {
 
         Connection conn = Conexion.getConnection();
-
         CallableStatement cstmt;
 
         try {
@@ -248,9 +247,7 @@ public class CuentaServicioImpl implements CuentaServicio {
             Logger.getLogger(CuentaServicioImpl.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-
-    }
-    
+    } 
     
     @Override
     public String getToken(String correo) {
@@ -287,15 +284,15 @@ public class CuentaServicioImpl implements CuentaServicio {
     }
 
     @Override
-    public Cuenta mostrarCuentaEmpleado(int idEmpleado) {
-         Connection conn;
+    public Cuenta mostrarCuentaidEmpleado(int idEmpleado) {
+        Connection conn;
         ResultSet rs;
         CallableStatement cstmt;
 
         Cuenta cuenta = null;
 
         //Call del store procedure
-        String stProcedure = "CALL mostrarCuentaEmpleado(?)";
+        String stProcedure = "CALL mostrarCuentaIdEmpleado(?)";
 
         try {
             cuenta = new Cuenta();
@@ -326,5 +323,69 @@ public class CuentaServicioImpl implements CuentaServicio {
             cuenta = null;
         }
         return cuenta;
+    }
+
+    @Override
+    public Cuenta mostrarCuentaidPaciente(int idPaciente) {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        Cuenta cuenta = null;
+
+        //Call del store procedure
+        String stProcedure = "CALL mostrarCuentaIdPaciente(?)";
+
+        try {
+            cuenta = new Cuenta();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+
+            rs.next();
+            cuenta.setIdCuenta(rs.getInt("idCuenta"));
+            cuenta.setIdPersona(rs.getInt("idPersona"));
+            cuenta.setIdRol(rs.getInt("idRol"));
+            cuenta.setIdEstadoCuenta(rs.getInt("idEstadoCuenta"));
+            cuenta.setUsuario(rs.getString("usuario"));
+            cuenta.setPassword(rs.getString("password"));
+            cuenta.setToken(rs.getString("token"));
+            cuenta.setEstatus(rs.getInt("estatus"));
+
+            conn.close();
+            rs.close();
+            cstmt.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            cuenta = null;
+        }
+        return cuenta;
+    }
+
+    @Override
+    public boolean existsUsuario(String usuario, int idPersona) {
+        Connection conn = Conexion.getConnection();
+        CallableStatement cstmt;
+
+        try {
+            cstmt = conn.prepareCall("CALL existeUsuarioIdPaciente(?, ?, ?)");
+            cstmt.setString(1, usuario);
+            cstmt.setInt(2, idPersona);
+            cstmt.registerOutParameter(3, Types.BOOLEAN);
+
+            System.out.println("existeUsuario: ".concat(cstmt.toString()));
+            cstmt.execute();
+            return cstmt.getBoolean(3);
+            
+        } catch (SQLException ex) {
+
+            Logger.getLogger(CuentaServicioImpl.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
 }

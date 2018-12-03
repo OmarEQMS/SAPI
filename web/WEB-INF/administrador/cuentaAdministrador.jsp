@@ -43,6 +43,11 @@
 
     <body>
 
+        <div class="cargandoGuardarCambios" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Guardando cambios, por favor espere...</p>
+        </div>
+
         <div class="wrapper">
 
             <!-- SIDEBAR -->
@@ -62,7 +67,7 @@
 
                     <div class="row">
                         <div class="col-12 mb-2 mt-4">
-                            <img src="img/user.png" class="imagenPerfil" alt="">
+                            <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="imagenPerfil edit-image" width="66px" height="66px" alt="">
                         </div>
                     </div>
 
@@ -76,11 +81,11 @@
                     <div class="row justify-content-center">
 
                         <div class="col-2 text-center">
-                            <a class="iconoSidebar" href="" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
+                            <a class="iconoSidebar IrAMiCuenta" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
                         </div>
 
                         <div class="col-2">
-                            <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
+                            <a class="iconoSidebar salirCuenta" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a> 
                         </div>
                     </div>
                 </div>
@@ -93,8 +98,6 @@
 
                 <!-- MENU PRINCIPAL ENLACES -->
                 <ul class="list-unstyled components">
-
-                    <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
 
                     <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
 
@@ -134,10 +137,16 @@
                 <!-- Navegacion -->
 
 
-                <div class="row mb-3 justify-content-end">
-                    <div class="col-3 text-center">
-                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="IrAInicio" class="colorMoradoLight">Inicio</a></span>
-                        - <span class="colorGlobal">Mi cuenta</span>
+                <div class="row mb-3">
+                    <div class="col-12 text-right">
+                        <span class="iconoHome">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <span>
+                            <a class="colorMoradoLight">Administrador</a>
+                        </span>
+                        -
+                        <span class="colorGlobal">Mi Cuenta</span>
                     </div>
                 </div>
 
@@ -169,6 +178,7 @@
                             <div class="row mb-4">
                                 <div class="col-12 text-center">
                                     <h4 class="FotoPerfil text-secondary" style="font-size:17px;">Edita tu foto de perfil</h4>
+                                    <span class="text-danger" id="error-imgPerfil">No es una extensión válida. Puedes subir un archivo .jpg o .png</span>
                                 </div>
                             </div>
 
@@ -176,8 +186,8 @@
                             <!-- 4 -->
                             <div class="form-group row justify-content-center">
                                 <div class="col-8">
-                                    <label for="username">Usuario</label>
-                                    <input type="text" class="form-control" id="username" name="username" value="${sessionScope.usuario}"/>
+                                    <label for="username">No. Empleado</label>
+                                    <input type="text" class="form-control" id="username" name="username" value="${sessionScope.usuario}" readonly/>
                                     <span class="text-danger error-usuario" id="error-usuario">Formato incorrecto</span>
                                 </div>
 
@@ -199,8 +209,10 @@
                                 </div>
 
                                 <div class="col-8">
-                                    <span class="text-danger error-correo" id="error-usuario">Formato incorrecto</span>
-                                    <span class="text-warning error-correoRepetido">El usuario ya existe</span>
+
+                                    <span class="text-danger error-correo" id="error-usuario">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
+                                    <span class="text-warning error-correoRepetido">El correo ya existe</span>
+
                                 </div>
 
                             </div>
@@ -228,12 +240,12 @@
                         </div>
 
                         <!-- ********** MODAL EDITAR CONTRASEÑA **********-->
-                        <div class="modal fade" id="modalCambiarContraseña" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" data-keyboard="false" data-backdrop="static" id="modalCambiarContraseña" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Cambiar contraseña</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <button type="button" class="close cleanerModal" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
@@ -241,7 +253,10 @@
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <label for="name">Contraseña</label>
-                                                <input type="password" class="form-control" id="password" placeholder="Ingresa tu nueva contraseña" />
+                                                <div id="cambio1Contrasena" class="input-group-append bg-white">
+                                                    <input type="password" class="form-control" id="password" placeholder="Ingresa tu nueva contraseña" />
+                                                    <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row" id="error-contrasena">
@@ -252,7 +267,10 @@
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <label for="name">Confirma tu contraseña</label>
-                                                <input type="password" class="form-control" id="password2" placeholder="Reingresa tu nueva contraseña" />
+                                                <div id="cambio2Contrasena" class="input-group-append bg-white">
+                                                    <input type="password" class="form-control" id="password2" placeholder="Reingresa tu nueva contraseña" />
+                                                    <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row" id="noEqualPasswordsError">
@@ -263,7 +281,8 @@
 
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" style="border-radius: 20px"  data-dismiss="modal">Cancelar</button>
+
+                                        <button type="button" class="btn btn-danger cleanerModal" style="border-radius: 20px"  data-dismiss="modal">Cancelar</button>
                                         <button type="button" class="btn btn-primary" id="btn-updatePassword" style="border-radius: 20px" >Cambiar contraseña</button>
 
                                     </div>

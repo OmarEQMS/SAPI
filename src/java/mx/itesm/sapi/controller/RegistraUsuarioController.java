@@ -61,9 +61,6 @@ import mx.itesm.sapi.service.moduloGestionMedico.PosicionServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import org.apache.commons.io.IOUtils;
 
-
-
-
 /**
  *
  * @author Who is admin?
@@ -84,73 +81,67 @@ public class RegistraUsuarioController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        /** Fernanda Orduña y Pablo Lugo <3
-        * 
-        * Controlador de Registro Uusuario
-        * Permite a un usuario registrar un usuario con credenciales únicas.
-        *
-        */
-        
-        
-        /** 
-        * Recepción de parametro key que permite escoger un case en el Switch
-        * Declaración PrintWriter para imprimir respuestas
-        */
+        /**
+         * Fernanda Orduña y Pablo Lugo <3
+         *
+         * Controlador de Registro Uusuario Permite a un usuario registrar un
+         * usuario con credenciales únicas.
+         *
+         */
+        /**
+         * Recepción de parametro key que permite escoger un case en el Switch
+         * Declaración PrintWriter para imprimir respuestas
+         */
         PrintWriter out = response.getWriter();
         String key = request.getParameter("key");
-        
-        /** 
-        * Declaración de servicios para la inserción en tablas.
-        * Las tablas son Persona, Cuenta, Dirección, Paciente, EstadoPacientePaciente
-        */
-        
-        
-        /** Declaración de sesión */
+
+        /**
+         * Declaración de servicios para la inserción en tablas. Las tablas son
+         * Persona, Cuenta, Dirección, Paciente, EstadoPacientePaciente
+         */
+        /**
+         * Declaración de sesión
+         */
         HttpSession sesion = request.getSession(true);
-        
-        
+
         PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
         CuentaServicioImpl _rSC = new CuentaServicioImpl();
         DireccionServicioImpl _rSD = new DireccionServicioImpl();
         PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
         EstadoPacientePacienteServiceImpl estadoPaPaServicio = new EstadoPacientePacienteServiceImpl();
         EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
-        PosicionServicioImpl posicionServicioImpl  = new PosicionServicioImpl();
+        PosicionServicioImpl posicionServicioImpl = new PosicionServicioImpl();
         EmpleadoPosicionServicioImpl empleadoPosicionServicioImpl = new EmpleadoPosicionServicioImpl();
-        EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl ();
+        EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
         MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
-        
 
-        /** 
-        * Declaración de objetos para la manipulación en el b
-        * ack.
-        * Los bean son Persona, Cuenta, Dirección, Paciente, EstadoPacientePaciente
-        */
+        /**
+         * Declaración de objetos para la manipulación en el b ack. Los bean son
+         * Persona, Cuenta, Dirección, Paciente, EstadoPacientePaciente
+         */
         Persona per = new Persona();
         Cuenta cuenta = new Cuenta();
         Direccion dir = new Direccion();
         Paciente pac = new Paciente();
         EstadoPacientePaciente estadoPaPa = new EstadoPacientePaciente();
         Empleado empleado = new Empleado();
-        Posicion posicion;        
+        Posicion posicion;
         Especialidad especialidad;
         MedicoEspecialidad medicoEspecialidad = new MedicoEspecialidad();
-        EmpleadoPosicion empleadoPosicion  = new EmpleadoPosicion();
-        
-                
-                
+        EmpleadoPosicion empleadoPosicion = new EmpleadoPosicion();
+
         switch (key) {
 
             case "repiteCurp": {
 
-                /** 
-                * El case repiteCurp tiene como función verificar la unicidad del Curp ingresado por parte del Usuario.
-                * Se recibe como parametro el curp.
-                * Se utiliza el metodo existsCurp del servicio PersonaServcioImpl que verficia la unicidad en la base de datos.
-                * Devuelve la respuesta sobre la unicidad del curp con un objeto PrintWriter
-                */
-                
-                
+                /**
+                 * El case repiteCurp tiene como función verificar la unicidad
+                 * del Curp ingresado por parte del Usuario. Se recibe como
+                 * parametro el curp. Se utiliza el metodo existsCurp del
+                 * servicio PersonaServcioImpl que verficia la unicidad en la
+                 * base de datos. Devuelve la respuesta sobre la unicidad del
+                 * curp con un objeto PrintWriter
+                 */
                 String curp = request.getParameter("curp");
                 System.out.println("El curp es: ".concat(curp));
 
@@ -171,21 +162,22 @@ public class RegistraUsuarioController extends HttpServlet {
             break;
 
             case "repiteUsuario": {
-                
-                /** 
-                * El case repiteUsuario tiene como función verificar la unicidad del Usuario ingresado por parte del Usuario.
-                * Se recibe como parametro el usuario.
-                * Se utiliza el metodo existsUsuario del servicio CuentaServcioImpl que verficia la unicidad en la base de datos.
-                * Devuelve la respuesta sobre la unicidad del curp con un objeto PrintWriter
-                */
-                
+
+                /**
+                 * El case repiteUsuario tiene como función verificar la
+                 * unicidad del Usuario ingresado por parte del Usuario. Se
+                 * recibe como parametro el usuario. Se utiliza el metodo
+                 * existsUsuario del servicio CuentaServcioImpl que verficia la
+                 * unicidad en la base de datos. Devuelve la respuesta sobre la
+                 * unicidad del curp con un objeto PrintWriter
+                 */
                 String usuario = request.getParameter("usuario");
-                
-                System.out.println("entré al case repiteUsuario"); 
-                
+
+                System.out.println("entré al case repiteUsuario");
+
                 //Checo si el usuario existe
                 if (_rSC.existsUsuario(usuario)) {
-                    
+
                     out.print("UsuarioAlreadyExists");
 
                 } else {
@@ -196,10 +188,29 @@ public class RegistraUsuarioController extends HttpServlet {
                 }
             }
             break;
+
+            case "repiteNoEmpleado": {
+
+                String noEmpleado = request.getParameter("noEmpleado");
+                
+                EmpleadoServicioImpl empleadoServicio = new EmpleadoServicioImpl();
+                
+                //Checo si el usuario existe
+                if (empleadoServicio.existsNoEmpleado(noEmpleado)) {
+
+                    out.print("NoEmpleadoAlreadyExists");
+
+                } else {
+
+                    //Si no existe, lo inserto
+                    out.print("NoEmpleadoDoesntExist");
+
+                }
+            }
+            break;
             
             case "repiteCorreo": {
-                
-                
+
                 String correo = request.getParameter("correo");
 
                 //Checo si el usuario existe
@@ -218,16 +229,19 @@ public class RegistraUsuarioController extends HttpServlet {
 
             case "registraUsuario": {
 
-                /** 
-                * El case registraUsuario tiene como función la inserción de los datos del Usuario, en las tablas Persona, Cuenta, Paciente y EstadoPacientePaciente.
-                * Se reciben como Parametros los inputs del achivo registro.jsp.
-                * Se convierten algunos variables para después ser seteadas en sus respectivos objetos.
-                * Se prosigue a insertar los objetos haciendo uso de los Servicios y Objetos previamente declarados.
-                * El orden de inserción es el siguiente (Cada inserción recibe un "id" necesario para la siguiente inserción):
-                * Dirección, Persona, Cuenta, Paciente, EstadoPacientePaciente.
-                * Al finalizar la inserción se ejecuta el método enviCorreo(String mail);
-                */
-                
+                /**
+                 * El case registraUsuario tiene como función la inserción de
+                 * los datos del Usuario, en las tablas Persona, Cuenta,
+                 * Paciente y EstadoPacientePaciente. Se reciben como Parametros
+                 * los inputs del achivo registro.jsp. Se convierten algunos
+                 * variables para después ser seteadas en sus respectivos
+                 * objetos. Se prosigue a insertar los objetos haciendo uso de
+                 * los Servicios y Objetos previamente declarados. El orden de
+                 * inserción es el siguiente (Cada inserción recibe un "id"
+                 * necesario para la siguiente inserción): Dirección, Persona,
+                 * Cuenta, Paciente, EstadoPacientePaciente. Al finalizar la
+                 * inserción se ejecuta el método enviCorreo(String mail);
+                 */
                 String nombre = request.getParameter("nombre");
                 String apellido1 = request.getParameter("apellido1");
                 String apellido2 = request.getParameter("apellido2");
@@ -312,7 +326,7 @@ public class RegistraUsuarioController extends HttpServlet {
 
                                 picServiceImpl.agregarPic(pic);
                                 System.out.println("agrego imagen");
-                                enviaCorreo(usuario,correo);
+                                enviaCorreo(usuario, correo);
                             }
                             out.print(idPac);
 
@@ -323,26 +337,25 @@ public class RegistraUsuarioController extends HttpServlet {
 
                 break;
             }
-            case "agregarMedico":
-            {
+            case "agregarMedico": {
                 ResourceBundle sapiProperties = ResourceBundle.getBundle("mx.itesm.sapi.properties.catalogos");
-                
+
                 int idRolMedico = Integer.parseInt(sapiProperties.getString("Medico"));
                 int idTumoresMamarios = Integer.parseInt(sapiProperties.getString("TumoresMamarios"));
-                 
+
                 String nombre = request.getParameter("nombre");
                 String apellido1 = request.getParameter("primerApellido");
                 String apellido2 = request.getParameter("segundoApellido");
                 String telefono = request.getParameter("telefono");
-                String correo = request.getParameter("correo");                
+                String correo = request.getParameter("correo");
                 String noEmpleado = request.getParameter("noEmpleado");
                 String especialidadAgregar = request.getParameter("especialidad");
                 String posicionMedico = request.getParameter("posicion");
                 String cedula = request.getParameter("cedula");
                 String contraseña = request.getParameter("password");
-                
+
                 RestringirEmpleado restringirEmpleado = new RestringirEmpleado();
-                
+
                 restringirEmpleado.setNombre(nombre);
                 restringirEmpleado.setPrimerApellido(apellido1);
                 restringirEmpleado.setSegundoApellido(apellido2);
@@ -350,21 +363,18 @@ public class RegistraUsuarioController extends HttpServlet {
                 restringirEmpleado.setCorreo(correo);
                 restringirEmpleado.setRol(idRolMedico);
                 restringirEmpleado.setUsuario(noEmpleado);
-                
-                
+
                 Identificadores identificadores = empleadoServicioImpl.restringirEmpleado(restringirEmpleado);
-                    
+
                 //Si la misma cuenta ya existe no se permitirá registrar
                 PrintWriter permitir = response.getWriter();
-                
-                if(identificadores.getIdCuenta() > 0)
-                {                    
+
+                if (identificadores.getIdCuenta() > 0) {
                     permitir.print("Existe");
                     System.out.println("Ya existe la cuenta de médico");
                     break;
                 }
-                                                
-                                
+
                 System.out.println(nombre);
                 System.out.println(apellido1);
                 System.out.println(apellido2);
@@ -374,114 +384,112 @@ public class RegistraUsuarioController extends HttpServlet {
                 System.out.println(especialidadAgregar);
                 System.out.println(cedula);
                 System.out.println(contraseña);
-                
+
                 per.setNombre(nombre);
                 per.setPrimerApellido(apellido1);
                 per.setSegundoApellido(apellido2);
                 per.setTelefono(telefono);
                 per.setCorreo(correo);
-                
+
                 long unixTimestamp = Instant.now().getEpochSecond();
 
                 cuenta.setToken(String.valueOf(unixTimestamp));
                 cuenta.setUsuario(noEmpleado);
                 cuenta.setIdRol(idRolMedico);
                 cuenta.setPassword(contraseña);
-                cuenta.setIdEmpleado((int)sesion.getAttribute("idEmpleado"));
-                
+                cuenta.setIdEmpleado((int) sesion.getAttribute("idEmpleado"));
+
                 empleado.setNoEmpleado(noEmpleado);
                 empleado.setIdDepartamentoDepartamentoInterno(idTumoresMamarios);
-                
-                 int idPersona = identificadores.getIdPersona();
-                
-                if (idPersona == 0)
-                    idPersona = _registroServicio.agregarMedico(per,idRolMedico);                
-                    
+
+                int idPersona = identificadores.getIdPersona();
+
+                if (idPersona == 0) {
+                    idPersona = _registroServicio.agregarMedico(per, idRolMedico);
+                }
+
                 int idCuenta = identificadores.getIdCuenta();
-                int idEmpleado = identificadores.getEmpleado();          
-                
+                int idEmpleado = identificadores.getEmpleado();
+
                 System.out.println("idPersona: ".concat(String.valueOf(idPersona)));
-                if(idPersona > 0)
-                {
+                if (idPersona > 0) {
                     PicServicioImpl picServiceImpl = new PicServicioImpl();
-                    
+
                     Pic pic = picServiceImpl.mostrarPicDefault();
                     pic.setIdPersona(idPersona);
                     picServiceImpl.agregarPic(pic);
-                
-                
-                    cuenta.setIdPersona(idPersona);                    
-                    if(idCuenta == 0)
+
+                    cuenta.setIdPersona(idPersona);
+                    if (idCuenta == 0) {
                         idCuenta = _rSC.agregarCuenta(cuenta);
-                    
-                    if(idCuenta > 0)
-                    {
+                    }
+
+                    if (idCuenta > 0) {
                         empleado.setIdCuenta(idCuenta);
-                        if(idEmpleado == 0)
+                        if (idEmpleado == 0) {
                             idEmpleado = empleadoServicioImpl.agregarEmpleado(empleado);
-                        
+                        }
+
                         System.out.println("idCuenta: ".concat(String.valueOf(idCuenta)));
-                        if(idEmpleado > 0)
-                        {
+                        if (idEmpleado > 0) {
                             System.out.println("idEmpleado: ".concat(String.valueOf(idEmpleado)));
-                            
+
                             posicion = posicionServicioImpl.mostrarPosicion(posicionMedico);
                             especialidad = especialidadServicioImpl.mostrarEspecialidadPorNombre(especialidadAgregar);
-                                                                                   
+
                             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                            
+
                             empleadoPosicion.setIdEmpleado(idEmpleado);
                             empleadoPosicion.setIdPosicion(posicion.getIdPosicion());
-                            empleadoPosicion.setInicio(timestamp);                            
-                            
+                            empleadoPosicion.setInicio(timestamp);
+
                             medicoEspecialidad.setIdEspecialidad(especialidad.getIdEspecialidad());
                             medicoEspecialidad.setIdEmpleado(idEmpleado);
                             medicoEspecialidad.setCedulaProfesional(cedula);
-                                                                                    
-                            int idEmpleadoPosicionServicio  = empleadoPosicionServicioImpl.agregarEmpleadoPosicion(empleadoPosicion);
+
+                            int idEmpleadoPosicionServicio = empleadoPosicionServicioImpl.agregarEmpleadoPosicion(empleadoPosicion);
                             int idMedicoEspecialidad = medicoEspecialidadServicioImpl.agregarMedicoEspecialidad(medicoEspecialidad);
-                            
+
                             System.out.println("Final :D");
                             System.out.println("idPersona: ".concat(String.valueOf(idPersona)));
                             System.out.println("idCuenta: ".concat(String.valueOf(idCuenta)));
                             System.out.println("idEmpleado: ".concat(String.valueOf(idEmpleado)));
                             System.out.println("idEmpleadoPosicion: ".concat(String.valueOf(idEmpleadoPosicionServicio)));
                             System.out.println("idMedicoEspecialidad: ".concat(String.valueOf(idMedicoEspecialidad)));
-                            
-                            if(idEmpleado > 0 && idEmpleadoPosicionServicio > 0)
-                                permitir.print("1");
-                            else
+
+                            if (idEmpleado > 0 && idEmpleadoPosicionServicio > 0) {
+                                permitir.print(idEmpleado);
+                            } else {
                                 permitir.print("0");
-                            
+                            }
+
                         }
-                        
+
                     }
-                    
-                }    
-                                                                                   
-                
+
+                }
+
                 break;
             }
-            case "agregarAdministrador":
-            {
+            case "agregarAdministrador": {
                 ResourceBundle sapiProperties = ResourceBundle.getBundle("mx.itesm.sapi.properties.catalogos");
-                
+
                 int idRolAdmin = Integer.parseInt(sapiProperties.getString("Administrador"));
                 int idTumoresMamarios = Integer.parseInt(sapiProperties.getString("TumoresMamarios"));
-                 
+
                 String nombre = request.getParameter("nombre");
                 String apellido1 = request.getParameter("primerApellido");
                 String apellido2 = request.getParameter("segundoApellido");
                 String telefono = request.getParameter("telefono");
-                String correo = request.getParameter("correo");                
+                String correo = request.getParameter("correo");
                 String noEmpleado = request.getParameter("noEmpleado");
                 String especialidadAgregar = request.getParameter("especialidad");
                 String posicionMedico = request.getParameter("posicion");
                 String cedula = request.getParameter("cedula");
                 String contraseña = request.getParameter("password");
-                
+
                 RestringirEmpleado restringirEmpleado = new RestringirEmpleado();
-                
+
                 restringirEmpleado.setNombre(nombre);
                 restringirEmpleado.setPrimerApellido(apellido1);
                 restringirEmpleado.setSegundoApellido(apellido2);
@@ -489,21 +497,18 @@ public class RegistraUsuarioController extends HttpServlet {
                 restringirEmpleado.setCorreo(correo);
                 restringirEmpleado.setRol(idRolAdmin);
                 restringirEmpleado.setUsuario(noEmpleado);
-                
-                
+
                 Identificadores identificadores = empleadoServicioImpl.restringirEmpleado(restringirEmpleado);
-                    
+
                 //Si la misma cuenta ya existe no se permitirá registrar
                 PrintWriter permitir = response.getWriter();
-                
-                if(identificadores.getIdCuenta() > 0)
-                {                    
+
+                if (identificadores.getIdCuenta() > 0) {
                     permitir.print("Existe");
                     System.out.println("Ya existe la cuenta de admin");
                     break;
                 }
-                                                
-                                
+
                 System.out.println(nombre);
                 System.out.println(apellido1);
                 System.out.println(apellido2);
@@ -513,110 +518,107 @@ public class RegistraUsuarioController extends HttpServlet {
                 System.out.println(especialidadAgregar);
                 System.out.println(cedula);
                 System.out.println(contraseña);
-                
+
                 per.setNombre(nombre);
                 per.setPrimerApellido(apellido1);
                 per.setSegundoApellido(apellido2);
                 per.setTelefono(telefono);
                 per.setCorreo(correo);
-                
+
                 long unixTimestamp = Instant.now().getEpochSecond();
 
                 cuenta.setToken(String.valueOf(unixTimestamp));
                 cuenta.setUsuario(noEmpleado);
                 cuenta.setIdRol(idRolAdmin);
                 cuenta.setPassword(contraseña);
-                cuenta.setIdEmpleado((int)sesion.getAttribute("idEmpleado"));
-                
+                cuenta.setIdEmpleado((int) sesion.getAttribute("idEmpleado"));
+
                 empleado.setNoEmpleado(noEmpleado);
                 empleado.setIdDepartamentoDepartamentoInterno(idTumoresMamarios);
-                
-                 int idPersona = identificadores.getIdPersona();
-                
-                if (idPersona == 0)
-                    idPersona = _registroServicio.agregarMedico(per,idRolAdmin);                
-                    
+
+                int idPersona = identificadores.getIdPersona();
+
+                if (idPersona == 0) {
+                    idPersona = _registroServicio.agregarMedico(per, idRolAdmin);
+                }
+
                 int idCuenta = identificadores.getIdCuenta();
-                int idEmpleado = identificadores.getEmpleado();          
-                
+                int idEmpleado = identificadores.getEmpleado();
+
                 System.out.println("idPersona: ".concat(String.valueOf(idPersona)));
-                if(idPersona > 0)
-                {
+                if (idPersona > 0) {
                     PicServicioImpl picServiceImpl = new PicServicioImpl();
-                    
+
                     Pic pic = picServiceImpl.mostrarPicDefault();
                     pic.setIdPersona(idPersona);
                     picServiceImpl.agregarPic(pic);
-                
-                
-                    cuenta.setIdPersona(idPersona);                    
-                    if(idCuenta == 0)
+
+                    cuenta.setIdPersona(idPersona);
+                    if (idCuenta == 0) {
                         idCuenta = _rSC.agregarCuenta(cuenta);
-                    
-                    if(idCuenta > 0)
-                    {
+                    }
+
+                    if (idCuenta > 0) {
                         empleado.setIdCuenta(idCuenta);
-                        if(idEmpleado == 0)
+                        if (idEmpleado == 0) {
                             idEmpleado = empleadoServicioImpl.agregarEmpleado(empleado);
-                        
+                        }
+
                         System.out.println("idCuenta: ".concat(String.valueOf(idCuenta)));
-                        if(idEmpleado > 0)
-                        {
+                        if (idEmpleado > 0) {
                             System.out.println("idEmpleado: ".concat(String.valueOf(idEmpleado)));
-                            
+
                             posicion = posicionServicioImpl.mostrarPosicion(posicionMedico);
                             especialidad = especialidadServicioImpl.mostrarEspecialidadPorNombre(especialidadAgregar);
-                                                                                   
+
                             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                            
+
                             empleadoPosicion.setIdEmpleado(idEmpleado);
                             empleadoPosicion.setIdPosicion(posicion.getIdPosicion());
-                            empleadoPosicion.setInicio(timestamp);                            
-                            
+                            empleadoPosicion.setInicio(timestamp);
+
                             medicoEspecialidad.setIdEspecialidad(especialidad.getIdEspecialidad());
                             medicoEspecialidad.setIdEmpleado(idEmpleado);
                             medicoEspecialidad.setCedulaProfesional(cedula);
-                                                                                    
-                            int idEmpleadoPosicionServicio  = empleadoPosicionServicioImpl.agregarEmpleadoPosicion(empleadoPosicion);
+
+                            int idEmpleadoPosicionServicio = empleadoPosicionServicioImpl.agregarEmpleadoPosicion(empleadoPosicion);
                             int idMedicoEspecialidad = medicoEspecialidadServicioImpl.agregarMedicoEspecialidad(medicoEspecialidad);
-                            
+
                             System.out.println("Final :D");
                             System.out.println("idPersona: ".concat(String.valueOf(idPersona)));
                             System.out.println("idCuenta: ".concat(String.valueOf(idCuenta)));
                             System.out.println("idEmpleado: ".concat(String.valueOf(idEmpleado)));
                             System.out.println("idEmpleadoPosicion: ".concat(String.valueOf(idEmpleadoPosicionServicio)));
-                            System.out.println("idMedicoEspecialidad: ".concat(String.valueOf(idMedicoEspecialidad)));                            
-                            
-                            out.print("success");
+                            System.out.println("idMedicoEspecialidad: ".concat(String.valueOf(idMedicoEspecialidad)));
+
+                            out.print(idEmpleado);
                         }
-                        
+
                     }
-                    
-                }    
-                                                                                   
-                
+
+                }
+
                 break;
             }
-            case "agregarNavegadora":
-            {
+            case "agregarNavegadora": {
                 ResourceBundle sapiProperties = ResourceBundle.getBundle("mx.itesm.sapi.properties.catalogos");
-                
+
                 int idRolNavegadora = Integer.parseInt(sapiProperties.getString("Navegadora"));
                 int idTumoresMamarios = Integer.parseInt(sapiProperties.getString("TumoresMamarios"));
-                 
+
                 String nombre = request.getParameter("nombre");
                 String apellido1 = request.getParameter("primerApellido");
                 String apellido2 = request.getParameter("segundoApellido");
                 String telefono = request.getParameter("telefono");
-                String correo = request.getParameter("correo");                
+                String correo = request.getParameter("correo");
                 String noEmpleado = request.getParameter("noEmpleado");
                 String especialidadAgregar = request.getParameter("especialidad");
                 String posicionNavegadora = "Navegadora";
                 String cedula = request.getParameter("cedula");
                 String contraseña = request.getParameter("password");
-                 
+
                 RestringirEmpleado restringirEmpleado = new RestringirEmpleado();
-                
+
                 restringirEmpleado.setNombre(nombre);
                 restringirEmpleado.setPrimerApellido(apellido1);
                 restringirEmpleado.setSegundoApellido(apellido2);
@@ -624,21 +626,18 @@ public class RegistraUsuarioController extends HttpServlet {
                 restringirEmpleado.setCorreo(correo);
                 restringirEmpleado.setRol(idRolNavegadora);
                 restringirEmpleado.setUsuario(noEmpleado);
-                
-                
+
                 Identificadores identificadores = empleadoServicioImpl.restringirEmpleado(restringirEmpleado);
-                    
+
                 //Si la misma cuenta ya existe no se permitirá registrar
                 PrintWriter permitir = response.getWriter();
-                
-                if(identificadores.getIdCuenta() > 0)
-                {                    
+
+                if (identificadores.getIdCuenta() > 0) {
                     permitir.print("Existe");
                     System.out.println("Ya existe la cuenta de navegadora");
                     break;
                 }
-                                
-                
+
                 System.out.println(nombre);
                 System.out.println(apellido1);
                 System.out.println(apellido2);
@@ -648,117 +647,118 @@ public class RegistraUsuarioController extends HttpServlet {
                 System.out.println(especialidadAgregar);
                 System.out.println(cedula);
                 System.out.println(contraseña);
-                
+
                 per.setNombre(nombre);
                 per.setPrimerApellido(apellido1);
                 per.setSegundoApellido(apellido2);
                 per.setTelefono(telefono);
                 per.setCorreo(correo);
-                
+
                 long unixTimestamp = Instant.now().getEpochSecond();
 
                 cuenta.setToken(String.valueOf(unixTimestamp));
                 cuenta.setUsuario(noEmpleado);
                 cuenta.setIdRol(idRolNavegadora);
                 cuenta.setPassword(contraseña);
-                cuenta.setIdEmpleado((int)sesion.getAttribute("idEmpleado"));
-                
+                cuenta.setIdEmpleado((int) sesion.getAttribute("idEmpleado"));
+
                 System.out.println("Rol ".concat(String.valueOf(idRolNavegadora)));
-                if(idRolNavegadora == 2)
+                if (idRolNavegadora == 2) {
                     break;
-                
+                }
+
                 empleado.setNoEmpleado(noEmpleado);
                 empleado.setIdDepartamentoDepartamentoInterno(idTumoresMamarios);
-                
+
                 int idPersona = identificadores.getIdPersona();
-                
-                if (idPersona == 0)
-                    idPersona = _registroServicio.agregarMedico(per,idRolNavegadora);                
-                    
+
+                if (idPersona == 0) {
+                    idPersona = _registroServicio.agregarMedico(per, idRolNavegadora);
+                }
+
                 int idCuenta = identificadores.getIdCuenta();
-                int idEmpleado = identificadores.getEmpleado();                
-                
+                int idEmpleado = identificadores.getEmpleado();
+
                 System.out.println("idPersona: ".concat(String.valueOf(idPersona)));
-                if(idPersona > 0)
-                {
+                if (idPersona > 0) {
                     PicServicioImpl picServiceImpl = new PicServicioImpl();
-                    
+
                     Pic pic = picServiceImpl.mostrarPicDefault();
                     pic.setIdPersona(idPersona);
                     picServiceImpl.agregarPic(pic);
-                                        
-                    cuenta.setIdPersona(idPersona);    
-                    
-                    if(idCuenta == 0)
+
+                    cuenta.setIdPersona(idPersona);
+
+                    if (idCuenta == 0) {
                         idCuenta = _rSC.agregarCuenta(cuenta);
-                    
-                    if(idCuenta > 0)
-                    {
+                    }
+
+                    if (idCuenta > 0) {
                         empleado.setIdCuenta(idCuenta);
-                        
-                        if(idEmpleado == 0)
+
+                        if (idEmpleado == 0) {
                             idEmpleado = empleadoServicioImpl.agregarEmpleado(empleado);
-                        
+                        }
+
                         System.out.println("idCuenta: ".concat(String.valueOf(idCuenta)));
-                        if(idEmpleado > 0)
-                        {
+                        if (idEmpleado > 0) {
                             System.out.println("idEmpleado: ".concat(String.valueOf(idEmpleado)));
-                            
+
                             posicion = posicionServicioImpl.mostrarPosicion(posicionNavegadora);
                             especialidad = especialidadServicioImpl.mostrarEspecialidadPorNombre(especialidadAgregar);
-                                                                                   
+
                             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                             
+
                             empleadoPosicion.setIdEmpleado(idEmpleado);
                             empleadoPosicion.setIdPosicion(posicion.getIdPosicion());
-                            empleadoPosicion.setInicio(timestamp);                            
-                            
+                            empleadoPosicion.setInicio(timestamp);
+
                             medicoEspecialidad.setIdEspecialidad(especialidad.getIdEspecialidad());
                             medicoEspecialidad.setIdEmpleado(idEmpleado);
                             medicoEspecialidad.setCedulaProfesional(cedula);
-                                                                                    
-                            int idEmpleadoPosicionServicio  = empleadoPosicionServicioImpl.agregarEmpleadoPosicion(empleadoPosicion);
+
+                            int idEmpleadoPosicionServicio = empleadoPosicionServicioImpl.agregarEmpleadoPosicion(empleadoPosicion);
                             int idMedicoEspecialidad = medicoEspecialidadServicioImpl.agregarMedicoEspecialidad(medicoEspecialidad);
-                            
+
                             System.out.println("Final :D");
                             System.out.println("idPersona: ".concat(String.valueOf(idPersona)));
                             System.out.println("idCuenta: ".concat(String.valueOf(idCuenta)));
                             System.out.println("idEmpleado: ".concat(String.valueOf(idEmpleado)));
                             System.out.println("idEmpleadoPosicion: ".concat(String.valueOf(idEmpleadoPosicionServicio)));
                             System.out.println("idMedicoEspecialidad: ".concat(String.valueOf(idMedicoEspecialidad)));
-                            
-                            if(idEmpleado > 0 && idEmpleadoPosicionServicio > 0){
-                                permitir.print("1");
-                                enviaCorreo(noEmpleado,correo);
-                            }
-                            else
+
+                            if (idEmpleado > 0 && idEmpleadoPosicionServicio > 0) {
+                                permitir.print(idEmpleado);
+                                enviaCorreo(noEmpleado, correo);
+                            } else {
                                 permitir.print("0");
+                            }
                         }
-                        
+
                     }
-                    
-                }    
-                                                     
+
+                }
+
                 break;
             }
-                       
+
         }
     }
 
-    protected void enviaCorreo(String usuario,String correo) {
-        
-                /** 
-                * El metodo enviaCorreo tiene como función el envío de un correo de confirmación al Usuario registrado.
-                * Se recibe como parametro el correo del Usuario.
-                * Mediante una cuenta ya introduciida dentro del codigo se envía el correo.
-                * El contenido del correo puede ser configurado en el mimeBodyPart.
-                */
-        
+    protected void enviaCorreo(String usuario, String correo) {
+
+        /**
+         * El metodo enviaCorreo tiene como función el envío de un correo de
+         * confirmación al Usuario registrado. Se recibe como parametro el
+         * correo del Usuario. Mediante una cuenta ya introduciida dentro del
+         * codigo se envía el correo. El contenido del correo puede ser
+         * configurado en el mimeBodyPart.
+         */
         System.out.println("estoy en el metodo");
         Properties config = new Properties();
 
         try {
-            
+
             config.load(getClass().getResourceAsStream("/mail.properties"));
             Session session = Session.getInstance(config,
                     new javax.mail.Authenticator() {

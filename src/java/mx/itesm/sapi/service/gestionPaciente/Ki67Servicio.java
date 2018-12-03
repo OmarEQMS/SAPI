@@ -14,5 +14,6 @@ import mx.itesm.sapi.bean.gestionPaciente.Ki67;
 public interface Ki67Servicio {
     public Ki67 mostrarKi67(int idKi67);
     public List<Ki67> mostrarKi67();
+    public Ki67 mostrarKi67Nombre(int nombre);
     
 }

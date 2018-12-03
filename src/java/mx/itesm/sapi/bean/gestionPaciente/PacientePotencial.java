@@ -26,6 +26,17 @@ public class PacientePotencial {
     private int tieneResultados;
     private Date fechaNavegacion;
     private int color;
+    private String nombreEstadoCita;
+
+    public String getNombreEstadoCita() {
+        return nombreEstadoCita;
+    }
+
+    public void setNombreEstadoCita(String nombreEstadoCita) {
+        this.nombreEstadoCita = nombreEstadoCita;
+    }
+    
+    
 
     @Override
     public String toString() {

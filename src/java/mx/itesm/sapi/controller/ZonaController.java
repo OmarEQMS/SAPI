@@ -47,8 +47,7 @@ public class ZonaController extends HttpServlet {
         HttpSession sesion = request.getSession(true);
         try
         {
-            key = request.getParameter("key");
-            
+            key = request.getParameter("key");            
             sesion.setAttribute("KeyZonaController", key);
         }catch (Exception ex)
         {

@@ -635,6 +635,7 @@ public class DocumentoEstudioServicioImpl implements DocumentoEstudioServicio {
                 documentoEstudio.setIdBirads(rs.getInt("idBirads"));
                 documentoEstudio.setArchivo(rs.getBytes("archivo"));
                 documentoEstudio.setPrevio(rs.getInt("previo"));
+                
                 documentoEstudio.setFechaEstudioResultado(rs.getDate("fechaEstudioResultado"));
                 documentoEstudio.setIdLugarDelCuerpo(rs.getInt("idLugarDelCuerpo"));
             }

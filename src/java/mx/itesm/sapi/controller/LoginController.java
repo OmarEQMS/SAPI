@@ -179,11 +179,13 @@ public class LoginController extends HttpServlet {
                                 //Solicitud Documentos Preconsulta
                                 SolicitudPreconsulta solicitudPreconsulta;
                                 SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
+                                System.out.println("Vamos a ver la solicitud de preconsulta desde el loginController");                                
                                 solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
+                                
 
                                 System.out.println("Consultar documentos");
                                
-                                //System.out.println("Motivo SolicitudPreconsulta: " + solicitudPreconsulta.getMotivoCosulta());
+                                System.out.println("Motivo SolicitudPreconsulta: " + solicitudPreconsulta.getMotivoCosulta());
 
                                 sesion.setAttribute("idMotivoConsulta", solicitudPreconsulta.getMotivoCosulta());
                                 if (solicitudPreconsulta.getMotivoCosulta() == 1 || solicitudPreconsulta.getMotivoCosulta() == 4) {

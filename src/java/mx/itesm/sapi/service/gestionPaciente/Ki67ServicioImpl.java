@@ -13,15 +13,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import mx.itesm.sapi.bean.gestionPaciente.Ki67;
 import mx.itesm.sapi.util.Conexion;
+
 /**
  *
  * @author Alexis España
  */
-public class Ki67ServicioImpl implements Ki67Servicio{
+public class Ki67ServicioImpl implements Ki67Servicio {
 
     @Override
     public Ki67 mostrarKi67(int idKi67) {
-        
+
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
@@ -84,5 +85,39 @@ public class Ki67ServicioImpl implements Ki67Servicio{
         }
         return listKi67;
     }
-    
+
+    @Override
+    public Ki67 mostrarKi67Nombre(int nombre) {
+
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+
+        Ki67 ki67 = null;
+
+        String stProcedure = "CALL mostrarKi67Nombre(?)";
+        try {
+            conn = Conexion.getConnection();
+            ki67 = new Ki67();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, nombre);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            ki67.setIdKi67(rs.getInt("idKi67"));
+            ki67.setNombre(rs.getString("nombre"));
+            ki67.setEstatus(rs.getInt("estatus"));
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            ki67 = null;
+        }
+        return ki67;
+    }
+
 }
