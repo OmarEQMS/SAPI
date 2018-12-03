@@ -2726,23 +2726,30 @@ $(document).ready(function () {
         console.log("VerNavegadora");
         var idNavegadora = $(this).data('id');
 
-        $.post("SAPI", {
-            file: "administrador/rendimientoNavegadora.jsp",
-            idNavegadora: idNavegadora
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "administrador/rendimientoNavegadora.jsp",
+                idNavegadora: idNavegadora
+            },
+            success: function (response) {
+                if (response == "error") {
+                    $("#msj-error").show();
+                } else {
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
                 }
-        );
+            },
+            beforeSend: function () {
+                $('.cargandoVerRendimiento').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoVerRendimiento').fadeOut();
+            }
+        });
     });
 
 

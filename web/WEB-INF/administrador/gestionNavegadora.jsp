@@ -71,7 +71,10 @@
             <img src="img/loading.svg">
             <p class="clear">Cargando la lista de administradores...</p>
         </div>
-        
+        <div class="cargandoVerRendimiento" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando rendimiento de la navegadora...</p>
+        </div>
 
         <div class="wrapper">
 
