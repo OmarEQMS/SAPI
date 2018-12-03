@@ -400,9 +400,9 @@ public class CitaServicioImpl implements CitaServicio {
             while(rs.next())
             {
                 System.out.println("En el while de rs de cita servicio impl");
-                idCitaNav = rs.getInt("NAV");
+                idCitaNav = rs.getInt(1);
                 System.out.println("citaNav ".concat(String.valueOf(idCitaNav)));
-                idCitaCon = rs.getInt("CON");
+                idCitaCon = rs.getInt(2);
                 System.out.println("citaCon ".concat(String.valueOf(idCitaCon)));
             }
 
