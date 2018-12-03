@@ -4496,7 +4496,7 @@ $(document).ready(function () {
         
                  
         swal({
-            title: '¿Estás segure de reasignar todos los pacientes a este otro médico?',
+            title: '¿Estás seguro de reasignar todos los pacientes a este otro médico?',
             text: "Todos los pacientes serán transferidos a otro médico.",
             icon: 'warning',
             buttons:["Cancelar","Aceptar"]
