@@ -4755,7 +4755,7 @@ $(document).ready(function () {
 
         var m = input.val();
 
-        var expreg = /^[a-zA-Z\u00C0-\u017F]+,\s[a-zA-Z\u00C0-\u017F]+$/;
+        var expreg = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1])[a-zA-ZÀ-ÿ\u00f1\u00d1]{2,255}$/;
 
         if (!expreg.test(m)) {
 
@@ -4775,7 +4775,7 @@ $(document).ready(function () {
 
         var m = input.val();
 
-        var expreg = /^[a-zA-Z\u00C0-\u017F]+,\s[a-zA-Z\u00C0-\u017F]+$/;
+        var expreg = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1])[a-zA-ZÀ-ÿ\u00f1\u00d1]{2,255}$/;
 
         if (!expreg.test(m)) {
 
