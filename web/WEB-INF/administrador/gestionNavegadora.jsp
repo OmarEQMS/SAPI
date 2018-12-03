@@ -329,6 +329,12 @@
                                     </div>
                                 </div>
                                 
+                                 <div class="row mb-3" id="error-camposEditarNavegadora">
+                                    <div class="col-12 text-center">
+                                        <span class="text-danger">Debes llenar correctamente los campos para editar la cuenta.</span>
+                                    </div>
+                                </div>
+                                
                                 <div class="row mb-3" id="error-editarDatosRepetidosNavegadora">
                                     <div class="col-12 text-center">
                                         <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>

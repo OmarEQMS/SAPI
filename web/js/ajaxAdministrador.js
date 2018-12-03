@@ -4,6 +4,9 @@ $(document).ready(function () {
     $('#errorTerminosMedico').hide();
     $('#errorTerminosNavegadora').hide();
 
+    $('#error-camposEditar').hide();
+
+
 
     /////////////////// GESTION ADMINISTRADORES
 
@@ -28,6 +31,9 @@ $(document).ready(function () {
 
     $('#error-camposPaciente').hide();
     $('#error-datosRepetidosPaciente').hide();
+    $('#error-camposEditarNavegadora').hide();
+    $("#error-camposEditarPaciente").hide();
+    $("#error-camposEditarAdmin").hide();
 
 
     var cambioImagen = false;
@@ -267,6 +273,8 @@ $(document).ready(function () {
                     && isValidNumEmpleado($('#editar-noEmpleadoAdministrador')) && isValidEmail($('#editar-correoAdministrador'))
                     && isValidPhoneNumber($('#editar-telefonoAdministrador')) && isValidEditEspecialidadAdmin && isValidEditPosicionAdmin
                     && $('#errorEditarCorreoRepetidoAdministrador').hide()) {
+                
+                $("#error-camposEditarAdmin").hide();
 
                 var idAdmin = $('#idAdministrador').val();
 
@@ -318,10 +326,13 @@ $(document).ready(function () {
 
                 });
 
+            } else{
+                $("#error-camposEditarAdmin").show();
             }
         } else {
             console.log("Entro al segundo else");
             $("#error-editarDatosRepetidosAdministrador").show(); //ya existe un campo
+            $("#error-camposEditarAdmin").hide();
         }
 
     });
@@ -1071,6 +1082,33 @@ $(document).ready(function () {
         }
 
     });
+    
+    //PARA NAVEGADORA
+    var isValidAddEspecialidadNavegadora;
+    var dato2AddNavegadora = $("#agregar-especialidadNavegadora");
+
+    dato2AddNavegadora.on('keyup', function (e) {
+        var option = $('#listEspecialidades option').filter(function () {
+            return this.value === $("#agregar-especialidadNavegadora").val();
+        }).val();
+
+        if (option) {
+            $('#errorAgregarEspecialidadNavegadora').hide();
+            dato2AddNavegadora.css('border', '');
+            dato2AddNavegadora.css('color', '');
+            isValidAddEspecialidadNavegadora = true;
+        } else if (dato2.val() == '') {
+            $('#errorAgregarEspecialidadNavegadora').hide();
+            dato2AddNavegadora.css('border', '');
+            dato2AddNavegadora.css('color', '');
+            isValidAddEspecialidadNavegadora = false;
+        } else {
+            $('#errorAgregarEspecialidadNavegadora').show();
+            dato2AddNavegadora.css('border', '1px solid red');
+            dato2AddNavegadora.css('color', 'red');
+            isValidAddEspecialidadNavegadora = false;
+        }
+    });
 
     //PARA MÉDICOS
     var isValidAddEspecialidad;
@@ -1635,7 +1673,7 @@ $(document).ready(function () {
         }
 
     });
-    
+
     var curpRepetidoPaciente;
     //CURP EN AGREGAR PACIENTE
     $('#curpPaciente').on('change', function () {
@@ -2910,6 +2948,7 @@ $(document).ready(function () {
     //GUARDA EL MEDICO DESDE EL MODAL
     $('#btn-guardarMedico').on('click', function () {
 
+
         if (!repiteCorreo && !repiteEditNoEmpleadoMedico) {
             $("#error-editarDatosRepetidos").hide();
 
@@ -2917,6 +2956,8 @@ $(document).ready(function () {
                     && isValidNumEmpleado($('#editar-noEmpleadoMedico')) && isValidEmail($('#editar-correoMedico'))
                     && isValidPhoneNumber($('#editar-telefonoMedico')) && isValidEditEspecialidad && isValidEditPosicion
                     ) {
+                
+                $('#error-camposEditar').hide();
 
                 var idMedico = $('#idMedico').val();
                 var nombre = $('#editar-nombreMedico').val();
@@ -2988,10 +3029,13 @@ $(document).ready(function () {
 
                 });
 
+            } else {
+                $('#error-camposEditar').show();
             }
         } else {
             console.log("Entro al segundo else");
             $("#error-editarDatosRepetidos").show(); //ya existe un campo
+            $('#error-camposEditar').hide();
         }
 
     });
@@ -3034,7 +3078,7 @@ $(document).ready(function () {
                                 $('.cargandoEliminarMedico').fadeOut();
                             },
                             success: function (response) {
-                                if (response == "relacionNoExistente") {                                    
+                                if (response == "relacionNoExistente") {
                                     $.ajax({
                                         url: 'AdministradorController',
                                         cache: false,
@@ -3403,21 +3447,6 @@ $(document).ready(function () {
 
     });
 
-    //ESPECIALIDAD EN AGREGAR NAVEGADORA
-    $('#agregar-especialidadNavegadora').on('change', function () {
-
-        if (isValidEspecialidad($(this))) {
-            $('#errorAgregarEspecialidadNavegadora').hide();
-        } else if ($(this).val() == '') {
-            $('#errorAgregarEspecialidadNavegadora').hide();
-            $(this).css('border', '');
-            $(this).css('color', '');
-        } else {
-            $('#errorAgregarEspecialidadNavegadora').show();
-        }
-
-    });
-
     //NOMBRE EN AGREGAR NAVEGADORA
     $('#agregar-nombreNavegadora').on('change', function () {
 
@@ -3546,7 +3575,7 @@ $(document).ready(function () {
             if (isValidName($('#agregar-nombreNavegadora')) && isValidLastName($('#agregar-primerApellidoNavegadora')) && isValidSegundoApellidoNavegadora && isValidCedulaNavegadora
                     && isValidNumEmpleado($('#agregar-noEmpleadoNavegadora')) && isValidEmail($('#agregar-correoNavegadora')) && isValidPassword($('#agregar-passwordNavegadora')) &&
                     isValidPassword($('#agregar-password2Navegadora'))
-                    && isValidPhoneNumber($('#agregar-telefonoNavegadora')) && isValidEspecialidad($('#agregar-especialidadNavegadora'))
+                    && isValidPhoneNumber($('#agregar-telefonoNavegadora')) && isValidAddEspecialidadNavegadora
                     && areEqualPasswords($('#agregar-passwordNavegadora'), $('#agregar-password2Navegadora'))) {
 
                 if (isValidTerminosNavegadora) {
@@ -3699,6 +3728,8 @@ $(document).ready(function () {
                     && isValidNumEmpleado($('#editar-no-empleadoNavegadora')) && isValidEmail($('#editar-correoNavegadora'))
                     && isValidPhoneNumber($('#editar-telefonoNavegadora')) && isValidEditEspecialidadNavegadora
                     ) {
+                
+                $("#error-camposEditarNavegadora").hide();
 
                 var idNavegadora = $('#idNavegadora').val();
 
@@ -3765,10 +3796,13 @@ $(document).ready(function () {
                         $('#cedulaProfesional-' + idNavegadora).html(cedula);
                     }
                 });
+            } else{
+                $("#error-camposEditarNavegadora").show();
             }
         } else {
             console.log("Entro al segundo else");
             $("#error-editarDatosRepetidosNavegadora").show(); //ya existe un campo
+            $("#error-camposEditarNavegadora").hide();
         }
     });
 
@@ -3926,6 +3960,9 @@ $(document).ready(function () {
                     && isValidPhoneNumber($('#editarTelAdministradorAPaciente')) &&
                     isValidSelect($('#editarEstado-civilPaciente')) && isValidDate($('#editarCumpleAdministradorAPaciente'))
                     && isValidSelect($('#editarEstadoAdministradorAPaciente')) && isValidSelect($('#editarMunicipioAdministradorAPaciente'))) {
+                
+                $("#error-camposEditarPaciente").hide();
+                
                 $.ajax({
 
                     url: "AdministradorController",
@@ -3979,10 +4016,13 @@ $(document).ready(function () {
                     }
 
                 });
+            } else{
+                $("#error-camposEditarPaciente").show();
             }
         } else {
             console.log("Entro al segundo else");
             $("#error-editarDatosRepetidosPaciente").show(); //ya existe un campo
+            $("#error-camposEditarPaciente").hide();
         }
 
     });
