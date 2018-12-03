@@ -33,19 +33,26 @@
 
     </head>
     <body>
+        <div class="cargandoEnviandoCorreo" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Enviando correo, por favor espere...</p>
+        </div>
 
-        <form class="formulario">
+        <div class="formulario">
 
             <h1 class="h3 mb-4 titulo-login text-center">Recuperar Contraseña</h1>
 
-            <div class="row">
-                <div class="col-12">
+            <form>
 
-                    <input type="email" id="email" class="form-control" placeholder="Introduce tu correo electrónico">
-                    <span class="text-danger" id="errorCorreo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
+                <div class="row">
+                    <div class="col-12">
 
+                        <input type="email" id="email" class="form-control" placeholder="Introduce tu correo electrónico">
+                        <span class="text-danger" id="errorCorreo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
+                        <span class="text-warning" id="errorCorreoNoExistente">Favor de introducir un correo existente.</span>
+                    </div>
                 </div>
-            </div>
+            </form>
 
             <div class="row justify-content-center mt-4">
                 <div class="col-12">
@@ -58,7 +65,6 @@
                 </div>
             </div>
 
-        </form>
-        <script src="js/asincrono.js"></script>
+        </div>
     </body>
 </html>

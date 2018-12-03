@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    
+    mostrarContrasena($('#loginContrasena'),'password');
 
     $("#msj-error").hide();
     $("#msj-cargando").hide();
@@ -14,90 +16,34 @@ $(document).ready(function () {
         if (e.keyCode == 13) {
             var usu = $("#user");
             var pass = $("#password");
-            $.post("LoginController", {
-                key: "verificar",
-                usuario: usu.val(),
-                password: pass.val()
-            },
-                    function (response, status, xhr) {
-                        //console.log(response);
-                        if (status == "success") {
-                            if (response == "LoginError") {
-                                $("#msj-error").show();
-                            } else {
-                                $("#msj-cargando").show();
-                                document.open("text/html", "replace");
-                                document.write(response);
-                                document.close();
-                            }
-                        }
+
+            $.ajax({
+                url: 'LoginController',
+                method: "POST",
+                cache: false,
+                data: {
+                    key: "verificar",
+                    usuario: usu.val(),
+                    password: pass.val()
+                },
+                beforeSend: function () {
+                    $('#loading-screen').fadeIn();
+                },
+                complete: function () {
+                    $('#loading-screen').fadeOut();
+                },
+                success: function (response) {
+                    if (response == "LoginError") {
+                        $("#msj-error").show();
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
                     }
-            );
+                }
+            });
         }
     }
-
-    /*
-     $('#btn-login').on('click', function () {
-     
-     var usuario = $('#user');
-     var password = $('#password');
-     
-     $.ajax({
-     
-     url: 'LoginController',
-     cache: false,
-     method: 'POST',
-     data: {
-     key: 'verificar',
-     usuario: usuario.val(),
-     password: password.val()
-     },
-     success: function (response) {                                
-     
-     console.log(response);
-     
-     if (response === 'success') {
-     
-     $('#msj-error').hide();
-     console.log("succes 2");
-     } else {
-     $('#msj-error').show();
-     console.log("response 3");
-     }
-     
-     
-     }
-     
-     
-     });
-     
-     });
-     */
-    /*
-     $('#btn-login').on('click', function () {
-     var usu = $("#user");
-     var pass = $("#password");
-     $.get("LoginController", {
-     key: "verificar",
-     usuario: usu.val(),
-     password: pass.val()
-     },
-     function (response, status, xhr) {
-     //console.log(response);
-     if (status == "success") {
-     if (response == "LoginError") {
-     //console.log("No se pudo inicar sesion");
-     $("#msj-error").show();
-     } else {
-     $("#msj-cargando").show();
-     document.open("text/html", "replace");
-     document.write(response);
-     document.close();
-     }
-     }
-     }
-     );
-     });*/
 
     $('#registrate').click(function () {
         $.postGo("ZonaController", {
@@ -105,29 +51,35 @@ $(document).ready(function () {
         });
     });
 
-    configureLoadingScreen($('#loading-screen'));
-
     $('#btn-login').on('click', function () {
         var usu = $("#user");
         var pass = $("#password");
-        $.post("LoginController", {
-            key: "verificar",
-            usuario: usu.val(),
-            password: pass.val()
-        },
-                function (response, status, xhr) {
-                    //console.log(response);
-                    if (status == "success") {
-                        if (response == "LoginError") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
+
+        $.ajax({
+            url: 'LoginController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "verificar",
+                usuario: usu.val(),
+                password: pass.val()
+            },
+            beforeSend: function () {
+                $('#loading-screen').fadeIn();
+            },
+            complete: function () {
+                $('#loading-screen').fadeOut();
+            },
+            success: function (response) {
+                if (response == "LoginError") {
+                    $("#msj-error").show();
+                } else {
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
                 }
-        );
+            }
+        });
     });
 
 
@@ -153,17 +105,18 @@ $(document).ready(function () {
         );
 
     });
+    
+    function mostrarContrasena(myButton, myField) {
+        myButton.on('mousedown', function () {
+            var x = document.getElementById(myField);
+            x.type = "text";
+        });
+        myButton.on('mouseup', function () {
+            var x = document.getElementById(myField);
+            x.type = "password";
+        });
+    }
 
 });
-
-function configureLoadingScreen(screen) {
-    $(document)
-            .ajaxStart(function () {
-                screen.fadeIn();
-            })
-            .ajaxStop(function () {
-                screen.fadeOut();
-            })
-}
 
 

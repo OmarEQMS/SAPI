@@ -8,63 +8,99 @@ package mx.itesm.sapi.controller;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+
 import java.sql.Date;
+
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-import javafx.print.Printer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-import mx.itesm.sapi.bean.gestionPaciente.Cita;
-import mx.itesm.sapi.bean.gestionPaciente.CitaEmpleado;
-import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
-import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
+import mx.itesm.sapi.bean.diagnostico.AuditoriaRegistroDiagnostico;
+import mx.itesm.sapi.bean.diagnostico.RegistroDiagnostico;
+import mx.itesm.sapi.bean.gestionPaciente.Biopsia;
+
+import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
+import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
+import mx.itesm.sapi.bean.moduloGestionMedico.MedicoPosicion;
+import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
+import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
+import mx.itesm.sapi.bean.moduloGestionMedico.Posicion;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
 import mx.itesm.sapi.bean.gestionPaciente.EstadoPacientePaciente;
-import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
-import mx.itesm.sapi.bean.gestionPaciente.Paciente;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteMedicoTitular;
 import mx.itesm.sapi.bean.gestionPaciente.PacienteNavegadora;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteNecesidadEspecial;
-import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
-import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
-import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
-import mx.itesm.sapi.bean.moduloGestionMedico.Posicion;
-import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
-import mx.itesm.sapi.bean.persona.Cuenta;
-import mx.itesm.sapi.bean.persona.Direccion;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoInicial;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteAlergia;
+import mx.itesm.sapi.bean.gestionPaciente.ComentarioCita;
+import mx.itesm.sapi.bean.gestionPaciente.CitaEmpleado;
+import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
+import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.gestionPaciente.Cita;
+import mx.itesm.sapi.bean.gestionPaciente.OtroResultadoPatologia;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoEstudio;
+import mx.itesm.sapi.bean.gestionPaciente.ProgramaPaciente;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteSeguro;
+import mx.itesm.sapi.bean.gestionTratamiento.AuditoriaTratamientoPaciente;
+import mx.itesm.sapi.bean.gestionTratamiento.PacienteTratamientoPrevio;
+import mx.itesm.sapi.bean.gestionTratamiento.AlergiaPacienteFarmaco;
+import mx.itesm.sapi.bean.gestionTratamiento.TratamientoPaciente;
 import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
-import mx.itesm.sapi.bean.persona.Login;
-import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
-import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
-import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
-import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.bean.persona.Direccion;
 import mx.itesm.sapi.bean.persona.Persona;
+import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.Login;
 import mx.itesm.sapi.bean.persona.Pic;
+
+import mx.itesm.sapi.service.GeneralPoblacionServicioImpl;
+import mx.itesm.sapi.service.diagnostico.AuditoriaRegistroDiagnosticoServiceImpl;
+import mx.itesm.sapi.service.diagnostico.EstadiajeTNMServiceImpl;
+import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.BiopsiaServicioImpl;
+
+import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.MedicoPacienteServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.CitaEmpleadoServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.ComentarioCitaServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.MedicoPosicionServicioImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.PosicionServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
+
+
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
-import mx.itesm.sapi.service.gestionPaciente.LlamadaCitaServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
-import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.DocumentoInicialServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteAlergiaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.ComentarioCitaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.CitaEmpleadoServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.LlamadaCitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
-import mx.itesm.sapi.service.moduloGestionMedico.PosicionServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.DocumentoEstudioServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.OtroResultadoPatologiaServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteSeguroServicioImpl;
+import mx.itesm.sapi.service.gestionPaciente.ProgramaPacienteServicioImpl;
+import mx.itesm.sapi.service.gestionTratamiento.AlergiaPacienteFarmacoServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.AuditoriaTratamientoPacienteServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.PacienteTratamientoPrevioServiceImpl;
+import mx.itesm.sapi.service.gestionTratamiento.TratamientoPacienteServiceImpl;
 import mx.itesm.sapi.service.persona.DireccionServicioImpl;
-import mx.itesm.sapi.service.persona.LoginServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
+import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.service.persona.LoginServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
+import mx.itesm.sapi.util.ExcelExport;
+
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -100,19 +136,19 @@ public class AdministradorController extends HttpServlet {
             System.out.println("Sin sesión");
         } else {
             switch (key) {
-                case "obtener-medico": {
-                    int idMedicoAdministrador = Integer.valueOf(request.getParameter("idMedicoAdministrador"));
+                case "obtener-admin": {
+                    int idAdmin = Integer.valueOf(request.getParameter("idAdmin"));
 
                     EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
-                    TablaMedicoAdministrador medico = empleadoServicioImpl.mostrarMedicoAdministrador(idMedicoAdministrador, 3);//3 ES EL ROL DEL MÉDICO.
+                    TablaMedicoAdministrador admin = empleadoServicioImpl.mostrarMedicoAdministrador(idAdmin, 2);//2 ES EL ROL DEL ADMINISTRADOR
 
                     PrintWriter out = response.getWriter();
-                    out.print(new Gson().toJson(medico));
+                    out.print(new Gson().toJson(admin));
                     break;
                 }
-                case "actualizar-medico": {
-                    System.out.println("Actualizar médico");
-                    int idMedicoAdministrador = Integer.valueOf(request.getParameter("idMedico"));
+                case "actualizar-admin": {
+                    System.out.println("Actualizar administrador");
+                    int idMedicoAdministrador = Integer.valueOf(request.getParameter("idAdmin"));
                     String nombre = request.getParameter("nombre");
                     String primerApellido = request.getParameter("primerApellido");
                     String segundoApellido = request.getParameter("segundoApellido");
@@ -120,7 +156,7 @@ public class AdministradorController extends HttpServlet {
                     String telefono = request.getParameter("telefono");
                     String noEmpleado = request.getParameter("noEmpleado");
                     String especialidad = request.getParameter("especialidad");
-                    //String posicion = request.getParameter("posicion");
+                    String posicion = request.getParameter("posicion");
                     String usuario = noEmpleado;
                     String cedula = request.getParameter("cedula");
 
@@ -132,7 +168,315 @@ public class AdministradorController extends HttpServlet {
                     System.out.println("telefeno ".concat(telefono));
                     System.out.println("noEmpleado ".concat(noEmpleado));
                     System.out.println("especialidad ".concat(especialidad));
-                    //System.out.println("posicion ".concat(posicion));
+                    System.out.println("posicion ".concat(posicion));
+                    System.out.println("usuario ".concat(usuario));
+                    System.out.println("cedula ".concat(cedula));
+
+                    PrintWriter out = response.getWriter();
+
+                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                    TablaMedicoAdministrador admin = empleadoServicioImpl.mostrarMedicoAdministrador(idMedicoAdministrador, 2);//El 3 significa rol de médico
+
+                    EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
+                    Especialidad especialidadAdmins = especialidadServicioImpl.mostrarEspecialidadPorNombre(especialidad);
+
+                    PosicionServicioImpl posicionServicioImpl = new PosicionServicioImpl();
+
+                    Posicion posicionMedicos = posicionServicioImpl.mostrarPosicion(posicion);
+
+                    //Se utiliza el servicio de medicoEspecialidadServicio porque el admin y el médico son similares
+                    MedicoEspecialidadServicioImpl adminEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
+                    MedicoEspecialidad adminEspecialidad = adminEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(idMedicoAdministrador);
+                    adminEspecialidad.setCedulaProfesional(cedula);
+                    adminEspecialidad.setIdEspecialidad(especialidadAdmins.getIdEspecialidad());
+                    System.out.println(" adminiController medicoEspecialidad ".concat(String.valueOf(adminEspecialidad.getIdEmpleado())));
+                    boolean medicoEspecialidadBoolean = adminEspecialidadServicioImpl.actualizarMedicoEspecialidad(adminEspecialidad);
+
+                    //Se utiliza el servicio de medicoPosicionServicio porque el admin y el médico son similares
+                    MedicoPosicionServicioImpl adminPosicionServicioImpl = new MedicoPosicionServicioImpl();
+                    MedicoPosicion adminPosicion = adminPosicionServicioImpl.mostrarMedicoPosicionEmpleado(idMedicoAdministrador);
+                    adminPosicion.setIdPosicion(posicionMedicos.getIdPosicion());
+                    System.out.println(" adminiController medicoPosicion ".concat(String.valueOf(adminPosicion.getIdEmpleado())));
+                    boolean medicoPosicionBoolean = adminPosicionServicioImpl.actualizarMedicoPosicion(adminPosicion);
+
+                    PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
+                    Persona persona = personaServicioImpl.mostrarPersona(admin.getIdPersona());
+                    persona.setNombre(nombre);
+                    persona.setPrimerApellido(primerApellido);
+                    persona.setSegundoApellido(segundoApellido);
+                    persona.setCorreo(correo);
+                    persona.setTelefono(telefono);
+                    boolean personaBoolean = personaServicioImpl.actualizarPersonaMedico(persona);
+
+                    CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
+                    Cuenta cuenta = cuentaServicioImpl.mostrarCuenta(admin.getIdCuenta());
+                    cuenta.setUsuario(usuario);
+                    boolean cuentaBoolean = cuentaServicioImpl.actualizarCuenta(cuenta);
+
+                    Empleado empleado = empleadoServicioImpl.mostrarEmpleado(admin.getIdEmpleado());
+                    empleado.setNoEmpleado(noEmpleado);
+                    boolean empleadoBoolean = empleadoServicioImpl.actualizarEmpleado(empleado);
+
+                    if (medicoEspecialidadBoolean || personaBoolean || cuentaBoolean || empleadoBoolean) {
+                        System.out.println("Actualizado exitoso");
+                    } else {
+                        System.out.println("MedicoEspecialidad: " + medicoEspecialidadBoolean);
+                        System.out.println("Persona: " + personaBoolean);
+                        System.out.println("Cuenta: " + cuentaBoolean);
+                        System.out.println("Empleado: " + empleadoBoolean);
+                        System.out.println("Actualizado no exitoso o, no se cambió nada");
+                    }
+
+                    if (medicoPosicionBoolean || personaBoolean || cuentaBoolean || empleadoBoolean) {
+                        System.out.println("Actualizado exitoso");
+                    } else {
+                        System.out.println("MedicoEspecialidad: " + medicoPosicionBoolean);
+                        System.out.println("Persona: " + personaBoolean);
+                        System.out.println("Cuenta: " + cuentaBoolean);
+                        System.out.println("Empleado: " + empleadoBoolean);
+                        System.out.println("Actualizado no exitoso o, no se cambió nada");
+                    }
+                }
+                break;
+                case "obtener-medico": {
+                    int idMedicoAdministrador = Integer.valueOf(request.getParameter("idMedicoAdministrador"));
+
+                    EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                    TablaMedicoAdministrador medico = empleadoServicioImpl.mostrarMedicoAdministrador(idMedicoAdministrador, 3);//3 ES EL ROL DEL MÉDICO.
+
+                    PrintWriter out = response.getWriter();
+                    out.print(new Gson().toJson(medico));
+                    break;
+                }
+
+                case "guardarCambios": {
+                    System.out.println("Llegó al case de GuardarCambios");
+
+                    String correo = request.getParameter("correo");
+                    Part part = request.getPart("file-image");
+
+                    System.out.println("Correo: ".concat(correo));
+
+                    //Si tiene sesion iniciada
+                    int keyRol = (int) sesion.getAttribute("idRol");
+                    switch (keyRol) {
+                        case 2: {
+
+                            System.out.println("Entro al controller en guardarCambios");
+
+                            PersonaServicioImpl personaServiceImpl = new PersonaServicioImpl();
+                            Persona persona = personaServiceImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
+
+                            if ((int) part.getSize() > 0) {
+
+                                PicServicioImpl picServicioImpl = new PicServicioImpl();
+                                //AQUI
+                                Pic picture = new Pic();
+
+                                picture.setIdPersona((int) sesion.getAttribute("idPersona"));
+                                picture.setContenido(part.getInputStream());
+                                picture.setTamano((int) part.getSize());
+                                picture.setTipo(part.getContentType());
+
+                                picServicioImpl.agregarPic(picture);
+                                //AQUI
+
+                                Pic pic = picServicioImpl.mostrarPic(persona.getIdPersona());
+                                try {
+                                    InputStream imagen = pic.getContenido();
+                                    byte[] bytes = IOUtils.toByteArray(imagen);
+                                    String base64String = Base64.getEncoder().encodeToString(bytes);
+
+                                    sesion.setAttribute("base64Img", base64String);
+                                } catch (Exception es) {
+                                    System.out.println("Sin foto de perfil");
+                                }
+
+                            }
+
+                            persona.setCorreo(correo);
+
+                            personaServiceImpl.actualizarPersona(persona);
+
+                            sesion.setAttribute("correo", persona.getCorreo());
+                            request.setAttribute("correo", sesion.getAttribute("correo"));
+
+                        }
+
+                    }
+
+                    break;
+
+                }
+                case "repiteNoEmpleadoEdit": {
+
+                    String noEmpleado = request.getParameter("noEmpleado");
+
+                    int idEmpleado = Integer.parseInt(request.getParameter("idEmpleado"));
+                    System.out.println("idEmpleado: " + idEmpleado);
+
+                    PrintWriter out = response.getWriter();
+
+                    EmpleadoServicioImpl empleadoServicio = new EmpleadoServicioImpl();
+
+                    //Checo si el usuario existe
+                    if (empleadoServicio.existsNoEmpleado(noEmpleado, idEmpleado)) {
+
+                        out.print("NoEmpleadoAlreadyExists");
+
+                    } else {
+
+                        //Si no existe, lo inserto
+                        out.print("NoEmpleadoDoesntExist");
+
+                    }
+                }
+                break;
+
+                case "repiteCorreoEditEmpleado": {
+
+                    String correo = request.getParameter("correo");
+
+                    int idEmpleado = Integer.parseInt(request.getParameter("idEmpleado"));
+                    System.out.println("idEmpleado: " + idEmpleado);
+
+                    Cuenta cuentaEdit;
+
+                    CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+                    cuentaEdit = cuentaServicio.mostrarCuentaidEmpleado(idEmpleado);
+
+                    int idPersona = cuentaEdit.getIdPersona();
+
+                    PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
+
+                    PrintWriter out = response.getWriter();
+
+                    System.out.println("ENTRA AQUÍ");
+
+                    //Checo si el usuario existe
+                    if (_registroServicio.existsCorreo(correo, idPersona)) {
+                        System.out.println("EXISTE");
+                        out.print("CorreoAlreadyExists");
+
+                    } else {
+                        System.out.println("NO EXISTE");
+                        //Si no existe, lo inserto
+                        out.print("CorreoDoesntExist");
+
+                    }
+                }
+                break;
+
+                case "repiteCorreoEditPaciente": {
+
+                    String correo = request.getParameter("correo");
+
+                    int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
+                    System.out.println("idPaciente: " + idPaciente);
+
+                    Persona personaEdit;
+
+                    PersonaServicioImpl personaServicio = new PersonaServicioImpl();
+                    personaEdit = personaServicio.mostrarPersonaPorIdPaciente(idPaciente);
+
+                    int idPersona = personaEdit.getIdPersona();
+
+                    PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
+
+                    PrintWriter out = response.getWriter();
+
+                    System.out.println("ENTRA AQUÍ");
+
+                    //Checo si el usuario existe
+                    if (_registroServicio.existsCorreo(correo, idPersona)) {
+                        System.out.println("EXISTE");
+                        out.print("CorreoAlreadyExists");
+
+                    } else {
+                        System.out.println("NO EXISTE");
+                        //Si no existe, lo inserto
+                        out.print("CorreoDoesntExist");
+
+                    }
+                }
+                break;
+                
+                case "repiteUsuarioEdit": {
+
+                    String usuario = request.getParameter("usuario");
+                    int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
+                    
+                    System.out.println("usuario: " + usuario);
+                    System.out.println("idPaciente: " + idPaciente);
+                    
+                    CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+
+                    PrintWriter out = response.getWriter();
+
+                    System.out.println("ENTRA AQUÍ");
+
+                    //Checo si el usuario existe
+                    if (cuentaServicio.existsUsuario(usuario, idPaciente)) {
+                        System.out.println("EXISTE");
+                        out.print("UsuarioAlreadyExists");
+                    } else {
+                        System.out.println("NO EXISTE");
+                        //Si no existe, lo inserto
+                        out.print("UsuarioDoesn'tExists");
+
+                    }
+                }
+                break;
+
+                case "repiteCorreo": {
+
+                    String correo = request.getParameter("correo");
+                    int idPersona = (int) sesion.getAttribute("idPersona");
+                    System.out.println("El id de persona es: " + idPersona);
+
+                    PersonaServicioImpl _registroServicio = new PersonaServicioImpl();
+
+                    PrintWriter out = response.getWriter();
+
+                    System.out.println("ENTRA AQUÍ");
+
+                    //Checo si el usuario existe
+                    if (_registroServicio.existsCorreo(correo, idPersona)) {
+                        System.out.println("EXISTE");
+                        out.print("CorreoAlreadyExists");
+
+                    } else {
+                        System.out.println("NO EXISTE");
+                        //Si no existe, lo inserto
+                        out.print("CorreoDoesntExist");
+
+                    }
+                }
+                break;
+
+                case "actualizar-medico": {
+                    System.out.println("Actualizar médico");
+                    int idMedicoAdministrador = Integer.valueOf(request.getParameter("idMedico"));
+                    String nombre = request.getParameter("nombre");
+                    String primerApellido = request.getParameter("primerApellido");
+                    String segundoApellido = request.getParameter("segundoApellido");
+                    String correo = request.getParameter("correo");
+                    String telefono = request.getParameter("telefono");
+                    String noEmpleado = request.getParameter("noEmpleado");
+                    String especialidad = request.getParameter("especialidad");
+                    String posicion = request.getParameter("posicion");
+                    String usuario = noEmpleado;
+                    String cedula = request.getParameter("cedula");
+
+                    System.out.println("idMEdico admin ".concat(String.valueOf(idMedicoAdministrador)));
+                    System.out.println("nombre ".concat(nombre));
+                    System.out.println("apellido 1 ".concat(primerApellido));
+                    System.out.println("apellido 2 ".concat(segundoApellido));
+                    System.out.println("correo  ".concat(correo));
+                    System.out.println("telefeno ".concat(telefono));
+                    System.out.println("noEmpleado ".concat(noEmpleado));
+                    System.out.println("especialidad ".concat(especialidad));
+                    System.out.println("posicion ".concat(posicion));
                     System.out.println("usuario ".concat(usuario));
                     System.out.println("cedula ".concat(cedula));
 
@@ -144,9 +488,10 @@ public class AdministradorController extends HttpServlet {
                     EspecialidadServicioImpl especialidadServicioImpl = new EspecialidadServicioImpl();
                     Especialidad especialidadMedicos = especialidadServicioImpl.mostrarEspecialidadPorNombre(especialidad);
 
-                    /* SHANNON
                     PosicionServicioImpl posicionServicioImpl = new PosicionServicioImpl();
-                    Posicion posicionMedicos = posicionServicioImpl.mostrarPosicion(posicion);*/
+
+                    Posicion posicionMedicos = posicionServicioImpl.mostrarPosicion(posicion);
+
                     MedicoEspecialidadServicioImpl medicoEspecialidadServicioImpl = new MedicoEspecialidadServicioImpl();
                     MedicoEspecialidad medicoEspecialidad = medicoEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(idMedicoAdministrador);
                     medicoEspecialidad.setCedulaProfesional(cedula);
@@ -154,14 +499,12 @@ public class AdministradorController extends HttpServlet {
                     System.out.println(" adminiController medicoEspecialidad ".concat(String.valueOf(medicoEspecialidad.getIdEmpleado())));
                     boolean medicoEspecialidadBoolean = medicoEspecialidadServicioImpl.actualizarMedicoEspecialidad(medicoEspecialidad);
 
-                    /*SHANNON
-                    
-                    MedicoPosicionServicioImpl medicoEspecialidadServicioImpl = new MedicoPosicionServicioImpl();
-                    MedicoEspecialidad medicoEspecialidad = medicoEspecialidadServicioImpl.mostrarMedicoEspecialidadEmpleado(idMedicoAdministrador);
-                    medicoEspecialidad.setCedulaProfesional(cedula);
-                    medicoEspecialidad.setIdEspecialidad(especialidadMedicos.getIdEspecialidad());
-                    System.out.println(" adminiController medicoEspecialidad ".concat(String.valueOf(medicoEspecialidad.getIdEmpleado())));
-                    boolean medicoEspecialidadBoolean = medicoEspecialidadServicioImpl.actualizarMedicoEspecialidad(medicoEspecialidad); */
+                    MedicoPosicionServicioImpl medicoPosicionServicioImpl = new MedicoPosicionServicioImpl();
+                    MedicoPosicion medicoPosicion = medicoPosicionServicioImpl.mostrarMedicoPosicionEmpleado(idMedicoAdministrador);
+                    medicoPosicion.setIdPosicion(posicionMedicos.getIdPosicion());
+                    System.out.println(" adminiController medicoPosicion ".concat(String.valueOf(medicoPosicion.getIdEmpleado())));
+                    boolean medicoPosicionBoolean = medicoPosicionServicioImpl.actualizarMedicoPosicion(medicoPosicion);
+
                     PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                     Persona persona = personaServicioImpl.mostrarPersona(medico.getIdPersona());
                     persona.setNombre(nombre);
@@ -184,6 +527,16 @@ public class AdministradorController extends HttpServlet {
                         System.out.println("Actualizado exitoso");
                     } else {
                         System.out.println("MedicoEspecialidad: " + medicoEspecialidadBoolean);
+                        System.out.println("Persona: " + personaBoolean);
+                        System.out.println("Cuenta: " + cuentaBoolean);
+                        System.out.println("Empleado: " + empleadoBoolean);
+                        System.out.println("Actualizado no exitoso o, no se cambió nada");
+                    }
+
+                    if (medicoPosicionBoolean || personaBoolean || cuentaBoolean || empleadoBoolean) {
+                        System.out.println("Actualizado exitoso");
+                    } else {
+                        System.out.println("MedicoEspecialidad: " + medicoPosicionBoolean);
                         System.out.println("Persona: " + personaBoolean);
                         System.out.println("Cuenta: " + cuentaBoolean);
                         System.out.println("Empleado: " + empleadoBoolean);
@@ -287,24 +640,86 @@ public class AdministradorController extends HttpServlet {
                 }
                 break;
 
-                case "ReportePoblacion": {
+                case "eliminarEmpleado": {
+                    System.out.println("Case para borrar a un empleado (cuenta y persona)");
+
                     /**
-                     * Author Angel Gtz
-                     *
-                     * Toma datos de todos los pacientes para crear un estudio
-                     * de la poblacion del INCAN Mostrando: Nombre Primer
-                     * Apellido Segundo apellido CURP Codigo postal Estado
-                     * Municipio Fecha de nacimiento Estado civil Sexo Nivel
-                     * educativo Motivo de consulta Medico adscrito Adscrito
-                     * presente Medico radiologo Radiologo presente Compañia
-                     * seguro
-                     *
-                     *
+                     * Elimino la cuenta y persona del empleado obtenido
                      */
+                    int idEmpleado = Integer.parseInt(request.getParameter("idEmpleado"));
+                    System.out.println("idEmpleado: " + idEmpleado);
+
+                    Cuenta cuentaNav;
 
                     PersonaServicioImpl personaServicio = new PersonaServicioImpl();
-                    Persona persona = personaServicio.mostrarPersona(2);
+                    CuentaServicioImpl cuentaServicio = new CuentaServicioImpl();
+                    cuentaNav = cuentaServicio.mostrarCuentaidEmpleado(idEmpleado);
 
+                    int idCuenta = cuentaNav.getIdCuenta();
+                    int idPersona = cuentaNav.getIdPersona();
+
+                    if (cuentaNav != null) {
+                        cuentaServicio.borradoLogicoCuenta(idCuenta);
+                    }
+                    if (idPersona != 0) {
+                        personaServicio.borradoLogicoPersona(idPersona);
+                    }
+
+                    System.out.println("SUPUESTAMENTE YA LA BORRÓ");
+
+                    break;
+                }
+                
+                case "verificarRelacion": {
+                    System.out.println("Case para ver si un médico tiene relación con algún paciente");
+
+                    /**
+                     * Manda a llamar al servicio de empleado y revisa si el médico tiene o no relación
+                     * con algún paciente
+                     */
+                    int idEmpleado = Integer.parseInt(request.getParameter("idEmpleado"));
+                    System.out.println("idEmpleado: " + idEmpleado);
+
+                    EmpleadoServicioImpl empleadoServicio = new EmpleadoServicioImpl();
+                    boolean relacion = empleadoServicio.relacionMedicoPaciente(idEmpleado);                    
+                    
+                    PrintWriter out = response.getWriter();
+                    
+                    if(relacion){
+                        out.print("relacionExistente");
+                    }
+                    else{
+                        out.print("relacionNoExistente");
+                    }
+
+                    break;
+                }
+
+                case "ReportePoblacion": {
+                    try{
+                        GeneralPoblacionServicioImpl MyTable = new GeneralPoblacionServicioImpl();
+                        ArrayList<ArrayList<String>> myArrayList = MyTable.mostrarPoblacionGeneral();
+                        response.setContentType("application/octet-stream");
+                        response.setHeader("Content-Disposition", "attachment;filename=reportePoblacion.xls");
+                        OutputStream os = response.getOutputStream();
+                        ExcelExport.export("Poblacion",os, myArrayList);
+                        os.flush();
+                        os.close();
+                    }catch(IOException ex){
+                        System.out.print(this.getClass().toString().concat(ex.getMessage()));
+                    } 
+                    break;
+                }
+                
+                case "ActualizarReportePoblacion": {
+                    try{
+                        GeneralPoblacionServicioImpl MyTable = new GeneralPoblacionServicioImpl();
+                        MyTable.actualizarPoblacionGeneral();
+                        PrintWriter out = response.getWriter();
+                        out.print("Actualizado");
+                    }catch(IOException ex){
+                        System.out.print(this.getClass().toString().concat(ex.getMessage()));
+                    } 
                     break;
                 }
 
@@ -328,62 +743,6 @@ public class AdministradorController extends HttpServlet {
                     out.print(json.toJson(posicion));
 
                     break;
-                }
-
-                case "cambiarDatos": {
-
-                    String usuario = request.getParameter("username");
-                    String correo = request.getParameter("correo");
-
-                    System.out.println("Usuario: " + usuario);
-                    System.out.println("Correo: " + correo);
-
-                    Part part = request.getPart("file-image");
-
-                    PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
-                    Persona persona = personaServicioImpl.mostrarPersona((int) sesion.getAttribute("idPersona"));
-
-                    CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
-                    Cuenta cuenta = cuentaServicioImpl.mostrarCuenta((int) sesion.getAttribute("idCuenta"));
-
-                    System.out.println((int) sesion.getAttribute("idPersona"));
-                    System.out.println((int) sesion.getAttribute("idCuenta"));
-
-                    if ((int) part.getSize() > 0) {
-                        PicServicioImpl picServiceImpl = new PicServicioImpl();
-                        Pic pic = new Pic();
-
-                        pic.setIdPersona((int) sesion.getAttribute("idPersona"));
-                        pic.setContenido(part.getInputStream());
-                        pic.setTamano((int) part.getSize());
-                        pic.setTipo(part.getContentType());
-
-                        picServiceImpl.agregarPic(pic);
-
-                        InputStream imagen = pic.getContenido();
-                        byte[] bytes = IOUtils.toByteArray(imagen);
-                        String base64String = Base64.getEncoder().encodeToString(bytes);
-
-                        sesion.setAttribute("base64Img", base64String);
-                        System.out.println("Debió actualizar la imagen en la sesión");
-                    }
-
-                    persona.setCorreo(correo);
-                    cuenta.setUsuario(usuario);
-
-                    personaServicioImpl.actualizarPersona(persona);
-                    cuentaServicioImpl.actualizarCuenta(cuenta);
-
-                    sesion.setAttribute("correo", persona.getCorreo());
-                    request.setAttribute("correo", sesion.getAttribute("correo"));
-
-                    sesion.setAttribute("usuario", cuenta.getUsuario());
-                    request.setAttribute("usuario", sesion.getAttribute("usuario"));
-
-                    request.getRequestDispatcher("/WEB-INF/administrador/cuentaAdministrador.jsp").forward(request, response);
-
-                    break;
-
                 }
 
                 case "cambiarContrasena": {
@@ -485,12 +844,12 @@ public class AdministradorController extends HttpServlet {
 
                     int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
 
-                    System.out.println(idPaciente);
+                    System.out.println("idPaciente: " + idPaciente);
 
-                    PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
+                    PacienteServiceImpl pacienteServicioP = new PacienteServiceImpl();
 
-                    int idCuenta = pacienteServicio.obtenerCuenta(idPaciente);
-                    int idPersona = pacienteServicio.obtenerPersona(idCuenta);
+                    int idCuenta = pacienteServicioP.obtenerCuenta(idPaciente);
+                    int idPersona = pacienteServicioP.obtenerPersona(idCuenta);
 
                     System.out.println(idPaciente);
                     System.out.println(idCuenta);
@@ -512,10 +871,11 @@ public class AdministradorController extends HttpServlet {
                     Persona persona = personaServicio.mostrarPersona(idPersona);
                     personaServicio.borradoLogicoPersona(persona.getIdPersona());
 
+                    PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
                     if (pacienteServicio.mostrarPaciente(idPaciente) != null) {
 
                         Paciente paciente = pacienteServicio.mostrarPaciente(idPaciente);
-                        pacienteServicio.borradoLogicoPaciente(paciente.getIdCuenta());
+                        pacienteServicio.borradoLogicoPaciente(idPaciente);
                     }
 
                     LoginServicioImpl loginServicio = new LoginServicioImpl();
@@ -523,6 +883,7 @@ public class AdministradorController extends HttpServlet {
                         Login login = loginServicio.mostrarLoginIdCuenta(idCuenta);
                         loginServicio.borradoLogicoLogin(login.getIdLogin());
                     }
+
                     DireccionServicioImpl direccionServicio = new DireccionServicioImpl();
                     if (direccionServicio.mostrarDireccion(persona.getIdDireccion()) != null) {
                         Direccion direccion = direccionServicio.mostrarDireccion(persona.getIdDireccion());
@@ -538,7 +899,7 @@ public class AdministradorController extends HttpServlet {
                         EstadoPacientePaciente estadoPacientePaciente = estadoPacientePacienteServicio.mostrarEstadoPacientePacienteIdPaciente(idPaciente);
                         estadoPacientePacienteServicio.borradoLogicoEstadoPacientePaciente(estadoPacientePaciente.getIdEstadoPacientePaciente());
                     }
-
+                    System.out.println("precitas");
                     CitaServicioImpl citaServicio = new CitaServicioImpl();
                     if (citaServicio.mostrarCitaIdEspecifico(idPaciente) != null) {
 
@@ -579,7 +940,7 @@ public class AdministradorController extends HttpServlet {
                             System.out.println(citasTotales);
                         }
                     }
-
+                    System.out.println("poscitas");
                     PacienteMedicoTitularServicioImpl pacienteMedicoTitularServicio = new PacienteMedicoTitularServicioImpl();
                     if (pacienteMedicoTitularServicio.mostrarPacienteMedicoTitularIdPaciente(idPaciente) != null) {
                         PacienteMedicoTitular pacienteMedicoTitular = pacienteMedicoTitularServicio.mostrarPacienteMedicoTitularIdPaciente(idPaciente);
@@ -608,6 +969,140 @@ public class AdministradorController extends HttpServlet {
                     if (pacienteAlergiaServicio.mostrarPacienteAlergiaIdPaciente(idPaciente) != null) {
                         PacienteAlergia pacienteAlergia = pacienteAlergiaServicio.mostrarPacienteAlergiaIdPaciente(idPaciente);
                         pacienteAlergiaServicio.borradoLogicoPacienteAlergia(pacienteAlergia.getIdPacienteAlergia());
+                    }
+
+                    DocumentoEstudioServicioImpl documentoEstudioServicio = new DocumentoEstudioServicioImpl();
+                    if (documentoEstudioServicio.mostrarDocumentoEstudioIdEspecifico(idPaciente) != null) {
+                        List<DocumentoEstudio> docuemntoEstudios = new ArrayList<>();
+                        docuemntoEstudios = documentoEstudioServicio.mostrarDocumentoEstudioIdEspecifico(idPaciente);
+                        int documentosTotales = docuemntoEstudios.size() - 1;
+                        int idDocumento = 0;
+                        while (documentosTotales > -1) {
+                            idDocumento = docuemntoEstudios.get(documentosTotales).getIdDocumentoEstudio();
+                            documentoEstudioServicio.borradoLogicoDocumentoEstudio(idDocumento);
+                            documentosTotales = documentosTotales - 1;
+                        }
+                    }
+
+                    PacienteSeguroServicioImpl pacienteSeguroServicio = new PacienteSeguroServicioImpl();
+                    if (pacienteSeguroServicio.mostrarPacienteSeguroIdEspecifico(idPaciente) != null) {
+                        List<PacienteSeguro> seguros = new ArrayList<>();
+                        seguros = pacienteSeguroServicio.mostrarPacienteSeguroIdEspecifico(idPaciente);
+                        int segurosTotales = seguros.size() - 1;
+                        int idSeguro = 0;
+                        while (segurosTotales > -1) {
+                            idSeguro = seguros.get(segurosTotales).getIdPacienteSeguro();
+                            pacienteSeguroServicio.borradoLogicoPacienteSeguro(idSeguro);
+                            segurosTotales = segurosTotales - 1;
+                        }
+
+                    }
+
+                    BiopsiaServicioImpl biopsiaServicio = new BiopsiaServicioImpl();
+                    if (biopsiaServicio.mostrarAllBiopsiaIdEspecifico(idPaciente) != null) {
+                        List<Biopsia> biopsias = new ArrayList<>();
+                        biopsias = biopsiaServicio.mostrarAllBiopsiaIdEspecifico(idPaciente);
+                        int biopsiasTotales = biopsias.size() - 1;
+                        int idBiopsia = 0;
+                        while (biopsiasTotales > -1) {
+                            idBiopsia = biopsias.get(biopsiasTotales).getIdBiopsia();
+                            OtroResultadoPatologiaServicioImpl otroResultadoPatologiaServicio = new OtroResultadoPatologiaServicioImpl();
+                            if (otroResultadoPatologiaServicio.mostrarOtroResultadoPatologiaIdBiopsia(idBiopsia) != null) {
+                                OtroResultadoPatologia otroResultadoPatologia = otroResultadoPatologiaServicio.mostrarOtroResultadoPatologiaIdBiopsia(idBiopsia);
+                                otroResultadoPatologiaServicio.borradoLogicoOtroResultadoPatologia(otroResultadoPatologia.getIdOtroResultadoPatologia());
+
+                            }
+                            biopsiaServicio.borradoLogicoBiopsia(idBiopsia);
+                            biopsiasTotales = biopsiasTotales - 1;
+                        }
+
+                    }
+
+                    TratamientoPacienteServiceImpl tratamientoPacienteServicio = new TratamientoPacienteServiceImpl();
+                    if (tratamientoPacienteServicio.mostrarTratamientoPacienteIdEspecifico(idPaciente) != null) {
+                        List<TratamientoPaciente> tratamientos = new ArrayList<>();
+                        tratamientos = tratamientoPacienteServicio.mostrarTratamientoPacienteIdEspecifico(idPaciente);
+                        int tratamientosTotales = tratamientos.size() - 1;
+                        int idTratamiento = 0;
+                        while (tratamientosTotales > -1) {
+                            idTratamiento = tratamientos.get(idTratamiento).getIdTipoTratamiento();
+                            AuditoriaTratamientoPacienteServiceImpl auditoriaTratamientoPacienteServicio = new AuditoriaTratamientoPacienteServiceImpl();
+
+                            if (auditoriaTratamientoPacienteServicio.mostrarAuditoriaTratamientoPacienteIdTratamiento(idTratamiento) != null) {
+                                AuditoriaTratamientoPaciente auditoriaTratamientoPaciente = auditoriaTratamientoPacienteServicio.mostrarAuditoriaTratamientoPacienteIdTratamiento(idTratamiento);
+                                auditoriaTratamientoPacienteServicio.borradoLogicoAuditoriaTratamientoPaciente(auditoriaTratamientoPaciente.getIdAuditoriaTratamientoPaciente());
+
+                            }
+                            tratamientoPacienteServicio.borradoLogicoTratamientoPaciente(idTratamiento);
+                            tratamientosTotales = tratamientosTotales - 1;
+                        }
+
+                    }
+
+                    ProgramaPacienteServicioImpl programaPacienteServicio = new ProgramaPacienteServicioImpl();
+                    if (programaPacienteServicio.mostrarProgramaPacienteIdPaciente(idPaciente) != null) {
+                        List<ProgramaPaciente> programas = new ArrayList<>();
+                        programas = programaPacienteServicio.mostrarProgramaPacienteSeguroIdEspecifico(idPaciente);
+                        int programasTotales = programas.size() - 1;
+                        int idPrograma = 0;
+                        while (programasTotales > -1) {
+                            idPrograma = programas.get(programasTotales).getIdProgramaPaciente();
+                            programaPacienteServicio.borradoLogicoProgramaPaciente(idPrograma);
+                            programasTotales = programasTotales - 1;
+                        }
+                    }
+
+                    PacienteTratamientoPrevioServiceImpl pacienteTratamientoPrevioServicio = new PacienteTratamientoPrevioServiceImpl();
+                    if (pacienteTratamientoPrevioServicio.mostrarPacienteTratamientoPrevioIdPaciente(idPaciente) != null) {
+                        List<PacienteTratamientoPrevio> tratamientos = new ArrayList<>();
+                        tratamientos = pacienteTratamientoPrevioServicio.mostrarPacienteTratamientoPrevioIdEspecifico(idPaciente);
+                        int tratamientosTotales = tratamientos.size() - 1;
+                        int idTratamiento = 0;
+                        while (tratamientosTotales > - 1) {
+                            idTratamiento = tratamientos.get(tratamientosTotales).getIdPacienteTratamientoPrevio();
+                            pacienteTratamientoPrevioServicio.borradoLogicoPacienteTratamientoPrevio(idTratamiento);
+                            tratamientosTotales = tratamientosTotales - 1;
+                        }
+                    }
+
+                    AlergiaPacienteFarmacoServiceImpl alergiaPacienteFarmacoServicio = new AlergiaPacienteFarmacoServiceImpl();
+                    if (alergiaPacienteFarmacoServicio.mostrarAlergiaPacienteFarmacoIdPaciente(idPaciente) != null) {
+                        List< AlergiaPacienteFarmaco> alergias = new ArrayList<>();
+                        alergias = alergiaPacienteFarmacoServicio.mostrarAlergiaPacienteFarmacoIdEspecifico(idPaciente);
+                        int alergiasTotales = alergias.size() - 1;
+                        int idAlergias = 0;
+                        while (alergiasTotales > - 1) {
+                            idAlergias = alergias.get(alergiasTotales).getIdAlergiaPacienteFarmaco();
+                            alergiaPacienteFarmacoServicio.borradoLogicoAlergiaPacienteFarmaco(idAlergias);
+                            alergiasTotales = alergiasTotales - 1;
+                        }
+                    }
+
+                    RegistroDiagnosticoServiceImpl registroDiagnosticoServicio = new RegistroDiagnosticoServiceImpl();
+                    if (registroDiagnosticoServicio.mostrarRegistroDiagnosticoPaciente(idPaciente) != null) {
+                        List< RegistroDiagnostico> registros = new ArrayList<>();
+                        registros = registroDiagnosticoServicio.mostrarRegistroDiagnosticoIdEspecifico(idPaciente);
+                        int registrosTotales = registros.size() - 1;
+                        int idRegistro = 0, idEstadiaje = 0;
+                        while (registrosTotales > - 1) {
+                            idRegistro = registros.get(registrosTotales).getIdRegistroDiagnostico();
+                            idEstadiaje = registros.get(registrosTotales).getIdRegistroTNM();
+
+                            EstadiajeTNMServiceImpl estadiajeTNMServicio = new EstadiajeTNMServiceImpl();
+                            if (estadiajeTNMServicio.mostrarEstadiajeTNM(idEstadiaje) != null) {
+                                estadiajeTNMServicio.borradoLogicoEstadiajeTNM(idEstadiaje);
+
+                            }
+
+                            AuditoriaRegistroDiagnosticoServiceImpl auditoriaRegistroDiagnosticoServicio = new AuditoriaRegistroDiagnosticoServiceImpl();
+                            if (auditoriaRegistroDiagnosticoServicio.mostrarAuditoriaRegistroDiagnosticoIdRegistro(idRegistro) != null) {
+                                AuditoriaRegistroDiagnostico auditoriaRegistro = auditoriaRegistroDiagnosticoServicio.mostrarAuditoriaRegistroDiagnosticoIdRegistro(idRegistro);
+                                auditoriaRegistroDiagnosticoServicio.borradoLogicoAuditoriaRegistroDiagnostico(auditoriaRegistro.getIdAuditoriaRegistroDiagnostico());
+                            }
+
+                            registroDiagnosticoServicio.borradoLogicoRegistroDiagnostico(idRegistro);
+                            registrosTotales = registrosTotales - 1;
+                        }
                     }
 
                     if (cuentaServicio.mostrarCuenta(idCuenta) != null) {

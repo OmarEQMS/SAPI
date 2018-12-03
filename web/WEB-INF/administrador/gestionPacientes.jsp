@@ -42,6 +42,38 @@
 
     <body>
 
+        <div class="cargandoEliminarPaciente" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Eliminando al paciente, por favor espere...</p>
+        </div>
+
+        <div class="cargandoAgregarPaciente" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Agregando al paciente, por favor espere...</p>
+        </div>
+
+        <div class="cargandoEditarPaciente" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Actualizando al paciente, por favor espere...</p>
+        </div>
+        
+        <div class="cargandoIrAMedico" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando la lista de médicos...</p>
+        </div>
+        <div class="cargandoIrANavegadora" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando la lista de navegadoras...</p>
+        </div>
+        <div class="cargandoIrAPaciente" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando la lista de pacientes...</p>
+        </div>
+        <div class="cargandoIrAAdministrador" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando la lista de administradores...</p>
+        </div>
+
         <div class="wrapper">
 
             <!-- SIDEBAR -->
@@ -61,7 +93,7 @@
 
                     <div class="row">
                         <div class="col-12 mb-2 mt-4">
-                            <img src="img/user.png" class="imagenPerfil" alt="">
+                            <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="imagenPerfil edit-image" width="66px" height="66px" alt="">
                         </div>
                     </div>
 
@@ -75,11 +107,11 @@
                     <div class="row justify-content-center">
 
                         <div class="col-2 text-center">
-                            <a class="iconoSidebar" href="" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
+                            <a class="iconoSidebar IrAMiCuenta" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
                         </div>
 
                         <div class="col-2">
-                            <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
+                            <a class="iconoSidebar salirCuenta" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
                         </div>
                     </div>
                 </div>
@@ -92,8 +124,6 @@
 
                 <!-- MENU PRINCIPAL ENLACES -->
                 <ul class="list-unstyled components">
-
-                    <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
 
                     <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
 
@@ -133,9 +163,9 @@
                 <!-- Navegacion -->
 
 
-                <div class="row mb-3 justify-content-end">
-                    <div class="col-3 text-center">
-                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="IrAInicio" class="colorMoradoLight">Inicio</a></span>
+                <div class="row mb-3">
+                    <div class="col-12 text-right">
+                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a class="colorMoradoLight">Administrador</a></span>
                         - <span class="colorGlobal">Gestion de Pacientes</span>
                     </div>
                 </div>
@@ -156,7 +186,27 @@
 
                         <!-- Boton agregar -->
 
-                        <div class="row mb-3">
+                        <div class="row mb-2 mt-2 ml-1">
+                            <div class="col-12">
+                                <h6 class="display-4 text-secondary" style="font-size:25px;">Reporte de Población
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 centrado mb-3">
+                                <button style="border-radius:20px; vertical-align:middle" class="btn-actualizarReportePoblacion float-left" id="btn-actualizarPoblacion"><span> Actualizar Reporte</span></button>
+                                <button style="border-radius:20px; vertical-align:middle" class="btn-reportePoblacion float-left" id="btn-poblacion"><span> Descargar Reporte</span></button>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <div class="col-12 text-center">
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-end mt-2">
                             <div class="col-12">
                                 <button style="border-radius:20px;" class="btn btn-morado float-right" data-toggle="modal" data-target="#modalAgregarPaciente"><i
                                         class="fas fa-plus-circle mr-2"></i>Agregar Paciente</button>
@@ -192,7 +242,11 @@
 
                                             <button class="btn btn-primary btn-editarPaciente m-1" data-toggle="modal" 
                                                     data-target="#modalEditarPaciente" data-id="${paciente.idPaciente}"><i class="fas fa-edit"></i></button>
-                                            <button class="btn btn-primary descargarFormulario m-1" data-id="${paciente.idPaciente}"><i class="fas fa-cloud-download-alt"></i></button>
+                                                <c:choose>
+                                                    <c:when test="${paciente.descargaFormulario==1}">
+                                                    <button style="color:white;" class="btn btn-warning descargarFormulario m-1" data-id="${paciente.idPaciente}"><i class="fas fa-cloud-download-alt"></i></button>
+                                                    </c:when>                                                            
+                                                </c:choose>                                
                                             <button class="btn btn-danger btn-eliminarPaciente m-1" data-id="${paciente.idPaciente}"><i class="fas fa-trash-alt"></i></button>
 
                                         </td>
@@ -203,7 +257,7 @@
                     </div>
 
                     <!-- ********** MODAL EDITAR PACIENTE ********** -->
-                    <div class="modal fade" id="modalEditarPaciente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal fade" data-keyboard="false" data-backdrop="static" id="modalEditarPaciente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -213,7 +267,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    
+
                                     <input type="hidden" id="idPacienteAEditar">
 
                                     <div class="form-group row">
@@ -241,8 +295,7 @@
                                             </div>
                                             <span class="text-danger" id="error-editar-CurpPaciente">Formato incorrecto, las letras deben estar en mayúsculas y asegúrate de introducir un CURP válido y sin espacios. Puedes consultarlo 
                                                 <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí.</a>
-                                            </span><br>
-
+                                            </span>
                                             <span class="text-warning" id="error-editar-CurpRepetidoPaciente">El curp ya existe.</span>
                                         </div>
 
@@ -259,7 +312,7 @@
                                                 <input placeholder="Fecha de nacimiento" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                        id="editarCumpleAdministradorAPaciente">
                                             </div>
-                                            <span class="text-danger" id="error-editar-FechaPaciente">Fecha incorrecta</span>
+                                            <span class="text-danger" id="error-editar-FechaPaciente">Fecha incorrecta debes tener entre 16 y 115 años para poder registrarte.</span>
                                         </div>
                                     </div>
 
@@ -285,7 +338,7 @@
                                                         <i class="fas fa-user"></i>
                                                     </div>
                                                 </div>
-                                                <input type="text" class="form-control" id="editarSegundo-apellidoAdministradorAPaciente" placeholder="Segundo Apellido">
+                                                <input type="text" class="form-control" id="editarSegundo-apellidoAdministradorAPaciente" placeholder="Segundo Apellido (Opcional)">
                                             </div>
                                             <span class="text-danger" id="error-editar-ApellidoMaternoPaciente">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
 
@@ -304,7 +357,7 @@
                                                 </div>
                                                 <input type="text" class="form-control" id="editarUsuarioAdministradorAPaciente" placeholder="Usuario">
                                             </div>
-                                            <span class="text-danger" id="error-editar-NombreUsuarioPaciente">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 4 y un máximo de 16 caracteres.</span><br>
+                                            <span class="text-danger" id="error-editar-NombreUsuarioPaciente">Formato incorrecto, solo caracteres alfanuméricos con un mínimo de 4 y un máximo de 16 caracteres.</span>
                                             <span class="text-warning" id="error-editar-UsuarioRepetidoPaciente">El usuario ya existe.</span>
                                         </div>
                                         <div class="col-6">
@@ -328,7 +381,7 @@
                                                         <i class="fas fa-map-marker-alt"></i>
                                                     </div>
                                                 </div>
-                                                <input type="text" class="form-control" id="editarColAdministradorAPaciente" placeholder="Colonia">
+                                                <input type="text" class="form-control" id="editarColAdministradorAPaciente" placeholder="Colonia (Opcional)">
                                             </div>
                                             <span class="text-danger" id="error-editar-ColoniaPaciente">Formato incorrecto, introducir caracteres alfanuméricos.</span>
 
@@ -345,7 +398,7 @@
                                                         <i class="fas fa-map-marker-alt"></i>
                                                     </div>
                                                 </div>
-                                                <input type="text" class="form-control" id="editarCalleAdministradorAPaciente" placeholder="Calle">
+                                                <input type="text" class="form-control" id="editarCalleAdministradorAPaciente" placeholder="Calle (Opcional)">
                                             </div>
 
                                             <span class="text-danger" id="error-editar-CallePaciente">Formato incorrecto, introducir caracteres alfanuméricos.</span>
@@ -358,7 +411,7 @@
                                                         <i class="fas fa-map-marker-alt"></i>
                                                     </div>
                                                 </div>
-                                                <input type="text" class="form-control" id="editarNumIntAdministradorAPaciente" placeholder="No. int">
+                                                <input style = "font-size:13px" type="text" class="form-control" id="editarNumIntAdministradorAPaciente" placeholder="No. int (Opcional))">
                                             </div>
                                             <span class="text-danger" id="error-editar-NoInteriorPaciente">Formato incorrecto, solo dígitos y/o letras.</span>
 
@@ -370,7 +423,7 @@
                                                         <i class="fas fa-map-marker-alt"></i>
                                                     </div>
                                                 </div>
-                                                <input type="text" class="form-control" id="editarNumExtAdministradorAPaciente" placeholder="No. ext">
+                                                <input style = "font-size:13px" type="text" class="form-control" id="editarNumExtAdministradorAPaciente" placeholder="No. ext (Opcional)">
                                             </div>
                                             <span class="text-danger" id="error-editar-NoExteriorPaciente">Formato incorrecto, solo dígitos y/o letras.</span>
 
@@ -425,17 +478,29 @@
                                                 </div>
                                                 <input type="text" class="form-control" id="editarCorreoAdministradorAPaciente" placeholder="Correo">
                                             </div>
-                                            <span class="text-danger" id="error-editar-CorreoPaciente">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
-
+                                            <span class="text-danger" id="error-editar-CorreoPaciente">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
+                                            <span class="text-warning" id="errorEditarPacienteCorreoRepetido">El correo ya existe.</span>
                                         </div>
 
+                                    </div>
+
+                                    <div class="row mb-3" id="error-camposEditarPaciente">
+                                        <div class="col-12 text-center">
+                                            <span class="text-danger">Debes llenar correctamente los campos para editar la cuenta.</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3" id="error-editarDatosRepetidosPaciente">
+                                        <div class="col-12 text-center">
+                                            <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>
+                                        </div>
                                     </div>
 
 
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal" style="border-radius:20px">Cancelar</button>
+                                    <button type="button" class="btn btn-danger clearEditPacientesModal" data-dismiss="modal" style="border-radius:20px">Cancelar</button>
                                     <button type="button" class="btn btn-primary" id="btn-guardarCambios" style="border-radius:20px">Guardar Cambios</button>
                                 </div>
                             </div>
@@ -443,12 +508,12 @@
                     </div>
 
                     <!-- ********** MODAL AGREGAR PACIENTE ********** -->
-                    <div class="modal fade" id="modalAgregarPaciente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal fade" data-keyboard="false" data-backdrop="static" id="modalAgregarPaciente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Agregar Paciente</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close clearAddPacientesModal" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -483,8 +548,7 @@
 
                                             <span class="text-danger" id="errorCurpPaciente">Formato incorrecto, las letras deben estar en mayúsculas y asegúrate de introducir un CURP válido y sin espacios. Puedes consultarlo 
                                                 <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí.</a>
-                                            </span><br>
-
+                                            </span>
                                             <span class="text-warning" id="errorCurpRepetidoPaciente">El curp ya existe.</span>
                                         </div>
                                     </div>
@@ -500,7 +564,7 @@
                                                        id="cumplePaciente" name="cumplePaciente">
 
                                             </div>
-                                            <span class="text-danger" id="errorFechaPaciente">Fecha incorrecta</span>
+                                            <span class="text-danger" id="errorFechaPaciente">Fecha incorrecta debes tener entre 16 y 115 años para poder registrarte.</span>
                                         </div>
                                     </div>
 
@@ -525,7 +589,7 @@
                                                         <i class="fas fa-user"></i>
                                                     </div>
                                                 </div>
-                                                <input type="text" class="form-control" id="segundo-apellidoPaciente" name="segundo-apellidoPaciente" placeholder="Segundo Apellido">
+                                                <input type="text" class="form-control" id="segundo-apellidoPaciente" name="segundo-apellidoPaciente" placeholder="Segundo Apellido (Opcional)">
                                                 <span class="text-danger" id="errorApellidoMaternoPaciente">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
                                             </div>
                                         </div>
@@ -542,7 +606,7 @@
                                                 <input type="text" class="form-control" id="usuarioPaciente" usuario="usuarioPaciente" placeholder="Usuario">
 
                                             </div>
-                                            <span class="text-danger" id="errorNombreUsuarioPaciente">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 4 y un máximo de 16 caracteres.</span><br>
+                                            <span class="text-danger" id="errorNombreUsuarioPaciente">Formato incorrecto, solo caracteres alfanuméricos con un mínimo de 4 y un máximo de 16 caracteres.</span>
                                             <span class="text-warning" id="errorUsuarioRepetidoPaciente">El usuario ya existe.</span>
                                         </div>
                                         <div class="col-6">
@@ -567,7 +631,7 @@
                                                         <i class="fas fa-map-marker-alt"></i>
                                                     </div>
                                                 </div>
-                                                <input type="text" class="form-control" id="colPaciente" placeholder="Colonia">
+                                                <input type="text" class="form-control" id="colPaciente" placeholder="Colonia (Opcional)">
                                             </div>
                                             <span class="text-danger" id="errorColoniaPaciente">Formato incorrecto, introducir caracteres alfanuméricos.</span>
 
@@ -579,7 +643,7 @@
                                                         <i class="fas fa-map-marker-alt"></i>
                                                     </div>
                                                 </div>
-                                                <input type="text" class="form-control" id="codigo-postalPaciente" placeholder="Codigo Postal">
+                                                <input type="text" class="form-control" id="codigo-postalPaciente" placeholder="Codigo Postal (Opcional)">
 
                                             </div>
                                             <span class="text-danger" id="errorCodigoPostalPaciente">Formato incorrecto, deben ser 5 dígitos.</span><br>
@@ -595,7 +659,7 @@
                                                         <i class="fas fa-map-marker-alt"></i>
                                                     </div>
                                                 </div>
-                                                <input type="text" class="form-control" id="callePaciente" calle="callePaciente" placeholder="Calle">
+                                                <input type="text" class="form-control" id="callePaciente" calle="callePaciente" placeholder="Calle (Opcional)">
                                             </div>
                                             <span class="text-danger" id="errorCallePaciente">Formato incorrecto, introducir caracteres alfanuméricos.</span>
 
@@ -607,7 +671,7 @@
                                                         <i class="fas fa-map-marker-alt"></i>
                                                     </div>
                                                 </div>
-                                                <input type="text" class="form-control" id="numIntPaciente" placeholder="No. int">
+                                                <input style = "font-size:13px" type="text" class="form-control" id="numIntPaciente" placeholder="No. int (Opcional)">
                                             </div>
                                             <span class="text-danger" id="errorNoInteriorPaciente">Formato incorrecto, solo dígitos y/o letras.</span>
 
@@ -619,7 +683,7 @@
                                                         <i class="fas fa-map-marker-alt"></i>
                                                     </div>
                                                 </div>
-                                                <input type="text" class="form-control" id="numExtPaciente" placeholder="No. ext">
+                                                <input style = "font-size:13px" type="text" class="form-control" id="numExtPaciente" placeholder="No. ext (Opcional)">
 
                                             </div>
                                             <span class="text-danger" id="errorNoExteriorPaciente">Formato incorrecto, solo dígitos.</span>
@@ -631,7 +695,7 @@
                                         <div class="col-6">
                                             <div class="input-group">
                                                 <select class="form-control" id="estadoPaciente">
-                                                    <option disabled selected>Seleccione estado</option>
+                                                    <option disabled selected>Seleccione Estado</option>
                                                     <c:forEach items="${estado}" var="estado">  
                                                         <option value='<c:out value="${estado.idEstado}"/>'><c:out value='${estado.nombre}'/> </option>
                                                     </c:forEach>
@@ -674,7 +738,8 @@
                                                 </div>
                                                 <input type="text" class="form-control" id="correoPaciente" placeholder="Correo">
                                             </div>
-                                            <span class="text-danger" id="errorCorreoPaciente">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: example@example.com</span>
+                                            <span class="text-warning" id="errorCorreoRepetidoPaciente">El correo ya existe.</span>
+                                            <span class="text-danger" id="errorCorreoPaciente">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
                                         </div>
 
                                     </div>
@@ -691,6 +756,9 @@
                                                     </div>
                                                 </div>
                                                 <input type="password" class="form-control" id="contraPaciente" placeholder="Contraseña">
+                                                <div id="pacienteContrasena" class="input-group-append bg-white">
+                                                    <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                                </div>
                                                 <span class="text-danger" id="errorPass1Paciente">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                             </div>
                                         </div>
@@ -702,6 +770,9 @@
                                                     </div>
                                                 </div>
                                                 <input type="password" class="form-control" id="confContraPaciente" placeholder="Confirmar contraseña">
+                                                <div id="pacienteContrasenaConfirmacion" class="input-group-append bg-white">
+                                                    <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                                </div>
                                                 <span class="text-danger" id="errorPass2Paciente">Formato incorrecto, la contraseña debe tener al menos 1 número, 1 letra minúscula, 1 mayúscula y una extensión de 8 a 14 caracteres.</span>
                                             </div>
                                             <span class="text-warning" id="noEqualPasswordsErrorPaciente">Las contraseñas no son iguales.</span>
@@ -724,13 +795,25 @@
                                                     El paciente está informado y aceptó los términos y condiciones
                                                 </label>
                                             </div>
-                                            <span class="text-danger" id="error-terminos">Para continuar debes de aceptar los términos y condiciones.</span>
+                                            <span class="text-danger" id="error-terminos">Se deben aceptar los términos y condiciones.</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3" id="error-camposPaciente">
+                                        <div class="col-12 text-center">
+                                            <span class="text-danger">Completa todos los campos y asegúrate de aceptar los términos para registrar la cuenta.</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3" id="error-datosRepetidosPaciente">
+                                        <div class="col-12 text-center">
+                                            <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" style="border-radius: 20px;" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" style="border-radius: 20px;" class="btn btn-danger clearAddPacientesModal" data-dismiss="modal">Cancelar</button>
                                     <button id="btn-agregarPaciente" type="button" style="border-radius: 20px;" class="btn btn-primary">Agregar
                                         Paciente
                                     </button>

@@ -5,6 +5,92 @@
     GENERALES
 ----------------------------------------------------- */
 
+.btn-actualizarReportePoblacion {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #CC4452;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16px;
+    padding: 20px;
+    width: 260px;
+    height: 40px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    padding-top: 6px;
+}
+
+.btn-actualizarReportePoblacion span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.btn-actualizarReportePoblacion span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.btn-actualizarReportePoblacion:hover span {
+    padding-right: 25px;
+}
+
+.btn-actualizarReportePoblacion:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+
+.btn-reportePoblacion {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #5D4CB2;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16px;
+    padding: 20px;
+    width: 260px;
+    height: 40px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    padding-top: 6px;
+}
+
+.btn-reportePoblacion span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.btn-reportePoblacion span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.btn-reportePoblacion:hover span {
+    padding-right: 25px;
+}
+
+.btn-reportePoblacion:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+
 p.clear {
     clear: both;
     color: #fff;
@@ -15,23 +101,23 @@ p.clear {
 }
 
 #loading-screen {
-  background-color: rgba(25,25,25,0.7);
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  z-index: 9999;
-  margin-top: 0;
-  top: 0;
-  text-align: center;
+    background-color: rgba(25,25,25,0.7);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 9999;
+    margin-top: 0;
+    top: 0;
+    text-align: center;
 }
 #loading-screen img {
-  width: 100px;
-  height: 100px;
-  position: fixed;
-  margin-top: -50px;
-  margin-left: -50px;
-  top: 50%;
-  text-align: center;
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    margin-top: -50px;
+    margin-left: -50px;
+    top: 50%;
+    text-align: center;
 }
 
 .swal-button--confirm {
@@ -41,16 +127,16 @@ p.clear {
     background-color: #007bff;
     font-size: 15px;
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
-  }
+}
 
-  .swal-button--cancel {
+.swal-button--cancel {
     padding: 7px 19px;
     border-radius: 25px;
     color: #fff;
     background-color: #dc3545;
     font-size: 15px;
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
-  }
+}
 
 .colorMorado{
     color: #1e1441;
@@ -91,8 +177,8 @@ body {
 }
 
 .tituloPacientes{
-  font-size: 40px;
-  color: #696f71
+    font-size: 40px;
+    color: #696f71
 }
 
 .editar-imagen{
@@ -125,7 +211,7 @@ li a, li a i{
 }
 
 .title{
-    
+
     font-size: 24px;
     text-shadow: -1px -1px 14px rgba(150, 150, 150, 0.77);
     font-family: 'Poppins', sans-serif;
@@ -133,17 +219,17 @@ li a, li a i{
 
 .subtitle{
     font-size: 9px;
-    
+
 }
 
 .subtitle-name{
-    
+
     font-size: 20px;
 }
 
 .subtitle-user{
     font-size: 15px;
-   
+
 }
 
 .user{
@@ -208,14 +294,14 @@ li a, li a i{
     padding: 10px;
     /* background: #3e8ef7; */
     background: #1e1441;
-    
+
 }
 
 #sidebar .imagenPerfil{
     width: 30%;
     display:block;
     margin:auto;
-    
+
 }
 
 #sidebar .profile {
@@ -324,7 +410,7 @@ a.article:hover {
 .btn:focus,.btn:active {
     outline: none !important;
     box-shadow: none;
- }
+}
 
 .navbar {
     padding: 15px 10px;
@@ -401,13 +487,13 @@ a.article:hover {
 }
 
 .btn.btn-guardar-continuar{
-	background-color: #fff;
+    background-color: #fff;
     border-color: #eb5865;
     color:#eb5865;
 }
 
 .btn.btn-guardar-continuar:hover{
-	background-color: #eb5865;
+    background-color: #eb5865;
     border-color: #fff;
     color:#fff;
 }
@@ -444,7 +530,7 @@ a.article:hover {
 /* QUESTION MARKS */
 
 .tooltip_templates { display: none; }
-  
+
 /******* INPUTS *******/
 
 .custom-file-input ~ .custom-file-label::after {

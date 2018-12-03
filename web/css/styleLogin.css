@@ -4,6 +4,17 @@
 
 /* GENERALES */
 
+.inputGlobal{
+    background-color:rgba(0,0,0,0) !important;
+    border:none !important;
+    border-bottom: 1px solid #989797 !important;
+    border-radius: 0px !important;
+    letter-spacing: 1px;
+    font-weight: 400;
+    padding: 6px;
+    color: #4a4949;
+}
+
 body {
   display: -ms-flexbox;
   display: -webkit-box;
@@ -172,7 +183,7 @@ input::-webkit-input-placeholder {
     font-family: 'Roboto Condensed', "Font Awesome\ 5 Free" !important;
 }
 .useFontAwesomeFamily::placeholder { /* Most modern browsers */
-    font-family: 'Roboto Condensed', "Font Awesome\ 5 Free", "Font Awesome 5 Regular", !important;
+    font-family: 'Roboto Condensed', "Font Awesome\ 5 Free", "Font Awesome 5 Regular" !important;
     font-weight: 900;
 }
 

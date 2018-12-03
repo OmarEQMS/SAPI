@@ -324,10 +324,7 @@ public class NavegadoraController extends HttpServlet {
                             break;
                         }
 
-                        case "mostrarForumalario": {
-
-                            break;
-                        }
+                        
 
                         case "cambiarContrasena": {
 
@@ -484,12 +481,13 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("EL id paciente es: " + idPaciente);
 
                                 ArrayList<MFormularioGeneral> formGeneralList = new ArrayList<>();
-                                System.out.println("va a mamar");
+                                
                                 ArrayList<ArrayList<MFormularioGeneral>> ElJeison = new ArrayList<>();
-                                System.out.println("mamó");
+                               
                                 MFormularioGeneralServicioImpl mFormularioGeneralServicioImpl = new MFormularioGeneralServicioImpl();
                                 MFormularioGeneral formGeneral = mFormularioGeneralServicioImpl.mostrarFormularioGeneralNavegadora(idPaciente);
                                 // System.out.println(formGeneral.getFechaConsulta());
+                                 System.out.println(formGeneral.getMedicoAdscrito());
                                 if (formGeneral.getMedicoAdscrito() == null) {
                                     formGeneral.setMedicoAdscrito("");
                                 }

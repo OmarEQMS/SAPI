@@ -45,7 +45,7 @@ $(document).ready(function () {
     $('#error-editar-EstadoNavegadora').hide();
     $('#error-editar-MunicipioNavegadora').hide();
     $('#error-editar-UsuarioRepetidoNavegadora').hide();
-
+    
     $('#error-imgPerfil').hide();
     $('#error-contrasena').hide();
     $('#noEqualPasswordsError').hide();
@@ -456,9 +456,6 @@ $(document).ready(function () {
     $('#btn-guardarCambios').on('click', function () {
         console.log("Presionó Guardar Cambios");
 
-
-
-
         // FALTA OBTENER EL ID DEL PACIENTE 
         if (!isValidCURP($('#editarCurpNavegadoraAPaciente')) || !isValidDate($("#editarCumpleNavegadoraAPaciente")) || !isValidPhoneNumber($("#editarTelNavegadoraAPaciente"))
                 || !isValidColonia($('#editarColNavegadoraAPaciente')) || !isValidStreet($('#editarCalleNavegadoraAPaciente')) || !isValidExtNumber($("#editarNumExtNavegadoraAPaciente"))
@@ -501,13 +498,11 @@ $(document).ready(function () {
                         confirmButtonText: 'Ok'
                     });
                 }
-
             });
-
-        }
+    }
     });
-
-    //Redirige a documentos    
+    
+     //Redirige a documentos    
     $('body').on('click', '.btn-ver', function () {
 
         var id = $(this).data('id');
@@ -2368,7 +2363,7 @@ $(document).ready(function () {
         if (!isValidFechaEstudioPrevio($(this))) {
             $('#error-fechaUltra').show();
         } else {
-            $('#error-fechaUltra').hide();
+         //   $('#error-fechaUltra').hide();
         }
 
     });
@@ -3076,6 +3071,7 @@ $(document).ready(function () {
         data.forEach((value, key) => {
             console.log(key + " " + value);
         });
+
         
          /////MEGA IF
          if (isValidDate6months($('#fechaNavegacion')) && isValidDate6months($('#fechaConsulta')) &&
@@ -3128,7 +3124,7 @@ $(document).ready(function () {
          swal("Error", "Hay datos incorrectos o faltantes", "error");
          }
          
-      
+ 
     });
 
     function btnSave(data) {
@@ -4180,6 +4176,7 @@ $(document).ready(function () {
                 $('#fecha-decisionPreconsulta').val(fecha);
             }
 
+
             if ((data[0][0].decisionCosulta !== "")) {
                 $('#decisionPreconsulta option:contains(' + $.trim(data[0][0].decisionCosulta) + ')').each(function () {
                     if ($.trim($(this).text()) === $.trim(data[0][0].decisionCosulta)) {
@@ -4321,8 +4318,15 @@ $(document).ready(function () {
                 });
             }
 
-            if (data[0][0].ki67 !== "")
-                $('#ki67').val(data[0][0].ki67);
+            if (data[0][0].ki67 !== ""){
+                $('#ki67 option:contains(' + $.trim(data[0][0].ki67) + ')').each(function () {
+                    if ($.trim($(this).text()) === $.trim(data[0][0].ki67)) {
+                        $(this).attr('selected', 'selected');
+                    }
+
+                });
+            }
+                
 
 
         },

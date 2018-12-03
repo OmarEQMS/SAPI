@@ -28,4 +28,7 @@ public interface EmpleadoServicio {
     public List<TablaMedicoAdministrador> mostrarListaEmpleadosAdministrador(int idRol);
     public List<TablaAdministradorAdministrador> mostrarListaAdminAdministrador();
     public TablaMedicoAdministrador mostrarMedicoAdministrador(int idMedico,int idRol);
+    public boolean existsNoEmpleado(String noEmpleado);
+    public boolean existsNoEmpleado(String noEmpleado, int idEmpleado);
+    public boolean relacionMedicoPaciente(int idEmpleado);
 }

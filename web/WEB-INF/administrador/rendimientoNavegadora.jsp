@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>SAPI | Inicio</title>
+    <title>Rendimiento de: ${sessionScope.nombreNavegadora} ${sessionScope.primerApellidoNavegadora}</title>
 
 
         <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
@@ -63,7 +63,7 @@
 
                 <div class="row">
                     <div class="col-12 mb-2 mt-4">
-                        <img src="img/user.png" class="imagenPerfil" alt="">
+                        <img src="data:image/jpeg;base64,${sessionScope.base64Img}" class="imagenPerfil edit-image" width="66px" height="66px" alt="">
                     </div>
                 </div>
 
@@ -77,11 +77,11 @@
                 <div class="row justify-content-center">
 
                     <div class="col-2 text-center">
-                        <a class="iconoSidebar" href="" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
+                        <a class="iconoSidebar IrAMiCuenta" title="Mi Cuenta"><i class="fas fa-cog"></i></a>
                     </div>
 
                     <div class="col-2">
-                        <a class="iconoSidebar" href="" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
+                        <a class="iconoSidebar salirCuenta" title="Cerrar Sesión"><i class="fas fa-power-off"></i></a>
                     </div>
 
                 </div>
@@ -96,8 +96,6 @@
 
             <!-- MENU PRINCIPAL ENLACES -->
             <ul class="list-unstyled components">
-
-            <li id="irAInicioAdministrador"><a><i class="fas fa-home"></i>Inicio</a></li>
                                 
                 <li id="IrAGestionMedicos"><a><i class="fas fa-briefcase-medical"></i>Médicos</a></li>
 

@@ -6,7 +6,6 @@
 package mx.itesm.sapi.service;
 
 import java.util.ArrayList;
-import mx.itesm.sapi.bean.poblacion.GeneralPoblacion;
 
 /**
  *
@@ -14,5 +13,5 @@ import mx.itesm.sapi.bean.poblacion.GeneralPoblacion;
  */
 public interface GeneralPoblacionServicio {
     public ArrayList<ArrayList<String>> mostrarPoblacionGeneral();
-    
+    public boolean actualizarPoblacionGeneral();
 }

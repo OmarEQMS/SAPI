@@ -117,7 +117,7 @@ $(document).ready(function () {
                                     title: "¡Buen Trabajo!",
                                     text: "La cita se ha registrado correctamente.",
                                     icon: "success",
-                                    buttons:[,'Aceptar'],
+                                    buttons: [, 'Aceptar'],
                                 });
                                 $('#modalAgregarCita').modal('toggle');
                             } else {
@@ -125,7 +125,7 @@ $(document).ready(function () {
                                     title: "Algo salió mal",
                                     text: "No se pudo registrar la cita, intentalo de nuevo.",
                                     icon: "error",
-                                    buttons:[,'Aceptar'],
+                                    buttons: [, 'Aceptar'],
                                 });
                             }
 
@@ -403,15 +403,20 @@ $(document).ready(function () {
                     data.forEach((value, key) => {
                         console.log(key + " " + value);
                     })
-                    configureLoadingScreen($('.loading-screenGuardar'));
                     $.ajax({
                         url: "PacienteController",
                         data: data,
                         method: "POST",
+                        beforeSend: function () {
+                            $('.loading-screenGuardar').fadeIn();
+                        },
                         encType: "multipart/form-data",
                         processData: false,
                         contentType: false,
                         cache: false,
+                        complete: function () {
+                            $('.loading-screenGuardar').fadeOut();
+                        },
                         success: function (response) {
                             $.post("SAPI", {
                                 file: "paciente/cuenta.jsp"
@@ -515,22 +520,27 @@ $(document).ready(function () {
 
                         console.log("FechaInicioTratamiento: " + $("#fechaInicioTratamiento").val());
 
+                        var t = $('#tablaTratamientos').DataTable();
 
-                        var row = "<tr>" +
-                                "<input type='hidden' id='nombre-" + response + "' value='" + $("#nombreTipoTratamiento").val() + "'/>" +
-                                "<input type='hidden' id='fechaInicio-" + response + "' value='" + $("#fechaInicioTratamiento").val() + "'/>" +
-                                "<td id='nombre-" + response + "' >" + $("#nombreTipoTratamiento").val() + "</td>" +
-                                "<td id='fechaInicio-" + response + "' >" + fechaInicioTratamiento + "</td>" +
-                                "<td  id='fecha-" + response + "'>" + "</td>" +
-                                "<td><button class='btn btn-primary terminarTratamiento' id='modal-" + response + "' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button></td > " +
-                                "</tr>";
-                        $("#tablaTratamientos").append(row);
+                        t.row.add([
+                            "<input type='hidden' value='" + $("#nombreTipoTratamiento").val() + "' id='nombre-" + response + "'>" +
+                                    "<input type='hidden' value='" + fechaInicioTratamiento + "' id='fechaInicio-" + response + "'>" +
+                                    "<input type='hidden' value='" + response + "' id='boton-" + response + "'>" +
+                                    $("#nombreTipoTratamiento").val(),
+                            fechaInicioTratamiento,
+                            "<span id='fecha-" + response + "'></span>",
+                            "<button class='btn btn-primary terminarTratamiento' id='modal-" + response + "' data-id='" + response + "'data-toggle='modal' data-target='#modalEditarTerminado'> <i class='fas fa-edit'></i> </button>"
+                        ]).draw(false);
+
+
+                        console.log("WHALALALALA" + $("#nombre-" + response).val())
+
 
                         $('#tipoTratamiento').prop('selectedIndex', 0);
 
                         $("#fechaInicioTratamiento").val('');
 
-                        //$('#idTratamientoPaciente').val(response);*/
+                        //$('#idTratamientoPaciente').val(response);
 
                     })
                     .fail(function (xhr, textStatus, errorThrown) {
@@ -558,8 +568,7 @@ $(document).ready(function () {
                 dangerMode: true
             })
                     .then((cambiar) => {
-                        $("#password").val("");
-                        $("#password2").val("");
+
                         if (cambiar) {
                             $.ajax({
                                 url: "PotencialController",
@@ -658,9 +667,7 @@ $(document).ready(function () {
         }
     });
     //Designar idTratamientoPaciente
-    //$('body').on('click', '.terminarTratamiento', function () {
-
-    $(".terminarTratamiento").on('click', function () {
+    $('body').on('click', '.terminarTratamiento', function () {
 
         $(".idTratamientoPaciente").val(
                 $("#boton-" + $(this).data('id')).val()
