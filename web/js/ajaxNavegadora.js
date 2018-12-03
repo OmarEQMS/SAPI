@@ -3733,12 +3733,12 @@ $(document).ready(function () {
                 $('#fechaConsulta').val(fecha);
                 // $('#fechaConsulta').val(convertDate(new Date(data[0][0].fechaConsulta)));
             }
-            if ((data[0][0].noAdscrito !== true))
-                $('#noAdscrito').attr('checked', 'checked');
-            if ((data[0][0].noRadiologo !== true))
-                $('#esSustituto').attr('checked', 'checked');
+            if ((data[0][0].noAdscrito === true))
+                $('#noAdscritoAdscrito').attr('checked', 'checked');
+            if ((data[0][0].noRadiologo === true))
+                $('#noAdscritoRadiologo').attr('checked', 'checked');
             if ((data[0][0].noResidente === true))
-                $('#noAdscrito').attr('checked', 'checked');
+                $('#noAdscritoResidente').attr('checked', 'checked');
 
 // Segunda pagina formulario
 
