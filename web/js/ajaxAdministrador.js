@@ -54,7 +54,7 @@ $(document).ready(function () {
                 if (isValidTerminosAdmin) {
 
                     $("#error-camposAdministrador").hide();
-
+                    isValidTerminosAdmin = false;
 
                     $.ajax({
                         url: 'RegistraUsuarioController',
@@ -259,7 +259,7 @@ $(document).ready(function () {
     //Guarda administrador
     $('#btn-guardarAdministrador').on('click', function () {
 
-        if (!repiteCorreoAdministrador) {
+        if (!repiteCorreoAdministrador && !repiteEditNoEmpleadoAdministrador) {
             $("#error-editarDatosRepetidosAdministrador").hide();
 
             if (isValidName($('#editar-nombreAdministrador')) && isValidLastName($('#editar-primerApellidoAdministrador')) && isValidEdit2ApellidoAdmin
@@ -2163,6 +2163,7 @@ $(document).ready(function () {
                 if (isValidTerminosMedicos) {
 
                     $("#error-campos").hide();
+                    isValidTerminosMedicos = false;
 
                     var nombre = $('#agregar-nombreMedico');
                     var telefono = $('#agregar-telefonoMedico');
@@ -2898,7 +2899,7 @@ $(document).ready(function () {
     //GUARDA EL MEDICO DESDE EL MODAL
     $('#btn-guardarMedico').on('click', function () {
 
-        if (!repiteCorreo) {
+        if (!repiteCorreo && !repiteEditNoEmpleadoMedico) {
             $("#error-editarDatosRepetidos").hide();
 
             if (isValidName($('#editar-nombreMedico')) && isValidLastName($('#editar-primerApellidoMedico')) && isValidEdit2ApellidoMedico && isValidEditCedulaMedico
@@ -3349,7 +3350,7 @@ $(document).ready(function () {
     var repiteNoEmpleadoNavegadora;
     //NÚMERO DE EMPLEADO EN AGREGAR NAVEGADORA
     $('#agregar-noEmpleadoNavegadora').on('change', function () {
-        $("#error-datosRepetidos").hide();
+        $("#error-datosRepetidosNavegadora").hide();
         $.ajax({
 
             url: 'RegistraUsuarioController',
@@ -3480,6 +3481,7 @@ $(document).ready(function () {
     var repiteCorreoNavegadora;
 
     $('#agregar-correoNavegadora').on('change', function () {
+        $("#error-datosRepetidosNavegadora").hide();
         $.ajax({
 
             url: 'RegistraUsuarioController',
@@ -3535,6 +3537,7 @@ $(document).ready(function () {
                 if (isValidTerminosNavegadora) {
 
                     $("#error-camposNavegadora").hide();
+                    isValidTerminosNavegadora = false;
 
                     var nombre = $('#agregar-nombreNavegadora');
                     var telefono = $('#agregar-telefonoNavegadora');
@@ -3674,7 +3677,7 @@ $(document).ready(function () {
     //GUARDA LA NAVEGADORA DESDE EL MODAL 
     $('#btn-guardarNavegadora').on('click', function () {
 
-        if (!repiteCorreoNavegadora) {
+        if (!repiteCorreoNavegadora && !repiteEditNoEmpleadoNavegadora) {
             $("#error-editarDatosRepetidosNavegadora").hide();
 
             if (isValidName($('#editar-nombreNavegadora')) && isValidLastName($('#editar-primerApellidoNavegadora')) && isValid2ApellidoNavegadora && isValidEditCedulaNavegadora
@@ -3897,7 +3900,7 @@ $(document).ready(function () {
 
     //Guarda el paciente
     $('#btn-guardarCambios').on('click', function () {
-        if (!repiteCorreo) {
+        if (!repiteCorreo && !repiteUsuarioPaciente) {
             $("#error-editarDatosRepetidosPaciente").hide();
             if (isValidName($('#editarNombreAdministradorAPaciente')) && isValidLastName($('#editarPrimer-apellidoAdministradorAPaciente'))
                     && isValidUserName($('#editarUsuarioAdministradorAPaciente')) &&
@@ -3986,6 +3989,7 @@ $(document).ready(function () {
                 if (!isValidTerminosPaciente) {
                     $('#error-terminos').show();
                 } else {
+                    isValidTerminosPaciente = false;
                     $('#error-terminos').hide();
                     console.log("TODO BIEN");
 
