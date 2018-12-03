@@ -179,10 +179,12 @@ public class LoginController extends HttpServlet {
                                 //Solicitud Documentos Preconsulta
                                 SolicitudPreconsulta solicitudPreconsulta;
                                 SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
+                                System.out.println("Vamos a ver la solicitud de preconsulta desde el loginController");                                
                                 solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
+                                
 
                                 System.out.println("Consultar documentos");
-
+                               
                                 System.out.println("Motivo SolicitudPreconsulta: " + solicitudPreconsulta.getMotivoCosulta());
 
                                 sesion.setAttribute("idMotivoConsulta", solicitudPreconsulta.getMotivoCosulta());
@@ -364,7 +366,7 @@ public class LoginController extends HttpServlet {
                             }
                             case 4: {
                                 // CASE Para Navegadora
-                                System.out.println("Cuenta de NAVEGADORA:  ".concat(sesion.getAttribute("nombre").toString()));
+                                System.out.println("Cuenta de NAVEGADORA:  ".concat(sesion.getAttribute("nombre").toString()));                                                                                                                                
 
                                 request.setAttribute("nombre", sesion.getAttribute("nombre"));
                                 request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));

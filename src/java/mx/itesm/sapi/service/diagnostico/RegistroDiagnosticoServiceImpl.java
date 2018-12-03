@@ -41,13 +41,14 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
             cstmt.setInt(2, registroDiagnostico.getPrevioDiagnostico());
             cstmt.setInt(3, registroDiagnostico.getIdPaciente());
             cstmt.setInt(4, registroDiagnostico.getIdEtapaClinica());
-            cstmt.setInt(5, 0);
-           // cstmt.setInt(6, registroDiagnostico.getEstatus());
+            cstmt.setInt(5, registroDiagnostico.getIdRegistroTNM());
            
-             cstmt.executeQuery();
-            rs = cstmt.getGeneratedKeys();
+            System.out.println("Agregar TNM ".concat(cstmt.toString()));
+           
+            
+            rs = cstmt.executeQuery();
             rs.next();
-            id=rs.getInt(1);
+            id = rs.getInt(1);
             
             rs.close();
             cstmt.close();
@@ -185,7 +186,7 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
             cstmt.setInt(6, registroDiagnostico.getIdRegistroTNM());
            // cstmt.setInt(7, registroDiagnostico.getEstatus());
            
-        
+            System.out.println("Actualizar diagnostico ".concat(cstmt.toString()));
             rs = cstmt.executeQuery();
             
             rs.next();
@@ -270,14 +271,16 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
             rs = cstmt.executeQuery();
             
             // Asignación de valores devuletos a registroDiagnostico
-            rs.next();
-            registroDiagnostico.setIdRegistroDiagnostico(rs.getInt("idRegistroDiagnostico"));
-            registroDiagnostico.setFecha(rs.getDate("fecha"));
-            registroDiagnostico.setPrevioDiagnostico(rs.getInt("previoDiagnostico"));
-            registroDiagnostico.setIdPaciente(rs.getInt("idPaciente"));
-            registroDiagnostico.setIdEtapaClinica(rs.getInt("idEtapaClinica"));
-            registroDiagnostico.setIdRegistroTNM(rs.getInt("idRegistroTNM"));
-            registroDiagnostico.setEstatus(rs.getInt("estatus"));
+            while(rs.next())
+            {
+                registroDiagnostico.setIdRegistroDiagnostico(rs.getInt("idRegistroDiagnostico"));
+                registroDiagnostico.setFecha(rs.getDate("fecha"));
+                registroDiagnostico.setPrevioDiagnostico(rs.getInt("previoDiagnostico"));
+                registroDiagnostico.setIdPaciente(rs.getInt("idPaciente"));
+                registroDiagnostico.setIdEtapaClinica(rs.getInt("idEtapaClinica"));
+                registroDiagnostico.setIdRegistroTNM(rs.getInt("idRegistroTNM"));
+                registroDiagnostico.setEstatus(rs.getInt("estatus"));
+            }
             
             rs.close();
             cstmt.close();
@@ -285,7 +288,7 @@ public class RegistroDiagnosticoServiceImpl implements RegistroDiagnosticoServic
             
         } catch (SQLException ex) {
             registroDiagnostico = null;
-            System.out.println("ID: " + idPaciente);
+            System.out.println("registro diadgnostico ID: " + idPaciente);
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
         }

@@ -19,6 +19,7 @@ import mx.itesm.sapi.bean.moduloGestionMedico.TablaMedicoAdministrador;
 public interface EmpleadoServicio {
     public int agregarEmpleado(Empleado empleado);
     public Empleado mostrarEmpleado(int idEmpleado);
+    public Empleado mostrarEmpleadoPersona(int idPersona);
     public Empleado mostrarEmpleadoCuenta(int idCuenta);
     public List<Empleado> mostrarEmpleado();
     public boolean borradoLogicoEmpleado(int idEmpleado);

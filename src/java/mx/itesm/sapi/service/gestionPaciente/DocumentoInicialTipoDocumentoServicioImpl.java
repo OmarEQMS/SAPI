@@ -51,7 +51,8 @@ public class DocumentoInicialTipoDocumentoServicioImpl implements DocumentoInici
                 documentoInicialTipoDocumento.setComentario(rs.getString("comentario"));
                 documentoInicialTipoDocumento.setArchivo(rs.getBinaryStream("archivo"));
                 documentoInicialTipoDocumento.setAprobado(rs.getInt("aprobado"));
-               
+                System.out.println("Doc aprobado id  ".concat(String.valueOf(rs.getInt("idDocumentoInicial"))));
+                System.out.println("Doc aprobado  ".concat(String.valueOf(rs.getInt("aprobado"))));
                 
                 documentoInicialTipoDocumentos.add(documentoInicialTipoDocumento);
             }

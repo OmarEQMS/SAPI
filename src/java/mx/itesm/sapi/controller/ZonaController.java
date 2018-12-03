@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.persona.CodigoPostal;
 import mx.itesm.sapi.bean.persona.Estado;
 import mx.itesm.sapi.bean.persona.EstadoCivil;
@@ -42,7 +43,16 @@ public class ZonaController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         /////////////////////////////////////////////////////        
-        String key = request.getParameter("key");
+        String key;
+        HttpSession sesion = request.getSession(true);
+        try
+        {
+            key = request.getParameter("key");            
+            sesion.setAttribute("KeyZonaController", key);
+        }catch (Exception ex)
+        {
+             key = (String) sesion.getAttribute("KeyZonaController");
+        }
 
         switch (key) {
 

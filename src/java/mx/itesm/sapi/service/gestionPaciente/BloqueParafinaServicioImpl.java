@@ -21,35 +21,73 @@ import mx.itesm.sapi.util.Conexion;
 public class BloqueParafinaServicioImpl implements BloqueParafinaServicio {
 
     @Override
+    public BloqueParafina mostrarBloqueParafinaPaciente(int idPaciente) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL mostrarBloqueParafinaPaciente(?)";
+        BloqueParafina bloqueParafina = null;
+
+        try {
+            conn = Conexion.getConnection();
+            bloqueParafina = new BloqueParafina();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+
+            bloqueParafina.setIdBloqueParafina(rs.getInt("idBloqueParafina"));
+            bloqueParafina.setIdBiopsia(rs.getInt("idBiopsia"));
+            bloqueParafina.setSerie(rs.getString("serie"));
+            bloqueParafina.setEstatus(rs.getInt("estatus"));
+            bloqueParafina.setCantidad(rs.getInt("cantidad"));
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            bloqueParafina = null;
+        }
+        return bloqueParafina;
+    }
+
+    
+    @Override
     public BloqueParafina mostrarBloqueParafina(int idBloqueParafina) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL mostrarBloqueParafina";
+        String stProcedure = "CALL mostrarBloqueParafina(?)";
         BloqueParafina bloqueParafina = null;
-     
+
         try {
             conn = Conexion.getConnection();
             bloqueParafina = new BloqueParafina();
             cstmt = conn.prepareCall(stProcedure);
             cstmt.setInt(1, idBloqueParafina);
-                  
+
             rs = cstmt.executeQuery();
             rs.next();
-            
+
             bloqueParafina.setIdBloqueParafina(rs.getInt("idBloqueParafina"));
             bloqueParafina.setIdBiopsia(rs.getInt("idBiopsia"));
             bloqueParafina.setSerie(rs.getString("serie"));
-            
+            bloqueParafina.setEstatus(rs.getInt("estatus"));
+            bloqueParafina.setCantidad(rs.getInt("cantidad"));
+
             conn.close();
             cstmt.close();
             rs.close();
-            
+
         } catch (SQLException ex) {
-           System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
-                   .concat(ex.getMessage()));
-           bloqueParafina = null;
-        }   
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            bloqueParafina = null;
+        }
         return bloqueParafina;
     }
 
@@ -62,31 +100,33 @@ public class BloqueParafinaServicioImpl implements BloqueParafinaServicio {
         List<BloqueParafina> bloqueParafinas = null;
         BloqueParafina bloqueParafina;
 
-        try{
-            conn  = Conexion.getConnection();
+        try {
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
             rs = cstmt.executeQuery();
-            bloqueParafinas =  new ArrayList<>();
-            
-            while(rs.next()){
+            bloqueParafinas = new ArrayList<>();
+
+            while (rs.next()) {
                 bloqueParafina = new BloqueParafina();
-                
+
                 bloqueParafina.setIdBloqueParafina(rs.getInt("idBloqueParafina"));
                 bloqueParafina.setIdBiopsia(rs.getInt("idBiopsia"));
                 bloqueParafina.setSerie(rs.getString("serie"));
-                
+                bloqueParafina.setEstatus(rs.getInt("estatus"));
+                bloqueParafina.setCantidad(rs.getInt("cantidad"));
+
                 bloqueParafinas.add(bloqueParafina);
             }
-		
-		conn.close();
-		cstmt.close();
-		rs.close();
 
-        }catch(SQLException ex){
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             bloqueParafinas = null;
-	}
+        }
         return bloqueParafinas;
     }
 
@@ -95,27 +135,29 @@ public class BloqueParafinaServicioImpl implements BloqueParafinaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CaLL agregarBloqueParafina";
+        String stProcedure = "CaLL agregarBloqueParafina(?, ?, ? )";
         int id = -1;
 
-        try{
-            conn  = Conexion.getConnection();
+        try {
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
+
+           
+            cstmt.setInt(1, bloqueParafina.getIdBiopsia());
+            cstmt.setString(2, bloqueParafina.getSerie());
             
-            cstmt.setInt(1,bloqueParafina.getIdBiopsia());
-            cstmt.setInt(2,bloqueParafina.getIdBiopsia());
-            cstmt.setString(3,bloqueParafina.getSerie());
-            
+            cstmt.setInt(3, bloqueParafina.getCantidad());
+
             rs = cstmt.executeQuery();
             rs.next();
-            
+
             id = rs.getInt(1);
-                
+
             conn.close();
             cstmt.close();
             rs.close();
 
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             id = -1;
@@ -131,20 +173,20 @@ public class BloqueParafinaServicioImpl implements BloqueParafinaServicio {
         String stProcedure = "CALL borradoLogicoParafina";
         boolean exito = false;
 
-        try{
-            conn  = Conexion.getConnection();
+        try {
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            
+
             cstmt.setInt(1, idBloqueParafina);
-            
+
             rs = cstmt.executeQuery();
             rs.next();
-            exito  = rs.getBoolean(1);
-            
+            exito = rs.getBoolean(1);
+
             rs.close();
             conn.close();
             cstmt.close();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             exito = false;
@@ -157,24 +199,26 @@ public class BloqueParafinaServicioImpl implements BloqueParafinaServicio {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL actualizarBloqueParafina";
+        String stProcedure = "CALL actualizarBloqueParafina(?, ?, ?, ?, ?)";
         boolean exito = false;
-        try{
-            conn  = Conexion.getConnection();
+        try {
+            conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
-            
-            cstmt.setInt(1,bloqueParafina.getIdBiopsia());
-            cstmt.setInt(2,bloqueParafina.getIdBiopsia());
-            cstmt.setString(3,bloqueParafina.getSerie());
-            
+
+            cstmt.setInt(1, bloqueParafina.getIdBloqueParafina());
+            cstmt.setInt(2, bloqueParafina.getIdBiopsia());
+            cstmt.setString(3, bloqueParafina.getSerie());
+            cstmt.setInt(4, bloqueParafina.getEstatus());
+            cstmt.setInt(5, bloqueParafina.getCantidad());
+
             rs = cstmt.executeQuery();
             rs.next();
             exito = rs.getBoolean(1);
-            
+
             rs.close();
             conn.close();
             cstmt.close();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
                     .concat(ex.getMessage()));
             exito = false;
@@ -182,4 +226,6 @@ public class BloqueParafinaServicioImpl implements BloqueParafinaServicio {
         return exito;
     }
     
+     
+
 }

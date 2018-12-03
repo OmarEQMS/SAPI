@@ -18,4 +18,5 @@ public interface BloqueParafinaServicio {
     public int agregarBloqueParafina(BloqueParafina bloqueParafina);
     public boolean borradoLogicoBloqueParafina(int idBloqueParafina);
     public boolean actualizarBloqueParafina(BloqueParafina  bloqueParafina);
+    public BloqueParafina mostrarBloqueParafinaPaciente(int idPaciente);
 }

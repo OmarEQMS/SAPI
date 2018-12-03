@@ -97,15 +97,14 @@ public class OtroResultadoPatologiaServicioImpl implements OtroResultadoPatologi
 
         int id = -1;
         //Aquí va el call del procedure
-        String stProcedure = "CALL agregarOtroResultadoPatologia(?, ?, ?)";
+        String stProcedure = "CALL agregarOtroResultadoPatologia(?, ?)";
 
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
-            cstmt.setInt(1, otroResultadoPatologia.getIdOtroResultadoPatologia());
-            cstmt.setInt(2, otroResultadoPatologia.getIdBiopsia());
-            cstmt.setString(3, otroResultadoPatologia.getNombre());
+            cstmt.setInt(1, otroResultadoPatologia.getIdBiopsia());
+            cstmt.setString(2, otroResultadoPatologia.getNombre());
 
             rs = cstmt.executeQuery();
             rs.next();

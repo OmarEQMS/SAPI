@@ -78,7 +78,7 @@ public class MCalendarioNavegadoraServicioImpl implements MCalendarioNavegadoraS
 
                 mCalendarioNavegadora = new MCalendarioNavegadora();
                 mCalendarioNavegadora.setIdPaciente(rs.getInt("idPaciente"));
-                mCalendarioNavegadora.setTitle(rs.getString("nombre"));
+                mCalendarioNavegadora.setNombre(rs.getString("nombre"));
                 mCalendarioNavegadora.setPrimerApellido(rs.getString("primerApellido"));
                 mCalendarioNavegadora.setSegundoApellido(rs.getString("segundoApellido"));
                 

@@ -747,7 +747,8 @@ public class PotencialController extends HttpServlet {
                             citaPreconsulta.setIdImportanciaCita(idImportante);
                             citaPreconsulta.setIdMotivoConsulta(Integer.parseInt(motivoConsulta));
                             citaPreconsulta.setHospitalProcedencia("\'NULL\'");//Se coloca NULL por si no hay otro hospital de referencia y MySQL lo reconozca.
-
+                            citaPreconsulta.setFechaSolicitud(timestamp);
+                            
                             switch (motivoConsulta) {
                                 case "1": {
 
@@ -812,12 +813,12 @@ public class PotencialController extends HttpServlet {
                             }
 
                             /*DEBUG*/
-                            citaPreconsulta.setFechaSolicitud((timestamp).toString());
+                            //citaPreconsulta.setFechaSolicitud((timestamp).toString());
 
                             System.out.println("Cita ".concat(String.valueOf(citaPreconsulta.getIdPaciente())));
                             System.out.println("Cita ".concat(String.valueOf(citaPreconsulta.getIdMotivoConsulta())));
                             System.out.println("Cita ".concat(citaPreconsulta.getHospitalProcedencia()));
-                            System.out.println("Cita ".concat(citaPreconsulta.getFechaSolicitud()));
+                           // System.out.println("Cita ".concat(citaPreconsulta.getFechaSolicitud()));
 
                             CitaServicioImpl citaServicioImpl = new CitaServicioImpl();
                             int idCitaPreconsulta = citaServicioImpl.agregarPreconsulta(citaPreconsulta);
@@ -1319,8 +1320,9 @@ public class PotencialController extends HttpServlet {
 
                 HttpSession sesion = request.getSession(true);
 
-                if (sesion.getId() == null) {
+                if (sesion.getAttribute("idCuenta")== null) {
                     //TODO 
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
                 } else {
 
                     int idPacientePotencial = (int) sesion.getAttribute("idPaciente");

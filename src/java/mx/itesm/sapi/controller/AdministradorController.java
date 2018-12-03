@@ -15,15 +15,14 @@ import java.sql.Date;
 
 import java.util.ArrayList;
 import java.util.Base64;
-
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import mx.itesm.sapi.bean.diagnostico.AuditoriaRegistroDiagnostico;
@@ -47,13 +46,13 @@ import mx.itesm.sapi.bean.gestionPaciente.CitaEmpleado;
 import mx.itesm.sapi.bean.gestionPaciente.LlamadaCita;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
 import mx.itesm.sapi.bean.gestionPaciente.Cita;
-import mx.itesm.sapi.bean.gestionPaciente.DocumentoEstudio;
 import mx.itesm.sapi.bean.gestionPaciente.OtroResultadoPatologia;
-import mx.itesm.sapi.bean.gestionPaciente.PacienteSeguro;
+import mx.itesm.sapi.bean.gestionPaciente.DocumentoEstudio;
 import mx.itesm.sapi.bean.gestionPaciente.ProgramaPaciente;
-import mx.itesm.sapi.bean.gestionTratamiento.AlergiaPacienteFarmaco;
+import mx.itesm.sapi.bean.gestionPaciente.PacienteSeguro;
 import mx.itesm.sapi.bean.gestionTratamiento.AuditoriaTratamientoPaciente;
 import mx.itesm.sapi.bean.gestionTratamiento.PacienteTratamientoPrevio;
+import mx.itesm.sapi.bean.gestionTratamiento.AlergiaPacienteFarmaco;
 import mx.itesm.sapi.bean.gestionTratamiento.TratamientoPaciente;
 import mx.itesm.sapi.bean.persona.InformacionGeneralPersona;
 import mx.itesm.sapi.bean.persona.Direccion;
@@ -61,6 +60,7 @@ import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Cuenta;
 import mx.itesm.sapi.bean.persona.Login;
 import mx.itesm.sapi.bean.persona.Pic;
+
 import mx.itesm.sapi.service.GeneralPoblacionServicioImpl;
 import mx.itesm.sapi.service.diagnostico.AuditoriaRegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.diagnostico.EstadiajeTNMServiceImpl;
@@ -68,11 +68,14 @@ import mx.itesm.sapi.service.diagnostico.RegistroDiagnosticoServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.BiopsiaServicioImpl;
 
 import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
+import mx.itesm.sapi.service.moduloGestionMedico.MedicoPacienteServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.MedicoPosicionServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.PosicionServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNecesidadEspecialServicioImpl;
+
+
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteMedicoTitularServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteNavegadoraServicioImpl;
@@ -771,6 +774,22 @@ public class AdministradorController extends HttpServlet {
 
                     }
 
+                    break;
+                }
+                case "reasignarPacientes":
+                {
+                    int idMedico1 =  Integer.parseInt(request.getParameter("doctor1"));
+                    int idMedico2 =  Integer.parseInt(request.getParameter("doctor2"));
+                    
+                    System.out.println("Medico1 ".concat(String.valueOf(idMedico1)));
+                    System.out.println("Medico2 ".concat(String.valueOf(idMedico2)));
+                    
+                    MedicoPacienteServicioImpl medicoPacienteServicioImpl = new MedicoPacienteServicioImpl();
+                    int registrosCambiados = medicoPacienteServicioImpl.reasignarMedicoPaciente(idMedico1, idMedico2);
+                                        
+                    PrintWriter out = response.getWriter();
+                    out.print(registrosCambiados);
+                    
                     break;
                 }
 

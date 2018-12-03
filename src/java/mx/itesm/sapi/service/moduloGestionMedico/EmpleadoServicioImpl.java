@@ -235,6 +235,40 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
     }
 
     @Override
+    public Empleado mostrarEmpleadoPersona(int idPersona) {
+        Connection conn = Conexion.getConnection();
+
+        CallableStatement cstmt;
+
+        Empleado empleado = new Empleado();
+
+        //Call del store procedure
+        String stProcedure = "CALL mostrarEmpleadoPersona(?)";
+
+        try {
+
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPersona);
+            ResultSet rs = cstmt.executeQuery();
+
+            rs.next();
+            empleado.setIdEmpleado(rs.getInt(1));
+            empleado.setIdDepartamentoDepartamentoInterno(rs.getInt(2));
+            empleado.setNoEmpleado(rs.getString(3));
+            empleado.setEstatus(rs.getInt(4));
+            empleado.setIdCuenta(rs.getInt(5));
+
+            return empleado;
+        } catch (SQLException ex) {
+
+            System.out.println("Estoy en el catch de mostrarEmpleado");
+            System.out.println(ex.getMessage());
+            return empleado;
+        }
+    }
+    
+    
+    @Override
     public Identificadores restringirEmpleado(RestringirEmpleado restringirEmpleado) {
         Connection conn = Conexion.getConnection();
 

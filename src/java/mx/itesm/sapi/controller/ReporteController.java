@@ -73,7 +73,9 @@ public class ReporteController extends HttpServlet {
 
                 Rendimiento visitasPorMes = new Rendimiento();
 
+
                 visitasPorMes = rendimientoVisitasPorMes.mostrarVisitaRango(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+
 
                 out.print(new Gson().toJson(visitasPorMes));
 
@@ -85,7 +87,9 @@ public class ReporteController extends HttpServlet {
                 RendimientoServicioImpl rendimientoServicioEdad = new RendimientoServicioImpl();
 
                 ArrayList<Rendimiento> rendimientoPorEdad = new ArrayList<>();
+
                 rendimientoPorEdad = rendimientoServicioEdad.mostrarVisitaEdad(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+
 
                 out.print(new Gson().toJson(rendimientoPorEdad));
 
@@ -97,7 +101,9 @@ public class ReporteController extends HttpServlet {
                 RendimientoServicioImpl rendimientoServicioEscolaridad = new RendimientoServicioImpl();
 
                 ArrayList<Rendimiento> rendimientoPorEscolaridad = new ArrayList<>();
+
                 rendimientoPorEscolaridad = rendimientoServicioEscolaridad.mostrarVisitaEscolaridad(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+
 
                 out.print(new Gson().toJson(rendimientoPorEscolaridad));
 
@@ -111,7 +117,9 @@ public class ReporteController extends HttpServlet {
                 RendimientoServicioImpl rendimientoServicioLugarResidencia = new RendimientoServicioImpl();
                 
                 ArrayList<Rendimiento> rendimientoPorLugar = new ArrayList<>();
+
                 rendimientoPorLugar = rendimientoServicioLugarResidencia.mostrarVisitaLugarResidencia(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+
                 
                 out.print(new Gson().toJson(rendimientoPorLugar));
                 
@@ -126,7 +134,9 @@ public class ReporteController extends HttpServlet {
                 RendimientoServicioImpl rendimientoServicioNivelSocioEconomico = new RendimientoServicioImpl();
                 
                 ArrayList<Rendimiento> rendimientoPorNivel = new ArrayList<>();
+
                 rendimientoPorNivel = rendimientoServicioNivelSocioEconomico.mostrarVisitaNivelSocioEconomico(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+
                 
                 out.print(new Gson().toJson(rendimientoPorNivel));
                 
@@ -140,7 +150,9 @@ public class ReporteController extends HttpServlet {
                 RendimientoServicioImpl rendimientoServicioDecisionPre = new RendimientoServicioImpl();
                 
                 ArrayList<Rendimiento> rendimientoPorDecision = new ArrayList<>();
+
                 rendimientoPorDecision = rendimientoServicioDecisionPre.mostrarVisitaDecisionPreconsulta(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+
                 
                 out.print(new Gson().toJson(rendimientoPorDecision));
             
@@ -154,7 +166,9 @@ public class ReporteController extends HttpServlet {
                 RendimientoServicioImpl rendimientoServicioResPatologia = new RendimientoServicioImpl();
                 
                 ArrayList<Rendimiento> rendimientoPorResPatologia  = new ArrayList<>();
+
                 rendimientoPorResPatologia = rendimientoServicioResPatologia.mostrarVisitaResultadoPatologia(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+
                 
                 out.print(new Gson().toJson(rendimientoPorResPatologia));
                 

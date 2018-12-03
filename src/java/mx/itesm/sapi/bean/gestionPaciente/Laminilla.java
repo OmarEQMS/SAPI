@@ -14,6 +14,7 @@ public class Laminilla {
     private int idBiopsia;
     private String nombre;
     private int estatus;
+    private int cantidad;
     
      public Laminilla() {}
     
@@ -23,6 +24,7 @@ public class Laminilla {
                 .concat(",idBiopsia:").concat(String.valueOf(idBiopsia))
                 .concat(",nombre:").concat(nombre)
                 .concat(",estatus:").concat(String.valueOf(estatus))
+                .concat(",cantidad:").concat(String.valueOf(cantidad))
                 .concat("]");
         return str;
     }
@@ -57,6 +59,14 @@ public class Laminilla {
 
     public void setEstatus(int estatus) {
         this.estatus = estatus;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
     
     

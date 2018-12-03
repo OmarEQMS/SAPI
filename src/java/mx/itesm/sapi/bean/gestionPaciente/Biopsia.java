@@ -5,6 +5,8 @@
  */
 package mx.itesm.sapi.bean.gestionPaciente;
 
+import java.sql.Date;
+
 /**
  *
  * @author Alex
@@ -26,6 +28,7 @@ public class Biopsia {
     private int previa;
     private int estatus;
     private int idTipoBiopsia;
+    private Date fechaResultado;
     
     public Biopsia() {}
  	@Override
@@ -49,6 +52,14 @@ public class Biopsia {
  		return str;
 
  	}
+
+    public Date getFechaResultado() {
+        return fechaResultado;
+    }
+
+    public void setFechaResultado(Date fechaResultado) {
+        this.fechaResultado = fechaResultado;
+    }
 
     public int getIdTipoBiopsia() {
         return idTipoBiopsia;
