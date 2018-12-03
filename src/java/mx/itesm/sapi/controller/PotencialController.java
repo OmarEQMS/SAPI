@@ -1326,8 +1326,9 @@ public class PotencialController extends HttpServlet {
 
                 HttpSession sesion = request.getSession(true);
 
-                if (sesion.getId() == null) {
+                if (sesion.getAttribute("idCuenta")== null) {
                     //TODO 
+                    request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
                 } else {
 
                     int idPacientePotencial = (int) sesion.getAttribute("idPaciente");
