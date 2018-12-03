@@ -45,7 +45,7 @@ $(document).ready(function () {
     $('#error-editar-EstadoNavegadora').hide();
     $('#error-editar-MunicipioNavegadora').hide();
     $('#error-editar-UsuarioRepetidoNavegadora').hide();
-    
+
     $('#error-imgPerfil').hide();
     $('#error-contrasena').hide();
     $('#noEqualPasswordsError').hide();
@@ -70,6 +70,10 @@ $(document).ready(function () {
     $('#error-serieLaminillas').hide();
     $('#error-numeroParafrina').hide();
     $('#error-serieParafrina').hide();
+    $('#error-fechaDecision').hide();
+    $('#error-comentarioIncidencias').hide();
+    $('#error-comentarioAdicionales').hide();
+    $('#error-ki67').hide();
 
 
     var lugarDelCuerpo = $("#listLugarDelCuerpo");
@@ -499,10 +503,13 @@ $(document).ready(function () {
                     });
                 }
             });
+
+
     }
+
     });
-    
-     //Redirige a documentos    
+
+    //Redirige a documentos    
     $('body').on('click', '.btn-ver', function () {
 
         var id = $(this).data('id');
@@ -1105,6 +1112,20 @@ $(document).ready(function () {
                         data.append("biradsMasto", biradsMasto);
                         data.append("biradUSG", biradUSG);
                         data.append("cambiarRol", 1);
+                        data.append("etapaClinica", etapaClinica);
+        data.append("ResultadoTipoMastografia", resultadoTipoMastografia );
+        data.append("tipoUSG", tipoUSG);
+        data.append("tumorPrimarioT", tumorPrimarioT);
+        data.append("gangliosN", gangliosN);
+        data.append("metastasisM", metastasisM);
+        data.append("resultado-patologia", resultadoPatologia);
+        data.append("grado-histologico", gradoHistologico);
+        data.append("receptor-her2", receptorHer2);
+        data.append("receptor-fish", receptorFish);
+        data.append("receptor-re", receptorRe);
+        data.append("receptor-rp", receptorRp);
+        data.append("ki67", ki67);
+        data.append("otroResultadoPatologiaPost", otroResultadoPatologiaPost);
 
 
                         data.forEach((value, key) => {
@@ -2363,7 +2384,9 @@ $(document).ready(function () {
         if (!isValidFechaEstudioPrevio($(this))) {
             $('#error-fechaUltra').show();
         } else {
+
             $('#error-fechaUltra').hide();
+
         }
 
     });
@@ -2690,6 +2713,102 @@ $(document).ready(function () {
     });
 
 
+    //PANTALLA 4
+
+    //Llamada
+
+    $('body').on('change', '.fecha-llamada', function () {
+
+        if (!isValidDate6months($(this))) {
+
+            $(this).parent().parent().find("span.fechaIncorrectaLlamada").remove();
+
+            $(this).css('border', "1px solid red");
+            $(this).css('color', 'red');
+
+            $(this).parent().parent().append("<span class='text-danger fechaIncorrectaLlamada'>Fecha Incorrecta</span>");
+
+        } else {
+
+
+            $(this).css('border', "");
+            $(this).css('color', '');
+
+            $(this).parent().parent().find("span.fechaIncorrectaLlamada").remove();
+
+        }
+
+    });
+
+    $('body').on('change', '.comentario-llamada', function () {
+
+        if (!isValidComentarioLlamada($(this))) {
+
+            $(this).parent().parent().find("span.comentarioLlamadaIncorrecto").remove();
+
+            $(this).css('border', "1px solid red");
+            $(this).css('color', 'red');
+
+            $(this).parent().parent().append("<span class='text-danger comentarioLlamadaIncorrecto'>El texto excede el limite</span>");
+
+        } else {
+
+            $(this).css('border', "");
+            $(this).css('color', '');
+
+            $(this).parent().parent().find("span.comentarioLlamadaIncorrecto").remove();
+
+        }
+
+    });
+
+    //fecha decision de preconsulta
+    $('#fecha-decisionPreconsulta').on('change', function () {
+
+        if (!isValidDate6months($(this))) {
+            $('#error-fechaDecision').show();
+        } else {
+            $('#error-fechaDecision').hide();
+        }
+
+    });
+
+    //comentario y reporte de incidencias
+    $('#comentarioIncidencias').on('change', function () {
+
+        if (!isValidComentarioGeneric($(this))) {
+            $('#error-comentarioIncidencias').show();
+        } else {
+            $('#error-comentarioIncidencias').hide();
+        }
+
+    });
+
+    //comentarios adicionales
+    $('#comentariosAdicionales').on('change', function () {
+
+        if (!isValidComentarioGeneric($(this))) {
+            $('#error-comentarioAdicionales').show();
+        } else {
+            $('#error-comentarioAdicionales').hide();
+        }
+
+    });
+
+    //**PANTALA 5
+
+    //ki67
+    $('#ki67').on('change', function () {
+
+        if (!isValidki67($(this))) {
+            $('#error-ki67').show();
+        } else {
+            $('#error-ki67').hide();
+        }
+
+    });
+
+
 
     function areValidDynamicDates6Months(dates) {
 
@@ -2701,11 +2820,55 @@ $(document).ready(function () {
 
         return true;
 
+
+    }
+
+    function areValidDynamicNonemptyDates(dates) {
+
+        for (var i = 0; i < dates.length; i++) {
+
+            if (!isValidNonEmptyDynamicDate(dates[i].value))
+                return false;
+        }
+
+        return true;
+
+    }
+
+    function areValidDynamicSelects(selects) {
+
+        for (var i = 0; i < selects.length; i++) {
+
+            if (!isValidSelectDynamic(selects[i].value))
+                return false;
+        }
+
+        return true;
+
+    }
+
+
+
+    function areValidComentarioLlamada(llamadas) {
+
+        for (var i = 0; i < llamadas.length; i++) {
+            if (!isValidComentarioLlamada(llamadas[i].value))
+                return false;
+        }
+
+        return true;
+
     }
 
     // Pantallas del formulario 
-
     $('#btn-save1, #btn-save2,#btn-save3,#btn-save4,#btn-save5').on('click', function () {
+
+        console.log('*********');
+
+        console.log(document.querySelectorAll('.fechaBiopsia'));
+        console.log(document.querySelectorAll('.tipoBiopsia'));
+
+        console.log('*********');
 
 
         // OMAR
@@ -2952,7 +3115,8 @@ $(document).ready(function () {
         var biradUSG = $('#tipoUSG').val();
         if (biradUSG === null)
             biradUSG = "";
-
+        
+        
         var etapaClinica = $("#etapaClinica").val();
         if (etapaClinica == null)
             etapaClinica = "";
@@ -3008,12 +3172,9 @@ $(document).ready(function () {
         var otroResultadoPatologiaPost =$("#otroResultadoPatologiaPost").val();
         if(otroResultadoPatologiaPost==null)
             otroResultadoPatologiaPost="";
-       
-        
-        
-        
-        
         console.log("click on 'btn-save[i]'");
+        
+        
 
         var data = new FormData();
         var form;
@@ -3065,7 +3226,6 @@ $(document).ready(function () {
         data.append("otroResultadoPatologiaPost", otroResultadoPatologiaPost);
         
          
-        
 
         if (cambiarRol == 1)
             data.append("cambiarRol", cambiarRol);
@@ -3073,61 +3233,345 @@ $(document).ready(function () {
             console.log(key + " " + value);
         });
 
-        
-         /////MEGA IF
-         if (isValidDate6months($('#fechaNavegacion')) && isValidDate6months($('#fechaConsulta')) &&
-         isValidAllergy($('#alergias')) && isValidNumSeguro($('#numSeguro')) && isValidTratamientoPrevio($('#fecha-cirugia')) &&
-         isValidTratamientoPrevio($('#fecha-quimioterpia')) &&
-         isValidNumCiclos($('#quimioterapia')) && isValidNumCiclos($('#radioterapia'))
-         && isValidFechaEstudioPrevio($('#fechaPreMasto')) && isValidFechaEstudioPrevio($('#fechaPreUsg'))
-         && isValidAlfanumerico($('#OtroResultadoPatologia')) && isValidNumerico($('#numLaminillas'))
-         && isValidAlfanumerico($('#serieLaminillas')) && isValidNumerico($('#numBloques'))
-         && isValidAlfanumerico($('#serieBloques')) && areValidDynamicDates6Months(document.querySelectorAll(".fechaBiopsia"))
-         && areValidDynamicDates6Months(document.querySelectorAll(".fechaRayos")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaUltrasonido"))
-         && areValidDynamicDates6Months(document.querySelectorAll(".fechaMedicinaNuclear")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaLaboratorio"))
-         && areValidDynamicDates6Months(document.querySelectorAll(".fechaValoracion")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaEspirometria"))
-         && areValidDynamicDates6Months(document.querySelectorAll(".fechaElectrocardiograma")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaEcocardiograma"))
-         && areValidDynamicDates6Months(document.querySelectorAll(".fechaTrabajoSocial")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaPrograma"))
-         && areValidDynamicDates6Months(document.querySelectorAll(".fechaOtro"))) {
-         
-         alert('pase el primer if');
-         
-         //Verificar que si marco que tiene seguro popular introduzca el numero del seguro
-         if (parseInt($('.tiene-seguro option:selected').val()) == 1) {
-         
-         if ($('#numSeguro').val().length == 0) {
-         
-         alert('break 2');
-         
-         swal("Error", "Verifica que hayas rellenado todos los datos", "error");
-         $('#numSeguro').css('border', '1px solid red');
-         $('#numSeguro').css('color', 'red');
-         
-         } else {
-         
-         alert('si selecciono seguro popular');
-         
-         btnSave(data);
-         }
-         
-         } else {
-         
-         $('#numSeguro').css('border', '');
-         $('#numSeguro').css('color', '');
-         
-         alert('no selecciono seguro popular');
-         
-         btnSave(data);
-         
-         }
-         
-         } else {
-         swal("Error", "Hay datos incorrectos o faltantes", "error");
-         }
-         
- 
-    });
+        /////MEGA IF
+        if (isValidDate6months($('#fechaNavegacion')) && isValidDate6months($('#fechaConsulta')) &&
+                isValidAllergy($('#alergias')) && isValidNumSeguro($('#numSeguro')) && isValidTratamientoPrevio($('#fecha-cirugia')) &&
+                isValidTratamientoPrevio($('#fecha-quimioterpia')) &&
+                isValidNumCiclos($('#quimioterapia')) && isValidNumCiclos($('#radioterapia'))
+                && isValidFechaEstudioPrevio($('#fechaPreMasto')) && isValidFechaEstudioPrevio($('#fechaPreUsg'))
+                && isValidAlfanumerico($('#OtroResultadoPatologia')) && isValidNumerico($('#numLaminillas'))
+                && isValidAlfanumerico($('#serieLaminillas')) && isValidNumerico($('#numBloques'))
+                && isValidAlfanumerico($('#serieBloques')) && areValidDynamicDates6Months(document.querySelectorAll(".fechaBiopsia"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaRayos")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaUltrasonido"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaMedicinaNuclear")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaLaboratorio"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaValoracion")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaEspirometria"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaElectrocardiograma")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaEcocardiograma"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaTrabajoSocial")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaPrograma"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaOtro")) && areValidDynamicDates6Months(document.querySelectorAll(".fecha-llamada"))
+                && areValidComentarioLlamada(document.querySelectorAll(".comentario-llamada")) && isValidDate6months($('#fecha-decisionPreconsulta'))
+                && isValidComentarioGeneric($('#comentarioIncidencias')) && isValidComentarioGeneric($('#comentariosAdicionales'))
+                && isValidki67($('#ki67'))) {
 
+            //alert('pase el primer if');
+
+            var seguroPopular = true;
+
+            //PANTALLA 1
+
+            //****Verificar que si marco que tiene seguro popular introduzca el numero del seguro
+            if (parseInt($('.tiene-seguro option:selected').val()) == 1) {
+
+                if ($('#numSeguro').val().length == 0) {
+
+                    seguroPopular = false;
+
+                } else {
+                    seguroPopular = true;
+                }
+
+            }
+
+            //PANTALLA 2
+
+            //****Verificar que si marco algun check de tratamiento previo haya completado los dos primeros campos
+
+            var tratamientoCirugia = true;
+            var tratamientoQuimioterapia = true;
+            var tratamientoRadioterapia = true;
+
+            //1.- Cirugia
+            if ($('#tiene-cirugia').is(':checked')) {
+
+                if (!isValidNonEmptyDate($('#fecha-cirugia')) || !isValidSelect($('#cirugia'))) {
+                    tratamientoCirugia = false;
+                } else {
+                    tratamientoCirugia = true;
+                }
+
+            }
+
+            //2.- Quimioterapia
+            if ($('#tiene-quimioterapia').is(':checked')) {
+
+                if (!isValidNonEmptyDate($('#fecha-quimioterapia')) || !isValidSelect($('#quimioterapia'))) {
+                    tratamientoQuimioterapia = false;
+                } else {
+                    tratamientoQuimioterapia = true;
+                }
+
+            }
+
+
+            //3.- Radioterapia
+            if ($('#tiene-radioterapia').is(':checked')) {
+
+                if (!isValidNonEmptyDate($('#fecha-radioterapia')) || !isValidSelect($('#radioterapia'))) {
+                    tratamientoRadioterapia = false;
+                } else {
+                    tratamientoRadioterapia = true;
+                }
+
+            }
+
+            //****Verificar que si marco algun check de estudios previos haya completado todos los campos
+
+            var estudioMastografia = true;
+            var estudioUltrasonido = true;
+
+            //1.- Mastrografia
+            if ($('#tiene-mastografia').is(':checked')) {
+
+                if (!isValidNonEmptyDate($('#fechaPreMasto')) || !isValidSelect($('#tipoMastografia'))) {
+                    estudioMastografia = false;
+                } else {
+                    estudioMastografia = true;
+                }
+
+            }
+
+            //2.- Ultrasonido
+            if ($('#tiene-ultrasonido-mama').is(':checked')) {
+
+                if (!isValidNonEmptyDate($('#fechaPreUsg')) || !isValidSelect($('#tipoUltrasonidoMama'))) {
+                    estudioUltrasonido = false;
+                } else {
+                    estudioUltrasonido = true;
+                }
+
+            }
+
+            //****Verificar que selecciono otro en resultado o reporte de patologia tiene que completar el input
+
+            var otroResultadoPatologia = true;
+
+            if (parseInt($('#resultadoAnterior-patologia option:selected').val()) == 16) {
+
+                if ($('#OtroResultadoPatologia').val().length == 0) {
+
+                    otroResultadoPatologia = false;
+
+                    $('#OtroResultadoPatologia').css('border', '1px solid red');
+                    $('#OtroResultadoPatologia').css('color', 'red');
+
+                } else {
+
+                    otroResultadoPatologia = true;
+
+                    $('#OtroResultadoPatologia').css('border', '');
+                    $('#OtroResultadoPatologia').css('color', '');
+
+                }
+
+            }
+
+            //PANTALLA 3
+
+            var ePreconsultaBiopsia = true;
+            var ePreconsultaRayos = true;
+            var ePreconsultaUltrasonido = true;
+            var ePreconsultaMedicinaNuclear = true;
+            var ePreconsultaLaboratorio = true;
+            var ePreconsultaValoracion = true;
+            var ePreconsultaEspirometria = true;
+            var ePreconsultaElectrocardiograma = true;
+            var ePreconsultaEcocardiograma = true;
+            var ePreconsultaTrabajoSocial = true;
+            var ePreconsultaPrograma = true;
+            var ePreconsultaOtro = true;
+
+            //biopsia
+            if ($('#tiene-biopsia').is(':checked')) {
+
+                if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaBiopsia')) || !areValidDynamicSelects(document.querySelectorAll('.tipoBiopsia'))) {
+                    $('#biopsia-contenedor').find('span.error-datosFaltantesBiopsia').remove();
+                    ePreconsultaBiopsia = false;
+                    $('#biopsia-contenedor').append('<span class="text-danger error-datosFaltantesBiopsia">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                } else {
+                    ePreconsultaBiopsia = true;
+                    $('#biopsia-contenedor').find('span.error-datosFaltantesBiopsia').remove();
+                }
+
+            }
+
+            //rayos x
+            if ($('#tiene-rayosX').is(':checked')) {
+
+                if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaRayos')) || !areValidDynamicSelects(document.querySelectorAll('.rayosX'))) {
+                    $('#rayos-contenedor').find('span.error-datosFaltantesRayos').remove();
+                    ePreconsultaRayos = false;
+                    $('#rayos-contenedor').append('<span class="text-danger error-datosFaltantesRayos">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                } else {
+                    ePreconsultaRayos = true;
+                    $('#rayos-contenedor').find('span.error-datosFaltantesRayos').remove();
+                }
+
+            }
+
+            //ultrasonido
+            if ($('#tiene-ultrasonido').is(':checked')) {
+
+                if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaUltrasonido')) || !areValidDynamicSelects(document.querySelectorAll('.parteCuerpoUltrasonido'))) {
+                    $('#ultrasonido-contenedor').find('span.error-datosFaltantesUltrasonido').remove();
+                    ePreconsultaUltrasonido = false;
+                    $('#ultrasonido-contenedor').append('<span class="text-danger error-datosFaltantesUltrasonido">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                } else {
+                    ePreconsultaUltrasonido = true;
+                    $('#ultrasonido-contenedor').find('span.error-datosFaltantesUltrasonido').remove();
+                }
+
+            }
+
+            //medicina nuclear
+            if ($('#tiene-medicina-nuclear').is(':checked')) {
+
+                if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaMedicinaNuclear')) || !areValidDynamicSelects(document.querySelectorAll('.medicinaNuclear'))) {
+                    $('#medicinaNuclear-contenedor').find('span.error-datosFaltantesMedicinaNuclear').remove();
+                    ePreconsultaMedicinaNuclear = false;
+                    $('#medicinaNuclear-contenedor').append('<span class="text-danger error-datosFaltantesMedicinaNuclear">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                } else {
+                    ePreconsultaMedicinaNuclear = true;
+                    $('#medicinaNuclear-contenedor').find('span.error-datosFaltantesMedicinaNuclear').remove();
+                }
+
+            }
+
+            //laboratorio
+            if ($('#tiene-laboratorio').is(':checked')) {
+
+                if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaLaboratorio'))) {
+                    $('#laboratorio-contenedor').find('span.error-datosFaltantesLaboratorio').remove();
+                    ePreconsultaLaboratorio = false;
+                    $('#laboratorio-contenedor').append('<span class="text-danger error-datosFaltantesLaboratorio">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                } else {
+                    ePreconsultaLaboratorio = true;
+                    $('#laboratorio-contenedor').find('span.error-datosFaltantesLaboratorio').remove();
+                }
+
+            }
+
+            //valoracion
+            if ($('#tiene-valoracion').is(':checked')) {
+
+                if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaValoracion')) || !areValidDynamicSelects(document.querySelectorAll('.valoracion'))) {
+                    $('#valoracion-contenedor').find('span.error-datosFaltantesValoracion').remove();
+                    ePreconsultaValoracion = false;
+                    $('#valoracion-contenedor').append('<span class="text-danger error-datosFaltantesValoracion">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                } else {
+                    ePreconsultaValoracion = true;
+                    $('#valoracion-contenedor').find('span.error-datosFaltantesValoracion').remove();
+                }
+
+            }
+
+            //espirometria
+            if ($('#tiene-espirometria').is(':checked')) {
+
+                if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaEspirometria'))) {
+                    $('#espirometria-contenedor').find('span.error-datosFaltantesEspirometria').remove();
+                    ePreconsultaEspirometria = false;
+                    $('#espirometria-contenedor').append('<span class="text-danger error-datosFaltantesEspirometria">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                } else {
+                    ePreconsultaEspirometria = true;
+                    $('#espirometria-contenedor').find('span.error-datosFaltantesEspirometria').remove();
+                }
+
+            }
+
+            //electrocardiograma
+            if ($('#tiene-electrocardiograma').is(':checked')) {
+
+                if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaElectrocardiograma'))) {
+                    $('#electrocardiograma-contenedor').find('span.error-datosFaltantesElectrocardiograma').remove();
+                    ePreconsultaElectrocardiograma = false;
+                    $('#electrocardiograma-contenedor').append('<span class="text-danger error-datosFaltantesElectrocardiograma">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                } else {
+                    ePreconsultaElectrocardiograma = true;
+                    $('#electrocardiograma-contenedor').find('span.error-datosFaltantesElectrocardiograma').remove();
+                }
+
+            }
+
+            //ecocardiograma
+            if ($('#tiene-ecocardiograma').is(':checked')) {
+
+                if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaEcocardiograma'))) {
+                    $('#ecocardiograma-contenedor').find('span.error-datosFaltantesEcocardiograma').remove();
+                    ePreconsultaEcocardiograma = false;
+                    $('#ecocardiograma-contenedor').append('<span class="text-danger error-datosFaltantesEcocardiograma">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                } else {
+                    ePreconsultaEcocardiograma = true;
+                    $('#ecocardiograma-contenedor').find('span.error-datosFaltantesEcocardiograma').remove();
+                }
+
+            }
+
+            //trabajo social
+            if ($('#tiene-trabajo-social').is(':checked')) {
+
+                if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaTrabajoSocial'))) {
+                    $('#trabajoSocial-contenedor').find('span.error-datosFaltantesTrabajoSocial').remove();
+                    ePreconsultaTrabajoSocial = false;
+                    $('#trabajoSocial-contenedor').append('<span class="text-danger error-datosFaltantesTrabajoSocial">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                } else {
+                    ePreconsultaTrabajoSocial = true;
+                    $('#trabajoSocial-contenedor').find('span.error-datosFaltantesTrabajoSocial').remove();
+                }
+
+            }
+
+            //programa
+            if ($('#tiene-programa').is(':checked')) {
+
+                if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaPrograma')) || !areValidDynamicSelects(document.querySelectorAll('.programa'))) {
+                    $('#programa-contenedor').find('span.error-datosFaltantesPrograma').remove();
+                    ePreconsultaPrograma = false;
+                    $('#programa-contenedor').append('<span class="text-danger error-datosFaltantesPrograma">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                } else {
+                    ePreconsultaPrograma = true;
+                    $('#programa-contenedor').find('span.error-datosFaltantesPrograma').remove();
+                }
+
+            }
+
+            //otro
+            if ($('#tiene-otro').is(':checked')) {
+
+                if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaOtro')) || !areValidDynamicSelects(document.querySelectorAll('.otro-estudioPreconsulta'))) {
+                    $('#otro-contenedor').find('span.error-datosFaltantesOtro').remove();
+                    ePreconsultaOtro = false;
+                    $('#otro-contenedor').append('<span class="text-danger error-datosFaltantesOtro">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                } else {
+                    ePreconsultaOtro = true;
+                    $('#otro-contenedor').find('span.error-datosFaltantesOtro').remove();
+                }
+
+            }
+
+            //* Verificar que los inputs coincidan con los autocompletados
+
+            
+
+            if (seguroPopular && tratamientoCirugia && tratamientoQuimioterapia && tratamientoRadioterapia
+                    && estudioMastografia && estudioUltrasonido && otroResultadoPatologia && ePreconsultaBiopsia
+                    && ePreconsultaRayos && ePreconsultaUltrasonido && ePreconsultaMedicinaNuclear && ePreconsultaLaboratorio
+                    && ePreconsultaValoracion && ePreconsultaEspirometria && ePreconsultaElectrocardiograma
+                    && ePreconsultaEcocardiograma && ePreconsultaTrabajoSocial && ePreconsultaPrograma && ePreconsultaOtro
+                    ) {
+                swal("AHUEVOOOO", "SI PUEDES ENVIAR TODO WEY", "success");
+                btnSave(data);
+            } else {
+                swal("Error", "Verifica que hayas rellenado todos los datos", "error");
+            }
+
+
+        } else {
+            swal("Error", "Hay datos incorrectos o faltantes", "error");
+        }
+
+
+
+    });
+  
     function btnSave(data) {
         $.ajax({
             url: "NavegadoraController",
@@ -3277,18 +3721,18 @@ $(document).ready(function () {
                  */
             }
 
-            if (data[0][0].fechaNavegacion !== "ene 1, 1900")
+            if (data[0][0].fechaNavegacion !== "ene 1, 1900") {
                 var fecha = data[0][0].fechaNavegacion;
-            fecha = convertDate(fecha);
-            $('#fechaNavegacion').val(fecha);
+                fecha = convertDate(fecha);
+                $('#fechaNavegacion').val(fecha);
+            }
 
-
-            if (data[0][0].fechaConsulta !== "ene 1, 1900")
+            if (data[0][0].fechaConsulta !== "ene 1, 1900") {
                 var fecha = data[0][0].fechaConsulta;
-            fecha = convertDate(fecha);
-            $('#fechaConsulta').val(fecha);
-            // $('#fechaConsulta').val(convertDate(new Date(data[0][0].fechaConsulta)));
-
+                fecha = convertDate(fecha);
+                $('#fechaConsulta').val(fecha);
+                // $('#fechaConsulta').val(convertDate(new Date(data[0][0].fechaConsulta)));
+            }
             if ((data[0][0].noAdscrito !== true))
                 $('#noAdscrito').attr('checked', 'checked');
             if ((data[0][0].noRadiologo !== true))
@@ -3361,12 +3805,12 @@ $(document).ready(function () {
                     $('#divCirugia').hide();
                 }
 
-                if (data[0][0].cirugiaFecha !== "ene 1, 1900")
+                if (data[0][0].cirugiaFecha !== "ene 1, 1900") {
                     var fecha = data[0][0].cirugiaFecha;
-                fecha = convertDate(fecha);
-                $('#fecha-cirugia').val(fecha);
-                //$('#fecha-cirugia').val(convertDate(new Date(data[0][0].cirugiaFecha)));
-
+                    fecha = convertDate(fecha);
+                    $('#fecha-cirugia').val(fecha);
+                    //$('#fecha-cirugia').val(convertDate(new Date(data[0][0].cirugiaFecha)));
+                }
                 if ((data[0][0].cirugiaTipo !== "")) {
                     $('#cirugia option:contains(' + $.trim(data[0][0].cirugiaTipo) + ')').each(function () {
                         if ($.trim($(this).text()) === $.trim(data[0][0].cirugiaTipo)) {
@@ -3389,11 +3833,12 @@ $(document).ready(function () {
                     $('#divQuimioterapia').hide();
                 }
 
-                if (data[0][0].quimioterapiaFecha !== "ene 1, 1900")
+                if (data[0][0].quimioterapiaFecha !== "ene 1, 1900") {
                     var fecha = data[0][0].quimioterapiaFecha;
-                fecha = convertDate(fecha);
-                $('#fecha-quimioterapia').val(fecha);
-                // $('#fecha-quimioterapia').val(convertDate(new Date(data[0][0].quimioterapiaFecha)));
+                    fecha = convertDate(fecha);
+                    $('#fecha-quimioterapia').val(fecha);
+                    // $('#fecha-quimioterapia').val(convertDate(new Date(data[0][0].quimioterapiaFecha)));
+                }
 
                 if ((data[0][0].quimioterapiaCiclo !== -1)) {
                     $('#quimioterapia').val(data[0][0].quimioterapiaCiclo);
@@ -3412,12 +3857,12 @@ $(document).ready(function () {
                     $('#divRadioterapia').hide();
                 }
 
-                if (data[0][0].radioterapiaFecha !== "ene 1, 1900")
+                if (data[0][0].radioterapiaFecha !== "ene 1, 1900") {
                     var fecha = data[0][0].radioterapiaFecha;
-                fecha = convertDate(fecha);
-                $('#fecha-radioterapia').val(fecha);
-                // $('#fecha-radioterapia').val(convertDate(new Date(data[0][0].radioterapiaFecha)));
-
+                    fecha = convertDate(fecha);
+                    $('#fecha-radioterapia').val(fecha);
+                    // $('#fecha-radioterapia').val(convertDate(new Date(data[0][0].radioterapiaFecha)));
+                }
 
                 if ((data[0][0].cirugiaTipo !== -1)) {
                     $('#radioterapia').val(data[0][0].radioterapiaCiclo);
@@ -3461,11 +3906,11 @@ $(document).ready(function () {
                 if ($('#tiene-ultrasonido-mama').is(':checked')) {
 
                     $('#tiene-UltrasonidoPrevio').show();
-                    $('#fechaPreUsg').show();
+                    $('#fechaUsg').show();
                     $('#tipoUltrasonidoMama').show();
                 } else {
                     $('#tiene-UltrasonidoPrevio').hide();
-                    $('#fechaPreUsg').hide();
+                    $('#fechaUsg').hide();
                     $('#tipoUltrasonidoMama').hide();
                 }
 
@@ -4319,18 +4764,18 @@ $(document).ready(function () {
                 });
             }
 
-            if (data[0][0].ki67 !== ""){
-                  $('#ki67').val(data[0][0].ki67);
+            if (data[0][0].ki67 !== "") {
+                $('#ki67').val(data[0][0].ki67);
 
-          /*      $('#ki67 option:contains(' + $.trim(data[0][0].ki67) + ')').each(function () {
-                    if ($.trim($(this).text()) === $.trim(data[0][0].ki67)) {
-                        $(this).attr('selected', 'selected');
-                    }
-
-                });
-                */
+                /*      $('#ki67 option:contains(' + $.trim(data[0][0].ki67) + ')').each(function () {
+                 if ($.trim($(this).text()) === $.trim(data[0][0].ki67)) {
+                 $(this).attr('selected', 'selected');
+                 }
+                 
+                 });
+                 */
             }
-                
+
 
 
         },
@@ -4343,32 +4788,34 @@ $(document).ready(function () {
     });
 // 'ene 1, 2001'
     function convertDate(fecha) {
-        console.log(fecha);
-        fecha = fecha.replace("ene", "jan");
-        fecha = fecha.replace("feb", "feb");
-        fecha = fecha.replace("mar", "mar");
-        fecha = fecha.replace("abr", "apr");
-        fecha = fecha.replace("may", "may");
-        fecha = fecha.replace("jun", "jun");
-        fecha = fecha.replace("jul", "jul");
-        fecha = fecha.replace("ago", "aug");
-        fecha = fecha.replace("sep", "sep");
-        fecha = fecha.replace("oct", "oct");
-        fecha = fecha.replace("nov", "nov");
-        fecha = fecha.replace("dic", "dec");
-        var date = new Date(fecha);
-        var yyyy = date.getFullYear().toString();
-        var mm = (date.getMonth() + 1).toString();
-        var dd = date.getDate().toString();
+        if (fecha !== "ene 1, 1900") {
+            console.log(fecha);
+            fecha = fecha.replace("ene", "jan");
+            fecha = fecha.replace("feb", "feb");
+            fecha = fecha.replace("mar", "mar");
+            fecha = fecha.replace("abr", "apr");
+            fecha = fecha.replace("may", "may");
+            fecha = fecha.replace("jun", "jun");
+            fecha = fecha.replace("jul", "jul");
+            fecha = fecha.replace("ago", "aug");
+            fecha = fecha.replace("sep", "sep");
+            fecha = fecha.replace("oct", "oct");
+            fecha = fecha.replace("nov", "nov");
+            fecha = fecha.replace("dic", "dec");
+            var date = new Date(fecha);
+            var yyyy = date.getFullYear().toString();
+            var mm = (date.getMonth() + 1).toString();
+            var dd = date.getDate().toString();
 
-        var mmChars = mm.split('');
-        var ddChars = dd.split('');
+            var mmChars = mm.split('');
+            var ddChars = dd.split('');
 
-        return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
+            return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
+        }
     }
 
     function convertDate2(date) {
-       // console.log(date);
+        // console.log(date);
         var yyyy = date.getFullYear().toString();
         var mm = (date.getMonth() + 1).toString();
         var dd = date.getDate().toString();
@@ -4761,7 +5208,27 @@ function isValidNumerico(input) {
 
     var m = input.val();
 
-    var expreg = /^$|[0-9]$/;
+    var expreg = /^$|[0-9]+$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+function isValidki67(input) {
+
+    var m = input.val();
+
+    var expreg = /^[0-9]{0,100}$/;
 
     if (!expreg.test(m)) {
 
@@ -4833,11 +5300,118 @@ function isValidSelect(input) {
     return true;
 }
 
+function isValidSelectDynamic(input) {
+
+    if (!input) {
+
+
+        return false;
+
+    } else {
+
+    }
+
+    return true;
+}
+
+function isValidNonEmptyDate(input) {
+
+    if (!input.val()) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+function isValidNonEmptyDynamicDate(input) {
+
+    if (!input) {
+
+
+        return false;
+
+    } else {
+
+    }
+
+    return true;
+}
+
 function isValidAllergy(input) {
 
     var m = input.val();
 
     var expreg = /^$|[a-zA-Z0-9\u00E0-\u00FCñÑ., ]{2,255}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+}
+
+function isValidAllergy(input) {
+
+    var m = input.val();
+
+    var expreg = /^$|[a-zA-Z0-9\u00E0-\u00FCñÑ., ]{2,255}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+}
+
+function isValidComentarioLlamada(input) {
+
+    var m = input.val();
+
+    var expreg = /^$|[a-zA-Z0-9\u00E0-\u00FCñÑ., ]{0,16777215}$/;
+
+    if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+
+}
+
+function isValidComentarioGeneric(input) {
+
+    var m = input.val();
+
+    var expreg = /^$|[a-zA-Z0-9\u00E0-\u00FCñÑ., ]{0,16777215}$/;
 
     if (!expreg.test(m)) {
 
