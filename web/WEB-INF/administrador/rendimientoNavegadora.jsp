@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Rendimiento de: ${sessionScope.nombreNavegadora} ${sessionScope.primerApellidoNavegadora}</title>
+        <title>Rendimiento: ${sessionScope.nombreNavegadora} ${sessionScope.primerApellidoNavegadora}</title>
 
 
         <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
