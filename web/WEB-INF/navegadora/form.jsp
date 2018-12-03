@@ -139,8 +139,8 @@
                 <!-- ***** A PARTIR DE AQUI ESCRIBEN EL CODIGO QUE QUIERAN..... ***** -->
                 <!-- **************************************************************** -->
 
-                <div class="row mb-3 justify-content-end">
-                    <div class="col-3 text-center">
+                <div class="row mb-3">
+                    <div class="col-12 text-right">
                         <span class="iconoHome mr-2">
                             <i class="fas fa-home"></i>
                         </span>
@@ -178,7 +178,7 @@
                                     <form>
                                         <div class="form-group row mt-4">
 
-                                            <div class="col-6">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                                 <label for="">PRZ</label>
                                                 <div class="input-group mb-2">
                                                     <div class="input-group-prepend">
@@ -192,7 +192,7 @@
                                                 <span class="text-danger" id="error-PRZ">Formato inválido</span>
                                             </div>
 
-                                            <div class="col-6">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
 
                                                 <label for="">Médico Adscrito</label>
                                                 <div class="input-group">
@@ -228,7 +228,7 @@
                                         <!-- ***** Tipo de paciente y Medico radiologo ***** -->
                                         <div class="form-group row mt-4">
 
-                                            <div class="col-6">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                                 <label for="">Tipo de paciente</label>
                                                 <div class="input-group">
 
@@ -247,7 +247,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-6">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
 
                                                 <label for="">Médico Radiólogo</label>
                                                 <div class="input-group">
@@ -284,7 +284,7 @@
                                         <!-- Fecha Navegación -->
                                         <div class="form-group row mt-4">
 
-                                            <div class="col-6">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                                 <label for="">Fecha de navegación</label>
 
                                                 <div class="input-group">
@@ -302,7 +302,7 @@
 
 
                                             <!-- Médico residente -->
-                                            <div class="col-6">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                                 <label for="">Médico Residente</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -358,13 +358,13 @@
                                     </form>
                                     <!-- Boton guardar y continuar -->
                                     <div class="row justify-content-center mt-5">
-                                        <div class="col-4">
-                                            <button id="btn-save1" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                            <button id="btn-save1" class="btn btn-outline-primary btn-block truncate mb-2" style="border-radius:20px">
 
-                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuós</button>
+                                                <i class="fas fa-save mr-2" ></i><span id="text-save1">Guardar y Continuar Despuós</span></button>
                                         </div>
-                                        <div class="col-4">
-                                            <button class="btn btn-outline-success btn-block" id="btn-continue1" style="border-radius:20px">
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                            <button class="btn btn-outline-success btn-block truncate mb-2" id="btn-continue1" style="border-radius:20px">
                                                 <i class="fas fa-arrow-circle-right mr-2"></i>Continuar</button>
                                         </div>
                                     </div>

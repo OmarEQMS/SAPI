@@ -5,6 +5,12 @@
     GENERALES
 ----------------------------------------------------- */
 
+button.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .swal-button--confirm {
     padding: 7px 19px;
     border-radius: 25px;

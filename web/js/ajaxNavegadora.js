@@ -3815,11 +3815,11 @@ $(document).ready(function () {
                 if ($('#tiene-ultrasonido-mama').is(':checked')) {
 
                     $('#tiene-UltrasonidoPrevio').show();
-                    $('#fechaPreUsg').show();
+                    $('#fechaUsg').show();
                     $('#tipoUltrasonidoMama').show();
                 } else {
                     $('#tiene-UltrasonidoPrevio').hide();
-                    $('#fechaPreUsg').hide();
+                    $('#fechaUsg').hide();
                     $('#tipoUltrasonidoMama').hide();
                 }
 
