@@ -531,6 +531,7 @@ public class RegistraUsuarioController extends HttpServlet {
                 cuenta.setUsuario(noEmpleado);
                 cuenta.setIdRol(idRolAdmin);
                 cuenta.setPassword(contraseña);
+                
                 cuenta.setIdEmpleado((int) sesion.getAttribute("idEmpleado"));
 
                 empleado.setNoEmpleado(noEmpleado);

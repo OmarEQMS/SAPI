@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    
-    mostrarContrasena($('#loginContrasena'),'password');
+
+    mostrarContrasena($('#loginContrasena'), 'password');
 
     $("#msj-error").hide();
     $("#msj-cargando").hide();
@@ -52,6 +52,8 @@ $(document).ready(function () {
     });
 
     $('#btn-login').on('click', function () {
+
+
         var usu = $("#user");
         var pass = $("#password");
 
@@ -105,7 +107,7 @@ $(document).ready(function () {
         );
 
     });
-    
+
     function mostrarContrasena(myButton, myField) {
         myButton.on('mousedown', function () {
             var x = document.getElementById(myField);
