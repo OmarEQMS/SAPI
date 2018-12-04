@@ -43,7 +43,10 @@
     </head>
 
     <body>
-
+         <div class="cargandoInicioNav" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando inicio, por favor espere...</p>
+        </div>
         <div class="wrapper">
 
             <!-- SIDEBAR -->

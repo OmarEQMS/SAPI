@@ -45,6 +45,14 @@
     </head>
 
     <body>
+        <div class="cargandoInfoPaciente" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando formulario, por favor espere...</p>
+        </div>
+         <div class="cargandoInicioNav" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando inicio, por favor espere...</p>
+        </div>
 
         <div class="wrapper">
 
@@ -148,7 +156,7 @@
                             <i class="fas fa-home"></i>
                         </span>
                         <span>
-                            <a href="./index.html" class="colorMoradoLight">Inicio</a>
+                            <a href="navegadora/index.html" class="colorMoradoLight">Inicio</a>
                         </span>
                     </div>
                 </div>
@@ -298,7 +306,7 @@
                                                 <tr>
                                                     <th scope="col">PRZ</th>
                                                     <th scope="col">Nombre</th>
-                                                    
+
                                                     <th scope="col">Tipo de paciente</th>
                                                     <th scope="col"></th>
                                                     <th scope="col">Fecha de navegación</th>
@@ -335,8 +343,8 @@
 
                                                         <td>${pacienteAprobado.prz}</td>
                                                         <td>${pacienteAprobado.nombre} ${pacienteAprobado.primerApellido} ${pacienteAprobado.segundoApellido}</td>
-                                                        
-                                                       
+
+
 
                                                         <c:choose>
                                                             <c:when test="${pacienteAprobado.tipoPaciente==1}">

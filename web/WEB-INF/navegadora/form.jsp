@@ -39,7 +39,14 @@
     </head>
 
     <body>
-
+        <div class="CargandoFormulario" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Recuperando formulario, por favor espere...</p>
+        </div>
+        <div class="cargandoInicioNav" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando inicio, por favor espere...</p>
+        </div>
         <div class="wrapper">
 
             <!-- SIDEBAR -->

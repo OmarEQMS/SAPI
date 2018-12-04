@@ -505,7 +505,7 @@ $(document).ready(function () {
             });
 
 
-    }
+        }
 
     });
 
@@ -1113,19 +1113,19 @@ $(document).ready(function () {
                         data.append("biradUSG", biradUSG);
                         data.append("cambiarRol", 1);
                         data.append("etapaClinica", etapaClinica);
-        data.append("ResultadoTipoMastografia", resultadoTipoMastografia );
-        data.append("tipoUSG", tipoUSG);
-        data.append("tumorPrimarioT", tumorPrimarioT);
-        data.append("gangliosN", gangliosN);
-        data.append("metastasisM", metastasisM);
-        data.append("resultado-patologia", resultadoPatologia);
-        data.append("grado-histologico", gradoHistologico);
-        data.append("receptor-her2", receptorHer2);
-        data.append("receptor-fish", receptorFish);
-        data.append("receptor-re", receptorRe);
-        data.append("receptor-rp", receptorRp);
-        data.append("ki67", ki67);
-        data.append("otroResultadoPatologiaPost", otroResultadoPatologiaPost);
+                        data.append("ResultadoTipoMastografia", resultadoTipoMastografia);
+                        data.append("tipoUSG", tipoUSG);
+                        data.append("tumorPrimarioT", tumorPrimarioT);
+                        data.append("gangliosN", gangliosN);
+                        data.append("metastasisM", metastasisM);
+                        data.append("resultado-patologia", resultadoPatologia);
+                        data.append("grado-histologico", gradoHistologico);
+                        data.append("receptor-her2", receptorHer2);
+                        data.append("receptor-fish", receptorFish);
+                        data.append("receptor-re", receptorRe);
+                        data.append("receptor-rp", receptorRp);
+                        data.append("ki67", ki67);
+                        data.append("otroResultadoPatologiaPost", otroResultadoPatologiaPost);
 
 
                         data.forEach((value, key) => {
@@ -1320,22 +1320,30 @@ $(document).ready(function () {
     });
 
     $('#irADashboard').on('click', function () {
-        $.post("SAPI", {
-            file: "navegadora/index.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
+        $.ajax({
+            url: 'SAPI',
+            beforeSend: function () {
+                $('.cargandoInicioNav').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoInicioNav').fadeOut();
+            },
+            method: "POST",
+            cache: false,
+            data: {
+                file: "navegadora/index.jsp"
+            },
+            success: function (response) {
+                if (response === "error") {
+                    $("#msj-error").show();
+                } else {
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
                 }
-        );
+            }
+        });
+
     });
 
     $('#irACalendario').on('click', function () {
@@ -1344,8 +1352,8 @@ $(document).ready(function () {
         },
                 function (response, status, xhr) {
                     console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
+                    if (status === "success") {
+                        if (response === "error") {
                             $("#msj-error").show();
                         } else {
                             document.open("text/html", "replace");
@@ -2231,25 +2239,32 @@ $(document).ready(function () {
 
         console.log($(this).data('id'));
         var data = {idPotencial: $(this).data('id')};
-        $.post("SAPI", {
-            file: "navegadora/form.jsp",
-            idPotencial: $(this).data('id')
-
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            console.log(response);
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
+        $.ajax({
+            url: 'SAPI',
+            beforeSend: function () {
+                $('.cargandoInfoPaciente').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoInfoPaciente').fadeOut();
+            },
+            method: "POST",
+            cache: false,
+            data: {
+                file: "navegadora/form.jsp",
+                idPotencial: $(this).data('id')
+            },
+            success: function (response) {
+                if (response === "error") {
+                    $("#msj-error").show();
+                } else {
+                    console.log(response);
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
                 }
-        );
+            }
+        });
+
     });
 
     var cambiarRol = 0;
@@ -3115,66 +3130,66 @@ $(document).ready(function () {
         var biradUSG = $('#tipoUSG').val();
         if (biradUSG === null)
             biradUSG = "";
-        
-        
+
+
         var etapaClinica = $("#etapaClinica").val();
         if (etapaClinica == null)
             etapaClinica = "";
-        
+
         var resultadoTipoMastografia = $("#ResultadoTipoMastografia").val();
-        if(resultadoTipoMastografia == null)
-            resultadoTipoMastografia="";
-        
+        if (resultadoTipoMastografia == null)
+            resultadoTipoMastografia = "";
+
         var tipoUSG = $("#tipoUSG").val();
-        if(tipoUSG==null)
-            tipoUSG="";
-        
+        if (tipoUSG == null)
+            tipoUSG = "";
+
         var tumorPrimarioT = $("#tumorPrimarioT").val();
-        if(tumorPrimarioT == null)
-            tumorPrimarioT="";
-        
+        if (tumorPrimarioT == null)
+            tumorPrimarioT = "";
+
         var gangliosN = $("#gangliosN").val();
-        if(gangliosN==null)
-            gangliosN="";
-        
+        if (gangliosN == null)
+            gangliosN = "";
+
         var metastasisM = $("#metastasisM").val();
-        if(metastasisM==null)
-            metastasisM="";
-        
+        if (metastasisM == null)
+            metastasisM = "";
+
         var resultadoPatologia = $("#resultado-patologia").val();
-        if(resultadoPatologia == null)
-            resultadoPatologia="";
-        
+        if (resultadoPatologia == null)
+            resultadoPatologia = "";
+
         var gradoHistologico = $("#grado-histologico").val();
-        if(gradoHistologico==null)
-            gradoHistologico="";
-        
+        if (gradoHistologico == null)
+            gradoHistologico = "";
+
         var receptorHer2 = $("#receptor-her2").val();
-        if(receptorHer2==null)
-            receptorHer2="";
-        
+        if (receptorHer2 == null)
+            receptorHer2 = "";
+
         var receptorFish = $("#receptor-fish").val();
-        if(receptorFish==null)
-            receptorFish="";
-        
-        var receptorRe= $("#receptor-re").val();
-        if(receptorRe==null)
-            receptorRe="";
-        
-        var receptorRp= $("#receptor-rp").val();
-        if(receptorRp==null)
-            receptorRp="";
-        
-        var ki67= $("#ki67").val();
-        if(ki67==null)
-            ki67="";
-        
-        var otroResultadoPatologiaPost =$("#otroResultadoPatologiaPost").val();
-        if(otroResultadoPatologiaPost==null)
-            otroResultadoPatologiaPost="";
+        if (receptorFish == null)
+            receptorFish = "";
+
+        var receptorRe = $("#receptor-re").val();
+        if (receptorRe == null)
+            receptorRe = "";
+
+        var receptorRp = $("#receptor-rp").val();
+        if (receptorRp == null)
+            receptorRp = "";
+
+        var ki67 = $("#ki67").val();
+        if (ki67 == null)
+            ki67 = "";
+
+        var otroResultadoPatologiaPost = $("#otroResultadoPatologiaPost").val();
+        if (otroResultadoPatologiaPost == null)
+            otroResultadoPatologiaPost = "";
         console.log("click on 'btn-save[i]'");
-        
-        
+
+
 
         var data = new FormData();
         var form;
@@ -3211,7 +3226,7 @@ $(document).ready(function () {
         data.append("biradsMasto", biradsMasto);
         data.append("biradUSG", biradUSG);
         data.append("etapaClinica", etapaClinica);
-        data.append("ResultadoTipoMastografia", resultadoTipoMastografia );
+        data.append("ResultadoTipoMastografia", resultadoTipoMastografia);
         data.append("tipoUSG", tipoUSG);
         data.append("tumorPrimarioT", tumorPrimarioT);
         data.append("gangliosN", gangliosN);
@@ -3224,8 +3239,8 @@ $(document).ready(function () {
         data.append("receptor-rp", receptorRp);
         data.append("ki67", ki67);
         data.append("otroResultadoPatologiaPost", otroResultadoPatologiaPost);
-        
-         
+
+
 
         if (cambiarRol == 1)
             data.append("cambiarRol", cambiarRol);
@@ -3549,7 +3564,7 @@ $(document).ready(function () {
 
             //* Verificar que los inputs coincidan con los autocompletados
 
-            
+
 
             if (seguroPopular && tratamientoCirugia && tratamientoQuimioterapia && tratamientoRadioterapia
                     && estudioMastografia && estudioUltrasonido && otroResultadoPatologia && ePreconsultaBiopsia
@@ -3571,7 +3586,7 @@ $(document).ready(function () {
 
 
     });
-  
+
     function btnSave(data) {
         $.ajax({
             url: "NavegadoraController",
@@ -3656,7 +3671,13 @@ $(document).ready(function () {
         url: "NavegadoraController",
         method: "POST",
         data: {key: "mostrarFormularioNavegadora"},
-
+        beforeSend: function () {
+            $('.CargandoFormulario').fadeIn();
+        },
+        complete: function () {
+            $('.CargandoFormulario').fadeOut();
+            //alert("YA CARGÓ!");
+        },
         success: function (response) {
 
             var data = JSON.parse(response);
@@ -4786,6 +4807,7 @@ $(document).ready(function () {
             //alert("No enontre el controlador" + status);                               
         }
     });
+
 // 'ene 1, 2001'
     function convertDate(fecha) {
         if (fecha !== "ene 1, 1900") {
