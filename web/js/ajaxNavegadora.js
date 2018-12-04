@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    //Errores en cuenta
+    $('#error-correoNavegadora').hide();
+    $('#error-correoRepetidoNavegadora').hide();
+
     //Errores al agregar a un paciente
     $('#errorNombrePaciente').hide();
     $('#errorCurpPaciente').hide();
@@ -78,6 +82,46 @@ $(document).ready(function () {
     $('#error-comentarioAdicionales').hide();
     $('#error-ki67').hide();
 
+
+    var repiteCorreoCuenta;
+
+    $('#correo').on('change', function () {
+        $.ajax({
+
+            url: 'NavegadoraController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "repiteCorreo",
+                correo: $('#correo').val()
+            },
+            success: function (response) {
+
+                if (response === 'CorreoAlreadyExists') {
+                    console.log("correo repetidooo")
+                    $('#correo').css('color', 'orange');
+                    $('#error-correoRepetidoNavegadora').show();
+                    repiteCorreoCuenta = true;
+                } else {
+                    $('#error-correoRepetidoNavegadora').hide();
+                    repiteCorreoCuenta = false;
+                }
+
+            }
+
+        });
+
+        if (isValidEmail($(this))) {
+            $('#error-correoNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#error-correoNavegadora').hide();
+            $('#correo').css('border', '');
+            $('#correo').css('color', '');
+        } else {
+            $('#error-correoNavegadora').show();
+        }
+
+    });
 
     var lugarDelCuerpo = $("#listLugarDelCuerpo");
 
@@ -386,12 +430,12 @@ $(document).ready(function () {
                         form.action = "/SAPI/ReporteControllerJaspersoft?key=generar-reporte2";
                         document.body.appendChild(form);
                         form.submit();
-                        document.body.removeChild(form);      
+                        document.body.removeChild(form);
                         $('.generarReporte').fadeOut();
                     }
                 });
     });
- //Fin Reporte Jaspersoft
+    //Fin Reporte Jaspersoft
     //Agregar Paciente
     $('#btn-agregarPaciente').on('click', function () {
         if (!repiteCorreoPaciente && !curpRepetidoPaciente) {
@@ -477,7 +521,7 @@ $(document).ready(function () {
                                 "<span id='estado-" + response + "'>Potencial en proceso</span>",
                                 '',
                                 "<span id='fecha-" + response + "'>" + year + "-" + month + "-" + day + "</span>",
-                                "<span id='curp-" + response + "'>" + $('#curpPaciente').val() +"</span>",
+                                "<span id='curp-" + response + "'>" + $('#curpPaciente').val() + "</span>",
                                 "<span id='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
                                 "<button class='btn btn-info btn-ver  m-1' data-id=" + response + " id='btn-ver'><i class='far fa-eye'></i></button>" +
                                         "<button class='btn btn-success btn-aceptar-potencial m-1' data-id=" + response + " data-toggle='modal' data-target='#modalAceptarUsuario'><i class='fas fa-check'></i></button>" +
@@ -1567,7 +1611,7 @@ $(document).ready(function () {
     });
 
 
-    $('#irADashboard').on('click', function () { 
+    $('#irADashboard').on('click', function () {
         $.ajax({
             url: 'SAPI',
             method: "POST",
@@ -1595,7 +1639,7 @@ $(document).ready(function () {
     });
 
     $('#irACalendario').on('click', function () {
-         $.ajax({
+        $.ajax({
             url: 'SAPI',
             method: "POST",
             cache: false,
@@ -1672,74 +1716,147 @@ $(document).ready(function () {
         });
     });
 
+    $("#file-input").on('change', function () {
+        console.log("Llegó :)");
+        cambioImagen = true;
+        var tieneFoto = ($('#file-input').get(0).files.length === 0) ? false : true;
+        console.log("Tiene algo? " + tieneFoto)
+        if (validProfilePhoto($('#file-input'), document.querySelector('#file-input').files) || !tieneFoto) {
+            imagenValida = true;
+            $('#error-imgPerfil').hide();
+            readURL(this);
+        } else {
+            imagenValida = false;
+            $('#error-imgPerfil').show();
+        }
+    });
+
+    function validProfilePhoto(input, archivos) {
+
+        for (let index = 0; index < archivos.length; index++) {
+
+            if (archivos[index]["type"] == "image/jpg" || archivos[index]["type"] == "image/png"
+                    || archivos[index]["type"] == "image/jpeg") {
+
+                console.log('si se puede' + archivos[index]["type"]);
+                input.css('border', '');
+                return true;
+
+
+            } else {
+                console.log('no se puede' + archivos[index]["type"]);
+                input.css('border', '1px solid red');
+            }
+
+        }
+
+        return false;
+    }
+    
+    var cambioImagen = false;
+    var imagenValida = false;
+
+    //EN CUENTA
     $('#guardarCambios').on('click', function () {
 
-        if (isValidPhoneNumber($("#telefono")) && isValidEmail($("#correo"))) {
+        var continuar = false;
 
-            console.log("Presionó GuardarCambios")
-            var form = $("form")[0];
-            var data = new FormData(form);
-            data.append("key", "cambiarDatos");
-            data.forEach((value, key) => {
-                console.log(key + " " + value);
-            })
+        if (cambioImagen) {
+            if (imagenValida)
+                continuar = true;
+            else
+                continuar = false;
+        } else {
+            continuar = true;
+        }
+
+        console.log("CambioImagen: " + cambioImagen);
+        console.log("imagenValida: " + imagenValida);
+
+        if (continuar)
+            console.log("Se actualizan cambios");
+        else
+            console.log("No se puede (imagenInVálida");
 
 
-            $.ajax({
-                url: "NavegadoraController",
-                data: data,
-                method: "POST",
-                encType: "multipart/form-data",
-                processData: false,
-                contentType: false,
-                cache: false,
-                beforeSend: function () {
-                    $('.cargandoGuardarCambios').fadeIn();
-                },
-                complete: function () {
-                    $('.cargandoGuardarCambios').fadeOut();
-                },
-                success: function (response) {
+        if (continuar) {
 
-                    swal({
-                        title: "¡Buen trabajo!",
-                        text: "Cuenta actualizada correctamente.",
-                        closeOnEsc: false,
-                        closeOnClickOutside: false,
-                        icon: "success",
-                        button: "Aceptar",
-                    })
+            if (isValidPhoneNumber($("#telefono")) && isValidEmail($("#correo")) && !repiteCorreoCuenta) {
 
-                    $.post("SAPI", {
-                        file: "navegadora/cuentaNavegadora.jsp"
+                console.log("Presionó GuardarCambios")
+                var form = $("form")[0];
+                var data = new FormData(form);
+                data.append("key", "cambiarDatos");
+                data.forEach((value, key) => {
+                    console.log(key + " " + value);
+                })
+
+
+                $.ajax({
+                    url: "NavegadoraController",
+                    data: data,
+                    method: "POST",
+                    encType: "multipart/form-data",
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    beforeSend: function () {
+                        $('.cargandoGuardarCambios').fadeIn();
                     },
-                            function (response, status, xhr) {
-                                console.log("El ajax fue exitoso!!-----------------------");
-                                if (status == "success") {
-                                    if (response == "error") {
-                                        $("#msj-error").show();
-                                    } else {
-                                        document.open("text/html", "replace");
-                                        document.write(response);
-                                        document.close();
+                    complete: function () {
+                        $('.cargandoGuardarCambios').fadeOut();
+                    },
+                    success: function (response) {
 
+                        swal({
+                            title: "¡Buen trabajo!",
+                            text: "Cuenta actualizada correctamente.",
+                            closeOnEsc: false,
+                            closeOnClickOutside: false,
+                            icon: "success",
+                            button: "Aceptar",
+                        })
+
+                        $.post("SAPI", {
+                            file: "navegadora/cuentaNavegadora.jsp"
+                        },
+                                function (response, status, xhr) {
+                                    console.log("El ajax fue exitoso!!-----------------------");
+                                    if (status == "success") {
+                                        if (response == "error") {
+                                            $("#msj-error").show();
+                                        } else {
+                                            document.open("text/html", "replace");
+                                            document.write(response);
+                                            document.close();
+
+                                        }
                                     }
                                 }
-                            }
-                    );
-                }, error: function (xhr) {
-                    //alert(xhr.statusText);
-                }
+                        );
+                    }, error: function (xhr) {
+                        //alert(xhr.statusText);
+                    }
 
-            });
+                });
+            } else {
+                swal({
+                    title: "Error",
+                    text: "Revisa todos los campos antes de continuar.",
+                    icon: "error",
+                    closeOnEsc: false,
+                    closeOnClickOutside: false,
+                    buttons: [, 'Aceptar'],
+                });
+            }
         } else {
             swal({
                 title: "Error",
                 text: "Revisa todos los campos antes de continuar.",
-                icon: "error",
                 closeOnEsc: false,
                 closeOnClickOutside: false,
-                buttons: [, 'Aceptar'],
+                icon: "error",
+                button: "Aceptar",
             });
         }
     });
@@ -1816,6 +1933,8 @@ $(document).ready(function () {
                             $('#modalCambiarContraseña').modal('toggle');
                         }
                     });
+        } else {
+            
         }
     });
 
@@ -1888,7 +2007,7 @@ $(document).ready(function () {
         for (let index = 0; index < archivos.length; index++) {
 
             if (archivos[index]["type"] == "image/jpg" || archivos[index]["type"] == "image/png"
-                    ) {
+                    || archivos[index]["type"] == "image/jpeg") {
 
                 console.log('si se puede' + archivos[index]["type"]);
                 input.css('border', '');
@@ -5415,7 +5534,7 @@ $(document).ready(function () {
     });
 
     $('.IrAMiCuenta').on('click', function () {
-         $.ajax({
+        $.ajax({
             url: 'SAPI',
             method: "POST",
             cache: false,
@@ -6241,9 +6360,9 @@ function isValidFormatCP(input) {
 
 function isValidCheckbox(input) {
 
-        if (input.is(':checked')) {
-            return true;
-        }
-
-        return false;
+    if (input.is(':checked')) {
+        return true;
     }
+
+    return false;
+}
