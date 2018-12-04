@@ -39,6 +39,26 @@
     </head>
 
     <body>
+        
+        <div class="cargandoIrACalendar" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando el calendario, por favor espere...</p>
+        </div>
+        
+        <div class="cargandoIrAInicio" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando la lista de pacientes, por favor espere...</p>
+        </div>
+        
+        <div class="cargandoIrARendimiento" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando tu rendimiento, por favor espere..</p>
+        </div>
+        
+        <div class="cargandoIrACuenta" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando tus datos, por favor espere...</p>
+        </div>
 
         <div class="wrapper">
 

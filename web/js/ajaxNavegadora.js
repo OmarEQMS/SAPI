@@ -686,6 +686,12 @@ $(document).ready(function () {
                                 idPaciente: idPaciente,
 
                             },
+                            beforeSend: function () {
+                                $('.eliminarPaciente').fadeIn();
+                            },
+                            complete: function () {
+                                $('.eliminarPaciente').fadeOut();
+                            },
                             success: function (response) {
                                 swal({
                                     title: "¡Buen trabajo!",
@@ -1406,80 +1412,109 @@ $(document).ready(function () {
         });
     });
 
-    $('#irADashboard').on('click', function () {
-        $.post("SAPI", {
-            file: "navegadora/index.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
+    $('#irADashboard').on('click', function () { 
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "navegadora/index.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrAInicio').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrAInicio').fadeOut();
+            },
+            success: function (response) {
+                if (response == "error") {
+                    $("#msj-error").show();
+                } else {
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
                 }
-        );
+            }
+        });
+
     });
 
     $('#irACalendario').on('click', function () {
-        $.post("SAPI", {
-            file: "navegadora/calendar.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
+         $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "navegadora/calendar.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrACalendar').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrACalendar').fadeOut();
+            },
+            success: function (response) {
+                if (response == "error") {
+                    $("#msj-error").show();
+                } else {
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
                 }
-        );
+            }
+        });
     });
 
     $('#irARendimiento').on('click', function () {
-        $.post("SAPI", {
-            file: "navegadora/rendimiento.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "navegadora/rendimiento.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrARendimiento').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrARendimiento').fadeOut();
+            },
+            success: function (response) {
+                if (response == "error") {
+                    $("#msj-error").show();
+                } else {
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
                 }
-        );
+            }
+        });
     });
 
     $('#irACuenta').on('click', function () {
-        $.post("SAPI", {
-            file: "navegadora/cuentaNavegadora.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "navegadora/cuentaNavegadora.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrACuenta').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrACuenta').fadeOut();
+            },
+            success: function (response) {
+                if (response == "error") {
+                    $("#msj-error").show();
+                } else {
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
                 }
-        );
+            }
+        });
     });
 
     $('#guardarCambios').on('click', function () {
@@ -1503,7 +1538,23 @@ $(document).ready(function () {
                 processData: false,
                 contentType: false,
                 cache: false,
+                beforeSend: function () {
+                    $('.cargandoGuardarCambios').fadeIn();
+                },
+                complete: function () {
+                    $('.cargandoGuardarCambios').fadeOut();
+                },
                 success: function (response) {
+
+                    swal({
+                        title: "¡Buen trabajo!",
+                        text: "Cuenta actualizada correctamente.",
+                        closeOnEsc: false,
+                        closeOnClickOutside: false,
+                        icon: "success",
+                        button: "Aceptar",
+                    })
+
                     $.post("SAPI", {
                         file: "navegadora/cuentaNavegadora.jsp"
                     },
@@ -2349,7 +2400,7 @@ $(document).ready(function () {
             cache: false,
             data: {
                 file: "navegadora/form.jsp",
-            idPotencial: $(this).data('id')
+                idPotencial: $(this).data('id')
             },
             beforeSend: function () {
                 $('.cargandoFormulario').fadeIn();
@@ -2357,16 +2408,16 @@ $(document).ready(function () {
             complete: function () {
                 $('.cargandoFormulario').fadeOut();
             },
-            success: function (response,status, xhr) {
+            success: function (response, status, xhr) {
                 if (status == "success") {
-                        if (response == "error") {
-                            console.log(response);
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
+                    if (response == "error") {
+                        console.log(response);
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
                     }
+                }
             }
         });
     });
@@ -3335,6 +3386,12 @@ $(document).ready(function () {
                     data: {
                         key: 'cancelarCitaPotencial',
                         idPotencial: idPotencial
+                    },
+                    beforeSend: function () {
+                        $('.cancelarCitas').fadeIn();
+                    },
+                    complete: function () {
+                        $('.cancelarCitas').fadeOut();
                     },
                     success: function (response) {
                         console.log(response);
@@ -4499,8 +4556,8 @@ $(document).ready(function () {
             //alert("No enontre el controlador" + status);                               
         }
     });
-    
-    
+
+
     $('.salirCuenta').on('click', function () {
         $.post("LoginController", {
             key: "cerrar-sesion"
@@ -4519,27 +4576,34 @@ $(document).ready(function () {
                 }
         );
     });
-    
+
     $('.IrAMiCuenta').on('click', function () {
-        $.post("SAPI", {
-            file: "navegadora/cuentaNavegadora.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
-                    }
+         $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "navegadora/cuentaNavegadora.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrACuenta').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrACuenta').fadeOut();
+            },
+            success: function (response) {
+                if (response == "error") {
+                    $("#msj-error").show();
+                } else {
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
                 }
-        );
+            }
+        });
     });
-    
-    
+
+
 // 'ene 1, 2001'
     function convertDate(fecha) {
         console.log(fecha);

@@ -694,7 +694,7 @@ $(document).ready(function () {
             }
         } else {
             swal({
-                title: "¡Datos inválidos!",
+                title: "Error",
                 text: "Revisa todos los campos antes de continuar.",
                 closeOnEsc: false,
                 closeOnClickOutside: false,
