@@ -232,7 +232,7 @@
                                 </div>
 
                                 <!-- Modal VER CITA-->
-                                <div class="modal fade" id="modalVerCitaPreConsulta" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal fade" id="modalVerCitaPreConsulta" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -280,7 +280,7 @@
                                 </div>
 
                                 <!-- Modal POR QUE DESEA CANCELR SU CITA -->
-                                <div class="modal fade" id="modalMotivoCancelacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                <div class="modal fade" id="modalMotivoCancelacion" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog" aria-labelledby="exampleModalCenterTitle"
                                      aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">

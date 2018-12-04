@@ -29,6 +29,8 @@ $(document).ready(function () {
             title: "¿Estás segura(o)?",
             text: "Los datos se eliminarán y no podrás recuperarlos ni poder acceder a tu cuenta.",
             icon: "warning",
+            closeOnEsc: false,
+            closeOnClickOutside: false,
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
         })
@@ -174,9 +176,11 @@ $(document).ready(function () {
 
                 } else {
                     swal({
-                        title: "Datos inválidos",
+                        title: "Error",
                         text: "Revisa todos los campos antes de continuar.",
                         icon: "error",
+                        closeOnEsc: false,
+                        closeOnClickOutside: false,
                         buttons: [, 'Aceptar'],
                     });
                 }
@@ -185,9 +189,11 @@ $(document).ready(function () {
             }
         } else {
             swal({
-                title: "Datos inválidos",
+                title: "Error",
                 text: "Revisa todos los campos antes de continuar.",
                 icon: "error",
+                closeOnEsc: false,
+                closeOnClickOutside: false,
                 buttons: [, 'Aceptar'],
             });
         }
@@ -269,6 +275,8 @@ $(document).ready(function () {
             text: "Tendrás que reiniciar tu solicitud de preconsulta ya que se cancelarán ambas citas.",
             icon: "warning",
             buttons: true,
+            closeOnEsc: false,
+            closeOnClickOutside: false,
             buttons: ['Regresar', 'Cancelar Cita'],
             dangerMode: true,
         })
@@ -402,6 +410,8 @@ $(document).ready(function () {
                         title: "Datos guardados correctamente",
                         text: "Puedes regresar a editar/completar el resto de información en cualquier momento.",
                         icon: "success",
+                        closeOnEsc: false,
+                        closeOnClickOutside: false,
                         buttons: true,
                         buttons: [, 'Aceptar']
 
@@ -492,6 +502,8 @@ $(document).ready(function () {
                 title: "Error",
                 text: "¿Estás tratando de subir un documento no válido?",
                 icon: "error",
+                closeOnEsc: false,
+                closeOnClickOutside: false,
                 buttons: true,
                 buttons: [, 'Aceptar']
 
@@ -556,6 +568,8 @@ $(document).ready(function () {
                     text: "Adjunta la referencia para poder enviar tu solicitud.",
                     icon: "error",
                     buttons: true,
+                    closeOnEsc: false,
+                    closeOnClickOutside: false,
                     buttons: [, 'Aceptar']
                 });
                 continuar = false;
@@ -602,6 +616,8 @@ $(document).ready(function () {
                     text: "Ya no podrás modificar tu solicitud mas adelante.",
                     showCancelButton: false,
                     showConfirmButton: true,
+                    closeOnEsc: false,
+                    closeOnClickOutside: false,
                     buttons: {cancel: 'Cancelar', aceptar: 'Aceptar'},
                     dangerMode: true
                 }).then(function (value) {
@@ -627,6 +643,8 @@ $(document).ready(function () {
                                         title: "Error",
                                         text: "Para enviar la solicitud debes seleccionar tu Sexo y al menos subir: Identificación Oficial, CURP, Comprobante de Domicilio y Motivo de Consulta.",
                                         icon: "error",
+                                        closeOnEsc: false,
+                                        closeOnClickOutside: false,
                                         buttons: true,
                                         buttons: [, 'Aceptar']
                                     })
@@ -636,6 +654,8 @@ $(document).ready(function () {
                                         title: "Solicitud enviada",
                                         text: "En 36 horas máximo, se te dará respuesta a tu solicitud.",
                                         icon: "success",
+                                        closeOnEsc: false,
+                                        closeOnClickOutside: false,
                                         buttons: true,
                                         buttons: [, 'Aceptar']
 
@@ -760,6 +780,8 @@ $(document).ready(function () {
                     text: "Ya no podrás modificar tu solicitud mas adelante.",
                     showCancelButton: false,
                     showConfirmButton: true,
+                    closeOnEsc: false,
+                    closeOnClickOutside: false,
                     buttons: {cancel: 'Cancelar', aceptar: 'Aceptar'},
                     dangerMode: true
                 }).then(function (value) {
@@ -785,6 +807,8 @@ $(document).ready(function () {
                                         title: "Error",
                                         text: "Para enviar la solicitud debes seleccionar tu Sexo y al menos subir: Identificación Oficial, CURP, Comprobante de Domicilio y Motivo de Consulta.",
                                         icon: "error",
+                                        closeOnEsc: false,
+                                        closeOnClickOutside: false,
                                         buttons: true,
                                         buttons: [, 'Aceptar']
                                     })
@@ -794,6 +818,8 @@ $(document).ready(function () {
                                         title: "Solicitud enviada",
                                         text: "En 36 horas máximo, se te dará respuesta a tu solicitud.",
                                         icon: "success",
+                                        closeOnEsc: false,
+                                        closeOnClickOutside: false,
                                         buttons: true,
                                         buttons: [, 'Aceptar']
 
@@ -887,6 +913,8 @@ $(document).ready(function () {
                 title: "Error",
                 text: "¿Estás tratando de enviar un documento no válido?",
                 icon: "error",
+                closeOnEsc: false,
+                closeOnClickOutside: false,
                 buttons: true,
                 buttons: [, 'Aceptar']
             });
@@ -1197,6 +1225,8 @@ $(document).ready(function () {
                 text: "No podrás volver a usar tu contraseña anterior para ingresar.",
                 icon: "warning",
                 buttons: true,
+                closeOnEsc: false,
+                closeOnClickOutside: false,
                 buttons: ['Regresar', 'Cambiar contraseña'],
                 dangerMode: true
             })

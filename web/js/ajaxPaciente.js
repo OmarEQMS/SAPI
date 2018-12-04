@@ -117,14 +117,18 @@ $(document).ready(function () {
                                     title: "¡Buen Trabajo!",
                                     text: "La cita se ha registrado correctamente.",
                                     icon: "success",
+                                    closeOnEsc: false,
+                                    closeOnClickOutside: false,
                                     buttons: [, 'Aceptar'],
                                 });
                                 $('#modalAgregarCita').modal('toggle');
                             } else {
                                 swal({
-                                    title: "Algo salió mal",
+                                    title: "Error",
                                     text: "No se pudo registrar la cita, intentalo de nuevo.",
                                     icon: "error",
+                                    closeOnEsc: false,
+                                    closeOnClickOutside: false,
                                     buttons: [, 'Aceptar'],
                                 });
                             }
@@ -270,6 +274,8 @@ $(document).ready(function () {
             text: "Los datos se eliminarán y no podrás recuperarlos ni poder acceder a tu cuenta.",
             icon: "warning",
             buttons: true,
+            closeOnEsc: false,
+            closeOnClickOutside: false,
             buttons: ['Cancelar', 'Aceptar'],
         })
                 .then((eliminar) => {
@@ -441,9 +447,11 @@ $(document).ready(function () {
                     });
                 } else {
                     swal({
-                        title: "¡Datos inválidos!",
-                        text: "Revisa todos los campos antes de continuar",
+                        title: "Error",
+                        text: "Revisa todos los campos antes de continuar.",
                         icon: "error",
+                        closeOnEsc: false,
+                        closeOnClickOutside: false,
                     });
                 }
             } else {
@@ -451,9 +459,11 @@ $(document).ready(function () {
             }
         } else {
             swal({
-                title: "¡Datos inválidos!",
-                text: "Revisa todos los campos antes de continuar",
+                title: "Error",
+                text: "Revisa todos los campos antes de continuar.",
                 icon: "error",
+                closeOnEsc: false,
+                closeOnClickOutside: false,
             });
         }
     });
@@ -512,10 +522,13 @@ $(document).ready(function () {
                         $('#modalAgregarTratamiento').modal('toggle'); //cerrar modal
 
                         swal({
-                            title: "Tratamiento registrado correctamente",
+                            title: "¡Buen trabajo!",
+                            text: "Tratamiento registrado correctamente",
                             icon: "success",
                             buttons: true,
-                            buttons: [, 'Aceptar']
+                            buttons: [, 'Aceptar'],
+                            closeOnEsc: false,
+                            closeOnClickOutside: false,
                         });
 
                         console.log("FechaInicioTratamiento: " + $("#fechaInicioTratamiento").val());
@@ -548,9 +561,11 @@ $(document).ready(function () {
                     });
         } else {
             swal({
-                title: "Datos invalidos",
+                title: "Error",
                 text: "Revisa todos los campos antes de continuar.",
                 icon: "error",
+                closeOnEsc: false,
+                closeOnClickOutside: false,
             });
         }
     });
@@ -564,6 +579,8 @@ $(document).ready(function () {
                 text: "No podrás volver a usar tu contraseña anterior para ingresar.",
                 icon: "warning",
                 buttons: true,
+                closeOnEsc: false,
+                closeOnClickOutside: false,
                 buttons: ['Regresar', 'Cambiar contraseña'],
                 dangerMode: true
             })
@@ -632,7 +649,10 @@ $(document).ready(function () {
 
                         $('#modalEditarTerminado').modal('toggle'); //cerrar modal
                         swal({
-                            title: "Tratamiento finalizado",
+                            title: "¡Buen trabajo!",
+                            text: "Tratamiento finalizado",
+                            closeOnEsc: false,
+                            closeOnClickOutside: false,
                             icon: "success",
                             buttons: true,
                             buttons: [, 'Aceptar']
@@ -658,9 +678,11 @@ $(document).ready(function () {
 
         } else {
             swal({
-                title: "Datos inválidos",
+                title: "Error",
                 text: "Revisa todos los campos antes de continuar.",
                 icon: "error",
+                closeOnEsc: false,
+                closeOnClickOutside: false,
                 buttons: true,
                 buttons: [, 'Aceptar']
             });

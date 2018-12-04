@@ -62,6 +62,8 @@ $(document).ready(function () {
                             title: "Correo enviado",
                             text: "Revisa el correo con el que creaste tu cuenta para poder cambiar tu contraseña",
                             icon: "success",
+                            closeOnEsc: false,
+                            closeOnClickOutside: false,
                             buttons: true,
                             buttons: [, 'Aceptar']
                         }).then(function () {
