@@ -511,7 +511,7 @@
                                                 <div class="form-check form-check-inline">
                                                     <input name="primeraMasto" class="form-check-input" type="checkbox" id="primeraMasto" value="option1">
 
-                                                    <label class="form-check-label" for="inlineCheckbox1">Mastografóa en el INCan
+                                                    <label class="form-check-label" for="inlineCheckbox1">Mastografía en el INCan
                                                         antes de su primera cita</label>
                                                 </div>
                                             </div>
@@ -1413,11 +1413,11 @@
 
                                             <div class="col-6 mt-4">
 
-                                                <label for="">Resultados de mastografóa</label>
+                                                <label for="">Resultados de mastografía</label>
                                                 <div class="input-group">
 
                                                     <select name="ResultadoTipoMastografia" class="form-control" id="ResultadoTipoMastografia">
-                                                        <option disabled selected>MastrografÃ¯Â¿Â½a BI-RADS</option>
+                                                        <option disabled selected>Mastrografía BI-RADS</option>
 
                                                         <c:forEach items="${listaBirads}" var="birads">  
                                                             <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>

@@ -4329,13 +4329,13 @@ $(document).ready(function () {
                  */
             }
 
-            if (data[0][0].fechaNavegacion !== "ene 1, 1900") {
+            if (data[0][0].fechaNavegacion !== "Jan 1, 1900") {
                 var fecha = data[0][0].fechaNavegacion;
                 fecha = convertDate(fecha);
                 $('#fechaNavegacion').val(fecha);
             }
 
-            if (data[0][0].fechaConsulta !== "ene 1, 1900") {
+            if (data[0][0].fechaConsulta !== "Jan 1, 1900") {
                 var fecha = data[0][0].fechaConsulta;
                 fecha = convertDate(fecha);
                 $('#fechaConsulta').val(fecha);
@@ -4405,7 +4405,7 @@ $(document).ready(function () {
                 $('#tieneSeguroPopular').attr('checked', 'checked');
             }
 
-            if (data[0][0].cirugiaFecha !== "ene 1, 1900" || data[0][0].cirugiaTipo !== "" || data[0][0].cirugiaComentario !== "") {
+            if (data[0][0].cirugiaFecha !== "Jan 1, 1900" || data[0][0].cirugiaTipo !== "" || data[0][0].cirugiaComentario !== "") {
                 $('#tiene-cirugia').attr('checked', 'checked');
                 if ($('#tiene-cirugia').is(':checked')) {
                     $('#divCirugia').show();
@@ -4413,7 +4413,7 @@ $(document).ready(function () {
                     $('#divCirugia').hide();
                 }
 
-                if (data[0][0].cirugiaFecha !== "ene 1, 1900") {
+                if (data[0][0].cirugiaFecha !== "Jan 1, 1900") {
                     var fecha = data[0][0].cirugiaFecha;
                     fecha = convertDate(fecha);
                     $('#fecha-cirugia').val(fecha);
@@ -4433,7 +4433,7 @@ $(document).ready(function () {
 
             }
 
-            if (data[0][0].quimioterapiaFecha !== "ene 1, 1900" || data[0][0].quimioterapiaCiclo !== -1 || data[0][0].quimioterapiaComentario !== "") {
+            if (data[0][0].quimioterapiaFecha !== "Jan 1, 1900" || data[0][0].quimioterapiaCiclo !== -1 || data[0][0].quimioterapiaComentario !== "") {
                 $('#tiene-quimioterapia').attr('checked', 'checked');
                 if ($('#tiene-quimioterapia').is(':checked')) {
                     $('#divQuimioterapia').show();
@@ -4441,7 +4441,7 @@ $(document).ready(function () {
                     $('#divQuimioterapia').hide();
                 }
 
-                if (data[0][0].quimioterapiaFecha !== "ene 1, 1900") {
+                if (data[0][0].quimioterapiaFecha !== "Jan 1, 1900") {
                     var fecha = data[0][0].quimioterapiaFecha;
                     fecha = convertDate(fecha);
                     $('#fecha-quimioterapia').val(fecha);
@@ -4457,7 +4457,7 @@ $(document).ready(function () {
 
             }
 
-            if (data[0][0].radioterapiaFecha !== "ene 1, 1900" || data[0][0].radioterapiaCiclo !== -1 || data[0][0].radioterapiaComentario !== "") {
+            if (data[0][0].radioterapiaFecha !== "Jan 1, 1900" || data[0][0].radioterapiaCiclo !== -1 || data[0][0].radioterapiaComentario !== "") {
                 $('#tiene-radioterapia').attr('checked', 'checked');
                 if ($('#tiene-radioterapia').is(':checked')) {
                     $('#divRadioterapia').show();
@@ -4465,7 +4465,7 @@ $(document).ready(function () {
                     $('#divRadioterapia').hide();
                 }
 
-                if (data[0][0].radioterapiaFecha !== "ene 1, 1900") {
+                if (data[0][0].radioterapiaFecha !== "Jan 1, 1900") {
                     var fecha = data[0][0].radioterapiaFecha;
                     fecha = convertDate(fecha);
                     $('#fecha-radioterapia').val(fecha);
@@ -4481,7 +4481,7 @@ $(document).ready(function () {
 
             }
 
-            if (data[0][0].mastografiaBiradsNombre !== "" || data[0][0].mastografiaBiradsFecha !== "ene 1, 1900") {
+            if (data[0][0].mastografiaBiradsNombre !== "" || data[0][0].mastografiaBiradsFecha !== "Jan 1, 1900") {
                 $('#tiene-mastografia').attr('checked', 'checked');
                 if ($('#tiene-mastografia').is(':checked')) {
                     $('#tiene-mastografiaPrevia').show();
@@ -4493,7 +4493,7 @@ $(document).ready(function () {
                     $('#fechaPreMasto').hide();
                 }
 
-                if ((data[0][0].mastografiaBiradsFecha !== "ene 1, 1900")) {
+                if ((data[0][0].mastografiaBiradsFecha !== "Jan 1, 1900")) {
                     var fecha = data[0][0].mastografiaBiradsFecha;
                     fecha = convertDate(fecha);
                     $('#fechaPreMasto').val(fecha);
@@ -4509,7 +4509,7 @@ $(document).ready(function () {
                 }
             }
 
-            if (data[0][0].ultrasonidoBiradsNombre !== "" || data[0][0].ultrasonidoBiradsFecha !== "ene 1, 1900") {
+            if (data[0][0].ultrasonidoBiradsNombre !== "" || data[0][0].ultrasonidoBiradsFecha !== "Jan 1, 1900") {
                 $('#tiene-ultrasonido-mama').attr('checked', 'checked');
                 if ($('#tiene-ultrasonido-mama').is(':checked')) {
 
@@ -4522,7 +4522,7 @@ $(document).ready(function () {
                     $('#tipoUltrasonidoMama').hide();
                 }
 
-                if ((data[0][0].ultrasonidoBiradsFecha !== "ene 1, 1900")) {
+                if ((data[0][0].ultrasonidoBiradsFecha !== "Jan 1, 1900")) {
                     //   $('#fechaPreUsg').val(data[0][0].ultrasonidoBiradsFecha);
                     var fecha = data[0][0].ultrasonidoBiradsFecha;
                     fecha = convertDate(fecha);
@@ -5223,7 +5223,7 @@ $(document).ready(function () {
 
             }
 
-            if (data[0][0].fechaFin !== "ene 1, 1900")
+            if (data[0][0].fechaFin !== "Jan 1, 1900")
             {
                 var fecha = data[0][0].fechaFin;
                 fecha = convertDate(fecha);
@@ -5442,7 +5442,7 @@ $(document).ready(function () {
 
 // 'ene 1, 2001'
     function convertDate(fecha) {
-        if (fecha !== "ene 1, 1900") {
+        if (fecha !== "Jan 1, 1900") {
             console.log(fecha);
             fecha = fecha.replace("ene", "jan");
             fecha = fecha.replace("feb", "feb");
