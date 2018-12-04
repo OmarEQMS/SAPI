@@ -246,6 +246,22 @@ public class FrontController extends HttpServlet {
                                 request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                 break;
                             }
+                            case "administrador/rendimientoNavegadora.jsp": {
+                                sesion.setAttribute("path", keyRuta);
+
+                                int idEmpleadoNavegadora = Integer.parseInt(request.getParameter("idNavegadora"));
+
+                                EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
+                                TablaMedicoAdministrador navegadora = empleadoServicioImpl.mostrarMedicoAdministrador(idEmpleadoNavegadora, 4);
+
+                                sesion.setAttribute("nombreNavegadora", navegadora.getNombre());
+                                sesion.setAttribute("primerApellidoNavegadora", navegadora.getPrimerApellido());
+                                sesion.setAttribute("idEmpleadoNavegadora", idEmpleadoNavegadora);
+
+                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response); //Lo redirecciono a su rendimiento
+                                break;
+
+                            }
                             case "administrador/gestionPacientes.jsp": {
                                 //Lista de pacientes
                                 PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
@@ -285,12 +301,12 @@ public class FrontController extends HttpServlet {
                                 PersonaServicioImpl personaServicioMedicos = new PersonaServicioImpl();
                                 List<Persona> medicos = personaServicioMedicos.mostrarMedicosAdscritos();
                                 request.setAttribute("listaMedicos", medicos);
-                                
+
                                 sesion.setAttribute("path", keyRuta);
                                 request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                 break;
                             }
-                        }                            
+                        }
                         break;
                     }
                     case 3: {
@@ -424,25 +440,21 @@ public class FrontController extends HttpServlet {
 
                                 EstadoCivilServicioImpl estadoCivilServicioImpl = new EstadoCivilServicioImpl();
                                 EstadoCivil estadoCivil = estadoCivilServicioImpl.mostrarEstadoCivil(persona.getIdEstadoCivil());
-                                
-                                try
-                                {
+
+                                try {
                                     Pic picPaciente;
-                                    PicServicioImpl PicServicioImpl = new PicServicioImpl ();
+                                    PicServicioImpl PicServicioImpl = new PicServicioImpl();
                                     picPaciente = PicServicioImpl.mostrarPic(persona.getIdPersona());
-                                    
+
                                     InputStream imagenPaciente = picPaciente.getContenido();
                                     byte[] byteImg = IOUtils.toByteArray(imagenPaciente);
                                     String base64StringPic = Base64.getEncoder().encodeToString(byteImg);
-                                    
-                                    
-                                    sesion.setAttribute("base64ImgPac",base64StringPic);
-                                    
-                                }catch(Exception ex)
-                                {
+
+                                    sesion.setAttribute("base64ImgPac", base64StringPic);
+
+                                } catch (Exception ex) {
                                     System.out.println("Sin pic ".concat(ex.getMessage()));
-                                }                                    
-                                
+                                }
 
                                 MunicipioServicioImpl municipioServicioImpl = new MunicipioServicioImpl();
                                 Municipio municipio = municipioServicioImpl.mostrarMunicipio(persona.getIdMunicipio());
@@ -500,21 +512,17 @@ public class FrontController extends HttpServlet {
                                 SolicitudPreconsultaServicioImpl solicitudPreconsultaServicioImpl = new SolicitudPreconsultaServicioImpl();
                                 solicitudPreconsulta = solicitudPreconsultaServicioImpl.mostrarSolicitudPreconsulta(idPacientePotencial);
                                 System.out.println("Solicitud preconsulta ".concat(String.valueOf(solicitudPreconsulta.getMotivoCosulta())));
-                                if(solicitudPreconsulta.getMotivoCosulta() == 5)
-                                {
+                                if (solicitudPreconsulta.getMotivoCosulta() == 5) {
                                     sesion.setAttribute("motivoPreconsulta", solicitudPreconsulta.getOtro());
-                                }else
-                                {
-                                    try
-                                    {
+                                } else {
+                                    try {
                                         MotivoConsulta motivoConsulta;
                                         MotivoConsultaServicioImpl motivoConsultaServicioImpl = new MotivoConsultaServicioImpl();
-                                        motivoConsulta = motivoConsultaServicioImpl.mostrarMotivoConsulta(solicitudPreconsulta.getMotivoCosulta());                                    
+                                        motivoConsulta = motivoConsultaServicioImpl.mostrarMotivoConsulta(solicitudPreconsulta.getMotivoCosulta());
                                         sesion.setAttribute("motivoPreconsulta", motivoConsulta.getNombre());
-                                    }catch(Exception ex)
-                                    {
+                                    } catch (Exception ex) {
                                         System.out.println("Sin motivo por ser aprobada en el INcan");
-                                        sesion.setAttribute("motivoPreconsulta", "Vino direcamente al INCan" );
+                                        sesion.setAttribute("motivoPreconsulta", "Vino direcamente al INCan");
                                     }
                                 }
 
@@ -891,7 +899,7 @@ public class FrontController extends HttpServlet {
                                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                                 Calendar cal = Calendar.getInstance();
                                 System.out.println(dateFormat.format(cal.getTime()));
-                                 //Date fecha = Date.valueOf(dateFormat.format(cal.getTime()));                                                                        
+                                //Date fecha = Date.valueOf(dateFormat.format(cal.getTime()));                                                                        
 
                                 break;
 
