@@ -1933,9 +1933,7 @@ $(document).ready(function () {
                             $('#modalCambiarContraseña').modal('toggle');
                         }
                     });
-        } else {
-            
-        }
+        } 
     });
 
     $("#password").on('change', function () {

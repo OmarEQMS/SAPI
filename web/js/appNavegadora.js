@@ -1369,5 +1369,33 @@ $(document).ready(function () {
         }
 
     });
+    
+    $("body").on("click", ".clearPassNavegadora", function () {
+        
+        $("#password").val("");
+        $("#password2").val("");
+
+        $('#error-contrasena').hide();
+        $('#noEqualPasswordsError').hide();
+
+        $('#password').css('border', '');
+        $('#password').css('color', '');
+
+        $('#password2').css('border', '');
+        $('#password2').css('color', '');
+
+
+    });
+
+    function mostrarContrasena(myButton, myField) {
+        myButton.on('mousedown', function () {
+            var x = document.getElementById(myField);
+            x.type = "text";
+        });
+        myButton.on('mouseup', function () {
+            var x = document.getElementById(myField);
+            x.type = "password";
+        });
+    }
 
 });

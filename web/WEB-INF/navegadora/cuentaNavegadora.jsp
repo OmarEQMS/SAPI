@@ -155,7 +155,7 @@
 
                         <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
 
-                            </span> <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
+                            </span></span>
 
                     </div>
                 </nav>
@@ -296,7 +296,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Cambiar contraseña</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close clearPassNavegadora" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -326,7 +326,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" style="border-radius: 20px"  data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger clearPassNavegadora" style="border-radius: 20px"  data-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-primary" id="btn-updatePassword" style="border-radius: 20px" >Cambiar contraseña</button>
 
                         </div>
