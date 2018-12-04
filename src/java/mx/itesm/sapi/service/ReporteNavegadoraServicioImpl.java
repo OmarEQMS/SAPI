@@ -383,7 +383,7 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             rs.next();
             
             reporteNavegadora.setNavegadora(rs.getString("nombre").concat(" ").concat(rs.getString("primerApellido")).concat(" ").concat(rs.getString("segundoApellido")));
-            System.out.println("Llena el bean del 4 store procedure");
+            System.out.println("Llena el bean del 3 store procedure");
             rs.close();
             cstmt.close();
             conn.close();
