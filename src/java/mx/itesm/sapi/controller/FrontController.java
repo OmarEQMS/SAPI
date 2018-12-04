@@ -267,7 +267,6 @@ public class FrontController extends HttpServlet {
                                 PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
                                 List<PacienteAdmin> pacientes = pacienteServicio.mostrarPacientesAdmin();
                                 request.setAttribute("ListaPacientesAdministrador", pacientes);
-                                
 
                                 //Estado civil
                                 EstadoCivilServicioImpl estadoCivilServicio = new EstadoCivilServicioImpl();
@@ -408,7 +407,7 @@ public class FrontController extends HttpServlet {
                             }
 
                             case "navegadora/documentos.jsp": {
-                                System.out.println("Index Navegadora ");
+                                System.out.println("Visualizador de Documentos de una Navegadora ");
 
                                 PicServicioImpl picServicioImpl = new PicServicioImpl();
                                 Pic pic = picServicioImpl.mostrarPic((int) sesion.getAttribute("idPersona"));
@@ -576,21 +575,29 @@ public class FrontController extends HttpServlet {
                                     idDocumentoInicial = Integer.parseInt(request.getParameter("idDocumentoInicialVista"));
                                     System.out.println("idDocumentoInicial parameter" + idDocumentoInicial);
                                 } catch (Exception ex) {
-                                    System.out.println("Catch parameter idDocumentoInicial ".concat(ex.getMessage()));
-                                    idDocumentoInicial = 241;
+                                    try {
+                                        idDocumentoInicial = (int) sesion.getAttribute("idDocumentoInicial");
+                                    } catch (Exception x) {
+                                        System.out.println("Catch parameter idDocumentoInicial ".concat(x.getMessage()));
+                                        idDocumentoInicial = 241;
+                                    }
                                 }
 
                                 try {
                                     idPaciente = Integer.parseInt(request.getParameter("idPacientePotencialAtendido"));
                                 } catch (Exception ex) {
-                                    System.out.println("Catch parameter idPacientePotencial ".concat(ex.getMessage()));
-                                    idPaciente = 68;
+                                    try {
+                                        idPaciente = (int) sesion.getAttribute("idPacientePotencialAtendido");
+                                    } catch (Exception x) {
+                                        System.out.println("Catch parameter idPacientePotencial ".concat(x.getMessage()));
+                                        idPaciente = 68;
+                                    }
                                 }
                                 try {
                                     siguiente = Integer.parseInt(request.getParameter("siguiente"));
                                 } catch (Exception ex) {
-                                    System.out.println("Catch parameter siguiente ".concat(ex.getMessage()));
                                     siguiente = 0;
+                                    System.out.println("Catch parameter siguiente ".concat(ex.getMessage()));
                                 }
 
                                 sesion.setAttribute("idPacientePotencialAtendido", idPaciente);
