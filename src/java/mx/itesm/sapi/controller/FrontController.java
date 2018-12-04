@@ -267,6 +267,7 @@ public class FrontController extends HttpServlet {
                                 PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
                                 List<PacienteAdmin> pacientes = pacienteServicio.mostrarPacientesAdmin();
                                 request.setAttribute("ListaPacientesAdministrador", pacientes);
+                                
 
                                 //Estado civil
                                 EstadoCivilServicioImpl estadoCivilServicio = new EstadoCivilServicioImpl();

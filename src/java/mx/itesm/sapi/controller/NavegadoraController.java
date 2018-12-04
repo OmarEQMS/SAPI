@@ -393,7 +393,7 @@ public class NavegadoraController extends HttpServlet {
                             boolean rechazado = documentoInicialServicioImpl.agregarRechazoDocumento(idDocumentoInicial, comentario);
                             //ESto es para el correo
 
-                            int pacientePotencial = (int) sesion.getAttribute("idPacienteAtendido");
+                            int pacientePotencial = (int) sesion.getAttribute("idPacientePotencialAtendido");
 
                             PersonaServicioImpl personaServicio = new PersonaServicioImpl();
                             Persona persona = personaServicio.mostrarPersonaPorIdPaciente(pacientePotencial);
@@ -446,6 +446,9 @@ public class NavegadoraController extends HttpServlet {
 
                                 //request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
                                 System.out.println("Fin del try enviar correo");
+                                
+                                PrintWriter out = response.getWriter();
+                                out.print("true");
 
                             } catch (Exception ex) {
                                 System.out.println("catch de envia correo");

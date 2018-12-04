@@ -43,6 +43,11 @@
     </head>
 
     <body>
+        
+        <div class="descargarDoc" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Descargando documento, por favor espere...</p>
+        </div>
 
         <div class="wrapper">
 
@@ -269,7 +274,7 @@
                                             </c:choose>
                                         </td>
                                         <td>
-                                            <a  class="btn btn-info irAVerDocumento" id="btn-ver " data-id="${documento.idDocumentoInicial}">
+                                            <a style="color:white;" class="btn btn-info irAVerDocumento" id="btn-ver " data-id="${documento.idDocumentoInicial}">
                                                 <i class="far fa-eye "></i>
                                                 </button>
                                         </td>
