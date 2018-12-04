@@ -209,7 +209,7 @@
             </div>
         </div>
         <!-- ***** MODAL AGREGAR TRATAMIENTO ***** -->
-        <div id="modalAgregarTratamiento" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalRegistrarTratamientoLabel"
+        <div id="modalAgregarTratamiento" class="modal fade" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog" aria-labelledby="modalRegistrarTratamientoLabel"
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
@@ -281,7 +281,7 @@
         </div>
 
         <!-- ***** MODAL EDITAR TRATAMIENTO ***** -->
-        <div id="modalEditarTerminado" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalRegistrarTratamientoLabel"
+        <div id="modalEditarTerminado" class="modal fade" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog" aria-labelledby="modalRegistrarTratamientoLabel"
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">

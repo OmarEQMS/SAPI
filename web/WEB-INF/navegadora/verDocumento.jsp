@@ -58,6 +58,11 @@
             <img src="img/loading.svg">
             <p class="clear">Aceptando documento, por favor espere...</p>
         </div>
+        
+        <div class="cargandoRechazarDoc" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Rechazando documento, por favor espere...</p>
+        </div>
 
         <div class="wrapper">
 
@@ -210,12 +215,12 @@
 
 
                 <!-- ********** MODAL AGREGAR COMENTARÍO ********** -->
-                <div class="modal fade" id="modalAgregarComentario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="modalAgregarComentario" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content" id="modal-rechazo">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Razón de rechazo</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close clearMotivo" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -230,7 +235,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" style="border-radius: 20px" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-danger clearMotivo" style="border-radius: 20px" data-dismiss="modal">Cancelar</button>
                                 <button type="button" class="btn btn-primary" style="border-radius: 20px" id="btn-rechazarDocumento">Guardar cambios</button>
                             </div>
                         </div>

@@ -1354,5 +1354,8 @@ $(document).ready(function () {
         $('#hidden-idPaciente').val($(this).data('id'));
     });
     
-    
+    $("body").on("click", ".clearMotivo", function () {
+        $("#motivoRechazo").attr("type", "text").val('').attr("placeholder", "Introduce el motivo de rechazo");
+    });
+   
 });

@@ -492,11 +492,13 @@ $(document).ready(function () {
                     municipio: $("#editarMunicipioNavegadoraAPaciente").val()
                 }, success: function (response) {
                     swal({
-                        title: 'Buen Trabajo',
-                        text: "Cuenta editada correctamente",
-                        type: 'success',
+                        title: '¡Buen Trabajo!',
+                        text: "Cuenta editada correctamente.",
+                        icon: 'success',
+                        closeOnEsc: false,
+                        closeOnClickOutside: false,
                         confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Ok'
+                        confirmButtonText: 'Aceptar'
                     });
                 }
             });
@@ -619,7 +621,15 @@ $(document).ready(function () {
             },
             success: function (response) {
                 if (response == 'success') {
-                    swal("Buen trabajo!", "El paciente se aprobo correctamente!", "success");
+                    swal({
+                        title: '¡Buen Trabajo!',
+                        text: "El paciente se aprobó correctamente.",
+                        icon: 'success',
+                        closeOnEsc: false,
+                        closeOnClickOutside: false,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Aceptar'
+                    });
                     //$('#modalAceptarUsuario').toggle();
                     $('#Fecha-Navegacion').val('').attr("type", "text");
                     $('#Fecha-Consulta').val('').attr("type", "text");
@@ -627,7 +637,15 @@ $(document).ready(function () {
 
 
                 } else {
-                    swal("Algo salio mal!", "El paciente no se pudo aprobar!", "error");
+                    swal({
+                        title: "Error",
+                        text: "El paciente no se pudo aprobar.",
+                        icon: "error",
+                        closeOnEsc: false,
+                        closeOnClickOutside: false,
+                        buttons: true,
+                        buttons: [, 'Aceptar'],
+                    })
                 }
             }
 
@@ -644,10 +662,12 @@ $(document).ready(function () {
         var boton = $(this);
 
         swal({
-            title: "¿Estás segura?",
+            title: "¿Estás segura(o)?",
             text: "Una vez eliminado, el paciente y sus datos ya no se podrán recuperar.",
             icon: "warning",
             buttons: true,
+            closeOnEsc: false,
+            closeOnClickOutside: false,
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
@@ -667,15 +687,29 @@ $(document).ready(function () {
 
                             },
                             success: function (response) {
-
-
-                                swal("Buen trabajo!", "El paciente se eliminó correctamente!", "success");
+                                swal({
+                                    title: "¡Buen trabajo!",
+                                    text: "El paciente se eliminó correctamente.",
+                                    icon: "success",
+                                    closeOnEsc: false,
+                                    closeOnClickOutside: false,
+                                    buttons: true,
+                                    buttons: [, 'Aceptar'],
+                                })
                                 boton.parent().parent().remove();
 
 
                             },
                             error: function () {
-                                swal("Buen trabajo!", "El paciente se eliminó correctamente!", "error");
+                                swal({
+                                    title: "Error",
+                                    text: "El paciente no se eliminó correctamente.",
+                                    icon: "error",
+                                    closeOnEsc: false,
+                                    closeOnClickOutside: false,
+                                    buttons: true,
+                                    buttons: [, 'Aceptar'],
+                                })
                             }
 
                         });
@@ -723,6 +757,8 @@ $(document).ready(function () {
             title: "¿Estás segura(o)?",
             text: "Los datos se eliminarán y no podrás recuperarlos ni poder acceder a tu cuenta.",
             icon: "warning",
+            closeOnEsc: false,
+            closeOnClickOutside: false,
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
 
@@ -767,9 +803,11 @@ $(document).ready(function () {
 
         swal({
             title: "¿Estás segura(o)?",
-            text: "Estas observaciones se enviarán al paciente.",
+            text: "Las observaciones se enviarán al paciente.",
             icon: "warning",
             buttons: true,
+            closeOnEsc: false,
+            closeOnClickOutside: false,
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
@@ -794,6 +832,8 @@ $(document).ready(function () {
             text: "El paciente tendrá que solicitar de nuevo cita a preconsulta.",
             icon: "warning",
             buttons: true,
+            closeOnEsc: false,
+            closeOnClickOutside: false,
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
@@ -817,6 +857,8 @@ $(document).ready(function () {
             text: "Los datos serán almacenados y no será posible su posterior edición.",
             icon: "warning",
             buttons: true,
+            closeOnEsc: false,
+            closeOnClickOutside: false,
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
         })
@@ -1166,7 +1208,7 @@ $(document).ready(function () {
 
         swal({
             title: "¿Estás segura(o)?",
-            text: "Este documento será guardado como un documento válido y no podrás cambiar ese estatus.",
+            text: "El documento será guardado como un documento válido y no podrás cambiar ese estatus.",
             icon: "warning",
             closeOnEsc: false,
             closeOnClickOutside: false,
@@ -1185,6 +1227,12 @@ $(document).ready(function () {
                             url: "NavegadoraController",
                             data: data,
                             method: "POST",
+                            beforeSend: function () {
+                                $('.cargandoAceptarDoc').fadeIn();
+                            },
+                            complete: function () {
+                                $('.cargandoAceptarDoc').fadeOut();
+                            },
                             success: function (response) {
                                 if (response == "true")
                                 {
@@ -1227,7 +1275,7 @@ $(document).ready(function () {
 
     var resp;
 
-    //rechazar documento SHANNON
+    //rechazar documento 
     $('#btn-rechazarDocumento').on('click', () => {
 
         if ($('#motivoRechazo').val().trim().length < 1)
@@ -1247,15 +1295,23 @@ $(document).ready(function () {
                     key: "rechazarDocumento",
                     comentario: $('#motivoRechazo').val()
                 },
+                beforeSend: function () {
+                    $('.cargandoRechazarDoc').fadeIn();
+                },
+                complete: function () {
+                    $('.cargandoRechazarDoc').fadeOut();
+                },
                 method: "POST",
                 success: function (response) {
-                    alert(response);
                     if (response == "true")
                     {
                         swal({
                             icon: 'success',
                             title: '¡Buen trabajo!',
                             text: 'Se rechazo con éxito el documento.',
+                            closeOnEsc: false,
+                            closeOnClickOutside: false,
+                            buttons: [, 'Aceptar'],
                         });
                     } else
                     {
@@ -1263,11 +1319,14 @@ $(document).ready(function () {
                             icon: 'error',
                             title: 'Error',
                             text: 'Hubo un problema al rechazar el documento.',
+                            closeOnEsc: false,
+                            closeOnClickOutside: false,
+                            buttons: [, 'Aceptar'],
                         });
                     }
                 },
                 error: function (xhr) {
-                    alert("aca");
+
                 }
 
             });
@@ -1332,7 +1391,7 @@ $(document).ready(function () {
                         }
                     });
                     swal({
-                        title: 'No más documentos por revisar.',
+                        title: 'No hay más documentos por revisar.',
                         closeOnEsc: false,
                         closeOnClickOutside: false,
                         buttons: [, 'Aceptar']
@@ -1469,9 +1528,12 @@ $(document).ready(function () {
             });
         } else {
             swal({
-                title: "Datos invalidos!",
-                text: "Revisa todos los campos antes de continuar",
+                title: "Error",
+                text: "Revisa todos los campos antes de continuar.",
                 icon: "error",
+                closeOnEsc: false,
+                closeOnClickOutside: false,
+                buttons: [, 'Aceptar'],
             });
         }
     });
@@ -1506,8 +1568,10 @@ $(document).ready(function () {
         if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
             swal({
                 title: "¿Estás segura(o) que deseas guardar los cambios de tu contraseña?",
-                text: "No podras volver a usar tu contraseña anterior para ingresar",
+                text: "No podrás volver a usar tu contraseña anterior para ingresar.",
                 icon: "warning",
+                closeOnEsc: false,
+                closeOnClickOutside: false,
                 buttons: true,
                 buttons: ['Regresar', 'Cambiar contraseña'],
                 dangerMode: true
@@ -1526,8 +1590,12 @@ $(document).ready(function () {
                                 success: function (response) {
                                     if (response == "success") {
                                         swal({
-                                            title: "Contraseña actualizada",
+                                            title: "¡Buen trabajo!",
+                                            text: "Contraseña actualizada.",
                                             icon: "success",
+                                            closeOnEsc: false,
+                                            closeOnClickOutside: false,
+                                            buttons: [, 'Aceptar'],
                                         });
                                         $("#password").val('');
                                         $("#password-confirm").val('');
@@ -3163,7 +3231,15 @@ $(document).ready(function () {
 
                     alert('break 2');
 
-                    swal("Error", "Verifica que hayas rellenado todos los datos", "error");
+                    swal({
+                        title: "Error",
+                        text: "Verifica que hayas llenado todos los datos.",
+                        icon: "error",
+                        closeOnEsc: false,
+                        closeOnClickOutside: false,
+                        buttons: true,
+                        buttons: [, 'Aceptar'],
+                    })
                     $('#numSeguro').css('border', '1px solid red');
                     $('#numSeguro').css('color', 'red');
 
@@ -3186,7 +3262,15 @@ $(document).ready(function () {
             }
 
         } else {
-            swal("Error", "Hay datos incorrectos o faltantes", "error");
+            swal({
+                title: "Error",
+                text: "Hay datos incorrectos o faltantes.",
+                icon: "error",
+                closeOnEsc: false,
+                closeOnClickOutside: false,
+                buttons: true,
+                buttons: [, 'Aceptar'],
+            })
         }
 
 
@@ -3225,9 +3309,11 @@ $(document).ready(function () {
 
 
         swal({
-            title: '¿Estás segure cancelar las citas de navegación y preconsulta?',
+            title: '¿Estás segura(o) de cancelar las citas de navegación y preconsulta?',
             text: "La paciente tendrá que solicitar una nueva cita de navegación y preconsulta.",
             icon: 'warning',
+            closeOnEsc: false,
+            closeOnClickOutside: false,
             buttons: ["Cancelar", "Aceptar"]
 
         }).then((result) => {
@@ -3248,18 +3334,22 @@ $(document).ready(function () {
                         if (response == 0)
                         {
                             swal({
-                                title: "¡Ups!",
+                                title: "Error",
                                 text: "Ha habido un error al cancelar las citas de navegación y preconsulta.",
                                 icon: "error",
+                                closeOnEsc: false,
+                                closeOnClickOutside: false,
                                 button: "Aceptar",
                             });
                         } else
                         {
                             swal({
-                                title: "Cancelación exitosa",
-                                text: "Ha habido un error al cancelar las citas de navegación y preconsulta.",
+                                title: "¡Buen trabajo!",
+                                text: "Se cancelaron correctamente las citas de navegación y preconsulta.",
                                 icon: "success",
                                 button: "Aceptar",
+                                closeOnEsc: false,
+                                closeOnClickOutside: false,
                             });
                         }
                     }
