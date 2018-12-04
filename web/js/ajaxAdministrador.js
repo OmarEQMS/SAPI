@@ -3952,8 +3952,6 @@ $(document).ready(function () {
 
         $('#idPacienteAEditar').val($(this).data('id'));
 
-        //alert($('#idPacienteAEditar').val());
-
         console.log("idPaciente: " + idPaciente);
 
         $.ajax({
@@ -3972,12 +3970,6 @@ $(document).ready(function () {
                 var data = JSON.parse(response);
 
                 console.log(data);
-
-
-                /*alert(data.fechaNacimiento);
-                 alert(new Date(data.fechaNacimiento));
-                 alert(convertDate(new Date(data.fechaNacimiento)));*/
-
 
                 $('#editarNombreAdministradorAPaciente').val(data.nombre);
                 $('#editarCurpAdministradorAPaciente').val(data.curp);
@@ -4347,7 +4339,6 @@ $(document).ready(function () {
     });
 
     var isValidExistenciaCP;
-
     //Codigo Postal en Agregar Paciente
     $('#codigo-postalPaciente').on('change', function () {
 
@@ -4824,7 +4815,7 @@ $(document).ready(function () {
 
         var m = input.val();
 
-        var expreg = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1])[a-zA-ZÀ-ÿ\u00f1\u00d1]{2,255}$/;
+        var expreg = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1])[a-zA-ZÀ-ÿ\u00f1\u00d1]{0,255}$/;
 
         if (!expreg.test(m)) {
 
@@ -4844,7 +4835,7 @@ $(document).ready(function () {
 
         var m = input.val();
 
-        var expreg = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1])[a-zA-ZÀ-ÿ\u00f1\u00d1]{2,255}$/;
+        var expreg = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1])[a-zA-ZÀ-ÿ\u00f1\u00d1]{0,255}$/;
 
         if (!expreg.test(m)) {
 

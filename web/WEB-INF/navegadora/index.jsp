@@ -246,7 +246,7 @@
 
                                                             </c:choose>
 
-                                                            <button class="btn btn-primary btn-editar m-1" data-id="${paciente.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarUsuario">
+                                                            <button class="btn btn-primary btn-editar m-1" data-id="${paciente.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarPaciente">
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
                                                             <button class="btn btn-danger btn-eliminar m-1" data-id="${paciente.idPaciente}" id="btn-eliminar" data-toggle="modal" data-target="#modalEliminarUsuario">
@@ -372,7 +372,7 @@
                                                             <button class="btn btn-info m-1 btn-ver-formulario" data-id="${pacienteAprobado.idPaciente}" id="btn-ver">
                                                                 <i class="fab fa-wpforms"></i>
                                                             </button>                                                                                                                        </button>
-                                                            <button class="btn btn-primary m-1 btn-editar" data-id="${pacienteAprobado.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarUsuario">
+                                                            <button class="btn btn-primary m-1 btn-editar" data-id="${pacienteAprobado.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarPaciente">
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
                                                             <button class="btn btn-danger m-1 btn-perder-cita" data-id="${pacienteAprobado.idPaciente}" data-toggle="modal" data-target="#modalEliminarUsuario">
@@ -706,7 +706,8 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="modalEditarUsuario" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <!-- ********** MODAL EDITAR PACIENTE ********** -->
+            <div class="modal fade" data-keyboard="false" data-backdrop="static" id="modalEditarPaciente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -716,6 +717,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
+
+                            <input type="hidden" id="idPacienteAEditar">
 
                             <div class="form-group row">
                                 <div class="col-6">
@@ -727,7 +730,7 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarNombreNavegadoraAPaciente" placeholder="Nombre">
                                     </div>
-                                    <span class="text-danger" id="error-editar-NombreNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 255 caracteres.</span>
+                                    <span class="text-danger" id="error-editar-NombrePaciente">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 255 caracteres.</span>
 
                                 </div>
 
@@ -740,11 +743,10 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarCurpNavegadoraAPaciente" placeholder="CURP">
                                     </div>
-                                    <span class="text-danger" id="error-editar-CurpNavegadora">Formato incorrecto, las letras deben estar en mayúsculas y asegúrate de introducir un CURP válido y sin espacios. Puedes consultarlo 
+                                    <span class="text-danger" id="error-editar-CurpPaciente">Formato incorrecto, las letras deben estar en mayúsculas y asegúrate de introducir un CURP válido y sin espacios. Puedes consultarlo 
                                         <a class="text-primary " target="_blank" href="https://www.gob.mx/curp/">aquí.</a>
-                                    </span><br>
-
-                                    <span class="text-warning" id="error-editar-CurpRepetidoNavegadora">El curp ya existe.</span>
+                                    </span>
+                                    <span class="text-warning" id="error-editar-CurpRepetidoPaciente">El curp ya existe.</span>
                                 </div>
 
                             </div>
@@ -760,7 +762,7 @@
                                         <input placeholder="Fecha de nacimiento" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                id="editarCumpleNavegadoraAPaciente">
                                     </div>
-                                    <span class="text-danger" id="error-editar-FechaNavegadora">Fecha incorrecta</span>
+                                    <span class="text-danger" id="error-editar-FechaPaciente">Fecha incorrecta debes tener entre 16 y 115 años para poder registrarte.</span>
                                 </div>
                             </div>
 
@@ -775,7 +777,7 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarPrimer-apellidoNavegadoraAPaciente" placeholder="Primer Apellido">
                                     </div>
-                                    <span class="text-danger" id="error-editar-ApellidoPaternoNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
+                                    <span class="text-danger" id="error-editar-ApellidoPaternoPaciente">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
 
                                 </div>
 
@@ -786,9 +788,9 @@
                                                 <i class="fas fa-user"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control" id="editarSegundo-apellidoNavegadoraAPaciente" placeholder="Segundo Apellido">
+                                        <input type="text" class="form-control" id="editarSegundo-apellidoNavegadoraAPaciente" placeholder="Segundo Apellido (Opcional)">
                                     </div>
-                                    <span class="text-danger" id="error-editar-ApellidoMaternoNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
+                                    <span class="text-danger" id="error-editar-ApellidoMaternoPaciente">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 2 y un máximo de 127 caracteres.</span>
 
                                 </div>
                             </div>
@@ -805,19 +807,19 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarUsuarioNavegadoraAPaciente" placeholder="Usuario">
                                     </div>
-                                    <span class="text-danger" id="error-editar-NombreUsuarioNavegadora">Formato incorrecto, solo caracteres alfabéticos con un mínimo de 4 y un máximo de 16 caracteres.</span><br>
-                                    <span class="text-warning" id="error-editar-UsuarioRepetidoNavegadora">El usuario ya existe.</span>
+                                    <span class="text-danger" id="error-editar-NombreUsuarioPaciente">Formato incorrecto, solo caracteres alfanuméricos con un mínimo de 4 y un máximo de 16 caracteres.</span>
+                                    <span class="text-warning" id="error-editar-UsuarioRepetidoPaciente">El usuario ya existe.</span>
                                 </div>
                                 <div class="col-6">
                                     <div class="input-group">
-                                        <select class="form-control" name="estado-civilNavegadora" id="editarEstado-civilNavegadora">
+                                        <select class="form-control" name="estado-civilPaciente" id="editarEstado-civilPaciente">
                                             <option disabled selected>Estado Civil</option>
                                             <c:forEach items="${estadoCivil}" var="estadoC">  
                                                 <option value='<c:out value="${estadoC.idEstadoCivil}"/>'><c:out value='${estadoC.nombre}'/> </option>
                                             </c:forEach>
                                         </select>
                                     </div>
-                                    <span class="text-danger" id="error-editar-ECivilNavegadora">Selecciona una opcion</span>
+                                    <span class="text-danger" id="error-editar-ECivilPaciente">Selecciona una opcion</span>
                                 </div>
                             </div>
 
@@ -829,9 +831,9 @@
                                                 <i class="fas fa-map-marker-alt"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control" id="editarColNavegadoraAPaciente" placeholder="Colonia">
+                                        <input type="text" class="form-control" id="editarColNavegadoraAPaciente" placeholder="Colonia (Opcional)">
                                     </div>
-                                    <span class="text-danger" id="error-editar-ColoniaNavegadora">Formato incorrecto, introducir caracteres alfanuméricos.</span>
+                                    <span class="text-danger" id="error-editar-ColoniaPaciente">Formato incorrecto, introducir caracteres alfanuméricos.</span>
 
                                 </div>
 
@@ -846,22 +848,10 @@
                                                 <i class="fas fa-map-marker-alt"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control" id="editarCalleNavegadoraAPaciente" placeholder="Calle">
+                                        <input type="text" class="form-control" id="editarCalleNavegadoraAPaciente" placeholder="Calle (Opcional)">
                                     </div>
 
-                                    <span class="text-danger" id="error-editar-CalleNavegadora">Formato incorrecto, introducir caracteres alfanuméricos.</span>
-
-                                </div>
-                                <div class="col-3">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-map-marker-alt"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text" class="form-control" id="editarNumIntNavegadoraAPaciente" placeholder="No. int">
-                                    </div>
-                                    <span class="text-danger" id="error-editar-NoInteriorNavegadora">Formato incorrecto, solo dígitos y/o letras.</span>
+                                    <span class="text-danger" id="error-editar-CallePaciente">Formato incorrecto, introducir caracteres alfanuméricos.</span>
 
                                 </div>
                                 <div class="col-3">
@@ -871,9 +861,21 @@
                                                 <i class="fas fa-map-marker-alt"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control" id="editarNumExtNavegadoraAPaciente" placeholder="No. ext">
+                                        <input style = "font-size:13px" type="text" class="form-control" id="editarNumIntNavegadoraAPaciente" placeholder="No. int (Opcional))">
                                     </div>
-                                    <span class="text-danger" id="error-editar-NoExteriorNavegadora">Formato incorrecto, solo dígitos y/o letras.</span>
+                                    <span class="text-danger" id="error-editar-NoInteriorPaciente">Formato incorrecto, solo dígitos y/o letras.</span>
+
+                                </div>
+                                <div class="col-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                            </div>
+                                        </div>
+                                        <input style = "font-size:13px" type="text" class="form-control" id="editarNumExtNavegadoraAPaciente" placeholder="No. ext (Opcional)">
+                                    </div>
+                                    <span class="text-danger" id="error-editar-NoExteriorPaciente">Formato incorrecto, solo dígitos y/o letras.</span>
 
                                 </div>
                             </div>
@@ -889,7 +891,7 @@
                                         </select>
                                     </div>
 
-                                    <span class="text-danger" id="error-editar-EstadoNavegadora">Campo vacío</span>
+                                    <span class="text-danger" id="error-editar-EstadoPaciente">Campo vacío</span>
 
                                 </div>
                                 <div class="col-6">
@@ -899,7 +901,7 @@
                                         </select>
                                     </div>
 
-                                    <span class="text-danger" id="error-editar-MunicipioNavegadora">Campo vacío</span>
+                                    <span class="text-danger" id="error-editar-MunicipioPaciente">Campo vacío</span>
 
                                 </div>
                             </div>
@@ -914,7 +916,7 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarTelNavegadoraAPaciente" placeholder="Teléfono">
                                     </div>
-                                    <span class="text-danger" id="error-editar-TelefonoNavegadora">Formato incorrecto, deben ser 10 dígitos.</span>
+                                    <span class="text-danger" id="error-editar-TelefonoPaciente">Formato incorrecto, deben ser 10 dígitos.</span>
                                 </div>
 
                                 <div class="col-6">
@@ -926,21 +928,29 @@
                                         </div>
                                         <input type="text" class="form-control" id="editarCorreoNavegadoraAPaciente" placeholder="Correo">
                                     </div>
-                                    <span class="text-danger" id="error-editar-CorreoNavegadora">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres.</span>
-
+                                    <span class="text-danger" id="error-editar-CorreoPaciente">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
+                                    <span class="text-warning" id="errorEditarPacienteCorreoRepetido">El correo ya existe.</span>
                                 </div>
 
                             </div>
-                            <div class="row mb-3" id="error-campos">
+
+                            <div class="row mb-3" id="error-camposEditarPaciente">
                                 <div class="col-12 text-center">
-                                    <span class="text-danger">Completa todos los campos y asegúrate de aceptar los términos para registrar la cuenta.</span>
+                                    <span class="text-danger">Debes llenar correctamente los campos para editar la cuenta.</span>
                                 </div>
                             </div>
+
+                            <div class="row mb-3" id="error-editarDatosRepetidosPaciente">
+                                <div class="col-12 text-center">
+                                    <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>
+                                </div>
+                            </div>
+
 
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" style="border-radius:20px">Cancelar</button>
+                            <button type="button" class="btn btn-danger clearEditPacientesModal" data-dismiss="modal" style="border-radius:20px">Cancelar</button>
                             <button type="button" class="btn btn-primary" id="btn-guardarCambios" style="border-radius:20px">Guardar Cambios</button>
                         </div>
                     </div>
