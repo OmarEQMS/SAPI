@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    $('#error-camposMotivo').hide();
 
 
     $('#errorNombreNavegadora').hide();
@@ -45,7 +46,7 @@ $(document).ready(function () {
     $('#error-editar-EstadoNavegadora').hide();
     $('#error-editar-MunicipioNavegadora').hide();
     $('#error-editar-UsuarioRepetidoNavegadora').hide();
-    
+
     $('#error-imgPerfil').hide();
     $('#error-contrasena').hide();
     $('#noEqualPasswordsError').hide();
@@ -499,10 +500,10 @@ $(document).ready(function () {
                     });
                 }
             });
-    }
+        }
     });
-    
-     //Redirige a documentos    
+
+    //Redirige a documentos    
     $('body').on('click', '.btn-ver', function () {
 
         var id = $(this).data('id');
@@ -1150,6 +1151,8 @@ $(document).ready(function () {
             title: "¿Estás segura(o)?",
             text: "Este documento será guardado como un documento válido y no podrás cambiar ese estatus.",
             icon: "warning",
+            closeOnEsc: false,
+            closeOnClickOutside: false,
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,
@@ -1169,16 +1172,22 @@ $(document).ready(function () {
                                 if (response == "true")
                                 {
                                     swal({
-                                        type: 'success',
-                                        title: 'Éxito',
+                                        icon: 'success',
+                                        title: '¡Buen trabajo!',
+                                        closeOnEsc: false,
+                                        closeOnClickOutside: false,
                                         text: 'Se aprobó con éxito el documento.',
+                                        buttons: [, 'Aceptar']
                                     });
                                 } else
                                 {
                                     swal({
-                                        type: 'error',
-                                        title: 'Ups',
+                                        icon: 'error',
+                                        title: 'Error',
+                                        closeOnEsc: false,
+                                        closeOnClickOutside: false,
                                         text: 'Hubo un problema al aprobar el documento.',
+                                        buttons: [, 'Aceptar']
                                     });
                                 }
                             },
@@ -1194,108 +1203,129 @@ $(document).ready(function () {
                 });
 
     });
+    
+    $("#motivoRechazo").on('click', function () {
+       $('#error-camposMotivo').hide();
+    });
 
+    var resp;
 
-    //rechazar documento
+    //rechazar documento SHANNON
     $('#btn-rechazarDocumento').on('click', () => {
 
-
+         if ($('#motivoRechazo').val().trim().length < 1)
+        {
+            resp = true;
+            $('#error-camposMotivo').show();
+        } else {
+            resp = false;
+            $('#error-camposMotivo').hide();
+        }
         //ajax para rechazar
-
-        //location.href = "./documentos3.html"
+        if (!resp) {
+            
         var data = {key: "rechazarDocumento", comentario: $('#motivoRechazo').val()};
-        $('#motivoRechazo').val("");
-        $.ajax({
-            url: "NavegadoraController",
-            data: data,
-            method: "POST",
-            success: function (response) {
-                if (response == "true")
-                {
-                    swal({
-                        type: 'success',
-                        icon: 'success',
-                        title: 'Éxito',
-                        text: 'Se rechazo con éxito el documento.',
-                    });
-                } else
-                {
-                    swal({
-                        type: 'error',
-                        icon: 'error',
-                        title: 'Ups',
-                        text: 'Hubo un problema al rechazar el documento.',
-                    });
+            $.ajax({
+                url: "NavegadoraController",
+                data: data,
+                method: "POST",
+                success: function (response) {
+                    alert(response);
+                    if (response == "true")
+                    {
+                        swal({
+                            icon: 'success',
+                            title: '¡Buen trabajo!',
+                            text: 'Se rechazo con éxito el documento.',
+                        });
+                    } else
+                    {
+                        swal({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Hubo un problema al rechazar el documento.',
+                        });
+                    }
+                },
+                error: function (xhr) {
+                            alert("aca");
                 }
-            },
-            error: function (xhr) {
-                //alert(xhr.statusText);
-            }
 
-        });
+            });
+            $("#modalAgregarComentario").modal('toggle');
+        }
 
     });
 
     $('#btn-siguiente').on('click', function () {
 
-
-        swal({
-            icon: 'info',
-            title: 'Cargando',
-            text: 'Estamos buscando el siguiente documento',
-            //timer:8000,         
-            buttons: false
-        });
-
         var data = {idPacientePotencialAtendido: $('#idPacientePotencialAtendido').val(), idDocumentoInicialVista: $('#idDocumentoInicialVista').val(), key: 1};
 
         console.log(JSON.stringify(data));
 
-        $.post("SAPI", {
-            idPacientePotencialAtendido: $('#idPacientePotencialAtendido').val(),
-            idDocumentoInicialVista: $('#idDocumentoInicialVista').val(),
-            siguiente: 1,
-            file: "navegadora/verDocumento.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "navegadora/verDocumento.jsp",
+                idPacientePotencialAtendido: $('#idPacientePotencialAtendido').val(),
+                idDocumentoInicialVista: $('#idDocumentoInicialVista').val(),
+                siguiente: 1,
+            },
+            beforeSend: function () {
+                $('.cargandoSiguiente').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoSiguiente').fadeOut();
+            },
+            success: function (response) {
 
-                        } else if (response == "todos")
-                        {
-                            console.log("Redireccionar a documentos");
-                            $.post("SAPI", {
-                                file: "navegadora/documentos.jsp",
-                                idPacientePotencialAtendido: "hola"
-                            },
-                                    function (response, status, xhr) {
-                                        //console.log(response);
-                                        if (status == "success") {
-                                            if (response == "error") {
-                                                $("#msj-error").show();
-                                            } else {
-                                                document.open("text/html", "replace");
-                                                document.write(response);
-                                                document.close();
-                                            }
-                                        }
-                                    }
-                            );
-                            swal({
-                                title: 'No más documentos por revisar.',
-                                timer: 3000
-                            });
+                if (response == "error") {
 
-                        } else {
-                            swal.close();
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
+                    $("#msj-error").show();
+
+                } else if (response == "todos")
+                {
+                    console.log("Redireccionar a documentos");
+                    $.ajax({
+                        url: 'SAPI',
+                        method: "POST",
+                        cache: false,
+                        data: {
+                            file: "navegadora/documentos.jsp",
+                            idPacientePotencialAtendido: "hola"
+                        },
+                        beforeSend: function () {
+                            $('.cargandoListaDocs').fadeIn();
+                        },
+                        complete: function () {
+                            $('.cargandoListaDocs').fadeOut();
+                        },
+                        success: function (response) {
+                            if (response == "error") {
+                                $("#msj-error").show();
+                            } else {
+                                document.open("text/html", "replace");
+                                document.write(response);
+                                document.close();
+                            }
                         }
-                    }
+                    });
+                    swal({
+                        title: 'No más documentos por revisar.',
+                        closeOnEsc: false,
+                        closeOnClickOutside: false,
+                        buttons: [, 'Aceptar']
+                    });
+
+                } else {
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
                 }
-        );
+            }
+        });
     });
 
     $('#irADashboard').on('click', function () {
@@ -1647,15 +1677,31 @@ $(document).ready(function () {
 
     $('.descargarDocumento').on('click', function () {
 
+        $.ajax({
+            url: 'NavegadoraController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "descargarArchivo",
+                idDocumento: $(this).data('id')
+            },
+            beforeSend: function () {
+                $('.descargarDoc').fadeIn();
+            },
+            complete: function () {
+                $('.descargarDoc').fadeOut();
+            },
+            success: function (response) {
+                if (response == "success") {
 
-        $.post("NavegadoraController",
-                {
-                    key: 'descargarArchivo',
-                    idDocumento: $(this).data('id')
-                },
-                function (data, status) {
+                }
+            },
+            error: function (xhr) {
 
-                });
+            }
+
+        });
+
     });
 
     $('#irAForm').on('click', function () {
@@ -2363,7 +2409,7 @@ $(document).ready(function () {
         if (!isValidFechaEstudioPrevio($(this))) {
             $('#error-fechaUltra').show();
         } else {
-         //   $('#error-fechaUltra').hide();
+            //   $('#error-fechaUltra').hide();
         }
 
     });
@@ -2956,63 +3002,63 @@ $(document).ready(function () {
         var etapaClinica = $("#etapaClinica").val();
         if (etapaClinica == null)
             etapaClinica = "";
-        
+
         var resultadoTipoMastografia = $("#ResultadoTipoMastografia").val();
-        if(resultadoTipoMastografia == null)
-            resultadoTipoMastografia="";
-        
+        if (resultadoTipoMastografia == null)
+            resultadoTipoMastografia = "";
+
         var tipoUSG = $("#tipoUSG").val();
-        if(tipoUSG==null)
-            tipoUSG="";
-        
+        if (tipoUSG == null)
+            tipoUSG = "";
+
         var tumorPrimarioT = $("#tumorPrimarioT").val();
-        if(tumorPrimarioT == null)
-            tumorPrimarioT="";
-        
+        if (tumorPrimarioT == null)
+            tumorPrimarioT = "";
+
         var gangliosN = $("#gangliosN").val();
-        if(gangliosN==null)
-            gangliosN="";
-        
+        if (gangliosN == null)
+            gangliosN = "";
+
         var metastasisM = $("#metastasisM").val();
-        if(metastasisM==null)
-            metastasisM="";
-        
+        if (metastasisM == null)
+            metastasisM = "";
+
         var resultadoPatologia = $("#resultado-patologia").val();
-        if(resultadoPatologia == null)
-            resultadoPatologia="";
-        
+        if (resultadoPatologia == null)
+            resultadoPatologia = "";
+
         var gradoHistologico = $("#grado-histologico").val();
-        if(gradoHistologico==null)
-            gradoHistologico="";
-        
+        if (gradoHistologico == null)
+            gradoHistologico = "";
+
         var receptorHer2 = $("#receptor-her2").val();
-        if(receptorHer2==null)
-            receptorHer2="";
-        
+        if (receptorHer2 == null)
+            receptorHer2 = "";
+
         var receptorFish = $("#receptor-fish").val();
-        if(receptorFish==null)
-            receptorFish="";
-        
-        var receptorRe= $("#receptor-re").val();
-        if(receptorRe==null)
-            receptorRe="";
-        
-        var receptorRp= $("#receptor-rp").val();
-        if(receptorRp==null)
-            receptorRp="";
-        
-        var ki67= $("#ki67").val();
-        if(ki67==null)
-            ki67="";
-        
-        var otroResultadoPatologiaPost =$("#otroResultadoPatologiaPost").val();
-        if(otroResultadoPatologiaPost==null)
-            otroResultadoPatologiaPost="";
-       
-        
-        
-        
-        
+        if (receptorFish == null)
+            receptorFish = "";
+
+        var receptorRe = $("#receptor-re").val();
+        if (receptorRe == null)
+            receptorRe = "";
+
+        var receptorRp = $("#receptor-rp").val();
+        if (receptorRp == null)
+            receptorRp = "";
+
+        var ki67 = $("#ki67").val();
+        if (ki67 == null)
+            ki67 = "";
+
+        var otroResultadoPatologiaPost = $("#otroResultadoPatologiaPost").val();
+        if (otroResultadoPatologiaPost == null)
+            otroResultadoPatologiaPost = "";
+
+
+
+
+
         console.log("click on 'btn-save[i]'");
 
         var data = new FormData();
@@ -3050,7 +3096,7 @@ $(document).ready(function () {
         data.append("biradsMasto", biradsMasto);
         data.append("biradUSG", biradUSG);
         data.append("etapaClinica", etapaClinica);
-        data.append("ResultadoTipoMastografia", resultadoTipoMastografia );
+        data.append("ResultadoTipoMastografia", resultadoTipoMastografia);
         data.append("tipoUSG", tipoUSG);
         data.append("tumorPrimarioT", tumorPrimarioT);
         data.append("gangliosN", gangliosN);
@@ -3062,9 +3108,9 @@ $(document).ready(function () {
         data.append("receptor-re", receptorRe);
         data.append("receptor-rp", receptorRp);
         data.append("ki67", ki67);
-        
-         
-        
+
+
+
 
         if (cambiarRol == 1)
             data.append("cambiarRol", cambiarRol);
@@ -3072,59 +3118,59 @@ $(document).ready(function () {
             console.log(key + " " + value);
         });
 
-        
-         /////MEGA IF
-         if (isValidDate6months($('#fechaNavegacion')) && isValidDate6months($('#fechaConsulta')) &&
-         isValidAllergy($('#alergias')) && isValidNumSeguro($('#numSeguro')) && isValidTratamientoPrevio($('#fecha-cirugia')) &&
-         isValidTratamientoPrevio($('#fecha-quimioterpia')) &&
-         isValidNumCiclos($('#quimioterapia')) && isValidNumCiclos($('#radioterapia'))
-         && isValidFechaEstudioPrevio($('#fechaPreMasto')) && isValidFechaEstudioPrevio($('#fechaPreUsg'))
-         && isValidAlfanumerico($('#OtroResultadoPatologia')) && isValidNumerico($('#numLaminillas'))
-         && isValidAlfanumerico($('#serieLaminillas')) && isValidNumerico($('#numBloques'))
-         && isValidAlfanumerico($('#serieBloques')) && areValidDynamicDates6Months(document.querySelectorAll(".fechaBiopsia"))
-         && areValidDynamicDates6Months(document.querySelectorAll(".fechaRayos")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaUltrasonido"))
-         && areValidDynamicDates6Months(document.querySelectorAll(".fechaMedicinaNuclear")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaLaboratorio"))
-         && areValidDynamicDates6Months(document.querySelectorAll(".fechaValoracion")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaEspirometria"))
-         && areValidDynamicDates6Months(document.querySelectorAll(".fechaElectrocardiograma")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaEcocardiograma"))
-         && areValidDynamicDates6Months(document.querySelectorAll(".fechaTrabajoSocial")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaPrograma"))
-         && areValidDynamicDates6Months(document.querySelectorAll(".fechaOtro"))) {
-         
-         alert('pase el primer if');
-         
-         //Verificar que si marco que tiene seguro popular introduzca el numero del seguro
-         if (parseInt($('.tiene-seguro option:selected').val()) == 1) {
-         
-         if ($('#numSeguro').val().length == 0) {
-         
-         alert('break 2');
-         
-         swal("Error", "Verifica que hayas rellenado todos los datos", "error");
-         $('#numSeguro').css('border', '1px solid red');
-         $('#numSeguro').css('color', 'red');
-         
-         } else {
-         
-         alert('si selecciono seguro popular');
-         
-         btnSave(data);
-         }
-         
-         } else {
-         
-         $('#numSeguro').css('border', '');
-         $('#numSeguro').css('color', '');
-         
-         alert('no selecciono seguro popular');
-         
-         btnSave(data);
-         
-         }
-         
-         } else {
-         swal("Error", "Hay datos incorrectos o faltantes", "error");
-         }
-         
- 
+
+        /////MEGA IF
+        if (isValidDate6months($('#fechaNavegacion')) && isValidDate6months($('#fechaConsulta')) &&
+                isValidAllergy($('#alergias')) && isValidNumSeguro($('#numSeguro')) && isValidTratamientoPrevio($('#fecha-cirugia')) &&
+                isValidTratamientoPrevio($('#fecha-quimioterpia')) &&
+                isValidNumCiclos($('#quimioterapia')) && isValidNumCiclos($('#radioterapia'))
+                && isValidFechaEstudioPrevio($('#fechaPreMasto')) && isValidFechaEstudioPrevio($('#fechaPreUsg'))
+                && isValidAlfanumerico($('#OtroResultadoPatologia')) && isValidNumerico($('#numLaminillas'))
+                && isValidAlfanumerico($('#serieLaminillas')) && isValidNumerico($('#numBloques'))
+                && isValidAlfanumerico($('#serieBloques')) && areValidDynamicDates6Months(document.querySelectorAll(".fechaBiopsia"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaRayos")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaUltrasonido"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaMedicinaNuclear")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaLaboratorio"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaValoracion")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaEspirometria"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaElectrocardiograma")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaEcocardiograma"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaTrabajoSocial")) && areValidDynamicDates6Months(document.querySelectorAll(".fechaPrograma"))
+                && areValidDynamicDates6Months(document.querySelectorAll(".fechaOtro"))) {
+
+            alert('pase el primer if');
+
+            //Verificar que si marco que tiene seguro popular introduzca el numero del seguro
+            if (parseInt($('.tiene-seguro option:selected').val()) == 1) {
+
+                if ($('#numSeguro').val().length == 0) {
+
+                    alert('break 2');
+
+                    swal("Error", "Verifica que hayas rellenado todos los datos", "error");
+                    $('#numSeguro').css('border', '1px solid red');
+                    $('#numSeguro').css('color', 'red');
+
+                } else {
+
+                    alert('si selecciono seguro popular');
+
+                    btnSave(data);
+                }
+
+            } else {
+
+                $('#numSeguro').css('border', '');
+                $('#numSeguro').css('color', '');
+
+                alert('no selecciono seguro popular');
+
+                btnSave(data);
+
+            }
+
+        } else {
+            swal("Error", "Hay datos incorrectos o faltantes", "error");
+        }
+
+
     });
 
     function btnSave(data) {
@@ -4318,7 +4364,7 @@ $(document).ready(function () {
                 });
             }
 
-            if (data[0][0].ki67 !== ""){
+            if (data[0][0].ki67 !== "") {
                 $('#ki67 option:contains(' + $.trim(data[0][0].ki67) + ')').each(function () {
                     if ($.trim($(this).text()) === $.trim(data[0][0].ki67)) {
                         $(this).attr('selected', 'selected');
@@ -4326,7 +4372,7 @@ $(document).ready(function () {
 
                 });
             }
-                
+
 
 
         },
