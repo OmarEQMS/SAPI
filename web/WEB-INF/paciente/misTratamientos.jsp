@@ -123,8 +123,8 @@
                     </div>
                 </nav>
 
-                <div class="row mb-3 justify-content-end">
-                    <div class="col-3 text-center">
+                <div class="row mb-3">
+                    <div class="col-12 text-right">
                         <span class="iconoHome mr-2">
                             <i class="fas fa-home"></i>
                         </span>
@@ -152,9 +152,9 @@
 
                         <!-- Boton agregar -->
 
-                        <div class="row mb-3">
-                            <div class="col-12">
-                                <button style="border-radius:20px;" class="btn btn-morado float-right" data-toggle="modal"
+                        <div class="row mb-3 justify-content-center">
+                            <div class="col-12 text-center">
+                                <button style="border-radius:20px;" class="btn btn-morado btnAgregarTratamiento float-right" data-toggle="modal"
                                         data-target="#modalAgregarTratamiento"><i class="fas fa-prescription-bottle-alt"></i>
                                     Agregar
                                     Tratamiento</button>

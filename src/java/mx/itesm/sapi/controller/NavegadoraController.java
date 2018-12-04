@@ -639,6 +639,9 @@ public class NavegadoraController extends HttpServlet {
                                 if (formGeneral.getResultadoPatologiaPost() == null) {
                                     formGeneral.setResultadoPatologiaPost("");
                                 }
+                                if(formGeneral.getOtroResultadoPost() == null){
+                                    formGeneral.setOtroResultadoPost("");
+                                }
 
                                 formGeneralList.add(formGeneral);
                                 ElJeison.add(formGeneralList);
@@ -1200,7 +1203,7 @@ public class NavegadoraController extends HttpServlet {
                                 LocalDate inicio = java.time.LocalDate.now();
                                 Date inicioDate = Date.valueOf(inicio);
                                 System.out.println(inicioDate);
-                                PacienteMedicoTitular pacienteMedicoTitularAdscrito;
+                                PacienteMedicoTitular pacienteMedicoTitularAdscrito= new PacienteMedicoTitular();
                                 pacienteMedicoTitularAdscrito = pacienteMedicoTitularServicioImpl.mostrarPacienteMedicoTitularIdPacientePosicion(idPacientePotencial, 2);
 
                                 if (pacienteMedicoTitularAdscrito != null) {
@@ -3079,13 +3082,17 @@ public class NavegadoraController extends HttpServlet {
 
                             //*************************************************************Biopsia*************************
                             //Tipo Histologico
-                            Biopsia biopsia = biopsiaServicioImpl.mostrarUltimaBiopsiaPaciente(idPacientePotencial);
+                            Biopsia biopsiaOtro = biopsiaServicioImpl.mostrarUltimaBiopsiaPaciente(idPacientePotencial);
                             int tipoHistologico = 0;
                             String tipoHistologicoRequest = (request.getParameter("resultado-patologia"));
                             if (tipoHistologicoRequest != null && tipoHistologicoRequest.length() > 0) {
                                 tipoHistologico = Integer.parseInt(tipoHistologicoRequest);
                                 System.out.println("Resultado resultadoPatologiaPantalla5 " + (tipoHistologico));
-                                biopsia.setIdTipoHistologico(tipoHistologico);
+                                biopsiaOtro.setIdTipoHistologico(tipoHistologico);
+                                
+                              
+                                
+                                
                             } else {
                                 System.out.println("sin resultadoPatologiaPantalla5 ");
                             }
@@ -3096,7 +3103,7 @@ public class NavegadoraController extends HttpServlet {
                             if (gradoHistologicoRequest != null && gradoHistologicoRequest.length() > 0) {
                                 gradoHistologico = Integer.parseInt(gradoHistologicoRequest);
                                 System.out.println("Grado gradoHistologico " + (gradoHistologico));
-                                biopsia.setIdGradoHistologico(gradoHistologico);
+                                biopsiaOtro.setIdGradoHistologico(gradoHistologico);
                             } else {
                                 System.out.println("sin gradoHistologico ");
                             }
@@ -3107,7 +3114,7 @@ public class NavegadoraController extends HttpServlet {
                             if (receptorHer2Request != null && receptorHer2Request.length() > 0) {
                                 receptorHer2 = Integer.parseInt(receptorHer2Request);
                                 System.out.println("receptorHer2 " + (receptorHer2));
-                                biopsia.setIdHer2(receptorHer2);
+                                biopsiaOtro.setIdHer2(receptorHer2);
                             } else {
                                 System.out.println("sin receptorHer2 ");
                             }
@@ -3118,7 +3125,7 @@ public class NavegadoraController extends HttpServlet {
                             if (receptorFishRequest != null && receptorFishRequest.length() > 0) {
                                 receptorFish = Integer.parseInt(receptorFishRequest);
                                 System.out.println("receptorFish " + (receptorFish));
-                                biopsia.setIdFish(receptorFish);
+                                biopsiaOtro.setIdFish(receptorFish);
                             } else {
                                 System.out.println("sin receptorFish ");
                             }
@@ -3129,7 +3136,7 @@ public class NavegadoraController extends HttpServlet {
                             if (receptorReRequest != null && receptorReRequest.length() > 0) {
                                 receptorRe = Integer.parseInt(receptorReRequest);
                                 System.out.println("receptorRe " + (receptorRe));
-                                biopsia.setIdReceptorEstrogeno(receptorRe);
+                                biopsiaOtro.setIdReceptorEstrogeno(receptorRe);
                             } else {
                                 System.out.println("sin receptorRe ");
                             }
@@ -3140,7 +3147,7 @@ public class NavegadoraController extends HttpServlet {
                             if (receptorRpRequest != null && receptorRpRequest.length() > 0) {
                                 receptorRp = Integer.parseInt(receptorRpRequest);
                                 System.out.println("receptorRp " + (receptorRp));
-                                biopsia.setIdReceptorProgesterona(receptorRp);
+                                biopsiaOtro.setIdReceptorProgesterona(receptorRp);
                             } else {
                                 System.out.println("sin etapaClinica ");
                             }
@@ -3156,7 +3163,7 @@ public class NavegadoraController extends HttpServlet {
                                 System.out.println("idki67 " + (idKi67));
                                 System.out.println("ki67 " + (ki67));
 
-                                biopsia.setIdKi67(idKi67);
+                                biopsiaOtro.setIdKi67(idKi67);
                             } else {
                                 System.out.println("sin ki67 ");
                             }
@@ -3171,17 +3178,60 @@ public class NavegadoraController extends HttpServlet {
                                 int biopsiaPrevia = 0;
                                 int idTipoBiopsia = Integer.parseInt(sapiProperties.getString("BiopsiaBAAF"));
 
-                                biopsia.setIdTipoBiopsia(idTipoBiopsia);
-                                biopsia.setIdPaciente(idPacientePotencial);
-                                biopsia.setPrevia(biopsiaPrevia);
-                                biopsia.setFechaResultado(dateBiopsia);
+                                biopsiaOtro.setIdTipoBiopsia(idTipoBiopsia);
+                                biopsiaOtro.setIdPaciente(idPacientePotencial);
+                                biopsiaOtro.setPrevia(biopsiaPrevia);
+                                biopsiaOtro.setFechaResultado(dateBiopsia);
+                                int idBiopsiaOtro=0;
 
-                                System.out.println("BIOPSIA ".concat(biopsia.toString()));
-                                if (biopsia.getIdBiopsia() > 0) {
-                                    biopsiaServicioImpl.actualizarBiopsiaFormulario(biopsia);
+                                System.out.println("BIOPSIA ".concat(biopsiaOtro.toString()));
+                                if (biopsiaOtro.getIdBiopsia() > 0) {
+                                    idBiopsiaOtro=biopsiaOtro.getIdBiopsia();
+                                    biopsiaServicioImpl.actualizarBiopsiaFormulario(biopsiaOtro);
+                                    
+                                    
                                 } else {
-                                    biopsiaServicioImpl.agregarBiopsiaFormulario(biopsia);
+                                    
+                                   idBiopsiaOtro= biopsiaServicioImpl.agregarBiopsiaFormulario(biopsiaOtro);
                                 }
+                                
+                                
+                                  if(tipoHistologico==16){
+                                    String otroResultadoPatologiaPostRequest = request.getParameter("otroResultadoPatologiaPost");
+                                    if(otroResultadoPatologiaPostRequest!=null && otroResultadoPatologiaPostRequest.length()>0){
+                                        OtroResultadoPatologia otroResultado2 = otroResultadoServicio.mostrarOtroResultadoPatologiaIdBiopsia(idBiopsiaOtro);
+                                        
+                                        if(otroResultado2!=null){
+                                            otroResultado2.setNombre(otroResultadoPatologiaPostRequest);
+                                            otroResultadoServicio.actualizarOtroResultadoPatologia(otroResultado2);
+                                        }else{
+                                            otroResultado2= new OtroResultadoPatologia();
+                                            otroResultado2.setIdBiopsia(biopsiaOtro.getIdBiopsia());
+                                            otroResultado2.setNombre(otroResultadoPatologiaPostRequest);
+                                            otroResultadoServicio.agregarOtroResultadoPatologia(otroResultado2);
+                                        }
+                                    }
+                                    
+                                }else{
+                                    
+                                    String otroResultadoPatologiaPostRequest = "";
+                                    if(otroResultadoPatologiaPostRequest!=null && otroResultadoPatologiaPostRequest.length()>0){
+                                        OtroResultadoPatologia otroResultado2 = otroResultadoServicio.mostrarOtroResultadoPatologiaIdBiopsia(biopsiaOtro.getIdBiopsia());
+                                        
+                                        if(otroResultado2!=null){
+                                            otroResultado2.setNombre(otroResultadoPatologiaPostRequest);
+                                            otroResultadoServicio.actualizarOtroResultadoPatologia(otroResultado2);
+                                        }else{
+                                            otroResultado2= new OtroResultadoPatologia();
+                                            otroResultado2.setIdBiopsia(biopsiaOtro.getIdBiopsia());
+                                            otroResultado2.setNombre(otroResultadoPatologiaPostRequest);
+                                            otroResultadoServicio.actualizarOtroResultadoPatologia(otroResultado2);
+                                        }
+                                    }
+                                    
+                                    
+                                }
+                                
                             }
 
                             //Cmbia el idRol del paciente

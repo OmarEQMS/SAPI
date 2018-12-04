@@ -60,6 +60,15 @@
             <p class="clear">Cargando tus datos, por favor espere...</p>
         </div>
 
+        <div class="CargandoFormulario" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Recuperando formulario, por favor espere...</p>
+        </div>
+        <div class="cargandoInicioNav" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando inicio, por favor espere...</p>
+        </div>
+
         <div class="wrapper">
 
             <!-- SIDEBAR -->
@@ -159,8 +168,8 @@
                 <!-- ***** A PARTIR DE AQUI ESCRIBEN EL CODIGO QUE QUIERAN..... ***** -->
                 <!-- **************************************************************** -->
 
-                <div class="row mb-3 justify-content-end">
-                    <div class="col-3 text-center">
+                <div class="row mb-3">
+                    <div class="col-12 text-right">
                         <span class="iconoHome mr-2">
                             <i class="fas fa-home"></i>
                         </span>
@@ -198,7 +207,7 @@
                                     <form>
                                         <div class="form-group row mt-4">
 
-                                            <div class="col-6">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                                 <label for="">PRZ</label>
                                                 <div class="input-group mb-2">
                                                     <div class="input-group-prepend">
@@ -212,7 +221,7 @@
                                                 <span class="text-danger" id="error-PRZ">Formato inválido</span>
                                             </div>
 
-                                            <div class="col-6">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
 
                                                 <label for="">Médico Adscrito</label>
                                                 <div class="input-group">
@@ -248,7 +257,7 @@
                                         <!-- ***** Tipo de paciente y Medico radiologo ***** -->
                                         <div class="form-group row mt-4">
 
-                                            <div class="col-6">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                                 <label for="">Tipo de paciente</label>
                                                 <div class="input-group">
 
@@ -261,13 +270,13 @@
                                                         <option disabled selected>Seleccione un tipo de paciente</option>
 
                                                         <option value="0">Primera vez</option>
-                                                        <option value="1">Segunda opiniÃ¯Â¿Â½n</option>
+                                                        <option value="1">Segunda opinión</option>
 
                                                     </select>
                                                 </div>
                                             </div>
 
-                                            <div class="col-6">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
 
                                                 <label for="">Médico Radiólogo</label>
                                                 <div class="input-group">
@@ -304,7 +313,7 @@
                                         <!-- Fecha Navegación -->
                                         <div class="form-group row mt-4">
 
-                                            <div class="col-6">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                                 <label for="">Fecha de navegación</label>
 
                                                 <div class="input-group">
@@ -322,7 +331,7 @@
 
 
                                             <!-- Médico residente -->
-                                            <div class="col-6">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                                 <label for="">Médico Residente</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -378,13 +387,13 @@
                                     </form>
                                     <!-- Boton guardar y continuar -->
                                     <div class="row justify-content-center mt-5">
-                                        <div class="col-4">
-                                            <button id="btn-save1" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                            <button id="btn-save1" class="btn btn-outline-primary btn-block truncate mb-2" style="border-radius:20px">
 
-                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuós</button>
+                                                <i class="fas fa-save mr-2" ></i><span id="text-save1">Guardar y Continuar Despuós</span></button>
                                         </div>
-                                        <div class="col-4">
-                                            <button class="btn btn-outline-success btn-block" id="btn-continue1" style="border-radius:20px">
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                            <button class="btn btn-outline-success btn-block truncate mb-2" id="btn-continue1" style="border-radius:20px">
                                                 <i class="fas fa-arrow-circle-right mr-2"></i>Continuar</button>
                                         </div>
                                     </div>
@@ -1262,6 +1271,7 @@
                                                     </div>
                                                     <input name="fecha-decisionPreconsulta" placeholder="Fecha decisión" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')" id="fecha-decisionPreconsulta">
                                                 </div>
+                                                <span class="text-danger" id="error-fechaDecision">Fecha incorrecta</span>
                                             </div>
                                         </div>
 
@@ -1339,8 +1349,9 @@
 
                                         <div class="form-group row">
                                             <div class="col-12">
-                                                <textarea name="comentarios" class="form-control" id="exampleFormControlTextarea1" style="min-height:200px;" placeholder="Introduce comentarios "></textarea>
+                                                <textarea name="comentarios" class="form-control" id="comentarioIncidencias" style="min-height:200px;" placeholder="Introduce comentarios "></textarea>
                                             </div>
+                                            <span class="text-danger" id="error-comentarioIncidencias">El texto excede el limite</span>
                                         </div>
 
                                         <div class="row mt-5 mb-3">
@@ -1354,6 +1365,7 @@
                                         <div class="col-12">
                                             <textarea name="comentariosAdicionales" class="form-control" id="comentariosAdicionales" style="min-height:200px;" placeholder="Introduce comentarios adicionales"></textarea>
                                         </div>
+                                        <span class="text-danger" id="error-comentarioAdicionales">El texto excede el limite</span>
                                     </div>
 
                                     <div class="row justify-content-center mt-5">
@@ -1621,7 +1633,7 @@
                                                     <input name="ki67" type="text" class="form-control" id="ki67" placeholder="Introduce Ki67">
                                                     <label type="text" class="ml-2 mt-2">%</label>
                                                 </div>
-
+                                                <span class="text-danger" id="error-ki67">Solo caracteres numéricos</span>
                                             </div>
                                         </div>
                                     </form>    

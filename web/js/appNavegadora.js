@@ -1358,4 +1358,16 @@ $(document).ready(function () {
         $("#motivoRechazo").attr("type", "text").val('').attr("placeholder", "Introduce el motivo de rechazo");
     });
    
+    //Mediaqueries
+    $(window).resize(function () {
+
+        if ($(window).width() <= 500) {
+
+            $('#text-save1').html('<span id="text-save1">Guardar y Continuar</span>');
+            
+
+        }
+
+    });
+
 });

@@ -174,22 +174,22 @@
                 <div class="card">
                     <div class="card-footer">
                         <div class="row justify-content-center text-center">
-                            <div class="col-3">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
                                 <span class="badge badge-secondary"><span class="ocultaBadge">CC</span></span> <span class="">Edificio
                                     Antiguo
                                 </span> <!-- CAMBIAR COLOR DE ESTE BADGE -->
                             </div>
-                            <div class="col-3">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
                                 <span class="badge badge-info"><span class="ocultaBadge">CC</span></span> <span class="">Planta
                                     baja
                                 </span>
                             </div>
-                            <div class="col-3">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
                                 <span class="badge badge-warning"><span class="ocultaBadge">CC</span></span> <span class="">Primer
                                     piso
                                 </span>
                             </div>
-                            <div class="col-3">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
                                 <span><span class="badge badge-danger"><span class=ocultaBadge>CC</span></span> <span class="">Segundo
                                         piso
                                     </span>
