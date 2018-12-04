@@ -2343,25 +2343,32 @@ $(document).ready(function () {
 
         console.log($(this).data('id'));
         var data = {idPotencial: $(this).data('id')};
-        $.post("SAPI", {
-            file: "navegadora/form.jsp",
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "navegadora/form.jsp",
             idPotencial: $(this).data('id')
-
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
+            },
+            beforeSend: function () {
+                $('.cargandoFormulario').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoFormulario').fadeOut();
+            },
+            success: function (response,status, xhr) {
+                if (status == "success") {
                         if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
                             console.log(response);
+                        } else {
                             document.open("text/html", "replace");
                             document.write(response);
                             document.close();
                         }
                     }
-                }
-        );
+            }
+        });
     });
 
     var cambiarRol = 0;
@@ -4492,6 +4499,47 @@ $(document).ready(function () {
             //alert("No enontre el controlador" + status);                               
         }
     });
+    
+    
+    $('.salirCuenta').on('click', function () {
+        $.post("LoginController", {
+            key: "cerrar-sesion"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
+    $('.IrAMiCuenta').on('click', function () {
+        $.post("SAPI", {
+            file: "navegadora/cuentaNavegadora.jsp"
+        },
+                function (response, status, xhr) {
+                    console.log("El ajax fue exitoso!!-----------------------");
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+    });
+    
+    
 // 'ene 1, 2001'
     function convertDate(fecha) {
         console.log(fecha);
