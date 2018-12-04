@@ -345,6 +345,53 @@ $(document).ready(function () {
 
     });
 
+    //Reporte Jaspersoft
+    $('body').on('click', '#btn-export1', function () {
+        swal({
+            title: "Asegurese de haber guardado los cambios",
+            text: "¿Desea generar el reporte?",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Cancelar', 'Aceptar'],
+            dangerMode: true
+        })
+                .then((aceptar) => {
+                    if (aceptar) {
+                        $('.generarReporte').fadeIn();
+                        var form = document.createElement("form");
+                        form.method = "post";
+                        form.action = "/SAPI/ReporteControllerJaspersoft?key=generar-reporte1";
+                        document.body.appendChild(form);
+                        form.submit();
+                        document.body.removeChild(form);
+                        //Cerrar       
+                        $('.generarReporte').fadeOut();
+                    }
+                });
+    });
+    $('body').on('click', '#btn-export2', function () {
+        swal({
+            title: "Asegurese de haber guardado los cambios",
+            text: "¿Desea generar el reporte?",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Cancelar', 'Aceptar'],
+            dangerMode: true
+        })
+                .then((aceptar) => {
+                    if (aceptar) {
+                        $('.generarReporte').fadeIn();
+                        var form = document.createElement("form");
+                        form.method = "post";
+                        form.action = "/SAPI/ReporteControllerJaspersoft?key=generar-reporte2";
+                        document.body.appendChild(form);
+                        form.submit();
+                        document.body.removeChild(form);      
+                        $('.generarReporte').fadeOut();
+                    }
+                });
+    });
+ //Fin Reporte Jaspersoft
     //Agregar Paciente
     $('#btn-agregarPaciente').on('click', function () {
         if (!repiteCorreoPaciente && !curpRepetidoPaciente) {
