@@ -48,6 +48,11 @@
             <img src="img/loading.svg">
             <p class="clear">Descargando documento, por favor espere...</p>
         </div>
+        
+        <div class="verDoc" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Preparando documentos, por favor espere...</p>
+        </div>
 
         <div class="wrapper">
 

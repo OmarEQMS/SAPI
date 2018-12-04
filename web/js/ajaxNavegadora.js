@@ -510,49 +510,66 @@ $(document).ready(function () {
         console.log(id);
         //alert('saludos con el id: ' +  $('#hidden-idPaciente').val())
 
-        $.post("SAPI", {
-            file: "navegadora/documentos.jsp",
-            idPacientePotencialAtendido: id
-        },
-                function (response, status, xhr) {
-                    //console.log(response);
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "navegadora/documentos.jsp",
+                idPacientePotencialAtendido: id
+            },
+            beforeSend: function () {
+                $('.listarDoc').fadeIn();
+            },
+            complete: function () {
+                $('.listarDoc').fadeOut();
+            },
+            success: function (response, status, xhr) {
+                if (status == "success") {
+                    if (response == "error") {
+                        console.log(response);
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
                     }
                 }
-        );
+            }
+        });
     });
 
     $('.irAVerDocumento').on('click', function () {
 
         console.log("Click");
         console.log($(this).data('id') + " " + $("#hiddenIdPaciente").val());
-        $.post("SAPI", {
-            file: "navegadora/verDocumento.jsp",
-            idDocumentoInicialVista: $(this).data('id'),
-            idPacientePotencialAtendido: $("#hiddenIdPaciente").val(),
-
-            siguiente: 0
-        },
-                function (response, status, xhr) {
-                    //console.log(response);
-                    if (status == "success") {
-                        if (response == "error") {
-                            console.log(response);
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "navegadora/verDocumento.jsp",
+                idDocumentoInicialVista: $(this).data('id'),
+                idPacientePotencialAtendido: $("#hiddenIdPaciente").val(),
+                siguiente: 0
+            },
+            beforeSend: function () {
+                $('.verDoc').fadeIn();
+            },
+            complete: function () {
+                $('.verDoc').fadeOut();
+            },
+            success: function (response, status, xhr) {
+                if (status == "success") {
+                    if (response == "error") {
+                        console.log(response);
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
                     }
                 }
-        );
+            }
+        });
     });
 
     //Aprobar paciente
@@ -1203,9 +1220,9 @@ $(document).ready(function () {
                 });
 
     });
-    
+
     $("#motivoRechazo").on('click', function () {
-       $('#error-camposMotivo').hide();
+        $('#error-camposMotivo').hide();
     });
 
     var resp;
@@ -1213,7 +1230,7 @@ $(document).ready(function () {
     //rechazar documento SHANNON
     $('#btn-rechazarDocumento').on('click', () => {
 
-         if ($('#motivoRechazo').val().trim().length < 1)
+        if ($('#motivoRechazo').val().trim().length < 1)
         {
             resp = true;
             $('#error-camposMotivo').show();
@@ -1223,11 +1240,13 @@ $(document).ready(function () {
         }
         //ajax para rechazar
         if (!resp) {
-            
-        var data = {key: "rechazarDocumento", comentario: $('#motivoRechazo').val()};
+
             $.ajax({
                 url: "NavegadoraController",
-                data: data,
+                data: {
+                    key: "rechazarDocumento",
+                    comentario: $('#motivoRechazo').val()
+                },
                 method: "POST",
                 success: function (response) {
                     alert(response);
@@ -1248,7 +1267,7 @@ $(document).ready(function () {
                     }
                 },
                 error: function (xhr) {
-                            alert("aca");
+                    alert("aca");
                 }
 
             });
