@@ -123,6 +123,7 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             
             if(!(rs.getString("v_mastografiaPreINCAN") == null))
             {
+                System.out.println("MastoPreIncan: "+rs.getInt("v_mastografiaPreINCAN"));
                 if(rs.getInt("v_mastografiaPreINCAN") == 0)
                     reporteNavegadora.setMastografiaPreINCAN("No");
                 else
