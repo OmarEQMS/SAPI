@@ -177,13 +177,13 @@
                 <input type="hidden" value="${sessionScope.idPaciente}" id="hiddenIdPaciente">
 
 
-                <div class="row mb-3 justify-content-end">
-                    <div class="col-3 text-center">
-                        <span class="iconoHome mr-2">
+                <div class="row mb-3">
+                    <div class="col-12 text-right">
+                        <span class="iconoHome">
                             <i class="fas fa-home"></i>
                         </span>
                         <span>
-                            <a href="index.html" class="colorMoradoLight">Inicio</a>
+                            <a class="colorMoradoLight IrAMiIndex"> Inicio</a>
                         </span>
                         -
                         <span class="colorGlobal">Documentos</span>

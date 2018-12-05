@@ -5530,6 +5530,32 @@ $(document).ready(function () {
                 }
         );
     });
+    
+    $('.IrAMiIndex').on('click', function () {
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "navegadora/index.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrAInicio').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrAInicio').fadeOut();
+            },
+            success: function (response) {
+                if (response == "error") {
+                    $("#msj-error").show();
+                } else {
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
+                }
+            }
+        });
+    });
 
     $('.IrAMiCuenta').on('click', function () {
         $.ajax({

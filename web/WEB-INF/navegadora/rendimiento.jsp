@@ -44,22 +44,22 @@
     </head>
 
     <body>
-        
+
         <div class="cargandoIrACalendar" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando el calendario, por favor espere...</p>
         </div>
-        
+
         <div class="cargandoIrAInicio" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando la lista de pacientes, por favor espere...</p>
         </div>
-        
+
         <div class="cargandoIrARendimiento" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando tu rendimiento, por favor espere..</p>
         </div>
-        
+
         <div class="cargandoIrACuenta" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando tus datos, por favor espere...</p>
@@ -121,8 +121,8 @@
                 <!-- MENU PRINCIPAL ENLACES -->
                 <ul class="list-unstyled components">
 
-                     <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
-                                                            
+                    <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
+
                     <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
                     <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
@@ -158,6 +158,13 @@
                                 <!-- **************************************************************** -->
                                 <!-- ***** A PARTIR DE AQUI ESCRIBEN EL CODIGO QUE QUIERAN..... ***** -->
                                 <!-- **************************************************************** -->
+
+                                <div class="row mb-3">
+                                    <div class="col-12 text-right">
+                                        <span class="iconoHome"><i class="fas fa-home"></i></span><span><a class="colorMoradoLight IrAMiIndex"> Inicio</a></span>
+                                        - <span class="colorGlobal">Mi Rendimiento</span>
+                                    </div>
+                                </div>
 
                                 <!-- 1.- TOTAL DE VISITAS POR MES -->
                                 <div class="jumbotron jumbotron-fluid p-2">
@@ -218,7 +225,7 @@
                                     </div>
 
                                 </div>
-                                
+
                                 <div class="row errorFechasEdad">
                                     <div class="col-12">
                                         <h6 class="text-danger">Elija un rango de fechas válido</h6>
@@ -248,7 +255,7 @@
                                         <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por Escolaridad</h1>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row form-group">
                                     <div class="col-6">
                                         <label for="fecha1Escolaridad">Fecha inicio</label>
@@ -260,7 +267,7 @@
                                     </div>
 
                                 </div>
-                                
+
                                 <div class="row errorFechasEscolaridad">
                                     <div class="col-12">
                                         <h6 class="text-danger">Elija un rango de fechas válido</h6>
@@ -290,7 +297,7 @@
                                         <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por lugar de residencia</h1>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row form-group">
                                     <div class="col-6">
                                         <label for="fecha1Residencia">Fecha inicio</label>
@@ -302,7 +309,7 @@
                                     </div>
 
                                 </div>
-                                
+
                                 <div class="row errorFechasResidencia">
                                     <div class="col-12">
                                         <h6 class="text-danger">Elija un rango de fechas válido</h6>
@@ -332,7 +339,7 @@
                                         <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por nivel socioeconómico</h1>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row form-group">
                                     <div class="col-6">
                                         <label for="fecha1Economico">Fecha inicio</label>
@@ -344,7 +351,7 @@
                                     </div>
 
                                 </div>
-                                
+
                                 <div class="row errorFechasEconomico">
                                     <div class="col-12">
                                         <h6 class="text-danger">Elija un rango de fechas válido</h6>
@@ -374,7 +381,7 @@
                                         <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por decision pre-consulta</h1>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row form-group">
                                     <div class="col-6">
                                         <label for="fecha1Pre">Fecha inicio</label>
@@ -386,7 +393,7 @@
                                     </div>
 
                                 </div>
-                                
+
                                 <div class="row errorFechasPre">
                                     <div class="col-12">
                                         <h6 class="text-danger">Elija un rango de fechas válido</h6>
@@ -416,7 +423,7 @@
                                         <h1 class="display-4 tituloPacientes text-center m-0">Cantidad de visitas por resultado de patología</h1>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row form-group">
                                     <div class="col-6">
                                         <label for="fecha1Patologia">Fecha inicio</label>
@@ -428,7 +435,7 @@
                                     </div>
 
                                 </div>
-                                
+
                                 <div class="row errorFechasPatologia">
                                     <div class="col-12">
                                         <h6 class="text-danger">Elija un rango de fechas válido</h6>
