@@ -250,7 +250,6 @@
                                                 <tr>
                                                     <th scope="col">Nombre</th>
                                                     <th scope="col">Estado</th>
-                                                    <th scope="col">Estado de la cita</th>
                                                     <th scope="col">Fecha de Registro</th>
                                                     <th scope="col">CURP</th>
                                                     <th scope="col">Teléfono</th>
@@ -265,7 +264,6 @@
                                                     <tr>                                                                                                                      
                                                         <td class="nombre-${paciente.idPaciente}" value="${paciente.nombre}" > <c:out value="${paciente.nombre} ${paciente.primerApellido} ${paciente.segundoApellido}"/> </td>
                                                         <td id="estado-${paciente.idPaciente}" value="${paciente.estadoPaciente}" > <c:out value="${paciente.estadoPaciente}"/> </td>
-                                                        <td></td>
                                                         <td id="fecha-${paciente.idPaciente}" value="${paciente.fechaRegistro}" > <c:out value="${paciente.fechaRegistro}"/> </td>
                                                         <td id="curp-${paciente.idPaciente}" value="${paciente.curp}" > <c:out value="${paciente.curp}"/> </td>
                                                         <td class="telefono-${paciente.idPaciente}" value="${paciente.telefono}" > <c:out value="${paciente.telefono}"/> </td>
@@ -384,10 +382,10 @@
 
                                                         <c:choose>
                                                             <c:when test="${pacienteAprobado.tipoPaciente==1}">
-                                                                <td>Segunda Opinion</td>
+                                                                <td class="tipo-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.tipoPaciente}" > <c:out value="Segunda Opinión"/> </td>
                                                             </c:when>    
                                                             <c:otherwise>
-                                                                <td>Primera vez</td>
+                                                                <td class="tipo-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.tipoPaciente}" > <c:out value="Primera vez"/> </td>                                                                
                                                             </c:otherwise>
                                                         </c:choose>
 
@@ -403,11 +401,11 @@
 
                                                         <td>${pacienteAprobado.fechaRegistro}</td>                  
                                                         <td class="telefono-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.telefono}" > <c:out value="${pacienteAprobado.telefono}"/> </td>
-                                                        <td>${pacienteAprobado.nombreEstadoCita}</td>
+                                                        <td id="estadoCita-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.nombreEstadoCita}" > <c:out value="${pacienteAprobado.nombreEstadoCita}"/> </td>
                                                         <td>
-                                                            <button class="btn btn-info m-1 btn-ver-formulario" data-id="${pacienteAprobado.idPaciente}" id="btn-ver">
+                                                            <button class="btn btn-info m-1 btn-ver-formulario boton-${pacienteAprobado.idPaciente}" data-id="${pacienteAprobado.idPaciente}" id="btn-ver">
                                                                 <i class="fab fa-wpforms"></i>
-                                                            </button>                                                                                                                        </button>
+                                                            </button>
                                                             <button class="btn btn-primary m-1 btn-editar" data-id="${pacienteAprobado.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarPaciente">
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
@@ -1001,7 +999,7 @@
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLongTitle">
                                 <i class="fas fa-exclamation-triangle"></i> Confirmación</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close clearModalAceptarUsuario" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -1058,7 +1056,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" style="border-radius:20px" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger clearModalAceptarUsuario" style="border-radius:20px" data-dismiss="modal">Cancelar</button>
 
                             <button type="button" class="btn btn-primary" style="border-radius:20px" id="btn-aceptarDocumento">Aceptar</button>
 

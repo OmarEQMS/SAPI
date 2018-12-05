@@ -251,6 +251,186 @@ $(document).ready(function () {
         }
 
     });
+    $("body").on("click", ".clearModalAceptarUsuario", function () {
+        $("#Fecha-Navegacion").attr("type", "text").val('').attr("placeholder", "Fecha navegación");
+        $("#Fecha-Consulta").attr("type", "text").val('').attr("placeholder", "Fecha consulta");
+        $("#tipo-paciente").prop('selectedIndex', 0);
+    });
+    
+    //Limpiar campos
+    $("body").on("click", ".clearAddPacientesModal", function () {
+
+        $('#nombrePaciente').val("");
+        $('#nombrePaciente').css('border', '');
+        $('#nombrePaciente').css('color', '');
+
+        $('#curpPaciente').val("");
+        $('#curpPaciente').css('border', '');
+        $('#curpPaciente').css('color', '');
+
+        $("#cumplePaciente").attr("type", "text").val('').attr("placeholder", "Fecha de nacimiento");
+        $('#cumplePaciente').css('border', '');
+        $('#cumplePaciente').css('color', '');
+
+        $('#primer-apellidoPaciente').val("");
+        $('#primer-apellidoPaciente').css('border', '');
+        $('#primer-apellidoPaciente').css('color', '');
+
+        $('#segundo-apellidoPaciente').val("");
+        $('#segundo-apellidoPaciente').css('border', '');
+        $('#segundo-apellidoPaciente').css('color', '');
+        
+        $('#codigo-postalPaciente').val("");
+        $('#codigo-postalPaciente').css('border', '');
+        $('#codigo-postalPaciente').css('color', '');
+
+        $('#usuarioPaciente').val("");
+        $('#usuarioPaciente').css('border', '');
+        $('#usuarioPaciente').css('color', '');
+
+        $("#estado-civilPaciente").prop('selectedIndex', 0);
+        $('#estado-civilPaciente').css('border', '');
+        $('#estado-civilPaciente').css('color', '');
+
+        $('#colPaciente').val("");
+        $('#colPaciente').css('border', '');
+        $('#colPaciente').css('color', '');
+
+        $('#callePaciente').val("");
+        $('#callePaciente').css('border', '');
+        $('#callePaciente').css('color', '');
+
+        $('#numIntPaciente').val("");
+        $('#numIntPaciente').css('border', '');
+        $('#numIntPaciente').css('color', '');
+
+        $('#numExtPaciente').val("");
+        $('#numExtPaciente').css('border', '');
+        $('#numExtPaciente').css('color', '');
+
+        $('#estadoPaciente').prop('selectedIndex', 0);
+        $('#estadoPaciente').css('border', '');
+        $('#estadoPaciente').css('color', '');
+
+        $('#municipioPaciente').append("<option disabled selected>" + "Seleccione un Municipio" + "</option>");
+        $('#municipioPaciente').css('border', '');
+        $('#municipioPaciente').css('color', '');
+        
+        $("#acepto-terminos").prop("checked", false);
+        
+        
+        $('#telPaciente').val("");
+        $('#telPaciente').css('border', '');
+        $('#telPaciente').css('color', '');
+
+        $('#correoPaciente').val("");
+        $('#correoPaciente').css('border', '');
+        $('#correoPaciente').css('color', '');
+        
+        $('#contraPaciente').val("");
+        $('#contraPaciente').css('border', '');
+        $('#contraPaciente').css('color', '');
+        
+        $('#confContraPaciente').val("");
+        $('#confContraPaciente').css('border', '');
+        $('#confContraPaciente').css('color', '');
+
+
+        $('#errorNombrePaciente').hide();
+        $('#errorCurpPaciente').hide();
+        $('#errorCurpRepetidoPaciente').hide();
+        $('#errorFechaPaciente').hide();
+        $('#errorApellidoPaternoPaciente').hide();
+        $('#errorApellidoMaternoPaciente').hide();
+        $('#errorNombreUsuarioPaciente').hide();
+        $('#errorUsuarioRepetidoPaciente').hide();
+        $('#errorECivilPaciente').hide();
+        $('#errorColoniaPaciente').hide();
+        $('#errorCallePaciente').hide();
+        $('#errorNoInteriorPaciente').hide();
+        $('#errorNoExteriorPaciente').hide();
+        $('#errorEstadoPaciente').hide();
+        $('#errorMunicipioPaciente').hide();
+        $('#errorTelefonoPaciente').hide();
+        $('#errorCorreoPaciente').hide();
+        $('#errorPasscurpPacientePaciente').hide();
+        $('#errorPasscumplePacientePaciente').hide();
+        $('#error-CPexistePaciente').hide();
+        $('#errorCodigoPostalPaciente').hide();
+        $('#errorPass1Paciente').hide();
+        $('#noEqualPasswordsErrorPaciente').hide();
+        $('#errorCorreoRepetidoPaciente').hide();
+        $('#error-terminos').hide();
+
+    });
+
+    $("body").on("click", ".clearEditPacientesModal", function () {
+
+        $('#editarNombreNavegadoraAPaciente').css('border', '');
+        $('#editarNombreNavegadoraAPaciente').css('color', '');
+
+        $('#editarCurpNavegadoraAPaciente').css('border', '');
+        $('#editarCurpNavegadoraAPaciente').css('color', '');
+
+        $('#editarCumpleNavegadoraAPaciente').css('border', '');
+        $('#editarCumpleNavegadoraAPaciente').css('color', '');
+
+        $('#editarPrimer-apellidoNavegadoraAPaciente').css('border', '');
+        $('#editarPrimer-apellidoNavegadoraAPaciente').css('color', '');
+
+        $('#editarSegundo-apellidoNavegadoraAPaciente').css('border', '');
+        $('#editarSegundo-apellidoNavegadoraAPaciente').css('color', '');
+
+        $('#editarUsuarioNavegadoraAPaciente').css('border', '');
+        $('#editarUsuarioNavegadoraAPaciente').css('color', '');
+
+        $('#editarEstado-civilPaciente').css('border', '');
+        $('#editarEstado-civilPaciente').css('color', '');
+
+        $('#editarColNavegadoraAPaciente').css('border', '');
+        $('#editarColNavegadoraAPaciente').css('color', '');
+
+        $('#editarCalleNavegadoraAPaciente').css('border', '');
+        $('#editarCalleNavegadoraAPaciente').css('color', '');
+
+        $('#editarNumIntNavegadoraAPaciente').css('border', '');
+        $('#editarNumIntNavegadoraAPaciente').css('color', '');
+
+        $('#editarNumExtNavegadoraAPaciente').css('border', '');
+        $('#editarNumExtNavegadoraAPaciente').css('color', '');
+
+        $('#editarEstadoNavegadoraAPaciente').css('border', '');
+        $('#editarEstadoNavegadoraAPaciente').css('color', '');
+
+        $('#editarTelNavegadoraAPaciente').css('border', '');
+        $('#editarTelNavegadoraAPaciente').css('color', '');
+
+        $('#editarCorreoNavegadoraAPaciente').css('border', '');
+        $('#editarCorreoNavegadoraAPaciente').css('color', '');
+
+
+        $('#error-editar-NombrePaciente').hide();
+        $('#error-editar-ApellidoPaternoPaciente').hide();
+        $('#error-editar-ApellidoMaternoPaciente').hide();
+        $('#error-editar-NombreUsuarioPaciente').hide();
+        $('#error-editar-CorreoPaciente').hide();
+        $('#error-editar-CurpPaciente').hide();
+        $('#error-editar-ColoniaPaciente').hide();
+        $('#error-editar-CallePaciente').hide();
+        $('#error-editar-NoExteriorPaciente').hide();
+        $('#error-editar-NoInteriorPaciente').hide();
+        $('#error-editar-CurpRepetidoPaciente').hide();
+        $('#error-editar-TelefonoPaciente').hide();
+        $('#error-editar-ECivilPaciente').hide();
+        $('#error-editar-FechaPaciente').hide();
+        $('#error-editar-EstadoPaciente').hide();
+        $('#error-editar-MunicipioPaciente').hide();
+        $('#error-editar-UsuarioRepetidoPaciente').hide();
+        $('#errorEditarPacienteCorreoRepetido').hide();
+        $('#error-editarDatosRepetidosPaciente').hide();
+        $('#error-camposEditarPaciente').hide();
+        
+    });
 
 
     ////////FUNCIONALIDAD DE PANTALLAS
@@ -383,12 +563,12 @@ $(document).ready(function () {
 
 
             <!-- tipo biopsia -->
-            <div class="col-3">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2">
                 <input name="tipo-BipsiaAdded" type="text" class="form-control tipoBiopsia" list="listBiopsia" placeholder="Tipo de biopsiaa">
             </div>
 
             <!-- fecha biopsia -->
-            <div class="col-4">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -400,7 +580,7 @@ $(document).ready(function () {
             </div>
 
             <!-- parte del cuerpo -->
-            <div class="col-3">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2">
                 <div class="input-group text-center">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -411,7 +591,7 @@ $(document).ready(function () {
                 </div>
             </div>
 
-            <div class="col-2">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 text-center">
                 <button type="button" class="btn btn-outline-danger ml-2 remove-biopsia" style="border-radius: 25px;">
                 <i class="fas fa-times"></i>
                 </button>
@@ -440,13 +620,13 @@ $(document).ready(function () {
 
 
                 <!-- tipo rayos -->
-                <div class="col-5">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
 
                     <input name="tipo-RayosXAdded" type="text" class="form-control rayosX" list="listRayosX" placeholder="Tipo de rayos X">
                 </div>
 
                 <!-- fecha rayos -->
-                <div class="col-5">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -457,7 +637,7 @@ $(document).ready(function () {
                     </div>
                 </div>
 
-                <div class="col-2">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                 <button type="button" class="btn btn-outline-danger ml-2 remove-biopsia" style="border-radius: 25px;">
                 <i class="fas fa-times"></i>
                 </button>
@@ -486,12 +666,12 @@ $(document).ready(function () {
 
 
                
-                <div class="col-5">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                     <input name ="parteCuperpo-USGAdded"type="text" class="form-control parteCuerpoUltrasonido ultraSonido" list="listUltraSonido" placeholder="Parte del cuerpo">
                 </div>
 
             
-                <div class="col-5">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -502,7 +682,7 @@ $(document).ready(function () {
                     </div>
                 </div>
 
-                <div class="col-2">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                     <button type="button" class="btn btn-outline-danger ml-2 remove-ultrasonido" style="border-radius: 25px;">
                     <i class="fas fa-times"></i>
                     </button>
@@ -531,12 +711,12 @@ $(document).ready(function () {
             <div class="form-group row mt-2 tuplaMedicinaNuclear" data-id="0" data-accion="agregar">
 
     
-                    <div class="col-5">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                         <input name ="mNuclearAdded" type="text" class="form-control medicinaNuclear" list="listMedicinaNuclear" placeholder="Introduce medicina nuclear">
                     </div>
 
       
-                    <div class="col-5">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
@@ -547,7 +727,7 @@ $(document).ready(function () {
                         </div>
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                         <button type="button" class="btn btn-outline-danger ml-2 remove-medicinaNuclear" style="border-radius: 25px;">
                         <i class="fas fa-times"></i>
                         </button>
@@ -575,7 +755,7 @@ $(document).ready(function () {
             <div class="form-group row mt-2 tuplaLaboratorio" data-id="0" data-accion="agregar">
 
 
-                <div class="col-10">
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 mb-2">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -586,7 +766,7 @@ $(document).ready(function () {
                     </div>
                 </div>
 
-                <div class="col-2">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                     <button type="button" class="btn btn-outline-danger ml-2 remove-laboratorio" style="border-radius: 25px;">
                     <i class="fas fa-times"></i>
                     </button>
@@ -615,11 +795,11 @@ $(document).ready(function () {
 
 
        
-                <div class="col-5">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                     <input name ="valoracionAdded" type="text" class="form-control valoracion" list="listValoracion" placeholder="Introduce valoración">
                 </div>
 
-                <div class="col-5">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -630,7 +810,7 @@ $(document).ready(function () {
                     </div>
                 </div>
 
-                <div class="col-2">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                     <button type="button" class="btn btn-outline-danger ml-2 remove-valoracion" style="border-radius: 25px;">
                     <i class="fas fa-times"></i>
                     </button>
@@ -658,7 +838,7 @@ $(document).ready(function () {
             <div class="form-group row mt-2 tuplaEspirometria" data-id="0" data-accion="agregar">
 
 
-                <div class="col-10">
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 mb-2">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -669,7 +849,7 @@ $(document).ready(function () {
                     </div>
                 </div>
 
-                <div class="col-2">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                     <button type="button" class="btn btn-outline-danger ml-2 remove-espirometria" style="border-radius: 25px;">
                     <i class="fas fa-times"></i>
                     </button>
@@ -697,7 +877,7 @@ $(document).ready(function () {
             <div class="form-group row mt-2 tuplaElectrocardiograma" data-id="0" data-accion="agregar">
 
 
-                    <div class="col-10">
+                    <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 mb-2">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
@@ -708,7 +888,7 @@ $(document).ready(function () {
                         </div>
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                         <button type="button" class="btn btn-outline-danger ml-2 remove-electrocardiograma" style="border-radius: 25px;">
                         <i class="fas fa-times"></i>
                         </button>
@@ -736,7 +916,7 @@ $(document).ready(function () {
             <div class="form-group row mt-2 tuplaEcocardiograma" data-id="0" data-accion="agregar">
 
 
-                    <div class="col-10">
+                    <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 mb-2">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
@@ -747,7 +927,7 @@ $(document).ready(function () {
                         </div>
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                         <button type="button" class="btn btn-outline-danger ml-2 remove-ecocardiograma" style="border-radius: 25px;">
                         <i class="fas fa-times"></i>
                         </button>
@@ -776,7 +956,7 @@ $(document).ready(function () {
             <div class="form-group row mt-2 tuplaTrabajoSocial" data-id="0" data-accion="agregar">
 
 
-                <div class="col-10">
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 mb-2">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -787,7 +967,7 @@ $(document).ready(function () {
                     </div>
                 </div>
 
-                <div class="col-2">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                         <button type="button" class="btn btn-outline-danger ml-2 remove-trabajoSocial" style="border-radius: 25px;">
                         <i class="fas fa-times"></i>
                         </button>
@@ -816,11 +996,11 @@ $(document).ready(function () {
 
 
 
-                    <div class="col-5">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                         <input name="programaAdded" type="text" id="tipoPrograma" class="form-control programa" list="listPrograma" placeholder="Introduce programa">
                     </div>
 
-                    <div class="col-5">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
@@ -831,7 +1011,7 @@ $(document).ready(function () {
                         </div>
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                         <button type="button" class="btn btn-outline-danger ml-2 remove-programa" style="border-radius: 25px;">
                         <i class="fas fa-times"></i>
                         </button>
@@ -859,7 +1039,7 @@ $(document).ready(function () {
             <div class="form-group row mt-2 tuplaOtro" data-id="0" data-accion="agregar">
 
 
-                    <div class="col-5">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
@@ -870,11 +1050,11 @@ $(document).ready(function () {
                         </div>
                     </div>
 
-                    <div class="col-5">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                         <input name="otroAdded" type="text" class="form-control otro-estudioPreconsulta" placeholder="Introduce otro">
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                         <button type="button" class="btn btn-outline-danger ml-2 remove-otro" style="border-radius: 25px;">
                         <i class="fas fa-times"></i>
                         </button>
@@ -1401,5 +1581,34 @@ $(document).ready(function () {
             x.type = "password";
         });
     }
+    
+    //Mediaqueries
+    $(window).resize(function () {
+        
+        if ($(window).width() <= 650) {
+
+            $('div#calendarCitasPaciente .fc-toolbar .fc-center .btn-group').hide();
+            $('div#calendarCitasPaciente .fc-toolbar .fc-left .fc-today-button').hide();
+
+        }
+
+        
+        if ($(window).width() <= 500) {
+
+            $('#DataTables_Table_0_info').hide();
+            $('#DataTables_Table_1_info').hide();
+            $('#DataTables_Table_2_info').hide();
+            $('#DataTables_Table_3_info').hide();
+            $('#DataTables_Table_4_info').hide();
+            $('#DataTables_Table_5_info').hide();
+            $('#DataTables_Table_6_info').hide();
+            $('#DataTables_Table_7_info').hide();
+            
+            
+            
+
+        }
+
+    });
 
 });

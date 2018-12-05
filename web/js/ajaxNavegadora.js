@@ -520,12 +520,11 @@ $(document).ready(function () {
 
                             if (day < 10) {
                                 t.row.add([
-                                    "<span id='nombre-" + response + "'>" + $("#nombrePaciente").val() + " " + $("#primer-apellidoPaciente").val() + " " + $("#segundo-apellidoPaciente").val() + "</span>",
+                                    "<span class='nombre-" + response + "'>" + $("#nombrePaciente").val() + " " + $("#primer-apellidoPaciente").val() + " " + $("#segundo-apellidoPaciente").val() + "</span>",
                                     "<span id='estado-" + response + "'>Potencial en proceso</span>",
-                                    '',
                                     "<span id='fecha-" + response + "'>" + year + "-" + month + "-0" + day + "</span>",
                                     "<span id='curp-" + response + "'>" + $('#curpPaciente').val() + "</span>",
-                                    "<span id='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
+                                    "<span class='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
                                     "<button class='btn btn-info btn-ver  m-1' data-id=" + response + " id='btn-ver'><i class='far fa-eye'></i></button>" +
                                             "<button class='btn btn-success btn-aceptar-potencial m-1' data-id=" + response + " data-toggle='modal' data-target='#modalAceptarUsuario'><i class='fas fa-check'></i></button>" +
                                             "<button class='btn btn-primary btn-editar m-1' data-id=" + response + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
@@ -533,12 +532,11 @@ $(document).ready(function () {
                                 ]).draw(false);
                             } else {
                                 t.row.add([
-                                    "<span id='nombre-" + response + "'>" + $("#nombrePaciente").val() + " " + $("#primer-apellidoPaciente").val() + " " + $("#segundo-apellidoPaciente").val() + "</span>",
+                                    "<span class='nombre-" + response + "'>" + $("#nombrePaciente").val() + " " + $("#primer-apellidoPaciente").val() + " " + $("#segundo-apellidoPaciente").val() + "</span>",
                                     "<span id='estado-" + response + "'>Potencial en proceso</span>",
-                                    '',
                                     "<span id='fecha-" + response + "'>" + year + "-" + month + "-" + day + "</span>",
                                     "<span id='curp-" + response + "'>" + $('#curpPaciente').val() + "</span>",
-                                    "<span id='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
+                                    "<span class='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
                                     "<button class='btn btn-info btn-ver  m-1' data-id=" + response + " id='btn-ver'><i class='far fa-eye'></i></button>" +
                                             "<button class='btn btn-success btn-aceptar-potencial m-1' data-id=" + response + " data-toggle='modal' data-target='#modalAceptarUsuario'><i class='fas fa-check'></i></button>" +
                                             "<button class='btn btn-primary btn-editar m-1' data-id=" + response + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
@@ -834,7 +832,7 @@ $(document).ready(function () {
     $('#btn-aceptarDocumento').on('click', function () {
 
         var idPaciente = $('#hidden-idPaciente').val();
-        //alert('el id final es:' + $('#hidden-idPaciente').val());
+
 
         $.ajax({
 
@@ -859,14 +857,58 @@ $(document).ready(function () {
                         icon: 'success',
                         closeOnEsc: false,
                         closeOnClickOutside: false,
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Aceptar'
+                        buttons: true,
+                        buttons: [, 'Aceptar'],
                     });
                     //$('#modalAceptarUsuario').toggle();
                     $('#Fecha-Navegacion').val('').attr("type", "text");
                     $('#Fecha-Consulta').val('').attr("type", "text");
                     $('#tipo-paciente').prop('selectedIndex', 0);
 
+                    //Actualizar estado de la primer tabla
+                    $("#estado-" + idPaciente).html("Potencial aceptado");
+
+                    //Insertar al paciente en la segunda tabla
+                    var date = new Date($('#Fecha-Navegacion').val());
+                    var year = date.getFullYear();
+                    var month = date.getMonth();
+                    var day = date.getDate();
+                    var t = $('#tabla2').DataTable();
+
+                    if ($('#tipo-paciente').val() == 0) {
+                        t.row.add([
+                            "",
+                            "<span class='nombre-" + idPaciente + "'>" + $('.nombre-' + idPaciente).html() + "</span>",
+                            "<span id='tipo-" + idPaciente + "'>Primera vez</span>",
+                            "",
+                            year + "-" + month + "-" + day,
+                            "<span class='telefono-" + idPaciente + "'>" + $(".telefono-" + idPaciente).html() + "</span>",
+                            "<span id='estadoCita-" + idPaciente + "'>Aprobada</span>",
+                            "<button class='btn btn-info m-1 btn-ver-formulario boton-" + idPaciente + "' data-id=" + idPaciente + " id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
+                                    "<button class='btn btn-primary m-1 btn-editar' data-id=" + idPaciente + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
+                                    "<button class='btn btn-danger m-1 btn-perder-cita' data-id=" + idPaciente + " data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
+                        ]).draw(false);
+                    } else {
+                        t.row.add([
+                            "",
+                            "<span class='nombre-" + idPaciente + "'>" + $('.nombre-' + idPaciente).html() + "</span>",
+                            "<span id='tipo-" + idPaciente + "'>Segunda opinión</span>",
+                            "",
+                            year + "-" + month + "-" + day,
+                            "<span class='telefono-" + idPaciente + "'>" + $(".telefono-" + idPaciente).html() + "</span>",
+                            "<span id='estadoCita-" + idPaciente + "'>Aprobada</span>",
+                            "<button class='btn btn-info m-1 btn-ver-formulario boton-" + idPaciente + "' data-id=" + idPaciente + " id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
+                                    "<button class='btn btn-primary m-1 btn-editar' data-id=" + idPaciente + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
+                                    "<button class='btn btn-danger m-1 btn-perder-cita' data-id=" + idPaciente + " data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
+                        ]).draw(false);
+                    }
+
+                    var boton = $('.boton-' + idPaciente);
+                    boton.parent().parent().addClass("table-danger");
+
+                    $("#Fecha-Navegacion").attr("type", "text").val('').attr("placeholder", "Fecha navegación");
+                    $("#Fecha-Consulta").attr("type", "text").val('').attr("placeholder", "Fecha consulta");
+                    $("#tipo-paciente").prop('selectedIndex', 0);
 
                 } else {
                     swal({
@@ -3020,7 +3062,13 @@ $(document).ready(function () {
 
     //PRZ
     $('#prz-expediente').on('change', function () {
-        //alert('cambie');
+    
+        
+        if (!isValidPRZ($(this))) {
+            $('#error-PRZ').show();
+        } else {
+            $('#error-PRZ').hide();
+        }
     });
 
 
@@ -4021,8 +4069,13 @@ $(document).ready(function () {
 
                     seguroPopular = false;
 
+                    $('#numSeguro').css('border', '1px solid red');
+                    $('#numSeguro').css('color', 'red');
+
                 } else {
                     seguroPopular = true;
+                    $('#numSeguro').css('border', '');
+                    $('#numSeguro').css('color', '');
                 }
 
             }
@@ -4039,8 +4092,11 @@ $(document).ready(function () {
             if ($('#tiene-cirugia').is(':checked')) {
 
                 if (!isValidNonEmptyDate($('#fecha-cirugia')) || !isValidSelect($('#cirugia'))) {
+
                     tratamientoCirugia = false;
+
                 } else {
+
                     tratamientoCirugia = true;
                 }
 
@@ -4119,6 +4175,20 @@ $(document).ready(function () {
                 }
 
             }
+            
+            //****Verificar que si esta marcado laminillas o bloques, tiene que poner un resultado o reporte de patologia
+            
+            var pusoResultadoPatologia = true;
+            
+            if($('#entregaLaminillas').is(':checked') || $('#entregaBloques').is(':checked')){
+                
+                if(!isValidSelect($('#resultadoAnterior-patologia'))){
+                    pusoResultadoPatologia = false;
+                }else{
+                    pusoResultadoPatologia = true;
+                }
+                
+            }
 
             //PANTALLA 3
 
@@ -4155,7 +4225,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaRayos')) || !areValidDynamicSelects(document.querySelectorAll('.rayosX'))) {
                     $('#rayos-contenedor').find('span.error-datosFaltantesRayos').remove();
                     ePreconsultaRayos = false;
-                    $('#rayos-contenedor').append('<span class="text-danger error-datosFaltantesRayos">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#rayos-contenedor').append('<span class="text-danger error-datosFaltantesRayos">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaRayos = true;
                     $('#rayos-contenedor').find('span.error-datosFaltantesRayos').remove();
@@ -4169,7 +4239,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaUltrasonido')) || !areValidDynamicSelects(document.querySelectorAll('.parteCuerpoUltrasonido'))) {
                     $('#ultrasonido-contenedor').find('span.error-datosFaltantesUltrasonido').remove();
                     ePreconsultaUltrasonido = false;
-                    $('#ultrasonido-contenedor').append('<span class="text-danger error-datosFaltantesUltrasonido">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#ultrasonido-contenedor').append('<span class="text-danger error-datosFaltantesUltrasonido">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaUltrasonido = true;
                     $('#ultrasonido-contenedor').find('span.error-datosFaltantesUltrasonido').remove();
@@ -4183,7 +4253,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaMedicinaNuclear')) || !areValidDynamicSelects(document.querySelectorAll('.medicinaNuclear'))) {
                     $('#medicinaNuclear-contenedor').find('span.error-datosFaltantesMedicinaNuclear').remove();
                     ePreconsultaMedicinaNuclear = false;
-                    $('#medicinaNuclear-contenedor').append('<span class="text-danger error-datosFaltantesMedicinaNuclear">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#medicinaNuclear-contenedor').append('<span class="text-danger error-datosFaltantesMedicinaNuclear">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaMedicinaNuclear = true;
                     $('#medicinaNuclear-contenedor').find('span.error-datosFaltantesMedicinaNuclear').remove();
@@ -4197,7 +4267,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaLaboratorio'))) {
                     $('#laboratorio-contenedor').find('span.error-datosFaltantesLaboratorio').remove();
                     ePreconsultaLaboratorio = false;
-                    $('#laboratorio-contenedor').append('<span class="text-danger error-datosFaltantesLaboratorio">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#laboratorio-contenedor').append('<span class="text-danger error-datosFaltantesLaboratorio">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaLaboratorio = true;
                     $('#laboratorio-contenedor').find('span.error-datosFaltantesLaboratorio').remove();
@@ -4211,7 +4281,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaValoracion')) || !areValidDynamicSelects(document.querySelectorAll('.valoracion'))) {
                     $('#valoracion-contenedor').find('span.error-datosFaltantesValoracion').remove();
                     ePreconsultaValoracion = false;
-                    $('#valoracion-contenedor').append('<span class="text-danger error-datosFaltantesValoracion">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#valoracion-contenedor').append('<span class="text-danger error-datosFaltantesValoracion">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaValoracion = true;
                     $('#valoracion-contenedor').find('span.error-datosFaltantesValoracion').remove();
@@ -4225,7 +4295,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaEspirometria'))) {
                     $('#espirometria-contenedor').find('span.error-datosFaltantesEspirometria').remove();
                     ePreconsultaEspirometria = false;
-                    $('#espirometria-contenedor').append('<span class="text-danger error-datosFaltantesEspirometria">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#espirometria-contenedor').append('<span class="text-danger error-datosFaltantesEspirometria">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaEspirometria = true;
                     $('#espirometria-contenedor').find('span.error-datosFaltantesEspirometria').remove();
@@ -4239,7 +4309,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaElectrocardiograma'))) {
                     $('#electrocardiograma-contenedor').find('span.error-datosFaltantesElectrocardiograma').remove();
                     ePreconsultaElectrocardiograma = false;
-                    $('#electrocardiograma-contenedor').append('<span class="text-danger error-datosFaltantesElectrocardiograma">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#electrocardiograma-contenedor').append('<span class="text-danger error-datosFaltantesElectrocardiograma">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaElectrocardiograma = true;
                     $('#electrocardiograma-contenedor').find('span.error-datosFaltantesElectrocardiograma').remove();
@@ -4253,7 +4323,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaEcocardiograma'))) {
                     $('#ecocardiograma-contenedor').find('span.error-datosFaltantesEcocardiograma').remove();
                     ePreconsultaEcocardiograma = false;
-                    $('#ecocardiograma-contenedor').append('<span class="text-danger error-datosFaltantesEcocardiograma">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#ecocardiograma-contenedor').append('<span class="text-danger error-datosFaltantesEcocardiograma">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaEcocardiograma = true;
                     $('#ecocardiograma-contenedor').find('span.error-datosFaltantesEcocardiograma').remove();
@@ -4267,7 +4337,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaTrabajoSocial'))) {
                     $('#trabajoSocial-contenedor').find('span.error-datosFaltantesTrabajoSocial').remove();
                     ePreconsultaTrabajoSocial = false;
-                    $('#trabajoSocial-contenedor').append('<span class="text-danger error-datosFaltantesTrabajoSocial">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#trabajoSocial-contenedor').append('<span class="text-danger error-datosFaltantesTrabajoSocial">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaTrabajoSocial = true;
                     $('#trabajoSocial-contenedor').find('span.error-datosFaltantesTrabajoSocial').remove();
@@ -4281,7 +4351,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaPrograma')) || !areValidDynamicSelects(document.querySelectorAll('.programa'))) {
                     $('#programa-contenedor').find('span.error-datosFaltantesPrograma').remove();
                     ePreconsultaPrograma = false;
-                    $('#programa-contenedor').append('<span class="text-danger error-datosFaltantesPrograma">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#programa-contenedor').append('<span class="text-danger error-datosFaltantesPrograma">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaPrograma = true;
                     $('#programa-contenedor').find('span.error-datosFaltantesPrograma').remove();
@@ -4295,7 +4365,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaOtro')) || !areValidDynamicSelects(document.querySelectorAll('.otro-estudioPreconsulta'))) {
                     $('#otro-contenedor').find('span.error-datosFaltantesOtro').remove();
                     ePreconsultaOtro = false;
-                    $('#otro-contenedor').append('<span class="text-danger error-datosFaltantesOtro">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#otro-contenedor').append('<span class="text-danger error-datosFaltantesOtro">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaOtro = true;
                     $('#otro-contenedor').find('span.error-datosFaltantesOtro').remove();
@@ -4312,16 +4382,9 @@ $(document).ready(function () {
                     && ePreconsultaRayos && ePreconsultaUltrasonido && ePreconsultaMedicinaNuclear && ePreconsultaLaboratorio
                     && ePreconsultaValoracion && ePreconsultaEspirometria && ePreconsultaElectrocardiograma
                     && ePreconsultaEcocardiograma && ePreconsultaTrabajoSocial && ePreconsultaPrograma && ePreconsultaOtro
-                    ) {
-                swal({
-                    title: "¡Buen trabajo!",
-                    text: "Todos los datos se han enviado correctamente.",
-                    icon: "success",
-                    closeOnEsc: false,
-                    closeOnClickOutside: false,
-                    button: "Aceptar",
-                });
-                btnSave(data);
+                    && pusoResultadoPatologia) {
+                swal("Felicidades!", "Se puede enviar todo!", "success");
+                //btnSave(data);
             } else {
                 swal({
                     title: "Error",
@@ -4378,9 +4441,6 @@ $(document).ready(function () {
     $('body').on('click', '.btn-perder-cita', function () {
         var idPotencial = $(this).data('id');
 
-        //
-
-
         swal({
             title: '¿Estás segura(o) de cancelar las citas de navegación y preconsulta?',
             text: "La paciente tendrá que solicitar una nueva cita de navegación y preconsulta.",
@@ -4430,6 +4490,10 @@ $(document).ready(function () {
                                 closeOnEsc: false,
                                 closeOnClickOutside: false,
                             });
+
+                            $("#estadoCita-" + idPotencial).html("Cancelada");
+                            ;
+
                         }
                     }
                 });
@@ -5728,7 +5792,7 @@ function isValidPRZ(input) {
 
     var m = input.val();
 
-    var expreg = /^[a-zA-Z0-9]{4,16}$/;
+    var expreg = /^(?<![\w\d])PRZ(\d{6})/;
 
     if (!expreg.test(m)) {
 
@@ -5772,7 +5836,7 @@ function isValidTratamientoPrevio(input) {
 
     console.log("HOY:" + hoy);
 
-    if (fechaIntroducida >= hoy) {
+    if (fechaIntroducida > hoy) {
         console.log("MMM NO PUEDES");
         return false;
     }
@@ -5801,7 +5865,7 @@ function isValidFechaEstudioPrevio(input) {
 
     console.log("HOY:" + hoy);
 
-    if (fechaIntroducida >= hoy) {
+    if (fechaIntroducida > hoy) {
         console.log("MMM NO PUEDES");
         return false;
     }
@@ -5957,7 +6021,7 @@ function isValidAlfanumerico(input) {
 
     var m = input.val();
 
-    var expreg = /^$|[a-zA-Z\u00E0-\u00FCñÑ. ]$/;
+    var expreg = /^$|[a-zA-Z0-9\u00E0-\u00FCñÑ., ]$/;
 
     if (!expreg.test(m)) {
 

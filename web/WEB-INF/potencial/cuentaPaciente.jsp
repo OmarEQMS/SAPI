@@ -142,8 +142,8 @@
                 <!-- ***** A PARTIR DE AQUI ESCRIBEN EL CODIGO QUE QUIERAN..... ***** -->
                 <!-- **************************************************************** -->
 
-                <div class="row mb-3 justify-content-end">
-                    <div class="col-3 text-center">
+                <div class="row mb-3">
+                    <div class="col-12 text-right">
                         <span class="iconoHome mr-2"><i class="fas fa-home"></i></span><span><a id="irAInicioPotencial" class="colorMoradoLight">Inicio</a></span>
                         - <span class="colorGlobal">Mi Cuenta</span>
                     </div>
@@ -181,11 +181,11 @@
 
                             <!-- 1 -->
                             <div class="form-group row justify-content-center">
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
                                     <label for="name">Nombre</label>
                                     <input type="text" class="form-control" id="name" value="${sessionScope.nombre}" readonly/>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
                                     <label for="surname1">Primer apellido</label>
                                     <input type="text" class="form-control" id="surname1" value="${sessionScope.primerApellido}" readonly/>
                                 </div>
@@ -193,11 +193,11 @@
 
                             <!-- 2 -->
                             <div class="form-group row justify-content-center">
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
                                     <label for="surname2">Segundo apellido</label>
                                     <input type="text" class="form-control" id="surname2" value="${sessionScope.segundoApellido}" readonly/>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
                                     <label for="username">Usuario</label>
                                     <input type="text" class="form-control" id="username" value="${sessionScope.usuario}" readonly/>
                                 </div>
@@ -205,14 +205,14 @@
 
                             <!-- 3 -->
                             <div class="form-group row justify-content-center">
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
                                     <label for="myEmail">Correo</label>
 
                                     <input type="email" class="form-control" id="myEmail" name="myEmail" value="${sessionScope.correo}"  required/>
                                     <span class="text-danger" id="error-correo">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
                                     <span class="text-warning" id="errorCorreoRepetido">El correo ya existe.</span>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
                                     <label for="telephoneNum">Teléfono</label>
                                     <input type="text" class="form-control" id="telephoneNum" name="telephoneNum"
                                            value="${sessionScope.telefono}" required />
@@ -221,7 +221,7 @@
                             </div>
 
                             <div class="form-group row justify-content-center">
-                                <div class="col-8">
+                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 mb-2">
                                     <label for="myPRZ">PRZ</label>
                                     <input type="text" class="form-control" id="myPRZ" value="${sessionScope.prz}"
                                            readonly/>
@@ -236,8 +236,8 @@
 
                             <!-- 5 -->
                             <div class="form-group row justify-content-center mt-4">
-                                <div class="col-4">
-                                    <button type="button" id = "guardarCambios" class="btn btn-outline-success btn-block" style="border-radius:20px"><i
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <button type="button" id = "guardarCambios" class="btn btn-outline-success btn-block display-4 truncate" style="border-radius:20px"><i
                                             class="fas fa-save mr-1"></i>
                                         Guardar Cambios</button>
                                 </div>
@@ -246,8 +246,8 @@
 
                             <!-- 6 -->
                             <div class="form-group row justify-content-center mt-3">
-                                <div class="col-4">
-                                    <button type="button" class="btn btn-outline-info btn-block" id="btn-contraseña" style="border-radius:20px" data-toggle="modal"
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <button type="button" class="btn btn-outline-info btn-block display-4 truncate" id="btn-contraseña" style="border-radius:20px" data-toggle="modal"
                                             data-target="#modalCambiarContraseña"><i class="fas fa-key mr-1"></i>
                                         Cambiar Contraseña</button>
                                 </div>
@@ -260,8 +260,8 @@
                             </div>
 
                             <div class="form-group row justify-content-center mt-4">
-                                <div class="col-4">
-                                    <button type="button" class="btn btn-outline-danger btn-block" style="border-radius:20px" id="eliminarCuentaPotencial"><i
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <button type="button" class="btn btn-outline-danger btn-block truncate" style="border-radius:20px" id="eliminarCuentaPotencial"><i
                                             class="fas fa-trash-alt mr-1"></i>
                                         Eliminar Cuenta</button>
 

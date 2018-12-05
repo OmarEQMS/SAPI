@@ -268,8 +268,6 @@ $(document).ready(function () {
 
     $('#fechaCitaNavegacion').html(m);
 
-
-    //MediaQueries
     
      function mostrarContrasena(myButton, myField) {
         myButton.on('mousedown', function () {
@@ -281,5 +279,19 @@ $(document).ready(function () {
             x.type = "password";
         });
     }
+
+    //Mediaqueries
+    $(window).resize(function () {
+
+        if ($(window).width() <= 650) {
+
+            $('div#calendarCitas .fc-toolbar .fc-center .btn-group').hide();
+            $('div#calendarCitas .fc-toolbar .fc-left .fc-today-button').hide();
+
+        }
+        
+        
+
+    });
 
 });
