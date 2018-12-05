@@ -42,6 +42,37 @@ $(document).ready(function () {
     $("#error-camposAdministrador").hide();
     $("#error-datosRepetidosAdministrador").hide();
 
+    $('body').on('click', '.descargarFormulario', function () {
+        var idPaciente = $(this).data('id');
+        $.ajax({
+            url: 'AdministradorController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "setIdSesion",
+                idPaciente: idPaciente
+            },
+            success: function (response) {
+
+                var form = document.createElement("form");
+                form.method = "post";
+                form.action = "/SAPI/ReporteControllerJaspersoft?key=generar-reporteformulario";
+                document.body.appendChild(form);
+                form.submit();
+                document.body.removeChild(form);
+
+
+
+            },
+            beforeSend: function () {
+                $('.generarReporte').fadeIn();
+            },
+            complete: function () {
+                $('.generarReporte').fadeOut();
+            }
+        });
+
+    });
 
     $('#btn-agregarAdministrador').on('click', function () {
         if (!repiteCorreoAdministrador && !repiteNoEmpleadoAdministrador) {
@@ -2229,7 +2260,7 @@ $(document).ready(function () {
     /**AGREGAR MEDICO */
     $('#btn-agregarMedico').on('click', function () {
         if (!repiteCorreo && !repiteNoEmpleadoMedico) {
-            
+
             $("#error-datosRepetidos").hide();
 
 
@@ -2239,7 +2270,7 @@ $(document).ready(function () {
                     && isValidPhoneNumber($('#agregar-telefonoMedico')) && isValidAddEspecialidad && isValidAddPosicion
                     && areEqualPasswords($('#agregar-passwordMedico'), $('#agregar-password2Medico'))
                     ) {
-                
+
                 $("#error-datosRepetidos").hide();
                 $("#error-campos").hide();
 

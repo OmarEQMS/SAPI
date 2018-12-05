@@ -42,6 +42,11 @@
 
     <body>
 
+        <div class="generarReporte" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Recuperando formulario, por favor espere...</p>
+        </div>
+
         <div class="cargandoEliminarPaciente" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Eliminando al paciente, por favor espere...</p>
@@ -56,7 +61,7 @@
             <img src="img/loading.svg">
             <p class="clear">Actualizando al paciente, por favor espere...</p>
         </div>
-        
+
         <div class="cargandoIrAMedico" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando la lista de médicos...</p>
