@@ -344,7 +344,6 @@
                                                                     <c:when test="${sessionScope.identificacionOficial<=0}">
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
                                                                             <span class="textoDocumento">Identificación oficial
-                                                                                <small><strong>Obligatorio</strong></small>
                                                                             </span>
                                                                         </div>
 
@@ -401,7 +400,6 @@
                                                                     <c:when test="${sessionScope.curp<=0}">
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
                                                                             <span class="textoDocumento">CURP
-                                                                                <small><strong>Obligatorio</strong></small>
                                                                             </span>
                                                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                                                 Se puede tramitar
@@ -450,7 +448,6 @@
 
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
                                                                             <span class="textoDocumento">Comprobante de domicilio
-                                                                                <small><strong>Obligatorio</strong></small>
                                                                             </span>
                                                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                                                 Vigencia no mayor a 3 meses.
@@ -651,11 +648,8 @@
                                                                 <c:choose>
                                                                     <c:when test="${sessionScope.biopsiaPrevia<=0}">
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput" onclick="return false;">
-                                                                                <label class="form-check-label textoDocumento">
-                                                                                    ¿Te han hecho una biopsia previamente?
-                                                                                </label>
+                                                                            <div class="form-check form-check-inline"> 
+                                                                                <label class="textoDocumento"><input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput" onclick="return false;" /> ¿Te han hecho una biopsia previamente?</label>
                                                                             </div>
                                                                         </div>
 
@@ -670,11 +664,8 @@
                                                                     </c:when>
                                                                     <c:otherwise>
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" name="biopsiaInput" type="checkbox" onclick="return false;" id="biopsiaInput" checked>
-                                                                                <label class="form-check-label textoDocumento text-success">
-                                                                                    ¿Te han hecho una biopsia previamente?
-                                                                                </label>
+                                                                            <div class="form-check form-check-inline"> 
+                                                                                <label class="textoDocumento text-success"><input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput" onclick="return false;" checked/> ¿Te han hecho una biopsia previamente?</label>
                                                                             </div>
                                                                             <span class="text-success" style="font-size:11px">Documento subido</span>
                                                                         </div>
@@ -948,7 +939,6 @@
                                                                     <c:when test="${sessionScope.identificacionOficial<=0}">
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
                                                                             <span class="textoDocumento">Identificación oficial
-                                                                                <small><strong>Obligatorio</strong></small>
                                                                             </span>
                                                                         </div>
 
@@ -1005,7 +995,6 @@
                                                                     <c:when test="${sessionScope.curp<=0}">
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
                                                                             <span class="textoDocumento">CURP
-                                                                                <small><strong>Obligatorio</strong></small>
                                                                             </span>
                                                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                                                 Se puede tramitar
@@ -1054,7 +1043,6 @@
 
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
                                                                             <span class="textoDocumento">Comprobante de domicilio
-                                                                                <small><strong>Obligatorio</strong></small>
                                                                             </span>
                                                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                                                 Vigencia no mayor a 3 meses.
@@ -1251,16 +1239,15 @@
 
                                                             <!-- Biopsia o tratamiento  -->
 
+
+
                                                             <div class="row mt-4">
 
                                                                 <c:choose>
                                                                     <c:when test="${sessionScope.biopsiaPrevia<=0}">
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput">
-                                                                                <label class="form-check-label textoDocumento">
-                                                                                    ¿Te han hecho una biopsia previamente?
-                                                                                </label>
+                                                                            <div class="form-check form-check-inline"> 
+                                                                                <label class="textoDocumento"><input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput" /> ¿Te han hecho una biopsia previamente?</label>
                                                                             </div>
                                                                         </div>
 
@@ -1275,11 +1262,8 @@
                                                                     </c:when>
                                                                     <c:otherwise>
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2 text-center">
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" name="biopsiaInput" type="checkbox" onclick="return false;" id="biopsiaInput" checked>
-                                                                                <label class="form-check-label textoDocumento text-success">
-                                                                                    ¿Te han hecho una biopsia previamente?
-                                                                                </label>
+                                                                            <div class="form-check form-check-inline"> 
+                                                                                <label class="textoDocumento text-success"><input class="form-check-input" name="biopsiaInput" type="checkbox" id="biopsiaInput" onclick="return false;" checked/> ¿Te han hecho una biopsia previamente?</label>
                                                                             </div>
                                                                             <span class="text-success" style="font-size:11px">Documento subido</span>
                                                                         </div>
