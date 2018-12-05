@@ -4412,7 +4412,7 @@ $(document).ready(function () {
                     && ePreconsultaEcocardiograma && ePreconsultaTrabajoSocial && ePreconsultaPrograma && ePreconsultaOtro
                     && pusoResultadoPatologia) {
                 swal("Felicidades!", "Se puede enviar todo!", "success");
-                //btnSave(data);
+                btnSave(data);
             } else {
                 swal({
                     title: "Error",
