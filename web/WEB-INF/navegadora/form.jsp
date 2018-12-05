@@ -725,32 +725,32 @@
                                         </div>
 
                                         <div class="row">
-                                            
 
-                                                <div class="input-group col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-3" id="tiene-UltrasonidoPrevio">
-                                                    <select name="tipoUltrasonidoMama" class="form-control" id="tipoUltrasonidoMama">
-                                                        <option disabled selected>Ultrasonido Mama BI-RADS</option>
-                                                        <c:forEach items="${listaBirads}" var="birads">  
 
-                                                            <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
+                                            <div class="input-group col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-3" id="tiene-UltrasonidoPrevio">
+                                                <select name="tipoUltrasonidoMama" class="form-control" id="tipoUltrasonidoMama">
+                                                    <option disabled selected>Ultrasonido Mama BI-RADS</option>
+                                                    <c:forEach items="${listaBirads}" var="birads">  
 
-                                                        </c:forEach>
+                                                        <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
 
-                                                    </select>
-                                                </div>
+                                                    </c:forEach>
 
-                                                    <div class="input-group col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" id="fechaUsg">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <i class="fas fa-calendar-alt"></i>
-                                                            </div>
-                                                        </div>
-                                                        <input name="fechaPreUsg" placeholder="Introduce la fecha de ultrasonido" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
-                                                               id="fechaPreUsg">
+                                                </select>
+                                            </div>
+
+                                            <div class="input-group col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" id="fechaUsg">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <i class="fas fa-calendar-alt"></i>
                                                     </div>
-                                                    <span class="text-danger" id="error-fechaUltra">Fecha incorrecta</span> 
+                                                </div>
+                                                <input name="fechaPreUsg" placeholder="Introduce la fecha de ultrasonido" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
+                                                       id="fechaPreUsg">
+                                            </div>
+                                            <span class="text-danger" id="error-fechaUltra">Fecha incorrecta</span> 
 
-                                            
+
                                         </div>
 
 
@@ -860,13 +860,13 @@
                                         </div>
                                     </div>
                                     <div class="row justify-content-center mt-2">
-                                        <div class="col-xl-8 col-lg-4 col-md-8 col-sm-12 col-12">
+                                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
                                             <button class="btn btn-morado btn-block truncate" id="btn-export1" style="border-radius:20px">
                                                 <i class="fas fa-file-contract"></i> Generar Reporte</button>
                                         </div>
                                     </div>
                                     <div class="row justify-content-center mt-2">
-                                        <div class="col-xl-8 col-lg-4 col-md-8 col-sm-12 col-12">
+                                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
                                             <button class="btn btn-outline-success btn-block" id="btn-continue2" style="border-radius:20px">
                                                 <i class="fas fa-arrow-circle-right mr-2"></i>Continuar</button>
                                         </div>
@@ -1255,28 +1255,31 @@
 
                                         <div class="form-group row mt-4">
 
-                                            <div class="col-3">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
                                                 <span>Decisión preconsulta</span>
 
                                             </div>
 
-                                            <div class="col-4">
+                                        </div>
 
-                                                <div class="input-group">
-                                                    <select name="decisionPreconsulta" class="form-control" id="decisionPreconsulta">
+                                        <div class="form-group row mt-2">
 
-                                                        <option disabled selected>Seleccione la decisión</option>              
+                                            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 input group mb-2">
 
-                                                        <option value=3 >Unidad funcional</option>
-                                                        <option value=8>Alta</option>
-                                                        <option value="9">Alta voluntaria</option>
-                                                        <option value="7">Finada</option>
-                                                    </select>
-                                                </div>
+                                                <select name="decisionPreconsulta" class="form-control" id="decisionPreconsulta">
+
+                                                    <option disabled selected>Seleccione la decisión</option>              
+
+                                                    <option value=3 >Unidad funcional</option>
+                                                    <option value=8>Alta</option>
+                                                    <option value="9">Alta voluntaria</option>
+                                                    <option value="7">Finada</option>
+                                                </select>
+
                                             </div>
 
-                                            <div class="col-5">
+                                            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
@@ -1287,29 +1290,36 @@
                                                 </div>
                                                 <span class="text-danger" id="error-fechaDecision">Fecha incorrecta</span>
                                             </div>
+
                                         </div>
+
 
                                         <div class="form-group row mt-4">
 
-                                            <div class="col-3">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <span>Nivel socioeconómico</span>
                                             </div>
 
-                                            <div class="col-4">
-
-                                                <div class="input-group">
-                                                    <select name="nivelSocioeconomico" class="form-control" id="nivelSocioeconomico">
-
-                                                        <option disabled selected>Seleccione el nivel socioeconómico</option>
-                                                        <c:forEach items="${listaNivelSocioEconomico}" var="nivel">  
-
-                                                            <option value='<c:out value="${nivel.idNivelSocioEconomico}"/>'><c:out value='${nivel.nombre}'/> </option>
-
-                                                        </c:forEach>
-                                                    </select>
-                                                </div>
-                                            </div>
                                         </div>
+
+                                        <div class="form-group row mt-4">
+                                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 input-group">
+
+
+                                                <select name="nivelSocioeconomico" class="form-control" id="nivelSocioeconomico">
+
+                                                    <option disabled selected>Seleccione el nivel socioeconómico</option>
+                                                    <c:forEach items="${listaNivelSocioEconomico}" var="nivel">  
+
+                                                        <option value='<c:out value="${nivel.idNivelSocioEconomico}"/>'><c:out value='${nivel.nombre}'/> </option>
+
+                                                    </c:forEach>
+                                                </select>
+
+                                            </div>
+
+                                        </div>
+
 
                                         <div class="form-group row mt-4">
                                             <div class="col-10">
@@ -1383,16 +1393,16 @@
                                     </div>
 
                                     <div class="row justify-content-center mt-5">
-                                        <div class="col-4">
-                                            <button class="btn btn-outline-danger btn-block" id="btn-back4" style="border-radius:20px">
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
+                                            <button class="btn btn-outline-danger btn-block truncate" id="btn-back4" style="border-radius:20px">
                                                 <i class="fas fa-undo mr-2"></i>Regresar</button>
                                         </div>
-                                        <div class="col-4">
-                                            <button id="btn-save4" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
+                                            <button id="btn-save4" class="btn btn-outline-primary btn-block truncate" style="border-radius:20px">
                                                 <i class="fas fa-save mr-2" ></i>Guardar y Continuar Después</button>
                                         </div>
-                                        <div class="col-4">
-                                            <button class="btn btn-outline-success btn-block" id="btn-continue4" style="border-radius:20px">
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
+                                            <button class="btn btn-outline-success btn-block truncate" id="btn-continue4" style="border-radius:20px">
                                                 <i class="fas fa-arrow-circle-right mr-2"></i>Continuar</button>
                                         </div>
 
@@ -1403,28 +1413,36 @@
                                 <!-- PANTALLA 5 -->
                                 <div id="pantalla5">
 
-                                    <form>    
-                                        <div class="form-group row mt-4">
+                                    <form> 
 
-                                            <div class="col-12">
-                                                <div class="form-group">
+                                        <div class="form-group row mt-2">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <label class="form-check-label" for="etapaClinica">Etapa Clínica</label>
+                                            </div>
+                                        </div>
 
-                                                    <label class="form-check-label" for="etapaClinica">Etapa Clínica</label>
-                                                </div>
-                                                <div class="input-group">
-                                                    <select name="etapaClinica" class="form-control" id="etapaClinica">
-                                                        <option disabled selected>Seleccione etapa clínica</option>
-                                                        <c:forEach items="${listaEtapaClinica}" var="etapa">  
+                                        <div class="form-group row mt-2">
 
-                                                            <option value='<c:out value='${etapa.idEtapaClinica}'/>'><c:out value='${etapa.nombre}'/> </option>
 
-                                                        </c:forEach>
-                                                    </select>
-                                                </div>
+                                            <div class="input-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <select name="etapaClinica" class="form-control" id="etapaClinica">
+                                                    <option disabled selected>Seleccione etapa clínica</option>
+                                                    <c:forEach items="${listaEtapaClinica}" var="etapa">  
 
+                                                        <option value='<c:out value='${etapa.idEtapaClinica}'/>'><c:out value='${etapa.nombre}'/> </option>
+
+                                                    </c:forEach>
+                                                </select>
                                             </div>
 
-                                            <div class="col-6 mt-4">
+
+
+                                        </div>
+
+
+
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-4">
 
                                                 <label for="">Resultados de mastografía</label>
                                                 <div class="input-group">
@@ -1439,7 +1457,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-6 mt-4">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-4">
                                                 <label for="">Resultados del ultrasonido</label>
                                                 <div class="input-group">
                                                     <select name="tipoUSG" class="form-control" id="tipoUSG">
@@ -1453,18 +1471,21 @@
                                                     </select>
                                                 </div>
                                             </div>
-
                                         </div>
 
+
+
+
+
                                         <div class="row mt-5 mb-3">
-                                            <div class="col-12">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <h6 class="display-4 text-secondary" style="font-size:26px;">TNM:</h6>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
 
-                                            <div class="col-4">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
                                                 <div class="form-group">
 
                                                     <label class="form-check-label" for="etapaClinica">T:</label>
@@ -1483,7 +1504,7 @@
 
                                             </div>
 
-                                            <div class="col-4">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
                                                 <div class="form-group">
 
                                                     <label name="" class="form-check-label" for="etapaClinica">N:</label>
@@ -1501,7 +1522,7 @@
 
                                             </div>
 
-                                            <div class="col-4">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
                                                 <div class="form-group">
 
                                                     <label class="form-check-label" for="etapaClinica">M:</label>
@@ -1524,7 +1545,7 @@
 
                                         <div class="form-group row mt-4">
 
-                                            <div class="col-6">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
                                                 <div class="form-group">
 
                                                     <label class="form-check-label" for="etapaClinica">Resultado Patologóa:</label>
@@ -1543,7 +1564,7 @@
                                                 </div>
 
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
                                                 <div class="form-group">
 
                                                     <label class="form-check-label" for="etapaClinica">Grado Histológico:</label>
@@ -1562,14 +1583,14 @@
                                             </div>
                                         </div>
                                         <div class="form-group row mt-4" id="introducirOtro">
-                                            <div class="col-6">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                                 <input name="otroResultPato" id="otroResultadoPatologiaPost" type="text" class="form-control" placeholder="Introduce otro resultado">
                                             </div>
                                         </div>
 
                                         <div class="form-group row mt-4">
 
-                                            <div class="col-4">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                                 <div class="form-group">
 
                                                     <label class="form-check-label" for="etapaClinica">Her2:</label>
@@ -1588,7 +1609,7 @@
 
                                             </div>
 
-                                            <div class="col-4">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                                 <div class="form-group">
 
                                                     <label class="form-check-label" for="etapaClinica">Fish:</label>
@@ -1604,7 +1625,7 @@
 
                                             </div>
 
-                                            <div class="col-4">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                                 <div class="form-group">
 
                                                     <label class="form-check-label" for="etapaClinica">RE:</label>
@@ -1620,7 +1641,10 @@
 
                                             </div>
 
-                                            <div class="col-6 mt-3">
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-3">
                                                 <div class="form-group">
 
                                                     <label class="form-check-label" for="etapaClinica">RP:</label>
@@ -1638,7 +1662,7 @@
 
                                             </div>
 
-                                            <div class="col-6 mt-3">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-3">
                                                 <div class="form-group">
 
                                                     <label class="form-check-label" for="etapaClinica">Ki67:</label>
@@ -1650,14 +1674,16 @@
                                                 <span class="text-danger" id="error-ki67">Solo caracteres numéricos</span>
                                             </div>
                                         </div>
+
+
                                     </form>    
                                     <div class="row justify-content-center mt-5">
-                                        <div class="col-4">
-                                            <button class="btn btn-outline-danger btn-block" id="btn-back5" style="border-radius:20px">
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
+                                            <button class="btn btn-outline-danger btn-block truncate" id="btn-back5" style="border-radius:20px">
                                                 <i class="fas fa-undo mr-2"></i>Regresar</button>
                                         </div>
-                                        <div class="col-4">
-                                            <button id="btn-save5" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                            <button id="btn-save5" class="btn btn-outline-primary btn-block truncate" style="border-radius:20px">
                                                 <i class="fas fa-save mr-2" ></i>Guardar y Continuar Después</button>
 
                                         </div>
@@ -1665,14 +1691,14 @@
                                     </div>
 
                                     <div class="row justify-content-center mt-3">
-                                        <div class="col-8">
-                                            <button class="btn btn-morado btn-block" id="btn-export2" style="border-radius:20px">
+                                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
+                                            <button class="btn btn-morado btn-block truncate" id="btn-export2" style="border-radius:20px">
                                                 <i class="fas fa-file-contract"></i> Generar Reporte</button>
                                         </div>
                                     </div>
 
                                     <div class="row justify-content-center mt-3">
-                                        <div class="col-8">
+                                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
                                             <button class="btn btn-outline-success btn-block" id="btn-sendAll" style="border-radius:20px">
                                                 <i class="fas fa-check-circle mr-2"></i>Enviar</button>
                                         </div>
