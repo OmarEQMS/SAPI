@@ -881,7 +881,7 @@ $(document).ready(function () {
                             "",
                             year + "-" + month + "-" + day,
                             "<span class='telefono-" + idPaciente + "'>" + $(".telefono-" + idPaciente).html() + "</span>",
-                            "<span id='tipoCita-" + idPaciente + "'>Aprobada</span>",
+                            "<span id='estadoCita-" + idPaciente + "'>Aprobada</span>",
                             "<button class='btn btn-info m-1 btn-ver-formulario' data-id=" + idPaciente + " id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
                                     "<button class='btn btn-primary m-1 btn-editar' data-id=" + idPaciente + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
                                     "<button class='btn btn-danger m-1 btn-perder-cita' data-id=" + idPaciente + " data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
@@ -894,7 +894,7 @@ $(document).ready(function () {
                             "",
                             year + "-" + month + "-" + day,
                             "<span class='telefono-" + idPaciente + "'>" + $(".telefono-" + idPaciente).html() + "</span>",
-                            "<span id='tipoCita-" + idPaciente + "'>Aprobada</span>",
+                            "<span id='estadoCita-" + idPaciente + "'>Aprobada</span>",
                             "<button class='btn btn-info m-1 btn-ver-formulario' data-id=" + idPaciente + " id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
                                     "<button class='btn btn-primary m-1 btn-editar' data-id=" + idPaciente + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
                                     "<button class='btn btn-danger m-1 btn-perder-cita' data-id=" + idPaciente + " data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
@@ -4392,10 +4392,7 @@ $(document).ready(function () {
 
 
     $('body').on('click', '.btn-perder-cita', function () {
-        var idPotencial = $(this).data('id');
-
-        //
-
+        var idPotencial = $(this).data('id');        
 
         swal({
             title: '¿Estás segura(o) de cancelar las citas de navegación y preconsulta?',
@@ -4446,6 +4443,9 @@ $(document).ready(function () {
                                 closeOnEsc: false,
                                 closeOnClickOutside: false,
                             });
+                            
+                            $("#estadoCita-" + idPotencial).html("Cancelada");;
+                            
                         }
                     }
                 });
