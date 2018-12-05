@@ -547,55 +547,85 @@ $(document).ready(function () {
 
     });
 
+    //GUARDA EL PACIENTE DESDE EL MODAL 
     $('#btn-guardarCambios').on('click', function () {
-        console.log("Presionó Guardar Cambios");
+        if (!repiteCorreo && !repiteUsuarioPaciente) {
+            $("#error-editarDatosRepetidosPaciente").hide();
+        alert("Hola");
+            if (isValidName($('#editarNombreNavegadoraAPaciente')) && isValidLastName($('#editarPrimer-apellidoNavegadoraAPaciente'))
+                    && isValidUserName($('#editarUsuarioNavegadoraAPaciente')) &&
+                    isValidEdit2ApellidoPaciente && isValidEditColPaciente && isValidEditCallePaciente && isValidEditNumIntPaciente &&
+                    isValidEditExtNumPaciente &&
+                    isValidEmail($('#editarCorreoNavegadoraAPaciente')) && isValidCURP($('#editarCurpNavegadoraAPaciente'))
+                    && isValidPhoneNumber($('#editarTelNavegadoraAPaciente')) &&
+                    isValidSelect($('#editarEstado-civilPaciente')) && isValidDate($('#editarCumpleNavegadoraAPaciente'))
+                    && isValidSelect($('#editarEstadoNavegadoraAPaciente')) && isValidSelect($('#editarMunicipioNavegadoraAPaciente'))) {
 
-        // FALTA OBTENER EL ID DEL PACIENTE 
-        if (!isValidCURP($('#editarCurpNavegadoraAPaciente')) || !isValidDate($("#editarCumpleNavegadoraAPaciente")) || !isValidPhoneNumber($("#editarTelNavegadoraAPaciente"))
-                || !isValidColonia($('#editarColNavegadoraAPaciente')) || !isValidStreet($('#editarCalleNavegadoraAPaciente')) || !isValidExtNumber($("#editarNumExtNavegadoraAPaciente"))
-                || !isValidIntNumber($("#editarNumIntNavegadoraAPaciente")) || !isValidName($('#editarNombreNavegadoraAPaciente')) || !isValidLastName($('#editarPrimer-apellidoNavegadoraAPaciente'))
-                || !isValidUserName($('#editarUsuarioNavegadoraAPaciente')) || !isValidEmail($('#editarCorreoNavegadoraAPaciente'))
-                ) {
+                $("#error-camposEditarPaciente").hide();
 
-            $('#error-campos').show();
+                $.ajax({
 
+                    url: "AdministradorController",
+                    method: "POST",
+                    beforeSend: function () {
+                        $('.cargandoEditarPaciente').fadeIn();
+                    },
+                    cache: false,
+                    data: {
+                        key: "actualizar-paciente",
+                        idPaciente: $('#idPacienteAEditar').val(),
+                        nombre: $('#editarNombreNavegadoraAPaciente').val(),
+                        apellido1: $('#editarPrimer-apellidoNavegadoraAPaciente').val(),
+                        apellido2: $('#editarSegundo-apellidoNavegadoraAPaciente').val(),
+                        usuario: $("#editarUsuarioNavegadoraAPaciente").val(),
+                        correo: $('#editarCorreoNavegadoraAPaciente').val(),
+                        curp: $('#editarCurpNavegadoraAPaciente').val(),
+                        colonia: $('#editarColNavegadoraAPaciente').val(),
+                        calle: $('#editarCalleNavegadoraAPaciente').val(),
+                        noExterior: $("#editarNumExtNavegadoraAPaciente").val(),
+                        noInterior: $("#editarNumIntAdministradorAPacient").val(),
+                        telefono: $("#editarTelNavegadoraAPaciente").val(),
+                        estadoCivil: $("#editarEstado-civilPaciente").val(),
+                        fechaNacimiento: $("#editarCumpleNavegadoraAPaciente").val(),
+                        estado: $("#editarEstadoNavegadoraAPaciente").val(),
+                        municipio: $("#editarMunicipioNavegadoraAPaciente").val()
+
+
+                    },
+                    complete: function () {
+                        $('.cargandoEditarPaciente').fadeOut();
+                    },
+                    success: function (response) {
+
+                        swal({
+                            title: "Cambios guardados correctamente",
+                            icon: "success",
+                            closeOnEsc: false,
+                            closeOnClickOutside: false,
+                            buttons: true,
+                            buttons: [, 'Aceptar']
+                        });
+
+                        //Cerrar modal
+                        $("#modalEditarPaciente").modal('toggle');
+
+                        //Actualizar informacion de la tabla
+                        $("#nombre-" + $('#idPacienteAEditar').val()).html($("#editarNombreNavegadoraAPaciente").val() + ' ' + $('#editarPrimer-apellidoNavegadoraAPaciente').val() + ' ' + $('#editarSegundo-apellidoNavegadoraAPaciente').val());
+                        $("#telefono-" + $('#idPacienteAEditar').val()).html($("#editarTelNavegadoraAPaciente").val());
+                        $("#estado-" + $('#idPacienteAEditar').val()).html($("#editarEstadoNavegadoraAPaciente option:selected").text());
+
+                    }
+
+                });
+            } else {
+                $("#error-camposEditarPaciente").show();
+            }
         } else {
-            $('#error-campos').hide();
-            $.ajax({
-                url: 'NavegadoraController',
-                cache: false,
-                method: 'POST',
-                data: {
-                    key: "actualizar-paciente",
-                    idPaciente: $('#hidden-idPaciente').val(),
-                    nombre: $('#editarNombreNavegadoraAPaciente').val(),
-                    apellido1: $('#editarPrimer-apellidoNavegadoraAPaciente').val(),
-                    apellido2: $('#editarSegundo-apellidoNavegadoraAPaciente').val(),
-                    usuario: $("#editarUsuarioNavegadoraAPaciente").val(),
-                    correo: $('#editarCorreoNavegadoraAPaciente').val(),
-                    curp: $('#editarCurpNavegadoraAPaciente').val(),
-                    colonia: $('#editarColNavegadoraAPaciente').val(),
-                    calle: $('#editarCalleNavegadoraAPaciente').val(),
-                    noExterior: $("#editarNumExtNavegadoraAPaciente").val(),
-                    noInterior: $("#editarNumIntNavegadoraAPaciente").val(),
-                    telefono: $("#editarTelNavegadoraAPaciente").val(),
-                    estadoCivil: $("#editarEstado-civilNavegadora").val(),
-                    fechaNacimiento: $("#editarCumpleNavegadoraAPaciente").val(),
-                    estado: $("#editarEstadoNavegadoraAPaciente").val(),
-                    municipio: $("#editarMunicipioNavegadoraAPaciente").val()
-                }, success: function (response) {
-                    swal({
-                        title: '¡Buen Trabajo!',
-                        text: "Cuenta editada correctamente.",
-                        icon: 'success',
-                        closeOnEsc: false,
-                        closeOnClickOutside: false,
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Aceptar'
-                    });
-                }
-            });
+            console.log("Entro al segundo else");
+            $("#error-editarDatosRepetidosPaciente").show(); //ya existe un campo
+            $("#error-camposEditarPaciente").hide();
         }
+
     });
 
     //Redirige a documentos    
@@ -2529,6 +2559,7 @@ $(document).ready(function () {
 
     });
 
+    var repiteCorreo;
     //CORREO AL EDITAR PACIENTE
     $('#editarCorreoNavegadoraAPaciente').on('change', function () {
 

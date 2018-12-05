@@ -250,7 +250,7 @@
                                                 <tr>
                                                     <th scope="col">Nombre</th>
                                                     <th scope="col">Estado</th>
-                                                    <th scope="col">¿  ?</th>
+                                                    <th scope="col">Estado de la cita</th>
                                                     <th scope="col">Fecha de Registro</th>
                                                     <th scope="col">CURP</th>
                                                     <th scope="col">Teléfono</th>
@@ -263,8 +263,8 @@
 
                                                 <c:forEach items="${listaPacientes}" var="paciente">
                                                     <tr>                                                                                                                      
-
-                                                        <td>${paciente.nombre} ${paciente.primerApellido} ${paciente.segundoApellido}</td>                                                                                                               
+                                                        <td id="nombre-${paciente.idPaciente}" value="${paciente.nombre}" > <c:out value="${paciente.nombre} ${paciente.primerApellido} ${paciente.segundoApellido}"/> </td>
+                                                        
                                                         <td>${paciente.estadoPaciente}</td>
                                                         <td></td>
                                                         <td>${paciente.fechaRegistro}</td>
