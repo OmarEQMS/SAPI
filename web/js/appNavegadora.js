@@ -1397,5 +1397,25 @@ $(document).ready(function () {
             x.type = "password";
         });
     }
+    
+    //Mediaqueries
+    $(window).resize(function () {
+
+        
+        if ($(window).width() <= 500) {
+
+            $('#DataTables_Table_0_info').hide();
+            $('#DataTables_Table_1_info').hide();
+            $('#DataTables_Table_2_info').hide();
+            $('#DataTables_Table_3_info').hide();
+            $('#DataTables_Table_4_info').hide();
+            $('#DataTables_Table_5_info').hide();
+            $('#DataTables_Table_6_info').hide();
+            $('#DataTables_Table_7_info').hide();
+            
+
+        }
+
+    });
 
 });
