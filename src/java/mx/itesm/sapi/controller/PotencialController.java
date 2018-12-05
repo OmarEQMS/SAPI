@@ -1374,7 +1374,7 @@ public class PotencialController extends HttpServlet {
 
                     CitaServicioImpl citaServicio = new CitaServicioImpl();
 
-                    citaServicio.cancelarCitaPreconsulta(idPaciente);
+                    citaServicio.cancelarCitaPreconsulta(idPaciente, "probando");
 
                     System.out.println("Ya la canceló");
 

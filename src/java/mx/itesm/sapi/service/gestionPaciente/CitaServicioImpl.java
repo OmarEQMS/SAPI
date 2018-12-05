@@ -342,17 +342,18 @@ public class CitaServicioImpl implements CitaServicio {
     }
 
     @Override
-    public boolean cancelarCitaPreconsulta(int idPacientePotencial) {
+    public boolean cancelarCitaPreconsulta(int idPacientePotencial, String comentario) {
         Connection conn;
         CallableStatement cstmt;
         ResultSet rs;
-        String stProcedure = "CALL cancelarCitaPreconsulta(?)";
+        String stProcedure = "CALL cancelarCitaPreconsulta(?, ?)";
         boolean exito = false;
         try {
             conn = Conexion.getConnection();
             cstmt = conn.prepareCall(stProcedure);
 
             cstmt.setInt(1, idPacientePotencial);
+            cstmt.setString(2, comentario);
 
             rs = cstmt.executeQuery();
             rs.next();

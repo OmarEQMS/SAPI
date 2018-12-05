@@ -3415,12 +3415,22 @@ public class NavegadoraController extends HttpServlet {
                         case "cancelarCitaPotencial": {
                             PrintWriter out = response.getWriter();
                             try {
-
+                                String nombreN = sesion.getAttribute("nombre").toString();
+                                String primerApellidoN = sesion.getAttribute("primerApellido").toString();
+                                String segundoApellidoN = sesion.getAttribute("segundoApellido").toString();                                
+                                String comentario = "Cita cancelada por la navegadora ";
+                                
+                                comentario = comentario.concat(nombreN);
+                                comentario = comentario.concat(" ");
+                                comentario = comentario.concat(primerApellidoN);
+                                comentario = comentario.concat(" ");
+                                comentario = comentario.concat(segundoApellidoN);
+                                
                                 int idPaciente = Integer.parseInt(request.getParameter("idPotencial"));
                                 System.out.println("idPaciente: " + idPaciente);
 
                                 CitaServicioImpl citaServicio = new CitaServicioImpl();
-                                citaServicio.cancelarCitaPreconsulta(idPaciente);
+                                citaServicio.cancelarCitaPreconsulta(idPaciente, comentario);
                                 System.out.println("Ya la canceló");
 
                                 PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
