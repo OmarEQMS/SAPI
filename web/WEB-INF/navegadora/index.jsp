@@ -382,10 +382,10 @@
 
                                                         <c:choose>
                                                             <c:when test="${pacienteAprobado.tipoPaciente==1}">
-                                                                <td>Segunda Opinion</td>
+                                                                <td class="tipo-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.tipoPaciente}" > <c:out value="Segunda Opinión"/> </td>
                                                             </c:when>    
                                                             <c:otherwise>
-                                                                <td>Primera vez</td>
+                                                                <td class="tipo-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.tipoPaciente}" > <c:out value="Primera vez"/> </td>                                                                
                                                             </c:otherwise>
                                                         </c:choose>
 
@@ -401,11 +401,11 @@
 
                                                         <td>${pacienteAprobado.fechaRegistro}</td>                  
                                                         <td class="telefono-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.telefono}" > <c:out value="${pacienteAprobado.telefono}"/> </td>
-                                                        <td>${pacienteAprobado.nombreEstadoCita}</td>
+                                                        <td class="estadoCita-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.nombreEstadoCita}" > <c:out value="${pacienteAprobado.nombreEstadoCita}"/> </td>
                                                         <td>
                                                             <button class="btn btn-info m-1 btn-ver-formulario" data-id="${pacienteAprobado.idPaciente}" id="btn-ver">
                                                                 <i class="fab fa-wpforms"></i>
-                                                            </button>                                                                                                                        </button>
+                                                            </button>
                                                             <button class="btn btn-primary m-1 btn-editar" data-id="${pacienteAprobado.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarPaciente">
                                                                 <i class="fas fa-edit"></i>
                                                             </button>

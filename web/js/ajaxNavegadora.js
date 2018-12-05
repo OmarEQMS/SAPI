@@ -518,11 +518,11 @@ $(document).ready(function () {
 
                             if (day < 10) {
                                 t.row.add([
-                                    "<span id='nombre-" + response + "'>" + $("#nombrePaciente").val() + " " + $("#primer-apellidoPaciente").val() + " " + $("#segundo-apellidoPaciente").val() + "</span>",
+                                    "<span class='nombre-" + response + "'>" + $("#nombrePaciente").val() + " " + $("#primer-apellidoPaciente").val() + " " + $("#segundo-apellidoPaciente").val() + "</span>",
                                     "<span id='estado-" + response + "'>Potencial en proceso</span>",
                                     "<span id='fecha-" + response + "'>" + year + "-" + month + "-0" + day + "</span>",
                                     "<span id='curp-" + response + "'>" + $('#curpPaciente').val() + "</span>",
-                                    "<span id='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
+                                    "<span class='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
                                     "<button class='btn btn-info btn-ver  m-1' data-id=" + response + " id='btn-ver'><i class='far fa-eye'></i></button>" +
                                             "<button class='btn btn-success btn-aceptar-potencial m-1' data-id=" + response + " data-toggle='modal' data-target='#modalAceptarUsuario'><i class='fas fa-check'></i></button>" +
                                             "<button class='btn btn-primary btn-editar m-1' data-id=" + response + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
@@ -530,11 +530,11 @@ $(document).ready(function () {
                                 ]).draw(false);
                             } else {
                                 t.row.add([
-                                    "<span id='nombre-" + response + "'>" + $("#nombrePaciente").val() + " " + $("#primer-apellidoPaciente").val() + " " + $("#segundo-apellidoPaciente").val() + "</span>",
+                                    "<span class='nombre-" + response + "'>" + $("#nombrePaciente").val() + " " + $("#primer-apellidoPaciente").val() + " " + $("#segundo-apellidoPaciente").val() + "</span>",
                                     "<span id='estado-" + response + "'>Potencial en proceso</span>",
                                     "<span id='fecha-" + response + "'>" + year + "-" + month + "-" + day + "</span>",
                                     "<span id='curp-" + response + "'>" + $('#curpPaciente').val() + "</span>",
-                                    "<span id='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
+                                    "<span class='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
                                     "<button class='btn btn-info btn-ver  m-1' data-id=" + response + " id='btn-ver'><i class='far fa-eye'></i></button>" +
                                             "<button class='btn btn-success btn-aceptar-potencial m-1' data-id=" + response + " data-toggle='modal' data-target='#modalAceptarUsuario'><i class='fas fa-check'></i></button>" +
                                             "<button class='btn btn-primary btn-editar m-1' data-id=" + response + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
@@ -656,7 +656,7 @@ $(document).ready(function () {
     $('#btn-guardarCambios').on('click', function () {
         if (!repiteCorreo && !repiteUsuarioPaciente) {
             $("#error-editarDatosRepetidosPaciente").hide();
-            
+
             if (isValidName($('#editarNombreNavegadoraAPaciente')) && isValidLastName($('#editarPrimer-apellidoNavegadoraAPaciente'))
                     && isValidUserName($('#editarUsuarioNavegadoraAPaciente')) &&
                     isValidEdit2ApellidoPaciente && isValidEditColPaciente && isValidEditCallePaciente && isValidEditNumIntPaciente &&
@@ -830,8 +830,8 @@ $(document).ready(function () {
     $('#btn-aceptarDocumento').on('click', function () {
 
         var idPaciente = $('#hidden-idPaciente').val();
-        //alert('el id final es:' + $('#hidden-idPaciente').val());
-                
+
+
         $.ajax({
 
             url: 'NavegadoraController',
@@ -863,7 +863,43 @@ $(document).ready(function () {
                     $('#Fecha-Consulta').val('').attr("type", "text");
                     $('#tipo-paciente').prop('selectedIndex', 0);
 
+                    //Actualizar estado de la primer tabla
                     $("#estado-" + idPaciente).html("Potencial aceptado");
+
+                    //Insertar al paciente en la segunda tabla
+                    var date = new Date($('#Fecha-Navegacion').val());
+                    var year = date.getFullYear();
+                    var month = date.getMonth();
+                    var day = date.getDate();
+                    var t = $('#tabla2').DataTable();
+
+                    if ($('#tipo-paciente').val() == 0) {
+                        t.row.add([
+                            "",
+                            "<span class='nombre-" + idPaciente + "'>" + $('.nombre-' + idPaciente).html() + "</span>",
+                            "<span id='tipo-" + idPaciente + "'>Primera vez</span>",
+                            "",
+                            year + "-" + month + "-" + day,
+                            "<span class='telefono-" + idPaciente + "'>" + $(".telefono-" + idPaciente).html() + "</span>",
+                            "<span id='tipoCita-" + idPaciente + "'>Aprobada</span>",
+                            "<button class='btn btn-info m-1 btn-ver-formulario' data-id=" + idPaciente + " id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
+                                    "<button class='btn btn-primary m-1 btn-editar' data-id=" + idPaciente + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
+                                    "<button class='btn btn-danger m-1 btn-perder-cita' data-id=" + idPaciente + " data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
+                        ]).draw(false);
+                    } else {
+                        t.row.add([
+                            "",
+                            "<span class='nombre-" + idPaciente + "'>" + $('.nombre-' + idPaciente).html() + "</span>",
+                            "<span id='tipo-" + idPaciente + "'>Segunda opinión</span>",
+                            "",
+                            year + "-" + month + "-" + day,
+                            "<span class='telefono-" + idPaciente + "'>" + $(".telefono-" + idPaciente).html() + "</span>",
+                            "<span id='tipoCita-" + idPaciente + "'>Aprobada</span>",
+                            "<button class='btn btn-info m-1 btn-ver-formulario' data-id=" + idPaciente + " id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
+                                    "<button class='btn btn-primary m-1 btn-editar' data-id=" + idPaciente + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
+                                    "<button class='btn btn-danger m-1 btn-perder-cita' data-id=" + idPaciente + " data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
+                        ]).draw(false);
+                    }
 
                 } else {
                     swal({
@@ -1797,7 +1833,7 @@ $(document).ready(function () {
 
         return false;
     }
-    
+
     var cambioImagen = false;
     var imagenValida = false;
 
@@ -1978,7 +2014,7 @@ $(document).ready(function () {
                             $('#modalCambiarContraseña').modal('toggle');
                         }
                     });
-        } 
+        }
     });
 
     $("#password").on('change', function () {
@@ -5576,7 +5612,7 @@ $(document).ready(function () {
                 }
         );
     });
-    
+
     $('.IrAMiIndex').on('click', function () {
         $.ajax({
             url: 'SAPI',
