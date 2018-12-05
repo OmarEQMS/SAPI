@@ -5818,7 +5818,7 @@ function isValidPRZ(input) {
 
     var m = input.val();
 
-    var expreg = /^(?<![\w\d])PRZ(\d{6})/;
+    var expreg = /(PRZ)(\d){6}$/;
 
     if (!expreg.test(m)) {
 
