@@ -181,7 +181,7 @@
 
                         <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
 
-                            </span> <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
+                            </span></span>
 
                     </div>
                 </nav>
@@ -190,13 +190,13 @@
                 <!-- ***** A PARTIR DE AQUI ESCRIBEN EL CODIGO QUE QUIERAN..... ***** -->
                 <!-- **************************************************************** -->
 
-                <div class="row mb-3 justify-content-end">
-                    <div class="col-2 text-center">
-                        <span class="iconoHome mr-2">
+                <div class="row mb-3">
+                    <div class="col-12 text-right">
+                        <span class="iconoHome">
                             <i class="fas fa-home"></i>
                         </span>
                         <span>
-                            <a href="navegadora/index.html" class="colorMoradoLight">Inicio</a>
+                            <a class="colorMoradoLight IrAMiIndex"> Inicio</a>
                         </span>
                     </div>
                 </div>

@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    //Errores en cuenta
+    $('#error-correoNavegadora').hide();
+    $('#error-correoRepetidoNavegadora').hide();
+
     //Errores al agregar a un paciente
     $('#errorNombrePaciente').hide();
     $('#errorCurpPaciente').hide();
@@ -78,6 +82,46 @@ $(document).ready(function () {
     $('#error-comentarioAdicionales').hide();
     $('#error-ki67').hide();
 
+
+    var repiteCorreoCuenta;
+
+    $('#correo').on('change', function () {
+        $.ajax({
+
+            url: 'NavegadoraController',
+            method: "POST",
+            cache: false,
+            data: {
+                key: "repiteCorreo",
+                correo: $('#correo').val()
+            },
+            success: function (response) {
+
+                if (response === 'CorreoAlreadyExists') {
+                    console.log("correo repetidooo")
+                    $('#correo').css('color', 'orange');
+                    $('#error-correoRepetidoNavegadora').show();
+                    repiteCorreoCuenta = true;
+                } else {
+                    $('#error-correoRepetidoNavegadora').hide();
+                    repiteCorreoCuenta = false;
+                }
+
+            }
+
+        });
+
+        if (isValidEmail($(this))) {
+            $('#error-correoNavegadora').hide();
+        } else if ($(this).val() == '') {
+            $('#error-correoNavegadora').hide();
+            $('#correo').css('border', '');
+            $('#correo').css('color', '');
+        } else {
+            $('#error-correoNavegadora').show();
+        }
+
+    });
 
     var lugarDelCuerpo = $("#listLugarDelCuerpo");
 
@@ -345,6 +389,53 @@ $(document).ready(function () {
 
     });
 
+    //Reporte Jaspersoft
+    $('body').on('click', '#btn-export1', function () {
+        swal({
+            title: "Asegurese de haber guardado los cambios",
+            text: "¿Desea generar el reporte?",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Cancelar', 'Aceptar'],
+            dangerMode: true
+        })
+                .then((aceptar) => {
+                    if (aceptar) {
+                        $('.generarReporte').fadeIn();
+                        var form = document.createElement("form");
+                        form.method = "post";
+                        form.action = "/SAPI/ReporteControllerJaspersoft?key=generar-reporte1";
+                        document.body.appendChild(form);
+                        form.submit();
+                        document.body.removeChild(form);
+                        //Cerrar       
+                        $('.generarReporte').fadeOut();
+                    }
+                });
+    });
+    $('body').on('click', '#btn-export2', function () {
+        swal({
+            title: "Asegurese de haber guardado los cambios",
+            text: "¿Desea generar el reporte?",
+            icon: "warning",
+            buttons: true,
+            buttons: ['Cancelar', 'Aceptar'],
+            dangerMode: true
+        })
+                .then((aceptar) => {
+                    if (aceptar) {
+                        $('.generarReporte').fadeIn();
+                        var form = document.createElement("form");
+                        form.method = "post";
+                        form.action = "/SAPI/ReporteControllerJaspersoft?key=generar-reporte2";
+                        document.body.appendChild(form);
+                        form.submit();
+                        document.body.removeChild(form);
+                        $('.generarReporte').fadeOut();
+                    }
+                });
+    });
+    //Fin Reporte Jaspersoft
     //Agregar Paciente
     $('#btn-agregarPaciente').on('click', function () {
         if (!repiteCorreoPaciente && !curpRepetidoPaciente) {
@@ -1671,74 +1762,147 @@ $(document).ready(function () {
         });
     });
 
+    $("#file-input").on('change', function () {
+        console.log("Llegó :)");
+        cambioImagen = true;
+        var tieneFoto = ($('#file-input').get(0).files.length === 0) ? false : true;
+        console.log("Tiene algo? " + tieneFoto)
+        if (validProfilePhoto($('#file-input'), document.querySelector('#file-input').files) || !tieneFoto) {
+            imagenValida = true;
+            $('#error-imgPerfil').hide();
+            readURL(this);
+        } else {
+            imagenValida = false;
+            $('#error-imgPerfil').show();
+        }
+    });
+
+    function validProfilePhoto(input, archivos) {
+
+        for (let index = 0; index < archivos.length; index++) {
+
+            if (archivos[index]["type"] == "image/jpg" || archivos[index]["type"] == "image/png"
+                    || archivos[index]["type"] == "image/jpeg") {
+
+                console.log('si se puede' + archivos[index]["type"]);
+                input.css('border', '');
+                return true;
+
+
+            } else {
+                console.log('no se puede' + archivos[index]["type"]);
+                input.css('border', '1px solid red');
+            }
+
+        }
+
+        return false;
+    }
+    
+    var cambioImagen = false;
+    var imagenValida = false;
+
+    //EN CUENTA
     $('#guardarCambios').on('click', function () {
 
-        if (isValidPhoneNumber($("#telefono")) && isValidEmail($("#correo"))) {
+        var continuar = false;
 
-            console.log("Presionó GuardarCambios")
-            var form = $("form")[0];
-            var data = new FormData(form);
-            data.append("key", "cambiarDatos");
-            data.forEach((value, key) => {
-                console.log(key + " " + value);
-            })
+        if (cambioImagen) {
+            if (imagenValida)
+                continuar = true;
+            else
+                continuar = false;
+        } else {
+            continuar = true;
+        }
+
+        console.log("CambioImagen: " + cambioImagen);
+        console.log("imagenValida: " + imagenValida);
+
+        if (continuar)
+            console.log("Se actualizan cambios");
+        else
+            console.log("No se puede (imagenInVálida");
 
 
-            $.ajax({
-                url: "NavegadoraController",
-                data: data,
-                method: "POST",
-                encType: "multipart/form-data",
-                processData: false,
-                contentType: false,
-                cache: false,
-                beforeSend: function () {
-                    $('.cargandoGuardarCambios').fadeIn();
-                },
-                complete: function () {
-                    $('.cargandoGuardarCambios').fadeOut();
-                },
-                success: function (response) {
+        if (continuar) {
 
-                    swal({
-                        title: "¡Buen trabajo!",
-                        text: "Cuenta actualizada correctamente.",
-                        closeOnEsc: false,
-                        closeOnClickOutside: false,
-                        icon: "success",
-                        button: "Aceptar",
-                    })
+            if (isValidPhoneNumber($("#telefono")) && isValidEmail($("#correo")) && !repiteCorreoCuenta) {
 
-                    $.post("SAPI", {
-                        file: "navegadora/cuentaNavegadora.jsp"
+                console.log("Presionó GuardarCambios")
+                var form = $("form")[0];
+                var data = new FormData(form);
+                data.append("key", "cambiarDatos");
+                data.forEach((value, key) => {
+                    console.log(key + " " + value);
+                })
+
+
+                $.ajax({
+                    url: "NavegadoraController",
+                    data: data,
+                    method: "POST",
+                    encType: "multipart/form-data",
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    beforeSend: function () {
+                        $('.cargandoGuardarCambios').fadeIn();
                     },
-                            function (response, status, xhr) {
-                                console.log("El ajax fue exitoso!!-----------------------");
-                                if (status == "success") {
-                                    if (response == "error") {
-                                        $("#msj-error").show();
-                                    } else {
-                                        document.open("text/html", "replace");
-                                        document.write(response);
-                                        document.close();
+                    complete: function () {
+                        $('.cargandoGuardarCambios').fadeOut();
+                    },
+                    success: function (response) {
 
+                        swal({
+                            title: "¡Buen trabajo!",
+                            text: "Cuenta actualizada correctamente.",
+                            closeOnEsc: false,
+                            closeOnClickOutside: false,
+                            icon: "success",
+                            button: "Aceptar",
+                        })
+
+                        $.post("SAPI", {
+                            file: "navegadora/cuentaNavegadora.jsp"
+                        },
+                                function (response, status, xhr) {
+                                    console.log("El ajax fue exitoso!!-----------------------");
+                                    if (status == "success") {
+                                        if (response == "error") {
+                                            $("#msj-error").show();
+                                        } else {
+                                            document.open("text/html", "replace");
+                                            document.write(response);
+                                            document.close();
+
+                                        }
                                     }
                                 }
-                            }
-                    );
-                }, error: function (xhr) {
-                    //alert(xhr.statusText);
-                }
+                        );
+                    }, error: function (xhr) {
+                        //alert(xhr.statusText);
+                    }
 
-            });
+                });
+            } else {
+                swal({
+                    title: "Error",
+                    text: "Revisa todos los campos antes de continuar.",
+                    icon: "error",
+                    closeOnEsc: false,
+                    closeOnClickOutside: false,
+                    buttons: [, 'Aceptar'],
+                });
+            }
         } else {
             swal({
                 title: "Error",
                 text: "Revisa todos los campos antes de continuar.",
-                icon: "error",
                 closeOnEsc: false,
                 closeOnClickOutside: false,
-                buttons: [, 'Aceptar'],
+                icon: "error",
+                button: "Aceptar",
             });
         }
     });
@@ -1815,7 +1979,7 @@ $(document).ready(function () {
                             $('#modalCambiarContraseña').modal('toggle');
                         }
                     });
-        }
+        } 
     });
 
     $("#password").on('change', function () {
@@ -1887,7 +2051,7 @@ $(document).ready(function () {
         for (let index = 0; index < archivos.length; index++) {
 
             if (archivos[index]["type"] == "image/jpg" || archivos[index]["type"] == "image/png"
-                    ) {
+                    || archivos[index]["type"] == "image/jpeg") {
 
                 console.log('si se puede' + archivos[index]["type"]);
                 input.css('border', '');
@@ -4329,13 +4493,13 @@ $(document).ready(function () {
                  */
             }
 
-            if (data[0][0].fechaNavegacion !== "ene 1, 1900") {
+            if (data[0][0].fechaNavegacion !== "Jan 1, 1900") {
                 var fecha = data[0][0].fechaNavegacion;
                 fecha = convertDate(fecha);
                 $('#fechaNavegacion').val(fecha);
             }
 
-            if (data[0][0].fechaConsulta !== "ene 1, 1900") {
+            if (data[0][0].fechaConsulta !== "Jan 1, 1900") {
                 var fecha = data[0][0].fechaConsulta;
                 fecha = convertDate(fecha);
                 $('#fechaConsulta').val(fecha);
@@ -4405,7 +4569,7 @@ $(document).ready(function () {
                 $('#tieneSeguroPopular').attr('checked', 'checked');
             }
 
-            if (data[0][0].cirugiaFecha !== "ene 1, 1900" || data[0][0].cirugiaTipo !== "" || data[0][0].cirugiaComentario !== "") {
+            if (data[0][0].cirugiaFecha !== "Jan 1, 1900" || data[0][0].cirugiaTipo !== "" || data[0][0].cirugiaComentario !== "") {
                 $('#tiene-cirugia').attr('checked', 'checked');
                 if ($('#tiene-cirugia').is(':checked')) {
                     $('#divCirugia').show();
@@ -4413,7 +4577,7 @@ $(document).ready(function () {
                     $('#divCirugia').hide();
                 }
 
-                if (data[0][0].cirugiaFecha !== "ene 1, 1900") {
+                if (data[0][0].cirugiaFecha !== "Jan 1, 1900") {
                     var fecha = data[0][0].cirugiaFecha;
                     fecha = convertDate(fecha);
                     $('#fecha-cirugia').val(fecha);
@@ -4433,7 +4597,7 @@ $(document).ready(function () {
 
             }
 
-            if (data[0][0].quimioterapiaFecha !== "ene 1, 1900" || data[0][0].quimioterapiaCiclo !== -1 || data[0][0].quimioterapiaComentario !== "") {
+            if (data[0][0].quimioterapiaFecha !== "Jan 1, 1900" || data[0][0].quimioterapiaCiclo !== -1 || data[0][0].quimioterapiaComentario !== "") {
                 $('#tiene-quimioterapia').attr('checked', 'checked');
                 if ($('#tiene-quimioterapia').is(':checked')) {
                     $('#divQuimioterapia').show();
@@ -4441,7 +4605,7 @@ $(document).ready(function () {
                     $('#divQuimioterapia').hide();
                 }
 
-                if (data[0][0].quimioterapiaFecha !== "ene 1, 1900") {
+                if (data[0][0].quimioterapiaFecha !== "Jan 1, 1900") {
                     var fecha = data[0][0].quimioterapiaFecha;
                     fecha = convertDate(fecha);
                     $('#fecha-quimioterapia').val(fecha);
@@ -4457,7 +4621,7 @@ $(document).ready(function () {
 
             }
 
-            if (data[0][0].radioterapiaFecha !== "ene 1, 1900" || data[0][0].radioterapiaCiclo !== -1 || data[0][0].radioterapiaComentario !== "") {
+            if (data[0][0].radioterapiaFecha !== "Jan 1, 1900" || data[0][0].radioterapiaCiclo !== -1 || data[0][0].radioterapiaComentario !== "") {
                 $('#tiene-radioterapia').attr('checked', 'checked');
                 if ($('#tiene-radioterapia').is(':checked')) {
                     $('#divRadioterapia').show();
@@ -4465,7 +4629,7 @@ $(document).ready(function () {
                     $('#divRadioterapia').hide();
                 }
 
-                if (data[0][0].radioterapiaFecha !== "ene 1, 1900") {
+                if (data[0][0].radioterapiaFecha !== "Jan 1, 1900") {
                     var fecha = data[0][0].radioterapiaFecha;
                     fecha = convertDate(fecha);
                     $('#fecha-radioterapia').val(fecha);
@@ -4481,7 +4645,7 @@ $(document).ready(function () {
 
             }
 
-            if (data[0][0].mastografiaBiradsNombre !== "" || data[0][0].mastografiaBiradsFecha !== "ene 1, 1900") {
+            if (data[0][0].mastografiaBiradsNombre !== "" || data[0][0].mastografiaBiradsFecha !== "Jan 1, 1900") {
                 $('#tiene-mastografia').attr('checked', 'checked');
                 if ($('#tiene-mastografia').is(':checked')) {
                     $('#tiene-mastografiaPrevia').show();
@@ -4493,7 +4657,7 @@ $(document).ready(function () {
                     $('#fechaPreMasto').hide();
                 }
 
-                if ((data[0][0].mastografiaBiradsFecha !== "ene 1, 1900")) {
+                if ((data[0][0].mastografiaBiradsFecha !== "Jan 1, 1900")) {
                     var fecha = data[0][0].mastografiaBiradsFecha;
                     fecha = convertDate(fecha);
                     $('#fechaPreMasto').val(fecha);
@@ -4509,7 +4673,7 @@ $(document).ready(function () {
                 }
             }
 
-            if (data[0][0].ultrasonidoBiradsNombre !== "" || data[0][0].ultrasonidoBiradsFecha !== "ene 1, 1900") {
+            if (data[0][0].ultrasonidoBiradsNombre !== "" || data[0][0].ultrasonidoBiradsFecha !== "Jan 1, 1900") {
                 $('#tiene-ultrasonido-mama').attr('checked', 'checked');
                 if ($('#tiene-ultrasonido-mama').is(':checked')) {
 
@@ -4522,7 +4686,7 @@ $(document).ready(function () {
                     $('#tipoUltrasonidoMama').hide();
                 }
 
-                if ((data[0][0].ultrasonidoBiradsFecha !== "ene 1, 1900")) {
+                if ((data[0][0].ultrasonidoBiradsFecha !== "Jan 1, 1900")) {
                     //   $('#fechaPreUsg').val(data[0][0].ultrasonidoBiradsFecha);
                     var fecha = data[0][0].ultrasonidoBiradsFecha;
                     fecha = convertDate(fecha);
@@ -5223,7 +5387,7 @@ $(document).ready(function () {
 
             }
 
-            if (data[0][0].fechaFin !== "ene 1, 1900")
+            if (data[0][0].fechaFin !== "Jan 1, 1900")
             {
                 var fecha = data[0][0].fechaFin;
                 fecha = convertDate(fecha);
@@ -5413,6 +5577,32 @@ $(document).ready(function () {
                 }
         );
     });
+    
+    $('.IrAMiIndex').on('click', function () {
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "navegadora/index.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrAInicio').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrAInicio').fadeOut();
+            },
+            success: function (response) {
+                if (response == "error") {
+                    $("#msj-error").show();
+                } else {
+                    document.open("text/html", "replace");
+                    document.write(response);
+                    document.close();
+                }
+            }
+        });
+    });
 
     $('.IrAMiCuenta').on('click', function () {
         $.ajax({
@@ -5442,7 +5632,7 @@ $(document).ready(function () {
 
 // 'ene 1, 2001'
     function convertDate(fecha) {
-        if (fecha !== "ene 1, 1900") {
+        if (fecha !== "Jan 1, 1900") {
             console.log(fecha);
             fecha = fecha.replace("ene", "jan");
             fecha = fecha.replace("feb", "feb");

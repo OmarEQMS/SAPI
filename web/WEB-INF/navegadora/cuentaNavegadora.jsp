@@ -155,7 +155,7 @@
 
                         <span class="pull-right d-block"><span style="color:#6c6f80">Hola, </span><span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
 
-                            </span> <img src="img/user.png" class="ml-2" style="width: 30px;" alt=""> </span>
+                            </span></span>
 
                     </div>
                 </nav>
@@ -164,9 +164,9 @@
                 <!-- ***** A PARTIR DE AQUI ESCRIBEN EL CODIGO QUE QUIERAN..... ***** -->
                 <!-- **************************************************************** -->
 
-                <div class="row mb-3 justify-content-end">
-                    <div class="col-3 text-center">
-                        <span class="iconoHome mr-2" id="irVerDocumento"><i class="fas fa-home"></i></span><span><a href="index.html" class="colorMoradoLight">Inicio</a></span>
+                <div class="row mb-3">
+                    <div class="col-12 text-right">
+                        <span class="iconoHome"><i class="fas fa-home"></i></span><span><a class="colorMoradoLight IrAMiIndex"> Inicio</a></span>
                         - <span class="colorGlobal">Mi Cuenta</span>
                     </div>
                 </div>
@@ -245,8 +245,8 @@
                                 </div>
                                 <div class="col-4">
                                     <label for="telephoneNum">Teléfono</label>
-                                    <input name="telefono" type="tel" class="form-control" id="telefono" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890"
-                                           value="${sessionScope.telefono}" required />
+                                    <input name="telefono" type="tel" class="form-control" id="telefono"
+                                           value="${sessionScope.telefono}"  />
                                     <span class="text-danger" id="error-telefono">El formato no es correcto, deben ser 10 dígitos.</span>
                                 </div>
                             </div>
@@ -255,11 +255,9 @@
                             <div class="form-group row justify-content-center">
                                 <div class="col-8">
                                     <label for="myEmail">Correo</label>
-                                    <input name="correo" type="email" class="form-control" id="correo" value="${sessionScope.correo}" placeholder="Introduzca su correo" required
-                                           pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
-                                           />
-                                    <span class="text-danger error-correo" id="error-correo">Formato incorrecto</span>
-
+                                    <input name="correo" type="email" class="form-control" id="correo" value="${sessionScope.correo}" placeholder="Introduzca su correo"/>
+                                    <span class="text-danger" id="error-correoNavegadora">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
+                                    <span class="text-warning" id="error-correoRepetidoNavegadora">El correo ya existe</span>
                                 </div>                           
                             </div>
 
@@ -298,7 +296,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Cambiar contraseña</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close clearPassNavegadora" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -328,7 +326,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" style="border-radius: 20px"  data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger clearPassNavegadora" style="border-radius: 20px"  data-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-primary" id="btn-updatePassword" style="border-radius: 20px" >Cambiar contraseña</button>
 
                         </div>

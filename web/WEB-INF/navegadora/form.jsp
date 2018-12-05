@@ -39,7 +39,10 @@
     </head>
 
     <body>
-        
+        <div class="generarReporte" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Eliminando al paciente, por favor espere...</p>
+        </div>
         <div class="cargandoIrACalendar" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando el calendario, por favor espere...</p>
@@ -170,11 +173,11 @@
 
                 <div class="row mb-3">
                     <div class="col-12 text-right">
-                        <span class="iconoHome mr-2">
+                        <span class="iconoHome">
                             <i class="fas fa-home"></i>
                         </span>
                         <span>
-                            <a href="./index.html" class="colorMoradoLight">Inicio</a>
+                            <a class="colorMoradoLight IrAMiIndex"> Inicio</a>
                         </span>
                         -
                         <span class="colorGlobal">Formulario</span>
@@ -508,7 +511,7 @@
                                                 <div class="form-check form-check-inline">
                                                     <input name="primeraMasto" class="form-check-input" type="checkbox" id="primeraMasto" value="option1">
 
-                                                    <label class="form-check-label" for="inlineCheckbox1">Mastografóa en el INCan
+                                                    <label class="form-check-label" for="inlineCheckbox1">Mastografía en el INCan
                                                         antes de su primera cita</label>
                                                 </div>
                                             </div>
@@ -845,10 +848,8 @@
                                     </div>
                                     <div class="row justify-content-center mt-2">
                                         <div class="col-8">
-                                            <form action="ReporteControllerJaspersoft?key=generar-reporte1" method="post">
-                                                <input type="submit" class="btn btn-morado btn-block" id="btn-exportar1" style="border-radius:20px" value="Generar Reporte">
-                                                <i class="fas fa-file-contract"></i>
-                                            </form>
+                                            <button class="btn btn-morado btn-block" id="btn-export1" style="border-radius:20px">
+                                            <i class="fas fa-file-contract"></i> Generar Reporte</button>
                                         </div>
                                     </div>
                                     <div class="row justify-content-center mt-2">
@@ -1412,11 +1413,11 @@
 
                                             <div class="col-6 mt-4">
 
-                                                <label for="">Resultados de mastografóa</label>
+                                                <label for="">Resultados de mastografía</label>
                                                 <div class="input-group">
 
                                                     <select name="ResultadoTipoMastografia" class="form-control" id="ResultadoTipoMastografia">
-                                                        <option disabled selected>MastrografÃ¯Â¿Â½a BI-RADS</option>
+                                                        <option disabled selected>Mastrografía BI-RADS</option>
 
                                                         <c:forEach items="${listaBirads}" var="birads">  
                                                             <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
@@ -1652,10 +1653,8 @@
 
                                     <div class="row justify-content-center mt-3">
                                         <div class="col-8">
-                                            <form action="ReporteControllerJaspersoft?key=generar-reporte2" method="post">
-                                                <input type="submit" class="btn btn-morado btn-block" id="btn-export2" style="border-radius:20px" value="Generar Reporte">
-                                                <i class="fas fa-file-contract"></i>
-                                            </form>
+                                             <button class="btn btn-morado btn-block" id="btn-export2" style="border-radius:20px">
+                                            <i class="fas fa-file-contract"></i> Generar Reporte</button>
                                         </div>
                                     </div>
 
