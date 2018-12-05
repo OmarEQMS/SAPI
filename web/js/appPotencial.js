@@ -266,6 +266,18 @@ $(document).ready(function () {
     $('#fechaCitaNavegacion').html(m);
 
 
-    //MediaQueries
+    //Mediaqueries
+    $(window).resize(function () {
+
+        if ($(window).width() <= 650) {
+
+            $('div#calendarCitas .fc-toolbar .fc-center .btn-group').hide();
+            $('div#calendarCitas .fc-toolbar .fc-left .fc-today-button').hide();
+
+        }
+        
+        
+
+    });
 
 });

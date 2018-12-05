@@ -727,6 +727,21 @@ $(document).ready(function () {
         $('#agregar-password2Administradores').css('color', '');
 
     });
+    
+    //Mediaqueries
+    $(window).resize(function () {
+
+        if ($(window).width() <= 500) {
+
+            $('#tablaNavegadoras_info').hide();
+            $('#tablaAdministradores_info').hide();
+            $('#tablaMedicos_info').hide();
+            
+            
+
+        }
+
+    });
 
     function mostrarContrasena(myButton, myField) {
         myButton.on('mousedown', function () {

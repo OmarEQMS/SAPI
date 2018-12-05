@@ -5,6 +5,12 @@
     GENERALES
 ----------------------------------------------------- */
 
+button.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 p.clear {
     clear: both;
     color: #fff;

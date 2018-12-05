@@ -230,7 +230,7 @@
 
                                 <!-- ***** Nota ***** -->
                             <div class="row mb-3 justify-content-center">
-                                <div class="col-5 text-center bg-danger" style="border-radius:20px;">
+                                <div class="col-xl-5  col-lg-5 col-md-10 col-sm-12 col-12 text-center bg-danger" style="border-radius:20px;">
                                     <span style="font-size: 14px;" class="text-white">Nota: Antes de eliminar a un médico adscrito asegúrate de haber reasignado sus pacientes previamente.</span>
                                 </div>
                             </div>
