@@ -425,19 +425,35 @@ $(document).ready(function () {
                             var month = today.getMonth();
                             var day = today.getDate();
 
-                            t.row.add([
-                                "<span id='nombre-" + response + "'>" + $("#nombrePaciente").val() + " " + $("#primer-apellidoPaciente").val() + " " + $("#segundo-apellidoPaciente").val() + "</span>",
-                                "<span id='estado-" + response + "'>Potencial en proceso</span>",
-                                '',
-                                "<span id='fecha-" + response + "'>" + year + "-" + month + "-" + day + "</span>",
-                                "<span id='curp-" + response + "'>" + $('#curpPaciente').val() +"</span>",
-                                "<span id='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
-                                "<button class='btn btn-info btn-ver  m-1' data-id=" + response + " id='btn-ver'><i class='far fa-eye'></i></button>" +
-                                        "<button class='btn btn-success btn-aceptar-potencial m-1' data-id=" + response + " data-toggle='modal' data-target='#modalAceptarUsuario'><i class='fas fa-check'></i></button>" +
-                                        "<button class='btn btn-primary btn-editar m-1' data-id=" + response + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
-                                        "<button class='btn btn-danger btn-eliminar m-1' data-id=" + response + " id='btn-eliminar' data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-trash-alt'></i></button>"
-                            ]).draw(false);
+                            if (day < 10) {
+                                t.row.add([
+                                    "<span id='nombre-" + response + "'>" + $("#nombrePaciente").val() + " " + $("#primer-apellidoPaciente").val() + " " + $("#segundo-apellidoPaciente").val() + "</span>",
+                                    "<span id='estado-" + response + "'>Potencial en proceso</span>",
+                                    '',
+                                    "<span id='fecha-" + response + "'>" + year + "-" + month + "-0" + day + "</span>",
+                                    "<span id='curp-" + response + "'>" + $('#curpPaciente').val() + "</span>",
+                                    "<span id='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
+                                    "<button class='btn btn-info btn-ver  m-1' data-id=" + response + " id='btn-ver'><i class='far fa-eye'></i></button>" +
+                                            "<button class='btn btn-success btn-aceptar-potencial m-1' data-id=" + response + " data-toggle='modal' data-target='#modalAceptarUsuario'><i class='fas fa-check'></i></button>" +
+                                            "<button class='btn btn-primary btn-editar m-1' data-id=" + response + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
+                                            "<button class='btn btn-danger btn-eliminar m-1' data-id=" + response + " id='btn-eliminar' data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-trash-alt'></i></button>"
+                                ]).draw(false);
+                            } else {
+                                t.row.add([
+                                    "<span id='nombre-" + response + "'>" + $("#nombrePaciente").val() + " " + $("#primer-apellidoPaciente").val() + " " + $("#segundo-apellidoPaciente").val() + "</span>",
+                                    "<span id='estado-" + response + "'>Potencial en proceso</span>",
+                                    '',
+                                    "<span id='fecha-" + response + "'>" + year + "-" + month + "-" + day + "</span>",
+                                    "<span id='curp-" + response + "'>" + $('#curpPaciente').val() + "</span>",
+                                    "<span id='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
+                                    "<button class='btn btn-info btn-ver  m-1' data-id=" + response + " id='btn-ver'><i class='far fa-eye'></i></button>" +
+                                            "<button class='btn btn-success btn-aceptar-potencial m-1' data-id=" + response + " data-toggle='modal' data-target='#modalAceptarUsuario'><i class='fas fa-check'></i></button>" +
+                                            "<button class='btn btn-primary btn-editar m-1' data-id=" + response + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
+                                            "<button class='btn btn-danger btn-eliminar m-1' data-id=" + response + " id='btn-eliminar' data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-trash-alt'></i></button>"
+                                ]).draw(false);
+                            }
 
+                            //Insertar en la tabla
                             $('#nombrePaciente').val("");
                             $('#curpPaciente').val("");
                             $("#cumplePaciente").attr("type", "text").val('').attr("placeholder", "Fecha de nacimiento");
@@ -551,7 +567,7 @@ $(document).ready(function () {
     $('#btn-guardarCambios').on('click', function () {
         if (!repiteCorreo && !repiteUsuarioPaciente) {
             $("#error-editarDatosRepetidosPaciente").hide();
-        alert("Hola");
+            
             if (isValidName($('#editarNombreNavegadoraAPaciente')) && isValidLastName($('#editarPrimer-apellidoNavegadoraAPaciente'))
                     && isValidUserName($('#editarUsuarioNavegadoraAPaciente')) &&
                     isValidEdit2ApellidoPaciente && isValidEditColPaciente && isValidEditCallePaciente && isValidEditNumIntPaciente &&
@@ -610,9 +626,9 @@ $(document).ready(function () {
                         $("#modalEditarPaciente").modal('toggle');
 
                         //Actualizar informacion de la tabla
-                        $("#nombre-" + $('#idPacienteAEditar').val()).html($("#editarNombreNavegadoraAPaciente").val() + ' ' + $('#editarPrimer-apellidoNavegadoraAPaciente').val() + ' ' + $('#editarSegundo-apellidoNavegadoraAPaciente').val());
-                        $("#telefono-" + $('#idPacienteAEditar').val()).html($("#editarTelNavegadoraAPaciente").val());
-                        $("#estado-" + $('#idPacienteAEditar').val()).html($("#editarEstadoNavegadoraAPaciente option:selected").text());
+                        $(".nombre-" + $('#idPacienteAEditar').val()).html($("#editarNombreNavegadoraAPaciente").val() + ' ' + $('#editarPrimer-apellidoNavegadoraAPaciente').val() + ' ' + $('#editarSegundo-apellidoNavegadoraAPaciente').val());
+                        $(".telefono-" + $('#idPacienteAEditar').val()).html($("#editarTelNavegadoraAPaciente").val());
+                        $("#curp-" + $('#idPacienteAEditar').val()).html($("#editarCurpNavegadoraAPaciente").val());
 
                     }
 
@@ -1550,7 +1566,7 @@ $(document).ready(function () {
     });
 
 
-    $('#irADashboard').on('click', function () { 
+    $('#irADashboard').on('click', function () {
         $.ajax({
             url: 'SAPI',
             method: "POST",
@@ -1578,7 +1594,7 @@ $(document).ready(function () {
     });
 
     $('#irACalendario').on('click', function () {
-         $.ajax({
+        $.ajax({
             url: 'SAPI',
             method: "POST",
             cache: false,
@@ -5399,7 +5415,7 @@ $(document).ready(function () {
     });
 
     $('.IrAMiCuenta').on('click', function () {
-         $.ajax({
+        $.ajax({
             url: 'SAPI',
             method: "POST",
             cache: false,
@@ -6225,9 +6241,9 @@ function isValidFormatCP(input) {
 
 function isValidCheckbox(input) {
 
-        if (input.is(':checked')) {
-            return true;
-        }
-
-        return false;
+    if (input.is(':checked')) {
+        return true;
     }
+
+    return false;
+}

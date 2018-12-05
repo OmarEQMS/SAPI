@@ -263,13 +263,12 @@
 
                                                 <c:forEach items="${listaPacientes}" var="paciente">
                                                     <tr>                                                                                                                      
-                                                        <td id="nombre-${paciente.idPaciente}" value="${paciente.nombre}" > <c:out value="${paciente.nombre} ${paciente.primerApellido} ${paciente.segundoApellido}"/> </td>
-                                                        
-                                                        <td>${paciente.estadoPaciente}</td>
+                                                        <td class="nombre-${paciente.idPaciente}" value="${paciente.nombre}" > <c:out value="${paciente.nombre} ${paciente.primerApellido} ${paciente.segundoApellido}"/> </td>
+                                                        <td id="estado-${paciente.idPaciente}" value="${paciente.estadoPaciente}" > <c:out value="${paciente.estadoPaciente}"/> </td>
                                                         <td></td>
-                                                        <td>${paciente.fechaRegistro}</td>
-                                                        <td>${paciente.curp}</td>
-                                                        <td>${paciente.telefono}</td>
+                                                        <td id="fecha-${paciente.idPaciente}" value="${paciente.fechaRegistro}" > <c:out value="${paciente.fechaRegistro}"/> </td>
+                                                        <td id="curp-${paciente.idPaciente}" value="${paciente.curp}" > <c:out value="${paciente.curp}"/> </td>
+                                                        <td class="telefono-${paciente.idPaciente}" value="${paciente.telefono}" > <c:out value="${paciente.telefono}"/> </td>
                                                         <td>
                                                             <button class="btn btn-info btn-ver  m-1" data-id="${paciente.idPaciente}" id="btn-ver">
                                                                 <i class="far fa-eye"></i>
@@ -344,7 +343,6 @@
                                                 <tr>
                                                     <th scope="col">PRZ</th>
                                                     <th scope="col">Nombre</th>
-
                                                     <th scope="col">Tipo de paciente</th>
                                                     <th scope="col"></th>
                                                     <th scope="col">Fecha de navegación</th>
@@ -380,8 +378,8 @@
 
 
                                                         <td>${pacienteAprobado.prz}</td>
-                                                        <td>${pacienteAprobado.nombre} ${pacienteAprobado.primerApellido} ${pacienteAprobado.segundoApellido}</td>
-
+                                                        <td class="nombre-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.nombre}" > <c:out value="${pacienteAprobado.nombre} ${pacienteAprobado.primerApellido} ${pacienteAprobado.segundoApellido}"/> </td>
+                                                        
 
 
                                                         <c:choose>
@@ -404,7 +402,7 @@
                                                         </c:choose>
 
                                                         <td>${pacienteAprobado.fechaRegistro}</td>                  
-                                                        <td>${pacienteAprobado.telefono}</td>
+                                                        <td class="telefono-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.telefono}" > <c:out value="${pacienteAprobado.telefono}"/> </td>
                                                         <td>${pacienteAprobado.nombreEstadoCita}</td>
                                                         <td>
                                                             <button class="btn btn-info m-1 btn-ver-formulario" data-id="${pacienteAprobado.idPaciente}" id="btn-ver">
