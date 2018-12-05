@@ -1368,13 +1368,13 @@ public class PotencialController extends HttpServlet {
 
                     return;
                 } else {
-
+                    String motivo = request.getParameter("motivo");
                     int idPaciente = Integer.parseInt(sesion.getAttribute("idPaciente").toString());
                     System.out.println("idPaciente: " + idPaciente);
 
                     CitaServicioImpl citaServicio = new CitaServicioImpl();
 
-                    citaServicio.cancelarCitaPreconsulta(idPaciente, "probando");
+                    citaServicio.cancelarCitaPreconsulta(idPaciente, motivo);
 
                     System.out.println("Ya la canceló");
 

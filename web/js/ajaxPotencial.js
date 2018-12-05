@@ -216,6 +216,7 @@ $(document).ready(function () {
             resp = false;
             $('#error-camposMotivo').hide();
         }
+                
 
         if (!resp) {
 
@@ -223,7 +224,8 @@ $(document).ready(function () {
                 url: "PotencialController",
                 data: {
                     key: 'cancelarCita',
-                    idPaciente: $('#idPaciente').val()
+                    idPaciente: $('#idPaciente').val(),
+                    motivo: $('.motivoCancelacion').val()
                 },
                 beforeSend: function () {
                     $('.cancelarCitas').fadeIn();
@@ -288,6 +290,7 @@ $(document).ready(function () {
             });
         }
     });
+    
     $('#cancelarCitaModal').on('click', function () {
         console.log("hola");
         $('#modalVerCitaPreConsulta').modal('toggle');
