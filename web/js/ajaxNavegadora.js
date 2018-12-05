@@ -3018,7 +3018,13 @@ $(document).ready(function () {
 
     //PRZ
     $('#prz-expediente').on('change', function () {
-        //alert('cambie');
+    
+        
+        if (!isValidPRZ($(this))) {
+            $('#error-PRZ').show();
+        } else {
+            $('#error-PRZ').hide();
+        }
     });
 
 
@@ -4125,6 +4131,20 @@ $(document).ready(function () {
                 }
 
             }
+            
+            //****Verificar que si esta marcado laminillas o bloques, tiene que poner un resultado o reporte de patologia
+            
+            var pusoResultadoPatologia = true;
+            
+            if($('#entregaLaminillas').is(':checked') || $('#entregaBloques').is(':checked')){
+                
+                if(!isValidSelect($('#resultadoAnterior-patologia'))){
+                    pusoResultadoPatologia = false;
+                }else{
+                    pusoResultadoPatologia = true;
+                }
+                
+            }
 
             //PANTALLA 3
 
@@ -4318,7 +4338,7 @@ $(document).ready(function () {
                     && ePreconsultaRayos && ePreconsultaUltrasonido && ePreconsultaMedicinaNuclear && ePreconsultaLaboratorio
                     && ePreconsultaValoracion && ePreconsultaEspirometria && ePreconsultaElectrocardiograma
                     && ePreconsultaEcocardiograma && ePreconsultaTrabajoSocial && ePreconsultaPrograma && ePreconsultaOtro
-                    ) {
+                    && pusoResultadoPatologia) {
                 swal("Felicidades!", "Se puede enviar todo!", "success");
                 //btnSave(data);
             } else {
@@ -5713,7 +5733,7 @@ function isValidPRZ(input) {
 
     var m = input.val();
 
-    var expreg = /^[a-zA-Z0-9]{4,16}$/;
+    var expreg = /^(?<![\w\d])PRZ(\d{6})/;
 
     if (!expreg.test(m)) {
 
