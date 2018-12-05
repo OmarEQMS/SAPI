@@ -4181,7 +4181,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaRayos')) || !areValidDynamicSelects(document.querySelectorAll('.rayosX'))) {
                     $('#rayos-contenedor').find('span.error-datosFaltantesRayos').remove();
                     ePreconsultaRayos = false;
-                    $('#rayos-contenedor').append('<span class="text-danger error-datosFaltantesRayos">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#rayos-contenedor').append('<span class="text-danger error-datosFaltantesRayos">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaRayos = true;
                     $('#rayos-contenedor').find('span.error-datosFaltantesRayos').remove();
@@ -4195,7 +4195,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaUltrasonido')) || !areValidDynamicSelects(document.querySelectorAll('.parteCuerpoUltrasonido'))) {
                     $('#ultrasonido-contenedor').find('span.error-datosFaltantesUltrasonido').remove();
                     ePreconsultaUltrasonido = false;
-                    $('#ultrasonido-contenedor').append('<span class="text-danger error-datosFaltantesUltrasonido">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#ultrasonido-contenedor').append('<span class="text-danger error-datosFaltantesUltrasonido">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaUltrasonido = true;
                     $('#ultrasonido-contenedor').find('span.error-datosFaltantesUltrasonido').remove();
@@ -4209,7 +4209,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaMedicinaNuclear')) || !areValidDynamicSelects(document.querySelectorAll('.medicinaNuclear'))) {
                     $('#medicinaNuclear-contenedor').find('span.error-datosFaltantesMedicinaNuclear').remove();
                     ePreconsultaMedicinaNuclear = false;
-                    $('#medicinaNuclear-contenedor').append('<span class="text-danger error-datosFaltantesMedicinaNuclear">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#medicinaNuclear-contenedor').append('<span class="text-danger error-datosFaltantesMedicinaNuclear">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaMedicinaNuclear = true;
                     $('#medicinaNuclear-contenedor').find('span.error-datosFaltantesMedicinaNuclear').remove();
@@ -4223,7 +4223,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaLaboratorio'))) {
                     $('#laboratorio-contenedor').find('span.error-datosFaltantesLaboratorio').remove();
                     ePreconsultaLaboratorio = false;
-                    $('#laboratorio-contenedor').append('<span class="text-danger error-datosFaltantesLaboratorio">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#laboratorio-contenedor').append('<span class="text-danger error-datosFaltantesLaboratorio">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaLaboratorio = true;
                     $('#laboratorio-contenedor').find('span.error-datosFaltantesLaboratorio').remove();
@@ -4237,7 +4237,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaValoracion')) || !areValidDynamicSelects(document.querySelectorAll('.valoracion'))) {
                     $('#valoracion-contenedor').find('span.error-datosFaltantesValoracion').remove();
                     ePreconsultaValoracion = false;
-                    $('#valoracion-contenedor').append('<span class="text-danger error-datosFaltantesValoracion">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#valoracion-contenedor').append('<span class="text-danger error-datosFaltantesValoracion">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaValoracion = true;
                     $('#valoracion-contenedor').find('span.error-datosFaltantesValoracion').remove();
@@ -4251,7 +4251,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaEspirometria'))) {
                     $('#espirometria-contenedor').find('span.error-datosFaltantesEspirometria').remove();
                     ePreconsultaEspirometria = false;
-                    $('#espirometria-contenedor').append('<span class="text-danger error-datosFaltantesEspirometria">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#espirometria-contenedor').append('<span class="text-danger error-datosFaltantesEspirometria">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaEspirometria = true;
                     $('#espirometria-contenedor').find('span.error-datosFaltantesEspirometria').remove();
@@ -4265,7 +4265,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaElectrocardiograma'))) {
                     $('#electrocardiograma-contenedor').find('span.error-datosFaltantesElectrocardiograma').remove();
                     ePreconsultaElectrocardiograma = false;
-                    $('#electrocardiograma-contenedor').append('<span class="text-danger error-datosFaltantesElectrocardiograma">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#electrocardiograma-contenedor').append('<span class="text-danger error-datosFaltantesElectrocardiograma">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaElectrocardiograma = true;
                     $('#electrocardiograma-contenedor').find('span.error-datosFaltantesElectrocardiograma').remove();
@@ -4279,7 +4279,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaEcocardiograma'))) {
                     $('#ecocardiograma-contenedor').find('span.error-datosFaltantesEcocardiograma').remove();
                     ePreconsultaEcocardiograma = false;
-                    $('#ecocardiograma-contenedor').append('<span class="text-danger error-datosFaltantesEcocardiograma">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#ecocardiograma-contenedor').append('<span class="text-danger error-datosFaltantesEcocardiograma">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaEcocardiograma = true;
                     $('#ecocardiograma-contenedor').find('span.error-datosFaltantesEcocardiograma').remove();
@@ -4293,7 +4293,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaTrabajoSocial'))) {
                     $('#trabajoSocial-contenedor').find('span.error-datosFaltantesTrabajoSocial').remove();
                     ePreconsultaTrabajoSocial = false;
-                    $('#trabajoSocial-contenedor').append('<span class="text-danger error-datosFaltantesTrabajoSocial">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#trabajoSocial-contenedor').append('<span class="text-danger error-datosFaltantesTrabajoSocial">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaTrabajoSocial = true;
                     $('#trabajoSocial-contenedor').find('span.error-datosFaltantesTrabajoSocial').remove();
@@ -4307,7 +4307,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaPrograma')) || !areValidDynamicSelects(document.querySelectorAll('.programa'))) {
                     $('#programa-contenedor').find('span.error-datosFaltantesPrograma').remove();
                     ePreconsultaPrograma = false;
-                    $('#programa-contenedor').append('<span class="text-danger error-datosFaltantesPrograma">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#programa-contenedor').append('<span class="text-danger error-datosFaltantesPrograma">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaPrograma = true;
                     $('#programa-contenedor').find('span.error-datosFaltantesPrograma').remove();
@@ -4321,7 +4321,7 @@ $(document).ready(function () {
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaOtro')) || !areValidDynamicSelects(document.querySelectorAll('.otro-estudioPreconsulta'))) {
                     $('#otro-contenedor').find('span.error-datosFaltantesOtro').remove();
                     ePreconsultaOtro = false;
-                    $('#otro-contenedor').append('<span class="text-danger error-datosFaltantesOtro">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+                    $('#otro-contenedor').append('<span class="text-danger error-datosFaltantesOtro">Completa todo los campos para continuar</span>');
                 } else {
                     ePreconsultaOtro = true;
                     $('#otro-contenedor').find('span.error-datosFaltantesOtro').remove();
