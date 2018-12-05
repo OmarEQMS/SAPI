@@ -109,23 +109,23 @@
                 </ul>
 
             </nav>
-                        
+
             <!-- PANTALLAS DE CARGA -->
             <div class="loading-screen" id="loading-screen" style="display: none">
                 <img src="img/loading.svg">
                 <p class="clear">Enviando tu solicitud, por favor espere...</p>
             </div>
-            
+
             <div class="loading-screenActualizar" id="loading-screen" style="display: none">
                 <img src="img/loading.svg">
                 <p class="clear">Cargando, por favor espere...</p>
             </div>
-                        
+
             <div class="loading-screenGuardar" id="loading-screen" style="display: none">
                 <img src="img/loading.svg">
                 <p class="clear">Guardando tu información, por favor espere...</p>
             </div>
-            
+
 
             <!-- CONTENIDO PRINCIPAL POTENCIAL-->
 
@@ -343,7 +343,9 @@
                                                                 <c:choose>
                                                                     <c:when test="${sessionScope.identificacionOficial<=0}">
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                                            <span class="textoDocumento">Identificación oficial</span>
+                                                                            <span class="textoDocumento">Identificación oficial
+                                                                                <small><strong>Obligatorio</strong></small>
+                                                                            </span>
                                                                         </div>
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
@@ -398,7 +400,9 @@
                                                                 <c:choose>
                                                                     <c:when test="${sessionScope.curp<=0}">
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                                            <span class="textoDocumento">CURP</span>
+                                                                            <span class="textoDocumento">CURP
+                                                                                <small><strong>Obligatorio</strong></small>
+                                                                            </span>
                                                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                                                 Se puede tramitar
                                                                                 <a class="text-primary" target="_blank" href="https://www.gob.mx/curp/">aquí­</a>
@@ -445,7 +449,9 @@
                                                                     <c:when test="${sessionScope.comprobante<=0}">
 
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                                            <span class="textoDocumento">Comprobante de domicilio</span>
+                                                                            <span class="textoDocumento">Comprobante de domicilio
+                                                                                <small><strong>Obligatorio</strong></small>
+                                                                            </span>
                                                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                                                 Vigencia no mayor a 3 meses.
                                                                             </small>
@@ -941,7 +947,9 @@
                                                                 <c:choose>
                                                                     <c:when test="${sessionScope.identificacionOficial<=0}">
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                                            <span class="textoDocumento">Identificación oficial</span>
+                                                                            <span class="textoDocumento">Identificación oficial
+                                                                                <small><strong>Obligatorio</strong></small>
+                                                                            </span>
                                                                         </div>
 
                                                                         <div class="custom-file col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10" id="customFile">
@@ -996,7 +1004,9 @@
                                                                 <c:choose>
                                                                     <c:when test="${sessionScope.curp<=0}">
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                                            <span class="textoDocumento">CURP</span>
+                                                                            <span class="textoDocumento">CURP
+                                                                                <small><strong>Obligatorio</strong></small>
+                                                                            </span>
                                                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                                                 Se puede tramitar
                                                                                 <a class="text-primary" target="_blank" href="https://www.gob.mx/curp/">aquí­</a>
@@ -1043,7 +1053,9 @@
                                                                     <c:when test="${sessionScope.comprobante<=0}">
 
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                                            <span class="textoDocumento">Comprobante de domicilio</span>
+                                                                            <span class="textoDocumento">Comprobante de domicilio
+                                                                                <small><strong>Obligatorio</strong></small>
+                                                                            </span>
                                                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                                                 Vigencia no mayor a 3 meses.
                                                                             </small>

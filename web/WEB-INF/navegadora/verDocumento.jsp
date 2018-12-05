@@ -250,7 +250,7 @@
                                 </div>
                                 <div class="row mb-3" id="error-camposMotivo">
                                     <div class="col-12 text-center">
-                                        <span class="text-danger">Debes llenar correctamente los campos para editar la cuenta.</span>
+                                        <span class="text-danger">Debes escribir un motivo de rechazo.</span>
                                     </div>
                                 </div>
                             </div>

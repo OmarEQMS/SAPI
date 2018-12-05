@@ -92,8 +92,8 @@
                     <li id ="irACitaPreconsulta"><a><i class="fas fa-home"></i>Cita a Preconsulta </a></li>
 
                     <li id ="irAMisCitas"><a><i class="fas fa-calendar-alt"></i>Mis Citas
-                            <c:choose>
-                                <c:when test="${sessionScope.estatus==1}">
+                                <c:choose>
+                                    <c:when test="${sessionScope.estatus==1}">
                                     <span class="notificacion">1</span>                        
                                 </c:when>
                             </c:choose>
@@ -159,7 +159,7 @@
                                                         <h5 class="display-4 textoCitaReservada mb-1">Tu cita de <strong>preconsulta</strong> ha sido reservada para el:</h5>
                                                         <h5 class="display-4 textoCitaReservada m-0 d-inline mr-2" id="fechaCitaPreConsulta">${sessionScope.fechaPreConsulta}</h5>
                                                         <a href="#" class="questionMark pull-right"
-                                                                                                                                                                                    title="¿Tienes dudas? Comunicate al: 01-800-1111-111-1"><i class="fas fa-info-circle"></i></a>
+                                                           title="¿Tienes dudas? Comunicate al: 01-800-1111-111-1"><i class="fas fa-info-circle"></i></a>
                                                     </div>
                                                 </div>
 
@@ -173,7 +173,7 @@
                                                         <h5 class="display-4 textoCitaReservada mb-1">Tu cita de <strong>navegación</strong> ha sido reservada para el:</h5>
                                                         <h5 class="display-4 textoCitaReservada m-0 d-inline mr-2" id="fechaCitaNavegacion">${sessionScope.fechaNavegacion}</h5>
                                                         <a href="#" class="questionMark pull-right"
-                                                                                                                                                                                    title="¿Tienes dudas? Comunicate al: 01-800-1111-111-1"><i class="fas fa-info-circle"></i></a>
+                                                           title="¿Tienes dudas? Comunicate al: 01-800-1111-111-1"><i class="fas fa-info-circle"></i></a>
                                                     </div>
                                                 </div>
 
@@ -292,6 +292,11 @@
                                             </div>
                                             <div class="modal-body">
                                                 <textarea class="form-control motivoCancelacion" placeholder="¿Por qué desea cancelar su cita?"></textarea>
+                                            </div>
+                                            <div class="row mb-3" id="error-camposMotivo">
+                                                <div class="col-12 text-center">
+                                                    <span class="text-danger">Debes escribir un motivo de cancelación.</span>
+                                                </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger clearMotivo" style="border-radius: 20px;" data-dismiss="modal">Cerrar</button>
