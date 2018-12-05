@@ -658,7 +658,7 @@ $(document).ready(function () {
     $('#btn-guardarCambios').on('click', function () {
         if (!repiteCorreo && !repiteUsuarioPaciente) {
             $("#error-editarDatosRepetidosPaciente").hide();
-            
+
             if (isValidName($('#editarNombreNavegadoraAPaciente')) && isValidLastName($('#editarPrimer-apellidoNavegadoraAPaciente'))
                     && isValidUserName($('#editarUsuarioNavegadoraAPaciente')) &&
                     isValidEdit2ApellidoPaciente && isValidEditColPaciente && isValidEditCallePaciente && isValidEditNumIntPaciente &&
@@ -1798,7 +1798,7 @@ $(document).ready(function () {
 
         return false;
     }
-    
+
     var cambioImagen = false;
     var imagenValida = false;
 
@@ -1979,7 +1979,7 @@ $(document).ready(function () {
                             $('#modalCambiarContraseña').modal('toggle');
                         }
                     });
-        } 
+        }
     });
 
     $("#password").on('change', function () {
@@ -4019,8 +4019,13 @@ $(document).ready(function () {
 
                     seguroPopular = false;
 
+                    $('#numSeguro').css('border', '1px solid red');
+                    $('#numSeguro').css('color', 'red');
+
                 } else {
                     seguroPopular = true;
+                    $('#numSeguro').css('border', '');
+                    $('#numSeguro').css('color', '');
                 }
 
             }
@@ -4037,8 +4042,11 @@ $(document).ready(function () {
             if ($('#tiene-cirugia').is(':checked')) {
 
                 if (!isValidNonEmptyDate($('#fecha-cirugia')) || !isValidSelect($('#cirugia'))) {
+
                     tratamientoCirugia = false;
+
                 } else {
+
                     tratamientoCirugia = true;
                 }
 
@@ -4312,7 +4320,7 @@ $(document).ready(function () {
                     && ePreconsultaEcocardiograma && ePreconsultaTrabajoSocial && ePreconsultaPrograma && ePreconsultaOtro
                     ) {
                 swal("Felicidades!", "Se puede enviar todo!", "success");
-                btnSave(data);
+                //btnSave(data);
             } else {
                 swal("Error", "Verifica que hayas rellenado todos los datos", "error");
             }
@@ -5577,7 +5585,7 @@ $(document).ready(function () {
                 }
         );
     });
-    
+
     $('.IrAMiIndex').on('click', function () {
         $.ajax({
             url: 'SAPI',
@@ -5749,7 +5757,7 @@ function isValidTratamientoPrevio(input) {
 
     console.log("HOY:" + hoy);
 
-    if (fechaIntroducida >= hoy) {
+    if (fechaIntroducida > hoy) {
         console.log("MMM NO PUEDES");
         return false;
     }
@@ -5778,7 +5786,7 @@ function isValidFechaEstudioPrevio(input) {
 
     console.log("HOY:" + hoy);
 
-    if (fechaIntroducida >= hoy) {
+    if (fechaIntroducida > hoy) {
         console.log("MMM NO PUEDES");
         return false;
     }
@@ -5934,7 +5942,7 @@ function isValidAlfanumerico(input) {
 
     var m = input.val();
 
-    var expreg = /^$|[a-zA-Z\u00E0-\u00FCñÑ. ]$/;
+    var expreg = /^$|[a-zA-Z0-9\u00E0-\u00FCñÑ., ]$/;
 
     if (!expreg.test(m)) {
 
