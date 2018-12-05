@@ -247,6 +247,181 @@ $(document).ready(function () {
         }
 
     });
+    
+    //Limpiar campos
+    $("body").on("click", ".clearAddPacientesModal", function () {
+
+        $('#nombrePaciente').val("");
+        $('#nombrePaciente').css('border', '');
+        $('#nombrePaciente').css('color', '');
+
+        $('#curpPaciente').val("");
+        $('#curpPaciente').css('border', '');
+        $('#curpPaciente').css('color', '');
+
+        $("#cumplePaciente").attr("type", "text").val('').attr("placeholder", "Fecha de nacimiento");
+        $('#cumplePaciente').css('border', '');
+        $('#cumplePaciente').css('color', '');
+
+        $('#primer-apellidoPaciente').val("");
+        $('#primer-apellidoPaciente').css('border', '');
+        $('#primer-apellidoPaciente').css('color', '');
+
+        $('#segundo-apellidoPaciente').val("");
+        $('#segundo-apellidoPaciente').css('border', '');
+        $('#segundo-apellidoPaciente').css('color', '');
+        
+        $('#codigo-postalPaciente').val("");
+        $('#codigo-postalPaciente').css('border', '');
+        $('#codigo-postalPaciente').css('color', '');
+
+        $('#usuarioPaciente').val("");
+        $('#usuarioPaciente').css('border', '');
+        $('#usuarioPaciente').css('color', '');
+
+        $("#estado-civilPaciente").prop('selectedIndex', 0);
+        $('#estado-civilPaciente').css('border', '');
+        $('#estado-civilPaciente').css('color', '');
+
+        $('#colPaciente').val("");
+        $('#colPaciente').css('border', '');
+        $('#colPaciente').css('color', '');
+
+        $('#callePaciente').val("");
+        $('#callePaciente').css('border', '');
+        $('#callePaciente').css('color', '');
+
+        $('#numIntPaciente').val("");
+        $('#numIntPaciente').css('border', '');
+        $('#numIntPaciente').css('color', '');
+
+        $('#numExtPaciente').val("");
+        $('#numExtPaciente').css('border', '');
+        $('#numExtPaciente').css('color', '');
+
+        $('#estadoPaciente').prop('selectedIndex', 0);
+        $('#estadoPaciente').css('border', '');
+        $('#estadoPaciente').css('color', '');
+
+        $('#municipioPaciente').append("<option disabled selected>" + "Seleccione un Municipio" + "</option>");
+        $('#municipioPaciente').css('border', '');
+        $('#municipioPaciente').css('color', '');
+        
+        $("#acepto-terminos").prop("checked", false);
+        
+        
+        $('#telPaciente').val("");
+        $('#telPaciente').css('border', '');
+        $('#telPaciente').css('color', '');
+
+        $('#correoPaciente').val("");
+        $('#correoPaciente').css('border', '');
+        $('#correoPaciente').css('color', '');
+        
+        $('#contraPaciente').val("");
+        $('#contraPaciente').css('border', '');
+        $('#contraPaciente').css('color', '');
+        
+        $('#confContraPaciente').val("");
+        $('#confContraPaciente').css('border', '');
+        $('#confContraPaciente').css('color', '');
+
+
+        $('#errorNombrePaciente').hide();
+        $('#errorCurpPaciente').hide();
+        $('#errorCurpRepetidoPaciente').hide();
+        $('#errorFechaPaciente').hide();
+        $('#errorApellidoPaternoPaciente').hide();
+        $('#errorApellidoMaternoPaciente').hide();
+        $('#errorNombreUsuarioPaciente').hide();
+        $('#errorUsuarioRepetidoPaciente').hide();
+        $('#errorECivilPaciente').hide();
+        $('#errorColoniaPaciente').hide();
+        $('#errorCallePaciente').hide();
+        $('#errorNoInteriorPaciente').hide();
+        $('#errorNoExteriorPaciente').hide();
+        $('#errorEstadoPaciente').hide();
+        $('#errorMunicipioPaciente').hide();
+        $('#errorTelefonoPaciente').hide();
+        $('#errorCorreoPaciente').hide();
+        $('#errorPasscurpPacientePaciente').hide();
+        $('#errorPasscumplePacientePaciente').hide();
+        $('#error-CPexistePaciente').hide();
+        $('#errorCodigoPostalPaciente').hide();
+        $('#errorPass1Paciente').hide();
+        $('#noEqualPasswordsErrorPaciente').hide();
+        $('#errorCorreoRepetidoPaciente').hide();
+        $('#error-terminos').hide();
+
+    });
+
+    $("body").on("click", ".clearEditPacientesModal", function () {
+
+        $('#editarNombreNavegadoraAPaciente').css('border', '');
+        $('#editarNombreNavegadoraAPaciente').css('color', '');
+
+        $('#editarCurpNavegadoraAPaciente').css('border', '');
+        $('#editarCurpNavegadoraAPaciente').css('color', '');
+
+        $('#editarCumpleNavegadoraAPaciente').css('border', '');
+        $('#editarCumpleNavegadoraAPaciente').css('color', '');
+
+        $('#editarPrimer-apellidoNavegadoraAPaciente').css('border', '');
+        $('#editarPrimer-apellidoNavegadoraAPaciente').css('color', '');
+
+        $('#editarSegundo-apellidoNavegadoraAPaciente').css('border', '');
+        $('#editarSegundo-apellidoNavegadoraAPaciente').css('color', '');
+
+        $('#editarUsuarioNavegadoraAPaciente').css('border', '');
+        $('#editarUsuarioNavegadoraAPaciente').css('color', '');
+
+        $('#editarEstado-civilPaciente').css('border', '');
+        $('#editarEstado-civilPaciente').css('color', '');
+
+        $('#editarColNavegadoraAPaciente').css('border', '');
+        $('#editarColNavegadoraAPaciente').css('color', '');
+
+        $('#editarCalleNavegadoraAPaciente').css('border', '');
+        $('#editarCalleNavegadoraAPaciente').css('color', '');
+
+        $('#editarNumIntNavegadoraAPaciente').css('border', '');
+        $('#editarNumIntNavegadoraAPaciente').css('color', '');
+
+        $('#editarNumExtNavegadoraAPaciente').css('border', '');
+        $('#editarNumExtNavegadoraAPaciente').css('color', '');
+
+        $('#editarEstadoNavegadoraAPaciente').css('border', '');
+        $('#editarEstadoNavegadoraAPaciente').css('color', '');
+
+        $('#editarTelNavegadoraAPaciente').css('border', '');
+        $('#editarTelNavegadoraAPaciente').css('color', '');
+
+        $('#editarCorreoNavegadoraAPaciente').css('border', '');
+        $('#editarCorreoNavegadoraAPaciente').css('color', '');
+
+
+        $('#error-editar-NombrePaciente').hide();
+        $('#error-editar-ApellidoPaternoPaciente').hide();
+        $('#error-editar-ApellidoMaternoPaciente').hide();
+        $('#error-editar-NombreUsuarioPaciente').hide();
+        $('#error-editar-CorreoPaciente').hide();
+        $('#error-editar-CurpPaciente').hide();
+        $('#error-editar-ColoniaPaciente').hide();
+        $('#error-editar-CallePaciente').hide();
+        $('#error-editar-NoExteriorPaciente').hide();
+        $('#error-editar-NoInteriorPaciente').hide();
+        $('#error-editar-CurpRepetidoPaciente').hide();
+        $('#error-editar-TelefonoPaciente').hide();
+        $('#error-editar-ECivilPaciente').hide();
+        $('#error-editar-FechaPaciente').hide();
+        $('#error-editar-EstadoPaciente').hide();
+        $('#error-editar-MunicipioPaciente').hide();
+        $('#error-editar-UsuarioRepetidoPaciente').hide();
+        $('#errorEditarPacienteCorreoRepetido').hide();
+        $('#error-editarDatosRepetidosPaciente').hide();
+        $('#error-camposEditarPaciente').hide();
+        
+    });
 
 
     ////////FUNCIONALIDAD DE PANTALLAS
