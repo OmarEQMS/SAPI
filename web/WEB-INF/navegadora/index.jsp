@@ -1016,33 +1016,33 @@
                                 <div class="custom-file col-6" id="fechaNavegacion">
                                     <input placeholder="Fecha navegación" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                            id="Fecha-Navegacion">
+                                    <!--<span class="text-danger" id="errorFechaNavegacion">No puede ser menor a hoy.</span> NO BORRAR-->
                                 </div>
 
-
-
-                                <div class="col-6 mt-3">
+                                <div class="col-6 mt-4">
                                     <span class="textoFechas">Fecha preconsulta:</span>
                                 </div>
 
-                                <div class="custom-file col-6 mt-3" id="fechaPreconsulta">
+                                <div class="custom-file col-6 mt-4" id="fechaPreconsulta">
                                     <input placeholder="Fecha consulta" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')" id="Fecha-Consulta">
+                                    <!--<span class="text-danger" id="errorFechaPre">No puede ser menor a hoy. NO BORRAR</span>-->
                                 </div>
 
 
 
-                                <div class="col-6 mt-3">
+                                <div class="col-6 mt-4">
                                     <label for="">Tipo de paciente:</label>
 
                                 </div>
 
-                                <div class="input-group col-6 mt-3">
+                                <div class="input-group col-6 mt-4">
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <i class="fas fa-user"></i>
                                         </div>
                                     </div>
-                                    <select class="form-control" id="tipo-paciente">
-                                        <option disabled selected>Seleccione un tipo de paciente</option>
+                                    <select class="form-control" id="tipo-paciente"> 
+                                        <option disabled selected>Seleccione el tipo</option>
                                         <option value="0">Primera vez</option>
                                         <option value="1">Segunda opinión</option>
                                     </select>

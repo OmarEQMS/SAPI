@@ -26,7 +26,7 @@
     </head>
 
     <body>
-        
+
         <div class="crearCuenta" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Creando tu cuenta, por favor espere...</p>

@@ -4,6 +4,11 @@ $(document).ready(function () {
     $('#error-correoNavegadora').hide();
     $('#error-correoRepetidoNavegadora').hide();
     $('#error-camposMotivo').hide();
+    
+    /* NO BORRAR
+    $('#errorFechaNavegacion').hide();
+    $('#errorFechaPre').hide();*/
+    
 
 
     //Errores al agregar a un paciente
@@ -2479,6 +2484,27 @@ $(document).ready(function () {
         }
 
     });
+    
+    /*FECHA DE NAVEGACIÓN EN AGREGAR PACIENTE NO BORRAR
+    $('#Fecha-Navegacion').on('change', function () {
+        if (isValidFutureDate($(this))) {
+            $('#errorFechaNavegacion').hide();
+        } else {
+            $('#errorFechaNavegacion').show();
+        }
+
+    });
+    
+    //FECHA DE PRECONSULTA EN AGREGAR PACIENTE
+    $('#Fecha-Consulta').on('change', function () {
+
+        if (isValidFutureDate($(this))) {
+            $('#errorFechaPre').hide();
+        } else {
+            $('#errorFechaPre').show();
+        }
+
+    });*/
 
     //ESTADO EN AGREGAR PACIENTE
     $('#estadoPaciente').on('change', function () {
@@ -3062,8 +3088,8 @@ $(document).ready(function () {
 
     //PRZ
     $('#prz-expediente').on('change', function () {
-    
-        
+
+
         if (!isValidPRZ($(this))) {
             $('#error-PRZ').show();
         } else {
@@ -4175,19 +4201,19 @@ $(document).ready(function () {
                 }
 
             }
-            
+
             //****Verificar que si esta marcado laminillas o bloques, tiene que poner un resultado o reporte de patologia
-            
+
             var pusoResultadoPatologia = true;
-            
-            if($('#entregaLaminillas').is(':checked') || $('#entregaBloques').is(':checked')){
-                
-                if(!isValidSelect($('#resultadoAnterior-patologia'))){
+
+            if ($('#entregaLaminillas').is(':checked') || $('#entregaBloques').is(':checked')) {
+
+                if (!isValidSelect($('#resultadoAnterior-patologia'))) {
                     pusoResultadoPatologia = false;
-                }else{
+                } else {
                     pusoResultadoPatologia = true;
                 }
-                
+
             }
 
             //PANTALLA 3
@@ -6353,6 +6379,44 @@ function isValidDate(input) {
     let event = false;
 
     today < date_from ? event = true : event = false;
+
+
+    if (!input.val() || event) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+function isValidFutureDate(input) { 
+    
+    
+    let valorSeleccionado = input;
+
+    let date_from = new Date(valorSeleccionado);
+
+    var year2 = date_from.getFullYear();
+    var month2 = date_from.getMonth();
+    var day2 = date_from.getDate();
+
+    date_from = new Date(year2, month2, day2 + 1);
+    date_from.setHours(0);
+
+    console.log("fecha introducida Shannon: " + date_from);
+
+    let today = new Date();
+    
+
+    let event = false;
+
+    today <= date_from ? event = false : event = true;
 
 
     if (!input.val() || event) {

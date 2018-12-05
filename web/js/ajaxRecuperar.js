@@ -10,6 +10,8 @@ $(document).ready(function () {
     $('#errorCambiar').hide();
     $('#errorCorreoNoExistente').hide();
     $('#errorCorreo').hide();
+    
+    
 
     $("#RestablcerContra").on('click', function () {
         if (isValidPassword($('#cambio1')) && isValidPassword($('#cambio2')) && areEqualPasswords($('#cambio1'), $('#cambio2'))) {
