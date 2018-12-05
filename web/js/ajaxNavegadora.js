@@ -3,6 +3,8 @@ $(document).ready(function () {
     //Errores en cuenta
     $('#error-correoNavegadora').hide();
     $('#error-correoRepetidoNavegadora').hide();
+    $('#error-camposMotivo').hide();
+
 
     //Errores al agregar a un paciente
     $('#errorNombrePaciente').hide();
@@ -658,7 +660,7 @@ $(document).ready(function () {
     $('#btn-guardarCambios').on('click', function () {
         if (!repiteCorreo && !repiteUsuarioPaciente) {
             $("#error-editarDatosRepetidosPaciente").hide();
-            
+
             if (isValidName($('#editarNombreNavegadoraAPaciente')) && isValidLastName($('#editarPrimer-apellidoNavegadoraAPaciente'))
                     && isValidUserName($('#editarUsuarioNavegadoraAPaciente')) &&
                     isValidEdit2ApellidoPaciente && isValidEditColPaciente && isValidEditCallePaciente && isValidEditNumIntPaciente &&
@@ -1798,7 +1800,7 @@ $(document).ready(function () {
 
         return false;
     }
-    
+
     var cambioImagen = false;
     var imagenValida = false;
 
@@ -1979,7 +1981,7 @@ $(document).ready(function () {
                             $('#modalCambiarContraseña').modal('toggle');
                         }
                     });
-        } 
+        }
     });
 
     $("#password").on('change', function () {
@@ -4311,15 +4313,36 @@ $(document).ready(function () {
                     && ePreconsultaValoracion && ePreconsultaEspirometria && ePreconsultaElectrocardiograma
                     && ePreconsultaEcocardiograma && ePreconsultaTrabajoSocial && ePreconsultaPrograma && ePreconsultaOtro
                     ) {
-                swal("Felicidades!", "Se puede enviar todo!", "success");
+                swal({
+                    title: "¡Buen trabajo!",
+                    text: "Todos los datos se han enviado correctamente.",
+                    icon: "success",
+                    closeOnEsc: false,
+                    closeOnClickOutside: false,
+                    button: "Aceptar",
+                });
                 btnSave(data);
             } else {
-                swal("Error", "Verifica que hayas rellenado todos los datos", "error");
+                swal({
+                    title: "Error",
+                    text: "Verifica que hayas completado todos los datos.",
+                    icon: "error",
+                    closeOnEsc: false,
+                    closeOnClickOutside: false,
+                    button: "Aceptar",
+                });
             }
 
 
         } else {
-            swal("Error", "Hay datos incorrectos o faltantes", "error");
+            swal({
+                title: "Error",
+                text: "Hay datos incorrectos o faltantes.",
+                icon: "error",
+                closeOnEsc: false,
+                closeOnClickOutside: false,
+                button: "Aceptar",
+            });
         }
 
 
@@ -5577,7 +5600,7 @@ $(document).ready(function () {
                 }
         );
     });
-    
+
     $('.IrAMiIndex').on('click', function () {
         $.ajax({
             url: 'SAPI',

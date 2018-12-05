@@ -48,12 +48,12 @@ $(document).ready(function () {
             $("#error-datosRepetidos").hide();
 
             //Verificar que todos los campos que han marcado
-            if (isValidName($('#nombre')) && isValidLastName($('#apellido1')) && $('#errorApellidoMaterno').hide() && $('#errorCodigoPostal').hide()
-                    && $('#errorColonia').hide() && $('#errorCalle').hide() && $('#errorNoExterior').hide() && $('#errorNoInterior').hide()
+            if (isValidName($('#nombre')) && isValidLastName($('#apellido1')) && isValidSegundoApellidoRegistro && isValidCPRegistro
+                    && isValidColRegistro && isValidCalleRegistro && isValidNumExtRegistro && isValidNumIntRegistro
                     && isValidUserName($('#usuario')) && isValidEmail($('#correo')) && isValidPassword($('#pass1'))
                     && isValidCURP($('#curp')) && isValidPhoneNumber($('#telefono')) && isValidSelect($('#estadoCivil'))
                     && isValidDate($('#fechaNacimiento')) && isValidSelect($('#estado')) && isValidSelect($('#municipio'))
-                    && areEqualPasswords($('#pass1'), $('#pass2')) && $('#errorCorreoRepetido').hide()) {
+                    && areEqualPasswords($('#pass1'), $('#pass2'))) {
                 $("#error-campos").hide();
 
                 swal(
@@ -105,6 +105,12 @@ $(document).ready(function () {
                 url: 'RegistraUsuarioController',
                 cache: false,
                 method: 'POST',
+                beforeSend: function () {
+                    $('.crearCuenta').fadeIn();
+                },
+                complete: function () {
+                    $('.crearCuenta').fadeOut();
+                },
                 data: {
                     key: "registraUsuario",
                     nombre: $('#nombre').val(),
@@ -222,14 +228,20 @@ $(document).ready(function () {
 
     });
 
+    var isValidCPRegistro = true;
     $('#codigoPostal').on('change', function () {
 
         if (isValidFormatCP($(this))) {
             $('#errorCodigoPostal').hide();
+            isValidCPRegistro = true;
         } else if ($(this).val() == '') {
             $('#errorCodigoPostal').hide();
+            $(this).css('border', '');
+            $(this).css('color', '');
+            isValidCPRegistro = true;
         } else {
             $('#errorCodigoPostal').show();
+            isValidCPRegistro = false;
         }
 
     })
@@ -296,14 +308,20 @@ $(document).ready(function () {
     });
 
     //SEGUNDO APELLIDO EN EL REGISTRO
+    var isValidSegundoApellidoRegistro = true;
     $('#apellido2').on('change', function () {
 
         if (isValidLastName($(this))) {
             $('#errorApellidoMaterno').hide();
+            isValidSegundoApellidoRegistro = true;
         } else if ($(this).val() == '') {
             $('#errorApellidoMaterno').hide();
+            $(this).css('border', '');
+            $(this).css('color', '');
+            isValidSegundoApellidoRegistro = true;
         } else {
             $('#errorApellidoMaterno').show();
+            isValidSegundoApellidoRegistro = false;
         }
 
     });
@@ -630,48 +648,83 @@ $(document).ready(function () {
     });
 
     //COLONIA EN EL REGISTRO
+    var isValidColRegistro = true;
     $('#colonia').on('change', function () {
 
         if (isValidColonia($(this))) {
             $('#errorColonia').hide();
+            isValidColRegistro = true;
+        } else if ($(this).val() == '') {
+            $('#errorColonia').hide();
+            $(this).css('border', '');
+            $(this).css('color', '');
+            isValidColRegistro = true;
         } else {
             $('#errorColonia').show();
+            isValidColRegistro = false;
         }
 
     });
 
     //CALLE EN EL REGISTRO
+
+    var isValidCalleRegistro = true;
     $('#calle').on('change', function () {
 
         if (isValidStreet($(this))) {
             $('#errorCalle').hide();
+            isValidCalleRegistro = true;
+        } else if ($(this).val() == '') {
+            $('#errorCalle').hide();
+            $(this).css('border', '');
+            $(this).css('color', '');
+            isValidCalleRegistro = true;
         } else {
             $('#errorCalle').show();
+            isValidCalleRegistro = false;
         }
-
     });
 
     //NUMERO EXTERIOR EN EL REGISTRO
+
+    var isValidNumExtRegistro = true;
     $('#noExterior').on('change', function () {
 
         if (isValidExtNumber($(this))) {
             $('#errorNoExterior').hide();
+            isValidNumExtRegistro = true;
+        } else if ($(this).val() == '') {
+            $('#errorNoExterior').hide();
+            $(this).css('border', '');
+            $(this).css('color', '');
+            isValidNumExtRegistro = true;
         } else {
             $('#errorNoExterior').show();
+            isValidNumExtRegistro = false;
         }
 
     });
 
     //NUMERO INTERIOR EN EL REGISTRO
+
+    var isValidNumIntRegistro = true;
     $('#noInterior').on('change', function () {
 
         if (isValidIntNumber($(this))) {
             $('#errorNoInterior').hide();
+            isValidNumIntRegistro = true;
+        } else if ($(this).val() == '') {
+            $('#errorNoInterior').hide();
+            $(this).css('border', '');
+            $(this).css('color', '');
+            isValidNumIntRegistro = true;
         } else {
             $('#errorNoInterior').show();
+            isValidNumIntRegistro = false;
         }
 
     });
+
 
     ///////////////////////////////////////////////LOGIN
     $('#btn-login').on('click', function () {

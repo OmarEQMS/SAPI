@@ -1,5 +1,9 @@
 $(document).ready(function () {
     
+    mostrarContrasena($('#cambio1Contrasena'),'password');
+    mostrarContrasena($('#cambio2Contrasena'),'password2');
+    mostrarContrasena($('#pacienteContrasena'),'contraPaciente');
+    mostrarContrasena($('#pacienteContrasenaConfirmacion'),'confContraPaciente');
 
     //Esconder seguros, mastrografía, ultrasonido y tratamientos en la segunda hoja de la pantalla 2
     $('#tiene-seguro').hide();

@@ -327,7 +327,10 @@
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="name">Contraseña</label>
-                                    <input type="password" class="form-control" id="password" placeholder="Ingresa tu nueva contraseña" />
+                                    <div id="cambio1Contrasena" class="input-group-append bg-white">
+                                        <input type="password" class="form-control" id="password" placeholder="Ingresa tu nueva contraseña" />
+                                        <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row" id="error-contrasena">
@@ -338,7 +341,10 @@
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="name">Confirma tu contraseña</label>
-                                    <input type="password" class="form-control" id="password2" placeholder="Reingresa tu nueva contraseña" />
+                                    <div id="cambio2Contrasena" class="input-group-append bg-white">
+                                        <input type="password" class="form-control" id="password2" placeholder="Reingresa tu nueva contraseña" />
+                                        <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row" id ="noEqualPasswordsError">

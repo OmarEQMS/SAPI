@@ -225,6 +225,12 @@ $(document).ready(function () {
                     key: 'cancelarCita',
                     idPaciente: $('#idPaciente').val()
                 },
+                beforeSend: function () {
+                    $('.cancelarCitas').fadeIn();
+                },
+                complete: function () {
+                    $('.cancelarCitas').fadeOut();
+                },
                 method: "POST",
                 success: function (response) {
                     console.log("Solicitar ESTADO de Preconsulta");

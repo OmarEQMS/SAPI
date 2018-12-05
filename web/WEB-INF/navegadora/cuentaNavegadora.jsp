@@ -44,27 +44,27 @@
 
     <body>
 
-        
+
         <div class="cargandoGuardarCambios" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Guardando cambios, por favor espere...</p>
         </div>
-        
+
         <div class="cargandoIrACalendar" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando el calendario, por favor espere...</p>
         </div>
-        
+
         <div class="cargandoIrAInicio" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando la lista de pacientes, por favor espere...</p>
         </div>
-        
+
         <div class="cargandoIrARendimiento" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando tu rendimiento, por favor espere..</p>
         </div>
-        
+
         <div class="cargandoIrACuenta" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando tus datos, por favor espere...</p>
@@ -127,7 +127,7 @@
                 <ul class="list-unstyled components">
 
                     <li id="irADashboard"><a><i class="fas fa-home"></i>Inicio</a></li>
-                                                            
+
                     <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
                     <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
@@ -301,10 +301,14 @@
                             </button>
                         </div>
                         <div class="modal-body">
+
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="name">Contraseña</label>
-                                    <input type="password" class="form-control" id="password" placeholder="Ingresa tu nueva contraseña" />
+                                    <div id="cambio1Contrasena" class="input-group-append bg-white">
+                                        <input type="password" class="form-control" id="password" placeholder="Ingresa tu nueva contraseña" />
+                                        <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row" id="error-contrasena">
@@ -315,7 +319,10 @@
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="name">Confirma tu contraseña</label>
-                                    <input type="password" class="form-control" id="password2" placeholder="Reingresa tu nueva contraseña" />
+                                    <div id="cambio2Contrasena" class="input-group-append bg-white">
+                                        <input type="password" class="form-control" id="password2" placeholder="Reingresa tu nueva contraseña" />
+                                        <div class="input-group-text border-left-0 rounded-left bg-white"><i class="far fa-eye"></i></div>
+                                    </div>   
                                 </div>
                             </div>
                             <div class="row" id="noEqualPasswordsError">

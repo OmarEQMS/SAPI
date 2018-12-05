@@ -1,6 +1,9 @@
 //import {validation} from './validaciones.js';
 
 $(document).ready(function () {
+    
+    mostrarContrasena($('#cambio1Contrasena'),'password');
+    mostrarContrasena($('#cambio2Contrasena'),'password2');
 
     $('#tipoSangre option[value="' + $('#selectSangre').val() + '"]').prop("selected", true);
     $('#etapaClinica option[value="' + $('#selectEtapa').val() + '"]').prop("selected", true);
@@ -442,7 +445,16 @@ $(document).ready(function () {
         }
 
     });
-
-
+    
+    function mostrarContrasena(myButton, myField) {
+        myButton.on('mousedown', function () {
+            var x = document.getElementById(myField);
+            x.type = "text";
+        });
+        myButton.on('mouseup', function () {
+            var x = document.getElementById(myField);
+            x.type = "password";
+        });
+    }
 
 });

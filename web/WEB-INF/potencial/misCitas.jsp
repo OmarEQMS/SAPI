@@ -42,6 +42,11 @@
 
     <body>
 
+        <div class="cancelarCitas" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cancelando las citas, por favor espere...</p>
+        </div>
+
         <div class="wrapper">
 
             <!-- SIDEBAR -->

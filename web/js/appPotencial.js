@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    
+    mostrarContrasena($('#cambio1Contrasena'),'password');
+    mostrarContrasena($('#cambio2Contrasena'),'password2');
 
     //Esconder mensajes de error en cuenta
     $('#error-correo').hide();
@@ -267,5 +270,16 @@ $(document).ready(function () {
 
 
     //MediaQueries
+    
+     function mostrarContrasena(myButton, myField) {
+        myButton.on('mousedown', function () {
+            var x = document.getElementById(myField);
+            x.type = "text";
+        });
+        myButton.on('mouseup', function () {
+            var x = document.getElementById(myField);
+            x.type = "password";
+        });
+    }
 
 });
