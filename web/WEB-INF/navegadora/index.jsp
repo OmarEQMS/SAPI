@@ -403,7 +403,7 @@
                                                         <td class="telefono-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.telefono}" > <c:out value="${pacienteAprobado.telefono}"/> </td>
                                                         <td id="estadoCita-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.nombreEstadoCita}" > <c:out value="${pacienteAprobado.nombreEstadoCita}"/> </td>
                                                         <td>
-                                                            <button class="btn btn-info m-1 btn-ver-formulario" data-id="${pacienteAprobado.idPaciente}" id="btn-ver">
+                                                            <button class="btn btn-info m-1 btn-ver-formulario boton-${pacienteAprobado.idPaciente}" data-id="${pacienteAprobado.idPaciente}" id="btn-ver">
                                                                 <i class="fab fa-wpforms"></i>
                                                             </button>
                                                             <button class="btn btn-primary m-1 btn-editar" data-id="${pacienteAprobado.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarPaciente">
