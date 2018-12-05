@@ -47,17 +47,17 @@
             <img src="img/loading.svg">
             <p class="clear">Cargando el calendario, por favor espere...</p>
         </div>
-        
+
         <div class="cargandoIrAInicio" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando la lista de pacientes, por favor espere...</p>
         </div>
-        
+
         <div class="cargandoIrARendimiento" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando tu rendimiento, por favor espere..</p>
         </div>
-        
+
         <div class="cargandoIrACuenta" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando tus datos, por favor espere...</p>
@@ -189,8 +189,8 @@
                     <div class="container">
                         <h1 class="display-4 tituloPacientes text-center m-0">Formato de Control Preconsulta Mama</h1>
                         <h6 class="display-4 text-center m-0 text-secondary" id="pacienteSelec" style="font-size:25px;">
-                        ${sessionScope.nombrePaciente} ${sessionScope.apellido1Paciente} ${sessionScope.apellido2Paciente}
-                    </h6>
+                            ${sessionScope.nombrePaciente} ${sessionScope.apellido1Paciente} ${sessionScope.apellido2Paciente}
+                        </h6>
                     </div>
                 </div>
 
@@ -356,7 +356,7 @@
 
                                                         </c:forEach>
                                                         <option value="otro">Otro</option>
-                                                       
+
                                                     </select>
                                                 </div>
 
@@ -409,7 +409,7 @@
                                         <!-- Nivel educativo-->
                                         <div class="form-group row mt-3">
 
-                                            <div class="col-6">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <label for="">Nivel educativo</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -432,7 +432,7 @@
 
                                         <!-- Alergias-->
                                         <div class="form-group row mt-3">
-                                            <div class="col-6">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <label for="">Alergias</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -450,7 +450,7 @@
                                         <!-- Estado hormonal-->
                                         <div class="form-group row mt-3">
 
-                                            <div class="col-6">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <label for="">Estado hormonal</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -471,11 +471,11 @@
 
                                         <div class="form-group row mt-4">
 
-                                            <div class="col-12">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <div class="form-group form-check">
                                                     <input name="tieneSeguroPopular" type="checkbox" class="form-check-input" id="tieneSeguroPopular">
 
-                                                    <label class="form-check-label" for="tieneSeguroP">óCuentas con algón seguro?
+                                                    <label class="form-check-label" for="tieneSeguroP">¿Cuentas con algún seguro?
                                                     </label>
                                                 </div>
 
@@ -507,7 +507,7 @@
                                         <!-- Mastografia y ultrasonido de mama -->
                                         <div class="form-group row">
 
-                                            <div class="col-12">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <div class="form-check form-check-inline">
                                                     <input name="primeraMasto" class="form-check-input" type="checkbox" id="primeraMasto" value="option1">
 
@@ -664,7 +664,7 @@
 
                                         <!-- Estudios previos -->
 
-                                        <div class="row mb-3">
+                                        <div class="row mb-3 mt-3">
                                             <div class="col-12">
                                                 <h6 class="display-4 text-secondary" style="font-size:26px;">Estudios previos:
                                                 </h6>
@@ -679,41 +679,55 @@
 
                                                     <label class="form-check-label" for="tiene-mastografia">Mastrografóa</label>
                                                 </div>
-                                                <div class="input-group" id="tiene-mastografiaPrevia">
-                                                    <select name="tipoMastografia" class="form-control" id="tipoMastografia">
-                                                        <option disabled selected>Mastrografóa BI-RADS</option>
-
-                                                        <c:forEach items="${listaBirads}" var="birads">  
-                                                            <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
-                                                        </c:forEach>
-
-                                                    </select>
-
-                                                    <div class="input-group col-8" id="fechaMasto">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <i class="fas fa-calendar-alt"></i>
-                                                            </div>
-                                                        </div>
-
-                                                        <input name="fechaPreMasto" placeholder="Introduce la fecha de mastografóa" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
-                                                               id="fechaPreMasto">
-                                                    </div>
-
-                                                </div>
-                                                <span class="text-danger" id="error-fechaMastografia">Fecha incorrecta</span>   
-
 
                                             </div>
 
 
 
-                                            <div class="col-10 mt-3">
-                                                <div class="form-group form-check">
-                                                    <input name = "tiene-ultrasonido-mama" type="checkbox" class="form-check-input" id="tiene-ultrasonido-mama">
-                                                    <label class="form-check-label" for="tiene-ultrasonido-mama">Ultrasonido de mama</label>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="input-group col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-3" id="tiene-mastografiaPrevia">
+                                                <select name="tipoMastografia" class="form-control" id="tipoMastografia">
+                                                    <option disabled selected>Mastrografóa BI-RADS</option>
+
+                                                    <c:forEach items="${listaBirads}" var="birads">  
+                                                        <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
+                                                    </c:forEach>
+
+                                                </select>
+
+                                            </div>
+
+                                            <div class="input-group col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" id="fechaMasto">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <i class="fas fa-calendar-alt"></i>
+                                                    </div>
                                                 </div>
-                                                <div class="input-group" id="tiene-UltrasonidoPrevio">
+
+                                                <input name="fechaPreMasto" placeholder="Introduce la fecha de mastografóa" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
+                                                       id="fechaPreMasto">
+                                            </div>
+
+
+                                            <span class="text-danger" id="error-fechaMastografia">Fecha incorrecta</span>  
+                                        </div>
+
+
+                                        <div class="">
+
+                                            <div class="form-group form-check col-12">
+                                                <input name = "tiene-ultrasonido-mama" type="checkbox" class="form-check-input" id="tiene-ultrasonido-mama">
+                                                <label class="form-check-label" for="tiene-ultrasonido-mama">Ultrasonido de mama</label>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            
+
+                                                <div class="input-group col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-3" id="tiene-UltrasonidoPrevio">
                                                     <select name="tipoUltrasonidoMama" class="form-control" id="tipoUltrasonidoMama">
                                                         <option disabled selected>Ultrasonido Mama BI-RADS</option>
                                                         <c:forEach items="${listaBirads}" var="birads">  
@@ -723,8 +737,9 @@
                                                         </c:forEach>
 
                                                     </select>
+                                                </div>
 
-                                                    <div class="input-group col-8" id="fechaUsg">
+                                                    <div class="input-group col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" id="fechaUsg">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text">
                                                                 <i class="fas fa-calendar-alt"></i>
@@ -735,12 +750,10 @@
                                                     </div>
                                                     <span class="text-danger" id="error-fechaUltra">Fecha incorrecta</span> 
 
-
-                                                </div>
-
-                                            </div>
-
+                                            
                                         </div>
+
+
 
 
 
@@ -787,19 +800,19 @@
                                         </div>
 
                                         <div class="row" id="contenedor-laminillas">
-                                            <div class="col-4">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mb-2">
 
                                                 <input name="numLaminillas" type="text" id="numLaminillas" class="form-control" placeholder="Introduce el nómero">
                                             </div>
 
-                                            <div class="col-6">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                                 <input name="serieLaminillas" type="text" id="serieLaminillas" class="form-control" placeholder="Identificadores separados por ( , )">
                                             </div>
 
                                             <div class="col-12">
                                                 <span class="text-danger" id="error-numeroLaminillas">Formato incorrecto. Solo numeros</span>
                                             </div>
-                                            
+
                                             <div class="col-12">
                                                 <span class="text-danger" id="error-serieLaminillas">Formato incorrecto</span>
                                             </div>
@@ -816,44 +829,44 @@
                                         </div>
 
                                         <div class="row" id="contenedor-bloques">
-                                            <div class="col-4">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mb-2">
 
                                                 <input name="numBloques" type="text" id="numBloques" class="form-control" placeholder="Introduce el nómero">
                                             </div>
-                                            
-           
-                                            <div class="col-6">
+
+
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                                 <input name="serieBloques" type="text" id="serieBloques" class="form-control" placeholder="Identificadores separados por ( , )">
                                             </div>
-                                            
+
                                             <div class="col-12">
                                                 <span class="text-danger" id="error-numeroParafrina">Formato incorrecto. Solo numeros</span>
                                             </div>
-                                            
+
                                             <div class="col-12">
                                                 <span class="text-danger" id="error-serieParafrina">Formato incorrecto</span>
                                             </div>
-                                            
+
                                         </div>
                                     </form>
                                     <div class="row justify-content-center mt-5">
-                                        <div class="col-4">
+                                        <div class="col-xl-4 col-lg-4 col-md-8 col-sm-12 col-12 mb-2">
                                             <button class="btn btn-outline-danger btn-block" id="btn-back2" style="border-radius:20px">
                                                 <i class="fas fa-undo mr-2"></i>Regresar</button>
                                         </div>
-                                        <div class="col-4">
-                                            <button id="btn-save2" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                        <div class="col-xl-4 col-lg-4 col-md-8 col-sm-12 col-12">
+                                            <button id="btn-save2" class="btn btn-outline-primary btn-block truncate" style="border-radius:20px">
                                                 <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuós</button>
                                         </div>
                                     </div>
                                     <div class="row justify-content-center mt-2">
-                                        <div class="col-8">
-                                            <button class="btn btn-morado btn-block" id="btn-export1" style="border-radius:20px">
-                                            <i class="fas fa-file-contract"></i> Generar Reporte</button>
+                                        <div class="col-xl-8 col-lg-4 col-md-8 col-sm-12 col-12">
+                                            <button class="btn btn-morado btn-block truncate" id="btn-export1" style="border-radius:20px">
+                                                <i class="fas fa-file-contract"></i> Generar Reporte</button>
                                         </div>
                                     </div>
                                     <div class="row justify-content-center mt-2">
-                                        <div class="col-8">
+                                        <div class="col-xl-8 col-lg-4 col-md-8 col-sm-12 col-12">
                                             <button class="btn btn-outline-success btn-block" id="btn-continue2" style="border-radius:20px">
                                                 <i class="fas fa-arrow-circle-right mr-2"></i>Continuar</button>
                                         </div>
@@ -1653,8 +1666,8 @@
 
                                     <div class="row justify-content-center mt-3">
                                         <div class="col-8">
-                                             <button class="btn btn-morado btn-block" id="btn-export2" style="border-radius:20px">
-                                            <i class="fas fa-file-contract"></i> Generar Reporte</button>
+                                            <button class="btn btn-morado btn-block" id="btn-export2" style="border-radius:20px">
+                                                <i class="fas fa-file-contract"></i> Generar Reporte</button>
                                         </div>
                                     </div>
 
