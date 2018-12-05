@@ -855,8 +855,8 @@ $(document).ready(function () {
                         icon: 'success',
                         closeOnEsc: false,
                         closeOnClickOutside: false,
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Aceptar'
+                        buttons: true,
+                        buttons: [, 'Aceptar'],
                     });
                     //$('#modalAceptarUsuario').toggle();
                     $('#Fecha-Navegacion').val('').attr("type", "text");
