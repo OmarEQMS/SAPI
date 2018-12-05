@@ -169,7 +169,7 @@
 
                                     <div class="form-group row mt-4">
 
-                                        <div class="col-6">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mb-2">
                                             <label for="">Médico que se va</label>
                                             <div class="input-group">
                                                 <select class="form-control" id="doctor1">
@@ -184,7 +184,7 @@
                                         </div>
 
 
-                                        <div class="col-6">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mb-2">
                                             <label for="">Médico al que se transferiran</label>
                                             <div class="input-group">
                                                 <select class="form-control" id="doctor2">
@@ -201,8 +201,8 @@
 
                                     <!-- Boton guardar y continuar -->
                                     <div class="row justify-content-center mt-5">
-                                        <div class="col-6">
-                                            <button class="btn btn-morado btn-block" id="btn-continue-reasignar" style="border-radius:20px"><i
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <button class="btn btn-morado btn-block truncate" id="btn-continue-reasignar" style="border-radius:20px"><i
                                                     class="fas fa-arrow-circle-right mr-2"></i>Reasignar</button>
                                         </div>
                                     </div>

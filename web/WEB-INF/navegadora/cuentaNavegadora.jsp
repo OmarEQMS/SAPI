@@ -203,11 +203,11 @@
 
                             <!-- 1 -->
                             <div class="form-group row justify-content-center">
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
                                     <label for="name">Nombre</label>
                                     <input type="text" class="form-control" id="name" value="${sessionScope.nombre}" readonly/>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
                                     <label for="employeeNumber">Número de empleado</label>
                                     <input type="text" class="form-control" id="employeeNumber" value="${sessionScope.noEmpleado}" readonly/>
                                 </div>
@@ -215,11 +215,11 @@
 
                             <!-- 2 -->
                             <div class="form-group row justify-content-center">
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
                                     <label for="surname1">Primer Apellido</label>
                                     <input type="text" class="form-control" id="surname1" value="${sessionScope.primerApellido}" readonly/>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
                                     <label for="specialty">Especialidad</label>
                                     <input type="text" class="form-control" id="specilaty" value="${sessionScope.especialidad}" readonly/>
                                 </div>
@@ -227,11 +227,11 @@
 
                             <!-- 3 -->
                             <div class="form-group row justify-content-center">
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
                                     <label for="surname2">Segundo Apellido</label>
                                     <input type="text" class="form-control" id="surname2" value="${sessionScope.segundoApellido}" readonly/>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
                                     <label for="profesionalLic">Cédula profesional</label>
                                     <input type="text" class="form-control" id="profesionalLic" value="${sessionScope.cedulaProfesional}" readonly/>
                                 </div>
@@ -239,11 +239,11 @@
 
                             <!-- 4 -->
                             <div class="form-group row justify-content-center">
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
                                     <label for="username">Usuario</label>
                                     <input type="text" class="form-control" id="username" value="${sessionScope.usuario}" readonly/>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
                                     <label for="telephoneNum">Teléfono</label>
                                     <input name="telefono" type="tel" class="form-control" id="telefono"
                                            value="${sessionScope.telefono}"  />
@@ -253,7 +253,7 @@
 
                             <!-- 5 -->
                             <div class="form-group row justify-content-center">
-                                <div class="col-8">
+                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-2">
                                     <label for="myEmail">Correo</label>
                                     <input name="correo" type="email" class="form-control" id="correo" value="${sessionScope.correo}" placeholder="Introduzca su correo"/>
                                     <span class="text-danger" id="error-correoNavegadora">El formato no es correcto, introduce un mínimo de 2 y un máximo de 254 caracteres. Ejemplo: ejemplo@ejemplo.com</span>
@@ -263,8 +263,8 @@
 
                             <!-- 6 -->
                             <div class="form-group row justify-content-center mt-4">
-                                <div class="col-4">
-                                    <button type="button" class="btn btn-outline-success btn-block" style="border-radius:20px" id="guardarCambios"><i class="fas fa-save mr-1"></i>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                    <button type="button" class="btn btn-outline-success btn-block truncate" style="border-radius:20px" id="guardarCambios"><i class="fas fa-save mr-1"></i>
                                         Guardar Cambios</button>
                                 </div>
                             </div>
@@ -272,18 +272,14 @@
 
                             <!-- 7 -->
                             <div class="form-group row justify-content-center mt-3">
-                                <div class="col-4">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                     <button type="button" class="btn btn-outline-info btn-block" id="btn-contraseña" style="border-radius:20px" data-toggle="modal"
                                             data-target="#modalCambiarContraseña"><i class="fas fa-key mr-1"></i>
                                         Cambiar Contraseña</button>
                                 </div>
                             </div>
 
-                            <div class="row justify-content-center">
-                                <div class="col-8 text-center">
-                                    <hr>
-                                </div>
-                            </div>
+                            
                         </form>
                     </div>
                 </div>

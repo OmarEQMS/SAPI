@@ -221,8 +221,8 @@
 
                             <!-- 6 -->
                             <div class="form-group row justify-content-center mt-4">
-                                <div class="col-4">
-                                    <button type="button" class="btn btn-outline-success btn-block" style="border-radius:20px" id="guardarCambios"><i class="fas fa-save mr-1"></i>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <button type="button" class="btn btn-outline-success btn-block truncate" style="border-radius:20px" id="guardarCambios"><i class="fas fa-save mr-1"></i>
                                         Guardar Cambios</button>
                                 </div>
                             </div>
@@ -232,8 +232,8 @@
 
                         <!-- 7 -->
                         <div class="form-group row justify-content-center mt-3">
-                            <div class="col-4">
-                                <button type="button" class="btn btn-outline-info btn-block" id="btn-contraseña" style="border-radius:20px" data-toggle="modal"
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                <button type="button" class="btn btn-outline-info btn-block truncate" id="btn-contraseña" style="border-radius:20px" data-toggle="modal"
                                         data-target="#modalCambiarContraseña"><i class="fas fa-key mr-1"></i>
                                     Cambiar Contraseña</button>
                             </div>

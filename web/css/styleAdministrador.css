@@ -5,6 +5,12 @@
     GENERALES
 ----------------------------------------------------- */
 
+button.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .btn-actualizarReportePoblacion {
     display: inline-block;
     border-radius: 4px;
