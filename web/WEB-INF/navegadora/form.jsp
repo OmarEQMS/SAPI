@@ -1225,16 +1225,16 @@
                                     </form>
 
                                     <div class="row justify-content-center mt-5">
-                                        <div class="col-4">
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
                                             <button class="btn btn-outline-danger btn-block" id="btn-back3" style="border-radius:20px">
                                                 <i class="fas fa-undo mr-2"></i>Regresar</button>
                                         </div>
-                                        <div class="col-4">
-                                            <button id="btn-save3" class="btn btn-outline-primary btn-block" style="border-radius:20px">
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
+                                            <button id="btn-save3" class="btn btn-outline-primary btn-block truncate" style="border-radius:20px">
 
                                                 <i class="fas fa-save mr-2" ></i>Guardar y Continuar Después</button>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                             <button class="btn btn-outline-success btn-block" id="btn-continue3" style="border-radius:20px">
                                                 <i class="fas fa-arrow-circle-right mr-2"></i>Continuar</button>
                                         </div>

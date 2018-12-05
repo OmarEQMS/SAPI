@@ -379,12 +379,12 @@ $(document).ready(function () {
 
 
             <!-- tipo biopsia -->
-            <div class="col-3">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2">
                 <input name="tipo-BipsiaAdded" type="text" class="form-control tipoBiopsia" list="listBiopsia" placeholder="Tipo de biopsiaa">
             </div>
 
             <!-- fecha biopsia -->
-            <div class="col-4">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -396,7 +396,7 @@ $(document).ready(function () {
             </div>
 
             <!-- parte del cuerpo -->
-            <div class="col-3">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 mb-2">
                 <div class="input-group text-center">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -407,7 +407,7 @@ $(document).ready(function () {
                 </div>
             </div>
 
-            <div class="col-2">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 text-center">
                 <button type="button" class="btn btn-outline-danger ml-2 remove-biopsia" style="border-radius: 25px;">
                 <i class="fas fa-times"></i>
                 </button>
@@ -436,13 +436,13 @@ $(document).ready(function () {
 
 
                 <!-- tipo rayos -->
-                <div class="col-5">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
 
                     <input name="tipo-RayosXAdded" type="text" class="form-control rayosX" list="listRayosX" placeholder="Tipo de rayos X">
                 </div>
 
                 <!-- fecha rayos -->
-                <div class="col-5">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -453,7 +453,7 @@ $(document).ready(function () {
                     </div>
                 </div>
 
-                <div class="col-2">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                 <button type="button" class="btn btn-outline-danger ml-2 remove-biopsia" style="border-radius: 25px;">
                 <i class="fas fa-times"></i>
                 </button>
@@ -482,12 +482,12 @@ $(document).ready(function () {
 
 
                
-                <div class="col-5">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                     <input name ="parteCuperpo-USGAdded"type="text" class="form-control parteCuerpoUltrasonido ultraSonido" list="listUltraSonido" placeholder="Parte del cuerpo">
                 </div>
 
             
-                <div class="col-5">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -498,7 +498,7 @@ $(document).ready(function () {
                     </div>
                 </div>
 
-                <div class="col-2">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                     <button type="button" class="btn btn-outline-danger ml-2 remove-ultrasonido" style="border-radius: 25px;">
                     <i class="fas fa-times"></i>
                     </button>
@@ -527,12 +527,12 @@ $(document).ready(function () {
             <div class="form-group row mt-2 tuplaMedicinaNuclear" data-id="0" data-accion="agregar">
 
     
-                    <div class="col-5">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                         <input name ="mNuclearAdded" type="text" class="form-control medicinaNuclear" list="listMedicinaNuclear" placeholder="Introduce medicina nuclear">
                     </div>
 
       
-                    <div class="col-5">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
@@ -543,7 +543,7 @@ $(document).ready(function () {
                         </div>
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                         <button type="button" class="btn btn-outline-danger ml-2 remove-medicinaNuclear" style="border-radius: 25px;">
                         <i class="fas fa-times"></i>
                         </button>
@@ -571,7 +571,7 @@ $(document).ready(function () {
             <div class="form-group row mt-2 tuplaLaboratorio" data-id="0" data-accion="agregar">
 
 
-                <div class="col-10">
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 mb-2">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -582,7 +582,7 @@ $(document).ready(function () {
                     </div>
                 </div>
 
-                <div class="col-2">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                     <button type="button" class="btn btn-outline-danger ml-2 remove-laboratorio" style="border-radius: 25px;">
                     <i class="fas fa-times"></i>
                     </button>
@@ -611,11 +611,11 @@ $(document).ready(function () {
 
 
        
-                <div class="col-5">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                     <input name ="valoracionAdded" type="text" class="form-control valoracion" list="listValoracion" placeholder="Introduce valoración">
                 </div>
 
-                <div class="col-5">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -626,7 +626,7 @@ $(document).ready(function () {
                     </div>
                 </div>
 
-                <div class="col-2">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                     <button type="button" class="btn btn-outline-danger ml-2 remove-valoracion" style="border-radius: 25px;">
                     <i class="fas fa-times"></i>
                     </button>
@@ -654,7 +654,7 @@ $(document).ready(function () {
             <div class="form-group row mt-2 tuplaEspirometria" data-id="0" data-accion="agregar">
 
 
-                <div class="col-10">
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 mb-2">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -665,7 +665,7 @@ $(document).ready(function () {
                     </div>
                 </div>
 
-                <div class="col-2">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                     <button type="button" class="btn btn-outline-danger ml-2 remove-espirometria" style="border-radius: 25px;">
                     <i class="fas fa-times"></i>
                     </button>
@@ -693,7 +693,7 @@ $(document).ready(function () {
             <div class="form-group row mt-2 tuplaElectrocardiograma" data-id="0" data-accion="agregar">
 
 
-                    <div class="col-10">
+                    <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 mb-2">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
@@ -704,7 +704,7 @@ $(document).ready(function () {
                         </div>
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                         <button type="button" class="btn btn-outline-danger ml-2 remove-electrocardiograma" style="border-radius: 25px;">
                         <i class="fas fa-times"></i>
                         </button>
@@ -732,7 +732,7 @@ $(document).ready(function () {
             <div class="form-group row mt-2 tuplaEcocardiograma" data-id="0" data-accion="agregar">
 
 
-                    <div class="col-10">
+                    <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 mb-2">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
@@ -743,7 +743,7 @@ $(document).ready(function () {
                         </div>
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                         <button type="button" class="btn btn-outline-danger ml-2 remove-ecocardiograma" style="border-radius: 25px;">
                         <i class="fas fa-times"></i>
                         </button>
@@ -772,7 +772,7 @@ $(document).ready(function () {
             <div class="form-group row mt-2 tuplaTrabajoSocial" data-id="0" data-accion="agregar">
 
 
-                <div class="col-10">
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 mb-2">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -783,7 +783,7 @@ $(document).ready(function () {
                     </div>
                 </div>
 
-                <div class="col-2">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                         <button type="button" class="btn btn-outline-danger ml-2 remove-trabajoSocial" style="border-radius: 25px;">
                         <i class="fas fa-times"></i>
                         </button>
@@ -812,11 +812,11 @@ $(document).ready(function () {
 
 
 
-                    <div class="col-5">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                         <input name="programaAdded" type="text" id="tipoPrograma" class="form-control programa" list="listPrograma" placeholder="Introduce programa">
                     </div>
 
-                    <div class="col-5">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
@@ -827,7 +827,7 @@ $(document).ready(function () {
                         </div>
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                         <button type="button" class="btn btn-outline-danger ml-2 remove-programa" style="border-radius: 25px;">
                         <i class="fas fa-times"></i>
                         </button>
@@ -855,7 +855,7 @@ $(document).ready(function () {
             <div class="form-group row mt-2 tuplaOtro" data-id="0" data-accion="agregar">
 
 
-                    <div class="col-5">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
@@ -866,11 +866,11 @@ $(document).ready(function () {
                         </div>
                     </div>
 
-                    <div class="col-5">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mb-2">
                         <input name="otroAdded" type="text" class="form-control otro-estudioPreconsulta" placeholder="Introduce otro">
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mb-2 text-center">
                         <button type="button" class="btn btn-outline-danger ml-2 remove-otro" style="border-radius: 25px;">
                         <i class="fas fa-times"></i>
                         </button>
