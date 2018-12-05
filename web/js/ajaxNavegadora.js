@@ -901,6 +901,10 @@ $(document).ready(function () {
                         ]).draw(false);
                     }
 
+                    $("#Fecha-Navegacion").attr("type", "text").val('').attr("placeholder", "Fecha navegación");
+                    $("#Fecha-Consulta").attr("type", "text").val('').attr("placeholder", "Fecha consulta");
+                    $("#tipo-paciente").prop('selectedIndex', 0);
+
                 } else {
                     swal({
                         title: "Error",

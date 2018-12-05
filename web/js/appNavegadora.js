@@ -247,6 +247,11 @@ $(document).ready(function () {
         }
 
     });
+    $("body").on("click", ".clearModalAceptarUsuario", function () {
+        $("#Fecha-Navegacion").attr("type", "text").val('').attr("placeholder", "Fecha navegación");
+        $("#Fecha-Consulta").attr("type", "text").val('').attr("placeholder", "Fecha consulta");
+        $("#tipo-paciente").prop('selectedIndex', 0);
+    });
     
     //Limpiar campos
     $("body").on("click", ".clearAddPacientesModal", function () {

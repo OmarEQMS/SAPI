@@ -999,7 +999,7 @@
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLongTitle">
                                 <i class="fas fa-exclamation-triangle"></i> Confirmación</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close clearModalAceptarUsuario" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -1056,7 +1056,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" style="border-radius:20px" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger clearModalAceptarUsuario" style="border-radius:20px" data-dismiss="modal">Cancelar</button>
 
                             <button type="button" class="btn btn-primary" style="border-radius:20px" id="btn-aceptarDocumento">Aceptar</button>
 
