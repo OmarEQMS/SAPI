@@ -520,7 +520,6 @@ $(document).ready(function () {
                                 t.row.add([
                                     "<span id='nombre-" + response + "'>" + $("#nombrePaciente").val() + " " + $("#primer-apellidoPaciente").val() + " " + $("#segundo-apellidoPaciente").val() + "</span>",
                                     "<span id='estado-" + response + "'>Potencial en proceso</span>",
-                                    '',
                                     "<span id='fecha-" + response + "'>" + year + "-" + month + "-0" + day + "</span>",
                                     "<span id='curp-" + response + "'>" + $('#curpPaciente').val() + "</span>",
                                     "<span id='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
@@ -533,7 +532,6 @@ $(document).ready(function () {
                                 t.row.add([
                                     "<span id='nombre-" + response + "'>" + $("#nombrePaciente").val() + " " + $("#primer-apellidoPaciente").val() + " " + $("#segundo-apellidoPaciente").val() + "</span>",
                                     "<span id='estado-" + response + "'>Potencial en proceso</span>",
-                                    '',
                                     "<span id='fecha-" + response + "'>" + year + "-" + month + "-" + day + "</span>",
                                     "<span id='curp-" + response + "'>" + $('#curpPaciente').val() + "</span>",
                                     "<span id='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
@@ -833,7 +831,7 @@ $(document).ready(function () {
 
         var idPaciente = $('#hidden-idPaciente').val();
         //alert('el id final es:' + $('#hidden-idPaciente').val());
-
+                
         $.ajax({
 
             url: 'NavegadoraController',
@@ -865,6 +863,7 @@ $(document).ready(function () {
                     $('#Fecha-Consulta').val('').attr("type", "text");
                     $('#tipo-paciente').prop('selectedIndex', 0);
 
+                    $("#estado-" + idPaciente).html("Potencial aceptado");
 
                 } else {
                     swal({

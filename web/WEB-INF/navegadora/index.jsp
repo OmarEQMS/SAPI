@@ -250,7 +250,6 @@
                                                 <tr>
                                                     <th scope="col">Nombre</th>
                                                     <th scope="col">Estado</th>
-                                                    <th scope="col">Estado de la cita</th>
                                                     <th scope="col">Fecha de Registro</th>
                                                     <th scope="col">CURP</th>
                                                     <th scope="col">Teléfono</th>
@@ -265,7 +264,6 @@
                                                     <tr>                                                                                                                      
                                                         <td class="nombre-${paciente.idPaciente}" value="${paciente.nombre}" > <c:out value="${paciente.nombre} ${paciente.primerApellido} ${paciente.segundoApellido}"/> </td>
                                                         <td id="estado-${paciente.idPaciente}" value="${paciente.estadoPaciente}" > <c:out value="${paciente.estadoPaciente}"/> </td>
-                                                        <td></td>
                                                         <td id="fecha-${paciente.idPaciente}" value="${paciente.fechaRegistro}" > <c:out value="${paciente.fechaRegistro}"/> </td>
                                                         <td id="curp-${paciente.idPaciente}" value="${paciente.curp}" > <c:out value="${paciente.curp}"/> </td>
                                                         <td class="telefono-${paciente.idPaciente}" value="${paciente.telefono}" > <c:out value="${paciente.telefono}"/> </td>
