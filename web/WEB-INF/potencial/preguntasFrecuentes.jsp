@@ -15,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>SAP | Inicio</title>
+        <title>SAP | Preguntas Frecuentes</title>
 
         <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
         <link href="lib/fontawesome/css/all.css" rel="stylesheet"/>
