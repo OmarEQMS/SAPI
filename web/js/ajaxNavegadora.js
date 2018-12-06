@@ -5501,7 +5501,10 @@ $(document).ready(function () {
                 $('.llamadaInit').append(plantilla);
 
             }
-
+            
+            if ((data[0][0].resultados === true))
+                $('#resultadosCheckbox').attr('checked', 'checked');
+            
             if (data[0][0].fechaFin !== "Jan 1, 1900" && data[0][0].fechaFin !== "ene 1, 1900")
             {
                 var fecha = data[0][0].fechaFin;
