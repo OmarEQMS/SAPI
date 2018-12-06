@@ -1135,6 +1135,7 @@ $(document).ready(function () {
         switch (opcion1) {
             case 1:
                 muestra($('#tiene-seguro'));
+                //aqui segun yo debe ir que si es seguro popular muestre el campo
                 break;
             case 0:
                 oculta($('#numSeguro'));
@@ -1152,7 +1153,7 @@ $(document).ready(function () {
 
         var opcion = $(this).val();
 
-        if (parseInt(opcion) == parseInt("1")) {
+        if (parseInt(opcion) === parseInt("1")) {
             muestra($('#numSeguro'));
         } else {
             oculta($('#numSeguro'));

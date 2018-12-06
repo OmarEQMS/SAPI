@@ -4,11 +4,11 @@ $(document).ready(function () {
     $('#error-correoNavegadora').hide();
     $('#error-correoRepetidoNavegadora').hide();
     $('#error-camposMotivo').hide();
-    
+
     /* NO BORRAR
-    $('#errorFechaNavegacion').hide();
-    $('#errorFechaPre').hide();*/
-    
+     $('#errorFechaNavegacion').hide();
+     $('#errorFechaPre').hide();*/
+
 
 
     //Errores al agregar a un paciente
@@ -2486,27 +2486,27 @@ $(document).ready(function () {
         }
 
     });
-    
+
     /*FECHA DE NAVEGACIÓN EN AGREGAR PACIENTE NO BORRAR
-    $('#Fecha-Navegacion').on('change', function () {
-        if (isValidFutureDate($(this))) {
-            $('#errorFechaNavegacion').hide();
-        } else {
-            $('#errorFechaNavegacion').show();
-        }
-
-    });
-    
-    //FECHA DE PRECONSULTA EN AGREGAR PACIENTE
-    $('#Fecha-Consulta').on('change', function () {
-
-        if (isValidFutureDate($(this))) {
-            $('#errorFechaPre').hide();
-        } else {
-            $('#errorFechaPre').show();
-        }
-
-    });*/
+     $('#Fecha-Navegacion').on('change', function () {
+     if (isValidFutureDate($(this))) {
+     $('#errorFechaNavegacion').hide();
+     } else {
+     $('#errorFechaNavegacion').show();
+     }
+     
+     });
+     
+     //FECHA DE PRECONSULTA EN AGREGAR PACIENTE
+     $('#Fecha-Consulta').on('change', function () {
+     
+     if (isValidFutureDate($(this))) {
+     $('#errorFechaPre').hide();
+     } else {
+     $('#errorFechaPre').show();
+     }
+     
+     });*/
 
     //ESTADO EN AGREGAR PACIENTE
     $('#estadoPaciente').on('change', function () {
@@ -4059,7 +4059,7 @@ $(document).ready(function () {
         data.append("otroResultadoPatologiaPost", otroResultadoPatologiaPost);
 
 
-        if (cambiarRol == 1)
+        if (cambiarRol === 1)
             data.append("cambiarRol", cambiarRol);
         data.forEach((value, key) => {
             console.log(key + " " + value);
@@ -4443,6 +4443,12 @@ $(document).ready(function () {
     function btnSave(data) {
         $.ajax({
             url: "NavegadoraController",
+            beforeSend: function () {
+                $('.cargandoGuardarCambiosFormulario').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoGuardarCambiosFormulario').fadeOut();
+            },
             method: "POST",
             data: data,
             enctype: "multipart/form-data",
@@ -4661,13 +4667,21 @@ $(document).ready(function () {
 
             if (data[0][0].Seguro !== "") {
                 $('#tieneSeguroPopular').attr('checked', 'checked');
+
                 if ($('#tieneSeguroPopular').is(':checked')) {
                     $('#tiene-seguro').show();
+                    if ((data[0][0].Seguro === "Seguro Popular")) {
+
+                        $('#numSeguro').show(),
+                                $('#numSeguro').val(data[0][0].noSeguro);
+
+                    }
                 } else {
                     $('#tiene-seguro').hide();
                 }
 
                 if ((data[0][0].Seguro === "Seguro Popular")) {
+
                     $('#numSeguro').show(),
                             $('#numSeguro').val(data[0][0].noSeguro);
 
@@ -4681,7 +4695,7 @@ $(document).ready(function () {
             }
 
             if (data[0][0].mastografiaPreINCAN === true) {
-                $('#tieneSeguroPopular').attr('checked', 'checked');
+                $('#primeraMasto').attr('checked', 'checked');
             }
 
             if (data[0][0].cirugiaFecha !== "Jan 1, 1900" && data[0][0].cirugiaFecha !== "ene 1, 1900" || data[0][0].cirugiaTipo !== "" || data[0][0].cirugiaComentario !== "") {
@@ -5501,10 +5515,10 @@ $(document).ready(function () {
                 $('.llamadaInit').append(plantilla);
 
             }
-            
+
             if ((data[0][0].resultados === true))
                 $('#resultadosCheckbox').attr('checked', 'checked');
-            
+
             if (data[0][0].fechaFin !== "Jan 1, 1900" && data[0][0].fechaFin !== "ene 1, 1900")
             {
                 var fecha = data[0][0].fechaFin;
@@ -6400,9 +6414,9 @@ function isValidDate(input) {
     return true;
 }
 
-function isValidFutureDate(input) { 
-    
-    
+function isValidFutureDate(input) {
+
+
     let valorSeleccionado = input;
 
     let date_from = new Date(valorSeleccionado);
@@ -6417,7 +6431,7 @@ function isValidFutureDate(input) {
     console.log("fecha introducida Shannon: " + date_from);
 
     let today = new Date();
-    
+
 
     let event = false;
 
