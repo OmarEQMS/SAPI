@@ -18,9 +18,9 @@ $(document).ready(function () {
 
     $('#fecha2Mes').on('change', function () {
 
-        if ($('#fecha1Mes').val() != '') {
+        if ($('#fecha1Mes').val() !== '') {
             if (areValidDates($('#fecha1Mes').val(), $('#fecha2Mes').val())) {
-                
+
                 $('.errorFechasMes').hide();
 
                 totalVisitasMes($('#fecha1Mes').val(), $('#fecha2Mes').val());
@@ -37,7 +37,7 @@ $(document).ready(function () {
 
     $('#fecha1Mes').on('change', function () {
 
-        if ($('#fecha2Mes').val() != '') {
+        if ($('#fecha2Mes').val() !== '') {
             if (areValidDates($('#fecha1Mes').val(), $('#fecha2Mes').val())) {
 
                 $('.errorFechasMes').hide();
@@ -142,7 +142,7 @@ $(document).ready(function () {
 
         if ($('#fecha1Edad').val() != '') {
             if (areValidDates($('#fecha1Edad').val(), $('#fecha2Edad').val())) {
-                
+
                 $('.errorFechasEdad').hide();
 
                 cantidadPorEdad($('#fecha1Edad').val(), $('#fecha2Edad').val());
@@ -268,7 +268,7 @@ $(document).ready(function () {
 
         if ($('#fecha1Escolaridad').val() != '') {
             if (areValidDates($('#fecha1Escolaridad').val(), $('#fecha2Escolaridad').val())) {
-                
+
                 $('.errorFechasEscolaridad').hide();
 
                 cantidadPorEscolaridad($('#fecha1Escolaridad').val(), $('#fecha2Escolaridad').val());
@@ -393,7 +393,7 @@ $(document).ready(function () {
 
         if ($('#fecha1Residencia').val() != '') {
             if (areValidDates($('#fecha1Residencia').val(), $('#fecha2Residencia').val())) {
-                
+
                 $('.errorFechasResidencia').hide();
 
                 cantidadPorResidencia($('#fecha1Residencia').val(), $('#fecha2Residencia').val());
@@ -524,7 +524,7 @@ $(document).ready(function () {
 
         if ($('#fecha1Economico').val() != '') {
             if (areValidDates($('#fecha1Economico').val(), $('#fecha2Economico').val())) {
-                
+
                 $('.errorFechasEconomico').hide();
 
                 cantidadPorEconomico($('#fecha1Economico').val(), $('#fecha2Economico').val());
@@ -649,9 +649,9 @@ $(document).ready(function () {
 
     $('#fecha2Pre').on('change', function () {
 
-        if ($('#fecha1Pre').val() != '') {
+        if ($('#fecha1Pre').val() !== '') {
             if (areValidDates($('#fecha1Pre').val(), $('#fecha2Pre').val())) {
-                
+
                 $('.errorFechasPre').hide();
 
                 cantidadPorDecisionPreconsulta($('#fecha1Pre').val(), $('#fecha2Pre').val());
@@ -668,7 +668,7 @@ $(document).ready(function () {
 
     $('#fecha1Pre').on('change', function () {
 
-        if ($('#fecha2Pre').val() != '') {
+        if ($('#fecha2Pre').val() !== '') {
             if (areValidDates($('#fecha1Pre').val(), $('#fecha2Pre').val())) {
 
                 $('.errorFechasPre').hide();
@@ -776,9 +776,9 @@ $(document).ready(function () {
 
     $('#fecha2Patologia').on('change', function () {
 
-        if ($('#fecha1Patologia').val() != '') {
+        if ($('#fecha1Patologia').val() !== '') {
             if (areValidDates($('#fecha1Patologia').val(), $('#fecha2Patologia').val())) {
-                
+
                 $('.errorFechasPatologia').hide();
 
                 cantidadPorPatologia($('#fecha1Patologia').val(), $('#fecha2Patologia').val());
@@ -795,7 +795,7 @@ $(document).ready(function () {
 
     $('#fecha1Patologia').on('change', function () {
 
-        if ($('#fecha2Patologia').val() != '') {
+        if ($('#fecha2Patologia').val() !== '') {
             if (areValidDates($('#fecha1Patologia').val(), $('#fecha2Patologia').val())) {
 
                 $('.errorFechasPatologia').hide();
@@ -825,7 +825,7 @@ $(document).ready(function () {
                 fecha2: fecha2
             },
             success: function (response) {
-                
+
                 $(".cantidadVisitasPatologia").dataTable().fnDestroy();
 
                 $('.cantidadVisitasPatologia tbody').children().remove();
@@ -894,13 +894,902 @@ $(document).ready(function () {
         });
 
     }
+    
+    
+
+    /**
+     *
+     * @author Angel GTZ
+     */
+
+//1.- CANTIDAD DE VISITAS TOTALES EN UN RANGO DE MES
 
 
+    $('#Rfecha2Mes').on('change', function () {
+
+        if ($('#Rfecha1Mes').val() !== '') {
+            if (areValidDates($('#Rfecha1Mes').val(), $('#Rfecha2Mes').val())) {
+
+                $('.errorFechasMes').hide();
+
+                estadisticaMes($('#Rfecha1Mes').val(), $('#Rfecha2Mes').val());
+
+                console.log($('#Rfecha1Mes').val());
+                console.log($('#Rfecha2Mes').val());
+
+            } else {
+                $('.errorFechasMes').show();
+            }
+        }
+
+    });
+
+    $('R#fecha1Mes').on('change', function () {
+
+        if ($('#Rfecha2Mes').val() !== '') {
+            if (areValidDates($('#Rfecha1Mes').val(), $('#Rfecha2Mes').val())) {
+
+                $('.errorFechasMes').hide();
+
+                estadisticaMes($('#Rfecha1Mes').val(), $('#Rfecha2Mes').val());
+
+                console.log($('#Rfecha1Mes').val());
+                console.log($('#Rfecha2Mes').val());
+
+            } else {
+                $('.errorFechasMes').show();
+            }
+        }
+
+    });
+
+    //Total de visitas por mes
+    function estadisticaMes(fecha1, fecha2) {
+        $.ajax({
+
+            url: "ReporteController",
+            method: "POST",
+            cache: false,
+            data: {
+                key: "mostrarEstadisticaMes",
+                fecha1: fecha1,
+                fecha2: fecha2
+            },
+            success: function (response) {
+
+                $(".estadisticaTotalVisitasMes").dataTable().fnDestroy();
+
+                $('.estadisticaTotalVisitasMes tbody').children().remove();
+
+                var data = JSON.parse(response);
+
+                console.log(data);
+
+                var plantilla = `<tr>
+                    <td>${data.decripcion}</td>
+                    <td>${data.cantidad}</td>
+                  </tr>`;
+
+                $('.estadisticaTotalVisitasMes tbody').append(plantilla);
+
+                $('.estadisticaTotalVisitasMes').DataTable({
+                    responsive: true,
+                    searching: true,
+
+                    dom: 'lBfrtip',
+                    buttons: [
+
+                        {
+                            extend: 'excel',
+                            text: 'Exportar a Excel',
+                            className: 'btn-outline-success mr-3 btnExcel mt-3'
+                        },
+                        {
+                            extend: 'pdf',
+                            text: 'Exportar a pdf',
+                            className: 'btn-outline-info mr-3 btnPDF mt-3 '
+                        }
+                    ],
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+
+                    }
+                });
+
+
+
+            }
+
+        });
+    }
+
+    //2.- CANTIDAD DE VISITAS POR EDADES
+
+    $('#Rfecha2Edad').on('change', function () {
+
+        if ($('#Rfecha1Edad').val() !== '') {
+            if (areValidDates($('#Rfecha1Edad').val(), $('#Rfecha2Edad').val())) {
+
+                $('.errorFechasEdad').hide();
+
+                EstadisticaEdad($('#Rfecha1Edad').val(), $('#Rfecha2Edad').val());
+
+                console.log($('#Rfecha1Edad').val());
+                console.log($('#Rfecha2Edad').val());
+
+            } else {
+                $('.errorFechasEdad').show();
+            }
+        }
+
+    });
+
+    $('#Rfecha1Edad').on('change', function () {
+
+        if ($('#Rfecha2Edad').val() !== '') {
+            if (areValidDates($('#Rfecha1Edad').val(), $('#Rfecha2Edad').val())) {
+
+                $('.errorFechasEdad').hide();
+
+                EstadisticaEdad($('#Rfecha1Edad').val(), $('#Rfecha2Edad').val());
+
+                console.log($('#Rfecha1Edad').val());
+                console.log($('#Rfecha2Edad').val());
+
+            } else {
+                $('.errorFechasEdad').show();
+            }
+        }
+
+    });
+
+
+    //2.- Cantidad de visitas por edades
+    function EstadisticaEdad(fecha1, fecha2) {
+        $.ajax({
+
+            url: "ReporteController",
+            method: "POST",
+            cache: false,
+            data: {
+                key: "mostrarEstadisticaEdad",
+                fecha1: fecha1,
+                fecha2: fecha2
+            },
+            success: function (response) {
+
+                $(".EstadisticaEdad").dataTable().fnDestroy();
+
+                $('.EstadisticaEdad tbody').children().remove();
+
+                var data = JSON.parse(response);
+
+                for (var i = 0; i < data.length; i++) {
+
+                    var plantilla = `<tr>
+     <td>${data[i].decripcion}</td>
+     <td>${data[i].cantidad}</td>
+     </tr>`;
+
+                    $('.EstadisticaEdad tbody').append(plantilla);
+                }
+
+                $('.EstadisticaEdad').DataTable({
+                    responsive: true,
+                    searching: true,
+                    dom: 'lBfrtip',
+                    buttons: [
+
+                        {
+                            extend: 'excel',
+                            text: 'Exportar a Excel',
+                            className: 'btn-outline-success mr-3 btnExcel mt-3'
+                        },
+                        {
+                            extend: 'pdf',
+                            text: 'Exportar a pdf',
+                            className: 'btn-outline-info mr-3 btnPDF mt-3 '
+                        }
+                    ],
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+
+                    }
+                });
+
+
+
+                console.log(data);
+
+            }
+
+        });
+    }
+
+
+    //3.- CANTIDAD DE VISITAS POR ESCOLARIDAD
+
+    $('#Rfecha2Escolaridad').on('change', function () {
+
+        if ($('#Rfecha1Escolaridad').val() !== '') {
+            if (areValidDates($('#Rfecha1Escolaridad').val(), $('#Rfecha2Escolaridad').val())) {
+
+                $('.errorFechasEscolaridad').hide();
+
+                EstadisticaEscolaridad($('#Rfecha1Escolaridad').val(), $('#Rfecha2Escolaridad').val());
+
+                console.log($('#Rfecha1Escolaridad').val());
+                console.log($('#Rfecha2Escolaridad').val());
+
+            } else {
+                $('.errorFechasEscolaridad').show();
+            }
+        }
+
+    });
+
+    $('#Rfecha1Escolaridad').on('change', function () {
+
+        if ($('#Rfecha2Escolaridad').val() !== '') {
+            if (areValidDates($('#Rfecha1Escolaridad').val(), $('#Rfecha2Escolaridad').val())) {
+
+                $('.errorFechasEscolaridad').hide();
+
+                EstadisticaEscolaridad($('#Rfecha1Escolaridad').val(), $('#Rfecha2Escolaridad').val());
+
+                console.log($('#Rfecha1Escolaridad').val());
+                console.log($('#Rfecha2Escolaridad').val());
+
+            } else {
+                $('.errorFechasEscolaridad').show();
+            }
+        }
+
+    });
+
+    function EstadisticaEscolaridad(fecha1, fecha2) {
+        $.ajax({
+
+            url: "ReporteController",
+            method: "POST",
+            cache: false,
+            data: {
+                key: "mostrarEstadisticaEscolaridad",
+                fecha1: fecha1,
+                fecha2: fecha2
+            },
+            success: function (response) {
+
+                $(".cantidadEstadisticaEscolaridad").dataTable().fnDestroy();
+
+                $('.cantidadEstadisticaEscolaridad tbody').children().remove();
+
+                var data = JSON.parse(response);
+
+                for (var i = 0; i < data.length; i++) {
+
+                    var plantilla = `<tr>
+     <td>${data[i].decripcion}</td>
+     <td>${data[i].cantidad}</td>
+     </tr>`;
+
+                    $('.cantidadEstadisticaEscolaridad tbody').append(plantilla);
+                }
+
+                $('.cantidadEstadisticaEscolaridad').DataTable({
+                    responsive: true,
+                    searching: true,
+                    dom: 'lBfrtip',
+                    buttons: [
+
+                        {
+                            extend: 'excel',
+                            text: 'Exportar a Excel',
+                            className: 'btn-outline-success mr-3 btnExcel mt-3'
+                        },
+                        {
+                            extend: 'pdf',
+                            text: 'Exportar a pdf',
+                            className: 'btn-outline-info mr-3 btnPDF mt-3 '
+                        }
+                    ],
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+
+                    }
+                });
+
+
+
+                console.log(data);
+
+            }
+
+        });
+    }
+
+
+
+    //4.- CANTIDAD DE VISITAS POR RESIDENCIA
+
+    $('#Rfecha2Residencia').on('change', function () {
+
+        if ($('#Rfecha1Residencia').val() !== '') {
+            if (areValidDates($('#Rfecha1Residencia').val(), $('#Rfecha2Residencia').val())) {
+
+                $('.errorFechasResidencia').hide();
+
+                EstadisticaResidencia($('#Rfecha1Residencia').val(), $('#Rfecha2Residencia').val());
+
+                console.log($('#Rfecha1Residencia').val());
+                console.log($('#Rfecha2Residencia').val());
+
+            } else {
+                $('.errorFechasResidencia').show();
+            }
+        }
+
+    });
+
+    $('#Rfecha1Residencia').on('change', function () {
+
+        if ($('#Rfecha2Residencia').val() !== '') {
+            if (areValidDates($('#Rfecha1Residencia').val(), $('#Rfecha2Residencia').val())) {
+
+                $('.errorFechasResidencia').hide();
+
+                EstadisticaResidencia($('#Rfecha1Residencia').val(), $('#Rfecha2Residencia').val());
+
+                console.log($('#Rfecha1Residencia').val());
+                console.log($('#Rfecha2Residencia').val());
+
+            } else {
+                $('.errorFechasResidencia').show();
+            }
+        }
+
+    });
+
+
+    function EstadisticaResidencia(fecha1, fecha2) {
+
+        $.ajax({
+
+            url: "ReporteController",
+            method: "POST",
+            cache: false,
+            data: {
+                key: "mostrarEstadisticaLugarResidencia",
+                fecha1: fecha1,
+                fecha2: fecha2
+            },
+            success: function (response) {
+
+                $(".cantidadEstadisticaResidencia").dataTable().fnDestroy();
+
+                $('.cantidadEstadisticaResidencia tbody').children().remove();
+
+                var data = JSON.parse(response);
+
+                for (var i = 0; i < data.length; i++) {
+
+                    var plantilla = `<tr>
+     <td>${data[i].decripcion}</td>
+     <td>${data[i].cantidad}</td>
+     </tr>`;
+
+                    $('.cantidadEstadisticaResidencia tbody').append(plantilla);
+
+                }
+
+                $('.cantidadEstadisticaResidencia').DataTable({
+                    responsive: true,
+                    searching: true,
+                    dom: 'lBfrtip',
+                    buttons: [
+
+                        {
+                            extend: 'excel',
+                            text: 'Exportar a Excel',
+                            className: 'btn-outline-success mr-3 btnExcel mt-3'
+                        },
+                        {
+                            extend: 'pdf',
+                            text: 'Exportar a pdf',
+                            className: 'btn-outline-info mr-3 btnPDF mt-3 '
+                        }
+                    ],
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+
+                    }
+                });
+
+
+
+                console.log(data);
+
+            }
+
+        });
+
+    }
+
+
+
+
+
+    //5.- CANTIDAD DE VISITAS POR NIVEL SOCIECONOMICO
+
+    $('#Rfecha2Economico').on('change', function () {
+
+        if ($('#Rfecha1Economico').val() !== '') {
+            if (areValidDates($('#Rfecha1Economico').val(), $('#Rfecha2Economico').val())) {
+
+                $('.errorFechasEconomico').hide();
+
+                EstadisticaEconomico($('#Rfecha1Economico').val(), $('#Rfecha2Economico').val());
+
+                console.log($('#Rfecha1Economico').val());
+                console.log($('#Rfecha2Economico').val());
+
+            } else {
+                $('.errorFechasEconomico').show();
+            }
+        }
+
+    });
+
+    $('#Rfecha1Economico').on('change', function () {
+
+        if ($('#fecha2Economico').val() !== '') {
+            if (areValidDates($('#fecha1Economico').val(), $('#fecha2Economico').val())) {
+
+                $('.errorFechasEconomico').hide();
+
+                EstadisticaEconomico($('#Rfecha1Economico').val(), $('#Rfecha2Economico').val());
+
+                console.log($('#Rfecha1Economico').val());
+                console.log($('#Rfecha2Economico').val());
+
+            } else {
+                $('.errorFechasEconomico').show();
+            }
+        }
+
+    });
+
+    function EstadisticaEconomico(fecha1, fecha2) {
+
+        $.ajax({
+
+            url: "ReporteController",
+            method: "POST",
+            cache: false,
+            data: {
+                key: "mostrarEstadisticaNivelSocioEconomico",
+                fecha1: fecha1,
+                fecha2: fecha2
+            },
+            success: function (response) {
+
+                $(".cantidadEstadisticaNivel").dataTable().fnDestroy();
+
+                $('.cantidadEstadisticaNivel tbody').children().remove();
+
+                var data = JSON.parse(response);
+
+                for (var i = 0; i < data.length; i++) {
+
+                    var plantilla = `<tr>
+     <td>${data[i].decripcion}</td>
+     <td>${data[i].cantidad}</td>
+     </tr>`;
+
+                    $('.cantidadEstadisticaNivel tbody').append(plantilla);
+                }
+
+                $('.cantidadEstadisticaNivel').DataTable({
+                    responsive: true,
+                    searching: true,
+                    dom: 'lBfrtip',
+                    buttons: [
+
+                        {
+                            extend: 'excel',
+                            text: 'Exportar a Excel',
+                            className: 'btn-outline-success mr-3 btnExcel mt-3'
+                        },
+                        {
+                            extend: 'pdf',
+                            text: 'Exportar a pdf',
+                            className: 'btn-outline-info mr-3 btnPDF mt-3 '
+                        }
+                    ],
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+
+                    }
+                });
+
+
+
+                console.log(data);
+
+            }
+
+        });
+
+    }
+
+
+
+    //6.- CCANTIDAD DE VISITAS POR DECISION PRE CONSULTA
+
+    $('#Rfecha2Pre').on('change', function () {
+
+        if ($('#fecha1Pre').val() !== '') {
+            if (areValidDates($('#Rfecha1Pre').val(), $('#Rfecha2Pre').val())) {
+
+                $('.errorFechasPre').hide();
+
+                EstadisticaDecisionPreconsulta($('#Rfecha1Pre').val(), $('#Rfecha2Pre').val());
+
+                console.log($('#Rfecha1Pre').val());
+                console.log($('#Rfecha2Pre').val());
+
+            } else {
+                $('.errorFechasPre').show();
+            }
+        }
+
+    });
+
+    $('#Rfecha1Pre').on('change', function () {
+
+        if ($('#Rfecha2Pre').val() !== '') {
+            if (areValidDates($('#Rfecha1Pre').val(), $('#Rfecha2Pre').val())) {
+
+                $('.errorFechasPre').hide();
+
+                EstadisticaDecisionPreconsulta($('#Rfecha1Pre').val(), $('#Rfecha2Pre').val());
+
+                console.log($('#Rfecha1Pre').val());
+                console.log($('#Rfecha2Pre').val());
+
+            } else {
+                $('.errorFechasPre').show();
+            }
+        }
+
+    });
+
+    function EstadisticaDecisionPreconsulta(fecha1, fecha2) {
+
+        $.ajax({
+
+            url: "ReporteController",
+            method: "POST",
+            cache: false,
+            data: {
+                key: "mostrarEstadisticaDecisionPreconsulta",
+                fecha1: fecha1,
+                fecha2: fecha2
+            },
+            success: function (response) {
+
+                $(".cantidadEstadisticaPre").dataTable().fnDestroy();
+
+                $('.cantidadEstadisticaPre tbody').children().remove();
+
+                var data = JSON.parse(response);
+
+                for (var i = 0; i < data.length; i++) {
+
+
+
+                    var plantilla = `<tr>
+     <td>${data[i].decripcion}</td>
+     <td>${data[i].cantidad}</td>
+     </tr>`;
+
+                    $('.cantidadEstadisticaPre tbody').append(plantilla);
+                }
+
+                $('.cantidadEstadisticaPre').DataTable({
+                    responsive: true,
+                    searching: true,
+                    dom: 'lBfrtip',
+                    buttons: [
+
+                        {
+                            extend: 'excel',
+                            text: 'Exportar a Excel',
+                            className: 'btn-outline-success mr-3 btnExcel mt-3'
+                        },
+                        {
+                            extend: 'pdf',
+                            text: 'Exportar a pdf',
+                            className: 'btn-outline-info mr-3 btnPDF mt-3 '
+                        }
+                    ],
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+
+                    }
+                });
+
+                console.log(data);
+
+            }
+
+        });
+
+    }
+
+
+
+    //7.- Cantidad de visitas por resultado patologia
+
+    $('#Rfecha2Patologia').on('change', function () {
+
+        if ($('#Rfecha1Patologia').val() !== '') {
+            if (areValidDates($('#Rfecha1Patologia').val(), $('#Rfecha2Patologia').val())) {
+
+                $('.errorFechasPatologia').hide();
+
+                EstadisticaPatologia($('#Rfecha1Patologia').val(), $('#Rfecha2Patologia').val());
+
+                console.log($('#Recha1Patologia').val());
+                console.log($('#Rfecha2Patologia').val());
+
+            } else {
+                $('.errorFechasPatologia').show();
+            }
+        }
+
+    });
+
+    $('#Rfecha1Patologia').on('change', function () {
+
+        if ($('#Rfecha2Patologia').val() !== '') {
+            if (areValidDates($('#Rfecha1Patologia').val(), $('#Rfecha2Patologia').val())) {
+
+                $('.errorFechasPatologia').hide();
+
+                EstadisticaPatologia($('#Rfecha1Patologia').val(), $('#Rfecha2Patologia').val());
+
+                console.log($('#Rfecha1Patologia').val());
+                console.log($('#Rfecha2Patologia').val());
+
+            } else {
+                $('.errorFechasPatologia').show();
+            }
+        }
+
+    });
+
+    function EstadisticaPatologia(fecha1, fecha2) {
+
+        $.ajax({
+
+            url: "ReporteController",
+            method: "POST",
+            cache: false,
+            data: {
+                key: "mostrarEstadisticaResultadoPatologia",
+                fecha1: fecha1,
+                fecha2: fecha2
+            },
+            success: function (response) {
+
+                $(".cantidadEstadisticaPatologia").dataTable().fnDestroy();
+
+                $('.cantidadEstadisticaPatologia tbody').children().remove();
+
+                var data = JSON.parse(response);
+
+                for (var i = 0; i < data.length; i++) {
+
+                    var plantilla = `<tr>
+     <td>${data[i].decripcion}</td>
+     <td>${data[i].cantidad}</td>
+     </tr>`;
+
+                    $('.cantidadEstadisticaPatologia tbody').append(plantilla);
+                }
+
+                $('.cantidadEstadisticaPatologia').DataTable({
+                    responsive: true,
+                    searching: true,
+                    dom: 'lBfrtip',
+                    buttons: [
+
+                        {
+                            extend: 'excel',
+                            text: 'Exportar a Excel',
+                            className: 'btn-outline-success mr-3 btnExcel mt-3'
+                        },
+                        {
+                            extend: 'pdf',
+                            text: 'Exportar a pdf',
+                            className: 'btn-outline-info mr-3 btnPDF mt-3 '
+                        }
+                    ],
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+
+                    }
+                });
+
+                console.log(data);
+
+            }
+
+        });
+
+    }
 
 
 
     $('.btnExcel').prepend("<i class='fas fa-file-excel mr-1'></i > ");
     $('.btnPDF').prepend("<i class='far fa-file-pdf mr-1'></i>");
+
+
 
     function formatDate(date) {
         var d = new Date(date),

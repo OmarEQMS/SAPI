@@ -1761,7 +1761,7 @@ $(document).ready(function () {
         });
     });
 
-    $('#irARendimiento').on('click', function () {
+    $('#irAEstadisticas').on('click', function () {
         $.ajax({
             url: 'SAPI',
             method: "POST",
@@ -1770,13 +1770,13 @@ $(document).ready(function () {
                 file: "navegadora/rendimiento.jsp",
             },
             beforeSend: function () {
-                $('.cargandoIrARendimiento').fadeIn();
+                $('.cargandoIrAEstadisticas').fadeIn();
             },
             complete: function () {
-                $('.cargandoIrARendimiento').fadeOut();
+                $('.cargandoIrAEstadisticas').fadeOut();
             },
             success: function (response) {
-                if (response == "error") {
+                if (response === "error") {
                     $("#msj-error").show();
                 } else {
                     document.open("text/html", "replace");
