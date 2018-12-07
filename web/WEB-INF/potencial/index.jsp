@@ -343,7 +343,8 @@
                                                                 <c:choose>
                                                                     <c:when test="${sessionScope.identificacionOficial<=0}">
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                                            <span class="textoDocumento">Identificación oficial
+                                                                            <span class="textoDocumento">Identificación oficial<br>
+                                                                        <small><strong>Obligatorio</strong></small>
                                                                             </span>
                                                                         </div>
 
@@ -399,7 +400,8 @@
                                                                 <c:choose>
                                                                     <c:when test="${sessionScope.curp<=0}">
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                                            <span class="textoDocumento">CURP
+                                                                            <span class="textoDocumento">CURP<br>
+                                                                        <small><strong>Obligatorio</strong></small>
                                                                             </span>
                                                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                                                 Se puede tramitar
@@ -447,7 +449,8 @@
                                                                     <c:when test="${sessionScope.comprobante<=0}">
 
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                                            <span class="textoDocumento">Comprobante de domicilio
+                                                                            <span class="textoDocumento">Comprobante de domicilio<br>
+                                                                        <small><strong>Obligatorio</strong></small>
                                                                             </span>
                                                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                                                 Vigencia no mayor a 3 meses.
@@ -938,7 +941,8 @@
                                                                 <c:choose>
                                                                     <c:when test="${sessionScope.identificacionOficial<=0}">
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                                            <span class="textoDocumento">Identificación oficial
+                                                                            <span class="textoDocumento">Identificación oficial<br>
+                                                                        <small><strong>Obligatorio</strong></small>
                                                                             </span>
                                                                         </div>
 
@@ -994,7 +998,8 @@
                                                                 <c:choose>
                                                                     <c:when test="${sessionScope.curp<=0}">
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                                            <span class="textoDocumento">CURP
+                                                                            <span class="textoDocumento">CURP<br>
+                                                                        <small><strong>Obligatorio</strong></small>
                                                                             </span>
                                                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                                                 Se puede tramitar
@@ -1042,7 +1047,8 @@
                                                                     <c:when test="${sessionScope.comprobante<=0}">
 
                                                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2 text-center">
-                                                                            <span class="textoDocumento">Comprobante de domicilio
+                                                                            <span class="textoDocumento">Comprobante de domicilio<br>
+                                                                        <small><strong>Obligatorio</strong></small>
                                                                             </span>
                                                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                                                 Vigencia no mayor a 3 meses.

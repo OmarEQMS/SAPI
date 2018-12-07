@@ -776,7 +776,7 @@ $(document).ready(function () {
 
         var m = input.val();
 
-        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
+        var expreg = /^([a-z ñáéíóú]{2,255})$/i;
 
         if (!expreg.test(m)) {
 
@@ -797,7 +797,7 @@ $(document).ready(function () {
 
         var m = input.val();
 
-        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,127}$/;
+        var expreg = /^([a-z ñáéíóú]{2,255})$/i;
 
         if (!expreg.test(m)) {
 

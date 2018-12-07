@@ -255,6 +255,20 @@ $(document).ready(function () {
         $("#Fecha-Navegacion").attr("type", "text").val('').attr("placeholder", "Fecha navegación");
         $("#Fecha-Consulta").attr("type", "text").val('').attr("placeholder", "Fecha consulta");
         $("#tipo-paciente").prop('selectedIndex', 0);
+        
+        $('#Fecha-Navegacion').css('border', '');
+        $('#Fecha-Navegacion').css('color', '');
+        
+        $('#Fecha-Consulta').css('border', '');
+        $('#Fecha-Consulta').css('color', '');
+        
+        $('#tipo-paciente').css('border', '');
+        $('#tipo-paciente').css('color', '');
+        
+        $('#errorFechaNavegacion').hide();
+        $('#errorFechaPre').hide();
+        $('#errorDatos').hide();
+        
     });
     
     //Limpiar campos
@@ -1604,9 +1618,6 @@ $(document).ready(function () {
             $('#DataTables_Table_5_info').hide();
             $('#DataTables_Table_6_info').hide();
             $('#DataTables_Table_7_info').hide();
-            
-            
-            
 
         }
 
