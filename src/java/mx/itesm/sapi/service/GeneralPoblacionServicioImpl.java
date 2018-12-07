@@ -123,6 +123,7 @@ public class GeneralPoblacionServicioImpl implements GeneralPoblacionServicio{
                 temp.setProgramaINCanMujeresJovenes(rs.getDate("Programa_FechaMujerJoven"));
                 temp.setProgramaINCanNutricion(rs.getDate("Programa_FechaNutricion"));
                 temp.setProgramaINCanGenetica(rs.getDate("Programa_FechaGenetica"));
+                temp.setProgramaINCanMamaEnMovimiento(rs.getDate("Programa_FechaMamaEnMovimiento"));
                 temp.setBiopsiaINCanGradoHistologico(rs.getString("BiopsiaINCan_GradoHistologico"));
                 temp.setBiopsiaINCanHer2(rs.getString("BiopsiaINCan_Her2"));
                 temp.setBiopsiaINCanFish(rs.getString("BiopsiaINCan_Fish"));
