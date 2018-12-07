@@ -49,7 +49,7 @@
             <img src="img/loading.svg">
             <p class="clear">Cargando formulario, por favor espere...</p>
         </div>
-         <div class="cargandoInicioNav" id="loading-screen" style="display: none">
+        <div class="cargandoInicioNav" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando inicio, por favor espere...</p>
         </div>
@@ -63,37 +63,37 @@
             <img src="img/loading.svg">
             <p class="clear">Cargando formulario, por favor espere...</p>
         </div> 
-        
+
         <div class="eliminarPaciente" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Eliminando al paciente, por favor espere...</p>
         </div> 
-        
+
         <div class="cancelarCitas" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cancelando citas, por favor espere...</p>
         </div> 
-        
+
         <div class="cargandoIrACalendar" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando el calendario, por favor espere...</p>
         </div>
-        
+
         <div class="cargandoIrAInicio" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando la lista de pacientes, por favor espere...</p>
         </div>
-        
+
         <div class="cargandoIrARendimiento" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando tu rendimiento, por favor espere..</p>
         </div>
-        
+
         <div class="cargandoIrACuenta" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando tus datos, por favor espere...</p>
         </div>
-        
+
         <div class="wrapper">
 
             <!-- SIDEBAR -->
@@ -377,7 +377,7 @@
 
                                                         <td>${pacienteAprobado.prz}</td>
                                                         <td class="nombre-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.nombre}" > <c:out value="${pacienteAprobado.nombre} ${pacienteAprobado.primerApellido} ${pacienteAprobado.segundoApellido}"/> </td>
-                                                        
+
 
 
                                                         <c:choose>
@@ -1016,7 +1016,7 @@
                                 <div class="custom-file col-6" id="fechaNavegacion">
                                     <input placeholder="Fecha navegación" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                            id="Fecha-Navegacion">
-                                    <!--<span class="text-danger" id="errorFechaNavegacion">No puede ser menor a hoy.</span> NO BORRAR-->
+                                    <span class="text-danger" id="errorFechaNavegacion">No puede ser menor a hoy.</span> 
                                 </div>
 
                                 <div class="col-6 mt-4">
@@ -1025,7 +1025,7 @@
 
                                 <div class="custom-file col-6 mt-4" id="fechaPreconsulta">
                                     <input placeholder="Fecha consulta" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')" id="Fecha-Consulta">
-                                    <!--<span class="text-danger" id="errorFechaPre">No puede ser menor a hoy. NO BORRAR</span>-->
+                                    <span class="text-danger" id="errorFechaPre">No puede ser menor a hoy. NO BORRAR</span>
                                 </div>
 
 
@@ -1048,6 +1048,12 @@
                                     </select>
                                 </div>
 
+                            </div>
+
+                            <div class="row mb-3" id="errorDatos">
+                                <div class="col-12 text-center">
+                                    <span class="text-danger">Debes llenar correctamente los campos para proceder.</span>
+                                </div>
                             </div>
 
 

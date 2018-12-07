@@ -18,22 +18,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.gestionPaciente.Paciente;
+import mx.itesm.sapi.bean.gestionPaciente.PacientePotencial;
 import mx.itesm.sapi.bean.gestionPaciente.SolicitudPreconsulta;
 import mx.itesm.sapi.bean.moduloGestionMedico.Empleado;
 import mx.itesm.sapi.bean.moduloGestionMedico.Especialidad;
 import mx.itesm.sapi.bean.moduloGestionMedico.MedicoEspecialidad;
 import mx.itesm.sapi.bean.persona.Cuenta;
+import mx.itesm.sapi.bean.persona.Estado;
+import mx.itesm.sapi.bean.persona.EstadoCivil;
 import mx.itesm.sapi.bean.persona.Persona;
 import mx.itesm.sapi.bean.persona.Pic;
 import mx.itesm.sapi.service.LoginServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.CitaServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.EstadoPacientePacienteServiceImpl;
+import mx.itesm.sapi.service.gestionPaciente.PacienteServiceImpl;
 import mx.itesm.sapi.service.gestionPaciente.PacienteServicioImpl;
 import mx.itesm.sapi.service.gestionPaciente.SolicitudPreconsultaServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.EmpleadoServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.EspecialidadServicioImpl;
 import mx.itesm.sapi.service.moduloGestionMedico.MedicoEspecialidadServicioImpl;
 import mx.itesm.sapi.service.persona.CuentaServicioImpl;
+import mx.itesm.sapi.service.persona.EstadoCivilServicioImpl;
+import mx.itesm.sapi.service.persona.EstadoServicioImpl;
 import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import mx.itesm.sapi.service.persona.PicServicioImpl;
 import org.apache.commons.io.IOUtils;
@@ -372,7 +378,7 @@ public class LoginController extends HttpServlet {
                                 request.setAttribute("primerApellido", sesion.getAttribute("primerApellido"));
                                 request.setAttribute("segundoApellido", sesion.getAttribute("segundoApellido"));
 
-                                String keyRuta = "navegadora/cuentaNavegadora.jsp";
+                                String keyRuta = "navegadora/index.jsp";
 
                                 //Si la contraseña no tiene el token de recuperar contraseña se continua al dashboard correspondiente                                                                 
                                 try {
@@ -406,9 +412,37 @@ public class LoginController extends HttpServlet {
                                 sesion.setAttribute("noEmpleado", empleado.getNoEmpleado());
                                 sesion.setAttribute("especialidad", especialidad.getNombre());
                                 sesion.setAttribute("cedulaProfesional", medicoEspecialidad.getCedulaProfesional());
+                                
+                                PacienteServiceImpl pacienteServicio = new PacienteServiceImpl();
+                                List<PacientePotencial> pacientes = pacienteServicio.mostrarPacientesPotenciales();
+                                request.setAttribute("listaPacientes", pacientes);
+
+                                //Estado civil
+                                EstadoCivilServicioImpl estadoCivilServicio = new EstadoCivilServicioImpl();
+                                List<EstadoCivil> estadosCiviles = estadoCivilServicio.mostrarEstadoCivil();
+                                request.setAttribute("estadoCivil", estadosCiviles);
+
+                                //Estados
+                                EstadoServicioImpl estadoServicio = new EstadoServicioImpl();
+                                List<Estado> estados = estadoServicio.mostrarEstado();
+                                request.setAttribute("estado", estados);
+
+                                //Pacientes aprobados  
+                                List<PacientePotencial> pacientesAprobados = pacienteServicio.mostrarPacientesPotencialesAprobados();
+
+                                for (int i = 0; i < pacientesAprobados.size(); i++) {
+                                    pacientesAprobados.get(i).setColor(pacienteServicio.mostrarColor(pacientesAprobados.get(i).getIdPaciente()));
+                                    System.out.println("EL PACIENTE ES: " + pacientesAprobados.get(i).getNombre() + "EL COLOR ESSSS: " + pacientesAprobados.get(i).getColor());
+                                    //Recorrer la lista y uno por uno ir asignando los colores
+                                }
+
+                                request.setAttribute("listaPacientesAprobados", pacientesAprobados);
 
                                 /*Insert your code here*/
                                 request.getRequestDispatcher("/WEB-INF/".concat(sesion.getAttribute("path").toString())).forward(request, response);
+                                
+                                
+                                
                                 break;
                             }
                             case 5: {

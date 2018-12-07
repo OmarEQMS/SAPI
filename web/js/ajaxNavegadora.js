@@ -4,11 +4,11 @@ $(document).ready(function () {
     $('#error-correoNavegadora').hide();
     $('#error-correoRepetidoNavegadora').hide();
     $('#error-camposMotivo').hide();
-    
-    /* NO BORRAR
+
     $('#errorFechaNavegacion').hide();
-    $('#errorFechaPre').hide();*/
-    
+    $('#errorFechaPre').hide();
+    $('#errorDatos').hide();
+
 
 
     //Errores al agregar a un paciente
@@ -817,6 +817,13 @@ $(document).ready(function () {
         console.log($(this).val());
 
     });
+    
+    $('#tipo-paciente').on('change', function () {
+
+        $(this).css('border', '');
+        $(this).css('color', '');
+
+    });
 
 
     //Obtene Fecha consulta
@@ -836,99 +843,107 @@ $(document).ready(function () {
 
     $('#btn-aceptarDocumento').on('click', function () {
 
-        var idPaciente = $('#hidden-idPaciente').val();
+        if (!isPastDate($('#Fecha-Navegacion')) && !isPastDate($('#Fecha-Consulta'))
+                && isValidSelect($('#tipo-paciente'))) {
+
+            $('#errorDatos').hide();
+
+            var idPaciente = $('#hidden-idPaciente').val();
 
 
-        $.ajax({
+            $.ajax({
 
-            url: 'NavegadoraController',
-            cache: false,
-            method: 'POST',
-            data: {
+                url: 'NavegadoraController',
+                cache: false,
+                method: 'POST',
+                data: {
 
-                key: "aprobar-paciente",
-                idPaciente: idPaciente,
-                fechaNavegacion: $('#Fecha-Navegacion').val(),
-                fechaConsulta: $('#Fecha-Consulta').val(),
-                tipoPaciente: $('#tipo-paciente').val()
+                    key: "aprobar-paciente",
+                    idPaciente: idPaciente,
+                    fechaNavegacion: $('#Fecha-Navegacion').val(),
+                    fechaConsulta: $('#Fecha-Consulta').val(),
+                    tipoPaciente: $('#tipo-paciente').val()
 
 
-            },
-            success: function (response) {
-                if (response == 'success') {
-                    swal({
-                        title: '¡Buen Trabajo!',
-                        text: "El paciente se aprobó correctamente.",
-                        icon: 'success',
-                        closeOnEsc: false,
-                        closeOnClickOutside: false,
-                        buttons: true,
-                        buttons: [, 'Aceptar'],
-                    });
-                    //$('#modalAceptarUsuario').toggle();
-                    $('#Fecha-Navegacion').val('').attr("type", "text");
-                    $('#Fecha-Consulta').val('').attr("type", "text");
-                    $('#tipo-paciente').prop('selectedIndex', 0);
+                },
+                success: function (response) {
+                    if (response == 'success') {
+                        swal({
+                            title: '¡Buen Trabajo!',
+                            text: "El paciente se aprobó correctamente.",
+                            icon: 'success',
+                            closeOnEsc: false,
+                            closeOnClickOutside: false,
+                            buttons: true,
+                            buttons: [, 'Aceptar'],
+                        });
+                        $('#modalAceptarUsuario').modal('toggle');
+                        $('#Fecha-Navegacion').val('').attr("type", "text");
+                        $('#Fecha-Consulta').val('').attr("type", "text");
+                        $('#tipo-paciente').prop('selectedIndex', 0);
 
-                    //Actualizar estado de la primer tabla
-                    $("#estado-" + idPaciente).html("Potencial aceptado");
+                        //Actualizar estado de la primer tabla
+                        $("#estado-" + idPaciente).html("Potencial aceptado");
 
-                    //Insertar al paciente en la segunda tabla
-                    var date = new Date($('#Fecha-Navegacion').val());
-                    var year = date.getFullYear();
-                    var month = date.getMonth();
-                    var day = date.getDate();
-                    var t = $('#tabla2').DataTable();
+                        //Insertar al paciente en la segunda tabla
+                        var date = new Date($('#Fecha-Navegacion').val());
+                        var year = date.getFullYear();
+                        var month = date.getMonth();
+                        var day = date.getDate();
+                        var t = $('#tabla2').DataTable();
 
-                    if ($('#tipo-paciente').val() == 0) {
-                        t.row.add([
-                            "",
-                            "<span class='nombre-" + idPaciente + "'>" + $('.nombre-' + idPaciente).html() + "</span>",
-                            "<span id='tipo-" + idPaciente + "'>Primera vez</span>",
-                            "",
-                            year + "-" + month + "-" + day,
-                            "<span class='telefono-" + idPaciente + "'>" + $(".telefono-" + idPaciente).html() + "</span>",
-                            "<span id='estadoCita-" + idPaciente + "'>Aprobada</span>",
-                            "<button class='btn btn-info m-1 btn-ver-formulario boton-" + idPaciente + "' data-id=" + idPaciente + " id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
-                                    "<button class='btn btn-primary m-1 btn-editar' data-id=" + idPaciente + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
-                                    "<button class='btn btn-danger m-1 btn-perder-cita' data-id=" + idPaciente + " data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
-                        ]).draw(false);
+                        if ($('#tipo-paciente').val() == 0) {
+                            t.row.add([
+                                "",
+                                "<span class='nombre-" + idPaciente + "'>" + $('.nombre-' + idPaciente).html() + "</span>",
+                                "<span id='tipo-" + idPaciente + "'>Primera vez</span>",
+                                "",
+                                year + "-" + month + "-" + day,
+                                "<span class='telefono-" + idPaciente + "'>" + $(".telefono-" + idPaciente).html() + "</span>",
+                                "<span id='estadoCita-" + idPaciente + "'>Aprobada</span>",
+                                "<button class='btn btn-info m-1 btn-ver-formulario boton-" + idPaciente + "' data-id=" + idPaciente + " id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
+                                        "<button class='btn btn-primary m-1 btn-editar' data-id=" + idPaciente + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
+                                        "<button class='btn btn-danger m-1 btn-perder-cita' data-id=" + idPaciente + " data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
+                            ]).draw(false);
+                        } else {
+                            t.row.add([
+                                "",
+                                "<span class='nombre-" + idPaciente + "'>" + $('.nombre-' + idPaciente).html() + "</span>",
+                                "<span id='tipo-" + idPaciente + "'>Segunda opinión</span>",
+                                "",
+                                year + "-" + month + "-" + day,
+                                "<span class='telefono-" + idPaciente + "'>" + $(".telefono-" + idPaciente).html() + "</span>",
+                                "<span id='estadoCita-" + idPaciente + "'>Aprobada</span>",
+                                "<button class='btn btn-info m-1 btn-ver-formulario boton-" + idPaciente + "' data-id=" + idPaciente + " id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
+                                        "<button class='btn btn-primary m-1 btn-editar' data-id=" + idPaciente + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
+                                        "<button class='btn btn-danger m-1 btn-perder-cita' data-id=" + idPaciente + " data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
+                            ]).draw(false);
+                        }
+
+                        var boton = $('.boton-' + idPaciente);
+                        boton.parent().parent().addClass("table-danger");
+
+                        $("#Fecha-Navegacion").attr("type", "text").val('').attr("placeholder", "Fecha navegación");
+                        $("#Fecha-Consulta").attr("type", "text").val('').attr("placeholder", "Fecha consulta");
+                        $("#tipo-paciente").prop('selectedIndex', 0);
+
                     } else {
-                        t.row.add([
-                            "",
-                            "<span class='nombre-" + idPaciente + "'>" + $('.nombre-' + idPaciente).html() + "</span>",
-                            "<span id='tipo-" + idPaciente + "'>Segunda opinión</span>",
-                            "",
-                            year + "-" + month + "-" + day,
-                            "<span class='telefono-" + idPaciente + "'>" + $(".telefono-" + idPaciente).html() + "</span>",
-                            "<span id='estadoCita-" + idPaciente + "'>Aprobada</span>",
-                            "<button class='btn btn-info m-1 btn-ver-formulario boton-" + idPaciente + "' data-id=" + idPaciente + " id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
-                                    "<button class='btn btn-primary m-1 btn-editar' data-id=" + idPaciente + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
-                                    "<button class='btn btn-danger m-1 btn-perder-cita' data-id=" + idPaciente + " data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
-                        ]).draw(false);
+                        swal({
+                            title: "Error",
+                            text: "El paciente no se pudo aprobar.",
+                            icon: "error",
+                            closeOnEsc: false,
+                            closeOnClickOutside: false,
+                            buttons: true,
+                            buttons: [, 'Aceptar'],
+                        })
                     }
-
-                    var boton = $('.boton-' + idPaciente);
-                    boton.parent().parent().addClass("table-danger");
-
-                    $("#Fecha-Navegacion").attr("type", "text").val('').attr("placeholder", "Fecha navegación");
-                    $("#Fecha-Consulta").attr("type", "text").val('').attr("placeholder", "Fecha consulta");
-                    $("#tipo-paciente").prop('selectedIndex', 0);
-
-                } else {
-                    swal({
-                        title: "Error",
-                        text: "El paciente no se pudo aprobar.",
-                        icon: "error",
-                        closeOnEsc: false,
-                        closeOnClickOutside: false,
-                        buttons: true,
-                        buttons: [, 'Aceptar'],
-                    })
                 }
-            }
 
-        });
+            });
+        } else {
+            $('#errorDatos').show();
+        }
     });
 
     //Eliminar paciente
@@ -1603,11 +1618,12 @@ $(document).ready(function () {
                 method: "POST",
                 success: function (response) {
                     if (response === "true")
+                    
                     {
                         swal({
                             icon: 'success',
                             title: '¡Buen trabajo!',
-                            text: 'Se rechazo con éxito el documento.',
+                            text: 'Se rechazó con éxito el documento.',
                             closeOnEsc: false,
                             closeOnClickOutside: false,
                             buttons: [, 'Aceptar'],
@@ -2486,27 +2502,26 @@ $(document).ready(function () {
         }
 
     });
-    
-    /*FECHA DE NAVEGACIÓN EN AGREGAR PACIENTE NO BORRAR
+
+    //FECHA DE NAVEGACIÓN EN AGREGAR PACIENTE 
     $('#Fecha-Navegacion').on('change', function () {
-        if (isValidFutureDate($(this))) {
-            $('#errorFechaNavegacion').hide();
-        } else {
+        if (isPastDate($(this))) {
             $('#errorFechaNavegacion').show();
+        } else {
+            $('#errorFechaNavegacion').hide();
         }
 
     });
-    
+
     //FECHA DE PRECONSULTA EN AGREGAR PACIENTE
     $('#Fecha-Consulta').on('change', function () {
-
-        if (isValidFutureDate($(this))) {
-            $('#errorFechaPre').hide();
-        } else {
+        if (isPastDate($(this))) {
             $('#errorFechaPre').show();
+        } else {
+            $('#errorFechaPre').hide();
         }
 
-    });*/
+    });
 
     //ESTADO EN AGREGAR PACIENTE
     $('#estadoPaciente').on('change', function () {
@@ -6009,7 +6024,7 @@ function isValidName(input) {
 
     var m = input.val();
 
-    var expreg = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1])[a-zA-ZÀ-ÿ\u00f1\u00d1]{0,255}$/;
+    var expreg = /^([a-z ñáéíóú]{2,255})$/i;
 
     if (!expreg.test(m)) {
 
@@ -6029,7 +6044,7 @@ function isValidLastName(input) {
 
     var m = input.val();
 
-    var expreg = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1])[a-zA-ZÀ-ÿ\u00f1\u00d1]{0,255}$/;
+    var expreg = /^([a-z ñáéíóú]{2,255})$/i;
 
     if (!expreg.test(m)) {
 
@@ -6397,42 +6412,39 @@ function isValidDate(input) {
     return true;
 }
 
-function isValidFutureDate(input) { 
-    
-    
-    let valorSeleccionado = input;
+function isPastDate(input) {
 
-    let date_from = new Date(valorSeleccionado);
+    let valorSeleccionado = input.val();
 
-    var year2 = date_from.getFullYear();
-    var month2 = date_from.getMonth();
-    var day2 = date_from.getDate();
+    let fechaIntroducida = new Date(valorSeleccionado);
 
-    date_from = new Date(year2, month2, day2 + 1);
-    date_from.setHours(0);
+    var year2 = fechaIntroducida.getFullYear();
+    var month2 = fechaIntroducida.getMonth();
+    var day2 = fechaIntroducida.getDate();
 
-    console.log("fecha introducida Shannon: " + date_from);
+    fechaIntroducida = new Date(year2, month2, day2 + 1);
+    fechaIntroducida.setHours(0);
 
-    let today = new Date();
-    
+    let hoy = new Date();
 
-    let event = false;
+    //obtener dia mes y año PARA LAS FECHAS POSIBLES
+    var year = hoy.getFullYear();
+    var month = hoy.getMonth();
+    var day = hoy.getDate();
 
-    today <= date_from ? event = false : event = true;
+    //fechas posibles
+    let diasAtras = new Date(year, month, day - 1);
 
-
-    if (!input.val() || event) {
-
+    if (fechaIntroducida <= diasAtras) {
         input.css('border', '1px solid red');
         input.css('color', 'red');
-        return false;
+        return true;
 
-    } else {
-        input.css('border', '');
-        input.css('color', '');
     }
 
-    return true;
+    input.css('border', '');
+    input.css('color', '');
+    return false;
 }
 
 function isValidColonia(input) {
