@@ -12,6 +12,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Properties;
+import java.util.ResourceBundle;
 import javax.mail.Message;
 import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
@@ -35,6 +36,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import mx.itesm.sapi.bean.persona.Persona;
+import mx.itesm.sapi.service.persona.PersonaServicioImpl;
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -99,6 +102,11 @@ public class RecuperarController extends HttpServlet {
                 //System.out.println("Estoy en RecuperarController case: recuperarEnviarCorreo");
                 Properties config = new Properties();
                 String correo = request.getParameter("email");
+                
+                ResourceBundle sapiProperties = ResourceBundle.getBundle("mx.itesm.sapi.properties.catalogos");
+        
+                String correoSapi = String.valueOf(sapiProperties.getObject("correoSapi"));
+                String contraseñaSapi = String.valueOf(sapiProperties.getObject("contraseñaSapi"));
                 //System.out.println("El correo es: ".concat(correo));
                 //HttpSession sesion = request.getSession(true);
 
@@ -106,6 +114,12 @@ public class RecuperarController extends HttpServlet {
                 //System.out.println("El correo es: ".concat(correo));
                 String token = cuenta.getToken(correo);
                 
+                
+                Persona persona;
+                PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
+                persona = personaServicioImpl.mostrarPersonaPorCorreo(correo);
+                        
+                        
                 System.out.println("el token es: ".concat(token));
                
                 try {
@@ -113,14 +127,14 @@ public class RecuperarController extends HttpServlet {
                     Session session = Session.getInstance(config,
                             new javax.mail.Authenticator() {
                         protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication("sapi.prueba@gmail.com", "prueba.Sapi1");
+                            return new PasswordAuthentication(correoSapi, contraseñaSapi);
 
                         }
                     });
 
                     //System.out.println("despues del try");
                     Message message = new MimeMessage(session);
-                    message.setFrom(new InternetAddress("sapi.prueba@gmail.com"));
+                    message.setFrom(new InternetAddress(correoSapi));
                     message.setRecipients(Message.RecipientType.TO,
                             InternetAddress.parse(correo));
                     message.setSubject("Recuperar Contraseña");
@@ -130,14 +144,17 @@ public class RecuperarController extends HttpServlet {
                     //String mail = "tucorreo@mail.com";
                     //String contrasena = "tucontrasena";
                     MimeBodyPart mimeBodyPart = new MimeBodyPart();
-                    mimeBodyPart.setContent("<b>Estimada(o) usuario, usted ha solicitado Recuperar su cuenta.</b></br>".
-                            concat("<b>Su código de recuperación (token) para recuperar su cuenta es:  ").
-                            concat(token)
-                            .concat("<br>. Por favor siga estas instrucciones para poder cambiar su contraseña:</br>")
+                    mimeBodyPart.setContent("<b>Estimada(o) "
+                            .concat(persona.getNombre())
+                            .concat(", <br><br>usted ha solicitado Recuperar su cuenta.</b></br>")
+                            .concat("<b>Su código de recuperación (token) para cambiar su contraseña y acceder a su cuenta es:  ")
+                            .concat(token)
+                            .concat("<br><br> Por favor siga estas instrucciones para poder reestablecer su contraseña:</br>")
                             .concat("1) Ingresé con su usuario normal en la pantalla de iniciar sesión.")
                             .concat("2) Coloqué en el sitio de contraseña el token que se ha adjuntado en este correo.")
                             .concat("3) Será redirigido a una pantalla para cambiar su contraseña anterior por una nueva.")
-                            .concat("4) Inicie sesión con su usuario normal y su nueva contraseña."), "text/html");
+                            .concat("4) Inicie sesión con su usuario de siempre y su nueva contraseña."
+                            .concat("<br><br><br>Atte. el equipo de SAPI.")), "text/html");
 
                     Multipart multipart = new MimeMultipart();
                     multipart.addBodyPart(mimeBodyPart);

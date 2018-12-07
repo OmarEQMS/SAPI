@@ -27,6 +27,7 @@ public interface PersonaServicio {
     public boolean existsCorreo(String correo, int idPersona);
     public boolean actualizarSexoPersona(int idPersona,int idSexo);
     public Persona mostrarPersonaPorIdPaciente(int idPaciente);
+    public Persona mostrarPersonaPorCorreo(String correo);
 
     public List<Persona> mostrarMedicos();
 

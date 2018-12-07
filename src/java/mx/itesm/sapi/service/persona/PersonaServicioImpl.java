@@ -775,4 +775,53 @@ public class PersonaServicioImpl implements PersonaServicio {
         return exito;
     }
 
+    @Override
+    public Persona mostrarPersonaPorCorreo(String correo) {
+        Connection conn;
+        ResultSet rs;
+        CallableStatement cstmt;
+
+        Persona persona = null;
+
+        //Call del store procedure
+        String stProcedure = "CALL mostrarPersonaPorCorreo(?)";
+
+        try {
+            persona = new Persona();
+            conn = Conexion.getConnection();
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setString(1, correo);
+
+            rs = cstmt.executeQuery();
+
+            rs.next();
+            persona.setNombre(rs.getString("nombre"));
+            persona.setIdPersona(rs.getInt("idPersona"));
+            persona.setPrimerApellido(rs.getString("primerApellido"));
+            persona.setSegundoApellido(rs.getString("segundoApellido"));
+            persona.setCurp(rs.getString("curp"));
+            persona.setTelefono(rs.getString("telefono"));
+            persona.setCorreo(rs.getString("correo"));
+            persona.setFechaNacimiento(rs.getDate("fechaNacimiento"));
+            persona.setIdSexo(rs.getInt("idSexo"));
+            persona.setIdTipoSangre(rs.getInt("idTipoSangre"));
+            persona.setIdMunicipio(rs.getInt("idMunicipio"));
+            persona.setIdEstadoCivil(rs.getInt("idEstadoCivil"));
+            persona.setIdDireccion(rs.getInt("idDireccion"));
+            persona.setEdad(rs.getInt("edad"));
+            persona.setEstatus(rs.getInt("estatus"));
+
+            rs.close();
+            cstmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println("PersonaServicioImpl mostrarPersona");
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+        }
+        return persona;
+    }
+
 }

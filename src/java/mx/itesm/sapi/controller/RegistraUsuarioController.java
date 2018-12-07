@@ -755,6 +755,12 @@ public class RegistraUsuarioController extends HttpServlet {
          * codigo se envía el correo. El contenido del correo puede ser
          * configurado en el mimeBodyPart.
          */
+        
+        ResourceBundle sapiProperties = ResourceBundle.getBundle("mx.itesm.sapi.properties.catalogos");
+        
+        String correoSapi = String.valueOf(sapiProperties.getObject("correoSapi"));
+        String contraseñaSapi = String.valueOf(sapiProperties.getObject("contraseñaSapi"));
+        
         System.out.println("estoy en el metodo");
         Properties config = new Properties();
 
@@ -764,26 +770,34 @@ public class RegistraUsuarioController extends HttpServlet {
             Session session = Session.getInstance(config,
                     new javax.mail.Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication("sapi.prueba@gmail.com", "prueba.Sapi1");
+                    return new PasswordAuthentication(correoSapi, contraseñaSapi);
 
                 }
             });
 
             System.out.println("despues del try");
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("sapi.prueba@gmail.com"));
+            message.setFrom(new InternetAddress(correoSapi));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(correo));
-            message.setSubject("Prueba de mail de sapo");
+            message.setSubject("Le damos la bienvenida a SAPI");
             //message.setText("Esto no es spam :)");
 
             //Estos deberían ir como parametros dentro de la función de enviar correo
             //String mail = "tucorreo@mail.com";
             //String contrasena = "tucontrasena";
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
-            mimeBodyPart.setContent("<b>Bienvenido a sapi, estos son tus datos :)</b></br>".
-                    concat("<b>Usuario: ").
-                    concat(usuario), "text/html");
+            mimeBodyPart.setContent("<br>Bienvenida(o),<br><br>Nuestro objetivo es brindar excelente atención médica especializada a pacientes con cáncer de mama.</b></br>"
+                    .concat("<br><br>Atendemos a pacientes provenientes de todo el país con un servicio de calidad, eficiente y cálido." 
+                    .concat("<br><br>Lo logramos a través de equipos multidisciplinarios que brindan atención médica, realizan investigación y forman profesionales de la salud<br>"))
+                    .concat("<br><br>SAPI es una plataforma que le acompañará en el seguimiento dentro del INCan.")
+                    .concat("<br><br>Las principales funciones son: solicitar su preconsulta, enviar documentos y agendar citas.")
+                    .concat("<br><br>Utilice su usuario: ")
+                    .concat(usuario)
+                    .concat(" para iniciar sesión y comenzar a utilizar su cuenta.")
+                    .concat("<br><br><b>SAPI nunca le pedirá datos personales como usuario, contraseña, correo, teléfono o cualquier otro dato sensible a través de un correo elctrónico.</b>")
+                    .concat("<br><br> SAPI enviará correos desde una dirección única ")
+                    .concat("<br><br><br>atte. el equipo de SAPI."), "text/html");
 
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(mimeBodyPart);

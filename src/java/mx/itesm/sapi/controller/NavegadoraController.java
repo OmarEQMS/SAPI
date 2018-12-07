@@ -178,7 +178,7 @@ public class NavegadoraController extends HttpServlet {
 
     private static final ResourceBundle sapiProperties = ResourceBundle.getBundle("mx.itesm.sapi.properties.catalogos");
 
-    ;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -398,7 +398,8 @@ public class NavegadoraController extends HttpServlet {
 
                             boolean rechazado = documentoInicialServicioImpl.agregarRechazoDocumento(idDocumentoInicial, comentario);
                             //ESto es para el correo
-
+                           
+        
                             int pacientePotencial = (int) sesion.getAttribute("idPacientePotencialAtendido");
 
                             PersonaServicioImpl personaServicio = new PersonaServicioImpl();
@@ -407,60 +408,10 @@ public class NavegadoraController extends HttpServlet {
                             Properties config = new Properties();
                             String correo = persona.getCorreo();
                             System.out.println("Correo potencial ".concat(correo));
-                            try {
-                                config.load(getClass().getResourceAsStream("/mail.properties"));
-                                Session session = Session.getInstance(config,
-                                        new javax.mail.Authenticator() {
-                                    protected PasswordAuthentication getPasswordAuthentication() {
-                                        return new PasswordAuthentication("sapi.prueba@gmail.com", "prueba.Sapi1");
-
-                                    }
-                                });
-
-                                System.out.println("despues del try");
-                                Message message = new MimeMessage(session);
-                                message.setFrom(new InternetAddress("sapi.prueba@gmail.com"));
-                                message.setRecipients(Message.RecipientType.TO,
-                                        InternetAddress.parse(correo));
-                                message.setSubject("Documento rechazado");
-                                //message.setText("Esto no es spam :)");
-
-                                //Estos deberían ir como parametros dentro de la función de enviar correo
-                                //String mail = "tucorreo@mail.com";
-                                //String contrasena = "tucontrasena";
-                                String mensaje = "Estimada(o) ".concat(persona.getNombre()).concat(" el equipo del INCan le informa; él tipo de documento \"")
-                                        .concat(tipoDocumento.getNombre()).concat("\" con nombre \"").concat(documentoInicial.getNombre()).concat("\" ha sido rechazado. ")
-                                        .concat("A continuación le explicamos los motivos: ").concat(comentario).concat(". <br> Por su atención, <br><br> Muchas gracias.")
-                                        .concat("Atte. nombre y domicilios reservados.");
-                                MimeBodyPart mimeBodyPart = new MimeBodyPart();
-                                mimeBodyPart.setContent(mensaje, "text/html");
-
-                                Multipart multipart = new MimeMultipart();
-                                multipart.addBodyPart(mimeBodyPart);
-
-                                Path path = Files.createTempFile(null, ".properties");
-                                File file = new File(path.toString());
-
-                                OutputStream outputStream = new FileOutputStream(file);
-                                IOUtils.copy(getClass().getResourceAsStream("/mail.properties"), outputStream);
-                                outputStream.close();
-
-                                //Comente este attach fail porque de lo contrario no se hace bien el set content de arriba (lo de los datos de usuario)
-                                // mimeBodyPart.attachFile(file);
-                                message.setContent(multipart);
-                                Transport.send(message);
-
-                                //request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-                                System.out.println("Fin del try enviar correo");
-
-                                PrintWriter out = response.getWriter();
-                                out.print("true");
-
-                            } catch (Exception ex) {
-                                System.out.println("catch de envia correo");
-                                System.out.println(this.getClass().toString().concat(ex.getMessage()));
-                            }
-
+                                                                               
+                            
+                            enviaCorreoRechazoDocumento(persona,tipoDocumento,documentoInicial,comentario,correo);
+                                    
                             break;
                         }
                         case "mostrarFormularioNavegadora": {
@@ -730,6 +681,13 @@ public class NavegadoraController extends HttpServlet {
                             //Falta obtener los datos, y falta asignarlos en el servicio
                             CitaServicioImpl citaServicio = new CitaServicioImpl();
 
+                            Persona personaPaciente;
+                            PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
+                            personaPaciente = personaServicioImpl.mostrarPersonaPorIdPaciente(idPaciente);
+                            
+                            enviaCitaAprobada(personaPaciente,fechaNav,fechaCon);
+                            
+                            
                             PrintWriter out = response.getWriter();
 
                             if (citaServicio.aprobarPaciente(idPaciente, fechaNav, fechaCon, segundaOpinion)) {
@@ -3442,7 +3400,7 @@ public class NavegadoraController extends HttpServlet {
                                 CuentaServicioImpl cuentaServicioImpl = new CuentaServicioImpl();
                                 Cuenta cuenta = cuentaServicioImpl.mostrarCuenta(Paciente.getIdCuenta());
 
-                                enviaCorreo(cuenta.getUsuario(), personaPaciente.getCorreo());
+                                enviaCorreo(personaPaciente.getNombre(), personaPaciente.getCorreo());
 
                                 out.print("1");
                             } catch (Exception ex) {
@@ -3500,7 +3458,7 @@ public class NavegadoraController extends HttpServlet {
         return timestamp;
     }
 
-    protected void enviaCorreo(String usuario, String correo) {
+    protected void enviaCorreo(String nombre, String correo) {
 
         /**
          * El metodo enviaCorreo tiene como función el envío de un correo de
@@ -3509,6 +3467,12 @@ public class NavegadoraController extends HttpServlet {
          * codigo se envía el correo. El contenido del correo puede ser
          * configurado en el mimeBodyPart.
          */
+         
+        
+         String correoSapi = String.valueOf(sapiProperties.getObject("correoSapi"));
+         String contraseñaSapi = String.valueOf(sapiProperties.getObject("contraseñaSapi"));
+        
+        
         System.out.println("estoy en el metodo");
         Properties config = new Properties();
 
@@ -3518,26 +3482,28 @@ public class NavegadoraController extends HttpServlet {
             Session session = Session.getInstance(config,
                     new javax.mail.Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication("sapi.prueba@gmail.com", "prueba.Sapi1");
+                    return new PasswordAuthentication(correoSapi, contraseñaSapi);
 
                 }
             });
 
             System.out.println("despues del try");
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("sapi.prueba@gmail.com"));
+            message.setFrom(new InternetAddress(correoSapi));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(correo));
-            message.setSubject("Cita cancelada");
+            message.setSubject("Citas canceladas");
             //message.setText("Esto no es spam :)");
 
             //Estos deberían ir como parametros dentro de la función de enviar correo
             //String mail = "tucorreo@mail.com";
             //String contrasena = "tucontrasena";
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
-            mimeBodyPart.setContent("<b>Tu cita de navegacón y preconsulta han sido canceladas.</b></br>".
-                    concat("<b>Usuario: ").
-                    concat(usuario), "text/html");
+            mimeBodyPart.setContent("<b>Estimada(o) "
+                    .concat(nombre)
+                    .concat(", <br> <br> Desafortunadamente hemos cancelado tu cita de navegación y preconsulta por motivos internos.</b></br>")
+                    .concat("Puedes realizar una nueva solicitud una nueva cita en el portal de solicitar preconsulta.")
+                    .concat("<br><br><br>Atte. el equipo de SAPI."), "text/html");
 
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(mimeBodyPart);
@@ -3558,6 +3524,147 @@ public class NavegadoraController extends HttpServlet {
             System.out.println("catch de envia correo");
             System.out.println(this.getClass().toString().concat(ex.getMessage()));
         }
+    }
+    
+    
+    
+    protected void enviaCorreoRechazoDocumento(Persona persona,TipoDocumento tipoDocumento,DocumentoInicial documentoInicial,String comentario, String correo) {
+
+        /**
+         * El metodo enviaCorreo tiene como función el envío de un correo de
+         * confirmación al Usuario registrado. Se recibe como parametro el
+         * correo del Usuario. Mediante una cuenta ya introduciida dentro del
+         * codigo se envía el correo. El contenido del correo puede ser
+         * configurado en el mimeBodyPart.
+         */
+        String correoSapi = String.valueOf(sapiProperties.getObject("correoSapi"));
+        String contraseñaSapi = String.valueOf(sapiProperties.getObject("contraseñaSapi"));
+
+        System.out.println("estoy en el metodo");
+        Properties config = new Properties();
+
+        try {
+            config.load(getClass().getResourceAsStream("/mail.properties"));
+            Session session = Session.getInstance(config,
+                    new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(correoSapi, contraseñaSapi);
+
+                }
+            });
+
+            System.out.println("despues del try");
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(correoSapi));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(correo));
+            message.setSubject("Documento rechazado");
+            //message.setText("Esto no es spam :)");
+
+            //Estos deberían ir como parametros dentro de la función de enviar correo
+            //String mail = "tucorreo@mail.com";
+            //String contrasena = "tucontrasena";
+            String mensaje = "Estimada(o) ".concat(persona.getNombre()).concat(", <br><br>el equipo del INCan le informa: él tipo de documento \"")
+                    .concat(tipoDocumento.getNombre()).concat("\" con nombre \"").concat(documentoInicial.getNombre()).concat("\" ha sido rechazado en su revisión para aprobar su solicitud de preconsulta. ")
+                    .concat("A continuación le explicamos los motivos: ").concat(comentario).concat(".<br><br> Le informamos que el rechazo de la identificación oficial, CURP y comprobante de domicilio cancelan automaticamente su solicitud de preconsulta y tendrá que hacer una solicitud nueva. <br><br> Muchas gracias por su comprensión.")
+                    .concat("<br><br><br>Atte. el equipo de SAPI.");
+            MimeBodyPart mimeBodyPart = new MimeBodyPart();
+            mimeBodyPart.setContent(mensaje, "text/html");
+
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(mimeBodyPart);
+
+            Path path = Files.createTempFile(null, ".properties");
+            File file = new File(path.toString());
+
+            OutputStream outputStream = new FileOutputStream(file);
+            IOUtils.copy(getClass().getResourceAsStream("/mail.properties"), outputStream);
+            outputStream.close();
+
+            //Comente este attach fail porque de lo contrario no se hace bien el set content de arriba (lo de los datos de usuario)
+            // mimeBodyPart.attachFile(file);
+            message.setContent(multipart);
+            Transport.send(message);
+
+            //request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+            System.out.println("Fin del try enviar correo");
+
+        } catch (Exception ex) {
+            System.out.println("catch de envia correo");
+            System.out.println(this.getClass().toString().concat(ex.getMessage()));
+        }
+
+    }
+    
+    protected void enviaCitaAprobada(Persona persona,String fechaNavegacion,String fechaPreconsulta) {
+
+        /**
+         * El metodo enviaCorreo tiene como función el envío de un correo de
+         * confirmación al Usuario registrado. Se recibe como parametro el
+         * correo del Usuario. Mediante una cuenta ya introduciida dentro del
+         * codigo se envía el correo. El contenido del correo puede ser
+         * configurado en el mimeBodyPart.
+         */
+        String correoSapi = String.valueOf(sapiProperties.getObject("correoSapi"));
+        String contraseñaSapi = String.valueOf(sapiProperties.getObject("contraseñaSapi"));
+
+        System.out.println("estoy en el metodo");
+        Properties config = new Properties();
+
+        try {
+            config.load(getClass().getResourceAsStream("/mail.properties"));
+            Session session = Session.getInstance(config,
+                    new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(correoSapi, contraseñaSapi);
+
+                }
+            });
+
+            System.out.println("despues del try");
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(correoSapi));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(persona.getCorreo()));
+            message.setSubject("Solicitud aprobada");
+            //message.setText("Esto no es spam :)");
+
+            //Estos deberían ir como parametros dentro de la función de enviar correo
+            //String mail = "tucorreo@mail.com";
+            //String contrasena = "tucontrasena";
+            String mensaje = "Estimada(o) ".concat(persona.getNombre()).concat(", <br>el equipo del INCan ha revisado sus documentos y motivos. Le informamos que hemos aceptado su solicitud y hemos asignados las siguientes fechas como citas. <br>")
+                    .concat("<br>Cita de navegacón: ")
+                    .concat(fechaNavegacion)
+                    .concat("<br> Cita de preconsulta: ")
+                    .concat(fechaPreconsulta)
+                    .concat("<br> Le sugerimos entrar a su cuenta en SAPI y revisar con más detalle su aprobación")
+                    .concat("<br><br><br>Atte. el equipo de SAPI.");
+            MimeBodyPart mimeBodyPart = new MimeBodyPart();
+            mimeBodyPart.setContent(mensaje, "text/html");
+
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(mimeBodyPart);
+
+            Path path = Files.createTempFile(null, ".properties");
+            File file = new File(path.toString());
+
+            OutputStream outputStream = new FileOutputStream(file);
+            IOUtils.copy(getClass().getResourceAsStream("/mail.properties"), outputStream);
+            outputStream.close();
+
+            //Comente este attach fail porque de lo contrario no se hace bien el set content de arriba (lo de los datos de usuario)
+            // mimeBodyPart.attachFile(file);
+            message.setContent(multipart);
+            Transport.send(message);
+
+            //request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+            System.out.println("Fin del try enviar correo");
+
+        } catch (Exception ex) {
+            System.out.println("catch de envia correo");
+            System.out.println(this.getClass().toString().concat(ex.getMessage()));
+        }
+
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
