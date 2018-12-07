@@ -375,7 +375,7 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
                     reporteNavegadora.setResultado("");
             
             if(!(rs.getString("v_necesidadesEspeciales") == null))
-                reporteNavegadora.setNecesidadesEspeciales("v_necesidadesEspeciales");
+                reporteNavegadora.setNecesidadesEspeciales(rs.getString("v_necesidadesEspeciales"));
             else
                 reporteNavegadora.setNecesidadesEspeciales("Ninguna");
                 
