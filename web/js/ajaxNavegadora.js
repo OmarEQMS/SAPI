@@ -4,25 +4,10 @@ $(document).ready(function () {
     $('#error-correoNavegadora').hide();
     $('#error-correoRepetidoNavegadora').hide();
     $('#error-camposMotivo').hide();
-<<<<<<< HEAD
 
     $('#errorFechaNavegacion').hide();
     $('#errorFechaPre').hide();
     $('#errorDatos').hide();
-
-||||||| merged common ancestors
-    
-    /* NO BORRAR
-    $('#errorFechaNavegacion').hide();
-    $('#errorFechaPre').hide();*/
-    
-=======
-
-    /* NO BORRAR
-     $('#errorFechaNavegacion').hide();
-     $('#errorFechaPre').hide();*/
-
->>>>>>> origin/Develop
 
 
     //Errores al agregar a un paciente
@@ -821,7 +806,7 @@ $(document).ready(function () {
                 }
             }
         });
-    });    
+    });
 
     //fecha navegacion
     $('#Fecha-Navegacion').on('change', function () {
@@ -829,7 +814,7 @@ $(document).ready(function () {
         console.log($(this).val());
 
     });
-    
+
     $('#tipo-paciente').on('change', function () {
 
         $(this).css('border', '');
@@ -939,7 +924,7 @@ $(document).ready(function () {
                         $("#Fecha-Navegacion").attr("type", "text").val('').attr("placeholder", "Fecha navegación");
                         $("#Fecha-Consulta").attr("type", "text").val('').attr("placeholder", "Fecha consulta");
                         $("#tipo-paciente").prop('selectedIndex', 0);
-                        $("#aceptar-"+idPaciente).hide();                        
+                        $("#aceptar-" + idPaciente).hide();
 
                     } else {
                         swal({
@@ -1632,7 +1617,7 @@ $(document).ready(function () {
                 method: "POST",
                 success: function (response) {
                     if (response === "true")
-                    
+
                     {
                         swal({
                             icon: 'success',
@@ -2516,7 +2501,6 @@ $(document).ready(function () {
         }
 
     });
-<<<<<<< HEAD
 
     //FECHA DE NAVEGACIÓN EN AGREGAR PACIENTE 
     $('#Fecha-Navegacion').on('change', function () {
@@ -2535,55 +2519,8 @@ $(document).ready(function () {
         } else {
             $('#errorFechaPre').hide();
         }
-||||||| merged common ancestors
-    
-    /*FECHA DE NAVEGACIÓN EN AGREGAR PACIENTE NO BORRAR
-    $('#Fecha-Navegacion').on('change', function () {
-        if (isValidFutureDate($(this))) {
-            $('#errorFechaNavegacion').hide();
-        } else {
-            $('#errorFechaNavegacion').show();
-        }
-
     });
-    
-    //FECHA DE PRECONSULTA EN AGREGAR PACIENTE
-    $('#Fecha-Consulta').on('change', function () {
 
-        if (isValidFutureDate($(this))) {
-            $('#errorFechaPre').hide();
-        } else {
-            $('#errorFechaPre').show();
-        }
-=======
->>>>>>> origin/Develop
-
-<<<<<<< HEAD
-    });
-||||||| merged common ancestors
-    });*/
-=======
-    /*FECHA DE NAVEGACIÓN EN AGREGAR PACIENTE NO BORRAR
-     $('#Fecha-Navegacion').on('change', function () {
-     if (isValidFutureDate($(this))) {
-     $('#errorFechaNavegacion').hide();
-     } else {
-     $('#errorFechaNavegacion').show();
-     }
-     
-     });
-     
-     //FECHA DE PRECONSULTA EN AGREGAR PACIENTE
-     $('#Fecha-Consulta').on('change', function () {
-     
-     if (isValidFutureDate($(this))) {
-     $('#errorFechaPre').hide();
-     } else {
-     $('#errorFechaPre').show();
-     }
-     
-     });*/
->>>>>>> origin/Develop
 
     //ESTADO EN AGREGAR PACIENTE
     $('#estadoPaciente').on('change', function () {
@@ -6465,16 +6402,48 @@ function isValidComentarioGeneric(input) {
 
 function isValidDate(input) {
 
-    //Obtener fecha
+//Obtener fecha
     let today = new Date();
-
     //Valor seleccionado del input
     let date_from = input.val();
     date_from = new Date(date_from);
+    let event = false;
+    today < date_from ? event = true : event = false;
+    if (!input.val() || event) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+function isValidFutureDate(input) {
+
+
+    let valorSeleccionado = input;
+
+    let date_from = new Date(valorSeleccionado);
+
+    var year2 = date_from.getFullYear();
+    var month2 = date_from.getMonth();
+    var day2 = date_from.getDate();
+
+    date_from = new Date(year2, month2, day2 + 1);
+    date_from.setHours(0);
+
+    console.log("fecha introducida Shannon: " + date_from);
+
+    let today = new Date();
+
 
     let event = false;
 
-    today < date_from ? event = true : event = false;
+    today <= date_from ? event = false : event = true;
 
 
     if (!input.val() || event) {
@@ -6491,39 +6460,15 @@ function isValidDate(input) {
     return true;
 }
 
-<<<<<<< HEAD
 function isPastDate(input) {
-||||||| merged common ancestors
-function isValidFutureDate(input) { 
-    
-    
-    let valorSeleccionado = input;
-
-    let date_from = new Date(valorSeleccionado);
-=======
-function isValidFutureDate(input) {
-
-
-    let valorSeleccionado = input;
-
-    let date_from = new Date(valorSeleccionado);
->>>>>>> origin/Develop
 
     let valorSeleccionado = input.val();
 
     let fechaIntroducida = new Date(valorSeleccionado);
 
-<<<<<<< HEAD
     var year2 = fechaIntroducida.getFullYear();
     var month2 = fechaIntroducida.getMonth();
     var day2 = fechaIntroducida.getDate();
-||||||| merged common ancestors
-    let today = new Date();
-    
-=======
-    let today = new Date();
-
->>>>>>> origin/Develop
 
     fechaIntroducida = new Date(year2, month2, day2 + 1);
     fechaIntroducida.setHours(0);
@@ -6553,16 +6498,12 @@ function isValidFutureDate(input) {
 function isValidColonia(input) {
 
     var m = input.val();
-
     var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,500}$/;
-
-
     if (!expreg.test(m)) {
 
         input.css('border', '1px solid red');
         input.css('color', 'red');
         return false;
-
     } else {
         input.css('border', '');
         input.css('color', '');
@@ -6574,15 +6515,12 @@ function isValidColonia(input) {
 function isValidStreet(input) {
 
     var m = input.val();
-
     var expreg = /^[a-zA-Z\u00E0-\u00FCñÑ.0-9 ]{1,255}$/;
-
     if (!expreg.test(m)) {
 
         input.css('border', '1px solid red');
         input.css('color', 'red');
         return false;
-
     } else {
         input.css('border', '');
         input.css('color', '');
@@ -6596,15 +6534,12 @@ function isValidStreet(input) {
 function isValidIntNumber(input) {
 
     var m = input.val();
-
     var expreg = /^[#a-zA-Z0-9]{1,100000}$/;
-
     if (!expreg.test(m)) {
 
         input.css('border', '1px solid red');
         input.css('color', 'red');
         return false;
-
     } else {
         input.css('border', '');
         input.css('color', '');
@@ -6618,15 +6553,12 @@ function isValidIntNumber(input) {
 function isValidExtNumber(input) {
 
     var m = input.val();
-
     var expreg = /^[#0-9]{1,100000}$/;
-
     if (!expreg.test(m)) {
 
         input.css('border', '1px solid red');
         input.css('color', 'red');
         return false;
-
     } else {
         input.css('border', '');
         input.css('color', '');
@@ -6639,15 +6571,12 @@ function isValidExtNumber(input) {
 function isValidUserName(input) {
 
     var m = input.val();
-
     var expreg = /^[a-zA-Z0-9]{4,16}$/;
-
     if (!expreg.test(m)) {
 
         input.css('border', '1px solid red');
         input.css('color', 'red');
         return false;
-
     } else {
         input.css('border', '');
         input.css('color', '');
@@ -6663,15 +6592,12 @@ function areEqualPasswords(pass1, pass2) {
         pass2.css('border', '1px solid red');
         pass1.css('border', '1px solid red');
         $('#noEqualPasswordsError').show();
-
         return false;
-
     } else {
 
         pass2.css('border', '');
         pass1.css('border', '');
         $('#noEqualPasswordsError').hide();
-
     }
 
     return true;
@@ -6680,15 +6606,12 @@ function areEqualPasswords(pass1, pass2) {
 function isValidFormatCP(input) {
 
     var m = input.val();
-
     var expreg = /^\d{5}$/;
-
     if (!expreg.test(m)) {
 
         input.css('border', '1px solid red');
         input.css('color', 'red');
         return false;
-
     } else {
         input.css('border', '');
         input.css('color', '');
