@@ -531,7 +531,7 @@ $(document).ready(function () {
                                     "<span id='curp-" + response + "'>" + $('#curpPaciente').val() + "</span>",
                                     "<span class='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
                                     "<button class='btn btn-info btn-ver  m-1' data-id=" + response + " id='btn-ver'><i class='far fa-eye'></i></button>" +
-                                            "<button class='btn btn-success btn-aceptar-potencial m-1' data-id=" + response + " data-toggle='modal' data-target='#modalAceptarUsuario'><i class='fas fa-check'></i></button>" +
+                                            "<button class='btn btn-success btn-aceptar-potencial m-1' id='aceptar-" + response + "' data-id=" + response + " data-toggle='modal' data-target='#modalAceptarUsuario'><i class='fas fa-check'></i></button>" +
                                             "<button class='btn btn-primary btn-editar m-1' data-id=" + response + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
                                             "<button class='btn btn-danger btn-eliminar m-1' data-id=" + response + " id='btn-eliminar' data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-trash-alt'></i></button>"
                                 ]).draw(false);
@@ -543,7 +543,7 @@ $(document).ready(function () {
                                     "<span id='curp-" + response + "'>" + $('#curpPaciente').val() + "</span>",
                                     "<span class='telefono-" + response + "'>" + $("#telPaciente").val() + "</span>",
                                     "<button class='btn btn-info btn-ver  m-1' data-id=" + response + " id='btn-ver'><i class='far fa-eye'></i></button>" +
-                                            "<button class='btn btn-success btn-aceptar-potencial m-1' data-id=" + response + " data-toggle='modal' data-target='#modalAceptarUsuario'><i class='fas fa-check'></i></button>" +
+                                            "<button class='btn btn-success btn-aceptar-potencial m-1' id='aceptar-" + response + "' data-id=" + response + " data-toggle='modal' data-target='#modalAceptarUsuario'><i class='fas fa-check'></i></button>" +
                                             "<button class='btn btn-primary btn-editar m-1' data-id=" + response + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
                                             "<button class='btn btn-danger btn-eliminar m-1' data-id=" + response + " id='btn-eliminar' data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-trash-alt'></i></button>"
                                 ]).draw(false);
@@ -807,9 +807,7 @@ $(document).ready(function () {
                 }
             }
         });
-    });
-
-    //Aprobar paciente
+    });    
 
     //fecha navegacion
     $('#Fecha-Navegacion').on('change', function () {
@@ -841,6 +839,7 @@ $(document).ready(function () {
 
     });
 
+    //Aprobar paciente
     $('#btn-aceptarDocumento').on('click', function () {
 
         if (!isPastDate($('#Fecha-Navegacion')) && !isPastDate($('#Fecha-Consulta'))
@@ -926,6 +925,7 @@ $(document).ready(function () {
                         $("#Fecha-Navegacion").attr("type", "text").val('').attr("placeholder", "Fecha navegación");
                         $("#Fecha-Consulta").attr("type", "text").val('').attr("placeholder", "Fecha consulta");
                         $("#tipo-paciente").prop('selectedIndex', 0);
+                        $("#aceptar-"+idPaciente).hide();                        
 
                     } else {
                         swal({

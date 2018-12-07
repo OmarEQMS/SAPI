@@ -274,7 +274,7 @@
 
                                                             <c:choose>
                                                                 <c:when test="${paciente.estadoPaciente=='Potencial en proceso'}">
-                                                                    <button class="btn btn-success btn-aceptar-potencial m-1" data-id="${paciente.idPaciente}" data-toggle="modal" data-target="#modalAceptarUsuario">
+                                                                    <button class="btn btn-success btn-aceptar-potencial m-1" id="aceptar-${paciente.idPaciente}" data-id="${paciente.idPaciente}" data-toggle="modal" data-target="#modalAceptarUsuario">
                                                                         <i class="fas fa-check"></i>
                                                                     </button>
                                                                 </c:when>    
