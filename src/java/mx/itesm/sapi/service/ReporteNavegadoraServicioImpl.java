@@ -27,7 +27,7 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
         CallableStatement cstmt;
         ResultSet rs;
         String stProcedure1 = "CALL mostrarFormularioNavegadora(?)";
-        String stProcedure2 = "CALL mostrarPacienteCiudadEstadoSexo(?)";
+        String stProcedure2 = "CALL mostrarPacienteCiudadEstadoSexoNecesidades(?)";
         String stProcedure3 = "CALL mostrarNombreEmpleado(?)";
         
         ReporteNavegadora reporteNavegadora = new ReporteNavegadora();
@@ -373,6 +373,12 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             }
                 else
                     reporteNavegadora.setResultado("");
+            
+            if(!(rs.getString("v_necesidadesEspeciales") == null))
+                reporteNavegadora.setNecesidadesEspeciales("v_necesidadesEspeciales");
+            else
+                reporteNavegadora.setNecesidadesEspeciales("Ninguna");
+                
             
             System.out.println("Llena el bean del 2 store procedure");
             cstmt = conn.prepareCall(stProcedure3);

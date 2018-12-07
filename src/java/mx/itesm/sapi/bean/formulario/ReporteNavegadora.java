@@ -18,6 +18,7 @@ public class ReporteNavegadora {
     private String escolaridad;
     private String ciudad;
     private String estado;
+    private String necesidadesEspeciales;
     private String alergias;
     private String telefono;
     private String seguro;
@@ -98,6 +99,16 @@ public class ReporteNavegadora {
                 + ", her2=" + her2 + ", fish=" + fish + ", re=" + re + ", rp=" + rp + ", ki67=" + ki67 + ", ultra=" + ultra + ", masto=" + masto + '}';
     }
 
+    public String getNecesidadesEspeciales() {
+        return necesidadesEspeciales;
+    }
+
+    public void setNecesidadesEspeciales(String necesidadesEspeciales) {
+        this.necesidadesEspeciales = necesidadesEspeciales;
+    }
+
+    
+    
     public void setPrz(String prz) {
         this.prz = prz;
     }
