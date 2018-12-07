@@ -80,6 +80,7 @@ public class GeneralPoblacion  implements Serializable{
     private Date programaINCanMujeresJovenes;
     private Date programaINCanNutricion;
     private Date programaINCanGenetica;
+    private Date programaINCanMamaEnMovimiento;
     private String preconsultaSegundaOpcion;
     private Date preconsultaFechaDecision;
     private String preconsultaDecision;
@@ -199,6 +200,7 @@ public class GeneralPoblacion  implements Serializable{
         Atributos.add(DateNa(programaINCanMujeresJovenes));
         Atributos.add(DateNa(programaINCanNutricion));
         Atributos.add(DateNa(programaINCanGenetica));
+        Atributos.add(DateNa(programaINCanMamaEnMovimiento));
         Atributos.add(StringNa(preconsultaSegundaOpcion));
         Atributos.add(DateNa(preconsultaFechaDecision));
         Atributos.add(StringNa(preconsultaDecision));
@@ -290,6 +292,7 @@ public class GeneralPoblacion  implements Serializable{
         Encabezados.add("Programa INCan - [Fecha] Mujeres jóvenes");
         Encabezados.add("Programa INCan - [Fecha] Nutrición");
         Encabezados.add("Programa INCan - [Fecha] Genética");
+        Encabezados.add("Programa INCan - [Fecha] Mama en movimiento");
         Encabezados.add("Preconsulta - Primera vez / Segunda opción");
         Encabezados.add("Preconsulta - Fecha decision");
         Encabezados.add("Preconsulta - Decision");
@@ -543,6 +546,9 @@ public class GeneralPoblacion  implements Serializable{
 
     public void setProgramaINCanGenetica(Date programaINCanGenetica) {
         this.programaINCanGenetica = programaINCanGenetica;
+    }
+    public void setProgramaINCanMamaEnMovimiento(Date programaINCanMamaEnMovimiento) {
+        this.programaINCanMamaEnMovimiento = programaINCanMamaEnMovimiento;
     }
 
     public void setPreconsultaSegundaOpcion(String preconsultaSegundaOpcion) {

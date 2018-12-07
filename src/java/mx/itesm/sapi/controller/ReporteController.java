@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import mx.itesm.sapi.bean.rendimiento.Rendimiento;
+import mx.itesm.sapi.service.EstadisticaServicioImpl;
 import mx.itesm.sapi.service.RendimientoServicioImpl;
 
 /**
@@ -44,7 +45,7 @@ public class ReporteController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String key = request.getParameter("key");
-        
+
         //Recibe Fechas
         String fecha1 = request.getParameter("fecha1");
         String fecha2 = request.getParameter("fecha2");
@@ -57,127 +58,218 @@ public class ReporteController extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession sesion = request.getSession(true);
         int idEmpleadoNavegadora = (int) sesion.getAttribute("idEmpleadoNavegadora");
-        if(sesion.getAttribute("idCuenta") == null)
-        {
+        if (sesion.getAttribute("idCuenta") == null) {
             request.setAttribute("status", "");
             request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
-        }
-        else
-        {
-        switch (key) {
+        } else {
+            switch (key) {
 
-            case "mostrarVisitaMes":
+                case "mostrarVisitaMes": {
 
-                //Servicio
-                RendimientoServicioImpl rendimientoVisitasPorMes = new RendimientoServicioImpl();
+                    //Servicio
+                    RendimientoServicioImpl rendimientoVisitasPorMes = new RendimientoServicioImpl();
 
-                Rendimiento visitasPorMes = new Rendimiento();
+                    Rendimiento visitasPorMes = new Rendimiento();
 
+                    visitasPorMes = rendimientoVisitasPorMes.mostrarVisitaRango(idEmpleadoNavegadora, Date.valueOf(fecha1), Date.valueOf(fecha2));
 
-                visitasPorMes = rendimientoVisitasPorMes.mostrarVisitaRango(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+                    out.print(new Gson().toJson(visitasPorMes));
 
+                    break;
+                }
+                case "mostrarVisitaEdad": {
 
-                out.print(new Gson().toJson(visitasPorMes));
+                    //Servicio
+                    RendimientoServicioImpl rendimientoServicioEdad = new RendimientoServicioImpl();
 
-                break;
+                    ArrayList<Rendimiento> rendimientoPorEdad = new ArrayList<>();
 
-            case "mostrarVisitaEdad":
+                    rendimientoPorEdad = rendimientoServicioEdad.mostrarVisitaEdad(idEmpleadoNavegadora, Date.valueOf(fecha1), Date.valueOf(fecha2));
 
-                //Servicio
-                RendimientoServicioImpl rendimientoServicioEdad = new RendimientoServicioImpl();
+                    out.print(new Gson().toJson(rendimientoPorEdad));
 
-                ArrayList<Rendimiento> rendimientoPorEdad = new ArrayList<>();
+                    break;
+                }
+                case "mostrarVisitaEscolaridad": {
 
-                rendimientoPorEdad = rendimientoServicioEdad.mostrarVisitaEdad(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+                    //Servicio
+                    RendimientoServicioImpl rendimientoServicioEscolaridad = new RendimientoServicioImpl();
 
+                    ArrayList<Rendimiento> rendimientoPorEscolaridad = new ArrayList<>();
 
-                out.print(new Gson().toJson(rendimientoPorEdad));
+                    rendimientoPorEscolaridad = rendimientoServicioEscolaridad.mostrarVisitaEscolaridad(idEmpleadoNavegadora, Date.valueOf(fecha1), Date.valueOf(fecha2));
 
-                break;
+                    out.print(new Gson().toJson(rendimientoPorEscolaridad));
 
-            case "mostrarVisitaEscolaridad": {
+                    break;
 
-                //Servicio
-                RendimientoServicioImpl rendimientoServicioEscolaridad = new RendimientoServicioImpl();
+                }
 
-                ArrayList<Rendimiento> rendimientoPorEscolaridad = new ArrayList<>();
+                case "mostrarVisitaLugarResidencia": {
 
-                rendimientoPorEscolaridad = rendimientoServicioEscolaridad.mostrarVisitaEscolaridad(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
+                    //Servicio
+                    RendimientoServicioImpl rendimientoServicioLugarResidencia = new RendimientoServicioImpl();
 
+                    ArrayList<Rendimiento> rendimientoPorLugar = new ArrayList<>();
 
-                out.print(new Gson().toJson(rendimientoPorEscolaridad));
+                    rendimientoPorLugar = rendimientoServicioLugarResidencia.mostrarVisitaLugarResidencia(idEmpleadoNavegadora, Date.valueOf(fecha1), Date.valueOf(fecha2));
 
-                break;
+                    out.print(new Gson().toJson(rendimientoPorLugar));
+
+                    break;
+
+                }
+
+                case "mostrarVisitaNivelSocioEconomico": {
+
+                    //Servicio
+                    RendimientoServicioImpl rendimientoServicioNivelSocioEconomico = new RendimientoServicioImpl();
+
+                    ArrayList<Rendimiento> rendimientoPorNivel = new ArrayList<>();
+
+                    rendimientoPorNivel = rendimientoServicioNivelSocioEconomico.mostrarVisitaNivelSocioEconomico(idEmpleadoNavegadora, Date.valueOf(fecha1), Date.valueOf(fecha2));
+
+                    out.print(new Gson().toJson(rendimientoPorNivel));
+
+                    break;
+
+                }
+
+                case "mostrarVisitaDecisionPreconsulta": {
+
+                    //Servicio
+                    RendimientoServicioImpl rendimientoServicioDecisionPre = new RendimientoServicioImpl();
+
+                    ArrayList<Rendimiento> rendimientoPorDecision = new ArrayList<>();
+
+                    rendimientoPorDecision = rendimientoServicioDecisionPre.mostrarVisitaDecisionPreconsulta(idEmpleadoNavegadora, Date.valueOf(fecha1), Date.valueOf(fecha2));
+
+                    out.print(new Gson().toJson(rendimientoPorDecision));
+
+                    break;
+                }
+
+                case "mostrarVisitaResultadoPatologia": {
+
+                    //Servicio
+                    RendimientoServicioImpl rendimientoServicioResPatologia = new RendimientoServicioImpl();
+
+                    ArrayList<Rendimiento> rendimientoPorResPatologia = new ArrayList<>();
+
+                    rendimientoPorResPatologia = rendimientoServicioResPatologia.mostrarVisitaResultadoPatologia(idEmpleadoNavegadora, Date.valueOf(fecha1), Date.valueOf(fecha2));
+
+                    out.print(new Gson().toJson(rendimientoPorResPatologia));
+
+                    break;
+
+                }
+                /**
+                 *
+                 * @author Angel GTZ
+                 */     
+
+                case "mostrarEstadisticaMes": {
+
+                    //Servicio
+                    EstadisticaServicioImpl estadisticaPorMes = new EstadisticaServicioImpl();
+
+                    Rendimiento visitasPorMes = new Rendimiento();
+
+                    visitasPorMes = estadisticaPorMes.mostrarEstadisticaRango(Date.valueOf(fecha1), Date.valueOf(fecha2));
+
+                    out.print(new Gson().toJson(visitasPorMes));
+
+                    break;
+                }
+                case "mostrarEstadisticaEdad": {
+
+                    //Servicio
+                    EstadisticaServicioImpl estadisticaServicioEdad = new EstadisticaServicioImpl();
+
+                    ArrayList<Rendimiento> estadisticaPorEdad = new ArrayList<>();
+
+                    estadisticaPorEdad = estadisticaServicioEdad.mostrarEstadisticaEdad(Date.valueOf(fecha1), Date.valueOf(fecha2));
+
+                    out.print(new Gson().toJson(estadisticaPorEdad));
+
+                    break;
+                }
+                case "mostrarEstadisticaEscolaridad": {
+
+                    //Servicio
+                    EstadisticaServicioImpl estadisticaServicioEscolaridad = new EstadisticaServicioImpl();
+
+                    ArrayList<Rendimiento> estadisticaPorEscolaridad = new ArrayList<>();
+
+                    estadisticaPorEscolaridad = estadisticaServicioEscolaridad.mostrarEstadisticaEscolaridad(Date.valueOf(fecha1), Date.valueOf(fecha2));
+
+                    out.print(new Gson().toJson(estadisticaPorEscolaridad));
+
+                    break;
+
+                }
+
+                case "mostrarEstadisticaLugarResidencia": {
+
+                    //Servicio
+                    EstadisticaServicioImpl estadisticaServicioLugarResidencia = new EstadisticaServicioImpl();
+
+                    ArrayList<Rendimiento> estadisticaPorLugar = new ArrayList<>();
+
+                    estadisticaPorLugar = estadisticaServicioLugarResidencia.mostrarEstadisticaLugarResidencia(Date.valueOf(fecha1), Date.valueOf(fecha2));
+
+                    out.print(new Gson().toJson(estadisticaPorLugar));
+
+                    break;
+
+                }
+
+                case "mostrarEstadisticaNivelSocioEconomico": {
+
+                    //Servicio
+                    EstadisticaServicioImpl estadisticaServicioNivelSocioEconomico = new EstadisticaServicioImpl();
+
+                    ArrayList<Rendimiento> estadisticaPorNivel = new ArrayList<>();
+
+                    estadisticaPorNivel = estadisticaServicioNivelSocioEconomico.mostrarEstadisticaNivelSocioEconomico(Date.valueOf(fecha1), Date.valueOf(fecha2));
+
+                    out.print(new Gson().toJson(estadisticaPorNivel));
+
+                    break;
+
+                }
+
+                case "mostrarEstadisticaDecisionPreconsulta": {
+
+                    //Servicio
+                    EstadisticaServicioImpl estadisticaServicioDecisionPre = new EstadisticaServicioImpl();
+
+                    ArrayList<Rendimiento> estadisticaPorDecision = new ArrayList<>();
+
+                    estadisticaPorDecision = estadisticaServicioDecisionPre.mostrarEstadisticaDecisionPreconsulta(Date.valueOf(fecha1), Date.valueOf(fecha2));
+
+                    out.print(new Gson().toJson(estadisticaPorDecision));
+
+                    break;
+                }
+
+                case "mostrarEstadisticaResultadoPatologia": {
+
+                    //Servicio
+                    EstadisticaServicioImpl estadisticaServicioResPatologia = new EstadisticaServicioImpl();
+
+                    ArrayList<Rendimiento> estadisticaPorResPatologia = new ArrayList<>();
+
+                    estadisticaPorResPatologia = estadisticaServicioResPatologia.mostrarEstadisticaResultadoPatologia(Date.valueOf(fecha1), Date.valueOf(fecha2));
+
+                    out.print(new Gson().toJson(estadisticaPorResPatologia));
+
+                    break;
+
+                }
 
             }
-            
-            case "mostrarVisitaLugarResidencia": {
-            
-                //Servicio
-                RendimientoServicioImpl rendimientoServicioLugarResidencia = new RendimientoServicioImpl();
-                
-                ArrayList<Rendimiento> rendimientoPorLugar = new ArrayList<>();
 
-                rendimientoPorLugar = rendimientoServicioLugarResidencia.mostrarVisitaLugarResidencia(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
-
-                
-                out.print(new Gson().toJson(rendimientoPorLugar));
-                
-                break;
-            
-            }
-            
-            
-            case "mostrarVisitaNivelSocioEconomico": {
-                
-                //Servicio
-                RendimientoServicioImpl rendimientoServicioNivelSocioEconomico = new RendimientoServicioImpl();
-                
-                ArrayList<Rendimiento> rendimientoPorNivel = new ArrayList<>();
-
-                rendimientoPorNivel = rendimientoServicioNivelSocioEconomico.mostrarVisitaNivelSocioEconomico(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
-
-                
-                out.print(new Gson().toJson(rendimientoPorNivel));
-                
-                break;
-            
-            }
-            
-            case "mostrarVisitaDecisionPreconsulta": {
-                
-                //Servicio
-                RendimientoServicioImpl rendimientoServicioDecisionPre = new RendimientoServicioImpl();
-                
-                ArrayList<Rendimiento> rendimientoPorDecision = new ArrayList<>();
-
-                rendimientoPorDecision = rendimientoServicioDecisionPre.mostrarVisitaDecisionPreconsulta(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
-
-                
-                out.print(new Gson().toJson(rendimientoPorDecision));
-            
-                
-                break;
-            }
-            
-            case "mostrarVisitaResultadoPatologia": {
-                
-                //Servicio
-                RendimientoServicioImpl rendimientoServicioResPatologia = new RendimientoServicioImpl();
-                
-                ArrayList<Rendimiento> rendimientoPorResPatologia  = new ArrayList<>();
-
-                rendimientoPorResPatologia = rendimientoServicioResPatologia.mostrarVisitaResultadoPatologia(idEmpleadoNavegadora, Date.valueOf(fecha1),Date.valueOf(fecha2));
-
-                
-                out.print(new Gson().toJson(rendimientoPorResPatologia));
-                
-                break;
-            
-            }
-
-            }
-      
         }
 
     }

@@ -85,8 +85,9 @@
         </div>
 
         <div class="cargandoIrARendimiento" id="loading-screen" style="display: none">
+
             <img src="img/loading.svg">
-            <p class="clear">Cargando tu rendimiento, por favor espere..</p>
+            <p class="clear">Cargando estadísticas, por favor espere..</p>
         </div>
 
         <div class="cargandoIrACuenta" id="loading-screen" style="display: none">
@@ -156,7 +157,7 @@
 
                     <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
-                    <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
+                    <li id="irAEstadisticas"><a><i class="fas fa-chart-line"></i>Estadísticas</a></li>
 
                     <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
 

@@ -60,6 +60,7 @@ public class MFormularioGeneral implements Serializable {
     private String N;
     private String M;
     private Date fechaFin;
+    private boolean resultados;
     private String decisionCosulta;
     private String socioeconomico;
     
@@ -106,6 +107,15 @@ public class MFormularioGeneral implements Serializable {
                 + ", fish=" + fish + ", ki67=" + ki67 + ", gradoH=" + gradoH + ", resultadoPatologiaPost=" + resultadoPatologiaPost + ", otroResultadoPost=" + otroResultadoPost 
                 + ", idCita=" + idCita + ", nombreEstudio=" + nombreEstudio + ", CitaProgramada=" + CitaProgramada + ", lugarCuerpo=" + lugarCuerpo + '}';
     }
+
+    public boolean isResultados() {
+        return resultados;
+    }
+
+    public void setResultados(boolean resultados) {
+        this.resultados = resultados;
+    }
+
 
     public boolean isNoResidente() {
         return noResidente;

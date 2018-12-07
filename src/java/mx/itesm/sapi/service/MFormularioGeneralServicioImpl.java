@@ -80,6 +80,7 @@ public class MFormularioGeneralServicioImpl implements MFormularioGeneralServici
             mFormularioGeneral.setN(rs.getString("v_N"));
             mFormularioGeneral.setM(rs.getString("v_M"));
             mFormularioGeneral.setFechaFin(rs.getDate("v_fechaFin"));
+            mFormularioGeneral.setResultados(rs.getBoolean("v_resultados"));
             mFormularioGeneral.setDecisionCosulta(rs.getString("v_decisionCosulta"));
             mFormularioGeneral.setSocioeconomico(rs.getString("v_socioeconomico"));
             mFormularioGeneral.setComentarioIncidencia(rs.getString("v_comentarioIncidencia"));

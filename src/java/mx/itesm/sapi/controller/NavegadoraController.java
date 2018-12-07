@@ -314,7 +314,7 @@ public class NavegadoraController extends HttpServlet {
                         case "reporteRendimientoNavegadora": {
                             /**
                              * Author: Angel Gutiérrez Al inicio checa si tiene
-                             * sesion de no ser asi se redirecciona al loin.
+                             * sesion de no ser asi se redirecciona al login.
                              * Despues se tomra el id de la navegadora para
                              * generar una lista de los pacientes que aprobo o
                              * modifico su formulario

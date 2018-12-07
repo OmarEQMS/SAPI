@@ -55,9 +55,9 @@
             <p class="clear">Cargando la lista de pacientes, por favor espere...</p>
         </div>
 
-        <div class="cargandoIrARendimiento" id="loading-screen" style="display: none">
+        <div class="CargandoIrAEstadisticas" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
-            <p class="clear">Cargando tu rendimiento, por favor espere..</p>
+            <p class="clear">Cargando estadisticas, por favor espere..</p>
         </div>
 
         <div class="cargandoIrACuenta" id="loading-screen" style="display: none">
@@ -125,7 +125,7 @@
 
                     <li id="irACalendario"><a><i class="fas fa-calendar-alt"></i>Calendario</a></li>
 
-                    <li id="irARendimiento"><a><i class="fas fa-chart-line"></i>Mi Rendimiento</a></li>
+                    <li id="irAEstadisticas"><a><i class="fas fa-chart-line"></i>Estadisticas</a></li>
 
                     <li id="irACuenta"><a><i class="far fa-user"></i>Mi Cuenta</a></li>
 
@@ -162,7 +162,7 @@
                                 <div class="row mb-3">
                                     <div class="col-12 text-right">
                                         <span class="iconoHome"><i class="fas fa-home"></i></span><span><a class="colorMoradoLight IrAMiIndex"> Inicio</a></span>
-                                        - <span class="colorGlobal">Mi Rendimiento</span>
+                                        - <span class="colorGlobal">Estadistica de navegadoras</span>
                                     </div>
                                 </div>
 
@@ -175,12 +175,12 @@
 
                                 <div class="row form-group">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-                                        <label for="fecha1">Fecha inicio</label>
-                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha1Mes">
+                                        <label for="Rfecha1">Fecha inicio</label>
+                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="Rfecha1Mes">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-                                        <label for="fecha 2">Fecha fin</label>
-                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha2Mes">
+                                        <label for="Rfecha 2">Fecha fin</label>
+                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="Rfecha2Mes">
                                     </div>
                                 </div>
 
@@ -192,7 +192,7 @@
 
                                 <div class="card mt-3">
                                     <div class="card-body">
-                                        <table class="table totalVisitasMes">
+                                        <table class="table estadisticaTotalVisitasMes">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Rango</th>
@@ -216,12 +216,12 @@
 
                                 <div class="row form-group">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-                                        <label for="fecha1Edad">Fecha inicio</label>
-                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha1Edad">
+                                        <label for="Rfecha1Edad">Fecha inicio</label>
+                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="Rfecha1Edad">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-                                        <label for="fecha2Edad">Fecha fin</label>
-                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha2Edad">
+                                        <label for="Rfecha2Edad">Fecha fin</label>
+                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="Rfecha2Edad">
                                     </div>
 
                                 </div>
@@ -234,7 +234,7 @@
 
                                 <div class="card mt-3">
                                     <div class="card-body">
-                                        <table class="table table-striped cantidadVisitasEdades">
+                                        <table class="table table-striped EstadisticaEdad">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Edad</th>
@@ -258,12 +258,12 @@
 
                                 <div class="row form-group">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-                                        <label for="fecha1Escolaridad">Fecha inicio</label>
-                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha1Escolaridad">
+                                        <label for="Rfecha1Escolaridad">Fecha inicio</label>
+                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="Rfecha1Escolaridad">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-                                        <label for="fecha2Escolaridad">Fecha fin</label>
-                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha2Escolaridad">
+                                        <label for="Rfecha2Escolaridad">Fecha fin</label>
+                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="Rfecha2Escolaridad">
                                     </div>
 
                                 </div>
@@ -276,7 +276,7 @@
 
                                 <div class="card mt-3">
                                     <div class="card-body">
-                                        <table class="table table-striped cantidadVisitasEscolaridad">
+                                        <table class="table table-striped cantidadEstadisticaEscolaridad">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Escolaridad</th>
@@ -300,12 +300,12 @@
 
                                 <div class="row form-group">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-                                        <label for="fecha1Residencia">Fecha inicio</label>
-                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha1Residencia">
+                                        <label for="Rfecha1Residencia">Fecha inicio</label>
+                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="Rfecha1Residencia">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-                                        <label for="fecha2Residencia">Fecha fin</label>
-                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha2Residencia">
+                                        <label for="Rfecha2Residencia">Fecha fin</label>
+                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="Rfecha2Residencia">
                                     </div>
 
                                 </div>
@@ -318,7 +318,7 @@
 
                                 <div class="card mt-3">
                                     <div class="card-body">
-                                        <table class="table table-striped cantidadVisitasResidencia">
+                                        <table class="table table-striped cantidadEstadisticResidencia">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Lugar</th>
@@ -342,12 +342,12 @@
 
                                 <div class="row form-group">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-                                        <label for="fecha1Economico">Fecha inicio</label>
-                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha1Economico">
+                                        <label for="Rfecha1Economico">Fecha inicio</label>
+                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="Rfecha1Economico">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-                                        <label for="fecha2Economico">Fecha fin</label>
-                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha2Economico">
+                                        <label for="Rfecha2Economico">Fecha fin</label>
+                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="Rfecha2Economico">
                                     </div>
 
                                 </div>
@@ -360,7 +360,7 @@
 
                                 <div class="card mt-3">
                                     <div class="card-body">
-                                        <table class="table table-striped cantidadVisitasNivel">
+                                        <table class="table table-striped cantidadEstadisticaNivel">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Nivel Socioeconómico</th>
@@ -384,12 +384,12 @@
 
                                 <div class="row form-group">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-                                        <label for="fecha1Pre">Fecha inicio</label>
-                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha1Pre">
+                                        <label for="Rfecha1Pre">Fecha inicio</label>
+                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="Rfecha1Pre">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-                                        <label for="fecha2Pre">Fecha fin</label>
-                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha2Pre">
+                                        <label for="Rfecha2Pre">Fecha fin</label>
+                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="Rfecha2Pre">
                                     </div>
 
                                 </div>
@@ -402,7 +402,7 @@
 
                                 <div class="card mt-3">
                                     <div class="card-body">
-                                        <table class="table table-striped cantidadVisitasPre">
+                                        <table class="table table-striped cantidadEstadisticaPre">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Decisión</th>
@@ -426,12 +426,12 @@
 
                                 <div class="row form-group">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-                                        <label for="fecha1Patologia">Fecha inicio</label>
-                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha1Patologia">
+                                        <label for="Rfecha1Patologia">Fecha inicio</label>
+                                        <input type="text" placeholder="Introduce la primer fecha" onfocus="(this.type = 'date')" class="form-control" id="Rfecha1Patologia">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-                                        <label for="fecha2Patologia">Fecha fin</label>
-                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="fecha2Patologia">
+                                        <label for="Rfecha2Patologia">Fecha fin</label>
+                                        <input type="text" placeholder="Introduce la segunda fecha" onfocus="(this.type = 'date')" class="form-control" id="Rfecha2Patologia">
                                     </div>
 
                                 </div>
@@ -444,7 +444,7 @@
 
                                 <div class="card mt-3">
                                     <div class="card-body">
-                                        <table class="table table-striped cantidadVisitasPatologia">
+                                        <table class="table table-striped cantidadEstadisticaPatologia">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Resultado</th>

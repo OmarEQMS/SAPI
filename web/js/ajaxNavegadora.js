@@ -4,11 +4,25 @@ $(document).ready(function () {
     $('#error-correoNavegadora').hide();
     $('#error-correoRepetidoNavegadora').hide();
     $('#error-camposMotivo').hide();
+<<<<<<< HEAD
 
     $('#errorFechaNavegacion').hide();
     $('#errorFechaPre').hide();
     $('#errorDatos').hide();
 
+||||||| merged common ancestors
+    
+    /* NO BORRAR
+    $('#errorFechaNavegacion').hide();
+    $('#errorFechaPre').hide();*/
+    
+=======
+
+    /* NO BORRAR
+     $('#errorFechaNavegacion').hide();
+     $('#errorFechaPre').hide();*/
+
+>>>>>>> origin/Develop
 
 
     //Errores al agregar a un paciente
@@ -1777,7 +1791,7 @@ $(document).ready(function () {
         });
     });
 
-    $('#irARendimiento').on('click', function () {
+    $('#irAEstadisticas').on('click', function () {
         $.ajax({
             url: 'SAPI',
             method: "POST",
@@ -1786,13 +1800,13 @@ $(document).ready(function () {
                 file: "navegadora/rendimiento.jsp",
             },
             beforeSend: function () {
-                $('.cargandoIrARendimiento').fadeIn();
+                $('.cargandoIrAEstadisticas').fadeIn();
             },
             complete: function () {
-                $('.cargandoIrARendimiento').fadeOut();
+                $('.cargandoIrAEstadisticas').fadeOut();
             },
             success: function (response) {
-                if (response == "error") {
+                if (response === "error") {
                     $("#msj-error").show();
                 } else {
                     document.open("text/html", "replace");
@@ -2502,6 +2516,7 @@ $(document).ready(function () {
         }
 
     });
+<<<<<<< HEAD
 
     //FECHA DE NAVEGACIÓN EN AGREGAR PACIENTE 
     $('#Fecha-Navegacion').on('change', function () {
@@ -2520,8 +2535,55 @@ $(document).ready(function () {
         } else {
             $('#errorFechaPre').hide();
         }
+||||||| merged common ancestors
+    
+    /*FECHA DE NAVEGACIÓN EN AGREGAR PACIENTE NO BORRAR
+    $('#Fecha-Navegacion').on('change', function () {
+        if (isValidFutureDate($(this))) {
+            $('#errorFechaNavegacion').hide();
+        } else {
+            $('#errorFechaNavegacion').show();
+        }
 
     });
+    
+    //FECHA DE PRECONSULTA EN AGREGAR PACIENTE
+    $('#Fecha-Consulta').on('change', function () {
+
+        if (isValidFutureDate($(this))) {
+            $('#errorFechaPre').hide();
+        } else {
+            $('#errorFechaPre').show();
+        }
+=======
+>>>>>>> origin/Develop
+
+<<<<<<< HEAD
+    });
+||||||| merged common ancestors
+    });*/
+=======
+    /*FECHA DE NAVEGACIÓN EN AGREGAR PACIENTE NO BORRAR
+     $('#Fecha-Navegacion').on('change', function () {
+     if (isValidFutureDate($(this))) {
+     $('#errorFechaNavegacion').hide();
+     } else {
+     $('#errorFechaNavegacion').show();
+     }
+     
+     });
+     
+     //FECHA DE PRECONSULTA EN AGREGAR PACIENTE
+     $('#Fecha-Consulta').on('change', function () {
+     
+     if (isValidFutureDate($(this))) {
+     $('#errorFechaPre').hide();
+     } else {
+     $('#errorFechaPre').show();
+     }
+     
+     });*/
+>>>>>>> origin/Develop
 
     //ESTADO EN AGREGAR PACIENTE
     $('#estadoPaciente').on('change', function () {
@@ -4074,7 +4136,7 @@ $(document).ready(function () {
         data.append("otroResultadoPatologiaPost", otroResultadoPatologiaPost);
 
 
-        if (cambiarRol == 1)
+        if (cambiarRol === 1)
             data.append("cambiarRol", cambiarRol);
         data.forEach((value, key) => {
             console.log(key + " " + value);
@@ -4458,6 +4520,12 @@ $(document).ready(function () {
     function btnSave(data) {
         $.ajax({
             url: "NavegadoraController",
+            beforeSend: function () {
+                $('.cargandoGuardarCambiosFormulario').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoGuardarCambiosFormulario').fadeOut();
+            },
             method: "POST",
             data: data,
             enctype: "multipart/form-data",
@@ -4676,13 +4744,21 @@ $(document).ready(function () {
 
             if (data[0][0].Seguro !== "") {
                 $('#tieneSeguroPopular').attr('checked', 'checked');
+
                 if ($('#tieneSeguroPopular').is(':checked')) {
                     $('#tiene-seguro').show();
+                    if ((data[0][0].Seguro === "Seguro Popular")) {
+
+                        $('#numSeguro').show(),
+                                $('#numSeguro').val(data[0][0].noSeguro);
+
+                    }
                 } else {
                     $('#tiene-seguro').hide();
                 }
 
                 if ((data[0][0].Seguro === "Seguro Popular")) {
+
                     $('#numSeguro').show(),
                             $('#numSeguro').val(data[0][0].noSeguro);
 
@@ -4696,7 +4772,7 @@ $(document).ready(function () {
             }
 
             if (data[0][0].mastografiaPreINCAN === true) {
-                $('#tieneSeguroPopular').attr('checked', 'checked');
+                $('#primeraMasto').attr('checked', 'checked');
             }
 
             if (data[0][0].cirugiaFecha !== "Jan 1, 1900" && data[0][0].cirugiaFecha !== "ene 1, 1900" || data[0][0].cirugiaTipo !== "" || data[0][0].cirugiaComentario !== "") {
@@ -5516,6 +5592,9 @@ $(document).ready(function () {
                 $('.llamadaInit').append(plantilla);
 
             }
+
+            if ((data[0][0].resultados === true))
+                $('#resultadosCheckbox').attr('checked', 'checked');
 
             if (data[0][0].fechaFin !== "Jan 1, 1900" && data[0][0].fechaFin !== "ene 1, 1900")
             {
@@ -6412,15 +6491,39 @@ function isValidDate(input) {
     return true;
 }
 
+<<<<<<< HEAD
 function isPastDate(input) {
+||||||| merged common ancestors
+function isValidFutureDate(input) { 
+    
+    
+    let valorSeleccionado = input;
+
+    let date_from = new Date(valorSeleccionado);
+=======
+function isValidFutureDate(input) {
+
+
+    let valorSeleccionado = input;
+
+    let date_from = new Date(valorSeleccionado);
+>>>>>>> origin/Develop
 
     let valorSeleccionado = input.val();
 
     let fechaIntroducida = new Date(valorSeleccionado);
 
+<<<<<<< HEAD
     var year2 = fechaIntroducida.getFullYear();
     var month2 = fechaIntroducida.getMonth();
     var day2 = fechaIntroducida.getDate();
+||||||| merged common ancestors
+    let today = new Date();
+    
+=======
+    let today = new Date();
+
+>>>>>>> origin/Develop
 
     fechaIntroducida = new Date(year2, month2, day2 + 1);
     fechaIntroducida.setHours(0);
