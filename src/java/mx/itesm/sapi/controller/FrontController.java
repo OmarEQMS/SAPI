@@ -135,8 +135,10 @@ public class FrontController extends HttpServlet {
         } else if ((file == null || file != null) && sesion.getAttribute("idCuenta") != null) {
             if (file == null) {
                 file = sesion.getAttribute("path").toString();
+                System.out.println("File ".concat(file));
             } else {
                 file = request.getParameter("file");
+                System.out.println("File catch ".concat(file));
             }
 
             if ("jsp".equals(file.substring(file.length() - 3))) {
@@ -213,6 +215,14 @@ public class FrontController extends HttpServlet {
 
                                 request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                             }
+                             case "recuperar.jsp": {
+                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                break;
+                            }
+                            case "recuperarContraseña.jsp": {
+                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                break;
+                            }
 
                         }
 
@@ -221,7 +231,7 @@ public class FrontController extends HttpServlet {
                     case 2: {
                         /* ADMINISTRADOR */
                         String keyRuta = file;
-
+                        System.out.println("Case Admin  key ruta ".concat(keyRuta));
                         switch (keyRuta) {
                             case "administrador/cuentaAdministrador.jsp": {
                                 sesion.setAttribute("path", keyRuta);
@@ -312,6 +322,14 @@ public class FrontController extends HttpServlet {
                                 request.setAttribute("listaMedicos", medicos);
 
                                 sesion.setAttribute("path", keyRuta);
+                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                break;
+                            }
+                            case "recuperar.jsp": {
+                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                break;
+                            }
+                            case "recuperarContraseña.jsp": {
                                 request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                 break;
                             }
@@ -921,6 +939,14 @@ public class FrontController extends HttpServlet {
                                 break;
 
                             }
+                             case "recuperar.jsp": {
+                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                break;
+                            }
+                            case "recuperarContraseña.jsp": {
+                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                break;
+                            }
 
                         }
                         break;
@@ -1043,6 +1069,14 @@ public class FrontController extends HttpServlet {
                                 List<Persona> medicos = personaServicio.mostrarMedicosAdscritos();
                                 request.setAttribute("listaMedicos", medicos);
 
+                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                break;
+                            }
+                             case "recuperar.jsp": {
+                                request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
+                                break;
+                            }
+                            case "recuperarContraseña.jsp": {
                                 request.getRequestDispatcher("/WEB-INF/".concat(keyRuta)).forward(request, response);
                                 break;
                             }

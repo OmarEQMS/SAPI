@@ -150,10 +150,12 @@ public class RecuperarController extends HttpServlet {
                             .concat("<b>Su código de recuperación (token) para cambiar su contraseña y acceder a su cuenta es:  ")
                             .concat(token)
                             .concat("<br><br> Por favor siga estas instrucciones para poder reestablecer su contraseña:</br>")
-                            .concat("1) Ingresé con su usuario normal en la pantalla de iniciar sesión.")
-                            .concat("2) Coloqué en el sitio de contraseña el token que se ha adjuntado en este correo.")
-                            .concat("3) Será redirigido a una pantalla para cambiar su contraseña anterior por una nueva.")
-                            .concat("4) Inicie sesión con su usuario de siempre y su nueva contraseña."
+                            .concat("<ol>")
+                            .concat("<li>1) Ingresé con su usuario normal en la pantalla de iniciar sesión.</li>")
+                            .concat("<li>2) Coloqué en el sitio de contraseña el token que se ha adjuntado en este correo.</li>")
+                            .concat("<li>3) Será redirigido a una pantalla para cambiar su contraseña anterior por una nueva.</li>")
+                            .concat("<li>4) Inicie sesión con su usuario de siempre y su nueva contraseña.</li>"
+                            .concat("</ol>")
                             .concat("<br><br><br>Atte. el equipo de SAPI.")), "text/html");
 
                     Multipart multipart = new MimeMultipart();

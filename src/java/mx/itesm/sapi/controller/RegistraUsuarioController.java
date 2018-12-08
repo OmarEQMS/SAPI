@@ -796,8 +796,8 @@ public class RegistraUsuarioController extends HttpServlet {
                     .concat(usuario)
                     .concat(" para iniciar sesión y comenzar a utilizar su cuenta.")
                     .concat("<br><br><b>SAPI nunca le pedirá datos personales como usuario, contraseña, correo, teléfono o cualquier otro dato sensible a través de un correo elctrónico.</b>")
-                    .concat("<br><br> SAPI enviará correos desde una dirección única ")
-                    .concat("<br><br><br>atte. el equipo de SAPI."), "text/html");
+                    .concat("<br><br> SAPI enviará correos desde la siguiente dirección única: sapi.atencion@gmail.com ")
+                    .concat("<br><br><br>Atte. el equipo de SAPI."), "text/html");
 
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(mimeBodyPart);

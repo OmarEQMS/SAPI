@@ -349,14 +349,14 @@ public class LoginController extends HttpServlet {
                                 sesion.setAttribute("idEmpleado", empleado.getIdEmpleado());
                                 sesion.setAttribute("noEmpleado", empleado.getNoEmpleado());
                                 
-                                 String keyRuta = "administrador/gestionMedicos.jsp";
+                                 String keyRuta;
 
                                 //Si la contraseña no tiene el token de recuperar contraseña se continua al dashboard correspondiente                                                                 
                                 try {
                                     System.out.println("Contraseña con token ".concat(cuenta.getToken()));
                                     keyRuta = "recuperar.jsp";
                                 } catch (Exception ex) {
-
+                                    keyRuta = "administrador/gestionMedicos.jsp";
                                 }
                                 
                                 
