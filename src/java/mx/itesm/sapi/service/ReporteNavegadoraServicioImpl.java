@@ -31,7 +31,6 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
         String stProcedure3 = "CALL mostrarNombreEmpleado(?)";
         
         ReporteNavegadora reporteNavegadora = new ReporteNavegadora();
-        EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
         
         try{
             conn = Conexion.getConnection();
@@ -389,6 +388,7 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             rs.next();
             
             reporteNavegadora.setNavegadora(rs.getString("nombre").concat(" ").concat(rs.getString("primerApellido")).concat(" ").concat(rs.getString("segundoApellido")));
+            reporteNavegadora.setRol((rs.getString("rol")).toUpperCase());
             System.out.println("Llena el bean del 3 store procedure");
             rs.close();
             cstmt.close();

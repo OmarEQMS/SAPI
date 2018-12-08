@@ -72,20 +72,21 @@ public class ReporteNavegadora {
     private String ki67;
     private String masto;
     private String ultra;
+    private String rol;
     public ReporteNavegadora() {
     }
 
     @Override
     public String toString() {
         return "ReporteNavegadora{" + "prz=" + prz + ", nombre=" + nombre + ", edad=" + edad + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero
-                + ", escolaridad=" + escolaridad + ", ciudad=" + ciudad + ", estado=" + estado + ", necesidadesEspeciales=" + necesidadesEspeciales
+                + ", escolaridad=" + escolaridad + ", ciudad=" + ciudad + ", estado=" + estado + ", necesidadesEspeciales=" + necesidadesEspeciales 
                 + ", alergias=" + alergias + ", telefono=" + telefono + ", seguro=" + seguro + ", serieLaminillas=" + serieLaminillas
                 + ", ultrasonidoBiradsFecha=" + ultrasonidoBiradsFecha + ", ultrasonidoBiradsNombre=" + ultrasonidoBiradsNombre
                 + ", mastografiaBiradsFecha=" + mastografiaBiradsFecha + ", mastografiaBiradsNombre=" + mastografiaBiradsNombre
-                + ", cantidadLaminillas=" + cantidadLaminillas + ", tipoPaciente=" + tipoPaciente + ", cirugiaFecha=" + cirugiaFecha
+                + ", cantidadLaminillas=" + cantidadLaminillas + ", tipoPaciente=" + tipoPaciente + ", cirugiaFecha=" + cirugiaFecha 
                 + ", quimioterapiaFecha=" + quimioterapiaFecha + ", navegadora=" + navegadora + ", radioterapiaFecha=" + radioterapiaFecha
                 + ", cirugiaTipo=" + cirugiaTipo + ", resultadoPatologia=" + resultadoPatologia + ", otroResultado=" + otroResultado
-                + ", estadoHormonal=" + estadoHormonal + ", resultado=" + resultado + ", socioeconomico=" + socioeconomico + ", decisionConsulta=" + decisionConsulta 
+                + ", estadoHormonal=" + estadoHormonal + ", resultado=" + resultado + ", socioeconomico=" + socioeconomico + ", decisionConsulta=" + decisionConsulta
                 + ", comentarioIncidencia=" + comentarioIncidencia + ", comentarioMedico=" + comentarioMedico + ", serieParafina=" + serieParafina
                 + ", cantidadParafina=" + cantidadParafina + ", cirugiaComentario=" + cirugiaComentario + ", quimioterapiaComentario=" + quimioterapiaComentario
                 + ", radioterapiaComentario=" + radioterapiaComentario + ", quimioterapiaCiclo=" + quimioterapiaCiclo + ", radioterapiaCiclo=" + radioterapiaCiclo
@@ -93,8 +94,10 @@ public class ReporteNavegadora {
                 + ", medicoAdscrito=" + medicoAdscrito + ", medicoRadiologo=" + medicoRadiologo + ", medicoResidente=" + medicoResidente + ", noAdscrito=" + noAdscrito
                 + ", noRadiologo=" + noRadiologo + ", noSeguro=" + noSeguro + ", fechaFin=" + fechaFin + ", etapaClinica=" + etapaClinica + ", t=" + t + ", n=" + n
                 + ", m=" + m + ", resultadoPatologiaPost=" + resultadoPatologiaPost + ", gradoH=" + gradoH + ", her2=" + her2 + ", fish=" + fish + ", re=" + re
-                + ", rp=" + rp + ", ki67=" + ki67 + ", masto=" + masto + ", ultra=" + ultra + '}';
+                + ", rp=" + rp + ", ki67=" + ki67 + ", masto=" + masto + ", ultra=" + ultra + ", rol=" + rol + '}';
     }
+
+    
 
     public String getNecesidadesEspeciales() {
         return necesidadesEspeciales;
@@ -102,6 +105,14 @@ public class ReporteNavegadora {
 
     public void setNecesidadesEspeciales(String necesidadesEspeciales) {
         this.necesidadesEspeciales = necesidadesEspeciales;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
   
    
