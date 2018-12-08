@@ -533,6 +533,8 @@ public class LoginController extends HttpServlet {
 
             case "recuperarContra": {
 
+                HttpSession sesion = request.getSession(true);
+                sesion.setAttribute("path", "recuperarContrasena.jsp");
                 request.getRequestDispatcher("/WEB-INF/recuperarContrasena.jsp").forward(request, response);
 
                 break;
