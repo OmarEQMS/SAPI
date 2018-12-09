@@ -26,7 +26,7 @@
 
             <!-- Input usuario -->
             <div class="input-group">
-                <input id="user" type="text" value="111111" class="form-control input-usuario mb-2 useFontAwesomeFamily effect3" placeholder="&#xf007; USUARIO" autofocus>
+                <input id="user" type="text" value="555555" class="form-control input-usuario mb-2 useFontAwesomeFamily effect3" placeholder="&#xf007; USUARIO" autofocus>
 
             </div>
 

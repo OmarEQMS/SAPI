@@ -1150,6 +1150,14 @@ $(document).ready(function () {
             case 1:
                 muestra($('#tiene-seguro'));
                 //aqui segun yo debe ir que si es seguro popular muestre el campo
+                
+               // if($('#tiene-seguro').val())
+              if(  $( "#tiene-seguro option:selected" ).text() === 'Seguro Popular ')
+                  
+                    muestra($('#numSeguro'));
+                
+                
+                
                 break;
             case 0:
                 oculta($('#numSeguro'));
