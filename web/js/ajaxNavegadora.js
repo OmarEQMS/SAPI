@@ -3084,7 +3084,9 @@ $(document).ready(function () {
                 if (status == "success") {
                     if (response == "error") {
                         console.log(response);
+                         $('.cargandoFormulario').fadeOut();
                     } else {
+                         $('.cargandoFormulario').fadeOut();
                         document.open("text/html", "replace");
                         document.write(response);
                         document.close();
@@ -5390,8 +5392,8 @@ $(document).ready(function () {
                 $('#programaInit').hide();
             }
 
-
-//3. recorrer el arreglo
+            console.log("Data 11 " + data[11].length);
+//3. recorrer el arreglo 
             for (var i = 0; i < data[11].length; i++) {
                 var fecha = data[11][i].CitaProgramada;
                 fecha = convertDate(fecha);
@@ -5401,7 +5403,7 @@ $(document).ready(function () {
 
 
                     <div class="col-5">
-                        <input name="programaAdded" value="${data[10][i].nombreEstudio}" type="text" id="tipoPrograma" class="form-control" placeholder="Introduce programa">
+                        <input name="programaAdded" value="${data[11][i].EstudioNombre}" type="text" id="tipoPrograma" class="form-control" placeholder="Introduce programa">
                     </div>
 
                     <div class="col-5">
@@ -5694,13 +5696,14 @@ $(document).ready(function () {
                  */
             }
 
-
+            $('.cargandoFormulario').fadeIn();
 
         },
         error: function (request, status, error) {
             console.log("Enviar datos Error " + request.responseText);
             console.log("Enviar datos Error status " + status);
             console.log("Enviar datos Error error" + error);
+            $('.cargandoFormulario').fadeIn();
             //alert("No enontre el controlador" + status);                               
         }
     });
