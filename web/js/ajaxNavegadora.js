@@ -5403,7 +5403,7 @@ $(document).ready(function () {
 
 
                     <div class="col-5">
-                        <input name="programaAdded" value="${data[11][i].EstudioNombre}" type="text" id="tipoPrograma" class="form-control" placeholder="Introduce programa">
+                        <input name="programaAdded" value="${data[11][i].nombreEstudio}" type="text" id="tipoPrograma" class="form-control" placeholder="Introduce programa">
                     </div>
 
                     <div class="col-5">

@@ -397,7 +397,7 @@
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                             <button id="btn-save1" class="btn btn-outline-primary btn-block truncate mb-2" style="border-radius:20px">
 
-                                                <i class="fas fa-save mr-2" ></i><span id="text-save1">Guardar y Continuar Despuós</span></button>
+                                                <i class="fas fa-save mr-2" ></i><span id="text-save1">Guardar y Continuar Después</span></button>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                             <button class="btn btn-outline-success btn-block truncate mb-2" id="btn-continue1" style="border-radius:20px">
@@ -681,7 +681,7 @@
                                                 <div class="form-group form-check">
                                                     <input name="tiene-mastografia" type="checkbox" class="form-check-input" id="tiene-mastografia">
 
-                                                    <label class="form-check-label" for="tiene-mastografia">Mastrografóa</label>
+                                                    <label class="form-check-label" for="tiene-mastografia">Mastrografía</label>
                                                 </div>
 
                                             </div>
@@ -860,7 +860,7 @@
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-8 col-sm-12 col-12">
                                             <button id="btn-save2" class="btn btn-outline-primary btn-block truncate" style="border-radius:20px">
-                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuós</button>
+                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Después</button>
                                         </div>
                                     </div>
                                     <div class="row justify-content-center mt-2">
@@ -1466,7 +1466,7 @@
                                                 <div class="input-group">
                                                     <select name="tipoUSG" class="form-control" id="tipoUSG">
 
-                                                        <option disabled selected>Mastrografóa BI-RADS</option>
+                                                        <option disabled selected>Mastrografía BI-RADS</option>
                                                         <c:forEach items="${listaBirads}" var="birads">  
 
                                                             <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
