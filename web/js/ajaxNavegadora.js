@@ -3300,6 +3300,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaBiopsia', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaBiopsia").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3322,6 +3324,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaRayos', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaRayos").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3344,6 +3348,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaUltrasonido', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaUltra").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3366,6 +3372,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaMedicinaNuclear', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaMNuclear").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3386,8 +3394,12 @@ $(document).ready(function () {
 
     //Laboratorio
     $('body').on('change', '.fechaLaboratorio', function () {
+        
+        
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaMLabo").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3400,7 +3412,7 @@ $(document).ready(function () {
             $(this).css('border', "");
             $(this).css('color', '');
 
-            $(this).parent().parent().find("span.fechaIncorrectaLabo").remove();
+            $(this).parent().parent().find("span.fechaIncorrectaMLabo").remove();
 
         }
 
@@ -3410,6 +3422,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaValoracion', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaValoracion").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3432,6 +3446,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaEspirometria', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaEspirometria").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3454,6 +3470,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaElectrocardiograma', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaElectro").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3476,6 +3494,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaEcocardiograma', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaEco").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3498,6 +3518,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaTrabajoSocial', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaTSocial").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3520,6 +3542,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaPrograma', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaPrograma").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3542,6 +3566,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaOtro', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaOtro").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
