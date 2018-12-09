@@ -4552,22 +4552,22 @@ $(document).ready(function () {
     });
 
     $('body').on('click', '.btn-comentario-cita', function () {
-        var idPotencial = $(this).data('id');
-        alert("SIII");
-        /*
+        var idPotencial = $(this).data('id');;
+
         $.ajax({
             url: 'NavegadoraController',
             cache: false,
             method: 'POST',
             data: {
                 key: 'comentarioCancelacionCita',
-                idPotencial: idPotencial
+                idPaciente: idPotencial
             },
             success: function (response) {
-                console.log(response);                
-                
+                if (response != "SinComentario") {
+                    $('#motivoRechazo').val(response);                    
+                }                
             }
-        });*/
+        });
     });
 
     var data = new FormData();

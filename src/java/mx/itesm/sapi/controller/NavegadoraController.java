@@ -697,6 +697,26 @@ public class NavegadoraController extends HttpServlet {
 
                             break;
                         }
+                        
+                        case "comentarioCancelacionCita": {
+
+                            int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));                            
+
+                            System.out.println("idPaciente: " + idPaciente);
+
+                            ComentarioCitaServicioImpl comentarioCitaServicio = new ComentarioCitaServicioImpl();                           
+                            String comentario = comentarioCitaServicio.obtenerComentarioCitaIdPaciente(idPaciente);                            
+                                                        
+                            PrintWriter out = response.getWriter();
+
+                            if (comentario != null) {
+                                out.print(comentario);
+                            }else{
+                                out.print("SinComentario");
+                            }
+
+                            break;
+                        }
 
                         case "eliminar-paciente": {
 

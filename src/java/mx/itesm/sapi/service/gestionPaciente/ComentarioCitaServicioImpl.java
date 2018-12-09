@@ -227,6 +227,35 @@ public class ComentarioCitaServicioImpl implements ComentarioCitaServicio {
         return exito;
     }
 
+    @Override
+    public String obtenerComentarioCitaIdPaciente(int idPaciente) {
+        Connection conn;
+        CallableStatement cstmt;
+        ResultSet rs;
+        String stProcedure = "CALL obtenerComentarioCitaIdPaciente(?)";
+        String comentarioCita = null;
+
+        try {
+            conn = Conexion.getConnection();            
+            cstmt = conn.prepareCall(stProcedure);
+            cstmt.setInt(1, idPaciente);
+
+            rs = cstmt.executeQuery();
+            rs.next();
+            comentarioCita = rs.getString("comentarioIncidencia");                                   
+
+            conn.close();
+            cstmt.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println(this.getClass().toString().concat(Thread.currentThread().getStackTrace()[1].getMethodName())
+                    .concat(ex.getMessage()));
+            comentarioCita = null;
+        }
+        return comentarioCita;
+    }
+
     
 
 }

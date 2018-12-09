@@ -20,5 +20,5 @@ public interface ComentarioCitaServicio {
     public int agregarComentarioCita(ComentarioCita comentarioCita);
     public boolean borradoLogicoComentarioCita(int idComentarioCita);
     public boolean actualizarComentarioCita(ComentarioCita  comentarioCita);
-    
+    public String obtenerComentarioCitaIdPaciente(int idPaciente);
 }
