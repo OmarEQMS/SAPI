@@ -5,6 +5,7 @@ $(document).ready(function () {
     $('#error-correoRepetidoNavegadora').hide();
     $('#error-camposMotivo').hide();
 
+    $('.commentHidden').hide();
     $('#errorFechaNavegacion').hide();
     $('#errorFechaPre').hide();
     $('#errorDatos').hide();
@@ -4548,6 +4549,25 @@ $(document).ready(function () {
             }
         });
 
+    });
+
+    $('body').on('click', '.btn-comentario-cita', function () {
+        var idPotencial = $(this).data('id');
+        alert("SIII");
+        /*
+        $.ajax({
+            url: 'NavegadoraController',
+            cache: false,
+            method: 'POST',
+            data: {
+                key: 'comentarioCancelacionCita',
+                idPotencial: idPotencial
+            },
+            success: function (response) {
+                console.log(response);                
+                
+            }
+        });*/
     });
 
     var data = new FormData();

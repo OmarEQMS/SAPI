@@ -402,7 +402,8 @@
 
                                                         <td>${pacienteAprobado.fechaRegistro}</td>                  
                                                         <td class="telefono-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.telefono}" > <c:out value="${pacienteAprobado.telefono}"/> </td>
-                                                        <td id="estadoCita-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.nombreEstadoCita}" > <c:out value="${pacienteAprobado.nombreEstadoCita}"/> </td>
+                                                        <td id="estadoCita-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.nombreEstadoCita}" > <c:out value="${pacienteAprobado.nombreEstadoCita}"/> </td>                                                                                                                                                                        
+
                                                         <td>
                                                             <button class="btn btn-info m-1 btn-ver-formulario boton-${pacienteAprobado.idPaciente}" data-id="${pacienteAprobado.idPaciente}" id="btn-ver">
                                                                 <i class="fab fa-wpforms"></i>
@@ -410,9 +411,23 @@
                                                             <button class="btn btn-primary m-1 btn-editar" data-id="${pacienteAprobado.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarPaciente">
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
-                                                            <button class="btn btn-danger m-1 btn-perder-cita" data-id="${pacienteAprobado.idPaciente}" data-toggle="modal" data-target="#modalEliminarUsuario">
-                                                                <i class="fas fa-ban"></i>
-                                                            </button>
+
+                                                            <c:choose>
+                                                                <c:when test="${pacienteAprobado.nombreEstadoCita=='Cancelada'}">
+                                                                    <button class="btn btn-danger m-1 btn-comentario-cita" data-id="${pacienteAprobado.idPaciente}" data-toggle="modal" data-target="#modalComentarioCita">
+                                                                        <i class="far fa-comment-alt"></i>
+                                                                    </button>
+                                                                </c:when>    
+                                                                <c:otherwise>
+                                                                    <button class="btn btn-danger m-1 btn-perder-cita" data-id="${pacienteAprobado.idPaciente}" data-toggle="modal" data-target="#modalEliminarUsuario">
+                                                                        <i class="fas fa-ban"></i>
+                                                                    </button>
+                                                                    <button class="btn btn-danger m-1 btn-comentario-cita commentHidden" id="comentario-${pacienteAprobado.idPaciente}" data-id="${pacienteAprobado.idPaciente}" data-toggle="modal" data-target="#modalComentarioCita">
+                                                                        <i class="far fa-comment-alt"></i>
+                                                                    </button>
+                                                                </c:otherwise>
+                                                            </c:choose>                                                        
+
                                                         </td>
 
                                                     </tr>
@@ -1071,6 +1086,27 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="modal fade" id="modalComentarioCita" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content" id="modal-rechazo">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Razón de rechazo</h5>
+                                <button type="button" class="close clearMotivo" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="col-12 ">
+                                    <textarea class="form-control" id="motivoRechazo" type="text" readonly></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" style="border-radius: 20px" data-dismiss="modal">Aceptar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
         </div>
