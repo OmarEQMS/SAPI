@@ -613,7 +613,10 @@ $(document).ready(function () {
 
                 $('#editarNombreNavegadoraAPaciente').val(data.nombre);
                 $('#editarCurpNavegadoraAPaciente').val(data.curp);
-                $('#editarCumpleNavegadoraAPaciente').val(convertDate3(new Date(data.fechaNacimiento)));
+                var fechaN = data.fechaNacimiento;
+                fechaN = convertDate(fechaN);
+                 $('#editarCumpleNavegadoraAPaciente').val(fechaN);
+                //$('#editarCumpleNavegadoraAPaciente').val(convertDate(new Date(data.fechaNacimiento)));
                 $('#editarPrimer-apellidoNavegadoraAPaciente').val(data.primerApellido);
                 $('#editarSegundo-apellidoNavegadoraAPaciente').val(data.segundoApellido);
                 $('#editarUsuarioNavegadoraAPaciente').val(data.usuario);
