@@ -631,8 +631,8 @@ public class NavegadoraController extends HttpServlet {
                                 PrintWriter out = response.getWriter();
                                 Gson json = new Gson();
                                 System.out.println(json);
-                                System.out.println(ElJeison);
-
+                                System.out.println(ElJeison.toString());
+                                System.out.println("Termina el jeison");
                                 out.print(json.toJson(ElJeison));
                             }
                             break;

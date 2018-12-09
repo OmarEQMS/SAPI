@@ -30,7 +30,7 @@ public class TCodificadoServiceImpl implements TCodificadoService {
         TCodificado tCodificado = null;
         
         //Call del stored procedure
-        String stProcedure="-----";
+        String stProcedure="CALL mostrarTCodificado(?)";
         
         try {    
             conn = Conexion.getConnection();

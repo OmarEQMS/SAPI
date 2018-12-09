@@ -397,7 +397,7 @@
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                             <button id="btn-save1" class="btn btn-outline-primary btn-block truncate mb-2" style="border-radius:20px">
 
-                                                <i class="fas fa-save mr-2" ></i><span id="text-save1">Guardar y Continuar Despuós</span></button>
+                                                <i class="fas fa-save mr-2" ></i><span id="text-save1">Guardar y Continuar Después</span></button>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                             <button class="btn btn-outline-success btn-block truncate mb-2" id="btn-continue1" style="border-radius:20px">
@@ -681,7 +681,7 @@
                                                 <div class="form-group form-check">
                                                     <input name="tiene-mastografia" type="checkbox" class="form-check-input" id="tiene-mastografia">
 
-                                                    <label class="form-check-label" for="tiene-mastografia">Mastrografóa</label>
+                                                    <label class="form-check-label" for="tiene-mastografia">Mastrografía</label>
                                                 </div>
 
                                             </div>
@@ -693,7 +693,7 @@
                                         <div class="form-group row">
                                             <div class="input-group col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-3" id="tiene-mastografiaPrevia">
                                                 <select name="tipoMastografia" class="form-control" id="tipoMastografia">
-                                                    <option disabled selected>Mastrografóa BI-RADS</option>
+                                                    <option disabled selected>Mastrografía BI-RADS</option>
 
                                                     <c:forEach items="${listaBirads}" var="birads">  
                                                         <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
@@ -710,7 +710,7 @@
                                                     </div>
                                                 </div>
 
-                                                <input name="fechaPreMasto" placeholder="Introduce la fecha de mastografóa" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
+                                                <input name="fechaPreMasto" placeholder="Introduce la fecha de mastografía" class="selectStyle form-control textbox-n" type="text" onfocus="(this.type = 'date')"
                                                        id="fechaPreMasto">
                                             </div>
 
@@ -766,12 +766,12 @@
                                         <div class="row mt-4 mb-3">
                                             <div class="col-12">
                                                 <h6 class="display-4 text-secondary" style="font-size:26px;">Resultado o reporte
-                                                    de patologóa:</h6>
+                                                    de patología:</h6>
                                             </div>
                                         </div>
                                         <div class="input-group">
                                             <select name="resultadoAnterior-patologia" class="form-control" id="resultadoAnterior-patologia">
-                                                <option disabled selected>Seleccione Resultado Patologóa:</option>
+                                                <option disabled selected>Seleccione Resultado Patología:</option>
 
                                                 <c:forEach items="${listaTipoHistologico}" var="resultadoPatologia">  
 
@@ -860,7 +860,7 @@
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-8 col-sm-12 col-12">
                                             <button id="btn-save2" class="btn btn-outline-primary btn-block truncate" style="border-radius:20px">
-                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Despuós</button>
+                                                <i class="fas fa-save mr-2" ></i>Guardar y Continuar Después</button>
                                         </div>
                                     </div>
                                     <div class="row justify-content-center mt-2">
@@ -1466,7 +1466,7 @@
                                                 <div class="input-group">
                                                     <select name="tipoUSG" class="form-control" id="tipoUSG">
 
-                                                        <option disabled selected>Mastrografóa BI-RADS</option>
+                                                        <option disabled selected>Mastrografía BI-RADS</option>
                                                         <c:forEach items="${listaBirads}" var="birads">  
 
                                                             <option value='<c:out value="${birads.idBirads}"/>'><c:out value='${birads.nombre}'/> </option>
@@ -1552,11 +1552,11 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
                                                 <div class="form-group">
 
-                                                    <label class="form-check-label" for="etapaClinica">Resultado Patologóa:</label>
+                                                    <label class="form-check-label" for="etapaClinica">Resultado Patología:</label>
                                                 </div>
                                                 <div class="input-group">
                                                     <select name="resultado-patologia" class="form-control" id="resultado-patologia">
-                                                        <option disabled selected>Seleccione Resultado Patologóa:</option>
+                                                        <option disabled selected>Seleccione Resultado Patología:</option>
 
                                                         <c:forEach items="${listaTipoHistologico}" var="resultadoPatologia">  
 
