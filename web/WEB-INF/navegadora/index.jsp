@@ -419,11 +419,8 @@
                                                                     </button>
                                                                 </c:when>    
                                                                 <c:otherwise>
-                                                                    <button class="btn btn-danger m-1 btn-perder-cita" data-id="${pacienteAprobado.idPaciente}" data-toggle="modal" data-target="#modalEliminarUsuario">
+                                                                    <button class="btn btn-danger m-1 btn-perder-cita" id="cancelarCita-${pacienteAprobado.idPaciente}" data-id="${pacienteAprobado.idPaciente}" data-toggle="modal" data-target="#modalEliminarUsuario">
                                                                         <i class="fas fa-ban"></i>
-                                                                    </button>
-                                                                    <button class="btn btn-danger m-1 btn-comentario-cita commentHidden" id="comentario-${pacienteAprobado.idPaciente}" data-id="${pacienteAprobado.idPaciente}" data-toggle="modal" data-target="#modalComentarioCita">
-                                                                        <i class="far fa-comment-alt"></i>
                                                                     </button>
                                                                 </c:otherwise>
                                                             </c:choose>                                                        

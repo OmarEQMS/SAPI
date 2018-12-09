@@ -5,7 +5,6 @@ $(document).ready(function () {
     $('#error-correoRepetidoNavegadora').hide();
     $('#error-camposMotivo').hide();
 
-    $('.commentHidden').hide();
     $('#errorFechaNavegacion').hide();
     $('#errorFechaPre').hide();
     $('#errorDatos').hide();
@@ -900,9 +899,9 @@ $(document).ready(function () {
                                 year + "-" + month + "-" + day,
                                 "<span class='telefono-" + idPaciente + "'>" + $(".telefono-" + idPaciente).html() + "</span>",
                                 "<span id='estadoCita-" + idPaciente + "'>Aprobada</span>",
-                                "<button class='btn btn-info m-1 btn-ver-formulario boton-" + idPaciente + "' data-id=" + idPaciente + " id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
-                                        "<button class='btn btn-primary m-1 btn-editar' data-id=" + idPaciente + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
-                                        "<button class='btn btn-danger m-1 btn-perder-cita' data-id=" + idPaciente + " data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
+                                "<button class='btn btn-info m-1 btn-ver-formulario boton-" + idPaciente + "' data-id='" + idPaciente + "' id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
+                                        "<button class='btn btn-primary m-1 btn-editar' data-id='" + idPaciente + "' id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
+                                        "<button class='btn btn-danger m-1 btn-perder-cita' id='cancelarCita-" + idPaciente + "' data-id='" + idPaciente + "' data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
                             ]).draw(false);
                         } else {
                             t.row.add([
@@ -913,9 +912,9 @@ $(document).ready(function () {
                                 year + "-" + month + "-" + day,
                                 "<span class='telefono-" + idPaciente + "'>" + $(".telefono-" + idPaciente).html() + "</span>",
                                 "<span id='estadoCita-" + idPaciente + "'>Aprobada</span>",
-                                "<button class='btn btn-info m-1 btn-ver-formulario boton-" + idPaciente + "' data-id=" + idPaciente + " id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
-                                        "<button class='btn btn-primary m-1 btn-editar' data-id=" + idPaciente + " id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
-                                        "<button class='btn btn-danger m-1 btn-perder-cita' data-id=" + idPaciente + " data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
+                                "<button class='btn btn-info m-1 btn-ver-formulario boton-" + idPaciente + "' data-id='" + idPaciente + "' id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
+                                        "<button class='btn btn-primary m-1 btn-editar' data-id='" + idPaciente + "' id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
+                                        "<button class='btn btn-danger m-1 btn-perder-cita' id='cancelarCita-" + idPaciente + "' data-id='" + idPaciente + "' data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
                             ]).draw(false);
                         }
 
@@ -4489,6 +4488,8 @@ $(document).ready(function () {
 
     $('body').on('click', '.btn-perder-cita', function () {
         var idPotencial = $(this).data('id');
+        
+        alert(idPotencial);
 
         swal({
             title: '¿Estás segura(o) de cancelar las citas de navegación y preconsulta?',
@@ -4541,18 +4542,24 @@ $(document).ready(function () {
                             });
 
                             $("#estadoCita-" + idPotencial).html("Cancelada");
-                            ;
+                                                                
+                            $("#cancelarCita-" + idPotencial).removeClass('btn-perder-cita');
+                            $("#cancelarCita-" + idPotencial).addClass('btn-comentario-cita');                     
+                            $("#cancelarCita-" + idPotencial).html("");
+                            $("#cancelarCita-" + idPotencial).append("<i class='far fa-comment-alt'></i>");
 
                         }
                     }
                 });
             }
         });
-
     });
 
     $('body').on('click', '.btn-comentario-cita', function () {
         var idPotencial = $(this).data('id');;
+        
+        alert("hola");
+        $("#cancelarCita-" + idPotencial).attr('data-target' , '#modalComentarioCita');
 
         $.ajax({
             url: 'NavegadoraController',
