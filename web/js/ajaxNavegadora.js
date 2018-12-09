@@ -469,7 +469,7 @@ $(document).ready(function () {
                         cache: false,
                         method: 'POST',
                         beforeSend: function () {
-                            $('.cargandoAgregarPaciente').fadeIn();
+                            $('.agregandoPaciente').fadeIn();
                         },
                         data: {
 
@@ -496,7 +496,7 @@ $(document).ready(function () {
 
                         },
                         complete: function () {
-                            $('.cargandoAgregarPaciente').fadeOut();
+                            $('.agregandoPaciente').fadeOut();
                         },
                         success: function (response) {
 
@@ -680,7 +680,7 @@ $(document).ready(function () {
                     url: "AdministradorController",
                     method: "POST",
                     beforeSend: function () {
-                        $('.cargandoEditarPaciente').fadeIn();
+                        $('.cargandoEditar').fadeIn();
                     },
                     cache: false,
                     data: {
@@ -705,7 +705,7 @@ $(document).ready(function () {
 
                     },
                     complete: function () {
-                        $('.cargandoEditarPaciente').fadeOut();
+                        $('.cargandoEditar').fadeOut();
                     },
                     success: function (response) {
 
@@ -839,7 +839,7 @@ $(document).ready(function () {
 
     });
 
-    //Aprobar paciente
+    //Aprobar paciente 
     $('#btn-aceptarDocumento').on('click', function () {
 
         if (!isPastDate($('#Fecha-Navegacion')) && !isPastDate($('#Fecha-Consulta'))
@@ -855,6 +855,12 @@ $(document).ready(function () {
                 url: 'NavegadoraController',
                 cache: false,
                 method: 'POST',
+                beforeSend: function () {
+                    $('.cargandoAceptar').fadeIn();
+                },
+                complete: function () {
+                    $('.cargandoAceptar').fadeOut();
+                },
                 data: {
 
                     key: "aprobar-paciente",
@@ -4555,19 +4561,19 @@ $(document).ready(function () {
         var idPotencial = $(this).data('id');
         alert("SIII");
         /*
-        $.ajax({
-            url: 'NavegadoraController',
-            cache: false,
-            method: 'POST',
-            data: {
-                key: 'comentarioCancelacionCita',
-                idPotencial: idPotencial
-            },
-            success: function (response) {
-                console.log(response);                
-                
-            }
-        });*/
+         $.ajax({
+         url: 'NavegadoraController',
+         cache: false,
+         method: 'POST',
+         data: {
+         key: 'comentarioCancelacionCita',
+         idPotencial: idPotencial
+         },
+         success: function (response) {
+         console.log(response);                
+         
+         }
+         });*/
     });
 
     var data = new FormData();
@@ -6434,44 +6440,6 @@ function isValidDate(input) {
         input.css('border', '1px solid red');
         input.css('color', 'red');
         return false;
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-}
-
-function isValidFutureDate(input) {
-
-
-    let valorSeleccionado = input;
-
-    let date_from = new Date(valorSeleccionado);
-
-    var year2 = date_from.getFullYear();
-    var month2 = date_from.getMonth();
-    var day2 = date_from.getDate();
-
-    date_from = new Date(year2, month2, day2 + 1);
-    date_from.setHours(0);
-
-    console.log("fecha introducida Shannon: " + date_from);
-
-    let today = new Date();
-
-
-    let event = false;
-
-    today <= date_from ? event = false : event = true;
-
-
-    if (!input.val() || event) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
     } else {
         input.css('border', '');
         input.css('color', '');

@@ -85,7 +85,6 @@
         </div>
 
         <div class="cargandoIrARendimiento" id="loading-screen" style="display: none">
-
             <img src="img/loading.svg">
             <p class="clear">Cargando estadísticas, por favor espere..</p>
         </div>
@@ -93,6 +92,21 @@
         <div class="cargandoIrACuenta" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando tus datos, por favor espere...</p>
+        </div>
+        
+        <div class="agregandoPaciente" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Agregando paciente, por favor espere...</p>
+        </div>
+        
+        <div class="cargandoEditar" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Guardando cambios, por favor espere...</p>
+        </div>
+        
+        <div class="cargandoAceptar" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Aceptando al paciente, por favor espere...</p>
         </div>
 
         <div class="wrapper">
@@ -194,7 +208,7 @@
                 <div class="row mb-3">
                     <div class="col-12 text-right">
                         <span class="iconoHome">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-home IrAMiIndex"></i>
                         </span>
                         <span>
                             <a class="colorMoradoLight IrAMiIndex"> Inicio</a>

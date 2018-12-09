@@ -1149,7 +1149,7 @@ $(document).ready(function () {
                 }
         );
     });
-    $('#irAInicioPotencial').on('click', function () {
+    $('.irAInicioPotencial').on('click', function () {
         $.post("SAPI", {
             file: "potencial/index.jsp"
         },
