@@ -1449,21 +1449,75 @@ $(document).ready(function () {
                         console.log("Comentarios del médico");
 
                         var tipoUltrasonidoMama = $('#tipoUltrasonidoMama').val();
-                        if (tipoUltrasonidoMama == null)
-                            tipoUltrasonidoMama = "";
+        if (tipoUltrasonidoMama == null)
+            tipoUltrasonidoMama = "";
+
+        var biradsMasto = $('#ResultadoTipoMastografia').val();
+        if (biradsMasto === null)
+            biradsMasto = "";
+
+        var biradUSG = $('#tipoUSG').val();
+        if (biradUSG === null)
+            biradUSG = "";
 
 
-                        var biradsMasto = $('#ResultadoTipoMastografia').val();
-                        if (biradsMasto === null)
-                            biradsMasto = "";
+        var etapaClinica = $("#etapaClinica").val();
+        if (etapaClinica == null)
+            etapaClinica = "";
 
-                        var biradUSG = $('#tipoUSG').val();
-                        if (biradUSG === null)
-                            biradUSG = "";
+        var resultadoTipoMastografia = $("#ResultadoTipoMastografia").val();
+        if (resultadoTipoMastografia == null)
+            resultadoTipoMastografia = "";
 
-                        var etapaClinica = $("#etapaClinica").val();
-                        if (etapaClinica == null)
-                            etapaClinica = "";
+        var tipoUSG = $("#tipoUSG").val();
+        if (tipoUSG == null)
+            tipoUSG = "";
+
+        var tumorPrimarioT = $("#tumorPrimarioT").val();
+        if (tumorPrimarioT == null)
+            tumorPrimarioT = "";
+
+        var gangliosN = $("#gangliosN").val();
+        if (gangliosN == null)
+            gangliosN = "";
+
+        var metastasisM = $("#metastasisM").val();
+        if (metastasisM == null)
+            metastasisM = "";
+
+        var resultadoPatologia = $("#resultado-patologia").val();
+        if (resultadoPatologia == null)
+            resultadoPatologia = "";
+
+        var gradoHistologico = $("#grado-histologico").val();
+        if (gradoHistologico == null)
+            gradoHistologico = "";
+
+        var receptorHer2 = $("#receptor-her2").val();
+        if (receptorHer2 == null)
+            receptorHer2 = "";
+
+        var receptorFish = $("#receptor-fish").val();
+
+        if (receptorFish == null)
+            receptorFish = "";
+
+        var receptorRe = $("#receptor-re").val();
+        if (receptorRe == null)
+            receptorRe = "";
+
+        var receptorRp = $("#receptor-rp").val();
+        if (receptorRp == null)
+            receptorRp = "";
+
+        var ki67 = $("#ki67").val();
+        if (ki67 == null)
+            ki67 = "";
+
+        var otroResultadoPatologiaPost = $("#otroResultadoPatologiaPost").val();
+        if (otroResultadoPatologiaPost == null)
+            otroResultadoPatologiaPost = "";
+        
 
                         console.log("click on 'btn-save[i]'");
 
