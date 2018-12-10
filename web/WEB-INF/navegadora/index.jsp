@@ -278,8 +278,12 @@
                                                                     <button class="btn btn-success btn-aceptar-potencial m-1" id="aceptar-${paciente.idPaciente}" data-id="${paciente.idPaciente}" data-toggle="modal" data-target="#modalAceptarUsuario">
                                                                         <i class="fas fa-check"></i>
                                                                     </button>
-                                                                </c:when>    
-
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <button class="btn btn-success btn-aceptar-potencial m-1 aceptarHidden" id="aceptar-${paciente.idPaciente}" data-id="${paciente.idPaciente}" data-toggle="modal" data-target="#modalAceptarUsuario">
+                                                                        <i class="fas fa-check"></i>
+                                                                    </button>
+                                                                </c:otherwise>
                                                             </c:choose>
 
                                                             <button class="btn btn-primary btn-editar m-1" data-id="${paciente.idPaciente}" id="btn-editar" data-toggle="modal" data-target="#modalEditarPaciente">
@@ -377,16 +381,16 @@
 
 
                                                         <td>${pacienteAprobado.prz}</td>
-                                                        <td class="nombre-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.nombre}" > <c:out value="${pacienteAprobado.nombre} ${pacienteAprobado.primerApellido} ${pacienteAprobado.segundoApellido}"/> </td>
+                                                        <td class="nombre-${pacienteAprobado.idPaciente}" id="nombre-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.nombre}" > <c:out value="${pacienteAprobado.nombre} ${pacienteAprobado.primerApellido} ${pacienteAprobado.segundoApellido}"/> </td>
 
 
 
                                                         <c:choose>
                                                             <c:when test="${pacienteAprobado.tipoPaciente==1}">
-                                                                <td class="tipo-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.tipoPaciente}" > <c:out value="Segunda Opinión"/> </td>
+                                                                <td class="tipo-${pacienteAprobado.idPaciente}" id="tipo-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.tipoPaciente}" > <c:out value="Segunda Opinión"/> </td>
                                                             </c:when>    
                                                             <c:otherwise>
-                                                                <td class="tipo-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.tipoPaciente}" > <c:out value="Primera vez"/> </td>                                                                
+                                                                <td class="tipo-${pacienteAprobado.idPaciente}" id="tipo-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.tipoPaciente}" > <c:out value="Primera vez"/> </td>                                                                
                                                             </c:otherwise>
                                                         </c:choose>
 
@@ -400,7 +404,7 @@
                                                             </c:otherwise>
                                                         </c:choose>
 
-                                                        <td>${pacienteAprobado.fechaRegistro}</td>                  
+                                                        <td id="fechaRegistro-${pacienteAprobado.idPaciente}">${pacienteAprobado.fechaRegistro}</td>                  
                                                         <td class="telefono-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.telefono}" > <c:out value="${pacienteAprobado.telefono}"/> </td>
                                                         <td id="estadoCita-${pacienteAprobado.idPaciente}" value="${pacienteAprobado.nombreEstadoCita}" > <c:out value="${pacienteAprobado.nombreEstadoCita}"/> </td>                                                                                                                                                                        
 

@@ -5,6 +5,7 @@ $(document).ready(function () {
     $('#error-correoRepetidoNavegadora').hide();
     $('#error-camposMotivo').hide();
 
+    $('.aceptarHidden').hide();
     $('#errorFechaNavegacion').hide();
     $('#errorFechaPre').hide();
     $('#errorDatos').hide();
@@ -839,7 +840,7 @@ $(document).ready(function () {
     });
 
     //Aprobar paciente
-    $('#btn-aceptarDocumento').on('click', function () {
+    $('#btn-aceptarDocumento').on('click', function () {               
 
         if (!isPastDate($('#Fecha-Navegacion')) && !isPastDate($('#Fecha-Consulta'))
                 && isValidSelect($('#tipo-paciente'))) {
@@ -876,6 +877,20 @@ $(document).ready(function () {
                             buttons: [, 'Aceptar'],
                         });
                         $('#modalAceptarUsuario').modal('toggle');
+
+                        var date = new Date($('#Fecha-Navegacion').val());
+                        date.setDate(date.getDate() + 1);
+
+                        var year = date.getFullYear();
+                        var month = date.getMonth() + 1;
+                        var day = date.getDate();
+
+                        if (month < 10)
+                            month = "0" + month;
+
+                        if (day < 10)
+                            day = "0" + day;
+
                         $('#Fecha-Navegacion').val('').attr("type", "text");
                         $('#Fecha-Consulta').val('').attr("type", "text");
                         $('#tipo-paciente').prop('selectedIndex', 0);
@@ -883,40 +898,54 @@ $(document).ready(function () {
                         //Actualizar estado de la primer tabla
                         $("#estado-" + idPaciente).html("Potencial aceptado");
 
-                        //Insertar al paciente en la segunda tabla
-                        var date = new Date($('#Fecha-Navegacion').val());
-                        var year = date.getFullYear();
-                        var month = date.getMonth();
-                        var day = date.getDate();
-                        var t = $('#tabla2').DataTable();
+                        if ($('#nombre-' + idPaciente).val() == null) {
+                            //Insertar al paciente en la segunda tabla                                              
+                            var t = $('#tabla2').DataTable();
 
-                        if ($('#tipo-paciente').val() == 0) {
-                            t.row.add([
-                                "",
-                                "<span class='nombre-" + idPaciente + "'>" + $('.nombre-' + idPaciente).html() + "</span>",
-                                "<span id='tipo-" + idPaciente + "'>Primera vez</span>",
-                                "",
-                                year + "-" + month + "-" + day,
-                                "<span class='telefono-" + idPaciente + "'>" + $(".telefono-" + idPaciente).html() + "</span>",
-                                "<span id='estadoCita-" + idPaciente + "'>Aprobada</span>",
-                                "<button class='btn btn-info m-1 btn-ver-formulario boton-" + idPaciente + "' data-id='" + idPaciente + "' id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
-                                        "<button class='btn btn-primary m-1 btn-editar' data-id='" + idPaciente + "' id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
-                                        "<button class='btn btn-danger m-1 btn-perder-cita' id='cancelarCita-" + idPaciente + "' data-id='" + idPaciente + "' data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
-                            ]).draw(false);
+                            if ($('#tipo-paciente').val() == 0) {
+                                t.row.add([
+                                    "",
+                                    "<span class='nombre-" + idPaciente + "' id='nombre-" + idPaciente + "'>" + $('.nombre-' + idPaciente).html() + "</span>",
+                                    "<span id='tipo-" + idPaciente + "'>Primera vez</span>",
+                                    "",
+                                    "<span id='fechaRegistro-" + idPaciente + "'>" + year + "-" + month + "-" + day + "</span>",
+                                    "<span class='telefono-" + idPaciente + "'>" + $(".telefono-" + idPaciente).html() + "</span>",
+                                    "<span id='estadoCita-" + idPaciente + "'>Aprobada</span>",
+                                    "<button class='btn btn-info m-1 btn-ver-formulario boton-" + idPaciente + "' data-id='" + idPaciente + "' id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
+                                            "<button class='btn btn-primary m-1 btn-editar' data-id='" + idPaciente + "' id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
+                                            "<button class='btn btn-danger m-1 btn-perder-cita' id='cancelarCita-" + idPaciente + "' data-id='" + idPaciente + "' data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
+                                ]).draw(false);
+                            } else {
+                                t.row.add([
+                                    "",
+                                    "<span class='nombre-" + idPaciente + "'>" + $('.nombre-' + idPaciente).html() + "</span>",
+                                    "<span id='tipo-" + idPaciente + "'>Segunda opinión</span>",
+                                    "",
+                                    "<span id='fechaRegistro-" + idPaciente + "'>" + year + "-" + month + "-" + day + "</span>",
+                                    "<span class='telefono-" + idPaciente + "'>" + $(".telefono-" + idPaciente).html() + "</span>",
+                                    "<span id='estadoCita-" + idPaciente + "'>Aprobada</span>",
+                                    "<button class='btn btn-info m-1 btn-ver-formulario boton-" + idPaciente + "' data-id='" + idPaciente + "' id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
+                                            "<button class='btn btn-primary m-1 btn-editar' data-id='" + idPaciente + "' id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
+                                            "<button class='btn btn-danger m-1 btn-perder-cita' id='cancelarCita-" + idPaciente + "' data-id='" + idPaciente + "' data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
+                                ]).draw(false);
+                            }
                         } else {
-                            t.row.add([
-                                "",
-                                "<span class='nombre-" + idPaciente + "'>" + $('.nombre-' + idPaciente).html() + "</span>",
-                                "<span id='tipo-" + idPaciente + "'>Segunda opinión</span>",
-                                "",
-                                year + "-" + month + "-" + day,
-                                "<span class='telefono-" + idPaciente + "'>" + $(".telefono-" + idPaciente).html() + "</span>",
-                                "<span id='estadoCita-" + idPaciente + "'>Aprobada</span>",
-                                "<button class='btn btn-info m-1 btn-ver-formulario boton-" + idPaciente + "' data-id='" + idPaciente + "' id='btn-ver'><i class='fab fa-wpforms'></i></button>" +
-                                        "<button class='btn btn-primary m-1 btn-editar' data-id='" + idPaciente + "' id='btn-editar' data-toggle='modal' data-target='#modalEditarPaciente'><i class='fas fa-edit'></i></button>" +
-                                        "<button class='btn btn-danger m-1 btn-perder-cita' id='cancelarCita-" + idPaciente + "' data-id='" + idPaciente + "' data-toggle='modal' data-target='#modalEliminarUsuario'><i class='fas fa-ban'></i></button>"
-                            ]).draw(false);
+                            if ($('#tipo-paciente').val() == 0) {
+                                $("#tipo-" + idPaciente).html("Primera vez");                                
+                            } else {
+                                $("#tipo-" + idPaciente).html("Segunda opinión");                        
+                            }
+                            $("#fechaRegistro-" + idPaciente).html(year + "-" + month + "-" + day);
+                            $("#estadoCita-" + idPaciente).html("Aprobada");
+                            
+                            $("#cancelarCita-" + idPaciente).addClass('btn-perder-cita');
+                            $("#cancelarCita-" + idPaciente).removeClass('btn-comentario-cita');
+                            $("#cancelarCita-" + idPaciente).html("");
+                            $("#cancelarCita-" + idPaciente).append("<i class='fas fa-ban'></i>");
+                            $("#cancelarCita-" + idPaciente).attr('data-target', '#modalEliminarUsuario');
+
                         }
+
 
                         var boton = $('.boton-' + idPaciente);
                         boton.parent().parent().addClass("table-danger");
@@ -4488,7 +4517,7 @@ $(document).ready(function () {
 
     $('body').on('click', '.btn-perder-cita', function () {
         var idPotencial = $(this).data('id');
-        
+
         alert(idPotencial);
 
         swal({
@@ -4542,12 +4571,13 @@ $(document).ready(function () {
                             });
 
                             $("#estadoCita-" + idPotencial).html("Cancelada");
-                                                                
+
                             $("#cancelarCita-" + idPotencial).removeClass('btn-perder-cita');
-                            $("#cancelarCita-" + idPotencial).addClass('btn-comentario-cita');                     
+                            $("#cancelarCita-" + idPotencial).addClass('btn-comentario-cita');
                             $("#cancelarCita-" + idPotencial).html("");
                             $("#cancelarCita-" + idPotencial).append("<i class='far fa-comment-alt'></i>");
 
+                            $("#aceptar-" + idPotencial).show();
                         }
                     }
                 });
@@ -4556,10 +4586,11 @@ $(document).ready(function () {
     });
 
     $('body').on('click', '.btn-comentario-cita', function () {
-        var idPotencial = $(this).data('id');;
-        
+        var idPotencial = $(this).data('id');
+        ;
+
         alert("hola");
-        $("#cancelarCita-" + idPotencial).attr('data-target' , '#modalComentarioCita');
+        $("#cancelarCita-" + idPotencial).attr('data-target', '#modalComentarioCita');
 
         $.ajax({
             url: 'NavegadoraController',
@@ -4571,8 +4602,8 @@ $(document).ready(function () {
             },
             success: function (response) {
                 if (response != "SinComentario") {
-                    $('#motivoRechazo').val(response);                    
-                }                
+                    $('#motivoRechazo').val(response);
+                }
             }
         });
     });
