@@ -5696,14 +5696,14 @@ $(document).ready(function () {
                  */
             }
 
-            $('.cargandoFormulario').fadeIn();
+            //$('.cargandoFormulario').fadeIn();
 
         },
         error: function (request, status, error) {
             console.log("Enviar datos Error " + request.responseText);
             console.log("Enviar datos Error status " + status);
             console.log("Enviar datos Error error" + error);
-            $('.cargandoFormulario').fadeIn();
+            //$('.cargandoFormulario').fadeIn();
             //alert("No enontre el controlador" + status);                               
         }
     });
