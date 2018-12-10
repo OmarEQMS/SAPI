@@ -259,8 +259,15 @@ public class FrontController extends HttpServlet {
                             case "administrador/rendimientoNavegadora.jsp": {
                                 sesion.setAttribute("path", keyRuta);
 
-                                int idEmpleadoNavegadora = Integer.parseInt(request.getParameter("idNavegadora"));
-
+                                int idEmpleadoNavegadora;
+                                
+                                try{
+                                    idEmpleadoNavegadora = Integer.parseInt(request.getParameter("idNavegadora"));
+                                    sesion.setAttribute("idNavegadora", idEmpleadoNavegadora);
+                                }catch(Exception ex){
+                                    idEmpleadoNavegadora = (int) sesion.getAttribute("idNavegadora");                                            
+                                }
+                                
                                 EmpleadoServicioImpl empleadoServicioImpl = new EmpleadoServicioImpl();
                                 TablaMedicoAdministrador navegadora = empleadoServicioImpl.mostrarMedicoAdministrador(idEmpleadoNavegadora, 4);
 

@@ -504,22 +504,22 @@ public class RendimientoServicioImpl implements RendimientoServicio {
             rs = cstmt.executeQuery();
 
             rs.next();
-            rendimiento1.setDecripcion("Uno");
+            rendimiento1.setDecripcion("1 Uno");
             rendimiento1.setCantidad(rs.getInt("uno"));
             rendimientoPorNivelSocioEconomico.add(rendimiento1);
-            rendimiento2.setDecripcion("Dos");
+            rendimiento2.setDecripcion("2 Dos");
             rendimiento2.setCantidad(rs.getInt("dos"));
             rendimientoPorNivelSocioEconomico.add(rendimiento2);
-            rendimiento3.setDecripcion("Tres");
+            rendimiento3.setDecripcion("3 Tres");
             rendimiento3.setCantidad(rs.getInt("tres"));
             rendimientoPorNivelSocioEconomico.add(rendimiento3);
-            rendimiento4.setDecripcion("Cuatro");
+            rendimiento4.setDecripcion("4 Cuatro");
             rendimiento4.setCantidad(rs.getInt("cuatro"));
             rendimientoPorNivelSocioEconomico.add(rendimiento4);
-            rendimiento5.setDecripcion("Cinco");
+            rendimiento5.setDecripcion("5 Cinco");
             rendimiento5.setCantidad(rs.getInt("cinco"));
             rendimientoPorNivelSocioEconomico.add(rendimiento5);
-            rendimiento6.setDecripcion("Seis");
+            rendimiento6.setDecripcion("6 Seis");
             rendimiento6.setCantidad(rs.getInt("seis"));
             rendimientoPorNivelSocioEconomico.add(rendimiento6);
 
