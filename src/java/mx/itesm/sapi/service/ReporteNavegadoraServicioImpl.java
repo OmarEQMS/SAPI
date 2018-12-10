@@ -110,14 +110,16 @@ public class ReporteNavegadoraServicioImpl implements ReporteNavegadoraServicio{
             }else
                     reporteNavegadora.setEstadoHormonal("");
             
-            if(!(rs.getString("v_tipoSeguro") == null))
+            if(!(rs.getString("v_tipoSeguro") == null)){
                 reporteNavegadora.setSeguro(rs.getString("v_tipoSeguro"));
-            else
+            }else
                 reporteNavegadora.setSeguro("");
             
-            if(!(rs.getString("v_numeroSeguro") == null))
-                reporteNavegadora.setNoSeguro(rs.getString("v_numeroSeguro"));
-            else
+            if( "Seguro Popular".equals(rs.getString("v_tipoSeguro"))){
+                System.out.println("Es seguro popular");
+                if(!"".equals(Integer.toString(rs.getInt("v_numeroSeguro"))) )
+                    reporteNavegadora.setNoSeguro(Integer.toString(rs.getInt("v_numeroSeguro")));
+            }else
                 reporteNavegadora.setNoSeguro("");
             
             if(!(rs.getString("v_mastografiaPreINCAN") == null))
