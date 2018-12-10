@@ -85,7 +85,6 @@
         </div>
 
         <div class="cargandoIrARendimiento" id="loading-screen" style="display: none">
-
             <img src="img/loading.svg">
             <p class="clear">Cargando estadísticas, por favor espere..</p>
         </div>
@@ -93,6 +92,21 @@
         <div class="cargandoIrACuenta" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando tus datos, por favor espere...</p>
+        </div>
+        
+        <div class="agregandoPaciente" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Agregando paciente, por favor espere...</p>
+        </div>
+        
+        <div class="cargandoEditar" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Guardando cambios, por favor espere...</p>
+        </div>
+        
+        <div class="cargandoAceptar" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Aceptando al paciente, por favor espere...</p>
         </div>
 
         <div class="wrapper">
@@ -194,7 +208,7 @@
                 <div class="row mb-3">
                     <div class="col-12 text-right">
                         <span class="iconoHome">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-home IrAMiIndex"></i>
                         </span>
                         <span>
                             <a class="colorMoradoLight IrAMiIndex"> Inicio</a>
@@ -717,7 +731,7 @@
 
                             <div class="form-group row justify-content-center">
                                 <div class="col-12 text-center">
-                                    <a href="documentos/Terminos-y-Condiciones-de-Venta.pdf" download>
+                                    <a href="documentos/Terminos-y-Condiciones-SAPI.pdf" download>
                                         <button type="button" class="btn btn-morado-solid mt-2">Descargar términos y condiciones</button>
                                     </a>
                                 </div>

@@ -45,7 +45,7 @@
         </div>
         <div class="generarReporte" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
-            <p class="clear">Eliminando al paciente, por favor espere...</p>
+            <p class="clear">Generando reporte, por favor espere...</p>
         </div>
         <div class="cargandoIrACalendar" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
@@ -178,7 +178,7 @@
                 <div class="row mb-3">
                     <div class="col-12 text-right">
                         <span class="iconoHome">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-home IrAMiIndex"></i>
                         </span>
                         <span>
                             <a class="colorMoradoLight IrAMiIndex"> Inicio</a>

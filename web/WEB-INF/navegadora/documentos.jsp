@@ -180,7 +180,7 @@
                 <div class="row mb-3">
                     <div class="col-12 text-right">
                         <span class="iconoHome">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-home IrAMiIndex"></i>
                         </span>
                         <span>
                             <a class="colorMoradoLight IrAMiIndex"> Inicio</a>

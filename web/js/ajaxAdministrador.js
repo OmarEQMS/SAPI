@@ -1259,15 +1259,15 @@ $(document).ready(function () {
 
     //PARA ADMINISTRADOR
     var isValidEditEspecialidadAdmin = true;
-    var dato2EditEspecialidadAdmin = $("#editar-especialidadAdministrador");
+    var dato2EditEspecialidadAdmin = $("#editar-especialidadAdministrador"); //id del campo
 
     dato2EditEspecialidadAdmin.on('keyup', function (e) {
-        var option = $('#listEspecialidades option').filter(function () {
-            return this.value === $("#editar-especialidadAdministrador").val();
+        var option = $('#listEspecialidades option').filter(function () { //id de la datalist
+            return this.value === $("#editar-especialidadAdministrador").val(); //id del campo
         }).val();
 
         if (option) {
-            $('#errorEditarEspecialidadAdministrador').hide();
+            $('#errorEditarEspecialidadAdministrador').hide(); //id del mensaje de error
             dato2EditEspecialidadAdmin.css('border', '');
             dato2EditEspecialidadAdmin.css('color', '');
             isValidEditEspecialidadAdmin = true;

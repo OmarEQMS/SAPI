@@ -469,7 +469,7 @@ $(document).ready(function () {
                         cache: false,
                         method: 'POST',
                         beforeSend: function () {
-                            $('.cargandoAgregarPaciente').fadeIn();
+                            $('.agregandoPaciente').fadeIn();
                         },
                         data: {
 
@@ -496,7 +496,7 @@ $(document).ready(function () {
 
                         },
                         complete: function () {
-                            $('.cargandoAgregarPaciente').fadeOut();
+                            $('.agregandoPaciente').fadeOut();
                         },
                         success: function (response) {
 
@@ -613,7 +613,10 @@ $(document).ready(function () {
 
                 $('#editarNombreNavegadoraAPaciente').val(data.nombre);
                 $('#editarCurpNavegadoraAPaciente').val(data.curp);
-                $('#editarCumpleNavegadoraAPaciente').val(convertDate3(new Date(data.fechaNacimiento)));
+                var fechaN = data.fechaNacimiento;
+                fechaN = convertDate(fechaN);
+                 $('#editarCumpleNavegadoraAPaciente').val(fechaN);
+                //$('#editarCumpleNavegadoraAPaciente').val(convertDate(new Date(data.fechaNacimiento)));
                 $('#editarPrimer-apellidoNavegadoraAPaciente').val(data.primerApellido);
                 $('#editarSegundo-apellidoNavegadoraAPaciente').val(data.segundoApellido);
                 $('#editarUsuarioNavegadoraAPaciente').val(data.usuario);
@@ -680,7 +683,7 @@ $(document).ready(function () {
                     url: "AdministradorController",
                     method: "POST",
                     beforeSend: function () {
-                        $('.cargandoEditarPaciente').fadeIn();
+                        $('.cargandoEditar').fadeIn();
                     },
                     cache: false,
                     data: {
@@ -705,7 +708,7 @@ $(document).ready(function () {
 
                     },
                     complete: function () {
-                        $('.cargandoEditarPaciente').fadeOut();
+                        $('.cargandoEditar').fadeOut();
                     },
                     success: function (response) {
 
@@ -839,8 +842,8 @@ $(document).ready(function () {
 
     });
 
-    //Aprobar paciente
-    $('#btn-aceptarDocumento').on('click', function () {               
+
+    $('#btn-aceptarDocumento').on('click', function () {
 
         if (!isPastDate($('#Fecha-Navegacion')) && !isPastDate($('#Fecha-Consulta'))
                 && isValidSelect($('#tipo-paciente'))) {
@@ -855,6 +858,12 @@ $(document).ready(function () {
                 url: 'NavegadoraController',
                 cache: false,
                 method: 'POST',
+                beforeSend: function () {
+                    $('.cargandoAceptar').fadeIn();
+                },
+                complete: function () {
+                    $('.cargandoAceptar').fadeOut();
+                },
                 data: {
 
                     key: "aprobar-paciente",
@@ -4587,9 +4596,7 @@ $(document).ready(function () {
 
     $('body').on('click', '.btn-comentario-cita', function () {
         var idPotencial = $(this).data('id');
-        ;
-
-        alert("hola");
+        
         $("#cancelarCita-" + idPotencial).attr('data-target', '#modalComentarioCita');
 
         $.ajax({
@@ -6472,44 +6479,6 @@ function isValidDate(input) {
         input.css('border', '1px solid red');
         input.css('color', 'red');
         return false;
-    } else {
-        input.css('border', '');
-        input.css('color', '');
-    }
-
-    return true;
-}
-
-function isValidFutureDate(input) {
-
-
-    let valorSeleccionado = input;
-
-    let date_from = new Date(valorSeleccionado);
-
-    var year2 = date_from.getFullYear();
-    var month2 = date_from.getMonth();
-    var day2 = date_from.getDate();
-
-    date_from = new Date(year2, month2, day2 + 1);
-    date_from.setHours(0);
-
-    console.log("fecha introducida Shannon: " + date_from);
-
-    let today = new Date();
-
-
-    let event = false;
-
-    today <= date_from ? event = false : event = true;
-
-
-    if (!input.val() || event) {
-
-        input.css('border', '1px solid red');
-        input.css('color', 'red');
-        return false;
-
     } else {
         input.css('border', '');
         input.css('color', '');

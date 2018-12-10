@@ -153,7 +153,7 @@
 
                 <div class="row mb-3">
                     <div class="col-12 text-right">
-                        <span class="iconoHome mr-2"><i class="fas fa-home"></i></span></span><span><a id="irAInicioPotencial" class="colorMoradoLight">Inicio</a></span>
+                        <span class="iconoHome mr-2"><i class="fas fa-home irAInicioPotencial"></i></span></span><span><a class="colorMoradoLight irAInicioPotencial">Inicio</a></span>
                     </div>
                 </div>
 

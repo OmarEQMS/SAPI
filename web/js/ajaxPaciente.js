@@ -190,7 +190,7 @@ $(document).ready(function () {
         );
     });
     //PARA IR A INICIO PACIENTE
-    $('#irAInicioPaciente').on('click', function () {
+    $('.irAInicioPaciente').on('click', function () {
         $.post("SAPI", {
             file: "paciente/index.jsp"
         },

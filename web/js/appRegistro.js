@@ -19,6 +19,36 @@ $(document).ready(function () {
     oculta(btnRegistro);
     oculta(pantalla2);
     oculta(btnRegresar);
+    
+    $('#nombre').on('change', function () {
+
+        if (isValidName($(this))) {
+            $('#errorNombre').hide();
+        } else if ($(this).val() == '') {
+            $('#errorNombre').hide();
+            $(this).css('border', '');
+            $(this).css('color', '');
+
+        } else {
+            $('#errorNombre').show();
+        }
+
+    });
+    
+    $('#apellido1').on('change', function () {
+
+        if (isValidLastName($(this))) {
+            $('#errorApellidoPaterno').hide();
+        } else if ($(this).val() == '') {
+            $('#errorApellidoPaterno').hide();
+            $(this).css('border', '');
+            $(this).css('color', '');
+
+        } else {
+            $('#errorApellidoPaterno').show();
+        }
+
+    });
 
     //NOMBRE DE USUARIO EN EL REGISTRO
     $('#usuario').on('change', function () {

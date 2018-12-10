@@ -126,10 +126,10 @@
                 <div class="row mb-3">
                     <div class="col-12 text-right">
                         <span class="iconoHome mr-2">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-home irAInicioPaciente"></i>
                         </span>
                         <span>
-                            <a id="irAInicioPaciente" class="colorMoradoLight">Inicio</a>
+                            <a class="colorMoradoLight irAInicioPaciente">Inicio</a>
                         </span>
                         -
                         <span class="colorGlobal">Mis Tratamientos</span>
