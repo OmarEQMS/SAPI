@@ -1713,7 +1713,7 @@ $(document).ready(function () {
                 method: "POST",
                 success: function (response) {
                     
-                    if (response === "success")
+                    if (response === "true")
 
                     {
                         swal({

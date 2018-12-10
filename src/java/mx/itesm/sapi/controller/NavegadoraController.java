@@ -398,6 +398,13 @@ public class NavegadoraController extends HttpServlet {
 
                             boolean rechazado = documentoInicialServicioImpl.agregarRechazoDocumento(idDocumentoInicial, comentario);
                             //ESto es para el correo
+                            PrintWriter out = response.getWriter();
+                            
+                            if(rechazado==true){
+                                out.print("true");
+                            }else{
+                                out.print("false");
+                            }
                            
         
                             int pacientePotencial = (int) sesion.getAttribute("idPacientePotencialAtendido");
