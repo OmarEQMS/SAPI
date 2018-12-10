@@ -27,6 +27,10 @@ $(document).ready(function () {
         eventClick: function (calEvent, jsEvent, view) {
 
             $('#modalVerCita').modal('toggle');
+            
+            console.log(calEvent);
+            
+            $('#nombrePacienteCalendario').html(calEvent.title);
 
         },
         dayClick: function (date) {

@@ -30,7 +30,7 @@ public class EstadisticaServicioImpl implements EstadisticaServicio{
         Rendimiento estadisticaPorMes = new Rendimiento();
 
         //Call del store procedure
-        String stProcedure = "CALL mostrarRendimientoMes(?,?)";
+        String stProcedure = "CALL mostrarEstadisticaMes(?,?)";
 
         try {
             conn = Conexion.getConnection();
@@ -68,7 +68,7 @@ public class EstadisticaServicioImpl implements EstadisticaServicio{
         ArrayList<Rendimiento> estadisticaPorEdad = new ArrayList<>();
 
         //Call del store procedure
-        String stProcedure = "CALL mostrarRendimientoPacientesEdad(?,?)";
+        String stProcedure = "CALL mostrarEstadisticaPacientesEdad(?,?)";
 
         try {
             Rendimiento estadistica1 = new Rendimiento();
@@ -140,7 +140,7 @@ public class EstadisticaServicioImpl implements EstadisticaServicio{
         ArrayList<Rendimiento> estadisticaPorEscolaridad = new ArrayList<>();
 
         //Call del store procedure
-        String stProcedure = "CALL mostrarRendimientoPacientesEscolaridad(?,?)";
+        String stProcedure = "CALL mostrarEstadisticaPacientesEscolaridad(?,?)";
 
         try {
             Rendimiento estadistica1 = new Rendimiento();
@@ -209,7 +209,7 @@ public class EstadisticaServicioImpl implements EstadisticaServicio{
         ArrayList<Rendimiento> estadisticaPorLugarResidencia = new ArrayList<>();
 
         //Call del store procedure
-        String stProcedure = "CALL mostrarRendimientoPacientesEstado(?,?)";
+        String stProcedure = "CALL mostrarEstadisticaPacientesEstado(?,?)";
 
         try {
             Rendimiento estadistica1 = new Rendimiento();
@@ -403,7 +403,7 @@ public class EstadisticaServicioImpl implements EstadisticaServicio{
         ArrayList<Rendimiento> estadisticaPorNivelSocioEconomico = new ArrayList<>();
 
         //Call del store procedure
-        String stProcedure = "CALL mostrarRendimientoPacientesSocioEconomico(?,?)";
+        String stProcedure = "CALL mostrarEstadisticaPacientesSocioEconomico(?,?)";
 
         try {
             Rendimiento estadistica1 = new Rendimiento();
@@ -462,7 +462,7 @@ public class EstadisticaServicioImpl implements EstadisticaServicio{
         ArrayList<Rendimiento> estadisticaPorDecisionPreconsulta = new ArrayList<>();
 
         //Call del store procedure
-        String stProcedure = "CALL mostrarRendimientoPacientesPreconsulta(?,?)";
+        String stProcedure = "CALL mostrarEstadisticaPacientesPreconsulta(?,?)";
 
         try {
             Rendimiento estadistica1 = new Rendimiento();
@@ -517,7 +517,7 @@ public class EstadisticaServicioImpl implements EstadisticaServicio{
         ArrayList<Rendimiento> estadisticaPorResultadoPatologia = new ArrayList<>();
 
         //Call del store procedure
-        String stProcedure = "CALL mostrarRendimientoPacientesDiagnostico(?,?)";
+        String stProcedure = "CALL mostrarEstadisticaPacientesDiagnostico(?,?)";
 
         try {
             Rendimiento estadistica1 = new Rendimiento();

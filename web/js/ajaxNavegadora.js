@@ -3122,7 +3122,9 @@ $(document).ready(function () {
                 if (status == "success") {
                     if (response == "error") {
                         console.log(response);
+                         $('.cargandoFormulario').fadeOut();
                     } else {
+                         $('.cargandoFormulario').fadeOut();
                         document.open("text/html", "replace");
                         document.write(response);
                         document.close();
@@ -3336,6 +3338,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaBiopsia', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaBiopsia").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3358,6 +3362,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaRayos', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaRayos").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3380,6 +3386,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaUltrasonido', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaUltra").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3402,6 +3410,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaMedicinaNuclear', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaMNuclear").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3422,8 +3432,12 @@ $(document).ready(function () {
 
     //Laboratorio
     $('body').on('change', '.fechaLaboratorio', function () {
+        
+        
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaMLabo").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3436,7 +3450,7 @@ $(document).ready(function () {
             $(this).css('border', "");
             $(this).css('color', '');
 
-            $(this).parent().parent().find("span.fechaIncorrectaLabo").remove();
+            $(this).parent().parent().find("span.fechaIncorrectaMLabo").remove();
 
         }
 
@@ -3446,6 +3460,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaValoracion', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaValoracion").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3468,6 +3484,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaEspirometria', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaEspirometria").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3490,6 +3508,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaElectrocardiograma', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaElectro").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3512,6 +3532,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaEcocardiograma', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaEco").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3534,6 +3556,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaTrabajoSocial', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaTSocial").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3556,6 +3580,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaPrograma', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaPrograma").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -3578,6 +3604,8 @@ $(document).ready(function () {
     $('body').on('change', '.fechaOtro', function () {
 
         if (!isValidDate6months($(this))) {
+            
+            $(this).parent().parent().find("span.fechaIncorrectaOtro").remove();
 
             $(this).css('border', "1px solid red");
             $(this).css('color', 'red');
@@ -4272,7 +4300,7 @@ $(document).ready(function () {
 
             //PANTALLA 3
 
-            var ePreconsultaBiopsia = true;
+            //var ePreconsultaBiopsia = true;
             var ePreconsultaRayos = true;
             var ePreconsultaUltrasonido = true;
             var ePreconsultaMedicinaNuclear = true;
@@ -4286,7 +4314,7 @@ $(document).ready(function () {
             var ePreconsultaOtro = true;
 
             //biopsia
-            if ($('#tiene-biopsia').is(':checked')) {
+            /*if ($('#tiene-biopsia').is(':checked')) {
 
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaBiopsia')) || !areValidDynamicSelects(document.querySelectorAll('.tipoBiopsia'))) {
                     $('#biopsia-contenedor').find('span.error-datosFaltantesBiopsia').remove();
@@ -4297,7 +4325,7 @@ $(document).ready(function () {
                     $('#biopsia-contenedor').find('span.error-datosFaltantesBiopsia').remove();
                 }
 
-            }
+            }*/
 
             //rayos x
             if ($('#tiene-rayosX').is(':checked')) {
@@ -4458,7 +4486,7 @@ $(document).ready(function () {
 
 
             if (seguroPopular && tratamientoCirugia && tratamientoQuimioterapia && tratamientoRadioterapia
-                    && estudioMastografia && estudioUltrasonido && otroResultadoPatologia && ePreconsultaBiopsia
+                    && estudioMastografia && estudioUltrasonido && otroResultadoPatologia
                     && ePreconsultaRayos && ePreconsultaUltrasonido && ePreconsultaMedicinaNuclear && ePreconsultaLaboratorio
                     && ePreconsultaValoracion && ePreconsultaEspirometria && ePreconsultaElectrocardiograma
                     && ePreconsultaEcocardiograma && ePreconsultaTrabajoSocial && ePreconsultaPrograma && ePreconsultaOtro
@@ -5455,8 +5483,8 @@ $(document).ready(function () {
                 $('#programaInit').hide();
             }
 
-
-//3. recorrer el arreglo
+            console.log("Data 11 " + data[11].length);
+//3. recorrer el arreglo 
             for (var i = 0; i < data[11].length; i++) {
                 var fecha = data[11][i].CitaProgramada;
                 fecha = convertDate(fecha);
@@ -5466,7 +5494,7 @@ $(document).ready(function () {
 
 
                     <div class="col-5">
-                        <input name="programaAdded" value="${data[10][i].nombreEstudio}" type="text" id="tipoPrograma" class="form-control" placeholder="Introduce programa">
+                        <input name="programaAdded" value="${data[11][i].nombreEstudio}" type="text" id="tipoPrograma" class="form-control" placeholder="Introduce programa">
                     </div>
 
                     <div class="col-5">
@@ -5759,13 +5787,14 @@ $(document).ready(function () {
                  */
             }
 
-
+            //$('.cargandoFormulario').fadeIn();
 
         },
         error: function (request, status, error) {
             console.log("Enviar datos Error " + request.responseText);
             console.log("Enviar datos Error status " + status);
             console.log("Enviar datos Error error" + error);
+            //$('.cargandoFormulario').fadeIn();
             //alert("No enontre el controlador" + status);                               
         }
     });
