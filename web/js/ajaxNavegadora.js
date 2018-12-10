@@ -4620,7 +4620,7 @@ $(document).ready(function () {
     $('body').on('click', '.btn-perder-cita', function () {
         var idPotencial = $(this).data('id');
 
-        alert(idPotencial);
+        //alert(idPotencial);
 
         swal({
             title: '¿Estás segura(o) de cancelar las citas de navegación y preconsulta?',

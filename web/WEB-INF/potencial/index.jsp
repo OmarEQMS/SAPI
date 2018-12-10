@@ -113,7 +113,7 @@
             <!-- PANTALLAS DE CARGA -->
             <div class="loading-screen" id="loading-screen" style="display: none">
                 <img src="img/loading.svg">
-                <p class="clear"></p>
+                <p class="clear">Enviando su solicitud, por favor espere</p>
             </div>
 
             <div class="loading-screenActualizar" id="loading-screen" style="display: none">

@@ -3198,7 +3198,7 @@ $(document).ready(function () {
                                         },
                                         success: function (response) {
                                             if (response == "error") {
-                                                alert("Error al cargar");
+                                                //alert("Error al cargar");
                                             } else {
                                                 t.row(fila).remove().draw();
                                             }
@@ -3958,7 +3958,7 @@ $(document).ready(function () {
                             },
                             success: function (response) {
                                 if (response == "error") {
-                                    alert("Error al cargar");
+                                    //alert("Error al cargar");
                                 } else {
                                     t.row(fila).remove().draw();
                                 }

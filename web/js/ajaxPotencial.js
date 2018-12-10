@@ -494,7 +494,7 @@ $(document).ready(function () {
                                             },
                                             error: function () {
                                                 console.log("error" + xhr.statusText);
-                                                alert("No enontre el controlador" + xhr.statusText);
+                                                //alert("No enontre el controlador" + xhr.statusText);
                                                 console.log("Error SolicitarEstadoPaciente");
                                             }
 
@@ -513,7 +513,7 @@ $(document).ready(function () {
                             }
                         },
                         error: function () {
-                            alert("No enontre el controlador");
+                            //alert("No enontre el controlador");
                         }
 
                     });
@@ -741,7 +741,7 @@ $(document).ready(function () {
                                                                 },
                                                                 error: function () {
                                                                     console.log("error" + xhr.statusText);
-                                                                    alert("No enontre el controlador" + xhr.statusText);
+                                                                    //alert("No enontre el controlador" + xhr.statusText);
                                                                     console.log("Error SolicitarEstadoPaciente");
                                                                 }
                                                             });
@@ -757,7 +757,7 @@ $(document).ready(function () {
                                                 }
                                             },
                                             error: function () {
-                                                alert("No enontre el controlador");
+                                                //alert("No enontre el controlador");
                                             }
                                         });
                                     })
@@ -904,7 +904,7 @@ $(document).ready(function () {
                                                                 },
                                                                 error: function () {
                                                                     console.log("error" + xhr.statusText);
-                                                                    alert("No enontre el controlador" + xhr.statusText);
+                                                                    //alert("No enontre el controlador" + xhr.statusText);
                                                                     console.log("Error SolicitarEstadoPaciente");
                                                                 }
 
@@ -921,7 +921,7 @@ $(document).ready(function () {
                                                 }
                                             },
                                             error: function () {
-                                                alert("No enontre el controlador");
+                                                //alert("No enontre el controlador");
                                             }
                                         });
                                     })
@@ -998,7 +998,7 @@ $(document).ready(function () {
                                 },
                                 error: function () {
                                     console.log("error" + xhr.statusText);
-                                    alert("No enontre el controlador" + xhr.statusText);
+                                    //alert("No enontre el controlador" + xhr.statusText);
                                     console.log("Error SolicitarEstadoPaciente");
                                 }
 
@@ -1016,7 +1016,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                alert("No enontre el controlador");
+                //alert("No enontre el controlador");
             }
 
         });
