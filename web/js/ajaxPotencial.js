@@ -216,7 +216,7 @@ $(document).ready(function () {
             resp = false;
             $('#error-camposMotivo').hide();
         }
-                
+
 
         if (!resp) {
 
@@ -290,7 +290,7 @@ $(document).ready(function () {
             });
         }
     });
-    
+
     $('#cancelarCitaModal').on('click', function () {
         console.log("hola");
         $('#modalVerCitaPreConsulta').modal('toggle');
@@ -961,6 +961,12 @@ $(document).ready(function () {
             enctype: "multipart/form-data",
             processData: false,
             contentType: false,
+            beforeSend: function () {
+                $('.cargandoIrAInicio').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrAInicio').fadeOut();
+            },
             success: function (response) {
 
                 if (response != null) {
@@ -1041,6 +1047,12 @@ $(document).ready(function () {
             url: "PotencialController",
             method: "POST",
             data: {key: "consultarEstadoPreconsulta"},
+            beforeSend: function () {
+                $('.cargandoIrAMisCitas').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrAMisCitas').fadeOut();
+            },
             success: function (response) {
                 $.post("PotencialController", {
                     key: 'obtenerEventos',
@@ -1132,40 +1144,59 @@ $(document).ready(function () {
         });
     });
     $('#irACuenta').on('click', function () {
-        $.post("SAPI", {
-            file: "potencial/cuentaPaciente.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "potencial/cuentaPaciente.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrACuenta').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrACuenta').fadeOut();
+            },
+            success: function (response, status, xhr) {
+                if (status == "success") {
+                    if (response == "error") {
+                        $("#msj-error").show();
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
                     }
                 }
-        );
+            }
+        });
     });
+
     $('.irAInicioPotencial').on('click', function () {
-        $.post("SAPI", {
-            file: "potencial/index.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "potencial/index.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrAInicio').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrAInicio').fadeOut();
+            },
+            success: function (response, status, xhr) {
+                if (status == "success") {
+                    if (response == "error") {
+                        $("#msj-error").show();
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
                     }
                 }
-        );
+            }
+        });
     });
     $('#irACuenta1').on('click', function () {
         $.post("SAPI", {
@@ -1186,23 +1217,31 @@ $(document).ready(function () {
         );
     });
     $('#irAPreguntasFrecuentes').on('click', function () {
-        $.post("SAPI", {
-//CAMBIAR ESTE NOMBRE
-            file: "potencial/preguntasFrecuentes.jsp"
-        },
-                function (response, status, xhr) {
-
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "potencial/preguntasFrecuentes.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrAPreguntas').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrAPreguntas').fadeOut();
+            },
+            success: function (response, status, xhr) {
+                if (status == "success") {
+                    if (response == "error") {
+                        $("#msj-error").show();
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
                     }
                 }
-        );
+            }
+        });
     });
 
     //PARA SALIR DE LA CUENTA
