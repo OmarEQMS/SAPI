@@ -196,15 +196,15 @@
                         <div class="row">
                             <div class="col-12">
                                 <h6 style="font-size:35px;" class="text-center display-4 tituloCitaModal text-primary"><span><strong>Nombre:</strong></span>
-                                    María Suárez Piñón</h6>
+                                    <span id="nombrePacienteCalendario"></span></h6>
                             </div>
                         </div>
 
-                        <div class="row">
+                        <!--<div class="row">
                             <div class="col-12 text-center">
                                 <h6 class="display-4 text-secondary" style="font-size:20px;"><span><strong>PRZ: </strong></span>A01422623</h6>
                             </div>
-                        </div>
+                        </div>-->
 
                     </div>
 
