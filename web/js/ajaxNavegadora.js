@@ -4262,7 +4262,7 @@ $(document).ready(function () {
 
             //PANTALLA 3
 
-            var ePreconsultaBiopsia = true;
+            //var ePreconsultaBiopsia = true;
             var ePreconsultaRayos = true;
             var ePreconsultaUltrasonido = true;
             var ePreconsultaMedicinaNuclear = true;
@@ -4276,7 +4276,7 @@ $(document).ready(function () {
             var ePreconsultaOtro = true;
 
             //biopsia
-            if ($('#tiene-biopsia').is(':checked')) {
+            /*if ($('#tiene-biopsia').is(':checked')) {
 
                 if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaBiopsia')) || !areValidDynamicSelects(document.querySelectorAll('.tipoBiopsia'))) {
                     $('#biopsia-contenedor').find('span.error-datosFaltantesBiopsia').remove();
@@ -4287,7 +4287,7 @@ $(document).ready(function () {
                     $('#biopsia-contenedor').find('span.error-datosFaltantesBiopsia').remove();
                 }
 
-            }
+            }*/
 
             //rayos x
             if ($('#tiene-rayosX').is(':checked')) {
@@ -4448,13 +4448,13 @@ $(document).ready(function () {
 
 
             if (seguroPopular && tratamientoCirugia && tratamientoQuimioterapia && tratamientoRadioterapia
-                    && estudioMastografia && estudioUltrasonido && otroResultadoPatologia && ePreconsultaBiopsia
+                    && estudioMastografia && estudioUltrasonido && otroResultadoPatologia
                     && ePreconsultaRayos && ePreconsultaUltrasonido && ePreconsultaMedicinaNuclear && ePreconsultaLaboratorio
                     && ePreconsultaValoracion && ePreconsultaEspirometria && ePreconsultaElectrocardiograma
                     && ePreconsultaEcocardiograma && ePreconsultaTrabajoSocial && ePreconsultaPrograma && ePreconsultaOtro
                     && pusoResultadoPatologia) {
                 swal("Felicidades!", "Se puede enviar todo!", "success");
-                btnSave(data);
+                //btnSave(data);
             } else {
                 swal({
                     title: "Error",
