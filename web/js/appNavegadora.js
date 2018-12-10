@@ -5,6 +5,8 @@ $(document).ready(function () {
     mostrarContrasena($('#pacienteContrasena'),'contraPaciente');
     mostrarContrasena($('#pacienteContrasenaConfirmacion'),'confContraPaciente');
 
+    $('#nav-formulario').hide();
+
     //Esconder seguros, mastrografía, ultrasonido y tratamientos en la segunda hoja de la pantalla 2
     $('#tiene-seguro').hide();
     $('#tipoMastografia').hide();
@@ -269,6 +271,10 @@ $(document).ready(function () {
         $('#errorFechaPre').hide();
         $('#errorDatos').hide();
         
+    });
+    
+    $('#nav-formulario-tab').on('click', function () {
+        $('#nav-formulario').show();
     });
     
     //Limpiar campos
