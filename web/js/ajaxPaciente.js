@@ -452,6 +452,7 @@ $(document).ready(function () {
                         icon: "error",
                         closeOnEsc: false,
                         closeOnClickOutside: false,
+                        buttons: [, 'Aceptar'],
                     });
                 }
             } else {
@@ -464,6 +465,7 @@ $(document).ready(function () {
                 icon: "error",
                 closeOnEsc: false,
                 closeOnClickOutside: false,
+                buttons: [, 'Aceptar'],
             });
         }
     });
@@ -523,7 +525,7 @@ $(document).ready(function () {
 
                         swal({
                             title: "¡Buen trabajo!",
-                            text: "Tratamiento registrado correctamente",
+                            text: "Tratamiento registrado correctamente.",
                             icon: "success",
                             buttons: true,
                             buttons: [, 'Aceptar'],
@@ -566,6 +568,7 @@ $(document).ready(function () {
                 icon: "error",
                 closeOnEsc: false,
                 closeOnClickOutside: false,
+                buttons: [, 'Aceptar'],
             });
         }
     });
@@ -650,7 +653,7 @@ $(document).ready(function () {
                         $('#modalEditarTerminado').modal('toggle'); //cerrar modal
                         swal({
                             title: "¡Buen trabajo!",
-                            text: "Tratamiento finalizado",
+                            text: "Tratamiento finalizado.",
                             closeOnEsc: false,
                             closeOnClickOutside: false,
                             icon: "success",

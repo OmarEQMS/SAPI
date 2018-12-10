@@ -277,6 +277,7 @@ $(document).ready(function () {
                                         title: "¡Te borraste!",
                                         text: "Hasta pronto.",
                                         icon: "success",
+                                        closeOnEsc: false,
                                         closeOnClickOutside: false,
                                         buttons: [, 'Aceptar'],
                                     }).then((value) => {
@@ -302,6 +303,7 @@ $(document).ready(function () {
                                         title: "¡Buen trabajo!",
                                         text: "El administrador se eliminó correctamente.",
                                         icon: "success",
+                                        closeOnEsc: false,
                                         closeOnClickOutside: false,
                                         buttons: [, 'Aceptar'],
                                     });
@@ -793,7 +795,7 @@ $(document).ready(function () {
         if (isValidPassword($('#password')) && isValidPassword($('#password2')) && areEqualPasswords($('#password'), $('#password2'))) {
             swal({
                 title: "¿Estás seguro que deseas guardar los cambios de tu contraseña?",
-                text: "No podras volver a usar tu contraseña anterior para ingresar",
+                text: "No podrás volver a usar tu contraseña anterior para ingresar",
                 icon: "warning",
                 closeOnEsc: false,
                 closeOnEsc: false,
@@ -816,12 +818,12 @@ $(document).ready(function () {
                                 success: function (response) {
                                     if (response == "success") {
                                         swal({
-                                            title: "Buen trabajo!",
+                                            title: "¡Buen trabajo!",
                                             text: "Contraseña actualizada correctamente!",
                                             icon: "success",
                                             closeOnEsc: false,
                                             closeOnClickOutside: false,
-                                            button: "Entendido!",
+                                            button: "Aceptar",
                                         });
 
                                         //limpia los campos y cierra el modal
@@ -3207,7 +3209,7 @@ $(document).ready(function () {
                                     });
                                 } else {
                                     swal({
-                                        title: "¡No se puede eliminar a este médico!",
+                                        title: "No se puede eliminar a este médico",
                                         text: "El médico tiene pacientes a su cargo. Reasígnalos e intenta nuevamente.",
                                         closeOnEsc: false,
                                         closeOnClickOutside: false,
@@ -4498,7 +4500,7 @@ $(document).ready(function () {
     $('body').on('click', '.btn-reportePoblacion', function () {
 
         swal({
-            title: "¿Está seguro de descargar el reporte?",
+            title: "¿Estás seguro de descargar el reporte?",
             text: "Este proceso puede ser tardado.",
             icon: "warning",
             closeOnEsc: false,
@@ -4523,8 +4525,8 @@ $(document).ready(function () {
     $('body').on('click', '.btn-actualizarReportePoblacion', function () {
 
         swal({
-            title: "¿Está seguro de actualizar el reporte?",
-            text: "Este proceso es tardado.",
+            title: "¿Estás seguro de actualizar el reporte?",
+            text: "Este proceso puede ser tardado.",
             icon: "warning",
             closeOnEsc: false,
             closeOnClickOutside: false,
@@ -4579,7 +4581,7 @@ $(document).ready(function () {
 
 
         swal({
-            title: '¿Estás seguro de reasignar todos los pacientes a este otro médico?',
+            title: '¿Estás seguro de reasignar todos los pacientes?',
             text: "Todos los pacientes serán transferidos a otro médico.",
             closeOnEsc: false,
             closeOnClickOutside: false,
@@ -4654,6 +4656,8 @@ $(document).ready(function () {
             title: "¿Estás seguro?",
             text: "Los datos se eliminarán y no podrás recuperarlos.",
             icon: "warning",
+            closeOnEsc: false,
+            closeOnClickOutside: false,
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true,

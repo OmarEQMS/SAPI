@@ -300,7 +300,7 @@ $(document).ready(function () {
 //Modal borrar sintoma
         swal({
             title: "¿Estás segura(o) que deseas cancelar la cita?",
-            text: "Tendrás que reiniciar tu solicitud de preconsulta ya que se cancelarán ambas citas.",
+            text: "Tendrás que reiniciar tu solicitud de preconsulta y se cancelarán ambas citas.",
             icon: "warning",
             buttons: true,
             closeOnEsc: false,

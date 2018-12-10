@@ -399,9 +399,11 @@ $(document).ready(function () {
     //Reporte Jaspersoft
     $('body').on('click', '#btn-export1', function () {
         swal({
-            title: "Asegurese de haber guardado los cambios",
-            text: "¿Desea generar el reporte?",
+            title: "Asegúrate de haber guardado los cambios.",
+            text: "¿Deseas generar el reporte?",
             icon: "warning",
+            closeOnEsc: false,
+            closeOnClickOutside: false,
             buttons: true,
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true
@@ -422,10 +424,12 @@ $(document).ready(function () {
     });
     $('body').on('click', '#btn-export2', function () {
         swal({
-            title: "Asegurese de haber guardado los cambios",
-            text: "¿Desea generar el reporte?",
+            title: "Asegúrate de haber guardado los cambios.",
+            text: "¿Deseas generar el reporte?",
             icon: "warning",
             buttons: true,
+            closeOnEsc: false,
+            closeOnClickOutside: false,
             buttons: ['Cancelar', 'Aceptar'],
             dangerMode: true
         })
@@ -615,7 +619,7 @@ $(document).ready(function () {
                 $('#editarCurpNavegadoraAPaciente').val(data.curp);
                 var fechaN = data.fechaNacimiento;
                 fechaN = convertDate(fechaN);
-                 $('#editarCumpleNavegadoraAPaciente').val(fechaN);
+                $('#editarCumpleNavegadoraAPaciente').val(fechaN);
                 //$('#editarCumpleNavegadoraAPaciente').val(convertDate(new Date(data.fechaNacimiento)));
                 $('#editarPrimer-apellidoNavegadoraAPaciente').val(data.primerApellido);
                 $('#editarSegundo-apellidoNavegadoraAPaciente').val(data.segundoApellido);
@@ -713,7 +717,7 @@ $(document).ready(function () {
                     success: function (response) {
 
                         swal({
-                            title: "Cambios guardados correctamente",
+                            title: "Cambios guardados correctamente.",
                             icon: "success",
                             closeOnEsc: false,
                             closeOnClickOutside: false,
@@ -940,13 +944,13 @@ $(document).ready(function () {
                             }
                         } else {
                             if ($('#tipo-paciente').val() == 0) {
-                                $("#tipo-" + idPaciente).html("Primera vez");                                
+                                $("#tipo-" + idPaciente).html("Primera vez");
                             } else {
-                                $("#tipo-" + idPaciente).html("Segunda opinión");                        
+                                $("#tipo-" + idPaciente).html("Segunda opinión");
                             }
                             $("#fechaRegistro-" + idPaciente).html(year + "-" + month + "-" + day);
                             $("#estadoCita-" + idPaciente).html("Aprobada");
-                            
+
                             $("#cancelarCita-" + idPaciente).addClass('btn-perder-cita');
                             $("#cancelarCita-" + idPaciente).removeClass('btn-comentario-cita');
                             $("#cancelarCita-" + idPaciente).html("");
@@ -1449,75 +1453,75 @@ $(document).ready(function () {
                         console.log("Comentarios del médico");
 
                         var tipoUltrasonidoMama = $('#tipoUltrasonidoMama').val();
-        if (tipoUltrasonidoMama == null)
-            tipoUltrasonidoMama = "";
+                        if (tipoUltrasonidoMama == null)
+                            tipoUltrasonidoMama = "";
 
-        var biradsMasto = $('#ResultadoTipoMastografia').val();
-        if (biradsMasto === null)
-            biradsMasto = "";
+                        var biradsMasto = $('#ResultadoTipoMastografia').val();
+                        if (biradsMasto === null)
+                            biradsMasto = "";
 
-        var biradUSG = $('#tipoUSG').val();
-        if (biradUSG === null)
-            biradUSG = "";
+                        var biradUSG = $('#tipoUSG').val();
+                        if (biradUSG === null)
+                            biradUSG = "";
 
 
-        var etapaClinica = $("#etapaClinica").val();
-        if (etapaClinica == null)
-            etapaClinica = "";
+                        var etapaClinica = $("#etapaClinica").val();
+                        if (etapaClinica == null)
+                            etapaClinica = "";
 
-        var resultadoTipoMastografia = $("#ResultadoTipoMastografia").val();
-        if (resultadoTipoMastografia == null)
-            resultadoTipoMastografia = "";
+                        var resultadoTipoMastografia = $("#ResultadoTipoMastografia").val();
+                        if (resultadoTipoMastografia == null)
+                            resultadoTipoMastografia = "";
 
-        var tipoUSG = $("#tipoUSG").val();
-        if (tipoUSG == null)
-            tipoUSG = "";
+                        var tipoUSG = $("#tipoUSG").val();
+                        if (tipoUSG == null)
+                            tipoUSG = "";
 
-        var tumorPrimarioT = $("#tumorPrimarioT").val();
-        if (tumorPrimarioT == null)
-            tumorPrimarioT = "";
+                        var tumorPrimarioT = $("#tumorPrimarioT").val();
+                        if (tumorPrimarioT == null)
+                            tumorPrimarioT = "";
 
-        var gangliosN = $("#gangliosN").val();
-        if (gangliosN == null)
-            gangliosN = "";
+                        var gangliosN = $("#gangliosN").val();
+                        if (gangliosN == null)
+                            gangliosN = "";
 
-        var metastasisM = $("#metastasisM").val();
-        if (metastasisM == null)
-            metastasisM = "";
+                        var metastasisM = $("#metastasisM").val();
+                        if (metastasisM == null)
+                            metastasisM = "";
 
-        var resultadoPatologia = $("#resultado-patologia").val();
-        if (resultadoPatologia == null)
-            resultadoPatologia = "";
+                        var resultadoPatologia = $("#resultado-patologia").val();
+                        if (resultadoPatologia == null)
+                            resultadoPatologia = "";
 
-        var gradoHistologico = $("#grado-histologico").val();
-        if (gradoHistologico == null)
-            gradoHistologico = "";
+                        var gradoHistologico = $("#grado-histologico").val();
+                        if (gradoHistologico == null)
+                            gradoHistologico = "";
 
-        var receptorHer2 = $("#receptor-her2").val();
-        if (receptorHer2 == null)
-            receptorHer2 = "";
+                        var receptorHer2 = $("#receptor-her2").val();
+                        if (receptorHer2 == null)
+                            receptorHer2 = "";
 
-        var receptorFish = $("#receptor-fish").val();
+                        var receptorFish = $("#receptor-fish").val();
 
-        if (receptorFish == null)
-            receptorFish = "";
+                        if (receptorFish == null)
+                            receptorFish = "";
 
-        var receptorRe = $("#receptor-re").val();
-        if (receptorRe == null)
-            receptorRe = "";
+                        var receptorRe = $("#receptor-re").val();
+                        if (receptorRe == null)
+                            receptorRe = "";
 
-        var receptorRp = $("#receptor-rp").val();
-        if (receptorRp == null)
-            receptorRp = "";
+                        var receptorRp = $("#receptor-rp").val();
+                        if (receptorRp == null)
+                            receptorRp = "";
 
-        var ki67 = $("#ki67").val();
-        if (ki67 == null)
-            ki67 = "";
+                        var ki67 = $("#ki67").val();
+                        if (ki67 == null)
+                            ki67 = "";
 
-        var otroResultadoPatologiaPost = $("#otroResultadoPatologiaPost").val();
-        if (otroResultadoPatologiaPost == null)
-            otroResultadoPatologiaPost = "";
-        
+                        var otroResultadoPatologiaPost = $("#otroResultadoPatologiaPost").val();
+                        if (otroResultadoPatologiaPost == null)
+                            otroResultadoPatologiaPost = "";
+
 
                         console.log("click on 'btn-save[i]'");
 
@@ -2018,7 +2022,7 @@ $(document).ready(function () {
                             closeOnEsc: false,
                             closeOnClickOutside: false,
                             icon: "success",
-                            button: "Aceptar",
+                            buttons: [, 'Aceptar'],
                         })
 
                         $.post("SAPI", {
@@ -2060,7 +2064,7 @@ $(document).ready(function () {
                 closeOnEsc: false,
                 closeOnClickOutside: false,
                 icon: "error",
-                button: "Aceptar",
+                buttons: [, 'Aceptar'],
             });
         }
     });
@@ -3176,9 +3180,9 @@ $(document).ready(function () {
                 if (status == "success") {
                     if (response == "error") {
                         console.log(response);
-                         $('.cargandoFormulario').fadeOut();
+                        $('.cargandoFormulario').fadeOut();
                     } else {
-                         $('.cargandoFormulario').fadeOut();
+                        $('.cargandoFormulario').fadeOut();
                         document.open("text/html", "replace");
                         document.write(response);
                         document.close();
@@ -3392,7 +3396,7 @@ $(document).ready(function () {
     $('body').on('change', '.fechaBiopsia', function () {
 
         if (!isValidDate6months($(this))) {
-            
+
             $(this).parent().parent().find("span.fechaIncorrectaBiopsia").remove();
 
             $(this).css('border', "1px solid red");
@@ -3416,7 +3420,7 @@ $(document).ready(function () {
     $('body').on('change', '.fechaRayos', function () {
 
         if (!isValidDate6months($(this))) {
-            
+
             $(this).parent().parent().find("span.fechaIncorrectaRayos").remove();
 
             $(this).css('border', "1px solid red");
@@ -3440,7 +3444,7 @@ $(document).ready(function () {
     $('body').on('change', '.fechaUltrasonido', function () {
 
         if (!isValidDate6months($(this))) {
-            
+
             $(this).parent().parent().find("span.fechaIncorrectaUltra").remove();
 
             $(this).css('border', "1px solid red");
@@ -3464,7 +3468,7 @@ $(document).ready(function () {
     $('body').on('change', '.fechaMedicinaNuclear', function () {
 
         if (!isValidDate6months($(this))) {
-            
+
             $(this).parent().parent().find("span.fechaIncorrectaMNuclear").remove();
 
             $(this).css('border', "1px solid red");
@@ -3486,11 +3490,11 @@ $(document).ready(function () {
 
     //Laboratorio
     $('body').on('change', '.fechaLaboratorio', function () {
-        
-        
+
+
 
         if (!isValidDate6months($(this))) {
-            
+
             $(this).parent().parent().find("span.fechaIncorrectaMLabo").remove();
 
             $(this).css('border', "1px solid red");
@@ -3514,7 +3518,7 @@ $(document).ready(function () {
     $('body').on('change', '.fechaValoracion', function () {
 
         if (!isValidDate6months($(this))) {
-            
+
             $(this).parent().parent().find("span.fechaIncorrectaValoracion").remove();
 
             $(this).css('border', "1px solid red");
@@ -3538,7 +3542,7 @@ $(document).ready(function () {
     $('body').on('change', '.fechaEspirometria', function () {
 
         if (!isValidDate6months($(this))) {
-            
+
             $(this).parent().parent().find("span.fechaIncorrectaEspirometria").remove();
 
             $(this).css('border', "1px solid red");
@@ -3562,7 +3566,7 @@ $(document).ready(function () {
     $('body').on('change', '.fechaElectrocardiograma', function () {
 
         if (!isValidDate6months($(this))) {
-            
+
             $(this).parent().parent().find("span.fechaIncorrectaElectro").remove();
 
             $(this).css('border', "1px solid red");
@@ -3586,7 +3590,7 @@ $(document).ready(function () {
     $('body').on('change', '.fechaEcocardiograma', function () {
 
         if (!isValidDate6months($(this))) {
-            
+
             $(this).parent().parent().find("span.fechaIncorrectaEco").remove();
 
             $(this).css('border', "1px solid red");
@@ -3610,7 +3614,7 @@ $(document).ready(function () {
     $('body').on('change', '.fechaTrabajoSocial', function () {
 
         if (!isValidDate6months($(this))) {
-            
+
             $(this).parent().parent().find("span.fechaIncorrectaTSocial").remove();
 
             $(this).css('border', "1px solid red");
@@ -3634,7 +3638,7 @@ $(document).ready(function () {
     $('body').on('change', '.fechaPrograma', function () {
 
         if (!isValidDate6months($(this))) {
-            
+
             $(this).parent().parent().find("span.fechaIncorrectaPrograma").remove();
 
             $(this).css('border', "1px solid red");
@@ -3658,7 +3662,7 @@ $(document).ready(function () {
     $('body').on('change', '.fechaOtro', function () {
 
         if (!isValidDate6months($(this))) {
-            
+
             $(this).parent().parent().find("span.fechaIncorrectaOtro").remove();
 
             $(this).css('border', "1px solid red");
@@ -4369,17 +4373,17 @@ $(document).ready(function () {
 
             //biopsia
             /*if ($('#tiene-biopsia').is(':checked')) {
-
-                if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaBiopsia')) || !areValidDynamicSelects(document.querySelectorAll('.tipoBiopsia'))) {
-                    $('#biopsia-contenedor').find('span.error-datosFaltantesBiopsia').remove();
-                    ePreconsultaBiopsia = false;
-                    $('#biopsia-contenedor').append('<span class="text-danger error-datosFaltantesBiopsia">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
-                } else {
-                    ePreconsultaBiopsia = true;
-                    $('#biopsia-contenedor').find('span.error-datosFaltantesBiopsia').remove();
-                }
-
-            }*/
+             
+             if (!areValidDynamicNonemptyDates(document.querySelectorAll('.fechaBiopsia')) || !areValidDynamicSelects(document.querySelectorAll('.tipoBiopsia'))) {
+             $('#biopsia-contenedor').find('span.error-datosFaltantesBiopsia').remove();
+             ePreconsultaBiopsia = false;
+             $('#biopsia-contenedor').append('<span class="text-danger error-datosFaltantesBiopsia">Completa todo los tipos de cuerpo y las fechas para continuar</span>');
+             } else {
+             ePreconsultaBiopsia = true;
+             $('#biopsia-contenedor').find('span.error-datosFaltantesBiopsia').remove();
+             }
+             
+             }*/
 
             //rayos x
             if ($('#tiene-rayosX').is(':checked')) {
@@ -4545,7 +4549,14 @@ $(document).ready(function () {
                     && ePreconsultaValoracion && ePreconsultaEspirometria && ePreconsultaElectrocardiograma
                     && ePreconsultaEcocardiograma && ePreconsultaTrabajoSocial && ePreconsultaPrograma && ePreconsultaOtro
                     && pusoResultadoPatologia) {
-                swal("Felicidades!", "Se puede enviar todo!", "success");
+                swal({
+                    title: "¡Buen trabajo!",
+                    text: "Se puede enviar todo.",
+                    icon: "success",
+                    closeOnEsc: false,
+                    closeOnClickOutside: false,
+                    button: "Aceptar",
+                });
                 btnSave(data);
             } else {
                 swal({
@@ -4644,7 +4655,7 @@ $(document).ready(function () {
                         {
                             swal({
                                 title: "Error",
-                                text: "Ha habido un error al cancelar las citas de navegación y preconsulta.",
+                                text: "Error al cancelar las citas de navegación y preconsulta.",
                                 icon: "error",
                                 closeOnEsc: false,
                                 closeOnClickOutside: false,
@@ -4678,7 +4689,7 @@ $(document).ready(function () {
 
     $('body').on('click', '.btn-comentario-cita', function () {
         var idPotencial = $(this).data('id');
-        
+
         $("#cancelarCita-" + idPotencial).attr('data-target', '#modalComentarioCita');
 
         $.ajax({
