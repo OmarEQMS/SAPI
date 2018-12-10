@@ -14,6 +14,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>SAPI | Médicos</title>
+        <link rel="icon" href="img/logo-cancer.ico">
 
 
         <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />

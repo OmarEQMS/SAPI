@@ -14,7 +14,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>Rendimiento: ${sessionScope.nombreNavegadora} ${sessionScope.primerApellidoNavegadora}</title>
-
+        <link rel="icon" href="img/logo-cancer.ico">
 
         <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link href="lib/fontawesome/css/all.css" rel="stylesheet" />
