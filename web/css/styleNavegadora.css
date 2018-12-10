@@ -5,11 +5,14 @@
     GENERALES
 ----------------------------------------------------- */
 p.clear {
+    position: absolute;
+    top: 50%;
+    width: 100%;
     clear: both;
     color: #fff;
     text-align: center;
     margin: auto;
-    padding: 530px 0;
+    /*padding: 530px 0;*/
     font-size: 20px;
 }
 
@@ -27,16 +30,16 @@ p.clear {
     width: 100px;
     height: 100px;
     position: fixed;
-    margin-top: -50px;
+    margin-top: -105px;
     margin-left: -50px;
     top: 50%;
     text-align: center;
 }
 
 button.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 p.clear {
@@ -75,16 +78,16 @@ p.clear {
     background-color: #007bff;
     font-size: 15px;
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
-  }
+}
 
-  .swal-button--cancel {
+.swal-button--cancel {
     padding: 7px 19px;
     border-radius: 25px;
     color: #fff;
     background-color: #dc3545;
     font-size: 15px;
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
-  }
+}
 
 .tooltip_templates { display: none; }
 
@@ -344,7 +347,7 @@ a.article:hover {
 .btn:focus,.btn:active {
     outline: none !important;
     box-shadow: none;
- }
+}
 
 .navbar {
     padding: 15px 10px;
@@ -395,8 +398,8 @@ a.article:hover {
 /* BORREN ESTE COMENTARIO Y APARTIR DE AQUI COMIENZAN A ESCRIBIR LOS ESTILOS */
 
 .tituloPacientes{
-  font-size: 40px;
-  color: #696f71
+    font-size: 40px;
+    color: #696f71
 }
 
 .editar-imagen{
@@ -424,7 +427,7 @@ a.article:hover {
     -webkit-box-shadow: 0px 2px 26px 2px rgba(0,0,0,0.34);
     -moz-box-shadow: 0px 2px 26px 2px rgba(0,0,0,0.34);
     box-shadow: 0px 2px 26px 2px rgba(0,0,0,0.34);  
-    
+
 }
 
 .icono-info:hover{
@@ -471,7 +474,7 @@ a.article:hover {
 .iconosD{
     color:#42E73A;
     font-size: 35px;
-   
+
 }
 
 .iconoComentarios{
@@ -497,7 +500,7 @@ a.article:hover {
 }
 
 .edit-image:hover{
-    
+
 }
 
 /* ---------------------------------------------------

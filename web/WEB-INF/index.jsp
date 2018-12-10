@@ -62,8 +62,8 @@
         </form>
 
         <div id="loading-screen" style="display: none">
-            <img src="img/loading.svg">
-            <p class="clear">Iniciando sesión, por favor espere...</p>
+                <img src="img/loading.svg">
+                <p class="clear">Iniciando sesión, por favor espere...</p>
         </div>
 
         <script src="lib/jquery/jquery-3.3.1.js"></script>

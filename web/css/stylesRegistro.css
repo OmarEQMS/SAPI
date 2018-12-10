@@ -4,11 +4,14 @@
 /* GENERALES */
 
 p.clear {
+    position: absolute;
+    top: 50%;
+    width: 100%;
     clear: both;
     color: #fff;
     text-align: center;
     margin: auto;
-    padding: 530px 0;
+    /*padding: 530px 0;*/
     font-size: 20px;
 }
 
@@ -26,29 +29,29 @@ p.clear {
     width: 100px;
     height: 100px;
     position: fixed;
-    margin-top: -50px;
+    margin-top: -105px;
     margin-left: -50px;
     top: 50%;
     text-align: center;
 }
 
 body {
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: flex;
-  -ms-flex-align: center;
-  -ms-flex-pack: center;
-  -webkit-box-align: center;
-  box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  box-pack: center;
-  justify-content: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background: url("../img/fondo2.jpg");
-  height: 100vh;
-  background-size: cover;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-align: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    box-pack: center;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background: url("../img/fondo2.jpg");
+    height: 100vh;
+    background-size: cover;
 }
 
 .swal-button--segundaOpinion {
@@ -58,16 +61,16 @@ body {
     background-color: #007bff;
     font-size: 15px;
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
-  }
+}
 
-  .swal-button--primeraVez {
+.swal-button--primeraVez {
     padding: 7px 19px;
     border-radius: 20px;
     color: #fff;
     background-color: #dc3545;
     font-size: 15px;
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
-  }
+}
 
 .swal-button--confirm {
     padding: 7px 19px;
@@ -76,40 +79,40 @@ body {
     background-color: #007bff;
     font-size: 15px;
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
-  }
+}
 
-  .swal-button--cancel {
+.swal-button--cancel {
     padding: 7px 19px;
     border-radius: 25px;
     color: #fff;
     background-color: #dc3545;
     font-size: 15px;
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
-  }
+}
 
 /* FORMULARIO */
 
 .formulario {
-  width: 100%;
-  max-width: 600px;
-  padding: 40px;
-  margin: 0 auto;
-  background: rgba(255,255,255,0.8);
-  -webkit-box-shadow: 1px 0px 29px -9px rgba(0,0,0,0.17);
-  -moz-box-shadow: 1px 0px 29px -9px rgba(0,0,0,0.17);
-  box-shadow: 1px 0px 29px -9px rgba(0,0,0,0.17);
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.8);
+    -webkit-box-shadow: 1px 0px 29px -9px rgba(0,0,0,0.17);
+    -moz-box-shadow: 1px 0px 29px -9px rgba(0,0,0,0.17);
+    box-shadow: 1px 0px 29px -9px rgba(0,0,0,0.17);
 }
 
 .formulario .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
 }
 
 .formulario .form-control:focus {
-  z-index: 2;
+    z-index: 2;
 }
 
 /* INPUTS */
@@ -129,13 +132,13 @@ input::-webkit-input-placeholder {
 }
 
 .form-control:focus {
-  border-color: inherit;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 .fa-user-circle-o{
-  color: gray;
+    color: gray;
 }
 
 .useFontAwesomeFamily::-webkit-input-placeholder { /* WebKit, Blink, Edge */
@@ -190,7 +193,7 @@ select{
     margin: auto;
     letter-spacing: 1px;
     background-color:rgb(252, 57, 85) !important;
-    
+
 }
 
 .btn-continuar{
