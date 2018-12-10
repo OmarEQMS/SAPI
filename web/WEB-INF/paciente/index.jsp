@@ -41,6 +41,21 @@
     </head>
 
     <body>
+        
+        <div class="cargandoIrAMisCitas" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando el calendario, por favor espere...</p>
+        </div>
+        
+        <div class="cargandoIrACuenta" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando tus datos, por favor espere...</p>
+        </div>
+        
+        <div class="cargandoIrATratamientos" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Cargando tratamientos, por favor espere..</p>
+        </div> 
 
         <div class="wrapper">
 

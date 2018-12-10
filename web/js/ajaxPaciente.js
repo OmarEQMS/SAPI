@@ -172,84 +172,120 @@ $(document).ready(function () {
     });
     //PARA IR A LA CUENTA
     $('.irACuenta').on('click', function () {
-        $.get("SAPI", {
-            file: "paciente/cuenta.jsp"
-        },
-                function (response, status, xhr) {
-                    //console.log(response);
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "paciente/cuenta.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrACuenta').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrACuenta').fadeOut();
+            },
+            success: function (response, status, xhr) {
+                if (status == "success") {
+                    if (response == "error") {
+                        $("#msj-error").show();
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
                     }
                 }
-        );
+            }
+        });
     });
     //PARA IR A INICIO PACIENTE
     $('.irAInicioPaciente').on('click', function () {
-        $.post("SAPI", {
-            file: "paciente/index.jsp"
-        },
-                function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "paciente/index.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrAMisCitas').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrAMisCitas').fadeOut();
+            },
+            success: function (response, status, xhr) {
+                if (status == "success") {
+                    if (response == "error") {
+                        $("#msj-error").show();
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
                     }
                 }
-        );
+            }
+        });
     });
     //PARA IR A mis Tratamientos
     $('#irATratamientos').on('click', function () {
-        $.get("SAPI", {
-            file: "paciente/misTratamientos.jsp"
-        },
-                function (response, status, xhr) {
-                    //console.log(response);
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "paciente/misTratamientos.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrATratamientos').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrATratamientos').fadeOut();
+            },
+            success: function (response, status, xhr) {
+                if (status == "success") {
+                    if (response == "error") {
+                        $("#msj-error").show();
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
                     }
                 }
-        );
+            }
+        });
     });
     //PARA IR A mis Citas
     $('#irMisCitas').on('click', function () {
-        $.get("SAPI", {
-            file: "paciente/index.jsp"
-        },
-                function (response, status, xhr) {
-                    //console.log(response);
-                    if (status == "success") {
-                        if (response == "error") {
-                            $("#msj-error").show();
-                        } else {
-                            document.open("text/html", "replace");
-                            document.write(response);
-                            document.close();
-                        }
+        $.ajax({
+            url: 'SAPI',
+            method: "POST",
+            cache: false,
+            data: {
+                file: "paciente/index.jsp",
+            },
+            beforeSend: function () {
+                $('.cargandoIrAMisCitas').fadeIn();
+            },
+            complete: function () {
+                $('.cargandoIrAMisCitas').fadeOut();
+            },
+            success: function (response, status, xhr) {
+                if (status == "success") {
+                    if (response == "error") {
+                        $("#msj-error").show();
+                    } else {
+                        document.open("text/html", "replace");
+                        document.write(response);
+                        document.close();
                     }
                 }
-        );
+            }
+        });
     });
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
         console.log("Salir cuenta");
-        $.get("LoginController", {
+        $.post("LoginController", {
             key: "cerrar-sesion"
         },
                 function (response, status, xhr) {
@@ -311,7 +347,7 @@ $(document).ready(function () {
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta1').on('click', function () {
         console.log("Salir cuenta");
-        $.get("LoginController", {
+        $.post("LoginController", {
             key: "cerrar-sesion"
         },
                 function (response, status, xhr) {

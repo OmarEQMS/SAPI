@@ -1712,7 +1712,8 @@ $(document).ready(function () {
                 },
                 method: "POST",
                 success: function (response) {
-                    if (response === "true")
+                    
+                    if (response === "success")
 
                     {
                         swal({
