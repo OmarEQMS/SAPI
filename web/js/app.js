@@ -37,6 +37,36 @@ $(document).ready(function () {
     oculta(btnRegistro);
     oculta(pantalla2);
     oculta(btnRegresar);
+    
+    $('#nombre').on('change', function () {
+
+        if (isValidName($(this))) {
+            $('#errorNombre').hide();
+        } else if ($(this).val() == '') {
+            $('#errorNombre').hide();
+            $(this).css('border', '');
+            $(this).css('color', '');
+
+        } else {
+            $('#errorNombre').show();
+        }
+
+    });
+    
+    $('#apellido1').on('change', function () {
+
+        if (isValidLastName($(this))) {
+            $('#errorApellidoPaterno').hide();
+        } else if ($(this).val() == '') {
+            $('#errorApellidoPaterno').hide();
+            $(this).css('border', '');
+            $(this).css('color', '');
+
+        } else {
+            $('#errorApellidoPaterno').show();
+        }
+
+    });
 
     //NOMBRE DE USUARIO EN EL REGISTRO
     $('#usuario').on('change', function () {
@@ -171,6 +201,7 @@ $(document).ready(function () {
                     && isValidUserName($('#usuario')) && isValidEmail($('#correo')) && isValidPassword($('#pass1'))
                     && areEqualPasswords($('#pass1'), $('#pass2'))) {
                 $("#error-campos").hide();
+                
 
                 oculta(btnContinuar);
                 oculta(pantalla1);
@@ -181,10 +212,12 @@ $(document).ready(function () {
             } else {
                 console.log("Entro al segundo else");
                 $("#error-campos").show(); //No se llenaron los campos obligatorios
+                
             }
         } else {
             console.log("Entro al segundo else");
             $("#error-datosRepetidos").show(); //ya existe un campo
+            
         }
     });
 
@@ -253,7 +286,7 @@ $(document).ready(function () {
 
         var m = input.val();
 
-        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,255}$/;
+        var expreg = /^([a-z ñáéíóú]{2,255})$/i;
 
         if (!expreg.test(m)) {
 
@@ -274,7 +307,7 @@ $(document).ready(function () {
 
         var m = input.val();
 
-        var expreg = /^[-a-zA-Z\u00E0-\u00FCñÑ. ]{2,127}$/;
+        var expreg = /^([a-z ñáéíóú]{2,255})$/i;
 
         if (!expreg.test(m)) {
 

@@ -394,7 +394,7 @@
 
                                 <div class="form-group row justify-content-center">
                                     <div class="col-12 text-center">
-                                        <a href="documentos/Terminos-y-Condiciones-de-Venta.pdf" download>
+                                        <a href="documentos/Terminos-y-Condiciones-SAPI.pdf" download>
                                             <button type="button" class="btn btn-morado-solid mt-2">Descargar los términos y condiciones</button>
                                         </a>
                                     </div>

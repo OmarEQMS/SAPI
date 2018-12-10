@@ -180,7 +180,7 @@
                     <span class="text-danger">Completa todos los campos para registrar tu cuenta. </span>
                 </div>
             </div>
-            
+
             <div class="row mb-3" id="error-datosRepetidos">
                 <div class="col-12 text-center">
                     <span class="text-warning">Estás tratando de registrar datos existentes. <br> Revisa de nuevo.</span>
@@ -215,9 +215,31 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">                    
-                        <label> <input type="checkbox" id="acepto-datos"> Acepto que mis datos sean usados para agilizar mi tratamiento</label>
-                        <label> <input type="checkbox" id="acepto-datos-anonimos"> Deseo que mis datos sean anonimos despues de haber culminado mi estancia en el instituto</label>
+                    <div class="modal-body">   
+                        <div class="form-group">
+                            <label class="col-xs-3 text-justify control-label">Términos de uso:</label>
+                            <div class="col-xs-9">
+                                <div style="border: 1px solid #e5e5e5; height: 200px; overflow: auto; padding: 10px;">
+                                    <p style="font-size:19px;"><strong>Sistema de Atención al Paciente Oncológico [SAPI]</strong></p>
+                                    <p style="font-size:15px;"><strong>POLÍTICA DE PRIVACIDAD</strong></p>
+                                    <p class="text-justify" style="font-size:13px;">El presente Política de Privacidad establece los términos en que el Sistema de atención al paciente del INCan (SAPI) usa y protege la información que es proporcionada por sus usuarios al momento de utilizar su sitio web. Este sitio web está comprometido con la seguridad de los datos de sus usuarios. Cuando le pedimos llenar los campos de información personal con la cual usted pueda ser identificado, lo hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento. Sin embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios.</p>
+                                    <p style="font-size:14px;"><strong>Información que es recogida</strong></p>
+                                    <p class="text-justify" style="font-size:13px;">Durante su registro, nuestro sitio web podrá recoger información personal por ejemplo: Nombre,  información de contacto como su dirección de correo electrónica e información demográfica. Así mismo durante el uso a lo largo de su tratamiento o cuando sea necesario podrá ser requerida información específica para llevar a cabo los procesos logísticos del hospital.</p>
+                                    <p style="font-size:14px;"><strong>Uso de la información recogida</strong></p>
+                                    <p class="text-justify" style="font-size:13px;">El Sistema para la atención al paciente del INCan (SAPI) está comprometido con mantener la confianza y confidencialidad de nuestros usuarios. Nosotros no vendemos, rentamos o intercambiamos listas de correo o demás datos personales con otras compañías y/o negocios.</p>
+                                    <p class="text-justify" style="font-size:13px;">Nuestro sitio web emplea la información con el fin de proporcionar el mejor servicio posible al paciente del INCan, particularmente para brindar apoyo a sus usuarios con información útil sobre su tratamiento, y mejorar su experiencia durante el mismo. Con la información recopilada sobre sus citas, el sistema podrá notificar al usuario sobre la fecha y lugar en las cuales están programadas.</p>
+                                    <p class="text-justify" style="font-size:13px;">De igual forma, la información recopilada durante el tratamiento podrá ser utilizada por el personal del INCan, para la obtención de datos estadísticos sobre la población del hospital. La información que sea utilizada de dicha forma será desvinculada de los datos personales del paciente, para proteger su confidencialidad.</p>
+                                    <p class="text-justify" style="font-size:13px;">Es posible que sean enviados correos electrónicos a través de nuestro sitio cuando el usuario solicite ayuda para recuperar su cuenta del sistema. Estos correos electrónicos serán enviados a la dirección que usted proporcione y podrán ser cancelados en cualquier momento, si así lo desea, eliminando su dirección de correo electrónico.</p>
+                                    <p class="text-justify" style="font-size:13px;">El Sistema de atención al paciente del INCan (SAPI) está altamente comprometido para cumplir con el compromiso de mantener su información segura.</p>
+                                    <p style="font-size:14px;"><strong>Control de su información personal</strong></p>
+                                    <p class="text-justify" style="font-size:13px;">En cualquier momento usted puede restringir la recopilación o el uso de la información personal que es proporcionada a nuestro sitio web. Cuando el usuario lo desee puede eliminar su cuenta, lo cual tendrá el efecto de que sus datos dejarán de ser visibles para el sistema. La única excepción siendo para la obtención de datos estadísticos sobre la población del hospital, siendo desvinculados de los datos personales del paciente.</p>
+                                    <p class="text-justify" style="font-size:13px;">El Sistema para la atención al paciente del INCan (SAPI) no venderá, cederá ni distribuirá la información personal que es recopilada sin su consentimiento, salvo que sea requerido por un juez con un orden judicial.</p>
+                                    <p class="text-justify" style="font-size:13px;">El Sistema de atención al paciente del INCan (SAPI) Se reserva el derecho de cambiar los términos de la presente Política de Privacidad en cualquier momento.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="justify-content-center text-center" style="font-size:16px;"> <input type="checkbox" id="acepto-datos"> Acepto que mis datos sean utilizados para agilizar mi tratamiento.</label>
+                        <label class="justify-content-center text-center" style="font-size:16px;"> <input type="checkbox" id="acepto-datos-anonimos"> Quiero que mis datos sean anónimos después de haber culminado mi estancia en el INCan.</label>
                         <span class="text-danger" id="error-terminos">Para continuar debes de marcar ambos campos.</span>
                     </div>
                     <div class="modal-footer">
