@@ -344,9 +344,9 @@ public class PotencialController extends HttpServlet {
 
                     // ID Necesidad Especial
                     int idSillaDeRuedas = Integer.parseInt(sapiProperties.getString("SillaDeRuedas"));
-                    int idCamilla = Integer.parseInt(sapiProperties.getString("Baston"));
-                    int idBaston = Integer.parseInt(sapiProperties.getString("Oxigeno"));
-                    int idOxigeno = Integer.parseInt(sapiProperties.getString("Camilla"));
+                    int idCamilla = Integer.parseInt(sapiProperties.getString("Camilla"));
+                    int idBaston = Integer.parseInt(sapiProperties.getString("Baston"));
+                    int idOxigeno = Integer.parseInt(sapiProperties.getString("Oxigeno"));
 
                     if (ServletFileUpload.isMultipartContent(request)) {
                         System.out.println("Entro a solicitarPreconsulta if ");
@@ -1428,9 +1428,9 @@ public class PotencialController extends HttpServlet {
 
                     // ID Necesidad Especial
                     int idSillaDeRuedas = Integer.parseInt(sapiProperties.getString("SillaDeRuedas"));
-                    int idCamilla = Integer.parseInt(sapiProperties.getString("Baston"));
-                    int idBaston = Integer.parseInt(sapiProperties.getString("Oxigeno"));
-                    int idOxigeno = Integer.parseInt(sapiProperties.getString("Camilla"));
+                    int idCamilla = Integer.parseInt(sapiProperties.getString("Camilla"));
+                    int idBaston = Integer.parseInt(sapiProperties.getString("Baston"));
+                    int idOxigeno = Integer.parseInt(sapiProperties.getString("Oxigeno"));
 
                     if (ServletFileUpload.isMultipartContent(request)) {
                         System.out.println("Entro a solicitarPreconsulta if ");
