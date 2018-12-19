@@ -848,6 +848,7 @@ $(document).ready(function () {
 
 
     $('#btn-aceptarDocumento').on('click', function () {
+        var tipoPac = $('#tipo-paciente').val();
 
         if (!isPastDate($('#Fecha-Navegacion')) && !isPastDate($('#Fecha-Consulta'))
                 && isValidSelect($('#tipo-paciente'))) {
@@ -915,7 +916,7 @@ $(document).ready(function () {
                             //Insertar al paciente en la segunda tabla                                              
                             var t = $('#tabla2').DataTable();
 
-                            if ($('#tipo-paciente').val() == 0) {
+                            if (tipoPac == 0) {
                                 t.row.add([
                                     "",
                                     "<span class='nombre-" + idPaciente + "' id='nombre-" + idPaciente + "'>" + $('.nombre-' + idPaciente).html() + "</span>",
@@ -943,7 +944,7 @@ $(document).ready(function () {
                                 ]).draw(false);
                             }
                         } else {
-                            if ($('#tipo-paciente').val() == 0) {
+                            if (tipoPac == 0) {
                                 $("#tipo-" + idPaciente).html("Primera vez");
                             } else {
                                 $("#tipo-" + idPaciente).html("Segunda opinión");
@@ -1712,7 +1713,7 @@ $(document).ready(function () {
                 },
                 method: "POST",
                 success: function (response) {
-                    
+
                     if (response === "true")
 
                     {
