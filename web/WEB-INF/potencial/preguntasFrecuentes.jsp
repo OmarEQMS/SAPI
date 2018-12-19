@@ -55,7 +55,7 @@
         
         <div class="cargandoIrAPreguntas" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
-            <p class="clear">Cargando preguntas frecuentes, por favor espere..</p>
+            <p class="clear">Cargando preguntas frecuentes, por favor espere...</p>
         </div>
         
         <div class="cargandoIrACuenta" id="loading-screen" style="display: none">
