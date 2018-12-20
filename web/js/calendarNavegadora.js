@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $('#error-pacienteSelected').hide();
-    
+
     //Recupera Titulo
     $("#paciente-resultado").on('change', function () {
 
@@ -11,7 +11,7 @@ $(document).ready(function () {
 
     });
 
-    
+
     $('#calendarCitasPaciente').fullCalendar({
         locale: 'es',
         height: 630,
@@ -27,9 +27,9 @@ $(document).ready(function () {
         eventClick: function (calEvent, jsEvent, view) {
 
             $('#modalVerCita').modal('toggle');
-            
+
             console.log(calEvent);
-            
+
             $('#nombrePacienteCalendario').html(calEvent.title);
 
         },
@@ -115,12 +115,27 @@ $(document).ready(function () {
                         $('#calendarCitasPaciente').fullCalendar('renderEvent', newEvent);
 
 
-                        swal("Buen trabajo", "Cita agregada correctamente!", "success");
+                        swal({
+                            title: "¡Buen trabajo!",
+                            text: "Cita agregada correctamente.",
+                            closeOnEsc: false,
+                            closeOnClickOutside: false,
+                            icon: "success",
+                            buttons: [, 'Aceptar'],
+                        });
+
                         $('#modalAgregarCita').modal('toggle');
                         $("#paciente-resultado").prop('selectedIndex', 0);
 
                     } else {
-                        swal("Error", "Hubo un error al agregar la cita", "error");
+                        swal({
+                            title: "Error",
+                            text: "Hubo un error al agregar la cita",
+                            icon: "error",
+                            closeOnEsc: false,
+                            closeOnClickOutside: false,
+                            button: "Aceptar",
+                        });
                     }
 
                 }

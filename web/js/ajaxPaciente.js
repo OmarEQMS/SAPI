@@ -460,22 +460,34 @@ $(document).ready(function () {
                             $('.loading-screenGuardar').fadeOut();
                         },
                         success: function (response) {
-                            $.post("SAPI", {
-                                file: "paciente/cuenta.jsp"
-                            },
-                                    function (response, status, xhr) {
-                                        console.log("El ajax fue exitoso!!-----------------------");
-                                        if (status == "success") {
-                                            if (response == "error") {
-                                                $("#msj-error").show();
-                                            } else {
-                                                document.open("text/html", "replace");
-                                                document.write(response);
-                                                document.close();
-                                            }
-                                        }
-                                    }
-                            );
+
+                            swal({
+                                title: "¡Buen trabajo!",
+                                text: "Cuenta actualizada correctamente.",
+                                closeOnEsc: false,
+                                closeOnClickOutside: false,
+                                icon: "success",
+                                button: "Aceptar",
+                            })
+                                    .then((value) => {
+
+                                        $.post("SAPI", {
+                                            file: "paciente/cuenta.jsp"
+                                        },
+                                                function (response, status, xhr) {
+                                                    console.log("El ajax fue exitoso!!-----------------------");
+                                                    if (status == "success") {
+                                                        if (response == "error") {
+                                                            $("#msj-error").show();
+                                                        } else {
+                                                            document.open("text/html", "replace");
+                                                            document.write(response);
+                                                            document.close();
+                                                        }
+                                                    }
+                                                }
+                                        );
+                                    });
                         },
                         error: function (xhr) {
                             //alert(xhr.statusText);

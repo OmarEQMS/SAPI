@@ -178,7 +178,6 @@ public class NavegadoraController extends HttpServlet {
 
     private static final ResourceBundle sapiProperties = ResourceBundle.getBundle("mx.itesm.sapi.properties.catalogos");
 
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -399,14 +398,13 @@ public class NavegadoraController extends HttpServlet {
                             boolean rechazado = documentoInicialServicioImpl.agregarRechazoDocumento(idDocumentoInicial, comentario);
                             //ESto es para el correo
                             PrintWriter out = response.getWriter();
-                            
-                            if(rechazado==true){
+
+                            if (rechazado == true) {
                                 out.print("true");
-                            }else{
+                            } else {
                                 out.print("false");
                             }
-                           
-        
+
                             int pacientePotencial = (int) sesion.getAttribute("idPacientePotencialAtendido");
 
                             PersonaServicioImpl personaServicio = new PersonaServicioImpl();
@@ -415,10 +413,9 @@ public class NavegadoraController extends HttpServlet {
                             Properties config = new Properties();
                             String correo = persona.getCorreo();
                             System.out.println("Correo potencial ".concat(correo));
-                                                                               
-                            
-                            enviaCorreoRechazoDocumento(persona,tipoDocumento,documentoInicial,comentario,correo);
-                                    
+
+                            enviaCorreoRechazoDocumento(persona, tipoDocumento, documentoInicial, comentario, correo);
+
                             break;
                         }
                         case "mostrarFormularioNavegadora": {
@@ -691,10 +688,9 @@ public class NavegadoraController extends HttpServlet {
                             Persona personaPaciente;
                             PersonaServicioImpl personaServicioImpl = new PersonaServicioImpl();
                             personaPaciente = personaServicioImpl.mostrarPersonaPorIdPaciente(idPaciente);
-                            
-                            enviaCitaAprobada(personaPaciente,fechaNav,fechaCon);
-                            
-                            
+
+                            enviaCitaAprobada(personaPaciente, fechaNav, fechaCon);
+
                             PrintWriter out = response.getWriter();
 
                             if (citaServicio.aprobarPaciente(idPaciente, fechaNav, fechaCon, segundaOpinion)) {
@@ -704,21 +700,21 @@ public class NavegadoraController extends HttpServlet {
 
                             break;
                         }
-                        
+
                         case "comentarioCancelacionCita": {
 
-                            int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));                            
+                            int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
 
                             System.out.println("idPaciente: " + idPaciente);
 
-                            ComentarioCitaServicioImpl comentarioCitaServicio = new ComentarioCitaServicioImpl();                           
-                            String comentario = comentarioCitaServicio.obtenerComentarioCitaIdPaciente(idPaciente);                            
-                                                        
+                            ComentarioCitaServicioImpl comentarioCitaServicio = new ComentarioCitaServicioImpl();
+                            String comentario = comentarioCitaServicio.obtenerComentarioCitaIdPaciente(idPaciente);
+
                             PrintWriter out = response.getWriter();
 
                             if (comentario != null) {
                                 out.print(comentario);
-                            }else{
+                            } else {
                                 out.print("SinComentario");
                             }
 
@@ -3402,15 +3398,15 @@ public class NavegadoraController extends HttpServlet {
                             try {
                                 String nombreN = sesion.getAttribute("nombre").toString();
                                 String primerApellidoN = sesion.getAttribute("primerApellido").toString();
-                                String segundoApellidoN = sesion.getAttribute("segundoApellido").toString();                                
+                                String segundoApellidoN = sesion.getAttribute("segundoApellido").toString();
                                 String comentario = "Cita cancelada por la navegadora ";
-                                
+
                                 comentario = comentario.concat(nombreN);
                                 comentario = comentario.concat(" ");
                                 comentario = comentario.concat(primerApellidoN);
                                 comentario = comentario.concat(" ");
                                 comentario = comentario.concat(segundoApellidoN);
-                                
+
                                 int idPaciente = Integer.parseInt(request.getParameter("idPotencial"));
                                 System.out.println("idPaciente: " + idPaciente);
 
@@ -3494,12 +3490,9 @@ public class NavegadoraController extends HttpServlet {
          * codigo se envía el correo. El contenido del correo puede ser
          * configurado en el mimeBodyPart.
          */
-         
-        
-         String correoSapi = String.valueOf(sapiProperties.getObject("correoSapi"));
-         String contraseñaSapi = String.valueOf(sapiProperties.getObject("contraseñaSapi"));
-        
-        
+        String correoSapi = String.valueOf(sapiProperties.getObject("correoSapi"));
+        String contraseñaSapi = String.valueOf(sapiProperties.getObject("contraseñaSapi"));
+
         System.out.println("estoy en el metodo");
         Properties config = new Properties();
 
@@ -3529,7 +3522,12 @@ public class NavegadoraController extends HttpServlet {
             mimeBodyPart.setContent("<b>Estimada(o) "
                     .concat(nombre)
                     .concat(", <br> <br> Desafortunadamente hemos cancelado tu cita de navegación y preconsulta por motivos internos.</b></br>")
-                    .concat("Puedes realizar una nueva solicitud una nueva cita en el portal de solicitar preconsulta.")
+                    .concat("<br> Puedes realizar una solicitud de una nueva cita en el portal de solicitar preconsulta.")
+                    .concat("<br><br><b> Este correo es informativo, favor de no responder a esta dirección de correo, ya\n"
+                            + "que no se encuentra habilitada para recibir mensajes.\n"
+                            + "<br>Si requiere mayor información sobre el contenido de este mensaje, contactar\n"
+                            + "directamente al INCan en horario de Lunes a Viernes de 8:00 am a\n"
+                            + "2:00 pm o al teléfono 5628-0400 extensión 66455 ó 12032.</b>")
                     .concat("<br><br><br>Atte. el equipo de SAPI."), "text/html");
 
             Multipart multipart = new MimeMultipart();
@@ -3552,10 +3550,8 @@ public class NavegadoraController extends HttpServlet {
             System.out.println(this.getClass().toString().concat(ex.getMessage()));
         }
     }
-    
-    
-    
-    protected void enviaCorreoRechazoDocumento(Persona persona,TipoDocumento tipoDocumento,DocumentoInicial documentoInicial,String comentario, String correo) {
+
+    protected void enviaCorreoRechazoDocumento(Persona persona, TipoDocumento tipoDocumento, DocumentoInicial documentoInicial, String comentario, String correo) {
 
         /**
          * El metodo enviaCorreo tiene como función el envío de un correo de
@@ -3591,9 +3587,14 @@ public class NavegadoraController extends HttpServlet {
             //Estos deberían ir como parametros dentro de la función de enviar correo
             //String mail = "tucorreo@mail.com";
             //String contrasena = "tucontrasena";
-            String mensaje = "Estimada(o) ".concat(persona.getNombre()).concat(", <br><br>el equipo del INCan le informa: él tipo de documento \"")
+            String mensaje = "Estimada(o) ".concat(persona.getNombre()).concat(", <br><br>el equipo del INCan le informa: el tipo de documento \"")
                     .concat(tipoDocumento.getNombre()).concat("\" con nombre \"").concat(documentoInicial.getNombre()).concat("\" ha sido rechazado en su revisión para aprobar su solicitud de preconsulta. ")
                     .concat("A continuación le explicamos los motivos: ").concat(comentario).concat(".<br><br> Le informamos que el rechazo de la identificación oficial, CURP y comprobante de domicilio cancelan automaticamente su solicitud de preconsulta y tendrá que hacer una solicitud nueva. <br><br> Muchas gracias por su comprensión.")
+                    .concat("<br><br><b> Este correo es informativo, favor de no responder a esta dirección de correo, ya\n"
+                            + "que no se encuentra habilitada para recibir mensajes.\n"
+                            + "<br>Si requiere mayor información sobre el contenido de este mensaje, contactar\n"
+                            + "directamente al INCan en horario de Lunes a Viernes de 8:00 am a\n"
+                            + "2:00 pm o al teléfono 5628-0400 extensión 66455 ó 12032.</b>")
                     .concat("<br><br><br>Atte. el equipo de SAPI.");
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
             mimeBodyPart.setContent(mensaje, "text/html");
@@ -3622,8 +3623,8 @@ public class NavegadoraController extends HttpServlet {
         }
 
     }
-    
-    protected void enviaCitaAprobada(Persona persona,String fechaNavegacion,String fechaPreconsulta) {
+
+    protected void enviaCitaAprobada(Persona persona, String fechaNavegacion, String fechaPreconsulta) {
 
         /**
          * El metodo enviaCorreo tiene como función el envío de un correo de
@@ -3660,11 +3661,16 @@ public class NavegadoraController extends HttpServlet {
             //String mail = "tucorreo@mail.com";
             //String contrasena = "tucontrasena";
             String mensaje = "Estimada(o) ".concat(persona.getNombre()).concat(", <br>el equipo del INCan ha revisado sus documentos y motivos. Le informamos que hemos aceptado su solicitud y hemos asignados las siguientes fechas como citas. <br>")
-                    .concat("<br>Cita de navegacón: ")
+                    .concat("<br><b>Cita de navegacón: </b>")
                     .concat(fechaNavegacion)
-                    .concat("<br> Cita de preconsulta: ")
+                    .concat("<br><b> Cita de preconsulta: </b>")
                     .concat(fechaPreconsulta)
-                    .concat("<br> Le sugerimos entrar a su cuenta en SAPI y revisar con más detalle su aprobación")
+                    .concat("<br><br> Le sugerimos entrar a su cuenta en SAPI y revisar con más detalle su aprobación.")
+                    .concat("<br><br><b> Este correo es informativo, favor de no responder a esta dirección de correo, ya\n"
+                            + "que no se encuentra habilitada para recibir mensajes.\n"
+                            + "<br>Si requiere mayor información sobre el contenido de este mensaje, contactar\n"
+                            + "directamente al INCan en horario de Lunes a Viernes de 8:00 am a\n"
+                            + "2:00 pm o al teléfono 5628-0400 extensión 66455 ó 12032.</b>")
                     .concat("<br><br><br>Atte. el equipo de SAPI.");
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
             mimeBodyPart.setContent(mensaje, "text/html");
