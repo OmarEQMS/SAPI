@@ -607,8 +607,7 @@ public class PacienteController extends HttpServlet {
                             PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                             Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial((int) sesion.getAttribute("idCuenta"));
                             
-                            System.out.println("NuevoNoExpediente: ".concat(noExpediente));
-                            System.out.println("AntExpediente: ".concat(paciente.getExpediente()));
+                            System.out.println("NuevoNoExpediente: ".concat(noExpediente));                                                        
                             
                             /**
                              * El case cambiarDatos también se encarga de
