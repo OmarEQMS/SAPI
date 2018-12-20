@@ -433,7 +433,7 @@
 
                                                             <c:choose>
                                                                 <c:when test="${pacienteAprobado.nombreEstadoCita=='Cancelada'}">
-                                                                    <button class="btn btn-danger m-1 btn-comentario-cita" data-id="${pacienteAprobado.idPaciente}" data-toggle="modal" data-target="#modalComentarioCita">
+                                                                    <button class="btn btn-danger m-1 btn-comentario-cita" id="cancelarCita-${pacienteAprobado.idPaciente}" data-id="${pacienteAprobado.idPaciente}" data-toggle="modal" data-target="#modalComentarioCita">
                                                                         <i class="far fa-comment-alt"></i>
                                                                     </button>
                                                                 </c:when>    
