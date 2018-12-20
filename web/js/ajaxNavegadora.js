@@ -608,6 +608,12 @@ $(document).ready(function () {
                 key: "obtener-paciente",
                 idPaciente: idPaciente
 
+            }, 
+            beforeSend: function () {
+                $('.recuperarInfo').fadeIn();
+            },
+            complete: function () {
+                $('.recuperarInfo').fadeOut();
             },
             success: function (response) {
 

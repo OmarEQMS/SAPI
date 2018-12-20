@@ -211,6 +211,12 @@ $(document).ready(function () {
                 key: "obtener-admin",
                 idAdmin: idAdmin
             },
+            beforeSend: function () {
+                $('.recuperarInfoAdmin').fadeIn();
+            },
+            complete: function () {
+                $('.recuperarInfoAdmin').fadeOut();
+            },
             success: function (response) {
 
                 response = JSON.parse(response);
@@ -2570,6 +2576,12 @@ $(document).ready(function () {
                 key: 'obtener-medico',
                 idMedicoAdministrador: idMedico
             },
+            beforeSend: function () {
+                $('.recuperarInfoMedico').fadeIn();
+            },
+            complete: function () {
+                $('.recuperarInfoMedico').fadeOut();
+            },
             success: function (response) {
 
                 //$("#idMedico").val(response.id);
@@ -3811,6 +3823,12 @@ $(document).ready(function () {
                 key: 'obtener-navegadora',
                 idNavegadora: idNavegadora,
             },
+            beforeSend: function () {
+                $('.recuperarInfoNavegadora').fadeIn();
+            },
+            complete: function () {
+                $('.recuperarInfoNavegadora').fadeOut();
+            },
             success: function (response) {
 
                 console.log(response);
@@ -3998,6 +4016,12 @@ $(document).ready(function () {
                 idPaciente: idPaciente
 
             },
+            beforeSend: function () {
+                $('.recuperarInfoPaciente').fadeIn();
+            },
+            complete: function () {
+                $('.recuperarInfoPaciente').fadeOut();
+            },
             success: function (response) {
 
                 var data = JSON.parse(response);
@@ -4006,7 +4030,9 @@ $(document).ready(function () {
 
                 $('#editarNombreAdministradorAPaciente').val(data.nombre);
                 $('#editarCurpAdministradorAPaciente').val(data.curp);
-                $('#editarCumpleAdministradorAPaciente').val(convertDate(new Date(data.fechaNacimiento)));
+                var fecha = data.fechaNacimiento;
+                fecha = convertDate(fecha);
+                $('#editarCumpleAdministradorAPaciente').val(fecha);
                 $('#editarPrimer-apellidoAdministradorAPaciente').val(data.primerApellido);
                 $('#editarSegundo-apellidoAdministradorAPaciente').val(data.segundoApellido);
                 $('#editarUsuarioAdministradorAPaciente').val(data.usuario);
@@ -4749,16 +4775,31 @@ $(document).ready(function () {
 
         return [year, month, day].join('-');
     }
-    function convertDate(date) {
+    function convertDate(fecha) {
+        if (fecha !== "Jan 1, 1900") {
+            console.log(fecha);
+            fecha = fecha.replace("ene", "jan");
+            fecha = fecha.replace("feb", "feb");
+            fecha = fecha.replace("mar", "mar");
+            fecha = fecha.replace("abr", "apr");
+            fecha = fecha.replace("may", "may");
+            fecha = fecha.replace("jun", "jun");
+            fecha = fecha.replace("jul", "jul");
+            fecha = fecha.replace("ago", "aug");
+            fecha = fecha.replace("sep", "sep");
+            fecha = fecha.replace("oct", "oct");
+            fecha = fecha.replace("nov", "nov");
+            fecha = fecha.replace("dic", "dec");
+            var date = new Date(fecha);
+            var yyyy = date.getFullYear().toString();
+            var mm = (date.getMonth() + 1).toString();
+            var dd = date.getDate().toString();
 
-        var yyyy = date.getFullYear().toString();
-        var mm = (date.getMonth() + 1).toString();
-        var dd = date.getDate().toString();
+            var mmChars = mm.split('');
+            var ddChars = dd.split('');
 
-        var mmChars = mm.split('');
-        var ddChars = dd.split('');
-
-        return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
+            return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
+        }
     }
 
 

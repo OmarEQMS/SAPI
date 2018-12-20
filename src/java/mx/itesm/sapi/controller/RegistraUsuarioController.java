@@ -791,12 +791,17 @@ public class RegistraUsuarioController extends HttpServlet {
                     .concat("<br><br>Atendemos a pacientes provenientes de todo el país con un servicio de calidad, eficiente y cálido." 
                     .concat("<br><br>Lo logramos a través de equipos multidisciplinarios que brindan atención médica, realizan investigación y forman profesionales de la salud<br>"))
                     .concat("<br><br>SAPI es una plataforma que le acompañará en el seguimiento dentro del INCan.")
-                    .concat("<br><br>Las principales funciones son: solicitar su preconsulta, enviar documentos y agendar citas.")
+                    .concat("<br><br>Las principales funciones son: solicitar su preconsulta, enviar documentos y visualizar sus citas.")
                     .concat("<br><br>Utilice su usuario: ")
                     .concat(usuario)
                     .concat(" para iniciar sesión y comenzar a utilizar su cuenta.")
                     .concat("<br><br><b>SAPI nunca le pedirá datos personales como usuario, contraseña, correo, teléfono o cualquier otro dato sensible a través de un correo elctrónico.</b>")
                     .concat("<br><br> SAPI enviará correos desde la siguiente dirección única: sapi.atencion@gmail.com ")
+                    .concat("<br><br><b> Este correo es informativo, favor de no responder a esta dirección de correo, ya\n"
+                            + "que no se encuentra habilitada para recibir mensajes.\n"
+                            + "<br>Si requiere mayor información sobre el contenido de este mensaje, contactar\n"
+                            + "directamente al INCan en horario de Lunes a Viernes de 8:00 am a\n"
+                            + "2:00 pm o al teléfono 5628-0400 extensión 66455 ó 12032.</b>")
                     .concat("<br><br><br>Atte. el equipo de SAPI."), "text/html");
 
             Multipart multipart = new MimeMultipart();
