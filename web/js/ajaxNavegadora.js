@@ -458,7 +458,7 @@ $(document).ready(function () {
                     isValidUserName($('#usuarioPaciente')) && isValidEmail($('#correoPaciente')) &&
                     isValidPassword($('#contraPaciente')) && isValidPassword($('#confContraPaciente')) && isValidCURP($('#curpPaciente')) &&
                     isValidPhoneNumber($('#telPaciente')) && isValidSelect($('#estado-civilPaciente')) &&
-                    isValidDate($('#cumplePaciente')) && isValidSelect($('#estadoPaciente')) && isValidSelect($('#municipioPaciente')) &&
+                    isValidBornDate($('#cumplePaciente')) && isValidSelect($('#estadoPaciente')) && isValidSelect($('#municipioPaciente')) &&
                     areEqualPasswords($('#contraPaciente'), $('#confContraPaciente'))) {
 
                 if (!isValidTerminosPaciente) {
@@ -608,6 +608,12 @@ $(document).ready(function () {
                 key: "obtener-paciente",
                 idPaciente: idPaciente
 
+            }, 
+            beforeSend: function () {
+                $('.recuperarInfo').fadeIn();
+            },
+            complete: function () {
+                $('.recuperarInfo').fadeOut();
             },
             success: function (response) {
 
@@ -677,7 +683,7 @@ $(document).ready(function () {
                     isValidEditExtNumPaciente &&
                     isValidEmail($('#editarCorreoNavegadoraAPaciente')) && isValidCURP($('#editarCurpNavegadoraAPaciente'))
                     && isValidPhoneNumber($('#editarTelNavegadoraAPaciente')) &&
-                    isValidSelect($('#editarEstado-civilPaciente')) && isValidDate($('#editarCumpleNavegadoraAPaciente'))
+                    isValidSelect($('#editarEstado-civilPaciente')) && isValidBornDate($('#editarCumpleNavegadoraAPaciente'))
                     && isValidSelect($('#editarEstadoNavegadoraAPaciente')) && isValidSelect($('#editarMunicipioNavegadoraAPaciente'))) {
 
                 $("#error-camposEditarPaciente").hide();
@@ -848,6 +854,7 @@ $(document).ready(function () {
 
 
     $('#btn-aceptarDocumento').on('click', function () {
+        var tipoPac = $('#tipo-paciente').val();
 
         if (!isPastDate($('#Fecha-Navegacion')) && !isPastDate($('#Fecha-Consulta'))
                 && isValidSelect($('#tipo-paciente'))) {
@@ -915,7 +922,7 @@ $(document).ready(function () {
                             //Insertar al paciente en la segunda tabla                                              
                             var t = $('#tabla2').DataTable();
 
-                            if ($('#tipo-paciente').val() == 0) {
+                            if (tipoPac == 0) {
                                 t.row.add([
                                     "",
                                     "<span class='nombre-" + idPaciente + "' id='nombre-" + idPaciente + "'>" + $('.nombre-' + idPaciente).html() + "</span>",
@@ -943,7 +950,7 @@ $(document).ready(function () {
                                 ]).draw(false);
                             }
                         } else {
-                            if ($('#tipo-paciente').val() == 0) {
+                            if (tipoPac == 0) {
                                 $("#tipo-" + idPaciente).html("Primera vez");
                             } else {
                                 $("#tipo-" + idPaciente).html("Segunda opinión");
@@ -1712,7 +1719,7 @@ $(document).ready(function () {
                 },
                 method: "POST",
                 success: function (response) {
-                    
+
                     if (response === "true")
 
                     {
@@ -2591,7 +2598,7 @@ $(document).ready(function () {
     //FECHA DE NACIMIENTO EN AGREGAR PACIENTE
     $('#cumplePaciente').on('change', function () {
 
-        if (isValidDate($(this))) {
+        if (isValidBornDate($(this))) {
             $('#errorFechaPaciente').hide();
         } else {
             $('#errorFechaPaciente').show();
@@ -3032,7 +3039,7 @@ $(document).ready(function () {
     //FECHA DE NACIMIENTO AL EDITAR PACIENTE
     $('#editarCumpleNavegadoraAPaciente').on('change', function () {
 
-        if (isValidDate($(this))) {
+        if (isValidBornDate($(this))) {
             $('#error-editar-FechaPaciente').hide();
         } else {
             $('#error-editar-FechaPaciente').show();
@@ -6243,6 +6250,44 @@ function isValidAlfanumerico(input) {
     var expreg = /^$|[a-zA-Z0-9\u00E0-\u00FCñÑ., ]$/;
 
     if (!expreg.test(m)) {
+
+        input.css('border', '1px solid red');
+        input.css('color', 'red');
+        return false;
+
+    } else {
+        input.css('border', '');
+        input.css('color', '');
+    }
+
+    return true;
+}
+
+function isValidBornDate(input) {
+
+    //Obtener fecha
+    let today = new Date();
+
+    //Valor seleccionado del input
+    let date_from = input.val();
+    date_from = new Date(date_from);
+
+    //Tomar los valores de hoy
+    var year = today.getFullYear();
+    var month = today.getMonth();
+    var day = today.getDate();
+
+    //Hoy hace 16 años y hoy hace 115 años
+    var maxDate = new Date(year - 16, month, day);
+    var minDate = new Date(year - 115, month, day);
+
+    let event = true;
+
+    if (maxDate > date_from && date_from > minDate) {
+        event = false;
+    }
+
+    if (!input.val() || event) {
 
         input.css('border', '1px solid red');
         input.css('color', 'red');

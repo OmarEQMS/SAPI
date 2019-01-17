@@ -50,6 +50,10 @@
             <img src="img/loading.svg">
             <p class="clear">Cargando formulario, por favor espere...</p>
         </div>
+        <div class="recuperarInfo" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Recuperando la información del paciente, por favor espere...</p>
+        </div>
         <div class="cargandoInicioNav" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Cargando inicio, por favor espere...</p>
@@ -433,7 +437,7 @@
 
                                                             <c:choose>
                                                                 <c:when test="${pacienteAprobado.nombreEstadoCita=='Cancelada'}">
-                                                                    <button class="btn btn-danger m-1 btn-comentario-cita" data-id="${pacienteAprobado.idPaciente}" data-toggle="modal" data-target="#modalComentarioCita">
+                                                                    <button class="btn btn-danger m-1 btn-comentario-cita" id="cancelarCita-${pacienteAprobado.idPaciente}" data-id="${pacienteAprobado.idPaciente}" data-toggle="modal" data-target="#modalComentarioCita">
                                                                         <i class="far fa-comment-alt"></i>
                                                                     </button>
                                                                 </c:when>    

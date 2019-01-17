@@ -146,16 +146,18 @@ public class RecuperarController extends HttpServlet {
                     MimeBodyPart mimeBodyPart = new MimeBodyPart();
                     mimeBodyPart.setContent("<b>Estimada(o) "
                             .concat(persona.getNombre())
-                            .concat(", <br><br>usted ha solicitado Recuperar su cuenta.</b></br>")
+                            .concat(", <br><br>usted ha solicitado recuperar la contraseña de su cuenta.</b></br>")
                             .concat("<b>Su código de recuperación (token) para cambiar su contraseña y acceder a su cuenta es:  ")
                             .concat(token)
                             .concat("<br><br> Por favor siga estas instrucciones para poder reestablecer su contraseña:</br>")
                             .concat("<ol>")
-                            .concat("<li>1) Ingresé con su usuario normal en la pantalla de iniciar sesión.</li>")
-                            .concat("<li>2) Coloqué en el sitio de contraseña el token que se ha adjuntado en este correo.</li>")
-                            .concat("<li>3) Será redirigido a una pantalla para cambiar su contraseña anterior por una nueva.</li>")
-                            .concat("<li>4) Inicie sesión con su usuario de siempre y su nueva contraseña.</li>"
+                            .concat("<li> Ingresé con su usuario normal en la pantalla de iniciar sesión.</li>")
+                            .concat("<li> Coloqué en el sitio de contraseña el token/código que se le ha proporcionado en este correo.</li>")
+                            .concat("<li> Será redirigido a una pantalla para cambiar su contraseña anterior por una nueva.</li>")
+                            .concat("<li> Inicie sesión con su mismo nombre de usuario y su nueva contraseña.</li>"
                             .concat("</ol>")
+                            .concat("<br><br><b> Este correo es informativo, favor de no responder a esta dirección de correo, ya\n"
+                            + "que no se encuentra habilitada para recibir mensajes.</b>")
                             .concat("<br><br><br>Atte. el equipo de SAPI.")), "text/html");
 
                     Multipart multipart = new MimeMultipart();

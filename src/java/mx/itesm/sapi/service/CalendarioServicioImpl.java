@@ -95,7 +95,7 @@ public class CalendarioServicioImpl implements CalendarioServicio {
         
         int id = -1;
 
-        String stProcedure = "CALL agregarCita(?,?,?,?,?,?,?,?,?,?,?)";
+        String stProcedure = "CALL agregarCita(?,?,?,?,?,?,?,?,?,?)";
         
         try{
             
@@ -112,7 +112,7 @@ public class CalendarioServicioImpl implements CalendarioServicio {
             cstmt.setNull(8, java.sql.Types.INTEGER);
             cstmt.setTimestamp(9, cita.getFechaProgramada());
             cstmt.setTimestamp(10, cita.getFechaReal());
-            cstmt.setString(11, edificio);
+            //cstmt.setString(11, edificio);
   
             
             rs = cstmt.executeQuery();

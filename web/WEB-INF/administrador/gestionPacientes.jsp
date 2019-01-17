@@ -46,6 +46,11 @@
             <img src="img/loading.svg">
             <p class="clear">Recuperando formulario, por favor espere...</p>
         </div>
+        
+        <div class="recuperarInfoPaciente" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Recuperando la información del paciente, por favor espere...</p>
+        </div>
 
         <div class="cargandoEliminarPaciente" id="loading-screen" style="display: none">
             <img src="img/loading.svg">

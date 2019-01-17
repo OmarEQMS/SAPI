@@ -47,6 +47,11 @@
             <p class="clear">Agregando a la navegadora, por favor espere...</p>
         </div>
         
+        <div class="recuperarInfoNavegadora" id="loading-screen" style="display: none">
+            <img src="img/loading.svg">
+            <p class="clear">Recuperando la información de la navegadora, por favor espere...</p>
+        </div>
+        
         <div class="cargandoEditarNavegadora" id="loading-screen" style="display: none">
             <img src="img/loading.svg">
             <p class="clear">Actualizando información de la navegadora, por favor espere...</p>

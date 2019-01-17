@@ -189,11 +189,17 @@ public class PacienteController extends HttpServlet {
 
                             String medico = request.getParameter("medico");
 
-                            String piso = request.getParameter("piso");
+                            int piso = Integer.parseInt(request.getParameter("piso"));
                             String edificio = request.getParameter("edificio");
 
                             System.out.println("EL PISO ES: " + piso);
                             System.out.println("EL EDIFICIO ES: " + edificio);
+                            
+                            if(edificio.equals("1")){
+                                piso = 1;
+                            }else{
+                                piso = piso + 2;                                
+                            }
 
                             String fechaProgramada = request.getParameter("fechaProgramada");
 
@@ -203,7 +209,7 @@ public class PacienteController extends HttpServlet {
                             cita.setIdPaciente(Integer.parseInt(idPacienteS));
                             cita.setIdEstadoCita(5);
                             cita.setIdImportanciaCita(idImportancia);
-                            cita.setIdPiso(Integer.parseInt(piso));
+                            cita.setIdPiso(piso);
 
                             //No se setea
                             //cita.setIdTipoTratamiento(Integer.parseInt(tipo));
@@ -601,8 +607,7 @@ public class PacienteController extends HttpServlet {
                             PacienteServicioImpl pacienteServicioImpl = new PacienteServicioImpl();
                             Paciente paciente = pacienteServicioImpl.mostrarPacientePotencial((int) sesion.getAttribute("idCuenta"));
                             
-                            System.out.println("NuevoNoExpediente: ".concat(noExpediente));
-                            System.out.println("AntExpediente: ".concat(paciente.getExpediente()));
+                            System.out.println("NuevoNoExpediente: ".concat(noExpediente));                                                        
                             
                             /**
                              * El case cambiarDatos también se encarga de
