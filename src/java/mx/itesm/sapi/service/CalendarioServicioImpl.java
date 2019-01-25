@@ -40,7 +40,7 @@ public class CalendarioServicioImpl implements CalendarioServicio {
             //llamar al procedimiento que te devuelva las citas
             cstmt = conn.prepareCall("CALL mostrarEventos(?)");
             cstmt.setInt(1, idPaciente);
-            
+            System.out.println(cstmt.toString());            
             rs = cstmt.executeQuery();
             
             FullCalendar calendario;

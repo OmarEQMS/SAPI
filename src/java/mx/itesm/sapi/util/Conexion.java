@@ -17,9 +17,9 @@ public class Conexion {
     public static Connection getConnection(){
         
 
-//        String cadena = "jdbc:mysql://localhost:3306/sapi?user=root&password=root&useSSL=false";       
+        String cadena = "jdbc:mysql://127.0.0.1:8889/sapi?user=root&password=root&useSSL=false";       
         //"jdbc:mysql://localhost:3306/INTtech?useSSL=false","root","root"
-        String cadena = "jdbc:mysql://35.188.165.217:3306/sapi?user=raiZsithNamCo0nr&password=aMkig-SFHAnnha-djhafi-owhbf071-3hdnsmvh34-nd8174n-cmu7nf—2-4-5.tjf.2.4.5.ouwnnvSnGgDGAMg&useSSL=false";       
+        //String cadena = "jdbc:mysql://35.188.165.217:3306/sapi?user=raiZsithNamCo0nr&password=aMkig-SFHAnnha-djhafi-owhbf071-3hdnsmvh34-nd8174n-cmu7nf—2-4-5.tjf.2.4.5.ouwnnvSnGgDGAMg&useSSL=false";       
         
         
         Connection connection=null;
@@ -27,6 +27,7 @@ public class Conexion {
             Class.forName("com.mysql.jdbc.Driver");
             connection=DriverManager.getConnection(cadena);
         }catch(Exception ex){
+            System.out.println("Error");
             System.out.println(ex.getMessage());
             //log.i();ñ
         }

@@ -1037,7 +1037,7 @@ public class PotencialController extends HttpServlet {
 
                 boolean revisarPre = true;
                 boolean revisarNav = true;
-
+                
                 System.out.println("------------------------------------------------------------------------------------------------------------------------------");
 
                 for (FullCalendar calendario : calendarios) {
@@ -1047,7 +1047,7 @@ public class PotencialController extends HttpServlet {
                         revisarPre = false;
                     }
 
-                    if (calendario.getTitle().equals("Navegación") && revisarNav) {
+                    if (calendario.getTitle().equals("Navegacion") && revisarNav) {
                         System.out.println("La fecha navegacion es: " + calendario.getStart());
                         sesion.setAttribute("fechaNavegacion", calendario.getStart());
                         revisarNav = false;

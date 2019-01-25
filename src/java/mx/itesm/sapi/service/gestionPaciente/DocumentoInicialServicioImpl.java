@@ -325,7 +325,7 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
                   
             rs = cstmt.executeQuery();
             rs.next();
-            respuesta = (rs.getInt("CAMBIO") == 0);
+            respuesta = (rs.getInt("CAMBIO") == 1);
            
             
             conn.close();
@@ -359,7 +359,7 @@ public class DocumentoInicialServicioImpl implements DocumentoInicialServicio{
                   
             rs = cstmt.executeQuery();
             rs.next();
-            respuesta = (rs.getInt("CAMBIO") == 1);
+            respuesta = (rs.getInt("CAMBIO") == 0);
            
             
             conn.close();
