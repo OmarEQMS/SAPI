@@ -399,7 +399,7 @@ public class NavegadoraController extends HttpServlet {
                             //ESto es para el correo
                             PrintWriter out = response.getWriter();
 
-                            if (rechazado == true) {
+                            if (rechazado == false) {
                                 out.print("true");
                             } else {
                                 out.print("false");
