@@ -1,16 +1,53 @@
 $(document).ready(function () {
 
     $("#registrate").on('click', function () {
-        $.postGo("ZonaController", {
+       /* $.postGo("ZonaController", {
             file: "registro.jsp",
             key: "getRegistro"
         });
+        */
+       
+        $.post("ZonaController", {
+            key: "getRegistro"
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
+
     });
 
     $("#regresarIndex").on('click', function () {
+        /*
         $.postGo("SAPI", {
             file: "index.jsp"
-        });
+        });*/
+        
+         $.post("SAPI", {
+           
+        },
+                function (response, status, xhr) {
+                    console.log(response);
+                    if (status == "success") {
+                        if (response == "error") {
+                            $("#msj-error").show();
+                        } else {
+                            document.open("text/html", "replace");
+                            document.write(response);
+                            document.close();
+                        }
+                    }
+                }
+        );
     });
 
 
