@@ -34,10 +34,8 @@ $('#fileCURP').on('change', function () {
     
     if (validDocument($('#fileCURP'), document.querySelector('#fileCURP').files) || $('#fileCURP').get(0).files.length === 0) {
         $('#error-CURP').hide();
-        console.log('si se puede ' + document.querySelector('#fileCURP').files);
     } else {
         $('#error-CURP').show();
-        console.log('no se puede ' + document.querySelector('#fileCURP').files);
     }
 });
 
@@ -124,13 +122,11 @@ function validDocument(input, archivos) {
                 || archivos[index]["type"] == "image/jpeg" || archivos[index]["type"] == "application/pdf"
                 ) {
 
-                console.log('si se puede' + archivos[index]["type"]);
                 input.css('border', '');
                 return true;
 
 
             } else {
-                console.log('no se puede' + archivos[index]["type"]);
                 input.css('border', '1px solid red');
             }
 

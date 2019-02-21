@@ -25,9 +25,7 @@ $(document).ready(function () {
             
             var m = moment(new Date(Date.parse(calEvent.start._i)));
             
-            console.log(d);
-            console.log(m.locale("es").format('lll'));
-                 
+               
             $('#dia-cita').html(m.locale("es").format('LL'));
             $('#hora-cita').html(m.locale("es").format('LT'));
             
@@ -45,7 +43,6 @@ $(document).ready(function () {
                 },
                 textColor: 'white',
                 success: function (response) {
-                    console.log(response);
                 }
             }
 

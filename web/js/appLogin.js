@@ -54,7 +54,6 @@ $(document).ready(function () {
             key: "getRegistro"
         },
                 function (response, status, xhr) {
-                    console.log(response);
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -106,18 +105,14 @@ $(document).ready(function () {
 
 
     $('#recuperarContra').on('click', function () {
-        console.log("Click en recuperarContra desde el Login");
         $.post("LoginController", {
 
             key: "recuperarContra"
         },
                 function (response, status) {
-                    console.log(response);
                     if (response == "error") {
-                        console.log("Error al cargar");
                     } else {
 
-                        console.log("Intentando redireccionar");
                         document.open("text/html", "replace");
                         document.write(response);
                         document.close();

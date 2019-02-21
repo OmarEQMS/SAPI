@@ -25,9 +25,6 @@ $(document).ready(function () {
 
                 totalVisitasMes($('#fecha1Mes').val(), $('#fecha2Mes').val());
 
-                console.log($('#fecha1Mes').val());
-                console.log($('#fecha2Mes').val());
-
             } else {
                 $('.errorFechasMes').show();
             }
@@ -43,9 +40,6 @@ $(document).ready(function () {
                 $('.errorFechasMes').hide();
 
                 totalVisitasMes($('#fecha1Mes').val(), $('#fecha2Mes').val());
-
-                console.log($('#fecha1Mes').val());
-                console.log($('#fecha2Mes').val());
 
             } else {
                 $('.errorFechasMes').show();
@@ -73,8 +67,6 @@ $(document).ready(function () {
                 $('.totalVisitasMes tbody').children().remove();
 
                 var data = JSON.parse(response);
-
-                console.log(data);
 
                 var plantilla = `<tr>
                     <td>${data.decripcion}</td>
@@ -147,9 +139,6 @@ $(document).ready(function () {
 
                 cantidadPorEdad($('#fecha1Edad').val(), $('#fecha2Edad').val());
 
-                console.log($('#fecha1Edad').val());
-                console.log($('#fecha2Edad').val());
-
             } else {
                 $('.errorFechasEdad').show();
             }
@@ -165,9 +154,6 @@ $(document).ready(function () {
                 $('.errorFechasEdad').hide();
 
                 cantidadPorEdad($('#fecha1Edad').val(), $('#fecha2Edad').val());
-
-                console.log($('#fecha1Edad').val());
-                console.log($('#fecha2Edad').val());
 
             } else {
                 $('.errorFechasEdad').show();
@@ -254,8 +240,6 @@ $(document).ready(function () {
 
 
 
-                console.log(data);
-
             }
 
         });
@@ -273,9 +257,6 @@ $(document).ready(function () {
 
                 cantidadPorEscolaridad($('#fecha1Escolaridad').val(), $('#fecha2Escolaridad').val());
 
-                console.log($('#fecha1Escolaridad').val());
-                console.log($('#fecha2Escolaridad').val());
-
             } else {
                 $('.errorFechasEscolaridad').show();
             }
@@ -291,9 +272,6 @@ $(document).ready(function () {
                 $('.errorFechasEscolaridad').hide();
 
                 cantidadPorEscolaridad($('#fecha1Escolaridad').val(), $('#fecha2Escolaridad').val());
-
-                console.log($('#fecha1Escolaridad').val());
-                console.log($('#fecha2Escolaridad').val());
 
             } else {
                 $('.errorFechasEscolaridad').show();
@@ -378,8 +356,6 @@ $(document).ready(function () {
 
 
 
-                console.log(data);
-
             }
 
         });
@@ -398,9 +374,6 @@ $(document).ready(function () {
 
                 cantidadPorResidencia($('#fecha1Residencia').val(), $('#fecha2Residencia').val());
 
-                console.log($('#fecha1Residencia').val());
-                console.log($('#fecha2Residencia').val());
-
             } else {
                 $('.errorFechasResidencia').show();
             }
@@ -416,9 +389,6 @@ $(document).ready(function () {
                 $('.errorFechasResidencia').hide();
 
                 cantidadPorResidencia($('#fecha1Residencia').val(), $('#fecha2Residencia').val());
-
-                console.log($('#fecha1Residencia').val());
-                console.log($('#fecha2Residencia').val());
 
             } else {
                 $('.errorFechasResidencia').show();
@@ -506,8 +476,6 @@ $(document).ready(function () {
 
 
 
-                console.log(data);
-
             }
 
         });
@@ -529,9 +497,6 @@ $(document).ready(function () {
 
                 cantidadPorEconomico($('#fecha1Economico').val(), $('#fecha2Economico').val());
 
-                console.log($('#fecha1Economico').val());
-                console.log($('#fecha2Economico').val());
-
             } else {
                 $('.errorFechasEconomico').show();
             }
@@ -547,9 +512,6 @@ $(document).ready(function () {
                 $('.errorFechasEconomico').hide();
 
                 cantidadPorEconomico($('#fecha1Economico').val(), $('#fecha2Economico').val());
-
-                console.log($('#fecha1Economico').val());
-                console.log($('#fecha2Economico').val());
 
             } else {
                 $('.errorFechasEconomico').show();
@@ -635,8 +597,6 @@ $(document).ready(function () {
 
 
 
-                console.log(data);
-
             }
 
         });
@@ -656,9 +616,6 @@ $(document).ready(function () {
 
                 cantidadPorDecisionPreconsulta($('#fecha1Pre').val(), $('#fecha2Pre').val());
 
-                console.log($('#fecha1Pre').val());
-                console.log($('#fecha2Pre').val());
-
             } else {
                 $('.errorFechasPre').show();
             }
@@ -674,9 +631,6 @@ $(document).ready(function () {
                 $('.errorFechasPre').hide();
 
                 cantidadPorDecisionPreconsulta($('#fecha1Pre').val(), $('#fecha2Pre').val());
-
-                console.log($('#fecha1Pre').val());
-                console.log($('#fecha2Pre').val());
 
             } else {
                 $('.errorFechasPre').show();
@@ -762,8 +716,6 @@ $(document).ready(function () {
                     }
                 });
 
-                console.log(data);
-
             }
 
         });
@@ -783,9 +735,6 @@ $(document).ready(function () {
 
                 cantidadPorPatologia($('#fecha1Patologia').val(), $('#fecha2Patologia').val());
 
-                console.log($('#fecha1Patologia').val());
-                console.log($('#fecha2Patologia').val());
-
             } else {
                 $('.errorFechasPatologia').show();
             }
@@ -801,9 +750,6 @@ $(document).ready(function () {
                 $('.errorFechasPatologia').hide();
 
                 cantidadPorPatologia($('#fecha1Patologia').val(), $('#fecha2Patologia').val());
-
-                console.log($('#fecha1Patologia').val());
-                console.log($('#fecha2Patologia').val());
 
             } else {
                 $('.errorFechasPatologia').show();
@@ -887,8 +833,6 @@ $(document).ready(function () {
                     }
                 });
 
-                console.log(data);
-
             }
 
         });
@@ -914,9 +858,6 @@ $(document).ready(function () {
 
                 estadisticaMes($('#Rfecha1Mes').val(), $('#Rfecha2Mes').val());
 
-                console.log($('#Rfecha1Mes').val());
-                console.log($('#Rfecha2Mes').val());
-
             } else {
                 $('.errorFechasMes').show();
             }
@@ -932,9 +873,6 @@ $(document).ready(function () {
                 $('.errorFechasMes').hide();
 
                 estadisticaMes($('#Rfecha1Mes').val(), $('#Rfecha2Mes').val());
-
-                console.log($('#Rfecha1Mes').val());
-                console.log($('#Rfecha2Mes').val());
 
             } else {
                 $('.errorFechasMes').show();
@@ -962,8 +900,6 @@ $(document).ready(function () {
                 $('.estadisticaTotalVisitasMes tbody').children().remove();
 
                 var data = JSON.parse(response);
-
-                console.log(data);
 
                 var plantilla = `<tr>
                     <td>${data.decripcion}</td>
@@ -1036,9 +972,6 @@ $(document).ready(function () {
 
                 EstadisticaEdad($('#Rfecha1Edad').val(), $('#Rfecha2Edad').val());
 
-                console.log($('#Rfecha1Edad').val());
-                console.log($('#Rfecha2Edad').val());
-
             } else {
                 $('.errorFechasEdad').show();
             }
@@ -1055,10 +988,7 @@ $(document).ready(function () {
 
                 EstadisticaEdad($('#Rfecha1Edad').val(), $('#Rfecha2Edad').val());
 
-                console.log($('#Rfecha1Edad').val());
-                console.log($('#Rfecha2Edad').val());
-
-            } else {
+           } else {
                 $('.errorFechasEdad').show();
             }
         }
@@ -1143,8 +1073,6 @@ $(document).ready(function () {
 
 
 
-                console.log(data);
-
             }
 
         });
@@ -1162,9 +1090,6 @@ $(document).ready(function () {
 
                 EstadisticaEscolaridad($('#Rfecha1Escolaridad').val(), $('#Rfecha2Escolaridad').val());
 
-                console.log($('#Rfecha1Escolaridad').val());
-                console.log($('#Rfecha2Escolaridad').val());
-
             } else {
                 $('.errorFechasEscolaridad').show();
             }
@@ -1180,9 +1105,6 @@ $(document).ready(function () {
                 $('.errorFechasEscolaridad').hide();
 
                 EstadisticaEscolaridad($('#Rfecha1Escolaridad').val(), $('#Rfecha2Escolaridad').val());
-
-                console.log($('#Rfecha1Escolaridad').val());
-                console.log($('#Rfecha2Escolaridad').val());
 
             } else {
                 $('.errorFechasEscolaridad').show();
@@ -1267,8 +1189,6 @@ $(document).ready(function () {
 
 
 
-                console.log(data);
-
             }
 
         });
@@ -1287,9 +1207,6 @@ $(document).ready(function () {
 
                 EstadisticaResidencia($('#Rfecha1Residencia').val(), $('#Rfecha2Residencia').val());
 
-                console.log($('#Rfecha1Residencia').val());
-                console.log($('#Rfecha2Residencia').val());
-
             } else {
                 $('.errorFechasResidencia').show();
             }
@@ -1305,9 +1222,6 @@ $(document).ready(function () {
                 $('.errorFechasResidencia').hide();
 
                 EstadisticaResidencia($('#Rfecha1Residencia').val(), $('#Rfecha2Residencia').val());
-
-                console.log($('#Rfecha1Residencia').val());
-                console.log($('#Rfecha2Residencia').val());
 
             } else {
                 $('.errorFechasResidencia').show();
@@ -1395,8 +1309,6 @@ $(document).ready(function () {
 
 
 
-                console.log(data);
-
             }
 
         });
@@ -1418,9 +1330,6 @@ $(document).ready(function () {
 
                 EstadisticaEconomico($('#Rfecha1Economico').val(), $('#Rfecha2Economico').val());
 
-                console.log($('#Rfecha1Economico').val());
-                console.log($('#Rfecha2Economico').val());
-
             } else {
                 $('.errorFechasEconomico').show();
             }
@@ -1436,9 +1345,6 @@ $(document).ready(function () {
                 $('.errorFechasEconomico').hide();
 
                 EstadisticaEconomico($('#Rfecha1Economico').val(), $('#Rfecha2Economico').val());
-
-                console.log($('#Rfecha1Economico').val());
-                console.log($('#Rfecha2Economico').val());
 
             } else {
                 $('.errorFechasEconomico').show();
@@ -1524,8 +1430,6 @@ $(document).ready(function () {
 
 
 
-                console.log(data);
-
             }
 
         });
@@ -1545,9 +1449,6 @@ $(document).ready(function () {
 
                 EstadisticaDecisionPreconsulta($('#Rfecha1Pre').val(), $('#Rfecha2Pre').val());
 
-                console.log($('#Rfecha1Pre').val());
-                console.log($('#Rfecha2Pre').val());
-
             } else {
                 $('.errorFechasPre').show();
             }
@@ -1563,9 +1464,6 @@ $(document).ready(function () {
                 $('.errorFechasPre').hide();
 
                 EstadisticaDecisionPreconsulta($('#Rfecha1Pre').val(), $('#Rfecha2Pre').val());
-
-                console.log($('#Rfecha1Pre').val());
-                console.log($('#Rfecha2Pre').val());
 
             } else {
                 $('.errorFechasPre').show();
@@ -1651,8 +1549,6 @@ $(document).ready(function () {
                     }
                 });
 
-                console.log(data);
-
             }
 
         });
@@ -1672,9 +1568,6 @@ $(document).ready(function () {
 
                 EstadisticaPatologia($('#Rfecha1Patologia').val(), $('#Rfecha2Patologia').val());
 
-                console.log($('#Recha1Patologia').val());
-                console.log($('#Rfecha2Patologia').val());
-
             } else {
                 $('.errorFechasPatologia').show();
             }
@@ -1690,9 +1583,6 @@ $(document).ready(function () {
                 $('.errorFechasPatologia').hide();
 
                 EstadisticaPatologia($('#Rfecha1Patologia').val(), $('#Rfecha2Patologia').val());
-
-                console.log($('#Rfecha1Patologia').val());
-                console.log($('#Rfecha2Patologia').val());
 
             } else {
                 $('.errorFechasPatologia').show();
@@ -1776,8 +1666,6 @@ $(document).ready(function () {
                     }
                 });
 
-                console.log(data);
-
             }
 
         });
@@ -1811,12 +1699,9 @@ $(document).ready(function () {
         var fecha2Final = new Date(fecha2);
 
         if (fecha1 > fecha2) {
-            console.log('NO SEAS MAMON NO PUEDES');
             return false;
         }
 
-        console.log(fecha1Final);
-        console.log(fecha2Final);
 
         return true;
 

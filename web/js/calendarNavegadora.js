@@ -7,8 +7,6 @@ $(document).ready(function () {
 
         $('#tituloCita').val($(this).find(':selected').html());
 
-        console.log($('#tituloCita').val());
-
     });
 
 
@@ -28,7 +26,6 @@ $(document).ready(function () {
 
             $('#modalVerCita').modal('toggle');
 
-            console.log(calEvent);
 
             $('#nombrePacienteCalendario').html(calEvent.title);
 
@@ -39,7 +36,6 @@ $(document).ready(function () {
             dateFinal.setDate(dateFinal.getDate() + 1);
 
             $('#fechaCita').val(convertDate(dateFinal));
-            console.log($('#fechaCita').val());
 
             var m = moment(date);
 
@@ -61,7 +57,6 @@ $(document).ready(function () {
                 },
                 textColor: 'white',
                 success: function (response) {
-                    console.log(response);
                 }
             }
 

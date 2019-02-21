@@ -121,7 +121,6 @@ $(document).ready(function () {
     
         //1.- Fecha fin
     $('#fechaFinTratamiento').on('change', function(){
-        console.log("entro");
         if (isValidDate2($('#fechaFinTratamiento'), $('#fechaInicioTratamiento2'))) {
             $('#error-fechaFin').hide();
         }else{
@@ -216,11 +215,7 @@ $(document).ready(function () {
         var day = today.getDate();
         var futureDate = new Date(year, month + 2, day);
         
-        console.log("Hoy: " + today);
-        console.log("FechaReg: " + date_from);
-        console.log("FechaFutura: " + futureDate);
-        console.log("---------------------------------------------------")
-        
+      
         /*
         var todayYear = today.getFullYear();
         var inicioYear = date_from.getFullYear();*/
@@ -228,10 +223,8 @@ $(document).ready(function () {
 
         if (futureDate >= date_from && date_from >= date_born) {
             event = false;
-            console.log("Valido");
         } else {
             event = true;
-            console.log("Invalido");
         }
 
         if (!input.val() || event) {
@@ -272,23 +265,15 @@ $(document).ready(function () {
 
         var event = false;
         
-        console.log("Hoy: " + date_today);
-        console.log("FechaFin: " + date_from);
-        console.log("FechaInicio: " + date_start);
 
         if(date_start < date_from && date_from <= date_today){
             event = false;
-            console.log(event);
-            console.log("fechaValida");
         }
         else{
             event= true;
-            console.log(event);
-            console.log("fechaInValida");
         }
 
         if (!input.val() || event) {
-            console.log("CAMBIAR COLOR");
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;

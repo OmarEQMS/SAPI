@@ -16,7 +16,6 @@ $(document).ready(function () {
 
     $("#RestablcerContra").on('click', function () {
         if (isValidPassword($('#cambio1')) && isValidPassword($('#cambio2')) && areEqualPasswords($('#cambio1'), $('#cambio2'))) {
-            console.log("Presionó cmabiar contrasena");
             $('#errorCambiar').hide();
 
             $.ajax({
@@ -31,7 +30,6 @@ $(document).ready(function () {
                     if (response == "error") {
 
                     } else {
-                        console.log("Intentando redireccionar");
                         document.open("text/html", "replace");
                         document.write(response);
                         document.close();
@@ -45,7 +43,6 @@ $(document).ready(function () {
     });
 
     $('#recuperarEnviarCorreo').on('click', function () {
-        console.log("Click en Recuperar después de ingresar el correo");
         var mail = $('#email').val();
 
         if (repiteCorreo) {
@@ -70,7 +67,6 @@ $(document).ready(function () {
                             buttons: true,
                             buttons: [, 'Aceptar']
                         }).then(function () {
-                            console.log("Intentando redireccionar");
                             document.open("text/html", "replace");
                             document.write(response);
                             document.close();
@@ -88,17 +84,13 @@ $(document).ready(function () {
     });
 
     $('#ir-a-loginR').on('click', function () {
-        console.log("Entro a ajaxRecuperar.jps btn ir-a-LoginR");
         $.post("LoginController", {
             key: "ir-a-login"
         },
                 function (response, status) {
-                    console.log(response);
 
                     if (response == "error") {
-                        console.log("Error al cargar");
                     } else {
-                        console.log("Intentando redireccionar");
                         document.open("text/html", "replace");
                         document.write(response);
                         document.close();
@@ -141,7 +133,6 @@ $(document).ready(function () {
                 success: function (response) {
 
                     if (response === 'CorreoAlreadyExists') {
-                        console.log("correo existente")
                         $('#errorCorreoNoExistente').hide();
                         repiteCorreo = true;
                     } else {

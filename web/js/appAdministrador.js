@@ -12,7 +12,6 @@ $(document).ready(function () {
     mostrarContrasena($('#pacienteContrasena'),'contraPaciente');
     mostrarContrasena($('#pacienteContrasenaConfirmacion'),'confContraPaciente');
 
-
     //Esconder menu lateral a presionar click en el menu hamburguesa
     $('#sidebarCollapse').on('click', () => {
         $('#sidebar, #content').toggleClass('active');

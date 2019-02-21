@@ -275,15 +275,11 @@ export const validation = {
         //Valor seleccionado del input
         let date_from = input.val();
        
-        console.log(fechaInicio);
         date_from = new Date(date_from);
         var date_Inicio = new Date(fechaInicio);
 
         let event = false;
         
-        console.log(input.val());
-        console.log("Date inicio"+date_Inicio);
-        console.log("Date from" +date_from);
         date_Inicio > date_from ? event = true : event = false;
 
 
@@ -381,13 +377,11 @@ export const validation = {
                 || archivos[index]["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
                 archivos[index]["type"] == "application/msword") {
 
-                console.log('si se puede' + archivos[index]["type"]);
                 input.css('border', '');
                 return true;
 
 
             } else {
-                console.log('no se puede' + archivos[index]["type"]);
                 input.css('border', '1px solid red');
             }
 

@@ -11,7 +11,6 @@ $(document).ready(function () {
             key: "getRegistro"
         },
                 function (response, status, xhr) {
-                    console.log(response);
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -36,7 +35,6 @@ $(document).ready(function () {
            
         },
                 function (response, status, xhr) {
-                    console.log(response);
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -203,7 +201,6 @@ $(document).ready(function () {
             success: function (response) {
 
                 if (response === 'CorreoAlreadyExists') {
-                    console.log("correo repetidooo")
                     $('#correo').css('color', 'orange');
                     $('#errorCorreoRepetido').show();
                     repiteCorreo = true;
@@ -247,12 +244,10 @@ $(document).ready(function () {
                 muestra(btnRegresar);
 
             } else {
-                console.log("Entro al segundo else");
                 $("#error-campos").show(); //No se llenaron los campos obligatorios
                 
             }
         } else {
-            console.log("Entro al segundo else");
             $("#error-datosRepetidos").show(); //ya existe un campo
             
         }

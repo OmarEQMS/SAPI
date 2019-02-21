@@ -75,15 +75,12 @@ $(document).ready(function () {
                                     break;
                             }
 
-                            console.log($('#tipoPaciente').val());
                             $('#modalTerminos').modal('toggle');
                         });
             } else {
-                console.log("Entro al segundo else");
                 $("#error-campos").show(); //No se llenaron los campos obligatorios
             }
         } else {
-            console.log("Entro al segundo else");
             $("#error-datosRepetidos").show(); //ya existe un campo
         }
     });
@@ -138,7 +135,6 @@ $(document).ready(function () {
 
             })
                     .done(function (response) {
-                        console.log(response);
 
                         swal({
                             title: '¡Buen Trabajo!',
@@ -150,12 +146,10 @@ $(document).ready(function () {
                             buttons: [, 'Aceptar']
                         })
                                 .then(function () {
-                                    console.log("Redirección a login");
                                     $.get("LoginController", {
                                         key: "ir-a-login"
                                     },
                                             function (response, status, xhr) {
-                                                console.log(response);
 
                                                 if (status == "success") {
                                                     if (response == "error") {
@@ -173,7 +167,6 @@ $(document).ready(function () {
                                 });
                     })
                     .fail(function (xhr, textStatus, errorThrown) {
-                        console.log(xhr.responseText);
                     });
         }
 
@@ -208,8 +201,6 @@ $(document).ready(function () {
                 }
 
                 $('.municipios select').prop('selectedIndex', 0);
-
-                console.log(json);
 
             }
 
@@ -382,7 +373,6 @@ $(document).ready(function () {
             success: function (response) {
 
                 if (response === 'CorreoAlreadyExists') {
-                    console.log("correo repetidooo")
                     $('#correo').css('color', 'orange');
                     $('#errorCorreoRepetido').show();
                     repiteCorreo = true;
@@ -521,8 +511,6 @@ $(document).ready(function () {
                     $('#estado').prop('selectedIndex', 0);
                     $('#municipio').prop('selectedIndex', 0);
 
-                    console.log(data);
-
                 }
 
             });
@@ -577,7 +565,6 @@ $(document).ready(function () {
 
                         }
 
-                        console.log(json);
                     }
 
                 }

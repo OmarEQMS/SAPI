@@ -172,7 +172,6 @@ $(document).ready(function () {
             }
 
         } else {
-            console.log("Entro al segundo else");
             $("#error-datosRepetidosAdministrador").show(); //ya existe un campo
             $("#error-camposAdministrador").hide();
         }
@@ -200,7 +199,6 @@ $(document).ready(function () {
     $('body').on('click', '.btn-editarAdministrador', function () {
 
         var idAdmin = $(this).data('id');
-        console.log("idAdmin " + idAdmin);
 
         $.ajax({
 
@@ -220,9 +218,6 @@ $(document).ready(function () {
             success: function (response) {
 
                 response = JSON.parse(response);
-
-                console.log("EL RESPONSE");
-                console.log(response);
 
                 $('#idAdministrador').val(response.idEmpleado);
                 $('#editar-nombreAdministrador').val(response.nombre);
@@ -291,7 +286,6 @@ $(document).ready(function () {
                                             key: "cerrar-sesion"
                                         },
                                                 function (response, status, xhr) {
-                                                    console.log(response);
                                                     if (status == "success") {
                                                         if (response == "error") {
                                                             $("#msj-error").show();
@@ -369,7 +363,6 @@ $(document).ready(function () {
                     success: function (response) {
 
                         $('#modalEditarAdministrador').modal('toggle'); //cerrar modal
-                        console.log("Cierra el modal");
                         swal({
                             title: "Cambios guardados correctamente",
                             icon: "success",
@@ -378,7 +371,6 @@ $(document).ready(function () {
                             buttons: true,
                             buttons: [, 'Aceptar']
                         });
-                        console.log("ESTOY EN EL SUCCESS!! :o");
                         $('#nombre-' + idAdmin).html($('#editar-nombreAdministrador').val() + " " + $('#editar-primerApellidoAdministrador').val() + " " + $('#editar-segundoApellidoAdministrador').val());
                         $('#correo-' + idAdmin).html($('#editar-correoAdministrador').val());
                         $('#telefono-' + idAdmin).html($('#editar-telefonoAdministrador').val());
@@ -395,7 +387,6 @@ $(document).ready(function () {
                 $("#error-camposEditarAdmin").show();
             }
         } else {
-            console.log("Entro al segundo else");
             $("#error-editarDatosRepetidosAdministrador").show(); //ya existe un campo
             $("#error-camposEditarAdmin").hide();
         }
@@ -463,7 +454,6 @@ $(document).ready(function () {
             success: function (response) {
 
                 if (response === 'CorreoAlreadyExists') {
-                    console.log("correo repetidooo")
                     $('#agregar-correoAdministrador').css('color', 'orange');
                     $('#errorCorreoRepetidoAdministrador').show();
                     repiteCorreoAdministrador = true;
@@ -522,12 +512,10 @@ $(document).ready(function () {
             success: function (response) {
 
                 if (response === 'NoEmpleadoAlreadyExists') {
-                    console.log("NoEmpleado repetidooo")
                     $('#agregar-noEmpleadoAdministrador').css('color', 'orange');
                     $('#errorNumEmpleadoRepetidoAdministrador').show();
                     repiteNoEmpleadoAdministrador = true;
                 } else {
-                    console.log("NoEmpleado no repetidooo")
                     $('#errorNumEmpleadoRepetidoAdministrador').hide();
                     $("#error-datosRepetidosAdministrador").hide();
                     repiteNoEmpleadoAdministrador = false;
@@ -641,25 +629,14 @@ $(document).ready(function () {
             continuar = true;
         }
 
-        console.log("CambioImagen: " + cambioImagen);
-        console.log("imagenValida: " + imagenValida);
-
-        if (continuar)
-            console.log("Se actualizan cambios");
-        else
-            console.log("No se puede (imagenInVálida");
-
 
         if (continuar) {
             if (isValidEmail($('#correo')) && !repiteCorreoCuenta) {
 
-                console.log("Presionó GuardarCambios");
                 var form = $("form")[0];
-                console.log(form);
                 var data = new FormData(form);
                 data.append("key", "guardarCambios");
                 data.forEach((value, key) => {
-                    console.log(key + " " + value);
                 });
 
                 $.ajax({
@@ -691,7 +668,6 @@ $(document).ready(function () {
                                         file: "administrador/cuentaAdministrador.jsp"
                                     },
                                             function (response, status, xhr) {
-                                                console.log("El ajax fue exitoso!!-----------------------");
                                                 if (status == "success") {
                                                     if (response == "error") {
                                                         swal({
@@ -757,10 +733,8 @@ $(document).ready(function () {
     }
 
     $("#file-input").on('change', function () {
-        console.log("Llegó :)");
         cambioImagen = true;
         var tieneFoto = ($('#file-input').get(0).files.length === 0) ? false : true;
-        console.log("Tiene algo? " + tieneFoto)
         if (validProfilePhoto($('#file-input'), document.querySelector('#file-input').files) || !tieneFoto) {
             imagenValida = true;
             $('#error-imgPerfil').hide();
@@ -778,13 +752,11 @@ $(document).ready(function () {
             if (archivos[index]["type"] == "image/jpg" || archivos[index]["type"] == "image/png"
                     || archivos[index]["type"] == "image/jpeg") {
 
-                console.log('si se puede' + archivos[index]["type"]);
                 input.css('border', '');
                 return true;
 
 
             } else {
-                console.log('no se puede' + archivos[index]["type"]);
                 input.css('border', '1px solid red');
             }
 
@@ -981,7 +953,6 @@ $(document).ready(function () {
             success: function (response) {
 
                 if (response === 'CorreoAlreadyExists') {
-                    console.log("correo repetidooo")
                     $('#correo').css('color', 'orange');
                     $('#error-correoRepetido').show();
                     repiteCorreoCuenta = true;
@@ -1115,8 +1086,6 @@ $(document).ready(function () {
     //NÚMERO DE EMPLEADO EN AGREGAR MÉDICO
     $('#agregar-noEmpleadoMedico').on('change', function () {
 
-        console.log("hola")
-
         $.ajax({
 
             url: 'RegistraUsuarioController',
@@ -1129,12 +1098,10 @@ $(document).ready(function () {
             success: function (response) {
 
                 if (response === 'NoEmpleadoAlreadyExists') {
-                    console.log("NoEmpleado repetidooo")
                     $('#agregar-noEmpleadoMedico').css('color', 'orange');
                     $('#errorNumEmpleadoRepetidoMedico').show();
                     repiteNoEmpleadoMedico = true;
                 } else {
-                    console.log("NoEmpleado no repetidooo")
                     $('#errorNumEmpleadoRepetidoMedico').hide();
                     $("#error-datosRepetidos").hide();
                     repiteNoEmpleadoMedico = false;
@@ -1487,7 +1454,6 @@ $(document).ready(function () {
             },
             success: function (response) {
                 if (response === 'CorreoAlreadyExists') {
-                    console.log("correo repetidooo")
                     $('#agregar-correoMedico').css('color', 'orange');
                     $('#errorCorreoRepetido').show();
                     repiteCorreo = true;
@@ -1691,7 +1657,6 @@ $(document).ready(function () {
             success: function (response) {
 
                 if (response === 'CorreoAlreadyExists') {
-                    console.log("correo repetidooo")
                     $('#correoPaciente').css('color', 'orange');
                     $('#errorCorreoRepetidoPaciente').show();
                     repiteCorreoPaciente = true;
@@ -1970,8 +1935,6 @@ $(document).ready(function () {
     //NOMBRE DE USUARIO AL EDITAR PACIENTE
     $('#editarUsuarioAdministradorAPaciente').on('change', function () {
         var idPaciente = $('#idPacienteAEditar').val();
-        console.log("holaaaaaa");
-        console.log("idPaciente: " + idPaciente)
         $.ajax({
             url: 'AdministradorController',
             method: "POST",
@@ -2025,7 +1988,6 @@ $(document).ready(function () {
             },
             success: function (response) {
                 if (response === 'CorreoAlreadyExists') {
-                    console.log("correo repetidooo")
                     $('#editarCorreoAdministradorAPaciente').css('color', 'orange');
                     $('#errorEditarPacienteCorreoRepetido').show();
                     repiteCorreo = true;
@@ -2339,7 +2301,6 @@ $(document).ready(function () {
 
 
 
-                            console.log(response);
                             swal({
                                 title: "¡Buen trabajo!",
                                 text: "Se ha agregado correctamente al médico.",
@@ -2381,11 +2342,9 @@ $(document).ready(function () {
                     $('#errorTerminosMedico').show();
                 }
             } else {
-                console.log("Entro al segundo else");
                 $("#error-campos").show(); //No se llenaron los campos obligatorios
             }
         } else {
-            console.log("Entro al segundo else");
             $("#error-datosRepetidos").show(); //ya existe un campo
             $("#error-campos").hide();
         }
@@ -2444,12 +2403,10 @@ $(document).ready(function () {
             success: function (response) {
 
                 if (response === 'NoEmpleadoAlreadyExists') {
-                    console.log("NoEmpleado repetidooo")
                     $('#editar-noEmpleadoMedico').css('color', 'orange');
                     $('#errorEditarNumEmpleadoRepetidoMedico').show();
                     repiteEditNoEmpleadoMedico = true;
                 } else {
-                    console.log("NoEmpleado no repetidooo")
                     $('#errorEditarNumEmpleadoRepetidoMedico').hide();
                     $("#error-editarDatosRepetidos").hide();
                     repiteEditNoEmpleadoMedico = false;
@@ -2533,7 +2490,6 @@ $(document).ready(function () {
             },
             success: function (response) {
                 if (response === 'CorreoAlreadyExists') {
-                    console.log("correo repetidooo")
                     $('#editar-correoMedico').css('color', 'orange');
                     $('#errorEditarCorreoRepetido').show();
                     repiteCorreo = true;
@@ -2564,7 +2520,6 @@ $(document).ready(function () {
     $('body').on('click', '.btn-editarMedico', function () {
 
         var idMedico = $(this).data('id');
-        console.log("idMédico " + idMedico);
 
         $.ajax({
 
@@ -2585,7 +2540,6 @@ $(document).ready(function () {
             success: function (response) {
 
                 //$("#idMedico").val(response.id);
-                console.log(response);
 
                 var json = response;
                 $('#idMedico').val(json.idEmpleado);
@@ -2622,8 +2576,6 @@ $(document).ready(function () {
             success: function (response) {
 
                 //$("#idMedico").val(response.id);
-                console.log(response);
-
                 var json = response;
                 $('#idAdministrador').val(json.idEmpleado);
                 $('#editar-nombreAdministrador').val(json.nombre);
@@ -2693,7 +2645,6 @@ $(document).ready(function () {
         });
     });
     $('#IrAGestionPaciente').on('click', function () {
-        console.log("VE!");
         $.ajax({
             url: 'SAPI',
             method: "POST",
@@ -2748,7 +2699,6 @@ $(document).ready(function () {
             file: "administrador/reAsignarMedico.jsp"
         },
                 function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -2767,7 +2717,6 @@ $(document).ready(function () {
             file: "administrador/gestionMedicos.jsp"
         },
                 function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -2784,7 +2733,6 @@ $(document).ready(function () {
 
     $('body').on('click', '.btn-verNavegadora', function () {
 
-        console.log("VerNavegadora");
         var idNavegadora = $(this).data('id');
 
         $.ajax({
@@ -2819,7 +2767,6 @@ $(document).ready(function () {
             file: "administrador/cuentaAdministrador.jsp"
         },
                 function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -2838,7 +2785,6 @@ $(document).ready(function () {
             file: "administrador/cuentaAdministrador.jsp"
         },
                 function (response, status, xhr) {
-                    console.log("El ajax fue exitoso!!-----------------------");
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -2855,12 +2801,10 @@ $(document).ready(function () {
 
 
     $('#salirCuenta').on('click', function () {
-        console.log("Salir cuenta");
         $.post("LoginController", {
             key: "cerrar-sesion"
         },
                 function (response, status, xhr) {
-                    console.log(response);
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -2875,12 +2819,10 @@ $(document).ready(function () {
     });
 
     $('.salirCuenta').on('click', function () {
-        console.log("Salir cuenta");
         $.post("LoginController", {
             key: "cerrar-sesion"
         },
                 function (response, status, xhr) {
-                    console.log(response);
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -2949,12 +2891,10 @@ $(document).ready(function () {
             success: function (response) {
 
                 if (response === 'NoEmpleadoAlreadyExists') {
-                    console.log("NoEmpleado repetidooo")
                     $('#editar-noEmpleadoAdministrador').css('color', 'orange');
                     $('#errorEditarNumEmpleadoRepetidoAdministrador').show();
                     repiteEditNoEmpleadoAdministrador = true;
                 } else {
-                    console.log("NoEmpleado no repetidooo")
                     $('#errorEditarNumEmpleadoRepetidoAdministrador').hide();
                     $("#error-editarDatosRepetidosAdministrador").hide();
                     repiteEditNoEmpleadoAdministrador = false;
@@ -3038,7 +2978,6 @@ $(document).ready(function () {
             },
             success: function (response) {
                 if (response === 'CorreoAlreadyExists') {
-                    console.log("correo repetidooo")
                     $('#editar-correoAdministrador').css('color', 'orange');
                     $('#errorEditarCorreoRepetidoAdministrador').show();
                     repiteCorreo = true;
@@ -3089,17 +3028,6 @@ $(document).ready(function () {
                 var posicion = $('#editar-posicionMedico').val();
                 var cedula = $('#editar-cedulaProfesionalMedico').val();
 
-                console.log("idMédicoooo " + idMedico);
-                console.log("nombre " + nombre);
-                console.log("phone " + telefono);
-                console.log("ape 1 " + primerApellido);
-                console.log("ape 2 " + segundoApellido);
-                console.log("mail " + correo);
-                console.log("empleado no " + noEmpleado);
-                console.log("especiliad  " + especialidad);
-                console.log("cedula " + cedula);
-
-                console.log("Holi, hará el ajax");
                 $.ajax({
 
                     url: 'AdministradorController',
@@ -3126,7 +3054,6 @@ $(document).ready(function () {
                     },
                     success: function (response) {
                         $('#modalEditarMedico').modal('toggle'); //cerrar modal
-                        console.log("Cierra el modal");
                         swal({
                             title: "Cambios guardados correctamente",
                             closeOnEsc: false,
@@ -3135,7 +3062,6 @@ $(document).ready(function () {
                             buttons: true,
                             buttons: [, 'Aceptar']
                         });
-                        console.log("ESTOY EN EL SUCCESS!! :o");
                         $('#nombre-' + idMedico).html(nombre + " " + primerApellido + " " + segundoApellido);
                         $('#correo-' + idMedico).html(correo);
                         $('#telefono-' + idMedico).html(telefono);
@@ -3153,7 +3079,6 @@ $(document).ready(function () {
                 $('#error-camposEditar').show();
             }
         } else {
-            console.log("Entro al segundo else");
             $("#error-editarDatosRepetidos").show(); //ya existe un campo
             $('#error-camposEditar').hide();
         }
@@ -3324,12 +3249,10 @@ $(document).ready(function () {
             success: function (response) {
 
                 if (response === 'NoEmpleadoAlreadyExists') {
-                    console.log("NoEmpleado repetidooo")
                     $('#editar-no-empleadoNavegadora').css('color', 'orange');
                     $('#errorEditarNumEmpleadoRepetidoNavegadora').show();
                     repiteEditNoEmpleadoNavegadora = true;
                 } else {
-                    console.log("NoEmpleado no repetidooo")
                     $('#errorEditarNumEmpleadoRepetidoNavegadora').hide();
                     $("#error-editarDatosRepetidosNavegadora").hide();
                     repiteEditNoEmpleadoNavegadora = false;
@@ -3461,7 +3384,6 @@ $(document).ready(function () {
             success: function (response) {
 
                 if (response === 'CorreoAlreadyExists') {
-                    console.log("correo repetidooo")
                     $('#editar-correoNavegadora').css('color', 'orange');
                     $('#errorEditarCorreoRepetidoNavegadora').show();
                     repiteCorreoNavegadora = true;
@@ -3542,12 +3464,10 @@ $(document).ready(function () {
             success: function (response) {
 
                 if (response === 'NoEmpleadoAlreadyExists') {
-                    console.log("NoEmpleado repetidooo")
                     $('#agregar-noEmpleadoNavegadora').css('color', 'orange');
                     $('#errorNumEmpleadoRepetidoNavegadora').show();
                     repiteNoEmpleadoNavegadora = true;
                 } else {
-                    console.log("NoEmpleado no repetidooo")
                     $('#errorNumEmpleadoRepetidoNavegadora').hide();
                     $("#error-datosRepetidosNavegadora").hide();
                     repiteNoEmpleadoNavegadora = false;
@@ -3662,7 +3582,6 @@ $(document).ready(function () {
             success: function (response) {
 
                 if (response === 'CorreoAlreadyExists') {
-                    console.log("correo repetidooo")
                     $('#agregar-correoNavegadora').css('color', 'orange');
                     $('#errorCorreoRepetidoNavegadora').show();
                     repiteCorreoNavegadora = true;
@@ -3714,16 +3633,6 @@ $(document).ready(function () {
                     var especialidad = $('#agregar-especialidadNavegadora');
                     var cedula = $('#agregar-cedulaNavegadora');
                     var password = $('#agregar-passwordNavegadora');
-
-                    console.log(nombre);
-                    console.log(telefono);
-                    console.log(primerApellido);
-                    console.log(segundoApellido);
-                    console.log(correo);
-                    console.log(noEmpleado);
-                    console.log(especialidad);
-                    console.log(cedula);
-                    console.log(password);
 
                     $.ajax({
 
@@ -3796,11 +3705,9 @@ $(document).ready(function () {
                     $('#errorTerminosNavegadora').show();
                 }
             } else {
-                console.log("Entro al segundo else");
                 $("#error-camposNavegadora").show(); //No se llenaron los campos obligatorios
             }
         } else {
-            console.log("Entro al segundo else");
             $("#error-datosRepetidosNavegadora").show(); //ya existe un campo
             $("#error-camposNavegadora").hide();
         }
@@ -3811,7 +3718,6 @@ $(document).ready(function () {
     $('body').on('click', '.btn-editarNavegadora', function () {
 
         var idNavegadora = $(this).data('id');
-        console.log(idNavegadora);
 
         $.ajax({
 
@@ -3831,7 +3737,6 @@ $(document).ready(function () {
             },
             success: function (response) {
 
-                console.log(response);
                 $('#idNavegadora').val(response.idEmpleado);
                 $('#editar-nombreNavegadora').val(response.nombre);
                 $('#editar-telefonoNavegadora').val(response.telefono);
@@ -3871,18 +3776,6 @@ $(document).ready(function () {
                 var especialidad = $('#editar-especialidad').val();
                 var cedula = $('#editar-cedulaNavegadora').val();
 
-                console.log("idNavegadoraaaaa " + idNavegadora);
-                console.log("nombre " + nombre);
-                console.log("phone " + telefono);
-                console.log("ape 1 " + primerApellido);
-                console.log("ape 2 " + segundoApellido);
-                console.log("mail " + correo);
-                console.log("empleado no " + noEmpleado);
-                console.log("especiliad  " + especialidad);
-                console.log("cedula " + cedula);
-
-                console.log("Holi, hará el ajax");
-
                 $.ajax({
 
                     url: 'AdministradorController',
@@ -3908,7 +3801,6 @@ $(document).ready(function () {
                     },
                     success: function (response) {
                         $('#modalEditarNavegadora').modal('toggle'); //cerrar modal
-                        console.log("Cierra el modal");
                         swal({
                             title: "Cambios guardados correctamente",
                             icon: "success",
@@ -3917,7 +3809,6 @@ $(document).ready(function () {
                             buttons: true,
                             buttons: [, 'Aceptar']
                         });
-                        console.log("ESTOY EN EL SUCCESS!! :o");
                         $('#nombre-' + idNavegadora).html(nombre + " " + primerApellido + " " + segundoApellido);
                         $('#correo-' + idNavegadora).html(correo);
                         $('#telefono-' + idNavegadora).html(telefono);
@@ -3930,7 +3821,6 @@ $(document).ready(function () {
                 $("#error-camposEditarNavegadora").show();
             }
         } else {
-            console.log("Entro al segundo else");
             $("#error-editarDatosRepetidosNavegadora").show(); //ya existe un campo
             $("#error-camposEditarNavegadora").hide();
         }
@@ -4003,8 +3893,6 @@ $(document).ready(function () {
 
         $('#idPacienteAEditar').val($(this).data('id'));
 
-        console.log("idPaciente: " + idPaciente);
-
         $.ajax({
 
             url: 'AdministradorController',
@@ -4025,8 +3913,6 @@ $(document).ready(function () {
             success: function (response) {
 
                 var data = JSON.parse(response);
-
-                console.log(data);
 
                 $('#editarNombreAdministradorAPaciente').val(data.nombre);
                 $('#editarCurpAdministradorAPaciente').val(data.curp);
@@ -4067,7 +3953,6 @@ $(document).ready(function () {
                             $('.editarMunicipios select').append("<option value=" + json[i].idMunicipio + ">" + json[i].nombre + "</option>");
                         }
                         $('.editarMunicipios select').prop('selectedIndex', 0);
-                        console.log(json);
                         $('#editarMunicipioAdministradorAPaciente').val(data.idMunicipio);
                     }
 
@@ -4152,7 +4037,6 @@ $(document).ready(function () {
                 $("#error-camposEditarPaciente").show();
             }
         } else {
-            console.log("Entro al segundo else");
             $("#error-editarDatosRepetidosPaciente").show(); //ya existe un campo
             $("#error-camposEditarPaciente").hide();
         }
@@ -4179,7 +4063,6 @@ $(document).ready(function () {
                 } else {
                     isValidTerminosPaciente = false;
                     $('#error-terminos').hide();
-                    console.log("TODO BIEN");
 
                     $.ajax({
                         url: 'RegistraUsuarioController',
@@ -4230,8 +4113,6 @@ $(document).ready(function () {
                             //cerrar el modal
                             $('#modalAgregarPaciente').modal('toggle');
 
-                            console.log("Response!" + response);
-                            console.log("FUNCIONÓ! (creo)");
                             var t = $('#tablaPacientes').DataTable();
 
                             t.row.add([
@@ -4274,7 +4155,6 @@ $(document).ready(function () {
                 $("#error-camposPaciente").show();
             }
         } else {
-            console.log("Entro al segundo else");
             $("#error-datosRepetidosPaciente").show(); //ya existe un campo
             $("#error-camposPaciente").hide();
         }
@@ -4430,7 +4310,6 @@ $(document).ready(function () {
                     }
                     $('#estadoPaciente').prop('selectedIndex', 0);
                     $('#municipioPaciente').prop('selectedIndex', 0);
-                    console.log(data);
                 }
             });
         } else if ($(this).val().length === 5) {
@@ -4466,7 +4345,6 @@ $(document).ready(function () {
                             $('#estadoPaciente').removeAttr('disabled');
                             $('#estadoPaciente').removeAttr('selected');
                         }
-                        console.log(json);
                     }
                 }
             });
@@ -4493,7 +4371,6 @@ $(document).ready(function () {
                     $('.municipios select').append("<option value=" + json[i].idMunicipio + ">" + json[i].nombre + "</option>");
                 }
                 $('.municipios select').prop('selectedIndex', 0);
-                console.log(json);
             }
         });
     });
@@ -4517,7 +4394,6 @@ $(document).ready(function () {
                     $('.editarMunicipios select').append("<option value=" + json[i].idMunicipio + ">" + json[i].nombre + "</option>");
                 }
                 $('.editarMunicipios select').prop('selectedIndex', 0);
-                console.log(json);
             }
         });
     });
@@ -4599,7 +4475,6 @@ $(document).ready(function () {
 
     $('body').on('click', '#btn-continue-reasignar', function () {
 
-        console.log("Reasignar médicos");
 
         var doctor1 = $('#doctor1');
         var doctor2 = $('#doctor2');
@@ -4630,7 +4505,6 @@ $(document).ready(function () {
                             doctor2: doctor2.val()
                         },
                         success: function (response) {
-                            console.log(response);
                             if (response == 0)
                             {
                                 swal({
@@ -4732,8 +4606,6 @@ $(document).ready(function () {
                 }
 
 
-                console.log(JSON.stringify(especialidades));
-
             });
 
 
@@ -4757,7 +4629,6 @@ $(document).ready(function () {
                     posiciones.append(newObjeto);
                 }
 
-                console.log(JSON.stringify(posiciones));
 
             });
 
@@ -4777,7 +4648,6 @@ $(document).ready(function () {
     }
     function convertDate(fecha) {
         if (fecha !== "Jan 1, 1900") {
-            console.log(fecha);
             fecha = fecha.replace("ene", "jan");
             fecha = fecha.replace("feb", "feb");
             fecha = fecha.replace("mar", "mar");

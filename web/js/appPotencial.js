@@ -56,7 +56,6 @@ $(document).ready(function () {
     $("#motivoConsulta").on('change', () => {
 
         var motivo = $('#motivoConsulta').val();
-        console.log(motivo);
 
         switch (motivo) {
             case "0":
@@ -122,7 +121,6 @@ $(document).ready(function () {
                 break;
 
             case "5":
-                console.log("OTRO");
                 $('#documentoAdjuntoMotivo').html("");
                 $('#otroHospital').html("");
 
@@ -140,7 +138,6 @@ $(document).ready(function () {
 
 
             default:
-                console.log("default");
                 break;
         }
     });
@@ -197,7 +194,6 @@ $(document).ready(function () {
     });
     
      $("body").on("click",".myCleaner", function(){
-         console.log("LOS LIMPIÓ");
 		$("#password").val("");
                 $("#password2").val("");
                 
@@ -215,7 +211,6 @@ $(document).ready(function () {
 
     $('#btn-continuar').on('click', function () {
 
-        console.log("Presionó continuar")
         $('#nav-bienvenida-tab').removeClass('active');
         $('#nav-solicitud-tab').addClass('active');
 
@@ -235,7 +230,6 @@ $(document).ready(function () {
     
     $('#btn-continuarAResolucion').on('click', function () {
 
-        console.log("VE A RESOLUCIÓN PRRO");
         $('#nav-solicitud-tab').removeClass('active');
         $('#nav-contact-tab').addClass('active');
 
@@ -254,9 +248,6 @@ $(document).ready(function () {
 
     //Preconsulta
     var fechaPre = $('#fechaCitaPreConsulta').html();
-    console.log("----------------------");
-    console.log("Se parsearon las fechas");
-    console.log("----------------------");
     var m = moment(new Date(fechaPre)).locale('es').format('LL') + ' a las: ' + "<strong>" + moment(new Date(fechaPre)).locale('es').format('LT') + "</strong>";
 
     $('#fechaCitaPreConsulta').html(m);

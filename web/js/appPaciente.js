@@ -122,18 +122,13 @@ $(document).ready(function () {
 
                 var data = JSON.parse(response);
 
-                console.log(data);
-
                 var option = '';
                 data.forEach(function (element, index) {
 
-                    console.log("Nombre: " + element.nombre);
 
                     option += `<option value="${element.idTipoTratamiento}">${element.nombre}</option>`;
 
                 });
-
-                console.log(option);
 
 
                 var plantilla = `<div class="form-group row justify-content-center contenedor-tratamientos">

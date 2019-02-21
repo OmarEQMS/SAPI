@@ -22,18 +22,14 @@ $(document).ready(function () {
 
     $('input[type=radio][name=Edificios]').on('change', function () {
 
-        console.log('Valor seleccionado de EDIFICIOS: ' + parseInt($(this).val()));
         if (parseInt($(this).val()) === 1) {
             $('#colorCita').val($('input:radio[name=Edificios]:checked').attr("data-color"));
-            console.log($('#colorCita').val());
         }
 
     });
     $('input[type=radio][name=Pisos]').on('change', function () {
 
-        console.log('Valor seleccionado de PISOS: ' + parseInt($(this).val()));
         $('#colorCita').val($('input:radio[name=Pisos]:checked').attr("data-color"));
-        console.log($('#colorCita').val());
     });
     //Recuperar piso
     var piso = 0;
@@ -43,13 +39,11 @@ $(document).ready(function () {
     $('#RegistrarCita_hora').on('change', function () {
 
         $('#fechaProgramada').val($('#fechaTemp').val() + ' ' + $(this).val() + ":00");
-        console.log($('#fechaProgramada').val());
     });
     //Recupera Titulo
     $('#RegistrarCita_tipo').on('change', function () {
 
         $('#tituloCita').val($(this).find(':selected').data('nombre'));
-        console.log($('#tituloCita').val());
     });
 //Agregar contenido dinamico de etapaClinica
 
@@ -94,7 +88,6 @@ $(document).ready(function () {
                 })
                         .done(function (response) {
 
-                            console.log(response);
                             if (response === "success") {
 
                                 $(".hora").val("");
@@ -135,7 +128,6 @@ $(document).ready(function () {
 
                         })
                         .fail(function (xhr, textStatus, errorThrown) {
-                            console.log(xhr.responseText);
                         });
             }
 
@@ -284,12 +276,10 @@ $(document).ready(function () {
     });
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta').on('click', function () {
-        console.log("Salir cuenta");
         $.post("LoginController", {
             key: "cerrar-sesion"
         },
                 function (response, status, xhr) {
-                    console.log(response);
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -326,9 +316,7 @@ $(document).ready(function () {
                             method: "POST",
                             success: function (response) {
                                 if (response == "error") {
-                                    console.log("Error al cargar");
                                 } else {
-                                    console.log("Intentando redireccionar");
                                     document.open("text/html", "replace");
                                     document.write(response);
                                     document.close();
@@ -346,12 +334,10 @@ $(document).ready(function () {
     });
     //PARA SALIR DE LA CUENTA
     $('#salirCuenta1').on('click', function () {
-        console.log("Salir cuenta");
         $.post("LoginController", {
             key: "cerrar-sesion"
         },
                 function (response, status, xhr) {
-                    console.log(response);
                     if (status == "success") {
                         if (response == "error") {
                             $("#msj-error").show();
@@ -387,7 +373,6 @@ $(document).ready(function () {
             success: function (response) {
 
                 if (response === 'CorreoAlreadyExists') {
-                    console.log("correo repetidooo")
                     $('#correo').css('color', 'orange');
                     $('#errorCorreoRepetido').show();
                     repiteCorreo = true;
@@ -424,13 +409,6 @@ $(document).ready(function () {
             continuar = true;
         }
 
-        console.log("CambioImagen: " + cambioImagen);
-        console.log("imagenValida: " + imagenValida);
-
-        if (continuar)
-            console.log("Se actualizan cambios");
-        else
-            console.log("No se puede (imagenInVálida");
         if (continuar) {
             if (!repiteCorreo) {
                 $("#error-datosRepetidos").hide();
@@ -438,12 +416,10 @@ $(document).ready(function () {
                         isValidPhoneNumber($("#telefono")) &&
                         isValidNoExpediente($("#noExpediente"))) {
 
-                    console.log("Presionó GuardarCambios")
                     var form = $("form")[0];
                     var data = new FormData(form);
                     data.append("key", "cambiarDatos");
                     data.forEach((value, key) => {
-                        console.log(key + " " + value);
                     })
                     $.ajax({
                         url: "PacienteController",
@@ -475,7 +451,6 @@ $(document).ready(function () {
                                             file: "paciente/cuenta.jsp"
                                         },
                                                 function (response, status, xhr) {
-                                                    console.log("El ajax fue exitoso!!-----------------------");
                                                     if (status == "success") {
                                                         if (response == "error") {
                                                             $("#msj-error").show();
@@ -531,10 +506,8 @@ $(document).ready(function () {
     }
 
     $("#file-input").on('change', function () {
-        console.log("Llegó :)");
         cambioImagen = true;
         var tieneFoto = ($('#file-input').get(0).files.length === 0) ? false : true;
-        console.log("Tiene algo? " + tieneFoto)
         if (validProfilePhoto($('#file-input'), document.querySelector('#file-input').files) || !tieneFoto) {
             imagenValida = true;
             $('#error-imgPerfil').hide();
@@ -547,9 +520,6 @@ $(document).ready(function () {
 
     //Agregar tratamientos
     $("#btn-agregarTratamiento").on('click', function () {
-
-        if ($("#tipoTratamiento").val() != "Elegir Tratamiento")
-            console.log($("#tipoTratamiento").val());
 
         if (isValidDate($('#fechaInicioTratamiento'), $('.fechaNacimientoPaciente')) && $("#tipoTratamiento").val() != null) {
 
@@ -567,7 +537,6 @@ $(document).ready(function () {
             })
                     .done(function (response) {
 
-                        console.log(response);
 
                         $('#modalAgregarTratamiento').modal('toggle'); //cerrar modal
 
@@ -580,8 +549,6 @@ $(document).ready(function () {
                             closeOnEsc: false,
                             closeOnClickOutside: false,
                         });
-
-                        console.log("FechaInicioTratamiento: " + $("#fechaInicioTratamiento").val());
 
                         var t = $('#tablaTratamientos').DataTable();
 
@@ -596,9 +563,6 @@ $(document).ready(function () {
                         ]).draw(false);
 
 
-                        console.log("WHALALALALA" + $("#nombre-" + response).val())
-
-
                         $('#tipoTratamiento').prop('selectedIndex', 0);
 
                         $("#fechaInicioTratamiento").val('');
@@ -607,7 +571,6 @@ $(document).ready(function () {
 
                     })
                     .fail(function (xhr, textStatus, errorThrown) {
-                        console.log(xhr.responseText);
                     });
         } else {
             swal({
@@ -678,9 +641,6 @@ $(document).ready(function () {
     $("#fechaTerminarTratamiento").on('click', function () {
         var date_from = $('#fechaFinTratamiento').val();
         var date_by = $('#fechaInicioTratamiento2').val();
-        console.log("#fechaFin: " + date_from);
-        console.log("#fechaInicio: " + date_by);
-        console.log("idTratamientoPaciente: " + $('.idTratamientoPaciente').val());
 
         if (isValidDate2($('#fechaFinTratamiento'), $('#fechaInicioTratamiento2'))) {
 
@@ -712,7 +672,6 @@ $(document).ready(function () {
 
                         //actualizar la tabla
 
-                        console.log("fechaFinTratamiento: " + $('#fechaFinTratamiento').val());
 
                         $('#fecha-' + $('.idTratamientoPaciente').val()).html(fechaFinTratamiento);
 
@@ -724,7 +683,6 @@ $(document).ready(function () {
 
                     })
                     .fail(function (xhr, textStatus, errorThrown) {
-                        console.log(xhr.responseText);
                     });
 
         } else {
@@ -746,7 +704,6 @@ $(document).ready(function () {
                 $("#boton-" + $(this).data('id')).val()
                 );
 
-        console.log("idTratamientoPacienteUnico: " + $(".idTratamientoPaciente").val());
 
         $("#botonHidden").val($(this).data('id'));
 
@@ -766,7 +723,6 @@ $(document).ready(function () {
 
     $("#tipoTratamiento").on('change', function () {
         $('#nombreTipoTratamiento').val($('#tipoTratamiento option:selected').text());
-        console.log($('#nombreTipoTratamiento').val());
     });
     function areEqualPasswords(pass1, pass2) {
 
@@ -791,13 +747,11 @@ $(document).ready(function () {
             if (archivos[index]["type"] == "image/jpg" || archivos[index]["type"] == "image/png"
                     || archivos[index]["type"] == "image/jpeg") {
 
-                console.log('si se puede' + archivos[index]["type"]);
                 input.css('border', '');
                 return true;
 
 
             } else {
-                console.log('no se puede' + archivos[index]["type"]);
                 input.css('border', '1px solid red');
             }
 
@@ -917,10 +871,6 @@ $(document).ready(function () {
         var day = today.getDate();
         var futureDate = new Date(year, month + 2, day)
 
-        console.log("Hoy: " + today);
-        console.log("FechaReg: " + date_from);
-        console.log("FechaFutura: " + futureDate);
-        console.log("---------------------------------------------------")
 
         /*
          var todayYear = today.getFullYear();
@@ -929,10 +879,8 @@ $(document).ready(function () {
 
         if (futureDate >= date_from && date_from >= date_born) {
             event = false;
-            console.log("Valido");
         } else {
             event = true;
-            console.log("Invalido");
         }
 
         if (!input.val() || event) {
@@ -972,22 +920,14 @@ $(document).ready(function () {
 
         var event = false;
 
-        console.log("Hoy: " + date_today);
-        console.log("FechaFin: " + date_from);
-        console.log("FechaInicio: " + date_start);
 
         if (date_start < date_from && date_from <= date_today) {
             event = false;
-            console.log(event);
-            console.log("fechaValida");
         } else {
             event = true;
-            console.log(event);
-            console.log("fechaInValida");
         }
 
         if (!input.val() || event) {
-            console.log("CAMBIAR COLOR");
             input.css('border', '1px solid red');
             input.css('color', 'red');
             return false;

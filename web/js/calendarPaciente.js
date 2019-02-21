@@ -6,7 +6,6 @@
 
 $(document).ready(function () {
 
-        console.log($("#idPaciente").val());
     $('#calendarCitasPaciente').fullCalendar({
         locale: 'es',
         height: 630,
@@ -42,9 +41,7 @@ $(document).ready(function () {
             }
             
             
-            console.log($('#hora-cita').html());
-            console.log('los minutos son: ' +  d.getMinutes());
-            
+          
             $('#edificio-cita').html(edificios[parseInt(calEvent.edificio)]);
             $('#piso-cita').html(pisos[parseInt(calEvent.piso)]);
             $('#modalVerCita').modal('toggle');
@@ -59,7 +56,6 @@ $(document).ready(function () {
             $('#dia-registrarCita').html(m.locale("es").format("LL"));
             $('#fechaProgramada').val(date.format());
             $('#fechaTemp').val(date.format());
-            console.log($('#fechaProgramada').val());
             
             $('#modalAgregarCita').modal('toggle');
             
@@ -75,7 +71,6 @@ $(document).ready(function () {
                 textColor: 'white',
                 success: function (response) {
                     
-                    console.log(response);
                 }
             }
 

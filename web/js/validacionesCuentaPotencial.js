@@ -8,10 +8,8 @@
 $('#myEmail').on('change', function () {
     if (isValidEmail($('#myEmail'))) {
         $('#error-correo').hide();
-        console.log('saludos');
     } else {
         $('#error-correo').show();
-        console.log('saludos2');
     }
 });
 
