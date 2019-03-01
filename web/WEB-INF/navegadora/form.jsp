@@ -165,7 +165,7 @@
                         </button>
 
                         <span class="pull-right d-block">
-                            <span style="color:#6c6f80">Bienvenido, </span>
+                            <span style="color:#6c6f80">Bienvenida, </span>
                             <span style="font-weight:700; color:#6c6f80;">${sessionScope.nombre} ${sessionScope.primerApellido}
                             </span>
                         </span>
